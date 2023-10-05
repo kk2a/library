@@ -15,6 +15,7 @@ long long euler_phi(long long a) {
     return res;
 }
 
+
 // long long floor
 long long fracfloor(long long a, long long b) {
     assert(b != 0);
@@ -24,6 +25,7 @@ long long fracfloor(long long a, long long b) {
     return -((-a) / b) - 1;
 } 
 
+
 // long long ceil
 long long fracceil(long long a, long long b) {
     assert(b != 0);
@@ -32,6 +34,7 @@ long long fracceil(long long a, long long b) {
     if (a >= 0) return a / b + 1;
     return -((-a) / b);
 }
+
 
 // modpow
 long long modpow(long long p, long long ex, long long modullo) {
