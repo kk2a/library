@@ -1,18 +1,3 @@
-#define _GLIBCXX_DEBUG
-#include <bits/stdc++.h>
-using namespace std;
-
-using u32 = unsigned int;
-using i64 = long long;
-using u64 = unsigned long long;
-
-# define rep(i, k, l) for (i64 i = (k); i < (l); ++i)
-# define repi(i, k, l) for (i64 i = (k); i >= (l); --i)
-
-constexpr i64 mod = 998244353;
-constexpr i64 inf_64 = 3343343343343343343;
-constexpr int inf_32 = 1334334334;
-
 struct UnionFind {
     vector<int> size, parents;
     UnionFind() {}
