@@ -68,3 +68,28 @@ long long mod_inversion(long long a, long long modulo) {
     if (m0 < 0) m0 += modulo / s;
     return m0;
 }
+
+// chinese remainder thm
+long long crt(pair<long long, long long> p, pair<long long, long long> q) {
+    long long a = p.first;
+    long long x = p.second;
+    long long b = q.first;
+    long long y = q.second;
+
+    long long g = gcd(a, b);
+    a /= g;
+    b /= g;
+    long long f1 = mod_inversion(a * b, g);
+    long long f2 = mod_inversion(a * g, b);
+    long long f3 = mod_inversion(b * g, a);
+    __int128_t res = 0, tmp = 1;
+    long long mod = a * b * g;
+    res += tmp * a * b * (x % g) * f1 % mod;
+    res %= mod;
+    res += tmp * a * g * (y % b) * f2 % mod;
+    res %= mod;
+    res += tmp * b * g * (x % a) * f3 % mod;
+    res %= mod;
+
+    return res;
+}
