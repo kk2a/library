@@ -1,8 +1,9 @@
 // input
-void input_graph(vector<vector<int>> &graph, const int &m) {
+void input_graph(vector<vector<int>> &graph, const int &m, bool f) {
     int u, v;
     rep (_, 0, m) {
-        cin >> u >> v; u--; v--;
+        cin >> u >> v; 
+        if (f) u--; v--;
         graph[u].push_back(v);
         graph[v].push_back(u);
     }
