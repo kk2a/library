@@ -1,5 +1,15 @@
+// input
+void input_graph(vector<vector<int>> &graph, const int &m) {
+    int u, v;
+    rep (_, 0, m) {
+        cin >> u >> v; u--; v--;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+}
+
 // normal
-vector<int> normal_bfs(const vector<vector<int>> &graph, const int start) {
+vector<int> normal_bfs(const vector<vector<int>> &graph, const int &start) {
     const int siz = size(graph);
     assert(siz > start);
     vector<int> dist(siz, -1);
@@ -132,3 +142,12 @@ vector<int> topological_sort(vector<vector<int>> graph) {
 	return res;
 }
 
+// diam
+int diam(const vector<vector<int>> &graph) {
+    vector<int> dist = normal_bfs(graph, 0);
+    int big = reduce(begin(dist), end(dist), -1, [](int acc, int i){return max(acc, i);});
+    int n = size(graph), idx = -1;
+    rep (i, 0, n) if (dist[i] == big) idx = i; 
+    dist = normal_bfs(graph, idx);
+    return reduce(begin(dist), end(dist), -1, [](int acc, int i){return max(acc, i);});
+}
