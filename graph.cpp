@@ -1,11 +1,28 @@
 // input
-void input_graph(vector<vector<int>> &graph, const int &m, bool f) {
+void input_graph(vector<vector<int>> &graph,
+                 const int &m,
+                 const bool &start1,
+                 const bool &is_directed) {
     int u, v;
-    rep (_, 0, m) {
+    for (int i = 0; i < m; i++) {
         cin >> u >> v; 
-        if (f) u--; v--;
+        if (start1) { u--; v--; }
         graph[u].push_back(v);
-        graph[v].push_back(u);
+        if (!is_directed) graph[v].push_back(u);
+    }
+}
+
+// {cost, vertex}
+void input_wgraph(vector<vector<array<long long, 2>>> &graph,
+                  const int &m,
+                  const bool &start1,
+                  const bool &is_directed) {
+    long long u, v, c;
+    for (int i = 0; i < m; i++) {
+        cin >> u >> v >> c;
+        if (start1) { u--; v--; }
+        graph[u].push_back( {c, v} );
+        if (!is_directed) graph[v].push_back( {c, u} );
     }
 }
 
@@ -143,6 +160,7 @@ vector<int> topological_sort(vector<vector<int>> graph) {
 	return res;
 }
 
+
 // diam
 int diam(const vector<vector<int>> &graph) {
     vector<int> dist = normal_bfs(graph, 0);
@@ -151,4 +169,33 @@ int diam(const vector<vector<int>> &graph) {
     rep (i, 0, n) if (dist[i] == big) idx = i; 
     dist = normal_bfs(graph, idx);
     return reduce(begin(dist), end(dist), -1, [](int acc, int i){return max(acc, i);});
+}
+
+
+// {cost, vertex}
+array<vector<long long>, 2> dijkstra(const int &start,
+                                     const vector<vector<array<long long, 2>>> &graph) {
+    int n = size(graph);
+    long long alt;
+    const long long inf = 3343343343343343343;
+    vector<long long> dist(n, inf), prev(n, -1);
+    dist[start] = 0;
+
+    priority_queue<array<long long, 2>,
+                   vector<array<long long, 2>>,
+                   greater<array<long long, 2>>> pq;
+    pq.push( {0ll, start} );
+    while (!pq.empty()) {
+        auto q = pq.top(); pq.pop();
+        if (dist[q[1]] < q[0]) continue;
+        for (auto v : graph[q[1]]) {
+            alt = q[0] + v[0];
+            if (alt < dist[v[1]]) {
+                pq.push( {alt, v[1]} );
+                dist[v[1]] = alt;
+                prev[v[1]] = q[1]; 
+            }
+        }
+    }
+    return {dist, prev} ;
 }
