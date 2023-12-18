@@ -12,20 +12,6 @@ void input_graph(vector<vector<int>> &graph,
     }
 }
 
-// {cost, vertex}
-void input_wgraph(vector<vector<array<long long, 2>>> &graph,
-                  const int &m,
-                  const bool &start1,
-                  const bool &is_directed) {
-    long long u, v, c;
-    for (int i = 0; i < m; i++) {
-        cin >> u >> v >> c;
-        if (start1) { u--; v--; }
-        graph[u].push_back( {c, v} );
-        if (!is_directed) graph[v].push_back( {c, u} );
-    }
-}
-
 // normal
 vector<int> normal_bfs(const vector<vector<int>> &graph, const int &start) {
     const int siz = size(graph);
@@ -172,30 +158,57 @@ int diam(const vector<vector<int>> &graph) {
 }
 
 
-// {cost, vertex}
-array<vector<long long>, 2> dijkstra(const int &start,
-                                     const vector<vector<array<long long, 2>>> &graph) {
-    int n = size(graph);
-    long long alt;
-    const long long inf = 3343343343343343343;
-    vector<long long> dist(n, inf), prev(n, -1);
-    dist[start] = 0;
+template <class T> struct W_graph {
+  public:
+    W_graph(int n) : _n(n), graph(n) {}
 
-    priority_queue<array<long long, 2>,
-                   vector<array<long long, 2>>,
-                   greater<array<long long, 2>>> pq;
-    pq.push( {0ll, start} );
-    while (!pq.empty()) {
-        auto q = pq.top(); pq.pop();
-        if (dist[q[1]] < q[0]) continue;
-        for (auto v : graph[q[1]]) {
-            alt = q[0] + v[0];
-            if (alt < dist[v[1]]) {
-                pq.push( {alt, v[1]} );
-                dist[v[1]] = alt;
-                prev[v[1]] = q[1]; 
-            }
+    int num_vertices() { return _n; }
+
+    void input(int m, const bool& start1, const bool& is_directed) {
+        int from, to;
+        T c;
+        while (m--) {
+            cin >> from >> to >> c;
+            set_edge(from, to, c, start1, is_directed);
         }
     }
-    return {dist, prev} ;
-}
+
+    void set_edge(int from, int to, T weight, bool start1, bool is_directed) {
+        if (start1) { --from; --to; }
+        graph[from].push_back({weight, to});
+        if (!is_directed) graph[to].push_back({weight, from});
+    } 
+
+    pair<vector<T>, vector<int>> dijkstra(const int& start,
+                                          const T& e,
+                                          const T& inf) {
+        T alt;
+        vector<T> dist(_n, inf);
+        vector<int> prev(_n, -1);
+        dist[start] = e;
+
+        priority_queue<pair<T, int>,
+                       vector<pair<T, int>>,
+                       greater<pair<T, int>>> pq;
+        pq.push({e, start});
+
+        while (!pq.empty()) {
+            auto q = pq.top(); pq.pop();
+            if (dist[q.second] < q.first) continue;
+            for (auto v : graph[q.second]) {
+                alt = q.first + v.first;
+                if (alt < dist[v.second]) {
+                    pq.push( {alt, v.second} );
+                    dist[v.second] = alt;
+                    prev[v.second] = q.second; 
+                }
+            }
+        }
+
+        return {dist, prev};
+    }
+    
+  private:
+    int _n;
+    vector<vector<pair<T, int>>> graph;
+};
