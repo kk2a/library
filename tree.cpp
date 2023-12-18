@@ -1,8 +1,8 @@
-template <class S, S (*op)(S, S), S (*e)()> struct segtree {
+template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
 public:
-    segtree() : segtree(0) {}
-    segtree(int n) : segtree(std::vector<S>(n, e())) {}
-    segtree(const std::vector<S>& v) : _n(int(v.size())) {
+    SegTree() : SegTree(0) {}
+    SegTree(int n) : SegTree(std::vector<S>(n, e())) {}
+    SegTree(const std::vector<S>& v) : _n(int(v.size())) {
         log = 0;
         while ((1U << log) < (unsigned int)(_n)) log++;
         size = 1 << log;
