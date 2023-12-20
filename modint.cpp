@@ -18,13 +18,18 @@ template <int p> struct ModInt {
     }
 
     ModInt() : _v(0) {}
-    ModInt(long long v) {
-        v %= getmod();
-        v += getmod();
-        v %= getmod();
-        _v = v;
+    template <class T> ModInt(T v) {
+        if (is_signed_v<T>) {
+            v %= getmod();
+            v += getmod();
+            v %= getmod();
+            _v = v;
+        }
+        else if (is_unsigned_v<T>) {
+            _v = v % getmod();
+        }
+        else ModInt();
     } 
-    ModInt(unsigned long long v) : _v(v % getmod()) {}
 
     unsigned int val() const { return _v; }
 
@@ -123,5 +128,3 @@ template <int p> struct ModInt {
   private:
     unsigned int _v;
 };
-
-using mint = ModInt<998244353>;
