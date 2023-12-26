@@ -125,6 +125,17 @@ template <int p> struct ModInt {
         return lhs._v != rhs._v;
     }
 
+    friend ostream& operator<<(ostream& os, const mint& mint_) {
+        os << mint_._v;
+        return os;
+    }
+    friend istream& operator>>(istream& is, mint& mint_) {
+        long long x;
+        is >> x;
+        mint_ = mint(x);
+        return is;
+    }
+
   private:
     unsigned int _v;
 };
