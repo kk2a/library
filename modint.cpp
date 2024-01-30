@@ -139,3 +139,6 @@ template <int p> struct ModInt {
   private:
     unsigned int _v;
 };
+
+template<int p>
+int ModInt<p>::Mod = 998244353;
