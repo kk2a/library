@@ -20,31 +20,17 @@ long long euler_phi(long long a) {
 long long fracfloor(long long a, long long b) {
     assert(b != 0);
     if (a % b == 0) return a / b;
-    
     if (a >= 0) return a / b;
     return -((-a) / b) - 1;
 } 
-
 
 // long long ceil
 long long fracceil(long long a, long long b) {
     assert(b != 0);
     if (a % b == 0) return a / b;
-    
     if (a >= 0) return a / b + 1;
     return -((-a) / b);
 }
-
-
-// modpow
-long long modpow(long long p, long long ex, long long modulo) {
-    p = (p % modulo + modulo) % modulo;
-    if (!ex) return 1;
-    long long Q = modpow(p, ex / 2, modulo);
-    if (ex % 2 == 1) return Q * Q % modulo * p % modulo;
-    return Q * Q % modulo;
-}
-
 
 // mod_inversion
 // only if gcd(a, mod) = 1
@@ -55,41 +41,10 @@ long long mod_inversion(long long a, long long modulo) {
 
     while (t) {
         long long u = s / t;
-        s -= t * u;
-        m0 -= m1 * u;  
-
-        auto tmp = s;
-        s = t;
-        t = tmp;
-        tmp = m0;
-        m0 = m1;
-        m1 = tmp;
+        swap(s -= t * u, t);
+        swap(m0 -= u * m1, m1);
     }
     if (m0 < 0) m0 += modulo / s;
     return m0;
 }
 
-// chinese remainder thm
-long long crt(pair<long long, long long> p, pair<long long, long long> q) {
-    long long a = p.first;
-    long long x = p.second;
-    long long b = q.first;
-    long long y = q.second;
-
-    long long g = gcd(a, b);
-    a /= g;
-    b /= g;
-    long long f1 = mod_inversion(a * b, g);
-    long long f2 = mod_inversion(a * g, b);
-    long long f3 = mod_inversion(b * g, a);
-    __int128_t res = 0, tmp = 1;
-    long long mod = a * b * g;
-    res += tmp * a * b * (x % g) * f1 % mod;
-    res %= mod;
-    res += tmp * a * g * (y % b) * f2 % mod;
-    res %= mod;
-    res += tmp * b * g * (x % a) * f3 % mod;
-    res %= mod;
-
-    return res;
-}

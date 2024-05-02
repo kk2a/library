@@ -59,7 +59,3 @@ struct LowLink {
     }
 };
 
-int main() {
-
-    return 0;
-}

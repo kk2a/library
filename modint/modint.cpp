@@ -95,12 +95,8 @@ template <int p> struct ModInt {
             s -= t * u;
             m0 -= m1 * u;  
 
-            auto tmp = s;
-            s = t;
-            t = tmp;
-            tmp = m0;
-            m0 = m1;
-            m1 = tmp;
+            swap(s, t);
+            swap(m0, m1);
         }
         if (m0 < 0) m0 += getmod() / s;
         return m0;
