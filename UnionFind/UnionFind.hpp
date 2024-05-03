@@ -1,3 +1,6 @@
+#ifndef UNIONFIND_HPP
+#define UNIONFIND_HPP 1
+
 struct UnionFind {
     vector<int> d;
     UnionFind(int n = 0) : d(n, -1) {}
@@ -17,3 +20,5 @@ struct UnionFind {
     int size(int x) { return -d[find(x)]; }
 };
 
+
+#endif // UNIONFIND_HPP

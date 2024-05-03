@@ -1,3 +1,6 @@
+#ifndef MATH_ERATOSTHENES
+#define MATH_ERATOSTHENES 1
+
 struct Erato {
     vector<bool> isprime;
     vector<int> minfactor;
@@ -58,3 +61,5 @@ struct Erato {
         return res;
     }
 };
+
+#endif // MATH_ERATOSTHENES

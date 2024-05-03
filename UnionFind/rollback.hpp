@@ -1,3 +1,6 @@
+#ifndef UNIONFIND_ROLLBACK_HPP
+#define UNIONFIND_ROLLBACK_HPP 1
+
 struct UnionFind_rollback {
     vector<int> d;
     vector<pair<int, int>> hist;
@@ -30,3 +33,5 @@ struct UnionFind_rollback {
     }
 };
 
+
+#endif // UNIONFIND_ROLLBACK_HPP

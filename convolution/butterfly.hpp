@@ -1,88 +1,5 @@
-template <int p>
-struct LazyMontgomeryModInt {
-    using mint = LazyMontgomeryModInt;
-    using i32 = int32_t;
-    using i64 = int64_t;
-    using u32 = uint32_t;
-    using u64 = uint64_t;
-
-    static constexpr u32 get_r() {
-        u32 ret = p;
-        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;
-        return ret;
-    }
-
-    static constexpr u32 r = get_r();
-    static constexpr u32 n2 = -u64(p) % p;
-    static_assert(r * p == 1, "invalid, r * p != 1");
-    static_assert(p < (1 << 30), "invalid, p >= 2 ^ 30");
-    static_assert((p & 1) == 1, "invalid, p % 2 == 0");
-    
-    u32 _v;
-
-    constexpr LazyMontgomeryModInt() : _v(0) {}
-    constexpr LazyMontgomeryModInt(const i64& b)
-         : _v(reduce(u64(b % p + p) * n2)) {}
-
-    static constexpr u32 reduce(const u64& b) {
-        return (b + u64(u32(b) * u32(-r)) * p) >> 32;
-    }
-    constexpr mint& operator+=(const mint& b) {
-        if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;
-        return *this;
-    }
-    constexpr mint& operator-=(const mint& b) {
-        if (i32(_v -= b._v) < 0) _v += 2 * p;
-        return *this;
-    }
-    constexpr mint& operator*=(const mint& b) {
-        _v = reduce(u64(_v) * b._v);
-        return *this;
-    }
-    constexpr mint& operator/=(const mint& b) {
-        *this *= b.inv();
-        return *this;
-    }
-
-    constexpr mint operator+(const mint& b) const { return mint(*this) += b; }
-    constexpr mint operator-(const mint& b) const { return mint(*this) -= b; }
-    constexpr mint operator-() const { return mint() - mint(*this); }
-    constexpr mint operator*(const mint& b) const { return mint(*this) *= b; }
-    constexpr mint operator/(const mint& b) const { return mint(*this) /= b; }
-    constexpr bool operator==(const mint &b) const {
-        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);
-    }
-    constexpr bool operator!=(const mint &b) const {
-        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);
-    }
-
-    template <class T>
-    constexpr mint pow(T n) const {
-        mint ret(1), mul(*this);
-        while (n > 0) {
-            if (n & 1) ret *= mul;
-            mul *= mul;
-            n >>= 1;
-        }
-        return ret;
-    }
-    constexpr mint inv() const { return pow(p - 2); }
-
-    friend ostream& operator<<(ostream& os, const mint& x) {
-        return os << x.get();
-    }
-    friend istream& operator>>(istream& is, mint& x) {
-        i64 t; is >> t; x = mint(t);
-        return (is);
-    }
-
-    constexpr u32 get() const {
-        u32 ret = reduce(_v);
-        return ret >= p ? ret - p : ret;
-    }
-    static constexpr u32 mod() { return p; }
-};
-
+#ifndef BUTTERFLY_HPP
+#define BUTTERFLY_HPP 1
 
 constexpr long long pow_mod_constexpr(long long x, long long n, int m) {
     if (m == 1) return 0;
@@ -96,6 +13,7 @@ constexpr long long pow_mod_constexpr(long long x, long long n, int m) {
     }
     return r;
 }
+
 constexpr int primitive_root_constexpr(int m) {
     if (m == 2) return 1;
     if (m == 167772161) return 3;
@@ -131,6 +49,7 @@ constexpr int primitive_root_constexpr(int m) {
     }
 }
 template <int m> static constexpr int primitive_root = primitive_root_constexpr(m);
+
 template <class T>
 constexpr T mod_inversion(T a, T modulo) {
     T s = modulo, t = a;
@@ -143,6 +62,7 @@ constexpr T mod_inversion(T a, T modulo) {
     if (m0 < 0) m0 += modulo / s;
     return m0;
 }
+
 long long garner(const vector<long long>& d, const vector<long long>& p) {
     static int nm = d.size();
     vector<long long> kp(nm + 1, 0), rmult(nm + 1, 1);
@@ -156,8 +76,9 @@ long long garner(const vector<long long>& d, const vector<long long>& p) {
     }
     return kp[nm];
 }
-template <class mint>
-void butterfly(vector<mint>& a) {
+
+template <class mint, class FPS>
+void butterfly(FPS& a) {
     static int g = primitive_root<mint::getmod()>;
     int n = int(a.size());
     int h = 0;
@@ -197,8 +118,9 @@ void butterfly(vector<mint>& a) {
         }
     }
 }
-template <class mint>
-void butterfly_inv(vector<mint>& a) {
+
+template <class mint, class FPS>
+void butterfly_inv(FPS& a) {
     static constexpr int g = primitive_root<mint::getmod()>;
     int n = int(a.size());
     int h = 0;
@@ -241,40 +163,4 @@ void butterfly_inv(vector<mint>& a) {
     }
 }
 
-
-template <class mint, class T>
-vector<mint> convolution_mulcut(const vector<T>& aa, const vector<T>& bb,
-                                       const vector<int>& base) {
-    vector<mint> a(begin(aa), end(aa)), b(begin(bb), end(bb));
-    int n = int(a.size());
-    if (!n) return {};
-    static const int k = size(base);
-    if (!k) return convolution<mint>(a, b);
-    vector<int> chi(n, 0);
-    for (int i = 0; i < n; i++) {
-        int x = i;
-        for (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);
-        chi[i] %= k;
-    }
-    int z = 1;
-    while (z < 2 * n - 1) z <<= 1;
-    vector<vector<mint>> f(k, vector<mint>(z));
-    vector<vector<mint>> g(k, vector<mint>(z));
-    for (int i = 0; i < n; i++) f[chi[i]][i] = a[i], g[chi[i]][i] = b[i];
-    for (auto& x : f) butterfly(x);
-    for (auto& x : g) butterfly(x);
-    vector<mint> tmp(k);
-    for (int ii = 0; ii < z; ii++) {
-        for (int i = 0; i < k; i++) {
-            for (int j = 0; j < k; j++) {
-                tmp[i + j - (i + j >= k ? k : 0)] += f[i][ii] * g[j][ii];
-            }
-        }
-        for (int i = 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};
-    }
-    for (auto& x : f) butterfly_inv(x);
-    mint iz = mint(z).inv();
-    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i] * iz;
-    return a;
-}
-
+#endif  // BUTTERFLY_HPP

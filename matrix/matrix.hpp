@@ -1,3 +1,6 @@
+#ifndef MATRIX_HPP
+#define MATRIX_HPP 1
+
 template <class Field>
 struct matrix {
     using mat = matrix;
@@ -167,3 +170,5 @@ struct matrix {
     int _h, _w;
     vector<vector<Field>> mat_;
 };
+
+#endif // MATRIX_HPP

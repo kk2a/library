@@ -1,3 +1,6 @@
+#ifndef UNIONFIND_WEIGHT_HPP
+#define UNIONFIND_WEIGHT_HPP 1
+
 // A is an abelian group
 template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)>
 struct UnionFind_weight {
@@ -34,3 +37,5 @@ struct UnionFind_weight {
     }
 };
 
+
+#endif // UNIONFIND_WEIGHT_HPP

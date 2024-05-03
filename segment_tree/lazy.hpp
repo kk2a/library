@@ -1,3 +1,6 @@
+#ifndef SEGMENT_TREE_LAZY_HPP
+#define SEGMENT_TREE_LAZY_HPP 1
+
 template <class S,
           S (*op)(S, S),
           S (*e)(),
@@ -172,3 +175,5 @@ struct LazySegTree {
         lz[k] = id();
     }
 };
+
+#endif // SEGMENT_TREE_LAZY_HPP

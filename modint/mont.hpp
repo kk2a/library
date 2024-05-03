@@ -1,3 +1,7 @@
+#ifndef MODINT_MONT_HPP
+#define MODINT_MONT_HPP 1
+
+template <int p>
 struct LazyMontgomeryModInt {
     using mint = LazyMontgomeryModInt;
     using i32 = int32_t;
@@ -68,52 +72,18 @@ struct LazyMontgomeryModInt {
     constexpr mint inv() const { return pow(p - 2); }
 
     friend ostream& operator<<(ostream& os, const mint& x) {
-        return os << x.get();
+        return os << x.val();
     }
     friend istream& operator>>(istream& is, mint& x) {
         i64 t; is >> t; x = mint(t);
         return (is);
     }
 
-    constexpr u32 get() const {
+    constexpr u32 val() const {
         u32 ret = reduce(_v);
         return ret >= p ? ret - p : ret;
     }
-    static constexpr u32 mod() { return p; }
+    static constexpr u32 getmod() { return p; }
 };
 
-
-template <class mint, class T>
-vector<mint> convolution_or(const vector<T>& aa, const vector<T>& bb) {
-    vector<mint> a(begin(aa), end(aa)), b(begin(bb), end(bb));
-
-    int n = int(size(a));  // == int(size(b)
-    if (!n) return {};
-    int log = 0;
-    while (1ull << log < n) log++;
-    n = 1 << log;
-    a.resize(n, 0), b.resize(n, 0);
-
-    auto fzt = [&](vector<mint>& a) -> void {
-        for (int i = 1; i < n; i <<= 1) {
-            for (int j = 0; j < n; j++) {
-                if ((i & j) != 0) a[j] += a[i ^ j];
-            }
-        }
-    };
-    auto ifzt = [&](vector<mint>& a) -> void {
-        for (int i = 1; i < n; i <<= 1) {
-            for (int j = 0; j < n; j++) {
-                if ((i & j) != 0) a[j] -= a[i ^ j];
-            }
-        }
-    };
-
-    fzt(a);
-    fzt(b);
-    for (int i = 0; i < n; i++) a[i] *= b[i]; 
-    ifzt(a);
-
-    return a;
-}
-
+#endif  // MODINT_MONT_HPP

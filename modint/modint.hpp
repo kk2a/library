@@ -1,3 +1,6 @@
+#ifndef MODINT_HPP
+#define MODINT_HPP 1
+
 template <int p> struct ModInt {
     using mint = ModInt;
 
@@ -138,3 +141,5 @@ template <int p> struct ModInt {
 
 template<int p>
 int ModInt<p>::Mod = 998244353;
+
+#endif  // MODINT_HPP

@@ -1,3 +1,6 @@
+#ifndef SEGMENT_TREE_SEG_HPP
+#define SEGMENT_TREE_SEG_HPP 1
+
 template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
 public:
     SegTree() : SegTree(0) {}
@@ -102,3 +105,5 @@ private:
 
     void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }
 };
+
+#endif // SEGMENT_TREE_SEG_HPP
