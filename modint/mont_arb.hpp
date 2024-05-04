@@ -91,8 +91,8 @@ struct ArbitraryLazyMontgomeryModIntBase {
         return (is);
     }
 
-    Uint val() const {
-        Uint ret = reduce(_v);
+    UInt val() const {
+        UInt ret = reduce(_v);
         return ret >= mod ? ret - mod : ret;
     }
     static UInt getmod() { return mod; }

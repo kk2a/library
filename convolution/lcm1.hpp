@@ -1,7 +1,9 @@
 #ifndef CONVOLUTION_LCM
 #define CONVOLUTION_LCM 1
 
+#ifdef KK2
 #include <kk2/math/Eratosthenes.hpp>
+#endif
 
 // 1-indexed
 template <class FPS> 

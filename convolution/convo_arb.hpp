@@ -1,26 +1,36 @@
 #ifndef CONVO_ARB_HPP
 #define CONVO_ARB_HPP 1
 
+#ifdef KK2
 #include <kk2/modint/mont.hpp>
-#include <kk2/convolution/butterfly.hpp>
 #include <kk2/convolution/convolution.hpp>
+#endif
 
 template <class mint, class FPS>
 FPS convolution_arb(FPS& a, FPS b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
-    static constexpr int nm = 3;
-    static constexpr long long MOD1 = 1107296257;  // 2^25
+    static constexpr long long MOD1 = 754974721;  // 2^24
     static constexpr long long MOD2 = 167772161;  // 2^25
     static constexpr long long MOD3 = 469762049;  // 2^26
-    auto c1 = convolution<LazyMontgomeryModInt<MOD1>>(a, b);
-    auto c2 = convolution<LazyMontgomeryModInt<MOD2>>(a, b);
-    auto c3 = convolution<LazyMontgomeryModInt<MOD3>>(a, b);
+    vector<long long> a0(n), b0(m);
+    for (int i = 0; i < n; i++) a0[i] = a[i].val();
+    for (int i = 0; i < m; i++) b0[i] = b[i].val();
+    auto a1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(a0), end(a0));
+    auto b1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(b0), end(b0));
+    auto c1 = convolution<LazyMontgomeryModInt<MOD1>>(a1, b1);
+    auto a2 = FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(a0), end(a0));
+    auto b2 = FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(b0), end(b0));
+    auto c2 = convolution<LazyMontgomeryModInt<MOD2>>(a2, b2);
+    auto a3 = FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(a0), end(a0));
+    auto b3 = FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(b0), end(b0));
+    auto c3 = convolution<LazyMontgomeryModInt<MOD3>>(a3, b3);
     static const vector<long long> p = {MOD1, MOD2, MOD3, mint::getmod()};
-    vector<mint> res(n + m - 1);
+    FPS res(n + m - 1);
     for (int i = 0; i < n + m - 1; i++) {
         res[i] = mint(garner({c1[i].val(), c2[i].val(), c3[i].val()}, p));
     }
+    a = res;
     return res;
 }
 

@@ -163,4 +163,23 @@ void butterfly_inv(FPS& a) {
     }
 }
 
+template <class mint, class FPS>
+void doubling(FPS &a) {
+    int n = a.size();
+    auto b = a;
+    int h = 0;
+    while ((1U << h) < (unsigned int)(n)) h++;
+    b.resize(1 << h);
+    butterfly_inv(b);
+    mint r = 1, zeta = mint(primitive_root<mint::getmod>()).
+                       pow((mint::getmod() - 1) / (n << 1));
+    for (int i = 0; i < n; i++) {
+        b[i] *= r;
+        r *= zeta;
+    }
+    butterfly(b);
+    b.resize(n);
+    copy(begin(b), end(b), back_inserter(a));
+}
+
 #endif  // BUTTERFLY_HPP
