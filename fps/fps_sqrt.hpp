@@ -37,7 +37,7 @@ FormalPowerSeries<mint> sqrt(FormalPowerSeries<mint> f, int deg = -1) {
 
 template <class mint>
 FormalPowerSeries<mint> sparse_sqrt(const FormalPowerSeries<mint>& f,
-                                        int deg = -1) {
+                                    int deg = -1) {
         if (deg == -1) deg = (int)f.size();
         if ((int)f.size() == 0) return FormalPowerSeries<mint>(deg, mint(0));
         if (f[0] == mint(0)) {
@@ -45,7 +45,7 @@ FormalPowerSeries<mint> sparse_sqrt(const FormalPowerSeries<mint>& f,
                 if (f[i] != mint(0)) {
                     if (i & 1) return {};
                     if (deg - i / 2 <= 0) break;
-                    auto ret = sparse_sqrt_any(f >> i, deg - i / 2);
+                    auto ret = sparse_sqrt(f >> i, deg - i / 2);
                     if (ret.empty()) return {};
                     ret = ret << (i / 2);
                     if ((int)ret.size() < deg) ret.resize(deg, mint(0));
@@ -56,7 +56,7 @@ FormalPowerSeries<mint> sparse_sqrt(const FormalPowerSeries<mint>& f,
         }
         long long sqr = mod_sqrt(f[0].val(), mint::getmod());
         if (sqr == -1) return {};
-        return f.sparse_sqrt((mint::getmod() >> 1), deg) * mint(sqr).inv();
+        return f.sparse_pow(((mint::getmod() + 1) >> 1), deg) * mint(sqr).inv();
     }
 
 #endif // FPS_SQRT_HPP
