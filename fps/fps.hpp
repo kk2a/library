@@ -85,6 +85,12 @@ struct FormalPowerSeries : vector<mint> {
         reverse(ret.begin(), ret.end());
         return ret;
     }
+
+    FPS inplace_rev() {
+        reverse(this->begin(), this->end());
+        return *this;
+    }
+
     FPS dot(FPS r) const {
         FPS ret(min(this->size(), r.size()));
         for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i] * r[i];
@@ -95,6 +101,11 @@ struct FormalPowerSeries : vector<mint> {
         FPS ret(begin(*this), begin(*this) + min((int)this->size(), n));
         if ((int)ret.size() < n) ret.resize(n, mint(0));
         return ret;
+    }
+
+    FPS inplace_pre(int n) {
+        this->resize(n);
+        return *this;
     }
 
     FPS operator>>(int n) const {
@@ -116,6 +127,15 @@ struct FormalPowerSeries : vector<mint> {
         }
         return ret;
     }
+
+    FPS inplace_diff() {
+        if (this->empty()) return {};
+        this->erase(this->begin());
+        for (int i = 1; i <= (int)this->size(); i++)
+            (*this)[i - 1] *= mint(i);
+        return *this;
+    }
+
     FPS integral() const {
         const int n = (int)this->size();
         FPS ret(n + 1);
@@ -132,6 +152,22 @@ struct FormalPowerSeries : vector<mint> {
         }
         return ret;
     }
+
+    FPS inplace_int() {
+        static vector<mint> inv{0, 1};
+        const int n = this->size();
+        auto mod = mint::getmod();
+        while ((int)inv.size() <= n) {
+            // p = q * i + r
+            // - q / r = 1 / i (mod p)
+            int i = inv.size();
+            inv.push_back((-inv[mod % i]) * (mod / i));
+        }
+        this->insert(this->begin(), mint(0));
+        for (int i = 1; i <= n; i++) (*this)[i] *= inv[i];
+        return *this;
+    }
+
     mint eval(mint x) const {
         mint r = 0, w = 1;
         for (auto &v : *this) {
@@ -145,7 +181,38 @@ struct FormalPowerSeries : vector<mint> {
         if (deg == -1) deg = this->size();
         return (this->diff() * this->inv(deg)).pre(deg - 1).integral();
     }
-    FPS pow(int64_t k, int deg = -1) const {
+
+    FPS sparse_log(int deg = -1) const {
+        assert(!this->empty() && (*this)[0] == mint(1));
+        if (deg == -1) deg = this->size();
+        vector<pair<int, mint>> fs;
+        for (int i = 1; i < int(this->size()); i++) {
+            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
+        }
+
+        int mod = mint::getmod();
+        static vector<mint> inv{1, 1};
+        while ((int)inv.size() <= deg) {
+            int i = inv.size();
+            inv.push_back(-inv[mod % i] * (mod / i));
+        }
+
+        FPS g(deg);
+        for (int k = 0; k < deg - 1; k++) {
+            for (auto &[j, fj] : fs) {
+                if (k < j) break;
+                int i = k - j;
+                g[k + 1] -= g[i + 1] * fj * (i + 1);
+            }
+            g[k + 1] *= inv[k + 1];
+            if (k + 1 < int(this->size())) g[k + 1] += (*this)[k + 1];
+        }
+
+        return g;
+    }
+
+    template <class T>
+    FPS pow(T k, int deg = -1) const {
         const int n = this->size();
         if (deg == -1) deg = n;
         if (k == 0) {
@@ -165,6 +232,126 @@ struct FormalPowerSeries : vector<mint> {
             if (__int128_t(i + 1) * k >= deg) return FPS(deg, mint(0));
         }
         return FPS(deg, mint(0));
+    }
+
+    template <class T>
+    FPS sparse_pow(T k, int deg = -1) const {
+        if (deg == -1) deg = this->size();
+        if (k == 0) {
+            FPS ret(deg);
+            if (deg > 0) ret[0] = mint(1);
+            return ret;
+        }
+
+        int zero = 0;
+        while (zero != int(this->size()) &&
+               (*this)[zero] == mint(0)) zero++;
+        if (zero == int(this->size()) ||
+            __int128_t(zero) * k >= deg) {
+            return FPS(deg, mint(0));
+        }
+        if (zero != 0) {
+            FPS suf(this->begin() + zero, this->end());
+            auto g = suf.sparse_pow(k, deg - zero * k);
+            FPS ret(zero * k, mint(0));
+            copy(begin(g), end(g), back_inserter(ret));
+            return ret;
+        }
+
+        int mod = mint::getmod();
+        static vector<mint> inv{1, 1};
+        while ((int)inv.size() <= deg) {
+            int i = inv.size();
+            inv.push_back(-inv[mod % i] * (mod / i));
+        }
+
+        vector<pair<int, mint>> fs;
+        for (int i = 1; i < int(this->size()); i++) {
+            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
+        }
+
+        FPS g(deg);
+        g[0] = (*this)[0].pow(k);
+        mint denom = (*this)[0].inv();
+        k %= mod;
+        for (int a = 1; a < deg; a++) {
+            for (auto& [i, f_i] : fs) {
+                if (a < i) break;
+                g[a] += g[a - i] * f_i * (mint(i) * (k + 1) - a);
+            }
+            g[a] *= denom * inv[a];
+        }
+        return g;
+    }
+
+    // assume that r is sparse
+    // return this / r
+    FPS sparse_div(const FPS &r, int deg = -1) const {
+        assert(!r.empty() && r[0] != mint(0));
+        if (deg == -1) deg = this->size();
+        mint ir0 = r[0].inv();
+        FPS ret = *this * ir0;
+        ret.resize(deg);
+        vector<pair<int, mint>> gs;
+        for (int i = 1; i < (int)r.size(); i++) {
+            if (r[i] != mint(0)) gs.emplace_back(i, r[i] * ir0);
+        }
+        for (int i = 0; i < deg; i++) {
+            for (auto &[j, g_j] : gs) {
+                if (i + j >= deg) break;
+                ret[i + j] -= ret[i] * g_j;
+            }
+        }
+        return ret;
+    }
+
+    FPS sparse_inv(int deg = -1) const {
+        assert(!this->empty() && (*this)[0] != mint(0));
+        if (deg == -1) deg = this->size();
+        vector<pair<int, mint>> fs;
+        for (int i = 1; i < int(this->size()); i++) {
+            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
+        }
+        FPS ret(deg);
+        mint if0 = (*this)[0].inv();
+        if (0 < deg) ret[0] = if0;
+        for (int k = 1; k < deg; k++) {
+            for (auto &[j, fj] : fs) {
+                if (k < j) break;
+                ret[k] += ret[k - j] * fj;
+            }
+            ret[k] *= -if0;
+        }
+        return ret;
+    }
+
+    FPS sparse_exp(int deg = -1) const {
+        assert(this->empty() || (*this)[0] == mint(0));
+        if (deg == -1) deg = this->size();
+        vector<pair<int, mint>> fs;
+        for (int i = 1; i < int(this->size()); i++) {
+            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
+        }
+
+        int mod = mint::getmod();
+        static vector<mint> inv{1, 1};
+        while ((int)inv.size() <= deg) {
+            int i = inv.size();
+            inv.push_back(-inv[mod % i] * (mod / i));
+        }
+
+        FPS g(deg);
+        if (deg) g[0] = 1;
+        for (int k = 0; k < deg - 1; k++) {
+            for (auto &[ip1, fip1] : fs) {
+                int i = ip1 - 1;
+                if (k < i) break;
+                g[k + 1] += g[k - i] * fip1 * (i + 1);
+            }
+            g[k + 1] *= inv[k + 1];
+        }
+
+        return g;
     }
 
     FPS &operator*=(const FPS &r);
