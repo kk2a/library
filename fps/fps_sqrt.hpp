@@ -57,6 +57,6 @@ FormalPowerSeries<mint> sparse_sqrt(const FormalPowerSeries<mint>& f,
         long long sqr = mod_sqrt(f[0].val(), mint::getmod());
         if (sqr == -1) return {};
         return f.sparse_pow(((mint::getmod() + 1) >> 1), deg) * mint(sqr).inv();
-    }
+}
 
 #endif // FPS_SQRT_HPP
