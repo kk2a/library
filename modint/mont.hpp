@@ -86,4 +86,7 @@ struct LazyMontgomeryModInt {
     static constexpr u32 getmod() { return p; }
 };
 
+template <int p>
+using Mont = LazyMontgomeryModInt<p>;
+
 #endif  // MODINT_MONT_HPP

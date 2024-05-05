@@ -3,8 +3,21 @@
 
 #ifdef KK2
 #include <kk2/convolution/butterfly.hpp>
+#include <kk2/convolution/convolution.hpp>
 #include <kk2/fps/fps.hpp>
 #endif
+
+
+template <class mint>
+FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(
+        const FormalPowerSeries<mint> &r) {
+    if (this->empty() || r.empty()) {
+        this->clear();
+        return *this;
+    }
+    convolution<mint>(*this, r);
+    return *this;
+}
 
 template <class mint> 
 void FormalPowerSeries<mint>::but() {
