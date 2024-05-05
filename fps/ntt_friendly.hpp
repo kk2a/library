@@ -76,23 +76,6 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
     inv.push_back(mint(0));
     inv.push_back(mint(1));
 
-    auto inplace_int = [&](FormalPowerSeries<mint> &f) -> void {
-        const int n = f.size();
-        auto mod = mint::getmod();
-        while ((int)inv.size() <= n) {
-            int i = inv.size();
-            inv.push_back((-inv[mod % i]) * (mod / i));
-        }
-        f.insert(begin(f), mint(0));
-        for (int i = 1; i <= n; i++) f[i] *= inv[i];
-    };
-
-    auto inplace_diff = [](FormalPowerSeries<mint> &f) -> void {
-        if (f.empty()) return;
-        f.erase(begin(f));
-        for (int i = 1; i <= (int)f.size(); i++)
-            f[i - 1] *= mint(i);
-    };
     FormalPowerSeries<mint> b{1, 1 < (int)this->size() ? (*this)[1] : mint(0)};
     FormalPowerSeries<mint> c{1}, z1, z2{1, 1};
     mint im = mint{2}.inv(), intwo = mint{2}.inv();
@@ -117,7 +100,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
 
         FormalPowerSeries<mint> x(begin(*this), begin(*this) + min<int>(this->size(), m));
         x.resize(m);
-        inplace_diff(x);
+        x.inplace_diff();
         x.push_back(mint(0));
         x.but();
         for (int i = 0; i < m; i++) x[i] *= y[i];
@@ -134,7 +117,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
         x.ibut();
         for (int i = 0; i < 2 * m; i++) x[i] *= im * intwo;
         x.pop_back();
-        inplace_int(x);
+        x.inplace_int();
         for (int i = m; i < min<int>(this->size(), m << 1); i++) x[i] += (*this)[i];
         fill(begin(x), begin(x) + m, mint(0));
         x.but();

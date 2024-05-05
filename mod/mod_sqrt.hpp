@@ -9,7 +9,7 @@ template <class T, class U>
 long long mod_sqrt(const T& a, const U &p) {
     assert(0 <= a && a < p);
     if (a < 2) return a;
-    using Mint = ArbitraryLazyMontgomeryModInt<0>;
+    using Mint = ArbitraryLazyMontgomeryModInt<54105064>;
     Mint::setmod(p);
     if (Mint(a).pow((p - 1) >> 1) != 1) return -1;
     Mint b = 1;
