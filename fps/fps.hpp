@@ -91,10 +91,16 @@ struct FormalPowerSeries : vector<mint> {
         return *this;
     }
 
-    FPS dot(FPS r) const {
+    FPS dot(const FPS &r) const {
         FPS ret(min(this->size(), r.size()));
         for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i] * r[i];
         return ret;
+    }
+
+    FPS inplace_dot(const FPS &r) {
+        this->resize(min(this->size(), r.size()));
+        for (int i = 0; i < (int)this->size(); i++) (*this)[i] *= r[i];
+        return *this;
     }
 
     FPS pre(int n) const {

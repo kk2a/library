@@ -50,12 +50,12 @@ constexpr int primitive_root_constexpr(int m) {
 }
 template <int m> static constexpr int primitive_root = primitive_root_constexpr(m);
 
-template <class T>
-constexpr T mod_inversion(T a, T modulo) {
-    T s = modulo, t = a;
-    T m0 = 0, m1 = 1;
+template <class T, class U>
+constexpr long long mod_inversion(T a, U modulo) {
+    long long s = modulo, t = a;
+    long long m0 = 0, m1 = 1;
     while (t) {
-        T u = s / t;
+        long long u = s / t;
         swap(s -= t * u, t);
         swap(m0 -= m1 * u, m1);
     }
@@ -167,18 +167,17 @@ template <class mint, class FPS>
 void doubling(FPS &a) {
     int n = a.size();
     auto b = a;
-    int h = 0;
-    while ((1U << h) < (unsigned int)(n)) h++;
-    b.resize(1 << h);
-    butterfly_inv(b);
-    mint r = 1, zeta = mint(primitive_root<mint::getmod>()).
+    int z = 1;
+    while (z < n) z <<= 1;
+    mint invz = mint(z).inv();
+    butterfly_inv<mint>(b); b *= invz;
+    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).
                        pow((mint::getmod() - 1) / (n << 1));
     for (int i = 0; i < n; i++) {
         b[i] *= r;
         r *= zeta;
     }
-    butterfly(b);
-    b.resize(n);
+    butterfly<mint>(b);
     copy(begin(b), end(b), back_inserter(a));
 }
 
