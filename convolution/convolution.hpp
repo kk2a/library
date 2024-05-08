@@ -2,7 +2,7 @@
 #define CONVOLUTION_HPP 1
 
 #ifdef KK2
-#include <kk2/convolution/butterfly.hpp>
+#include "butterfly.hpp"
 #endif
 
 template <class mint, class FPS>

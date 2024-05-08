@@ -2,8 +2,8 @@
 #define FPS_ARB_HPP 1
 
 #ifdef KK2
-#include <kk2/fps/fps.hpp>
-#include <kk2/convolution/convo_arb.hpp>
+#include "fps.hpp"
+#include "../convolution/convo_arb.hpp"
 #endif
 
 template <class mint>

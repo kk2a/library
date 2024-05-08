@@ -1,7 +1,9 @@
 #ifndef FPS_PRODUCT_HPP
 #define FPS_PRODUCT_HPP 1
 
-#include <kk2/fps/fps.hpp>
+#ifdef KK2
+#include "fps.hpp"
+#endif
 
 template <class mint>
 FormalPowerSeries<mint> all_prod(const vector<FormalPowerSeries<mint>> &a, int l, int r) {

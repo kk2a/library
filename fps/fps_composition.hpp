@@ -1,7 +1,9 @@
 #ifndef FPS_COMPOSITION_HPP
 #define FPS_COMPOSITION_HPP 1
 
-#include <kk2/fps/fps.hpp>
+#ifdef KK2
+#include "fps.hpp"
+#endif
 
 // calculate (g \circ f) (X)
 template <class mint>

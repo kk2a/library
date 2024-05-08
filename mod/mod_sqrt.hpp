@@ -2,7 +2,7 @@
 #define MOD_SQRT_HPP 1
 
 #ifdef KK2
-#include <kk2/modint/mont_arb.hpp>
+#include "../modint/mont_arb.hpp"
 #endif
 
 template <class T, class U> 

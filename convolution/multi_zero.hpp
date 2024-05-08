@@ -2,8 +2,7 @@
 #define CONVOLUTION_MULTI_ZERO 1
 
 #ifdef KK2
-#include <kk2/convolution/butterfly.hpp>
-#include <kk2/convolution/convolution.hpp>
+#include "convolution.hpp"
 #endif
 
 template <class mint, class FPS>

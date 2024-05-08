@@ -1,7 +1,9 @@
 #ifndef FPS_MULTI_EVAL_HPP
 #define FPS_MULTI_EVAL_HPP 1
 
-#include <kk2/fps/fps.hpp>
+#ifdef KK2
+#include "fps.hpp"
+#endif
 
 template <class mint>
 struct MultiPointEvaluation {

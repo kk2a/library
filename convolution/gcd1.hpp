@@ -2,7 +2,7 @@
 #define CONVOLUTION_GCD 1
 
 #ifdef KK2
-#include <kk2/math/Eratosthenes.hpp>
+#include "../math/Eratosthenes.hpp"
 #endif
 
     // 1-indexed

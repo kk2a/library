@@ -2,7 +2,7 @@
 #define FPS_SQRT_HPP 1
 
 #ifdef KK2
-#include <kk2/mod/mod_sqrt.hpp>
+#include "../mod/mod_sqrt.hpp"
 #endif
 
 template <class mint>

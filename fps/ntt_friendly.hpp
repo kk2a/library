@@ -2,9 +2,9 @@
 #define FPS_NTT_FRIENDLY_HPP 1
 
 #ifdef KK2
-#include <kk2/convolution/butterfly.hpp>
-#include <kk2/convolution/convolution.hpp>
-#include <kk2/fps/fps.hpp>
+#include "../convolution/butterfly.hpp"
+#include "../convolution/convolution.hpp"
+#include "fps.hpp"
 #endif
 
 

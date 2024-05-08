@@ -2,9 +2,6 @@
 
 #include "../../template/template.hpp"
 #include "../../modint/mont.hpp"
-#include "../../fps/fps.hpp"
-#include "../../convolution/butterfly.hpp"
-#include "../../convolution/convolution.hpp"
 #include "../../fps/ntt_friendly.hpp"
 
 using mint = Mont<mod>;

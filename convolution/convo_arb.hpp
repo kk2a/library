@@ -2,9 +2,9 @@
 #define CONVO_ARB_HPP 1
 
 #ifdef KK2
-#include <kk2/modint/mont.hpp>
-#include <kk2/convolution/convolution.hpp>
-#include <kk2/fps/fps.hpp>
+#include "../modint/mont.hpp"
+#include "convolution.hpp"
+#include "../fps/fps.hpp"
 #endif
 
 template <class mint, class FPS>
