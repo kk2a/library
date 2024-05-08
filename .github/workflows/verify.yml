@@ -24,6 +24,7 @@ jobs:
       run: pip3 install -U online-judge-verify-helper
 
     - name: Run tests
+      working-directory: main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
