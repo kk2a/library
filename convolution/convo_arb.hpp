@@ -1,11 +1,9 @@
 #ifndef CONVO_ARB_HPP
 #define CONVO_ARB_HPP 1
 
-#ifdef KK2
 #include "../modint/mont.hpp"
 #include "convolution.hpp"
 #include "../fps/fps.hpp"
-#endif
 
 template <class mint, class FPS>
 FPS convolution_arb(FPS& a, FPS b) {

@@ -1,11 +1,9 @@
 #ifndef FPS_NTT_FRIENDLY_HPP
 #define FPS_NTT_FRIENDLY_HPP 1
 
-#ifdef KK2
 #include "../convolution/butterfly.hpp"
 #include "../convolution/convolution.hpp"
 #include "fps.hpp"
-#endif
 
 
 template <class mint>

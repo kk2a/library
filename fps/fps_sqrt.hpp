@@ -1,9 +1,7 @@
 #ifndef FPS_SQRT_HPP
 #define FPS_SQRT_HPP 1
 
-#ifdef KK2
 #include "../mod/mod_sqrt.hpp"
-#endif
 
 template <class mint>
 FormalPowerSeries<mint> sqrt(FormalPowerSeries<mint> f, int deg = -1) {

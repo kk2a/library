@@ -1,10 +1,8 @@
 #ifndef FPS_COMPOSITION_INVERSION_HPP
 #define FPS_COMPOSITION_INVERSION_HPP 1
 
-#ifdef KK2
 #include "fps.hpp"
 #include "power_projection.hpp"
-#endif
 
 // calculate f ^ {-1} (X)  mod X ^ deg
 template <class mint>

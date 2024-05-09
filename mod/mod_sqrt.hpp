@@ -1,9 +1,7 @@
 #ifndef MOD_SQRT_HPP
 #define MOD_SQRT_HPP 1
 
-#ifdef KK2
 #include "../modint/mont_arb.hpp"
-#endif
 
 template <class T, class U> 
 long long mod_sqrt(const T& a, const U &p) {

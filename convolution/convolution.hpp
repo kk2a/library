@@ -1,9 +1,7 @@
 #ifndef CONVOLUTION_HPP
 #define CONVOLUTION_HPP 1
 
-#ifdef KK2
 #include "butterfly.hpp"
-#endif
 
 template <class mint, class FPS>
 FPS convolution(FPS& a, FPS b) {

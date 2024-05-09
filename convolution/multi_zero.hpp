@@ -1,9 +1,7 @@
 #ifndef CONVOLUTION_MULTI_ZERO
 #define CONVOLUTION_MULTI_ZERO 1
 
-#ifdef KK2
 #include "convolution.hpp"
-#endif
 
 template <class mint, class FPS>
 FPS convolution_mulcut(FPS& a, FPS b, const vector<int>& base) {

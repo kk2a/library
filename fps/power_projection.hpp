@@ -1,9 +1,7 @@
 #ifndef POWER_PROJECTION_HPP
 #define POWER_PROJECTION_HPP 1
 
-#ifdef KK2
 #include "fps.hpp"
-#endif
 
 // [X ^ n] f(X) ^ i g(X)  enumerate for i = 0, ... , m 
 // n = \deg f - 1

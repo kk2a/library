@@ -1,10 +1,8 @@
 #ifndef FPS_ARB_HPP
 #define FPS_ARB_HPP 1
 
-#ifdef KK2
 #include "fps.hpp"
 #include "../convolution/convo_arb.hpp"
-#endif
 
 template <class mint>
 void FormalPowerSeries<mint>::but() {
