@@ -84,10 +84,11 @@ void butterfly(FPS& a) {
     int h = 0;
     while ((1U << h) < (unsigned int)(n)) h++;
     static bool first = true;
-    static mint sum_e[30];  // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]
+    static mint sum_e2[30];  // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]
+    static mint sum_e3[30];
+    static mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1
     if (first) {
         first = false;
-        mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1
         int cnt2 = __builtin_ctz(mint::getmod() - 1);
         mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();
         for (int i = cnt2; i >= 2; i--) {
@@ -99,22 +100,58 @@ void butterfly(FPS& a) {
         }
         mint now = 1;
         for (int i = 0; i <= cnt2 - 2; i++) {
-            sum_e[i] = es[i] * now;
+            sum_e2[i] = es[i] * now;
             now *= ies[i];
         }
+        now = 1;
+        for (int i = 0; i <= cnt2 - 3; i++) {
+            sum_e3[i] = es[i + 1] * now;
+            now *= ies[i + 1];
+        }
     }
-    for (int ph = 1; ph <= h; ph++) {
-        int w = 1 << (ph - 1), p = 1 << (h - ph);
-        mint now = 1;
-        for (int s = 0; s < w; s++) {
-            int offset = s << (h - ph + 1);
-            for (int i = 0; i < p; i++) {
-                auto l = a[i + offset];
-                auto r = a[i + offset + p] * now;
-                a[i + offset] = l + r;
-                a[i + offset + p] = l - r;
+
+    int len = 0;
+    while (len < h) {
+        if (h - len == 1) {
+            int p = 1 << (h - len - 1);
+            mint rot = 1;
+            for (int s = 0; s < (1 << len); s++) {
+                int offset = s << (h - len);
+                for (int i = 0; i < p; i++) {
+                    auto l = a[i + offset];
+                    auto r = a[i + offset + p] * rot;
+                    a[i + offset] = l + r;
+                    a[i + offset + p] = l - r;
+                }
+                if (s + 1 != (1 << len)) 
+                    rot *= sum_e2[__builtin_ctz(~(unsigned int)(s))];
             }
-            now *= sum_e[__builtin_ctz(~(unsigned int)(s))];
+            len++;
+        }
+        else {
+            int p = 1 << (h - len - 2);
+            mint rot = 1, imag = es[0];
+            for (int s = 0; s < (1 << len); s++) {
+                mint rot2 = rot * rot;
+                mint rot3 = rot2 * rot;
+                int offset = s << (h - len);
+                for (int i = 0; i < p; i++) {
+                    auto mod2 = mint::getmod() * mint::getmod();
+                    auto a0 = a[i + offset];
+                    auto a1 = a[i + offset + p] * rot;
+                    auto a2 = a[i + offset + p * 2] * rot2;
+                    auto a3 = a[i + offset + p * 3] * rot3;
+                    auto a1na3imag = (a1 - a3) * imag;
+                    auto na2 = mod2 - a2;
+                    a[i + offset] = a0 + a2 + a1 + a3;
+                    a[i + offset + p] = a0 + a2 - a1 - a3;
+                    a[i + offset + p * 2] = a0 + na2 + a1na3imag;
+                    a[i + offset + p * 3] = a0 + na2 + mod2 - a1na3imag;
+                }
+                if (s + 1 != (1 << len))
+                rot *= sum_e3[__builtin_ctz(~(unsigned int)(s))];
+            }
+            len += 2;
         }
     }
 }
@@ -126,10 +163,11 @@ void butterfly_inv(FPS& a) {
     int h = 0;
     while ((1U << h) < (unsigned int)(n)) h++;
     static bool first = true;
-    static mint sum_ie[30];  // sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]
+    static mint sum_ie2[30];  // sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]
+    static mint sum_ie3[30];
+    static mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1
     if (first) {
         first = false;
-        mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1
         int cnt2 = __builtin_ctz(mint::getmod() - 1);
         mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();
         for (int i = cnt2; i >= 2; i--) {
@@ -141,24 +179,56 @@ void butterfly_inv(FPS& a) {
         }
         mint now = 1;
         for (int i = 0; i <= cnt2 - 2; i++) {
-            sum_ie[i] = ies[i] * now;
+            sum_ie2[i] = ies[i] * now;
             now *= es[i];
         }
+        now = 1;
+        for (int i = 0; i <= cnt2 - 3; i++) {
+            sum_ie3[i] = ies[i + 1] * now;
+            now *= es[i + 1];
+        }
     }
-    for (int ph = h; ph >= 1; ph--) {
-        int w = 1 << (ph - 1), p = 1 << (h - ph);
-        mint inow = 1;
-        for (int s = 0; s < w; s++) {
-            int offset = s << (h - ph + 1);
-            for (int i = 0; i < p; i++) {
-                auto l = a[i + offset];
-                auto r = a[i + offset + p];
-                a[i + offset] = l + r;
-                a[i + offset + p] =
-                    (unsigned long long)(mint::getmod() + l.val() - r.val()) *
-                    inow.val();
+    int len = h;
+    while (len) {
+        if (len == 1) {
+            int p = 1 << (h - len);
+            mint irot = 1;
+            for (int s = 0; s < (1 << (len - 1)); s++) {
+                int offset = s << (h - len +  1);
+                for (int i = 0; i < p; i++) {
+                    auto l = a[i + offset];
+                    auto r = a[i + offset + p];
+                    a[i + offset] = l + r;
+                    a[i + offset + p] = (l - r) * irot;
+                }
+                if (s + 1 != (1 << (len - 1)))
+                    irot *= sum_ie2[__builtin_ctz(~(unsigned int)(s))];
             }
-            inow *= sum_ie[__builtin_ctz(~(unsigned int)(s))];
+            len--;
+        }
+        else {
+            int p = 1 << (h - len);
+            mint irot = 1, iimag = ies[0];
+            for (int s = 0; s < (1 << ((len - 2))); s++) {
+                mint irot2 = irot * irot;
+                mint irot3 = irot2 * irot;
+                int offset = s << (h - len + 2);
+                for (int i = 0; i < p; i++) {
+                    auto a0 = a[i + offset];
+                    auto a1 = a[i + offset + p];
+                    auto a2 = a[i + offset + p * 2];
+                    auto a3 = a[i + offset + p * 3];
+                    auto a2na3iimag = (a2 - a3) * iimag;
+                    
+                    a[i + offset] = a0 + a1 + a2 + a3;
+                    a[i + offset + p] = (a0 - a1 + a2na3iimag) * irot;
+                    a[i + offset + p * 2] = (a0 + a1 - a2 - a3) * irot2;
+                    a[i + offset + p * 3] = (a0 - a1 - a2na3iimag) * irot3;
+                }
+                if (s + 1 != (1 << (len - 2)))
+                    irot *= sum_ie3[__builtin_ctz(~(unsigned int)(s))];
+            }
+            len -= 2;
         }
     }
 }
