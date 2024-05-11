@@ -108,6 +108,9 @@ data:
     - icon: ':warning:'
       path: fps/product.hpp
       title: fps/product.hpp
+    - icon: ':warning:'
+      path: fps/taylor_shift.hpp
+      title: fps/taylor_shift.hpp
   - name: math
     pages:
     - icon: ':warning:'
@@ -129,6 +132,9 @@ data:
       title: matrix/matrix.hpp
   - name: mod
     pages:
+    - icon: ':warning:'
+      path: mod/comb.hpp
+      title: mod/comb.hpp
     - icon: ':warning:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
