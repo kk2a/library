@@ -136,17 +136,15 @@ void butterfly(FPS& a) {
                 mint rot3 = rot2 * rot;
                 int offset = s << (h - len);
                 for (int i = 0; i < p; i++) {
-                    auto mod2 = mint::getmod() * mint::getmod();
                     auto a0 = a[i + offset];
                     auto a1 = a[i + offset + p] * rot;
                     auto a2 = a[i + offset + p * 2] * rot2;
                     auto a3 = a[i + offset + p * 3] * rot3;
                     auto a1na3imag = (a1 - a3) * imag;
-                    auto na2 = mod2 - a2;
                     a[i + offset] = a0 + a2 + a1 + a3;
                     a[i + offset + p] = a0 + a2 - a1 - a3;
-                    a[i + offset + p * 2] = a0 + na2 + a1na3imag;
-                    a[i + offset + p * 3] = a0 + na2 + mod2 - a1na3imag;
+                    a[i + offset + p * 2] = a0 - a2 + a1na3imag;
+                    a[i + offset + p * 3] = a0 - a2 - a1na3imag;
                 }
                 if (s + 1 != (1 << len))
                 rot *= sum_e3[__builtin_ctz(~(unsigned int)(s))];
