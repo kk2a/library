@@ -1,10 +1,15 @@
 #ifndef FPS_MULTI_EVAL_HPP
 #define FPS_MULTI_EVAL_HPP 1
 
-#include "fps.hpp"
 
 template <class mint, class FPS>
 struct MultiPointEvaluation {
+    int _n, size;
+    vector<int> l, r;
+    vector<FPS> pr;
+    vector<mint> v;
+    FPS f;
+
     MultiPointEvaluation(const vector<mint> &v_) : _n(int(v_.size())), v(v_) {
         size = 1;
         while (size < (unsigned int)(_n)) size <<= 1;
@@ -37,7 +42,7 @@ struct MultiPointEvaluation {
         }
     }
 
-    vector<FPS> query(const FPS &f) {
+    vector<mint> query(const FPS &f) {
         this->f = f;
         return query();
     }
@@ -61,13 +66,6 @@ struct MultiPointEvaluation {
         rec(rec, f, 1);
         return ret;
     }
-
-  private:
-    int _n, size;
-    vector<int> l, r;
-    vector<FPS> pr;
-    vector<mint> v;
-    FPS f;
 };
 
 template <class mint, class FPS>
