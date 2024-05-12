@@ -1,21 +1,17 @@
 #ifndef POWER_PROJECTION_HPP
 #define POWER_PROJECTION_HPP 1
 
-#include "fps.hpp"
-
 // [X ^ n] f(X) ^ i g(X)  enumerate for i = 0, ... , m 
 // n = \deg f - 1
-template <class mint>
-FormalPowerSeries<mint> power_projection(FormalPowerSeries<mint> f,
-                                        FormalPowerSeries<mint> g = {1},
-                                        int m = -1) {
+template <class mint, class FPS>
+FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
     if (f.empty() || g.empty()) return {};
     int n = int(size(f)) - 1, k = 1;
     g.resize(n + 1);
     if (m == -1) m = n;
     int h = 1;
     while (h < n + 1) h <<= 1;
-    FormalPowerSeries<mint> p((n + 1) * k), q((n + 1) * k),
+    FPS p((n + 1) * k), q((n + 1) * k),
         np, nq, buf, buf2;
     for (int i = 0; i <= n; i++) p[i * k] = g[i];
     for (int i = 0; i <= n; i++) q[i * k] = -f[i];
@@ -24,7 +20,7 @@ FormalPowerSeries<mint> power_projection(FormalPowerSeries<mint> f,
     mint invk = mint(k).inv();
     mint invh = mint(h).inv();
     while (n) {
-        mint w = mint(FormalPowerSeries<mint>::but_pr()).
+        mint w = mint(FPS::but_pr()).
             pow((mint::getmod() - 1) / (k << 1));
         mint invw = w.inv();
 
@@ -32,7 +28,7 @@ FormalPowerSeries<mint> power_projection(FormalPowerSeries<mint> f,
         auto db = [&]() -> void {
             copy(begin(buf), end(buf), begin(buf2));
             buf2.ibut();
-            for (int i = 0; i < k; i++) buf2[i] *= invk;
+            buf2 *= invk;
             mint r = 1;
             for (int i = 0; i < k; i++) {
                 buf2[i] *= r;
@@ -64,9 +60,9 @@ FormalPowerSeries<mint> power_projection(FormalPowerSeries<mint> f,
 
         np.resize(2 * h * 2 * k);
         nq.resize(2 * h * 2 * k);
-        FormalPowerSeries<mint> p1(2 * h), q1(2 * h);
+        FPS p1(2 * h), q1(2 * h);
 
-        w = mint(FormalPowerSeries<mint>::but_pr()).
+        w = mint(FPS::but_pr()).
             pow((mint::getmod() - 1) / (h << 1));
         invw = w.inv();
         vector<int> btr;
@@ -86,7 +82,7 @@ FormalPowerSeries<mint> power_projection(FormalPowerSeries<mint> f,
             }
             p1.but(); q1.but();
             for (int i = 0; i < 2 * h; i += 2) swap(q1[i], q1[i + 1]);
-            for (int i = 0; i < 2 * h; i++) p1[i] *= q1[i];
+            p1.inplace_dot(q1);
             for (int i = 0; i < h; i++) q1[i] = q1[i * 2] * q1[i * 2 + 1];
             if (n & 1) {
                 mint c = inv2;
@@ -103,7 +99,7 @@ FormalPowerSeries<mint> power_projection(FormalPowerSeries<mint> f,
             }
             p1.resize(h); q1.resize(h);
             p1.ibut(); q1.ibut();
-            for (int i = 0; i < h; i++) { p1[i] *= invh; q1[i] *= invh; }
+            p1 *= invh; q1 *= invh;
             for (int i = 0; i < h; i++) {
                 np[i * 2 * k + j] = p1[i];
                 nq[i * 2 * k + j] = q1[i];
@@ -117,13 +113,13 @@ FormalPowerSeries<mint> power_projection(FormalPowerSeries<mint> f,
         invh *= 2, invk *= inv2;
     }
 
-    FormalPowerSeries<mint> s(begin(p), begin(p) + k);
-    FormalPowerSeries<mint> t(begin(q), begin(q) + k);
+    FPS s(begin(p), begin(p) + k);
+    FPS t(begin(q), begin(q) + k);
     s.ibut(); t.ibut();
-    for (int i = 0; i < k; i++) { s[i] *= invk; t[i] *= invk; }
+    s *= invk; t *= invk;
     t[0] -= 1;
     if (f[0] == mint(0)) return s.rev().pre(m + 1);
-    return (s.rev() * (t + (FormalPowerSeries<mint>{1} << k)).
+    return (s.rev() * (t + (FPS{1} << k)).
            rev().inv(m + 1)).pre(m + 1);
 }
 
