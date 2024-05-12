@@ -5,61 +5,96 @@ data:
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
   - icon: ':heavy_check_mark:'
+    path: convolution/butterfly.hpp
+    title: convolution/butterfly.hpp
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':heavy_check_mark:'
+    path: fps/ntt_friendly.hpp
+    title: fps/ntt_friendly.hpp
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: fps/fps_arb.hpp
-    title: fps/fps_arb.hpp
+  - icon: ':heavy_check_mark:'
+    path: template/template.hpp
+    title: template/template.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"convolution/convo_arb.hpp\"\n\n\n\n#line 1 \"modint/mont.hpp\"\
-    \n\n\n\ntemplate <int p>\nstruct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
-    \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
-    \    using u64 = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32\
-    \ ret = p;\n        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n        return\
-    \ ret;\n    }\n\n    static constexpr u32 r = get_r();\n    static constexpr u32\
-    \ n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\");\n\
-    \    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
-    \ & 1) == 1, \"invalid, p % 2 == 0\");\n    \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-    \ : _v(0) {}\n    constexpr LazyMontgomeryModInt(const i64& b)\n         : _v(reduce(u64(b\
-    \ % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const u64& b) {\n    \
-    \    return (b + u64(u32(b) * u32(-r)) * p) >> 32;\n    }\n    constexpr mint&\
-    \ operator+=(const mint& b) {\n        if (i32(_v += b._v - 2 * p) < 0) _v +=\
-    \ 2 * p;\n        return *this;\n    }\n    constexpr mint& operator-=(const mint&\
-    \ b) {\n        if (i32(_v -= b._v) < 0) _v += 2 * p;\n        return *this;\n\
-    \    }\n    constexpr mint& operator*=(const mint& b) {\n        _v = reduce(u64(_v)\
-    \ * b._v);\n        return *this;\n    }\n    constexpr mint& operator/=(const\
-    \ mint& b) {\n        *this *= b.inv();\n        return *this;\n    }\n\n    constexpr\
-    \ mint operator+(const mint& b) const { return mint(*this) += b; }\n    constexpr\
-    \ mint operator-(const mint& b) const { return mint(*this) -= b; }\n    constexpr\
-    \ mint operator-() const { return mint() - mint(*this); }\n    constexpr mint\
-    \ operator*(const mint& b) const { return mint(*this) *= b; }\n    constexpr mint\
-    \ operator/(const mint& b) const { return mint(*this) /= b; }\n    constexpr bool\
-    \ operator==(const mint &b) const {\n        return (_v >= p ? _v - p : _v) ==\
-    \ (b._v >= p ? b._v - p : b._v);\n    }\n    constexpr bool operator!=(const mint\
-    \ &b) const {\n        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p\
-    \ : b._v);\n    }\n\n    template <class T>\n    constexpr mint pow(T n) const\
-    \ {\n        mint ret(1), mul(*this);\n        while (n > 0) {\n            if\
-    \ (n & 1) ret *= mul;\n            mul *= mul;\n            n >>= 1;\n       \
-    \ }\n        return ret;\n    }\n    constexpr mint inv() const { return pow(p\
-    \ - 2); }\n\n    friend ostream& operator<<(ostream& os, const mint& x) {\n  \
-    \      return os << x.val();\n    }\n    friend istream& operator>>(istream& is,\
-    \ mint& x) {\n        i64 t; is >> t; x = mint(t);\n        return (is);\n   \
-    \ }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n      \
-    \  return ret >= p ? ret - p : ret;\n    }\n    static constexpr u32 getmod()\
-    \ { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
-    \n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
+    links:
+    - https://judge.yosupo.jp/problem/pow_of_formal_power_series
+  bundledCode: "#line 1 \"verify/yosupo_fps/fps_pow.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\n\n#line 1 \"template/template.hpp\"\
+    \n\n\n\n#include <bits/stdc++.h>\nusing namespace std;\n// #include <atcoder/all>\n\
+    // using namespace atcoder;\n\nusing u32 = unsigned int;\nusing i64 = long long;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned\
+    \ __int128;\n\nusing pi = pair<int, int>;\nusing pl = pair<i64, i64>;\nusing pil\
+    \ = pair<int, i64>;\nusing pli = pair<i64, int>;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = (1 << 30) - 123;\ntemplate\
+    \ <>\nconstexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <>\nconstexpr\
+    \ i128 infty<i128> = i128(infty<i64>) * infty<i64>;\ntemplate <>\nconstexpr u32\
+    \ infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<i64>;\n\
+    template <>\nconstexpr double infty<double> = infty<i64>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i64>;\nconstexpr int mod = 998244353;\n\
+    constexpr int modu = 1e9 + 7;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    \ntemplate <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing\
+    \ pqi = priority_queue<T, vector<T>, greater<T>>;\n\ntemplate <class T, class\
+    \ S>\ninline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b, 1 : 0);\n\
+    }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n    return\
+    \ (a > b ? a = b, 1 : 0);\n}\n\n# define rep1(a) for (i64 _ = 0; _ < i64(a); _++)\n\
+    # define rep2(i, a) for (i64 i = 0; i < i64(a); i++)\n# define rep3(i, a, b) for\
+    \ (i64 i = (a); i < i64(b); i++)\n# define repi2(i, a) for (i64 i = (a) - 1; i\
+    \ >= 0; i--)\n# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (b); i--)\n#\
+    \ define overload3(a, b, c, d, ...) d\n# define rep(...) overload3(__VA_ARGS__,\
+    \ rep3, rep2, rep1)(__VA_ARGS__)\n# define repi(...) overload3(__VA_ARGS__, repi3,\
+    \ repi2, rep1)(__VA_ARGS__)\n\n# define pb push_back\n# define eb emplace_back\n\
+    # define fi first\n# define se second\n# define all(p) begin(p), end(p)\n\n\n\
+    #line 1 \"modint/mont.hpp\"\n\n\n\ntemplate <int p>\nstruct LazyMontgomeryModInt\
+    \ {\n    using mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using\
+    \ i64 = int64_t;\n    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n   \
+    \ static constexpr u32 get_r() {\n        u32 ret = p;\n        for (int i = 0;\
+    \ i < 4; ++i) ret *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr\
+    \ u32 r = get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r\
+    \ * p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
+    \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
+    \    \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n    constexpr\
+    \ LazyMontgomeryModInt(const i64& b)\n         : _v(reduce(u64(b % p + p) * n2))\
+    \ {}\n\n    static constexpr u32 reduce(const u64& b) {\n        return (b + u64(u32(b)\
+    \ * u32(-r)) * p) >> 32;\n    }\n    constexpr mint& operator+=(const mint& b)\
+    \ {\n        if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n\
+    \    }\n    constexpr mint& operator-=(const mint& b) {\n        if (i32(_v -=\
+    \ b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n    constexpr mint& operator*=(const\
+    \ mint& b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n  \
+    \  }\n    constexpr mint& operator/=(const mint& b) {\n        *this *= b.inv();\n\
+    \        return *this;\n    }\n\n    constexpr mint operator+(const mint& b) const\
+    \ { return mint(*this) += b; }\n    constexpr mint operator-(const mint& b) const\
+    \ { return mint(*this) -= b; }\n    constexpr mint operator-() const { return\
+    \ mint() - mint(*this); }\n    constexpr mint operator*(const mint& b) const {\
+    \ return mint(*this) *= b; }\n    constexpr mint operator/(const mint& b) const\
+    \ { return mint(*this) /= b; }\n    constexpr bool operator==(const mint &b) const\
+    \ {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);\n\
+    \    }\n    constexpr bool operator!=(const mint &b) const {\n        return (_v\
+    \ >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n    }\n\n    template\
+    \ <class T>\n    constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n    constexpr\
+    \ mint inv() const { return pow(p - 2); }\n\n    friend ostream& operator<<(ostream&\
+    \ os, const mint& x) {\n        return os << x.val();\n    }\n    friend istream&\
+    \ operator>>(istream& is, mint& x) {\n        i64 t; is >> t; x = mint(t);\n \
+    \       return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
+    \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n    static constexpr\
+    \ u32 getmod() { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
+    \n\n#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
     \n\n\n\nconstexpr long long pow_mod_constexpr(long long x, long long n, int m)\
     \ {\n    if (m == 1) return 0;\n    unsigned int _m = (unsigned int)(m);\n   \
     \ unsigned long long r = 1;\n    unsigned long long y = (x % m + m) % m;\n   \
@@ -165,21 +200,21 @@ data:
     \ b *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).\n \
     \                      pow((mint::getmod() - 1) / (n << 1));\n    for (int i =\
     \ 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly<mint>(b);\n\
-    \    copy(begin(b), end(b), back_inserter(a));\n}\n\n\n#line 5 \"convolution/convolution.hpp\"\
-    \n\ntemplate <class mint, class FPS>\nFPS convolution(FPS& a, FPS b) {\n    int\
-    \ n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n    if\
-    \ (std::min(n, m) <= 60) {\n        if (n < m) {\n            swap(n, m);\n  \
-    \          swap(a, b);\n        }\n        FPS res(n + m - 1);\n        for (int\
-    \ i = 0; i < n; i++) {\n            for (int j = 0; j < m; j++) {\n          \
-    \      res[i + j] += a[i] * b[j];\n            }\n        }\n        a = res;\n\
-    \        return a;\n    }\n    int z = 1;\n    while (z < n + m - 1) z <<= 1;\n\
-    \    a.resize(z);\n    butterfly<mint>(a);\n    b.resize(z);\n    butterfly<mint>(b);\n\
-    \    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv<mint>(a);\n\
-    \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
-    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n\n#line 1 \"fps/fps.hpp\"\
-    \n\n\n\n\ntemplate <class mint>\nstruct FormalPowerSeries : vector<mint> {\n \
-    \   using vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\n    FPS\
-    \ &operator+=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
+    \    copy(begin(b), end(b), back_inserter(a));\n}\n\n\n#line 1 \"convolution/convolution.hpp\"\
+    \n\n\n\n#line 5 \"convolution/convolution.hpp\"\n\ntemplate <class mint, class\
+    \ FPS>\nFPS convolution(FPS& a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    \    if (!n || !m) return {};\n    if (std::min(n, m) <= 60) {\n        if (n\
+    \ < m) {\n            swap(n, m);\n            swap(a, b);\n        }\n      \
+    \  FPS res(n + m - 1);\n        for (int i = 0; i < n; i++) {\n            for\
+    \ (int j = 0; j < m; j++) {\n                res[i + j] += a[i] * b[j];\n    \
+    \        }\n        }\n        a = res;\n        return a;\n    }\n    int z =\
+    \ 1;\n    while (z < n + m - 1) z <<= 1;\n    a.resize(z);\n    butterfly<mint>(a);\n\
+    \    b.resize(z);\n    butterfly<mint>(b);\n    for (int i = 0; i < z; i++) a[i]\
+    \ *= b[i];\n    butterfly_inv<mint>(a);\n    a.resize(n + m - 1);\n    mint iz\
+    \ = mint(z).inv();\n    for (int i = 0; i < n + m - 1; i++) a[i] *= iz;\n    return\
+    \ a;\n}\n\n\n#line 1 \"fps/fps.hpp\"\n\n\n\n\ntemplate <class mint>\nstruct FormalPowerSeries\
+    \ : vector<mint> {\n    using vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
+    \n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
     \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n       \
     \ return *this;\n    }\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
     \ this->resize(1);\n        (*this)[0] += r;\n        return *this;\n    }\n \
@@ -322,61 +357,79 @@ data:
     \ FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this) *= r; }\n\
     \    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
     \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n\n\
-    #line 7 \"convolution/convo_arb.hpp\"\n\ntemplate <class mint, class FPS>\nFPS\
-    \ convolution_arb(FPS& a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n\
-    \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
-    \  // 2^24\n    static constexpr long long MOD2 = 167772161;  // 2^25\n    static\
-    \ constexpr long long MOD3 = 469762049;  // 2^26\n    vector<long long> a0(n),\
-    \ b0(m);\n    for (int i = 0; i < n; i++) a0[i] = a[i].val();\n    for (int i\
-    \ = 0; i < m; i++) b0[i] = b[i].val();\n    auto a1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(a0),\
-    \ end(a0));\n    auto b1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(b0),\
-    \ end(b0));\n    auto c1 = convolution<LazyMontgomeryModInt<MOD1>>(a1, b1);\n\
-    \    auto a2 = FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(a0), end(a0));\n\
-    \    auto b2 = FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(b0), end(b0));\n\
-    \    auto c2 = convolution<LazyMontgomeryModInt<MOD2>>(a2, b2);\n    auto a3 =\
-    \ FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(a0), end(a0));\n    auto\
-    \ b3 = FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(b0), end(b0));\n  \
-    \  auto c3 = convolution<LazyMontgomeryModInt<MOD3>>(a3, b3);\n    static const\
-    \ vector<long long> p = {MOD1, MOD2, MOD3, mint::getmod()};\n    FPS res(n + m\
-    \ - 1);\n    for (int i = 0; i < n + m - 1; i++) {\n        res[i] = mint(garner({c1[i].val(),\
-    \ c2[i].val(), c3[i].val()}, p));\n    }\n    a = res;\n    return res;\n}\n\n\
-    \n"
-  code: "#ifndef CONVO_ARB_HPP\n#define CONVO_ARB_HPP 1\n\n#include \"../modint/mont.hpp\"\
-    \n#include \"convolution.hpp\"\n#include \"../fps/fps.hpp\"\n\ntemplate <class\
-    \ mint, class FPS>\nFPS convolution_arb(FPS& a, FPS b) {\n    int n = int(a.size()),\
-    \ m = int(b.size());\n    if (!n || !m) return {};\n    static constexpr long\
-    \ long MOD1 = 754974721;  // 2^24\n    static constexpr long long MOD2 = 167772161;\
-    \  // 2^25\n    static constexpr long long MOD3 = 469762049;  // 2^26\n    vector<long\
-    \ long> a0(n), b0(m);\n    for (int i = 0; i < n; i++) a0[i] = a[i].val();\n \
-    \   for (int i = 0; i < m; i++) b0[i] = b[i].val();\n    auto a1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(a0),\
-    \ end(a0));\n    auto b1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(b0),\
-    \ end(b0));\n    auto c1 = convolution<LazyMontgomeryModInt<MOD1>>(a1, b1);\n\
-    \    auto a2 = FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(a0), end(a0));\n\
-    \    auto b2 = FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(b0), end(b0));\n\
-    \    auto c2 = convolution<LazyMontgomeryModInt<MOD2>>(a2, b2);\n    auto a3 =\
-    \ FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(a0), end(a0));\n    auto\
-    \ b3 = FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(b0), end(b0));\n  \
-    \  auto c3 = convolution<LazyMontgomeryModInt<MOD3>>(a3, b3);\n    static const\
-    \ vector<long long> p = {MOD1, MOD2, MOD3, mint::getmod()};\n    FPS res(n + m\
-    \ - 1);\n    for (int i = 0; i < n + m - 1; i++) {\n        res[i] = mint(garner({c1[i].val(),\
-    \ c2[i].val(), c3[i].val()}, p));\n    }\n    a = res;\n    return res;\n}\n\n\
-    #endif  // CONVO_ARB_HPP\n"
+    #line 7 \"fps/ntt_friendly.hpp\"\n\n\ntemplate <class mint>\nFormalPowerSeries<mint>\
+    \ &FormalPowerSeries<mint>::operator*=(\n        const FormalPowerSeries<mint>\
+    \ &r) {\n    if (this->empty() || r.empty()) {\n        this->clear();\n     \
+    \   return *this;\n    }\n    convolution<mint>(*this, r);\n    return *this;\n\
+    }\n\ntemplate <class mint> \nvoid FormalPowerSeries<mint>::but() {\n    butterfly<mint>(*this);\n\
+    }\n\ntemplate <class mint>\nvoid FormalPowerSeries<mint>::ibut() {\n    butterfly_inv<mint>(*this);\n\
+    }\n\ntemplate <class mint>\nvoid FormalPowerSeries<mint>::db() {\n    doubling<mint>(*this);\n\
+    }\n\ntemplate <class mint>\nint FormalPowerSeries<mint>::but_pr() {\n    return\
+    \ primitive_root<mint::getmod()>;\n}\n\ntemplate <class mint>\nFormalPowerSeries<mint>\
+    \ FormalPowerSeries<mint>::inv(int deg) const {\n    assert((*this)[0] != mint(0));\n\
+    \    if (deg == -1) deg = (int)this->size();\n    FormalPowerSeries<mint> res(deg);\n\
+    \    res[0] = {mint(1) / (*this)[0]};\n    auto ind = mint{2}.inv(), intwo = mint{2}.inv();\n\
+    \    for (int d = 1; d < deg; d <<= 1) {\n        FormalPowerSeries<mint> f(2\
+    \ * d), g(2 * d);\n        copy(begin(*this), begin(*this) + min((int)this->size(),\
+    \ 2 * d), begin(f));\n        copy(begin(res), begin(res) + d, begin(g));\n  \
+    \      f.but(); g.but();\n        f.inplace_dot(g);\n        f.ibut(); f *= ind;\n\
+    \        fill(begin(f), begin(f) + d, mint(0));\n        f.but();\n        f.inplace_dot(g);\n\
+    \        f.ibut(); f *= ind;\n        for (int j = d; j < min(2 * d, deg); j++)\
+    \ res[j] = -f[j];\n        ind *= intwo;\n    }\n    return res.pre(deg);\n}\n\
+    \ntemplate <class mint>\nFormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int\
+    \ deg) const {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg\
+    \ == -1) deg = (int)this->size();\n    FormalPowerSeries<mint> inv;\n    inv.reserve(deg\
+    \ + 1);\n    inv.push_back(mint(0));\n    inv.push_back(mint(1));\n\n    FormalPowerSeries<mint>\
+    \ b{1, 1 < (int)this->size() ?\n                              (*this)[1] : mint(0)};\n\
+    \    FormalPowerSeries<mint> c{1}, z1, z2{1, 1};\n    mint im = mint{2}.inv(),\
+    \ intwo = mint{2}.inv();\n    for (int m = 2; m < deg; m <<= 1) {\n        auto\
+    \ y = b;\n        y.resize(m << 1);\n        y.but();\n        z1 = z2;\n    \
+    \    FormalPowerSeries<mint> z(m);\n        z = y.dot(z1);\n        z.ibut();\
+    \ z *= im;\n        fill(begin(z), begin(z) + (m >> 1), mint(0));\n        z.but();\
+    \ z.inplace_dot(-z1);\n        z.ibut(); z *= im;\n        c.insert(end(c), begin(z)\
+    \ + (m >> 1), end(z));\n        z2 = c;\n        z2.resize(m << 1);\n        z2.but();\n\
+    \n        FormalPowerSeries<mint> x(begin(*this), begin(*this) +\n           \
+    \                       min<int>(this->size(), m));\n        x.resize(m);\n  \
+    \      x.inplace_diff();\n        x.push_back(mint(0));\n        x.but();\n  \
+    \      x.inplace_dot(y);\n        x.ibut(); x *= im;\n        x -= b.diff();\n\
+    \        x.resize(m << 1);\n        for (int i = 0; i < m - 1; i++) {\n      \
+    \      x[m + i] = x[i];\n            x[i] = mint(0);\n        }\n        x.but();\n\
+    \        x.inplace_dot(z2);\n        x.ibut(); x *= im * intwo;\n        x.pop_back();\n\
+    \        x.inplace_int();\n        for (int i = m; i < min<int>(this->size(),m\
+    \ << 1); i++)\n            x[i] += (*this)[i];\n        fill(begin(x), begin(x)\
+    \ + m, mint(0));\n        x.but();\n        x.inplace_dot(y);\n        x.ibut();\
+    \ x *= im * intwo;\n        b.insert(end(b), begin(x) + m, end(x));\n        im\
+    \ *= intwo;\n    }\n    return FormalPowerSeries<mint>(begin(b), begin(b) + deg);\n\
+    }\n\n\n\n#line 6 \"verify/yosupo_fps/fps_pow.test.cpp\"\n\nusing mint = Mont<mod>;\n\
+    using FPS = FormalPowerSeries<mint>;\n\nint main () {\n    int n;\n    long long\
+    \ m;\n    cin >> n >> m;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto\
+    \ g = f.pow(m);\n    for (auto v : g) cout << v << \" \";\n    cout << endl;\n\
+    \n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
+    \n\n#include \"../../template/template.hpp\"\n#include \"../../modint/mont.hpp\"\
+    \n#include \"../../fps/ntt_friendly.hpp\"\n\nusing mint = Mont<mod>;\nusing FPS\
+    \ = FormalPowerSeries<mint>;\n\nint main () {\n    int n;\n    long long m;\n\
+    \    cin >> n >> m;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto g =\
+    \ f.pow(m);\n    for (auto v : g) cout << v << \" \";\n    cout << endl;\n\n \
+    \   return 0;\n}"
   dependsOn:
+  - template/template.hpp
   - modint/mont.hpp
+  - fps/ntt_friendly.hpp
+  - convolution/butterfly.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
   - fps/fps.hpp
-  isVerificationFile: false
-  path: convolution/convo_arb.hpp
-  requiredBy:
-  - fps/fps_arb.hpp
+  isVerificationFile: true
+  path: verify/yosupo_fps/fps_pow.test.cpp
+  requiredBy: []
   timestamp: '2024-05-12 17:44:19+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: convolution/convo_arb.hpp
+documentation_of: verify/yosupo_fps/fps_pow.test.cpp
 layout: document
 redirect_from:
-- /library/convolution/convo_arb.hpp
-- /library/convolution/convo_arb.hpp.html
-title: convolution/convo_arb.hpp
+- /verify/verify/yosupo_fps/fps_pow.test.cpp
+- /verify/verify/yosupo_fps/fps_pow.test.cpp.html
+title: verify/yosupo_fps/fps_pow.test.cpp
 ---

@@ -179,5 +179,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_fps/fps_pow.test.cpp
+      title: verify/yosupo_fps/fps_pow.test.cpp
 layout: toppage
 ---

@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_pow.test.cpp
+    title: verify/yosupo_fps/fps_pow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -64,35 +67,35 @@ data:
     \    FPS operator/(const FPS &r) const { return FPS(*this) /= r; }\n    FPS operator%(const\
     \ FPS &r) const { return FPS(*this) %= r; }\n    FPS operator-() const {\n   \
     \     FPS ret(this->size());\n        for (int i = 0; i < (int)this->size(); i++)\
-    \ ret[i] = -(*this)[i];\n        return ret;\n    }\n\n    void shrink() {\n \
-    \       while (this->size() && this->back() == mint(0)) this->pop_back();\n  \
-    \  }\n\n    FPS rev() const {\n        FPS ret(*this);\n        reverse(ret.begin(),\
-    \ ret.end());\n        return ret;\n    }\n\n    FPS inplace_rev() {\n       \
-    \ reverse(this->begin(), this->end());\n        return *this;\n    }\n\n    FPS\
-    \ dot(const FPS &r) const {\n        FPS ret(min(this->size(), r.size()));\n \
-    \       for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i] * r[i];\n\
-    \        return ret;\n    }\n\n    FPS inplace_dot(const FPS &r) {\n        this->resize(min(this->size(),\
-    \ r.size()));\n        for (int i = 0; i < (int)this->size(); i++) (*this)[i]\
-    \ *= r[i];\n        return *this;\n    }\n\n    FPS pre(int n) const {\n     \
-    \   FPS ret(begin(*this), begin(*this) + min((int)this->size(), n));\n       \
-    \ if ((int)ret.size() < n) ret.resize(n, mint(0));\n        return ret;\n    }\n\
-    \n    FPS inplace_pre(int n) {\n        this->resize(n);\n        return *this;\n\
-    \    }\n\n    FPS operator>>(int n) const {\n        if (n >= (int)this->size())\
-    \ return {};\n        FPS ret(begin(*this) + n, end(*this));\n        return ret;\n\
-    \    }\n    FPS operator<<(int n) const {\n        FPS ret(*this);\n        ret.insert(begin(ret),\
-    \ n, mint(0));\n        return ret;\n    }\n\n    FPS diff() const {\n       \
-    \ const int n = (int)this->size();\n        FPS ret(max(0, n - 1));\n        for\
-    \ (int i = 1; i < n; i++) {\n            ret[i - 1] = (*this)[i] * mint(i);\n\
-    \        }\n        return ret;\n    }\n\n    FPS inplace_diff() {\n        if\
-    \ (this->empty()) return {};\n        this->erase(this->begin());\n        for\
-    \ (int i = 1; i <= (int)this->size(); i++)\n            (*this)[i - 1] *= mint(i);\n\
-    \        return *this;\n    }\n\n    FPS integral() const {\n        const int\
-    \ n = (int)this->size();\n        FPS ret(n + 1);\n        ret[0] = mint(0);\n\
-    \        if (n > 0) ret[1] = mint(1);\n        auto mod = mint::getmod();\n  \
-    \      for (int i = 2; i <= n; i++) {\n            // p = q * i + r\n        \
-    \    // - q / r = 1 / i (mod p)\n            ret[i] = (-ret[mod % i]) * (mod /\
-    \ i);\n        }\n        for (int i = 0; i < n; i++) {\n            ret[i + 1]\
-    \ *= (*this)[i];\n        }\n        return ret;\n    }\n\n    FPS inplace_int()\
+    \ ret[i] = -(*this)[i];\n        return ret;\n    }\n\n    FPS shrink() {\n  \
+    \      while (this->size() && this->back() == mint(0)) this->pop_back();\n   \
+    \     return *this;\n    }\n\n    FPS rev() const {\n        FPS ret(*this);\n\
+    \        reverse(ret.begin(), ret.end());\n        return ret;\n    }\n\n    FPS\
+    \ inplace_rev() {\n        reverse(this->begin(), this->end());\n        return\
+    \ *this;\n    }\n\n    FPS dot(const FPS &r) const {\n        FPS ret(min(this->size(),\
+    \ r.size()));\n        for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i]\
+    \ * r[i];\n        return ret;\n    }\n\n    FPS inplace_dot(const FPS &r) {\n\
+    \        this->resize(min(this->size(), r.size()));\n        for (int i = 0; i\
+    \ < (int)this->size(); i++) (*this)[i] *= r[i];\n        return *this;\n    }\n\
+    \n    FPS pre(int n) const {\n        FPS ret(begin(*this), begin(*this) + min((int)this->size(),\
+    \ n));\n        if ((int)ret.size() < n) ret.resize(n, mint(0));\n        return\
+    \ ret;\n    }\n\n    FPS inplace_pre(int n) {\n        this->resize(n);\n    \
+    \    return *this;\n    }\n\n    FPS operator>>(int n) const {\n        if (n\
+    \ >= (int)this->size()) return {};\n        FPS ret(begin(*this) + n, end(*this));\n\
+    \        return ret;\n    }\n    FPS operator<<(int n) const {\n        FPS ret(*this);\n\
+    \        ret.insert(begin(ret), n, mint(0));\n        return ret;\n    }\n\n \
+    \   FPS diff() const {\n        const int n = (int)this->size();\n        FPS\
+    \ ret(max(0, n - 1));\n        for (int i = 1; i < n; i++) {\n            ret[i\
+    \ - 1] = (*this)[i] * mint(i);\n        }\n        return ret;\n    }\n\n    FPS\
+    \ inplace_diff() {\n        if (this->empty()) return {};\n        this->erase(this->begin());\n\
+    \        for (int i = 1; i <= (int)this->size(); i++)\n            (*this)[i -\
+    \ 1] *= mint(i);\n        return *this;\n    }\n\n    FPS integral() const {\n\
+    \        const int n = (int)this->size();\n        FPS ret(n + 1);\n        ret[0]\
+    \ = mint(0);\n        if (n > 0) ret[1] = mint(1);\n        auto mod = mint::getmod();\n\
+    \        for (int i = 2; i <= n; i++) {\n            // p = q * i + r\n      \
+    \      // - q / r = 1 / i (mod p)\n            ret[i] = (-ret[mod % i]) * (mod\
+    \ / i);\n        }\n        for (int i = 0; i < n; i++) {\n            ret[i +\
+    \ 1] *= (*this)[i];\n        }\n        return ret;\n    }\n\n    FPS inplace_int()\
     \ {\n        static vector<mint> inv{0, 1};\n        const int n = this->size();\n\
     \        auto mod = mint::getmod();\n        while ((int)inv.size() <= n) {\n\
     \            // p = q * i + r\n            // - q / r = 1 / i (mod p)\n      \
@@ -209,35 +212,35 @@ data:
     \    FPS operator/(const FPS &r) const { return FPS(*this) /= r; }\n    FPS operator%(const\
     \ FPS &r) const { return FPS(*this) %= r; }\n    FPS operator-() const {\n   \
     \     FPS ret(this->size());\n        for (int i = 0; i < (int)this->size(); i++)\
-    \ ret[i] = -(*this)[i];\n        return ret;\n    }\n\n    void shrink() {\n \
-    \       while (this->size() && this->back() == mint(0)) this->pop_back();\n  \
-    \  }\n\n    FPS rev() const {\n        FPS ret(*this);\n        reverse(ret.begin(),\
-    \ ret.end());\n        return ret;\n    }\n\n    FPS inplace_rev() {\n       \
-    \ reverse(this->begin(), this->end());\n        return *this;\n    }\n\n    FPS\
-    \ dot(const FPS &r) const {\n        FPS ret(min(this->size(), r.size()));\n \
-    \       for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i] * r[i];\n\
-    \        return ret;\n    }\n\n    FPS inplace_dot(const FPS &r) {\n        this->resize(min(this->size(),\
-    \ r.size()));\n        for (int i = 0; i < (int)this->size(); i++) (*this)[i]\
-    \ *= r[i];\n        return *this;\n    }\n\n    FPS pre(int n) const {\n     \
-    \   FPS ret(begin(*this), begin(*this) + min((int)this->size(), n));\n       \
-    \ if ((int)ret.size() < n) ret.resize(n, mint(0));\n        return ret;\n    }\n\
-    \n    FPS inplace_pre(int n) {\n        this->resize(n);\n        return *this;\n\
-    \    }\n\n    FPS operator>>(int n) const {\n        if (n >= (int)this->size())\
-    \ return {};\n        FPS ret(begin(*this) + n, end(*this));\n        return ret;\n\
-    \    }\n    FPS operator<<(int n) const {\n        FPS ret(*this);\n        ret.insert(begin(ret),\
-    \ n, mint(0));\n        return ret;\n    }\n\n    FPS diff() const {\n       \
-    \ const int n = (int)this->size();\n        FPS ret(max(0, n - 1));\n        for\
-    \ (int i = 1; i < n; i++) {\n            ret[i - 1] = (*this)[i] * mint(i);\n\
-    \        }\n        return ret;\n    }\n\n    FPS inplace_diff() {\n        if\
-    \ (this->empty()) return {};\n        this->erase(this->begin());\n        for\
-    \ (int i = 1; i <= (int)this->size(); i++)\n            (*this)[i - 1] *= mint(i);\n\
-    \        return *this;\n    }\n\n    FPS integral() const {\n        const int\
-    \ n = (int)this->size();\n        FPS ret(n + 1);\n        ret[0] = mint(0);\n\
-    \        if (n > 0) ret[1] = mint(1);\n        auto mod = mint::getmod();\n  \
-    \      for (int i = 2; i <= n; i++) {\n            // p = q * i + r\n        \
-    \    // - q / r = 1 / i (mod p)\n            ret[i] = (-ret[mod % i]) * (mod /\
-    \ i);\n        }\n        for (int i = 0; i < n; i++) {\n            ret[i + 1]\
-    \ *= (*this)[i];\n        }\n        return ret;\n    }\n\n    FPS inplace_int()\
+    \ ret[i] = -(*this)[i];\n        return ret;\n    }\n\n    FPS shrink() {\n  \
+    \      while (this->size() && this->back() == mint(0)) this->pop_back();\n   \
+    \     return *this;\n    }\n\n    FPS rev() const {\n        FPS ret(*this);\n\
+    \        reverse(ret.begin(), ret.end());\n        return ret;\n    }\n\n    FPS\
+    \ inplace_rev() {\n        reverse(this->begin(), this->end());\n        return\
+    \ *this;\n    }\n\n    FPS dot(const FPS &r) const {\n        FPS ret(min(this->size(),\
+    \ r.size()));\n        for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i]\
+    \ * r[i];\n        return ret;\n    }\n\n    FPS inplace_dot(const FPS &r) {\n\
+    \        this->resize(min(this->size(), r.size()));\n        for (int i = 0; i\
+    \ < (int)this->size(); i++) (*this)[i] *= r[i];\n        return *this;\n    }\n\
+    \n    FPS pre(int n) const {\n        FPS ret(begin(*this), begin(*this) + min((int)this->size(),\
+    \ n));\n        if ((int)ret.size() < n) ret.resize(n, mint(0));\n        return\
+    \ ret;\n    }\n\n    FPS inplace_pre(int n) {\n        this->resize(n);\n    \
+    \    return *this;\n    }\n\n    FPS operator>>(int n) const {\n        if (n\
+    \ >= (int)this->size()) return {};\n        FPS ret(begin(*this) + n, end(*this));\n\
+    \        return ret;\n    }\n    FPS operator<<(int n) const {\n        FPS ret(*this);\n\
+    \        ret.insert(begin(ret), n, mint(0));\n        return ret;\n    }\n\n \
+    \   FPS diff() const {\n        const int n = (int)this->size();\n        FPS\
+    \ ret(max(0, n - 1));\n        for (int i = 1; i < n; i++) {\n            ret[i\
+    \ - 1] = (*this)[i] * mint(i);\n        }\n        return ret;\n    }\n\n    FPS\
+    \ inplace_diff() {\n        if (this->empty()) return {};\n        this->erase(this->begin());\n\
+    \        for (int i = 1; i <= (int)this->size(); i++)\n            (*this)[i -\
+    \ 1] *= mint(i);\n        return *this;\n    }\n\n    FPS integral() const {\n\
+    \        const int n = (int)this->size();\n        FPS ret(n + 1);\n        ret[0]\
+    \ = mint(0);\n        if (n > 0) ret[1] = mint(1);\n        auto mod = mint::getmod();\n\
+    \        for (int i = 2; i <= n; i++) {\n            // p = q * i + r\n      \
+    \      // - q / r = 1 / i (mod p)\n            ret[i] = (-ret[mod % i]) * (mod\
+    \ / i);\n        }\n        for (int i = 0; i < n; i++) {\n            ret[i +\
+    \ 1] *= (*this)[i];\n        }\n        return ret;\n    }\n\n    FPS inplace_int()\
     \ {\n        static vector<mint> inv{0, 1};\n        const int n = this->size();\n\
     \        auto mod = mint::getmod();\n        while ((int)inv.size() <= n) {\n\
     \            // p = q * i + r\n            // - q / r = 1 / i (mod p)\n      \
@@ -332,10 +335,11 @@ data:
   - fps/fps_arb.hpp
   - fps/fps_arb.hpp
   - fps/ntt_friendly.hpp
-  timestamp: '2024-05-08 10:21:08+09:00'
+  timestamp: '2024-05-12 17:44:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: fps/fps.hpp

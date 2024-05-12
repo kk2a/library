@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_pow.test.cpp
+    title: verify/yosupo_fps/fps_pow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -77,6 +80,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: template/template.hpp
