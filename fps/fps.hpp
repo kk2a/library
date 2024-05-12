@@ -76,8 +76,9 @@ struct FormalPowerSeries : vector<mint> {
         return ret;
     }
 
-    void shrink() {
+    FPS shrink() {
         while (this->size() && this->back() == mint(0)) this->pop_back();
+        return *this;
     }
 
     FPS rev() const {
