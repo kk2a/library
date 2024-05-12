@@ -15,12 +15,12 @@ struct Hashs {
     static void setbase() {
         mt19937_64 rng(time(0));
         rep (i, 0, b) {
-            while((base[i] = rng() % modp[i]) == 0);
+            while((base[i] = rng() % modp[i]) < 2);
         }
     }
     
-    template <class T>
-    Hashs(T c) {
+    template <class S>
+    Hashs(S c) {
         rep (i, b) {
             table[i].h = c;
             table[i].pw = base[i];
@@ -45,7 +45,8 @@ struct Hashs {
             table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];
         }
     }
-    
+
+    // push_back
     Hashs& operator+=(const Hashs &rhs) {
         rep (i, b) {
             table[i].h = (table[i].h * rhs.table[i].pw + rhs.table[i].h) % modp[i];
@@ -53,6 +54,8 @@ struct Hashs {
         }
         return *this;
     }
+
+    // push_front
     Hashs& operator-=(const Hashs &rhs) {
         rep (i, b) {
             table[i].h = (table[i].h + rhs.table[i].h * table[i].pw) % modp[i];
