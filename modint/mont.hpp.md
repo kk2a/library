@@ -8,10 +8,19 @@ data:
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_exp.test.cpp
+    title: verify/yosupo_fps/fps_exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_inv.test.cpp
+    title: verify/yosupo_fps/fps_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_log.test.cpp
+    title: verify/yosupo_fps/fps_log.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"modint/mont.hpp\"\n\n\n\ntemplate <int p>\nstruct LazyMontgomeryModInt\
@@ -94,8 +103,11 @@ data:
   - convolution/convo_arb.hpp
   - fps/fps_arb.hpp
   timestamp: '2024-05-06 02:19:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: modint/mont.hpp
 layout: document
 redirect_from:

@@ -13,23 +13,88 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/ntt_friendly.hpp
+    title: fps/ntt_friendly.hpp
+  - icon: ':heavy_check_mark:'
+    path: modint/mont.hpp
+    title: modint/mont.hpp
+  - icon: ':heavy_check_mark:'
+    path: template/template.hpp
+    title: template/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/fps_exp.test.cpp
-    title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/fps_inv.test.cpp
-    title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/fps_log.test.cpp
-    title: verify/yosupo_fps/fps_log.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
+    links:
+    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
+  bundledCode: "#line 1 \"verify/yosupo_fps/fps_inv.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\n\n#line 1 \"template/template.hpp\"\
+    \n\n\n\n#include <bits/stdc++.h>\nusing namespace std;\n// #include <atcoder/all>\n\
+    // using namespace atcoder;\n\nusing u32 = unsigned int;\nusing i64 = long long;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned\
+    \ __int128;\n\nusing pi = pair<int, int>;\nusing pl = pair<i64, i64>;\nusing pil\
+    \ = pair<int, i64>;\nusing pli = pair<i64, int>;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = (1 << 30) - 123;\ntemplate\
+    \ <>\nconstexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <>\nconstexpr\
+    \ i128 infty<i128> = i128(infty<i64>) * infty<i64>;\ntemplate <>\nconstexpr u32\
+    \ infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<i64>;\n\
+    template <>\nconstexpr double infty<double> = infty<i64>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i64>;\nconstexpr int mod = 998244353;\n\
+    constexpr int modu = 1e9 + 7;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    \ntemplate <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing\
+    \ pqi = priority_queue<T, vector<T>, greater<T>>;\n\ntemplate <class T, class\
+    \ S>\ninline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b, 1 : 0);\n\
+    }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n    return\
+    \ (a > b ? a = b, 1 : 0);\n}\n\n# define rep1(a) for (i64 _ = 0; _ < i64(a); _++)\n\
+    # define rep2(i, a) for (i64 i = 0; i < i64(a); i++)\n# define rep3(i, a, b) for\
+    \ (i64 i = (a); i < i64(b); i++)\n# define repi2(i, a) for (i64 i = (a) - 1; i\
+    \ >= 0; i--)\n# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (b); i--)\n#\
+    \ define overload3(a, b, c, d, ...) d\n# define rep(...) overload3(__VA_ARGS__,\
+    \ rep3, rep2, rep1)(__VA_ARGS__)\n# define repi(...) overload3(__VA_ARGS__, repi3,\
+    \ repi2, rep1)(__VA_ARGS__)\n\n# define pb push_back\n# define eb emplace_back\n\
+    # define fi first\n# define se second\n# define all(p) begin(p), end(p)\n\n\n\
+    #line 1 \"modint/mont.hpp\"\n\n\n\ntemplate <int p>\nstruct LazyMontgomeryModInt\
+    \ {\n    using mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using\
+    \ i64 = int64_t;\n    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n   \
+    \ static constexpr u32 get_r() {\n        u32 ret = p;\n        for (int i = 0;\
+    \ i < 4; ++i) ret *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr\
+    \ u32 r = get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r\
+    \ * p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
+    \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
+    \    \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n    constexpr\
+    \ LazyMontgomeryModInt(const i64& b)\n         : _v(reduce(u64(b % p + p) * n2))\
+    \ {}\n\n    static constexpr u32 reduce(const u64& b) {\n        return (b + u64(u32(b)\
+    \ * u32(-r)) * p) >> 32;\n    }\n    constexpr mint& operator+=(const mint& b)\
+    \ {\n        if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n\
+    \    }\n    constexpr mint& operator-=(const mint& b) {\n        if (i32(_v -=\
+    \ b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n    constexpr mint& operator*=(const\
+    \ mint& b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n  \
+    \  }\n    constexpr mint& operator/=(const mint& b) {\n        *this *= b.inv();\n\
+    \        return *this;\n    }\n\n    constexpr mint operator+(const mint& b) const\
+    \ { return mint(*this) += b; }\n    constexpr mint operator-(const mint& b) const\
+    \ { return mint(*this) -= b; }\n    constexpr mint operator-() const { return\
+    \ mint() - mint(*this); }\n    constexpr mint operator*(const mint& b) const {\
+    \ return mint(*this) *= b; }\n    constexpr mint operator/(const mint& b) const\
+    \ { return mint(*this) /= b; }\n    constexpr bool operator==(const mint &b) const\
+    \ {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);\n\
+    \    }\n    constexpr bool operator!=(const mint &b) const {\n        return (_v\
+    \ >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n    }\n\n    template\
+    \ <class T>\n    constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n    constexpr\
+    \ mint inv() const { return pow(p - 2); }\n\n    friend ostream& operator<<(ostream&\
+    \ os, const mint& x) {\n        return os << x.val();\n    }\n    friend istream&\
+    \ operator>>(istream& is, mint& x) {\n        i64 t; is >> t; x = mint(t);\n \
+    \       return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
+    \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n    static constexpr\
+    \ u32 getmod() { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
+    \n\n#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
     \n\n\n\nconstexpr long long pow_mod_constexpr(long long x, long long n, int m)\
     \ {\n    if (m == 1) return 0;\n    unsigned int _m = (unsigned int)(m);\n   \
     \ unsigned long long r = 1;\n    unsigned long long y = (x % m + m) % m;\n   \
@@ -335,70 +400,34 @@ data:
     \ + m, mint(0));\n        x.but();\n        x.inplace_dot(y);\n        x.ibut();\
     \ x *= im * intwo;\n        b.insert(end(b), begin(x) + m, end(x));\n        im\
     \ *= intwo;\n    }\n    return FormalPowerSeries<mint>(begin(b), begin(b) + deg);\n\
-    }\n\n\n\n"
-  code: "#ifndef FPS_NTT_FRIENDLY_HPP\n#define FPS_NTT_FRIENDLY_HPP 1\n\n#include\
-    \ \"../convolution/butterfly.hpp\"\n#include \"../convolution/convolution.hpp\"\
-    \n#include \"fps.hpp\"\n\n\ntemplate <class mint>\nFormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(\n\
-    \        const FormalPowerSeries<mint> &r) {\n    if (this->empty() || r.empty())\
-    \ {\n        this->clear();\n        return *this;\n    }\n    convolution<mint>(*this,\
-    \ r);\n    return *this;\n}\n\ntemplate <class mint> \nvoid FormalPowerSeries<mint>::but()\
-    \ {\n    butterfly<mint>(*this);\n}\n\ntemplate <class mint>\nvoid FormalPowerSeries<mint>::ibut()\
-    \ {\n    butterfly_inv<mint>(*this);\n}\n\ntemplate <class mint>\nvoid FormalPowerSeries<mint>::db()\
-    \ {\n    doubling<mint>(*this);\n}\n\ntemplate <class mint>\nint FormalPowerSeries<mint>::but_pr()\
-    \ {\n    return primitive_root<mint::getmod()>;\n}\n\ntemplate <class mint>\n\
-    FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {\n    assert((*this)[0]\
-    \ != mint(0));\n    if (deg == -1) deg = (int)this->size();\n    FormalPowerSeries<mint>\
-    \ res(deg);\n    res[0] = {mint(1) / (*this)[0]};\n    auto ind = mint{2}.inv(),\
-    \ intwo = mint{2}.inv();\n    for (int d = 1; d < deg; d <<= 1) {\n        FormalPowerSeries<mint>\
-    \ f(2 * d), g(2 * d);\n        copy(begin(*this), begin(*this) + min((int)this->size(),\
-    \ 2 * d), begin(f));\n        copy(begin(res), begin(res) + d, begin(g));\n  \
-    \      f.but(); g.but();\n        f.inplace_dot(g);\n        f.ibut(); f *= ind;\n\
-    \        fill(begin(f), begin(f) + d, mint(0));\n        f.but();\n        f.inplace_dot(g);\n\
-    \        f.ibut(); f *= ind;\n        for (int j = d; j < min(2 * d, deg); j++)\
-    \ res[j] = -f[j];\n        ind *= intwo;\n    }\n    return res.pre(deg);\n}\n\
-    \ntemplate <class mint>\nFormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int\
-    \ deg) const {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg\
-    \ == -1) deg = (int)this->size();\n    FormalPowerSeries<mint> inv;\n    inv.reserve(deg\
-    \ + 1);\n    inv.push_back(mint(0));\n    inv.push_back(mint(1));\n\n    FormalPowerSeries<mint>\
-    \ b{1, 1 < (int)this->size() ?\n                              (*this)[1] : mint(0)};\n\
-    \    FormalPowerSeries<mint> c{1}, z1, z2{1, 1};\n    mint im = mint{2}.inv(),\
-    \ intwo = mint{2}.inv();\n    for (int m = 2; m < deg; m <<= 1) {\n        auto\
-    \ y = b;\n        y.resize(m << 1);\n        y.but();\n        z1 = z2;\n    \
-    \    FormalPowerSeries<mint> z(m);\n        z = y.dot(z1);\n        z.ibut();\
-    \ z *= im;\n        fill(begin(z), begin(z) + (m >> 1), mint(0));\n        z.but();\
-    \ z.inplace_dot(-z1);\n        z.ibut(); z *= im;\n        c.insert(end(c), begin(z)\
-    \ + (m >> 1), end(z));\n        z2 = c;\n        z2.resize(m << 1);\n        z2.but();\n\
-    \n        FormalPowerSeries<mint> x(begin(*this), begin(*this) +\n           \
-    \                       min<int>(this->size(), m));\n        x.resize(m);\n  \
-    \      x.inplace_diff();\n        x.push_back(mint(0));\n        x.but();\n  \
-    \      x.inplace_dot(y);\n        x.ibut(); x *= im;\n        x -= b.diff();\n\
-    \        x.resize(m << 1);\n        for (int i = 0; i < m - 1; i++) {\n      \
-    \      x[m + i] = x[i];\n            x[i] = mint(0);\n        }\n        x.but();\n\
-    \        x.inplace_dot(z2);\n        x.ibut(); x *= im * intwo;\n        x.pop_back();\n\
-    \        x.inplace_int();\n        for (int i = m; i < min<int>(this->size(),m\
-    \ << 1); i++)\n            x[i] += (*this)[i];\n        fill(begin(x), begin(x)\
-    \ + m, mint(0));\n        x.but();\n        x.inplace_dot(y);\n        x.ibut();\
-    \ x *= im * intwo;\n        b.insert(end(b), begin(x) + m, end(x));\n        im\
-    \ *= intwo;\n    }\n    return FormalPowerSeries<mint>(begin(b), begin(b) + deg);\n\
-    }\n\n\n#endif // FPS_NTT_FRIENDLY_HPP\n"
+    }\n\n\n\n#line 6 \"verify/yosupo_fps/fps_inv.test.cpp\"\n\nusing mint = Mont<mod>;\n\
+    using FPS = FormalPowerSeries<mint>;\n\nint main () {\n    int n;\n    cin >>\
+    \ n;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto g = f.inv();\n    for\
+    \ (auto v : g) cout << v << \" \";\n    cout << endl;\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
+    \n\n#include \"../../template/template.hpp\"\n#include \"../../modint/mont.hpp\"\
+    \n#include \"../../fps/ntt_friendly.hpp\"\n\nusing mint = Mont<mod>;\nusing FPS\
+    \ = FormalPowerSeries<mint>;\n\nint main () {\n    int n;\n    cin >> n;\n   \
+    \ FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto g = f.inv();\n    for (auto\
+    \ v : g) cout << v << \" \";\n    cout << endl;\n\n    return 0;\n}"
   dependsOn:
+  - template/template.hpp
+  - modint/mont.hpp
+  - fps/ntt_friendly.hpp
   - convolution/butterfly.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
   - fps/fps.hpp
-  isVerificationFile: false
-  path: fps/ntt_friendly.hpp
+  isVerificationFile: true
+  path: verify/yosupo_fps/fps_inv.test.cpp
   requiredBy: []
-  timestamp: '2024-05-11 18:04:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_fps/fps_inv.test.cpp
-  - verify/yosupo_fps/fps_log.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
-documentation_of: fps/ntt_friendly.hpp
+  timestamp: '2024-05-12 15:10:50+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_fps/fps_inv.test.cpp
 layout: document
 redirect_from:
-- /library/fps/ntt_friendly.hpp
-- /library/fps/ntt_friendly.hpp.html
-title: fps/ntt_friendly.hpp
+- /verify/verify/yosupo_fps/fps_inv.test.cpp
+- /verify/verify/yosupo_fps/fps_inv.test.cpp.html
+title: verify/yosupo_fps/fps_inv.test.cpp
 ---

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   _extendedRequiredBy:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
   _extendedRequiredBy:
@@ -14,13 +14,22 @@ data:
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_exp.test.cpp
+    title: verify/yosupo_fps/fps_exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_inv.test.cpp
+    title: verify/yosupo_fps/fps_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_log.test.cpp
+    title: verify/yosupo_fps/fps_log.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/convolution.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
@@ -163,8 +172,11 @@ data:
   - fps/fps_arb.hpp
   - fps/ntt_friendly.hpp
   timestamp: '2024-05-11 18:04:21+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: convolution/convolution.hpp
 layout: document
 redirect_from:

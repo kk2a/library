@@ -2,10 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_exp.test.cpp
+    title: verify/yosupo_fps/fps_exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_inv.test.cpp
+    title: verify/yosupo_fps/fps_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_log.test.cpp
+    title: verify/yosupo_fps/fps_log.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template/template.hpp\"\n\n\n\n#include <bits/stdc++.h>\n\
@@ -65,8 +74,11 @@ data:
   path: template/template.hpp
   requiredBy: []
   timestamp: '2024-05-08 19:34:52+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: template/template.hpp
 layout: document
 redirect_from:

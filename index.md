@@ -46,13 +46,13 @@ data:
     - icon: ':warning:'
       path: convolution/bitxor1.hpp
       title: convolution/bitxor1.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convolution/butterfly.hpp
       title: convolution/butterfly.hpp
     - icon: ':warning:'
       path: convolution/convo_arb.hpp
       title: convolution/convo_arb.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convolution/convolution.hpp
       title: convolution/convolution.hpp
     - icon: ':warning:'
@@ -75,7 +75,7 @@ data:
     - icon: ':warning:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/fps.hpp
       title: fps/fps.hpp
     - icon: ':warning:'
@@ -96,7 +96,7 @@ data:
     - icon: ':warning:'
       path: fps/multi_eval.hpp
       title: fps/multi_eval.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/ntt_friendly.hpp
       title: fps/ntt_friendly.hpp
     - icon: ':warning:'
@@ -143,7 +143,7 @@ data:
     - icon: ':warning:'
       path: modint/modint.hpp
       title: modint/modint.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: modint/mont.hpp
       title: modint/mont.hpp
     - icon: ':warning:'
@@ -164,9 +164,20 @@ data:
       title: segment_tree/seg.hpp
   - name: template
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
-  verificationCategories: []
+  verificationCategories:
+  - name: verify/yosupo_fps
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_fps/fps_exp.test.cpp
+      title: verify/yosupo_fps/fps_exp.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_fps/fps_inv.test.cpp
+      title: verify/yosupo_fps/fps_inv.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_fps/fps_log.test.cpp
+      title: verify/yosupo_fps/fps_log.test.cpp
 layout: toppage
 ---
