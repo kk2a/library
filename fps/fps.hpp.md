@@ -12,17 +12,11 @@ data:
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
-    path: fps/fps_com_inv.hpp
-    title: fps/fps_com_inv.hpp
-  - icon: ':warning:'
     path: fps/fps_composition.hpp
     title: fps/fps_composition.hpp
   - icon: ':warning:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':warning:'
-    path: fps/power_projection.hpp
-    title: fps/power_projection.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -325,8 +319,6 @@ data:
   path: fps/fps.hpp
   requiredBy:
   - convolution/convo_arb.hpp
-  - fps/fps_com_inv.hpp
-  - fps/power_projection.hpp
   - fps/fps_composition.hpp
   - fps/fps_arb.hpp
   - fps/fps_arb.hpp
