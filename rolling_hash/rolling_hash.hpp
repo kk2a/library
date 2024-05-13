@@ -15,7 +15,8 @@ struct Hashs {
     static void setbase() {
         mt19937_64 rng(time(0));
         rep (i, 0, b) {
-            while((base[i] = rng() % modp[i]) < 2);
+            set<int> st = {0, 1, modp[i] - 1};
+            while(st.count(base[i] = rng() % modp[i]));
         }
     }
     
