@@ -136,8 +136,20 @@ data:
       path: mod/comb.hpp
       title: mod/comb.hpp
     - icon: ':warning:'
+      path: mod/garner.hpp
+      title: mod/garner.hpp
+    - icon: ':warning:'
+      path: mod/inv.hpp
+      title: mod/inv.hpp
+    - icon: ':warning:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
+    - icon: ':heavy_check_mark:'
+      path: mod/pow_expr.hpp
+      title: mod/pow_expr.hpp
+    - icon: ':heavy_check_mark:'
+      path: mod/primitive_rt_expr.hpp
+      title: mod/primitive_rt_expr.hpp
   - name: modint
     pages:
     - icon: ':warning:'

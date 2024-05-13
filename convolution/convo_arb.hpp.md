@@ -10,6 +10,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
+  - icon: ':warning:'
+    path: mod/garner.hpp
+    title: mod/garner.hpp
+  - icon: ':warning:'
+    path: mod/inv.hpp
+    title: mod/inv.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/pow_expr.hpp
+    title: mod/pow_expr.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/primitive_rt_expr.hpp
+    title: mod/primitive_rt_expr.hpp
   - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -60,111 +72,102 @@ data:
     \  return ret >= p ? ret - p : ret;\n    }\n    static constexpr u32 getmod()\
     \ { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
     \n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
+    \n\n\n\n#line 1 \"mod/primitive_rt_expr.hpp\"\n\n\n\n#line 1 \"mod/pow_expr.hpp\"\
     \n\n\n\nconstexpr long long pow_mod_constexpr(long long x, long long n, int m)\
     \ {\n    if (m == 1) return 0;\n    unsigned int _m = (unsigned int)(m);\n   \
     \ unsigned long long r = 1;\n    unsigned long long y = (x % m + m) % m;\n   \
     \ while (n) {\n        if (n & 1) r = (r * y) % _m;\n        y = (y * y) % _m;\n\
-    \        n >>= 1;\n    }\n    return r;\n}\n\nconstexpr int primitive_root_constexpr(int\
-    \ m) {\n    if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m\
-    \ == 469762049) return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353)\
-    \ return 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {}; \n  \
-    \  divs[0] = 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2\
-    \ == 0) x /= 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n      \
-    \  if (x % i == 0) {\n            divs[cnt++] = i;\n            while (x % i ==\
-    \ 0) {\n                x /= i;\n            }\n        }\n    }\n    if (x >\
-    \ 1) {\n        divs[cnt++] = x;\n    }\n    for (int g = 2;; g++) {\n       \
-    \ bool ok = true;\n        for (int i = 0; i < cnt; i++) {\n            if (pow_mod_constexpr(g,\
-    \ (m - 1) / divs[i], m) == 1) {\n                ok = false;\n               \
-    \ break;\n            }\n        }\n        if (ok) return g;\n    }\n}\ntemplate\
-    \ <int m> static constexpr int primitive_root = primitive_root_constexpr(m);\n\
-    \ntemplate <class T, class U>\nconstexpr long long mod_inversion(T a, U modulo)\
-    \ {\n    long long s = modulo, t = a;\n    long long m0 = 0, m1 = 1;\n    while\
-    \ (t) {\n        long long u = s / t;\n        swap(s -= t * u, t);\n        swap(m0\
-    \ -= m1 * u, m1);\n    }\n    if (m0 < 0) m0 += modulo / s;\n    return m0;\n\
-    }\n\nlong long garner(const vector<long long>& d, const vector<long long>& p)\
-    \ {\n    static int nm = d.size();\n    vector<long long> kp(nm + 1, 0), rmult(nm\
-    \ + 1, 1);\n    for (int ii = 0; ii < nm; ii++) {\n        long long x = (d[ii]\
-    \ - kp[ii]) * mod_inversion(rmult[ii], p[ii]) % p[ii];\n        x = (x + p[ii])\
-    \ % p[ii];\n        for (int iii = ii + 1; iii < nm + 1; iii++) {\n          \
-    \  kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];\n            rmult[iii] = (rmult[iii]\
-    \ * p[ii]) % p[iii];\n        }\n    }\n    return kp[nm];\n}\n\ntemplate <class\
-    \ mint, class FPS>\nvoid butterfly(FPS& a) {\n    static int g = primitive_root<mint::getmod()>;\n\
+    \        n >>= 1;\n    }\n    return r;\n}\n\n\n#line 5 \"mod/primitive_rt_expr.hpp\"\
+    \n\nconstexpr int primitive_root_constexpr(int m) {\n    if (m == 2) return 1;\n\
+    \    if (m == 167772161) return 3;\n    if (m == 469762049) return 3;\n    if\
+    \ (m == 754974721) return 11;\n    if (m == 998244353) return 3;\n    if (m ==\
+    \ 1107296257) return 10;\n    int divs[20] = {}; \n    divs[0] = 2;\n    int cnt\
+    \ = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x /= 2;\n    for (int\
+    \ i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x % i == 0) {\n       \
+    \     divs[cnt++] = i;\n            while (x % i == 0) {\n                x /=\
+    \ i;\n            }\n        }\n    }\n    if (x > 1) {\n        divs[cnt++] =\
+    \ x;\n    }\n    for (int g = 2;; g++) {\n        bool ok = true;\n        for\
+    \ (int i = 0; i < cnt; i++) {\n            if (pow_mod_constexpr(g, (m - 1) /\
+    \ divs[i], m) == 1) {\n                ok = false;\n                break;\n \
+    \           }\n        }\n        if (ok) return g;\n    }\n}\ntemplate <int m>\
+    \ static constexpr int primitive_root = primitive_root_constexpr(m);\n\n\n#line\
+    \ 5 \"convolution/butterfly.hpp\"\n\ntemplate <class mint, class FPS>\nvoid butterfly(FPS&\
+    \ a) {\n    static int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n\
+    \    int h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool\
+    \ first = true;\n    static mint sum_e2[30];  // sum_e[i] = ies[0] * ... * ies[i\
+    \ - 1] * es[i]\n    static mint sum_e3[30];\n    static mint es[30], ies[30];\
+    \  // es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n       \
+    \ int cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
+    \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n  \
+    \          // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i - 2]\
+    \ = ie;\n            e *= e;\n            ie *= ie;\n        }\n        mint now\
+    \ = 1;\n        for (int i = 0; i <= cnt2 - 2; i++) {\n            sum_e2[i] =\
+    \ es[i] * now;\n            now *= ies[i];\n        }\n        now = 1;\n    \
+    \    for (int i = 0; i <= cnt2 - 3; i++) {\n            sum_e3[i] = es[i + 1]\
+    \ * now;\n            now *= ies[i + 1];\n        }\n    }\n\n    int len = 0;\n\
+    \    while (len < h) {\n        if (h - len == 1) {\n            int p = 1 <<\
+    \ (h - len - 1);\n            mint rot = 1;\n            for (int s = 0; s < (1\
+    \ << len); s++) {\n                int offset = s << (h - len);\n            \
+    \    for (int i = 0; i < p; i++) {\n                    auto l = a[i + offset];\n\
+    \                    auto r = a[i + offset + p] * rot;\n                    a[i\
+    \ + offset] = l + r;\n                    a[i + offset + p] = l - r;\n       \
+    \         }\n                if (s + 1 != (1 << len)) \n                    rot\
+    \ *= sum_e2[__builtin_ctz(~(unsigned int)(s))];\n            }\n            len++;\n\
+    \        }\n        else {\n            int p = 1 << (h - len - 2);\n        \
+    \    mint rot = 1, imag = es[0];\n            for (int s = 0; s < (1 << len);\
+    \ s++) {\n                mint rot2 = rot * rot;\n                mint rot3 =\
+    \ rot2 * rot;\n                int offset = s << (h - len);\n                for\
+    \ (int i = 0; i < p; i++) {\n                    auto a0 = a[i + offset];\n  \
+    \                  auto a1 = a[i + offset + p] * rot;\n                    auto\
+    \ a2 = a[i + offset + p * 2] * rot2;\n                    auto a3 = a[i + offset\
+    \ + p * 3] * rot3;\n                    auto a1na3imag = (a1 - a3) * imag;\n \
+    \                   a[i + offset] = a0 + a2 + a1 + a3;\n                    a[i\
+    \ + offset + p] = a0 + a2 - a1 - a3;\n                    a[i + offset + p * 2]\
+    \ = a0 - a2 + a1na3imag;\n                    a[i + offset + p * 3] = a0 - a2\
+    \ - a1na3imag;\n                }\n                if (s + 1 != (1 << len))\n\
+    \                rot *= sum_e3[__builtin_ctz(~(unsigned int)(s))];\n         \
+    \   }\n            len += 2;\n        }\n    }\n}\n\ntemplate <class mint, class\
+    \ FPS>\nvoid butterfly_inv(FPS& a) {\n    static constexpr int g = primitive_root<mint::getmod()>;\n\
     \    int n = int(a.size());\n    int h = 0;\n    while ((1U << h) < (unsigned\
-    \ int)(n)) h++;\n    static bool first = true;\n    static mint sum_e2[30];  //\
-    \ sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]\n    static mint sum_e3[30];\n\
+    \ int)(n)) h++;\n    static bool first = true;\n    static mint sum_ie2[30]; \
+    \ // sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]\n    static mint sum_ie3[30];\n\
     \    static mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1\n    if (first) {\n\
     \        first = false;\n        int cnt2 = __builtin_ctz(mint::getmod() - 1);\n\
     \        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n \
     \       for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n     \
     \       es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n  \
     \          ie *= ie;\n        }\n        mint now = 1;\n        for (int i = 0;\
-    \ i <= cnt2 - 2; i++) {\n            sum_e2[i] = es[i] * now;\n            now\
-    \ *= ies[i];\n        }\n        now = 1;\n        for (int i = 0; i <= cnt2 -\
-    \ 3; i++) {\n            sum_e3[i] = es[i + 1] * now;\n            now *= ies[i\
-    \ + 1];\n        }\n    }\n\n    int len = 0;\n    while (len < h) {\n       \
-    \ if (h - len == 1) {\n            int p = 1 << (h - len - 1);\n            mint\
-    \ rot = 1;\n            for (int s = 0; s < (1 << len); s++) {\n             \
-    \   int offset = s << (h - len);\n                for (int i = 0; i < p; i++)\
-    \ {\n                    auto l = a[i + offset];\n                    auto r =\
-    \ a[i + offset + p] * rot;\n                    a[i + offset] = l + r;\n     \
-    \               a[i + offset + p] = l - r;\n                }\n              \
-    \  if (s + 1 != (1 << len)) \n                    rot *= sum_e2[__builtin_ctz(~(unsigned\
-    \ int)(s))];\n            }\n            len++;\n        }\n        else {\n \
-    \           int p = 1 << (h - len - 2);\n            mint rot = 1, imag = es[0];\n\
-    \            for (int s = 0; s < (1 << len); s++) {\n                mint rot2\
-    \ = rot * rot;\n                mint rot3 = rot2 * rot;\n                int offset\
-    \ = s << (h - len);\n                for (int i = 0; i < p; i++) {\n         \
-    \           auto a0 = a[i + offset];\n                    auto a1 = a[i + offset\
-    \ + p] * rot;\n                    auto a2 = a[i + offset + p * 2] * rot2;\n \
-    \                   auto a3 = a[i + offset + p * 3] * rot3;\n                \
-    \    auto a1na3imag = (a1 - a3) * imag;\n                    a[i + offset] = a0\
-    \ + a2 + a1 + a3;\n                    a[i + offset + p] = a0 + a2 - a1 - a3;\n\
-    \                    a[i + offset + p * 2] = a0 - a2 + a1na3imag;\n          \
-    \          a[i + offset + p * 3] = a0 - a2 - a1na3imag;\n                }\n \
-    \               if (s + 1 != (1 << len))\n                rot *= sum_e3[__builtin_ctz(~(unsigned\
-    \ int)(s))];\n            }\n            len += 2;\n        }\n    }\n}\n\ntemplate\
-    \ <class mint, class FPS>\nvoid butterfly_inv(FPS& a) {\n    static constexpr\
-    \ int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n    int\
-    \ h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool first\
-    \ = true;\n    static mint sum_ie2[30];  // sum_ie[i] = es[0] * ... * es[i - 1]\
-    \ * ies[i]\n    static mint sum_ie3[30];\n    static mint es[30], ies[30];  //\
-    \ es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n        int\
-    \ cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
-    \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n  \
-    \          // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i - 2]\
-    \ = ie;\n            e *= e;\n            ie *= ie;\n        }\n        mint now\
-    \ = 1;\n        for (int i = 0; i <= cnt2 - 2; i++) {\n            sum_ie2[i]\
-    \ = ies[i] * now;\n            now *= es[i];\n        }\n        now = 1;\n  \
-    \      for (int i = 0; i <= cnt2 - 3; i++) {\n            sum_ie3[i] = ies[i +\
-    \ 1] * now;\n            now *= es[i + 1];\n        }\n    }\n    int len = h;\n\
-    \    while (len) {\n        if (len == 1) {\n            int p = 1 << (h - len);\n\
-    \            mint irot = 1;\n            for (int s = 0; s < (1 << (len - 1));\
-    \ s++) {\n                int offset = s << (h - len +  1);\n                for\
-    \ (int i = 0; i < p; i++) {\n                    auto l = a[i + offset];\n   \
-    \                 auto r = a[i + offset + p];\n                    a[i + offset]\
-    \ = l + r;\n                    a[i + offset + p] = (l - r) * irot;\n        \
-    \        }\n                if (s + 1 != (1 << (len - 1)))\n                 \
-    \   irot *= sum_ie2[__builtin_ctz(~(unsigned int)(s))];\n            }\n     \
-    \       len--;\n        }\n        else {\n            int p = 1 << (h - len);\n\
-    \            mint irot = 1, iimag = ies[0];\n            for (int s = 0; s < (1\
-    \ << ((len - 2))); s++) {\n                mint irot2 = irot * irot;\n       \
-    \         mint irot3 = irot2 * irot;\n                int offset = s << (h - len\
-    \ + 2);\n                for (int i = 0; i < p; i++) {\n                    auto\
-    \ a0 = a[i + offset];\n                    auto a1 = a[i + offset + p];\n    \
-    \                auto a2 = a[i + offset + p * 2];\n                    auto a3\
-    \ = a[i + offset + p * 3];\n                    auto a2na3iimag = (a2 - a3) *\
-    \ iimag;\n                    \n                    a[i + offset] = a0 + a1 +\
-    \ a2 + a3;\n                    a[i + offset + p] = (a0 - a1 + a2na3iimag) * irot;\n\
-    \                    a[i + offset + p * 2] = (a0 + a1 - a2 - a3) * irot2;\n  \
-    \                  a[i + offset + p * 3] = (a0 - a1 - a2na3iimag) * irot3;\n \
-    \               }\n                if (s + 1 != (1 << (len - 2)))\n          \
-    \          irot *= sum_ie3[__builtin_ctz(~(unsigned int)(s))];\n            }\n\
-    \            len -= 2;\n        }\n    }\n}\n\ntemplate <class mint, class FPS>\n\
-    void doubling(FPS &a) {\n    int n = a.size();\n    auto b = a;\n    int z = 1;\n\
-    \    while (z < n) z <<= 1;\n    mint invz = mint(z).inv();\n    butterfly_inv<mint>(b);\
-    \ b *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).\n \
-    \                      pow((mint::getmod() - 1) / (n << 1));\n    for (int i =\
-    \ 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly<mint>(b);\n\
+    \ i <= cnt2 - 2; i++) {\n            sum_ie2[i] = ies[i] * now;\n            now\
+    \ *= es[i];\n        }\n        now = 1;\n        for (int i = 0; i <= cnt2 -\
+    \ 3; i++) {\n            sum_ie3[i] = ies[i + 1] * now;\n            now *= es[i\
+    \ + 1];\n        }\n    }\n    int len = h;\n    while (len) {\n        if (len\
+    \ == 1) {\n            int p = 1 << (h - len);\n            mint irot = 1;\n \
+    \           for (int s = 0; s < (1 << (len - 1)); s++) {\n                int\
+    \ offset = s << (h - len +  1);\n                for (int i = 0; i < p; i++) {\n\
+    \                    auto l = a[i + offset];\n                    auto r = a[i\
+    \ + offset + p];\n                    a[i + offset] = l + r;\n               \
+    \     a[i + offset + p] = (l - r) * irot;\n                }\n               \
+    \ if (s + 1 != (1 << (len - 1)))\n                    irot *= sum_ie2[__builtin_ctz(~(unsigned\
+    \ int)(s))];\n            }\n            len--;\n        }\n        else {\n \
+    \           int p = 1 << (h - len);\n            mint irot = 1, iimag = ies[0];\n\
+    \            for (int s = 0; s < (1 << ((len - 2))); s++) {\n                mint\
+    \ irot2 = irot * irot;\n                mint irot3 = irot2 * irot;\n         \
+    \       int offset = s << (h - len + 2);\n                for (int i = 0; i <\
+    \ p; i++) {\n                    auto a0 = a[i + offset];\n                  \
+    \  auto a1 = a[i + offset + p];\n                    auto a2 = a[i + offset +\
+    \ p * 2];\n                    auto a3 = a[i + offset + p * 3];\n            \
+    \        auto a2na3iimag = (a2 - a3) * iimag;\n                    \n        \
+    \            a[i + offset] = a0 + a1 + a2 + a3;\n                    a[i + offset\
+    \ + p] = (a0 - a1 + a2na3iimag) * irot;\n                    a[i + offset + p\
+    \ * 2] = (a0 + a1 - a2 - a3) * irot2;\n                    a[i + offset + p *\
+    \ 3] = (a0 - a1 - a2na3iimag) * irot3;\n                }\n                if\
+    \ (s + 1 != (1 << (len - 2)))\n                    irot *= sum_ie3[__builtin_ctz(~(unsigned\
+    \ int)(s))];\n            }\n            len -= 2;\n        }\n    }\n}\n\ntemplate\
+    \ <class mint, class FPS>\nvoid doubling(FPS &a) {\n    int n = a.size();\n  \
+    \  auto b = a;\n    int z = 1;\n    while (z < n) z <<= 1;\n    mint invz = mint(z).inv();\n\
+    \    butterfly_inv<mint>(b); b *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).\n\
+    \                       pow((mint::getmod() - 1) / (n << 1));\n    for (int i\
+    \ = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly<mint>(b);\n\
     \    copy(begin(b), end(b), back_inserter(a));\n}\n\n\n#line 5 \"convolution/convolution.hpp\"\
     \n\ntemplate <class mint, class FPS>\nFPS convolution(FPS& a, FPS b) {\n    int\
     \ n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n    if\
@@ -322,8 +325,20 @@ data:
     \ FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this) *= r; }\n\
     \    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
     \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n\n\
-    #line 7 \"convolution/convo_arb.hpp\"\n\ntemplate <class mint, class FPS>\nFPS\
-    \ convolution_arb(FPS& a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    #line 1 \"mod/garner.hpp\"\n\n\n\n#line 1 \"mod/inv.hpp\"\n\n\n\ntemplate <class\
+    \ T, class U>\nconstexpr long long mod_inversion(T a, U modulo) {\n    long long\
+    \ s = modulo, t = a;\n    long long m0 = 0, m1 = 1;\n    while (t) {\n       \
+    \ long long u = s / t;\n        swap(s -= t * u, t);\n        swap(m0 -= m1 *\
+    \ u, m1);\n    }\n    if (m0 < 0) m0 += modulo / s;\n    return m0;\n}\n\n\n#line\
+    \ 5 \"mod/garner.hpp\"\n\nlong long garner(const vector<long long>& d, const vector<long\
+    \ long>& p) {\n    static int nm = d.size();\n    vector<long long> kp(nm + 1,\
+    \ 0), rmult(nm + 1, 1);\n    for (int ii = 0; ii < nm; ii++) {\n        long long\
+    \ x = (d[ii] - kp[ii]) * mod_inversion(rmult[ii], p[ii]) % p[ii];\n        x =\
+    \ (x + p[ii]) % p[ii];\n        for (int iii = ii + 1; iii < nm + 1; iii++) {\n\
+    \            kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];\n            rmult[iii]\
+    \ = (rmult[iii] * p[ii]) % p[iii];\n        }\n    }\n    return kp[nm];\n}\n\n\
+    \n#line 8 \"convolution/convo_arb.hpp\"\n\ntemplate <class mint, class FPS>\n\
+    FPS convolution_arb(FPS& a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
     \  // 2^24\n    static constexpr long long MOD2 = 167772161;  // 2^25\n    static\
     \ constexpr long long MOD3 = 469762049;  // 2^26\n    vector<long long> a0(n),\
@@ -342,35 +357,39 @@ data:
     \ c2[i].val(), c3[i].val()}, p));\n    }\n    a = res;\n    return res;\n}\n\n\
     \n"
   code: "#ifndef CONVO_ARB_HPP\n#define CONVO_ARB_HPP 1\n\n#include \"../modint/mont.hpp\"\
-    \n#include \"convolution.hpp\"\n#include \"../fps/fps.hpp\"\n\ntemplate <class\
-    \ mint, class FPS>\nFPS convolution_arb(FPS& a, FPS b) {\n    int n = int(a.size()),\
-    \ m = int(b.size());\n    if (!n || !m) return {};\n    static constexpr long\
-    \ long MOD1 = 754974721;  // 2^24\n    static constexpr long long MOD2 = 167772161;\
-    \  // 2^25\n    static constexpr long long MOD3 = 469762049;  // 2^26\n    vector<long\
-    \ long> a0(n), b0(m);\n    for (int i = 0; i < n; i++) a0[i] = a[i].val();\n \
-    \   for (int i = 0; i < m; i++) b0[i] = b[i].val();\n    auto a1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(a0),\
-    \ end(a0));\n    auto b1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(b0),\
-    \ end(b0));\n    auto c1 = convolution<LazyMontgomeryModInt<MOD1>>(a1, b1);\n\
-    \    auto a2 = FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(a0), end(a0));\n\
-    \    auto b2 = FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(b0), end(b0));\n\
-    \    auto c2 = convolution<LazyMontgomeryModInt<MOD2>>(a2, b2);\n    auto a3 =\
-    \ FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(a0), end(a0));\n    auto\
-    \ b3 = FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(b0), end(b0));\n  \
-    \  auto c3 = convolution<LazyMontgomeryModInt<MOD3>>(a3, b3);\n    static const\
-    \ vector<long long> p = {MOD1, MOD2, MOD3, mint::getmod()};\n    FPS res(n + m\
-    \ - 1);\n    for (int i = 0; i < n + m - 1; i++) {\n        res[i] = mint(garner({c1[i].val(),\
-    \ c2[i].val(), c3[i].val()}, p));\n    }\n    a = res;\n    return res;\n}\n\n\
-    #endif  // CONVO_ARB_HPP\n"
+    \n#include \"convolution.hpp\"\n#include \"../fps/fps.hpp\"\n#include \"../mod/garner.hpp\"\
+    \n\ntemplate <class mint, class FPS>\nFPS convolution_arb(FPS& a, FPS b) {\n \
+    \   int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n\
+    \    static constexpr long long MOD1 = 754974721;  // 2^24\n    static constexpr\
+    \ long long MOD2 = 167772161;  // 2^25\n    static constexpr long long MOD3 =\
+    \ 469762049;  // 2^26\n    vector<long long> a0(n), b0(m);\n    for (int i = 0;\
+    \ i < n; i++) a0[i] = a[i].val();\n    for (int i = 0; i < m; i++) b0[i] = b[i].val();\n\
+    \    auto a1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(a0), end(a0));\n\
+    \    auto b1 = FormalPowerSeries<LazyMontgomeryModInt<MOD1>>(begin(b0), end(b0));\n\
+    \    auto c1 = convolution<LazyMontgomeryModInt<MOD1>>(a1, b1);\n    auto a2 =\
+    \ FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(a0), end(a0));\n    auto\
+    \ b2 = FormalPowerSeries<LazyMontgomeryModInt<MOD2>>(begin(b0), end(b0));\n  \
+    \  auto c2 = convolution<LazyMontgomeryModInt<MOD2>>(a2, b2);\n    auto a3 = FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(a0),\
+    \ end(a0));\n    auto b3 = FormalPowerSeries<LazyMontgomeryModInt<MOD3>>(begin(b0),\
+    \ end(b0));\n    auto c3 = convolution<LazyMontgomeryModInt<MOD3>>(a3, b3);\n\
+    \    static const vector<long long> p = {MOD1, MOD2, MOD3, mint::getmod()};\n\
+    \    FPS res(n + m - 1);\n    for (int i = 0; i < n + m - 1; i++) {\n        res[i]\
+    \ = mint(garner({c1[i].val(), c2[i].val(), c3[i].val()}, p));\n    }\n    a =\
+    \ res;\n    return res;\n}\n\n#endif  // CONVO_ARB_HPP\n"
   dependsOn:
   - modint/mont.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
+  - mod/primitive_rt_expr.hpp
+  - mod/pow_expr.hpp
   - fps/fps.hpp
+  - mod/garner.hpp
+  - mod/inv.hpp
   isVerificationFile: false
   path: convolution/convo_arb.hpp
   requiredBy:
   - fps/fps_arb.hpp
-  timestamp: '2024-05-12 17:44:19+09:00'
+  timestamp: '2024-05-14 00:13:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/convo_arb.hpp
