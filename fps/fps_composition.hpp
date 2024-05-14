@@ -4,25 +4,25 @@
 #include "fps.hpp"
 
 // calculate (g \circ f) (X)
-template <class mint>
-FormalPowerSeries<mint> composition(FormalPowerSeries<mint> f,
-                                    FormalPowerSeries<mint> g,
+template <class mint, class FPS>
+FPS composition(FPS f,
+                                    FPS g,
                                     int deg = -1) {
     if (f.empty() || g.empty()) return {};
     
-    auto rec = [&](auto self, FormalPowerSeries<mint> q,
-                   int n, int h, int k) -> FormalPowerSeries<mint> {
+    auto rec = [&](auto self, FPS q,
+                   int n, int h, int k) -> FPS {
         if (n == 0) {
-            FormalPowerSeries<mint> t(begin(q), begin(q) + k);
+            FPS t(begin(q), begin(q) + k);
             t.push_back(1);
-            FormalPowerSeries<mint> u = g * t.rev().inv().rev();
-            FormalPowerSeries<mint> p(h * k);
+            FPS u = g * t.rev().inv().rev();
+            FPS p(h * k);
             for (int i = 0; i < (int)size(g); i++) {
                 p[k - 1 - i] = u[i + k];
             }
             return p;
         }
-        FormalPowerSeries<mint> nq(4 * h * k), nr(2 * h * k);
+        FPS nq(4 * h * k), nr(2 * h * k);
         for (int i = 0; i < k; i++) {
             copy(begin(q) + i * h, begin(q) + i * h + n + 1,
                  begin(nq) + i * 2 * h);
@@ -48,7 +48,7 @@ FormalPowerSeries<mint> composition(FormalPowerSeries<mint> f,
             }
         }
         auto p = self(self, q, n / 2, h / 2, k * 2);
-        FormalPowerSeries<mint> np(4 * h * k);
+        FPS np(4 * h * k);
         for (int i = 0; i < 2 * k; i++) {
             for (int j = 0; j <= n / 2; j++) {
                 np[i * 2 * h + j * 2 + n % 2] = p[i * h / 2 + j];
@@ -77,9 +77,9 @@ FormalPowerSeries<mint> composition(FormalPowerSeries<mint> f,
     int n = int(size(f)) - 1, k = 1;
     int h = 1;
     while (h < n + 1) h <<= 1;
-    FormalPowerSeries<mint> q(h * k);
+    FPS q(h * k);
     for (int i = 0; i <= n; i++) q[i] = -f[i];
-    FormalPowerSeries<mint> p = rec(rec, q, n, h, k);
+    FPS p = rec(rec, q, n, h, k);
     return p.pre(n + 1).rev();
 }
 
