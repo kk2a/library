@@ -101,7 +101,7 @@ class include_file:
             with open(self.iid[i], 'r') as file:
                 lines = file.readlines()
                 for line in lines:
-                    if line.startswith('#'):
+                    if line.startswith('#include'):
                         continue
                     # print(line)
                     ret.append(line)
