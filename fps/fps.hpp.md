@@ -11,9 +11,6 @@ data:
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
-  - icon: ':warning:'
-    path: fps/fps_composition.hpp
-    title: fps/fps_composition.hpp
   - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
@@ -331,7 +328,6 @@ data:
   path: fps/fps.hpp
   requiredBy:
   - convolution/convo_arb.hpp
-  - fps/fps_composition.hpp
   - fps/fps_arb.hpp
   - fps/fps_arb.hpp
   - fps/ntt_friendly.hpp
