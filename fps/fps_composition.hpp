@@ -1,8 +1,6 @@
 #ifndef FPS_COMPOSITION_HPP
 #define FPS_COMPOSITION_HPP 1
 
-#include "fps.hpp"
-
 // calculate (g \circ f) (X)
 template <class mint, class FPS>
 FPS composition(FPS f,
