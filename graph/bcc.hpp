@@ -1,3 +1,6 @@
+#ifndef GRAPH_BCC_HPP
+#define GRAPH_BCC_HPP 1
+
 struct LowLink {
     struct Edge {
         int to, id;
@@ -59,3 +62,4 @@ struct LowLink {
     }
 };
 
+#endif // GRAPH_BCC_HPP

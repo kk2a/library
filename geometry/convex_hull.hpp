@@ -1,3 +1,6 @@
+#ifndef GEOMETRY_CONVEX_HULL_HPP
+#define GEOMETRY_CONVEX_HULL_HPP 1
+
 struct Convex_hull {
     using i64 = long long;
   private:
@@ -57,3 +60,5 @@ struct Convex_hull {
         }
     }
 };
+
+#endif // GEOMETRY_CONVEX_HULL_HPP

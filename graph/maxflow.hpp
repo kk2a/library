@@ -1,3 +1,6 @@
+#ifndef GRAPH_MAXFLOW_HPP
+#define GRAPH_MAXFLOW_HPP 1
+
 template <class Cap> struct mf_graph {
   public:
     mf_graph() : _n(0) {}
@@ -134,3 +137,4 @@ template <class Cap> struct mf_graph {
     std::vector<std::vector<_edge>> g;
 };
 
+#endif // GRAPH_MAXFLOW_HPP

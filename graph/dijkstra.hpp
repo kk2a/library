@@ -1,3 +1,6 @@
+#ifndef GRAPH_DIJKSTRA_HPP
+#define GRAPH_DIJKSTRA_HPP 1
+
 template <class T> struct dij_graph {
   public:
     W_graph(int n) : _n(n), graph(n) {}
@@ -42,3 +45,4 @@ template <class T> struct dij_graph {
     vector<vector<pair<T, int>>> graph;
 };
 
+#endif // GRAPH_DIJKSTRA_HPP

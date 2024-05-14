@@ -1,3 +1,6 @@
+#ifndef TOPOLOGICAL_SORT_HPP
+#define TOPOLOGICAL_SORT_HPP 1
+
 // topological_sort
 vector<int> topological_sort(vector<vector<int>> graph) {
     int siz = size(graph);
@@ -17,3 +20,4 @@ vector<int> topological_sort(vector<vector<int>> graph) {
 	return res;
 }
 
+#endif // TOPOLOGICAL_SORT_HPP

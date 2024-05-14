@@ -1,3 +1,6 @@
+#ifndef GRAPH_LCA_HPP
+#define GRAPH_LCA_HPP 1
+
 struct LCA {
     vector<vector<int>> parent;
     vector<int> depth, perm;
@@ -47,3 +50,5 @@ struct LCA {
         return depth[u] + depth[v] - 2 * depth[query(u, v)];
     }
 };
+
+#endif // GRAPH_LCA_HPP
