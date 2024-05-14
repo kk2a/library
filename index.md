@@ -86,6 +86,9 @@ data:
       path: fps/product.hpp
       title: fps/product.hpp
     - icon: ':warning:'
+      path: fps/sample_point_shift.hpp
+      title: fps/sample_point_shift.hpp
+    - icon: ':warning:'
       path: fps/taylor_shift.hpp
       title: fps/taylor_shift.hpp
   - name: geometry
