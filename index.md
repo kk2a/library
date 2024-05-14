@@ -24,6 +24,9 @@ data:
       path: dijkstra.cpp
       title: dijkstra.cpp
     - icon: ':warning:'
+      path: kyopro.py
+      title: kyopro.py
+    - icon: ':warning:'
       path: lca.cpp
       title: lca.cpp
     - icon: ':warning:'
