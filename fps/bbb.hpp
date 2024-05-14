@@ -1,6 +1,8 @@
 #ifndef FPS_BBB_HPP
 #define FPS_BBB_HPP 1
 
+#include "multi_eval.hpp"
+
 // f(X) / \prod (X - a_i) = \sum c_i / (X - a_i)
 // return {c_i}
 template <class mint, class FPS>
