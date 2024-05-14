@@ -4,13 +4,13 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"maxflow.cpp\"\ntemplate <class Cap> struct mf_graph {\n\
-    \  public:\n    mf_graph() : _n(0) {}\n    mf_graph(int n) : _n(n), g(n) {}\n\n\
-    \    int add_edge(int from, int to, Cap cap) {\n        assert(0 <= from && from\
+  bundledCode: "#line 1 \"graph/maxflow.hpp\"\n\n\n\ntemplate <class Cap> struct mf_graph\
+    \ {\n  public:\n    mf_graph() : _n(0) {}\n    mf_graph(int n) : _n(n), g(n) {}\n\
+    \n    int add_edge(int from, int to, Cap cap) {\n        assert(0 <= from && from\
     \ < _n);\n        assert(0 <= to && to < _n);\n        assert(0 <= cap);\n   \
     \     int m = int(pos.size());\n        pos.push_back({from, int(g[from].size())});\n\
     \        int from_id = int(g[from].size());\n        int to_id = int(g[to].size());\n\
@@ -60,17 +60,18 @@ data:
     \                }\n            }\n        }\n        return visited;\n    }\n\
     \n  private:\n    int _n;\n    struct _edge {\n        int to, rev;\n        Cap\
     \ cap;\n    };\n    std::vector<std::pair<int, int>> pos;\n    std::vector<std::vector<_edge>>\
-    \ g;\n};\n\n"
-  code: "template <class Cap> struct mf_graph {\n  public:\n    mf_graph() : _n(0)\
-    \ {}\n    mf_graph(int n) : _n(n), g(n) {}\n\n    int add_edge(int from, int to,\
-    \ Cap cap) {\n        assert(0 <= from && from < _n);\n        assert(0 <= to\
-    \ && to < _n);\n        assert(0 <= cap);\n        int m = int(pos.size());\n\
-    \        pos.push_back({from, int(g[from].size())});\n        int from_id = int(g[from].size());\n\
-    \        int to_id = int(g[to].size());\n        if (from == to) to_id++;\n  \
-    \      g[from].push_back(_edge{to, to_id, cap});\n        g[to].push_back(_edge{from,\
-    \ from_id, 0});\n        return m;\n    }\n\n    struct edge {\n        int from,\
-    \ to;\n        Cap cap, flow;\n    };\n\n    edge get_edge(int i) {\n        int\
-    \ m = int(pos.size());\n        assert(0 <= i && i < m);\n        auto _e = g[pos[i].first][pos[i].second];\n\
+    \ g;\n};\n\n\n"
+  code: "#ifndef GRAPH_MAXFLOW_HPP\n#define GRAPH_MAXFLOW_HPP 1\n\ntemplate <class\
+    \ Cap> struct mf_graph {\n  public:\n    mf_graph() : _n(0) {}\n    mf_graph(int\
+    \ n) : _n(n), g(n) {}\n\n    int add_edge(int from, int to, Cap cap) {\n     \
+    \   assert(0 <= from && from < _n);\n        assert(0 <= to && to < _n);\n   \
+    \     assert(0 <= cap);\n        int m = int(pos.size());\n        pos.push_back({from,\
+    \ int(g[from].size())});\n        int from_id = int(g[from].size());\n       \
+    \ int to_id = int(g[to].size());\n        if (from == to) to_id++;\n        g[from].push_back(_edge{to,\
+    \ to_id, cap});\n        g[to].push_back(_edge{from, from_id, 0});\n        return\
+    \ m;\n    }\n\n    struct edge {\n        int from, to;\n        Cap cap, flow;\n\
+    \    };\n\n    edge get_edge(int i) {\n        int m = int(pos.size());\n    \
+    \    assert(0 <= i && i < m);\n        auto _e = g[pos[i].first][pos[i].second];\n\
     \        auto _re = g[_e.to][_e.rev];\n        return edge{pos[i].first, _e.to,\
     \ _e.cap + _re.cap, _re.cap};\n    }\n    std::vector<edge> edges() {\n      \
     \  int m = int(pos.size());\n        std::vector<edge> result;\n        for (int\
@@ -112,18 +113,18 @@ data:
     \                }\n            }\n        }\n        return visited;\n    }\n\
     \n  private:\n    int _n;\n    struct _edge {\n        int to, rev;\n        Cap\
     \ cap;\n    };\n    std::vector<std::pair<int, int>> pos;\n    std::vector<std::vector<_edge>>\
-    \ g;\n};\n\n"
+    \ g;\n};\n\n#endif // GRAPH_MAXFLOW_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: maxflow.cpp
+  path: graph/maxflow.hpp
   requiredBy: []
-  timestamp: '2024-05-03 02:50:00+09:00'
+  timestamp: '2024-05-14 18:36:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: maxflow.cpp
+documentation_of: graph/maxflow.hpp
 layout: document
 redirect_from:
-- /library/maxflow.cpp
-- /library/maxflow.cpp.html
-title: maxflow.cpp
+- /library/graph/maxflow.hpp
+- /library/graph/maxflow.hpp.html
+title: graph/maxflow.hpp
 ---

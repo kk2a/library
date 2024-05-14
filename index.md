@@ -12,32 +12,6 @@ data:
     - icon: ':warning:'
       path: UnionFind/weight.hpp
       title: UnionFind/weight.hpp
-  - name: .
-    pages:
-    - icon: ':warning:'
-      path: bcc.cpp
-      title: bcc.cpp
-    - icon: ':warning:'
-      path: convex_hull.cpp
-      title: convex_hull.cpp
-    - icon: ':warning:'
-      path: dijkstra.cpp
-      title: dijkstra.cpp
-    - icon: ':warning:'
-      path: kyopro.py
-      title: kyopro.py
-    - icon: ':warning:'
-      path: lca.cpp
-      title: lca.cpp
-    - icon: ':warning:'
-      path: main.cpp
-      title: main.cpp
-    - icon: ':warning:'
-      path: maxflow.cpp
-      title: maxflow.cpp
-    - icon: ':warning:'
-      path: topological_sort.cpp
-      title: topological_sort.cpp
   - name: convolution
     pages:
     - icon: ':warning:'
@@ -114,6 +88,33 @@ data:
     - icon: ':warning:'
       path: fps/taylor_shift.hpp
       title: fps/taylor_shift.hpp
+  - name: geometry
+    pages:
+    - icon: ':warning:'
+      path: geometry/convex_hull.hpp
+      title: geometry/convex_hull.hpp
+  - name: graph
+    pages:
+    - icon: ':warning:'
+      path: graph/bcc.hpp
+      title: graph/bcc.hpp
+    - icon: ':warning:'
+      path: graph/dijkstra.hpp
+      title: graph/dijkstra.hpp
+    - icon: ':warning:'
+      path: graph/lca.hpp
+      title: graph/lca.hpp
+    - icon: ':warning:'
+      path: graph/maxflow.hpp
+      title: graph/maxflow.hpp
+    - icon: ':warning:'
+      path: graph/topological_sort.hpp
+      title: graph/topological_sort.hpp
+  - name: .
+    pages:
+    - icon: ':warning:'
+      path: kyopro.py
+      title: kyopro.py
   - name: math
     pages:
     - icon: ':warning:'

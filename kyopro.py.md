@@ -57,7 +57,7 @@ data:
     \            for line in lines:\n                file.write(line)\n\n    def all_include_files(self)\
     \ -> list:\n        ret = []\n        for i in self.sorted:\n            with\
     \ open(self.iid[i], 'r') as file:\n                lines = file.readlines()\n\
-    \                for line in lines:\n                    if line.startswith('#'):\n\
+    \                for line in lines:\n                    if line.startswith('#include'):\n\
     \                        continue\n                    # print(line)\n       \
     \             ret.append(line)\n        return ret\n\n\n\ndef main(*args):\n \
     \   if len(args) == 1:\n        input_file = args[0]\n    else:\n        print('Usage:\
