@@ -105,6 +105,9 @@ data:
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
     - icon: ':warning:'
+      path: graph/kruskal.hpp
+      title: graph/kruskal.hpp
+    - icon: ':warning:'
       path: graph/lca.hpp
       title: graph/lca.hpp
     - icon: ':warning:'
