@@ -138,8 +138,8 @@ data:
   - name: matrix
     pages:
     - icon: ':warning:'
-      path: matrix/matrix.hpp
-      title: matrix/matrix.hpp
+      path: matrix/matrix_field.hpp
+      title: matrix/matrix_field.hpp
   - name: mod
     pages:
     - icon: ':warning:'

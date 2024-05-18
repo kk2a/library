@@ -104,8 +104,8 @@ data:
   isVerificationFile: false
   path: modint/mont_arb.hpp
   requiredBy:
-  - mod/mod_sqrt.hpp
   - fps/fps_sqrt.hpp
+  - mod/mod_sqrt.hpp
   timestamp: '2024-05-04 17:40:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

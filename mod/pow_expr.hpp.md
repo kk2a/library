@@ -56,18 +56,18 @@ data:
   isVerificationFile: false
   path: mod/pow_expr.hpp
   requiredBy:
-  - mod/primitive_rt_expr.hpp
-  - convolution/multi_zero.hpp
-  - convolution/butterfly.hpp
-  - convolution/convolution.hpp
-  - convolution/convo_arb.hpp
-  - fps/fps_arb.hpp
   - fps/ntt_friendly.hpp
+  - fps/fps_arb.hpp
+  - mod/primitive_rt_expr.hpp
+  - convolution/convo_arb.hpp
+  - convolution/butterfly.hpp
+  - convolution/multi_zero.hpp
+  - convolution/convolution.hpp
   timestamp: '2024-05-14 00:13:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
+  - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: mod/pow_expr.hpp
