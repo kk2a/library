@@ -18,12 +18,13 @@ data:
     \    template <class S>\n    Hashs(S c) {\n        rep (i, b) {\n            table[i].h\
     \ = c;\n            table[i].pw = base[i];\n        }\n    }\n    Hashs() {\n\
     \        rep (i, b) {\n            table[i].h = 0;\n            table[i].pw =\
-    \ 1;\n        }\n    }\n\n    void push_back(const Hashs &rhs) {\n        rep\
-    \ (i, b) {\n            table[i].h = (table[i].h * rhs.table[i].pw + rhs.table[i].h)\
-    \ % modp[i];\n            table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];\n\
-    \        }\n    }\n    void push_front(const Hashs &rhs) {\n        rep (i, b)\
-    \ {\n            table[i].h = (table[i].h + rhs.table[i].h * table[i].pw) % modp[i];\n\
-    \            table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];\n        }\n\
+    \ 1;\n        }\n    }\n\n    // return hash of rhs + this\n    void push_front(const\
+    \ Hashs &rhs) {\n        rep (i, b) {\n            table[i].h = (table[i].h *\
+    \ rhs.table[i].pw + rhs.table[i].h) % modp[i];\n            table[i].pw = table[i].pw\
+    \ * rhs.table[i].pw % modp[i];\n        }\n    }\n\n    // return hash of this\
+    \ + rhs\n    void push_back(const Hashs &rhs) {\n        rep (i, b) {\n      \
+    \      table[i].h = (table[i].h + rhs.table[i].h * table[i].pw) % modp[i];\n \
+    \           table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];\n        }\n\
     \    }\n\n    // push_back\n    Hashs& operator+=(const Hashs &rhs) {\n      \
     \  rep (i, b) {\n            table[i].h = (table[i].h * rhs.table[i].pw + rhs.table[i].h)\
     \ % modp[i];\n            table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];\n\
@@ -49,12 +50,13 @@ data:
     \    template <class S>\n    Hashs(S c) {\n        rep (i, b) {\n            table[i].h\
     \ = c;\n            table[i].pw = base[i];\n        }\n    }\n    Hashs() {\n\
     \        rep (i, b) {\n            table[i].h = 0;\n            table[i].pw =\
-    \ 1;\n        }\n    }\n\n    void push_back(const Hashs &rhs) {\n        rep\
-    \ (i, b) {\n            table[i].h = (table[i].h * rhs.table[i].pw + rhs.table[i].h)\
-    \ % modp[i];\n            table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];\n\
-    \        }\n    }\n    void push_front(const Hashs &rhs) {\n        rep (i, b)\
-    \ {\n            table[i].h = (table[i].h + rhs.table[i].h * table[i].pw) % modp[i];\n\
-    \            table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];\n        }\n\
+    \ 1;\n        }\n    }\n\n    // return hash of rhs + this\n    void push_front(const\
+    \ Hashs &rhs) {\n        rep (i, b) {\n            table[i].h = (table[i].h *\
+    \ rhs.table[i].pw + rhs.table[i].h) % modp[i];\n            table[i].pw = table[i].pw\
+    \ * rhs.table[i].pw % modp[i];\n        }\n    }\n\n    // return hash of this\
+    \ + rhs\n    void push_back(const Hashs &rhs) {\n        rep (i, b) {\n      \
+    \      table[i].h = (table[i].h + rhs.table[i].h * table[i].pw) % modp[i];\n \
+    \           table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];\n        }\n\
     \    }\n\n    // push_back\n    Hashs& operator+=(const Hashs &rhs) {\n      \
     \  rep (i, b) {\n            table[i].h = (table[i].h * rhs.table[i].pw + rhs.table[i].h)\
     \ % modp[i];\n            table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];\n\
@@ -74,7 +76,7 @@ data:
   isVerificationFile: false
   path: rolling_hash/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2024-05-14 00:13:18+09:00'
+  timestamp: '2024-05-19 15:30:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: rolling_hash/rolling_hash.hpp
