@@ -3,8 +3,6 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-// #include <atcoder/all>
-// using namespace atcoder;
 
 using u32 = unsigned int;
 using i64 = long long;
