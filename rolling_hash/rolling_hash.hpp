@@ -34,13 +34,16 @@ struct Hashs {
         }
     }
 
-    void push_back(const Hashs &rhs) {
+    // return hash of rhs + this
+    void push_front(const Hashs &rhs) {
         rep (i, b) {
             table[i].h = (table[i].h * rhs.table[i].pw + rhs.table[i].h) % modp[i];
             table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];
         }
     }
-    void push_front(const Hashs &rhs) {
+
+    // return hash of this + rhs
+    void push_back(const Hashs &rhs) {
         rep (i, b) {
             table[i].h = (table[i].h + rhs.table[i].h * table[i].pw) % modp[i];
             table[i].pw = table[i].pw * rhs.table[i].pw % modp[i];
