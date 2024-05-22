@@ -77,6 +77,9 @@ data:
       path: fps/ntt_friendly.hpp
       title: fps/ntt_friendly.hpp
     - icon: ':warning:'
+      path: fps/poly_gcd.hpp
+      title: fps/poly_gcd.hpp
+    - icon: ':warning:'
       path: fps/poly_interpolation.hpp
       title: fps/poly_interpolation.hpp
     - icon: ':warning:'
