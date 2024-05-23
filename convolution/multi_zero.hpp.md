@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/pow_expr.hpp
     title: mod/pow_expr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/primitive_rt_expr.hpp
     title: mod/primitive_rt_expr.hpp
   _extendedRequiredBy: []
@@ -40,8 +40,8 @@ data:
     \ (m - 1) / divs[i], m) == 1) {\n                ok = false;\n               \
     \ break;\n            }\n        }\n        if (ok) return g;\n    }\n}\ntemplate\
     \ <int m> static constexpr int primitive_root = primitive_root_constexpr(m);\n\
-    \n\n#line 5 \"convolution/butterfly.hpp\"\n\ntemplate <class mint, class FPS>\n\
-    void butterfly(FPS& a) {\n    static int g = primitive_root<mint::getmod()>;\n\
+    \n\n#line 5 \"convolution/butterfly.hpp\"\n\ntemplate <class FPS, class mint =\
+    \ FPS::value_type>\nvoid butterfly(FPS& a) {\n    static int g = primitive_root<mint::getmod()>;\n\
     \    int n = int(a.size());\n    int h = 0;\n    while ((1U << h) < (unsigned\
     \ int)(n)) h++;\n    static bool first = true;\n    static mint sum_e2[30];  //\
     \ sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]\n    static mint sum_e3[30];\n\
@@ -76,13 +76,13 @@ data:
     \          a[i + offset + p * 3] = a0 - a2 - a1na3imag;\n                }\n \
     \               if (s + 1 != (1 << len))\n                rot *= sum_e3[__builtin_ctz(~(unsigned\
     \ int)(s))];\n            }\n            len += 2;\n        }\n    }\n}\n\ntemplate\
-    \ <class mint, class FPS>\nvoid butterfly_inv(FPS& a) {\n    static constexpr\
-    \ int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n    int\
-    \ h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool first\
-    \ = true;\n    static mint sum_ie2[30];  // sum_ie[i] = es[0] * ... * es[i - 1]\
-    \ * ies[i]\n    static mint sum_ie3[30];\n    static mint es[30], ies[30];  //\
-    \ es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n        int\
-    \ cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
+    \ <class FPS, class mint = FPS::value_type>\nvoid butterfly_inv(FPS& a) {\n  \
+    \  static constexpr int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n\
+    \    int h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool\
+    \ first = true;\n    static mint sum_ie2[30];  // sum_ie[i] = es[0] * ... * es[i\
+    \ - 1] * ies[i]\n    static mint sum_ie3[30];\n    static mint es[30], ies[30];\
+    \  // es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n       \
+    \ int cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
     \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n  \
     \          // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i - 2]\
     \ = ie;\n            e *= e;\n            ie *= ie;\n        }\n        mint now\
@@ -112,27 +112,27 @@ data:
     \                  a[i + offset + p * 3] = (a0 - a1 - a2na3iimag) * irot3;\n \
     \               }\n                if (s + 1 != (1 << (len - 2)))\n          \
     \          irot *= sum_ie3[__builtin_ctz(~(unsigned int)(s))];\n            }\n\
-    \            len -= 2;\n        }\n    }\n}\n\ntemplate <class mint, class FPS>\n\
-    void doubling(FPS &a) {\n    int n = a.size();\n    auto b = a;\n    int z = 1;\n\
-    \    while (z < n) z <<= 1;\n    mint invz = mint(z).inv();\n    butterfly_inv<mint>(b);\
-    \ b *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).\n \
-    \                      pow((mint::getmod() - 1) / (n << 1));\n    for (int i =\
-    \ 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly<mint>(b);\n\
+    \            len -= 2;\n        }\n    }\n}\n\ntemplate <class FPS, class mint\
+    \ = FPS::value_type>\nvoid doubling(FPS &a) {\n    int n = a.size();\n    auto\
+    \ b = a;\n    int z = 1;\n    while (z < n) z <<= 1;\n    mint invz = mint(z).inv();\n\
+    \    butterfly_inv(b); b *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).\n\
+    \                       pow((mint::getmod() - 1) / (n << 1));\n    for (int i\
+    \ = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n\
     \    copy(begin(b), end(b), back_inserter(a));\n}\n\n\n#line 5 \"convolution/convolution.hpp\"\
-    \n\ntemplate <class mint, class FPS>\nFPS convolution(FPS& a, FPS b) {\n    int\
-    \ n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n    if\
-    \ (std::min(n, m) <= 60) {\n        if (n < m) {\n            swap(n, m);\n  \
-    \          swap(a, b);\n        }\n        FPS res(n + m - 1);\n        for (int\
-    \ i = 0; i < n; i++) {\n            for (int j = 0; j < m; j++) {\n          \
-    \      res[i + j] += a[i] * b[j];\n            }\n        }\n        a = res;\n\
-    \        return a;\n    }\n    int z = 1;\n    while (z < n + m - 1) z <<= 1;\n\
-    \    a.resize(z);\n    butterfly<mint>(a);\n    b.resize(z);\n    butterfly<mint>(b);\n\
-    \    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv<mint>(a);\n\
-    \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
-    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n\n#line 5 \"convolution/multi_zero.hpp\"\
-    \n\ntemplate <class mint, class FPS>\nFPS convolution_mulcut(FPS& a, FPS b, const\
-    \ vector<int>& base) {\n    int n = int(a.size());\n    if (!n) return {};\n \
-    \   static const int k = size(base);\n    if (!k) return convolution<mint>(a,\
+    \n\ntemplate <class FPS, class mint = FPS::value_type>\nFPS convolution(FPS& a,\
+    \ FPS b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return\
+    \ {};\n    if (std::min(n, m) <= 60) {\n        if (n < m) {\n            swap(n,\
+    \ m);\n            swap(a, b);\n        }\n        FPS res(n + m - 1);\n     \
+    \   for (int i = 0; i < n; i++) {\n            for (int j = 0; j < m; j++) {\n\
+    \                res[i + j] += a[i] * b[j];\n            }\n        }\n      \
+    \  a = res;\n        return a;\n    }\n    int z = 1;\n    while (z < n + m -\
+    \ 1) z <<= 1;\n    a.resize(z);\n    butterfly(a);\n    b.resize(z);\n    butterfly(b);\n\
+    \    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv(a);\n    a.resize(n\
+    \ + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1;\
+    \ i++) a[i] *= iz;\n    return a;\n}\n\n\n#line 5 \"convolution/multi_zero.hpp\"\
+    \n\ntemplate <class FPS, class mint = FPS::value_type>\nFPS convolution_mulcut(FPS&\
+    \ a, FPS b, const vector<int>& base) {\n    int n = int(a.size());\n    if (!n)\
+    \ return {};\n    static const int k = size(base);\n    if (!k) return convolution(a,\
     \ b);\n    vector<int> chi(n, 0);\n    for (int i = 0; i < n; i++) {\n       \
     \ int x = i;\n        for (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);\n\
     \        chi[i] %= k;\n    }\n    int z = 1;\n    while (z < 2 * n - 1) z <<=\
@@ -147,22 +147,22 @@ data:
     \ iz = mint(z).inv();\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i] * iz;\n\
     \    return a;\n}\n\n\n"
   code: "#ifndef CONVOLUTION_MULTI_ZERO\n#define CONVOLUTION_MULTI_ZERO 1\n\n#include\
-    \ \"convolution.hpp\"\n\ntemplate <class mint, class FPS>\nFPS convolution_mulcut(FPS&\
-    \ a, FPS b, const vector<int>& base) {\n    int n = int(a.size());\n    if (!n)\
-    \ return {};\n    static const int k = size(base);\n    if (!k) return convolution<mint>(a,\
-    \ b);\n    vector<int> chi(n, 0);\n    for (int i = 0; i < n; i++) {\n       \
-    \ int x = i;\n        for (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);\n\
-    \        chi[i] %= k;\n    }\n    int z = 1;\n    while (z < 2 * n - 1) z <<=\
-    \ 1;\n    vector<vector<mint>> f(k, vector<mint>(z));\n    vector<vector<mint>>\
-    \ g(k, vector<mint>(z));\n    for (int i = 0; i < n; i++) f[chi[i]][i] = a[i],\
-    \ g[chi[i]][i] = b[i];\n    for (auto& x : f) butterfly(x);\n    for (auto& x\
-    \ : g) butterfly(x);\n    vector<mint> tmp(k);\n    for (int ii = 0; ii < z; ii++)\
-    \ {\n        for (int i = 0; i < k; i++) {\n            for (int j = 0; j < k;\
-    \ j++) {\n                tmp[i + j - (i + j >= k ? k : 0)] += f[i][ii] * g[j][ii];\n\
-    \            }\n        }\n        for (int i = 0; i < k; i++) f[i][ii] = tmp[i],\
-    \ tmp[i] = mint{0};\n    }\n    for (auto& x : f) butterfly_inv(x);\n    mint\
-    \ iz = mint(z).inv();\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i] * iz;\n\
-    \    return a;\n}\n\n#endif // CONVOLUTION_MULTI_ZERO\n"
+    \ \"convolution.hpp\"\n\ntemplate <class FPS, class mint = FPS::value_type>\n\
+    FPS convolution_mulcut(FPS& a, FPS b, const vector<int>& base) {\n    int n =\
+    \ int(a.size());\n    if (!n) return {};\n    static const int k = size(base);\n\
+    \    if (!k) return convolution(a, b);\n    vector<int> chi(n, 0);\n    for (int\
+    \ i = 0; i < n; i++) {\n        int x = i;\n        for (int j = 0; j < k - 1;\
+    \ j++) chi[i] += (x /= base[j]);\n        chi[i] %= k;\n    }\n    int z = 1;\n\
+    \    while (z < 2 * n - 1) z <<= 1;\n    vector<vector<mint>> f(k, vector<mint>(z));\n\
+    \    vector<vector<mint>> g(k, vector<mint>(z));\n    for (int i = 0; i < n; i++)\
+    \ f[chi[i]][i] = a[i], g[chi[i]][i] = b[i];\n    for (auto& x : f) butterfly(x);\n\
+    \    for (auto& x : g) butterfly(x);\n    vector<mint> tmp(k);\n    for (int ii\
+    \ = 0; ii < z; ii++) {\n        for (int i = 0; i < k; i++) {\n            for\
+    \ (int j = 0; j < k; j++) {\n                tmp[i + j - (i + j >= k ? k : 0)]\
+    \ += f[i][ii] * g[j][ii];\n            }\n        }\n        for (int i = 0; i\
+    \ < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto& x : f)\
+    \ butterfly_inv(x);\n    mint iz = mint(z).inv();\n    for (int i = 0; i < n;\
+    \ i++) a[i] = f[chi[i]][i] * iz;\n    return a;\n}\n\n#endif // CONVOLUTION_MULTI_ZERO\n"
   dependsOn:
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
@@ -171,7 +171,7 @@ data:
   isVerificationFile: false
   path: convolution/multi_zero.hpp
   requiredBy: []
-  timestamp: '2024-05-14 00:13:18+09:00'
+  timestamp: '2024-05-23 16:05:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/multi_zero.hpp

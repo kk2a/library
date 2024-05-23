@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/pow_expr.hpp
     title: mod/pow_expr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/primitive_rt_expr.hpp
     title: mod/primitive_rt_expr.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: convolution/convo_arb.hpp
     title: convolution/convo_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':warning:'
@@ -20,40 +20,40 @@ data:
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/butterfly.hpp\"\n\n\n\n#line 1 \"mod/primitive_rt_expr.hpp\"\
@@ -75,8 +75,8 @@ data:
     \ (m - 1) / divs[i], m) == 1) {\n                ok = false;\n               \
     \ break;\n            }\n        }\n        if (ok) return g;\n    }\n}\ntemplate\
     \ <int m> static constexpr int primitive_root = primitive_root_constexpr(m);\n\
-    \n\n#line 5 \"convolution/butterfly.hpp\"\n\ntemplate <class mint, class FPS>\n\
-    void butterfly(FPS& a) {\n    static int g = primitive_root<mint::getmod()>;\n\
+    \n\n#line 5 \"convolution/butterfly.hpp\"\n\ntemplate <class FPS, class mint =\
+    \ FPS::value_type>\nvoid butterfly(FPS& a) {\n    static int g = primitive_root<mint::getmod()>;\n\
     \    int n = int(a.size());\n    int h = 0;\n    while ((1U << h) < (unsigned\
     \ int)(n)) h++;\n    static bool first = true;\n    static mint sum_e2[30];  //\
     \ sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]\n    static mint sum_e3[30];\n\
@@ -111,13 +111,13 @@ data:
     \          a[i + offset + p * 3] = a0 - a2 - a1na3imag;\n                }\n \
     \               if (s + 1 != (1 << len))\n                rot *= sum_e3[__builtin_ctz(~(unsigned\
     \ int)(s))];\n            }\n            len += 2;\n        }\n    }\n}\n\ntemplate\
-    \ <class mint, class FPS>\nvoid butterfly_inv(FPS& a) {\n    static constexpr\
-    \ int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n    int\
-    \ h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool first\
-    \ = true;\n    static mint sum_ie2[30];  // sum_ie[i] = es[0] * ... * es[i - 1]\
-    \ * ies[i]\n    static mint sum_ie3[30];\n    static mint es[30], ies[30];  //\
-    \ es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n        int\
-    \ cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
+    \ <class FPS, class mint = FPS::value_type>\nvoid butterfly_inv(FPS& a) {\n  \
+    \  static constexpr int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n\
+    \    int h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool\
+    \ first = true;\n    static mint sum_ie2[30];  // sum_ie[i] = es[0] * ... * es[i\
+    \ - 1] * ies[i]\n    static mint sum_ie3[30];\n    static mint es[30], ies[30];\
+    \  // es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n       \
+    \ int cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
     \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n  \
     \          // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i - 2]\
     \ = ie;\n            e *= e;\n            ie *= ie;\n        }\n        mint now\
@@ -147,50 +147,51 @@ data:
     \                  a[i + offset + p * 3] = (a0 - a1 - a2na3iimag) * irot3;\n \
     \               }\n                if (s + 1 != (1 << (len - 2)))\n          \
     \          irot *= sum_ie3[__builtin_ctz(~(unsigned int)(s))];\n            }\n\
-    \            len -= 2;\n        }\n    }\n}\n\ntemplate <class mint, class FPS>\n\
-    void doubling(FPS &a) {\n    int n = a.size();\n    auto b = a;\n    int z = 1;\n\
-    \    while (z < n) z <<= 1;\n    mint invz = mint(z).inv();\n    butterfly_inv<mint>(b);\
-    \ b *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).\n \
-    \                      pow((mint::getmod() - 1) / (n << 1));\n    for (int i =\
-    \ 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly<mint>(b);\n\
+    \            len -= 2;\n        }\n    }\n}\n\ntemplate <class FPS, class mint\
+    \ = FPS::value_type>\nvoid doubling(FPS &a) {\n    int n = a.size();\n    auto\
+    \ b = a;\n    int z = 1;\n    while (z < n) z <<= 1;\n    mint invz = mint(z).inv();\n\
+    \    butterfly_inv(b); b *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).\n\
+    \                       pow((mint::getmod() - 1) / (n << 1));\n    for (int i\
+    \ = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n\
     \    copy(begin(b), end(b), back_inserter(a));\n}\n\n\n"
   code: "#ifndef BUTTERFLY_HPP\n#define BUTTERFLY_HPP 1\n\n#include \"../mod/primitive_rt_expr.hpp\"\
-    \n\ntemplate <class mint, class FPS>\nvoid butterfly(FPS& a) {\n    static int\
-    \ g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n    int h =\
-    \ 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool first =\
-    \ true;\n    static mint sum_e2[30];  // sum_e[i] = ies[0] * ... * ies[i - 1]\
-    \ * es[i]\n    static mint sum_e3[30];\n    static mint es[30], ies[30];  // es[i]^(2^(2+i))\
-    \ == 1\n    if (first) {\n        first = false;\n        int cnt2 = __builtin_ctz(mint::getmod()\
-    \ - 1);\n        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n\
-    \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n    \
-    \        es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n \
-    \           ie *= ie;\n        }\n        mint now = 1;\n        for (int i =\
-    \ 0; i <= cnt2 - 2; i++) {\n            sum_e2[i] = es[i] * now;\n           \
-    \ now *= ies[i];\n        }\n        now = 1;\n        for (int i = 0; i <= cnt2\
-    \ - 3; i++) {\n            sum_e3[i] = es[i + 1] * now;\n            now *= ies[i\
-    \ + 1];\n        }\n    }\n\n    int len = 0;\n    while (len < h) {\n       \
-    \ if (h - len == 1) {\n            int p = 1 << (h - len - 1);\n            mint\
-    \ rot = 1;\n            for (int s = 0; s < (1 << len); s++) {\n             \
-    \   int offset = s << (h - len);\n                for (int i = 0; i < p; i++)\
-    \ {\n                    auto l = a[i + offset];\n                    auto r =\
-    \ a[i + offset + p] * rot;\n                    a[i + offset] = l + r;\n     \
-    \               a[i + offset + p] = l - r;\n                }\n              \
-    \  if (s + 1 != (1 << len)) \n                    rot *= sum_e2[__builtin_ctz(~(unsigned\
-    \ int)(s))];\n            }\n            len++;\n        }\n        else {\n \
-    \           int p = 1 << (h - len - 2);\n            mint rot = 1, imag = es[0];\n\
-    \            for (int s = 0; s < (1 << len); s++) {\n                mint rot2\
-    \ = rot * rot;\n                mint rot3 = rot2 * rot;\n                int offset\
-    \ = s << (h - len);\n                for (int i = 0; i < p; i++) {\n         \
-    \           auto a0 = a[i + offset];\n                    auto a1 = a[i + offset\
-    \ + p] * rot;\n                    auto a2 = a[i + offset + p * 2] * rot2;\n \
-    \                   auto a3 = a[i + offset + p * 3] * rot3;\n                \
-    \    auto a1na3imag = (a1 - a3) * imag;\n                    a[i + offset] = a0\
-    \ + a2 + a1 + a3;\n                    a[i + offset + p] = a0 + a2 - a1 - a3;\n\
-    \                    a[i + offset + p * 2] = a0 - a2 + a1na3imag;\n          \
-    \          a[i + offset + p * 3] = a0 - a2 - a1na3imag;\n                }\n \
-    \               if (s + 1 != (1 << len))\n                rot *= sum_e3[__builtin_ctz(~(unsigned\
-    \ int)(s))];\n            }\n            len += 2;\n        }\n    }\n}\n\ntemplate\
-    \ <class mint, class FPS>\nvoid butterfly_inv(FPS& a) {\n    static constexpr\
+    \n\ntemplate <class FPS, class mint = FPS::value_type>\nvoid butterfly(FPS& a)\
+    \ {\n    static int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n\
+    \    int h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool\
+    \ first = true;\n    static mint sum_e2[30];  // sum_e[i] = ies[0] * ... * ies[i\
+    \ - 1] * es[i]\n    static mint sum_e3[30];\n    static mint es[30], ies[30];\
+    \  // es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n       \
+    \ int cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
+    \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n  \
+    \          // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i - 2]\
+    \ = ie;\n            e *= e;\n            ie *= ie;\n        }\n        mint now\
+    \ = 1;\n        for (int i = 0; i <= cnt2 - 2; i++) {\n            sum_e2[i] =\
+    \ es[i] * now;\n            now *= ies[i];\n        }\n        now = 1;\n    \
+    \    for (int i = 0; i <= cnt2 - 3; i++) {\n            sum_e3[i] = es[i + 1]\
+    \ * now;\n            now *= ies[i + 1];\n        }\n    }\n\n    int len = 0;\n\
+    \    while (len < h) {\n        if (h - len == 1) {\n            int p = 1 <<\
+    \ (h - len - 1);\n            mint rot = 1;\n            for (int s = 0; s < (1\
+    \ << len); s++) {\n                int offset = s << (h - len);\n            \
+    \    for (int i = 0; i < p; i++) {\n                    auto l = a[i + offset];\n\
+    \                    auto r = a[i + offset + p] * rot;\n                    a[i\
+    \ + offset] = l + r;\n                    a[i + offset + p] = l - r;\n       \
+    \         }\n                if (s + 1 != (1 << len)) \n                    rot\
+    \ *= sum_e2[__builtin_ctz(~(unsigned int)(s))];\n            }\n            len++;\n\
+    \        }\n        else {\n            int p = 1 << (h - len - 2);\n        \
+    \    mint rot = 1, imag = es[0];\n            for (int s = 0; s < (1 << len);\
+    \ s++) {\n                mint rot2 = rot * rot;\n                mint rot3 =\
+    \ rot2 * rot;\n                int offset = s << (h - len);\n                for\
+    \ (int i = 0; i < p; i++) {\n                    auto a0 = a[i + offset];\n  \
+    \                  auto a1 = a[i + offset + p] * rot;\n                    auto\
+    \ a2 = a[i + offset + p * 2] * rot2;\n                    auto a3 = a[i + offset\
+    \ + p * 3] * rot3;\n                    auto a1na3imag = (a1 - a3) * imag;\n \
+    \                   a[i + offset] = a0 + a2 + a1 + a3;\n                    a[i\
+    \ + offset + p] = a0 + a2 - a1 - a3;\n                    a[i + offset + p * 2]\
+    \ = a0 - a2 + a1na3imag;\n                    a[i + offset + p * 3] = a0 - a2\
+    \ - a1na3imag;\n                }\n                if (s + 1 != (1 << len))\n\
+    \                rot *= sum_e3[__builtin_ctz(~(unsigned int)(s))];\n         \
+    \   }\n            len += 2;\n        }\n    }\n}\n\ntemplate <class FPS, class\
+    \ mint = FPS::value_type>\nvoid butterfly_inv(FPS& a) {\n    static constexpr\
     \ int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n    int\
     \ h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool first\
     \ = true;\n    static mint sum_ie2[30];  // sum_ie[i] = es[0] * ... * es[i - 1]\
@@ -226,12 +227,12 @@ data:
     \                  a[i + offset + p * 3] = (a0 - a1 - a2na3iimag) * irot3;\n \
     \               }\n                if (s + 1 != (1 << (len - 2)))\n          \
     \          irot *= sum_ie3[__builtin_ctz(~(unsigned int)(s))];\n            }\n\
-    \            len -= 2;\n        }\n    }\n}\n\ntemplate <class mint, class FPS>\n\
-    void doubling(FPS &a) {\n    int n = a.size();\n    auto b = a;\n    int z = 1;\n\
-    \    while (z < n) z <<= 1;\n    mint invz = mint(z).inv();\n    butterfly_inv<mint>(b);\
-    \ b *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).\n \
-    \                      pow((mint::getmod() - 1) / (n << 1));\n    for (int i =\
-    \ 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly<mint>(b);\n\
+    \            len -= 2;\n        }\n    }\n}\n\ntemplate <class FPS, class mint\
+    \ = FPS::value_type>\nvoid doubling(FPS &a) {\n    int n = a.size();\n    auto\
+    \ b = a;\n    int z = 1;\n    while (z < n) z <<= 1;\n    mint invz = mint(z).inv();\n\
+    \    butterfly_inv(b); b *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).\n\
+    \                       pow((mint::getmod() - 1) / (n << 1));\n    for (int i\
+    \ = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n\
     \    copy(begin(b), end(b), back_inserter(a));\n}\n\n#endif  // BUTTERFLY_HPP\n"
   dependsOn:
   - mod/primitive_rt_expr.hpp
@@ -245,8 +246,8 @@ data:
   - convolution/convo_arb.hpp
   - convolution/multi_zero.hpp
   - convolution/convolution.hpp
-  timestamp: '2024-05-14 00:13:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-23 16:05:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp

@@ -13,14 +13,14 @@ data:
     links: []
   bundledCode: "#line 1 \"fps/fps_com_inv.hpp\"\n\n\n\n#line 1 \"fps/power_projection.hpp\"\
     \n\n\n\n// [X ^ n] f(X) ^ i g(X)  enumerate for i = 0, ... , m \n// n = \\deg\
-    \ f - 1\ntemplate <class mint, class FPS>\nFPS power_projection(FPS f, FPS g =\
-    \ {1}, int m = -1) {\n    if (f.empty() || g.empty()) return {};\n    int n =\
-    \ int(size(f)) - 1, k = 1;\n    g.resize(n + 1);\n    if (m == -1) m = n;\n  \
-    \  int h = 1;\n    while (h < n + 1) h <<= 1;\n    FPS p((n + 1) * k), q((n +\
-    \ 1) * k),\n        np, nq, buf, buf2;\n    for (int i = 0; i <= n; i++) p[i *\
-    \ k] = g[i];\n    for (int i = 0; i <= n; i++) q[i * k] = -f[i];\n    q[0] +=\
-    \ 1;\n    mint inv2 = mint(2).inv();\n    mint invk = mint(k).inv();\n    mint\
-    \ invh = mint(h).inv();\n    while (n) {\n        mint w = mint(FPS::but_pr()).\n\
+    \ f - 1\ntemplate <class FPS, class mint = FPS::value_type>\nFPS power_projection(FPS\
+    \ f, FPS g = {1}, int m = -1) {\n    if (f.empty() || g.empty()) return {};\n\
+    \    int n = int(size(f)) - 1, k = 1;\n    g.resize(n + 1);\n    if (m == -1)\
+    \ m = n;\n    int h = 1;\n    while (h < n + 1) h <<= 1;\n    FPS p((n + 1) *\
+    \ k), q((n + 1) * k),\n        np, nq, buf, buf2;\n    for (int i = 0; i <= n;\
+    \ i++) p[i * k] = g[i];\n    for (int i = 0; i <= n; i++) q[i * k] = -f[i];\n\
+    \    q[0] += 1;\n    mint inv2 = mint(2).inv();\n    mint invk = mint(k).inv();\n\
+    \    mint invh = mint(h).inv();\n    while (n) {\n        mint w = mint(FPS::but_pr()).\n\
     \            pow((mint::getmod() - 1) / (k << 1));\n        mint invw = w.inv();\n\
     \n        buf2.resize(k);\n        auto db = [&]() -> void {\n            copy(begin(buf),\
     \ end(buf), begin(buf2));\n            buf2.ibut();\n            buf2 *= invk;\n\
@@ -64,28 +64,28 @@ data:
     \ invk;\n    t[0] -= 1;\n    if (f[0] == mint(0)) return s.rev().pre(m + 1);\n\
     \    return (s.rev() * (t + (FPS{1} << k)).\n           rev().inv(m + 1)).pre(m\
     \ + 1);\n}\n\n\n#line 5 \"fps/fps_com_inv.hpp\"\n\n// calculate f ^ {-1} (X) \
-    \ mod X ^ deg\ntemplate <class mint, class FPS>\nFPS compositional_inv(FPS f,\
-    \ int deg = -1) {\n    assert(int(size(f)) >= 2 and f[1] != 0);\n    if (deg ==\
-    \ -1) deg = int(size(f));\n    if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);\n\
-    \    int n = deg - 1;\n    FPS h = power_projection<mint, FPS>(f) * n;\n\n   \
-    \ for (int k = 1; k <= n; k++) h[k] /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n\
-    \    FPS g = (h.log() * mint(-n).inv()).exp();\n    g *= f[1].inv();\n    return\
+    \ mod X ^ deg\ntemplate <class FPS, class mint = FPS::value_type>\nFPS compositional_inv(FPS\
+    \ f, int deg = -1) {\n    assert(int(size(f)) >= 2 and f[1] != 0);\n    if (deg\
+    \ == -1) deg = int(size(f));\n    if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);\n\
+    \    int n = deg - 1;\n    FPS h = power_projection(f) * n;\n\n    for (int k\
+    \ = 1; k <= n; k++) h[k] /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n \
+    \   FPS g = (h.log() * mint(-n).inv()).exp();\n    g *= f[1].inv();\n    return\
     \ (g << 1).pre(deg);\n}\n\n\n"
   code: "#ifndef FPS_COMPOSITION_INVERSION_HPP\n#define FPS_COMPOSITION_INVERSION_HPP\
     \ 1\n\n#include \"power_projection.hpp\"\n\n// calculate f ^ {-1} (X)  mod X ^\
-    \ deg\ntemplate <class mint, class FPS>\nFPS compositional_inv(FPS f, int deg\
-    \ = -1) {\n    assert(int(size(f)) >= 2 and f[1] != 0);\n    if (deg == -1) deg\
-    \ = int(size(f));\n    if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);\n    int\
-    \ n = deg - 1;\n    FPS h = power_projection<mint, FPS>(f) * n;\n\n    for (int\
-    \ k = 1; k <= n; k++) h[k] /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n\
-    \    FPS g = (h.log() * mint(-n).inv()).exp();\n    g *= f[1].inv();\n    return\
+    \ deg\ntemplate <class FPS, class mint = FPS::value_type>\nFPS compositional_inv(FPS\
+    \ f, int deg = -1) {\n    assert(int(size(f)) >= 2 and f[1] != 0);\n    if (deg\
+    \ == -1) deg = int(size(f));\n    if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);\n\
+    \    int n = deg - 1;\n    FPS h = power_projection(f) * n;\n\n    for (int k\
+    \ = 1; k <= n; k++) h[k] /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n \
+    \   FPS g = (h.log() * mint(-n).inv()).exp();\n    g *= f[1].inv();\n    return\
     \ (g << 1).pre(deg);\n}\n\n#endif // FPS_COMPOSITION_INVERSION_HPP\n"
   dependsOn:
   - fps/power_projection.hpp
   isVerificationFile: false
   path: fps/fps_com_inv.hpp
   requiredBy: []
-  timestamp: '2024-05-12 14:55:01+09:00'
+  timestamp: '2024-05-23 16:05:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_com_inv.hpp
