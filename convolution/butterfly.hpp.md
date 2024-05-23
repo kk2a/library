@@ -23,31 +23,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/ntt_friendly.hpp
-    title: fps/ntt_friendly.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/fps_exp.test.cpp
-    title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/fps_inv.test.cpp
-    title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/fps_log.test.cpp
-    title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/fps_pow.test.cpp
-    title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
@@ -242,7 +227,6 @@ data:
   path: convolution/butterfly.hpp
   requiredBy:
   - fps/ntt_friendly.hpp
-  - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
   - convolution/convo_arb.hpp
   - convolution/multi_zero.hpp
@@ -251,12 +235,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp
-  - verify/yosupo_fps/fps_pow.test.cpp
-  - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
-  - verify/yosupo_fps/fps_log.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: convolution/butterfly.hpp
 layout: document
