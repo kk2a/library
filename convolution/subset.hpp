@@ -1,7 +1,7 @@
 #ifndef CONVOLUTION_SUBSET
 #define CONVOLUTION_SUBSET 1
 
-template <class mint, class FPS>
+template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_subset(FPS& a, FPS b) {
     int n = int(size(a));  // == int(size(b)
     if (!n) return {};

@@ -1,7 +1,7 @@
 #ifndef CONVOLUTION_AND
 #define CONVOLUTION_AND 1
 
-template <class FPS>
+template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_and(FPS& a, FPS b) {
     int n = int(size(a));  // == int(size(b)
     if (!n) return {};

@@ -3,7 +3,7 @@
 
 #include "butterfly.hpp"
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 FPS convolution(FPS& a, FPS b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};

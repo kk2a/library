@@ -3,7 +3,7 @@
 
 #include "../mod/primitive_rt_expr.hpp"
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 void butterfly(FPS& a) {
     static int g = primitive_root<mint::getmod()>;
     int n = int(a.size());
@@ -80,7 +80,7 @@ void butterfly(FPS& a) {
     }
 }
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 void butterfly_inv(FPS& a) {
     static constexpr int g = primitive_root<mint::getmod()>;
     int n = int(a.size());
@@ -157,7 +157,7 @@ void butterfly_inv(FPS& a) {
     }
 }
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 void doubling(FPS &a) {
     int n = a.size();
     auto b = a;

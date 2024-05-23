@@ -3,7 +3,7 @@
 
 #include "convolution.hpp"
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_mulcut(FPS& a, FPS b, const vector<int>& base) {
     int n = int(a.size());
     if (!n) return {};

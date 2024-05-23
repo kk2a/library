@@ -4,7 +4,7 @@
 #include "../math/Eratosthenes.hpp"
 
 // 1-indexed
-template <class FPS> 
+template <class FPS, class mint = typename FPS::value_type> 
 FPS convolution_lcm(FPS& a, FPS b) {
     int n = int(size(a)); // = int(size(b))
     if (!n) return {};
