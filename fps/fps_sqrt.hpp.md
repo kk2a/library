@@ -69,10 +69,10 @@ data:
     \ 1) {\n            j++;\n            t *= t;\n        }\n        z = z.pow(1LL\
     \ << (e - j - 1));\n        x *= z;\n        z *= z;\n        y *= z;\n      \
     \  e = j;\n    }\n    return x.val();\n}\n\n\n#line 5 \"fps/fps_sqrt.hpp\"\n\n\
-    template <class FPS, class mint = FPS::value_type>\nFPS sqrt(FPS f, int deg =\
-    \ -1) {\n    // using mint = typename FPS::value_type;\n    if (deg == -1) deg\
-    \ = (int)f.size();\n    if ((int)f.size() == 0) return FPS(deg, mint(0));\n  \
-    \  if (f[0] == mint(0)) {\n        for (int i = 1; i < (int)f.size(); i++) {\n\
+    template <class FPS, class mint = typename FPS::value_type>\nFPS sqrt(FPS f, int\
+    \ deg = -1) {\n    // using mint = typename FPS::value_type;\n    if (deg == -1)\
+    \ deg = (int)f.size();\n    if ((int)f.size() == 0) return FPS(deg, mint(0));\n\
+    \    if (f[0] == mint(0)) {\n        for (int i = 1; i < (int)f.size(); i++) {\n\
     \            if (f[i] != mint(0)) {\n                if (i & 1) return {};\n \
     \               if (deg - i / 2 <= 0) break;\n                auto ret = sqrt(f\
     \ >> i, deg - i / 2);\n                if (ret.empty()) return {};\n         \
@@ -83,8 +83,8 @@ data:
     \    FPS ret = {mint(sqr)};\n    mint inv2 = mint(2).inv();\n    for (int i =\
     \ 1; i < deg; i <<= 1) {\n        ret = (ret + f.pre(i << 1) * ret.inv(i << 1))\
     \ * inv2;\n    }\n    return ret.pre(deg);\n}\n\ntemplate <class FPS, class mint\
-    \ = FPS::value_type>\nFPS sparse_sqrt(const FPS& f,\n                        \
-    \            int deg = -1) {\n    // using mint = typename FPS::value_type;\n\
+    \ = typename FPS::value_type>\nFPS sparse_sqrt(const FPS& f,\n               \
+    \                     int deg = -1) {\n    // using mint = typename FPS::value_type;\n\
     \    if (deg == -1) deg = (int)f.size();\n    if ((int)f.size() == 0) return FPS(deg,\
     \ mint(0));\n    if (f[0] == mint(0)) {\n        for (int i = 1; i < (int)f.size();\
     \ i++) {\n            if (f[i] != mint(0)) {\n                if (i & 1) return\
@@ -96,10 +96,10 @@ data:
     \ mint::getmod());\n    if (sqr == -1) return {};\n    return f.sparse_pow(((mint::getmod()\
     \ + 1) >> 1), deg) * mint(sqr).inv();\n}\n\n\n"
   code: "#ifndef FPS_SQRT_HPP\n#define FPS_SQRT_HPP 1\n\n#include \"../mod/mod_sqrt.hpp\"\
-    \n\ntemplate <class FPS, class mint = FPS::value_type>\nFPS sqrt(FPS f, int deg\
-    \ = -1) {\n    // using mint = typename FPS::value_type;\n    if (deg == -1) deg\
-    \ = (int)f.size();\n    if ((int)f.size() == 0) return FPS(deg, mint(0));\n  \
-    \  if (f[0] == mint(0)) {\n        for (int i = 1; i < (int)f.size(); i++) {\n\
+    \n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS sqrt(FPS\
+    \ f, int deg = -1) {\n    // using mint = typename FPS::value_type;\n    if (deg\
+    \ == -1) deg = (int)f.size();\n    if ((int)f.size() == 0) return FPS(deg, mint(0));\n\
+    \    if (f[0] == mint(0)) {\n        for (int i = 1; i < (int)f.size(); i++) {\n\
     \            if (f[i] != mint(0)) {\n                if (i & 1) return {};\n \
     \               if (deg - i / 2 <= 0) break;\n                auto ret = sqrt(f\
     \ >> i, deg - i / 2);\n                if (ret.empty()) return {};\n         \
@@ -110,8 +110,8 @@ data:
     \    FPS ret = {mint(sqr)};\n    mint inv2 = mint(2).inv();\n    for (int i =\
     \ 1; i < deg; i <<= 1) {\n        ret = (ret + f.pre(i << 1) * ret.inv(i << 1))\
     \ * inv2;\n    }\n    return ret.pre(deg);\n}\n\ntemplate <class FPS, class mint\
-    \ = FPS::value_type>\nFPS sparse_sqrt(const FPS& f,\n                        \
-    \            int deg = -1) {\n    // using mint = typename FPS::value_type;\n\
+    \ = typename FPS::value_type>\nFPS sparse_sqrt(const FPS& f,\n               \
+    \                     int deg = -1) {\n    // using mint = typename FPS::value_type;\n\
     \    if (deg == -1) deg = (int)f.size();\n    if ((int)f.size() == 0) return FPS(deg,\
     \ mint(0));\n    if (f[0] == mint(0)) {\n        for (int i = 1; i < (int)f.size();\
     \ i++) {\n            if (f[i] != mint(0)) {\n                if (i & 1) return\
@@ -128,7 +128,7 @@ data:
   isVerificationFile: false
   path: fps/fps_sqrt.hpp
   requiredBy: []
-  timestamp: '2024-05-23 16:05:55+09:00'
+  timestamp: '2024-05-23 16:23:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_sqrt.hpp

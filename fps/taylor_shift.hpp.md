@@ -43,13 +43,13 @@ data:
     \ frac(n) * ifrac(n - k);\n    }\n\n    mint homo(int n, int k) {\n        if\
     \ (n < 0 || k < 0) return 0;\n        return k == 0 ? 1 : binom(n + k - 1, k);\n\
     \    }\n};\n\n\n#line 5 \"fps/taylor_shift.hpp\"\n\ntemplate <class FPS, class\
-    \ mint = FPS::value_type>\nFPS TaylorShift(FPS f, mint a, Comb<mint>& c) {\n \
-    \   int n = f.size();\n    for (int i = 0; i < n; i++) f[i] *= c.frac(i);\n  \
-    \  reverse(begin(f), end(f));\n    FPS g(n, mint(1));\n    for (int i = 1; i <\
-    \ n; i++) g[i] = g[i - 1] * a * c.inv(i);\n    f = (f * g).pre(n).rev();\n   \
-    \ for (int i = 0; i < n; i++) f[i] *= c.ifrac(i);\n    return f;\n}\n\n\n"
+    \ mint = typename FPS::value_type>\nFPS TaylorShift(FPS f, mint a, Comb<mint>&\
+    \ c) {\n    int n = f.size();\n    for (int i = 0; i < n; i++) f[i] *= c.frac(i);\n\
+    \    reverse(begin(f), end(f));\n    FPS g(n, mint(1));\n    for (int i = 1; i\
+    \ < n; i++) g[i] = g[i - 1] * a * c.inv(i);\n    f = (f * g).pre(n).rev();\n \
+    \   for (int i = 0; i < n; i++) f[i] *= c.ifrac(i);\n    return f;\n}\n\n\n"
   code: "#ifndef FPS_TAYLOR_SHIFT_HPP\n#define FPS_TAYLOR_SHIFT_HPP 1\n\n#include\
-    \ \"../mod/comb.hpp\"\n\ntemplate <class FPS, class mint = FPS::value_type>\n\
+    \ \"../mod/comb.hpp\"\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
     FPS TaylorShift(FPS f, mint a, Comb<mint>& c) {\n    int n = f.size();\n    for\
     \ (int i = 0; i < n; i++) f[i] *= c.frac(i);\n    reverse(begin(f), end(f));\n\
     \    FPS g(n, mint(1));\n    for (int i = 1; i < n; i++) g[i] = g[i - 1] * a *\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: fps/taylor_shift.hpp
   requiredBy: []
-  timestamp: '2024-05-23 16:05:55+09:00'
+  timestamp: '2024-05-23 16:23:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/taylor_shift.hpp

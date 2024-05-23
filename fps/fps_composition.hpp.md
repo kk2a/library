@@ -9,9 +9,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/fps_composition.hpp\"\n\n\n\n// calculate (g \\circ\
-    \ f) (X)\ntemplate <class FPS, class mint = FPS::value_type>\nFPS composition(FPS\
-    \ f,\n                                    FPS g,\n                           \
-    \         int deg = -1) {\n    if (f.empty() || g.empty()) return {};\n    \n\
+    \ f) (X)\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS composition(FPS\
+    \ f, FPS g, int deg = -1) {\n    if (f.empty() || g.empty()) return {};\n    \n\
     \    auto rec = [&](auto self, FPS q,\n                   int n, int h, int k)\
     \ -> FPS {\n        if (n == 0) {\n            FPS t(begin(q), begin(q) + k);\n\
     \            t.push_back(1);\n            FPS u = g * t.rev().inv().rev();\n \
@@ -45,13 +44,12 @@ data:
     \ = -f[i];\n    FPS p = rec(rec, q, n, h, k);\n    return p.pre(n + 1).rev();\n\
     }\n\n\n\n"
   code: "#ifndef FPS_COMPOSITION_HPP\n#define FPS_COMPOSITION_HPP 1\n\n// calculate\
-    \ (g \\circ f) (X)\ntemplate <class FPS, class mint = FPS::value_type>\nFPS composition(FPS\
-    \ f,\n                                    FPS g,\n                           \
-    \         int deg = -1) {\n    if (f.empty() || g.empty()) return {};\n    \n\
-    \    auto rec = [&](auto self, FPS q,\n                   int n, int h, int k)\
-    \ -> FPS {\n        if (n == 0) {\n            FPS t(begin(q), begin(q) + k);\n\
-    \            t.push_back(1);\n            FPS u = g * t.rev().inv().rev();\n \
-    \           FPS p(h * k);\n            for (int i = 0; i < (int)size(g); i++)\
+    \ (g \\circ f) (X)\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+    FPS composition(FPS f, FPS g, int deg = -1) {\n    if (f.empty() || g.empty())\
+    \ return {};\n    \n    auto rec = [&](auto self, FPS q,\n                   int\
+    \ n, int h, int k) -> FPS {\n        if (n == 0) {\n            FPS t(begin(q),\
+    \ begin(q) + k);\n            t.push_back(1);\n            FPS u = g * t.rev().inv().rev();\n\
+    \            FPS p(h * k);\n            for (int i = 0; i < (int)size(g); i++)\
     \ {\n                p[k - 1 - i] = u[i + k];\n            }\n            return\
     \ p;\n        }\n        FPS nq(4 * h * k), nr(2 * h * k);\n        for (int i\
     \ = 0; i < k; i++) {\n            copy(begin(q) + i * h, begin(q) + i * h + n\
@@ -84,7 +82,7 @@ data:
   isVerificationFile: false
   path: fps/fps_composition.hpp
   requiredBy: []
-  timestamp: '2024-05-23 16:05:55+09:00'
+  timestamp: '2024-05-23 16:23:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_composition.hpp

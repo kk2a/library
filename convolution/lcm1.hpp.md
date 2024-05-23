@@ -33,33 +33,33 @@ data:
     \ j = 0; j < p.second; ++j) {\n                    v *= p.first;\n           \
     \         res.push_back(res[i] * v);\n                }\n            }\n     \
     \   }\n        return res;\n    }\n};\n\n\n#line 5 \"convolution/lcm1.hpp\"\n\n\
-    // 1-indexed\ntemplate <class FPS> \nFPS convolution_lcm(FPS& a, FPS b) {\n  \
-    \  int n = int(size(a)); // = int(size(b))\n    if (!n) return {};\n    n--;\n\
-    \n    static const constexpr int mx = 1000000;\n    Erato pr(mx);\n\n    auto\
-    \ fdt = [&](FPS& a) -> void {\n        for (const auto p : pr.primes) {\n    \
-    \        if (p > n) break;\n            for (int i = 1; i <= n / p; i++) a[i *\
-    \ p] += a[i];\n        }\n    };\n    auto ifdt = [&](FPS& a) -> void {\n    \
-    \    for (const auto p : pr.primes) {\n            if (p  > n) break;\n      \
-    \      for (auto i = n / p; i > 0; i--) a[i * p] -= a[i];\n        }\n    };\n\
-    \n    fdt(a);\n    fdt(b);\n    for (int i = 1; i <= n; i++) a[i] *= b[i];\n \
-    \   ifdt(a);\n\n    return a;\n}\n\n\n"
+    // 1-indexed\ntemplate <class FPS, class mint = typename FPS::value_type> \nFPS\
+    \ convolution_lcm(FPS& a, FPS b) {\n    int n = int(size(a)); // = int(size(b))\n\
+    \    if (!n) return {};\n    n--;\n\n    static const constexpr int mx = 1000000;\n\
+    \    Erato pr(mx);\n\n    auto fdt = [&](FPS& a) -> void {\n        for (const\
+    \ auto p : pr.primes) {\n            if (p > n) break;\n            for (int i\
+    \ = 1; i <= n / p; i++) a[i * p] += a[i];\n        }\n    };\n    auto ifdt =\
+    \ [&](FPS& a) -> void {\n        for (const auto p : pr.primes) {\n          \
+    \  if (p  > n) break;\n            for (auto i = n / p; i > 0; i--) a[i * p] -=\
+    \ a[i];\n        }\n    };\n\n    fdt(a);\n    fdt(b);\n    for (int i = 1; i\
+    \ <= n; i++) a[i] *= b[i];\n    ifdt(a);\n\n    return a;\n}\n\n\n"
   code: "#ifndef CONVOLUTION_LCM\n#define CONVOLUTION_LCM 1\n\n#include \"../math/Eratosthenes.hpp\"\
-    \n\n// 1-indexed\ntemplate <class FPS> \nFPS convolution_lcm(FPS& a, FPS b) {\n\
-    \    int n = int(size(a)); // = int(size(b))\n    if (!n) return {};\n    n--;\n\
-    \n    static const constexpr int mx = 1000000;\n    Erato pr(mx);\n\n    auto\
-    \ fdt = [&](FPS& a) -> void {\n        for (const auto p : pr.primes) {\n    \
-    \        if (p > n) break;\n            for (int i = 1; i <= n / p; i++) a[i *\
-    \ p] += a[i];\n        }\n    };\n    auto ifdt = [&](FPS& a) -> void {\n    \
-    \    for (const auto p : pr.primes) {\n            if (p  > n) break;\n      \
-    \      for (auto i = n / p; i > 0; i--) a[i * p] -= a[i];\n        }\n    };\n\
-    \n    fdt(a);\n    fdt(b);\n    for (int i = 1; i <= n; i++) a[i] *= b[i];\n \
-    \   ifdt(a);\n\n    return a;\n}\n\n#endif // CONVOLUTION_LCM\n"
+    \n\n// 1-indexed\ntemplate <class FPS, class mint = typename FPS::value_type>\
+    \ \nFPS convolution_lcm(FPS& a, FPS b) {\n    int n = int(size(a)); // = int(size(b))\n\
+    \    if (!n) return {};\n    n--;\n\n    static const constexpr int mx = 1000000;\n\
+    \    Erato pr(mx);\n\n    auto fdt = [&](FPS& a) -> void {\n        for (const\
+    \ auto p : pr.primes) {\n            if (p > n) break;\n            for (int i\
+    \ = 1; i <= n / p; i++) a[i * p] += a[i];\n        }\n    };\n    auto ifdt =\
+    \ [&](FPS& a) -> void {\n        for (const auto p : pr.primes) {\n          \
+    \  if (p  > n) break;\n            for (auto i = n / p; i > 0; i--) a[i * p] -=\
+    \ a[i];\n        }\n    };\n\n    fdt(a);\n    fdt(b);\n    for (int i = 1; i\
+    \ <= n; i++) a[i] *= b[i];\n    ifdt(a);\n\n    return a;\n}\n\n#endif // CONVOLUTION_LCM\n"
   dependsOn:
   - math/Eratosthenes.hpp
   isVerificationFile: false
   path: convolution/lcm1.hpp
   requiredBy: []
-  timestamp: '2024-05-10 04:03:51+09:00'
+  timestamp: '2024-05-23 16:18:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/lcm1.hpp

@@ -17,12 +17,12 @@ data:
     - https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan
     - https://yukicoder.me/wiki/%E9%80%86%E5%85%83
   bundledCode: "#line 1 \"fps/poly_interpolation.hpp\"\n\n\n\n#line 1 \"fps/multi_eval.hpp\"\
-    \n\n\n\n\ntemplate <class FPS, class mint = FPS::value_type>\nstruct MultiPointEvaluation\
-    \ {\n    int _n, size;\n    vector<int> l, r;\n    vector<FPS> pr;\n    vector<mint>\
-    \ v;\n    FPS f;\n\n    MultiPointEvaluation(const vector<mint> &v_) : _n(int(v_.size())),\
-    \ v(v_) {\n        size = 1;\n        while (size < (unsigned int)(_n)) size <<=\
-    \ 1;\n        pr.resize(size << 1);\n        l.resize(size << 1, _n);\n      \
-    \  r.resize(size << 1, _n);\n        build();\n    }\n    MultiPointEvaluation(const\
+    \n\n\n\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nstruct\
+    \ MultiPointEvaluation {\n    int _n, size;\n    vector<int> l, r;\n    vector<FPS>\
+    \ pr;\n    vector<mint> v;\n    FPS f;\n\n    MultiPointEvaluation(const vector<mint>\
+    \ &v_) : _n(int(v_.size())), v(v_) {\n        size = 1;\n        while (size <\
+    \ (unsigned int)(_n)) size <<= 1;\n        pr.resize(size << 1);\n        l.resize(size\
+    \ << 1, _n);\n        r.resize(size << 1, _n);\n        build();\n    }\n    MultiPointEvaluation(const\
     \ vector<mint> &v_, const FPS &f_) :\n        MultiPointEvaluation(v_) {\n   \
     \     this->f = f_;\n    }\n\n    void set(const FPS &f_) {\n        this->f =\
     \ f_;\n    }\n\n    void build() {\n        for (int i = 0; i < _n; i++) {\n \
@@ -41,26 +41,26 @@ data:
     \                }\n                return;\n            }\n            self(self,\
     \ a, idx << 1 | 0);\n            self(self, a, idx << 1 | 1);\n        };\n  \
     \      rec(rec, f, 1);\n        return ret;\n    }\n};\n\ntemplate <class FPS,\
-    \ class mint = FPS::value_type>\nvector<mint> MultiEval(vector<mint> v, FPS f)\
-    \ {\n    MultiPointEvaluation<mint, FPS> mpe(v, f);\n    return mpe.query();\n\
+    \ class mint = typename FPS::value_type>\nvector<mint> MultiEval(vector<mint>\
+    \ v, FPS f) {\n    MultiPointEvaluation<mint, FPS> mpe(v, f);\n    return mpe.query();\n\
     }\n\n\n#line 1 \"fps/chirp_Z.hpp\"\n\n\n\n// return f(a w ^ 0), f(a w ^ 1), ...,\
-    \ f(a w ^ (n - 1))\ntemplate <class FPS, class mint = FPS::value_type>\nvector<mint>\
-    \ ChirpZ(FPS f, mint w, int n = -1, mint a = 1) {\n    if (n == -1) n = f.size();\n\
-    \    if (f.empty() || n == 0) return vector<mint>(n, mint(0));\n    int m = f.size();\n\
-    \    if (a != 1) {\n        mint x = 1;\n        for (int i = 0; i < m; i++) {\n\
-    \            f[i] *= x;\n            x *= a;\n        }\n    }\n    if (w == 0)\
-    \ {\n        vector<mint> g(n, f[0]);\n        for (int i = 1; i < m; i++) g[0]\
-    \ += f[i];\n        return g;\n    }\n    FPS wc(n + m), iwc(max(n, m));\n   \
-    \ mint ws = 1, iw = w.inv(), iws = 1;\n    wc[0] = iwc[0] = 1;\n    for (int i\
-    \ = 1; i < n + m; i++) {\n        wc[i] = ws * wc[i - 1];\n        ws *= w;\n\
-    \    }\n    for (int i = 1; i < max(n, m); i++) {\n        iwc[i] = iws * iwc[i\
-    \ - 1];\n        iws *= iw;\n    }\n    for (int i = 0; i < m; i++) f[i] *= iwc[i];\n\
-    \    reverse(begin(f), end(f));\n    FPS g = f * wc;\n    vector<mint> ret{begin(g)\
-    \ + m - 1, begin(g) + m + n - 1};\n    for (int i = 0; i < n; i++) ret[i] *= iwc[i];\n\
-    \    return ret; \n}\n\n\n#line 6 \"fps/poly_interpolation.hpp\"\n\ntemplate <class\
-    \ FPS, class mint = FPS::value_type>\nFPS PolyInterpolation(const vector<mint>\
-    \ &x,\n                      const vector<mint> &y) {\n    assert(x.size() ==\
-    \ y.size());\n    MultiPointEvaluation<FPS> mpe(x);\n    FPS gp = mpe.pr[1].diff();\n\
+    \ f(a w ^ (n - 1))\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+    vector<mint> ChirpZ(FPS f, mint w, int n = -1, mint a = 1) {\n    if (n == -1)\
+    \ n = f.size();\n    if (f.empty() || n == 0) return vector<mint>(n, mint(0));\n\
+    \    int m = f.size();\n    if (a != 1) {\n        mint x = 1;\n        for (int\
+    \ i = 0; i < m; i++) {\n            f[i] *= x;\n            x *= a;\n        }\n\
+    \    }\n    if (w == 0) {\n        vector<mint> g(n, f[0]);\n        for (int\
+    \ i = 1; i < m; i++) g[0] += f[i];\n        return g;\n    }\n    FPS wc(n + m),\
+    \ iwc(max(n, m));\n    mint ws = 1, iw = w.inv(), iws = 1;\n    wc[0] = iwc[0]\
+    \ = 1;\n    for (int i = 1; i < n + m; i++) {\n        wc[i] = ws * wc[i - 1];\n\
+    \        ws *= w;\n    }\n    for (int i = 1; i < max(n, m); i++) {\n        iwc[i]\
+    \ = iws * iwc[i - 1];\n        iws *= iw;\n    }\n    for (int i = 0; i < m; i++)\
+    \ f[i] *= iwc[i];\n    reverse(begin(f), end(f));\n    FPS g = f * wc;\n    vector<mint>\
+    \ ret{begin(g) + m - 1, begin(g) + m + n - 1};\n    for (int i = 0; i < n; i++)\
+    \ ret[i] *= iwc[i];\n    return ret; \n}\n\n\n#line 6 \"fps/poly_interpolation.hpp\"\
+    \n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS PolyInterpolation(const\
+    \ vector<mint> &x,\n                      const vector<mint> &y) {\n    assert(x.size()\
+    \ == y.size());\n    MultiPointEvaluation<FPS> mpe(x);\n    FPS gp = mpe.pr[1].diff();\n\
     \    vector<mint> vs = mpe.query(gp);\n    auto rec = [&](auto self, int idx)\
     \ -> FPS {\n        if (idx >= mpe.size) {  \n            if (idx - mpe.size <\
     \ (int)y.size()) {\n                return {y[idx - mpe.size] / vs[idx - mpe.size]};\n\
@@ -69,7 +69,7 @@ data:
     \            return self(self, idx << 1 | 0);\n        return self(self, idx <<\
     \ 1 | 0) * mpe.pr[idx << 1 | 1] +\n               self(self, idx << 1 | 1) * mpe.pr[idx\
     \ << 1 | 0];\n    };\n    return rec(rec, 1);\n}\n\n// reference:\n// https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan\n\
-    template <class FPS, class mint = FPS::value_type>\nFPS PolyInterpolationGeo(const\
+    template <class FPS, class mint = typename FPS::value_type>\nFPS PolyInterpolationGeo(const\
     \ mint &a, const mint &r,\n                         const vector<mint> &y) {\n\
     \    if (y.empty()) return {};\n    if (y.size() == 1) return FPS{y[0]};\n   \
     \ assert(a != mint(0) && r != mint(0) && r != mint(1));\n\n    int n = (int)y.size();\n\
@@ -94,7 +94,7 @@ data:
     \ x;\n            x *= inva;\n        }\n    }\n    return ret;\n}\n\n\n"
   code: "#ifndef FPS_POLYNOMIAL_INTERPOLATION_HPP\n#define FPS_POLYNOMIAL_INTERPOLATION_HPP\
     \ 1\n\n#include \"multi_eval.hpp\"\n#include \"chirp_Z.hpp\"\n\ntemplate <class\
-    \ FPS, class mint = FPS::value_type>\nFPS PolyInterpolation(const vector<mint>\
+    \ FPS, class mint = typename FPS::value_type>\nFPS PolyInterpolation(const vector<mint>\
     \ &x,\n                      const vector<mint> &y) {\n    assert(x.size() ==\
     \ y.size());\n    MultiPointEvaluation<FPS> mpe(x);\n    FPS gp = mpe.pr[1].diff();\n\
     \    vector<mint> vs = mpe.query(gp);\n    auto rec = [&](auto self, int idx)\
@@ -105,7 +105,7 @@ data:
     \            return self(self, idx << 1 | 0);\n        return self(self, idx <<\
     \ 1 | 0) * mpe.pr[idx << 1 | 1] +\n               self(self, idx << 1 | 1) * mpe.pr[idx\
     \ << 1 | 0];\n    };\n    return rec(rec, 1);\n}\n\n// reference:\n// https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan\n\
-    template <class FPS, class mint = FPS::value_type>\nFPS PolyInterpolationGeo(const\
+    template <class FPS, class mint = typename FPS::value_type>\nFPS PolyInterpolationGeo(const\
     \ mint &a, const mint &r,\n                         const vector<mint> &y) {\n\
     \    if (y.empty()) return {};\n    if (y.size() == 1) return FPS{y[0]};\n   \
     \ assert(a != mint(0) && r != mint(0) && r != mint(1));\n\n    int n = (int)y.size();\n\
@@ -135,7 +135,7 @@ data:
   isVerificationFile: false
   path: fps/poly_interpolation.hpp
   requiredBy: []
-  timestamp: '2024-05-23 16:05:55+09:00'
+  timestamp: '2024-05-23 16:23:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/poly_interpolation.hpp
