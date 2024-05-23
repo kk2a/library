@@ -3,12 +3,12 @@
 
 #include "convolution.hpp"
 
-template <class mint, class FPS>
+template <class FPS, class mint = FPS::value_type>
 FPS convolution_mulcut(FPS& a, FPS b, const vector<int>& base) {
     int n = int(a.size());
     if (!n) return {};
     static const int k = size(base);
-    if (!k) return convolution<mint>(a, b);
+    if (!k) return convolution(a, b);
     vector<int> chi(n, 0);
     for (int i = 0; i < n; i++) {
         int x = i;

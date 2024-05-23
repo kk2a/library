@@ -31,7 +31,7 @@ FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(
         this->clear();
         return *this;
     }
-    convolution_arb<mint>(*this, r);
+    convolution_arb(*this, r);
     return *this;
 }
 

@@ -3,7 +3,7 @@
 
 // [X ^ n] f(X) ^ i g(X)  enumerate for i = 0, ... , m 
 // n = \deg f - 1
-template <class mint, class FPS>
+template <class FPS, class mint = FPS::value_type>
 FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
     if (f.empty() || g.empty()) return {};
     int n = int(size(f)) - 1, k = 1;

@@ -2,7 +2,7 @@
 #define FPS_COMPOSITION_HPP 1
 
 // calculate (g \circ f) (X)
-template <class mint, class FPS>
+template <class FPS, class mint = FPS::value_type>
 FPS composition(FPS f,
                                     FPS g,
                                     int deg = -1) {

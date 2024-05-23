@@ -3,10 +3,11 @@
 
 #include "../mod/mod_sqrt.hpp"
 
-template <class mint>
-FormalPowerSeries<mint> sqrt(FormalPowerSeries<mint> f, int deg = -1) {
+template <class FPS, class mint = FPS::value_type>
+FPS sqrt(FPS f, int deg = -1) {
+    // using mint = typename FPS::value_type;
     if (deg == -1) deg = (int)f.size();
-    if ((int)f.size() == 0) return FormalPowerSeries<mint>(deg, mint(0));
+    if ((int)f.size() == 0) return FPS(deg, mint(0));
     if (f[0] == mint(0)) {
         for (int i = 1; i < (int)f.size(); i++) {
             if (f[i] != mint(0)) {
@@ -19,13 +20,13 @@ FormalPowerSeries<mint> sqrt(FormalPowerSeries<mint> f, int deg = -1) {
                 return ret;
             }
         }
-        return FormalPowerSeries<mint>(deg, mint(0));
+        return FPS(deg, mint(0));
     }
 
     long long sqr = mod_sqrt(f[0].val(), mint::getmod());
     if (sqr == -1) return {};
     assert(sqr * sqr % mint::getmod() == f[0].val());
-    FormalPowerSeries<mint> ret = {mint(sqr)};
+    FPS ret = {mint(sqr)};
     mint inv2 = mint(2).inv();
     for (int i = 1; i < deg; i <<= 1) {
         ret = (ret + f.pre(i << 1) * ret.inv(i << 1)) * inv2;
@@ -33,11 +34,12 @@ FormalPowerSeries<mint> sqrt(FormalPowerSeries<mint> f, int deg = -1) {
     return ret.pre(deg);
 }
 
-template <class mint>
-FormalPowerSeries<mint> sparse_sqrt(const FormalPowerSeries<mint>& f,
+template <class FPS, class mint = FPS::value_type>
+FPS sparse_sqrt(const FPS& f,
                                     int deg = -1) {
+    // using mint = typename FPS::value_type;
     if (deg == -1) deg = (int)f.size();
-    if ((int)f.size() == 0) return FormalPowerSeries<mint>(deg, mint(0));
+    if ((int)f.size() == 0) return FPS(deg, mint(0));
     if (f[0] == mint(0)) {
         for (int i = 1; i < (int)f.size(); i++) {
             if (f[i] != mint(0)) {
@@ -50,7 +52,7 @@ FormalPowerSeries<mint> sparse_sqrt(const FormalPowerSeries<mint>& f,
                 return ret;
             }
         }
-        return FormalPowerSeries<mint>(deg, mint(0));
+        return FPS(deg, mint(0));
     }
     long long sqr = mod_sqrt(f[0].val(), mint::getmod());
     if (sqr == -1) return {};

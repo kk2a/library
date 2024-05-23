@@ -1,11 +1,14 @@
 #ifndef FPS_POLYNOMIAL_INTERPOLATION_HPP
 #define FPS_POLYNOMIAL_INTERPOLATION_HPP 1
 
-template <class mint, class FPS>
+#include "multi_eval.hpp"
+#include "chirp_Z.hpp"
+
+template <class FPS, class mint = FPS::value_type>
 FPS PolyInterpolation(const vector<mint> &x,
                       const vector<mint> &y) {
     assert(x.size() == y.size());
-    MultiPointEvaluation<mint, FPS> mpe(x);
+    MultiPointEvaluation<FPS> mpe(x);
     FPS gp = mpe.pr[1].diff();
     vector<mint> vs = mpe.query(gp);
     auto rec = [&](auto self, int idx) -> FPS {
@@ -26,7 +29,7 @@ FPS PolyInterpolation(const vector<mint> &x,
 
 // reference:
 // https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan
-template <class mint, class FPS>
+template <class FPS, class mint = FPS::value_type>
 FPS PolyInterpolationGeo(const mint &a, const mint &r,
                          const vector<mint> &y) {
     if (y.empty()) return {};
@@ -64,7 +67,7 @@ FPS PolyInterpolationGeo(const mint &a, const mint &r,
     for (int i = 0; i < n; i++) w[i] *= y[i];
 
     FPS g{begin(w), end(w)};
-    vector<mint> tmp = ChirpZ<mint, FPS>(g, r, n);
+    vector<mint> tmp = ChirpZ(g, r, n);
     FPS gq{begin(tmp), end(tmp)};
     FPS prod(n);
     q = 1;

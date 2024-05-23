@@ -5,11 +5,11 @@
 
 // f(X) / \prod (X - a_i) = \sum c_i / (X - a_i)
 // return {c_i}
-template <class mint, class FPS>
+template <class FPS, class mint = FPS::value_type>
 vector<mint> BBB(const vector<mint> &a, const FPS &f) {
     if (a.empty() || f.empty()) return vector<mint>(a.size(), mint(0));
     int n = (int)a.size();
-    MultiPointEvaluation<mint, FPS> mpe(a);
+    MultiPointEvaluation<FPS> mpe(a);
     FPS gp = mpe.pr[1].diff();
     vector<mint> gpv = mpe.query(gp);
     vector<mint> fv = mpe.query(f);
@@ -20,7 +20,7 @@ vector<mint> BBB(const vector<mint> &a, const FPS &f) {
 
 // f(X) / \prod (1 - a_i X) = \sum c_i / (1- a_i X)
 // return {c_i}
-template <class mint, class FPS>
+template <class FPS, class mint = FPS::value_type>
 vector<mint> BBB1(const vector<mint> &a, const FPS &f) {
     if (a.empty() || f.empty()) return vector<mint>(a.size(), mint(0));
     int n = (int)a.size();

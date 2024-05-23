@@ -1,14 +1,14 @@
 #ifndef LINEAR_RECURRENCE_HPP
 #define LINEAR_RECURRENCE_HPP 1
 
-template <class mint, class FPS>
+template <class FPS, class mint = FPS::value_type>
 FPS lenear_rec(const FPS& a, const FPS& c) {
     // a_{i + k} = \sum_{j = 0}^{k - 1} c_{j} a_{i + k - j - 1}
     int k = int(a.size());
     return (a * (-(c << 1) + mint(1))).pre(k);
 }
 
-template <class mint, class FPS>
+template <class FPS, class mint = FPS::value_type>
 mint BostanMori(const FPS& p, const FPS& q, long long n) {
     assert(!p.empty() && !q.empty());
     if (n == 0) return p[0] / q[0];
@@ -27,7 +27,7 @@ mint BostanMori(const FPS& p, const FPS& q, long long n) {
     for (int i = 0; i < qsz; i++) {
         qq[i] = q2[2 * i];
     }
-    return BostanMori<mint>(pp, qq, n >> 1);
+    return BostanMori(pp, qq, n >> 1);
 }
 
 #endif // LINEAR_RECURRENCE_HPP

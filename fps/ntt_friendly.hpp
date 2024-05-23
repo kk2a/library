@@ -13,23 +13,23 @@ FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(
         this->clear();
         return *this;
     }
-    convolution<mint>(*this, r);
+    convolution(*this, r);
     return *this;
 }
 
 template <class mint> 
 void FormalPowerSeries<mint>::but() {
-    butterfly<mint>(*this);
+    butterfly(*this);
 }
 
 template <class mint>
 void FormalPowerSeries<mint>::ibut() {
-    butterfly_inv<mint>(*this);
+    butterfly_inv(*this);
 }
 
 template <class mint>
 void FormalPowerSeries<mint>::db() {
-    doubling<mint>(*this);
+    doubling(*this);
 }
 
 template <class mint>
