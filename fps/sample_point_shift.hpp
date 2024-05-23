@@ -1,7 +1,7 @@
-#ifndef FPS__SAMPLE_POINT_SHIFT__H
-#define FPS__SAMPLE_POINT_SHIFT__H 1
+#ifndef FPS__SAMPLE_POINT_SHIFT_HPP
+#define FPS__SAMPLE_POINT_SHIFT_HPP 1
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 vector<mint> SamplePointShift(vector<mint> &y, mint t, int m = -1) {
     if (m == -1) m = y.size();
     long long tval = t.val();
@@ -55,4 +55,4 @@ vector<mint> SamplePointShift(vector<mint> &y, mint t, int m = -1) {
     return ret;
 }
 
-#endif // FPS__SAMPLE_POINT_SHIFT__H
+#endif // FPS__SAMPLE_POINT_SHIFT_HPP

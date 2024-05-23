@@ -3,7 +3,7 @@
 
 #include "../mod/mod_sqrt.hpp"
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 FPS sqrt(FPS f, int deg = -1) {
     // using mint = typename FPS::value_type;
     if (deg == -1) deg = (int)f.size();
@@ -34,7 +34,7 @@ FPS sqrt(FPS f, int deg = -1) {
     return ret.pre(deg);
 }
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 FPS sparse_sqrt(const FPS& f,
                                     int deg = -1) {
     // using mint = typename FPS::value_type;

@@ -2,7 +2,7 @@
 #define FPS_CHIRP_Z_HPP 1
 
 // return f(a w ^ 0), f(a w ^ 1), ..., f(a w ^ (n - 1))
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 vector<mint> ChirpZ(FPS f, mint w, int n = -1, mint a = 1) {
     if (n == -1) n = f.size();
     if (f.empty() || n == 0) return vector<mint>(n, mint(0));

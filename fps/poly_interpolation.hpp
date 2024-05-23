@@ -4,7 +4,7 @@
 #include "multi_eval.hpp"
 #include "chirp_Z.hpp"
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 FPS PolyInterpolation(const vector<mint> &x,
                       const vector<mint> &y) {
     assert(x.size() == y.size());
@@ -29,7 +29,7 @@ FPS PolyInterpolation(const vector<mint> &x,
 
 // reference:
 // https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 FPS PolyInterpolationGeo(const mint &a, const mint &r,
                          const vector<mint> &y) {
     if (y.empty()) return {};

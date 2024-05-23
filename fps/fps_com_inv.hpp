@@ -4,7 +4,7 @@
 #include "power_projection.hpp"
 
 // calculate f ^ {-1} (X)  mod X ^ deg
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 FPS compositional_inv(FPS f, int deg = -1) {
     assert(int(size(f)) >= 2 and f[1] != 0);
     if (deg == -1) deg = int(size(f));

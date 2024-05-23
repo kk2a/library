@@ -3,7 +3,7 @@
 
 #include "../mod/comb.hpp"
 
-template <class FPS, class mint = FPS::value_type>
+template <class FPS, class mint = typename FPS::value_type>
 FPS TaylorShift(FPS f, mint a, Comb<mint>& c) {
     int n = f.size();
     for (int i = 0; i < n; i++) f[i] *= c.frac(i);

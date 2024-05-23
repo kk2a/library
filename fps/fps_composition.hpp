@@ -2,10 +2,8 @@
 #define FPS_COMPOSITION_HPP 1
 
 // calculate (g \circ f) (X)
-template <class FPS, class mint = FPS::value_type>
-FPS composition(FPS f,
-                                    FPS g,
-                                    int deg = -1) {
+template <class FPS, class mint = typename FPS::value_type>
+FPS composition(FPS f, FPS g, int deg = -1) {
     if (f.empty() || g.empty()) return {};
     
     auto rec = [&](auto self, FPS q,
