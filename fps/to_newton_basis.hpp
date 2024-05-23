@@ -31,7 +31,7 @@ vector<mint> convert_to_newton_basis(FPS f, vector<mint> p) {
     }
     vector<mint> b(n);
     for (int i = 0; i < n; i++) {
-        b[i] = buf[m + i].empty() ? 0 : buf[m + i][0];
+        b[i] = buf[m + i].eval(0);
     }
     return b;
 }
