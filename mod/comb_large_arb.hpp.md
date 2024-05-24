@@ -17,6 +17,15 @@ data:
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':warning:'
+    path: fps/fps_arb.hpp
+    title: fps/fps_arb.hpp
+  - icon: ':warning:'
+    path: fps/sample_point_shift.hpp
+    title: fps/sample_point_shift.hpp
+  - icon: ':warning:'
+    path: mod/comb.hpp
+    title: mod/comb.hpp
+  - icon: ':warning:'
     path: mod/garner.hpp
     title: mod/garner.hpp
   - icon: ':warning:'
@@ -31,22 +40,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: mod/comb_large_arb.hpp
-    title: mod/comb_large_arb.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"fps/fps_arb.hpp\"\n\n\n\n#line 1 \"fps/fps.hpp\"\n\n\n\n\
-    \ntemplate <class mint>\nstruct FormalPowerSeries : vector<mint> {\n    using\
-    \ vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\n    FPS &operator+=(const\
-    \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
-    \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return\
-    \ *this;\n    }\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
+  bundledCode: "#line 1 \"mod/comb_large_arb.hpp\"\n\n\n\n#line 1 \"fps/fps_arb.hpp\"\
+    \n\n\n\n#line 1 \"fps/fps.hpp\"\n\n\n\n\ntemplate <class mint>\nstruct FormalPowerSeries\
+    \ : vector<mint> {\n    using vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
+    \n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
+    \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n       \
+    \ return *this;\n    }\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
     \ this->resize(1);\n        (*this)[0] += r;\n        return *this;\n    }\n \
     \   FPS &operator-=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
     \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n       \
@@ -379,27 +385,146 @@ data:
     \ deg) const {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg\
     \ == -1) deg = this->size();\n    FormalPowerSeries<mint> ret{mint(1)};\n    for\
     \ (int i = 1; i < deg; i <<= 1) {\n        ret = (ret * (pre(i << 1) + mint{1}\
-    \ - ret.log(i << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n}\n\n\n"
-  code: "#ifndef FPS_ARB_HPP\n#define FPS_ARB_HPP 1\n\n#include \"fps.hpp\"\n#include\
-    \ \"../convolution/convo_arb.hpp\"\n\ntemplate <class mint>\nvoid FormalPowerSeries<mint>::but()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint>\nvoid FormalPowerSeries<mint>::ibut()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint>\nvoid FormalPowerSeries<mint>::db()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint>\nint FormalPowerSeries<mint>::but_pr()\
-    \ {\n    return 0;\n}\n\ntemplate <class mint>\nFormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(\n\
-    \    const FormalPowerSeries<mint>& r) {\n    if (this->empty() || r.empty())\
-    \ {\n        this->clear();\n        return *this;\n    }\n    convolution_arb(*this,\
-    \ r);\n    return *this;\n}\n\ntemplate <class mint>\nFormalPowerSeries<mint>\
-    \ FormalPowerSeries<mint>::inv(int deg) const {\n    assert((*this)[0] != mint(0));\n\
-    \    if (deg == -1) deg = this->size();\n    FormalPowerSeries<mint> res{mint(1)\
-    \ / (*this)[0]};\n    for (int i = 1; i < deg; i <<= 1) {\n        res = (res\
-    \ * mint(2) - this->pre(i << 1) * res * res).pre(i << 1);\n    }\n    return res.pre(deg);\n\
-    }\n\ntemplate <class mint>\nFormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int\
-    \ deg) const {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg\
-    \ == -1) deg = this->size();\n    FormalPowerSeries<mint> ret{mint(1)};\n    for\
-    \ (int i = 1; i < deg; i <<= 1) {\n        ret = (ret * (pre(i << 1) + mint{1}\
-    \ - ret.log(i << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n}\n\n#endif\
-    \ // FPS_ARB_HPP\n"
+    \ - ret.log(i << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n}\n\n\n#line\
+    \ 1 \"fps/sample_point_shift.hpp\"\n\n\n\ntemplate <class FPS, class mint = typename\
+    \ FPS::value_type>\nvector<mint> SamplePointShift(vector<mint> &y, mint t, int\
+    \ m = -1) {\n    if (m == -1) m = y.size();\n    long long tval = t.val();\n \
+    \   int k = (int)y.size() - 1;\n    if (tval <= k) {\n        FPS ret(m);\n  \
+    \      int ptr = 0;\n        for (long long i = tval; i <= k and ptr < m; i++)\
+    \ {\n            ret[ptr++] = y[i];\n        }\n        if (k + 1 < tval + m)\
+    \ {\n            auto suf = SamplePointShift<FPS>(y, mint(k + 1), m - ptr);\n\
+    \            for (int i = k + 1; i < tval + m; i++) {\n                ret[ptr++]\
+    \ = suf[i - (k + 1)];\n            }\n        }\n        return ret;\n    }\n\
+    \    if (tval + m > mint::getmod()) {\n        auto pref = SamplePointShift<FPS>(y,\
+    \ mint(t), mint::getmod() - tval);\n        auto suf = SamplePointShift<FPS>(y,\
+    \ mint(0), m - (int)pref.size());\n        copy(begin(suf), end(suf), back_inserter(pref));\n\
+    \        return pref;\n    }\n\n    vector<mint> inv(k + 1, 1);\n    FPS d(k +\
+    \ 1);\n    for (int i = 2; i <= k; i++) inv[k] *= i;\n    inv[k] = inv[k].inv();\n\
+    \    for (int i = k; i >= 1; i--) inv[i - 1] = inv[i] * i;\n    for (int i = 0;\
+    \ i <= k; i++) {\n        d[i] = inv[i] * inv[k - i] * y[i];\n        if ((k -\
+    \ i) & 1) d[i] = -d[i];\n    }\n\n    FPS h(m + k);\n    for (int i = 0; i < m\
+    \ + k; i++) {\n        h[i] = (t - k + i).inv();\n    }\n\n    FPS dh = d * h;\n\
+    \n    vector<mint> ret(m);\n    mint cur = t;\n    for (int i = 1; i <= k; i++)\
+    \ cur *= t - i;\n    for (int i = 0; i < m; i++) {\n        ret[i] = cur * dh[k\
+    \ + i];\n        cur *= t + i + 1;\n        cur *= h[i];\n    }\n    return ret;\n\
+    }\n\n\n#line 1 \"mod/comb.hpp\"\n\n\n\ntemplate <class mint>\nstruct Comb {\n\
+    \    static inline vector<mint> _fact{1}, _ifact{1}, _inv{1};\n\n    Comb() =\
+    \ delete;\n\n    static void extend(int m = -1) {\n        int n = (int)_fact.size();\n\
+    \        if (m == -1) m = n << 1;\n        if (n > m) return;\n        m = min<int>(m,\
+    \ mint::getmod() - 1);\n        _fact.resize(m + 1);\n        _ifact.resize(m\
+    \ + 1);\n        _inv.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact[i]\
+    \ = _fact[i - 1] * i;\n        _ifact[m] = _fact[m].inv();\n        _inv[m] =\
+    \ _ifact[m] * _fact[m - 1];\n        for (int i = m; i > n; i--) {\n         \
+    \   _ifact[i - 1] = _ifact[i] * i;\n            _inv[i - 1] = _ifact[i - 1] *\
+    \ _fact[i - 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if\
+    \ (n < 0) return 0;\n        if ((int)_fact.size() <= n) extend(n);\n        return\
+    \ _fact[n];\n    }\n\n    static mint ifact(int n) {\n        if (n < 0) return\
+    \ 0;\n        if ((int)_ifact.size() <= n) extend(n);\n        return _ifact[n];\n\
+    \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
+    \        if ((int)_inv.size() <= n) extend(n);\n        return _inv[n];\n    }\n\
+    \n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return 0;\n\
+    \        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template <class\
+    \ T>\n    static mint multinomial(const vector<T>& r) {\n        static_assert(is_integral_v<T>,\
+    \ \"T must be integral\");\n        int n = 0;\n        for (auto &x : r) {\n\
+    \            if (x < 0) return 0;\n            n += x;\n        }\n        mint\
+    \ res = fact(n);\n        for (auto &x : r) res *= ifact(x);\n        return res;\n\
+    \    }\n\n    static mint binom_naive(int n, int k) {\n        if (n < 0 || k\
+    \ < 0 || k > n) return 0;\n        mint res = 1;\n        k = min(k, n - k);\n\
+    \        for (int i = 1; i <= k; i++) res *= inv(i) * (n--);\n        return res;\n\
+    \    }\n\n    static mint permu(int n, int k) {\n        if (n < 0 || k < 0 ||\
+    \ k > n) return 0;\n        return fact(n) * ifact(n - k);\n    }\n\n    static\
+    \ mint homo(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        return\
+    \ k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n\n#line 7 \"mod/comb_large_arb.hpp\"\
+    \n\ntemplate <class mint>\nstruct CombLarge {\n    using FPS = FormalPowerSeries<mint>;\n\
+    \    static constexpr int LOG_BLOCK_SIZE = 16;\n    static constexpr int BLOCK_SIZE\
+    \ = 1 << LOG_BLOCK_SIZE;\n    static constexpr int BLOCK_NUM = mint::getmod()\
+    \ >> LOG_BLOCK_SIZE;\n\n    static inline int threshold = 2000000;\n\n    CombLarge()\
+    \ = delete;\n\n    static mint fact(int n) {\n        return n <= threshold ?\
+    \ Comb<mint>::fact(n) : _large_fact(n);\n    }\n    static mint inv_fact(int n)\
+    \ {\n        return n <= threshold ? Comb<mint>::ifact(n) : _large_fact(n).inv();\n\
+    \    }\n    static mint binom(int n, int r) {\n        if (r < 0 || r > n) return\
+    \ mint(0);\n        return fact(n) * inv_fact(r) * inv_fact(n - r);\n    }\n\n\
+    \    template <class T>\n    static mint multinomial(vector<T> r) {\n        static_assert(is_integral_v<T>,\
+    \ \"T must be integral\");\n        long long n = 0;\n        for (auto &x : r)\
+    \ {\n            assert(x >= 0);\n            n += x;\n        }\n        if (n\
+    \ >= mint::getmod()) return 0;\n        mint res = fact(n);\n        for (auto\
+    \ &x : r) res *= inv_fact(x);\n        return res;\n    }\n\n    static mint permu(int\
+    \ n, int r) {\n        if (r < 0 || r > n) return mint(0);\n        return fact(n)\
+    \ * inv_fact(n - r);\n    }\n    static mint homo(int n, int r) {\n        if\
+    \ (n < 0 || r < 0) return mint(0);\n        return r == 0 ? 1 : binom(n + r -\
+    \ 1, r);\n    }\n  private:\n    static inline vector<mint> _block_fact{};\n \
+    \   \n    static void _build() {\n        if (_block_fact.size()) return;\n  \
+    \      vector<mint> f{1};\n        f.reserve(BLOCK_SIZE);\n        for (int i\
+    \ = 0; i < LOG_BLOCK_SIZE; i++) {\n            vector<mint> g = SamplePointShift<FPS>(f,\
+    \ mint(1 << i), 3 << i);\n            const auto get = [&](int j) {\n        \
+    \        return j < (1 << i) ? f[j] : g[j - (1 << i)];\n            };\n     \
+    \       f.resize(2 << i);\n            for (int j = 0; j < 2 << i; j++) {\n  \
+    \              f[j] = get(2 * j) * get(2 * j + 1) * ((2 * j + 1) << i);\n    \
+    \        }\n        }\n\n        if (BLOCK_NUM > BLOCK_SIZE) {\n            vector<mint>\
+    \ g = SamplePointShift<FPS>(f, mint(BLOCK_SIZE),\n                BLOCK_NUM -\
+    \ BLOCK_SIZE);\n            move(begin(g), end(g), back_inserter(f));\n      \
+    \  }\n        else f.resize(BLOCK_NUM);\n        for (int i = 0; i < BLOCK_NUM;\
+    \ i++) {\n            f[i] *= mint(i + 1) * BLOCK_SIZE;\n        }\n        //\
+    \ f[i] = prod_{j = 1} ^ (BLOCK_SIZE) (i * BLOCK_SIZE + j)\n\n        f.insert(begin(f),\
+    \ 1);\n        for (int i = 1; i <= BLOCK_NUM; i++) {\n            f[i] *= f[i\
+    \ - 1];\n        }\n        _block_fact = move(f);\n    }\n\n    static mint _large_fact(int\
+    \ n) {\n        _build();\n        mint res;\n        int q = n / BLOCK_SIZE,\
+    \ r = n % BLOCK_SIZE;\n        if (2 * r <= BLOCK_SIZE) {\n            res = _block_fact[q];\n\
+    \            for (int i = 0; i < r; i++) {\n                res *= n - i;\n  \
+    \          }\n        }\n        else if (q != BLOCK_NUM) {\n            res =\
+    \ _block_fact[q + 1];\n            mint den = 1;\n            for (int i = 1;\
+    \ i <= BLOCK_SIZE - r; i++) {\n                den *= n + i;\n            }\n\
+    \            res /= den;\n        }\n        else {\n            res = -1;\n \
+    \           mint den = 1;\n            for (int i = mint::getmod() - 1; i > n;\
+    \ i++) {\n                den *= i;\n            }\n            res /= den;\n\
+    \        }\n        return res;\n    }\n};\n\n\n"
+  code: "#ifndef MOD_COMB_LARGE_ARB_HPP\n#define MOD_COMB_LARGE_ARB_HPP 1\n\n#include\
+    \ \"../fps/fps_arb.hpp\"\n#include \"../fps/sample_point_shift.hpp\"\n#include\
+    \ \"comb.hpp\"\n\ntemplate <class mint>\nstruct CombLarge {\n    using FPS = FormalPowerSeries<mint>;\n\
+    \    static constexpr int LOG_BLOCK_SIZE = 16;\n    static constexpr int BLOCK_SIZE\
+    \ = 1 << LOG_BLOCK_SIZE;\n    static constexpr int BLOCK_NUM = mint::getmod()\
+    \ >> LOG_BLOCK_SIZE;\n\n    static inline int threshold = 2000000;\n\n    CombLarge()\
+    \ = delete;\n\n    static mint fact(int n) {\n        return n <= threshold ?\
+    \ Comb<mint>::fact(n) : _large_fact(n);\n    }\n    static mint inv_fact(int n)\
+    \ {\n        return n <= threshold ? Comb<mint>::ifact(n) : _large_fact(n).inv();\n\
+    \    }\n    static mint binom(int n, int r) {\n        if (r < 0 || r > n) return\
+    \ mint(0);\n        return fact(n) * inv_fact(r) * inv_fact(n - r);\n    }\n\n\
+    \    template <class T>\n    static mint multinomial(vector<T> r) {\n        static_assert(is_integral_v<T>,\
+    \ \"T must be integral\");\n        long long n = 0;\n        for (auto &x : r)\
+    \ {\n            assert(x >= 0);\n            n += x;\n        }\n        if (n\
+    \ >= mint::getmod()) return 0;\n        mint res = fact(n);\n        for (auto\
+    \ &x : r) res *= inv_fact(x);\n        return res;\n    }\n\n    static mint permu(int\
+    \ n, int r) {\n        if (r < 0 || r > n) return mint(0);\n        return fact(n)\
+    \ * inv_fact(n - r);\n    }\n    static mint homo(int n, int r) {\n        if\
+    \ (n < 0 || r < 0) return mint(0);\n        return r == 0 ? 1 : binom(n + r -\
+    \ 1, r);\n    }\n  private:\n    static inline vector<mint> _block_fact{};\n \
+    \   \n    static void _build() {\n        if (_block_fact.size()) return;\n  \
+    \      vector<mint> f{1};\n        f.reserve(BLOCK_SIZE);\n        for (int i\
+    \ = 0; i < LOG_BLOCK_SIZE; i++) {\n            vector<mint> g = SamplePointShift<FPS>(f,\
+    \ mint(1 << i), 3 << i);\n            const auto get = [&](int j) {\n        \
+    \        return j < (1 << i) ? f[j] : g[j - (1 << i)];\n            };\n     \
+    \       f.resize(2 << i);\n            for (int j = 0; j < 2 << i; j++) {\n  \
+    \              f[j] = get(2 * j) * get(2 * j + 1) * ((2 * j + 1) << i);\n    \
+    \        }\n        }\n\n        if (BLOCK_NUM > BLOCK_SIZE) {\n            vector<mint>\
+    \ g = SamplePointShift<FPS>(f, mint(BLOCK_SIZE),\n                BLOCK_NUM -\
+    \ BLOCK_SIZE);\n            move(begin(g), end(g), back_inserter(f));\n      \
+    \  }\n        else f.resize(BLOCK_NUM);\n        for (int i = 0; i < BLOCK_NUM;\
+    \ i++) {\n            f[i] *= mint(i + 1) * BLOCK_SIZE;\n        }\n        //\
+    \ f[i] = prod_{j = 1} ^ (BLOCK_SIZE) (i * BLOCK_SIZE + j)\n\n        f.insert(begin(f),\
+    \ 1);\n        for (int i = 1; i <= BLOCK_NUM; i++) {\n            f[i] *= f[i\
+    \ - 1];\n        }\n        _block_fact = move(f);\n    }\n\n    static mint _large_fact(int\
+    \ n) {\n        _build();\n        mint res;\n        int q = n / BLOCK_SIZE,\
+    \ r = n % BLOCK_SIZE;\n        if (2 * r <= BLOCK_SIZE) {\n            res = _block_fact[q];\n\
+    \            for (int i = 0; i < r; i++) {\n                res *= n - i;\n  \
+    \          }\n        }\n        else if (q != BLOCK_NUM) {\n            res =\
+    \ _block_fact[q + 1];\n            mint den = 1;\n            for (int i = 1;\
+    \ i <= BLOCK_SIZE - r; i++) {\n                den *= n + i;\n            }\n\
+    \            res /= den;\n        }\n        else {\n            res = -1;\n \
+    \           mint den = 1;\n            for (int i = mint::getmod() - 1; i > n;\
+    \ i++) {\n                den *= i;\n            }\n            res /= den;\n\
+    \        }\n        return res;\n    }\n};\n\n#endif // MOD_COMB_LARGE_ARB_HPP\n"
   dependsOn:
+  - fps/fps_arb.hpp
   - fps/fps.hpp
   - convolution/convo_arb.hpp
   - modint/mont.hpp
@@ -410,17 +535,18 @@ data:
   - fps/fps.hpp
   - mod/garner.hpp
   - mod/inv.hpp
+  - fps/sample_point_shift.hpp
+  - mod/comb.hpp
   isVerificationFile: false
-  path: fps/fps_arb.hpp
-  requiredBy:
-  - mod/comb_large_arb.hpp
-  timestamp: '2024-05-25 01:00:13+09:00'
+  path: mod/comb_large_arb.hpp
+  requiredBy: []
+  timestamp: '2024-05-25 01:00:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: fps/fps_arb.hpp
+documentation_of: mod/comb_large_arb.hpp
 layout: document
 redirect_from:
-- /library/fps/fps_arb.hpp
-- /library/fps/fps_arb.hpp.html
-title: fps/fps_arb.hpp
+- /library/mod/comb_large_arb.hpp
+- /library/mod/comb_large_arb.hpp.html
+title: mod/comb_large_arb.hpp
 ---

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: fps/find_root.hpp
+    title: fps/find_root.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -44,7 +47,7 @@ data:
     \ * res;\n        InnerNaiveGcd(m1, c);\n        if (c[1].empty()) return m1 *\
     \ res;\n        res = m1 * res;\n    }\n}\n\ntemplate <class FPS>\nFPS PolyGcd(FPS\
     \ a, FPS b) {\n    Vec<FPS> c{a, b};\n    mat_poly<FPS> m = InnerPolyGcd(a, b);\n\
-    \    c = m * c;\n    if (!b[0].empty()) {\n        auto coeff = b[0].back().inv();\n\
+    \    c = m * c;\n    if (!c[0].empty()) {\n        auto coeff = c[0].back().inv();\n\
     \        for (auto &x : c[0]) x *= coeff;\n    }\n    return c[0];\n}\n\n\n//\
     \ f ^ {-1} mod g\ntemplate <class FPS>\npair<bool, FPS> PolyInv(FPS f, FPS g)\
     \ {\n    Vec<FPS> c{f, g};\n    mat_poly<FPS> m = InnerPolyGcd(f, g);\n    FPS\
@@ -87,7 +90,7 @@ data:
     \ * res;\n        InnerNaiveGcd(m1, c);\n        if (c[1].empty()) return m1 *\
     \ res;\n        res = m1 * res;\n    }\n}\n\ntemplate <class FPS>\nFPS PolyGcd(FPS\
     \ a, FPS b) {\n    Vec<FPS> c{a, b};\n    mat_poly<FPS> m = InnerPolyGcd(a, b);\n\
-    \    c = m * c;\n    if (!b[0].empty()) {\n        auto coeff = b[0].back().inv();\n\
+    \    c = m * c;\n    if (!c[0].empty()) {\n        auto coeff = c[0].back().inv();\n\
     \        for (auto &x : c[0]) x *= coeff;\n    }\n    return c[0];\n}\n\n\n//\
     \ f ^ {-1} mod g\ntemplate <class FPS>\npair<bool, FPS> PolyInv(FPS f, FPS g)\
     \ {\n    Vec<FPS> c{f, g};\n    mat_poly<FPS> m = InnerPolyGcd(f, g);\n    FPS\
@@ -98,8 +101,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: fps/poly_gcd.hpp
-  requiredBy: []
-  timestamp: '2024-05-22 19:02:15+09:00'
+  requiredBy:
+  - fps/find_root.hpp
+  timestamp: '2024-05-25 01:00:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/poly_gcd.hpp

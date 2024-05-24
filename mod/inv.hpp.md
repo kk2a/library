@@ -9,6 +9,9 @@ data:
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
+    path: mod/comb_large_arb.hpp
+    title: mod/comb_large_arb.hpp
+  - icon: ':warning:'
     path: mod/garner.hpp
     title: mod/garner.hpp
   _extendedVerifiedWith: []
@@ -32,6 +35,7 @@ data:
   path: mod/inv.hpp
   requiredBy:
   - fps/fps_arb.hpp
+  - mod/comb_large_arb.hpp
   - mod/garner.hpp
   - convolution/convo_arb.hpp
   timestamp: '2024-05-14 00:13:18+09:00'

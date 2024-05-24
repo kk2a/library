@@ -23,11 +23,11 @@ data:
   bundledCode: "#line 1 \"convolution/multi_zero.hpp\"\n\n\n\n#line 1 \"convolution/convolution.hpp\"\
     \n\n\n\n#line 1 \"convolution/butterfly.hpp\"\n\n\n\n#line 1 \"mod/primitive_rt_expr.hpp\"\
     \n\n\n\n#line 1 \"mod/pow_expr.hpp\"\n\n\n\nconstexpr long long pow_mod_constexpr(long\
-    \ long x, long long n, int m) {\n    if (m == 1) return 0;\n    unsigned int _m\
-    \ = (unsigned int)(m);\n    unsigned long long r = 1;\n    unsigned long long\
-    \ y = (x % m + m) % m;\n    while (n) {\n        if (n & 1) r = (r * y) % _m;\n\
-    \        y = (y * y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n\n#line\
-    \ 5 \"mod/primitive_rt_expr.hpp\"\n\nconstexpr int primitive_root_constexpr(int\
+    \ long x, long long n, long long m) {\n    if (m == 1) return 0;\n    unsigned\
+    \ long long _m = (unsigned long long)(m);\n    unsigned long long r = 1;\n   \
+    \ unsigned long long y = (x % m + m) % m;\n    while (n) {\n        if (n & 1)\
+    \ r = (r * y) % _m;\n        y = (y * y) % _m;\n        n >>= 1;\n    }\n    return\
+    \ r;\n}\n\n\n#line 5 \"mod/primitive_rt_expr.hpp\"\n\nconstexpr int primitive_root_constexpr(int\
     \ m) {\n    if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m\
     \ == 469762049) return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353)\
     \ return 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {}; \n  \
@@ -172,7 +172,7 @@ data:
   isVerificationFile: false
   path: convolution/multi_zero.hpp
   requiredBy: []
-  timestamp: '2024-05-23 16:18:02+09:00'
+  timestamp: '2024-05-25 01:00:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/multi_zero.hpp

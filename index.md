@@ -52,6 +52,9 @@ data:
     - icon: ':warning:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
+    - icon: ':warning:'
+      path: fps/find_root.hpp
+      title: fps/find_root.hpp
     - icon: ':heavy_check_mark:'
       path: fps/fps.hpp
       title: fps/fps.hpp
@@ -70,6 +73,9 @@ data:
     - icon: ':warning:'
       path: fps/linear_recurrence.hpp
       title: fps/linear_recurrence.hpp
+    - icon: ':warning:'
+      path: fps/mod_pow.hpp
+      title: fps/mod_pow.hpp
     - icon: ':warning:'
       path: fps/multi_eval.hpp
       title: fps/multi_eval.hpp
@@ -151,6 +157,12 @@ data:
     - icon: ':warning:'
       path: mod/comb.hpp
       title: mod/comb.hpp
+    - icon: ':warning:'
+      path: mod/comb_large.hpp
+      title: mod/comb_large.hpp
+    - icon: ':warning:'
+      path: mod/comb_large_arb.hpp
+      title: mod/comb_large_arb.hpp
     - icon: ':warning:'
       path: mod/garner.hpp
       title: mod/garner.hpp

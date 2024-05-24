@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
+  - icon: ':warning:'
+    path: mod/comb_large_arb.hpp
+    title: mod/comb_large_arb.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -44,6 +47,7 @@ data:
   path: mod/garner.hpp
   requiredBy:
   - fps/fps_arb.hpp
+  - mod/comb_large_arb.hpp
   - convolution/convo_arb.hpp
   timestamp: '2024-05-14 00:13:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS

@@ -14,6 +14,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
+  - icon: ':warning:'
+    path: mod/comb_large.hpp
+    title: mod/comb_large.hpp
+  - icon: ':warning:'
+    path: mod/comb_large_arb.hpp
+    title: mod/comb_large_arb.hpp
+  - icon: ':warning:'
+    path: mod/comb_large_arb.hpp
+    title: mod/comb_large_arb.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
@@ -101,7 +110,7 @@ data:
     \ (int i = 1; i <= n; i++) (*this)[i] *= inv[i];\n        return *this;\n    }\n\
     \n    mint eval(mint x) const {\n        mint r = 0, w = 1;\n        for (auto\
     \ &v : *this) {\n            r += w * v;\n            w *= x;\n        }\n   \
-    \     return r;\n    }\n    FPS log(int deg = -1) const {\n        assert(!this->empty()\
+    \     return r;\n    }\n\n    FPS log(int deg = -1) const {\n        assert(!this->empty()\
     \ && (*this)[0] == mint(1));\n        if (deg == -1) deg = this->size();\n   \
     \     return (this->diff() * this->inv(deg)).pre(deg - 1).integral();\n    }\n\
     \n    FPS sparse_log(int deg = -1) const {\n        assert(!this->empty() && (*this)[0]\
@@ -246,7 +255,7 @@ data:
     \ (int i = 1; i <= n; i++) (*this)[i] *= inv[i];\n        return *this;\n    }\n\
     \n    mint eval(mint x) const {\n        mint r = 0, w = 1;\n        for (auto\
     \ &v : *this) {\n            r += w * v;\n            w *= x;\n        }\n   \
-    \     return r;\n    }\n    FPS log(int deg = -1) const {\n        assert(!this->empty()\
+    \     return r;\n    }\n\n    FPS log(int deg = -1) const {\n        assert(!this->empty()\
     \ && (*this)[0] == mint(1));\n        if (deg == -1) deg = this->size();\n   \
     \     return (this->diff() * this->inv(deg)).pre(deg - 1).integral();\n    }\n\
     \n    FPS sparse_log(int deg = -1) const {\n        assert(!this->empty() && (*this)[0]\
@@ -330,8 +339,11 @@ data:
   - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
   - fps/fps_arb.hpp
+  - mod/comb_large.hpp
+  - mod/comb_large_arb.hpp
+  - mod/comb_large_arb.hpp
   - convolution/convo_arb.hpp
-  timestamp: '2024-05-12 17:44:19+09:00'
+  timestamp: '2024-05-25 01:00:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp
