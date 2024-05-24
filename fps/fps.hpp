@@ -183,6 +183,7 @@ struct FormalPowerSeries : vector<mint> {
         }
         return r;
     }
+
     FPS log(int deg = -1) const {
         assert(!this->empty() && (*this)[0] == mint(1));
         if (deg == -1) deg = this->size();

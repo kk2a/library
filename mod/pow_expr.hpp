@@ -1,9 +1,9 @@
 #ifndef MOD_POW_EXPR_HPP
 #define MOD_POW_EXPR_HPP 1
 
-constexpr long long pow_mod_constexpr(long long x, long long n, int m) {
+constexpr long long pow_mod_constexpr(long long x, long long n, long long m) {
     if (m == 1) return 0;
-    unsigned int _m = (unsigned int)(m);
+    unsigned long long _m = (unsigned long long)(m);
     unsigned long long r = 1;
     unsigned long long y = (x % m + m) % m;
     while (n) {

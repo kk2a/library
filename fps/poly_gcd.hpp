@@ -101,8 +101,8 @@ FPS PolyGcd(FPS a, FPS b) {
     Vec<FPS> c{a, b};
     mat_poly<FPS> m = InnerPolyGcd(a, b);
     c = m * c;
-    if (!b[0].empty()) {
-        auto coeff = b[0].back().inv();
+    if (!c[0].empty()) {
+        auto coeff = c[0].back().inv();
         for (auto &x : c[0]) x *= coeff;
     }
     return c[0];

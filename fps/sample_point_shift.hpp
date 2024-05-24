@@ -13,7 +13,7 @@ vector<mint> SamplePointShift(vector<mint> &y, mint t, int m = -1) {
             ret[ptr++] = y[i];
         }
         if (k + 1 < tval + m) {
-            auto suf = SamplePointShift<FPS>(y, k + 1, m - ptr);
+            auto suf = SamplePointShift<FPS>(y, mint(k + 1), m - ptr);
             for (int i = k + 1; i < tval + m; i++) {
                 ret[ptr++] = suf[i - (k + 1)];
             }
@@ -21,8 +21,8 @@ vector<mint> SamplePointShift(vector<mint> &y, mint t, int m = -1) {
         return ret;
     }
     if (tval + m > mint::getmod()) {
-        auto pref = SamplePointShift<FPS>(y, t, mint::getmod() - tval);
-        auto suf = SamplePointShift<FPS>(y, 0, m - pref.size());
+        auto pref = SamplePointShift<FPS>(y, mint(t), mint::getmod() - tval);
+        auto suf = SamplePointShift<FPS>(y, mint(0), m - (int)pref.size());
         copy(begin(suf), end(suf), back_inserter(pref));
         return pref;
     }
