@@ -3,73 +3,64 @@
 
 template <class mint>
 struct Comb {
-    vector<mint> _frac, _ifrac, _inv;
-    Comb(int max = 0) {
-        _frac.resize(1, mint(1));
-        _ifrac.resize(1, mint(1));
-        _inv.resize(1, mint(1));
-        if (max > 0) extend(max);
-    }
+    static inline vector<mint> _fact{1}, _ifact{1}, _inv{1};
 
-    void extend(int m = -1) {
-        int n = (int)_frac.size();
+    Comb() = delete;
+
+    static void extend(int m = -1) {
+        int n = (int)_fact.size();
         if (m == -1) m = n << 1;
-        if (n >= m) return;
+        if (n > m) return;
         m = min<int>(m, mint::getmod() - 1);
-        _frac.resize(m + 1);
-        _ifrac.resize(m + 1);
+        _fact.resize(m + 1);
+        _ifact.resize(m + 1);
         _inv.resize(m + 1);
-        for (int i = n; i <= m; i++) _frac[i] = _frac[i - 1] * i;
-        _ifrac[m] = _frac[m].inv();
-        _inv[m] = _ifrac[m] * _frac[m - 1];
+        for (int i = n; i <= m; i++) _fact[i] = _fact[i - 1] * i;
+        _ifact[m] = _fact[m].inv();
+        _inv[m] = _ifact[m] * _fact[m - 1];
         for (int i = m; i > n; i--) {
-            _ifrac[i - 1] = _ifrac[i] * i;
-            _inv[i - 1] = _ifrac[i - 1] * _frac[i - 2];
+            _ifact[i - 1] = _ifact[i] * i;
+            _inv[i - 1] = _ifact[i - 1] * _fact[i - 2];
         }
     }
 
-    mint frac(int n) {
+    static mint fact(int n) {
         if (n < 0) return 0;
-        if ((int)_frac.size() <= n) extend(n);
-        return _frac[n];
+        if ((int)_fact.size() <= n) extend(n);
+        return _fact[n];
     }
 
-    mint ifrac(int n) {
+    static mint ifact(int n) {
         if (n < 0) return 0;
-        if ((int)_ifrac.size() <= n) extend(n);
-        return _ifrac[n];
+        if ((int)_ifact.size() <= n) extend(n);
+        return _ifact[n];
     }
 
-    mint inv(int n) {
+    static mint inv(int n) {
         if (n < 0) return -inv(-n);
         if ((int)_inv.size() <= n) extend(n);
         return _inv[n];
     }
 
-    mint binom(int n, int k) {
-        if (n < 0 || k < 0 || k > n) return 0;
-        return frac(n) * ifrac(k) * ifrac(n - k);
+    static mint binom(int n, int k) {
+        if (k < 0 || k > n) return 0;
+        return fact(n) * ifact(k) * ifact(n - k);
     }
 
-    inline mint operator()(int n, int k) { return binom(n, k); }
-
     template <class T>
-    mint multinomial(const vector<T>& r) {
+    static mint multinomial(const vector<T>& r) {
         static_assert(is_integral_v<T>, "T must be integral");
         int n = 0;
         for (auto &x : r) {
             if (x < 0) return 0;
             n += x;
         }
-        mint res = frac(n);
-        for (auto &x : r) res *= ifrac(x);
+        mint res = fact(n);
+        for (auto &x : r) res *= ifact(x);
         return res;
     }
 
-    template <class T>
-    mint operator()(const vector<T>& r) { return multinomial(r); }
-
-    mint binom_naive(int n, int k) {
+    static mint binom_naive(int n, int k) {
         if (n < 0 || k < 0 || k > n) return 0;
         mint res = 1;
         k = min(k, n - k);
@@ -77,12 +68,12 @@ struct Comb {
         return res;
     }
 
-    mint permu(int n, int k) {
+    static mint permu(int n, int k) {
         if (n < 0 || k < 0 || k > n) return 0;
-        return frac(n) * ifrac(n - k);
+        return fact(n) * ifact(n - k);
     }
 
-    mint homo(int n, int k) {
+    static mint homo(int n, int k) {
         if (n < 0 || k < 0) return 0;
         return k == 0 ? 1 : binom(n + k - 1, k);
     }
