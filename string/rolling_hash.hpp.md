@@ -8,8 +8,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"rolling_hash/rolling_hash.hpp\"\n\n\n\ntemplate <int id>\n\
-    struct Hashs {\n    struct Hash {\n        long long h, pw;\n    };\n    constexpr\
+  bundledCode: "#line 1 \"string/rolling_hash.hpp\"\n\n\n\ntemplate <int id>\nstruct\
+    \ Hashs {\n    struct Hash {\n        long long h, pw;\n    };\n    constexpr\
     \ static int b = 5;\n    using T = array<Hash, b>;\n    T table;\n    constexpr\
     \ static int modp[b] = {998244353, 1000000007, 1000000009, 1000000021, 1000000033};\n\
     \    static int base[b];\n\n    static void setbase() {\n        mt19937_64 rng(time(0));\n\
@@ -74,15 +74,15 @@ data:
     template <int id>\nint Hashs<id>::base[5] = {3, 3, 3, 3, 3};\n\n#endif // ROLLING_HASH_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: rolling_hash/rolling_hash.hpp
+  path: string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2024-05-19 15:30:23+09:00'
+  timestamp: '2024-05-26 14:19:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: rolling_hash/rolling_hash.hpp
+documentation_of: string/rolling_hash.hpp
 layout: document
 redirect_from:
-- /library/rolling_hash/rolling_hash.hpp
-- /library/rolling_hash/rolling_hash.hpp.html
-title: rolling_hash/rolling_hash.hpp
+- /library/string/rolling_hash.hpp
+- /library/string/rolling_hash.hpp.html
+title: string/rolling_hash.hpp
 ---

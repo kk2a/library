@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: segment_tree/seg_utility.hpp
+    title: segment_tree/seg_utility.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -138,7 +141,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: segment_tree/lazy.hpp
-  requiredBy: []
+  requiredBy:
+  - segment_tree/seg_utility.hpp
   timestamp: '2024-05-03 16:15:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

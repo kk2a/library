@@ -189,11 +189,6 @@ data:
     - icon: ':warning:'
       path: modint/mont_arb.hpp
       title: modint/mont_arb.hpp
-  - name: rolling_hash
-    pages:
-    - icon: ':warning:'
-      path: rolling_hash/rolling_hash.hpp
-      title: rolling_hash/rolling_hash.hpp
   - name: segment_tree
     pages:
     - icon: ':warning:'
@@ -202,6 +197,14 @@ data:
     - icon: ':warning:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp
+    - icon: ':warning:'
+      path: segment_tree/seg_utility.hpp
+      title: segment_tree/seg_utility.hpp
+  - name: string
+    pages:
+    - icon: ':warning:'
+      path: string/rolling_hash.hpp
+      title: string/rolling_hash.hpp
   - name: template
     pages:
     - icon: ':heavy_check_mark:'
