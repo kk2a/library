@@ -44,6 +44,11 @@ data:
     - icon: ':warning:'
       path: convolution/subset.hpp
       title: convolution/subset.hpp
+  - name: data_structure
+    pages:
+    - icon: ':warning:'
+      path: data_structure/my_bitset.hpp
+      title: data_structure/my_bitset.hpp
   - name: fps
     pages:
     - icon: ':warning:'
@@ -149,6 +154,9 @@ data:
       title: math/inv_gcd.hpp
   - name: matrix
     pages:
+    - icon: ':warning:'
+      path: matrix/matrix_F2.hpp
+      title: matrix/matrix_F2.hpp
     - icon: ':warning:'
       path: matrix/matrix_field.hpp
       title: matrix/matrix_field.hpp

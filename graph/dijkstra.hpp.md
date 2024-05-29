@@ -9,7 +9,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/dijkstra.hpp\"\n\n\n\ntemplate <class T> struct dij_graph\
-    \ {\n  public:\n    W_graph(int n) : _n(n), graph(n) {}\n\n    int num_vertices()\
+    \ {\n  public:\n    dij_graph(int n) : _n(n), graph(n) {}\n\n    int num_vertices()\
     \ { return _n; }\n\n    void add_edge(int from, int to, T weight) {\n        graph[from].push_back({weight,\
     \ to});\n    } \n\n    pair<vector<T>, vector<int>> query(const int& start,\n\
     \                                          const T& e,\n                     \
@@ -26,8 +26,8 @@ data:
     \ {dist, prev};\n    }\n    \n  private:\n    int _n;\n    vector<vector<pair<T,\
     \ int>>> graph;\n};\n\n\n"
   code: "#ifndef GRAPH_DIJKSTRA_HPP\n#define GRAPH_DIJKSTRA_HPP 1\n\ntemplate <class\
-    \ T> struct dij_graph {\n  public:\n    W_graph(int n) : _n(n), graph(n) {}\n\n\
-    \    int num_vertices() { return _n; }\n\n    void add_edge(int from, int to,\
+    \ T> struct dij_graph {\n  public:\n    dij_graph(int n) : _n(n), graph(n) {}\n\
+    \n    int num_vertices() { return _n; }\n\n    void add_edge(int from, int to,\
     \ T weight) {\n        graph[from].push_back({weight, to});\n    } \n\n    pair<vector<T>,\
     \ vector<int>> query(const int& start,\n                                     \
     \     const T& e,\n                                          const T& inf) {\n\
@@ -46,7 +46,7 @@ data:
   isVerificationFile: false
   path: graph/dijkstra.hpp
   requiredBy: []
-  timestamp: '2024-05-14 18:36:26+09:00'
+  timestamp: '2024-05-29 18:32:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/dijkstra.hpp
