@@ -3,7 +3,7 @@
 
 template <class T> struct dij_graph {
   public:
-    W_graph(int n) : _n(n), graph(n) {}
+    dij_graph(int n) : _n(n), graph(n) {}
 
     int num_vertices() { return _n; }
 
