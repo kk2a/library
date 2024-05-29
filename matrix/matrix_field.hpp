@@ -7,7 +7,7 @@ struct MatrixField {
     MatrixField() : MatrixField(0) {}
     MatrixField(int n) : MatrixField(n, n) {}
     MatrixField(int h, int w) : MatrixField(vector<vector<Field>>(h, vector<Field>(w, Field()))) {}
-    MatrixField(const vector<vector<Field>>& mat) : _h(mat.size()), _w(mat[0].size()), mat_(mat) {}
+    MatrixField(const vector<vector<Field>>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_) {}
     
     int get_h() const { return _h; }
     int get_w() const { return _w; }
@@ -15,21 +15,21 @@ struct MatrixField {
     Field at(int i, int j) const {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);
-        return mat_[i][j];
+        return _mat[i][j];
     }
 
     vector<vector<Field>> get_mat() const {
-        return mat_;
+        return _mat;
     }
 
     vector<Field>& operator[](int i) const {
         assert(0 <= i && i < _h);
-        return mat_[i];
+        return _mat[i];
     }
 
     void display() const {
         for (int i = 0; i < _h; i++) {
-            for (int j = 0; j < _w; j++) cout << mat_[i][j] << " ";
+            for (int j = 0; j < _w; j++) cout << _mat[i][j] << " ";
             cout << endl;
         }
     }
@@ -37,7 +37,7 @@ struct MatrixField {
     void set(int i, int j, Field x) {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);
-        mat_[i][j] = x;
+        _mat[i][j] = x;
     }
 
     mat& operator+=(const mat& rhs) {
@@ -45,7 +45,7 @@ struct MatrixField {
         assert(_w == rhs._w);
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) {
-                mat_[i][j] += rhs.mat_[i][j];
+                _mat[i][j] += rhs._mat[i][j];
             }
         }
         return *this;
@@ -55,7 +55,7 @@ struct MatrixField {
         assert(_w == rhs._w);
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) {
-                mat_[i][j] -= rhs.mat_[i][j];
+                _mat[i][j] -= rhs._mat[i][j];
             }
         }
         return *this;
@@ -66,19 +66,19 @@ struct MatrixField {
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < rhs._w; j++) {
                 for (int k = 0; k < _w; k++) {
-                    res[i][j] += mat_[i][k] * rhs.mat_[k][j];
+                    res[i][j] += _mat[i][k] * rhs._mat[k][j];
                 }
             }
         }
         _w = rhs._w;
-        mat_ = res;
+        _mat = res;
         return *this;
     }
 
     Field det(Field product_e = Field(1)) const {
         assert(_h == _w);
         int n = _h;
-        vector<vector<Field>> a(mat_);
+        vector<vector<Field>> a(_mat);
         Field res = 1;
         for (int i = 0; i < n; i++) {
             int pivot = -1;
@@ -114,11 +114,11 @@ struct MatrixField {
         int n = _h;
         vector<vector<Field>> res(n, vector<Field>(n, Field()));
         for (int i = 0; i < n; i++) res[i][i] = 1;
-        mat a(mat_);
+        mat a(_mat);
         for (int i = 0; i < n; i++) {
             int pivot = -1;
             for (int j = i; j < n; j++) {
-                if (a.mat_[j][i] != 0) {
+                if (a._mat[j][i] != 0) {
                     pivot = j;
                     break;
                 }
@@ -126,18 +126,18 @@ struct MatrixField {
             if (pivot == -1) {
                 return mat(n);
             }
-            swap(a.mat_[i], a.mat_[pivot]);
+            swap(a._mat[i], a._mat[pivot]);
             swap(res[i], res[pivot]);
-            Field inv = product_e / a.mat_[i][i];
+            Field inv = product_e / a._mat[i][i];
             for (int j = 0; j < n; j++) {
-                a.mat_[i][j] *= inv;
+                a._mat[i][j] *= inv;
                 res[i][j] *= inv;
             }
             for (int j = 0; j < n; j++) {
                 if (i == j) continue;
-                Field r = a.mat_[j][i];
+                Field r = a._mat[j][i];
                 for (int k = 0; k < n; k++) {
-                    a.mat_[j][k] -= a.mat_[i][k] * r;
+                    a._mat[j][k] -= a._mat[i][k] * r;
                     res[j][k] -= res[i][k] * r;
                 }
             }
@@ -148,9 +148,9 @@ struct MatrixField {
     template <class T>
     mat pow(T n) const {
         assert(_h == _w);
-        mat x(mat_);
+        mat x(_mat);
         mat res(_h);
-        for (int i = 0; i < _h; i++) res.mat_[i][i] = 1;
+        for (int i = 0; i < _h; i++) res._mat[i][i] = 1;
         for (int i = 1; i <= n; i <<= 1) {
             if (n & i) res *= x;
             x *= x;
@@ -160,7 +160,7 @@ struct MatrixField {
 
     int rank(Field product_e = Field(1)) const {
         int n = _h, m = _w;
-        vector<vector<Field>> a(mat_);
+        vector<vector<Field>> a(_mat);
         int res = 0;
         for (int i = 0; i < m; i++) {
             int pivot = -1;
@@ -189,37 +189,37 @@ struct MatrixField {
 
     mat& inplace_combine_top(const mat& rhs) {
         assert(_w == rhs._w);
-        this->mat_.insert(begin(this->mat_),
-            begin(rhs.mat_), end(rhs.mat_));
+        this->_mat.insert(begin(this->_mat),
+            begin(rhs._mat), end(rhs._mat));
         this->_h += rhs._h;
         return *this;
     }
 
     mat combine_top(const mat& rhs) const {
         assert(_w == rhs._w);
-        mat res(this->mat_);
+        mat res(this->_mat);
         return res.inplace_combine_top(rhs);
     }
 
     mat& inplace_combine_bottom(const mat& rhs) {
         assert(_w == rhs._w);
-        this->mat_.insert(end(this->mat_),
-            begin(rhs.mat_), end(rhs.mat_));
+        this->_mat.insert(end(this->_mat),
+            begin(rhs._mat), end(rhs._mat));
         this->_h += rhs._h;
         return *this;
     }
 
     mat combine_bottom(const mat& rhs) const {
         assert(_w == rhs._w);
-        mat res(this->mat_);
+        mat res(this->_mat);
         return res.inplace_combine_bottom(rhs);
     }
 
     mat& inplace_combine_left(const mat& rhs) {
         assert(_h == rhs._h);
         for (int i = 0; i < _h; i++) {
-            this->mat_[i].insert(begin(this->mat_[i]),
-                begin(rhs.mat_[i]), end(rhs.mat_[i]));
+            this->_mat[i].insert(begin(this->_mat[i]),
+                begin(rhs._mat[i]), end(rhs._mat[i]));
         }
         this->_w += rhs._w;
         return *this;
@@ -227,15 +227,15 @@ struct MatrixField {
 
     mat combine_left(const mat& rhs) const {
         assert(_h == rhs._h);
-        mat res(this->mat_);
+        mat res(this->_mat);
         return res.inplace_combine_left(rhs);
     }
 
     mat& inplace_combine_right(const mat& rhs) {
         assert(_h == rhs._h);
         for (int i = 0; i < _h; i++) {
-            this->mat_[i].insert(end(this->mat_[i]),
-                begin(rhs.mat_[i]), end(rhs.mat_[i]));
+            this->_mat[i].insert(end(this->_mat[i]),
+                begin(rhs._mat[i]), end(rhs._mat[i]));
         }
         this->_w += rhs._w;
         return *this;
@@ -243,7 +243,7 @@ struct MatrixField {
 
     mat combine_right(const mat& rhs) const {
         assert(_h == rhs._h);
-        mat res(this->mat_);
+        mat res(this->_mat);
         return res.inplace_combine_right(rhs);
     }
 
@@ -257,16 +257,16 @@ struct MatrixField {
         return mat(lhs) *= rhs;
     }
     friend bool operator==(const mat& lhs, const mat& rhs) {
-        return lhs.mat_ == rhs.mat_;
+        return lhs._mat == rhs._mat;
     }
     friend bool operator!=(const mat& lhs, const mat& rhs) {
-        return lhs.mat_ != rhs.mat_;
+        return lhs._mat != rhs._mat;
     }
 
 
   private:
     int _h, _w;
-    vector<vector<Field>> mat_;
+    vector<vector<Field>> _mat;
 };
 
 #endif // MATRIX_HPP
