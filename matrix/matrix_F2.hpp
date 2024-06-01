@@ -240,7 +240,7 @@ struct MatrixF2 {
 
     mat inv() const {
         assert(_h == _w);
-        mat res(_h, _w);
+        vector<DynamicBitSet> res(_h, _w);
         for (int i = 0; i < _h; i++) {
             res[i][i] = 1;
         }
@@ -264,7 +264,7 @@ struct MatrixF2 {
                 }
             }
         }
-        return res;
+        return mat(res);
     }
 };
 
