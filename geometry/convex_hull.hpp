@@ -1,29 +1,10 @@
 #ifndef GEOMETRY_CONVEX_HULL_HPP
 #define GEOMETRY_CONVEX_HULL_HPP 1
 
+#include "point.hpp"
+
 struct Convex_hull {
     using i64 = long long;
-  private:
-    struct Point {
-        i64 x, y;
-        Point(i64 x, i64 y) : x(x), y(y) {}
-        bool operator<(const Point& p) const {
-            return x != p.x ? x < p.x : y < p.y;
-        }
-        Point operator+(const Point& p) const {
-            return Point(x + p.x, y + p.y);
-        }
-        Point operator-(const Point& p) const {
-            return Point(x - p.x, y - p.y);
-        }
-        friend ostream& operator<<(ostream& os, const Point& p) {
-            os << p.x << " " << p.y;
-            return os;
-        }
-    };
-    i64 cross(const Point& a, const Point& b) {
-        return a.x * b.y - a.y * b.x;
-    }
   public:
     vector<Point> ps, hull;
 
