@@ -33,6 +33,7 @@ template <>
 constexpr long double infty<long double> = infty<i64>;
 constexpr int mod = 998244353;
 constexpr int modu = 1e9 + 7;
+constexpr long double PI = 3.14159265358979323846;
 
 template <class T>
 using vc = vector<T>;
