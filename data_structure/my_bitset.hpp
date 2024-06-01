@@ -33,7 +33,7 @@ struct DynamicBitSet {
         else block[i >> 6] &= ~(1ULL << (i & 63));
     }
 
-    void set(string s) {
+    void set(const string& s) {
         assert((int)s.size() == n);
         for (int i = 0; i < (n + 63) >> 6; i++) {
             string tmp = s.substr(i << 6, min(64, n - i));
@@ -53,7 +53,7 @@ struct DynamicBitSet {
             else bs[i >> 6] &= ~(1ULL << (i & 63));
             return *this;
         }
-        Proxy& operator=(Proxy x) {
+        Proxy& operator=(const Proxy& x) {
             if (x) bs[i >> 6] |= 1ULL << (i & 63);
             else bs[i >> 6] &= ~(1ULL << (i & 63));
             return *this;
@@ -63,7 +63,7 @@ struct DynamicBitSet {
             if (!x) bs[i >> 6] &= ~(1ULL << (i & 63));
             return *this;
         }
-        Proxy& operator&=(Proxy x) {
+        Proxy& operator&=(const Proxy& x) {
             bs[i >> 6] &= x.bs[x.i >> 6] >> (x.i & 63);
             return *this;
         }
@@ -72,7 +72,7 @@ struct DynamicBitSet {
             if (x) bs[i >> 6] |= 1ULL << (i & 63);
             return *this;
         }
-        Proxy& operator|=(Proxy x) {
+        Proxy& operator|=(const Proxy& x) {
             bs[i >> 6] |= x.bs[x.i >> 6] >> (x.i & 63);
             return *this;
         }
@@ -81,7 +81,7 @@ struct DynamicBitSet {
             if (x) bs[i >> 6] ^= 1ULL << (i & 63);
             return *this;
         }
-        Proxy& operator^=(Proxy x) {
+        Proxy& operator^=(const Proxy& x) {
             bs[i >> 6] ^= x.bs[x.i >> 6] >> (x.i & 63);
             return *this;
         }
@@ -109,7 +109,7 @@ struct DynamicBitSet {
         return Proxy(block, i);
     }
 
-    T& operator=(string s) {
+    T& operator=(const string& s) {
         assert((int)s.size() == n);
         set(s);
         return *this;
