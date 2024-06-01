@@ -111,8 +111,14 @@ data:
   - name: geometry
     pages:
     - icon: ':warning:'
+      path: geometry/argument.hpp
+      title: geometry/argument.hpp
+    - icon: ':warning:'
       path: geometry/convex_hull.hpp
       title: geometry/convex_hull.hpp
+    - icon: ':warning:'
+      path: geometry/point.hpp
+      title: geometry/point.hpp
   - name: graph
     pages:
     - icon: ':warning:'

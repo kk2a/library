@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"geometry/convex_hull.hpp\"\n\n\n\n#line 1 \"geometry/point.hpp\"\
+  bundledCode: "#line 1 \"geometry/argument.hpp\"\n\n\n\n#line 1 \"geometry/point.hpp\"\
     \n\n\n\nstruct Point {\n    using i64 = long long;\n    i64 x, y;\n    Point(i64\
     \ x = 0, i64 y = 0) : x(x), y(y) {}\n    bool operator<(const Point& p) const\
     \ {\n        return x != p.x ? x < p.x : y < p.y;\n    }\n    bool operator>(const\
@@ -76,50 +76,45 @@ data:
     \    }\n\n    friend ostream& operator<<(ostream& os, const Point& p) {\n    \
     \    return os << p.x << \" \" << p.y;\n    }\n    friend istream& operator>>(istream&\
     \ is, Point& p) {\n        return is >> p.x >> p.y;\n    }\n};\n\n\n#line 5 \"\
-    geometry/convex_hull.hpp\"\n\nstruct Convex_hull {\n    using i64 = long long;\n\
-    \  public:\n    vector<Point> ps, hull;\n\n    void add_point(i64 x, i64 y) {\n\
-    \        ps.emplace_back(x, y);\n    }\n\n    void query() {\n        int _n =\
-    \ size(ps);\n        if (_n == 1) {\n            hull = ps;\n            return;\n\
-    \        }\n        vector<Point> res = ps;\n        sort(res.begin(), res.end());\n\
-    \        vector<Point> up, dw;\n        up.emplace_back(res[0]); dw.emplace_back(res[0]);\n\
-    \        up.emplace_back(res[1]); dw.emplace_back(res[1]);\n        for (int i\
-    \ = 2; i < _n; i++) {\n            while (size(up) >= 2 && cross(up[size(up) -\
-    \ 1]\n                   - up[size(up) - 2], res[i] - up[size(up) - 1]) >= 0)\
-    \ {\n                up.pop_back();\n            }\n            while (size(dw)\
-    \ >= 2 && cross(dw[size(dw) - 1]\n                   - dw[size(dw) - 2], res[i]\
-    \ - dw[size(dw) - 1]) <= 0) {\n                dw.pop_back();\n            }\n\
-    \            up.emplace_back(res[i]);\n            dw.emplace_back(res[i]);\n\
-    \        }\n        hull = up;\n        for (int i = size(dw) - 2; i > 0; i--)\
-    \ {\n            hull.emplace_back(dw[i]);\n        }\n    }\n};\n\n\n"
-  code: "#ifndef GEOMETRY_CONVEX_HULL_HPP\n#define GEOMETRY_CONVEX_HULL_HPP 1\n\n\
-    #include \"point.hpp\"\n\nstruct Convex_hull {\n    using i64 = long long;\n \
-    \ public:\n    vector<Point> ps, hull;\n\n    void add_point(i64 x, i64 y) {\n\
-    \        ps.emplace_back(x, y);\n    }\n\n    void query() {\n        int _n =\
-    \ size(ps);\n        if (_n == 1) {\n            hull = ps;\n            return;\n\
-    \        }\n        vector<Point> res = ps;\n        sort(res.begin(), res.end());\n\
-    \        vector<Point> up, dw;\n        up.emplace_back(res[0]); dw.emplace_back(res[0]);\n\
-    \        up.emplace_back(res[1]); dw.emplace_back(res[1]);\n        for (int i\
-    \ = 2; i < _n; i++) {\n            while (size(up) >= 2 && cross(up[size(up) -\
-    \ 1]\n                   - up[size(up) - 2], res[i] - up[size(up) - 1]) >= 0)\
-    \ {\n                up.pop_back();\n            }\n            while (size(dw)\
-    \ >= 2 && cross(dw[size(dw) - 1]\n                   - dw[size(dw) - 2], res[i]\
-    \ - dw[size(dw) - 1]) <= 0) {\n                dw.pop_back();\n            }\n\
-    \            up.emplace_back(res[i]);\n            dw.emplace_back(res[i]);\n\
-    \        }\n        hull = up;\n        for (int i = size(dw) - 2; i > 0; i--)\
-    \ {\n            hull.emplace_back(dw[i]);\n        }\n    }\n};\n\n#endif //\
-    \ GEOMETRY_CONVEX_HULL_HPP\n"
+    geometry/argument.hpp\"\n\ntemplate <int id>\nstruct ArgumentSort {\n    using\
+    \ i64 = long long;\n    static Point O;\n    static void setO(const Point& p)\
+    \ { O = p; }\n\n  private:\n    // p - O = (x, y) \n    // 1 : y < 0\n    // 2\
+    \ : y >= 0 and x >= 0\n    // 3 : otherwise\n    static int location(const Point&\
+    \ p) {\n        Point q = p - O;\n        return q.y < 0 ? 1 : q.x >= 0 ? 2 :\
+    \ 3;\n    }\n\n    static bool cmp(const Point& a, const Point& b) {\n       \
+    \ int loc_a = location(a), loc_b = location(b);\n        i64 cr = cross(a, b,\
+    \ O);\n        return loc_a != loc_b ? loc_a < loc_b :\n               cr == 0\
+    \ ? norm(a, O) < norm(b, O) : cr > 0;\n    }\n\n  public:\n    static void argument_sort(vector<Point>&\
+    \ ps) {\n        sort(begin(ps), end(ps), cmp);\n    }\n\n    template <class\
+    \ ForwardIt>\n    static ForwardIt min_up_argument(ForwardIt first, ForwardIt\
+    \ last, const Point& p) {\n        return lower_bound(first, last, p, cmp);\n\
+    \    }\n};\ntemplate <int id>\nPoint ArgumentSort<id>::O(0, 0);\n\n\n"
+  code: "#ifndef GEOMETRY_ARGUMENT_HPP\n#define GEOMETRY_ARGUMENT_HPP 1\n\n#include\
+    \ \"point.hpp\"\n\ntemplate <int id>\nstruct ArgumentSort {\n    using i64 = long\
+    \ long;\n    static Point O;\n    static void setO(const Point& p) { O = p; }\n\
+    \n  private:\n    // p - O = (x, y) \n    // 1 : y < 0\n    // 2 : y >= 0 and\
+    \ x >= 0\n    // 3 : otherwise\n    static int location(const Point& p) {\n  \
+    \      Point q = p - O;\n        return q.y < 0 ? 1 : q.x >= 0 ? 2 : 3;\n    }\n\
+    \n    static bool cmp(const Point& a, const Point& b) {\n        int loc_a = location(a),\
+    \ loc_b = location(b);\n        i64 cr = cross(a, b, O);\n        return loc_a\
+    \ != loc_b ? loc_a < loc_b :\n               cr == 0 ? norm(a, O) < norm(b, O)\
+    \ : cr > 0;\n    }\n\n  public:\n    static void argument_sort(vector<Point>&\
+    \ ps) {\n        sort(begin(ps), end(ps), cmp);\n    }\n\n    template <class\
+    \ ForwardIt>\n    static ForwardIt min_up_argument(ForwardIt first, ForwardIt\
+    \ last, const Point& p) {\n        return lower_bound(first, last, p, cmp);\n\
+    \    }\n};\ntemplate <int id>\nPoint ArgumentSort<id>::O(0, 0);\n\n#endif // GEOMETRY_ARGUMENT_HPP\n"
   dependsOn:
   - geometry/point.hpp
   isVerificationFile: false
-  path: geometry/convex_hull.hpp
+  path: geometry/argument.hpp
   requiredBy: []
   timestamp: '2024-06-01 14:09:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: geometry/convex_hull.hpp
+documentation_of: geometry/argument.hpp
 layout: document
 redirect_from:
-- /library/geometry/convex_hull.hpp
-- /library/geometry/convex_hull.hpp.html
-title: geometry/convex_hull.hpp
+- /library/geometry/argument.hpp
+- /library/geometry/argument.hpp.html
+title: geometry/argument.hpp
 ---

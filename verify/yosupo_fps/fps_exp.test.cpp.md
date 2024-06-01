@@ -47,19 +47,20 @@ data:
     template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
     \ infty<u64> = infty<i64>;\ntemplate <>\nconstexpr double infty<double> = infty<i64>;\n\
     template <>\nconstexpr long double infty<long double> = infty<i64>;\nconstexpr\
-    \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\n\ntemplate <class T>\n\
-    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
-    \ <class T>\nusing vvvc = vector<vvc<T>>;\n\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqi = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n    return\
-    \ (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T\
-    \ &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n# define rep1(a)\
-    \ for (i64 _ = 0; _ < i64(a); _++)\n# define rep2(i, a) for (i64 i = 0; i < i64(a);\
-    \ i++)\n# define rep3(i, a, b) for (i64 i = (a); i < i64(b); i++)\n# define repi2(i,\
-    \ a) for (i64 i = (a) - 1; i >= 0; i--)\n# define repi3(i, a, b) for (i64 i =\
-    \ (a) - 1; i >= (b); i--)\n# define overload3(a, b, c, d, ...) d\n# define rep(...)\
-    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n# define repi(...) overload3(__VA_ARGS__,\
-    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n# define pb push_back\n# define eb emplace_back\n\
+    \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long double PI\
+    \ = 3.14159265358979323846;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    \ntemplate <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing\
+    \ pqi = priority_queue<T, vector<T>, greater<T>>;\n\ntemplate <class T, class\
+    \ S>\ninline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b, 1 : 0);\n\
+    }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n    return\
+    \ (a > b ? a = b, 1 : 0);\n}\n\n# define rep1(a) for (i64 _ = 0; _ < i64(a); _++)\n\
+    # define rep2(i, a) for (i64 i = 0; i < i64(a); i++)\n# define rep3(i, a, b) for\
+    \ (i64 i = (a); i < i64(b); i++)\n# define repi2(i, a) for (i64 i = (a) - 1; i\
+    \ >= 0; i--)\n# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (b); i--)\n#\
+    \ define overload3(a, b, c, d, ...) d\n# define rep(...) overload3(__VA_ARGS__,\
+    \ rep3, rep2, rep1)(__VA_ARGS__)\n# define repi(...) overload3(__VA_ARGS__, repi3,\
+    \ repi2, rep1)(__VA_ARGS__)\n\n# define pb push_back\n# define eb emplace_back\n\
     # define fi first\n# define se second\n# define all(p) begin(p), end(p)\n\n\n\
     #line 1 \"modint/mont.hpp\"\n\n\n\ntemplate <int p>\nstruct LazyMontgomeryModInt\
     \ {\n    using mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using\
@@ -417,7 +418,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_exp.test.cpp
   requiredBy: []
-  timestamp: '2024-05-25 01:00:13+09:00'
+  timestamp: '2024-06-01 14:09:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_exp.test.cpp
