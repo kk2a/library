@@ -146,6 +146,9 @@ data:
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp
     - icon: ':warning:'
+      path: graph/scc.hpp
+      title: graph/scc.hpp
+    - icon: ':warning:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
   - name: .
