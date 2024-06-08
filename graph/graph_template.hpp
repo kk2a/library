@@ -79,22 +79,34 @@ using WGraph = WeightedGraph<T>;
 
 struct UnWeightedGraph : vector<Edges<bool>> {
     int n, m;
-    bool is_one_indexed, is_directed;
+    bool is_one_indexed, is_directed, is_functional;
     Edges<bool> edges;
-    UnWeightedGraph(int n_ = 0) : n(n_), vector<Edges<bool>>(n_) {}
+    UnWeightedGraph(int n_ = 0, bool is_one_indexed_ = true,
+                    bool is_directed_ = false,
+                    bool is_functional_ = false) :
+                    n(n_), vector<Edges<bool>>(n_),
+                    is_one_indexed(is_one_indexed_),
+                    is_directed(is_directed_),
+                    is_functional(is_functional_) {}
+
     UnWeightedGraph(int n_, int m_, bool is_one_indexed_ = true,
-                    bool is_directed_ = false) :
+                    bool is_directed_ = false,
+                    bool is_functional_ = false) :
                     n(n_), m(m_), vector<Edges<bool>>(n_),
                     is_one_indexed(is_one_indexed_),
-                    is_directed(is_directed_) {
+                    is_directed(is_directed_),
+                    is_functional(is_functional_) {
         input();
     }
+
     UnWeightedGraph(int n_, vector<Edges<bool>> g_,
                     bool is_one_indexed_ = true,
-                    bool is_directed_ = false) :
+                    bool is_directed_ = false,
+                    bool is_functional_ = false) :
                     n(n_), m(0), vector<Edges<bool>>(n_),
                     is_one_indexed(is_one_indexed_),
-                    is_directed(is_directed_) {
+                    is_directed(is_directed_),
+                    is_functional(is_functional_) {
         for (int i = 0; i < n; i++) {
             for (auto &e : g_[i]) {
                 _add_edge(i, e.to, m++);
@@ -106,8 +118,12 @@ struct UnWeightedGraph : vector<Edges<bool>> {
     void zero_indexed() { is_one_indexed = false; }
     void directed() { is_directed = true; }
     void undirected() { is_directed = false; }
+    void functional() { is_functional = true; }
+    void non_functional() { is_functional = false; }
 
+  private:
     void input() {
+        if (is_functional) { functional_graph(); return; }
         for (int i = 0; i < m; i++) {
             int u, v;
             cin >> u >> v;
@@ -116,6 +132,18 @@ struct UnWeightedGraph : vector<Edges<bool>> {
         }
     }
 
+    void functional_graph() {
+        assert(is_directed);
+        assert(n == m);
+        for (int i = 0; i < n; i++) {
+            int u;
+            cin >> u;
+            if (is_one_indexed) u--;
+            _add_edge(i, u, m++);
+        }
+    }
+
+  public:
     void add_edge(int from, int to) {
         if (is_one_indexed) { from--; to--; }
         _add_edge(from, to, m++);
