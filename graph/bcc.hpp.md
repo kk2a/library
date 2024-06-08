@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: graph/lowlink.hpp
+    title: graph/lowlink.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -8,63 +11,91 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/bcc.hpp\"\n\n\n\nstruct LowLink {\n    struct Edge\
-    \ {\n        int to, id;\n        Edge() {}\n        Edge(int to, int id = -1)\
-    \ : to(to), id(id) {}\n    };\n    int n, m;\n    vector<vector<Edge>> g;\n  \
-    \  LowLink(int n_) : n(n_), m(0), g(n_) {}\n\n    void add_edge(int a, int b)\
-    \ {\n        g[a].emplace_back(b, m);\n        g[b].emplace_back(a, m++);\n  \
-    \  }\n\n    vector<int> ord, low, par; \n    void init() {\n        ord = low\
-    \ = par = vector<int>(n, -1);\n        int k = 0;\n        auto dfs = [&](auto\
-    \ self, int v, int ei = -1) -> int {\n            low[v] = ord[v] = k++;\n   \
-    \         for (auto ch : g[v]) {\n                if (ch.id == ei) continue;\n\
-    \                if (ord[ch.to] == -1) {\n                    par[ch.to] = v;\n\
-    \                    low[v] = min(low[v], self(self, ch.to, ch.id));\n       \
-    \         }\n                else if (ord[ch.to] < ord[v]) {\n               \
-    \     low[v] = min(low[v], ord[ch.to]);\n                }\n            }\n  \
-    \          return low[v];\n        };\n        for (int v = 0; v < n; v++) if\
-    \ (ord[v] == -1) dfs(dfs, v);\n    }\n\n    vector<vector<int>> bc;\n    vector<int>\
-    \ bc_id;\n    void bcc() {\n        bc_id = vector<int>(m, -1);\n        auto\
-    \ add = [&](int ei, int k) {\n            bc[k].emplace_back(ei);\n          \
-    \  bc_id[ei] = k;\n        };\n        auto dfs = [&](auto self, int v, int k\
-    \ = -1) -> void {\n            for (auto e : g[v]) if (e.to != par[v]) {\n   \
-    \             if (par[e.to] == v) {\n                    int nk = k;\n       \
-    \             if (low[e.to] >= ord[v]) nk = bc.size(), bc.emplace_back();\n  \
-    \                  add(e.id, nk);\n                    self(self, e.to, nk);\n\
-    \                }\n                else if (ord[e.to] < ord[v]) {\n         \
-    \           add(e.id, k);\n                }\n            }\n        };\n    \
-    \    for (int v = 0; v < n; v++) if (par[v] == -1) dfs(dfs, v);\n    }\n};\n\n\
-    \n"
-  code: "#ifndef GRAPH_BCC_HPP\n#define GRAPH_BCC_HPP 1\n\nstruct LowLink {\n    struct\
-    \ Edge {\n        int to, id;\n        Edge() {}\n        Edge(int to, int id\
-    \ = -1) : to(to), id(id) {}\n    };\n    int n, m;\n    vector<vector<Edge>> g;\n\
-    \    LowLink(int n_) : n(n_), m(0), g(n_) {}\n\n    void add_edge(int a, int b)\
-    \ {\n        g[a].emplace_back(b, m);\n        g[b].emplace_back(a, m++);\n  \
-    \  }\n\n    vector<int> ord, low, par; \n    void init() {\n        ord = low\
-    \ = par = vector<int>(n, -1);\n        int k = 0;\n        auto dfs = [&](auto\
-    \ self, int v, int ei = -1) -> int {\n            low[v] = ord[v] = k++;\n   \
-    \         for (auto ch : g[v]) {\n                if (ch.id == ei) continue;\n\
-    \                if (ord[ch.to] == -1) {\n                    par[ch.to] = v;\n\
-    \                    low[v] = min(low[v], self(self, ch.to, ch.id));\n       \
-    \         }\n                else if (ord[ch.to] < ord[v]) {\n               \
-    \     low[v] = min(low[v], ord[ch.to]);\n                }\n            }\n  \
-    \          return low[v];\n        };\n        for (int v = 0; v < n; v++) if\
-    \ (ord[v] == -1) dfs(dfs, v);\n    }\n\n    vector<vector<int>> bc;\n    vector<int>\
-    \ bc_id;\n    void bcc() {\n        bc_id = vector<int>(m, -1);\n        auto\
-    \ add = [&](int ei, int k) {\n            bc[k].emplace_back(ei);\n          \
-    \  bc_id[ei] = k;\n        };\n        auto dfs = [&](auto self, int v, int k\
-    \ = -1) -> void {\n            for (auto e : g[v]) if (e.to != par[v]) {\n   \
-    \             if (par[e.to] == v) {\n                    int nk = k;\n       \
-    \             if (low[e.to] >= ord[v]) nk = bc.size(), bc.emplace_back();\n  \
-    \                  add(e.id, nk);\n                    self(self, e.to, nk);\n\
-    \                }\n                else if (ord[e.to] < ord[v]) {\n         \
-    \           add(e.id, k);\n                }\n            }\n        };\n    \
-    \    for (int v = 0; v < n; v++) if (par[v] == -1) dfs(dfs, v);\n    }\n};\n\n\
-    #endif // GRAPH_BCC_HPP\n"
-  dependsOn: []
+  bundledCode: "#line 1 \"graph/bcc.hpp\"\n\n\n\n#line 1 \"graph/lowlink.hpp\"\n\n\
+    \n\ntemplate <class G>\nstruct LowLink {\n    int n, m;\n    const G &g;\n   \
+    \ vector<int> ord, low;\n    vector<bool> root, used;\n    LowLink(const G &g_)\
+    \ : n(g_.n), m(g_.m), g(g_),\n                           ord(n, -1), low(n, -1),\
+    \ root(n, false),\n                           used(m, false) {\n        init();\n\
+    \    }\n\n    void init() {\n        int k = 0;\n        auto dfs = [&](auto self,\
+    \ int u, int ei = -1) -> int {\n            low[u] = ord[u] = k++;\n         \
+    \   for (auto &e : g[u]) {\n                if (e.id == ei) continue;\n      \
+    \          if (ord[e.to] == -1) {\n                    used[e.id] = true;\n  \
+    \                  low[u] = min(low[u], self(self, e.to, e.id));\n           \
+    \     }\n                // back edge\n                else if (ord[e.to] < ord[u])\
+    \ {\n                    low[u] = min(low[u], ord[e.to]);\n                }\n\
+    \            }\n            return low[u];\n        };\n        for (int u = 0;\
+    \ u < n; u++) if (ord[u] == -1) {\n            dfs(dfs, u);\n            root[u]\
+    \ = true;\n        }\n        // for (int i = 0; i < n; i++) {\n        //   \
+    \  cout << i << \" \" << ord[i] << \" \" << low[i] << \" \"  << par[i] << endl;\n\
+    \        // }\n    }\n};\n\n\n#line 5 \"graph/bcc.hpp\"\n\ntemplate <class G>\n\
+    struct BCC : LowLink<G> {\n  public:\n    BCC(const G &g_) : LowLink<G>(g_) {\
+    \ query(); }\n\n    vector<vector<int>> bc_e;\n    vector<int> bc_id;\n\n    //\
+    \ v is a child of u in DFS tree\n    // edge(u, v) is a bridge <=> ord[u] < low[v]\n\
+    \    // u is an articulation point <=> u is root and \n    void query() {\n  \
+    \      bc_id = vector<int>(this->m, -1);\n        auto add = [&](int ei, int k)\
+    \ {\n            bc_e[k].emplace_back(ei);\n            bc_id[ei] = k;\n     \
+    \   };\n        auto dfs = [&](auto self, int u, int k = -1, int ei = -1) -> void\
+    \ {\n            for (auto &e : this->g[u]) {\n                if (e.id == ei)\
+    \ continue;\n                if (this->used[e.id]) {\n                    int\
+    \ nk = k;\n                    if (this->low[e.to] >= this->ord[u]) nk = bc_e.size(),\
+    \ bc_e.emplace_back();\n                    add(e.id, nk);\n                 \
+    \   self(self, e.to, nk, e.id);\n                }\n                // back edge\n\
+    \                else if (this->ord[e.to] < this->ord[u]) {\n                \
+    \    add(e.id, k);\n                }\n            }\n        };\n        for\
+    \ (int u = 0; u < this->n; u++) if (this->root[u]) {\n            dfs(dfs, u);\n\
+    \        }\n    }\n\n    vector<vector<int>> get_bcc_vertices() {\n        vector<bool>\
+    \ buf1(this->n), buf2(this->n);\n        vector<vector<int>> res;\n        res.reserve(bc_e.size());\n\
+    \        for (auto &bc : bc_e) {\n            if (bc.empty()) continue;\n    \
+    \        int k = (int)res.size();\n            res.emplace_back();\n         \
+    \   for (auto &ei : bc) {\n                auto e = this->g.edges[ei];\n     \
+    \           int fr = e.from, to = e.to;\n                if (!buf2[fr]) {\n  \
+    \                  res[k].emplace_back(fr);\n                    buf2[fr] = true;\n\
+    \                }\n                if (!buf2[to]) {\n                    res[k].emplace_back(to);\n\
+    \                    buf2[to] = true;\n                }\n                buf1[fr]\
+    \ = buf1[to] = true;\n            }\n            for (auto &ei : bc) {\n     \
+    \           auto e = this->g.edges[ei];\n                int fr = e.from, to =\
+    \ e.to;\n                buf2[fr] = buf2[to] = false;\n            }\n       \
+    \ }\n        for (int i = 0; i < this->n; i++) if (!buf1[i]) {\n            int\
+    \ k = (int)res.size();\n            res.emplace_back();\n            res[k].emplace_back(i);\n\
+    \        }\n        return res;\n    }\n};\n\n\n"
+  code: "#ifndef GRAPH_BCC_HPP\n#define GRAPH_BCC_HPP 1\n\n#include \"lowlink.hpp\"\
+    \n\ntemplate <class G>\nstruct BCC : LowLink<G> {\n  public:\n    BCC(const G\
+    \ &g_) : LowLink<G>(g_) { query(); }\n\n    vector<vector<int>> bc_e;\n    vector<int>\
+    \ bc_id;\n\n    // v is a child of u in DFS tree\n    // edge(u, v) is a bridge\
+    \ <=> ord[u] < low[v]\n    // u is an articulation point <=> u is root and \n\
+    \    void query() {\n        bc_id = vector<int>(this->m, -1);\n        auto add\
+    \ = [&](int ei, int k) {\n            bc_e[k].emplace_back(ei);\n            bc_id[ei]\
+    \ = k;\n        };\n        auto dfs = [&](auto self, int u, int k = -1, int ei\
+    \ = -1) -> void {\n            for (auto &e : this->g[u]) {\n                if\
+    \ (e.id == ei) continue;\n                if (this->used[e.id]) {\n          \
+    \          int nk = k;\n                    if (this->low[e.to] >= this->ord[u])\
+    \ nk = bc_e.size(), bc_e.emplace_back();\n                    add(e.id, nk);\n\
+    \                    self(self, e.to, nk, e.id);\n                }\n        \
+    \        // back edge\n                else if (this->ord[e.to] < this->ord[u])\
+    \ {\n                    add(e.id, k);\n                }\n            }\n   \
+    \     };\n        for (int u = 0; u < this->n; u++) if (this->root[u]) {\n   \
+    \         dfs(dfs, u);\n        }\n    }\n\n    vector<vector<int>> get_bcc_vertices()\
+    \ {\n        vector<bool> buf1(this->n), buf2(this->n);\n        vector<vector<int>>\
+    \ res;\n        res.reserve(bc_e.size());\n        for (auto &bc : bc_e) {\n \
+    \           if (bc.empty()) continue;\n            int k = (int)res.size();\n\
+    \            res.emplace_back();\n            for (auto &ei : bc) {\n        \
+    \        auto e = this->g.edges[ei];\n                int fr = e.from, to = e.to;\n\
+    \                if (!buf2[fr]) {\n                    res[k].emplace_back(fr);\n\
+    \                    buf2[fr] = true;\n                }\n                if (!buf2[to])\
+    \ {\n                    res[k].emplace_back(to);\n                    buf2[to]\
+    \ = true;\n                }\n                buf1[fr] = buf1[to] = true;\n  \
+    \          }\n            for (auto &ei : bc) {\n                auto e = this->g.edges[ei];\n\
+    \                int fr = e.from, to = e.to;\n                buf2[fr] = buf2[to]\
+    \ = false;\n            }\n        }\n        for (int i = 0; i < this->n; i++)\
+    \ if (!buf1[i]) {\n            int k = (int)res.size();\n            res.emplace_back();\n\
+    \            res[k].emplace_back(i);\n        }\n        return res;\n    }\n\
+    };\n\n#endif // GRAPH_BCC_HPP\n"
+  dependsOn:
+  - graph/lowlink.hpp
   isVerificationFile: false
   path: graph/bcc.hpp
   requiredBy: []
-  timestamp: '2024-05-14 18:36:26+09:00'
+  timestamp: '2024-06-08 15:55:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bcc.hpp

@@ -47,6 +47,9 @@ data:
   - name: data_structure
     pages:
     - icon: ':warning:'
+      path: data_structure/hash_map.hpp
+      title: data_structure/hash_map.hpp
+    - icon: ':warning:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
   - name: fps
@@ -128,11 +131,17 @@ data:
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
     - icon: ':warning:'
+      path: graph/graph_template.hpp
+      title: graph/graph_template.hpp
+    - icon: ':warning:'
       path: graph/kruskal.hpp
       title: graph/kruskal.hpp
     - icon: ':warning:'
       path: graph/lca.hpp
       title: graph/lca.hpp
+    - icon: ':warning:'
+      path: graph/lowlink.hpp
+      title: graph/lowlink.hpp
     - icon: ':warning:'
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp
