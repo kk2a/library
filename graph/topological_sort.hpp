@@ -2,7 +2,7 @@
 #define TOPOLOGICAL_SORT_HPP 1
 
 // topological_sort
-vector<int> topological_sort(vector<vector<int>> graph) {
+vector<int> topological_sort(const vector<vector<int>>& graph) {
     int siz = size(graph);
 	vector<int> indegree(siz);
 	for (int i = 0; i < siz; i++) for (int j : graph[i]) indegree[j]++;
