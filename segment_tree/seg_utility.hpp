@@ -97,7 +97,7 @@ Sum<S> AddSm(S a, Sum<S> b) {
 
 template <class S, S ID>
 Sum<S> UpdateSm(S a, Sum<S> b) {
-    return Sum<S>(a == ID ? b.a : a, b.size);
+    return Sum<S>(a == ID ? b.a * b.size : a, b.size);
 }
 
 template <class S>
