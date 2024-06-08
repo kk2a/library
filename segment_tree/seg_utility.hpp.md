@@ -97,27 +97,27 @@ data:
     \ Affine<S> b) {\n    return Affine<S>(a.a * b.a, a.a * b.b + a.b);\n}\n\ntemplate\
     \ <class S>\nSum<S> AddSm(S a, Sum<S> b) {\n    return Sum<S>(b.a + a * b.size,\
     \ b.size);\n}\n\ntemplate <class S, S ID>\nSum<S> UpdateSm(S a, Sum<S> b) {\n\
-    \    return Sum<S>(a == ID ? b.a : a, b.size);\n}\n\ntemplate <class S>\nSum<S>\
-    \ AffSm(Affine<S> aff, Sum<S> x) {\n    return Sum<S>(aff.a * x.a + aff.b * x.size,\
-    \ x.size);\n}\n\ntemplate <class S, S e>\nS Const() { return e; }\n\ntemplate\
-    \ <class S>\nS Zero() { return S(); }\n\ntemplate <class S>\nSum<S> ZeroSm() {\
-    \ return Sum<S>(0, 1); }\n\ntemplate <class S>\nAffine<S> Id() { return Affine<S>(1,\
-    \ 0); }\n\ntemplate <class S, S MINF>\nusing AddMax = LazySegTree<S, Mx<S>, Const<S,\
-    \ MINF>,\n    S, Add<S>, Add<S>, Zero<S>>;\n\ntemplate <class S, S MINF, S ID>\n\
-    using UpdateMax = LazySegTree<S, Mx<S>, Const<S, MINF>,\n    S, Update<S, ID>,\
-    \ Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S, S MINF>\nusing AffineMax\
-    \ = LazySegTree<S, Mx<S>, Const<S, MINF>,\n    Affine<S>, Aff<S>, AffCompositon<S>,\
-    \ Id<S>>;\n\ntemplate <class S, S INF>\nusing AddMin = LazySegTree<S, Mn<S>, Const<S,\
-    \ INF>,\n    S, Add<S>, Add<S>, Zero<S>>;\n\ntemplate <class S, S INF, S ID>\n\
-    using UpdateMin = LazySegTree<S, Mn<S>, Const<S, INF>,\n    S, Update<S, ID>,\
-    \ Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S, S INF>\nusing AffineMin\
-    \ = LazySegTree<S, Mn<S>, Const<S, INF>,\n    Affine<S>, Aff<S>, AffCompositon<S>,\
-    \ Id<S>>;\n\ntemplate <class S>\nusing AddSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,\n\
-    \    S, AddSm<S>, Add<S>, Zero<S>>;\n\ntemplate <class S, S ID>\nusing UpdateSum\
-    \ = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,\n    S, UpdateSm<S, ID>, Update<S, ID>,\
-    \ Const<S, ID>>;\n\ntemplate <class S>\nusing AffineSum = LazySegTree<Sum<S>,\
-    \ Sm<S>, ZeroSm<S>,\n    Affine<S>, AffSm<S>, AffCompositon<S>, Id<S>>;\n\n} //\
-    \ namespace seg_utility\n\nusing seg_utility::AddMax;\nusing seg_utility::UpdateMax;\n\
+    \    return Sum<S>(a == ID ? b.a * b.size : a, b.size);\n}\n\ntemplate <class\
+    \ S>\nSum<S> AffSm(Affine<S> aff, Sum<S> x) {\n    return Sum<S>(aff.a * x.a +\
+    \ aff.b * x.size, x.size);\n}\n\ntemplate <class S, S e>\nS Const() { return e;\
+    \ }\n\ntemplate <class S>\nS Zero() { return S(); }\n\ntemplate <class S>\nSum<S>\
+    \ ZeroSm() { return Sum<S>(0, 1); }\n\ntemplate <class S>\nAffine<S> Id() { return\
+    \ Affine<S>(1, 0); }\n\ntemplate <class S, S MINF>\nusing AddMax = LazySegTree<S,\
+    \ Mx<S>, Const<S, MINF>,\n    S, Add<S>, Add<S>, Zero<S>>;\n\ntemplate <class\
+    \ S, S MINF, S ID>\nusing UpdateMax = LazySegTree<S, Mx<S>, Const<S, MINF>,\n\
+    \    S, Update<S, ID>, Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S, S MINF>\n\
+    using AffineMax = LazySegTree<S, Mx<S>, Const<S, MINF>,\n    Affine<S>, Aff<S>,\
+    \ AffCompositon<S>, Id<S>>;\n\ntemplate <class S, S INF>\nusing AddMin = LazySegTree<S,\
+    \ Mn<S>, Const<S, INF>,\n    S, Add<S>, Add<S>, Zero<S>>;\n\ntemplate <class S,\
+    \ S INF, S ID>\nusing UpdateMin = LazySegTree<S, Mn<S>, Const<S, INF>,\n    S,\
+    \ Update<S, ID>, Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S, S INF>\n\
+    using AffineMin = LazySegTree<S, Mn<S>, Const<S, INF>,\n    Affine<S>, Aff<S>,\
+    \ AffCompositon<S>, Id<S>>;\n\ntemplate <class S>\nusing AddSum = LazySegTree<Sum<S>,\
+    \ Sm<S>, ZeroSm<S>,\n    S, AddSm<S>, Add<S>, Zero<S>>;\n\ntemplate <class S,\
+    \ S ID>\nusing UpdateSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,\n    S, UpdateSm<S,\
+    \ ID>, Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S>\nusing AffineSum =\
+    \ LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,\n    Affine<S>, AffSm<S>, AffCompositon<S>,\
+    \ Id<S>>;\n\n} // namespace seg_utility\n\nusing seg_utility::AddMax;\nusing seg_utility::UpdateMax;\n\
     using seg_utility::AffineMax;\nusing seg_utility::AddMin;\nusing seg_utility::UpdateMin;\n\
     using seg_utility::AffineMin;\nusing seg_utility::AddSum;\nusing seg_utility::UpdateSum;\n\
     using seg_utility::AffineSum;\nusing seg_utility::gen_sum;\nusing seg_utility::gen_aff;\n\
@@ -145,27 +145,27 @@ data:
     \ Affine<S> b) {\n    return Affine<S>(a.a * b.a, a.a * b.b + a.b);\n}\n\ntemplate\
     \ <class S>\nSum<S> AddSm(S a, Sum<S> b) {\n    return Sum<S>(b.a + a * b.size,\
     \ b.size);\n}\n\ntemplate <class S, S ID>\nSum<S> UpdateSm(S a, Sum<S> b) {\n\
-    \    return Sum<S>(a == ID ? b.a : a, b.size);\n}\n\ntemplate <class S>\nSum<S>\
-    \ AffSm(Affine<S> aff, Sum<S> x) {\n    return Sum<S>(aff.a * x.a + aff.b * x.size,\
-    \ x.size);\n}\n\ntemplate <class S, S e>\nS Const() { return e; }\n\ntemplate\
-    \ <class S>\nS Zero() { return S(); }\n\ntemplate <class S>\nSum<S> ZeroSm() {\
-    \ return Sum<S>(0, 1); }\n\ntemplate <class S>\nAffine<S> Id() { return Affine<S>(1,\
-    \ 0); }\n\ntemplate <class S, S MINF>\nusing AddMax = LazySegTree<S, Mx<S>, Const<S,\
-    \ MINF>,\n    S, Add<S>, Add<S>, Zero<S>>;\n\ntemplate <class S, S MINF, S ID>\n\
-    using UpdateMax = LazySegTree<S, Mx<S>, Const<S, MINF>,\n    S, Update<S, ID>,\
-    \ Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S, S MINF>\nusing AffineMax\
-    \ = LazySegTree<S, Mx<S>, Const<S, MINF>,\n    Affine<S>, Aff<S>, AffCompositon<S>,\
-    \ Id<S>>;\n\ntemplate <class S, S INF>\nusing AddMin = LazySegTree<S, Mn<S>, Const<S,\
-    \ INF>,\n    S, Add<S>, Add<S>, Zero<S>>;\n\ntemplate <class S, S INF, S ID>\n\
-    using UpdateMin = LazySegTree<S, Mn<S>, Const<S, INF>,\n    S, Update<S, ID>,\
-    \ Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S, S INF>\nusing AffineMin\
-    \ = LazySegTree<S, Mn<S>, Const<S, INF>,\n    Affine<S>, Aff<S>, AffCompositon<S>,\
-    \ Id<S>>;\n\ntemplate <class S>\nusing AddSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,\n\
-    \    S, AddSm<S>, Add<S>, Zero<S>>;\n\ntemplate <class S, S ID>\nusing UpdateSum\
-    \ = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,\n    S, UpdateSm<S, ID>, Update<S, ID>,\
-    \ Const<S, ID>>;\n\ntemplate <class S>\nusing AffineSum = LazySegTree<Sum<S>,\
-    \ Sm<S>, ZeroSm<S>,\n    Affine<S>, AffSm<S>, AffCompositon<S>, Id<S>>;\n\n} //\
-    \ namespace seg_utility\n\nusing seg_utility::AddMax;\nusing seg_utility::UpdateMax;\n\
+    \    return Sum<S>(a == ID ? b.a * b.size : a, b.size);\n}\n\ntemplate <class\
+    \ S>\nSum<S> AffSm(Affine<S> aff, Sum<S> x) {\n    return Sum<S>(aff.a * x.a +\
+    \ aff.b * x.size, x.size);\n}\n\ntemplate <class S, S e>\nS Const() { return e;\
+    \ }\n\ntemplate <class S>\nS Zero() { return S(); }\n\ntemplate <class S>\nSum<S>\
+    \ ZeroSm() { return Sum<S>(0, 1); }\n\ntemplate <class S>\nAffine<S> Id() { return\
+    \ Affine<S>(1, 0); }\n\ntemplate <class S, S MINF>\nusing AddMax = LazySegTree<S,\
+    \ Mx<S>, Const<S, MINF>,\n    S, Add<S>, Add<S>, Zero<S>>;\n\ntemplate <class\
+    \ S, S MINF, S ID>\nusing UpdateMax = LazySegTree<S, Mx<S>, Const<S, MINF>,\n\
+    \    S, Update<S, ID>, Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S, S MINF>\n\
+    using AffineMax = LazySegTree<S, Mx<S>, Const<S, MINF>,\n    Affine<S>, Aff<S>,\
+    \ AffCompositon<S>, Id<S>>;\n\ntemplate <class S, S INF>\nusing AddMin = LazySegTree<S,\
+    \ Mn<S>, Const<S, INF>,\n    S, Add<S>, Add<S>, Zero<S>>;\n\ntemplate <class S,\
+    \ S INF, S ID>\nusing UpdateMin = LazySegTree<S, Mn<S>, Const<S, INF>,\n    S,\
+    \ Update<S, ID>, Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S, S INF>\n\
+    using AffineMin = LazySegTree<S, Mn<S>, Const<S, INF>,\n    Affine<S>, Aff<S>,\
+    \ AffCompositon<S>, Id<S>>;\n\ntemplate <class S>\nusing AddSum = LazySegTree<Sum<S>,\
+    \ Sm<S>, ZeroSm<S>,\n    S, AddSm<S>, Add<S>, Zero<S>>;\n\ntemplate <class S,\
+    \ S ID>\nusing UpdateSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,\n    S, UpdateSm<S,\
+    \ ID>, Update<S, ID>, Const<S, ID>>;\n\ntemplate <class S>\nusing AffineSum =\
+    \ LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,\n    Affine<S>, AffSm<S>, AffCompositon<S>,\
+    \ Id<S>>;\n\n} // namespace seg_utility\n\nusing seg_utility::AddMax;\nusing seg_utility::UpdateMax;\n\
     using seg_utility::AffineMax;\nusing seg_utility::AddMin;\nusing seg_utility::UpdateMin;\n\
     using seg_utility::AffineMin;\nusing seg_utility::AddSum;\nusing seg_utility::UpdateSum;\n\
     using seg_utility::AffineSum;\nusing seg_utility::gen_sum;\nusing seg_utility::gen_aff;\n\
@@ -175,7 +175,7 @@ data:
   isVerificationFile: false
   path: segment_tree/seg_utility.hpp
   requiredBy: []
-  timestamp: '2024-06-08 15:55:29+09:00'
+  timestamp: '2024-06-09 01:27:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/seg_utility.hpp

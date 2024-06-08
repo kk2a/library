@@ -37,23 +37,35 @@ data:
     \ cost, from, id);\n        if (!is_directed) (*this)[to].emplace_back(from, cost,\
     \ to, id);\n        edges.emplace_back(to, cost, from, id);\n    }\n};\ntemplate\
     \ <class T>\nusing WGraph = WeightedGraph<T>;\n\nstruct UnWeightedGraph : vector<Edges<bool>>\
-    \ {\n    int n, m;\n    bool is_one_indexed, is_directed;\n    Edges<bool> edges;\n\
-    \    UnWeightedGraph(int n_ = 0) : n(n_), vector<Edges<bool>>(n_) {}\n    UnWeightedGraph(int\
+    \ {\n    int n, m;\n    bool is_one_indexed, is_directed, is_functional;\n   \
+    \ Edges<bool> edges;\n    UnWeightedGraph(int n_ = 0, bool is_one_indexed_ = true,\n\
+    \                    bool is_directed_ = false,\n                    bool is_functional_\
+    \ = false) :\n                    n(n_), vector<Edges<bool>>(n_),\n          \
+    \          is_one_indexed(is_one_indexed_),\n                    is_directed(is_directed_),\n\
+    \                    is_functional(is_functional_) {}\n\n    UnWeightedGraph(int\
     \ n_, int m_, bool is_one_indexed_ = true,\n                    bool is_directed_\
-    \ = false) :\n                    n(n_), m(m_), vector<Edges<bool>>(n_),\n   \
-    \                 is_one_indexed(is_one_indexed_),\n                    is_directed(is_directed_)\
-    \ {\n        input();\n    }\n    UnWeightedGraph(int n_, vector<Edges<bool>>\
+    \ = false,\n                    bool is_functional_ = false) :\n             \
+    \       n(n_), m(m_), vector<Edges<bool>>(n_),\n                    is_one_indexed(is_one_indexed_),\n\
+    \                    is_directed(is_directed_),\n                    is_functional(is_functional_)\
+    \ {\n        input();\n    }\n\n    UnWeightedGraph(int n_, vector<Edges<bool>>\
     \ g_,\n                    bool is_one_indexed_ = true,\n                    bool\
-    \ is_directed_ = false) :\n                    n(n_), m(0), vector<Edges<bool>>(n_),\n\
-    \                    is_one_indexed(is_one_indexed_),\n                    is_directed(is_directed_)\
-    \ {\n        for (int i = 0; i < n; i++) {\n            for (auto &e : g_[i])\
-    \ {\n                _add_edge(i, e.to, m++);\n            }\n        }\n    }\n\
-    \n    void one_indexed() { is_one_indexed = true; }\n    void zero_indexed() {\
-    \ is_one_indexed = false; }\n    void directed() { is_directed = true; }\n   \
-    \ void undirected() { is_directed = false; }\n\n    void input() {\n        for\
-    \ (int i = 0; i < m; i++) {\n            int u, v;\n            cin >> u >> v;\n\
-    \            if (is_one_indexed) { u--; v--; }\n            _add_edge(u, v, i);\n\
-    \        }\n    }\n\n    void add_edge(int from, int to) {\n        if (is_one_indexed)\
+    \ is_directed_ = false,\n                    bool is_functional_ = false) :\n\
+    \                    n(n_), m(0), vector<Edges<bool>>(n_),\n                 \
+    \   is_one_indexed(is_one_indexed_),\n                    is_directed(is_directed_),\n\
+    \                    is_functional(is_functional_) {\n        for (int i = 0;\
+    \ i < n; i++) {\n            for (auto &e : g_[i]) {\n                _add_edge(i,\
+    \ e.to, m++);\n            }\n        }\n    }\n\n    void one_indexed() { is_one_indexed\
+    \ = true; }\n    void zero_indexed() { is_one_indexed = false; }\n    void directed()\
+    \ { is_directed = true; }\n    void undirected() { is_directed = false; }\n  \
+    \  void functional() { is_functional = true; }\n    void non_functional() { is_functional\
+    \ = false; }\n\n  private:\n    void input() {\n        if (is_functional) { functional_graph();\
+    \ return; }\n        for (int i = 0; i < m; i++) {\n            int u, v;\n  \
+    \          cin >> u >> v;\n            if (is_one_indexed) { u--; v--; }\n   \
+    \         _add_edge(u, v, i);\n        }\n    }\n\n    void functional_graph()\
+    \ {\n        assert(is_directed);\n        assert(n == m);\n        for (int i\
+    \ = 0; i < n; i++) {\n            int u;\n            cin >> u;\n            if\
+    \ (is_one_indexed) u--;\n            _add_edge(i, u, m++);\n        }\n    }\n\
+    \n  public:\n    void add_edge(int from, int to) {\n        if (is_one_indexed)\
     \ { from--; to--; }\n        _add_edge(from, to, m++);\n    }\n\n  private:\n\
     \    void _add_edge(int from, int to, int id) {\n        (*this)[from].emplace_back(to,\
     \ 0, from, id);\n        if (!is_directed) (*this)[to].emplace_back(from, 0, to,\
@@ -88,23 +100,35 @@ data:
     \ cost, from, id);\n        if (!is_directed) (*this)[to].emplace_back(from, cost,\
     \ to, id);\n        edges.emplace_back(to, cost, from, id);\n    }\n};\ntemplate\
     \ <class T>\nusing WGraph = WeightedGraph<T>;\n\nstruct UnWeightedGraph : vector<Edges<bool>>\
-    \ {\n    int n, m;\n    bool is_one_indexed, is_directed;\n    Edges<bool> edges;\n\
-    \    UnWeightedGraph(int n_ = 0) : n(n_), vector<Edges<bool>>(n_) {}\n    UnWeightedGraph(int\
+    \ {\n    int n, m;\n    bool is_one_indexed, is_directed, is_functional;\n   \
+    \ Edges<bool> edges;\n    UnWeightedGraph(int n_ = 0, bool is_one_indexed_ = true,\n\
+    \                    bool is_directed_ = false,\n                    bool is_functional_\
+    \ = false) :\n                    n(n_), vector<Edges<bool>>(n_),\n          \
+    \          is_one_indexed(is_one_indexed_),\n                    is_directed(is_directed_),\n\
+    \                    is_functional(is_functional_) {}\n\n    UnWeightedGraph(int\
     \ n_, int m_, bool is_one_indexed_ = true,\n                    bool is_directed_\
-    \ = false) :\n                    n(n_), m(m_), vector<Edges<bool>>(n_),\n   \
-    \                 is_one_indexed(is_one_indexed_),\n                    is_directed(is_directed_)\
-    \ {\n        input();\n    }\n    UnWeightedGraph(int n_, vector<Edges<bool>>\
+    \ = false,\n                    bool is_functional_ = false) :\n             \
+    \       n(n_), m(m_), vector<Edges<bool>>(n_),\n                    is_one_indexed(is_one_indexed_),\n\
+    \                    is_directed(is_directed_),\n                    is_functional(is_functional_)\
+    \ {\n        input();\n    }\n\n    UnWeightedGraph(int n_, vector<Edges<bool>>\
     \ g_,\n                    bool is_one_indexed_ = true,\n                    bool\
-    \ is_directed_ = false) :\n                    n(n_), m(0), vector<Edges<bool>>(n_),\n\
-    \                    is_one_indexed(is_one_indexed_),\n                    is_directed(is_directed_)\
-    \ {\n        for (int i = 0; i < n; i++) {\n            for (auto &e : g_[i])\
-    \ {\n                _add_edge(i, e.to, m++);\n            }\n        }\n    }\n\
-    \n    void one_indexed() { is_one_indexed = true; }\n    void zero_indexed() {\
-    \ is_one_indexed = false; }\n    void directed() { is_directed = true; }\n   \
-    \ void undirected() { is_directed = false; }\n\n    void input() {\n        for\
-    \ (int i = 0; i < m; i++) {\n            int u, v;\n            cin >> u >> v;\n\
-    \            if (is_one_indexed) { u--; v--; }\n            _add_edge(u, v, i);\n\
-    \        }\n    }\n\n    void add_edge(int from, int to) {\n        if (is_one_indexed)\
+    \ is_directed_ = false,\n                    bool is_functional_ = false) :\n\
+    \                    n(n_), m(0), vector<Edges<bool>>(n_),\n                 \
+    \   is_one_indexed(is_one_indexed_),\n                    is_directed(is_directed_),\n\
+    \                    is_functional(is_functional_) {\n        for (int i = 0;\
+    \ i < n; i++) {\n            for (auto &e : g_[i]) {\n                _add_edge(i,\
+    \ e.to, m++);\n            }\n        }\n    }\n\n    void one_indexed() { is_one_indexed\
+    \ = true; }\n    void zero_indexed() { is_one_indexed = false; }\n    void directed()\
+    \ { is_directed = true; }\n    void undirected() { is_directed = false; }\n  \
+    \  void functional() { is_functional = true; }\n    void non_functional() { is_functional\
+    \ = false; }\n\n  private:\n    void input() {\n        if (is_functional) { functional_graph();\
+    \ return; }\n        for (int i = 0; i < m; i++) {\n            int u, v;\n  \
+    \          cin >> u >> v;\n            if (is_one_indexed) { u--; v--; }\n   \
+    \         _add_edge(u, v, i);\n        }\n    }\n\n    void functional_graph()\
+    \ {\n        assert(is_directed);\n        assert(n == m);\n        for (int i\
+    \ = 0; i < n; i++) {\n            int u;\n            cin >> u;\n            if\
+    \ (is_one_indexed) u--;\n            _add_edge(i, u, m++);\n        }\n    }\n\
+    \n  public:\n    void add_edge(int from, int to) {\n        if (is_one_indexed)\
     \ { from--; to--; }\n        _add_edge(from, to, m++);\n    }\n\n  private:\n\
     \    void _add_edge(int from, int to, int id) {\n        (*this)[from].emplace_back(to,\
     \ 0, from, id);\n        if (!is_directed) (*this)[to].emplace_back(from, 0, to,\
@@ -114,7 +138,7 @@ data:
   isVerificationFile: false
   path: graph/graph_template.hpp
   requiredBy: []
-  timestamp: '2024-06-08 16:29:54+09:00'
+  timestamp: '2024-06-09 01:28:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/graph_template.hpp
