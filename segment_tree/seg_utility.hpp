@@ -9,7 +9,7 @@ template <class S>
 struct Sum {
     S a, size;
     Sum() = default;
-    Sum(S a, S size) : a(a), size(size) {}
+    Sum(S a, S size = 1) : a(a), size(size) {}
     operator S() const { return a; }
     friend ostream& operator<<(ostream& os, const Sum& aff) {
         os << aff.a;
@@ -24,7 +24,7 @@ Sum<S> gen_sum(S a) {
 
 template <class S>
 Sum<S> gen_sum() {
-    return Sum<S>(0, 0);
+    return Sum<S>(0, 1);
 }
 
 template <class S>
@@ -112,6 +112,9 @@ template <class S>
 S Zero() { return S(); }
 
 template <class S>
+Sum<S> ZeroSm() { return Sum<S>(0, 1); }
+
+template <class S>
 Affine<S> Id() { return Affine<S>(1, 0); }
 
 template <class S, S MINF>
@@ -139,15 +142,15 @@ using AffineMin = LazySegTree<S, Mn<S>, Const<S, INF>,
     Affine<S>, Aff<S>, AffCompositon<S>, Id<S>>;
 
 template <class S>
-using AddSum = LazySegTree<Sum<S>, Sm<S>, Zero<Sum<S>>,
+using AddSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,
     S, AddSm<S>, Add<S>, Zero<S>>;
 
 template <class S, S ID>
-using UpdateSum = LazySegTree<Sum<S>, Sm<S>, Zero<Sum<S>>,
+using UpdateSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,
     S, UpdateSm<S, ID>, Update<S, ID>, Const<S, ID>>;
 
 template <class S>
-using AffineSum = LazySegTree<Sum<S>, Sm<S>, Zero<Sum<S>>,
+using AffineSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,
     Affine<S>, AffSm<S>, AffCompositon<S>, Id<S>>;
 
 } // namespace seg_utility
