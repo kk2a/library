@@ -13,6 +13,7 @@ struct LowLink {
         init();
     }
 
+  private:
     void init() {
         int k = 0;
         auto dfs = [&](auto self, int u, int ei = -1) -> int {
@@ -34,9 +35,6 @@ struct LowLink {
             dfs(dfs, u);
             root[u] = true;
         }
-        // for (int i = 0; i < n; i++) {
-        //     cout << i << " " << ord[i] << " " << low[i] << " "  << par[i] << endl;
-        // }
     }
 };
 

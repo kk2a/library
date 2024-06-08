@@ -81,9 +81,7 @@ struct UnWeightedGraph : vector<Edges<bool>> {
     int n, m;
     bool is_one_indexed, is_directed;
     Edges<bool> edges;
-    UnWeightedGraph(int n_ = 0) : n(n_) {
-        this->resize(n);
-    }
+    UnWeightedGraph(int n_ = 0) : n(n_), vector<Edges<bool>>(n_) {}
     UnWeightedGraph(int n_, int m_, bool is_one_indexed_ = true,
                     bool is_directed_ = false) :
                     n(n_), m(m_), vector<Edges<bool>>(n_),
@@ -103,7 +101,6 @@ struct UnWeightedGraph : vector<Edges<bool>> {
             }
         }
     }
-
 
     void one_indexed() { is_one_indexed = true; }
     void zero_indexed() { is_one_indexed = false; }
