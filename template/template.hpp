@@ -71,4 +71,17 @@ inline bool chmin(T &a, const S &b) {
 # define se second
 # define all(p) begin(p), end(p)
 
+void YES(bool b = 1) { cout << (b ? "YES" : "NO") << '\n'; }
+void NO(bool b = 1) { cout << (b ? "NO" : "YES") << '\n'; }
+void YESflush(bool b = 1) { cout << (b ? "YES" : "NO") << endl; }
+void NOflush(bool b = 1) { cout << (b ? "NO" : "YES") << endl; }
+void Yes(bool b = 1) { cout << (b ? "Yes" : "No") << '\n'; }
+void No(bool b = 1) { cout << (b ? "No" : "Yes") << '\n'; }
+void Yesflush(bool b = 1) { cout << (b ? "Yes" : "No") << endl; }
+void Noflush(bool b = 1) { cout << (b ? "No" : "Yes") << endl; }
+void yes(bool b = 1) { cout << (b ? "yes" : "no") << '\n'; }
+void no(bool b = 1) { cout << (b ? "no" : "yes") << '\n'; }
+void yesflush(bool b = 1) { cout << (b ? "yes" : "no") << endl; }
+void noflush(bool b = 1) { cout << (b ? "no" : "yes") << endl; }
+
 #endif // TEMPLATE
