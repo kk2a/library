@@ -61,42 +61,53 @@ data:
     \ define overload3(a, b, c, d, ...) d\n# define rep(...) overload3(__VA_ARGS__,\
     \ rep3, rep2, rep1)(__VA_ARGS__)\n# define repi(...) overload3(__VA_ARGS__, repi3,\
     \ repi2, rep1)(__VA_ARGS__)\n\n# define pb push_back\n# define eb emplace_back\n\
-    # define fi first\n# define se second\n# define all(p) begin(p), end(p)\n\n\n\
-    #line 1 \"modint/mont.hpp\"\n\n\n\ntemplate <int p>\nstruct LazyMontgomeryModInt\
-    \ {\n    using mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using\
-    \ i64 = int64_t;\n    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n   \
-    \ static constexpr u32 get_r() {\n        u32 ret = p;\n        for (int i = 0;\
-    \ i < 4; ++i) ret *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr\
-    \ u32 r = get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r\
-    \ * p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
-    \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
-    \    \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n    constexpr\
-    \ LazyMontgomeryModInt(const i64& b)\n         : _v(reduce(u64(b % p + p) * n2))\
-    \ {}\n\n    static constexpr u32 reduce(const u64& b) {\n        return (b + u64(u32(b)\
-    \ * u32(-r)) * p) >> 32;\n    }\n    constexpr mint& operator+=(const mint& b)\
-    \ {\n        if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n\
-    \    }\n    constexpr mint& operator-=(const mint& b) {\n        if (i32(_v -=\
-    \ b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n    constexpr mint& operator*=(const\
-    \ mint& b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n  \
-    \  }\n    constexpr mint& operator/=(const mint& b) {\n        *this *= b.inv();\n\
-    \        return *this;\n    }\n\n    constexpr mint operator+(const mint& b) const\
-    \ { return mint(*this) += b; }\n    constexpr mint operator-(const mint& b) const\
-    \ { return mint(*this) -= b; }\n    constexpr mint operator-() const { return\
-    \ mint() - mint(*this); }\n    constexpr mint operator*(const mint& b) const {\
-    \ return mint(*this) *= b; }\n    constexpr mint operator/(const mint& b) const\
-    \ { return mint(*this) /= b; }\n    constexpr bool operator==(const mint &b) const\
-    \ {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);\n\
-    \    }\n    constexpr bool operator!=(const mint &b) const {\n        return (_v\
-    \ >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n    }\n\n    template\
-    \ <class T>\n    constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
-    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
-    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n    constexpr\
-    \ mint inv() const { return pow(p - 2); }\n\n    friend ostream& operator<<(ostream&\
-    \ os, const mint& x) {\n        return os << x.val();\n    }\n    friend istream&\
-    \ operator>>(istream& is, mint& x) {\n        i64 t; is >> t; x = mint(t);\n \
-    \       return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
-    \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n    static constexpr\
-    \ u32 getmod() { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
+    # define fi first\n# define se second\n# define all(p) begin(p), end(p)\n\nvoid\
+    \ YES(bool b = 1) { cout << (b ? \"YES\" : \"NO\") << '\\n'; }\nvoid NO(bool b\
+    \ = 1) { cout << (b ? \"NO\" : \"YES\") << '\\n'; }\nvoid YESflush(bool b = 1)\
+    \ { cout << (b ? \"YES\" : \"NO\") << endl; }\nvoid NOflush(bool b = 1) { cout\
+    \ << (b ? \"NO\" : \"YES\") << endl; }\nvoid Yes(bool b = 1) { cout << (b ? \"\
+    Yes\" : \"No\") << '\\n'; }\nvoid No(bool b = 1) { cout << (b ? \"No\" : \"Yes\"\
+    ) << '\\n'; }\nvoid Yesflush(bool b = 1) { cout << (b ? \"Yes\" : \"No\") << endl;\
+    \ }\nvoid Noflush(bool b = 1) { cout << (b ? \"No\" : \"Yes\") << endl; }\nvoid\
+    \ yes(bool b = 1) { cout << (b ? \"yes\" : \"no\") << '\\n'; }\nvoid no(bool b\
+    \ = 1) { cout << (b ? \"no\" : \"yes\") << '\\n'; }\nvoid yesflush(bool b = 1)\
+    \ { cout << (b ? \"yes\" : \"no\") << endl; }\nvoid noflush(bool b = 1) { cout\
+    \ << (b ? \"no\" : \"yes\") << endl; }\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n\
+    template <int p>\nstruct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
+    \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
+    \    using u64 = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32\
+    \ ret = p;\n        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n        return\
+    \ ret;\n    }\n\n    static constexpr u32 r = get_r();\n    static constexpr u32\
+    \ n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\");\n\
+    \    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
+    \ & 1) == 1, \"invalid, p % 2 == 0\");\n    \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
+    \ : _v(0) {}\n    constexpr LazyMontgomeryModInt(const i64& b)\n         : _v(reduce(u64(b\
+    \ % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const u64& b) {\n    \
+    \    return (b + u64(u32(b) * u32(-r)) * p) >> 32;\n    }\n    constexpr mint&\
+    \ operator+=(const mint& b) {\n        if (i32(_v += b._v - 2 * p) < 0) _v +=\
+    \ 2 * p;\n        return *this;\n    }\n    constexpr mint& operator-=(const mint&\
+    \ b) {\n        if (i32(_v -= b._v) < 0) _v += 2 * p;\n        return *this;\n\
+    \    }\n    constexpr mint& operator*=(const mint& b) {\n        _v = reduce(u64(_v)\
+    \ * b._v);\n        return *this;\n    }\n    constexpr mint& operator/=(const\
+    \ mint& b) {\n        *this *= b.inv();\n        return *this;\n    }\n\n    constexpr\
+    \ mint operator+(const mint& b) const { return mint(*this) += b; }\n    constexpr\
+    \ mint operator-(const mint& b) const { return mint(*this) -= b; }\n    constexpr\
+    \ mint operator-() const { return mint() - mint(*this); }\n    constexpr mint\
+    \ operator*(const mint& b) const { return mint(*this) *= b; }\n    constexpr mint\
+    \ operator/(const mint& b) const { return mint(*this) /= b; }\n    constexpr bool\
+    \ operator==(const mint &b) const {\n        return (_v >= p ? _v - p : _v) ==\
+    \ (b._v >= p ? b._v - p : b._v);\n    }\n    constexpr bool operator!=(const mint\
+    \ &b) const {\n        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p\
+    \ : b._v);\n    }\n\n    template <class T>\n    constexpr mint pow(T n) const\
+    \ {\n        mint ret(1), mul(*this);\n        while (n > 0) {\n            if\
+    \ (n & 1) ret *= mul;\n            mul *= mul;\n            n >>= 1;\n       \
+    \ }\n        return ret;\n    }\n    constexpr mint inv() const { return pow(p\
+    \ - 2); }\n\n    friend ostream& operator<<(ostream& os, const mint& x) {\n  \
+    \      return os << x.val();\n    }\n    friend istream& operator>>(istream& is,\
+    \ mint& x) {\n        i64 t; is >> t; x = mint(t);\n        return (is);\n   \
+    \ }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n      \
+    \  return ret >= p ? ret - p : ret;\n    }\n    static constexpr u32 getmod()\
+    \ { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
     \n\n#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/convolution.hpp\"\
     \n\n\n\n#line 1 \"convolution/butterfly.hpp\"\n\n\n\n#line 1 \"mod/primitive_rt_expr.hpp\"\
     \n\n\n\n#line 1 \"mod/pow_expr.hpp\"\n\n\n\nconstexpr long long pow_mod_constexpr(long\
@@ -418,7 +429,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_exp.test.cpp
   requiredBy: []
-  timestamp: '2024-06-01 14:09:27+09:00'
+  timestamp: '2024-06-13 16:57:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_exp.test.cpp

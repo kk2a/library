@@ -218,6 +218,9 @@ data:
   - name: segment_tree
     pages:
     - icon: ':warning:'
+      path: segment_tree/dynamic_seg.hpp
+      title: segment_tree/dynamic_seg.hpp
+    - icon: ':warning:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
     - icon: ':warning:'

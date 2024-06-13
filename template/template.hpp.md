@@ -45,7 +45,18 @@ data:
     \ d\n# define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
     # define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
     # define pb push_back\n# define eb emplace_back\n# define fi first\n# define se\
-    \ second\n# define all(p) begin(p), end(p)\n\n\n"
+    \ second\n# define all(p) begin(p), end(p)\n\nvoid YES(bool b = 1) { cout << (b\
+    \ ? \"YES\" : \"NO\") << '\\n'; }\nvoid NO(bool b = 1) { cout << (b ? \"NO\" :\
+    \ \"YES\") << '\\n'; }\nvoid YESflush(bool b = 1) { cout << (b ? \"YES\" : \"\
+    NO\") << endl; }\nvoid NOflush(bool b = 1) { cout << (b ? \"NO\" : \"YES\") <<\
+    \ endl; }\nvoid Yes(bool b = 1) { cout << (b ? \"Yes\" : \"No\") << '\\n'; }\n\
+    void No(bool b = 1) { cout << (b ? \"No\" : \"Yes\") << '\\n'; }\nvoid Yesflush(bool\
+    \ b = 1) { cout << (b ? \"Yes\" : \"No\") << endl; }\nvoid Noflush(bool b = 1)\
+    \ { cout << (b ? \"No\" : \"Yes\") << endl; }\nvoid yes(bool b = 1) { cout <<\
+    \ (b ? \"yes\" : \"no\") << '\\n'; }\nvoid no(bool b = 1) { cout << (b ? \"no\"\
+    \ : \"yes\") << '\\n'; }\nvoid yesflush(bool b = 1) { cout << (b ? \"yes\" : \"\
+    no\") << endl; }\nvoid noflush(bool b = 1) { cout << (b ? \"no\" : \"yes\") <<\
+    \ endl; }\n\n\n"
   code: "#ifndef TEMPLATE\n#define TEMPLATE 1\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
     \ long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\nusing\
@@ -70,13 +81,23 @@ data:
     \ (a) - 1; i >= (b); i--)\n# define overload3(a, b, c, d, ...) d\n# define rep(...)\
     \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n# define repi(...) overload3(__VA_ARGS__,\
     \ repi3, repi2, rep1)(__VA_ARGS__)\n\n# define pb push_back\n# define eb emplace_back\n\
-    # define fi first\n# define se second\n# define all(p) begin(p), end(p)\n\n#endif\
-    \ // TEMPLATE\n"
+    # define fi first\n# define se second\n# define all(p) begin(p), end(p)\n\nvoid\
+    \ YES(bool b = 1) { cout << (b ? \"YES\" : \"NO\") << '\\n'; }\nvoid NO(bool b\
+    \ = 1) { cout << (b ? \"NO\" : \"YES\") << '\\n'; }\nvoid YESflush(bool b = 1)\
+    \ { cout << (b ? \"YES\" : \"NO\") << endl; }\nvoid NOflush(bool b = 1) { cout\
+    \ << (b ? \"NO\" : \"YES\") << endl; }\nvoid Yes(bool b = 1) { cout << (b ? \"\
+    Yes\" : \"No\") << '\\n'; }\nvoid No(bool b = 1) { cout << (b ? \"No\" : \"Yes\"\
+    ) << '\\n'; }\nvoid Yesflush(bool b = 1) { cout << (b ? \"Yes\" : \"No\") << endl;\
+    \ }\nvoid Noflush(bool b = 1) { cout << (b ? \"No\" : \"Yes\") << endl; }\nvoid\
+    \ yes(bool b = 1) { cout << (b ? \"yes\" : \"no\") << '\\n'; }\nvoid no(bool b\
+    \ = 1) { cout << (b ? \"no\" : \"yes\") << '\\n'; }\nvoid yesflush(bool b = 1)\
+    \ { cout << (b ? \"yes\" : \"no\") << endl; }\nvoid noflush(bool b = 1) { cout\
+    \ << (b ? \"no\" : \"yes\") << endl; }\n\n#endif // TEMPLATE\n"
   dependsOn: []
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-06-01 14:09:27+09:00'
+  timestamp: '2024-06-13 16:57:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp
