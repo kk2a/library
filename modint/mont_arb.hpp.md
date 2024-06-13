@@ -6,8 +6,8 @@ data:
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
   - icon: ':warning:'
-    path: mod/mod_sqrt.hpp
-    title: mod/mod_sqrt.hpp
+    path: math_mod/mod_sqrt.hpp
+    title: math_mod/mod_sqrt.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -105,7 +105,7 @@ data:
   path: modint/mont_arb.hpp
   requiredBy:
   - fps/fps_sqrt.hpp
-  - mod/mod_sqrt.hpp
+  - math_mod/mod_sqrt.hpp
   timestamp: '2024-05-04 17:40:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

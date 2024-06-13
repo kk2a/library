@@ -17,24 +17,24 @@ data:
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':warning:'
-    path: mod/garner.hpp
-    title: mod/garner.hpp
+    path: math_mod/garner.hpp
+    title: math_mod/garner.hpp
   - icon: ':warning:'
-    path: mod/inv.hpp
-    title: mod/inv.hpp
+    path: math_mod/inv.hpp
+    title: math_mod/inv.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/pow_expr.hpp
-    title: mod/pow_expr.hpp
+    path: math_mod/pow_expr.hpp
+    title: math_mod/pow_expr.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/primitive_rt_expr.hpp
-    title: mod/primitive_rt_expr.hpp
+    path: math_mod/primitive_rt_expr.hpp
+    title: math_mod/primitive_rt_expr.hpp
   - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: mod/comb_large_arb.hpp
-    title: mod/comb_large_arb.hpp
+    path: math_mod/comb_large_arb.hpp
+    title: math_mod/comb_large_arb.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -224,12 +224,12 @@ data:
     \  return ret >= p ? ret - p : ret;\n    }\n    static constexpr u32 getmod()\
     \ { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
     \n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
-    \n\n\n\n#line 1 \"mod/primitive_rt_expr.hpp\"\n\n\n\n#line 1 \"mod/pow_expr.hpp\"\
+    \n\n\n\n#line 1 \"math_mod/primitive_rt_expr.hpp\"\n\n\n\n#line 1 \"math_mod/pow_expr.hpp\"\
     \n\n\n\nconstexpr long long pow_mod_constexpr(long long x, long long n, long long\
     \ m) {\n    if (m == 1) return 0;\n    unsigned long long _m = (unsigned long\
     \ long)(m);\n    unsigned long long r = 1;\n    unsigned long long y = (x % m\
     \ + m) % m;\n    while (n) {\n        if (n & 1) r = (r * y) % _m;\n        y\
-    \ = (y * y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n\n#line 5 \"mod/primitive_rt_expr.hpp\"\
+    \ = (y * y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n\n#line 5 \"math_mod/primitive_rt_expr.hpp\"\
     \n\nconstexpr int primitive_root_constexpr(int m) {\n    if (m == 2) return 1;\n\
     \    if (m == 167772161) return 3;\n    if (m == 469762049) return 3;\n    if\
     \ (m == 754974721) return 11;\n    if (m == 998244353) return 3;\n    if (m ==\
@@ -333,12 +333,12 @@ data:
     \ < n + m - 1) z <<= 1;\n    a.resize(z);\n    butterfly(a);\n    b.resize(z);\n\
     \    butterfly(b);\n    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv(a);\n\
     \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
-    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n\n#line 1 \"mod/garner.hpp\"\
-    \n\n\n\n#line 1 \"mod/inv.hpp\"\n\n\n\ntemplate <class T, class U>\nconstexpr\
+    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n\n#line 1 \"math_mod/garner.hpp\"\
+    \n\n\n\n#line 1 \"math_mod/inv.hpp\"\n\n\n\ntemplate <class T, class U>\nconstexpr\
     \ long long mod_inversion(T a, U modulo) {\n    long long s = modulo, t = a;\n\
     \    long long m0 = 0, m1 = 1;\n    while (t) {\n        long long u = s / t;\n\
     \        swap(s -= t * u, t);\n        swap(m0 -= m1 * u, m1);\n    }\n    if\
-    \ (m0 < 0) m0 += modulo / s;\n    return m0;\n}\n\n\n#line 5 \"mod/garner.hpp\"\
+    \ (m0 < 0) m0 += modulo / s;\n    return m0;\n}\n\n\n#line 5 \"math_mod/garner.hpp\"\
     \n\nlong long garner(const vector<long long>& d, const vector<long long>& p) {\n\
     \    static int nm = d.size();\n    vector<long long> kp(nm + 1, 0), rmult(nm\
     \ + 1, 1);\n    for (int ii = 0; ii < nm; ii++) {\n        long long x = (d[ii]\
@@ -405,16 +405,16 @@ data:
   - modint/mont.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
-  - mod/primitive_rt_expr.hpp
-  - mod/pow_expr.hpp
+  - math_mod/primitive_rt_expr.hpp
+  - math_mod/pow_expr.hpp
   - fps/fps.hpp
-  - mod/garner.hpp
-  - mod/inv.hpp
+  - math_mod/garner.hpp
+  - math_mod/inv.hpp
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy:
-  - mod/comb_large_arb.hpp
-  timestamp: '2024-05-25 01:00:13+09:00'
+  - math_mod/comb_large_arb.hpp
+  timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_arb.hpp

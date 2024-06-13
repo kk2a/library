@@ -6,20 +6,20 @@ data:
     path: fps/taylor_shift.hpp
     title: fps/taylor_shift.hpp
   - icon: ':warning:'
-    path: mod/comb_large.hpp
-    title: mod/comb_large.hpp
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
   - icon: ':warning:'
-    path: mod/comb_large_arb.hpp
-    title: mod/comb_large_arb.hpp
+    path: math_mod/comb_large_arb.hpp
+    title: math_mod/comb_large_arb.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/comb.hpp\"\n\n\n\ntemplate <class mint>\nstruct Comb\
-    \ {\n    static inline vector<mint> _fact{1}, _ifact{1}, _inv{1};\n\n    Comb()\
-    \ = delete;\n\n    static void extend(int m = -1) {\n        int n = (int)_fact.size();\n\
+  bundledCode: "#line 1 \"math_mod/comb.hpp\"\n\n\n\ntemplate <class mint>\nstruct\
+    \ Comb {\n    static inline vector<mint> _fact{1}, _ifact{1}, _inv{1};\n\n   \
+    \ Comb() = delete;\n\n    static void extend(int m = -1) {\n        int n = (int)_fact.size();\n\
     \        if (m == -1) m = n << 1;\n        if (n > m) return;\n        m = min<int>(m,\
     \ mint::getmod() - 1);\n        _fact.resize(m + 1);\n        _ifact.resize(m\
     \ + 1);\n        _inv.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact[i]\
@@ -75,18 +75,18 @@ data:
     \ k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n#endif // MOD_COMB_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: mod/comb.hpp
+  path: math_mod/comb.hpp
   requiredBy:
   - fps/taylor_shift.hpp
-  - mod/comb_large.hpp
-  - mod/comb_large_arb.hpp
-  timestamp: '2024-05-25 01:00:22+09:00'
+  - math_mod/comb_large.hpp
+  - math_mod/comb_large_arb.hpp
+  timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: mod/comb.hpp
+documentation_of: math_mod/comb.hpp
 layout: document
 redirect_from:
-- /library/mod/comb.hpp
-- /library/mod/comb.hpp.html
-title: mod/comb.hpp
+- /library/math_mod/comb.hpp
+- /library/math_mod/comb.hpp.html
+title: math_mod/comb.hpp
 ---

@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: mod/mod_sqrt.hpp
-    title: mod/mod_sqrt.hpp
+    path: math_mod/mod_sqrt.hpp
+    title: math_mod/mod_sqrt.hpp
   - icon: ':warning:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
@@ -14,8 +14,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"fps/fps_sqrt.hpp\"\n\n\n\n#line 1 \"mod/mod_sqrt.hpp\"\n\
-    \n\n\n#line 1 \"modint/mont_arb.hpp\"\n\n\n\ntemplate <typename Int, typename\
+  bundledCode: "#line 1 \"fps/fps_sqrt.hpp\"\n\n\n\n#line 1 \"math_mod/mod_sqrt.hpp\"\
+    \n\n\n\n#line 1 \"modint/mont_arb.hpp\"\n\n\n\ntemplate <typename Int, typename\
     \ UInt, typename Long, typename ULong, int id>\nstruct ArbitraryLazyMontgomeryModIntBase\
     \ {\n    using mint = ArbitraryLazyMontgomeryModIntBase;\n\n    inline static\
     \ UInt mod;\n    inline static UInt r;\n    inline static UInt n2;\n    static\
@@ -58,9 +58,9 @@ data:
     \ long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit =\n\
     \    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long,\n      \
     \                                __int128_t, __uint128_t, id>;\n\n\n#line 5 \"\
-    mod/mod_sqrt.hpp\"\n\ntemplate <class T, class U> \nlong long mod_sqrt(const T&\
-    \ a, const U &p) {\n    assert(0 <= a && a < p);\n    if (a < 2) return a;\n \
-    \   using Mint = ArbitraryLazyMontgomeryModInt<54105064>;\n    Mint::setmod(p);\n\
+    math_mod/mod_sqrt.hpp\"\n\ntemplate <class T, class U> \nlong long mod_sqrt(const\
+    \ T& a, const U &p) {\n    assert(0 <= a && a < p);\n    if (a < 2) return a;\n\
+    \    using Mint = ArbitraryLazyMontgomeryModInt<54105064>;\n    Mint::setmod(p);\n\
     \    if (Mint(a).pow((p - 1) >> 1) != 1) return -1;\n    Mint b = 1;\n    while\
     \ (b.pow((p - 1) >> 1) == 1) b += 1;\n    long long m = p - 1, e = 0;\n    while\
     \ (m % 2 == 0) m >>= 1, e++;\n    Mint x = Mint(a).pow((m - 1) >> 1);\n    Mint\
@@ -95,7 +95,7 @@ data:
     \        }\n        return FPS(deg, mint(0));\n    }\n    long long sqr = mod_sqrt(f[0].val(),\
     \ mint::getmod());\n    if (sqr == -1) return {};\n    return f.sparse_pow(((mint::getmod()\
     \ + 1) >> 1), deg) * mint(sqr).inv();\n}\n\n\n"
-  code: "#ifndef FPS_SQRT_HPP\n#define FPS_SQRT_HPP 1\n\n#include \"../mod/mod_sqrt.hpp\"\
+  code: "#ifndef FPS_SQRT_HPP\n#define FPS_SQRT_HPP 1\n\n#include \"../math_mod/mod_sqrt.hpp\"\
     \n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS sqrt(FPS\
     \ f, int deg = -1) {\n    // using mint = typename FPS::value_type;\n    if (deg\
     \ == -1) deg = (int)f.size();\n    if ((int)f.size() == 0) return FPS(deg, mint(0));\n\
@@ -123,12 +123,12 @@ data:
     \ mint::getmod());\n    if (sqr == -1) return {};\n    return f.sparse_pow(((mint::getmod()\
     \ + 1) >> 1), deg) * mint(sqr).inv();\n}\n\n#endif // FPS_SQRT_HPP\n"
   dependsOn:
-  - mod/mod_sqrt.hpp
+  - math_mod/mod_sqrt.hpp
   - modint/mont_arb.hpp
   isVerificationFile: false
   path: fps/fps_sqrt.hpp
   requiredBy: []
-  timestamp: '2024-05-23 16:23:31+09:00'
+  timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_sqrt.hpp

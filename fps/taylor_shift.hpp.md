@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: mod/comb.hpp
-    title: mod/comb.hpp
+    path: math_mod/comb.hpp
+    title: math_mod/comb.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -11,8 +11,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"fps/taylor_shift.hpp\"\n\n\n\n#line 1 \"mod/comb.hpp\"\n\
-    \n\n\ntemplate <class mint>\nstruct Comb {\n    static inline vector<mint> _fact{1},\
+  bundledCode: "#line 1 \"fps/taylor_shift.hpp\"\n\n\n\n#line 1 \"math_mod/comb.hpp\"\
+    \n\n\n\ntemplate <class mint>\nstruct Comb {\n    static inline vector<mint> _fact{1},\
     \ _ifact{1}, _inv{1};\n\n    Comb() = delete;\n\n    static void extend(int m\
     \ = -1) {\n        int n = (int)_fact.size();\n        if (m == -1) m = n << 1;\n\
     \        if (n > m) return;\n        m = min<int>(m, mint::getmod() - 1);\n  \
@@ -47,18 +47,18 @@ data:
     \    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::ifact(i);\n    return f;\n\
     }\n\n\n"
   code: "#ifndef FPS_TAYLOR_SHIFT_HPP\n#define FPS_TAYLOR_SHIFT_HPP 1\n\n#include\
-    \ \"../mod/comb.hpp\"\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+    \ \"../math_mod/comb.hpp\"\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
     FPS TaylorShift(FPS f, mint a) {\n    int n = f.size();\n    for (int i = 0; i\
     \ < n; i++) f[i] *= Comb<mint>::fact(i);\n    reverse(begin(f), end(f));\n   \
     \ FPS g(n, mint(1));\n    for (int i = 1; i < n; i++) g[i] = g[i - 1] * a * Comb<mint>::inv(i);\n\
     \    f = (f * g).pre(n).rev();\n    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::ifact(i);\n\
     \    return f;\n}\n\n#endif // FPS_TAYLOR_SHIFT_HPP\n"
   dependsOn:
-  - mod/comb.hpp
+  - math_mod/comb.hpp
   isVerificationFile: false
   path: fps/taylor_shift.hpp
   requiredBy: []
-  timestamp: '2024-05-25 01:00:22+09:00'
+  timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/taylor_shift.hpp

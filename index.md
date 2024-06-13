@@ -170,6 +170,32 @@ data:
     - icon: ':warning:'
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
+  - name: math_mod
+    pages:
+    - icon: ':warning:'
+      path: math_mod/comb.hpp
+      title: math_mod/comb.hpp
+    - icon: ':warning:'
+      path: math_mod/comb_large.hpp
+      title: math_mod/comb_large.hpp
+    - icon: ':warning:'
+      path: math_mod/comb_large_arb.hpp
+      title: math_mod/comb_large_arb.hpp
+    - icon: ':warning:'
+      path: math_mod/garner.hpp
+      title: math_mod/garner.hpp
+    - icon: ':warning:'
+      path: math_mod/inv.hpp
+      title: math_mod/inv.hpp
+    - icon: ':warning:'
+      path: math_mod/mod_sqrt.hpp
+      title: math_mod/mod_sqrt.hpp
+    - icon: ':heavy_check_mark:'
+      path: math_mod/pow_expr.hpp
+      title: math_mod/pow_expr.hpp
+    - icon: ':heavy_check_mark:'
+      path: math_mod/primitive_rt_expr.hpp
+      title: math_mod/primitive_rt_expr.hpp
   - name: matrix
     pages:
     - icon: ':warning:'
@@ -178,32 +204,6 @@ data:
     - icon: ':warning:'
       path: matrix/matrix_field.hpp
       title: matrix/matrix_field.hpp
-  - name: mod
-    pages:
-    - icon: ':warning:'
-      path: mod/comb.hpp
-      title: mod/comb.hpp
-    - icon: ':warning:'
-      path: mod/comb_large.hpp
-      title: mod/comb_large.hpp
-    - icon: ':warning:'
-      path: mod/comb_large_arb.hpp
-      title: mod/comb_large_arb.hpp
-    - icon: ':warning:'
-      path: mod/garner.hpp
-      title: mod/garner.hpp
-    - icon: ':warning:'
-      path: mod/inv.hpp
-      title: mod/inv.hpp
-    - icon: ':warning:'
-      path: mod/mod_sqrt.hpp
-      title: mod/mod_sqrt.hpp
-    - icon: ':heavy_check_mark:'
-      path: mod/pow_expr.hpp
-      title: mod/pow_expr.hpp
-    - icon: ':heavy_check_mark:'
-      path: mod/primitive_rt_expr.hpp
-      title: mod/primitive_rt_expr.hpp
   - name: modint
     pages:
     - icon: ':warning:'

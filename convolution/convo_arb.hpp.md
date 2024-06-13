@@ -11,17 +11,17 @@ data:
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':warning:'
-    path: mod/garner.hpp
-    title: mod/garner.hpp
+    path: math_mod/garner.hpp
+    title: math_mod/garner.hpp
   - icon: ':warning:'
-    path: mod/inv.hpp
-    title: mod/inv.hpp
+    path: math_mod/inv.hpp
+    title: math_mod/inv.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/pow_expr.hpp
-    title: mod/pow_expr.hpp
+    path: math_mod/pow_expr.hpp
+    title: math_mod/pow_expr.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/primitive_rt_expr.hpp
-    title: mod/primitive_rt_expr.hpp
+    path: math_mod/primitive_rt_expr.hpp
+    title: math_mod/primitive_rt_expr.hpp
   - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -30,8 +30,8 @@ data:
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
-    path: mod/comb_large_arb.hpp
-    title: mod/comb_large_arb.hpp
+    path: math_mod/comb_large_arb.hpp
+    title: math_mod/comb_large_arb.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -75,12 +75,12 @@ data:
     \  return ret >= p ? ret - p : ret;\n    }\n    static constexpr u32 getmod()\
     \ { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
     \n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
-    \n\n\n\n#line 1 \"mod/primitive_rt_expr.hpp\"\n\n\n\n#line 1 \"mod/pow_expr.hpp\"\
+    \n\n\n\n#line 1 \"math_mod/primitive_rt_expr.hpp\"\n\n\n\n#line 1 \"math_mod/pow_expr.hpp\"\
     \n\n\n\nconstexpr long long pow_mod_constexpr(long long x, long long n, long long\
     \ m) {\n    if (m == 1) return 0;\n    unsigned long long _m = (unsigned long\
     \ long)(m);\n    unsigned long long r = 1;\n    unsigned long long y = (x % m\
     \ + m) % m;\n    while (n) {\n        if (n & 1) r = (r * y) % _m;\n        y\
-    \ = (y * y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n\n#line 5 \"mod/primitive_rt_expr.hpp\"\
+    \ = (y * y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n\n#line 5 \"math_mod/primitive_rt_expr.hpp\"\
     \n\nconstexpr int primitive_root_constexpr(int m) {\n    if (m == 2) return 1;\n\
     \    if (m == 167772161) return 3;\n    if (m == 469762049) return 3;\n    if\
     \ (m == 754974721) return 11;\n    if (m == 998244353) return 3;\n    if (m ==\
@@ -330,29 +330,29 @@ data:
     \ FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this) *= r; }\n\
     \    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
     \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n\n\
-    #line 1 \"mod/garner.hpp\"\n\n\n\n#line 1 \"mod/inv.hpp\"\n\n\n\ntemplate <class\
-    \ T, class U>\nconstexpr long long mod_inversion(T a, U modulo) {\n    long long\
-    \ s = modulo, t = a;\n    long long m0 = 0, m1 = 1;\n    while (t) {\n       \
-    \ long long u = s / t;\n        swap(s -= t * u, t);\n        swap(m0 -= m1 *\
-    \ u, m1);\n    }\n    if (m0 < 0) m0 += modulo / s;\n    return m0;\n}\n\n\n#line\
-    \ 5 \"mod/garner.hpp\"\n\nlong long garner(const vector<long long>& d, const vector<long\
-    \ long>& p) {\n    static int nm = d.size();\n    vector<long long> kp(nm + 1,\
-    \ 0), rmult(nm + 1, 1);\n    for (int ii = 0; ii < nm; ii++) {\n        long long\
-    \ x = (d[ii] - kp[ii]) * mod_inversion(rmult[ii], p[ii]) % p[ii];\n        x =\
-    \ (x + p[ii]) % p[ii];\n        for (int iii = ii + 1; iii < nm + 1; iii++) {\n\
-    \            kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];\n            rmult[iii]\
-    \ = (rmult[iii] * p[ii]) % p[iii];\n        }\n    }\n    return kp[nm];\n}\n\n\
-    \n#line 8 \"convolution/convo_arb.hpp\"\n\ntemplate <class FPS, class mint = typename\
-    \ FPS::value_type>\nFPS convolution_arb(FPS& a, FPS b) {\n    int n = int(a.size()),\
-    \ m = int(b.size());\n    if (!n || !m) return {};\n    static constexpr long\
-    \ long MOD1 = 754974721;  // 2^24\n    static constexpr long long MOD2 = 167772161;\
-    \  // 2^25\n    static constexpr long long MOD3 = 469762049;  // 2^26\n    using\
-    \ mint1 = LazyMontgomeryModInt<MOD1>;\n    using mint2 = LazyMontgomeryModInt<MOD2>;\n\
-    \    using mint3 = LazyMontgomeryModInt<MOD3>;\n\n    vector<long long> a0(n),\
-    \ b0(m);\n    for (int i = 0; i < n; i++) a0[i] = a[i].val();\n    for (int i\
-    \ = 0; i < m; i++) b0[i] = b[i].val();\n    auto a1 = FormalPowerSeries<mint1>(begin(a0),\
-    \ end(a0));\n    auto b1 = FormalPowerSeries<mint1>(begin(b0), end(b0));\n   \
-    \ auto c1 = convolution<mint1>(a1, b1);\n    auto a2 = FormalPowerSeries<mint2>(begin(a0),\
+    #line 1 \"math_mod/garner.hpp\"\n\n\n\n#line 1 \"math_mod/inv.hpp\"\n\n\n\ntemplate\
+    \ <class T, class U>\nconstexpr long long mod_inversion(T a, U modulo) {\n   \
+    \ long long s = modulo, t = a;\n    long long m0 = 0, m1 = 1;\n    while (t) {\n\
+    \        long long u = s / t;\n        swap(s -= t * u, t);\n        swap(m0 -=\
+    \ m1 * u, m1);\n    }\n    if (m0 < 0) m0 += modulo / s;\n    return m0;\n}\n\n\
+    \n#line 5 \"math_mod/garner.hpp\"\n\nlong long garner(const vector<long long>&\
+    \ d, const vector<long long>& p) {\n    static int nm = d.size();\n    vector<long\
+    \ long> kp(nm + 1, 0), rmult(nm + 1, 1);\n    for (int ii = 0; ii < nm; ii++)\
+    \ {\n        long long x = (d[ii] - kp[ii]) * mod_inversion(rmult[ii], p[ii])\
+    \ % p[ii];\n        x = (x + p[ii]) % p[ii];\n        for (int iii = ii + 1; iii\
+    \ < nm + 1; iii++) {\n            kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];\n\
+    \            rmult[iii] = (rmult[iii] * p[ii]) % p[iii];\n        }\n    }\n \
+    \   return kp[nm];\n}\n\n\n#line 8 \"convolution/convo_arb.hpp\"\n\ntemplate <class\
+    \ FPS, class mint = typename FPS::value_type>\nFPS convolution_arb(FPS& a, FPS\
+    \ b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return\
+    \ {};\n    static constexpr long long MOD1 = 754974721;  // 2^24\n    static constexpr\
+    \ long long MOD2 = 167772161;  // 2^25\n    static constexpr long long MOD3 =\
+    \ 469762049;  // 2^26\n    using mint1 = LazyMontgomeryModInt<MOD1>;\n    using\
+    \ mint2 = LazyMontgomeryModInt<MOD2>;\n    using mint3 = LazyMontgomeryModInt<MOD3>;\n\
+    \n    vector<long long> a0(n), b0(m);\n    for (int i = 0; i < n; i++) a0[i] =\
+    \ a[i].val();\n    for (int i = 0; i < m; i++) b0[i] = b[i].val();\n    auto a1\
+    \ = FormalPowerSeries<mint1>(begin(a0), end(a0));\n    auto b1 = FormalPowerSeries<mint1>(begin(b0),\
+    \ end(b0));\n    auto c1 = convolution<mint1>(a1, b1);\n    auto a2 = FormalPowerSeries<mint2>(begin(a0),\
     \ end(a0));\n    auto b2 = FormalPowerSeries<mint2>(begin(b0), end(b0));\n   \
     \ auto c2 = convolution<mint2>(a2, b2);\n    auto a3 = FormalPowerSeries<mint3>(begin(a0),\
     \ end(a0));\n    auto b3 = FormalPowerSeries<mint3>(begin(b0), end(b0));\n   \
@@ -361,7 +361,7 @@ data:
     \ i = 0; i < n + m - 1; i++) {\n        res[i] = mint(garner({c1[i].val(), c2[i].val(),\
     \ c3[i].val()}, p));\n    }\n    a = res;\n    return res;\n}\n\n\n"
   code: "#ifndef CONVO_ARB_HPP\n#define CONVO_ARB_HPP 1\n\n#include \"../modint/mont.hpp\"\
-    \n#include \"convolution.hpp\"\n#include \"../fps/fps.hpp\"\n#include \"../mod/garner.hpp\"\
+    \n#include \"convolution.hpp\"\n#include \"../fps/fps.hpp\"\n#include \"../math_mod/garner.hpp\"\
     \n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution_arb(FPS&\
     \ a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m)\
     \ return {};\n    static constexpr long long MOD1 = 754974721;  // 2^24\n    static\
@@ -383,17 +383,17 @@ data:
   - modint/mont.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
-  - mod/primitive_rt_expr.hpp
-  - mod/pow_expr.hpp
+  - math_mod/primitive_rt_expr.hpp
+  - math_mod/pow_expr.hpp
   - fps/fps.hpp
-  - mod/garner.hpp
-  - mod/inv.hpp
+  - math_mod/garner.hpp
+  - math_mod/inv.hpp
   isVerificationFile: false
   path: convolution/convo_arb.hpp
   requiredBy:
   - fps/fps_arb.hpp
-  - mod/comb_large_arb.hpp
-  timestamp: '2024-05-25 01:00:13+09:00'
+  - math_mod/comb_large_arb.hpp
+  timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/convo_arb.hpp

@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/mod_sqrt.hpp\"\n\n\n\n#line 1 \"modint/mont_arb.hpp\"\
+  bundledCode: "#line 1 \"math_mod/mod_sqrt.hpp\"\n\n\n\n#line 1 \"modint/mont_arb.hpp\"\
     \n\n\n\ntemplate <typename Int, typename UInt, typename Long, typename ULong,\
     \ int id>\nstruct ArbitraryLazyMontgomeryModIntBase {\n    using mint = ArbitraryLazyMontgomeryModIntBase;\n\
     \n    inline static UInt mod;\n    inline static UInt r;\n    inline static UInt\
@@ -57,9 +57,9 @@ data:
     \ long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit =\n\
     \    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long,\n      \
     \                                __int128_t, __uint128_t, id>;\n\n\n#line 5 \"\
-    mod/mod_sqrt.hpp\"\n\ntemplate <class T, class U> \nlong long mod_sqrt(const T&\
-    \ a, const U &p) {\n    assert(0 <= a && a < p);\n    if (a < 2) return a;\n \
-    \   using Mint = ArbitraryLazyMontgomeryModInt<54105064>;\n    Mint::setmod(p);\n\
+    math_mod/mod_sqrt.hpp\"\n\ntemplate <class T, class U> \nlong long mod_sqrt(const\
+    \ T& a, const U &p) {\n    assert(0 <= a && a < p);\n    if (a < 2) return a;\n\
+    \    using Mint = ArbitraryLazyMontgomeryModInt<54105064>;\n    Mint::setmod(p);\n\
     \    if (Mint(a).pow((p - 1) >> 1) != 1) return -1;\n    Mint b = 1;\n    while\
     \ (b.pow((p - 1) >> 1) == 1) b += 1;\n    long long m = p - 1, e = 0;\n    while\
     \ (m % 2 == 0) m >>= 1, e++;\n    Mint x = Mint(a).pow((m - 1) >> 1);\n    Mint\
@@ -82,16 +82,16 @@ data:
   dependsOn:
   - modint/mont_arb.hpp
   isVerificationFile: false
-  path: mod/mod_sqrt.hpp
+  path: math_mod/mod_sqrt.hpp
   requiredBy:
   - fps/fps_sqrt.hpp
-  timestamp: '2024-05-10 04:03:51+09:00'
+  timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: mod/mod_sqrt.hpp
+documentation_of: math_mod/mod_sqrt.hpp
 layout: document
 redirect_from:
-- /library/mod/mod_sqrt.hpp
-- /library/mod/mod_sqrt.hpp.html
-title: mod/mod_sqrt.hpp
+- /library/math_mod/mod_sqrt.hpp
+- /library/math_mod/mod_sqrt.hpp.html
+title: math_mod/mod_sqrt.hpp
 ---

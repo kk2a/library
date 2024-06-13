@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: mod/pow_expr.hpp
-    title: mod/pow_expr.hpp
+    path: math_mod/pow_expr.hpp
+    title: math_mod/pow_expr.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/primitive_rt_expr.hpp
-    title: mod/primitive_rt_expr.hpp
+    path: math_mod/primitive_rt_expr.hpp
+    title: math_mod/primitive_rt_expr.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: convolution/convo_arb.hpp
@@ -24,11 +24,11 @@ data:
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
-    path: mod/comb_large.hpp
-    title: mod/comb_large.hpp
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
   - icon: ':warning:'
-    path: mod/comb_large_arb.hpp
-    title: mod/comb_large_arb.hpp
+    path: math_mod/comb_large_arb.hpp
+    title: math_mod/comb_large_arb.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
@@ -47,13 +47,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"convolution/butterfly.hpp\"\n\n\n\n#line 1 \"mod/primitive_rt_expr.hpp\"\
-    \n\n\n\n#line 1 \"mod/pow_expr.hpp\"\n\n\n\nconstexpr long long pow_mod_constexpr(long\
+  bundledCode: "#line 1 \"convolution/butterfly.hpp\"\n\n\n\n#line 1 \"math_mod/primitive_rt_expr.hpp\"\
+    \n\n\n\n#line 1 \"math_mod/pow_expr.hpp\"\n\n\n\nconstexpr long long pow_mod_constexpr(long\
     \ long x, long long n, long long m) {\n    if (m == 1) return 0;\n    unsigned\
     \ long long _m = (unsigned long long)(m);\n    unsigned long long r = 1;\n   \
     \ unsigned long long y = (x % m + m) % m;\n    while (n) {\n        if (n & 1)\
     \ r = (r * y) % _m;\n        y = (y * y) % _m;\n        n >>= 1;\n    }\n    return\
-    \ r;\n}\n\n\n#line 5 \"mod/primitive_rt_expr.hpp\"\n\nconstexpr int primitive_root_constexpr(int\
+    \ r;\n}\n\n\n#line 5 \"math_mod/primitive_rt_expr.hpp\"\n\nconstexpr int primitive_root_constexpr(int\
     \ m) {\n    if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m\
     \ == 469762049) return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353)\
     \ return 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {}; \n  \
@@ -146,7 +146,7 @@ data:
     \ pow((mint::getmod() - 1) / (n << 1));\n    for (int i = 0; i < n; i++) {\n \
     \       b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n    copy(begin(b),\
     \ end(b), back_inserter(a));\n}\n\n\n"
-  code: "#ifndef BUTTERFLY_HPP\n#define BUTTERFLY_HPP 1\n\n#include \"../mod/primitive_rt_expr.hpp\"\
+  code: "#ifndef BUTTERFLY_HPP\n#define BUTTERFLY_HPP 1\n\n#include \"../math_mod/primitive_rt_expr.hpp\"\
     \n\ntemplate <class FPS, class mint = typename FPS::value_type>\nvoid butterfly(FPS&\
     \ a) {\n    static int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n\
     \    int h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool\
@@ -227,19 +227,19 @@ data:
     \ = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n\
     \    copy(begin(b), end(b), back_inserter(a));\n}\n\n#endif  // BUTTERFLY_HPP\n"
   dependsOn:
-  - mod/primitive_rt_expr.hpp
-  - mod/pow_expr.hpp
+  - math_mod/primitive_rt_expr.hpp
+  - math_mod/pow_expr.hpp
   isVerificationFile: false
   path: convolution/butterfly.hpp
   requiredBy:
   - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
-  - mod/comb_large.hpp
-  - mod/comb_large_arb.hpp
+  - math_mod/comb_large.hpp
+  - math_mod/comb_large_arb.hpp
   - convolution/convo_arb.hpp
   - convolution/multi_zero.hpp
   - convolution/convolution.hpp
-  timestamp: '2024-05-25 01:00:13+09:00'
+  timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

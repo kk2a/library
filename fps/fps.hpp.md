@@ -15,14 +15,14 @@ data:
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
-    path: mod/comb_large.hpp
-    title: mod/comb_large.hpp
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
   - icon: ':warning:'
-    path: mod/comb_large_arb.hpp
-    title: mod/comb_large_arb.hpp
+    path: math_mod/comb_large_arb.hpp
+    title: math_mod/comb_large_arb.hpp
   - icon: ':warning:'
-    path: mod/comb_large_arb.hpp
-    title: mod/comb_large_arb.hpp
+    path: math_mod/comb_large_arb.hpp
+    title: math_mod/comb_large_arb.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
@@ -339,9 +339,9 @@ data:
   - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
   - fps/fps_arb.hpp
-  - mod/comb_large.hpp
-  - mod/comb_large_arb.hpp
-  - mod/comb_large_arb.hpp
+  - math_mod/comb_large.hpp
+  - math_mod/comb_large_arb.hpp
+  - math_mod/comb_large_arb.hpp
   - convolution/convo_arb.hpp
   timestamp: '2024-05-25 01:00:13+09:00'
   verificationStatus: LIBRARY_ALL_AC

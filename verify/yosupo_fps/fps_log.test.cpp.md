@@ -14,11 +14,11 @@ data:
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/pow_expr.hpp
-    title: mod/pow_expr.hpp
+    path: math_mod/pow_expr.hpp
+    title: math_mod/pow_expr.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/primitive_rt_expr.hpp
-    title: mod/primitive_rt_expr.hpp
+    path: math_mod/primitive_rt_expr.hpp
+    title: math_mod/primitive_rt_expr.hpp
   - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -109,13 +109,13 @@ data:
     \  return ret >= p ? ret - p : ret;\n    }\n    static constexpr u32 getmod()\
     \ { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
     \n\n#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/convolution.hpp\"\
-    \n\n\n\n#line 1 \"convolution/butterfly.hpp\"\n\n\n\n#line 1 \"mod/primitive_rt_expr.hpp\"\
-    \n\n\n\n#line 1 \"mod/pow_expr.hpp\"\n\n\n\nconstexpr long long pow_mod_constexpr(long\
+    \n\n\n\n#line 1 \"convolution/butterfly.hpp\"\n\n\n\n#line 1 \"math_mod/primitive_rt_expr.hpp\"\
+    \n\n\n\n#line 1 \"math_mod/pow_expr.hpp\"\n\n\n\nconstexpr long long pow_mod_constexpr(long\
     \ long x, long long n, long long m) {\n    if (m == 1) return 0;\n    unsigned\
     \ long long _m = (unsigned long long)(m);\n    unsigned long long r = 1;\n   \
     \ unsigned long long y = (x % m + m) % m;\n    while (n) {\n        if (n & 1)\
     \ r = (r * y) % _m;\n        y = (y * y) % _m;\n        n >>= 1;\n    }\n    return\
-    \ r;\n}\n\n\n#line 5 \"mod/primitive_rt_expr.hpp\"\n\nconstexpr int primitive_root_constexpr(int\
+    \ r;\n}\n\n\n#line 5 \"math_mod/primitive_rt_expr.hpp\"\n\nconstexpr int primitive_root_constexpr(int\
     \ m) {\n    if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m\
     \ == 469762049) return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353)\
     \ return 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {}; \n  \
@@ -423,13 +423,13 @@ data:
   - fps/ntt_friendly.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
-  - mod/primitive_rt_expr.hpp
-  - mod/pow_expr.hpp
+  - math_mod/primitive_rt_expr.hpp
+  - math_mod/pow_expr.hpp
   - fps/fps.hpp
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log.test.cpp
   requiredBy: []
-  timestamp: '2024-06-13 16:57:04+09:00'
+  timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log.test.cpp

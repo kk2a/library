@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: mod/comb_large.hpp
-    title: mod/comb_large.hpp
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
   - icon: ':warning:'
-    path: mod/comb_large_arb.hpp
-    title: mod/comb_large_arb.hpp
+    path: math_mod/comb_large_arb.hpp
+    title: math_mod/comb_large_arb.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -62,8 +62,8 @@ data:
   isVerificationFile: false
   path: fps/sample_point_shift.hpp
   requiredBy:
-  - mod/comb_large.hpp
-  - mod/comb_large_arb.hpp
+  - math_mod/comb_large.hpp
+  - math_mod/comb_large_arb.hpp
   timestamp: '2024-05-25 01:00:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
