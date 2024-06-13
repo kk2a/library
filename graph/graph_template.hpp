@@ -22,13 +22,10 @@ using Edges = vector<Edge<T>>;
 
 template <class T>
 struct WeightedGraph : vector<Edges<T>> {
-    int n, m;
-    bool is_one_indexed, is_directed;
-    Edges<T> edges;
-    WeightedGraph(int n_ = 0) : n(n_), vector<Edges<T>>(n_) {}
+    WeightedGraph(int n_ = 0) : vector<Edges<T>>(n_), n(n_) {}
     WeightedGraph(int n_, int m_, bool is_one_indexed_ = true,
                   bool is_directed_ = false) :
-                  n(n_), m(m_), vector<Edges<T>>(n_),
+                  vector<Edges<T>>(n_), n(n_), m(m_),
                   is_one_indexed(is_one_indexed_),
                   is_directed(is_directed_) {
         edges.reserve(m);
@@ -37,7 +34,7 @@ struct WeightedGraph : vector<Edges<T>> {
     WeightedGraph(int n_, vector<Edges<T>> g_,
                   bool is_one_indexed_ = true,
                   bool is_directed_ = false) :
-                  n(n_), m(0), vector<Edges<T>>(n_),
+                  vector<Edges<T>>(n_), n(n_), m(0),
                   is_one_indexed(is_one_indexed_),
                   is_directed(is_directed_) {
         for (int i = 0; i < n; i++) {
@@ -47,10 +44,17 @@ struct WeightedGraph : vector<Edges<T>> {
         }
     }
 
+    int n, m;
+    Edges<T> edges;
+    bool is_one_indexed, is_directed;
+
     void one_indexed() { is_one_indexed = true; }
     void zero_indexed() { is_one_indexed = false; }
     void directed() { is_directed = true; }
     void undirected() { is_directed = false; }
+
+    int num_vertices() const { return n; }
+    int num_edges() const { return m; }
 
     void input() {
         for (int i = 0; i < m; i++) {
@@ -78,21 +82,16 @@ template <class T>
 using WGraph = WeightedGraph<T>;
 
 struct UnWeightedGraph : vector<Edges<bool>> {
-    int n, m;
-    bool is_one_indexed, is_directed, is_functional;
-    Edges<bool> edges;
-    UnWeightedGraph(int n_ = 0, bool is_one_indexed_ = true,
-                    bool is_directed_ = false,
-                    bool is_functional_ = false) :
-                    n(n_), vector<Edges<bool>>(n_),
-                    is_one_indexed(is_one_indexed_),
-                    is_directed(is_directed_),
-                    is_functional(is_functional_) {}
+    UnWeightedGraph(int n_ = 0) :
+                    vector<Edges<bool>>(n_), n(n_), m(0),
+                    is_one_indexed(true),
+                    is_directed(false),
+                    is_functional(false) {}
 
     UnWeightedGraph(int n_, int m_, bool is_one_indexed_ = true,
                     bool is_directed_ = false,
                     bool is_functional_ = false) :
-                    n(n_), m(m_), vector<Edges<bool>>(n_),
+                    vector<Edges<bool>>(n_), n(n_), m(m_),
                     is_one_indexed(is_one_indexed_),
                     is_directed(is_directed_),
                     is_functional(is_functional_) {
@@ -103,7 +102,7 @@ struct UnWeightedGraph : vector<Edges<bool>> {
                     bool is_one_indexed_ = true,
                     bool is_directed_ = false,
                     bool is_functional_ = false) :
-                    n(n_), m(0), vector<Edges<bool>>(n_),
+                    vector<Edges<bool>>(n_), n(n_), m(0),
                     is_one_indexed(is_one_indexed_),
                     is_directed(is_directed_),
                     is_functional(is_functional_) {
@@ -114,12 +113,19 @@ struct UnWeightedGraph : vector<Edges<bool>> {
         }
     }
 
+    int n, m;
+    Edges<bool> edges;
+    bool is_one_indexed, is_directed, is_functional;
+
     void one_indexed() { is_one_indexed = true; }
     void zero_indexed() { is_one_indexed = false; }
     void directed() { is_directed = true; }
     void undirected() { is_directed = false; }
     void functional() { is_functional = true; }
     void non_functional() { is_functional = false; }
+
+    int num_vertices() const { return n; }
+    int num_edges() const { return m; }
 
   private:
     void input() {
