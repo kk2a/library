@@ -1,7 +1,7 @@
 #ifndef BUTTERFLY_HPP
 #define BUTTERFLY_HPP 1
 
-#include "../mod/primitive_rt_expr.hpp"
+#include "../math_mod/primitive_rt_expr.hpp"
 
 template <class FPS, class mint = typename FPS::value_type>
 void butterfly(FPS& a) {

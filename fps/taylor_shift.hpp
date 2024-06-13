@@ -1,7 +1,7 @@
 #ifndef FPS_TAYLOR_SHIFT_HPP
 #define FPS_TAYLOR_SHIFT_HPP 1
 
-#include "../mod/comb.hpp"
+#include "../math_mod/comb.hpp"
 
 template <class FPS, class mint = typename FPS::value_type>
 FPS TaylorShift(FPS f, mint a) {

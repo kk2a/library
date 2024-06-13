@@ -1,7 +1,7 @@
 #ifndef FPS_SQRT_HPP
 #define FPS_SQRT_HPP 1
 
-#include "../mod/mod_sqrt.hpp"
+#include "../math_mod/mod_sqrt.hpp"
 
 template <class FPS, class mint = typename FPS::value_type>
 FPS sqrt(FPS f, int deg = -1) {

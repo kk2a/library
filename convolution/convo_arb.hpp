@@ -4,7 +4,7 @@
 #include "../modint/mont.hpp"
 #include "convolution.hpp"
 #include "../fps/fps.hpp"
-#include "../mod/garner.hpp"
+#include "../math_mod/garner.hpp"
 
 template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_arb(FPS& a, FPS b) {
