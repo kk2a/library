@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/lca.hpp\"\n\n\n\nstruct LCA {\n    vector<vector<int>>\
+  bundledCode: "#line 1 \"tree/lca.hpp\"\n\n\n\nstruct LCA {\n    vector<vector<int>>\
     \ parent;\n    vector<int> depth, perm;\n    LCA(const vector<vector<int>> &g,\
     \ int root) { init(g, root); }\n\n    void init(const vector<vector<int>> &g,\
     \ int root) {\n        int n = g.size(), h = 1;\n        while ((1 << h) < n)\
@@ -29,7 +29,7 @@ data:
     \            }\n        }\n        return parent[0][u];\n    }\n\n    int dist(int\
     \ u, int v) {\n        return depth[u] + depth[v] - 2 * depth[query(u, v)];\n\
     \    }\n};\n\n\n"
-  code: "#ifndef GRAPH_LCA_HPP\n#define GRAPH_LCA_HPP 1\n\nstruct LCA {\n    vector<vector<int>>\
+  code: "#ifndef LCA_HPP\n#define LCA_HPP 1\n\nstruct LCA {\n    vector<vector<int>>\
     \ parent;\n    vector<int> depth, perm;\n    LCA(const vector<vector<int>> &g,\
     \ int root) { init(g, root); }\n\n    void init(const vector<vector<int>> &g,\
     \ int root) {\n        int n = g.size(), h = 1;\n        while ((1 << h) < n)\
@@ -49,18 +49,18 @@ data:
     \ != parent[i][v]) {\n                u = parent[i][u];\n                v = parent[i][v];\n\
     \            }\n        }\n        return parent[0][u];\n    }\n\n    int dist(int\
     \ u, int v) {\n        return depth[u] + depth[v] - 2 * depth[query(u, v)];\n\
-    \    }\n};\n\n#endif // GRAPH_LCA_HPP\n"
+    \    }\n};\n\n#endif // LCA_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/lca.hpp
+  path: tree/lca.hpp
   requiredBy: []
-  timestamp: '2024-05-14 18:36:26+09:00'
+  timestamp: '2024-06-16 14:35:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/lca.hpp
+documentation_of: tree/lca.hpp
 layout: document
 redirect_from:
-- /library/graph/lca.hpp
-- /library/graph/lca.hpp.html
-title: graph/lca.hpp
+- /library/tree/lca.hpp
+- /library/tree/lca.hpp.html
+title: tree/lca.hpp
 ---

@@ -137,9 +137,6 @@ data:
       path: graph/kruskal.hpp
       title: graph/kruskal.hpp
     - icon: ':warning:'
-      path: graph/lca.hpp
-      title: graph/lca.hpp
-    - icon: ':warning:'
       path: graph/lowlink.hpp
       title: graph/lowlink.hpp
     - icon: ':warning:'
@@ -239,6 +236,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
+  - name: tree
+    pages:
+    - icon: ':warning:'
+      path: tree/centroid.hpp
+      title: tree/centroid.hpp
+    - icon: ':warning:'
+      path: tree/lca.hpp
+      title: tree/lca.hpp
   verificationCategories:
   - name: verify/yosupo_fps
     pages:
