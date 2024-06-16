@@ -127,6 +127,42 @@ struct UnWeightedGraph : vector<Edges<bool>> {
     int num_vertices() const { return n; }
     int num_edges() const { return m; }
 
+    // void clear() {
+    //     for (int i = 0; i < n; i++) (*this)[i].clear();
+    //     edges.clear();
+    //     m = 0;
+    // }
+
+    // void inplace_rev() {
+    //     assert(is_directed);
+    //     vector<vector<int>> rev(n);
+    //     for (int i = 0; i < n; i++) {
+    //         for (auto &e : (*this)[i]) {
+    //             rev[e.to].emplace_back(i);
+    //         }
+    //     }
+    //     clear();
+    //     for (int i = 0; i < n; i++) {
+    //         for (auto &to : rev[i]) {
+    //             _add_edge(i, to, m++);
+    //         }
+    //     }
+    // }
+
+    // UnWeightedGraph rev() {
+    //     UnWeightedGraph res(n);
+    //     res.is_directed = is_directed;
+    //     res.is_one_indexed = is_one_indexed;
+    //     res.is_functional = is_functional;
+
+    //     for (int i = 0; i < n; i++) {
+    //         for (auto &e : (*this)[i]) {
+    //             res._add_edge(e.to, i, e.id);
+    //         }
+    //     }
+    //     return res;
+    // }
+
   private:
     void input() {
         if (is_functional) { functional_graph(); return; }
