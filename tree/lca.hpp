@@ -1,5 +1,5 @@
-#ifndef GRAPH_LCA_HPP
-#define GRAPH_LCA_HPP 1
+#ifndef LCA_HPP
+#define LCA_HPP 1
 
 struct LCA {
     vector<vector<int>> parent;
@@ -51,4 +51,4 @@ struct LCA {
     }
 };
 
-#endif // GRAPH_LCA_HPP
+#endif // LCA_HPP
