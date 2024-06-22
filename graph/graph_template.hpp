@@ -32,6 +32,14 @@ struct Edge {
 template <class T>
 using Edges = vector<Edge<T>>;
 
+// template <class T>
+// using EdgePtr = shared_ptr<Edge<T>>;
+
+// template <class T>
+// inline EdgePtr<T> new_edge(int to = -1, T cost = 0, int from = -1, int id = -1) {
+//     return make_shared<Edge<T>>(to, cost, from, id);
+// }
+
 template <class T, bool is_one_indexed = true, bool is_directed = false>
 struct WeightedGraph : vector<Edges<T>> {
     WeightedGraph(int n_ = 0) :
@@ -48,6 +56,10 @@ struct WeightedGraph : vector<Edges<T>> {
             }
         }
     }
+
+    using value_type = T;
+    constexpr static bool oneindexed() { return is_one_indexed; }
+    constexpr static bool directed() { return is_directed; }
 
     int n, m;
     Edges<T> edges;
@@ -99,6 +111,8 @@ struct WeightedGraph : vector<Edges<T>> {
         _add_edge(from, to, cost, m++);
     }
 
+    void add_edge_naive(int from, int to, T cost) { _add_edge(from, to, cost, m++); }
+
   private:
     void _add_edge(int from, int to, T cost, int id) {
         (*this)[from].emplace_back(to, cost, from, id);
@@ -126,6 +140,10 @@ struct UnWeightedGraph : vector<Edges<bool>> {
             }
         }
     }
+
+    constexpr static bool oneindexed() { return is_one_indexed; }
+    constexpr static bool directed() { return is_directed; }
+    constexpr static bool functional() { return is_functional; }
 
     int n, m;
     Edges<bool> edges;
@@ -187,6 +205,8 @@ struct UnWeightedGraph : vector<Edges<bool>> {
         if (is_one_indexed) { from--; to--; }
         _add_edge(from, to, m++);
     }
+
+    void add_edge_naive(int from, int to) { _add_edge(from, to, m++); }
 
   private:
     void _add_edge(int from, int to, int id) {
