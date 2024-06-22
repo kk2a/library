@@ -362,6 +362,32 @@ struct FormalPowerSeries : vector<mint> {
         return g;
     }
 
+    FPS inplace_imos(int n) {
+        inplace_pre(n);
+        for (int i = 0; i < n - 1; i++) {
+            (*this)[i + 1] += (*this)[i];
+        }
+        return *this;
+    }
+
+    FPS imos(int n) const {
+        FPS ret(*this);
+        return ret.inplace_imos(n);
+    }
+
+    FPS inplace_iimos(int n) {
+        inplace_pre(n);
+        for (int i = 0; i < n - 1; i++) {
+            (*this)[i + 1] -= (*this)[i];
+        }
+        return *this;
+    }
+
+    FPS iimos(int n) const {
+        FPS ret(*this);
+        return ret.inplace_iimos(n);
+    }
+
     FPS &operator*=(const FPS &r);
     FPS operator*(const FPS &r) const { return FPS(*this) *= r; }
     void but();
