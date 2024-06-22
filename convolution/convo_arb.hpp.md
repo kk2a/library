@@ -326,9 +326,16 @@ data:
     \ k = 0; k < deg - 1; k++) {\n            for (auto &[ip1, fip1] : fs) {\n   \
     \             int i = ip1 - 1;\n                if (k < i) break;\n          \
     \      g[k + 1] += g[k - i] * fip1 * (i + 1);\n            }\n            g[k\
-    \ + 1] *= inv[k + 1];\n        }\n\n        return g;\n    }\n\n    FPS &operator*=(const\
-    \ FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this) *= r; }\n\
-    \    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
+    \ + 1] *= inv[k + 1];\n        }\n\n        return g;\n    }\n\n    FPS inplace_imos(int\
+    \ n) {\n        inplace_pre(n);\n        for (int i = 0; i < n - 1; i++) {\n \
+    \           (*this)[i + 1] += (*this)[i];\n        }\n        return *this;\n\
+    \    }\n\n    FPS imos(int n) const {\n        FPS ret(*this);\n        return\
+    \ ret.inplace_imos(n);\n    }\n\n    FPS inplace_iimos(int n) {\n        inplace_pre(n);\n\
+    \        for (int i = 0; i < n - 1; i++) {\n            (*this)[i + 1] -= (*this)[i];\n\
+    \        }\n        return *this;\n    }\n\n    FPS iimos(int n) const {\n   \
+    \     FPS ret(*this);\n        return ret.inplace_iimos(n);\n    }\n\n    FPS\
+    \ &operator*=(const FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this)\
+    \ *= r; }\n    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
     \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n\n\
     #line 1 \"math_mod/garner.hpp\"\n\n\n\n#line 1 \"math_mod/inv.hpp\"\n\n\n\ntemplate\
     \ <class T, class U>\nconstexpr long long mod_inversion(T a, U modulo) {\n   \
@@ -391,9 +398,9 @@ data:
   isVerificationFile: false
   path: convolution/convo_arb.hpp
   requiredBy:
-  - fps/fps_arb.hpp
   - math_mod/comb_large_arb.hpp
-  timestamp: '2024-06-13 21:51:40+09:00'
+  - fps/fps_arb.hpp
+  timestamp: '2024-06-22 12:26:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/convo_arb.hpp

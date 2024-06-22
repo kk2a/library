@@ -182,9 +182,16 @@ data:
     \ k = 0; k < deg - 1; k++) {\n            for (auto &[ip1, fip1] : fs) {\n   \
     \             int i = ip1 - 1;\n                if (k < i) break;\n          \
     \      g[k + 1] += g[k - i] * fip1 * (i + 1);\n            }\n            g[k\
-    \ + 1] *= inv[k + 1];\n        }\n\n        return g;\n    }\n\n    FPS &operator*=(const\
-    \ FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this) *= r; }\n\
-    \    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
+    \ + 1] *= inv[k + 1];\n        }\n\n        return g;\n    }\n\n    FPS inplace_imos(int\
+    \ n) {\n        inplace_pre(n);\n        for (int i = 0; i < n - 1; i++) {\n \
+    \           (*this)[i + 1] += (*this)[i];\n        }\n        return *this;\n\
+    \    }\n\n    FPS imos(int n) const {\n        FPS ret(*this);\n        return\
+    \ ret.inplace_imos(n);\n    }\n\n    FPS inplace_iimos(int n) {\n        inplace_pre(n);\n\
+    \        for (int i = 0; i < n - 1; i++) {\n            (*this)[i + 1] -= (*this)[i];\n\
+    \        }\n        return *this;\n    }\n\n    FPS iimos(int n) const {\n   \
+    \     FPS ret(*this);\n        return ret.inplace_iimos(n);\n    }\n\n    FPS\
+    \ &operator*=(const FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this)\
+    \ *= r; }\n    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
     \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n\n"
   code: "#ifndef FPS_HPP\n#define FPS_HPP 1\n\n\ntemplate <class mint>\nstruct FormalPowerSeries\
     \ : vector<mint> {\n    using vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
@@ -327,27 +334,34 @@ data:
     \ k = 0; k < deg - 1; k++) {\n            for (auto &[ip1, fip1] : fs) {\n   \
     \             int i = ip1 - 1;\n                if (k < i) break;\n          \
     \      g[k + 1] += g[k - i] * fip1 * (i + 1);\n            }\n            g[k\
-    \ + 1] *= inv[k + 1];\n        }\n\n        return g;\n    }\n\n    FPS &operator*=(const\
-    \ FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this) *= r; }\n\
-    \    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
+    \ + 1] *= inv[k + 1];\n        }\n\n        return g;\n    }\n\n    FPS inplace_imos(int\
+    \ n) {\n        inplace_pre(n);\n        for (int i = 0; i < n - 1; i++) {\n \
+    \           (*this)[i + 1] += (*this)[i];\n        }\n        return *this;\n\
+    \    }\n\n    FPS imos(int n) const {\n        FPS ret(*this);\n        return\
+    \ ret.inplace_imos(n);\n    }\n\n    FPS inplace_iimos(int n) {\n        inplace_pre(n);\n\
+    \        for (int i = 0; i < n - 1; i++) {\n            (*this)[i + 1] -= (*this)[i];\n\
+    \        }\n        return *this;\n    }\n\n    FPS iimos(int n) const {\n   \
+    \     FPS ret(*this);\n        return ret.inplace_iimos(n);\n    }\n\n    FPS\
+    \ &operator*=(const FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this)\
+    \ *= r; }\n    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
     \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n#endif\
     \ // FPS_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/fps.hpp
   requiredBy:
-  - fps/ntt_friendly.hpp
-  - fps/fps_arb.hpp
-  - fps/fps_arb.hpp
   - math_mod/comb_large.hpp
   - math_mod/comb_large_arb.hpp
   - math_mod/comb_large_arb.hpp
+  - fps/fps_arb.hpp
+  - fps/fps_arb.hpp
+  - fps/ntt_friendly.hpp
   - convolution/convo_arb.hpp
-  timestamp: '2024-05-25 01:00:13+09:00'
+  timestamp: '2024-06-22 12:26:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: fps/fps.hpp

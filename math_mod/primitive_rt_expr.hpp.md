@@ -86,19 +86,19 @@ data:
   isVerificationFile: false
   path: math_mod/primitive_rt_expr.hpp
   requiredBy:
-  - fps/ntt_friendly.hpp
-  - fps/fps_arb.hpp
   - math_mod/comb_large.hpp
   - math_mod/comb_large_arb.hpp
-  - convolution/convo_arb.hpp
+  - fps/fps_arb.hpp
+  - fps/ntt_friendly.hpp
   - convolution/butterfly.hpp
   - convolution/multi_zero.hpp
+  - convolution/convo_arb.hpp
   - convolution/convolution.hpp
   timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: math_mod/primitive_rt_expr.hpp

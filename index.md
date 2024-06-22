@@ -167,6 +167,9 @@ data:
     - icon: ':warning:'
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
+    - icon: ':warning:'
+      path: math/pow_expr.hpp
+      title: math/pow_expr.hpp
   - name: math_mod
     pages:
     - icon: ':warning:'
