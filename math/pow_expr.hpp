@@ -3,7 +3,7 @@
 
 template <class S, class T, class U>
 constexpr S pow_constexpr(T x, U n) {
-    assert(!is_signed_v<U> && n >= 0);
+    assert(!is_signed_v<U> || n >= 0);
     S r = 1, y = x;
     while (n) {
         if (n & 1) r *= y;
