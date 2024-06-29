@@ -100,14 +100,14 @@ struct WeightedGraph : vector<Edges<T>> {
             int u, v;
             T w;
             cin >> u >> v >> w;
-            if (is_one_indexed) { u--; v--; }
+            if constexpr (is_one_indexed) { u--; v--; }
             _add_edge(u, v, w, i);
         }
     }
 
   public:
     void add_edge(int from, int to, T cost) {
-        if (is_one_indexed) { from--; to--; }
+        if constexpr (is_one_indexed) { from--; to--; }
         _add_edge(from, to, cost, m++);
     }
 
@@ -180,7 +180,7 @@ struct UnWeightedGraph : vector<Edges<bool>> {
 
   private:
     void input() {
-        if (is_functional) { functional_graph(); return; }
+        if constexpr (is_functional) { functional_graph(); return; }
         for (int i = 0; i < m; i++) {
             int u, v;
             cin >> u >> v;
@@ -202,7 +202,7 @@ struct UnWeightedGraph : vector<Edges<bool>> {
 
   public:
     void add_edge(int from, int to) {
-        if (is_one_indexed) { from--; to--; }
+        if constexpr (is_one_indexed) { from--; to--; }
         _add_edge(from, to, m++);
     }
 
@@ -211,7 +211,7 @@ struct UnWeightedGraph : vector<Edges<bool>> {
   private:
     void _add_edge(int from, int to, int id) {
         (*this)[from].emplace_back(to, 0, from, id);
-        if (!is_directed) (*this)[to].emplace_back(from, 0, to, id);
+        if constexpr (!is_directed) (*this)[to].emplace_back(from, 0, to, id);
         edges.emplace_back(to, 0, from, id);
     }
 };
