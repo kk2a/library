@@ -134,6 +134,9 @@ data:
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
     - icon: ':warning:'
+      path: graph/graph_utility.hpp
+      title: graph/graph_utility.hpp
+    - icon: ':warning:'
       path: graph/kruskal.hpp
       title: graph/kruskal.hpp
     - icon: ':warning:'
@@ -215,14 +218,28 @@ data:
     - icon: ':warning:'
       path: modint/mont_arb.hpp
       title: modint/mont_arb.hpp
+  - name: others
+    pages:
+    - icon: ':warning:'
+      path: others/coordinate_compression.hpp
+      title: others/coordinate_compression.hpp
   - name: segment_tree
     pages:
+    - icon: ':warning:'
+      path: segment_tree/beats.hpp
+      title: segment_tree/beats.hpp
+    - icon: ':warning:'
+      path: segment_tree/beats_utility.hpp
+      title: segment_tree/beats_utility.hpp
     - icon: ':warning:'
       path: segment_tree/dynamic_seg.hpp
       title: segment_tree/dynamic_seg.hpp
     - icon: ':warning:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
+    - icon: ':warning:'
+      path: segment_tree/lazy_base.hpp
+      title: segment_tree/lazy_base.hpp
     - icon: ':warning:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp

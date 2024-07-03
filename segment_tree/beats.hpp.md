@@ -6,15 +6,15 @@ data:
     title: segment_tree/lazy_base.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: segment_tree/seg_utility.hpp
-    title: segment_tree/seg_utility.hpp
+    path: segment_tree/beats_utility.hpp
+    title: segment_tree/beats_utility.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"segment_tree/lazy.hpp\"\n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\
+  bundledCode: "#line 1 \"segment_tree/beats.hpp\"\n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\
     \n\n\n\ntemplate <class S,\n          S (*op)(S, S),\n          S (*e)(),\n  \
     \        class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
     \ F),\n          F (*id)()>\nstruct LazySegTreeBase {\n  public:\n    LazySegTreeBase()\
@@ -80,36 +80,39 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n    virtual void all_apply(int k, F f) = 0;\n    void push(int\
     \ k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n\
-    \        lz[k] = id();\n    }\n}; \n\n\n#line 5 \"segment_tree/lazy.hpp\"\n\n\
+    \        lz[k] = id();\n    }\n}; \n\n\n#line 5 \"segment_tree/beats.hpp\"\n\n\
     template <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class\
     \ F,\n          S (*mapping)(F, S),\n          F (*composition)(F, F),\n     \
-    \     F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op, e, F, mapping,\
-    \ composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping, composition,\
-    \ id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k, F f) override\
-    \ {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k < this->size)\
-    \ this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n\n"
-  code: "#ifndef SEGMENT_TREE_LAZY_HPP\n#define SEGMENT_TREE_LAZY_HPP 1\n\n#include\
+    \     F (*id)(),\n          bool (*fail)(S)>\nstruct SegTreeBeats : public LazySegTreeBase<S,\
+    \ op, e, F, mapping, composition, id> {\n    using LazySegTreeBase<S, op, e, F,\
+    \ mapping, composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int\
+    \ k, F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if\
+    \ (k < this->size) {\n            this->lz[k] = composition(f, this->lz[k]);\n\
+    \            if (fail(this->d[k])) this->push(k), this->update(k);\n        }\n\
+    \    }\n};\n\n\n"
+  code: "#ifndef SEGMENT_TREE_BEATS_HPP\n#define SEGMENT_TREE_BEATS_HPP 1\n\n#include\
     \ \"lazy_base.hpp\"\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
     \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
-    \ F),\n          F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op,\
-    \ e, F, mapping, composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping,\
-    \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
-    \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
-    \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n#endif\
-    \ // SEGMENT_TREE_LAZY_HPP\n"
+    \ F),\n          F (*id)(),\n          bool (*fail)(S)>\nstruct SegTreeBeats :\
+    \ public LazySegTreeBase<S, op, e, F, mapping, composition, id> {\n    using LazySegTreeBase<S,\
+    \ op, e, F, mapping, composition, id>::LazySegTreeBase;\n  protected:\n    void\
+    \ all_apply(int k, F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n\
+    \        if (k < this->size) {\n            this->lz[k] = composition(f, this->lz[k]);\n\
+    \            if (fail(this->d[k])) this->push(k), this->update(k);\n        }\n\
+    \    }\n};\n\n#endif // SEGMENT_TREE_BEATS_HPP\n"
   dependsOn:
   - segment_tree/lazy_base.hpp
   isVerificationFile: false
-  path: segment_tree/lazy.hpp
+  path: segment_tree/beats.hpp
   requiredBy:
-  - segment_tree/seg_utility.hpp
+  - segment_tree/beats_utility.hpp
   timestamp: '2024-07-03 14:09:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: segment_tree/lazy.hpp
+documentation_of: segment_tree/beats.hpp
 layout: document
 redirect_from:
-- /library/segment_tree/lazy.hpp
-- /library/segment_tree/lazy.hpp.html
-title: segment_tree/lazy.hpp
+- /library/segment_tree/beats.hpp
+- /library/segment_tree/beats.hpp.html
+title: segment_tree/beats.hpp
 ---
