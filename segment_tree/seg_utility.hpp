@@ -1,6 +1,7 @@
 #ifndef SEG_UTILITY_HPP
 #define SEG_UTILITY_HPP 1
 
+#include "seg.hpp"
 #include "lazy.hpp"
 
 namespace seg_utility {
@@ -8,36 +9,110 @@ namespace seg_utility {
 template <class S>
 struct Sum {
     S a, size;
-    Sum() = default;
+    Sum() : a(0), size(0) {}
     Sum(S a, S size = 1) : a(a), size(size) {}
     operator S() const { return a; }
-    friend ostream& operator<<(ostream& os, const Sum& aff) {
-        os << aff.a;
+    friend ostream& operator<<(ostream& os, const Sum& sum) {
+        os << sum.a;
+        return os;
+    }
+
+    Sum& operator+=(const S& rhs) {
+        a += rhs * size;
+        return *this;
+    }
+    Sum& operator=(const S& rhs) {
+        a = rhs * size;
+        return *this;
+    }
+    Sum& operator*=(const S& rhs) {
+        a *= rhs;
+        return *this;
+    }
+
+    friend Sum operator+(const Sum& lhs, const S& rhs) {
+        return Sum(lhs) += rhs;
+    }
+    friend Sum operator*(const Sum& lhs, const S& rhs) {
+        return Sum(lhs) *= rhs;
+    }
+};
+
+template <class S>
+struct Max {
+    S a;
+    bool minf;
+    Max() : a(0), minf(true) {}
+    Max (S a_, bool minf_ = false) : a(a_), minf(minf_) {}
+    operator S() const { return a; }
+    friend ostream& operator<<(ostream& os, const Max& max) {
+        os << (max.minf ? "minf" : to_string(max.a));
+        return os;
+    }
+
+    Max& operator+=(const S& rhs) {
+        a += rhs;
+        return *this;
+    }
+    Max& operator=(const S& rhs) {
+        a = rhs;
+        minf = false;
+        return *this;
+    }
+
+    friend Max operator+(const Max& lhs, const S& rhs) {
+        return Max(lhs) += rhs;
+    }
+
+    bool is_minf() const { return minf; }
+};
+
+template <class S>
+struct Min {
+    S a;
+    bool inf;
+    Min() : a(0), inf(true) {}
+    Min(S a_, bool inf_ = false) : a(a_), inf(inf_) {}
+    operator S() const { return a; }
+    friend ostream& operator<<(ostream& os, const Min& min) {
+        os << (min.inf ? "inf" : to_string(min.a));
+        return os;
+    }
+
+    Min& operator+=(const S& rhs) {
+        a += rhs;
+        return *this;
+    }
+    Min& operator=(const S& rhs) {
+        a = rhs;
+        inf = false;
+        return *this;
+    }
+
+    friend Min operator+(const Min& lhs, const S& rhs) {
+        return Min(lhs) += rhs;
+    }
+
+    bool is_inf() const { return inf; }
+};
+
+template <class S>
+struct Update {
+    S a;
+    bool id;
+    Update() : a(0), id(true) {}
+    Update(S a_, bool id_ = false) : a(a_), id(id_) {}
+    operator S() const { return a; }
+    friend ostream& operator<<(ostream& os, const Update& update) {
+        os << (update.id ? "id" : to_string(update.a));
         return os;
     }
 };
 
 template <class S>
-Sum<S> gen_sum(S a) {
-    return Sum<S>(a, 1);
-}
-
-template <class S>
-Sum<S> gen_sum() {
-    return Sum<S>(0, 1);
-}
-
-template <class S>
-vector<Sum<S>> gen_sum(vector<S> a) {
-    vector<Sum<S>> res;
-    for (auto x : a) res.push_back(gen_sum(x));
-    return res;
-}
-
-template <class S>
 struct Affine {
-    S a, b;
-    Affine() = default;
+    S a, b; // x \mapsto ax + b
+    Affine() : a(1), b(0) {};
     Affine(S a, S b) : a(a), b(b) {}
     friend ostream& operator<<(ostream& os, const Affine& aff) {
         os << aff.a << " " << aff.b;
@@ -46,125 +121,110 @@ struct Affine {
 };
 
 template <class S>
-Affine<S> gen_aff(S a, S b) {
-    return Affine<S>(a, b);
+Max<S> MaxOp(Max<S> l, Max<S> r) {
+    return l.minf ? r : (r.minf ? l : Max<S>(max(l.a, r.a)));
 }
 
 template <class S>
-Affine<S> gen_aff() {
-    return Affine<S>(1, 0);
+Min<S> MinOp(Min<S> l, Min<S> r) {
+    return l.inf ? r : (r.inf ? l : Min<S>(min(l.a, r.a)));
 }
 
 template <class S>
-S Mx(S a, S b) {
-    return max(a, b);
+Sum<S> SumOp(Sum<S> l, Sum<S> r) {
+    return Sum<S>(l.a + r.a, l.size + r.size);
+}
+
+template <class Add, class T>
+T AddMap(Add f, T x) {
+    return x + f;
+}
+
+template <class Add>
+Add AddComposition(Add l, Add r) {
+    return l + r;
+}
+
+template <class S, class T>
+T UpdMap(Update<S> f, T x) {
+    return f.id ? x : x = f.a;
 }
 
 template <class S>
-S Mn(S a, S b) {
-    return min(a, b);
+Update<S> UpdComposition(Update<S> l, Update<S> r) {
+    return l.id ? r : l;
+}
+
+template <class S, class T>
+T AffMap(Affine<S> f, T x) {
+    return x * f.a + f.b;
 }
 
 template <class S>
-Sum<S> Sm(Sum<S> a, Sum<S> b) {
-    return Sum<S>(a.a + b.a, a.size + b.size);
+Affine<S> AffComposition(Affine<S> l, Affine<S> r) {
+    return Affine<S>(l.a * r.a, l.a * r.b + l.b);
 }
 
 template <class S>
-S Add(S a, S b) {
-    return a + b;
-}
+S Unit() { return S(); }
 
-template <class S, S ID>
-S Update(S a, S b) {
-    return a == ID ? b : a;
-}
-
+// seg
 template <class S>
-S Aff(Affine<S> aff, S x) {
-    return aff.a * x + aff.b;
-}
-
+using MaxSeg = SegTree<Max<S>, MaxOp<S>, Unit<Max<S>>>;
 template <class S>
-Affine<S> AffCompositon(Affine<S> a, Affine<S> b) {
-    return Affine<S>(a.a * b.a, a.a * b.b + a.b);
-}
-
+using MinSeg = SegTree<Min<S>, MinOp<S>, Unit<Min<S>>>;
 template <class S>
-Sum<S> AddSm(S a, Sum<S> b) {
-    return Sum<S>(b.a + a * b.size, b.size);
-}
+using SumSeg = SegTree<Sum<S>, SumOp<S>, Unit<Sum<S>>>;
 
-template <class S, S ID>
-Sum<S> UpdateSm(S a, Sum<S> b) {
-    return Sum<S>(a == ID ? b.a * b.size : a, b.size);
-}
-
+// lazy
 template <class S>
-Sum<S> AffSm(Affine<S> aff, Sum<S> x) {
-    return Sum<S>(aff.a * x.a + aff.b * x.size, x.size);
-}
-
-template <class S, S e>
-S Const() { return e; }
-
+using AddMax = LazySegTree<Max<S>, MaxOp<S>, Unit<Max<S>>,
+                           S, AddMap<S, Max<S>>, AddComposition<S>, Unit<S>>;
 template <class S>
-S Zero() { return S(); }
-
+using AddMin = LazySegTree<Min<S>, MinOp<S>, Unit<Min<S>>,
+                           S, AddMap<S, Min<S>>, AddComposition<S>, Unit<S>>;
 template <class S>
-Sum<S> ZeroSm() { return Sum<S>(0, 1); }
-
+using AddSum = LazySegTree<Sum<S>, SumOp<S>, Unit<Sum<S>>,
+                           S, AddMap<S, Sum<S>>, AddComposition<S>, Unit<S>>;
 template <class S>
-Affine<S> Id() { return Affine<S>(1, 0); }
-
-template <class S, S MINF>
-using AddMax = LazySegTree<S, Mx<S>, Const<S, MINF>,
-    S, Add<S>, Add<S>, Zero<S>>;
-
-template <class S, S MINF, S ID>
-using UpdateMax = LazySegTree<S, Mx<S>, Const<S, MINF>,
-    S, Update<S, ID>, Update<S, ID>, Const<S, ID>>;
-
-template <class S, S MINF>
-using AffineMax = LazySegTree<S, Mx<S>, Const<S, MINF>,
-    Affine<S>, Aff<S>, AffCompositon<S>, Id<S>>;
-
-template <class S, S INF>
-using AddMin = LazySegTree<S, Mn<S>, Const<S, INF>,
-    S, Add<S>, Add<S>, Zero<S>>;
-
-template <class S, S INF, S ID>
-using UpdateMin = LazySegTree<S, Mn<S>, Const<S, INF>,
-    S, Update<S, ID>, Update<S, ID>, Const<S, ID>>;
-
-template <class S, S INF>
-using AffineMin = LazySegTree<S, Mn<S>, Const<S, INF>,
-    Affine<S>, Aff<S>, AffCompositon<S>, Id<S>>;
-
+using UpdateMax = LazySegTree<Max<S>, MaxOp<S>, Unit<Max<S>>,
+                              Update<S>, UpdMap<S, Max<S>>, UpdComposition<S>, Unit<Update<S>>>;
 template <class S>
-using AddSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,
-    S, AddSm<S>, Add<S>, Zero<S>>;
-
-template <class S, S ID>
-using UpdateSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,
-    S, UpdateSm<S, ID>, Update<S, ID>, Const<S, ID>>;
-
+using UpdateMin = LazySegTree<Min<S>, MinOp<S>, Unit<Min<S>>,
+                              Update<S>, UpdMap<S, Min<S>>, UpdComposition<S>, Unit<Update<S>>>;
 template <class S>
-using AffineSum = LazySegTree<Sum<S>, Sm<S>, ZeroSm<S>,
-    Affine<S>, AffSm<S>, AffCompositon<S>, Id<S>>;
+using UpdateSum = LazySegTree<Sum<S>, SumOp<S>, Unit<Sum<S>>,
+                              Update<S>, UpdMap<S, Sum<S>>, UpdComposition<S>, Unit<Update<S>>>;
+template <class S>
+using AffineSum = LazySegTree<Sum<S>, SumOp<S>, Unit<Sum<S>>,
+                              Affine<S>, AffMap<S, Sum<S>>, AffComposition<S>, Unit<Affine<S>>>;
+
+template <class S, class... Args>
+vector<S> GetVector(int n, Args... args) { return vector<S>(n, S(args...)); }
+
+template <class S, class... Args>
+vector<Max<S>> GetVectorMax(int n, Args... args) { return vector<Max<S>>(n, Max<S>(args...)); }
+
+template <class S, class... Args>
+vector<Min<S>> GetVectorMin(int n, Args... args) { return vector<Min<S>>(n, Min<S>(args...)); }
+
+template <class S, class... Args>
+vector<Sum<S>> GetVectorSum(int n, Args... args) { return vector<Sum<int>>(n, Sum<S>(args...)); }
 
 } // namespace seg_utility
 
+using seg_utility::MaxSeg;
+using seg_utility::MinSeg;
+using seg_utility::SumSeg;
+
 using seg_utility::AddMax;
-using seg_utility::UpdateMax;
-using seg_utility::AffineMax;
 using seg_utility::AddMin;
-using seg_utility::UpdateMin;
-using seg_utility::AffineMin;
 using seg_utility::AddSum;
+using seg_utility::UpdateMax;
+using seg_utility::UpdateMin;
 using seg_utility::UpdateSum;
 using seg_utility::AffineSum;
-using seg_utility::gen_sum;
-using seg_utility::gen_aff;
+
+
 
 #endif // SEG_UTILITY_HPP

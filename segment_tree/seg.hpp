@@ -16,6 +16,10 @@ public:
         }
     }
 
+    using Monoid = S;
+    static S Op(S l, S r) { return op(l, r); }
+    static S MonoidUnit() { return e(); } 
+
     void set(int p, S x) {
         assert(0 <= p && p < _n);
         p += size;
