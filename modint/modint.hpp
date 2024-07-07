@@ -142,4 +142,7 @@ template <int p> struct ModInt {
 template<int p>
 int ModInt<p>::Mod = 998244353;
 
+using mint998 = ModInt<998244353>;
+using mint107 = ModInt<1000000007>;
+
 #endif  // MODINT_HPP
