@@ -26,7 +26,8 @@ struct CC {
         if (!initialized) build();
         return xs[i];
     }
-    int size() const {
+    int size() {
+        if (!initialized) build();
         return xs.size();
     }
 
@@ -39,6 +40,14 @@ struct CC {
         vector<int> ret(ys.size());
         for (int i = 0; i < (int)ys.size(); ++i) ret[i] = get(ys[i]);
         return ret;
+    }
+
+    int operator()(S x) {
+        return get(x);
+    }
+
+    vector<int> operator()(const vector<S>& ys) {
+        return get(ys);
     }
 };
 
