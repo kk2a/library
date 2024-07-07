@@ -1,12 +1,16 @@
 #ifndef LCA_HPP
 #define LCA_HPP 1
 
+template <class G>
+
 struct LCA {
     vector<vector<int>> parent;
     vector<int> depth, perm;
-    LCA(const vector<vector<int>> &g, int root) { init(g, root); }
+    const G &g;
+    int root;
+    LCA(const G &g_, int root_=0) : g(g_), root(root_) { init(root_); }
 
-    void init(const vector<vector<int>> &g, int root) {
+    void init(int root) {
         int n = g.size(), h = 1;
         while ((1 << h) < n) h++;
         parent.assign(h, vector<int>(n, -1));
@@ -17,7 +21,7 @@ struct LCA {
             perm[p++] = now;
             parent[0][now] = pre;
             depth[now] = d;
-            for (auto &e : g[now]) if (e != pre) self(self, e, now, d + 1);
+            for (auto &e : g[now]) if ((int)e != pre) self(self, (int)e, now, d + 1);
         };
         dfs(dfs, root, -1, 0);
         for (int i = 0; i < h - 1; i++) {
@@ -28,7 +32,7 @@ struct LCA {
         }
     }
 
-    int query(int u, int v) {
+    int lca(int u, int v) {
         if (depth[u] > depth[v]) swap(u, v);
         int h = parent.size();
         for (int i = 0; i < h; i++) {
@@ -47,7 +51,7 @@ struct LCA {
     }
 
     int dist(int u, int v) {
-        return depth[u] + depth[v] - 2 * depth[query(u, v)];
+        return depth[u] + depth[v] - 2 * depth[lca(u, v)];
     }
 };
 
