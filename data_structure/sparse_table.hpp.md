@@ -22,9 +22,9 @@ data:
     \ - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    using Monoid\
     \ = S;\n    static S Op(S l, S r) { return op(l, r); }\n    static S MonoidUnit()\
     \ { return e(); }\n\n    S prod(int l, int r) {\n        assert(0 <= l && l <=\
-    \ r && r <= _n);\n        int i = 31 - __builtin_clz(r - l);\n        return op(table[i][l],\
-    \ table[i][r - (1 << i)]);\n    }\n\n  private:\n    int _n, log;\n    vector<vector<S>>\
-    \ table;\n};\n\n\n"
+    \ r && r <= _n);\n        if (l == r) return e();\n        int i = 31 - __builtin_clz(r\
+    \ - l);\n        return op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n  private:\n\
+    \    int _n, log;\n    vector<vector<S>> table;\n};\n\n\n"
   code: "#ifndef DATA_STRUCTURE_SPARSE_TABLE_HPP\n#define DATA_STRUCTURE_SPARSE_TABLE_HPP\
     \ 1\n\n\n// require: op(x, x) = x for all x\ntemplate <class S, S (*op)(S, S),\
     \ S (*e)()>\nstruct SparseTable {\n    SparseTable() : SparseTable(0) {}\n   \
@@ -37,15 +37,15 @@ data:
     \ 1))]);\n            }\n        }\n    }\n\n    using Monoid = S;\n    static\
     \ S Op(S l, S r) { return op(l, r); }\n    static S MonoidUnit() { return e();\
     \ }\n\n    S prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= _n);\n\
-    \        int i = 31 - __builtin_clz(r - l);\n        return op(table[i][l], table[i][r\
-    \ - (1 << i)]);\n    }\n\n  private:\n    int _n, log;\n    vector<vector<S>>\
-    \ table;\n};\n\n#endif // DATA_STRUCTURE_SPARSE_TABLE_HPP\n"
+    \        if (l == r) return e();\n        int i = 31 - __builtin_clz(r - l);\n\
+    \        return op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n  private:\n\
+    \    int _n, log;\n    vector<vector<S>> table;\n};\n\n#endif // DATA_STRUCTURE_SPARSE_TABLE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/sparse_table.hpp
   requiredBy:
   - data_structure/static_rmq.hpp
-  timestamp: '2024-07-07 23:51:38+09:00'
+  timestamp: '2024-07-08 00:04:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/sparse_table.hpp
