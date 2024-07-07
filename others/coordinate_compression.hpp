@@ -33,7 +33,7 @@ struct CC {
 
     int get(S x) {
         if (!initialized) build();
-        return lower_bound(begin(xs), end(xs), x) - begin(xs);
+        return upper_bound(begin(xs), end(xs), x) - begin(xs) - 1;
     }
 
     vector<int> get(const vector<S>& ys) {
