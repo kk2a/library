@@ -51,4 +51,9 @@ Sum<S> SumUnit() { return Sum<S>(); }
 
 } // namespace monoid
 
+template <class S, class... Args>
+vector<monoid::Sum<S>> GetVecSum(int n, Args... args) {
+    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));
+}
+
 #endif // OTHERS_MONOID_SUM_HPP

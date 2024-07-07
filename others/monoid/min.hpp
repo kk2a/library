@@ -53,4 +53,10 @@ Min<S> MinUnit() { return Min<S>(); }
 
 } // namespace monoid
 
+template <class S, class... Args>
+vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
+    return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));
+}
+
+
 #endif // OTHERS_MONOID_MIN_HPP

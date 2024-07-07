@@ -53,4 +53,9 @@ Max<S> MaxUnit() { return Max<S>(); }
 
 } // namespace monoid
 
+template <class S, class... Args>
+vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
+    return vector<monoid::Max<S>>(n, monoid::Max<S>(args...));
+}
+
 #endif // OTHERS_MONOID_MAX_HPP
