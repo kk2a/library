@@ -25,6 +25,7 @@ struct SparseTable {
 
     S prod(int l, int r) {
         assert(0 <= l && l <= r && r <= _n);
+        if (l == r) return e();
         int i = 31 - __builtin_clz(r - l);
         return op(table[i][l], table[i][r - (1 << i)]);
     }
