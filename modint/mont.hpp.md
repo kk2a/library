@@ -64,7 +64,7 @@ data:
     \       return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
     \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n    static constexpr\
     \ u32 getmod() { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
-    \n\n"
+    \nusing Mont998 = Mont<998244353>;\nusing Mont107 = Mont<1000000007>;\n\n\n"
   code: "#ifndef MODINT_MONT_HPP\n#define MODINT_MONT_HPP 1\n\ntemplate <int p>\n\
     struct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n    using\
     \ i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n    using\
@@ -101,7 +101,8 @@ data:
     \ }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n      \
     \  return ret >= p ? ret - p : ret;\n    }\n    static constexpr u32 getmod()\
     \ { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
-    \n#endif  // MODINT_MONT_HPP\n"
+    \nusing Mont998 = Mont<998244353>;\nusing Mont107 = Mont<1000000007>;\n\n#endif\
+    \  // MODINT_MONT_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: modint/mont.hpp
@@ -109,7 +110,7 @@ data:
   - math_mod/comb_large_arb.hpp
   - fps/fps_arb.hpp
   - convolution/convo_arb.hpp
-  timestamp: '2024-05-06 02:19:56+09:00'
+  timestamp: '2024-07-07 19:14:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_inv.test.cpp

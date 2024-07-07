@@ -74,7 +74,8 @@ data:
     \ }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n      \
     \  return ret >= p ? ret - p : ret;\n    }\n    static constexpr u32 getmod()\
     \ { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
-    \n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
+    \nusing Mont998 = Mont<998244353>;\nusing Mont107 = Mont<1000000007>;\n\n\n#line\
+    \ 1 \"convolution/convolution.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\
     \n\n\n\n#line 1 \"math_mod/primitive_rt_expr.hpp\"\n\n\n\n#line 1 \"math_mod/pow_expr.hpp\"\
     \n\n\n\nconstexpr long long pow_mod_constexpr(long long x, long long n, long long\
     \ m) {\n    if (m == 1) return 0;\n    unsigned long long _m = (unsigned long\
@@ -400,7 +401,7 @@ data:
   requiredBy:
   - math_mod/comb_large_arb.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-06-22 12:26:56+09:00'
+  timestamp: '2024-07-07 19:14:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/convo_arb.hpp

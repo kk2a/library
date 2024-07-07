@@ -17,11 +17,13 @@ data:
     \    }\n    void build() {\n        sort(begin(xs), end(xs));\n        xs.erase(unique(begin(xs),\
     \ end(xs)), end(xs));\n        initialized = true;\n    }\n    S operator[](int\
     \ i) {\n        if (!initialized) build();\n        return xs[i];\n    }\n   \
-    \ int size() const {\n        return xs.size();\n    }\n\n    int get(S x) {\n\
-    \        if (!initialized) build();\n        return lower_bound(begin(xs), end(xs),\
-    \ x) - begin(xs);\n    }\n\n    vector<int> get(const vector<S>& ys) {\n     \
-    \   vector<int> ret(ys.size());\n        for (int i = 0; i < (int)ys.size(); ++i)\
-    \ ret[i] = get(ys[i]);\n        return ret;\n    }\n};\n\n\n"
+    \ int size() {\n        if (!initialized) build();\n        return xs.size();\n\
+    \    }\n\n    int get(S x) {\n        if (!initialized) build();\n        return\
+    \ upper_bound(begin(xs), end(xs), x) - begin(xs) - 1;\n    }\n\n    vector<int>\
+    \ get(const vector<S>& ys) {\n        vector<int> ret(ys.size());\n        for\
+    \ (int i = 0; i < (int)ys.size(); ++i) ret[i] = get(ys[i]);\n        return ret;\n\
+    \    }\n\n    int operator()(S x) {\n        return get(x);\n    }\n\n    vector<int>\
+    \ operator()(const vector<S>& ys) {\n        return get(ys);\n    }\n};\n\n\n"
   code: "#ifndef OTHERS_COORDINATE_COMPRESSION_HPP\n#define OTHERS_COORDINATE_COMPRESSION_HPP\
     \ 1\n\n\n// Coordinate Compression\ntemplate <typename S=int>\nstruct CC {\n \
     \   vector<S> xs;\n    bool initialized;\n    CC() : initialized(false) {}\n \
@@ -31,17 +33,19 @@ data:
     \        initialized = false;\n    }\n    void build() {\n        sort(begin(xs),\
     \ end(xs));\n        xs.erase(unique(begin(xs), end(xs)), end(xs));\n        initialized\
     \ = true;\n    }\n    S operator[](int i) {\n        if (!initialized) build();\n\
-    \        return xs[i];\n    }\n    int size() const {\n        return xs.size();\n\
-    \    }\n\n    int get(S x) {\n        if (!initialized) build();\n        return\
-    \ lower_bound(begin(xs), end(xs), x) - begin(xs);\n    }\n\n    vector<int> get(const\
-    \ vector<S>& ys) {\n        vector<int> ret(ys.size());\n        for (int i =\
-    \ 0; i < (int)ys.size(); ++i) ret[i] = get(ys[i]);\n        return ret;\n    }\n\
-    };\n\n#endif // OTHERS_COORDINATE_COMPRESSION_HPP\n"
+    \        return xs[i];\n    }\n    int size() {\n        if (!initialized) build();\n\
+    \        return xs.size();\n    }\n\n    int get(S x) {\n        if (!initialized)\
+    \ build();\n        return upper_bound(begin(xs), end(xs), x) - begin(xs) - 1;\n\
+    \    }\n\n    vector<int> get(const vector<S>& ys) {\n        vector<int> ret(ys.size());\n\
+    \        for (int i = 0; i < (int)ys.size(); ++i) ret[i] = get(ys[i]);\n     \
+    \   return ret;\n    }\n\n    int operator()(S x) {\n        return get(x);\n\
+    \    }\n\n    vector<int> operator()(const vector<S>& ys) {\n        return get(ys);\n\
+    \    }\n};\n\n#endif // OTHERS_COORDINATE_COMPRESSION_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: others/coordinate_compression.hpp
   requiredBy: []
-  timestamp: '2024-07-03 14:07:15+09:00'
+  timestamp: '2024-07-07 19:15:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: others/coordinate_compression.hpp

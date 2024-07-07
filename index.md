@@ -52,6 +52,12 @@ data:
     - icon: ':warning:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
+    - icon: ':warning:'
+      path: data_structure/sparse_table.hpp
+      title: data_structure/sparse_table.hpp
+    - icon: ':warning:'
+      path: data_structure/static_rmq.hpp
+      title: data_structure/static_rmq.hpp
   - name: fps
     pages:
     - icon: ':warning:'
@@ -151,6 +157,14 @@ data:
     - icon: ':warning:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
+  - name: graph/tree
+    pages:
+    - icon: ':warning:'
+      path: graph/tree/centroid.hpp
+      title: graph/tree/centroid.hpp
+    - icon: ':warning:'
+      path: graph/tree/lca.hpp
+      title: graph/tree/lca.hpp
   - name: .
     pages:
     - icon: ':warning:'
@@ -223,6 +237,28 @@ data:
     - icon: ':warning:'
       path: others/coordinate_compression.hpp
       title: others/coordinate_compression.hpp
+  - name: others/homomorphism
+    pages:
+    - icon: ':warning:'
+      path: others/homomorphism/add.hpp
+      title: others/homomorphism/add.hpp
+    - icon: ':warning:'
+      path: others/homomorphism/affine.hpp
+      title: others/homomorphism/affine.hpp
+    - icon: ':warning:'
+      path: others/homomorphism/update.hpp
+      title: others/homomorphism/update.hpp
+  - name: others/monoid
+    pages:
+    - icon: ':warning:'
+      path: others/monoid/max.hpp
+      title: others/monoid/max.hpp
+    - icon: ':warning:'
+      path: others/monoid/min.hpp
+      title: others/monoid/min.hpp
+    - icon: ':warning:'
+      path: others/monoid/sum.hpp
+      title: others/monoid/sum.hpp
   - name: segment_tree
     pages:
     - icon: ':warning:'
@@ -243,9 +279,38 @@ data:
     - icon: ':warning:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp
+  - name: segment_tree/utility
+    pages:
     - icon: ':warning:'
-      path: segment_tree/seg_utility.hpp
-      title: segment_tree/seg_utility.hpp
+      path: segment_tree/utility/addmax.hpp
+      title: segment_tree/utility/addmax.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/addmin.hpp
+      title: segment_tree/utility/addmin.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/addsum.hpp
+      title: segment_tree/utility/addsum.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/affinesum.hpp
+      title: segment_tree/utility/affinesum.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/maxseg.hpp
+      title: segment_tree/utility/maxseg.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/minseg.hpp
+      title: segment_tree/utility/minseg.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/sumseg.hpp
+      title: segment_tree/utility/sumseg.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/updatemax.hpp
+      title: segment_tree/utility/updatemax.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/updatemin.hpp
+      title: segment_tree/utility/updatemin.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/updatesum.hpp
+      title: segment_tree/utility/updatesum.hpp
   - name: string
     pages:
     - icon: ':warning:'
@@ -256,14 +321,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
-  - name: tree
-    pages:
-    - icon: ':warning:'
-      path: tree/centroid.hpp
-      title: tree/centroid.hpp
-    - icon: ':warning:'
-      path: tree/lca.hpp
-      title: tree/lca.hpp
   verificationCategories:
   - name: verify/yosupo_fps
     pages:

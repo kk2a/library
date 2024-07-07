@@ -3,8 +3,14 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: segment_tree/seg_utility.hpp
-    title: segment_tree/seg_utility.hpp
+    path: segment_tree/utility/maxseg.hpp
+    title: segment_tree/utility/maxseg.hpp
+  - icon: ':warning:'
+    path: segment_tree/utility/minseg.hpp
+    title: segment_tree/utility/minseg.hpp
+  - icon: ':warning:'
+    path: segment_tree/utility/sumseg.hpp
+    title: segment_tree/utility/sumseg.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -94,7 +100,9 @@ data:
   isVerificationFile: false
   path: segment_tree/seg.hpp
   requiredBy:
-  - segment_tree/seg_utility.hpp
+  - segment_tree/utility/sumseg.hpp
+  - segment_tree/utility/minseg.hpp
+  - segment_tree/utility/maxseg.hpp
   timestamp: '2024-07-03 14:09:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

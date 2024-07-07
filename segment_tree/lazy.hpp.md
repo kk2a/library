@@ -6,8 +6,26 @@ data:
     title: segment_tree/lazy_base.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: segment_tree/seg_utility.hpp
-    title: segment_tree/seg_utility.hpp
+    path: segment_tree/utility/addmax.hpp
+    title: segment_tree/utility/addmax.hpp
+  - icon: ':warning:'
+    path: segment_tree/utility/addmin.hpp
+    title: segment_tree/utility/addmin.hpp
+  - icon: ':warning:'
+    path: segment_tree/utility/addsum.hpp
+    title: segment_tree/utility/addsum.hpp
+  - icon: ':warning:'
+    path: segment_tree/utility/affinesum.hpp
+    title: segment_tree/utility/affinesum.hpp
+  - icon: ':warning:'
+    path: segment_tree/utility/updatemax.hpp
+    title: segment_tree/utility/updatemax.hpp
+  - icon: ':warning:'
+    path: segment_tree/utility/updatemin.hpp
+    title: segment_tree/utility/updatemin.hpp
+  - icon: ':warning:'
+    path: segment_tree/utility/updatesum.hpp
+    title: segment_tree/utility/updatesum.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -102,7 +120,13 @@ data:
   isVerificationFile: false
   path: segment_tree/lazy.hpp
   requiredBy:
-  - segment_tree/seg_utility.hpp
+  - segment_tree/utility/addmin.hpp
+  - segment_tree/utility/addmax.hpp
+  - segment_tree/utility/addsum.hpp
+  - segment_tree/utility/affinesum.hpp
+  - segment_tree/utility/updatemin.hpp
+  - segment_tree/utility/updatemax.hpp
+  - segment_tree/utility/updatesum.hpp
   timestamp: '2024-07-03 14:09:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
