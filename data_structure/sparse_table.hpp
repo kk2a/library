@@ -9,7 +9,7 @@ struct SparseTable {
     SparseTable(int n) : SparseTable(vector<S>(n, e())) {}
     SparseTable(const vector<S>& v) : _n(int(v.size())) {
         log = 1;
-        while ((1u << log) <= (unsigned int)_n) log++;
+        while ((1 << log) <= _n) log++;
         table.assign(log, vector<S>(_n));
         for (int i = 0; i < _n; i++) table[0][i] = v[i];
         for (int i = 1; i < log; i++) {
