@@ -170,7 +170,7 @@ struct DynamicBitSet {
         }
         return true;
     }
-    friend bool operator!=(const T& lhs, const T& rhs) { return T(lhs) != rhs; }
+    friend bool operator!=(const T& lhs, const T& rhs) { return !(T(lhs) == rhs); }
 
     string to_string() const {
         string s;
