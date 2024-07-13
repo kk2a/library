@@ -12,6 +12,8 @@ struct LazySegTreeBase {
   public:
     LazySegTreeBase() : LazySegTreeBase(0) {}
     LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n, e())) {}
+    template <class... Args>
+    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n, S(args...))) {}
     LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size())) {
         log = 0;
         while ((1ll << log) < _n) log++;
@@ -40,6 +42,10 @@ struct LazySegTreeBase {
         for (int i = log; i >= 1; i--) push(p >> i);
         d[p] = x;
         for (int i = 1; i <= log; i++) update(p >> i);
+    }
+    template <class... Args>
+    void emplace_set(int p, Args... args) {
+        set(p, S(args...));
     }
 
     S get(int p) {
@@ -81,6 +87,10 @@ struct LazySegTreeBase {
         d[p] = mapping(f, d[p]);
         for (int i = 1; i <= log; i++) update(p >> i);
     }
+    template <class... Args>
+    void emplace_apply_point(int p, Args... args) {
+        apply(p, F(args...));
+    }
     void apply(int l, int r, F f) {
         assert(0 <= l && l <= r && r <= _n);
         if (l == r) return;
@@ -109,6 +119,10 @@ struct LazySegTreeBase {
             if (((l >> i) << i) != l) update(l >> i);
             if (((r >> i) << i) != r) update((r - 1) >> i);
         }
+    }
+    template <class... Args>
+    void emplace_apply_range(int l, int r, Args... args) {
+        apply(l, r, F(args...));
     }
 
     template <bool (*g)(S)> int max_right(int l) {

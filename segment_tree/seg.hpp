@@ -5,6 +5,8 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
 public:
     SegTree() : SegTree(0) {}
     SegTree(int n) : SegTree(std::vector<S>(n, e())) {}
+    template <class... Args>
+    SegTree(int n, Args... args) : SegTree(std::vector<S>(n, S(args...))) {};
     SegTree(const std::vector<S>& v) : _n(int(v.size())) {
         log = 0;
         while ((1U << log) < (unsigned int)(_n)) log++;
@@ -25,6 +27,10 @@ public:
         p += size;
         d[p] = x;
         for (int i = 1; i <= log; i++) update(p >> i);
+    }
+    template <class... Args>
+    void emplace_set(int p, Args... args) {
+        set(p, S(args...));
     }
 
     S get(int p) {
@@ -49,6 +55,9 @@ public:
 
     S all_prod() { return d[1]; }
 
+    // return r s.t.
+    // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true
+    // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false
     template <bool (*f)(S)> int max_right(int l) {
         return max_right(l, [](S x) { return f(x); });
     }
@@ -76,6 +85,9 @@ public:
         return _n;
     }
 
+    // return l s.t.
+    // l = r or f(op(a[l], a[l], ..., a[r-1]))   == true
+    // l = 0 or f(op(a[l-1], a[l], ..., a[r-1])) == false
     template <bool (*f)(S)> int min_left(int r) {
         return min_left(r, [](S x) { return f(x); });
     }
