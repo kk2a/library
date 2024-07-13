@@ -58,10 +58,10 @@ data:
   isVerificationFile: false
   path: others/monoid/sum.hpp
   requiredBy:
-  - segment_tree/utility/sumseg.hpp
-  - segment_tree/utility/addsum.hpp
   - segment_tree/utility/affinesum.hpp
+  - segment_tree/utility/sumseg.hpp
   - segment_tree/utility/updatesum.hpp
+  - segment_tree/utility/addsum.hpp
   timestamp: '2024-07-07 23:50:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

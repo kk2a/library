@@ -58,9 +58,9 @@ data:
   isVerificationFile: false
   path: others/monoid/max.hpp
   requiredBy:
-  - segment_tree/utility/addmax.hpp
   - segment_tree/utility/maxseg.hpp
   - segment_tree/utility/updatemax.hpp
+  - segment_tree/utility/addmax.hpp
   timestamp: '2024-07-07 23:50:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

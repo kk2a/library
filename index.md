@@ -160,6 +160,9 @@ data:
   - name: graph/tree
     pages:
     - icon: ':warning:'
+      path: graph/tree/auxiliary_tree.hpp
+      title: graph/tree/auxiliary_tree.hpp
+    - icon: ':warning:'
       path: graph/tree/centroid.hpp
       title: graph/tree/centroid.hpp
     - icon: ':warning:'

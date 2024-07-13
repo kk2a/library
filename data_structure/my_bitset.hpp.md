@@ -71,12 +71,12 @@ data:
     \ == rhs.n);\n        for (int i = 0; i < (lhs.n + 63) >> 6; i++) {\n        \
     \    if (lhs.block[i] != rhs.block[i]) return false;\n        }\n        return\
     \ true;\n    }\n    friend bool operator!=(const T& lhs, const T& rhs) { return\
-    \ T(lhs) != rhs; }\n\n    string to_string() const {\n        string s;\n    \
-    \    int i = 0;\n        for (; i + 1 < (n + 63) >> 6; i++) {\n            string\
-    \ tmp = bitset<64>(block[i]).to_string();\n            reverse(begin(tmp), end(tmp));\n\
-    \            s += tmp;\n        }\n        int start = 64 - n & 63;\n        int\
-    \ len = n & 63;\n        if (!len) start = 0, len = 64;\n        string tmp =\
-    \ bitset<64>(block.back()).to_string().substr(start, len);\n        reverse(begin(tmp),\
+    \ !(T(lhs) == rhs); }\n\n    string to_string() const {\n        string s;\n \
+    \       int i = 0;\n        for (; i + 1 < (n + 63) >> 6; i++) {\n           \
+    \ string tmp = bitset<64>(block[i]).to_string();\n            reverse(begin(tmp),\
+    \ end(tmp));\n            s += tmp;\n        }\n        int start = 64 - n & 63;\n\
+    \        int len = n & 63;\n        if (!len) start = 0, len = 64;\n        string\
+    \ tmp = bitset<64>(block.back()).to_string().substr(start, len);\n        reverse(begin(tmp),\
     \ end(tmp));\n        s += tmp;\n        return s;\n    }\n\n    friend ostream&\
     \ operator<<(ostream& os, const T& bs) {\n        return os << bs.to_string();\n\
     \    }\n};\n\n\n"
@@ -141,12 +141,12 @@ data:
     \ == rhs.n);\n        for (int i = 0; i < (lhs.n + 63) >> 6; i++) {\n        \
     \    if (lhs.block[i] != rhs.block[i]) return false;\n        }\n        return\
     \ true;\n    }\n    friend bool operator!=(const T& lhs, const T& rhs) { return\
-    \ T(lhs) != rhs; }\n\n    string to_string() const {\n        string s;\n    \
-    \    int i = 0;\n        for (; i + 1 < (n + 63) >> 6; i++) {\n            string\
-    \ tmp = bitset<64>(block[i]).to_string();\n            reverse(begin(tmp), end(tmp));\n\
-    \            s += tmp;\n        }\n        int start = 64 - n & 63;\n        int\
-    \ len = n & 63;\n        if (!len) start = 0, len = 64;\n        string tmp =\
-    \ bitset<64>(block.back()).to_string().substr(start, len);\n        reverse(begin(tmp),\
+    \ !(T(lhs) == rhs); }\n\n    string to_string() const {\n        string s;\n \
+    \       int i = 0;\n        for (; i + 1 < (n + 63) >> 6; i++) {\n           \
+    \ string tmp = bitset<64>(block[i]).to_string();\n            reverse(begin(tmp),\
+    \ end(tmp));\n            s += tmp;\n        }\n        int start = 64 - n & 63;\n\
+    \        int len = n & 63;\n        if (!len) start = 0, len = 64;\n        string\
+    \ tmp = bitset<64>(block.back()).to_string().substr(start, len);\n        reverse(begin(tmp),\
     \ end(tmp));\n        s += tmp;\n        return s;\n    }\n\n    friend ostream&\
     \ operator<<(ostream& os, const T& bs) {\n        return os << bs.to_string();\n\
     \    }\n};\n\n#endif // DATA_STRUCTURE_MY_BITSET_HPP\n"
@@ -155,7 +155,7 @@ data:
   path: data_structure/my_bitset.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
-  timestamp: '2024-06-01 14:09:12+09:00'
+  timestamp: '2024-07-13 13:02:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/my_bitset.hpp

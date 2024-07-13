@@ -62,9 +62,9 @@ data:
   path: others/monoid/min.hpp
   requiredBy:
   - data_structure/static_rmq.hpp
-  - segment_tree/utility/addmin.hpp
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/minseg.hpp
+  - segment_tree/utility/addmin.hpp
   timestamp: '2024-07-07 23:50:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

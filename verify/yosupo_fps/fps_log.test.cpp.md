@@ -39,7 +39,7 @@ data:
     https://judge.yosupo.jp/problem/log_of_formal_power_series\"\n\n#line 1 \"template/template.hpp\"\
     \n\n\n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing u32 = unsigned\
     \ int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing i128 =\
-    \ __int128;\nusing u128 = unsigned __int128;\n\nusing pi = pair<int, int>;\nusing\
+    \ __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = pair<int, int>;\nusing\
     \ pl = pair<i64, i64>;\nusing pil = pair<int, i64>;\nusing pli = pair<i64, int>;\n\
     \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
     \ = (1 << 30) - 123;\ntemplate <>\nconstexpr i64 infty<i64> = (1ll << 62) - (1ll\
@@ -54,10 +54,10 @@ data:
     \ pqi = priority_queue<T, vector<T>, greater<T>>;\n\ntemplate <class T, class\
     \ S>\ninline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b, 1 : 0);\n\
     }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n    return\
-    \ (a > b ? a = b, 1 : 0);\n}\n\n# define rep1(a) for (i64 _ = 0; _ < i64(a); _++)\n\
-    # define rep2(i, a) for (i64 i = 0; i < i64(a); i++)\n# define rep3(i, a, b) for\
-    \ (i64 i = (a); i < i64(b); i++)\n# define repi2(i, a) for (i64 i = (a) - 1; i\
-    \ >= 0; i--)\n# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (b); i--)\n#\
+    \ (a > b ? a = b, 1 : 0);\n}\n\n# define rep1(a) for (i64 _ = 0; _ < i64(a); ++_)\n\
+    # define rep2(i, a) for (i64 i = 0; i < i64(a); ++i)\n# define rep3(i, a, b) for\
+    \ (i64 i = (a); i < i64(b); ++i)\n# define repi2(i, a) for (i64 i = (a) - 1; i\
+    \ >= 0; --i)\n# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (b); --i)\n#\
     \ define overload3(a, b, c, d, ...) d\n# define rep(...) overload3(__VA_ARGS__,\
     \ rep3, rep2, rep1)(__VA_ARGS__)\n# define repi(...) overload3(__VA_ARGS__, repi3,\
     \ repi2, rep1)(__VA_ARGS__)\n\n# define pb push_back\n# define eb emplace_back\n\
@@ -437,7 +437,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log.test.cpp
   requiredBy: []
-  timestamp: '2024-07-07 19:14:05+09:00'
+  timestamp: '2024-07-13 13:05:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log.test.cpp
