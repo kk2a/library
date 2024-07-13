@@ -7,8 +7,8 @@ using namespace std;
 using u32 = unsigned int;
 using i64 = long long;
 using u64 = unsigned long long;
-using i128 = __int128;
-using u128 = unsigned __int128;
+using i128 = __int128_t;
+using u128 = __uint128_t;
 
 using pi = pair<int, int>;
 using pl = pair<i64, i64>;
@@ -56,11 +56,11 @@ inline bool chmin(T &a, const S &b) {
     return (a > b ? a = b, 1 : 0);
 }
 
-# define rep1(a) for (i64 _ = 0; _ < i64(a); _++)
-# define rep2(i, a) for (i64 i = 0; i < i64(a); i++)
-# define rep3(i, a, b) for (i64 i = (a); i < i64(b); i++)
-# define repi2(i, a) for (i64 i = (a) - 1; i >= 0; i--)
-# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (b); i--)
+# define rep1(a) for (i64 _ = 0; _ < i64(a); ++_)
+# define rep2(i, a) for (i64 i = 0; i < i64(a); ++i)
+# define rep3(i, a, b) for (i64 i = (a); i < i64(b); ++i)
+# define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)
+# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (b); --i)
 # define overload3(a, b, c, d, ...) d
 # define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)
 # define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)
