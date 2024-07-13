@@ -49,6 +49,16 @@ struct CC {
     vector<int> operator()(const vector<S>& ys) {
         return get(ys);
     }
+
+    int lower(S x) {
+        if (!initialized) build();
+        return lower_bound(begin(xs), end(xs), x) - begin(xs);
+    }
+
+    int upper(S x) {
+        if (!initialized) build();
+        return upper_bound(begin(xs), end(xs), x) - begin(xs);
+    }
 };
 
 #endif // OTHERS_COORDINATE_COMPRESSION_HPP
