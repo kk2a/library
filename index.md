@@ -182,11 +182,14 @@ data:
       path: math/euler_phi.hpp
       title: math/euler_phi.hpp
     - icon: ':warning:'
-      path: math/floor_ceil.hpp
-      title: math/floor_ceil.hpp
+      path: math/frac_floor.hpp
+      title: math/frac_floor.hpp
     - icon: ':warning:'
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
+    - icon: ':warning:'
+      path: math/kth_root_floor.hpp
+      title: math/kth_root_floor.hpp
     - icon: ':warning:'
       path: math/pow_expr.hpp
       title: math/pow_expr.hpp
