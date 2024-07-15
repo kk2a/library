@@ -18,8 +18,8 @@ data:
     \ T, class U>\nreturn_type kth_root_floor(T a, U k) {\n    return (return_type)kth_root_floor_inner((uint64_t)a,\
     \ (int)k);\n}\n\nuint64_t kth_root_ceil_inner(uint64_t a, int k) {\n    if (a\
     \ <= 1 || k == 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t\
-    \ x) {\n        __uint128_t p = 1, q = x;\n        for (int p = k; p; p >>= 1,\
-    \ q *= q) {\n            if (p & 1) p *= x;\n        }\n        return q == a;\n\
+    \ x) {\n        __uint128_t p = 1, q = x;\n        for (int b = k; b; b >>= 1,\
+    \ q *= q) {\n            if (b & 1) p *= q;\n        }\n        return p == a;\n\
     \    };\n    uint64_t x = kth_root_floor_inner(a, k);\n    return check(x) ? x\
     \ : x + 1;\n}\n\n// return ceil(a ^ {1/k})\ntemplate <class return_type=uint64_t,\
     \ class T, class U>\nreturn_type kth_root_ceil(T a, U k) {\n    return (return_type)kth_root_ceil_inner((uint64_t)a,\
@@ -35,8 +35,8 @@ data:
     \ a, U k) {\n    return (return_type)kth_root_floor_inner((uint64_t)a, (int)k);\n\
     }\n\nuint64_t kth_root_ceil_inner(uint64_t a, int k) {\n    if (a <= 1 || k ==\
     \ 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t x)\
-    \ {\n        __uint128_t p = 1, q = x;\n        for (int p = k; p; p >>= 1, q\
-    \ *= q) {\n            if (p & 1) p *= x;\n        }\n        return q == a;\n\
+    \ {\n        __uint128_t p = 1, q = x;\n        for (int b = k; b; b >>= 1, q\
+    \ *= q) {\n            if (b & 1) p *= q;\n        }\n        return p == a;\n\
     \    };\n    uint64_t x = kth_root_floor_inner(a, k);\n    return check(x) ? x\
     \ : x + 1;\n}\n\n// return ceil(a ^ {1/k})\ntemplate <class return_type=uint64_t,\
     \ class T, class U>\nreturn_type kth_root_ceil(T a, U k) {\n    return (return_type)kth_root_ceil_inner((uint64_t)a,\
@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: math/kth_root_floor.hpp
   requiredBy: []
-  timestamp: '2024-07-15 23:05:18+09:00'
+  timestamp: '2024-07-15 23:42:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/kth_root_floor.hpp
