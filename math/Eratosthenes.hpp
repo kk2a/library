@@ -2,50 +2,76 @@
 #define MATH_ERATOSTHENES 1
 
 struct Erato {
-    vector<bool> isprime;
-    vector<int> minfactor;
-    vector<int> mobius;
-    vector<int> primes;
+    static inline vector<bool> _isprime{};
+    static inline vector<int> _minfactor{}, _mobius{}, _primes{};
 
-    Erato(int N) : isprime(N + 1, true), minfactor(N + 1, -1),
-                   mobius(N + 1, 1) {
-        isprime[1] = false;
-        minfactor[1] = 1;
+    Erato() = delete;
 
-        for (int p = 2; p <= N; ++p) {
-            if (!isprime[p]) continue;
+    static void set_upper(int m) {
+        _isprime.resize(m + 1, true);
+        _minfactor.resize(m + 1, -1);
+        _mobius.resize(m + 1, 1);
+        _isprime[1] = false;
+        _minfactor[1] = 1;
 
-            minfactor[p] = p;
-            mobius[p] = -1;
-            primes.emplace_back(p);
-            
-            for (int q = p * 2; q <= N; q += p) {
-                isprime[q] = false;
-                
-                if (minfactor[q] == -1) minfactor[q] = p;
-                if ((q / p) % p == 0) mobius[q] = 0;
-                else mobius[q] = -mobius[q];
+        for (int p = 2; p <= m; ++p) {
+            if (!_isprime[p]) continue;
+
+            _minfactor[p] = p;
+            _mobius[p] = -1;
+            _primes.emplace_back(p);
+
+            for (int q = p * 2; q <= m; q += p) {
+                _isprime[q] = false;
+
+                if (_minfactor[q] == -1) _minfactor[q] = p;
+                if ((q / p) % p == 0) _mobius[q] = 0;
+                else _mobius[q] = -_mobius[q];
             }
         }
     }
 
-    vector<pair<int, int>> factorize(int n) {
+    static bool isprime(int n) {
+        assert(n < (int)_isprime.size() && n != 0);
+        return _isprime[n];
+    }
+
+    static int mobius(int n) {
+        assert(n < (int)_mobius.size() && n != 0);
+        return _mobius[n];
+    }
+
+    static int minfactor(int n) {
+        assert(n < (int)_minfactor.size() && n != 0);
+        return _minfactor[n];
+    }
+
+    static vector<int> primes() {
+        return _primes;
+    }
+
+    static vector<pair<int, int>> factorize(int n) {
+        assert(n < (int)_isprime.size() && n != 0);
+        if (n == 1 || n == -1) return {};
+        if (n < 0) n = -n;
         vector<pair<int, int>> res;
         while (n > 1) {
-            int p = minfactor[n];
+            int p = _minfactor[n];
             int exp = 0;
 
-            while (minfactor[n] == p) {
+            while (_minfactor[n] == p) {
                 n /= p;
                 ++exp;
             }
             res.emplace_back(p, exp);
         }
-        return res;
-    }  
+    }
 
-    vector<int> divisors(int n) {
-        vector<int> res({1});
+    static vector<int> divisors(int n) {
+        assert(n < (int)_isprime.size() && n != 0);
+        if (n == 1 || n == -1) return {1};
+        if (n < 0) n = -n;
+        vector<int> res{1};
         auto pf = factorize(n);
 
         for (auto p : pf) {
