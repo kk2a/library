@@ -1,7 +1,26 @@
 #ifndef TEMPLATE
 #define TEMPLATE 1
 
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <iterator>
+#include <random>
+#include <type_traits>
+
+#include <string>
+#include <vector>
+#include <numeric>
+#include <queue>
+#include <array>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <functional>
+#include <bitset>
+
 using namespace std;
 
 using u32 = unsigned int;
