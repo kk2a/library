@@ -355,7 +355,7 @@ data:
     \  kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];\n            rmult[iii] = (rmult[iii]\
     \ * p[ii]) % p[iii];\n        }\n    }\n    return kp[nm];\n}\n\n\n#line 8 \"\
     convolution/convo_arb.hpp\"\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-    FPS convolution_arb(FPS& a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    FPS convolution_arb(FPS& a, const FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
     \  // 2^24\n    static constexpr long long MOD2 = 167772161;  // 2^25\n    static\
     \ constexpr long long MOD3 = 469762049;  // 2^26\n    using mint1 = LazyMontgomeryModInt<MOD1>;\n\
@@ -422,7 +422,7 @@ data:
   path: fps/fps_arb.hpp
   requiredBy:
   - math_mod/comb_large_arb.hpp
-  timestamp: '2024-07-07 19:14:05+09:00'
+  timestamp: '2024-07-15 18:54:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_arb.hpp
