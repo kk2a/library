@@ -1,19 +1,15 @@
 #ifndef GRAPH_DIJKSTRA_HPP
 #define GRAPH_DIJKSTRA_HPP 1
 
-template <class T> struct dij_graph {
+template <class WG, class T = typename WG::value_type>
+struct Dijkstra {
   public:
-    dij_graph(int n) : _n(n), graph(n) {}
+    Dijkstra(const WG& g) : _n(g.num_vertices()), _g(g) {}
 
     int num_vertices() { return _n; }
 
-    void add_edge(int from, int to, T weight) {
-        graph[from].push_back({weight, to});
-    } 
-
-    pair<vector<T>, vector<int>> query(const int& start,
-                                          const T& e,
-                                          const T& inf) {
+    pair<vector<T>, vector<int>> query(
+        int start, T e = _ZERO, T inf = _INF) {
         T alt;
         vector<T> dist(_n, inf);
         vector<int> prev(_n, -1);
@@ -39,10 +35,12 @@ template <class T> struct dij_graph {
 
         return {dist, prev};
     }
-    
+
   private:
     int _n;
-    vector<vector<pair<T, int>>> graph;
+    const WG& _g;
+    constexpr static T _INF = numeric_limits<T>::max();
+    constexpr static T _ZERO = T(0);
 };
 
 #endif // GRAPH_DIJKSTRA_HPP
