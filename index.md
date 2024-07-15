@@ -319,6 +319,9 @@ data:
     - icon: ':warning:'
       path: string/rolling_hash.hpp
       title: string/rolling_hash.hpp
+    - icon: ':warning:'
+      path: string/suffix_array.hpp
+      title: string/suffix_array.hpp
   - name: template
     pages:
     - icon: ':heavy_check_mark:'
