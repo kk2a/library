@@ -21,9 +21,26 @@ data:
     \ i) <= _n; j++) {\n                table[i][j] = op(table[i - 1][j], table[i\
     \ - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    using Monoid\
     \ = S;\n    static S Op(S l, S r) { return op(l, r); }\n    static S MonoidUnit()\
-    \ { return e(); }\n\n    S prod(int l, int r) {\n        assert(0 <= l && l <=\
-    \ r && r <= _n);\n        if (l == r) return e();\n        int i = 31 - __builtin_clz(r\
-    \ - l);\n        return op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n  private:\n\
+    \ { return e(); }\n\n    S prod(int l, int r) const {\n        assert(0 <= l &&\
+    \ l <= r && r <= _n);\n        if (l == r) return e();\n        int i = 31 - __builtin_clz(r\
+    \ - l);\n        return op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n  \
+    \  // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true\n\
+    \    // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false\n    template <bool\
+    \ (*f)(S)>\n    int max_right(int l) const {\n        return max_right(l, [](S\
+    \ x) { return f(x); });\n    }\n    template <class F>\n    int max_right(int\
+    \ l, F f) const {\n        assert(0 <= l && l <= _n);\n        assert(f(e()));\n\
+    \        if (l == _n) return _n;\n        int left = l - 1, right = _n;\n    \
+    \    while (right - left > 1) {\n            int mid = (left + right) >> 1;\n\
+    \            if (f(prod(l, mid))) left = mid;\n            else right = mid;\n\
+    \        }\n        return right;\n    }\n\n    // return l s.t.\n    // l = r\
+    \ or f(op(a[l], a[l+1], ..., a[r-1])) == false\n    // l = 0 or f(op(a[l], a[l+1],\
+    \ ..., a[r]))   == true\n    template <bool (*f)(S)>\n    int min_left(int r)\
+    \ const {\n        return min_left(r, [](S x) { return f(x); });\n    }\n    template\
+    \ <class F>\n    int min_left(int r, F f) const {\n        assert(0 <= r && r\
+    \ <= _n);\n        assert(f(e()));\n        if (r == 0) return 0;\n        int\
+    \ left = -1, right = r;\n        while (right - left > 1) {\n            int mid\
+    \ = (left + right) >> 1;\n            if (f(prod(mid, r))) right = mid;\n    \
+    \        else left = mid;\n        }\n        return right;\n    }\n\n  private:\n\
     \    int _n, log;\n    vector<vector<S>> table;\n};\n\n\n"
   code: "#ifndef DATA_STRUCTURE_SPARSE_TABLE_HPP\n#define DATA_STRUCTURE_SPARSE_TABLE_HPP\
     \ 1\n\n\n// require: op(x, x) = x for all x\ntemplate <class S, S (*op)(S, S),\
@@ -36,16 +53,33 @@ data:
     \ = op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n  \
     \      }\n    }\n\n    using Monoid = S;\n    static S Op(S l, S r) { return op(l,\
     \ r); }\n    static S MonoidUnit() { return e(); }\n\n    S prod(int l, int r)\
-    \ {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return\
+    \ const {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return\
     \ e();\n        int i = 31 - __builtin_clz(r - l);\n        return op(table[i][l],\
-    \ table[i][r - (1 << i)]);\n    }\n\n  private:\n    int _n, log;\n    vector<vector<S>>\
-    \ table;\n};\n\n#endif // DATA_STRUCTURE_SPARSE_TABLE_HPP\n"
+    \ table[i][r - (1 << i)]);\n    }\n\n    // return r s.t.\n    // r = l or f(op(a[l],\
+    \ a[l+1], ..., a[r-1])) == true\n    // r = n or f(op(a[l], a[l+1], ..., a[r]))\
+    \   == false\n    template <bool (*f)(S)>\n    int max_right(int l) const {\n\
+    \        return max_right(l, [](S x) { return f(x); });\n    }\n    template <class\
+    \ F>\n    int max_right(int l, F f) const {\n        assert(0 <= l && l <= _n);\n\
+    \        assert(f(e()));\n        if (l == _n) return _n;\n        int left =\
+    \ l - 1, right = _n;\n        while (right - left > 1) {\n            int mid\
+    \ = (left + right) >> 1;\n            if (f(prod(l, mid))) left = mid;\n     \
+    \       else right = mid;\n        }\n        return right;\n    }\n\n    // return\
+    \ l s.t.\n    // l = r or f(op(a[l], a[l+1], ..., a[r-1])) == false\n    // l\
+    \ = 0 or f(op(a[l], a[l+1], ..., a[r]))   == true\n    template <bool (*f)(S)>\n\
+    \    int min_left(int r) const {\n        return min_left(r, [](S x) { return\
+    \ f(x); });\n    }\n    template <class F>\n    int min_left(int r, F f) const\
+    \ {\n        assert(0 <= r && r <= _n);\n        assert(f(e()));\n        if (r\
+    \ == 0) return 0;\n        int left = -1, right = r;\n        while (right - left\
+    \ > 1) {\n            int mid = (left + right) >> 1;\n            if (f(prod(mid,\
+    \ r))) right = mid;\n            else left = mid;\n        }\n        return right;\n\
+    \    }\n\n  private:\n    int _n, log;\n    vector<vector<S>> table;\n};\n\n#endif\
+    \ // DATA_STRUCTURE_SPARSE_TABLE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/sparse_table.hpp
   requiredBy:
   - data_structure/static_rmq.hpp
-  timestamp: '2024-07-08 10:09:01+09:00'
+  timestamp: '2024-07-17 02:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/sparse_table.hpp
