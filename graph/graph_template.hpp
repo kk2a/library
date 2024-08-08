@@ -3,16 +3,16 @@
 
 
 template <class T>
-struct Edge {
+struct WeightedEdge {
     int from, to, id;
     T cost;
 
-    Edge(int to_, T cost_, int from_ = -1, int id_ = -1) :
+    WeightedEdge(int to_, T cost_, int from_ = -1, int id_ = -1) :
         from(from_), to(to_), id(id_), cost(cost_) {}
 
-    Edge() : from(-1), to(-1), id(-1), cost(0) {}
+    WeightedEdge() : from(-1), to(-1), id(-1), cost(0) {}
 
-    Edge& operator=(const Edge &e) {
+    WeightedEdge& operator=(const WeightedEdge &e) {
         from = e.from;
         to = e.to;
         id = e.id;
@@ -22,34 +22,26 @@ struct Edge {
 
     operator int() const { return to; }
 
-    Edge rev() const { return Edge(from, cost, to, id); }
+    WeightedEdge rev() const { return WeightedEdge(from, cost, to, id); }
 
-    friend ostream& operator<<(ostream &os, const Edge &e) {
+    friend ostream& operator<<(ostream &os, const WeightedEdge &e) {
         if (is_same_v<T, bool>) return os << e.from << "->" << e.to;
         return os << e.from << "->" << e.to << ":" << e.cost;
     }
 };
 template <class T>
-using Edges = vector<Edge<T>>;
-
-// template <class T>
-// using EdgePtr = shared_ptr<Edge<T>>;
-
-// template <class T>
-// inline EdgePtr<T> new_edge(int to = -1, T cost = 0, int from = -1, int id = -1) {
-//     return make_shared<Edge<T>>(to, cost, from, id);
-// }
+using WeightedEdges = vector<WeightedEdge<T>>;
 
 template <class T, bool is_one_indexed = true, bool is_directed = false>
-struct WeightedGraph : vector<Edges<T>> {
+struct WeightedGraph : vector<WeightedEdges<T>> {
     WeightedGraph(int n_ = 0) :
-                  vector<Edges<T>>(n_), n(n_), m(0) {}
+                  vector<WeightedEdges<T>>(n_), n(n_), m(0) {}
 
     WeightedGraph(int n_, int m_) :
-                  vector<Edges<T>>(n_), n(n_), m(m_) { input(); }
+                  vector<WeightedEdges<T>>(n_), n(n_), m(m_) { input(); }
 
-    WeightedGraph(int n_, vector<Edges<T>> g_) :
-                  vector<Edges<T>>(n_), n(n_), m(0) {
+    WeightedGraph(int n_, vector<WeightedEdges<T>> g_) :
+                  vector<WeightedEdges<T>>(n_), n(n_), m(0) {
         for (int i = 0; i < n; i++) {
             for (auto &e : g_[i]) {
                 _add_edge(i, e.to, e.cost, m++);
@@ -58,11 +50,12 @@ struct WeightedGraph : vector<Edges<T>> {
     }
 
     using value_type = T;
+    using edge_type = WeightedEdge<T>;
     constexpr static bool oneindexed() { return is_one_indexed; }
     constexpr static bool directed() { return is_directed; }
 
     int n, m;
-    Edges<T> edges;
+    WeightedEdges<T> edges;
 
     int num_vertices() const { return n; }
     int num_edges() const { return m; }
@@ -75,7 +68,7 @@ struct WeightedGraph : vector<Edges<T>> {
 
     WeightedGraph inplace_rev() {
         static_assert(is_directed);
-        Edges<T> rev(m);
+        WeightedEdges<T> rev(m);
         for (int i = 0; i < m; i++) {
             rev[i] = edges[i].rev();
         }
@@ -123,17 +116,43 @@ struct WeightedGraph : vector<Edges<T>> {
 template <class T, bool is_one_indexed = true, bool is_directed = false>
 using WGraph = WeightedGraph<T, is_one_indexed, is_directed>;
 
+struct UnWeightedEdge {
+    int from, to, id;
+
+    UnWeightedEdge(int to_, int from_ = -1, int id_ = -1) :
+        from(from_), to(to_), id(id_) {}
+
+    UnWeightedEdge() : from(-1), to(-1), id(-1) {}
+
+    UnWeightedEdge& operator=(const UnWeightedEdge &e) {
+        from = e.from;
+        to = e.to;
+        id = e.id;
+        return *this;
+    }
+
+    operator int() const { return to; }
+
+    UnWeightedEdge rev() const { return UnWeightedEdge(from, to, id); }
+
+    friend ostream& operator<<(ostream &os, const UnWeightedEdge &e) {
+        return os << e.from << "->" << e.to;
+    }
+};
+
+using UnWeightedEdges = vector<UnWeightedEdge>;
+
 template <bool is_one_indexed = true, bool is_directed = false,
           bool is_functional = false>
-struct UnWeightedGraph : vector<Edges<bool>> {
+struct UnWeightedGraph : vector<UnWeightedEdges> {
     UnWeightedGraph(int n_ = 0) :
-                    vector<Edges<bool>>(n_), n(n_), m(0) {}
+                    vector<UnWeightedEdges>(n_), n(n_), m(0) {}
 
     UnWeightedGraph(int n_, int m_) :
-                    vector<Edges<bool>>(n_), n(n_), m(m_) { input(); }
+                    vector<UnWeightedEdges>(n_), n(n_), m(m_) { input(); }
 
-    UnWeightedGraph(int n_, vector<Edges<bool>> g_) :
-                    vector<Edges<bool>>(n_), n(n_), m(0) {
+    UnWeightedGraph(int n_, vector<UnWeightedEdges> g_) :
+                    vector<UnWeightedEdges>(n_), n(n_), m(0) {
         for (int i = 0; i < n; i++) {
             for (auto &e : g_[i]) {
                 _add_edge(i, e.to, m++);
@@ -145,8 +164,10 @@ struct UnWeightedGraph : vector<Edges<bool>> {
     constexpr static bool directed() { return is_directed; }
     constexpr static bool functional() { return is_functional; }
 
+    using edge_type = UnWeightedEdge;
+
     int n, m;
-    Edges<bool> edges;
+    UnWeightedEdges edges;
 
     int num_vertices() const { return n; }
     int num_edges() const { return m; }
@@ -210,14 +231,13 @@ struct UnWeightedGraph : vector<Edges<bool>> {
 
   private:
     void _add_edge(int from, int to, int id) {
-        (*this)[from].emplace_back(to, 0, from, id);
-        if constexpr (!is_directed) (*this)[to].emplace_back(from, 0, to, id);
-        edges.emplace_back(to, 0, from, id);
+        (*this)[from].emplace_back(to, from, id);
+        if constexpr (!is_directed) (*this)[to].emplace_back(from, to, id);
+        edges.emplace_back(to, from, id);
     }
 };
 template <bool is_one_indexed = true, bool is_directed = false,
           bool is_functional = false>
 using Graph = UnWeightedGraph<is_one_indexed, is_directed, is_functional>;
-
 
 #endif // GRAPH_GRAPH_TEMPLATE_HPP
