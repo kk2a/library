@@ -3,12 +3,14 @@
 
 // #include <bits/stdc++.h>
 #include <iostream>
+#include <iomanip>
 #include <algorithm>
 #include <cassert>
 #include <cmath>
 #include <iterator>
 #include <random>
 #include <type_traits>
+#include <limits>
 
 #include <string>
 #include <vector>
@@ -18,6 +20,7 @@
 #include <map>
 #include <unordered_map>
 #include <set>
+#include <unordered_set>
 #include <functional>
 #include <bitset>
 
@@ -75,17 +78,15 @@ inline bool chmin(T &a, const S &b) {
     return (a > b ? a = b, 1 : 0);
 }
 
-# define rep1(a) for (i64 _ = 0; _ < i64(a); ++_)
-# define rep2(i, a) for (i64 i = 0; i < i64(a); ++i)
-# define rep3(i, a, b) for (i64 i = (a); i < i64(b); ++i)
+# define rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)
+# define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)
+# define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)
 # define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)
-# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (b); --i)
+# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (i64)(b); --i)
 # define overload3(a, b, c, d, ...) d
 # define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)
 # define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)
 
-# define pb push_back
-# define eb emplace_back
 # define fi first
 # define se second
 # define all(p) begin(p), end(p)
