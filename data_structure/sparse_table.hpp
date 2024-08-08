@@ -5,14 +5,13 @@
 // require: op(x, x) = x for all x
 template <class S, S (*op)(S, S), S (*e)()>
 struct SparseTable {
-    SparseTable() : SparseTable(0) {}
-    SparseTable(int n) : SparseTable(vector<S>(n, e())) {}
+    SparseTable() = default;
     SparseTable(const vector<S>& v) : _n(int(v.size())) {
-        log = 1;
-        while ((1 << log) <= _n) log++;
-        table.assign(log, vector<S>(_n));
+        log = 0;
+        while ((1 << log) < _n) log++;
+        table.assign(log + 1, vector<S>(_n));
         for (int i = 0; i < _n; i++) table[0][i] = v[i];
-        for (int i = 1; i < log; i++) {
+        for (int i = 1; i <= log; i++) {
             for (int j = 0; j + (1 << i) <= _n; j++) {
                 table[i][j] = op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
             }
@@ -26,7 +25,7 @@ struct SparseTable {
     S prod(int l, int r) const {
         assert(0 <= l && l <= r && r <= _n);
         if (l == r) return e();
-        int i = 31 - __builtin_clz(r - l);
+        int i = 31 ^ __builtin_clz(r - l);
         return op(table[i][l], table[i][r - (1 << i)]);
     }
 
