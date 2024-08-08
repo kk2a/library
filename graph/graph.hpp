@@ -12,13 +12,13 @@ struct WeightedEdge {
 
     WeightedEdge() : from(-1), to(-1), id(-1), cost(0) {}
 
-    WeightedEdge& operator=(const WeightedEdge &e) {
-        from = e.from;
-        to = e.to;
-        id = e.id;
-        cost = e.cost;
-        return *this;
-    }
+    // WeightedEdge& operator=(const WeightedEdge &e) {
+    //     from = e.from;
+    //     to = e.to;
+    //     id = e.id;
+    //     cost = e.cost;
+    //     return *this;
+    // }
 
     operator int() const { return to; }
 
@@ -124,12 +124,12 @@ struct UnWeightedEdge {
 
     UnWeightedEdge() : from(-1), to(-1), id(-1) {}
 
-    UnWeightedEdge& operator=(const UnWeightedEdge &e) {
-        from = e.from;
-        to = e.to;
-        id = e.id;
-        return *this;
-    }
+    // UnWeightedEdge& operator=(const UnWeightedEdge &e) {
+    //     from = e.from;
+    //     to = e.to;
+    //     id = e.id;
+    //     return *this;
+    // }
 
     operator int() const { return to; }
 
