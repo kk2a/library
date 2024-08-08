@@ -350,20 +350,20 @@ data:
   isVerificationFile: false
   path: fps/fps.hpp
   requiredBy:
-  - math_mod/comb_large_arb.hpp
-  - math_mod/comb_large_arb.hpp
-  - math_mod/comb_large.hpp
   - convolution/convo_arb.hpp
-  - fps/fps_arb.hpp
-  - fps/fps_arb.hpp
+  - math_mod/comb_large.hpp
+  - math_mod/comb_large_arb.hpp
+  - math_mod/comb_large_arb.hpp
   - fps/ntt_friendly.hpp
+  - fps/fps_arb.hpp
+  - fps/fps_arb.hpp
   timestamp: '2024-06-22 12:26:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: fps/fps.hpp
 layout: document
 redirect_from:

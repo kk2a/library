@@ -189,15 +189,15 @@ data:
   path: segment_tree/lazy_base.hpp
   requiredBy:
   - segment_tree/beats.hpp
-  - segment_tree/lazy.hpp
   - segment_tree/beats_utility.hpp
-  - segment_tree/utility/updatemin.hpp
+  - segment_tree/lazy.hpp
   - segment_tree/utility/affinesum.hpp
-  - segment_tree/utility/updatemax.hpp
   - segment_tree/utility/updatesum.hpp
-  - segment_tree/utility/addmax.hpp
-  - segment_tree/utility/addsum.hpp
+  - segment_tree/utility/updatemax.hpp
+  - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/addmin.hpp
+  - segment_tree/utility/addsum.hpp
+  - segment_tree/utility/addmax.hpp
   timestamp: '2024-07-13 13:04:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

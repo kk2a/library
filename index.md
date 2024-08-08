@@ -47,6 +47,9 @@ data:
   - name: data_structure
     pages:
     - icon: ':warning:'
+      path: data_structure/disjoint_sparse_table.hpp
+      title: data_structure/disjoint_sparse_table.hpp
+    - icon: ':warning:'
       path: data_structure/hash_map.hpp
       title: data_structure/hash_map.hpp
     - icon: ':warning:'

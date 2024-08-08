@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/primitive_rt_expr.hpp
     title: math_mod/primitive_rt_expr.hpp
+  - icon: ':warning:'
+    path: string/rolling_hash.hpp
+    title: string/rolling_hash.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
@@ -63,22 +66,23 @@ data:
   isVerificationFile: false
   path: math_mod/pow_expr.hpp
   requiredBy:
-  - math_mod/comb_large_arb.hpp
-  - math_mod/primitive_rt_expr.hpp
-  - math_mod/comb_large.hpp
-  - convolution/multi_zero.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
   - convolution/convo_arb.hpp
-  - fps/fps_arb.hpp
+  - convolution/multi_zero.hpp
+  - string/rolling_hash.hpp
+  - math_mod/comb_large.hpp
+  - math_mod/comb_large_arb.hpp
+  - math_mod/primitive_rt_expr.hpp
   - fps/ntt_friendly.hpp
+  - fps/fps_arb.hpp
   timestamp: '2024-06-13 21:51:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: math_mod/pow_expr.hpp
 layout: document
 redirect_from:
