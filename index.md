@@ -140,8 +140,8 @@ data:
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
     - icon: ':warning:'
-      path: graph/graph_template.hpp
-      title: graph/graph_template.hpp
+      path: graph/graph.hpp
+      title: graph/graph.hpp
     - icon: ':warning:'
       path: graph/graph_utility.hpp
       title: graph/graph_utility.hpp
