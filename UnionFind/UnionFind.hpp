@@ -6,7 +6,7 @@ struct UnionFind {
     UnionFind(int n = 0) : d(n, -1) {}
     bool same(int x, int y) { return find(x) == find(y); }
     bool unite(int x, int y) {
-        x = find(x); y = find(y);
+        x = find(x), y = find(y);
         if (x == y) return false;
         if (d[x] > d[y]) swap(x, y);
         d[x] += d[y];
