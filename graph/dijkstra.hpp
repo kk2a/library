@@ -23,12 +23,12 @@ struct Dijkstra {
         while (!pq.empty()) {
             auto q = pq.top(); pq.pop();
             if (dist[q.second] < q.first) continue;
-            for (auto v : graph[q.second]) {
-                alt = q.first + v.first;
-                if (alt < dist[v.second]) {
-                    pq.push( {alt, v.second} );
-                    dist[v.second] = alt;
-                    prev[v.second] = q.second; 
+            for (auto edge : _g[q.second]) {
+                alt = q.first + edge.cost;
+                if (alt < dist[edge.to]) {
+                    pq.push( {alt, edge.to} );
+                    dist[edge.to] = alt;
+                    prev[edge.to] = q.second; 
                 }
             }
         }
