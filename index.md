@@ -277,6 +277,9 @@ data:
       path: segment_tree/beats_utility.hpp
       title: segment_tree/beats_utility.hpp
     - icon: ':warning:'
+      path: segment_tree/dual_seg.hpp
+      title: segment_tree/dual_seg.hpp
+    - icon: ':warning:'
       path: segment_tree/dynamic_seg.hpp
       title: segment_tree/dynamic_seg.hpp
     - icon: ':warning:'
