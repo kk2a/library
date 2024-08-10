@@ -23,6 +23,7 @@
 #include <unordered_set>
 #include <functional>
 #include <bitset>
+#include <chrono>
 
 using namespace std;
 
@@ -63,6 +64,19 @@ template <class T>
 using vvc = vector<vc<T>>;
 template <class T>
 using vvvc = vector<vvc<T>>;
+
+template <class T>
+using vvvvc = vector<vvvc<T>>;
+
+template <class T, class... Sizes>
+auto make_vector(const T &init, int first, Sizes... sizes) {
+    if constexpr (sizeof...(sizes) == 0) {
+        return vector<T>(first, init);
+    }
+    else {
+        return vector<decltype(make_vector(init, sizes...))>(first, make_vector(init, sizes...));
+    }
+}
 
 template <class T>
 using pq = priority_queue<T>;
