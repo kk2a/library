@@ -20,16 +20,18 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math_mod/inv.hpp\"\n\n\n\ntemplate <class T, class U>\n\
-    constexpr long long mod_inversion(T a, U modulo) {\n    long long s = modulo,\
-    \ t = a;\n    long long m0 = 0, m1 = 1;\n    while (t) {\n        long long u\
-    \ = s / t;\n        swap(s -= t * u, t);\n        swap(m0 -= m1 * u, m1);\n  \
-    \  }\n    if (m0 < 0) m0 += modulo / s;\n    return m0;\n}\n\n\n"
-  code: "#ifndef MOD_INV_HPP\n#define MOD_INV_HPP 1\n\ntemplate <class T, class U>\n\
-    constexpr long long mod_inversion(T a, U modulo) {\n    long long s = modulo,\
-    \ t = a;\n    long long m0 = 0, m1 = 1;\n    while (t) {\n        long long u\
-    \ = s / t;\n        swap(s -= t * u, t);\n        swap(m0 -= m1 * u, m1);\n  \
-    \  }\n    if (m0 < 0) m0 += modulo / s;\n    return m0;\n}\n\n#endif // MOD_INV_HPP\n"
+  bundledCode: "#line 1 \"math_mod/inv.hpp\"\n\n\n\n\n// require: modulo >= 1\ntemplate\
+    \ <class T>\nconstexpr T mod_inversion(T a, T modulo) {\n    a %= modulo;\n  \
+    \  if (a < 0) a += modulo;\n    T s = modulo, t = a;\n    T m0 = 0, m1 = 1;\n\
+    \    while (t) {\n        T u = s / t;\n        swap(s -= t * u, t);\n       \
+    \ swap(m0 -= m1 * u, m1);\n    }\n    if (m0 < 0) m0 += modulo;\n    return m0;\n\
+    }\n\n\n"
+  code: "#ifndef MOD_INV_HPP\n#define MOD_INV_HPP 1\n\n\n// require: modulo >= 1\n\
+    template <class T>\nconstexpr T mod_inversion(T a, T modulo) {\n    a %= modulo;\n\
+    \    if (a < 0) a += modulo;\n    T s = modulo, t = a;\n    T m0 = 0, m1 = 1;\n\
+    \    while (t) {\n        T u = s / t;\n        swap(s -= t * u, t);\n       \
+    \ swap(m0 -= m1 * u, m1);\n    }\n    if (m0 < 0) m0 += modulo;\n    return m0;\n\
+    }\n\n#endif // MOD_INV_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math_mod/inv.hpp
@@ -38,7 +40,7 @@ data:
   - math_mod/comb_large_arb.hpp
   - math_mod/garner.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-06-13 21:51:40+09:00'
+  timestamp: '2024-08-10 15:51:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math_mod/inv.hpp

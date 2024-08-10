@@ -342,23 +342,24 @@ data:
     \    butterfly(b);\n    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv(a);\n\
     \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
     \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n\n#line 1 \"math_mod/garner.hpp\"\
-    \n\n\n\n#line 1 \"math_mod/inv.hpp\"\n\n\n\ntemplate <class T, class U>\nconstexpr\
-    \ long long mod_inversion(T a, U modulo) {\n    long long s = modulo, t = a;\n\
-    \    long long m0 = 0, m1 = 1;\n    while (t) {\n        long long u = s / t;\n\
-    \        swap(s -= t * u, t);\n        swap(m0 -= m1 * u, m1);\n    }\n    if\
-    \ (m0 < 0) m0 += modulo / s;\n    return m0;\n}\n\n\n#line 5 \"math_mod/garner.hpp\"\
-    \n\nlong long garner(const vector<long long>& d, const vector<long long>& p) {\n\
-    \    static int nm = d.size();\n    vector<long long> kp(nm + 1, 0), rmult(nm\
-    \ + 1, 1);\n    for (int ii = 0; ii < nm; ii++) {\n        long long x = (d[ii]\
-    \ - kp[ii]) * mod_inversion(rmult[ii], p[ii]) % p[ii];\n        x = (x + p[ii])\
-    \ % p[ii];\n        for (int iii = ii + 1; iii < nm + 1; iii++) {\n          \
-    \  kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];\n            rmult[iii] = (rmult[iii]\
-    \ * p[ii]) % p[iii];\n        }\n    }\n    return kp[nm];\n}\n\n\n#line 8 \"\
-    convolution/convo_arb.hpp\"\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-    FPS convolution_arb(FPS& a, const FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n\
-    \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
-    \  // 2^24\n    static constexpr long long MOD2 = 167772161;  // 2^25\n    static\
-    \ constexpr long long MOD3 = 469762049;  // 2^26\n    using mint1 = LazyMontgomeryModInt<MOD1>;\n\
+    \n\n\n\n#line 1 \"math_mod/inv.hpp\"\n\n\n\n\n// require: modulo >= 1\ntemplate\
+    \ <class T>\nconstexpr T mod_inversion(T a, T modulo) {\n    a %= modulo;\n  \
+    \  if (a < 0) a += modulo;\n    T s = modulo, t = a;\n    T m0 = 0, m1 = 1;\n\
+    \    while (t) {\n        T u = s / t;\n        swap(s -= t * u, t);\n       \
+    \ swap(m0 -= m1 * u, m1);\n    }\n    if (m0 < 0) m0 += modulo;\n    return m0;\n\
+    }\n\n\n#line 5 \"math_mod/garner.hpp\"\n\nlong long garner(const vector<long long>&\
+    \ d, const vector<long long>& p) {\n    static int nm = d.size();\n    vector<long\
+    \ long> kp(nm + 1, 0), rmult(nm + 1, 1);\n    for (int ii = 0; ii < nm; ii++)\
+    \ {\n        long long x = (d[ii] - kp[ii]) * mod_inversion(rmult[ii], p[ii])\
+    \ % p[ii];\n        x = (x + p[ii]) % p[ii];\n        for (int iii = ii + 1; iii\
+    \ < nm + 1; iii++) {\n            kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];\n\
+    \            rmult[iii] = (rmult[iii] * p[ii]) % p[iii];\n        }\n    }\n \
+    \   return kp[nm];\n}\n\n\n#line 8 \"convolution/convo_arb.hpp\"\n\ntemplate <class\
+    \ FPS, class mint = typename FPS::value_type>\nFPS convolution_arb(FPS& a, const\
+    \ FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m)\
+    \ return {};\n    static constexpr long long MOD1 = 754974721;  // 2^24\n    static\
+    \ constexpr long long MOD2 = 167772161;  // 2^25\n    static constexpr long long\
+    \ MOD3 = 469762049;  // 2^26\n    using mint1 = LazyMontgomeryModInt<MOD1>;\n\
     \    using mint2 = LazyMontgomeryModInt<MOD2>;\n    using mint3 = LazyMontgomeryModInt<MOD3>;\n\
     \n    vector<long long> a0(n), b0(m);\n    for (int i = 0; i < n; i++) a0[i] =\
     \ a[i].val();\n    for (int i = 0; i < m; i++) b0[i] = b[i].val();\n    auto a1\
@@ -422,7 +423,7 @@ data:
   path: fps/fps_arb.hpp
   requiredBy:
   - math_mod/comb_large_arb.hpp
-  timestamp: '2024-07-15 18:54:21+09:00'
+  timestamp: '2024-08-10 15:51:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_arb.hpp

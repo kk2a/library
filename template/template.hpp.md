@@ -26,28 +26,33 @@ data:
     #include <limits>\n\n#include <string>\n#include <vector>\n#include <numeric>\n\
     #include <queue>\n#include <array>\n#include <map>\n#include <unordered_map>\n\
     #include <set>\n#include <unordered_set>\n#include <functional>\n#include <bitset>\n\
-    \nusing namespace std;\n\nusing u32 = unsigned int;\nusing i64 = long long;\n\
-    using u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    \nusing pi = pair<int, int>;\nusing pl = pair<i64, i64>;\nusing pil = pair<int,\
-    \ i64>;\nusing pli = pair<i64, int>;\n\ntemplate <class T>\nconstexpr T infty\
-    \ = 0;\ntemplate <>\nconstexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\n\
-    constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <>\nconstexpr\
-    \ i128 infty<i128> = i128(infty<i64>) * infty<i64>;\ntemplate <>\nconstexpr u32\
-    \ infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<i64>;\n\
-    template <>\nconstexpr double infty<double> = infty<i64>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<i64>;\nconstexpr int mod = 998244353;\n\
-    constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\n\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqi = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S\
-    \ &b) {\n    return (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\n\
-    inline bool chmin(T &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\
-    \n# define rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)\n# define rep2(i, a) for\
-    \ (i64 i = 0; i < (i64)(a); ++i)\n# define rep3(i, a, b) for (i64 i = (a); i <\
-    \ (i64)(b); ++i)\n# define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)\n# define\
-    \ repi3(i, a, b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n# define overload3(a,\
-    \ b, c, d, ...) d\n# define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    #include <chrono>\n\nusing namespace std;\n\nusing u32 = unsigned int;\nusing\
+    \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
+    using u128 = __uint128_t;\n\nusing pi = pair<int, int>;\nusing pl = pair<i64,\
+    \ i64>;\nusing pil = pair<int, i64>;\nusing pli = pair<i64, int>;\n\ntemplate\
+    \ <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = (1\
+    \ << 30) - 123;\ntemplate <>\nconstexpr i64 infty<i64> = (1ll << 62) - (1ll <<\
+    \ 31);\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<i64>;\ntemplate <>\nconstexpr double infty<double> = infty<i64>;\n\
+    template <>\nconstexpr long double infty<long double> = infty<i64>;\nconstexpr\
+    \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long double PI\
+    \ = 3.14159265358979323846;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    \ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\ntemplate <class T, class...\
+    \ Sizes>\nauto make_vector(const T &init, int first, Sizes... sizes) {\n    if\
+    \ constexpr (sizeof...(sizes) == 0) {\n        return vector<T>(first, init);\n\
+    \    }\n    else {\n        return vector<decltype(make_vector(init, sizes...))>(first,\
+    \ make_vector(init, sizes...));\n    }\n}\n\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqi = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n    return\
+    \ (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T\
+    \ &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n# define rep1(a)\
+    \ for (i64 _ = 0; _ < (i64)(a); ++_)\n# define rep2(i, a) for (i64 i = 0; i <\
+    \ (i64)(a); ++i)\n# define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n\
+    # define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)\n# define repi3(i, a,\
+    \ b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n# define overload3(a, b, c, d,\
+    \ ...) d\n# define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
     # define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
     # define fi first\n# define se second\n# define all(p) begin(p), end(p)\n\nvoid\
     \ YES(bool b = 1) { cout << (b ? \"YES\" : \"NO\") << '\\n'; }\nvoid NO(bool b\
@@ -66,29 +71,34 @@ data:
     \ <cmath>\n#include <iterator>\n#include <random>\n#include <type_traits>\n#include\
     \ <limits>\n\n#include <string>\n#include <vector>\n#include <numeric>\n#include\
     \ <queue>\n#include <array>\n#include <map>\n#include <unordered_map>\n#include\
-    \ <set>\n#include <unordered_set>\n#include <functional>\n#include <bitset>\n\n\
-    using namespace std;\n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    \nusing pi = pair<int, int>;\nusing pl = pair<i64, i64>;\nusing pil = pair<int,\
-    \ i64>;\nusing pli = pair<i64, int>;\n\ntemplate <class T>\nconstexpr T infty\
-    \ = 0;\ntemplate <>\nconstexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\n\
-    constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <>\nconstexpr\
-    \ i128 infty<i128> = i128(infty<i64>) * infty<i64>;\ntemplate <>\nconstexpr u32\
-    \ infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<i64>;\n\
-    template <>\nconstexpr double infty<double> = infty<i64>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<i64>;\nconstexpr int mod = 998244353;\n\
-    constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\n\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqi = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S\
-    \ &b) {\n    return (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\n\
-    inline bool chmin(T &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\
-    \n# define rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)\n# define rep2(i, a) for\
-    \ (i64 i = 0; i < (i64)(a); ++i)\n# define rep3(i, a, b) for (i64 i = (a); i <\
-    \ (i64)(b); ++i)\n# define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)\n# define\
-    \ repi3(i, a, b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n# define overload3(a,\
-    \ b, c, d, ...) d\n# define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    \ <set>\n#include <unordered_set>\n#include <functional>\n#include <bitset>\n\
+    #include <chrono>\n\nusing namespace std;\n\nusing u32 = unsigned int;\nusing\
+    \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
+    using u128 = __uint128_t;\n\nusing pi = pair<int, int>;\nusing pl = pair<i64,\
+    \ i64>;\nusing pil = pair<int, i64>;\nusing pli = pair<i64, int>;\n\ntemplate\
+    \ <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = (1\
+    \ << 30) - 123;\ntemplate <>\nconstexpr i64 infty<i64> = (1ll << 62) - (1ll <<\
+    \ 31);\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<i64>;\ntemplate <>\nconstexpr double infty<double> = infty<i64>;\n\
+    template <>\nconstexpr long double infty<long double> = infty<i64>;\nconstexpr\
+    \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long double PI\
+    \ = 3.14159265358979323846;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    \ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\ntemplate <class T, class...\
+    \ Sizes>\nauto make_vector(const T &init, int first, Sizes... sizes) {\n    if\
+    \ constexpr (sizeof...(sizes) == 0) {\n        return vector<T>(first, init);\n\
+    \    }\n    else {\n        return vector<decltype(make_vector(init, sizes...))>(first,\
+    \ make_vector(init, sizes...));\n    }\n}\n\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqi = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n    return\
+    \ (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T\
+    \ &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n# define rep1(a)\
+    \ for (i64 _ = 0; _ < (i64)(a); ++_)\n# define rep2(i, a) for (i64 i = 0; i <\
+    \ (i64)(a); ++i)\n# define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n\
+    # define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)\n# define repi3(i, a,\
+    \ b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n# define overload3(a, b, c, d,\
+    \ ...) d\n# define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
     # define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
     # define fi first\n# define se second\n# define all(p) begin(p), end(p)\n\nvoid\
     \ YES(bool b = 1) { cout << (b ? \"YES\" : \"NO\") << '\\n'; }\nvoid NO(bool b\
@@ -106,7 +116,7 @@ data:
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-08-08 10:39:14+09:00'
+  timestamp: '2024-08-10 15:50:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp
