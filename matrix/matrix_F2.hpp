@@ -214,8 +214,7 @@ struct MatrixF2 {
 
     mat combine_top(const mat& rhs) const {
         assert(_w == rhs._w);
-        mat res(_mat);
-        return res.inplace_combine_top(rhs);
+        return mat(_mat).inplace_combine_top(rhs);
     }
 
     mat& inplace_combine_bottom(const mat& rhs) {
@@ -227,8 +226,33 @@ struct MatrixF2 {
 
     mat combine_bottom(const mat& rhs) const {
         assert(_w == rhs._w);
-        mat res(_mat);
-        return res.inplace_combine_bottom(rhs);
+        return mat(_mat).inplace_combine_bottom(rhs);
+    }
+
+    mat& inplace_combine_right(const mat& rhs) {
+        assert(_h == rhs._h);
+        for (int i = 0; i < _h; i++) 
+            _mat[i].inplace_combine_top(rhs._mat[i]);
+        _w += rhs._w;
+        return *this;
+    }
+
+    mat combine_right(const mat& rhs) const {
+        assert(_h == rhs._h);
+        return mat(_mat).inplace_combine_right(rhs);
+    }
+
+    mat& inplace_combine_left(const mat& rhs) {
+        assert(_h == rhs._h);
+        for (int i = 0; i < _h; i++) 
+            _mat[i].inplace_combine_bottom(rhs._mat[i]);
+        _w += rhs._w;
+        return *this;
+    }
+
+    mat combine_left(const mat& rhs) const {
+        assert(_h == rhs._h);
+        return mat(_mat).inplace_combine_left(rhs);
     }
 
     // [0, wr)
