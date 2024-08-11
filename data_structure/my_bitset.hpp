@@ -4,7 +4,7 @@
 
 struct DynamicBitSet {
     using T = DynamicBitSet;
-    using u64 = unsigned long long;
+    using u64 = uint64_t;
     int n;
     vector<u64> block;
 
@@ -15,16 +15,62 @@ struct DynamicBitSet {
         if (n) block.back() >>= ((u64)block.size() << 6) - n;
         // fit the last block
     }
+    DynamicBitSet(const string& s) : n(s.size()) {
+        block.resize((n + 63) >> 6);
+        set(s);
+    }
 
     int size() const { return n; }
 
-    void resize(int size_) {
-        block.resize((size_ + 63) >> 6);
-        int last_size = size_ & 63;
-        if (last_size) {
-            block.back() &= (1ULL << last_size) - 1;
+    T& inplace_combine_bottom(const T& rhs) {
+        block.resize((n + rhs.n + 63) >> 6);
+        if (!(n & 63)) {
+            copy(begin(rhs.block), end(rhs.block), begin(block) + (n >> 6));
+            n += rhs.n;
+            return *this;
         }
-        n = size_;
+        int start = 64 - (n & 63);
+        u64 start_mask = (1ULL << start) - 1;
+        u64 end_mask = ~start_mask;
+        for (int i = 0; i < (rhs.n + 63) >> 6; i++) {
+            u64 x = rhs.block[i];
+            block[i + (n >> 6)] |= (x & start_mask) << (64 - start);
+            if (i + (n >> 6) + 1 < (n + rhs.n + 63) >> 6)
+                block[i + (n >> 6) + 1] |= (x & end_mask) >> start;
+        }
+        n += rhs.n;
+        return *this;
+    }
+
+    T combine_bottom(const T& rhs) const {
+        return T(*this).inplace_combine_bottom(rhs);
+    }
+
+    T& inplace_combine_top(const T& rhs) {
+        block.resize((n + rhs.n + 63) >> 6);
+        if (!(rhs.n & 63)) {
+            copy(begin(block), end(block), begin(block) + (rhs.n >> 6));
+            copy(begin(rhs.block), end(rhs.block), begin(block));
+            n += rhs.n;
+            return *this;
+        }
+        int start = 64 - (rhs.n & 63);
+        u64 start_mask = (1ULL << start) - 1;
+        u64 end_mask = ~start_mask;
+        for (int i = ((n + 63) >> 6) - 1; i >= 0; --i) {
+            u64 x = block[i];
+            block[i + (rhs.n >> 6)] |= (x & start_mask) << (64 - start);
+            if (i + (rhs.n >> 6) + 1 < (n + rhs.n + 63) >> 6)
+                block[i + (rhs.n >> 6) + 1] |= (x & end_mask) >> start;
+        }
+        block[(rhs.n >> 6)] = ((block[0] & start_mask) << (64 - start)) | rhs.block.back();
+        copy(begin(rhs.block), prev(end(rhs.block)), begin(block));
+        n += rhs.n;
+        return *this;
+    }
+
+    T combine_top(const T& rhs) const {
+        return T(*this).inplace_combine_top(rhs);
     }
 
     void set(int i, int x) {
@@ -94,10 +140,6 @@ struct DynamicBitSet {
             bs[i >> 6] ^= 1ULL << (i & 63);
             return *this;
         }
-        Proxy& operator!() {
-            bs[i >> 6] ^= 1ULL << (i & 63);
-            return *this;
-        }
 
         bool val() {
             return (bs[i >> 6] >> (i & 63)) & 1;
@@ -107,6 +149,11 @@ struct DynamicBitSet {
     Proxy operator[](int i) {
         assert(0 <= i && i < n);
         return Proxy(block, i);
+    }
+
+    bool is_pinned(int i) const {
+        assert(0 <= i && i < n);
+        return (block[i >> 6] >> (i & 63)) & 1;
     }
 
     T& operator=(const string& s) {
@@ -127,11 +174,6 @@ struct DynamicBitSet {
     }
 
     T& operator~() {
-        flip();
-        return *this;
-    }
-
-    T& operator!() {
         flip();
         return *this;
     }
@@ -180,7 +222,7 @@ struct DynamicBitSet {
             reverse(begin(tmp), end(tmp));
             s += tmp;
         }
-        int start = 64 - n & 63;
+        int start = 64 - (n & 63);
         int len = n & 63;
         if (!len) start = 0, len = 64;
         string tmp = bitset<64>(block.back()).to_string().substr(start, len);
@@ -191,6 +233,13 @@ struct DynamicBitSet {
 
     friend ostream& operator<<(ostream& os, const T& bs) {
         return os << bs.to_string();
+    }
+
+    operator bool() const {
+        for (int i = 0; i < (n + 63) >> 6; i++) {
+            if (block[i]) return true;
+        }
+        return false;
     }
 };
 
