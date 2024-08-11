@@ -10,9 +10,19 @@ struct MatrixF2 {
 
     MatrixF2() : MatrixF2(0) {}
     MatrixF2(int n) : MatrixF2(n, n) {}
-    MatrixF2(int h, int w) : MatrixF2(vector<DynamicBitSet>(h, DynamicBitSet(w))) {}
+    MatrixF2(int h, int w) {
+        if (h == 0) {
+            _h = 0;
+            _w = w;
+        }
+        else {
+            _h = h;
+            _w = w;
+            _mat.resize(h, DynamicBitSet(w));
+        }
+    }
     MatrixF2(const vector<DynamicBitSet>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_) {}
-    
+
     int get_h() const { return _h; }
     int get_w() const { return _w; }
     
@@ -27,6 +37,7 @@ struct MatrixF2 {
         int i;
       public:
         Proxy(vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_) {}
+        operator DynamicBitSet() const { return bs[i]; }
         Proxy& operator=(string s) {
             bs[i] = s;
             return *this;
@@ -77,10 +88,6 @@ struct MatrixF2 {
             return *this;
         }
         Proxy& operator~() {
-            bs[i].flip();
-            return *this;
-        }
-        Proxy& operator!() {
             bs[i].flip();
             return *this;
         }
@@ -212,26 +219,60 @@ struct MatrixF2 {
         return res.inplace_combine_bottom(rhs);
     }
 
-    int rank() const {
-        vector<DynamicBitSet> buf(_mat);
-        int res = 0;
-        for (int i = 0; i < _w; i++) {
+    // [0, wr)
+    int sweep(int wr = -1) {
+        if (wr == -1) wr = _w;
+        int r = 0;
+        for (int i = 0; i < wr; i++) {
             int pivot = -1;
-            for (int j = res; j < _h; j++) {
-                if (buf[j][i]) {
+            for (int j = r; j < _h; j++) {
+                if (_mat[j][i]) {
                     pivot = j;
                     break;
                 }
             }
             if (pivot == -1) continue;
-            swap(buf[res], buf[pivot]);
+            if (r != pivot) swap(_mat[r], _mat[pivot]);
             for (int j = 0; j < _h; j++) {
-                if (j == res) continue;
-                if (buf[j][i]) buf[j] ^= buf[res];
+                if (j == r) continue;
+                if (_mat[j][i]) _mat[j] ^= _mat[r];
             }
-            res++;
+            r++;
+        }
+        return r;
+    }
+
+    void shrink() {
+        while (_h && !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;
+    }
+
+    // it must be already swept and shrunk before calling this function
+    vector<DynamicBitSet> get_solution_base() const {
+        vector<DynamicBitSet> res(_w - _h, DynamicBitSet(_w));
+        vector<int> step(_h);
+        vector<bool> is_step(_w, false);
+        int nowj = 0;
+        rep (i, _h) {
+            while (!_mat[i].is_pinned(nowj)) nowj++;
+            is_step[nowj] = true;
+            step[i] = nowj;
+        }
+        int now = 0;
+        nowj = 0;
+        while (nowj < _w) {
+            if (is_step[nowj]) {
+                nowj++;
+                continue;
+            }
+            res[now][nowj] = 1;
+            rep (i, _h) if (_mat[i].is_pinned(nowj)) res[now][step[i]] = 1;
+            nowj++, now++;
         }
         return res;
+    }
+
+    int rank() const {
+        return mat(*this).sweep();
     }
 
     bool det() const {
