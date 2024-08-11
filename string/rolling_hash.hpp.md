@@ -24,40 +24,49 @@ data:
     \    static int base[b], basei[b];\n\n    static void setbase() {\n        mt19937_64\
     \ rng(time(0));\n        for (int i = 0; i < b; ++i) {\n            unordered_set<int>\
     \ st = {0, 1, modp[i] - 1};\n            while (st.count(base[i] = rng() % modp[i]));\n\
-    \            basei[i] = quo(base[i], i);\n        }\n    }\n\n    Hashs(char c)\
-    \ {\n        for (int i = 0; i < b; ++i) {\n            table[i].h = c;\n    \
-    \        table[i].pw = base[i];\n            table[i].pwi = basei[i];\n      \
-    \  }\n    }\n    Hashs(string s) {\n        int n = s.size();\n        for (int\
+    \            basei[i] = quo(base[i], i);\n        }\n    }\n\n    template <class\
+    \ T>\n    Hashs(const T &v) {\n        for (int i = 0; i < b; ++i) {\n       \
+    \     table[i].h = v % modp[i];\n            table[i].pw = base[i];\n        \
+    \    table[i].pwi = basei[i];\n        }\n    }\n\n    template <>\n    Hashs(char\
+    \ c) {\n        for (int i = 0; i < b; ++i) {\n            table[i].h = c;\n \
+    \           table[i].pw = base[i];\n            table[i].pwi = basei[i];\n   \
+    \     }\n    }\n\n    template <class T>\n    Hashs(const vector<T> &v) {\n  \
+    \      int n = v.size();\n        for (int i = 0; i < b; ++i) {\n            table[i].h\
+    \ = 0;\n            table[i].pw = 1;\n            table[i].pwi = 1;\n        \
+    \    for (int j = n - 1; j >= 0; --j) {\n                table[i].h = (table[i].h\
+    \ * base[i] + v[j] % modp[i]) % modp[i];\n                table[i].pw = table[i].pw\
+    \ * base[i] % modp[i];\n                table[i].pwi = table[i].pwi * basei[i]\
+    \ % modp[i];\n            }\n        }\n    }\n\n    template <>\n    Hashs(const\
+    \ string &v) {\n        int n = s.size();\n        for (int i = 0; i < b; ++i)\
+    \ {\n            table[i].h = 0;\n            table[i].pw = 1;\n            table[i].pwi\
+    \ = 1;\n            for (int j = n - 1; j >= 0; --j) {\n                table[i].h\
+    \ = (table[i].h * base[i] + s[j]) % modp[i];\n                table[i].pw = table[i].pw\
+    \ * base[i] % modp[i];\n                table[i].pwi = table[i].pwi * basei[i]\
+    \ % modp[i];\n            }\n        }\n    }\n\n    Hashs() {\n        for (int\
     \ i = 0; i < b; ++i) {\n            table[i].h = 0;\n            table[i].pw =\
-    \ 1;\n            table[i].pwi = 1;\n            for (int j = n - 1; j >= 0; --j)\
-    \ {\n                table[i].h = (table[i].h * base[i] + s[j]) % modp[i];\n \
-    \               table[i].pw = table[i].pw * base[i] % modp[i];\n             \
-    \   table[i].pwi = table[i].pwi * basei[i] % modp[i];\n            }\n       \
-    \ }\n    }\n    Hashs() {\n        for (int i = 0; i < b; ++i) {\n           \
-    \ table[i].h = 0;\n            table[i].pw = 1;\n            table[i].pwi = 1;\n\
-    \        }\n    }\n\n    void push_front(const Hashs &otherHash) {\n        for\
-    \ (int i = 0; i < b; ++i) {\n            table[i].h = (otherHash.table[i].h +\
-    \ table[i].h * otherHash.table[i].pw) % modp[i];\n            table[i].pw = table[i].pw\
-    \ * otherHash.table[i].pw % modp[i];\n            table[i].pwi = table[i].pwi\
-    \ * otherHash.table[i].pwi % modp[i];\n        }\n    }\n\n    void push_back(const\
+    \ 1;\n            table[i].pwi = 1;\n        }\n    }\n\n    void push_front(const\
     \ Hashs &otherHash) {\n        for (int i = 0; i < b; ++i) {\n            table[i].h\
-    \ = (table[i].h + otherHash.table[i].h * table[i].pw) % modp[i];\n           \
-    \ table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];\n            table[i].pwi\
-    \ = table[i].pwi * otherHash.table[i].pwi % modp[i];\n        }\n    }\n\n   \
-    \ void pop_front(const Hashs &otherHash) {\n        for (int i = 0; i < b; ++i)\
-    \ {\n            table[i].h = (table[i].h - otherHash.table[i].h) * otherHash.table[i].pwi\
-    \ % modp[i];\n            if (table[i].h < 0) table[i].h += modp[i];\n       \
-    \     table[i].pw = table[i].pw * otherHash.table[i].pwi % modp[i];\n        \
-    \    table[i].pwi = table[i].pwi * otherHash.table[i].pw % modp[i];\n        }\n\
-    \    }\n\n    void pop_back(const Hashs &otherHash) {\n        for (int i = 0;\
-    \ i < b; ++i) {\n            long long minus = otherHash.table[i].h * table[i].pw\
-    \ % modp[i] * otherHash.table[i].pwi % modp[i];\n            table[i].h = (table[i].h\
-    \ - minus) % modp[i];\n            if (table[i].h < 0) table[i].h += modp[i];\n\
-    \            table[i].pw = table[i].pw * otherHash.table[i].pwi % modp[i];\n \
-    \           table[i].pwi = table[i].pwi * otherHash.table[i].pw % modp[i];\n \
-    \       }\n    }\n\n    friend bool operator==(const Hashs &lhs, const Hashs &rhs)\
-    \ {\n        for (int i = 0; i < b; ++i) {\n            if (lhs.table[i].h !=\
-    \ rhs.table[i].h) return false;\n            if (lhs.table[i].pw != rhs.table[i].pw)\
+    \ = (otherHash.table[i].h + table[i].h * otherHash.table[i].pw) % modp[i];\n \
+    \           table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];\n   \
+    \         table[i].pwi = table[i].pwi * otherHash.table[i].pwi % modp[i];\n  \
+    \      }\n    }\n\n    void push_back(const Hashs &otherHash) {\n        for (int\
+    \ i = 0; i < b; ++i) {\n            table[i].h = (table[i].h + otherHash.table[i].h\
+    \ * table[i].pw) % modp[i];\n            table[i].pw = table[i].pw * otherHash.table[i].pw\
+    \ % modp[i];\n            table[i].pwi = table[i].pwi * otherHash.table[i].pwi\
+    \ % modp[i];\n        }\n    }\n\n    void pop_front(const Hashs &otherHash) {\n\
+    \        for (int i = 0; i < b; ++i) {\n            table[i].h = (table[i].h -\
+    \ otherHash.table[i].h) * otherHash.table[i].pwi % modp[i];\n            if (table[i].h\
+    \ < 0) table[i].h += modp[i];\n            table[i].pw = table[i].pw * otherHash.table[i].pwi\
+    \ % modp[i];\n            table[i].pwi = table[i].pwi * otherHash.table[i].pw\
+    \ % modp[i];\n        }\n    }\n\n    void pop_back(const Hashs &otherHash) {\n\
+    \        for (int i = 0; i < b; ++i) {\n            long long minus = otherHash.table[i].h\
+    \ * table[i].pw % modp[i] * otherHash.table[i].pwi % modp[i];\n            table[i].h\
+    \ = (table[i].h - minus) % modp[i];\n            if (table[i].h < 0) table[i].h\
+    \ += modp[i];\n            table[i].pw = table[i].pw * otherHash.table[i].pwi\
+    \ % modp[i];\n            table[i].pwi = table[i].pwi * otherHash.table[i].pw\
+    \ % modp[i];\n        }\n    }\n\n    friend bool operator==(const Hashs &lhs,\
+    \ const Hashs &rhs) {\n        for (int i = 0; i < b; ++i) {\n            if (lhs.table[i].h\
+    \ != rhs.table[i].h) return false;\n            if (lhs.table[i].pw != rhs.table[i].pw)\
     \ return false;\n        }\n        return true;\n    }\n    friend bool operator!=(const\
     \ Hashs &lhs, const Hashs &rhs) {\n        return !(lhs == rhs);\n    }\n\n  private:\n\
     \    constexpr static long long quo(long long a, int i) {\n        return pow_mod_constexpr(a,\
@@ -73,40 +82,49 @@ data:
     \    static int base[b], basei[b];\n\n    static void setbase() {\n        mt19937_64\
     \ rng(time(0));\n        for (int i = 0; i < b; ++i) {\n            unordered_set<int>\
     \ st = {0, 1, modp[i] - 1};\n            while (st.count(base[i] = rng() % modp[i]));\n\
-    \            basei[i] = quo(base[i], i);\n        }\n    }\n\n    Hashs(char c)\
-    \ {\n        for (int i = 0; i < b; ++i) {\n            table[i].h = c;\n    \
-    \        table[i].pw = base[i];\n            table[i].pwi = basei[i];\n      \
-    \  }\n    }\n    Hashs(string s) {\n        int n = s.size();\n        for (int\
+    \            basei[i] = quo(base[i], i);\n        }\n    }\n\n    template <class\
+    \ T>\n    Hashs(const T &v) {\n        for (int i = 0; i < b; ++i) {\n       \
+    \     table[i].h = v % modp[i];\n            table[i].pw = base[i];\n        \
+    \    table[i].pwi = basei[i];\n        }\n    }\n\n    template <>\n    Hashs(char\
+    \ c) {\n        for (int i = 0; i < b; ++i) {\n            table[i].h = c;\n \
+    \           table[i].pw = base[i];\n            table[i].pwi = basei[i];\n   \
+    \     }\n    }\n\n    template <class T>\n    Hashs(const vector<T> &v) {\n  \
+    \      int n = v.size();\n        for (int i = 0; i < b; ++i) {\n            table[i].h\
+    \ = 0;\n            table[i].pw = 1;\n            table[i].pwi = 1;\n        \
+    \    for (int j = n - 1; j >= 0; --j) {\n                table[i].h = (table[i].h\
+    \ * base[i] + v[j] % modp[i]) % modp[i];\n                table[i].pw = table[i].pw\
+    \ * base[i] % modp[i];\n                table[i].pwi = table[i].pwi * basei[i]\
+    \ % modp[i];\n            }\n        }\n    }\n\n    template <>\n    Hashs(const\
+    \ string &v) {\n        int n = s.size();\n        for (int i = 0; i < b; ++i)\
+    \ {\n            table[i].h = 0;\n            table[i].pw = 1;\n            table[i].pwi\
+    \ = 1;\n            for (int j = n - 1; j >= 0; --j) {\n                table[i].h\
+    \ = (table[i].h * base[i] + s[j]) % modp[i];\n                table[i].pw = table[i].pw\
+    \ * base[i] % modp[i];\n                table[i].pwi = table[i].pwi * basei[i]\
+    \ % modp[i];\n            }\n        }\n    }\n\n    Hashs() {\n        for (int\
     \ i = 0; i < b; ++i) {\n            table[i].h = 0;\n            table[i].pw =\
-    \ 1;\n            table[i].pwi = 1;\n            for (int j = n - 1; j >= 0; --j)\
-    \ {\n                table[i].h = (table[i].h * base[i] + s[j]) % modp[i];\n \
-    \               table[i].pw = table[i].pw * base[i] % modp[i];\n             \
-    \   table[i].pwi = table[i].pwi * basei[i] % modp[i];\n            }\n       \
-    \ }\n    }\n    Hashs() {\n        for (int i = 0; i < b; ++i) {\n           \
-    \ table[i].h = 0;\n            table[i].pw = 1;\n            table[i].pwi = 1;\n\
-    \        }\n    }\n\n    void push_front(const Hashs &otherHash) {\n        for\
-    \ (int i = 0; i < b; ++i) {\n            table[i].h = (otherHash.table[i].h +\
-    \ table[i].h * otherHash.table[i].pw) % modp[i];\n            table[i].pw = table[i].pw\
-    \ * otherHash.table[i].pw % modp[i];\n            table[i].pwi = table[i].pwi\
-    \ * otherHash.table[i].pwi % modp[i];\n        }\n    }\n\n    void push_back(const\
+    \ 1;\n            table[i].pwi = 1;\n        }\n    }\n\n    void push_front(const\
     \ Hashs &otherHash) {\n        for (int i = 0; i < b; ++i) {\n            table[i].h\
-    \ = (table[i].h + otherHash.table[i].h * table[i].pw) % modp[i];\n           \
-    \ table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];\n            table[i].pwi\
-    \ = table[i].pwi * otherHash.table[i].pwi % modp[i];\n        }\n    }\n\n   \
-    \ void pop_front(const Hashs &otherHash) {\n        for (int i = 0; i < b; ++i)\
-    \ {\n            table[i].h = (table[i].h - otherHash.table[i].h) * otherHash.table[i].pwi\
-    \ % modp[i];\n            if (table[i].h < 0) table[i].h += modp[i];\n       \
-    \     table[i].pw = table[i].pw * otherHash.table[i].pwi % modp[i];\n        \
-    \    table[i].pwi = table[i].pwi * otherHash.table[i].pw % modp[i];\n        }\n\
-    \    }\n\n    void pop_back(const Hashs &otherHash) {\n        for (int i = 0;\
-    \ i < b; ++i) {\n            long long minus = otherHash.table[i].h * table[i].pw\
-    \ % modp[i] * otherHash.table[i].pwi % modp[i];\n            table[i].h = (table[i].h\
-    \ - minus) % modp[i];\n            if (table[i].h < 0) table[i].h += modp[i];\n\
-    \            table[i].pw = table[i].pw * otherHash.table[i].pwi % modp[i];\n \
-    \           table[i].pwi = table[i].pwi * otherHash.table[i].pw % modp[i];\n \
-    \       }\n    }\n\n    friend bool operator==(const Hashs &lhs, const Hashs &rhs)\
-    \ {\n        for (int i = 0; i < b; ++i) {\n            if (lhs.table[i].h !=\
-    \ rhs.table[i].h) return false;\n            if (lhs.table[i].pw != rhs.table[i].pw)\
+    \ = (otherHash.table[i].h + table[i].h * otherHash.table[i].pw) % modp[i];\n \
+    \           table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];\n   \
+    \         table[i].pwi = table[i].pwi * otherHash.table[i].pwi % modp[i];\n  \
+    \      }\n    }\n\n    void push_back(const Hashs &otherHash) {\n        for (int\
+    \ i = 0; i < b; ++i) {\n            table[i].h = (table[i].h + otherHash.table[i].h\
+    \ * table[i].pw) % modp[i];\n            table[i].pw = table[i].pw * otherHash.table[i].pw\
+    \ % modp[i];\n            table[i].pwi = table[i].pwi * otherHash.table[i].pwi\
+    \ % modp[i];\n        }\n    }\n\n    void pop_front(const Hashs &otherHash) {\n\
+    \        for (int i = 0; i < b; ++i) {\n            table[i].h = (table[i].h -\
+    \ otherHash.table[i].h) * otherHash.table[i].pwi % modp[i];\n            if (table[i].h\
+    \ < 0) table[i].h += modp[i];\n            table[i].pw = table[i].pw * otherHash.table[i].pwi\
+    \ % modp[i];\n            table[i].pwi = table[i].pwi * otherHash.table[i].pw\
+    \ % modp[i];\n        }\n    }\n\n    void pop_back(const Hashs &otherHash) {\n\
+    \        for (int i = 0; i < b; ++i) {\n            long long minus = otherHash.table[i].h\
+    \ * table[i].pw % modp[i] * otherHash.table[i].pwi % modp[i];\n            table[i].h\
+    \ = (table[i].h - minus) % modp[i];\n            if (table[i].h < 0) table[i].h\
+    \ += modp[i];\n            table[i].pw = table[i].pw * otherHash.table[i].pwi\
+    \ % modp[i];\n            table[i].pwi = table[i].pwi * otherHash.table[i].pw\
+    \ % modp[i];\n        }\n    }\n\n    friend bool operator==(const Hashs &lhs,\
+    \ const Hashs &rhs) {\n        for (int i = 0; i < b; ++i) {\n            if (lhs.table[i].h\
+    \ != rhs.table[i].h) return false;\n            if (lhs.table[i].pw != rhs.table[i].pw)\
     \ return false;\n        }\n        return true;\n    }\n    friend bool operator!=(const\
     \ Hashs &lhs, const Hashs &rhs) {\n        return !(lhs == rhs);\n    }\n\n  private:\n\
     \    constexpr static long long quo(long long a, int i) {\n        return pow_mod_constexpr(a,\
@@ -119,7 +137,7 @@ data:
   isVerificationFile: false
   path: string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2024-08-08 10:40:02+09:00'
+  timestamp: '2024-08-12 00:01:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/rolling_hash.hpp
