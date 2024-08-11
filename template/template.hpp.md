@@ -20,19 +20,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"template/template.hpp\"\n\n\n\n// #include <bits/stdc++.h>\n\
-    #include <iostream>\n#include <iomanip>\n#include <algorithm>\n#include <cassert>\n\
-    #include <cmath>\n#include <iterator>\n#include <random>\n#include <type_traits>\n\
-    #include <limits>\n\n#include <string>\n#include <vector>\n#include <numeric>\n\
-    #include <queue>\n#include <array>\n#include <map>\n#include <unordered_map>\n\
-    #include <set>\n#include <unordered_set>\n#include <functional>\n#include <bitset>\n\
-    #include <chrono>\n\nusing namespace std;\n\nusing u32 = unsigned int;\nusing\
-    \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-    using u128 = __uint128_t;\n\nusing pi = pair<int, int>;\nusing pl = pair<i64,\
-    \ i64>;\nusing pil = pair<int, i64>;\nusing pli = pair<i64, int>;\n\ntemplate\
-    \ <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = (1\
-    \ << 30) - 123;\ntemplate <>\nconstexpr i64 infty<i64> = (1ll << 62) - (1ll <<\
-    \ 31);\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
+  bundledCode: "#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
+    )\n\n// #include <bits/stdc++.h>\n#include <iostream>\n#include <iomanip>\n#include\
+    \ <algorithm>\n#include <cassert>\n#include <cmath>\n#include <iterator>\n#include\
+    \ <random>\n#include <type_traits>\n#include <limits>\n\n#include <string>\n#include\
+    \ <vector>\n#include <numeric>\n#include <queue>\n#include <array>\n#include <map>\n\
+    #include <unordered_map>\n#include <set>\n#include <unordered_set>\n#include <functional>\n\
+    #include <bitset>\n#include <chrono>\n\nusing namespace std;\n\nusing u32 = unsigned\
+    \ int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing i128 =\
+    \ __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = pair<int, int>;\nusing\
+    \ pl = pair<i64, i64>;\nusing pil = pair<int, i64>;\nusing pli = pair<i64, int>;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = (1 << 30) - 123;\ntemplate <>\nconstexpr i64 infty<i64> = (1ll << 62) - (1ll\
+    \ << 31);\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
     template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
     \ infty<u64> = infty<i64>;\ntemplate <>\nconstexpr double infty<double> = infty<i64>;\n\
     template <>\nconstexpr long double infty<long double> = infty<i64>;\nconstexpr\
@@ -66,19 +66,19 @@ data:
     \ = 1) { cout << (b ? \"no\" : \"yes\") << '\\n'; }\nvoid yesflush(bool b = 1)\
     \ { cout << (b ? \"yes\" : \"no\") << endl; }\nvoid noflush(bool b = 1) { cout\
     \ << (b ? \"no\" : \"yes\") << endl; }\n\n\n"
-  code: "#ifndef TEMPLATE\n#define TEMPLATE 1\n\n// #include <bits/stdc++.h>\n#include\
-    \ <iostream>\n#include <iomanip>\n#include <algorithm>\n#include <cassert>\n#include\
-    \ <cmath>\n#include <iterator>\n#include <random>\n#include <type_traits>\n#include\
-    \ <limits>\n\n#include <string>\n#include <vector>\n#include <numeric>\n#include\
-    \ <queue>\n#include <array>\n#include <map>\n#include <unordered_map>\n#include\
-    \ <set>\n#include <unordered_set>\n#include <functional>\n#include <bitset>\n\
-    #include <chrono>\n\nusing namespace std;\n\nusing u32 = unsigned int;\nusing\
-    \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-    using u128 = __uint128_t;\n\nusing pi = pair<int, int>;\nusing pl = pair<i64,\
-    \ i64>;\nusing pil = pair<int, i64>;\nusing pli = pair<i64, int>;\n\ntemplate\
-    \ <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = (1\
-    \ << 30) - 123;\ntemplate <>\nconstexpr i64 infty<i64> = (1ll << 62) - (1ll <<\
-    \ 31);\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
+  code: "#ifndef TEMPLATE\n#define TEMPLATE 1\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
+    )\n\n// #include <bits/stdc++.h>\n#include <iostream>\n#include <iomanip>\n#include\
+    \ <algorithm>\n#include <cassert>\n#include <cmath>\n#include <iterator>\n#include\
+    \ <random>\n#include <type_traits>\n#include <limits>\n\n#include <string>\n#include\
+    \ <vector>\n#include <numeric>\n#include <queue>\n#include <array>\n#include <map>\n\
+    #include <unordered_map>\n#include <set>\n#include <unordered_set>\n#include <functional>\n\
+    #include <bitset>\n#include <chrono>\n\nusing namespace std;\n\nusing u32 = unsigned\
+    \ int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing i128 =\
+    \ __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = pair<int, int>;\nusing\
+    \ pl = pair<i64, i64>;\nusing pil = pair<int, i64>;\nusing pli = pair<i64, int>;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = (1 << 30) - 123;\ntemplate <>\nconstexpr i64 infty<i64> = (1ll << 62) - (1ll\
+    \ << 31);\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
     template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
     \ infty<u64> = infty<i64>;\ntemplate <>\nconstexpr double infty<double> = infty<i64>;\n\
     template <>\nconstexpr long double infty<long double> = infty<i64>;\nconstexpr\
@@ -116,7 +116,7 @@ data:
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-08-10 15:50:58+09:00'
+  timestamp: '2024-08-12 03:20:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

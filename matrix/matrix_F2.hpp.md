@@ -213,23 +213,30 @@ data:
     \    }\n\n    mat& inplace_combine_top(const mat& rhs) {\n        assert(_w ==\
     \ rhs._w);\n        _mat.insert(begin(_mat), begin(rhs._mat), end(rhs._mat));\n\
     \        _h += rhs._h;\n        return *this;\n    }\n\n    mat combine_top(const\
-    \ mat& rhs) const {\n        assert(_w == rhs._w);\n        mat res(_mat);\n \
-    \       return res.inplace_combine_top(rhs);\n    }\n\n    mat& inplace_combine_bottom(const\
-    \ mat& rhs) {\n        assert(_w == rhs._w);\n        _mat.insert(end(_mat), begin(rhs._mat),\
-    \ end(rhs._mat));\n        _h += rhs._h;\n        return *this;\n    }\n\n   \
-    \ mat combine_bottom(const mat& rhs) const {\n        assert(_w == rhs._w);\n\
-    \        mat res(_mat);\n        return res.inplace_combine_bottom(rhs);\n   \
-    \ }\n\n    // [0, wr)\n    int sweep(int wr = -1) {\n        if (wr == -1) wr\
-    \ = _w;\n        int r = 0;\n        for (int i = 0; i < wr; i++) {\n        \
-    \    int pivot = -1;\n            for (int j = r; j < _h; j++) {\n           \
-    \     if (_mat[j][i]) {\n                    pivot = j;\n                    break;\n\
-    \                }\n            }\n            if (pivot == -1) continue;\n  \
-    \          if (r != pivot) swap(_mat[r], _mat[pivot]);\n            for (int j\
-    \ = 0; j < _h; j++) {\n                if (j == r) continue;\n               \
-    \ if (_mat[j][i]) _mat[j] ^= _mat[r];\n            }\n            r++;\n     \
-    \   }\n        return r;\n    }\n\n    void shrink() {\n        while (_h && !(bool)_mat[_h\
-    \ - 1]) _mat.pop_back(), --_h;\n    }\n\n    // it must be already swept and shrunk\
-    \ before calling this function\n    vector<DynamicBitSet> get_solution_base()\
+    \ mat& rhs) const {\n        assert(_w == rhs._w);\n        return mat(_mat).inplace_combine_top(rhs);\n\
+    \    }\n\n    mat& inplace_combine_bottom(const mat& rhs) {\n        assert(_w\
+    \ == rhs._w);\n        _mat.insert(end(_mat), begin(rhs._mat), end(rhs._mat));\n\
+    \        _h += rhs._h;\n        return *this;\n    }\n\n    mat combine_bottom(const\
+    \ mat& rhs) const {\n        assert(_w == rhs._w);\n        return mat(_mat).inplace_combine_bottom(rhs);\n\
+    \    }\n\n    mat& inplace_combine_right(const mat& rhs) {\n        assert(_h\
+    \ == rhs._h);\n        for (int i = 0; i < _h; i++) \n            _mat[i].inplace_combine_top(rhs._mat[i]);\n\
+    \        _w += rhs._w;\n        return *this;\n    }\n\n    mat combine_right(const\
+    \ mat& rhs) const {\n        assert(_h == rhs._h);\n        return mat(_mat).inplace_combine_right(rhs);\n\
+    \    }\n\n    mat& inplace_combine_left(const mat& rhs) {\n        assert(_h ==\
+    \ rhs._h);\n        for (int i = 0; i < _h; i++) \n            _mat[i].inplace_combine_bottom(rhs._mat[i]);\n\
+    \        _w += rhs._w;\n        return *this;\n    }\n\n    mat combine_left(const\
+    \ mat& rhs) const {\n        assert(_h == rhs._h);\n        return mat(_mat).inplace_combine_left(rhs);\n\
+    \    }\n\n    // [0, wr)\n    int sweep(int wr = -1) {\n        if (wr == -1)\
+    \ wr = _w;\n        int r = 0;\n        for (int i = 0; i < wr; i++) {\n     \
+    \       int pivot = -1;\n            for (int j = r; j < _h; j++) {\n        \
+    \        if (_mat[j][i]) {\n                    pivot = j;\n                 \
+    \   break;\n                }\n            }\n            if (pivot == -1) continue;\n\
+    \            if (r != pivot) swap(_mat[r], _mat[pivot]);\n            for (int\
+    \ j = 0; j < _h; j++) {\n                if (j == r) continue;\n             \
+    \   if (_mat[j][i]) _mat[j] ^= _mat[r];\n            }\n            r++;\n   \
+    \     }\n        return r;\n    }\n\n    void shrink() {\n        while (_h &&\
+    \ !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;\n    }\n\n    // it must be already\
+    \ swept and shrunk before calling this function\n    vector<DynamicBitSet> get_solution_base()\
     \ const {\n        vector<DynamicBitSet> res(_w - _h, DynamicBitSet(_w));\n  \
     \      vector<int> step(_h);\n        vector<bool> is_step(_w, false);\n     \
     \   int nowj = 0;\n        rep (i, _h) {\n            while (!_mat[i].is_pinned(nowj))\
@@ -329,23 +336,30 @@ data:
     \    }\n\n    mat& inplace_combine_top(const mat& rhs) {\n        assert(_w ==\
     \ rhs._w);\n        _mat.insert(begin(_mat), begin(rhs._mat), end(rhs._mat));\n\
     \        _h += rhs._h;\n        return *this;\n    }\n\n    mat combine_top(const\
-    \ mat& rhs) const {\n        assert(_w == rhs._w);\n        mat res(_mat);\n \
-    \       return res.inplace_combine_top(rhs);\n    }\n\n    mat& inplace_combine_bottom(const\
-    \ mat& rhs) {\n        assert(_w == rhs._w);\n        _mat.insert(end(_mat), begin(rhs._mat),\
-    \ end(rhs._mat));\n        _h += rhs._h;\n        return *this;\n    }\n\n   \
-    \ mat combine_bottom(const mat& rhs) const {\n        assert(_w == rhs._w);\n\
-    \        mat res(_mat);\n        return res.inplace_combine_bottom(rhs);\n   \
-    \ }\n\n    // [0, wr)\n    int sweep(int wr = -1) {\n        if (wr == -1) wr\
-    \ = _w;\n        int r = 0;\n        for (int i = 0; i < wr; i++) {\n        \
-    \    int pivot = -1;\n            for (int j = r; j < _h; j++) {\n           \
-    \     if (_mat[j][i]) {\n                    pivot = j;\n                    break;\n\
-    \                }\n            }\n            if (pivot == -1) continue;\n  \
-    \          if (r != pivot) swap(_mat[r], _mat[pivot]);\n            for (int j\
-    \ = 0; j < _h; j++) {\n                if (j == r) continue;\n               \
-    \ if (_mat[j][i]) _mat[j] ^= _mat[r];\n            }\n            r++;\n     \
-    \   }\n        return r;\n    }\n\n    void shrink() {\n        while (_h && !(bool)_mat[_h\
-    \ - 1]) _mat.pop_back(), --_h;\n    }\n\n    // it must be already swept and shrunk\
-    \ before calling this function\n    vector<DynamicBitSet> get_solution_base()\
+    \ mat& rhs) const {\n        assert(_w == rhs._w);\n        return mat(_mat).inplace_combine_top(rhs);\n\
+    \    }\n\n    mat& inplace_combine_bottom(const mat& rhs) {\n        assert(_w\
+    \ == rhs._w);\n        _mat.insert(end(_mat), begin(rhs._mat), end(rhs._mat));\n\
+    \        _h += rhs._h;\n        return *this;\n    }\n\n    mat combine_bottom(const\
+    \ mat& rhs) const {\n        assert(_w == rhs._w);\n        return mat(_mat).inplace_combine_bottom(rhs);\n\
+    \    }\n\n    mat& inplace_combine_right(const mat& rhs) {\n        assert(_h\
+    \ == rhs._h);\n        for (int i = 0; i < _h; i++) \n            _mat[i].inplace_combine_top(rhs._mat[i]);\n\
+    \        _w += rhs._w;\n        return *this;\n    }\n\n    mat combine_right(const\
+    \ mat& rhs) const {\n        assert(_h == rhs._h);\n        return mat(_mat).inplace_combine_right(rhs);\n\
+    \    }\n\n    mat& inplace_combine_left(const mat& rhs) {\n        assert(_h ==\
+    \ rhs._h);\n        for (int i = 0; i < _h; i++) \n            _mat[i].inplace_combine_bottom(rhs._mat[i]);\n\
+    \        _w += rhs._w;\n        return *this;\n    }\n\n    mat combine_left(const\
+    \ mat& rhs) const {\n        assert(_h == rhs._h);\n        return mat(_mat).inplace_combine_left(rhs);\n\
+    \    }\n\n    // [0, wr)\n    int sweep(int wr = -1) {\n        if (wr == -1)\
+    \ wr = _w;\n        int r = 0;\n        for (int i = 0; i < wr; i++) {\n     \
+    \       int pivot = -1;\n            for (int j = r; j < _h; j++) {\n        \
+    \        if (_mat[j][i]) {\n                    pivot = j;\n                 \
+    \   break;\n                }\n            }\n            if (pivot == -1) continue;\n\
+    \            if (r != pivot) swap(_mat[r], _mat[pivot]);\n            for (int\
+    \ j = 0; j < _h; j++) {\n                if (j == r) continue;\n             \
+    \   if (_mat[j][i]) _mat[j] ^= _mat[r];\n            }\n            r++;\n   \
+    \     }\n        return r;\n    }\n\n    void shrink() {\n        while (_h &&\
+    \ !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;\n    }\n\n    // it must be already\
+    \ swept and shrunk before calling this function\n    vector<DynamicBitSet> get_solution_base()\
     \ const {\n        vector<DynamicBitSet> res(_w - _h, DynamicBitSet(_w));\n  \
     \      vector<int> step(_h);\n        vector<bool> is_step(_w, false);\n     \
     \   int nowj = 0;\n        rep (i, _h) {\n            while (!_mat[i].is_pinned(nowj))\
@@ -372,7 +386,7 @@ data:
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2024-08-12 02:56:10+09:00'
+  timestamp: '2024-08-12 03:13:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/matrix_F2.hpp
