@@ -1,9 +1,8 @@
 #ifndef DATA_STRUCTURE_MY_BITSET_FAST_HPP
 #define DATA_STRUCTURE_MY_BITSET_FAST_HPP 1
 
-
-struct DynamicBitSetFast {
-    using T = DynamicBitSetFast;
+struct DynamicBitSet {
+    using T = DynamicBitSet;
     using u128 = __uint128_t;
     constexpr static int BLOCK_SIZE_LOG = 7;
     constexpr static int BLOCK_SIZE = 1 << BLOCK_SIZE_LOG;
@@ -12,7 +11,7 @@ struct DynamicBitSetFast {
     int n;
     vector<u128> block;
 
-    DynamicBitSetFast(int n_ = 0, bool x = 0) : n(n_) {
+    DynamicBitSet(int n_ = 0, bool x = 0) : n(n_) {
         u128 val = x ? -1 : 0;
         block.assign((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG, val);
         if (n & BLOCK_MASK) block.back() >>= BLOCK_SIZE - (n & BLOCK_MASK);
@@ -23,14 +22,14 @@ struct DynamicBitSetFast {
     // For example, if the input is "1010",
     // the character at index 0 in the string is '1',
     // but in the bitset it will be considered as index 0.
-    DynamicBitSetFast(const string& s) : n(s.size()) {
+    DynamicBitSet(const string& s) : n(s.size()) {
         block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         set(s);
     }
 
     int size() const { return n; }
 
-    T& inplace_combine_bottom(const T& rhs) {
+    T& inplace_combine_top(const T& rhs) {
         block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         if (!(n & BLOCK_MASK)) {
             copy(begin(rhs.block), end(rhs.block), begin(block) + (n >> BLOCK_SIZE_LOG));
@@ -50,11 +49,11 @@ struct DynamicBitSetFast {
         return *this;
     }
 
-    T combine_bottom(const T& rhs) const {
-        return T(*this).inplace_combine_bottom(rhs);
+    T combine_top(const T& rhs) const {
+        return T(*this).inplace_combine_top(rhs);
     }
 
-    T& inplace_combine_top(const T& rhs) {
+    T& inplace_combine_bottom(const T& rhs) {
         block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         if (!(rhs.n & BLOCK_MASK)) {
             copy(begin(block), end(block), begin(block) + (rhs.n >> BLOCK_SIZE_LOG));
@@ -72,13 +71,13 @@ struct DynamicBitSetFast {
                 block[i + (rhs.n >> BLOCK_SIZE_LOG) + 1] |= (x & end_mask) >> start;
         }
         block[(rhs.n >> BLOCK_SIZE_LOG)] = ((block[0] & start_mask) << (BLOCK_SIZE - start)) | rhs.block.back();
-        copy(begin(rhs.block), end(rhs.block), begin(block));
+        copy(begin(rhs.block), prev(end(rhs.block)), begin(block));
         n += rhs.n;
         return *this;
     }
 
-    T combine_top(const T& rhs) const {
-        return T(*this).inplace_combine_top(rhs);
+    T combine_bottom(const T& rhs) const {
+        return T(*this).inplace_combine_bottom(rhs);
     }
 
     void set(int i, int x) {
@@ -263,6 +262,24 @@ struct DynamicBitSetFast {
         }
         string res;
         for (int i = (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i--;) {
+            res += tmp[i];
+        }
+        return res;
+    }
+
+    string to_reversed_string() const {
+        vector<string> tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
+        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
+            tmp[i] = to_string(block[i]);
+        }
+        if (n & BLOCK_MASK) {
+            reverse(begin(tmp.back()), end(tmp.back()));
+            tmp.back().resize(n & BLOCK_MASK);
+            reverse(begin(tmp.back()), end(tmp.back()));
+        }
+        string res;
+        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
+            reverse(begin(tmp[i]), end(tmp[i]));
             res += tmp[i];
         }
         return res;

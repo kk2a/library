@@ -2,6 +2,7 @@
 #define DATA_STRUCTURE_MY_BITSET_HPP 1
 
 
+// old version
 struct DynamicBitSet {
     using T = DynamicBitSet;
     using u64 = uint64_t;

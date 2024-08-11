@@ -1,7 +1,7 @@
 #ifndef MATRIX_MATRIX_F2_HPP
 #define MATRIX_MATRIX_F2_HPP 1
 
-#include "../data_structure/my_bitset.hpp"
+#include "../data_structure/my_bitset_fast.hpp"
 
 struct MatrixF2 {
     using mat = MatrixF2;
@@ -38,47 +38,57 @@ struct MatrixF2 {
       public:
         Proxy(vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_) {}
         operator DynamicBitSet() const { return bs[i]; }
-        Proxy& operator=(string s) {
-            bs[i] = s;
+
+        string to_string() const {
+            return bs[i].to_string();
+        }
+        string to_reversed_string() const {
+            return bs[i].to_reversed_string();
+        }
+
+        Proxy& operator=(const string& s) {
+            string tmp = s;
+            reverse(begin(tmp), end(tmp));
+            bs[i] = tmp;
             return *this;
         }
-        Proxy& operator=(DynamicBitSet x) {
+        Proxy& operator=(const DynamicBitSet& x) {
             bs[i] = x;
             return *this;
         }
-        Proxy& operator=(Proxy x) {
+        Proxy& operator=(const Proxy& x) {
             bs[i] = x.bs[x.i];
             return *this;
         }
 
-        DynamicBitSet::Proxy operator[](int j) {
+        DynamicBitSet::BitReference operator[](int j) {
             assert(0 <= j && j < (int)bs[i].size());
             return bs[i][j];
         }
 
-        Proxy& operator&=(DynamicBitSet x) {
+        Proxy& operator&=(const DynamicBitSet& x) {
             bs[i] &= x;
             return *this;
         }
-        Proxy& operator&=(Proxy x) {
+        Proxy& operator&=(const Proxy& x) {
             bs[i] &= x.bs[x.i];
             return *this;
         }
 
-        Proxy& operator|=(DynamicBitSet x) {
+        Proxy& operator|=(const DynamicBitSet& x) {
             bs[i] |= x;
             return *this;
         }
-        Proxy& operator|=(Proxy x) {
+        Proxy& operator|=(const Proxy& x) {
             bs[i] |= x.bs[x.i];
             return *this;
         }
 
-        Proxy& operator^=(DynamicBitSet x) {
+        Proxy& operator^=(const DynamicBitSet& x) {
             bs[i] ^= x;
             return *this;
         }
-        Proxy& operator^=(Proxy x) {
+        Proxy& operator^=(const Proxy& x) {
             bs[i] ^= x.bs[x.i];
             return *this;
         }
@@ -100,7 +110,7 @@ struct MatrixF2 {
 
     void display() const {
         for (int i = 0; i < _h; i++) {
-            cout << _mat[i] << "\n";
+            cout << _mat[i].to_reversed_string() << "\n";
         }
     }
 
@@ -110,9 +120,11 @@ struct MatrixF2 {
         _mat[i].set(j, x);
     }
 
-    void set(int i, string s) {
+    void set(int i, const string& s) {
         assert((int)s.size() == _w);
-        _mat[i].set(s);
+        string tmp = s;
+        reverse(begin(tmp), end(tmp));
+        _mat[i].set(tmp);
     }
 
     mat& operator+=(const mat& rhs) {
