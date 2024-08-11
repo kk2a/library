@@ -1,6 +1,8 @@
 #ifndef TEMPLATE
 #define TEMPLATE 1
 
+#pragma GCC optimize("O3,unroll-loops")
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <iomanip>
