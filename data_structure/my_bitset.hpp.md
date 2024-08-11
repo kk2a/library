@@ -1,22 +1,19 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: matrix/matrix_F2.hpp
-    title: matrix/matrix_F2.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"data_structure/my_bitset.hpp\"\n\n\n\n\nstruct DynamicBitSet\
-    \ {\n    using T = DynamicBitSet;\n    using u64 = uint64_t;\n    int n;\n   \
-    \ vector<u64> block;\n\n    DynamicBitSet(int n_ = 0, int x = 0) : n(n_) {\n \
-    \       assert(x == 0 || x == 1);\n        u64 val = x ? -1 : 0;\n        block.assign((n\
-    \ + 63) >> 6, val);\n        if (n) block.back() >>= ((u64)block.size() << 6)\
-    \ - n;\n        // fit the last block\n    }\n    DynamicBitSet(const string&\
+  bundledCode: "#line 1 \"data_structure/my_bitset.hpp\"\n\n\n\n\n// old version\n\
+    struct DynamicBitSet {\n    using T = DynamicBitSet;\n    using u64 = uint64_t;\n\
+    \    int n;\n    vector<u64> block;\n\n    DynamicBitSet(int n_ = 0, int x = 0)\
+    \ : n(n_) {\n        assert(x == 0 || x == 1);\n        u64 val = x ? -1 : 0;\n\
+    \        block.assign((n + 63) >> 6, val);\n        if (n) block.back() >>= ((u64)block.size()\
+    \ << 6) - n;\n        // fit the last block\n    }\n    DynamicBitSet(const string&\
     \ s) : n(s.size()) {\n        block.resize((n + 63) >> 6);\n        set(s);\n\
     \    }\n\n    int size() const { return n; }\n\n    T& inplace_combine_bottom(const\
     \ T& rhs) {\n        block.resize((n + rhs.n + 63) >> 6);\n        if (!(n & 63))\
@@ -104,15 +101,15 @@ data:
     \      for (int i = 0; i < (n + 63) >> 6; i++) {\n            if (block[i]) return\
     \ true;\n        }\n        return false;\n    }\n};\n\n\n"
   code: "#ifndef DATA_STRUCTURE_MY_BITSET_HPP\n#define DATA_STRUCTURE_MY_BITSET_HPP\
-    \ 1\n\n\nstruct DynamicBitSet {\n    using T = DynamicBitSet;\n    using u64 =\
-    \ uint64_t;\n    int n;\n    vector<u64> block;\n\n    DynamicBitSet(int n_ =\
-    \ 0, int x = 0) : n(n_) {\n        assert(x == 0 || x == 1);\n        u64 val\
-    \ = x ? -1 : 0;\n        block.assign((n + 63) >> 6, val);\n        if (n) block.back()\
-    \ >>= ((u64)block.size() << 6) - n;\n        // fit the last block\n    }\n  \
-    \  DynamicBitSet(const string& s) : n(s.size()) {\n        block.resize((n + 63)\
-    \ >> 6);\n        set(s);\n    }\n\n    int size() const { return n; }\n\n   \
-    \ T& inplace_combine_bottom(const T& rhs) {\n        block.resize((n + rhs.n +\
-    \ 63) >> 6);\n        if (!(n & 63)) {\n            copy(begin(rhs.block), end(rhs.block),\
+    \ 1\n\n\n// old version\nstruct DynamicBitSet {\n    using T = DynamicBitSet;\n\
+    \    using u64 = uint64_t;\n    int n;\n    vector<u64> block;\n\n    DynamicBitSet(int\
+    \ n_ = 0, int x = 0) : n(n_) {\n        assert(x == 0 || x == 1);\n        u64\
+    \ val = x ? -1 : 0;\n        block.assign((n + 63) >> 6, val);\n        if (n)\
+    \ block.back() >>= ((u64)block.size() << 6) - n;\n        // fit the last block\n\
+    \    }\n    DynamicBitSet(const string& s) : n(s.size()) {\n        block.resize((n\
+    \ + 63) >> 6);\n        set(s);\n    }\n\n    int size() const { return n; }\n\
+    \n    T& inplace_combine_bottom(const T& rhs) {\n        block.resize((n + rhs.n\
+    \ + 63) >> 6);\n        if (!(n & 63)) {\n            copy(begin(rhs.block), end(rhs.block),\
     \ begin(block) + (n >> 6));\n            n += rhs.n;\n            return *this;\n\
     \        }\n        int start = 64 - (n & 63);\n        u64 start_mask = (1ULL\
     \ << start) - 1;\n        u64 end_mask = ~start_mask;\n        for (int i = 0;\
@@ -199,9 +196,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data_structure/my_bitset.hpp
-  requiredBy:
-  - matrix/matrix_F2.hpp
-  timestamp: '2024-08-11 23:58:27+09:00'
+  requiredBy: []
+  timestamp: '2024-08-12 02:56:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/my_bitset.hpp
