@@ -24,6 +24,16 @@ struct Hashs {
         }
     }
 
+    template <class T>
+    Hashs(const T &v) {
+        for (int i = 0; i < b; ++i) {
+            table[i].h = v % modp[i];
+            table[i].pw = base[i];
+            table[i].pwi = basei[i];
+        }
+    }
+
+    template <>
     Hashs(char c) {
         for (int i = 0; i < b; ++i) {
             table[i].h = c;
@@ -31,7 +41,24 @@ struct Hashs {
             table[i].pwi = basei[i];
         }
     }
-    Hashs(string s) {
+
+    template <class T>
+    Hashs(const vector<T> &v) {
+        int n = v.size();
+        for (int i = 0; i < b; ++i) {
+            table[i].h = 0;
+            table[i].pw = 1;
+            table[i].pwi = 1;
+            for (int j = n - 1; j >= 0; --j) {
+                table[i].h = (table[i].h * base[i] + v[j] % modp[i]) % modp[i];
+                table[i].pw = table[i].pw * base[i] % modp[i];
+                table[i].pwi = table[i].pwi * basei[i] % modp[i];
+            }
+        }
+    }
+
+    template <>
+    Hashs(const string &v) {
         int n = s.size();
         for (int i = 0; i < b; ++i) {
             table[i].h = 0;
@@ -44,6 +71,7 @@ struct Hashs {
             }
         }
     }
+
     Hashs() {
         for (int i = 0; i < b; ++i) {
             table[i].h = 0;
