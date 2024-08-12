@@ -57,86 +57,91 @@ data:
     \ &= ~(ONE << (i & BLOCK_MASK));\n    }\n\n    void set(const string& s) {\n \
     \       assert((int)s.size() == n);\n        for (int i = 0; i < (n + BLOCK_SIZE\
     \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            int r = n - (i << BLOCK_SIZE_LOG),\
-    \ l = max(0, r - BLOCK_SIZE);\n            u128 val = 0;\n            for (int\
-    \ j = l; j < r; ++j) {\n                val = (val << 1) | (s[j] - '0');\n   \
-    \         }\n            block[i] = val;\n        }\n    }\n\n    class BitReference\
-    \ {\n        vector<u128>& block;\n        int idx;\n      public:\n        BitReference(vector<u128>&\
-    \ block_, int idx_) : block(block_), idx(idx_) {}\n        operator bool() const\
-    \ { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n\n   \
-    \     BitReference& operator=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
+    \ l = max(0, r - BLOCK_SIZE);\n            block[i] = 0;\n            for (int\
+    \ j = l; j < r; j++)\n                block[i] = (block[i] << 1) | (s[j] - '0');\n\
+    \        }\n    }\n\n    void set_reversed(const string& s) {\n        assert((int)s.size()\
+    \ == n);\n        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
+    \ i++) {\n            int l = i << BLOCK_SIZE_LOG, r = min(n, l + BLOCK_SIZE);\n\
+    \            block[i] = 0;\n            for (int j = r - 1; j >= l; --j)\n   \
+    \             block[i] = (block[i] << 1) | (s[j] - '0');\n        }\n    }\n\n\
+    \    class BitReference {\n        vector<u128>& block;\n        int idx;\n  \
+    \    public:\n        BitReference(vector<u128>& block_, int idx_) : block(block_),\
+    \ idx(idx_) {}\n        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG]\
+    \ >> (idx & BLOCK_MASK)) & 1; }\n\n        BitReference& operator=(bool x) {\n\
+    \            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+    \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
+    \            return *this;\n        }\n\n        BitReference& operator=(const\
+    \ BitReference& other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
     \ |= ONE << (idx & BLOCK_MASK);\n            else block[idx >> BLOCK_SIZE_LOG]\
     \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n \
-    \       BitReference& operator=(const BitReference& other) {\n            if (other)\
-    \ block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            else\
-    \ block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return\
-    \ *this;\n        }\n\n        BitReference& operator&=(bool x) {\n          \
-    \  if (!x) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n   \
-    \         return *this;\n        }\n\n        BitReference& operator&=(const BitReference&\
-    \ other) {\n            if (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx\
-    \ & BLOCK_MASK));\n            return *this;\n        }\n\n        BitReference&\
-    \ operator|=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE\
-    \ << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n        BitReference&\
-    \ operator|=(const BitReference& other) {\n            if (other) block[idx >>\
-    \ BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            return *this;\n \
-    \       }\n\n        BitReference& operator^=(bool x) {\n            if (x) block[idx\
-    \ >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n\
-    \        }\n\n        BitReference& operator^=(const BitReference& other) {\n\
-    \            if (other) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n\
-    \            return *this;\n        }\n\n        BitReference& flip() {\n    \
-    \        block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n        \
-    \    return *this;\n        }\n\n        BitReference& operator~() {\n       \
-    \     block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n           \
-    \ return *this;\n        }\n\n        bool val() const {\n            return (block[idx\
-    \ >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1;\n        }\n    };\n\n    BitReference\
-    \ operator[](int i) {\n        assert(0 <= i && i < n);\n        return BitReference(block,\
-    \ i);\n    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i && i\
-    \ < n);\n        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;\n\
-    \    }\n\n    T& operator=(const string& s) {\n        set(s);\n        return\
-    \ *this;\n    }\n\n    T& flip() {\n        u128 mask = (ONE << (n & BLOCK_MASK))\
-    \ - 1;\n        for (u128& x : block) x = ~x;\n        block.back() &= mask;\n\
-    \        return *this;\n    }\n\n    T& flip(int i) {\n        assert(0 <= i &&\
-    \ i < n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n  \
-    \      return *this;\n    }\n\n    T& operator~() {\n        return flip();\n\
-    \    }\n\n    T& operator&=(const T& other) {\n        assert(n == other.n);\n\
-    \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
-    \            block[i] &= other.block[i];\n        }\n        return *this;\n \
-    \   }\n\n    T& operator|=(const T& other) {\n        assert(n == other.n);\n\
-    \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
-    \            block[i] |= other.block[i];\n        }\n        return *this;\n \
-    \   }\n\n    T& operator^=(const T& other) {\n        assert(n == other.n);\n\
-    \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
-    \            block[i] ^= other.block[i];\n        }\n        return *this;\n \
-    \   }\n\n    friend T operator&(const T& lhs, const T& rhs) {\n        return\
-    \ T(lhs) &= rhs;\n    }\n    friend T operator|(const T& lhs, const T& rhs) {\n\
-    \        return T(lhs) |= rhs;\n    }\n    friend T operator^(const T& lhs, const\
-    \ T& rhs) {\n        return T(lhs) ^= rhs;\n    }\n    friend bool operator==(const\
-    \ T& lhs, const T& rhs) {\n        if (lhs.n != rhs.n) return false;\n       \
-    \ for (int i = 0; i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n   \
-    \         if (lhs.block[i] != rhs.block[i]) return false;\n        }\n       \
-    \ return true;\n    }\n    friend bool operator!=(const T& lhs, const T& rhs)\
-    \ {\n        return !(lhs == rhs);\n    }\n\n    operator bool() const {\n   \
-    \     for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n   \
-    \         if (block[i]) return true;\n        }\n        return false;\n    }\n\
-    \n    string to_string(u128 x) const {\n        return bitset<64>((u64)(x >> (BLOCK_SIZE\
-    \ / 2))).to_string() \n             + bitset<64>((u64)(x & ((ONE << (BLOCK_SIZE\
-    \ / 2)) - 1))).to_string();\n    }\n\n    string to_string() const {\n       \
-    \ vector<string> tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        for (int\
-    \ i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            tmp[i]\
-    \ = to_string(block[i]);\n        }\n        if (n & BLOCK_MASK) {\n         \
-    \   reverse(begin(tmp.back()), end(tmp.back()));\n            tmp.back().resize(n\
-    \ & BLOCK_MASK);\n            reverse(begin(tmp.back()), end(tmp.back()));\n \
-    \       }\n        string res;\n        for (int i = (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
-    \ i--;) {\n            res += tmp[i];\n        }\n        return res;\n    }\n\
-    \n    string to_reversed_string() const {\n        vector<string> tmp((n + BLOCK_SIZE\
+    \       BitReference& operator&=(bool x) {\n            if (!x) block[idx >> BLOCK_SIZE_LOG]\
+    \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n \
+    \       BitReference& operator&=(const BitReference& other) {\n            if\
+    \ (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n   \
+    \         return *this;\n        }\n\n        BitReference& operator|=(bool x)\
+    \ {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+    \            return *this;\n        }\n\n        BitReference& operator|=(const\
+    \ BitReference& other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
+    \ |= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n    \
+    \    BitReference& operator^=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
+    \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n    \
+    \    BitReference& operator^=(const BitReference& other) {\n            if (other)\
+    \ block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n            return\
+    \ *this;\n        }\n\n        BitReference& flip() {\n            block[idx >>\
+    \ BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n \
+    \       }\n\n        BitReference& operator~() {\n            block[idx >> BLOCK_SIZE_LOG]\
+    \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n    \
+    \    bool val() const {\n            return (block[idx >> BLOCK_SIZE_LOG] >> (idx\
+    \ & BLOCK_MASK)) & 1;\n        }\n    };\n\n    BitReference operator[](int i)\
+    \ {\n        assert(0 <= i && i < n);\n        return BitReference(block, i);\n\
+    \    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i && i < n);\n\
+    \        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;\n    }\n\
+    \n    T& operator=(const string& s) {\n        set(s);\n        return *this;\n\
+    \    }\n\n    T& flip() {\n        u128 mask = (ONE << (n & BLOCK_MASK)) - 1;\n\
+    \        for (u128& x : block) x = ~x;\n        block.back() &= mask;\n      \
+    \  return *this;\n    }\n\n    T& flip(int i) {\n        assert(0 <= i && i <\
+    \ n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n      \
+    \  return *this;\n    }\n\n    T& operator~() {\n        return flip();\n    }\n\
+    \n    T& operator&=(const T& other) {\n        assert(n == other.n);\n       \
+    \ for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n       \
+    \     block[i] &= other.block[i];\n        }\n        return *this;\n    }\n\n\
+    \    T& operator|=(const T& other) {\n        assert(n == other.n);\n        for\
+    \ (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n           \
+    \ block[i] |= other.block[i];\n        }\n        return *this;\n    }\n\n   \
+    \ T& operator^=(const T& other) {\n        assert(n == other.n);\n        for\
+    \ (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n           \
+    \ block[i] ^= other.block[i];\n        }\n        return *this;\n    }\n\n   \
+    \ friend T operator&(const T& lhs, const T& rhs) {\n        return T(lhs) &= rhs;\n\
+    \    }\n    friend T operator|(const T& lhs, const T& rhs) {\n        return T(lhs)\
+    \ |= rhs;\n    }\n    friend T operator^(const T& lhs, const T& rhs) {\n     \
+    \   return T(lhs) ^= rhs;\n    }\n    friend bool operator==(const T& lhs, const\
+    \ T& rhs) {\n        if (lhs.n != rhs.n) return false;\n        for (int i = 0;\
+    \ i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            if (lhs.block[i]\
+    \ != rhs.block[i]) return false;\n        }\n        return true;\n    }\n   \
+    \ friend bool operator!=(const T& lhs, const T& rhs) {\n        return !(lhs ==\
+    \ rhs);\n    }\n\n    operator bool() const {\n        for (int i = 0; i < (n\
+    \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            if (block[i]) return\
+    \ true;\n        }\n        return false;\n    }\n\n    string to_string(u128\
+    \ x) const {\n        return bitset<64>((u64)(x >> (BLOCK_SIZE / 2))).to_string()\
+    \ \n             + bitset<64>((u64)(x & ((ONE << (BLOCK_SIZE / 2)) - 1))).to_string();\n\
+    \    }\n\n    string to_string() const {\n        vector<string> tmp((n + BLOCK_SIZE\
     \ - 1) >> BLOCK_SIZE_LOG);\n        for (int i = 0; i < (n + BLOCK_SIZE - 1) >>\
     \ BLOCK_SIZE_LOG; i++) {\n            tmp[i] = to_string(block[i]);\n        }\n\
     \        if (n & BLOCK_MASK) {\n            reverse(begin(tmp.back()), end(tmp.back()));\n\
     \            tmp.back().resize(n & BLOCK_MASK);\n            reverse(begin(tmp.back()),\
-    \ end(tmp.back()));\n        }\n        string res;\n        for (int i = 0; i\
-    \ < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            reverse(begin(tmp[i]),\
-    \ end(tmp[i]));\n            res += tmp[i];\n        }\n        return res;\n\
-    \    }\n\n    friend ostream& operator<<(ostream& os, const T& bs) {\n       \
-    \ return os << bs.to_string();\n    }\n};\n\n\n"
+    \ end(tmp.back()));\n        }\n        string res;\n        for (int i = (n +\
+    \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i--;) {\n            res += tmp[i];\n   \
+    \     }\n        return res;\n    }\n\n    string to_reversed_string() const {\n\
+    \        vector<string> tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n       \
+    \ for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n       \
+    \     tmp[i] = to_string(block[i]);\n        }\n        if (n & BLOCK_MASK) {\n\
+    \            reverse(begin(tmp.back()), end(tmp.back()));\n            tmp.back().resize(n\
+    \ & BLOCK_MASK);\n            reverse(begin(tmp.back()), end(tmp.back()));\n \
+    \       }\n        string res;\n        for (int i = 0; i < (n + BLOCK_SIZE -\
+    \ 1) >> BLOCK_SIZE_LOG; i++) {\n            reverse(begin(tmp[i]), end(tmp[i]));\n\
+    \            res += tmp[i];\n        }\n        return res;\n    }\n\n    friend\
+    \ ostream& operator<<(ostream& os, const T& bs) {\n        return os << bs.to_string();\n\
+    \    }\n};\n\n\n"
   code: "#ifndef DATA_STRUCTURE_MY_BITSET_FAST_HPP\n#define DATA_STRUCTURE_MY_BITSET_FAST_HPP\
     \ 1\n\nstruct DynamicBitSet {\n    using T = DynamicBitSet;\n    using u128 =\
     \ __uint128_t;\n    constexpr static int BLOCK_SIZE_LOG = 7;\n    constexpr static\
@@ -183,92 +188,97 @@ data:
     \ &= ~(ONE << (i & BLOCK_MASK));\n    }\n\n    void set(const string& s) {\n \
     \       assert((int)s.size() == n);\n        for (int i = 0; i < (n + BLOCK_SIZE\
     \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            int r = n - (i << BLOCK_SIZE_LOG),\
-    \ l = max(0, r - BLOCK_SIZE);\n            u128 val = 0;\n            for (int\
-    \ j = l; j < r; ++j) {\n                val = (val << 1) | (s[j] - '0');\n   \
-    \         }\n            block[i] = val;\n        }\n    }\n\n    class BitReference\
-    \ {\n        vector<u128>& block;\n        int idx;\n      public:\n        BitReference(vector<u128>&\
-    \ block_, int idx_) : block(block_), idx(idx_) {}\n        operator bool() const\
-    \ { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n\n   \
-    \     BitReference& operator=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
+    \ l = max(0, r - BLOCK_SIZE);\n            block[i] = 0;\n            for (int\
+    \ j = l; j < r; j++)\n                block[i] = (block[i] << 1) | (s[j] - '0');\n\
+    \        }\n    }\n\n    void set_reversed(const string& s) {\n        assert((int)s.size()\
+    \ == n);\n        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
+    \ i++) {\n            int l = i << BLOCK_SIZE_LOG, r = min(n, l + BLOCK_SIZE);\n\
+    \            block[i] = 0;\n            for (int j = r - 1; j >= l; --j)\n   \
+    \             block[i] = (block[i] << 1) | (s[j] - '0');\n        }\n    }\n\n\
+    \    class BitReference {\n        vector<u128>& block;\n        int idx;\n  \
+    \    public:\n        BitReference(vector<u128>& block_, int idx_) : block(block_),\
+    \ idx(idx_) {}\n        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG]\
+    \ >> (idx & BLOCK_MASK)) & 1; }\n\n        BitReference& operator=(bool x) {\n\
+    \            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+    \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
+    \            return *this;\n        }\n\n        BitReference& operator=(const\
+    \ BitReference& other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
     \ |= ONE << (idx & BLOCK_MASK);\n            else block[idx >> BLOCK_SIZE_LOG]\
     \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n \
-    \       BitReference& operator=(const BitReference& other) {\n            if (other)\
-    \ block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            else\
-    \ block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return\
-    \ *this;\n        }\n\n        BitReference& operator&=(bool x) {\n          \
-    \  if (!x) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n   \
-    \         return *this;\n        }\n\n        BitReference& operator&=(const BitReference&\
-    \ other) {\n            if (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx\
-    \ & BLOCK_MASK));\n            return *this;\n        }\n\n        BitReference&\
-    \ operator|=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE\
-    \ << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n        BitReference&\
-    \ operator|=(const BitReference& other) {\n            if (other) block[idx >>\
-    \ BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            return *this;\n \
-    \       }\n\n        BitReference& operator^=(bool x) {\n            if (x) block[idx\
-    \ >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n\
-    \        }\n\n        BitReference& operator^=(const BitReference& other) {\n\
-    \            if (other) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n\
-    \            return *this;\n        }\n\n        BitReference& flip() {\n    \
-    \        block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n        \
-    \    return *this;\n        }\n\n        BitReference& operator~() {\n       \
-    \     block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n           \
-    \ return *this;\n        }\n\n        bool val() const {\n            return (block[idx\
-    \ >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1;\n        }\n    };\n\n    BitReference\
-    \ operator[](int i) {\n        assert(0 <= i && i < n);\n        return BitReference(block,\
-    \ i);\n    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i && i\
-    \ < n);\n        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;\n\
-    \    }\n\n    T& operator=(const string& s) {\n        set(s);\n        return\
-    \ *this;\n    }\n\n    T& flip() {\n        u128 mask = (ONE << (n & BLOCK_MASK))\
-    \ - 1;\n        for (u128& x : block) x = ~x;\n        block.back() &= mask;\n\
-    \        return *this;\n    }\n\n    T& flip(int i) {\n        assert(0 <= i &&\
-    \ i < n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n  \
-    \      return *this;\n    }\n\n    T& operator~() {\n        return flip();\n\
-    \    }\n\n    T& operator&=(const T& other) {\n        assert(n == other.n);\n\
-    \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
-    \            block[i] &= other.block[i];\n        }\n        return *this;\n \
-    \   }\n\n    T& operator|=(const T& other) {\n        assert(n == other.n);\n\
-    \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
-    \            block[i] |= other.block[i];\n        }\n        return *this;\n \
-    \   }\n\n    T& operator^=(const T& other) {\n        assert(n == other.n);\n\
-    \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
-    \            block[i] ^= other.block[i];\n        }\n        return *this;\n \
-    \   }\n\n    friend T operator&(const T& lhs, const T& rhs) {\n        return\
-    \ T(lhs) &= rhs;\n    }\n    friend T operator|(const T& lhs, const T& rhs) {\n\
-    \        return T(lhs) |= rhs;\n    }\n    friend T operator^(const T& lhs, const\
-    \ T& rhs) {\n        return T(lhs) ^= rhs;\n    }\n    friend bool operator==(const\
-    \ T& lhs, const T& rhs) {\n        if (lhs.n != rhs.n) return false;\n       \
-    \ for (int i = 0; i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n   \
-    \         if (lhs.block[i] != rhs.block[i]) return false;\n        }\n       \
-    \ return true;\n    }\n    friend bool operator!=(const T& lhs, const T& rhs)\
-    \ {\n        return !(lhs == rhs);\n    }\n\n    operator bool() const {\n   \
-    \     for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n   \
-    \         if (block[i]) return true;\n        }\n        return false;\n    }\n\
-    \n    string to_string(u128 x) const {\n        return bitset<64>((u64)(x >> (BLOCK_SIZE\
-    \ / 2))).to_string() \n             + bitset<64>((u64)(x & ((ONE << (BLOCK_SIZE\
-    \ / 2)) - 1))).to_string();\n    }\n\n    string to_string() const {\n       \
-    \ vector<string> tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        for (int\
-    \ i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            tmp[i]\
-    \ = to_string(block[i]);\n        }\n        if (n & BLOCK_MASK) {\n         \
-    \   reverse(begin(tmp.back()), end(tmp.back()));\n            tmp.back().resize(n\
-    \ & BLOCK_MASK);\n            reverse(begin(tmp.back()), end(tmp.back()));\n \
-    \       }\n        string res;\n        for (int i = (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
-    \ i--;) {\n            res += tmp[i];\n        }\n        return res;\n    }\n\
-    \n    string to_reversed_string() const {\n        vector<string> tmp((n + BLOCK_SIZE\
+    \       BitReference& operator&=(bool x) {\n            if (!x) block[idx >> BLOCK_SIZE_LOG]\
+    \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n \
+    \       BitReference& operator&=(const BitReference& other) {\n            if\
+    \ (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n   \
+    \         return *this;\n        }\n\n        BitReference& operator|=(bool x)\
+    \ {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+    \            return *this;\n        }\n\n        BitReference& operator|=(const\
+    \ BitReference& other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
+    \ |= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n    \
+    \    BitReference& operator^=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
+    \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n    \
+    \    BitReference& operator^=(const BitReference& other) {\n            if (other)\
+    \ block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n            return\
+    \ *this;\n        }\n\n        BitReference& flip() {\n            block[idx >>\
+    \ BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n \
+    \       }\n\n        BitReference& operator~() {\n            block[idx >> BLOCK_SIZE_LOG]\
+    \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n    \
+    \    bool val() const {\n            return (block[idx >> BLOCK_SIZE_LOG] >> (idx\
+    \ & BLOCK_MASK)) & 1;\n        }\n    };\n\n    BitReference operator[](int i)\
+    \ {\n        assert(0 <= i && i < n);\n        return BitReference(block, i);\n\
+    \    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i && i < n);\n\
+    \        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;\n    }\n\
+    \n    T& operator=(const string& s) {\n        set(s);\n        return *this;\n\
+    \    }\n\n    T& flip() {\n        u128 mask = (ONE << (n & BLOCK_MASK)) - 1;\n\
+    \        for (u128& x : block) x = ~x;\n        block.back() &= mask;\n      \
+    \  return *this;\n    }\n\n    T& flip(int i) {\n        assert(0 <= i && i <\
+    \ n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n      \
+    \  return *this;\n    }\n\n    T& operator~() {\n        return flip();\n    }\n\
+    \n    T& operator&=(const T& other) {\n        assert(n == other.n);\n       \
+    \ for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n       \
+    \     block[i] &= other.block[i];\n        }\n        return *this;\n    }\n\n\
+    \    T& operator|=(const T& other) {\n        assert(n == other.n);\n        for\
+    \ (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n           \
+    \ block[i] |= other.block[i];\n        }\n        return *this;\n    }\n\n   \
+    \ T& operator^=(const T& other) {\n        assert(n == other.n);\n        for\
+    \ (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n           \
+    \ block[i] ^= other.block[i];\n        }\n        return *this;\n    }\n\n   \
+    \ friend T operator&(const T& lhs, const T& rhs) {\n        return T(lhs) &= rhs;\n\
+    \    }\n    friend T operator|(const T& lhs, const T& rhs) {\n        return T(lhs)\
+    \ |= rhs;\n    }\n    friend T operator^(const T& lhs, const T& rhs) {\n     \
+    \   return T(lhs) ^= rhs;\n    }\n    friend bool operator==(const T& lhs, const\
+    \ T& rhs) {\n        if (lhs.n != rhs.n) return false;\n        for (int i = 0;\
+    \ i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            if (lhs.block[i]\
+    \ != rhs.block[i]) return false;\n        }\n        return true;\n    }\n   \
+    \ friend bool operator!=(const T& lhs, const T& rhs) {\n        return !(lhs ==\
+    \ rhs);\n    }\n\n    operator bool() const {\n        for (int i = 0; i < (n\
+    \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            if (block[i]) return\
+    \ true;\n        }\n        return false;\n    }\n\n    string to_string(u128\
+    \ x) const {\n        return bitset<64>((u64)(x >> (BLOCK_SIZE / 2))).to_string()\
+    \ \n             + bitset<64>((u64)(x & ((ONE << (BLOCK_SIZE / 2)) - 1))).to_string();\n\
+    \    }\n\n    string to_string() const {\n        vector<string> tmp((n + BLOCK_SIZE\
     \ - 1) >> BLOCK_SIZE_LOG);\n        for (int i = 0; i < (n + BLOCK_SIZE - 1) >>\
     \ BLOCK_SIZE_LOG; i++) {\n            tmp[i] = to_string(block[i]);\n        }\n\
     \        if (n & BLOCK_MASK) {\n            reverse(begin(tmp.back()), end(tmp.back()));\n\
     \            tmp.back().resize(n & BLOCK_MASK);\n            reverse(begin(tmp.back()),\
-    \ end(tmp.back()));\n        }\n        string res;\n        for (int i = 0; i\
-    \ < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            reverse(begin(tmp[i]),\
-    \ end(tmp[i]));\n            res += tmp[i];\n        }\n        return res;\n\
-    \    }\n\n    friend ostream& operator<<(ostream& os, const T& bs) {\n       \
-    \ return os << bs.to_string();\n    }\n};\n\n#endif // DATA_STRUCTURE_MY_BITSET_FAST_HPP\n"
+    \ end(tmp.back()));\n        }\n        string res;\n        for (int i = (n +\
+    \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i--;) {\n            res += tmp[i];\n   \
+    \     }\n        return res;\n    }\n\n    string to_reversed_string() const {\n\
+    \        vector<string> tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n       \
+    \ for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n       \
+    \     tmp[i] = to_string(block[i]);\n        }\n        if (n & BLOCK_MASK) {\n\
+    \            reverse(begin(tmp.back()), end(tmp.back()));\n            tmp.back().resize(n\
+    \ & BLOCK_MASK);\n            reverse(begin(tmp.back()), end(tmp.back()));\n \
+    \       }\n        string res;\n        for (int i = 0; i < (n + BLOCK_SIZE -\
+    \ 1) >> BLOCK_SIZE_LOG; i++) {\n            reverse(begin(tmp[i]), end(tmp[i]));\n\
+    \            res += tmp[i];\n        }\n        return res;\n    }\n\n    friend\
+    \ ostream& operator<<(ostream& os, const T& bs) {\n        return os << bs.to_string();\n\
+    \    }\n};\n\n#endif // DATA_STRUCTURE_MY_BITSET_FAST_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/my_bitset_fast.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
-  timestamp: '2024-08-12 02:56:10+09:00'
+  timestamp: '2024-08-13 08:28:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/my_bitset_fast.hpp

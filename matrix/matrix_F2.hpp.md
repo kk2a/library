@@ -57,102 +57,106 @@ data:
     \ &= ~(ONE << (i & BLOCK_MASK));\n    }\n\n    void set(const string& s) {\n \
     \       assert((int)s.size() == n);\n        for (int i = 0; i < (n + BLOCK_SIZE\
     \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            int r = n - (i << BLOCK_SIZE_LOG),\
-    \ l = max(0, r - BLOCK_SIZE);\n            u128 val = 0;\n            for (int\
-    \ j = l; j < r; ++j) {\n                val = (val << 1) | (s[j] - '0');\n   \
-    \         }\n            block[i] = val;\n        }\n    }\n\n    class BitReference\
-    \ {\n        vector<u128>& block;\n        int idx;\n      public:\n        BitReference(vector<u128>&\
-    \ block_, int idx_) : block(block_), idx(idx_) {}\n        operator bool() const\
-    \ { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n\n   \
-    \     BitReference& operator=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
+    \ l = max(0, r - BLOCK_SIZE);\n            block[i] = 0;\n            for (int\
+    \ j = l; j < r; j++)\n                block[i] = (block[i] << 1) | (s[j] - '0');\n\
+    \        }\n    }\n\n    void set_reversed(const string& s) {\n        assert((int)s.size()\
+    \ == n);\n        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
+    \ i++) {\n            int l = i << BLOCK_SIZE_LOG, r = min(n, l + BLOCK_SIZE);\n\
+    \            block[i] = 0;\n            for (int j = r - 1; j >= l; --j)\n   \
+    \             block[i] = (block[i] << 1) | (s[j] - '0');\n        }\n    }\n\n\
+    \    class BitReference {\n        vector<u128>& block;\n        int idx;\n  \
+    \    public:\n        BitReference(vector<u128>& block_, int idx_) : block(block_),\
+    \ idx(idx_) {}\n        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG]\
+    \ >> (idx & BLOCK_MASK)) & 1; }\n\n        BitReference& operator=(bool x) {\n\
+    \            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+    \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
+    \            return *this;\n        }\n\n        BitReference& operator=(const\
+    \ BitReference& other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
     \ |= ONE << (idx & BLOCK_MASK);\n            else block[idx >> BLOCK_SIZE_LOG]\
     \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n \
-    \       BitReference& operator=(const BitReference& other) {\n            if (other)\
-    \ block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            else\
-    \ block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return\
-    \ *this;\n        }\n\n        BitReference& operator&=(bool x) {\n          \
-    \  if (!x) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n   \
-    \         return *this;\n        }\n\n        BitReference& operator&=(const BitReference&\
-    \ other) {\n            if (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx\
-    \ & BLOCK_MASK));\n            return *this;\n        }\n\n        BitReference&\
-    \ operator|=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE\
-    \ << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n        BitReference&\
-    \ operator|=(const BitReference& other) {\n            if (other) block[idx >>\
-    \ BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            return *this;\n \
-    \       }\n\n        BitReference& operator^=(bool x) {\n            if (x) block[idx\
-    \ >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n\
-    \        }\n\n        BitReference& operator^=(const BitReference& other) {\n\
-    \            if (other) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n\
-    \            return *this;\n        }\n\n        BitReference& flip() {\n    \
-    \        block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n        \
-    \    return *this;\n        }\n\n        BitReference& operator~() {\n       \
-    \     block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n           \
-    \ return *this;\n        }\n\n        bool val() const {\n            return (block[idx\
-    \ >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1;\n        }\n    };\n\n    BitReference\
-    \ operator[](int i) {\n        assert(0 <= i && i < n);\n        return BitReference(block,\
-    \ i);\n    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i && i\
-    \ < n);\n        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;\n\
-    \    }\n\n    T& operator=(const string& s) {\n        set(s);\n        return\
-    \ *this;\n    }\n\n    T& flip() {\n        u128 mask = (ONE << (n & BLOCK_MASK))\
-    \ - 1;\n        for (u128& x : block) x = ~x;\n        block.back() &= mask;\n\
-    \        return *this;\n    }\n\n    T& flip(int i) {\n        assert(0 <= i &&\
-    \ i < n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n  \
-    \      return *this;\n    }\n\n    T& operator~() {\n        return flip();\n\
-    \    }\n\n    T& operator&=(const T& other) {\n        assert(n == other.n);\n\
-    \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
-    \            block[i] &= other.block[i];\n        }\n        return *this;\n \
-    \   }\n\n    T& operator|=(const T& other) {\n        assert(n == other.n);\n\
-    \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
-    \            block[i] |= other.block[i];\n        }\n        return *this;\n \
-    \   }\n\n    T& operator^=(const T& other) {\n        assert(n == other.n);\n\
-    \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
-    \            block[i] ^= other.block[i];\n        }\n        return *this;\n \
-    \   }\n\n    friend T operator&(const T& lhs, const T& rhs) {\n        return\
-    \ T(lhs) &= rhs;\n    }\n    friend T operator|(const T& lhs, const T& rhs) {\n\
-    \        return T(lhs) |= rhs;\n    }\n    friend T operator^(const T& lhs, const\
-    \ T& rhs) {\n        return T(lhs) ^= rhs;\n    }\n    friend bool operator==(const\
-    \ T& lhs, const T& rhs) {\n        if (lhs.n != rhs.n) return false;\n       \
-    \ for (int i = 0; i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n   \
-    \         if (lhs.block[i] != rhs.block[i]) return false;\n        }\n       \
-    \ return true;\n    }\n    friend bool operator!=(const T& lhs, const T& rhs)\
-    \ {\n        return !(lhs == rhs);\n    }\n\n    operator bool() const {\n   \
-    \     for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n   \
-    \         if (block[i]) return true;\n        }\n        return false;\n    }\n\
-    \n    string to_string(u128 x) const {\n        return bitset<64>((u64)(x >> (BLOCK_SIZE\
-    \ / 2))).to_string() \n             + bitset<64>((u64)(x & ((ONE << (BLOCK_SIZE\
-    \ / 2)) - 1))).to_string();\n    }\n\n    string to_string() const {\n       \
-    \ vector<string> tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        for (int\
-    \ i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            tmp[i]\
-    \ = to_string(block[i]);\n        }\n        if (n & BLOCK_MASK) {\n         \
-    \   reverse(begin(tmp.back()), end(tmp.back()));\n            tmp.back().resize(n\
-    \ & BLOCK_MASK);\n            reverse(begin(tmp.back()), end(tmp.back()));\n \
-    \       }\n        string res;\n        for (int i = (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
-    \ i--;) {\n            res += tmp[i];\n        }\n        return res;\n    }\n\
-    \n    string to_reversed_string() const {\n        vector<string> tmp((n + BLOCK_SIZE\
+    \       BitReference& operator&=(bool x) {\n            if (!x) block[idx >> BLOCK_SIZE_LOG]\
+    \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n \
+    \       BitReference& operator&=(const BitReference& other) {\n            if\
+    \ (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n   \
+    \         return *this;\n        }\n\n        BitReference& operator|=(bool x)\
+    \ {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+    \            return *this;\n        }\n\n        BitReference& operator|=(const\
+    \ BitReference& other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
+    \ |= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n    \
+    \    BitReference& operator^=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
+    \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n    \
+    \    BitReference& operator^=(const BitReference& other) {\n            if (other)\
+    \ block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n            return\
+    \ *this;\n        }\n\n        BitReference& flip() {\n            block[idx >>\
+    \ BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n \
+    \       }\n\n        BitReference& operator~() {\n            block[idx >> BLOCK_SIZE_LOG]\
+    \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n    \
+    \    bool val() const {\n            return (block[idx >> BLOCK_SIZE_LOG] >> (idx\
+    \ & BLOCK_MASK)) & 1;\n        }\n    };\n\n    BitReference operator[](int i)\
+    \ {\n        assert(0 <= i && i < n);\n        return BitReference(block, i);\n\
+    \    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i && i < n);\n\
+    \        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;\n    }\n\
+    \n    T& operator=(const string& s) {\n        set(s);\n        return *this;\n\
+    \    }\n\n    T& flip() {\n        u128 mask = (ONE << (n & BLOCK_MASK)) - 1;\n\
+    \        for (u128& x : block) x = ~x;\n        block.back() &= mask;\n      \
+    \  return *this;\n    }\n\n    T& flip(int i) {\n        assert(0 <= i && i <\
+    \ n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n      \
+    \  return *this;\n    }\n\n    T& operator~() {\n        return flip();\n    }\n\
+    \n    T& operator&=(const T& other) {\n        assert(n == other.n);\n       \
+    \ for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n       \
+    \     block[i] &= other.block[i];\n        }\n        return *this;\n    }\n\n\
+    \    T& operator|=(const T& other) {\n        assert(n == other.n);\n        for\
+    \ (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n           \
+    \ block[i] |= other.block[i];\n        }\n        return *this;\n    }\n\n   \
+    \ T& operator^=(const T& other) {\n        assert(n == other.n);\n        for\
+    \ (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n           \
+    \ block[i] ^= other.block[i];\n        }\n        return *this;\n    }\n\n   \
+    \ friend T operator&(const T& lhs, const T& rhs) {\n        return T(lhs) &= rhs;\n\
+    \    }\n    friend T operator|(const T& lhs, const T& rhs) {\n        return T(lhs)\
+    \ |= rhs;\n    }\n    friend T operator^(const T& lhs, const T& rhs) {\n     \
+    \   return T(lhs) ^= rhs;\n    }\n    friend bool operator==(const T& lhs, const\
+    \ T& rhs) {\n        if (lhs.n != rhs.n) return false;\n        for (int i = 0;\
+    \ i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            if (lhs.block[i]\
+    \ != rhs.block[i]) return false;\n        }\n        return true;\n    }\n   \
+    \ friend bool operator!=(const T& lhs, const T& rhs) {\n        return !(lhs ==\
+    \ rhs);\n    }\n\n    operator bool() const {\n        for (int i = 0; i < (n\
+    \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            if (block[i]) return\
+    \ true;\n        }\n        return false;\n    }\n\n    string to_string(u128\
+    \ x) const {\n        return bitset<64>((u64)(x >> (BLOCK_SIZE / 2))).to_string()\
+    \ \n             + bitset<64>((u64)(x & ((ONE << (BLOCK_SIZE / 2)) - 1))).to_string();\n\
+    \    }\n\n    string to_string() const {\n        vector<string> tmp((n + BLOCK_SIZE\
     \ - 1) >> BLOCK_SIZE_LOG);\n        for (int i = 0; i < (n + BLOCK_SIZE - 1) >>\
     \ BLOCK_SIZE_LOG; i++) {\n            tmp[i] = to_string(block[i]);\n        }\n\
     \        if (n & BLOCK_MASK) {\n            reverse(begin(tmp.back()), end(tmp.back()));\n\
     \            tmp.back().resize(n & BLOCK_MASK);\n            reverse(begin(tmp.back()),\
-    \ end(tmp.back()));\n        }\n        string res;\n        for (int i = 0; i\
-    \ < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            reverse(begin(tmp[i]),\
-    \ end(tmp[i]));\n            res += tmp[i];\n        }\n        return res;\n\
-    \    }\n\n    friend ostream& operator<<(ostream& os, const T& bs) {\n       \
-    \ return os << bs.to_string();\n    }\n};\n\n\n#line 5 \"matrix/matrix_F2.hpp\"\
-    \n\nstruct MatrixF2 {\n    using mat = MatrixF2;\n    int _h, _w;\n    vector<DynamicBitSet>\
-    \ _mat;\n\n    MatrixF2() : MatrixF2(0) {}\n    MatrixF2(int n) : MatrixF2(n,\
-    \ n) {}\n    MatrixF2(int h, int w) {\n        if (h == 0) {\n            _h =\
-    \ 0;\n            _w = w;\n        }\n        else {\n            _h = h;\n  \
-    \          _w = w;\n            _mat.resize(h, DynamicBitSet(w));\n        }\n\
-    \    }\n    MatrixF2(const vector<DynamicBitSet>& mat_) : _h(mat_.size()), _w(mat_[0].size()),\
-    \ _mat(mat_) {}\n\n    int get_h() const { return _h; }\n    int get_w() const\
-    \ { return _w; }\n    \n    bool at(int i, int j) {\n        assert(0 <= i &&\
-    \ i < _h);\n        assert(0 <= j && j < _w);\n        return _mat[i][j].val();\n\
-    \    }\n\n    class Proxy {\n        vector<DynamicBitSet>& bs;\n        int i;\n\
-    \      public:\n        Proxy(vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_)\
+    \ end(tmp.back()));\n        }\n        string res;\n        for (int i = (n +\
+    \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i--;) {\n            res += tmp[i];\n   \
+    \     }\n        return res;\n    }\n\n    string to_reversed_string() const {\n\
+    \        vector<string> tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n       \
+    \ for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n       \
+    \     tmp[i] = to_string(block[i]);\n        }\n        if (n & BLOCK_MASK) {\n\
+    \            reverse(begin(tmp.back()), end(tmp.back()));\n            tmp.back().resize(n\
+    \ & BLOCK_MASK);\n            reverse(begin(tmp.back()), end(tmp.back()));\n \
+    \       }\n        string res;\n        for (int i = 0; i < (n + BLOCK_SIZE -\
+    \ 1) >> BLOCK_SIZE_LOG; i++) {\n            reverse(begin(tmp[i]), end(tmp[i]));\n\
+    \            res += tmp[i];\n        }\n        return res;\n    }\n\n    friend\
+    \ ostream& operator<<(ostream& os, const T& bs) {\n        return os << bs.to_string();\n\
+    \    }\n};\n\n\n#line 5 \"matrix/matrix_F2.hpp\"\n\nstruct MatrixF2 {\n    using\
+    \ mat = MatrixF2;\n    int _h, _w;\n    vector<DynamicBitSet> _mat;\n\n    MatrixF2()\
+    \ : MatrixF2(0) {}\n    MatrixF2(int n) : MatrixF2(n, n) {}\n    MatrixF2(int\
+    \ h, int w) {\n        if (h == 0) {\n            _h = 0;\n            _w = w;\n\
+    \        }\n        else {\n            _h = h;\n            _w = w;\n       \
+    \     _mat.resize(h, DynamicBitSet(w));\n        }\n    }\n    MatrixF2(const\
+    \ vector<DynamicBitSet>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_)\
+    \ {}\n\n    int get_h() const { return _h; }\n    int get_w() const { return _w;\
+    \ }\n    \n    bool at(int i, int j) {\n        assert(0 <= i && i < _h);\n  \
+    \      assert(0 <= j && j < _w);\n        return _mat[i][j].val();\n    }\n\n\
+    \    class Proxy {\n        vector<DynamicBitSet>& bs;\n        int i;\n     \
+    \ public:\n        Proxy(vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_)\
     \ {}\n        operator DynamicBitSet() const { return bs[i]; }\n\n        string\
     \ to_string() const {\n            return bs[i].to_string();\n        }\n    \
     \    string to_reversed_string() const {\n            return bs[i].to_reversed_string();\n\
-    \        }\n\n        Proxy& operator=(const string& s) {\n            string\
-    \ tmp = s;\n            reverse(begin(tmp), end(tmp));\n            bs[i] = tmp;\n\
+    \        }\n\n        Proxy& operator=(const string& s) {\n            bs[i].set_reversed(s);\n\
     \            return *this;\n        }\n        Proxy& operator=(const DynamicBitSet&\
     \ x) {\n            bs[i] = x;\n            return *this;\n        }\n       \
     \ Proxy& operator=(const Proxy& x) {\n            bs[i] = x.bs[x.i];\n       \
@@ -176,44 +180,45 @@ data:
     \n    void set(int i, int j, bool x) {\n        assert(0 <= i && i < _h);\n  \
     \      assert(0 <= j && j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void\
     \ set(int i, const string& s) {\n        assert((int)s.size() == _w);\n      \
-    \  string tmp = s;\n        reverse(begin(tmp), end(tmp));\n        _mat[i].set(tmp);\n\
-    \    }\n\n    mat& operator+=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator-=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator^=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator|=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] | rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator&=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] & rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator*=(const mat& rhs) {\n        assert(_w == rhs._h);\n\
-    \        vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n        for (int\
-    \ i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\n        \
-    \        if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                // cout << i\
-    \ << \" \" << j << \" \" << _mat[i][j] << \" check\" << endl;\n              \
-    \  // rep (i, 2) { cout << res[i] << endl; }\n            }\n        }\n     \
-    \   _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n    friend\
-    \ mat operator+(const mat& lhs, const mat& rhs) { return mat(lhs) += rhs; }\n\
-    \    friend mat operator-(const mat& lhs, const mat& rhs) { return mat(lhs) -=\
-    \ rhs; }\n    friend mat operator^(const mat& lhs, const mat& rhs) { return mat(lhs)\
-    \ ^= rhs; }\n    friend mat operator|(const mat& lhs, const mat& rhs) { return\
-    \ mat(lhs) |= rhs; }\n    friend mat operator&(const mat& lhs, const mat& rhs)\
-    \ { return mat(lhs) &= rhs; }\n    friend mat operator*(const mat& lhs, const\
-    \ mat& rhs) { return mat(lhs) *= rhs; }\n    friend bool operator==(const mat&\
-    \ lhs, const mat& rhs) {\n        assert(lhs._h == rhs._h);\n        assert(lhs._w\
-    \ == rhs._w);\n        for (int i = 0; i < lhs._h; i++) {\n            if (lhs._mat[i]\
-    \ != rhs._mat[i]) return false;\n        }\n        return true;\n    }\n    friend\
-    \ bool operator!=(const mat& lhs, const mat& rhs) {\n        return !(lhs == rhs);\n\
-    \    }\n\n    mat& inplace_combine_top(const mat& rhs) {\n        assert(_w ==\
-    \ rhs._w);\n        _mat.insert(begin(_mat), begin(rhs._mat), end(rhs._mat));\n\
-    \        _h += rhs._h;\n        return *this;\n    }\n\n    mat combine_top(const\
-    \ mat& rhs) const {\n        assert(_w == rhs._w);\n        return mat(_mat).inplace_combine_top(rhs);\n\
+    \  _mat[i].set(s);\n    }\n\n    void set_reversed(int i, const string& s) {\n\
+    \        assert((int)s.size() == _w);\n        _mat[i].set_reversed(s);\n    }\n\
+    \n    mat& operator+=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator-=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator^=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator|=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] | rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator&=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] & rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator*=(const mat& rhs) {\n        assert(_w == rhs._h);\n     \
+    \   vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n        for (int i\
+    \ = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\n          \
+    \      if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                // cout << i <<\
+    \ \" \" << j << \" \" << _mat[i][j] << \" check\" << endl;\n                //\
+    \ rep (i, 2) { cout << res[i] << endl; }\n            }\n        }\n        _w\
+    \ = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n    friend mat\
+    \ operator+(const mat& lhs, const mat& rhs) { return mat(lhs) += rhs; }\n    friend\
+    \ mat operator-(const mat& lhs, const mat& rhs) { return mat(lhs) -= rhs; }\n\
+    \    friend mat operator^(const mat& lhs, const mat& rhs) { return mat(lhs) ^=\
+    \ rhs; }\n    friend mat operator|(const mat& lhs, const mat& rhs) { return mat(lhs)\
+    \ |= rhs; }\n    friend mat operator&(const mat& lhs, const mat& rhs) { return\
+    \ mat(lhs) &= rhs; }\n    friend mat operator*(const mat& lhs, const mat& rhs)\
+    \ { return mat(lhs) *= rhs; }\n    friend bool operator==(const mat& lhs, const\
+    \ mat& rhs) {\n        assert(lhs._h == rhs._h);\n        assert(lhs._w == rhs._w);\n\
+    \        for (int i = 0; i < lhs._h; i++) {\n            if (lhs._mat[i] != rhs._mat[i])\
+    \ return false;\n        }\n        return true;\n    }\n    friend bool operator!=(const\
+    \ mat& lhs, const mat& rhs) {\n        return !(lhs == rhs);\n    }\n\n    mat&\
+    \ inplace_combine_top(const mat& rhs) {\n        assert(_w == rhs._w);\n     \
+    \   _mat.insert(begin(_mat), begin(rhs._mat), end(rhs._mat));\n        _h += rhs._h;\n\
+    \        return *this;\n    }\n\n    mat combine_top(const mat& rhs) const {\n\
+    \        assert(_w == rhs._w);\n        return mat(_mat).inplace_combine_top(rhs);\n\
     \    }\n\n    mat& inplace_combine_bottom(const mat& rhs) {\n        assert(_w\
     \ == rhs._w);\n        _mat.insert(end(_mat), begin(rhs._mat), end(rhs._mat));\n\
     \        _h += rhs._h;\n        return *this;\n    }\n\n    mat combine_bottom(const\
@@ -274,8 +279,7 @@ data:
     \ {}\n        operator DynamicBitSet() const { return bs[i]; }\n\n        string\
     \ to_string() const {\n            return bs[i].to_string();\n        }\n    \
     \    string to_reversed_string() const {\n            return bs[i].to_reversed_string();\n\
-    \        }\n\n        Proxy& operator=(const string& s) {\n            string\
-    \ tmp = s;\n            reverse(begin(tmp), end(tmp));\n            bs[i] = tmp;\n\
+    \        }\n\n        Proxy& operator=(const string& s) {\n            bs[i].set_reversed(s);\n\
     \            return *this;\n        }\n        Proxy& operator=(const DynamicBitSet&\
     \ x) {\n            bs[i] = x;\n            return *this;\n        }\n       \
     \ Proxy& operator=(const Proxy& x) {\n            bs[i] = x.bs[x.i];\n       \
@@ -299,44 +303,45 @@ data:
     \n    void set(int i, int j, bool x) {\n        assert(0 <= i && i < _h);\n  \
     \      assert(0 <= j && j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void\
     \ set(int i, const string& s) {\n        assert((int)s.size() == _w);\n      \
-    \  string tmp = s;\n        reverse(begin(tmp), end(tmp));\n        _mat[i].set(tmp);\n\
-    \    }\n\n    mat& operator+=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator-=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator^=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator|=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] | rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator&=(const mat& rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       _mat[i] = _mat[i] & rhs._mat[i];\n        }\n        return *this;\n \
-    \   }\n\n    mat& operator*=(const mat& rhs) {\n        assert(_w == rhs._h);\n\
-    \        vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n        for (int\
-    \ i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\n        \
-    \        if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                // cout << i\
-    \ << \" \" << j << \" \" << _mat[i][j] << \" check\" << endl;\n              \
-    \  // rep (i, 2) { cout << res[i] << endl; }\n            }\n        }\n     \
-    \   _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n    friend\
-    \ mat operator+(const mat& lhs, const mat& rhs) { return mat(lhs) += rhs; }\n\
-    \    friend mat operator-(const mat& lhs, const mat& rhs) { return mat(lhs) -=\
-    \ rhs; }\n    friend mat operator^(const mat& lhs, const mat& rhs) { return mat(lhs)\
-    \ ^= rhs; }\n    friend mat operator|(const mat& lhs, const mat& rhs) { return\
-    \ mat(lhs) |= rhs; }\n    friend mat operator&(const mat& lhs, const mat& rhs)\
-    \ { return mat(lhs) &= rhs; }\n    friend mat operator*(const mat& lhs, const\
-    \ mat& rhs) { return mat(lhs) *= rhs; }\n    friend bool operator==(const mat&\
-    \ lhs, const mat& rhs) {\n        assert(lhs._h == rhs._h);\n        assert(lhs._w\
-    \ == rhs._w);\n        for (int i = 0; i < lhs._h; i++) {\n            if (lhs._mat[i]\
-    \ != rhs._mat[i]) return false;\n        }\n        return true;\n    }\n    friend\
-    \ bool operator!=(const mat& lhs, const mat& rhs) {\n        return !(lhs == rhs);\n\
-    \    }\n\n    mat& inplace_combine_top(const mat& rhs) {\n        assert(_w ==\
-    \ rhs._w);\n        _mat.insert(begin(_mat), begin(rhs._mat), end(rhs._mat));\n\
-    \        _h += rhs._h;\n        return *this;\n    }\n\n    mat combine_top(const\
-    \ mat& rhs) const {\n        assert(_w == rhs._w);\n        return mat(_mat).inplace_combine_top(rhs);\n\
+    \  _mat[i].set(s);\n    }\n\n    void set_reversed(int i, const string& s) {\n\
+    \        assert((int)s.size() == _w);\n        _mat[i].set_reversed(s);\n    }\n\
+    \n    mat& operator+=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator-=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator^=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] ^ rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator|=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] | rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator&=(const mat& rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  _mat[i] = _mat[i] & rhs._mat[i];\n        }\n        return *this;\n    }\n\
+    \n    mat& operator*=(const mat& rhs) {\n        assert(_w == rhs._h);\n     \
+    \   vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n        for (int i\
+    \ = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\n          \
+    \      if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                // cout << i <<\
+    \ \" \" << j << \" \" << _mat[i][j] << \" check\" << endl;\n                //\
+    \ rep (i, 2) { cout << res[i] << endl; }\n            }\n        }\n        _w\
+    \ = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n    friend mat\
+    \ operator+(const mat& lhs, const mat& rhs) { return mat(lhs) += rhs; }\n    friend\
+    \ mat operator-(const mat& lhs, const mat& rhs) { return mat(lhs) -= rhs; }\n\
+    \    friend mat operator^(const mat& lhs, const mat& rhs) { return mat(lhs) ^=\
+    \ rhs; }\n    friend mat operator|(const mat& lhs, const mat& rhs) { return mat(lhs)\
+    \ |= rhs; }\n    friend mat operator&(const mat& lhs, const mat& rhs) { return\
+    \ mat(lhs) &= rhs; }\n    friend mat operator*(const mat& lhs, const mat& rhs)\
+    \ { return mat(lhs) *= rhs; }\n    friend bool operator==(const mat& lhs, const\
+    \ mat& rhs) {\n        assert(lhs._h == rhs._h);\n        assert(lhs._w == rhs._w);\n\
+    \        for (int i = 0; i < lhs._h; i++) {\n            if (lhs._mat[i] != rhs._mat[i])\
+    \ return false;\n        }\n        return true;\n    }\n    friend bool operator!=(const\
+    \ mat& lhs, const mat& rhs) {\n        return !(lhs == rhs);\n    }\n\n    mat&\
+    \ inplace_combine_top(const mat& rhs) {\n        assert(_w == rhs._w);\n     \
+    \   _mat.insert(begin(_mat), begin(rhs._mat), end(rhs._mat));\n        _h += rhs._h;\n\
+    \        return *this;\n    }\n\n    mat combine_top(const mat& rhs) const {\n\
+    \        assert(_w == rhs._w);\n        return mat(_mat).inplace_combine_top(rhs);\n\
     \    }\n\n    mat& inplace_combine_bottom(const mat& rhs) {\n        assert(_w\
     \ == rhs._w);\n        _mat.insert(end(_mat), begin(rhs._mat), end(rhs._mat));\n\
     \        _h += rhs._h;\n        return *this;\n    }\n\n    mat combine_bottom(const\
@@ -386,7 +391,7 @@ data:
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2024-08-12 03:13:16+09:00'
+  timestamp: '2024-08-13 08:28:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/matrix_F2.hpp
