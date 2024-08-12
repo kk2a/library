@@ -90,11 +90,19 @@ struct DynamicBitSet {
         assert((int)s.size() == n);
         for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             int r = n - (i << BLOCK_SIZE_LOG), l = max(0, r - BLOCK_SIZE);
-            u128 val = 0;
-            for (int j = l; j < r; ++j) {
-                val = (val << 1) | (s[j] - '0');
-            }
-            block[i] = val;
+            block[i] = 0;
+            for (int j = l; j < r; j++)
+                block[i] = (block[i] << 1) | (s[j] - '0');
+        }
+    }
+
+    void set_reversed(const string& s) {
+        assert((int)s.size() == n);
+        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
+            int l = i << BLOCK_SIZE_LOG, r = min(n, l + BLOCK_SIZE);
+            block[i] = 0;
+            for (int j = r - 1; j >= l; --j)
+                block[i] = (block[i] << 1) | (s[j] - '0');
         }
     }
 
