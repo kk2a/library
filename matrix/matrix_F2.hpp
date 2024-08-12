@@ -47,9 +47,7 @@ struct MatrixF2 {
         }
 
         Proxy& operator=(const string& s) {
-            string tmp = s;
-            reverse(begin(tmp), end(tmp));
-            bs[i] = tmp;
+            bs[i].set_reversed(s);
             return *this;
         }
         Proxy& operator=(const DynamicBitSet& x) {
@@ -122,9 +120,12 @@ struct MatrixF2 {
 
     void set(int i, const string& s) {
         assert((int)s.size() == _w);
-        string tmp = s;
-        reverse(begin(tmp), end(tmp));
-        _mat[i].set(tmp);
+        _mat[i].set(s);
+    }
+
+    void set_reversed(int i, const string& s) {
+        assert((int)s.size() == _w);
+        _mat[i].set_reversed(s);
     }
 
     mat& operator+=(const mat& rhs) {
