@@ -36,7 +36,7 @@ FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(
 }
 
 template <class mint>
-FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
+FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg=-1) const {
     assert((*this)[0] != mint(0));
     if (deg == -1) deg = this->size();
     FormalPowerSeries<mint> res{mint(1) / (*this)[0]};
@@ -47,7 +47,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
 }
 
 template <class mint>
-FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
+FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg=-1) const {
     assert(this->empty() || (*this)[0] == mint(0));
     if (deg == -1) deg = this->size();
     FormalPowerSeries<mint> ret{mint(1)};
