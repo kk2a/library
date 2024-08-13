@@ -3,12 +3,15 @@
 
 #include "convolution.hpp"
 
+// reference: https://rushcheyo.blog.uoj.ac/blog/6547
+// 日本語: https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
 template <class FPS, class mint = typename FPS::value_type>
-FPS convolution_mulcut(FPS& a, FPS b, const vector<int>& base) {
+FPS multi_convolution_truncated(FPS& a, const FPS& b, const vector<int>& base) {
     int n = int(a.size());
     if (!n) return {};
-    static const int k = size(base);
+    int k = base.size();
     if (!k) return convolution(a, b);
+    // chi[i] = \sum_{j} \floor(i / (base[0]...base[j]))
     vector<int> chi(n, 0);
     for (int i = 0; i < n; i++) {
         int x = i;
@@ -17,8 +20,8 @@ FPS convolution_mulcut(FPS& a, FPS b, const vector<int>& base) {
     }
     int z = 1;
     while (z < 2 * n - 1) z <<= 1;
-    vector<vector<mint>> f(k, vector<mint>(z));
-    vector<vector<mint>> g(k, vector<mint>(z));
+    vector<FPS> f(k, FPS(z));
+    vector<FPS> g(k, FPS(z));
     for (int i = 0; i < n; i++) f[chi[i]][i] = a[i], g[chi[i]][i] = b[i];
     for (auto& x : f) butterfly(x);
     for (auto& x : g) butterfly(x);

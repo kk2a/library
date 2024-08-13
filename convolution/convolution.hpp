@@ -4,14 +4,10 @@
 #include "butterfly.hpp"
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS convolution(FPS& a, FPS b) {
+FPS convolution(FPS& a, const FPS& b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
     if (std::min(n, m) <= 60) {
-        if (n < m) {
-            swap(n, m);
-            swap(a, b);
-        }
         FPS res(n + m - 1);
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -23,11 +19,19 @@ FPS convolution(FPS& a, FPS b) {
     }
     int z = 1;
     while (z < n + m - 1) z <<= 1;
-    a.resize(z);
-    butterfly(a);
-    b.resize(z);
-    butterfly(b);
-    for (int i = 0; i < z; i++) a[i] *= b[i];
+    if (a == b) {
+        a.resize(z);
+        butterfly(a);
+        for (int i = 0; i < z; i++) a[i] *= a[i];
+    }
+    else {
+        a.resize(z);
+        butterfly(a);
+        FPS t(b.begin(), b.end());
+        t.resize(z);
+        butterfly(t);
+        for (int i = 0; i < z; i++) a[i] *= t[i];
+    }
     butterfly_inv(a);
     a.resize(n + m - 1);
     mint iz = mint(z).inv();
