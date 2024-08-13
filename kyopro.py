@@ -17,8 +17,8 @@ class include_file:
     def query(self):
         self.rec(self.file_path)
         self.sorted = self.toposo()
-        self.erase_incude_file()
-        self.write_include_file()
+        i = self.erase_incude_file()
+        self.write_include_file(i)
 
     def rec(self, cur):
         # print(cur)
@@ -74,21 +74,26 @@ class include_file:
         with open(self.file_path, 'r') as file:
             lines = file.readlines()
         with open(self.file_path, 'w') as file:
-            for line in lines:
+            ret = -1
+            for i, line in enumerate(lines):
                 if not line.startswith('#include <kk2'):
                     file.write(line)
+                elif ret == -1:
+                    ret = i
+        return ret
 
-    def write_include_file(self):
+    def write_include_file(self, i=0):
         with open(self.file_path, 'r') as file:
             lines = file.readlines()
         with open(self.file_path, 'w') as file:
             tmp = self.all_include_files()
             for line in reversed(tmp):
                 # print(len(tmp))
-                lines.insert(0, line)
+                lines.insert(i, line)
             # lines.insert(i, self.all_include_files())
             for line in lines:
                 file.write(line)
+            file.write("\n// converted!!\n")
 
     def all_include_files(self) -> list:
         ret = []
@@ -101,6 +106,7 @@ class include_file:
                         continue
                     # print(line)
                     ret.append(line)
+                ret.append('\n')
         return ret
 
 
