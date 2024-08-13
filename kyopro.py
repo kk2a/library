@@ -23,7 +23,7 @@ class include_file:
     def rec(self, cur):
         # print(cur)
         flag = self.file_path == cur
-        with open(cur, 'r') as file:
+        with open(cur, 'r', encoding="utf-8") as file:
             for line in file:
                 if not line.startswith('#include'):
                     continue
@@ -71,9 +71,9 @@ class include_file:
         return stack
 
     def erase_incude_file(self):
-        with open(self.file_path, 'r') as file:
+        with open(self.file_path, 'r', encoding="utf-8") as file:
             lines = file.readlines()
-        with open(self.file_path, 'w') as file:
+        with open(self.file_path, 'w', encoding="utf-8") as file:
             ret = -1
             for i, line in enumerate(lines):
                 if not line.startswith('#include <kk2'):
@@ -83,9 +83,9 @@ class include_file:
         return ret
 
     def write_include_file(self, i=0):
-        with open(self.file_path, 'r') as file:
+        with open(self.file_path, 'r', encoding="utf-8") as file:
             lines = file.readlines()
-        with open(self.file_path, 'w') as file:
+        with open(self.file_path, 'w', encoding="utf-8") as file:
             tmp = self.all_include_files()
             for line in reversed(tmp):
                 # print(len(tmp))
@@ -98,7 +98,7 @@ class include_file:
     def all_include_files(self) -> list:
         ret = []
         for i in self.sorted:
-            with open(self.iid[i], 'r') as file:
+            with open(self.iid[i], 'r', encoding="utf-8") as file:
                 lines = file.readlines()
                 for line in lines:
                     if (line.startswith('#include') and
