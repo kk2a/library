@@ -195,7 +195,9 @@ data:
     \     FPS ret(*this);\n        return ret.inplace_iimos(n);\n    }\n\n    FPS\
     \ &operator*=(const FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this)\
     \ *= r; }\n    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
-    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n\n"
+    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\nnamespace\
+    \ kk2 {\n    template <class mint>\n    using FPS = FormalPowerSeries<mint>;\n\
+    }\n\n\n"
   code: "#ifndef FPS_HPP\n#define FPS_HPP 1\n\n\ntemplate <class mint>\nstruct FormalPowerSeries\
     \ : vector<mint> {\n    using vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
     \n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
@@ -347,8 +349,9 @@ data:
     \     FPS ret(*this);\n        return ret.inplace_iimos(n);\n    }\n\n    FPS\
     \ &operator*=(const FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this)\
     \ *= r; }\n    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
-    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n#endif\
-    \ // FPS_HPP\n"
+    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\nnamespace\
+    \ kk2 {\n    template <class mint>\n    using FPS = FormalPowerSeries<mint>;\n\
+    }\n\n#endif // FPS_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/fps.hpp
@@ -361,7 +364,7 @@ data:
   - fps/multivariate_fps.hpp
   - fps/fps_arb.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-06-22 12:26:56+09:00'
+  timestamp: '2024-08-14 04:42:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

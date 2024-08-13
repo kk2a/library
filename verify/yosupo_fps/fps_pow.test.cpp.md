@@ -220,25 +220,27 @@ data:
     \       b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n    copy(begin(b),\
     \ end(b), back_inserter(a));\n}\n\n\n#line 5 \"convolution/convolution.hpp\"\n\
     \ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution(FPS&\
-    \ a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m)\
-    \ return {};\n    if (std::min(n, m) <= 60) {\n        if (n < m) {\n        \
-    \    swap(n, m);\n            swap(a, b);\n        }\n        FPS res(n + m -\
+    \ a, const FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
+    \ || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m -\
     \ 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j <\
     \ m; j++) {\n                res[i + j] += a[i] * b[j];\n            }\n     \
     \   }\n        a = res;\n        return a;\n    }\n    int z = 1;\n    while (z\
-    \ < n + m - 1) z <<= 1;\n    a.resize(z);\n    butterfly(a);\n    b.resize(z);\n\
-    \    butterfly(b);\n    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv(a);\n\
-    \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
-    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n\n#line 1 \"fps/fps.hpp\"\
-    \n\n\n\n\ntemplate <class mint>\nstruct FormalPowerSeries : vector<mint> {\n \
-    \   using vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\n    FPS\
-    \ &operator+=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
-    \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n       \
-    \ return *this;\n    }\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
-    \ this->resize(1);\n        (*this)[0] += r;\n        return *this;\n    }\n \
-    \   FPS &operator-=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
-    \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n       \
-    \ return *this;\n    }\n    FPS &operator-=(const mint &r) {\n        if (this->empty())\
+    \ < n + m - 1) z <<= 1;\n    if (a == b) {\n        a.resize(z);\n        butterfly(a);\n\
+    \        for (int i = 0; i < z; i++) a[i] *= a[i];\n    }\n    else {\n      \
+    \  a.resize(z);\n        butterfly(a);\n        FPS t(b.begin(), b.end());\n \
+    \       t.resize(z);\n        butterfly(t);\n        for (int i = 0; i < z; i++)\
+    \ a[i] *= t[i];\n    }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    mint\
+    \ iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1; i++) a[i] *= iz;\n \
+    \   return a;\n}\n\n\n#line 1 \"fps/fps.hpp\"\n\n\n\n\ntemplate <class mint>\n\
+    struct FormalPowerSeries : vector<mint> {\n    using vector<mint>::vector;\n \
+    \   using FPS = FormalPowerSeries;\n\n    FPS &operator+=(const FPS &r) {\n  \
+    \      if (this->size() < r.size()) this->resize(r.size());\n        for (int\
+    \ i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return *this;\n\
+    \    }\n    FPS &operator+=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
+    \        (*this)[0] += r;\n        return *this;\n    }\n    FPS &operator-=(const\
+    \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
+    \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n        return\
+    \ *this;\n    }\n    FPS &operator-=(const mint &r) {\n        if (this->empty())\
     \ this->resize(1);\n        (*this)[0] -= r;\n        return *this;\n    }\n \
     \   FPS &operator*=(const mint &r) {\n        for (int i = 0; i < (int)this->size();\
     \ i++) {\n            (*this)[i] *= r;\n        }\n        return *this;\n   \
@@ -381,8 +383,9 @@ data:
     \     FPS ret(*this);\n        return ret.inplace_iimos(n);\n    }\n\n    FPS\
     \ &operator*=(const FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this)\
     \ *= r; }\n    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
-    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n\n\
-    #line 6 \"fps/ntt_friendly.hpp\"\n\n\ntemplate <class mint>\nFormalPowerSeries<mint>\
+    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\nnamespace\
+    \ kk2 {\n    template <class mint>\n    using FPS = FormalPowerSeries<mint>;\n\
+    }\n\n\n#line 6 \"fps/ntt_friendly.hpp\"\n\n\ntemplate <class mint>\nFormalPowerSeries<mint>\
     \ &FormalPowerSeries<mint>::operator*=(\n        const FormalPowerSeries<mint>\
     \ &r) {\n    if (this->empty() || r.empty()) {\n        this->clear();\n     \
     \   return *this;\n    }\n    convolution(*this, r);\n    return *this;\n}\n\n\
@@ -449,7 +452,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-08-12 03:20:42+09:00'
+  timestamp: '2024-08-14 04:42:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_pow.test.cpp

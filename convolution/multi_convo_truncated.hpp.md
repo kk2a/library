@@ -13,13 +13,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/primitive_rt_expr.hpp
     title: math_mod/primitive_rt_expr.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: fps/multivariate_fps.hpp
+    title: fps/multivariate_fps.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    links:
+    - https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
+    - https://rushcheyo.blog.uoj.ac/blog/6547
   bundledCode: "#line 1 \"convolution/multi_convo_truncated.hpp\"\n\n\n\n#line 1 \"\
     convolution/convolution.hpp\"\n\n\n\n#line 1 \"convolution/butterfly.hpp\"\n\n\
     \n\n#line 1 \"math_mod/primitive_rt_expr.hpp\"\n\n\n\n#line 1 \"math_mod/pow_expr.hpp\"\
@@ -122,49 +127,54 @@ data:
     \       b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n    copy(begin(b),\
     \ end(b), back_inserter(a));\n}\n\n\n#line 5 \"convolution/convolution.hpp\"\n\
     \ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution(FPS&\
-    \ a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m)\
-    \ return {};\n    if (std::min(n, m) <= 60) {\n        if (n < m) {\n        \
-    \    swap(n, m);\n            swap(a, b);\n        }\n        FPS res(n + m -\
+    \ a, const FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
+    \ || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m -\
     \ 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j <\
     \ m; j++) {\n                res[i + j] += a[i] * b[j];\n            }\n     \
     \   }\n        a = res;\n        return a;\n    }\n    int z = 1;\n    while (z\
-    \ < n + m - 1) z <<= 1;\n    a.resize(z);\n    butterfly(a);\n    b.resize(z);\n\
-    \    butterfly(b);\n    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv(a);\n\
-    \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
-    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n\n#line 5 \"convolution/multi_convo_truncated.hpp\"\
-    \n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution_mulcut(FPS&\
-    \ a, FPS b, const vector<int>& base) {\n    int n = int(a.size());\n    if (!n)\
-    \ return {};\n    static const int k = size(base);\n    if (!k) return convolution(a,\
-    \ b);\n    vector<int> chi(n, 0);\n    for (int i = 0; i < n; i++) {\n       \
-    \ int x = i;\n        for (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);\n\
-    \        chi[i] %= k;\n    }\n    int z = 1;\n    while (z < 2 * n - 1) z <<=\
-    \ 1;\n    vector<vector<mint>> f(k, vector<mint>(z));\n    vector<vector<mint>>\
-    \ g(k, vector<mint>(z));\n    for (int i = 0; i < n; i++) f[chi[i]][i] = a[i],\
-    \ g[chi[i]][i] = b[i];\n    for (auto& x : f) butterfly(x);\n    for (auto& x\
-    \ : g) butterfly(x);\n    vector<mint> tmp(k);\n    for (int ii = 0; ii < z; ii++)\
-    \ {\n        for (int i = 0; i < k; i++) {\n            for (int j = 0; j < k;\
-    \ j++) {\n                tmp[i + j - (i + j >= k ? k : 0)] += f[i][ii] * g[j][ii];\n\
-    \            }\n        }\n        for (int i = 0; i < k; i++) f[i][ii] = tmp[i],\
-    \ tmp[i] = mint{0};\n    }\n    for (auto& x : f) butterfly_inv(x);\n    mint\
-    \ iz = mint(z).inv();\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i] * iz;\n\
-    \    return a;\n}\n\n\n"
+    \ < n + m - 1) z <<= 1;\n    if (a == b) {\n        a.resize(z);\n        butterfly(a);\n\
+    \        for (int i = 0; i < z; i++) a[i] *= a[i];\n    }\n    else {\n      \
+    \  a.resize(z);\n        butterfly(a);\n        FPS t(b.begin(), b.end());\n \
+    \       t.resize(z);\n        butterfly(t);\n        for (int i = 0; i < z; i++)\
+    \ a[i] *= t[i];\n    }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    mint\
+    \ iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1; i++) a[i] *= iz;\n \
+    \   return a;\n}\n\n\n#line 5 \"convolution/multi_convo_truncated.hpp\"\n\n//\
+    \ reference: https://rushcheyo.blog.uoj.ac/blog/6547\n// \u65E5\u672C\u8A9E: https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
+    template <class FPS, class mint = typename FPS::value_type>\nFPS multi_convolution_truncated(FPS&\
+    \ a, const FPS& b, const vector<int>& base) {\n    int n = int(a.size());\n  \
+    \  if (!n) return {};\n    int k = base.size();\n    if (!k) return convolution(a,\
+    \ b);\n    // chi[i] = \\sum_{j} \\floor(i / (base[0]...base[j]))\n    vector<int>\
+    \ chi(n, 0);\n    for (int i = 0; i < n; i++) {\n        int x = i;\n        for\
+    \ (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);\n        chi[i] %= k;\n\
+    \    }\n    int z = 1;\n    while (z < 2 * n - 1) z <<= 1;\n    vector<FPS> f(k,\
+    \ FPS(z));\n    vector<FPS> g(k, FPS(z));\n    for (int i = 0; i < n; i++) f[chi[i]][i]\
+    \ = a[i], g[chi[i]][i] = b[i];\n    for (auto& x : f) butterfly(x);\n    for (auto&\
+    \ x : g) butterfly(x);\n    vector<mint> tmp(k);\n    for (int ii = 0; ii < z;\
+    \ ii++) {\n        for (int i = 0; i < k; i++) {\n            for (int j = 0;\
+    \ j < k; j++) {\n                tmp[i + j - (i + j >= k ? k : 0)] += f[i][ii]\
+    \ * g[j][ii];\n            }\n        }\n        for (int i = 0; i < k; i++) f[i][ii]\
+    \ = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto& x : f) butterfly_inv(x);\n\
+    \    mint iz = mint(z).inv();\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i]\
+    \ * iz;\n    return a;\n}\n\n\n"
   code: "#ifndef CONVOLUTION_MULTI_ZERO\n#define CONVOLUTION_MULTI_ZERO 1\n\n#include\
-    \ \"convolution.hpp\"\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-    FPS convolution_mulcut(FPS& a, FPS b, const vector<int>& base) {\n    int n =\
-    \ int(a.size());\n    if (!n) return {};\n    static const int k = size(base);\n\
-    \    if (!k) return convolution(a, b);\n    vector<int> chi(n, 0);\n    for (int\
-    \ i = 0; i < n; i++) {\n        int x = i;\n        for (int j = 0; j < k - 1;\
-    \ j++) chi[i] += (x /= base[j]);\n        chi[i] %= k;\n    }\n    int z = 1;\n\
-    \    while (z < 2 * n - 1) z <<= 1;\n    vector<vector<mint>> f(k, vector<mint>(z));\n\
-    \    vector<vector<mint>> g(k, vector<mint>(z));\n    for (int i = 0; i < n; i++)\
-    \ f[chi[i]][i] = a[i], g[chi[i]][i] = b[i];\n    for (auto& x : f) butterfly(x);\n\
-    \    for (auto& x : g) butterfly(x);\n    vector<mint> tmp(k);\n    for (int ii\
-    \ = 0; ii < z; ii++) {\n        for (int i = 0; i < k; i++) {\n            for\
-    \ (int j = 0; j < k; j++) {\n                tmp[i + j - (i + j >= k ? k : 0)]\
-    \ += f[i][ii] * g[j][ii];\n            }\n        }\n        for (int i = 0; i\
-    \ < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto& x : f)\
-    \ butterfly_inv(x);\n    mint iz = mint(z).inv();\n    for (int i = 0; i < n;\
-    \ i++) a[i] = f[chi[i]][i] * iz;\n    return a;\n}\n\n#endif // CONVOLUTION_MULTI_ZERO\n"
+    \ \"convolution.hpp\"\n\n// reference: https://rushcheyo.blog.uoj.ac/blog/6547\n\
+    // \u65E5\u672C\u8A9E: https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
+    template <class FPS, class mint = typename FPS::value_type>\nFPS multi_convolution_truncated(FPS&\
+    \ a, const FPS& b, const vector<int>& base) {\n    int n = int(a.size());\n  \
+    \  if (!n) return {};\n    int k = base.size();\n    if (!k) return convolution(a,\
+    \ b);\n    // chi[i] = \\sum_{j} \\floor(i / (base[0]...base[j]))\n    vector<int>\
+    \ chi(n, 0);\n    for (int i = 0; i < n; i++) {\n        int x = i;\n        for\
+    \ (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);\n        chi[i] %= k;\n\
+    \    }\n    int z = 1;\n    while (z < 2 * n - 1) z <<= 1;\n    vector<FPS> f(k,\
+    \ FPS(z));\n    vector<FPS> g(k, FPS(z));\n    for (int i = 0; i < n; i++) f[chi[i]][i]\
+    \ = a[i], g[chi[i]][i] = b[i];\n    for (auto& x : f) butterfly(x);\n    for (auto&\
+    \ x : g) butterfly(x);\n    vector<mint> tmp(k);\n    for (int ii = 0; ii < z;\
+    \ ii++) {\n        for (int i = 0; i < k; i++) {\n            for (int j = 0;\
+    \ j < k; j++) {\n                tmp[i + j - (i + j >= k ? k : 0)] += f[i][ii]\
+    \ * g[j][ii];\n            }\n        }\n        for (int i = 0; i < k; i++) f[i][ii]\
+    \ = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto& x : f) butterfly_inv(x);\n\
+    \    mint iz = mint(z).inv();\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i]\
+    \ * iz;\n    return a;\n}\n\n#endif // CONVOLUTION_MULTI_ZERO\n"
   dependsOn:
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
@@ -172,8 +182,9 @@ data:
   - math_mod/pow_expr.hpp
   isVerificationFile: false
   path: convolution/multi_convo_truncated.hpp
-  requiredBy: []
-  timestamp: '2024-08-13 11:48:13+09:00'
+  requiredBy:
+  - fps/multivariate_fps.hpp
+  timestamp: '2024-08-14 04:42:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/multi_convo_truncated.hpp

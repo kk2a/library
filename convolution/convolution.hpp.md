@@ -20,6 +20,9 @@ data:
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
+  - icon: ':warning:'
+    path: fps/multivariate_fps.hpp
+    title: fps/multivariate_fps.hpp
   - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
@@ -148,28 +151,32 @@ data:
     \       b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n    copy(begin(b),\
     \ end(b), back_inserter(a));\n}\n\n\n#line 5 \"convolution/convolution.hpp\"\n\
     \ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution(FPS&\
-    \ a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m)\
-    \ return {};\n    if (std::min(n, m) <= 60) {\n        if (n < m) {\n        \
-    \    swap(n, m);\n            swap(a, b);\n        }\n        FPS res(n + m -\
+    \ a, const FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
+    \ || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m -\
     \ 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j <\
     \ m; j++) {\n                res[i + j] += a[i] * b[j];\n            }\n     \
     \   }\n        a = res;\n        return a;\n    }\n    int z = 1;\n    while (z\
-    \ < n + m - 1) z <<= 1;\n    a.resize(z);\n    butterfly(a);\n    b.resize(z);\n\
-    \    butterfly(b);\n    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv(a);\n\
-    \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
-    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n\n"
+    \ < n + m - 1) z <<= 1;\n    if (a == b) {\n        a.resize(z);\n        butterfly(a);\n\
+    \        for (int i = 0; i < z; i++) a[i] *= a[i];\n    }\n    else {\n      \
+    \  a.resize(z);\n        butterfly(a);\n        FPS t(b.begin(), b.end());\n \
+    \       t.resize(z);\n        butterfly(t);\n        for (int i = 0; i < z; i++)\
+    \ a[i] *= t[i];\n    }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    mint\
+    \ iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1; i++) a[i] *= iz;\n \
+    \   return a;\n}\n\n\n"
   code: "#ifndef CONVOLUTION_HPP\n#define CONVOLUTION_HPP 1\n\n#include \"butterfly.hpp\"\
     \n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution(FPS&\
-    \ a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m)\
-    \ return {};\n    if (std::min(n, m) <= 60) {\n        if (n < m) {\n        \
-    \    swap(n, m);\n            swap(a, b);\n        }\n        FPS res(n + m -\
+    \ a, const FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
+    \ || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m -\
     \ 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j <\
     \ m; j++) {\n                res[i + j] += a[i] * b[j];\n            }\n     \
     \   }\n        a = res;\n        return a;\n    }\n    int z = 1;\n    while (z\
-    \ < n + m - 1) z <<= 1;\n    a.resize(z);\n    butterfly(a);\n    b.resize(z);\n\
-    \    butterfly(b);\n    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv(a);\n\
-    \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
-    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n#endif  // CONVOLUTION_HPP\n"
+    \ < n + m - 1) z <<= 1;\n    if (a == b) {\n        a.resize(z);\n        butterfly(a);\n\
+    \        for (int i = 0; i < z; i++) a[i] *= a[i];\n    }\n    else {\n      \
+    \  a.resize(z);\n        butterfly(a);\n        FPS t(b.begin(), b.end());\n \
+    \       t.resize(z);\n        butterfly(t);\n        for (int i = 0; i < z; i++)\
+    \ a[i] *= t[i];\n    }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    mint\
+    \ iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1; i++) a[i] *= iz;\n \
+    \   return a;\n}\n\n#endif  // CONVOLUTION_HPP\n"
   dependsOn:
   - convolution/butterfly.hpp
   - math_mod/primitive_rt_expr.hpp
@@ -182,8 +189,9 @@ data:
   - math_mod/comb_large.hpp
   - math_mod/comb_large_arb.hpp
   - fps/ntt_friendly.hpp
+  - fps/multivariate_fps.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-06-13 21:51:40+09:00'
+  timestamp: '2024-08-14 04:42:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

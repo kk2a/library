@@ -199,9 +199,10 @@ data:
     \     FPS ret(*this);\n        return ret.inplace_iimos(n);\n    }\n\n    FPS\
     \ &operator*=(const FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this)\
     \ *= r; }\n    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
-    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n\n\
-    #line 1 \"convolution/convo_arb.hpp\"\n\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\
-    \ntemplate <int p>\nstruct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
+    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\nnamespace\
+    \ kk2 {\n    template <class mint>\n    using FPS = FormalPowerSeries<mint>;\n\
+    }\n\n\n#line 1 \"convolution/convo_arb.hpp\"\n\n\n\n#line 1 \"modint/mont.hpp\"\
+    \n\n\n\ntemplate <int p>\nstruct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
     \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
     \    using u64 = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32\
     \ ret = p;\n        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n        return\
@@ -338,34 +339,35 @@ data:
     \       b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n    copy(begin(b),\
     \ end(b), back_inserter(a));\n}\n\n\n#line 5 \"convolution/convolution.hpp\"\n\
     \ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution(FPS&\
-    \ a, FPS b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m)\
-    \ return {};\n    if (std::min(n, m) <= 60) {\n        if (n < m) {\n        \
-    \    swap(n, m);\n            swap(a, b);\n        }\n        FPS res(n + m -\
+    \ a, const FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
+    \ || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m -\
     \ 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j <\
     \ m; j++) {\n                res[i + j] += a[i] * b[j];\n            }\n     \
     \   }\n        a = res;\n        return a;\n    }\n    int z = 1;\n    while (z\
-    \ < n + m - 1) z <<= 1;\n    a.resize(z);\n    butterfly(a);\n    b.resize(z);\n\
-    \    butterfly(b);\n    for (int i = 0; i < z; i++) a[i] *= b[i];\n    butterfly_inv(a);\n\
-    \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
-    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n\n#line 1 \"math_mod/garner.hpp\"\
-    \n\n\n\n#line 1 \"math_mod/inv.hpp\"\n\n\n\n\n// require: modulo >= 1\ntemplate\
-    \ <class T>\nconstexpr T mod_inversion(T a, T modulo) {\n    a %= modulo;\n  \
-    \  if (a < 0) a += modulo;\n    T s = modulo, t = a;\n    T m0 = 0, m1 = 1;\n\
-    \    while (t) {\n        T u = s / t;\n        swap(s -= t * u, t);\n       \
-    \ swap(m0 -= m1 * u, m1);\n    }\n    if (m0 < 0) m0 += modulo;\n    return m0;\n\
-    }\n\n\n#line 5 \"math_mod/garner.hpp\"\n\nlong long garner(const vector<long long>&\
-    \ d, const vector<long long>& p) {\n    static int nm = d.size();\n    vector<long\
-    \ long> kp(nm + 1, 0), rmult(nm + 1, 1);\n    for (int ii = 0; ii < nm; ii++)\
-    \ {\n        long long x = (d[ii] - kp[ii]) * mod_inversion(rmult[ii], p[ii])\
-    \ % p[ii];\n        x = (x + p[ii]) % p[ii];\n        for (int iii = ii + 1; iii\
-    \ < nm + 1; iii++) {\n            kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];\n\
-    \            rmult[iii] = (rmult[iii] * p[ii]) % p[iii];\n        }\n    }\n \
-    \   return kp[nm];\n}\n\n\n#line 8 \"convolution/convo_arb.hpp\"\n\ntemplate <class\
-    \ FPS, class mint = typename FPS::value_type>\nFPS convolution_arb(FPS& a, const\
-    \ FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m)\
-    \ return {};\n    static constexpr long long MOD1 = 754974721;  // 2^24\n    static\
-    \ constexpr long long MOD2 = 167772161;  // 2^25\n    static constexpr long long\
-    \ MOD3 = 469762049;  // 2^26\n    using mint1 = LazyMontgomeryModInt<MOD1>;\n\
+    \ < n + m - 1) z <<= 1;\n    if (a == b) {\n        a.resize(z);\n        butterfly(a);\n\
+    \        for (int i = 0; i < z; i++) a[i] *= a[i];\n    }\n    else {\n      \
+    \  a.resize(z);\n        butterfly(a);\n        FPS t(b.begin(), b.end());\n \
+    \       t.resize(z);\n        butterfly(t);\n        for (int i = 0; i < z; i++)\
+    \ a[i] *= t[i];\n    }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    mint\
+    \ iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1; i++) a[i] *= iz;\n \
+    \   return a;\n}\n\n\n#line 1 \"math_mod/garner.hpp\"\n\n\n\n#line 1 \"math_mod/inv.hpp\"\
+    \n\n\n\n\n// require: modulo >= 1\ntemplate <class T>\nconstexpr T mod_inversion(T\
+    \ a, T modulo) {\n    a %= modulo;\n    if (a < 0) a += modulo;\n    T s = modulo,\
+    \ t = a;\n    T m0 = 0, m1 = 1;\n    while (t) {\n        T u = s / t;\n     \
+    \   swap(s -= t * u, t);\n        swap(m0 -= m1 * u, m1);\n    }\n    if (m0 <\
+    \ 0) m0 += modulo;\n    return m0;\n}\n\n\n#line 5 \"math_mod/garner.hpp\"\n\n\
+    long long garner(const vector<long long>& d, const vector<long long>& p) {\n \
+    \   static int nm = d.size();\n    vector<long long> kp(nm + 1, 0), rmult(nm +\
+    \ 1, 1);\n    for (int ii = 0; ii < nm; ii++) {\n        long long x = (d[ii]\
+    \ - kp[ii]) * mod_inversion(rmult[ii], p[ii]) % p[ii];\n        x = (x + p[ii])\
+    \ % p[ii];\n        for (int iii = ii + 1; iii < nm + 1; iii++) {\n          \
+    \  kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];\n            rmult[iii] = (rmult[iii]\
+    \ * p[ii]) % p[iii];\n        }\n    }\n    return kp[nm];\n}\n\n\n#line 8 \"\
+    convolution/convo_arb.hpp\"\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+    FPS convolution_arb(FPS& a, const FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
+    \  // 2^24\n    static constexpr long long MOD2 = 167772161;  // 2^25\n    static\
+    \ constexpr long long MOD3 = 469762049;  // 2^26\n    using mint1 = LazyMontgomeryModInt<MOD1>;\n\
     \    using mint2 = LazyMontgomeryModInt<MOD2>;\n    using mint3 = LazyMontgomeryModInt<MOD3>;\n\
     \n    vector<long long> a0(n), b0(m);\n    for (int i = 0; i < n; i++) a0[i] =\
     \ a[i].val();\n    for (int i = 0; i < m; i++) b0[i] = b[i].val();\n    auto a1\
@@ -386,25 +388,25 @@ data:
     \    const FormalPowerSeries<mint>& r) {\n    if (this->empty() || r.empty())\
     \ {\n        this->clear();\n        return *this;\n    }\n    convolution_arb(*this,\
     \ r);\n    return *this;\n}\n\ntemplate <class mint>\nFormalPowerSeries<mint>\
-    \ FormalPowerSeries<mint>::inv(int deg) const {\n    assert((*this)[0] != mint(0));\n\
+    \ FormalPowerSeries<mint>::inv(int deg=-1) const {\n    assert((*this)[0] != mint(0));\n\
     \    if (deg == -1) deg = this->size();\n    FormalPowerSeries<mint> res{mint(1)\
     \ / (*this)[0]};\n    for (int i = 1; i < deg; i <<= 1) {\n        res = (res\
     \ * mint(2) - this->pre(i << 1) * res * res).pre(i << 1);\n    }\n    return res.pre(deg);\n\
     }\n\ntemplate <class mint>\nFormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int\
-    \ deg) const {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg\
-    \ == -1) deg = this->size();\n    FormalPowerSeries<mint> ret{mint(1)};\n    for\
-    \ (int i = 1; i < deg; i <<= 1) {\n        ret = (ret * (pre(i << 1) + mint{1}\
-    \ - ret.log(i << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n}\n\n\n#line\
-    \ 1 \"fps/sample_point_shift.hpp\"\n\n\n\ntemplate <class FPS, class mint = typename\
-    \ FPS::value_type>\nvector<mint> SamplePointShift(vector<mint> &y, mint t, int\
-    \ m = -1) {\n    if (m == -1) m = y.size();\n    long long tval = t.val();\n \
-    \   int k = (int)y.size() - 1;\n    if (tval <= k) {\n        FPS ret(m);\n  \
-    \      int ptr = 0;\n        for (long long i = tval; i <= k and ptr < m; i++)\
-    \ {\n            ret[ptr++] = y[i];\n        }\n        if (k + 1 < tval + m)\
-    \ {\n            auto suf = SamplePointShift<FPS>(y, mint(k + 1), m - ptr);\n\
-    \            for (int i = k + 1; i < tval + m; i++) {\n                ret[ptr++]\
-    \ = suf[i - (k + 1)];\n            }\n        }\n        return ret;\n    }\n\
-    \    if (tval + m > mint::getmod()) {\n        auto pref = SamplePointShift<FPS>(y,\
+    \ deg=-1) const {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if\
+    \ (deg == -1) deg = this->size();\n    FormalPowerSeries<mint> ret{mint(1)};\n\
+    \    for (int i = 1; i < deg; i <<= 1) {\n        ret = (ret * (pre(i << 1) +\
+    \ mint{1} - ret.log(i << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n\
+    }\n\n\n#line 1 \"fps/sample_point_shift.hpp\"\n\n\n\ntemplate <class FPS, class\
+    \ mint = typename FPS::value_type>\nvector<mint> SamplePointShift(vector<mint>\
+    \ &y, mint t, int m = -1) {\n    if (m == -1) m = y.size();\n    long long tval\
+    \ = t.val();\n    int k = (int)y.size() - 1;\n    if (tval <= k) {\n        FPS\
+    \ ret(m);\n        int ptr = 0;\n        for (long long i = tval; i <= k and ptr\
+    \ < m; i++) {\n            ret[ptr++] = y[i];\n        }\n        if (k + 1 <\
+    \ tval + m) {\n            auto suf = SamplePointShift<FPS>(y, mint(k + 1), m\
+    \ - ptr);\n            for (int i = k + 1; i < tval + m; i++) {\n            \
+    \    ret[ptr++] = suf[i - (k + 1)];\n            }\n        }\n        return\
+    \ ret;\n    }\n    if (tval + m > mint::getmod()) {\n        auto pref = SamplePointShift<FPS>(y,\
     \ mint(t), mint::getmod() - tval);\n        auto suf = SamplePointShift<FPS>(y,\
     \ mint(0), m - (int)pref.size());\n        copy(begin(suf), end(suf), back_inserter(pref));\n\
     \        return pref;\n    }\n\n    vector<mint> inv(k + 1, 1);\n    FPS d(k +\
@@ -549,7 +551,7 @@ data:
   isVerificationFile: false
   path: math_mod/comb_large_arb.hpp
   requiredBy: []
-  timestamp: '2024-08-10 15:51:37+09:00'
+  timestamp: '2024-08-14 04:42:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math_mod/comb_large_arb.hpp
