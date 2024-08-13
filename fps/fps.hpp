@@ -398,4 +398,9 @@ struct FormalPowerSeries : vector<mint> {
     FPS exp(int deg = -1) const;
 };
 
+namespace kk2 {
+    template <class mint>
+    using FPS = FormalPowerSeries<mint>;
+}
+
 #endif // FPS_HPP
