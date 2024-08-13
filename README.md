@@ -5,14 +5,11 @@
 
 
 ### kyopro.py
-#include <kk2/hoge>があれば，すべて展開します．再定義などは防いでいます．展開場所は，
-``` cpp
-using namespace std;
-```
-の下．以下のようにして使う．exe化してpath通すと楽．
+#include <kk2/hoge>があれば，すべて展開します．初めて#include <kk2/hoge>が書かれた行から展開されます．以下のようにして使う．exe化してpath通すと楽．
 
 ``` concole
 python kyopro.py hoge.cpp
 ```
 
+includeされた各ファイルの関係はDAGになっているのでトポロジカルソートして，その順番に展開されていくようになっているので再定義とかはそもそも起きないのですが，保険でインクルードガードの部分は消していないです．
 

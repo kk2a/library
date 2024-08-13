@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
+  - icon: ':warning:'
+    path: fps/multivariate_fps.hpp
+    title: fps/multivariate_fps.hpp
   - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
@@ -355,6 +358,7 @@ data:
   - math_mod/comb_large_arb.hpp
   - math_mod/comb_large_arb.hpp
   - fps/ntt_friendly.hpp
+  - fps/multivariate_fps.hpp
   - fps/fps_arb.hpp
   - fps/fps_arb.hpp
   timestamp: '2024-06-22 12:26:56+09:00'

@@ -12,8 +12,8 @@ data:
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':warning:'
-    path: convolution/multi_zero.hpp
-    title: convolution/multi_zero.hpp
+    path: convolution/multi_convo_truncated.hpp
+    title: convolution/multi_convo_truncated.hpp
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
@@ -67,9 +67,9 @@ data:
   path: math_mod/pow_expr.hpp
   requiredBy:
   - convolution/convolution.hpp
+  - convolution/multi_convo_truncated.hpp
   - convolution/butterfly.hpp
   - convolution/convo_arb.hpp
-  - convolution/multi_zero.hpp
   - string/rolling_hash.hpp
   - math_mod/comb_large.hpp
   - math_mod/comb_large_arb.hpp

@@ -15,8 +15,8 @@ data:
     path: convolution/convo_arb.hpp
     title: convolution/convo_arb.hpp
   - icon: ':warning:'
-    path: convolution/multi_zero.hpp
-    title: convolution/multi_zero.hpp
+    path: convolution/multi_convo_truncated.hpp
+    title: convolution/multi_convo_truncated.hpp
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
@@ -177,8 +177,8 @@ data:
   isVerificationFile: false
   path: convolution/convolution.hpp
   requiredBy:
+  - convolution/multi_convo_truncated.hpp
   - convolution/convo_arb.hpp
-  - convolution/multi_zero.hpp
   - math_mod/comb_large.hpp
   - math_mod/comb_large_arb.hpp
   - fps/ntt_friendly.hpp

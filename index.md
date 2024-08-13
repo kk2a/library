@@ -39,8 +39,8 @@ data:
       path: convolution/lcm1.hpp
       title: convolution/lcm1.hpp
     - icon: ':warning:'
-      path: convolution/multi_zero.hpp
-      title: convolution/multi_zero.hpp
+      path: convolution/multi_convo_truncated.hpp
+      title: convolution/multi_convo_truncated.hpp
     - icon: ':warning:'
       path: convolution/subset.hpp
       title: convolution/subset.hpp
@@ -99,6 +99,9 @@ data:
     - icon: ':warning:'
       path: fps/multi_eval.hpp
       title: fps/multi_eval.hpp
+    - icon: ':warning:'
+      path: fps/multivariate_fps.hpp
+      title: fps/multivariate_fps.hpp
     - icon: ':heavy_check_mark:'
       path: fps/ntt_friendly.hpp
       title: fps/ntt_friendly.hpp
