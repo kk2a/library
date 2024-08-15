@@ -12,10 +12,10 @@ data:
     \    int n, m;\n    const G &g;\n    vector<vector<int>> revg;\n    vector<int>\
     \ ord, scc_id;\n    vector<bool> used;\n    vector<vector<int>> blng, dag;\n \
     \   \n    SCC(const G &g_) : n(g_.n), m(g_.m), g(g_) { init(); }\n\n    int operator[](int\
-    \ k) const { return scc_id[k]; }\n    vector<int> same_scc(int u) { return blng[u];\
-    \ }\n\n  private:\n    void init() {\n        auto dfs = [&](auto self, int u)\
-    \ -> void {\n            if (used[u]) return;\n            used[u] = true;\n \
-    \           for (auto &e : g[u]) self(self, e.to);\n            ord.emplace_back(u);\n\
+    \ k) const { return scc_id[k]; }\n    vector<int> same_scc(int u) const { return\
+    \ blng[u]; }\n\n  private:\n    void init() {\n        auto dfs = [&](auto self,\
+    \ int u) -> void {\n            if (used[u]) return;\n            used[u] = true;\n\
+    \            for (auto &e : g[u]) self(self, e.to);\n            ord.emplace_back(u);\n\
     \        };\n        auto rdfs = [&](auto self, int u, int k) -> void {\n    \
     \        if (scc_id[u] != -1) return;\n            scc_id[u] = k;\n          \
     \  for (auto &e : revg[u]) self(self, e, k);\n        };\n\n        used.resize(n,\
@@ -33,10 +33,10 @@ data:
     \ SCC {\n    int n, m;\n    const G &g;\n    vector<vector<int>> revg;\n    vector<int>\
     \ ord, scc_id;\n    vector<bool> used;\n    vector<vector<int>> blng, dag;\n \
     \   \n    SCC(const G &g_) : n(g_.n), m(g_.m), g(g_) { init(); }\n\n    int operator[](int\
-    \ k) const { return scc_id[k]; }\n    vector<int> same_scc(int u) { return blng[u];\
-    \ }\n\n  private:\n    void init() {\n        auto dfs = [&](auto self, int u)\
-    \ -> void {\n            if (used[u]) return;\n            used[u] = true;\n \
-    \           for (auto &e : g[u]) self(self, e.to);\n            ord.emplace_back(u);\n\
+    \ k) const { return scc_id[k]; }\n    vector<int> same_scc(int u) const { return\
+    \ blng[u]; }\n\n  private:\n    void init() {\n        auto dfs = [&](auto self,\
+    \ int u) -> void {\n            if (used[u]) return;\n            used[u] = true;\n\
+    \            for (auto &e : g[u]) self(self, e.to);\n            ord.emplace_back(u);\n\
     \        };\n        auto rdfs = [&](auto self, int u, int k) -> void {\n    \
     \        if (scc_id[u] != -1) return;\n            scc_id[u] = k;\n          \
     \  for (auto &e : revg[u]) self(self, e, k);\n        };\n\n        used.resize(n,\
@@ -54,7 +54,7 @@ data:
   isVerificationFile: false
   path: graph/scc.hpp
   requiredBy: []
-  timestamp: '2024-06-08 20:10:37+09:00'
+  timestamp: '2024-08-15 23:12:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/scc.hpp
