@@ -13,7 +13,7 @@ struct SCC {
     SCC(const G &g_) : n(g_.n), m(g_.m), g(g_) { init(); }
 
     int operator[](int k) const { return scc_id[k]; }
-    vector<int> same_scc(int u) { return blng[u]; }
+    vector<int> same_scc(int u) const { return blng[u]; }
 
   private:
     void init() {
