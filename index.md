@@ -252,6 +252,9 @@ data:
     - icon: ':warning:'
       path: others/coordinate_compression.hpp
       title: others/coordinate_compression.hpp
+    - icon: ':warning:'
+      path: others/multisethash.hpp
+      title: others/multisethash.hpp
   - name: others/homomorphism
     pages:
     - icon: ':warning:'
