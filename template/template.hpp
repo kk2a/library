@@ -66,7 +66,6 @@ template <class T>
 using vvc = vector<vc<T>>;
 template <class T>
 using vvvc = vector<vvc<T>>;
-
 template <class T>
 using vvvvc = vector<vvvc<T>>;
 
