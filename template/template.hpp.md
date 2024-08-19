@@ -39,7 +39,7 @@ data:
     \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long double PI\
     \ = 3.14159265358979323846;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
     \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    \ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\ntemplate <class T, class...\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\n\ntemplate <class T, class...\
     \ Sizes>\nauto make_vector(const T &init, int first, Sizes... sizes) {\n    if\
     \ constexpr (sizeof...(sizes) == 0) {\n        return vector<T>(first, init);\n\
     \    }\n    else {\n        return vector<decltype(make_vector(init, sizes...))>(first,\
@@ -85,7 +85,7 @@ data:
     \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long double PI\
     \ = 3.14159265358979323846;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
     \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    \ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\ntemplate <class T, class...\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\n\ntemplate <class T, class...\
     \ Sizes>\nauto make_vector(const T &init, int first, Sizes... sizes) {\n    if\
     \ constexpr (sizeof...(sizes) == 0) {\n        return vector<T>(first, init);\n\
     \    }\n    else {\n        return vector<decltype(make_vector(init, sizes...))>(first,\
@@ -116,7 +116,7 @@ data:
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-08-12 03:20:42+09:00'
+  timestamp: '2024-08-19 17:43:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

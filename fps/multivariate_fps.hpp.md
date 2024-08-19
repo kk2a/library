@@ -389,32 +389,30 @@ data:
     \ : a) butterfly(x);\n            for (auto& x : b) butterfly(x);\n          \
     \  naive_and_dot(a, b, c);\n            for (auto& x : c) {\n                butterfly_inv(x);\n\
     \                x *= i2d;\n            }\n            // compute g_k f\n\n  \
-    \          for (auto& x : a) fill(begin(x), end(x), mint(0));\n\n            //\
-    \ \\becasue \\deg g_k < k, we can ignore the terms of x^{k + i} for i >= k.\n\
-    \            for (int i = 0; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];\n  \
-    \          for (auto& x : a) butterfly(x);\n            naive_and_dot(a, b, c);\n\
-    \            for (auto& x : c) {\n                butterfly_inv(x);\n        \
-    \        x *= i2d;\n            }\n            // compute g_k^2 f\n\n        \
-    \    // by (2), (3)\n            for (int i = d; i < 2 * d; i++) g[i] = -c[chi[i]][i];\n\
-    \            i2d *= inv2;\n        }\n        mfps res(*this);\n        res.f\
-    \ = fps(begin(g), begin(g) + n);\n        return res;\n    }\n\n    mfps log()\
-    \ const {\n        assert(!f.empty() && f[0] == mint(1));\n        return ((*this).diff()\
-    \ * (*this).inv()).integral();\n    }\n\n    mfps exp() const {\n        assert(!f.empty()\
-    \ && f[0] == mint(0));\n        int n = f.size();\n        mfps res(base, fps{1});\n\
-    \        for (int d = 1; d < n; d <<= 1) {\n            int s = min(n, 2 * d);\n\
-    \            res.f.resize(s, mint(0));\n            res *= mfps(base, fps(begin(f),\
-    \ begin(f) + s)) - res.log() + 1;\n        }\n        return res;\n    }\n\n \
-    \   mfps pow(long long e) const {\n        assert(!f.empty());\n        if (f[0]\
-    \ != mint(0)) {\n            mint f0inv = f[0].inv(), coef = f[0].pow(e);\n  \
-    \          return (((*this) * f0inv).log() * e).exp() * coef;\n        } \n  \
-    \      int n = f.size();\n        long long base_sum = 0;\n        for (auto&\
-    \ b : base) base_sum += b - 1;\n        if (e > base_sum) return mfps(base, fps(n));\n\
-    \        mfps res(base, fps(n)), a(*this);\n        res.f[0] = 1;\n        while\
-    \ (e) {\n            if (e & 1) res *= a;\n            if (e >>= 1) a *= a;\n\
-    \        }\n        return res;\n    }\n};\n\ntemplate <typename mint>\nvector<mint>\
-    \ MultivariateFormalPowerSeries<mint>::_inv = {0, 1};\n\nnamespace kk2 {\n   \
-    \ template <typename mint>\n    using MFPS = MultivariateFormalPowerSeries<mint>;\n\
-    }\n\n\n"
+    \          for (auto& x : a) fill(begin(x), end(x), mint(0));\n\n            for\
+    \ (int i = 0; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];\n            for (auto&\
+    \ x : a) butterfly(x);\n            naive_and_dot(a, b, c);\n            for (auto&\
+    \ x : c) {\n                butterfly_inv(x);\n                x *= i2d;\n   \
+    \         }\n            // compute g_k^2 f\n\n            // by (2), (3)\n  \
+    \          for (int i = d; i < 2 * d; i++) g[i] = -c[chi[i]][i];\n           \
+    \ i2d *= inv2;\n        }\n        mfps res(*this);\n        res.f = fps(begin(g),\
+    \ begin(g) + n);\n        return res;\n    }\n\n    mfps log() const {\n     \
+    \   assert(!f.empty() && f[0] == mint(1));\n        return ((*this).diff() * (*this).inv()).integral();\n\
+    \    }\n\n    mfps exp() const {\n        assert(!f.empty() && f[0] == mint(0));\n\
+    \        int n = f.size();\n        mfps res(base, fps{1});\n        for (int\
+    \ d = 1; d < n; d <<= 1) {\n            int s = min(n, 2 * d);\n            res.f.resize(s,\
+    \ mint(0));\n            res *= mfps(base, fps(begin(f), begin(f) + s)) - res.log()\
+    \ + 1;\n        }\n        return res;\n    }\n\n    mfps pow(long long e) const\
+    \ {\n        assert(!f.empty());\n        if (f[0] != mint(0)) {\n           \
+    \ mint f0inv = f[0].inv(), coef = f[0].pow(e);\n            return (((*this) *\
+    \ f0inv).log() * e).exp() * coef;\n        } \n        int n = f.size();\n   \
+    \     long long base_sum = 0;\n        for (auto& b : base) base_sum += b - 1;\n\
+    \        if (e > base_sum) return mfps(base, fps(n));\n        mfps res(base,\
+    \ fps(n)), a(*this);\n        res.f[0] = 1;\n        while (e) {\n           \
+    \ if (e & 1) res *= a;\n            if (e >>= 1) a *= a;\n        }\n        return\
+    \ res;\n    }\n};\n\ntemplate <typename mint>\nvector<mint> MultivariateFormalPowerSeries<mint>::_inv\
+    \ = {0, 1};\n\nnamespace kk2 {\n    template <typename mint>\n    using MFPS =\
+    \ MultivariateFormalPowerSeries<mint>;\n}\n\n\n"
   code: "#ifndef FPS_MULTIVARIATE_FPS_HPP\n#define FPS_MULTIVARIATE_FPS_HPP 1\n\n\
     #include \"fps.hpp\"\n#include \"../convolution/multi_convo_truncated.hpp\"\n\n\
     template <typename mint>\nstruct MultivariateFormalPowerSeries {\n    using mfps\
@@ -495,32 +493,30 @@ data:
     \ : a) butterfly(x);\n            for (auto& x : b) butterfly(x);\n          \
     \  naive_and_dot(a, b, c);\n            for (auto& x : c) {\n                butterfly_inv(x);\n\
     \                x *= i2d;\n            }\n            // compute g_k f\n\n  \
-    \          for (auto& x : a) fill(begin(x), end(x), mint(0));\n\n            //\
-    \ \\becasue \\deg g_k < k, we can ignore the terms of x^{k + i} for i >= k.\n\
-    \            for (int i = 0; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];\n  \
-    \          for (auto& x : a) butterfly(x);\n            naive_and_dot(a, b, c);\n\
-    \            for (auto& x : c) {\n                butterfly_inv(x);\n        \
-    \        x *= i2d;\n            }\n            // compute g_k^2 f\n\n        \
-    \    // by (2), (3)\n            for (int i = d; i < 2 * d; i++) g[i] = -c[chi[i]][i];\n\
-    \            i2d *= inv2;\n        }\n        mfps res(*this);\n        res.f\
-    \ = fps(begin(g), begin(g) + n);\n        return res;\n    }\n\n    mfps log()\
-    \ const {\n        assert(!f.empty() && f[0] == mint(1));\n        return ((*this).diff()\
-    \ * (*this).inv()).integral();\n    }\n\n    mfps exp() const {\n        assert(!f.empty()\
-    \ && f[0] == mint(0));\n        int n = f.size();\n        mfps res(base, fps{1});\n\
-    \        for (int d = 1; d < n; d <<= 1) {\n            int s = min(n, 2 * d);\n\
-    \            res.f.resize(s, mint(0));\n            res *= mfps(base, fps(begin(f),\
-    \ begin(f) + s)) - res.log() + 1;\n        }\n        return res;\n    }\n\n \
-    \   mfps pow(long long e) const {\n        assert(!f.empty());\n        if (f[0]\
-    \ != mint(0)) {\n            mint f0inv = f[0].inv(), coef = f[0].pow(e);\n  \
-    \          return (((*this) * f0inv).log() * e).exp() * coef;\n        } \n  \
-    \      int n = f.size();\n        long long base_sum = 0;\n        for (auto&\
-    \ b : base) base_sum += b - 1;\n        if (e > base_sum) return mfps(base, fps(n));\n\
-    \        mfps res(base, fps(n)), a(*this);\n        res.f[0] = 1;\n        while\
-    \ (e) {\n            if (e & 1) res *= a;\n            if (e >>= 1) a *= a;\n\
-    \        }\n        return res;\n    }\n};\n\ntemplate <typename mint>\nvector<mint>\
-    \ MultivariateFormalPowerSeries<mint>::_inv = {0, 1};\n\nnamespace kk2 {\n   \
-    \ template <typename mint>\n    using MFPS = MultivariateFormalPowerSeries<mint>;\n\
-    }\n\n#endif // FPS_MULTIVARIATE_FPS_HPP\n"
+    \          for (auto& x : a) fill(begin(x), end(x), mint(0));\n\n            for\
+    \ (int i = 0; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];\n            for (auto&\
+    \ x : a) butterfly(x);\n            naive_and_dot(a, b, c);\n            for (auto&\
+    \ x : c) {\n                butterfly_inv(x);\n                x *= i2d;\n   \
+    \         }\n            // compute g_k^2 f\n\n            // by (2), (3)\n  \
+    \          for (int i = d; i < 2 * d; i++) g[i] = -c[chi[i]][i];\n           \
+    \ i2d *= inv2;\n        }\n        mfps res(*this);\n        res.f = fps(begin(g),\
+    \ begin(g) + n);\n        return res;\n    }\n\n    mfps log() const {\n     \
+    \   assert(!f.empty() && f[0] == mint(1));\n        return ((*this).diff() * (*this).inv()).integral();\n\
+    \    }\n\n    mfps exp() const {\n        assert(!f.empty() && f[0] == mint(0));\n\
+    \        int n = f.size();\n        mfps res(base, fps{1});\n        for (int\
+    \ d = 1; d < n; d <<= 1) {\n            int s = min(n, 2 * d);\n            res.f.resize(s,\
+    \ mint(0));\n            res *= mfps(base, fps(begin(f), begin(f) + s)) - res.log()\
+    \ + 1;\n        }\n        return res;\n    }\n\n    mfps pow(long long e) const\
+    \ {\n        assert(!f.empty());\n        if (f[0] != mint(0)) {\n           \
+    \ mint f0inv = f[0].inv(), coef = f[0].pow(e);\n            return (((*this) *\
+    \ f0inv).log() * e).exp() * coef;\n        } \n        int n = f.size();\n   \
+    \     long long base_sum = 0;\n        for (auto& b : base) base_sum += b - 1;\n\
+    \        if (e > base_sum) return mfps(base, fps(n));\n        mfps res(base,\
+    \ fps(n)), a(*this);\n        res.f[0] = 1;\n        while (e) {\n           \
+    \ if (e & 1) res *= a;\n            if (e >>= 1) a *= a;\n        }\n        return\
+    \ res;\n    }\n};\n\ntemplate <typename mint>\nvector<mint> MultivariateFormalPowerSeries<mint>::_inv\
+    \ = {0, 1};\n\nnamespace kk2 {\n    template <typename mint>\n    using MFPS =\
+    \ MultivariateFormalPowerSeries<mint>;\n}\n\n#endif // FPS_MULTIVARIATE_FPS_HPP\n"
   dependsOn:
   - fps/fps.hpp
   - convolution/multi_convo_truncated.hpp
@@ -531,7 +527,7 @@ data:
   isVerificationFile: false
   path: fps/multivariate_fps.hpp
   requiredBy: []
-  timestamp: '2024-08-14 04:42:26+09:00'
+  timestamp: '2024-08-19 17:45:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/multivariate_fps.hpp
