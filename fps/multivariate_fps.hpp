@@ -195,7 +195,6 @@ struct MultivariateFormalPowerSeries {
 
             for (auto& x : a) fill(begin(x), end(x), mint(0));
 
-            // \becasue \deg g_k < k, we can ignore the terms of x^{k + i} for i >= k.
             for (int i = 0; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];
             for (auto& x : a) butterfly(x);
             naive_and_dot(a, b, c);
