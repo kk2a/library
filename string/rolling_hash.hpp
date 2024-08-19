@@ -31,7 +31,6 @@ struct RollingHash {
         }
     }
 
-    template <>
     RollingHash(char c) {
         for (int i = 0; i < b; ++i) {
             table[i].h = c;
@@ -55,8 +54,7 @@ struct RollingHash {
         }
     }
 
-    template <>
-    RollingHash(const string &v) {
+    RollingHash(const string &s) {
         int n = s.size();
         for (int i = 0; i < b; ++i) {
             table[i].h = 0;
