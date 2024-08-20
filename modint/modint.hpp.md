@@ -51,8 +51,9 @@ data:
     \ mint_) {\n        os << mint_._v;\n        return os;\n    }\n    friend istream&\
     \ operator>>(istream& is, mint& mint_) {\n        long long x;\n        is >>\
     \ x;\n        mint_ = mint(x);\n        return is;\n    }\n\n  private:\n    unsigned\
-    \ int _v;\n};\n\ntemplate<int p>\nint ModInt<p>::Mod = 998244353;\n\nusing mint998\
-    \ = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\n\n"
+    \ int _v;\n};\n\ntemplate<int p>\nint ModInt<p>::Mod = 998244353;\n\nnamespace\
+    \ kk2 {\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
+    \n}  // namespace kk2\n\n\n"
   code: "#ifndef MODINT_HPP\n#define MODINT_HPP 1\n\ntemplate <int p> struct ModInt\
     \ {\n    using mint = ModInt;\n\n  public:\n    static int Mod;\n    constexpr\
     \ static int getmod() { \n        if (p > 0) return p;\n        else return Mod;\n\
@@ -96,13 +97,14 @@ data:
     \ mint_) {\n        os << mint_._v;\n        return os;\n    }\n    friend istream&\
     \ operator>>(istream& is, mint& mint_) {\n        long long x;\n        is >>\
     \ x;\n        mint_ = mint(x);\n        return is;\n    }\n\n  private:\n    unsigned\
-    \ int _v;\n};\n\ntemplate<int p>\nint ModInt<p>::Mod = 998244353;\n\nusing mint998\
-    \ = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\n#endif  // MODINT_HPP\n"
+    \ int _v;\n};\n\ntemplate<int p>\nint ModInt<p>::Mod = 998244353;\n\nnamespace\
+    \ kk2 {\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
+    \n}  // namespace kk2\n\n#endif  // MODINT_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: modint/modint.hpp
   requiredBy: []
-  timestamp: '2024-07-07 19:14:05+09:00'
+  timestamp: '2024-08-20 22:56:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/modint.hpp
