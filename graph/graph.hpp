@@ -40,7 +40,7 @@ struct WeightedGraph : vector<WeightedEdges<T>> {
     WeightedGraph(int n_, int m_) :
                   vector<WeightedEdges<T>>(n_), n(n_), m(m_) { input(); }
 
-    WeightedGraph(int n_, vector<WeightedEdges<T>> g_) :
+    WeightedGraph(int n_, const vector<WeightedEdges<T>>& g_) :
                   vector<WeightedEdges<T>>(n_), n(n_), m(0) {
         for (int i = 0; i < n; i++) {
             for (auto &e : g_[i]) {
@@ -113,8 +113,6 @@ struct WeightedGraph : vector<WeightedEdges<T>> {
         edges.emplace_back(to, cost, from, id);
     }
 };
-template <class T, bool is_one_indexed = true, bool is_directed = false>
-using WGraph = WeightedGraph<T, is_one_indexed, is_directed>;
 
 struct UnWeightedEdge {
     int from, to, id;
@@ -151,7 +149,7 @@ struct UnWeightedGraph : vector<UnWeightedEdges> {
     UnWeightedGraph(int n_, int m_) :
                     vector<UnWeightedEdges>(n_), n(n_), m(m_) { input(); }
 
-    UnWeightedGraph(int n_, vector<UnWeightedEdges> g_) :
+    UnWeightedGraph(int n_, const vector<UnWeightedEdges>& g_) :
                     vector<UnWeightedEdges>(n_), n(n_), m(0) {
         for (int i = 0; i < n; i++) {
             for (auto &e : g_[i]) {
@@ -236,8 +234,15 @@ struct UnWeightedGraph : vector<UnWeightedEdges> {
         edges.emplace_back(to, from, id);
     }
 };
+
+namespace kk2 {
+
+template <class T, bool is_one_indexed = true, bool is_directed = false>
+using WGraph = WeightedGraph<T, is_one_indexed, is_directed>;
 template <bool is_one_indexed = true, bool is_directed = false,
           bool is_functional = false>
 using Graph = UnWeightedGraph<is_one_indexed, is_directed, is_functional>;
+
+}  // namespace kk2
 
 #endif // GRAPH_GRAPH_TEMPLATE_HPP
