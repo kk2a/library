@@ -26,6 +26,7 @@
 #include <functional>
 #include <bitset>
 #include <chrono>
+#include <stack>
 
 using namespace std;
 
