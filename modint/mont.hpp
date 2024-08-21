@@ -89,7 +89,11 @@ struct LazyMontgomeryModInt {
 template <int p>
 using Mont = LazyMontgomeryModInt<p>;
 
+namespace kk2 {
+
 using Mont998 = Mont<998244353>;
 using Mont107 = Mont<1000000007>;
+
+}  // namespace kk2
 
 #endif  // MODINT_MONT_HPP
