@@ -22,7 +22,7 @@ struct MatrixField {
         return _mat;
     }
 
-    vector<Field>& operator[](int i) const {
+    vector<Field>& operator[](int i) {
         assert(0 <= i && i < _h);
         return _mat[i];
     }
@@ -30,7 +30,7 @@ struct MatrixField {
     void display() const {
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) cout << _mat[i][j] << " ";
-            cout << endl;
+            cout << "\n";
         }
     }
 
@@ -71,7 +71,7 @@ struct MatrixField {
             }
         }
         _w = rhs._w;
-        _mat = res;
+        _mat.swap(res);
         return *this;
     }
 
@@ -148,12 +148,13 @@ struct MatrixField {
     template <class T>
     mat pow(T n) const {
         assert(_h == _w);
-        mat x(_mat);
+        mat mul(_mat);
         mat res(_h);
         for (int i = 0; i < _h; i++) res._mat[i][i] = 1;
-        for (int i = 1; i <= n; i <<= 1) {
-            if (n & i) res *= x;
-            x *= x;
+        while (n) {
+            if (n & 1) res *= mul;
+            mul *= mul;
+            n >>= 1;
         }
         return res;
     }
