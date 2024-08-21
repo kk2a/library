@@ -17,10 +17,10 @@ data:
     \ { return _w; }\n\n    Field at(int i, int j) const {\n        assert(0 <= i\
     \ && i < _h);\n        assert(0 <= j && j < _w);\n        return _mat[i][j];\n\
     \    }\n\n    vector<vector<Field>> get_mat() const {\n        return _mat;\n\
-    \    }\n\n    vector<Field>& operator[](int i) const {\n        assert(0 <= i\
-    \ && i < _h);\n        return _mat[i];\n    }\n\n    void display() const {\n\
-    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
-    \ cout << _mat[i][j] << \" \";\n            cout << endl;\n        }\n    }\n\n\
+    \    }\n\n    vector<Field>& operator[](int i) {\n        assert(0 <= i && i <\
+    \ _h);\n        return _mat[i];\n    }\n\n    void display() const {\n       \
+    \ for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) cout\
+    \ << _mat[i][j] << \" \";\n            cout << \"\\n\";\n        }\n    }\n\n\
     \    void set(int i, int j, Field x) {\n        assert(0 <= i && i < _h);\n  \
     \      assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n    }\n\n    mat& operator+=(const\
     \ mat& rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
@@ -35,8 +35,8 @@ data:
     \    for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < rhs._w; j++)\
     \ {\n                for (int k = 0; k < _w; k++) {\n                    res[i][j]\
     \ += _mat[i][k] * rhs._mat[k][j];\n                }\n            }\n        }\n\
-    \        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n \
-    \   Field det(Field product_e = Field(1)) const {\n        assert(_h == _w);\n\
+    \        _w = rhs._w;\n        _mat.swap(res);\n        return *this;\n    }\n\
+    \n    Field det(Field product_e = Field(1)) const {\n        assert(_h == _w);\n\
     \        int n = _h;\n        vector<vector<Field>> a(_mat);\n        Field res\
     \ = 1;\n        for (int i = 0; i < n; i++) {\n            int pivot = -1;\n \
     \           for (int j = i; j < n; j++) {\n                if (a[j][i] != 0) {\n\
@@ -65,22 +65,22 @@ data:
     \       a._mat[j][k] -= a._mat[i][k] * r;\n                    res[j][k] -= res[i][k]\
     \ * r;\n                }\n            }\n        }\n        return mat(res);\n\
     \    }\n\n    template <class T>\n    mat pow(T n) const {\n        assert(_h\
-    \ == _w);\n        mat x(_mat);\n        mat res(_h);\n        for (int i = 0;\
-    \ i < _h; i++) res._mat[i][i] = 1;\n        for (int i = 1; i <= n; i <<= 1) {\n\
-    \            if (n & i) res *= x;\n            x *= x;\n        }\n        return\
-    \ res;\n    }\n\n    int rank(Field product_e = Field(1)) const {\n        int\
-    \ n = _h, m = _w;\n        vector<vector<Field>> a(_mat);\n        int res = 0;\n\
-    \        for (int i = 0; i < m; i++) {\n            int pivot = -1;\n        \
-    \    for (int j = res; j < n; j++) {\n                if (a[j][i] != 0) {\n  \
-    \                  pivot = j;\n                    break;\n                }\n\
-    \            }\n            if (pivot == -1) continue;\n            swap(a[res],\
-    \ a[pivot]);\n            Field inv = product_e / a[res][i];\n            for\
-    \ (int j = i; j < m; j++) {\n                a[res][j] *= inv;\n            }\n\
-    \            for (int j = res + 1; j < n; j++) {\n                Field r = a[j][i];\n\
-    \                for (int k = i; k < m; k++) {\n                    a[j][k] -=\
-    \ a[res][k] * r;\n                }\n            }\n            res++;\n     \
-    \   }\n        return res;\n    }\n\n    mat& inplace_combine_top(const mat& rhs)\
-    \ {\n        assert(_w == rhs._w);\n        this->_mat.insert(begin(this->_mat),\n\
+    \ == _w);\n        mat mul(_mat);\n        mat res(_h);\n        for (int i =\
+    \ 0; i < _h; i++) res._mat[i][i] = 1;\n        while (n) {\n            if (n\
+    \ & 1) res *= mul;\n            mul *= mul;\n            n >>= 1;\n        }\n\
+    \        return res;\n    }\n\n    int rank(Field product_e = Field(1)) const\
+    \ {\n        int n = _h, m = _w;\n        vector<vector<Field>> a(_mat);\n   \
+    \     int res = 0;\n        for (int i = 0; i < m; i++) {\n            int pivot\
+    \ = -1;\n            for (int j = res; j < n; j++) {\n                if (a[j][i]\
+    \ != 0) {\n                    pivot = j;\n                    break;\n      \
+    \          }\n            }\n            if (pivot == -1) continue;\n        \
+    \    swap(a[res], a[pivot]);\n            Field inv = product_e / a[res][i];\n\
+    \            for (int j = i; j < m; j++) {\n                a[res][j] *= inv;\n\
+    \            }\n            for (int j = res + 1; j < n; j++) {\n            \
+    \    Field r = a[j][i];\n                for (int k = i; k < m; k++) {\n     \
+    \               a[j][k] -= a[res][k] * r;\n                }\n            }\n\
+    \            res++;\n        }\n        return res;\n    }\n\n    mat& inplace_combine_top(const\
+    \ mat& rhs) {\n        assert(_w == rhs._w);\n        this->_mat.insert(begin(this->_mat),\n\
     \            begin(rhs._mat), end(rhs._mat));\n        this->_h += rhs._h;\n \
     \       return *this;\n    }\n\n    mat combine_top(const mat& rhs) const {\n\
     \        assert(_w == rhs._w);\n        mat res(this->_mat);\n        return res.inplace_combine_top(rhs);\n\
@@ -117,10 +117,10 @@ data:
     \ { return _w; }\n\n    Field at(int i, int j) const {\n        assert(0 <= i\
     \ && i < _h);\n        assert(0 <= j && j < _w);\n        return _mat[i][j];\n\
     \    }\n\n    vector<vector<Field>> get_mat() const {\n        return _mat;\n\
-    \    }\n\n    vector<Field>& operator[](int i) const {\n        assert(0 <= i\
-    \ && i < _h);\n        return _mat[i];\n    }\n\n    void display() const {\n\
-    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
-    \ cout << _mat[i][j] << \" \";\n            cout << endl;\n        }\n    }\n\n\
+    \    }\n\n    vector<Field>& operator[](int i) {\n        assert(0 <= i && i <\
+    \ _h);\n        return _mat[i];\n    }\n\n    void display() const {\n       \
+    \ for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) cout\
+    \ << _mat[i][j] << \" \";\n            cout << \"\\n\";\n        }\n    }\n\n\
     \    void set(int i, int j, Field x) {\n        assert(0 <= i && i < _h);\n  \
     \      assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n    }\n\n    mat& operator+=(const\
     \ mat& rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
@@ -135,8 +135,8 @@ data:
     \    for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < rhs._w; j++)\
     \ {\n                for (int k = 0; k < _w; k++) {\n                    res[i][j]\
     \ += _mat[i][k] * rhs._mat[k][j];\n                }\n            }\n        }\n\
-    \        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n \
-    \   Field det(Field product_e = Field(1)) const {\n        assert(_h == _w);\n\
+    \        _w = rhs._w;\n        _mat.swap(res);\n        return *this;\n    }\n\
+    \n    Field det(Field product_e = Field(1)) const {\n        assert(_h == _w);\n\
     \        int n = _h;\n        vector<vector<Field>> a(_mat);\n        Field res\
     \ = 1;\n        for (int i = 0; i < n; i++) {\n            int pivot = -1;\n \
     \           for (int j = i; j < n; j++) {\n                if (a[j][i] != 0) {\n\
@@ -165,22 +165,22 @@ data:
     \       a._mat[j][k] -= a._mat[i][k] * r;\n                    res[j][k] -= res[i][k]\
     \ * r;\n                }\n            }\n        }\n        return mat(res);\n\
     \    }\n\n    template <class T>\n    mat pow(T n) const {\n        assert(_h\
-    \ == _w);\n        mat x(_mat);\n        mat res(_h);\n        for (int i = 0;\
-    \ i < _h; i++) res._mat[i][i] = 1;\n        for (int i = 1; i <= n; i <<= 1) {\n\
-    \            if (n & i) res *= x;\n            x *= x;\n        }\n        return\
-    \ res;\n    }\n\n    int rank(Field product_e = Field(1)) const {\n        int\
-    \ n = _h, m = _w;\n        vector<vector<Field>> a(_mat);\n        int res = 0;\n\
-    \        for (int i = 0; i < m; i++) {\n            int pivot = -1;\n        \
-    \    for (int j = res; j < n; j++) {\n                if (a[j][i] != 0) {\n  \
-    \                  pivot = j;\n                    break;\n                }\n\
-    \            }\n            if (pivot == -1) continue;\n            swap(a[res],\
-    \ a[pivot]);\n            Field inv = product_e / a[res][i];\n            for\
-    \ (int j = i; j < m; j++) {\n                a[res][j] *= inv;\n            }\n\
-    \            for (int j = res + 1; j < n; j++) {\n                Field r = a[j][i];\n\
-    \                for (int k = i; k < m; k++) {\n                    a[j][k] -=\
-    \ a[res][k] * r;\n                }\n            }\n            res++;\n     \
-    \   }\n        return res;\n    }\n\n    mat& inplace_combine_top(const mat& rhs)\
-    \ {\n        assert(_w == rhs._w);\n        this->_mat.insert(begin(this->_mat),\n\
+    \ == _w);\n        mat mul(_mat);\n        mat res(_h);\n        for (int i =\
+    \ 0; i < _h; i++) res._mat[i][i] = 1;\n        while (n) {\n            if (n\
+    \ & 1) res *= mul;\n            mul *= mul;\n            n >>= 1;\n        }\n\
+    \        return res;\n    }\n\n    int rank(Field product_e = Field(1)) const\
+    \ {\n        int n = _h, m = _w;\n        vector<vector<Field>> a(_mat);\n   \
+    \     int res = 0;\n        for (int i = 0; i < m; i++) {\n            int pivot\
+    \ = -1;\n            for (int j = res; j < n; j++) {\n                if (a[j][i]\
+    \ != 0) {\n                    pivot = j;\n                    break;\n      \
+    \          }\n            }\n            if (pivot == -1) continue;\n        \
+    \    swap(a[res], a[pivot]);\n            Field inv = product_e / a[res][i];\n\
+    \            for (int j = i; j < m; j++) {\n                a[res][j] *= inv;\n\
+    \            }\n            for (int j = res + 1; j < n; j++) {\n            \
+    \    Field r = a[j][i];\n                for (int k = i; k < m; k++) {\n     \
+    \               a[j][k] -= a[res][k] * r;\n                }\n            }\n\
+    \            res++;\n        }\n        return res;\n    }\n\n    mat& inplace_combine_top(const\
+    \ mat& rhs) {\n        assert(_w == rhs._w);\n        this->_mat.insert(begin(this->_mat),\n\
     \            begin(rhs._mat), end(rhs._mat));\n        this->_h += rhs._h;\n \
     \       return *this;\n    }\n\n    mat combine_top(const mat& rhs) const {\n\
     \        assert(_w == rhs._w);\n        mat res(this->_mat);\n        return res.inplace_combine_top(rhs);\n\
@@ -212,7 +212,7 @@ data:
   isVerificationFile: false
   path: matrix/matrix_field.hpp
   requiredBy: []
-  timestamp: '2024-05-29 18:33:03+09:00'
+  timestamp: '2024-08-22 00:49:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/matrix_field.hpp
