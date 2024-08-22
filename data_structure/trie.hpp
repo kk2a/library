@@ -64,7 +64,7 @@ struct Trie {
     int size() const { return (int)nodes.size(); }
 
     // return the number of strings which have the prefix
-    // responding to the node_id
+    // corresponding to the node_id
     int size(int node_idx) const {
         return (int)nodes[node_idx].accept.size() + nodes[node_idx].exist;
     }
