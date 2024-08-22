@@ -68,7 +68,9 @@ data:
     \            if constexpr (heavy) {\n                for (int idx : this->nodes[now].accept)\n\
     \                    res[idx] += cnt;\n            }\n            else {\n   \
     \             res += (long long)correct[now] * cnt;\n            }\n        }\n\
-    \        return res;\n    }\n};\n\n\n"
+    \        return res;\n    }\n\n    int move(int now, char c) {\n        return\
+    \ this->nodes[now].nxt[c - margin];\n    }\n\n    int count(int node) const {\
+    \ return correct[node]; }\n};\n\n\n"
   code: "#ifndef STRING_AHO_CORASICK_HPP\n#define STRING_AHO_CORASICK_HPP 1\n\n#include\
     \ \"../data_structure/trie.hpp\"\n\ntemplate <int char_size, int margin, bool\
     \ heavy=true>\nstruct AhoCorasick : Trie<char_size + 1, margin> {\n    using Trie<char_size\
@@ -101,13 +103,15 @@ data:
     \            if constexpr (heavy) {\n                for (int idx : this->nodes[now].accept)\n\
     \                    res[idx] += cnt;\n            }\n            else {\n   \
     \             res += (long long)correct[now] * cnt;\n            }\n        }\n\
-    \        return res;\n    }\n};\n\n#endif // STRING_AHO_CORASICK_HPP\n"
+    \        return res;\n    }\n\n    int move(int now, char c) {\n        return\
+    \ this->nodes[now].nxt[c - margin];\n    }\n\n    int count(int node) const {\
+    \ return correct[node]; }\n};\n\n#endif // STRING_AHO_CORASICK_HPP\n"
   dependsOn:
   - data_structure/trie.hpp
   isVerificationFile: false
   path: string/aho_corasick.hpp
   requiredBy: []
-  timestamp: '2024-08-23 01:28:04+09:00'
+  timestamp: '2024-08-23 02:19:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/aho_corasick.hpp
