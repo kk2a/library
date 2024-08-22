@@ -64,6 +64,9 @@ data:
     - icon: ':warning:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
+    - icon: ':warning:'
+      path: data_structure/trie.hpp
+      title: data_structure/trie.hpp
   - name: fps
     pages:
     - icon: ':warning:'
