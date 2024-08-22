@@ -14,9 +14,9 @@ struct Trie {
     using Node = TrieNode<char_size>;
 
     vector<Node> nodes;
-    int root;
+    constexpr static int root = 0;
 
-    Trie() : root(0) { nodes.emplace_back(); }
+    Trie() { nodes.emplace_back(); }
 
     int push_node() {
         nodes.emplace_back();
