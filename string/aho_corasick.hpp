@@ -70,6 +70,12 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
         }
         return res;
     }
+
+    int move(int now, char c) {
+        return this->nodes[now].nxt[c - margin];
+    }
+
+    int count(int node) const { return correct[node]; }
 };
 
 #endif // STRING_AHO_CORASICK_HPP
