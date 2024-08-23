@@ -178,6 +178,9 @@ data:
       path: graph/tree/centroid.hpp
       title: graph/tree/centroid.hpp
     - icon: ':warning:'
+      path: graph/tree/heavy_light_decomposition.hpp
+      title: graph/tree/heavy_light_decomposition.hpp
+    - icon: ':warning:'
       path: graph/tree/lca.hpp
       title: graph/tree/lca.hpp
   - name: .
