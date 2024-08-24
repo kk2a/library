@@ -146,9 +146,6 @@ data:
       path: graph/bcc.hpp
       title: graph/bcc.hpp
     - icon: ':warning:'
-      path: graph/dijkstra.hpp
-      title: graph/dijkstra.hpp
-    - icon: ':warning:'
       path: graph/graph.hpp
       title: graph/graph.hpp
     - icon: ':warning:'
@@ -166,6 +163,9 @@ data:
     - icon: ':warning:'
       path: graph/scc.hpp
       title: graph/scc.hpp
+    - icon: ':warning:'
+      path: graph/shortest_path.hpp
+      title: graph/shortest_path.hpp
     - icon: ':warning:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
