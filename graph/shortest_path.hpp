@@ -2,9 +2,9 @@
 #define GRAPH_DIJKSTRA_HPP 1
 
 template <class WG, class T = typename WG::value_type>
-struct Dijkstra {
+struct ShortestPath {
   public:
-    Dijkstra(const WG& g) : _n(g.num_vertices()), _g(g) {}
+    ShortestPath(const WG& g) : _n(g.size()), _g(g) {}
 
     int num_vertices() { return _n; }
 
@@ -28,7 +28,7 @@ struct Dijkstra {
                 if (alt < dist[edge.to]) {
                     pq.push( {alt, edge.to} );
                     dist[edge.to] = alt;
-                    prev[edge.to] = q.second; 
+                    prev[edge.to] = edge.id;
                 }
             }
         }
