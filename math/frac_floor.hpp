@@ -5,8 +5,8 @@
 // for all x \in R, floor(x) = -ceil(-x)      ...(2)
 
 // return floor(a / b)
-template <typename T, typename U, typename R = T>
-R fracfloor(T a, U b) {
+template <typename T, typename U>
+T fracfloor(T a, U b) {
     assert(b != 0);
     if (a % b == 0) return a / b;
     if (a >= 0) return a / b;
@@ -18,8 +18,8 @@ R fracfloor(T a, U b) {
 }
 
 // return ceil(a / b)
-template <typename T, typename U, typename R = T>
-R fracceil(T a, U b) {
+template <typename T, typename U>
+T fracceil(T a, U b) {
     assert(b != 0);
     if (a % b == 0) return a / b;
     if (a >= 0) return a / b + 1;
