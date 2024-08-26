@@ -27,7 +27,6 @@ pair<int, vector<int>> tree_diameter(const G& g) {
     for (int now = v; now != -1; now = par[now]) {
         path.emplace_back(now);
     }
-    reverse(begin(path), end(path));
     return make_pair(dist[v], path);
 }
 
@@ -44,7 +43,6 @@ pair<T, vector<int>> weighted_tree_diameter(const WG& g) {
         if (par[now] == -1) break;
         now = g.edges[par[now]].to ^ g.edges[par[now]].from ^ now;
     }
-    reverse(begin(path), end(path));
     return make_pair(dist2[v], path);
 }
 
