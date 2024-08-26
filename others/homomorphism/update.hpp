@@ -17,9 +17,9 @@ struct Update {
         return os;
     }
 
-    Update& composition(const Update& rhs) {
-        if (rhs.id) return *this;
-        return *this = rhs;
+    Update& composition(const Update& f) {
+        if (f.id) return *this;
+        return *this = f;
     }
 };
 
@@ -27,7 +27,7 @@ template <class S, class T>
 T UpdateMap(Update<S> f, T x) { return f.id ? x : x.update(f.a); }
 
 template <class S>
-Update<S> UpdateComposition(Update<S> l, Update<S> r) { return l.composition(r); }
+Update<S> UpdateComposition(Update<S> l, Update<S> r) { return r.composition(l); }
 
 template <class S>
 Update<S> UpdateUnit() { return Update<S>(); }
