@@ -37,15 +37,14 @@ data:
     \    dist[u] = 0;\n    fill(begin(par), end(par), -1);\n    dfs(dfs, u);\n   \
     \ int v = max_element(begin(dist), end(dist)) - begin(dist);\n    vector<int>\
     \ path;\n    for (int now = v; now != -1; now = par[now]) {\n        path.emplace_back(now);\n\
-    \    }\n    reverse(begin(path), end(path));\n    return make_pair(dist[v], path);\n\
-    }\n\ntemplate <class WG, typename T = typename WG::value_type>\npair<T, vector<int>>\
-    \ weighted_tree_diameter(const WG& g) {\n    auto sp = ShortestPath<WG, T>(g);\n\
-    \    auto [dist, _] = sp.query(0);\n    int u = max_element(begin(dist), end(dist))\
-    \ - begin(dist);\n    auto [dist2, par] = sp.query(u);\n    int v = max_element(begin(dist2),\
-    \ end(dist2)) - begin(dist2);\n    vector<int> path;\n    for (int now = v;;)\
-    \ {\n        path.emplace_back(now);\n        if (par[now] == -1) break;\n   \
-    \     now = g.edges[par[now]].to ^ g.edges[par[now]].from ^ now;\n    }\n    reverse(begin(path),\
-    \ end(path));\n    return make_pair(dist2[v], path);\n}\n\n} // namespace kk2\n\
+    \    }\n    return make_pair(dist[v], path);\n}\n\ntemplate <class WG, typename\
+    \ T = typename WG::value_type>\npair<T, vector<int>> weighted_tree_diameter(const\
+    \ WG& g) {\n    auto sp = ShortestPath<WG, T>(g);\n    auto [dist, _] = sp.query(0);\n\
+    \    int u = max_element(begin(dist), end(dist)) - begin(dist);\n    auto [dist2,\
+    \ par] = sp.query(u);\n    int v = max_element(begin(dist2), end(dist2)) - begin(dist2);\n\
+    \    vector<int> path;\n    for (int now = v;;) {\n        path.emplace_back(now);\n\
+    \        if (par[now] == -1) break;\n        now = g.edges[par[now]].to ^ g.edges[par[now]].from\
+    \ ^ now;\n    }\n    return make_pair(dist2[v], path);\n}\n\n} // namespace kk2\n\
     \n\n"
   code: "#ifndef GRAPH_TREE_DIAMETER_HPP\n#define GRAPH_TREE_DIAMETER_HPP 1\n\n#include\
     \ \"../shortest_path.hpp\"\n\nnamespace kk2 {\n\ntemplate <class G>\npair<int,\
@@ -57,22 +56,22 @@ data:
     \ 0);\n    int u = max_element(begin(dist), end(dist)) - begin(dist);\n    dist[u]\
     \ = 0;\n    fill(begin(par), end(par), -1);\n    dfs(dfs, u);\n    int v = max_element(begin(dist),\
     \ end(dist)) - begin(dist);\n    vector<int> path;\n    for (int now = v; now\
-    \ != -1; now = par[now]) {\n        path.emplace_back(now);\n    }\n    reverse(begin(path),\
-    \ end(path));\n    return make_pair(dist[v], path);\n}\n\ntemplate <class WG,\
-    \ typename T = typename WG::value_type>\npair<T, vector<int>> weighted_tree_diameter(const\
-    \ WG& g) {\n    auto sp = ShortestPath<WG, T>(g);\n    auto [dist, _] = sp.query(0);\n\
-    \    int u = max_element(begin(dist), end(dist)) - begin(dist);\n    auto [dist2,\
-    \ par] = sp.query(u);\n    int v = max_element(begin(dist2), end(dist2)) - begin(dist2);\n\
-    \    vector<int> path;\n    for (int now = v;;) {\n        path.emplace_back(now);\n\
-    \        if (par[now] == -1) break;\n        now = g.edges[par[now]].to ^ g.edges[par[now]].from\
-    \ ^ now;\n    }\n    reverse(begin(path), end(path));\n    return make_pair(dist2[v],\
-    \ path);\n}\n\n} // namespace kk2\n\n#endif // GRAPH_TREE_DIAMETER_HPP\n"
+    \ != -1; now = par[now]) {\n        path.emplace_back(now);\n    }\n    return\
+    \ make_pair(dist[v], path);\n}\n\ntemplate <class WG, typename T = typename WG::value_type>\n\
+    pair<T, vector<int>> weighted_tree_diameter(const WG& g) {\n    auto sp = ShortestPath<WG,\
+    \ T>(g);\n    auto [dist, _] = sp.query(0);\n    int u = max_element(begin(dist),\
+    \ end(dist)) - begin(dist);\n    auto [dist2, par] = sp.query(u);\n    int v =\
+    \ max_element(begin(dist2), end(dist2)) - begin(dist2);\n    vector<int> path;\n\
+    \    for (int now = v;;) {\n        path.emplace_back(now);\n        if (par[now]\
+    \ == -1) break;\n        now = g.edges[par[now]].to ^ g.edges[par[now]].from ^\
+    \ now;\n    }\n    return make_pair(dist2[v], path);\n}\n\n} // namespace kk2\n\
+    \n#endif // GRAPH_TREE_DIAMETER_HPP\n"
   dependsOn:
   - graph/shortest_path.hpp
   isVerificationFile: false
   path: graph/tree/diameter.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-27 00:59:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/diameter.hpp
