@@ -21,12 +21,12 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/updatesum.hpp\"\n\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
-    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\ntemplate <class S,\n   \
-    \       S (*op)(S, S),\n          S (*e)(),\n          class F,\n          S (*mapping)(F,\
-    \ S),\n          F (*composition)(F, F),\n          F (*id)()>\nstruct LazySegTreeBase\
-    \ {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0) {}\n    LazySegTreeBase(int\
-    \ n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n    template <class... Args>\n\
-    \    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
+    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
+    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
+    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
+    \ (*id)()>\nstruct LazySegTreeBase {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0)\
+    \ {}\n    LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n\
+    \    template <class... Args>\n    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
     \ S(args...))) {}\n    LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size()))\
     \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
     \ = 1 << log;\n        d = vector<S>(2 * size, e());\n        lz = vector<F>(size,\
@@ -93,17 +93,18 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n    virtual void all_apply(int k, F f) = 0;\n    void push(int\
     \ k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n\
-    \        lz[k] = id();\n    }\n}; \n\n\n#line 5 \"segment_tree/lazy.hpp\"\n\n\
-    template <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class\
-    \ F,\n          S (*mapping)(F, S),\n          F (*composition)(F, F),\n     \
-    \     F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op, e, F, mapping,\
-    \ composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping, composition,\
-    \ id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k, F f) override\
-    \ {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k < this->size)\
-    \ this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n\n#line 1 \"others/monoid/sum.hpp\"\
-    \n\n\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n\
-    \    Sum() : a(0), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n\
-    \    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
+    \        lz[k] = id();\n    }\n}; \n\n} // namespace kk2\n\n\n#line 5 \"segment_tree/lazy.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
+    \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
+    \ F),\n          F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op,\
+    \ e, F, mapping, composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping,\
+    \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
+    \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
+    \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
+    \ namespace kk2\n\n\n#line 1 \"others/monoid/sum.hpp\"\n\n\n\nnamespace kk2 {\n\
+    \nnamespace monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n   \
+    \ Sum() : a(0), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n \
+    \   operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Sum& sum) {\n        os << sum.a;\n        return os;\n    }\n   \
     \ friend istream& operator>>(istream& is, Sum& sum) {\n        is >> sum.a;\n\
     \        sum.size = 1;\n        return is;\n    }\n    Sum& operator=(const S&\
@@ -116,30 +117,32 @@ data:
     \ S>\nSum<S> SumOp(Sum<S> l, Sum<S> r) { return l.op(r); }\n\ntemplate <class\
     \ S>\nSum<S> SumUnit() { return Sum<S>(); }\n\n} // namespace monoid\n\ntemplate\
     \ <class S, class... Args>\nvector<monoid::Sum<S>> GetVecSum(int n, Args... args)\
-    \ {\n    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));\n}\n\n\n#line\
-    \ 1 \"others/homomorphism/update.hpp\"\n\n\n\nnamespace homomorphism {\n\ntemplate\
-    \ <class S>\nstruct Update {\n    S a;\n    bool id;\n    Update() : a(0), id(true)\
-    \ {}\n    Update(S a_, bool id_ = false) : a(a_), id(id_) {}\n    operator S()\
-    \ const { return a; }\n    friend ostream& operator<<(ostream& os, const Update&\
-    \ update) {\n        os << (update.id ? \"id\" : to_string(update.a));\n     \
-    \   return os;\n    }\n\n    Update& composition(const Update& rhs) {\n      \
-    \  if (rhs.id) return *this;\n        return *this = rhs;\n    }\n};\n\ntemplate\
-    \ <class S, class T>\nT UpdateMap(Update<S> f, T x) { return f.id ? x : x.update(f.a);\
-    \ }\n\ntemplate <class S>\nUpdate<S> UpdateComposition(Update<S> l, Update<S>\
-    \ r) { return l.composition(r); }\n\ntemplate <class S>\nUpdate<S> UpdateUnit()\
-    \ { return Update<S>(); }\n\n} // namespace homomorphism\n\n\n#line 7 \"segment_tree/utility/updatesum.hpp\"\
-    \n\ntemplate <class S>\nusing UpdateSum =\n    LazySegTree<monoid::Sum<S>,\n \
-    \               monoid::SumOp<S>,\n                monoid::SumUnit<S>,\n     \
-    \           homomorphism::Update<S>,\n                homomorphism::UpdateMap<S,\
+    \ {\n    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));\n}\n\n} //\
+    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/update.hpp\"\n\n\n\nnamespace\
+    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nstruct Update {\n \
+    \   S a;\n    bool id;\n    Update() : a(0), id(true) {}\n    Update(S a_, bool\
+    \ id_ = false) : a(a_), id(id_) {}\n    operator S() const { return a; }\n   \
+    \ friend ostream& operator<<(ostream& os, const Update& update) {\n        os\
+    \ << (update.id ? \"id\" : to_string(update.a));\n        return os;\n    }\n\n\
+    \    Update& composition(const Update& rhs) {\n        if (rhs.id) return *this;\n\
+    \        return *this = rhs;\n    }\n};\n\ntemplate <class S, class T>\nT UpdateMap(Update<S>\
+    \ f, T x) { return f.id ? x : x.update(f.a); }\n\ntemplate <class S>\nUpdate<S>\
+    \ UpdateComposition(Update<S> l, Update<S> r) { return l.composition(r); }\n\n\
+    template <class S>\nUpdate<S> UpdateUnit() { return Update<S>(); }\n\n} // namespace\
+    \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/updatesum.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing UpdateSum =\n    LazySegTree<monoid::Sum<S>,\n\
+    \                monoid::SumOp<S>,\n                monoid::SumUnit<S>,\n    \
+    \            homomorphism::Update<S>,\n                homomorphism::UpdateMap<S,\
     \ monoid::Sum<S>>,\n                homomorphism::UpdateComposition<S>,\n    \
-    \            homomorphism::UpdateUnit<S>>;\n\n\n"
+    \            homomorphism::UpdateUnit<S>>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_UPDATESUM_HPP\n#define SEGMENT_TREE_UTILITY_UPDATESUM_HPP\
     \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/sum.hpp\"\n#include\
-    \ \"../../others/homomorphism/update.hpp\"\n\ntemplate <class S>\nusing UpdateSum\
-    \ =\n    LazySegTree<monoid::Sum<S>,\n                monoid::SumOp<S>,\n    \
-    \            monoid::SumUnit<S>,\n                homomorphism::Update<S>,\n \
-    \               homomorphism::UpdateMap<S, monoid::Sum<S>>,\n                homomorphism::UpdateComposition<S>,\n\
-    \                homomorphism::UpdateUnit<S>>;\n\n#endif // SEGMENT_TREE_UTILITY_UPDATESUM_HPP\n"
+    \ \"../../others/homomorphism/update.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ S>\nusing UpdateSum =\n    LazySegTree<monoid::Sum<S>,\n                monoid::SumOp<S>,\n\
+    \                monoid::SumUnit<S>,\n                homomorphism::Update<S>,\n\
+    \                homomorphism::UpdateMap<S, monoid::Sum<S>>,\n               \
+    \ homomorphism::UpdateComposition<S>,\n                homomorphism::UpdateUnit<S>>;\n\
+    \n} // namespace kk2\n\n#endif // SEGMENT_TREE_UTILITY_UPDATESUM_HPP\n"
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
@@ -148,7 +151,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatesum.hpp
   requiredBy: []
-  timestamp: '2024-07-13 13:04:42+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatesum.hpp

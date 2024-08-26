@@ -12,12 +12,13 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"string/rolling_hash.hpp\"\n\n\n\n#line 1 \"math_mod/pow_expr.hpp\"\
-    \n\n\n\nconstexpr long long pow_mod_constexpr(long long x, long long n, long long\
-    \ m) {\n    if (m == 1) return 0;\n    unsigned long long _m = (unsigned long\
-    \ long)(m);\n    unsigned long long r = 1;\n    unsigned long long y = (x % m\
-    \ + m) % m;\n    while (n) {\n        if (n & 1) r = (r * y) % _m;\n        y\
-    \ = (y * y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n\n#line 5 \"string/rolling_hash.hpp\"\
-    \n\n// setbase() must be called before using Hash\nstruct RollingHash {\n    struct\
+    \n\n\n\nnamespace kk2 {\n\nconstexpr long long pow_mod_constexpr(long long x,\
+    \ long long n, long long m) {\n    if (m == 1) return 0;\n    unsigned long long\
+    \ _m = (unsigned long long)(m);\n    unsigned long long r = 1;\n    unsigned long\
+    \ long y = (x % m + m) % m;\n    while (n) {\n        if (n & 1) r = (r * y) %\
+    \ _m;\n        y = (y * y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n\
+    } // namespace kk2\n\n\n#line 5 \"string/rolling_hash.hpp\"\n\nnamespace kk2 {\n\
+    \n// setbase() must be called before using Hash\nstruct RollingHash {\n    struct\
     \ Hash {\n        long long h, pw, pwi;\n    };\n    constexpr static int b =\
     \ 5;\n    using T = array<Hash, b>;\n    T table;\n    constexpr static int modp[b]\
     \ = {998244353, 1000000007, 1000000009, 1000000021, 1000000033};\n    static int\
@@ -73,19 +74,19 @@ data:
     \    }\n\n  private:\n    constexpr static long long quo(long long a, int i) {\n\
     \        return pow_mod_constexpr(a, modp[i] - 2, modp[i]);\n    } \n};\n\nint\
     \ RollingHash::base[5] = {3, 3, 3, 3, 3};\nint RollingHash::basei[5] = {332748118,\
-    \ 333333336, 666666673, 666666681, 666666689};\n\nnamespace kk2 {\n\nusing Roliha\
-    \ = RollingHash;\n\n} // namespace kk2\n\n\n\n"
+    \ 333333336, 666666673, 666666681, 666666689};\n\n\nusing Roliha = RollingHash;\n\
+    \n} // namespace kk2\n\n\n\n"
   code: "#ifndef ROLLING_HASH_HPP\n#define ROLLING_HASH_HPP 1\n\n#include \"../math_mod/pow_expr.hpp\"\
-    \n\n// setbase() must be called before using Hash\nstruct RollingHash {\n    struct\
-    \ Hash {\n        long long h, pw, pwi;\n    };\n    constexpr static int b =\
-    \ 5;\n    using T = array<Hash, b>;\n    T table;\n    constexpr static int modp[b]\
-    \ = {998244353, 1000000007, 1000000009, 1000000021, 1000000033};\n    static int\
-    \ base[b], basei[b];\n\n    static void setbase() {\n        mt19937_64 rng(time(0));\n\
-    \        for (int i = 0; i < b; ++i) {\n            base[i] = rng() % modp[i];\n\
-    \            basei[i] = quo(base[i], i);\n        }\n    }\n\n    template <class\
-    \ T>\n    RollingHash(const T &v) {\n        for (int i = 0; i < b; ++i) {\n \
-    \           table[i].h = v % modp[i];\n            table[i].pw = base[i];\n  \
-    \          table[i].pwi = basei[i];\n        }\n    }\n\n    RollingHash(char\
+    \n\nnamespace kk2 {\n\n// setbase() must be called before using Hash\nstruct RollingHash\
+    \ {\n    struct Hash {\n        long long h, pw, pwi;\n    };\n    constexpr static\
+    \ int b = 5;\n    using T = array<Hash, b>;\n    T table;\n    constexpr static\
+    \ int modp[b] = {998244353, 1000000007, 1000000009, 1000000021, 1000000033};\n\
+    \    static int base[b], basei[b];\n\n    static void setbase() {\n        mt19937_64\
+    \ rng(time(0));\n        for (int i = 0; i < b; ++i) {\n            base[i] =\
+    \ rng() % modp[i];\n            basei[i] = quo(base[i], i);\n        }\n    }\n\
+    \n    template <class T>\n    RollingHash(const T &v) {\n        for (int i =\
+    \ 0; i < b; ++i) {\n            table[i].h = v % modp[i];\n            table[i].pw\
+    \ = base[i];\n            table[i].pwi = basei[i];\n        }\n    }\n\n    RollingHash(char\
     \ c) {\n        for (int i = 0; i < b; ++i) {\n            table[i].h = c;\n \
     \           table[i].pw = base[i];\n            table[i].pwi = basei[i];\n   \
     \     }\n    }\n\n    template <class T>\n    RollingHash(const vector<T> &v)\
@@ -132,14 +133,14 @@ data:
     \    }\n\n  private:\n    constexpr static long long quo(long long a, int i) {\n\
     \        return pow_mod_constexpr(a, modp[i] - 2, modp[i]);\n    } \n};\n\nint\
     \ RollingHash::base[5] = {3, 3, 3, 3, 3};\nint RollingHash::basei[5] = {332748118,\
-    \ 333333336, 666666673, 666666681, 666666689};\n\nnamespace kk2 {\n\nusing Roliha\
-    \ = RollingHash;\n\n} // namespace kk2\n\n\n#endif // ROLLING_HASH_HPP\n"
+    \ 333333336, 666666673, 666666681, 666666689};\n\n\nusing Roliha = RollingHash;\n\
+    \n} // namespace kk2\n\n\n#endif // ROLLING_HASH_HPP\n"
   dependsOn:
   - math_mod/pow_expr.hpp
   isVerificationFile: false
   path: string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2024-08-19 15:36:15+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/rolling_hash.hpp

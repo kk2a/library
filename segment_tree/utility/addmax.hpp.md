@@ -21,12 +21,12 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/addmax.hpp\"\n\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
-    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\ntemplate <class S,\n   \
-    \       S (*op)(S, S),\n          S (*e)(),\n          class F,\n          S (*mapping)(F,\
-    \ S),\n          F (*composition)(F, F),\n          F (*id)()>\nstruct LazySegTreeBase\
-    \ {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0) {}\n    LazySegTreeBase(int\
-    \ n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n    template <class... Args>\n\
-    \    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
+    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
+    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
+    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
+    \ (*id)()>\nstruct LazySegTreeBase {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0)\
+    \ {}\n    LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n\
+    \    template <class... Args>\n    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
     \ S(args...))) {}\n    LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size()))\
     \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
     \ = 1 << log;\n        d = vector<S>(2 * size, e());\n        lz = vector<F>(size,\
@@ -93,48 +93,51 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n    virtual void all_apply(int k, F f) = 0;\n    void push(int\
     \ k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n\
-    \        lz[k] = id();\n    }\n}; \n\n\n#line 5 \"segment_tree/lazy.hpp\"\n\n\
-    template <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class\
-    \ F,\n          S (*mapping)(F, S),\n          F (*composition)(F, F),\n     \
-    \     F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op, e, F, mapping,\
-    \ composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping, composition,\
-    \ id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k, F f) override\
-    \ {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k < this->size)\
-    \ this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n\n#line 1 \"others/monoid/max.hpp\"\
-    \n\n\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n   \
-    \ bool minf;\n    Max() : a(0), minf(true) {}\n    Max (S a_, bool minf_ = false)\
-    \ : a(a_), minf(minf_) {}\n    operator S() const { return a; }\n    friend ostream&\
-    \ operator<<(ostream& os, const Max& max) {\n        os << (max.minf ? \"minf\"\
-    \ : to_string(max.a));\n        return os;\n    }\n    friend istream& operator>>(istream&\
-    \ is, Max& max) {\n        is >> max.a;\n        max.minf = false;\n        return\
-    \ is;\n    }\n    Max& operator=(const S& rhs) {\n        a = rhs;\n        minf\
-    \ = false;\n        return *this;\n    }\n\n    Max& add(const S& rhs) {\n   \
-    \     if (minf) return *this;\n        a += rhs;\n        return *this;\n    }\n\
-    \    Max& update(const S& rhs) {\n        a = rhs;\n        minf = false;\n  \
-    \      return *this;\n    }\n    Max& op(const Max& rhs) {\n        if (rhs.minf)\
-    \ return *this;\n        if (minf) return *this = rhs;\n        a = max(a, rhs.a);\n\
-    \        return *this;\n    }\n\n    bool is_minf() const { return minf; }\n};\n\
-    \ntemplate <class S>\nMax<S> MaxOp(Max<S> l, Max<S> r) { return l.op(r); }\n\n\
-    template <class S>\nMax<S> MaxUnit() { return Max<S>(); }\n\n} // namespace monoid\n\
-    \ntemplate <class S, class... Args>\nvector<monoid::Max<S>> GetVecMax(int n, Args...\
-    \ args) {\n    return vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n}\n\
-    \n\n#line 1 \"others/homomorphism/add.hpp\"\n\n\n\nnamespace homomorphism {\n\n\
-    template <class S>\nusing Add = S;\n\ntemplate <class S, class T>\nT AddMap(Add<S>\
-    \ f, T x) { return x.add(f); }\n\ntemplate <class S>\nAdd<S> AddComposition(Add<S>\
-    \ l, Add<S> r) { return l + r; }\n\ntemplate <class S>\nAdd<S> AddUnit() { return\
-    \ Add<S>(); }\n\n} // namespace homomorphism\n\n\n#line 7 \"segment_tree/utility/addmax.hpp\"\
-    \n\ntemplate <class S>\nusing AddMax =\n    LazySegTree<monoid::Max<S>,\n    \
-    \            monoid::MaxOp<S>,\n                monoid::MaxUnit<S>,\n        \
-    \        homomorphism::Add<S>,\n                homomorphism::AddMap<S, monoid::Max<S>>,\n\
+    \        lz[k] = id();\n    }\n}; \n\n} // namespace kk2\n\n\n#line 5 \"segment_tree/lazy.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
+    \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
+    \ F),\n          F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op,\
+    \ e, F, mapping, composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping,\
+    \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
+    \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
+    \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
+    \ namespace kk2\n\n\n#line 1 \"others/monoid/max.hpp\"\n\n\n\nnamespace kk2 {\n\
+    \nnamespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n    bool minf;\n\
+    \    Max() : a(0), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_),\
+    \ minf(minf_) {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
+    \ os, const Max& max) {\n        os << (max.minf ? \"minf\" : to_string(max.a));\n\
+    \        return os;\n    }\n    friend istream& operator>>(istream& is, Max& max)\
+    \ {\n        is >> max.a;\n        max.minf = false;\n        return is;\n   \
+    \ }\n    Max& operator=(const S& rhs) {\n        a = rhs;\n        minf = false;\n\
+    \        return *this;\n    }\n\n    Max& add(const S& rhs) {\n        if (minf)\
+    \ return *this;\n        a += rhs;\n        return *this;\n    }\n    Max& update(const\
+    \ S& rhs) {\n        a = rhs;\n        minf = false;\n        return *this;\n\
+    \    }\n    Max& op(const Max& rhs) {\n        if (rhs.minf) return *this;\n \
+    \       if (minf) return *this = rhs;\n        a = max(a, rhs.a);\n        return\
+    \ *this;\n    }\n\n    bool is_minf() const { return minf; }\n};\n\ntemplate <class\
+    \ S>\nMax<S> MaxOp(Max<S> l, Max<S> r) { return l.op(r); }\n\ntemplate <class\
+    \ S>\nMax<S> MaxUnit() { return Max<S>(); }\n\n} // namespace monoid\n\ntemplate\
+    \ <class S, class... Args>\nvector<monoid::Max<S>> GetVecMax(int n, Args... args)\
+    \ {\n    return vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n}\n\n} //\
+    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/add.hpp\"\n\n\n\nnamespace\
+    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nusing Add = S;\n\n\
+    template <class S, class T>\nT AddMap(Add<S> f, T x) { return x.add(f); }\n\n\
+    template <class S>\nAdd<S> AddComposition(Add<S> l, Add<S> r) { return l + r;\
+    \ }\n\ntemplate <class S>\nAdd<S> AddUnit() { return Add<S>(); }\n\n} // namespace\
+    \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/addmax.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddMax =\n    LazySegTree<monoid::Max<S>,\n\
+    \                monoid::MaxOp<S>,\n                monoid::MaxUnit<S>,\n    \
+    \            homomorphism::Add<S>,\n                homomorphism::AddMap<S, monoid::Max<S>>,\n\
     \                homomorphism::AddComposition<S>,\n                homomorphism::AddUnit<S>>;\n\
-    \n\n"
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_ADDMAX_HPP\n#define SEGMENT_TREE_UTILITY_ADDMAX_HPP\
     \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/max.hpp\"\n#include\
-    \ \"../../others/homomorphism/add.hpp\"\n\ntemplate <class S>\nusing AddMax =\n\
-    \    LazySegTree<monoid::Max<S>,\n                monoid::MaxOp<S>,\n        \
-    \        monoid::MaxUnit<S>,\n                homomorphism::Add<S>,\n        \
-    \        homomorphism::AddMap<S, monoid::Max<S>>,\n                homomorphism::AddComposition<S>,\n\
-    \                homomorphism::AddUnit<S>>;\n\n#endif // SEGMENT_TREE_UTILITY_ADDMAX_HPP\n"
+    \ \"../../others/homomorphism/add.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ S>\nusing AddMax =\n    LazySegTree<monoid::Max<S>,\n                monoid::MaxOp<S>,\n\
+    \                monoid::MaxUnit<S>,\n                homomorphism::Add<S>,\n\
+    \                homomorphism::AddMap<S, monoid::Max<S>>,\n                homomorphism::AddComposition<S>,\n\
+    \                homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n#endif //\
+    \ SEGMENT_TREE_UTILITY_ADDMAX_HPP\n"
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
@@ -143,7 +146,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/addmax.hpp
   requiredBy: []
-  timestamp: '2024-07-13 13:04:42+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmax.hpp

@@ -8,35 +8,35 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/suffix_array.hpp\"\n\n\n\n\nstruct SuffixArray {\n\
-    \    SuffixArray() = default;\n    SuffixArray(const string& s_) :\n        _n((int)s_.size()),\
-    \ _s((int)s_.size()) {\n        for (int i = 0; i < _n; ++i) _s[i] = s_[i];\n\
-    \        _upper = 255;\n        init();\n    }\n    // all elements of s_ must\
-    \ be in [0, upper]\n    SuffixArray(const vector<int>& s_, int upper_) :\n   \
-    \     _n((int)s_.size()), _s(s_), _upper(upper_) {\n        init();\n    }\n \
-    \   template <class T>\n    SuffixArray(const vector<T>& s_) :\n        _n((int)s_.size()),\
-    \ _s((int)s_.size()) {\n        vector<int> idx(_n);\n        iota(begin(idx),\
-    \ end(idx), 0);\n        sort(begin(idx), end(idx), [&](int l, int r) { return\
-    \ s_[l] < s_[r]; });\n        _upper = 0;\n        for (int i = 0; i < _n; ++i)\
-    \ {\n            if (i && s_[idx[i - 1]] != s_[idx[i]]) _upper++;\n          \
-    \  _s[idx[i]] = _upper;\n        }\n        init();\n    }\n\n    vector<int>\
-    \ GetSA() const { return _sa; }\n\n    bool op(int i, const string& t) const {\n\
+  bundledCode: "#line 1 \"string/suffix_array.hpp\"\n\n\n\nnamespace kk2 {\n\nstruct\
+    \ SuffixArray {\n    SuffixArray() = default;\n    SuffixArray(const string& s_)\
+    \ :\n        _n((int)s_.size()), _s((int)s_.size()) {\n        for (int i = 0;\
+    \ i < _n; ++i) _s[i] = s_[i];\n        _upper = 255;\n        init();\n    }\n\
+    \    // all elements of s_ must be in [0, upper]\n    SuffixArray(const vector<int>&\
+    \ s_, int upper_) :\n        _n((int)s_.size()), _s(s_), _upper(upper_) {\n  \
+    \      init();\n    }\n    template <class T>\n    SuffixArray(const vector<T>&\
+    \ s_) :\n        _n((int)s_.size()), _s((int)s_.size()) {\n        vector<int>\
+    \ idx(_n);\n        iota(begin(idx), end(idx), 0);\n        sort(begin(idx), end(idx),\
+    \ [&](int l, int r) { return s_[l] < s_[r]; });\n        _upper = 0;\n       \
+    \ for (int i = 0; i < _n; ++i) {\n            if (i && s_[idx[i - 1]] != s_[idx[i]])\
+    \ _upper++;\n            _s[idx[i]] = _upper;\n        }\n        init();\n  \
+    \  }\n\n    vector<int> GetSA() const { return _sa; }\n\n    bool op(int i, const\
+    \ string& t) const {\n        int off = _sa[i];\n        int m = min(_n - off,\
+    \ (int)t.size());\n        for (int j = 0; j < m; ++j) {\n            if (_s[off\
+    \ + j] != t[j]) return _s[off + j] < t[j];\n        }\n        return _n - off\
+    \ < (int)t.size();\n    }\n\n    bool op(int i, const vector<int>& t) const {\n\
     \        int off = _sa[i];\n        int m = min(_n - off, (int)t.size());\n  \
     \      for (int j = 0; j < m; ++j) {\n            if (_s[off + j] != t[j]) return\
     \ _s[off + j] < t[j];\n        }\n        return _n - off < (int)t.size();\n \
-    \   }\n\n    bool op(int i, const vector<int>& t) const {\n        int off = _sa[i];\n\
-    \        int m = min(_n - off, (int)t.size());\n        for (int j = 0; j < m;\
-    \ ++j) {\n            if (_s[off + j] != t[j]) return _s[off + j] < t[j];\n  \
-    \      }\n        return _n - off < (int)t.size();\n    }\n\n    // return the\
-    \ smallest index i s.t. s[sa[i]:] >= t\n    int lower_bound(const vector<int>&\
-    \ t) const {\n        int l = -1, r = _n;\n        while (r - l > 1) {\n     \
-    \       int m = (l + r) / 2;\n            if (op(m, t)) l = m;\n            else\
-    \ r = m;\n        }\n        return r;\n    }\n\n    int lower_bound(const string&\
-    \ t) const {\n        int l = -1, r = _n;\n        while (r - l > 1) {\n     \
-    \       int m = (l + r) / 2;\n            if (op(m, t)) l = m;\n            else\
-    \ r = m;\n        }\n        return r;\n    }\n\n  private:\n    int _n, _upper;\n\
-    \    vector<int> _sa, _s;\n\n    vector<int> sa_naive(const vector<int>& s) {\n\
-    \        int n = (int)s.size();\n        vector<int> sa(n);\n        iota(begin(sa),\
+    \   }\n\n    // return the smallest index i s.t. s[sa[i]:] >= t\n    int lower_bound(const\
+    \ vector<int>& t) const {\n        int l = -1, r = _n;\n        while (r - l >\
+    \ 1) {\n            int m = (l + r) / 2;\n            if (op(m, t)) l = m;\n \
+    \           else r = m;\n        }\n        return r;\n    }\n\n    int lower_bound(const\
+    \ string& t) const {\n        int l = -1, r = _n;\n        while (r - l > 1) {\n\
+    \            int m = (l + r) / 2;\n            if (op(m, t)) l = m;\n        \
+    \    else r = m;\n        }\n        return r;\n    }\n\n  private:\n    int _n,\
+    \ _upper;\n    vector<int> _sa, _s;\n\n    vector<int> sa_naive(const vector<int>&\
+    \ s) {\n        int n = (int)s.size();\n        vector<int> sa(n);\n        iota(begin(sa),\
     \ end(sa), 0);\n        sort(begin(sa), end(sa), [&](int l, int r) {\n       \
     \     if (l == r) return false;\n            while (l < n && r < n) {\n      \
     \          if (s[l] != s[r]) return s[l] < s[r];\n                l++;\n     \
@@ -97,12 +97,13 @@ data:
     \      sa_is<THRESHOLD_NAIVE, THRESHOLD_DOUBLING>(rec_s, rec_upper);\n\n     \
     \       for (int i = 0; i < m; i++) {\n                sorted_lms[i] = lms[rec_sa[i]];\n\
     \            }\n            induce(sorted_lms);\n        }\n        return sa;\n\
-    \    }\n\n    void init() { _sa = sa_is(_s, _upper); }\n};\n\n\n"
-  code: "#ifndef STRING_SUFFIX_ARRAY_HPP\n#define STRING_SUFFIX_ARRAY_HPP 1\n\n\n\
-    struct SuffixArray {\n    SuffixArray() = default;\n    SuffixArray(const string&\
-    \ s_) :\n        _n((int)s_.size()), _s((int)s_.size()) {\n        for (int i\
-    \ = 0; i < _n; ++i) _s[i] = s_[i];\n        _upper = 255;\n        init();\n \
-    \   }\n    // all elements of s_ must be in [0, upper]\n    SuffixArray(const\
+    \    }\n\n    void init() { _sa = sa_is(_s, _upper); }\n};\n\n} // namespace kk2\n\
+    \n\n"
+  code: "#ifndef STRING_SUFFIX_ARRAY_HPP\n#define STRING_SUFFIX_ARRAY_HPP 1\n\nnamespace\
+    \ kk2 {\n\nstruct SuffixArray {\n    SuffixArray() = default;\n    SuffixArray(const\
+    \ string& s_) :\n        _n((int)s_.size()), _s((int)s_.size()) {\n        for\
+    \ (int i = 0; i < _n; ++i) _s[i] = s_[i];\n        _upper = 255;\n        init();\n\
+    \    }\n    // all elements of s_ must be in [0, upper]\n    SuffixArray(const\
     \ vector<int>& s_, int upper_) :\n        _n((int)s_.size()), _s(s_), _upper(upper_)\
     \ {\n        init();\n    }\n    template <class T>\n    SuffixArray(const vector<T>&\
     \ s_) :\n        _n((int)s_.size()), _s((int)s_.size()) {\n        vector<int>\
@@ -187,12 +188,13 @@ data:
     \      sa_is<THRESHOLD_NAIVE, THRESHOLD_DOUBLING>(rec_s, rec_upper);\n\n     \
     \       for (int i = 0; i < m; i++) {\n                sorted_lms[i] = lms[rec_sa[i]];\n\
     \            }\n            induce(sorted_lms);\n        }\n        return sa;\n\
-    \    }\n\n    void init() { _sa = sa_is(_s, _upper); }\n};\n\n#endif // STRING_SUFFIX_ARRAY_HPP\n"
+    \    }\n\n    void init() { _sa = sa_is(_s, _upper); }\n};\n\n} // namespace kk2\n\
+    \n#endif // STRING_SUFFIX_ARRAY_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: string/suffix_array.hpp
   requiredBy: []
-  timestamp: '2024-07-15 14:55:23+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/suffix_array.hpp

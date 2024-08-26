@@ -13,6 +13,11 @@ data:
 
 
 
+    namespace kk2 {
+
+
+    } // namespace kk2
+
 
 
     '
@@ -20,6 +25,11 @@ data:
 
     #define SEGMENT_TREE_DUAL_SEG_HPP 1
 
+
+    namespace kk2 {
+
+
+    } // namespace kk2
 
 
     #endif // SEGMENT_TREE_DUAL_SEG_HPP
@@ -29,7 +39,7 @@ data:
   isVerificationFile: false
   path: segment_tree/dual_seg.hpp
   requiredBy: []
-  timestamp: '2024-08-09 14:20:44+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/dual_seg.hpp

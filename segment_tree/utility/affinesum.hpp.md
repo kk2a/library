@@ -21,12 +21,12 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/affinesum.hpp\"\n\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
-    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\ntemplate <class S,\n   \
-    \       S (*op)(S, S),\n          S (*e)(),\n          class F,\n          S (*mapping)(F,\
-    \ S),\n          F (*composition)(F, F),\n          F (*id)()>\nstruct LazySegTreeBase\
-    \ {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0) {}\n    LazySegTreeBase(int\
-    \ n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n    template <class... Args>\n\
-    \    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
+    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
+    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
+    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
+    \ (*id)()>\nstruct LazySegTreeBase {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0)\
+    \ {}\n    LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n\
+    \    template <class... Args>\n    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
     \ S(args...))) {}\n    LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size()))\
     \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
     \ = 1 << log;\n        d = vector<S>(2 * size, e());\n        lz = vector<F>(size,\
@@ -93,17 +93,18 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n    virtual void all_apply(int k, F f) = 0;\n    void push(int\
     \ k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n\
-    \        lz[k] = id();\n    }\n}; \n\n\n#line 5 \"segment_tree/lazy.hpp\"\n\n\
-    template <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class\
-    \ F,\n          S (*mapping)(F, S),\n          F (*composition)(F, F),\n     \
-    \     F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op, e, F, mapping,\
-    \ composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping, composition,\
-    \ id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k, F f) override\
-    \ {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k < this->size)\
-    \ this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n\n#line 1 \"others/monoid/sum.hpp\"\
-    \n\n\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n\
-    \    Sum() : a(0), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n\
-    \    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
+    \        lz[k] = id();\n    }\n}; \n\n} // namespace kk2\n\n\n#line 5 \"segment_tree/lazy.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
+    \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
+    \ F),\n          F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op,\
+    \ e, F, mapping, composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping,\
+    \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
+    \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
+    \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
+    \ namespace kk2\n\n\n#line 1 \"others/monoid/sum.hpp\"\n\n\n\nnamespace kk2 {\n\
+    \nnamespace monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n   \
+    \ Sum() : a(0), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n \
+    \   operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Sum& sum) {\n        os << sum.a;\n        return os;\n    }\n   \
     \ friend istream& operator>>(istream& is, Sum& sum) {\n        is >> sum.a;\n\
     \        sum.size = 1;\n        return is;\n    }\n    Sum& operator=(const S&\
@@ -116,29 +117,31 @@ data:
     \ S>\nSum<S> SumOp(Sum<S> l, Sum<S> r) { return l.op(r); }\n\ntemplate <class\
     \ S>\nSum<S> SumUnit() { return Sum<S>(); }\n\n} // namespace monoid\n\ntemplate\
     \ <class S, class... Args>\nvector<monoid::Sum<S>> GetVecSum(int n, Args... args)\
-    \ {\n    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));\n}\n\n\n#line\
-    \ 1 \"others/homomorphism/affine.hpp\"\n\n\n\nnamespace homomorphism {\n\ntemplate\
-    \ <class S>\nstruct Affine {\n    S a, b; // x \\mapsto ax + b\n    Affine() :\
-    \ a(1), b(0) {};\n    Affine(S a, S b) : a(a), b(b) {}\n    friend ostream& operator<<(ostream&\
-    \ os, const Affine& aff) {\n        os << aff.a << \" \" << aff.b;\n        return\
-    \ os;\n    }\n\n    Affine& composition(const Affine& rhs) {\n        return *this\
-    \ = Affine(a * rhs.a, a * rhs.b + b);\n    }\n};\n\ntemplate <class S, class T>\n\
-    T AffineMap(Affine<S> f, T x) { return x.multiply(f.a).add(f.b); }\n\ntemplate\
-    \ <class S>\nAffine<S> AffineComposition(Affine<S> l, Affine<S> r) { return l.composition(r);\
-    \ }\n\ntemplate <class S>\nAffine<S> AffineUnit() { return Affine<S>(); }\n\n\
-    } // namespace homomorphism\n\n\n#line 7 \"segment_tree/utility/affinesum.hpp\"\
-    \n\ntemplate <class S>\nusing AffineSum =\n    LazySegTree<monoid::Sum<S>,\n \
-    \               monoid::SumOp<S>,\n                monoid::SumUnit<S>,\n     \
-    \           homomorphism::Affine<S>,\n                homomorphism::AffineMap<S,\
+    \ {\n    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));\n}\n\n} //\
+    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/affine.hpp\"\n\n\n\nnamespace\
+    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nstruct Affine {\n \
+    \   S a, b; // x \\mapsto ax + b\n    Affine() : a(1), b(0) {};\n    Affine(S\
+    \ a, S b) : a(a), b(b) {}\n    friend ostream& operator<<(ostream& os, const Affine&\
+    \ aff) {\n        os << aff.a << \" \" << aff.b;\n        return os;\n    }\n\n\
+    \    Affine& composition(const Affine& rhs) {\n        return *this = Affine(a\
+    \ * rhs.a, a * rhs.b + b);\n    }\n};\n\ntemplate <class S, class T>\nT AffineMap(Affine<S>\
+    \ f, T x) { return x.multiply(f.a).add(f.b); }\n\ntemplate <class S>\nAffine<S>\
+    \ AffineComposition(Affine<S> l, Affine<S> r) { return l.composition(r); }\n\n\
+    template <class S>\nAffine<S> AffineUnit() { return Affine<S>(); }\n\n} // namespace\
+    \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/affinesum.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AffineSum =\n    LazySegTree<monoid::Sum<S>,\n\
+    \                monoid::SumOp<S>,\n                monoid::SumUnit<S>,\n    \
+    \            homomorphism::Affine<S>,\n                homomorphism::AffineMap<S,\
     \ monoid::Sum<S>>,\n                homomorphism::AffineComposition<S>,\n    \
-    \            homomorphism::AffineUnit<S>>;\n\n\n"
+    \            homomorphism::AffineUnit<S>>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n#define SEGMENT_TREE_UTILITY_AFFINESUM_HPP\
     \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/sum.hpp\"\n#include\
-    \ \"../../others/homomorphism/affine.hpp\"\n\ntemplate <class S>\nusing AffineSum\
-    \ =\n    LazySegTree<monoid::Sum<S>,\n                monoid::SumOp<S>,\n    \
-    \            monoid::SumUnit<S>,\n                homomorphism::Affine<S>,\n \
-    \               homomorphism::AffineMap<S, monoid::Sum<S>>,\n                homomorphism::AffineComposition<S>,\n\
-    \                homomorphism::AffineUnit<S>>;\n\n#endif // SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n"
+    \ \"../../others/homomorphism/affine.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ S>\nusing AffineSum =\n    LazySegTree<monoid::Sum<S>,\n                monoid::SumOp<S>,\n\
+    \                monoid::SumUnit<S>,\n                homomorphism::Affine<S>,\n\
+    \                homomorphism::AffineMap<S, monoid::Sum<S>>,\n               \
+    \ homomorphism::AffineComposition<S>,\n                homomorphism::AffineUnit<S>>;\n\
+    \n} // namespace kk2\n\n#endif // SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n"
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
@@ -147,7 +150,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/affinesum.hpp
   requiredBy: []
-  timestamp: '2024-07-13 13:04:42+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/affinesum.hpp

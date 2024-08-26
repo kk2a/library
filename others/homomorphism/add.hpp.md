@@ -22,6 +22,9 @@ data:
 
 
 
+    namespace kk2 {
+
+
     namespace homomorphism {
 
 
@@ -46,6 +49,9 @@ data:
 
 
     } // namespace homomorphism
+
+
+    } // namespace kk2
 
 
 
@@ -55,6 +61,9 @@ data:
     #define OTHERS_HOMOMORPHISM_ADD_HPP 1
 
 
+    namespace kk2 {
+
+
     namespace homomorphism {
 
 
@@ -79,6 +88,9 @@ data:
 
 
     } // namespace homomorphism
+
+
+    } // namespace kk2
 
 
     #endif // OTHERS_HOMOMORPHISM_ADD_HPP
@@ -91,7 +103,7 @@ data:
   - segment_tree/utility/addmin.hpp
   - segment_tree/utility/addsum.hpp
   - segment_tree/utility/addmax.hpp
-  timestamp: '2024-07-07 19:16:06+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: others/homomorphism/add.hpp

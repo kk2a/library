@@ -14,16 +14,16 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"modint/mont_arb.hpp\"\n\n\n\ntemplate <typename Int, typename\
-    \ UInt, typename Long, typename ULong, int id>\nstruct ArbitraryLazyMontgomeryModIntBase\
-    \ {\n    using mint = ArbitraryLazyMontgomeryModIntBase;\n\n    inline static\
-    \ UInt mod;\n    inline static UInt r;\n    inline static UInt n2;\n    static\
-    \ constexpr int bit_length = sizeof(UInt) * 8;\n\n    static UInt get_r() {\n\
-    \        UInt ret = mod;\n        while (mod * ret != 1) ret *= UInt(2) - mod\
-    \ * ret;\n        return ret;\n    }\n    static void setmod(UInt m) {\n     \
-    \   assert(m < (UInt(1u) << (bit_length - 2)));\n        assert((m & 1) == 1);\n\
-    \        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n    UInt _v;\n\n  \
-    \  ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n    ArbitraryLazyMontgomeryModIntBase(const\
+  bundledCode: "#line 1 \"modint/mont_arb.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
+    \ <typename Int, typename UInt, typename Long, typename ULong, int id>\nstruct\
+    \ ArbitraryLazyMontgomeryModIntBase {\n    using mint = ArbitraryLazyMontgomeryModIntBase;\n\
+    \n    inline static UInt mod;\n    inline static UInt r;\n    inline static UInt\
+    \ n2;\n    static constexpr int bit_length = sizeof(UInt) * 8;\n\n    static UInt\
+    \ get_r() {\n        UInt ret = mod;\n        while (mod * ret != 1) ret *= UInt(2)\
+    \ - mod * ret;\n        return ret;\n    }\n    static void setmod(UInt m) {\n\
+    \        assert(m < (UInt(1u) << (bit_length - 2)));\n        assert((m & 1) ==\
+    \ 1);\n        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n    UInt _v;\n\
+    \n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n    ArbitraryLazyMontgomeryModIntBase(const\
     \ Long &b)\n        : _v(reduce(ULong(b % mod + mod) * n2)) {}\n    \n    static\
     \ UInt reduce(const ULong &b) {\n        return (b + ULong(UInt(b) * UInt(-r))\
     \ * mod) >> bit_length;\n    }\n\n    mint& operator+=(const mint& b) {\n    \
@@ -56,17 +56,18 @@ data:
     \ unsigned int, long long,\n                                      unsigned long\
     \ long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit =\n\
     \    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long,\n      \
-    \                                __int128_t, __uint128_t, id>;\n\n\n"
-  code: "#ifndef MODINT_MONT_ARB_HPP\n#define MODINT_MONT_ARB_HPP 1\n\ntemplate <typename\
-    \ Int, typename UInt, typename Long, typename ULong, int id>\nstruct ArbitraryLazyMontgomeryModIntBase\
-    \ {\n    using mint = ArbitraryLazyMontgomeryModIntBase;\n\n    inline static\
-    \ UInt mod;\n    inline static UInt r;\n    inline static UInt n2;\n    static\
-    \ constexpr int bit_length = sizeof(UInt) * 8;\n\n    static UInt get_r() {\n\
-    \        UInt ret = mod;\n        while (mod * ret != 1) ret *= UInt(2) - mod\
-    \ * ret;\n        return ret;\n    }\n    static void setmod(UInt m) {\n     \
-    \   assert(m < (UInt(1u) << (bit_length - 2)));\n        assert((m & 1) == 1);\n\
-    \        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n    UInt _v;\n\n  \
-    \  ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n    ArbitraryLazyMontgomeryModIntBase(const\
+    \                                __int128_t, __uint128_t, id>;\n\n} // namespace\
+    \ kk2\n\n\n"
+  code: "#ifndef MODINT_MONT_ARB_HPP\n#define MODINT_MONT_ARB_HPP 1\n\nnamespace kk2\
+    \ {\n\ntemplate <typename Int, typename UInt, typename Long, typename ULong, int\
+    \ id>\nstruct ArbitraryLazyMontgomeryModIntBase {\n    using mint = ArbitraryLazyMontgomeryModIntBase;\n\
+    \n    inline static UInt mod;\n    inline static UInt r;\n    inline static UInt\
+    \ n2;\n    static constexpr int bit_length = sizeof(UInt) * 8;\n\n    static UInt\
+    \ get_r() {\n        UInt ret = mod;\n        while (mod * ret != 1) ret *= UInt(2)\
+    \ - mod * ret;\n        return ret;\n    }\n    static void setmod(UInt m) {\n\
+    \        assert(m < (UInt(1u) << (bit_length - 2)));\n        assert((m & 1) ==\
+    \ 1);\n        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n    UInt _v;\n\
+    \n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n    ArbitraryLazyMontgomeryModIntBase(const\
     \ Long &b)\n        : _v(reduce(ULong(b % mod + mod) * n2)) {}\n    \n    static\
     \ UInt reduce(const ULong &b) {\n        return (b + ULong(UInt(b) * UInt(-r))\
     \ * mod) >> bit_length;\n    }\n\n    mint& operator+=(const mint& b) {\n    \
@@ -99,14 +100,15 @@ data:
     \ unsigned int, long long,\n                                      unsigned long\
     \ long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit =\n\
     \    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long,\n      \
-    \                                __int128_t, __uint128_t, id>;\n\n#endif // MODINT_MONT_ARB_HPP\n"
+    \                                __int128_t, __uint128_t, id>;\n\n} // namespace\
+    \ kk2\n\n#endif // MODINT_MONT_ARB_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: modint/mont_arb.hpp
   requiredBy:
   - math_mod/mod_sqrt.hpp
   - fps/fps_sqrt.hpp
-  timestamp: '2024-05-04 17:40:23+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/mont_arb.hpp

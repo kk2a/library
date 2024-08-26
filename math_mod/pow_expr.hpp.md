@@ -26,9 +26,6 @@ data:
   - icon: ':warning:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  - icon: ':warning:'
-    path: math_mod/comb_large_arb.hpp
-    title: math_mod/comb_large_arb.hpp
   - icon: ':heavy_check_mark:'
     path: math_mod/primitive_rt_expr.hpp
     title: math_mod/primitive_rt_expr.hpp
@@ -53,18 +50,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math_mod/pow_expr.hpp\"\n\n\n\nconstexpr long long pow_mod_constexpr(long\
-    \ long x, long long n, long long m) {\n    if (m == 1) return 0;\n    unsigned\
-    \ long long _m = (unsigned long long)(m);\n    unsigned long long r = 1;\n   \
-    \ unsigned long long y = (x % m + m) % m;\n    while (n) {\n        if (n & 1)\
-    \ r = (r * y) % _m;\n        y = (y * y) % _m;\n        n >>= 1;\n    }\n    return\
-    \ r;\n}\n\n\n"
-  code: "#ifndef MOD_POW_EXPR_HPP\n#define MOD_POW_EXPR_HPP 1\n\nconstexpr long long\
-    \ pow_mod_constexpr(long long x, long long n, long long m) {\n    if (m == 1)\
-    \ return 0;\n    unsigned long long _m = (unsigned long long)(m);\n    unsigned\
-    \ long long r = 1;\n    unsigned long long y = (x % m + m) % m;\n    while (n)\
-    \ {\n        if (n & 1) r = (r * y) % _m;\n        y = (y * y) % _m;\n       \
-    \ n >>= 1;\n    }\n    return r;\n}\n\n#endif // MOD_POW_EXPR_HPP\n"
+  bundledCode: "#line 1 \"math_mod/pow_expr.hpp\"\n\n\n\nnamespace kk2 {\n\nconstexpr\
+    \ long long pow_mod_constexpr(long long x, long long n, long long m) {\n    if\
+    \ (m == 1) return 0;\n    unsigned long long _m = (unsigned long long)(m);\n \
+    \   unsigned long long r = 1;\n    unsigned long long y = (x % m + m) % m;\n \
+    \   while (n) {\n        if (n & 1) r = (r * y) % _m;\n        y = (y * y) % _m;\n\
+    \        n >>= 1;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n"
+  code: "#ifndef MOD_POW_EXPR_HPP\n#define MOD_POW_EXPR_HPP 1\n\nnamespace kk2 {\n\
+    \nconstexpr long long pow_mod_constexpr(long long x, long long n, long long m)\
+    \ {\n    if (m == 1) return 0;\n    unsigned long long _m = (unsigned long long)(m);\n\
+    \    unsigned long long r = 1;\n    unsigned long long y = (x % m + m) % m;\n\
+    \    while (n) {\n        if (n & 1) r = (r * y) % _m;\n        y = (y * y) %\
+    \ _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n#endif\
+    \ // MOD_POW_EXPR_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math_mod/pow_expr.hpp
@@ -75,12 +73,11 @@ data:
   - convolution/convo_arb.hpp
   - string/rolling_hash.hpp
   - math_mod/comb_large.hpp
-  - math_mod/comb_large_arb.hpp
   - math_mod/primitive_rt_expr.hpp
   - fps/ntt_friendly.hpp
   - fps/multivariate_fps.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-06-13 21:51:40+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

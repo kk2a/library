@@ -15,12 +15,12 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/beats_utility.hpp\"\n\n\n\n#line 1 \"segment_tree/beats.hpp\"\
-    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\ntemplate <class S,\n   \
-    \       S (*op)(S, S),\n          S (*e)(),\n          class F,\n          S (*mapping)(F,\
-    \ S),\n          F (*composition)(F, F),\n          F (*id)()>\nstruct LazySegTreeBase\
-    \ {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0) {}\n    LazySegTreeBase(int\
-    \ n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n    template <class... Args>\n\
-    \    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
+    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
+    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
+    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
+    \ (*id)()>\nstruct LazySegTreeBase {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0)\
+    \ {}\n    LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n\
+    \    template <class... Args>\n    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
     \ S(args...))) {}\n    LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size()))\
     \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
     \ = 1 << log;\n        d = vector<S>(2 * size, e());\n        lz = vector<F>(size,\
@@ -87,23 +87,27 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n    virtual void all_apply(int k, F f) = 0;\n    void push(int\
     \ k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n\
-    \        lz[k] = id();\n    }\n}; \n\n\n#line 5 \"segment_tree/beats.hpp\"\n\n\
-    template <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class\
-    \ F,\n          S (*mapping)(F, S),\n          F (*composition)(F, F),\n     \
-    \     F (*id)(),\n          bool (*fail)(S)>\nstruct SegTreeBeats : public LazySegTreeBase<S,\
-    \ op, e, F, mapping, composition, id> {\n    using LazySegTreeBase<S, op, e, F,\
-    \ mapping, composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int\
-    \ k, F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if\
-    \ (k < this->size) {\n            this->lz[k] = composition(f, this->lz[k]);\n\
+    \        lz[k] = id();\n    }\n}; \n\n} // namespace kk2\n\n\n#line 5 \"segment_tree/beats.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
+    \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
+    \ F),\n          F (*id)(),\n          bool (*fail)(S)>\nstruct SegTreeBeats :\
+    \ public LazySegTreeBase<S, op, e, F, mapping, composition, id> {\n    using LazySegTreeBase<S,\
+    \ op, e, F, mapping, composition, id>::LazySegTreeBase;\n  protected:\n    void\
+    \ all_apply(int k, F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n\
+    \        if (k < this->size) {\n            this->lz[k] = composition(f, this->lz[k]);\n\
     \            if (fail(this->d[k])) this->push(k), this->update(k);\n        }\n\
-    \    }\n};\n\n\n#line 5 \"segment_tree/beats_utility.hpp\"\n\nnamespace beats_utility\
-    \ {\n\n// hogehoge\n\n} // namespace beats_utility\n\n\n\n"
+    \    }\n};\n\n} // namespace kk2\n\n\n#line 5 \"segment_tree/beats_utility.hpp\"\
+    \n\nnamespace kk2 {\n\nnamespace beats_utility {\n\n// hogehoge\n\n} // namespace\
+    \ beats_utility\n\n} // namespace kk2\n\n\n"
   code: '#ifndef SEGMENT_TREE_BEATS_UTILITY_HPP
 
     #define SEGMENT_TREE_BEATS_UTILITY_HPP 1
 
 
     #include "beats.hpp"
+
+
+    namespace kk2 {
 
 
     namespace beats_utility {
@@ -115,6 +119,8 @@ data:
     } // namespace beats_utility
 
 
+    } // namespace kk2
+
 
     #endif // SEGMENT_TREE_BEATS_UTILITY_HPP
 
@@ -125,7 +131,7 @@ data:
   isVerificationFile: false
   path: segment_tree/beats_utility.hpp
   requiredBy: []
-  timestamp: '2024-07-13 13:04:42+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/beats_utility.hpp

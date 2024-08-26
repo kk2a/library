@@ -12,33 +12,34 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"matrix/matrix_F2.hpp\"\n\n\n\n#line 1 \"data_structure/my_bitset_fast.hpp\"\
-    \n\n\n\nstruct DynamicBitSet {\n    using T = DynamicBitSet;\n    using u128 =\
-    \ __uint128_t;\n    constexpr static int BLOCK_SIZE_LOG = 7;\n    constexpr static\
-    \ int BLOCK_SIZE = 1 << BLOCK_SIZE_LOG;\n    constexpr static int BLOCK_MASK =\
-    \ BLOCK_SIZE - 1;\n    constexpr static u128 ONE = 1;\n    int n;\n    vector<u128>\
-    \ block;\n\n    DynamicBitSet(int n_ = 0, bool x = 0) : n(n_) {\n        u128\
-    \ val = x ? -1 : 0;\n        block.assign((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG,\
-    \ val);\n        if (n & BLOCK_MASK) block.back() >>= BLOCK_SIZE - (n & BLOCK_MASK);\n\
-    \        // fit the last block\n    }\n\n    // Note that the string needs to\
-    \ be reversed.\n    // For example, if the input is \"1010\",\n    // the character\
-    \ at index 0 in the string is '1',\n    // but in the bitset it will be considered\
-    \ as index 0.\n    DynamicBitSet(const string& s) : n(s.size()) {\n        block.resize((n\
-    \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        set(s);\n    }\n\n    int size()\
-    \ const { return n; }\n\n    T& inplace_combine_top(const T& rhs) {\n        block.resize((n\
-    \ + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        if (!(n & BLOCK_MASK))\
-    \ {\n            copy(begin(rhs.block), end(rhs.block), begin(block) + (n >> BLOCK_SIZE_LOG));\n\
-    \            n += rhs.n;\n            return *this;\n        }\n        int start\
-    \ = BLOCK_SIZE - (n & BLOCK_MASK);\n        u128 start_mask = (ONE << start) -\
-    \ 1;\n        u128 end_mask = ~start_mask;\n        for (int i = 0; i < (rhs.n\
-    \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            u128 x = rhs.block[i];\n\
-    \            block[i + (n >> BLOCK_SIZE_LOG)] |= (x & start_mask) << (BLOCK_SIZE\
-    \ - start);\n            if (i + (n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE\
-    \ - 1) >> BLOCK_SIZE_LOG)\n                block[i + (n >> BLOCK_SIZE_LOG) + 1]\
-    \ |= (x & end_mask) >> start;\n        }\n        n += rhs.n;\n        return\
-    \ *this;\n    }\n\n    T combine_top(const T& rhs) const {\n        return T(*this).inplace_combine_top(rhs);\n\
-    \    }\n\n    T& inplace_combine_bottom(const T& rhs) {\n        block.resize((n\
-    \ + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        if (!(rhs.n & BLOCK_MASK))\
-    \ {\n            copy(begin(block), end(block), begin(block) + (rhs.n >> BLOCK_SIZE_LOG));\n\
+    \n\n\n\nnamespace kk2 {\n\nstruct DynamicBitSet {\n    using T = DynamicBitSet;\n\
+    \    using u128 = __uint128_t;\n    constexpr static int BLOCK_SIZE_LOG = 7;\n\
+    \    constexpr static int BLOCK_SIZE = 1 << BLOCK_SIZE_LOG;\n    constexpr static\
+    \ int BLOCK_MASK = BLOCK_SIZE - 1;\n    constexpr static u128 ONE = 1;\n    int\
+    \ n;\n    vector<u128> block;\n\n    DynamicBitSet(int n_ = 0, bool x = 0) : n(n_)\
+    \ {\n        u128 val = x ? -1 : 0;\n        block.assign((n + BLOCK_SIZE - 1)\
+    \ >> BLOCK_SIZE_LOG, val);\n        if (n & BLOCK_MASK) block.back() >>= BLOCK_SIZE\
+    \ - (n & BLOCK_MASK);\n        // fit the last block\n    }\n\n    // Note that\
+    \ the string needs to be reversed.\n    // For example, if the input is \"1010\"\
+    ,\n    // the character at index 0 in the string is '1',\n    // but in the bitset\
+    \ it will be considered as index 0.\n    DynamicBitSet(const string& s) : n(s.size())\
+    \ {\n        block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        set(s);\n\
+    \    }\n\n    int size() const { return n; }\n\n    T& inplace_combine_top(const\
+    \ T& rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
+    \        if (!(n & BLOCK_MASK)) {\n            copy(begin(rhs.block), end(rhs.block),\
+    \ begin(block) + (n >> BLOCK_SIZE_LOG));\n            n += rhs.n;\n          \
+    \  return *this;\n        }\n        int start = BLOCK_SIZE - (n & BLOCK_MASK);\n\
+    \        u128 start_mask = (ONE << start) - 1;\n        u128 end_mask = ~start_mask;\n\
+    \        for (int i = 0; i < (rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++)\
+    \ {\n            u128 x = rhs.block[i];\n            block[i + (n >> BLOCK_SIZE_LOG)]\
+    \ |= (x & start_mask) << (BLOCK_SIZE - start);\n            if (i + (n >> BLOCK_SIZE_LOG)\
+    \ + 1 < (n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG)\n                block[i\
+    \ + (n >> BLOCK_SIZE_LOG) + 1] |= (x & end_mask) >> start;\n        }\n      \
+    \  n += rhs.n;\n        return *this;\n    }\n\n    T combine_top(const T& rhs)\
+    \ const {\n        return T(*this).inplace_combine_top(rhs);\n    }\n\n    T&\
+    \ inplace_combine_bottom(const T& rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE\
+    \ - 1) >> BLOCK_SIZE_LOG);\n        if (!(rhs.n & BLOCK_MASK)) {\n           \
+    \ copy(begin(block), end(block), begin(block) + (rhs.n >> BLOCK_SIZE_LOG));\n\
     \            copy(begin(rhs.block), end(rhs.block), begin(block));\n         \
     \   n += rhs.n;\n            return *this;\n        }\n        int start = BLOCK_SIZE\
     \ - (rhs.n & BLOCK_MASK);\n        u128 start_mask = (ONE << start) - 1;\n   \
@@ -141,21 +142,21 @@ data:
     \ 1) >> BLOCK_SIZE_LOG; i++) {\n            reverse(begin(tmp[i]), end(tmp[i]));\n\
     \            res += tmp[i];\n        }\n        return res;\n    }\n\n    friend\
     \ ostream& operator<<(ostream& os, const T& bs) {\n        return os << bs.to_string();\n\
-    \    }\n};\n\n\n#line 5 \"matrix/matrix_F2.hpp\"\n\nstruct MatrixF2 {\n    using\
-    \ mat = MatrixF2;\n    int _h, _w;\n    vector<DynamicBitSet> _mat;\n\n    MatrixF2()\
-    \ : MatrixF2(0) {}\n    MatrixF2(int n) : MatrixF2(n, n) {}\n    MatrixF2(int\
-    \ h, int w) {\n        if (h == 0) {\n            _h = 0;\n            _w = w;\n\
-    \        }\n        else {\n            _h = h;\n            _w = w;\n       \
-    \     _mat.resize(h, DynamicBitSet(w));\n        }\n    }\n    MatrixF2(const\
-    \ vector<DynamicBitSet>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_)\
-    \ {}\n\n    int get_h() const { return _h; }\n    int get_w() const { return _w;\
-    \ }\n    \n    bool at(int i, int j) {\n        assert(0 <= i && i < _h);\n  \
-    \      assert(0 <= j && j < _w);\n        return _mat[i][j].val();\n    }\n\n\
-    \    class Proxy {\n        vector<DynamicBitSet>& bs;\n        int i;\n     \
-    \ public:\n        Proxy(vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_)\
-    \ {}\n        operator DynamicBitSet() const { return bs[i]; }\n\n        string\
-    \ to_string() const {\n            return bs[i].to_string();\n        }\n    \
-    \    string to_reversed_string() const {\n            return bs[i].to_reversed_string();\n\
+    \    }\n};\n\n} // namespace kk2\n\n\n#line 5 \"matrix/matrix_F2.hpp\"\n\nnamespace\
+    \ kk2 {\n\nstruct MatrixF2 {\n    using mat = MatrixF2;\n    int _h, _w;\n   \
+    \ vector<DynamicBitSet> _mat;\n\n    MatrixF2() : MatrixF2(0) {}\n    MatrixF2(int\
+    \ n) : MatrixF2(n, n) {}\n    MatrixF2(int h, int w) {\n        if (h == 0) {\n\
+    \            _h = 0;\n            _w = w;\n        }\n        else {\n       \
+    \     _h = h;\n            _w = w;\n            _mat.resize(h, DynamicBitSet(w));\n\
+    \        }\n    }\n    MatrixF2(const vector<DynamicBitSet>& mat_) : _h(mat_.size()),\
+    \ _w(mat_[0].size()), _mat(mat_) {}\n\n    int get_h() const { return _h; }\n\
+    \    int get_w() const { return _w; }\n    \n    bool at(int i, int j) {\n   \
+    \     assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n        return\
+    \ _mat[i][j].val();\n    }\n\n    class Proxy {\n        vector<DynamicBitSet>&\
+    \ bs;\n        int i;\n      public:\n        Proxy(vector<DynamicBitSet>& bs_,\
+    \ int i_) : bs(bs_), i(i_) {}\n        operator DynamicBitSet() const { return\
+    \ bs[i]; }\n\n        string to_string() const {\n            return bs[i].to_string();\n\
+    \        }\n        string to_reversed_string() const {\n            return bs[i].to_reversed_string();\n\
     \        }\n\n        Proxy& operator=(const string& s) {\n            bs[i].set_reversed(s);\n\
     \            return *this;\n        }\n        Proxy& operator=(const DynamicBitSet&\
     \ x) {\n            bs[i] = x;\n            return *this;\n        }\n       \
@@ -262,20 +263,21 @@ data:
     \ res[pivot]);\n            for (int j = 0; j < _h; j++) {\n                if\
     \ (j == i) continue;\n                if (buf[j][i]) {\n                    buf[j]\
     \ ^= buf[i];\n                    res[j] ^= res[i];\n                }\n     \
-    \       }\n        }\n        return mat(res);\n    }\n};\n\n\n"
+    \       }\n        }\n        return mat(res);\n    }\n};\n\n} // namespace kk2\n\
+    \n\n"
   code: "#ifndef MATRIX_MATRIX_F2_HPP\n#define MATRIX_MATRIX_F2_HPP 1\n\n#include\
-    \ \"../data_structure/my_bitset_fast.hpp\"\n\nstruct MatrixF2 {\n    using mat\
-    \ = MatrixF2;\n    int _h, _w;\n    vector<DynamicBitSet> _mat;\n\n    MatrixF2()\
-    \ : MatrixF2(0) {}\n    MatrixF2(int n) : MatrixF2(n, n) {}\n    MatrixF2(int\
-    \ h, int w) {\n        if (h == 0) {\n            _h = 0;\n            _w = w;\n\
-    \        }\n        else {\n            _h = h;\n            _w = w;\n       \
-    \     _mat.resize(h, DynamicBitSet(w));\n        }\n    }\n    MatrixF2(const\
-    \ vector<DynamicBitSet>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_)\
-    \ {}\n\n    int get_h() const { return _h; }\n    int get_w() const { return _w;\
-    \ }\n    \n    bool at(int i, int j) {\n        assert(0 <= i && i < _h);\n  \
-    \      assert(0 <= j && j < _w);\n        return _mat[i][j].val();\n    }\n\n\
-    \    class Proxy {\n        vector<DynamicBitSet>& bs;\n        int i;\n     \
-    \ public:\n        Proxy(vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_)\
+    \ \"../data_structure/my_bitset_fast.hpp\"\n\nnamespace kk2 {\n\nstruct MatrixF2\
+    \ {\n    using mat = MatrixF2;\n    int _h, _w;\n    vector<DynamicBitSet> _mat;\n\
+    \n    MatrixF2() : MatrixF2(0) {}\n    MatrixF2(int n) : MatrixF2(n, n) {}\n \
+    \   MatrixF2(int h, int w) {\n        if (h == 0) {\n            _h = 0;\n   \
+    \         _w = w;\n        }\n        else {\n            _h = h;\n          \
+    \  _w = w;\n            _mat.resize(h, DynamicBitSet(w));\n        }\n    }\n\
+    \    MatrixF2(const vector<DynamicBitSet>& mat_) : _h(mat_.size()), _w(mat_[0].size()),\
+    \ _mat(mat_) {}\n\n    int get_h() const { return _h; }\n    int get_w() const\
+    \ { return _w; }\n    \n    bool at(int i, int j) {\n        assert(0 <= i &&\
+    \ i < _h);\n        assert(0 <= j && j < _w);\n        return _mat[i][j].val();\n\
+    \    }\n\n    class Proxy {\n        vector<DynamicBitSet>& bs;\n        int i;\n\
+    \      public:\n        Proxy(vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_)\
     \ {}\n        operator DynamicBitSet() const { return bs[i]; }\n\n        string\
     \ to_string() const {\n            return bs[i].to_string();\n        }\n    \
     \    string to_reversed_string() const {\n            return bs[i].to_reversed_string();\n\
@@ -385,13 +387,14 @@ data:
     \ res[pivot]);\n            for (int j = 0; j < _h; j++) {\n                if\
     \ (j == i) continue;\n                if (buf[j][i]) {\n                    buf[j]\
     \ ^= buf[i];\n                    res[j] ^= res[i];\n                }\n     \
-    \       }\n        }\n        return mat(res);\n    }\n};\n\n#endif // MATRIX_MATRIX_F2_HPP\n"
+    \       }\n        }\n        return mat(res);\n    }\n};\n\n} // namespace kk2\n\
+    \n#endif // MATRIX_MATRIX_F2_HPP\n"
   dependsOn:
   - data_structure/my_bitset_fast.hpp
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2024-08-13 08:28:15+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/matrix_F2.hpp

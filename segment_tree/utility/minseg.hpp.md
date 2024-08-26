@@ -15,8 +15,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/minseg.hpp\"\n\n\n\n#line 1 \"segment_tree/seg.hpp\"\
-    \n\n\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SegTree {\npublic:\n\
-    \    SegTree() : SegTree(0) {}\n    SegTree(int n) : SegTree(std::vector<S>(n,\
+    \n\n\n\nnamespace kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct\
+    \ SegTree {\npublic:\n    SegTree() : SegTree(0) {}\n    SegTree(int n) : SegTree(std::vector<S>(n,\
     \ e())) {}\n    template <class... Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n,\
     \ S(args...))) {};\n    SegTree(const std::vector<S>& v) : _n(int(v.size())) {\n\
     \        log = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n \
@@ -59,38 +59,40 @@ data:
     \                return r + 1 - size;\n            }\n            sm = op(d[r],\
     \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\nprivate:\n\
     \    int _n, size, log;\n    std::vector<S> d;\n\n    void update(int k) { d[k]\
-    \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n\n#line 1 \"others/monoid/min.hpp\"\n\
-    \n\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool\
-    \ inf;\n    Min() : a(0), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_),\
-    \ inf(inf_) {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
-    \ os, const Min& min) {\n        os << (min.inf ? \"inf\" : to_string(min.a));\n\
-    \        return os;\n    }\n    friend istream& operator>>(istream& is, Min& min)\
-    \ {\n        is >> min.a;\n        min.inf = false;\n        return is;\n    }\n\
-    \    Min& operator=(const S& rhs) {\n        a = rhs;\n        inf = false;\n\
-    \        return *this;\n    }\n\n    Min& add(const S& rhs) {\n        if (inf)\
-    \ return *this;\n        a += rhs;\n        return *this;\n    }\n    Min& update(const\
-    \ S& rhs) {\n        a = rhs;\n        inf = false;\n        return *this;\n \
-    \   }\n    Min& op(const Min& rhs) {\n        if (rhs.inf) return *this;\n   \
-    \     if (inf) return *this = rhs;\n        a = min(a, rhs.a);\n        return\
-    \ *this;\n    }\n\n    bool is_inf() const { return inf; }\n};\n\ntemplate <class\
-    \ S>\nMin<S> MinOp(Min<S> l, Min<S> r) { return l.op(r); }\n\ntemplate <class\
-    \ S>\nMin<S> MinUnit() { return Min<S>(); }\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args>\nvector<monoid::Min<S>> GetVecMin(int n, Args... args)\
-    \ {\n    return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n}\n\n\n\n\
-    #line 6 \"segment_tree/utility/minseg.hpp\"\n\ntemplate <class S>\nusing MinSeg\
-    \ = SegTree<monoid::Min<S>,\n                       monoid::MinOp<S>,\n      \
-    \                 monoid::MinUnit<S>>;\n\n\n"
+    \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"others/monoid/min.hpp\"\
+    \n\n\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Min\
+    \ {\n    S a;\n    bool inf;\n    Min() : a(0), inf(true) {}\n    Min(S a_, bool\
+    \ inf_ = false) : a(a_), inf(inf_) {}\n    operator S() const { return a; }\n\
+    \    friend ostream& operator<<(ostream& os, const Min& min) {\n        os <<\
+    \ (min.inf ? \"inf\" : to_string(min.a));\n        return os;\n    }\n    friend\
+    \ istream& operator>>(istream& is, Min& min) {\n        is >> min.a;\n       \
+    \ min.inf = false;\n        return is;\n    }\n    Min& operator=(const S& rhs)\
+    \ {\n        a = rhs;\n        inf = false;\n        return *this;\n    }\n\n\
+    \    Min& add(const S& rhs) {\n        if (inf) return *this;\n        a += rhs;\n\
+    \        return *this;\n    }\n    Min& update(const S& rhs) {\n        a = rhs;\n\
+    \        inf = false;\n        return *this;\n    }\n    Min& op(const Min& rhs)\
+    \ {\n        if (rhs.inf) return *this;\n        if (inf) return *this = rhs;\n\
+    \        a = min(a, rhs.a);\n        return *this;\n    }\n\n    bool is_inf()\
+    \ const { return inf; }\n};\n\ntemplate <class S>\nMin<S> MinOp(Min<S> l, Min<S>\
+    \ r) { return l.op(r); }\n\ntemplate <class S>\nMin<S> MinUnit() { return Min<S>();\
+    \ }\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\nvector<monoid::Min<S>>\
+    \ GetVecMin(int n, Args... args) {\n    return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
+    }\n\n} // namespace kk2\n\n\n#line 6 \"segment_tree/utility/minseg.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S>\nusing MinSeg = SegTree<monoid::Min<S>,\n      \
+    \                 monoid::MinOp<S>,\n                       monoid::MinUnit<S>>;\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_MINSEG_HPP\n#define SEGMENT_TREE_UTILITY_MINSEG_HPP\
-    \ 1\n\n#include \"../seg.hpp\"\n#include \"../../others/monoid/min.hpp\"\n\ntemplate\
-    \ <class S>\nusing MinSeg = SegTree<monoid::Min<S>,\n                       monoid::MinOp<S>,\n\
-    \                       monoid::MinUnit<S>>;\n\n#endif // SEGMENT_TREE_UTILITY_MINSEG_HPP\n"
+    \ 1\n\n#include \"../seg.hpp\"\n#include \"../../others/monoid/min.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S>\nusing MinSeg = SegTree<monoid::Min<S>,\n      \
+    \                 monoid::MinOp<S>,\n                       monoid::MinUnit<S>>;\n\
+    \n} // namespace kk2\n\n#endif // SEGMENT_TREE_UTILITY_MINSEG_HPP\n"
   dependsOn:
   - segment_tree/seg.hpp
   - others/monoid/min.hpp
   isVerificationFile: false
   path: segment_tree/utility/minseg.hpp
   requiredBy: []
-  timestamp: '2024-07-13 13:04:42+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/minseg.hpp

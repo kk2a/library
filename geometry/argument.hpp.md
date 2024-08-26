@@ -12,19 +12,19 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"geometry/argument.hpp\"\n\n\n\n#line 1 \"geometry/point.hpp\"\
-    \n\n\n\nstruct Point {\n    using i64 = long long;\n    i64 x, y;\n    Point(i64\
-    \ x = 0, i64 y = 0) : x(x), y(y) {}\n    bool operator<(const Point& p) const\
-    \ {\n        return x != p.x ? x < p.x : y < p.y;\n    }\n    bool operator>(const\
-    \ Point& p) const {\n        return x != p.x ? x > p.x : y > p.y;\n    }\n   \
-    \ bool operator==(const Point& p) const {\n        return x == p.x && y == p.y;\n\
-    \    }\n    bool operator!=(const Point& p) const {\n        return x != p.x ||\
-    \ y != p.y;\n    }\n\n    Point& operator+=(const Point& p) {\n        x += p.x;\n\
-    \        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
-    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
-    \   }\n    Point& operator*=(i64 k) {\n        x *= k;\n        y *= k;\n    \
-    \    return *this;\n    }\n    Point& operator/=(i64 k) {\n        x /= k;\n \
-    \       y /= k;\n        return *this;\n    }\n\n    Point operator+(const Point&\
-    \ p) const {\n        return Point(*this) += p;\n    }\n    Point operator-(const\
+    \n\n\n\nnamespace kk2 {\n\nstruct Point {\n    using i64 = long long;\n    i64\
+    \ x, y;\n    Point(i64 x = 0, i64 y = 0) : x(x), y(y) {}\n    bool operator<(const\
+    \ Point& p) const {\n        return x != p.x ? x < p.x : y < p.y;\n    }\n   \
+    \ bool operator>(const Point& p) const {\n        return x != p.x ? x > p.x :\
+    \ y > p.y;\n    }\n    bool operator==(const Point& p) const {\n        return\
+    \ x == p.x && y == p.y;\n    }\n    bool operator!=(const Point& p) const {\n\
+    \        return x != p.x || y != p.y;\n    }\n\n    Point& operator+=(const Point&\
+    \ p) {\n        x += p.x;\n        y += p.y;\n        return *this;\n    }\n \
+    \   Point& operator-=(const Point& p) {\n        x -= p.x;\n        y -= p.y;\n\
+    \        return *this;\n    }\n    Point& operator*=(i64 k) {\n        x *= k;\n\
+    \        y *= k;\n        return *this;\n    }\n    Point& operator/=(i64 k) {\n\
+    \        x /= k;\n        y /= k;\n        return *this;\n    }\n\n    Point operator+(const\
+    \ Point& p) const {\n        return Point(*this) += p;\n    }\n    Point operator-(const\
     \ Point& p) const {\n        return Point(*this) -= p;\n    }\n    Point operator*(i64\
     \ k) const {\n        return Point(*this) *= k;\n    }\n    Point operator/(i64\
     \ k) const {\n        return Point(*this) /= k;\n    }\n\n    i64 dot(const Point&\
@@ -75,11 +75,26 @@ data:
     \  friend Point rotate270(const Point& p, const Point& O) {\n        return p.rotate270(O);\n\
     \    }\n\n    friend ostream& operator<<(ostream& os, const Point& p) {\n    \
     \    return os << p.x << \" \" << p.y;\n    }\n    friend istream& operator>>(istream&\
-    \ is, Point& p) {\n        return is >> p.x >> p.y;\n    }\n};\n\n\n#line 5 \"\
-    geometry/argument.hpp\"\n\ntemplate <int id>\nstruct ArgumentSort {\n    using\
-    \ i64 = long long;\n    static Point O;\n    static void setO(const Point& p)\
-    \ { O = p; }\n\n  private:\n    // p - O = (x, y) \n    // 1 : y < 0\n    // 2\
-    \ : y >= 0 and x >= 0\n    // 3 : otherwise\n    static int location(const Point&\
+    \ is, Point& p) {\n        return is >> p.x >> p.y;\n    }\n};\n\n} // namespace\
+    \ kk2\n\n\n#line 5 \"geometry/argument.hpp\"\n\nnamespace kk2 {\n\ntemplate <int\
+    \ id>\nstruct ArgumentSort {\n    using i64 = long long;\n    static Point O;\n\
+    \    static void setO(const Point& p) { O = p; }\n\n  private:\n    // p - O =\
+    \ (x, y) \n    // 1 : y < 0\n    // 2 : y >= 0 and x >= 0\n    // 3 : otherwise\n\
+    \    static int location(const Point& p) {\n        Point q = p - O;\n       \
+    \ return q.y < 0 ? 1 : q.x >= 0 ? 2 : 3;\n    }\n\n    static bool cmp(const Point&\
+    \ a, const Point& b) {\n        int loc_a = location(a), loc_b = location(b);\n\
+    \        i64 cr = cross(a, b, O);\n        return loc_a != loc_b ? loc_a < loc_b\
+    \ :\n               cr == 0 ? norm(a, O) < norm(b, O) : cr > 0;\n    }\n\n  public:\n\
+    \    static void argument_sort(vector<Point>& ps) {\n        sort(begin(ps), end(ps),\
+    \ cmp);\n    }\n\n    template <class ForwardIt>\n    static ForwardIt min_up_argument(ForwardIt\
+    \ first, ForwardIt last, const Point& p) {\n        return lower_bound(first,\
+    \ last, p, cmp);\n    }\n};\ntemplate <int id>\nPoint ArgumentSort<id>::O(0, 0);\n\
+    \n} // namespace kk2\n\n\n"
+  code: "#ifndef GEOMETRY_ARGUMENT_HPP\n#define GEOMETRY_ARGUMENT_HPP 1\n\n#include\
+    \ \"point.hpp\"\n\nnamespace kk2 {\n\ntemplate <int id>\nstruct ArgumentSort {\n\
+    \    using i64 = long long;\n    static Point O;\n    static void setO(const Point&\
+    \ p) { O = p; }\n\n  private:\n    // p - O = (x, y) \n    // 1 : y < 0\n    //\
+    \ 2 : y >= 0 and x >= 0\n    // 3 : otherwise\n    static int location(const Point&\
     \ p) {\n        Point q = p - O;\n        return q.y < 0 ? 1 : q.x >= 0 ? 2 :\
     \ 3;\n    }\n\n    static bool cmp(const Point& a, const Point& b) {\n       \
     \ int loc_a = location(a), loc_b = location(b);\n        i64 cr = cross(a, b,\
@@ -88,27 +103,14 @@ data:
     \ ps) {\n        sort(begin(ps), end(ps), cmp);\n    }\n\n    template <class\
     \ ForwardIt>\n    static ForwardIt min_up_argument(ForwardIt first, ForwardIt\
     \ last, const Point& p) {\n        return lower_bound(first, last, p, cmp);\n\
-    \    }\n};\ntemplate <int id>\nPoint ArgumentSort<id>::O(0, 0);\n\n\n"
-  code: "#ifndef GEOMETRY_ARGUMENT_HPP\n#define GEOMETRY_ARGUMENT_HPP 1\n\n#include\
-    \ \"point.hpp\"\n\ntemplate <int id>\nstruct ArgumentSort {\n    using i64 = long\
-    \ long;\n    static Point O;\n    static void setO(const Point& p) { O = p; }\n\
-    \n  private:\n    // p - O = (x, y) \n    // 1 : y < 0\n    // 2 : y >= 0 and\
-    \ x >= 0\n    // 3 : otherwise\n    static int location(const Point& p) {\n  \
-    \      Point q = p - O;\n        return q.y < 0 ? 1 : q.x >= 0 ? 2 : 3;\n    }\n\
-    \n    static bool cmp(const Point& a, const Point& b) {\n        int loc_a = location(a),\
-    \ loc_b = location(b);\n        i64 cr = cross(a, b, O);\n        return loc_a\
-    \ != loc_b ? loc_a < loc_b :\n               cr == 0 ? norm(a, O) < norm(b, O)\
-    \ : cr > 0;\n    }\n\n  public:\n    static void argument_sort(vector<Point>&\
-    \ ps) {\n        sort(begin(ps), end(ps), cmp);\n    }\n\n    template <class\
-    \ ForwardIt>\n    static ForwardIt min_up_argument(ForwardIt first, ForwardIt\
-    \ last, const Point& p) {\n        return lower_bound(first, last, p, cmp);\n\
-    \    }\n};\ntemplate <int id>\nPoint ArgumentSort<id>::O(0, 0);\n\n#endif // GEOMETRY_ARGUMENT_HPP\n"
+    \    }\n};\ntemplate <int id>\nPoint ArgumentSort<id>::O(0, 0);\n\n} // namespace\
+    \ kk2\n\n#endif // GEOMETRY_ARGUMENT_HPP\n"
   dependsOn:
   - geometry/point.hpp
   isVerificationFile: false
   path: geometry/argument.hpp
   requiredBy: []
-  timestamp: '2024-06-01 14:09:52+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/argument.hpp

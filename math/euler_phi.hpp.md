@@ -8,23 +8,24 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/euler_phi.hpp\"\n\n\n\nlong long euler_phi(long long\
-    \ a) {\n    long long res = a, now = a;\n    for (long long i = 2; i * i <= a;\
-    \ i++) {\n        if (now % i == 0) {\n            res /= i;\n            res\
-    \ *= i - 1;\n            while (now % i == 0) now /= i;\n        }\n    }\n  \
-    \  if (now > 1) {\n        res /= now;\n        res *= now - 1;\n    }\n    return\
-    \ res;\n}\n\n\n"
-  code: "#ifndef MATH_EULER_PHI_HPP\n#define MATH_EULER_PHI_HPP 1\n\nlong long euler_phi(long\
-    \ long a) {\n    long long res = a, now = a;\n    for (long long i = 2; i * i\
-    \ <= a; i++) {\n        if (now % i == 0) {\n            res /= i;\n         \
-    \   res *= i - 1;\n            while (now % i == 0) now /= i;\n        }\n   \
-    \ }\n    if (now > 1) {\n        res /= now;\n        res *= now - 1;\n    }\n\
-    \    return res;\n}\n\n#endif // MATH_EULER_PHI_HPP\n"
+  bundledCode: "#line 1 \"math/euler_phi.hpp\"\n\n\n\nnamespace kk2 {\n\nlong long\
+    \ euler_phi(long long a) {\n    long long res = a, now = a;\n    for (long long\
+    \ i = 2; i * i <= a; i++) {\n        if (now % i == 0) {\n            res /= i;\n\
+    \            res *= i - 1;\n            while (now % i == 0) now /= i;\n     \
+    \   }\n    }\n    if (now > 1) {\n        res /= now;\n        res *= now - 1;\n\
+    \    }\n    return res;\n}\n\n} // namespace kk2\n\n\n"
+  code: "#ifndef MATH_EULER_PHI_HPP\n#define MATH_EULER_PHI_HPP 1\n\nnamespace kk2\
+    \ {\n\nlong long euler_phi(long long a) {\n    long long res = a, now = a;\n \
+    \   for (long long i = 2; i * i <= a; i++) {\n        if (now % i == 0) {\n  \
+    \          res /= i;\n            res *= i - 1;\n            while (now % i ==\
+    \ 0) now /= i;\n        }\n    }\n    if (now > 1) {\n        res /= now;\n  \
+    \      res *= now - 1;\n    }\n    return res;\n}\n\n} // namespace kk2\n\n#endif\
+    \ // MATH_EULER_PHI_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/euler_phi.hpp
   requiredBy: []
-  timestamp: '2024-05-03 16:15:54+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/euler_phi.hpp

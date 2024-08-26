@@ -15,8 +15,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/sumseg.hpp\"\n\n\n\n#line 1 \"segment_tree/seg.hpp\"\
-    \n\n\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SegTree {\npublic:\n\
-    \    SegTree() : SegTree(0) {}\n    SegTree(int n) : SegTree(std::vector<S>(n,\
+    \n\n\n\nnamespace kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct\
+    \ SegTree {\npublic:\n    SegTree() : SegTree(0) {}\n    SegTree(int n) : SegTree(std::vector<S>(n,\
     \ e())) {}\n    template <class... Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n,\
     \ S(args...))) {};\n    SegTree(const std::vector<S>& v) : _n(int(v.size())) {\n\
     \        log = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n \
@@ -59,15 +59,15 @@ data:
     \                return r + 1 - size;\n            }\n            sm = op(d[r],\
     \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\nprivate:\n\
     \    int _n, size, log;\n    std::vector<S> d;\n\n    void update(int k) { d[k]\
-    \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n\n#line 1 \"others/monoid/sum.hpp\"\n\
-    \n\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n\
-    \    Sum() : a(0), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n\
-    \    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
-    \ os, const Sum& sum) {\n        os << sum.a;\n        return os;\n    }\n   \
-    \ friend istream& operator>>(istream& is, Sum& sum) {\n        is >> sum.a;\n\
-    \        sum.size = 1;\n        return is;\n    }\n    Sum& operator=(const S&\
-    \ rhs) {\n        a = rhs;\n        size = 1;\n        return *this;\n    }\n\n\
-    \    Sum& add(const S& rhs) {\n        a += rhs * size;\n        return *this;\n\
+    \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"others/monoid/sum.hpp\"\
+    \n\n\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Sum\
+    \ {\n    S a, size;\n    Sum() : a(0), size(0) {}\n    Sum(S a, S size = 1) :\
+    \ a(a), size(size) {}\n    operator S() const { return a; }\n    friend ostream&\
+    \ operator<<(ostream& os, const Sum& sum) {\n        os << sum.a;\n        return\
+    \ os;\n    }\n    friend istream& operator>>(istream& is, Sum& sum) {\n      \
+    \  is >> sum.a;\n        sum.size = 1;\n        return is;\n    }\n    Sum& operator=(const\
+    \ S& rhs) {\n        a = rhs;\n        size = 1;\n        return *this;\n    }\n\
+    \n    Sum& add(const S& rhs) {\n        a += rhs * size;\n        return *this;\n\
     \    }\n    Sum& update(const S& rhs) {\n        a = rhs * size;\n        return\
     \ *this;\n    }\n    Sum& multiply(const S& rhs) {\n        a *= rhs;\n      \
     \  return *this;\n    }\n    Sum& op(const Sum& rhs) {\n        a += rhs.a;\n\
@@ -75,21 +75,23 @@ data:
     \ S>\nSum<S> SumOp(Sum<S> l, Sum<S> r) { return l.op(r); }\n\ntemplate <class\
     \ S>\nSum<S> SumUnit() { return Sum<S>(); }\n\n} // namespace monoid\n\ntemplate\
     \ <class S, class... Args>\nvector<monoid::Sum<S>> GetVecSum(int n, Args... args)\
-    \ {\n    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));\n}\n\n\n#line\
-    \ 6 \"segment_tree/utility/sumseg.hpp\"\n\ntemplate <class S>\nusing SumSeg =\
-    \ SegTree<monoid::Sum<S>,\n                       monoid::SumOp<S>,\n        \
-    \               monoid::SumUnit<S>>;\n\n\n"
+    \ {\n    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));\n}\n\n} //\
+    \ namespace kk2\n\n\n#line 6 \"segment_tree/utility/sumseg.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S>\nusing SumSeg = SegTree<monoid::Sum<S>,\n      \
+    \                 monoid::SumOp<S>,\n                       monoid::SumUnit<S>>;\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_SUMSEG_HPP\n#define SEGMENT_TREE_UTILITY_SUMSEG_HPP\
-    \ 1\n\n#include \"../seg.hpp\"\n#include \"../../others/monoid/sum.hpp\"\n\ntemplate\
-    \ <class S>\nusing SumSeg = SegTree<monoid::Sum<S>,\n                       monoid::SumOp<S>,\n\
-    \                       monoid::SumUnit<S>>;\n\n#endif // SEGMENT_TREE_UTILITY_SUMSEG_HPP\n"
+    \ 1\n\n#include \"../seg.hpp\"\n#include \"../../others/monoid/sum.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S>\nusing SumSeg = SegTree<monoid::Sum<S>,\n      \
+    \                 monoid::SumOp<S>,\n                       monoid::SumUnit<S>>;\n\
+    \n} // namespace kk2\n\n#endif // SEGMENT_TREE_UTILITY_SUMSEG_HPP\n"
   dependsOn:
   - segment_tree/seg.hpp
   - others/monoid/sum.hpp
   isVerificationFile: false
   path: segment_tree/utility/sumseg.hpp
   requiredBy: []
-  timestamp: '2024-07-13 13:04:42+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/sumseg.hpp

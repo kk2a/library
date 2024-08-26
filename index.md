@@ -149,9 +149,6 @@ data:
       path: graph/graph.hpp
       title: graph/graph.hpp
     - icon: ':warning:'
-      path: graph/graph_utility.hpp
-      title: graph/graph_utility.hpp
-    - icon: ':warning:'
       path: graph/kruskal.hpp
       title: graph/kruskal.hpp
     - icon: ':warning:'
@@ -178,11 +175,11 @@ data:
       path: graph/tree/centroid.hpp
       title: graph/tree/centroid.hpp
     - icon: ':warning:'
+      path: graph/tree/diameter.hpp
+      title: graph/tree/diameter.hpp
+    - icon: ':warning:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: graph/tree/heavy_light_decomposition.hpp
-    - icon: ':warning:'
-      path: graph/tree/lca.hpp
-      title: graph/tree/lca.hpp
   - name: .
     pages:
     - icon: ':warning:'
@@ -216,9 +213,6 @@ data:
     - icon: ':warning:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
-    - icon: ':warning:'
-      path: math_mod/comb_large_arb.hpp
-      title: math_mod/comb_large_arb.hpp
     - icon: ':warning:'
       path: math_mod/garner.hpp
       title: math_mod/garner.hpp

@@ -20,12 +20,6 @@ data:
   - icon: ':warning:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  - icon: ':warning:'
-    path: math_mod/comb_large_arb.hpp
-    title: math_mod/comb_large_arb.hpp
-  - icon: ':warning:'
-    path: math_mod/comb_large_arb.hpp
-    title: math_mod/comb_large_arb.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
@@ -44,15 +38,16 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"fps/fps.hpp\"\n\n\n\n\ntemplate <class mint>\nstruct FormalPowerSeries\
-    \ : vector<mint> {\n    using vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
-    \n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
-    \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n       \
-    \ return *this;\n    }\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
-    \ this->resize(1);\n        (*this)[0] += r;\n        return *this;\n    }\n \
-    \   FPS &operator-=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
-    \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n       \
-    \ return *this;\n    }\n    FPS &operator-=(const mint &r) {\n        if (this->empty())\
+  bundledCode: "#line 1 \"fps/fps.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate <class\
+    \ mint>\nstruct FormalPowerSeries : vector<mint> {\n    using vector<mint>::vector;\n\
+    \    using FPS = FormalPowerSeries;\n\n    FPS &operator+=(const FPS &r) {\n \
+    \       if (this->size() < r.size()) this->resize(r.size());\n        for (int\
+    \ i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return *this;\n\
+    \    }\n    FPS &operator+=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
+    \        (*this)[0] += r;\n        return *this;\n    }\n    FPS &operator-=(const\
+    \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
+    \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n        return\
+    \ *this;\n    }\n    FPS &operator-=(const mint &r) {\n        if (this->empty())\
     \ this->resize(1);\n        (*this)[0] -= r;\n        return *this;\n    }\n \
     \   FPS &operator*=(const mint &r) {\n        for (int i = 0; i < (int)this->size();\
     \ i++) {\n            (*this)[i] *= r;\n        }\n        return *this;\n   \
@@ -195,18 +190,18 @@ data:
     \     FPS ret(*this);\n        return ret.inplace_iimos(n);\n    }\n\n    FPS\
     \ &operator*=(const FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this)\
     \ *= r; }\n    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
-    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\nnamespace\
-    \ kk2 {\n    template <class mint>\n    using FPS = FormalPowerSeries<mint>;\n\
-    }\n\n\n"
-  code: "#ifndef FPS_HPP\n#define FPS_HPP 1\n\n\ntemplate <class mint>\nstruct FormalPowerSeries\
-    \ : vector<mint> {\n    using vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
-    \n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
-    \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n       \
-    \ return *this;\n    }\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
-    \ this->resize(1);\n        (*this)[0] += r;\n        return *this;\n    }\n \
-    \   FPS &operator-=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
-    \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n       \
-    \ return *this;\n    }\n    FPS &operator-=(const mint &r) {\n        if (this->empty())\
+    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n} //\
+    \ namespace kk2\n\n\n"
+  code: "#ifndef FPS_HPP\n#define FPS_HPP 1\n\nnamespace kk2 {\n\ntemplate <class\
+    \ mint>\nstruct FormalPowerSeries : vector<mint> {\n    using vector<mint>::vector;\n\
+    \    using FPS = FormalPowerSeries;\n\n    FPS &operator+=(const FPS &r) {\n \
+    \       if (this->size() < r.size()) this->resize(r.size());\n        for (int\
+    \ i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return *this;\n\
+    \    }\n    FPS &operator+=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
+    \        (*this)[0] += r;\n        return *this;\n    }\n    FPS &operator-=(const\
+    \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
+    \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n        return\
+    \ *this;\n    }\n    FPS &operator-=(const mint &r) {\n        if (this->empty())\
     \ this->resize(1);\n        (*this)[0] -= r;\n        return *this;\n    }\n \
     \   FPS &operator*=(const mint &r) {\n        for (int i = 0; i < (int)this->size();\
     \ i++) {\n            (*this)[i] *= r;\n        }\n        return *this;\n   \
@@ -349,22 +344,19 @@ data:
     \     FPS ret(*this);\n        return ret.inplace_iimos(n);\n    }\n\n    FPS\
     \ &operator*=(const FPS &r);\n    FPS operator*(const FPS &r) const { return FPS(*this)\
     \ *= r; }\n    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
-    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\nnamespace\
-    \ kk2 {\n    template <class mint>\n    using FPS = FormalPowerSeries<mint>;\n\
-    }\n\n#endif // FPS_HPP\n"
+    \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n} //\
+    \ namespace kk2\n\n#endif // FPS_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/fps.hpp
   requiredBy:
   - convolution/convo_arb.hpp
   - math_mod/comb_large.hpp
-  - math_mod/comb_large_arb.hpp
-  - math_mod/comb_large_arb.hpp
   - fps/ntt_friendly.hpp
   - fps/multivariate_fps.hpp
   - fps/fps_arb.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-08-14 04:42:26+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

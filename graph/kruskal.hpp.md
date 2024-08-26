@@ -21,18 +21,18 @@ data:
     )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../unionfind/unionfind.hpp:\
     \ line -1: no such header\n"
   code: "#ifndef KRUSKAL_HPP\n#define KRUSKAL_HPP 1\n\n#include \"../unionfind/unionfind.hpp\"\
-    \n\nstruct Kruskal {\n    using i64 = long long;\n  private:\n    struct Edge\
-    \ {\n        i64 cost;\n        int from, to;\n        bool operator<(const Edge\
-    \ &e) const {\n            return cost < e.cost;\n        }\n    };\n    vector<Edge>\
-    \ edges;\n    int _n, _m;\n  public:\n    Kruskal(int n = 0) : _n(n), _m(0) {}\n\
-    \n    void add_edge(int from, int to, i64 cost) {\n        assert(0 <= from &&\
-    \ from < _n);\n        assert(0 <= to && to < _n);\n        _m++;\n        edges.eb(cost,\
-    \ from, to);\n    }\n\n    i64 query() {\n        sort(begin(edges), end(edges));\n\
-    \        UnionFind uf(_n);\n        i64 res = 0;\n        for (int i = 0; i <\
-    \ _m; i++) {\n            if (uf.same(edges[i].from, edges[i].to)) continue;\n\
-    \            uf.unite(edges[i].from, edges[i].to);\n            res += edges[i].cost;\n\
-    \        }\n        if (uf.size(0) != _n) return -1;\n        return res;\n  \
-    \  }\n};\n\n#endif // KRUSKAL_HPP\n"
+    \n\nnamespace kk2 {\n\nstruct Kruskal {\n    using i64 = long long;\n  private:\n\
+    \    struct Edge {\n        i64 cost;\n        int from, to;\n        bool operator<(const\
+    \ Edge &e) const {\n            return cost < e.cost;\n        }\n    };\n   \
+    \ vector<Edge> edges;\n    int _n, _m;\n  public:\n    Kruskal(int n = 0) : _n(n),\
+    \ _m(0) {}\n\n    void add_edge(int from, int to, i64 cost) {\n        assert(0\
+    \ <= from && from < _n);\n        assert(0 <= to && to < _n);\n        _m++;\n\
+    \        edges.eb(cost, from, to);\n    }\n\n    i64 query() {\n        sort(begin(edges),\
+    \ end(edges));\n        UnionFind uf(_n);\n        i64 res = 0;\n        for (int\
+    \ i = 0; i < _m; i++) {\n            if (uf.same(edges[i].from, edges[i].to))\
+    \ continue;\n            uf.unite(edges[i].from, edges[i].to);\n            res\
+    \ += edges[i].cost;\n        }\n        if (uf.size(0) != _n) return -1;\n   \
+    \     return res;\n    }\n};\n\n} // namespace kk2\n\n#endif // KRUSKAL_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/kruskal.hpp

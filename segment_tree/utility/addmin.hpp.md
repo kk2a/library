@@ -21,12 +21,12 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/addmin.hpp\"\n\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
-    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\ntemplate <class S,\n   \
-    \       S (*op)(S, S),\n          S (*e)(),\n          class F,\n          S (*mapping)(F,\
-    \ S),\n          F (*composition)(F, F),\n          F (*id)()>\nstruct LazySegTreeBase\
-    \ {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0) {}\n    LazySegTreeBase(int\
-    \ n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n    template <class... Args>\n\
-    \    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
+    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
+    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
+    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
+    \ (*id)()>\nstruct LazySegTreeBase {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0)\
+    \ {}\n    LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n\
+    \    template <class... Args>\n    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
     \ S(args...))) {}\n    LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size()))\
     \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
     \ = 1 << log;\n        d = vector<S>(2 * size, e());\n        lz = vector<F>(size,\
@@ -93,48 +93,51 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n    virtual void all_apply(int k, F f) = 0;\n    void push(int\
     \ k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n\
-    \        lz[k] = id();\n    }\n}; \n\n\n#line 5 \"segment_tree/lazy.hpp\"\n\n\
-    template <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class\
-    \ F,\n          S (*mapping)(F, S),\n          F (*composition)(F, F),\n     \
-    \     F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op, e, F, mapping,\
-    \ composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping, composition,\
-    \ id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k, F f) override\
-    \ {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k < this->size)\
-    \ this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n\n#line 1 \"others/monoid/min.hpp\"\
-    \n\n\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n   \
-    \ bool inf;\n    Min() : a(0), inf(true) {}\n    Min(S a_, bool inf_ = false)\
-    \ : a(a_), inf(inf_) {}\n    operator S() const { return a; }\n    friend ostream&\
-    \ operator<<(ostream& os, const Min& min) {\n        os << (min.inf ? \"inf\"\
-    \ : to_string(min.a));\n        return os;\n    }\n    friend istream& operator>>(istream&\
-    \ is, Min& min) {\n        is >> min.a;\n        min.inf = false;\n        return\
-    \ is;\n    }\n    Min& operator=(const S& rhs) {\n        a = rhs;\n        inf\
-    \ = false;\n        return *this;\n    }\n\n    Min& add(const S& rhs) {\n   \
-    \     if (inf) return *this;\n        a += rhs;\n        return *this;\n    }\n\
-    \    Min& update(const S& rhs) {\n        a = rhs;\n        inf = false;\n   \
-    \     return *this;\n    }\n    Min& op(const Min& rhs) {\n        if (rhs.inf)\
-    \ return *this;\n        if (inf) return *this = rhs;\n        a = min(a, rhs.a);\n\
-    \        return *this;\n    }\n\n    bool is_inf() const { return inf; }\n};\n\
-    \ntemplate <class S>\nMin<S> MinOp(Min<S> l, Min<S> r) { return l.op(r); }\n\n\
-    template <class S>\nMin<S> MinUnit() { return Min<S>(); }\n\n} // namespace monoid\n\
-    \ntemplate <class S, class... Args>\nvector<monoid::Min<S>> GetVecMin(int n, Args...\
-    \ args) {\n    return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n}\n\
-    \n\n\n#line 1 \"others/homomorphism/add.hpp\"\n\n\n\nnamespace homomorphism {\n\
-    \ntemplate <class S>\nusing Add = S;\n\ntemplate <class S, class T>\nT AddMap(Add<S>\
-    \ f, T x) { return x.add(f); }\n\ntemplate <class S>\nAdd<S> AddComposition(Add<S>\
-    \ l, Add<S> r) { return l + r; }\n\ntemplate <class S>\nAdd<S> AddUnit() { return\
-    \ Add<S>(); }\n\n} // namespace homomorphism\n\n\n#line 7 \"segment_tree/utility/addmin.hpp\"\
-    \n\ntemplate <class S>\nusing AddMin =\n    LazySegTree<monoid::Min<S>,\n    \
-    \            monoid::MinOp<S>,\n                monoid::MinUnit<S>,\n        \
-    \        homomorphism::Add<S>,\n                homomorphism::AddMap<S, monoid::Min<S>>,\n\
+    \        lz[k] = id();\n    }\n}; \n\n} // namespace kk2\n\n\n#line 5 \"segment_tree/lazy.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
+    \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
+    \ F),\n          F (*id)()>\nstruct LazySegTree : public LazySegTreeBase<S, op,\
+    \ e, F, mapping, composition, id> {\n    using LazySegTreeBase<S, op, e, F, mapping,\
+    \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
+    \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
+    \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
+    \ namespace kk2\n\n\n#line 1 \"others/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\
+    \nnamespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n\
+    \    Min() : a(0), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
+    \ {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
+    \ os, const Min& min) {\n        os << (min.inf ? \"inf\" : to_string(min.a));\n\
+    \        return os;\n    }\n    friend istream& operator>>(istream& is, Min& min)\
+    \ {\n        is >> min.a;\n        min.inf = false;\n        return is;\n    }\n\
+    \    Min& operator=(const S& rhs) {\n        a = rhs;\n        inf = false;\n\
+    \        return *this;\n    }\n\n    Min& add(const S& rhs) {\n        if (inf)\
+    \ return *this;\n        a += rhs;\n        return *this;\n    }\n    Min& update(const\
+    \ S& rhs) {\n        a = rhs;\n        inf = false;\n        return *this;\n \
+    \   }\n    Min& op(const Min& rhs) {\n        if (rhs.inf) return *this;\n   \
+    \     if (inf) return *this = rhs;\n        a = min(a, rhs.a);\n        return\
+    \ *this;\n    }\n\n    bool is_inf() const { return inf; }\n};\n\ntemplate <class\
+    \ S>\nMin<S> MinOp(Min<S> l, Min<S> r) { return l.op(r); }\n\ntemplate <class\
+    \ S>\nMin<S> MinUnit() { return Min<S>(); }\n\n} // namespace monoid\n\ntemplate\
+    \ <class S, class... Args>\nvector<monoid::Min<S>> GetVecMin(int n, Args... args)\
+    \ {\n    return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n}\n\n} //\
+    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/add.hpp\"\n\n\n\nnamespace\
+    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nusing Add = S;\n\n\
+    template <class S, class T>\nT AddMap(Add<S> f, T x) { return x.add(f); }\n\n\
+    template <class S>\nAdd<S> AddComposition(Add<S> l, Add<S> r) { return l + r;\
+    \ }\n\ntemplate <class S>\nAdd<S> AddUnit() { return Add<S>(); }\n\n} // namespace\
+    \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/addmin.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddMin =\n    LazySegTree<monoid::Min<S>,\n\
+    \                monoid::MinOp<S>,\n                monoid::MinUnit<S>,\n    \
+    \            homomorphism::Add<S>,\n                homomorphism::AddMap<S, monoid::Min<S>>,\n\
     \                homomorphism::AddComposition<S>,\n                homomorphism::AddUnit<S>>;\n\
-    \n\n"
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_ADDMIN_HPP\n#define SEGMENT_TREE_UTILITY_ADDMIN_HPP\
     \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/min.hpp\"\n#include\
-    \ \"../../others/homomorphism/add.hpp\"\n\ntemplate <class S>\nusing AddMin =\n\
-    \    LazySegTree<monoid::Min<S>,\n                monoid::MinOp<S>,\n        \
-    \        monoid::MinUnit<S>,\n                homomorphism::Add<S>,\n        \
-    \        homomorphism::AddMap<S, monoid::Min<S>>,\n                homomorphism::AddComposition<S>,\n\
-    \                homomorphism::AddUnit<S>>;\n\n#endif // SEGMENT_TREE_UTILITY_ADDMIN_HPP\n"
+    \ \"../../others/homomorphism/add.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ S>\nusing AddMin =\n    LazySegTree<monoid::Min<S>,\n                monoid::MinOp<S>,\n\
+    \                monoid::MinUnit<S>,\n                homomorphism::Add<S>,\n\
+    \                homomorphism::AddMap<S, monoid::Min<S>>,\n                homomorphism::AddComposition<S>,\n\
+    \                homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n#endif //\
+    \ SEGMENT_TREE_UTILITY_ADDMIN_HPP\n"
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
@@ -143,7 +146,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/addmin.hpp
   requiredBy: []
-  timestamp: '2024-07-13 13:04:42+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmin.hpp

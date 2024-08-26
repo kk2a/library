@@ -8,11 +8,11 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"matrix/matrix_field.hpp\"\n\n\n\ntemplate <class Field>\n\
-    struct MatrixField {\n    using mat = MatrixField;\n    MatrixField() : MatrixField(0)\
-    \ {}\n    MatrixField(int n) : MatrixField(n, n) {}\n    MatrixField(int h, int\
-    \ w) : MatrixField(vector<vector<Field>>(h, vector<Field>(w, Field()))) {}\n \
-    \   MatrixField(const vector<vector<Field>>& mat_) : _h(mat_.size()), _w(mat_[0].size()),\
+  bundledCode: "#line 1 \"matrix/matrix_field.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
+    \ <class Field>\nstruct MatrixField {\n    using mat = MatrixField;\n    MatrixField()\
+    \ : MatrixField(0) {}\n    MatrixField(int n) : MatrixField(n, n) {}\n    MatrixField(int\
+    \ h, int w) : MatrixField(vector<vector<Field>>(h, vector<Field>(w, Field())))\
+    \ {}\n    MatrixField(const vector<vector<Field>>& mat_) : _h(mat_.size()), _w(mat_[0].size()),\
     \ _mat(mat_) {}\n    \n    int get_h() const { return _h; }\n    int get_w() const\
     \ { return _w; }\n\n    Field at(int i, int j) const {\n        assert(0 <= i\
     \ && i < _h);\n        assert(0 <= j && j < _w);\n        return _mat[i][j];\n\
@@ -107,12 +107,12 @@ data:
     \ bool operator==(const mat& lhs, const mat& rhs) {\n        return lhs._mat ==\
     \ rhs._mat;\n    }\n    friend bool operator!=(const mat& lhs, const mat& rhs)\
     \ {\n        return lhs._mat != rhs._mat;\n    }\n\n\n  private:\n    int _h,\
-    \ _w;\n    vector<vector<Field>> _mat;\n};\n\n\n"
-  code: "#ifndef MATRIX_HPP\n#define MATRIX_HPP 1\n\ntemplate <class Field>\nstruct\
-    \ MatrixField {\n    using mat = MatrixField;\n    MatrixField() : MatrixField(0)\
-    \ {}\n    MatrixField(int n) : MatrixField(n, n) {}\n    MatrixField(int h, int\
-    \ w) : MatrixField(vector<vector<Field>>(h, vector<Field>(w, Field()))) {}\n \
-    \   MatrixField(const vector<vector<Field>>& mat_) : _h(mat_.size()), _w(mat_[0].size()),\
+    \ _w;\n    vector<vector<Field>> _mat;\n};\n\n} // namespace kk2\n\n\n"
+  code: "#ifndef MATRIX_HPP\n#define MATRIX_HPP 1\n\nnamespace kk2 {\n\ntemplate <class\
+    \ Field>\nstruct MatrixField {\n    using mat = MatrixField;\n    MatrixField()\
+    \ : MatrixField(0) {}\n    MatrixField(int n) : MatrixField(n, n) {}\n    MatrixField(int\
+    \ h, int w) : MatrixField(vector<vector<Field>>(h, vector<Field>(w, Field())))\
+    \ {}\n    MatrixField(const vector<vector<Field>>& mat_) : _h(mat_.size()), _w(mat_[0].size()),\
     \ _mat(mat_) {}\n    \n    int get_h() const { return _h; }\n    int get_w() const\
     \ { return _w; }\n\n    Field at(int i, int j) const {\n        assert(0 <= i\
     \ && i < _h);\n        assert(0 <= j && j < _w);\n        return _mat[i][j];\n\
@@ -207,12 +207,13 @@ data:
     \ bool operator==(const mat& lhs, const mat& rhs) {\n        return lhs._mat ==\
     \ rhs._mat;\n    }\n    friend bool operator!=(const mat& lhs, const mat& rhs)\
     \ {\n        return lhs._mat != rhs._mat;\n    }\n\n\n  private:\n    int _h,\
-    \ _w;\n    vector<vector<Field>> _mat;\n};\n\n#endif // MATRIX_HPP\n"
+    \ _w;\n    vector<vector<Field>> _mat;\n};\n\n} // namespace kk2\n\n#endif //\
+    \ MATRIX_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: matrix/matrix_field.hpp
   requiredBy: []
-  timestamp: '2024-08-22 00:49:33+09:00'
+  timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/matrix_field.hpp
