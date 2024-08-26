@@ -3,6 +3,8 @@
 
 #include "point.hpp"
 
+namespace kk2 {
+
 template <int id>
 struct ArgumentSort {
     using i64 = long long;
@@ -38,5 +40,7 @@ struct ArgumentSort {
 };
 template <int id>
 Point ArgumentSort<id>::O(0, 0);
+
+} // namespace kk2
 
 #endif // GEOMETRY_ARGUMENT_HPP

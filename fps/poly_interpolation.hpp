@@ -4,6 +4,8 @@
 #include "multi_eval.hpp"
 #include "chirp_Z.hpp"
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 FPS PolyInterpolation(const vector<mint> &x,
                       const vector<mint> &y) {
@@ -90,5 +92,7 @@ FPS PolyInterpolationGeo(const mint &a, const mint &r,
     }
     return ret;
 }
+
+} // namespace kk2
 
 #endif // FPS_POLYNOMIAL_INTERPOLATION_HPP

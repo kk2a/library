@@ -4,6 +4,8 @@
 #include "poly_gcd.hpp"
 #include "mod_pow.hpp"
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 vector<mint> find_root(FPS f) {
     long long p = mint::getmod();
@@ -32,5 +34,7 @@ vector<mint> find_root(FPS f) {
     }
     return res;
 }
+
+} // namespace kk2
 
 #endif // FIND_ROOT_HPP

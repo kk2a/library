@@ -4,6 +4,8 @@
 #include "fps.hpp"
 #include "../convolution/convo_arb.hpp"
 
+namespace kk2 {
+
 template <class mint>
 void FormalPowerSeries<mint>::but() {
     exit(1);
@@ -56,5 +58,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg=-1) const {
     }
     return ret.pre(deg);
 }
+
+} // namespace kk2
 
 #endif // FPS_ARB_HPP

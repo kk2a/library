@@ -3,6 +3,8 @@
 
 #include "../shortest_path.hpp"
 
+namespace kk2 {
+
 template <class G>
 pair<int, vector<int>> tree_diameter(const G& g) {
     vector<int> dist(g.size(), -1), par(g.size(), -1);
@@ -45,5 +47,7 @@ pair<T, vector<int>> weighted_tree_diameter(const WG& g) {
     reverse(begin(path), end(path));
     return make_pair(dist2[v], path);
 }
+
+} // namespace kk2
 
 #endif // GRAPH_TREE_DIAMETER_HPP

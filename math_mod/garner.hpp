@@ -3,6 +3,8 @@
 
 #include "inv.hpp"
 
+namespace kk2 {
+
 long long garner(const vector<long long>& d, const vector<long long>& p) {
     static int nm = d.size();
     vector<long long> kp(nm + 1, 0), rmult(nm + 1, 1);
@@ -16,5 +18,7 @@ long long garner(const vector<long long>& d, const vector<long long>& p) {
     }
     return kp[nm];
 }
+
+} // namespace kk2
 
 #endif // MOD_GARNER_HPP

@@ -5,6 +5,8 @@
 #include "../fps/sample_point_shift.hpp"
 #include "comb.hpp"
 
+namespace kk2 {
+
 template <class mint>
 struct CombLarge {
     using FPS = FormalPowerSeries<mint>;
@@ -114,5 +116,7 @@ struct CombLarge {
         return res;
     }
 };
+
+} // namespace kk2
 
 #endif // MOD_COMB_LARGE_HPP

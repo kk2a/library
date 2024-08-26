@@ -3,6 +3,8 @@
 
 #include "lazy_base.hpp"
 
+namespace kk2 {
+
 template <class S,
           S (*op)(S, S),
           S (*e)(),
@@ -22,5 +24,7 @@ struct SegTreeBeats : public LazySegTreeBase<S, op, e, F, mapping, composition, 
         }
     }
 };
+
+} // namespace kk2
 
 #endif // SEGMENT_TREE_BEATS_HPP

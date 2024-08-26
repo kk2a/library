@@ -1,6 +1,7 @@
 #ifndef FPS_PRODUCT_HPP
 #define FPS_PRODUCT_HPP 1
 
+namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
 FPS all_prod(const vector<FPS> &a) {
@@ -14,5 +15,7 @@ FPS inner_all_prod(const vector<FPS> &a, int l, int r) {
     int m = (l + r) >> 1;
     return inner_all_prod(a, l, m) * inner_all_prod(a, m, r);
 }
+
+} // namespace kk2
 
 #endif // FPS_PRODUCT_HPP

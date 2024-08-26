@@ -1,6 +1,8 @@
 #ifndef UNIONFIND_ROLLBACK_HPP
 #define UNIONFIND_ROLLBACK_HPP 1
 
+namespace kk2 {
+
 struct UnionFind_rollback {
     vector<int> d;
     vector<pair<int, int>> hist;
@@ -33,5 +35,6 @@ struct UnionFind_rollback {
     }
 };
 
+} // namespace kk2
 
 #endif // UNIONFIND_ROLLBACK_HPP

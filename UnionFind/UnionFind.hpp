@@ -1,6 +1,8 @@
 #ifndef UNIONFIND_HPP
 #define UNIONFIND_HPP 1
 
+namespace kk2 {
+
 struct UnionFind {
     vector<int> d;
     UnionFind(int n = 0) : d(n, -1) {}
@@ -20,5 +22,6 @@ struct UnionFind {
     int size(int x) { return -d[find(x)]; }
 };
 
+} // namespace kk2
 
 #endif // UNIONFIND_HPP

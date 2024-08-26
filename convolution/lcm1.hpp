@@ -3,6 +3,8 @@
 
 #include "../math/Eratosthenes.hpp"
 
+namespace kk2 {
+
 // 1-indexed
 template <class FPS, class mint = typename FPS::value_type> 
 FPS convolution_lcm(FPS& a, FPS b) {
@@ -33,5 +35,7 @@ FPS convolution_lcm(FPS& a, FPS b) {
 
     return a;
 }
+
+} // namespace kk2
 
 #endif // CONVOLUTION_LCM

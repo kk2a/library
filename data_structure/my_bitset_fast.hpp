@@ -1,6 +1,8 @@
 #ifndef DATA_STRUCTURE_MY_BITSET_FAST_HPP
 #define DATA_STRUCTURE_MY_BITSET_FAST_HPP 1
 
+namespace kk2 {
+
 struct DynamicBitSet {
     using T = DynamicBitSet;
     using u128 = __uint128_t;
@@ -297,5 +299,7 @@ struct DynamicBitSet {
         return os << bs.to_string();
     }
 };
+
+} // namespace kk2
 
 #endif // DATA_STRUCTURE_MY_BITSET_FAST_HPP

@@ -5,6 +5,8 @@
 #include "../../others/monoid/min.hpp"
 #include "../../others/homomorphism/add.hpp"
 
+namespace kk2 {
+
 template <class S>
 using AddMin =
     LazySegTree<monoid::Min<S>,
@@ -14,5 +16,7 @@ using AddMin =
                 homomorphism::AddMap<S, monoid::Min<S>>,
                 homomorphism::AddComposition<S>,
                 homomorphism::AddUnit<S>>;
+
+} // namespace kk2
 
 #endif // SEGMENT_TREE_UTILITY_ADDMIN_HPP

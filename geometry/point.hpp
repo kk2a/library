@@ -1,6 +1,8 @@
 #ifndef GEOMETRY_POINT_HPP
 #define GEOMETRY_POINT_HPP 1
 
+namespace kk2 {
+
 struct Point {
     using i64 = long long;
     i64 x, y;
@@ -191,5 +193,7 @@ struct Point {
         return is >> p.x >> p.y;
     }
 };
+
+} // namespace kk2
 
 #endif // GEOMETRY_POINT_HPP

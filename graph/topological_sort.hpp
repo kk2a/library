@@ -1,6 +1,8 @@
 #ifndef TOPOLOGICAL_SORT_HPP
 #define TOPOLOGICAL_SORT_HPP 1
 
+namespace kk2 {
+
 template <class G>
 vector<int> topological_sort(const G& graph) {
 	int siz = size(graph);
@@ -19,5 +21,7 @@ vector<int> topological_sort(const G& graph) {
 	}
 	return res;
 }
+
+} // namespace kk2
 
 #endif // TOPOLOGICAL_SORT_HPP

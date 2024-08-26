@@ -1,6 +1,8 @@
 #ifndef CONVOLUTION_OR
 #define CONVOLUTION_OR 1
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_or(FPS& a, FPS b) {
     int n = int(size(a));  // == int(size(b)
@@ -32,5 +34,7 @@ FPS convolution_or(FPS& a, FPS b) {
 
     return a;
 }
+
+} // namespace kk2
 
 #endif // CONVOLUTION_OR

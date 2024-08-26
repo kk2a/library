@@ -3,6 +3,8 @@
 
 #include "../math_mod/pow_expr.hpp"
 
+namespace kk2 {
+
 // setbase() must be called before using Hash
 struct RollingHash {
     struct Hash {
@@ -135,7 +137,6 @@ struct RollingHash {
 int RollingHash::base[5] = {3, 3, 3, 3, 3};
 int RollingHash::basei[5] = {332748118, 333333336, 666666673, 666666681, 666666689};
 
-namespace kk2 {
 
 using Roliha = RollingHash;
 

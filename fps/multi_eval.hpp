@@ -1,6 +1,7 @@
 #ifndef FPS_MULTI_EVAL_HPP
 #define FPS_MULTI_EVAL_HPP 1
 
+namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
 struct MultiPointEvaluation {
@@ -73,5 +74,7 @@ vector<mint> MultiEval(vector<mint> v, FPS f) {
     MultiPointEvaluation<mint, FPS> mpe(v, f);
     return mpe.query();
 }
+
+} // namespace kk2
 
 #endif // FPS_MULTI_EVAL_HPP

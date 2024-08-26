@@ -3,6 +3,8 @@
 
 #include "../unionfind/unionfind.hpp"
 
+namespace kk2 {
+
 struct Kruskal {
     using i64 = long long;
   private:
@@ -38,5 +40,7 @@ struct Kruskal {
         return res;
     }
 };
+
+} // namespace kk2
 
 #endif // KRUSKAL_HPP

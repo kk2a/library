@@ -3,6 +3,8 @@
 
 #include "convolution.hpp"
 
+namespace kk2 {
+
 // reference: https://rushcheyo.blog.uoj.ac/blog/6547
 // 日本語: https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
 template <class FPS, class mint = typename FPS::value_type>
@@ -39,5 +41,7 @@ FPS multi_convolution_truncated(FPS& a, const FPS& b, const vector<int>& base) {
     for (int i = 0; i < n; i++) a[i] = f[chi[i]][i] * iz;
     return a;
 }
+
+} // namespace kk2
 
 #endif // CONVOLUTION_MULTI_ZERO

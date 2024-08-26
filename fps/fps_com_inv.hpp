@@ -3,6 +3,8 @@
 
 #include "power_projection.hpp"
 
+namespace kk2 {
+
 // calculate f ^ {-1} (X)  mod X ^ deg
 template <class FPS, class mint = typename FPS::value_type>
 FPS compositional_inv(FPS f, int deg = -1) {
@@ -19,5 +21,7 @@ FPS compositional_inv(FPS f, int deg = -1) {
     g *= f[1].inv();
     return (g << 1).pre(deg);
 }
+
+} // namespace kk2
 
 #endif // FPS_COMPOSITION_INVERSION_HPP

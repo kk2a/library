@@ -1,6 +1,8 @@
 #ifndef OTHERS_HOMOMORPHISM_AFFINE_HPP
 #define OTHERS_HOMOMORPHISM_AFFINE_HPP 1
 
+namespace kk2 {
+
 namespace homomorphism {
 
 template <class S>
@@ -28,5 +30,7 @@ template <class S>
 Affine<S> AffineUnit() { return Affine<S>(); }
 
 } // namespace homomorphism
+
+} // namespace kk2
 
 #endif // OTHERS_HOMOMORPHISM_AFFINE_HPP

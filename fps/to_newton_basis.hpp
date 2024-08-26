@@ -1,6 +1,8 @@
 #ifndef FPS_TO_NEWTON_BASIS_HPP
 #define FPS_TO_NEWTON_BASIS_HPP 1
 
+namespace kk2 {
+
 // return b s.t. f(X) = \sum_{i = 0} ^ {n - 1} b_i \prod_{j = 0} ^ {i - 1} (X - p_j)
 template <class FPS, class mint = typename FPS::value_type>
 vector<mint> convert_to_newton_basis(FPS f, vector<mint> p) {
@@ -35,5 +37,7 @@ vector<mint> convert_to_newton_basis(FPS f, vector<mint> p) {
     }
     return b;
 }
+
+} // namespace kk2
 
 #endif  // FPS_TO_NEWTON_BASIS_HPP

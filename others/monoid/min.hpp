@@ -1,6 +1,8 @@
 #ifndef OTHERS_MONOID_MIN_HPP
 #define OTHERS_MONOID_MIN_HPP 1
 
+namespace kk2 {
+
 namespace monoid {
 
 template <class S>
@@ -58,5 +60,6 @@ vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
     return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));
 }
 
+} // namespace kk2
 
 #endif // OTHERS_MONOID_MIN_HPP

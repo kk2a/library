@@ -1,6 +1,8 @@
 #ifndef GRAPH_LOWLINK_HPP
 #define GRAPH_LOWLINK_HPP 1
 
+namespace kk2 {
+
 template <class G>
 struct LowLink {
     int n, m;
@@ -37,5 +39,7 @@ struct LowLink {
         }
     }
 };
+
+} // namespace kk2
 
 #endif // GRAPH_LOWLINK_HPP

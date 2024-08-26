@@ -1,6 +1,7 @@
 #ifndef FPS_HPP
 #define FPS_HPP 1
 
+namespace kk2 {
 
 template <class mint>
 struct FormalPowerSeries : vector<mint> {
@@ -398,9 +399,6 @@ struct FormalPowerSeries : vector<mint> {
     FPS exp(int deg = -1) const;
 };
 
-namespace kk2 {
-    template <class mint>
-    using FPS = FormalPowerSeries<mint>;
-}
+} // namespace kk2
 
 #endif // FPS_HPP

@@ -3,6 +3,8 @@
 
 #include "lowlink.hpp"
 
+namespace kk2 {
+
 template <class G>
 struct BCC : LowLink<G> {
     BCC(const G &g_) : LowLink<G>(g_) { init(); }
@@ -76,5 +78,7 @@ struct BCC : LowLink<G> {
         return res;
     }
 };
+
+} // namespace kk2
 
 #endif // GRAPH_BCC_HPP

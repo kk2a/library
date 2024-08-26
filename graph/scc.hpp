@@ -1,6 +1,8 @@
 #ifndef GRAPH_SCC_HPP
 #define GRAPH_SCC_HPP 1
 
+namespace kk2 {
+
 template <class G>
 struct SCC {
     int n, m;
@@ -54,5 +56,7 @@ struct SCC {
         }
     }
 };
+
+} // namespace kk2
 
 #endif // GRAPH_SCC_HPP

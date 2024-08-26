@@ -5,6 +5,8 @@
 #include "../../others/monoid/max.hpp"
 #include "../../others/homomorphism/update.hpp"
 
+namespace kk2 {
+
 template <class S>
 using UpdateMax =
     LazySegTree<monoid::Max<S>,
@@ -14,5 +16,7 @@ using UpdateMax =
                 homomorphism::UpdateMap<S, monoid::Max<S>>,
                 homomorphism::UpdateComposition<S>,
                 homomorphism::UpdateUnit<S>>;
+
+} // namespace kk2
 
 #endif // SEGMENT_TREE_UTILITY_UPDATEMAX_HPP

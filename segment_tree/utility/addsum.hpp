@@ -5,6 +5,8 @@
 #include "../../others/monoid/sum.hpp"
 #include "../../others/homomorphism/add.hpp"
 
+namespace kk2 {
+
 template <class S>
 using AddSum =
     LazySegTree<monoid::Sum<S>,
@@ -14,5 +16,7 @@ using AddSum =
                 homomorphism::AddMap<S, monoid::Sum<S>>,
                 homomorphism::AddComposition<S>,
                 homomorphism::AddUnit<S>>;
+
+} // namespace kk2
 
 #endif // SEGMENT_TREE_UTILITY_ADDSUM_HPP

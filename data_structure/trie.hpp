@@ -1,6 +1,8 @@
 #ifndef DATA_STRUCTURE_TRIE_HPP
 #define DATA_STRUCTURE_TRIE_HPP 1
 
+namespace kk2 {
+
 template <int char_size>
 struct TrieNode {
     int nxt[char_size];
@@ -69,5 +71,7 @@ struct Trie {
         return (int)nodes[node_idx].accept.size() + nodes[node_idx].exist;
     }
 };
+
+} // namespace kk2
 
 #endif // DATA_STRUCTURE_TRIE_HPP

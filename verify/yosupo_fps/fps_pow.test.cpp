@@ -4,8 +4,8 @@
 #include "../../modint/mont.hpp"
 #include "../../fps/ntt_friendly.hpp"
 
-using mint = Mont<mod>;
-using FPS = FormalPowerSeries<mint>;
+using mint = kk2::Mont<mod>;
+using FPS = kk2::FormalPowerSeries<mint>;
 
 int main () {
     int n;

@@ -1,6 +1,8 @@
 #ifndef MODINT_MONT_HPP
 #define MODINT_MONT_HPP 1
 
+namespace kk2 {
+
 template <int p>
 struct LazyMontgomeryModInt {
     using mint = LazyMontgomeryModInt;
@@ -89,7 +91,6 @@ struct LazyMontgomeryModInt {
 template <int p>
 using Mont = LazyMontgomeryModInt<p>;
 
-namespace kk2 {
 
 using Mont998 = Mont<998244353>;
 using Mont107 = Mont<1000000007>;

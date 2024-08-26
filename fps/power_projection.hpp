@@ -1,6 +1,8 @@
 #ifndef POWER_PROJECTION_HPP
 #define POWER_PROJECTION_HPP 1
 
+namespace kk2 {
+
 // n = \deg f - 1
 // [X ^ n] f(X) ^ i g(X)  enumerate for i = 0, ... , m 
 template <class FPS, class mint = typename FPS::value_type>
@@ -122,5 +124,7 @@ FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
     return (s.rev() * (t + (FPS{1} << k)).
            rev().inv(m + 1)).pre(m + 1);
 }
+
+} // namespace kk2
 
 #endif // POWER_PROJECTION_HPP

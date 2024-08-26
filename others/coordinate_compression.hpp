@@ -1,6 +1,7 @@
 #ifndef OTHERS_COORDINATE_COMPRESSION_HPP
 #define OTHERS_COORDINATE_COMPRESSION_HPP 1
 
+namespace kk2 {
 
 // Coordinate Compression
 template <typename S=int>
@@ -60,5 +61,7 @@ struct CC {
         return upper_bound(begin(xs), end(xs), x) - begin(xs);
     }
 };
+
+} // namespace kk2
 
 #endif // OTHERS_COORDINATE_COMPRESSION_HPP

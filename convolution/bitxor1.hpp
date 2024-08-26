@@ -1,6 +1,8 @@
 #ifndef CONVOLUTION_XOR
 #define CONVOLUTION_XOR 1
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_xor(FPS& a, FPS b) {
     int n = int(size(a));  // == int(size(b)
@@ -38,5 +40,7 @@ FPS convolution_xor(FPS& a, FPS b) {
 
     return a;
 }
+
+} // namespace kk2
 
 #endif // CONVOLUTION_XOR

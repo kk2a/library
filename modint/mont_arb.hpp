@@ -1,6 +1,8 @@
 #ifndef MODINT_MONT_ARB_HPP
 #define MODINT_MONT_ARB_HPP 1
 
+namespace kk2 {
+
 template <typename Int, typename UInt, typename Long, typename ULong, int id>
 struct ArbitraryLazyMontgomeryModIntBase {
     using mint = ArbitraryLazyMontgomeryModIntBase;
@@ -107,5 +109,7 @@ template <int id>
 using ArbitraryLazyMontgomeryModInt64bit =
     ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long,
                                       __int128_t, __uint128_t, id>;
+
+} // namespace kk2
 
 #endif // MODINT_MONT_ARB_HPP

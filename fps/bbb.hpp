@@ -3,6 +3,8 @@
 
 #include "multi_eval.hpp"
 
+namespace kk2 {
+
 // f(X) / \prod (X - a_i) = \sum c_i / (X - a_i)
 // return {c_i}
 template <class FPS, class mint = typename FPS::value_type>
@@ -34,5 +36,7 @@ vector<mint> BBB1(const vector<mint> &a, const FPS &f) {
     for (int i = 0; i < n; i++) ret[i] *= -a[i] * prod;
     return ret;
 }
+
+} // namespace kk2
 
 #endif // FPS_BBB_HPP

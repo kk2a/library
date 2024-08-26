@@ -1,6 +1,8 @@
 #ifndef GRAPH_DIJKSTRA_HPP
 #define GRAPH_DIJKSTRA_HPP 1
 
+namespace kk2 {
+
 template <class WG, class T = typename WG::value_type>
 struct ShortestPath {
   public:
@@ -42,5 +44,7 @@ struct ShortestPath {
     constexpr static T _INF = numeric_limits<T>::max();
     constexpr static T _ZERO = T(0);
 };
+
+} // namespace kk2
 
 #endif // GRAPH_DIJKSTRA_HPP

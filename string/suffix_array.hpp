@@ -1,6 +1,7 @@
 #ifndef STRING_SUFFIX_ARRAY_HPP
 #define STRING_SUFFIX_ARRAY_HPP 1
 
+namespace kk2 {
 
 struct SuffixArray {
     SuffixArray() = default;
@@ -219,5 +220,7 @@ struct SuffixArray {
 
     void init() { _sa = sa_is(_s, _upper); }
 };
+
+} // namespace kk2
 
 #endif // STRING_SUFFIX_ARRAY_HPP

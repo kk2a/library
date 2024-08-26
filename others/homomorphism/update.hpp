@@ -1,6 +1,8 @@
 #ifndef OTHERS_HOMOMORPHISM_UPDATE_HPP
 #define OTHERS_HOMOMORPHISM_UPDATE_HPP 1
 
+namespace kk2 {
+
 namespace homomorphism {
 
 template <class S>
@@ -31,5 +33,7 @@ template <class S>
 Update<S> UpdateUnit() { return Update<S>(); }
 
 } // namespace homomorphism
+
+} // namespace kk2
 
 #endif // OTHERS_HOMOMORPHISM_UPDATE_HPP

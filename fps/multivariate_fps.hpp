@@ -4,6 +4,8 @@
 #include "fps.hpp"
 #include "../convolution/multi_convo_truncated.hpp"
 
+namespace kk2 {
+
 template <typename mint>
 struct MultivariateFormalPowerSeries {
     using mfps = MultivariateFormalPowerSeries;
@@ -253,9 +255,6 @@ struct MultivariateFormalPowerSeries {
 template <typename mint>
 vector<mint> MultivariateFormalPowerSeries<mint>::_inv = {0, 1};
 
-namespace kk2 {
-    template <typename mint>
-    using MFPS = MultivariateFormalPowerSeries<mint>;
-}
+} // namespace kk2
 
 #endif // FPS_MULTIVARIATE_FPS_HPP

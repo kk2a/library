@@ -1,6 +1,8 @@
 #ifndef LAZY_BASE_HPP
 #define LAZY_BASE_HPP 1
 
+namespace kk2 {
+
 template <class S,
           S (*op)(S, S),
           S (*e)(),
@@ -196,5 +198,7 @@ struct LazySegTreeBase {
         lz[k] = id();
     }
 }; 
+
+} // namespace kk2
 
 #endif // LAZY_BASE_HPP

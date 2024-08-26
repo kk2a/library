@@ -3,6 +3,8 @@
 
 #include "../modint/mont_arb.hpp"
 
+namespace kk2 {
+
 template <class T, class U> 
 long long mod_sqrt(const T& a, const U &p) {
     assert(0 <= a && a < p);
@@ -33,5 +35,7 @@ long long mod_sqrt(const T& a, const U &p) {
     }
     return x.val();
 }
+
+} // namespace kk2
 
 #endif // MOD_SQRT_HPP

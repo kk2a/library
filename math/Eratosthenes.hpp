@@ -1,6 +1,8 @@
 #ifndef MATH_ERATOSTHENES
 #define MATH_ERATOSTHENES 1
 
+namespace kk2 {
+
 struct Erato {
     static inline vector<bool> _isprime{};
     static inline vector<int> _minfactor{}, _mobius{}, _primes{};
@@ -87,5 +89,7 @@ struct Erato {
         return res;
     }
 };
+
+} // namespace kk2
 
 #endif // MATH_ERATOSTHENES

@@ -3,6 +3,8 @@
 
 #include "heavy_light_decomposition.hpp"
 
+namespace kk2 {
+
 template <typename G>
 struct AuxiliaryTree {
     G g;
@@ -32,5 +34,7 @@ struct AuxiliaryTree {
         return make_pair(aux, ps);
     }
 }; 
+
+} // namespace kk2
 
 #endif // GRAPH_TREE_AUXILIARY_TREE_HPP

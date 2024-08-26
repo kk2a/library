@@ -1,6 +1,8 @@
 #ifndef FPS_CHIRP_Z_HPP
 #define FPS_CHIRP_Z_HPP 1
 
+namespace kk2 {
+
 // return f(a w ^ 0), f(a w ^ 1), ..., f(a w ^ (n - 1))
 template <class FPS, class mint = typename FPS::value_type>
 vector<mint> ChirpZ(FPS f, mint w, int n = -1, mint a = 1) {
@@ -37,5 +39,7 @@ vector<mint> ChirpZ(FPS f, mint w, int n = -1, mint a = 1) {
     for (int i = 0; i < n; i++) ret[i] *= iwc[i];
     return ret; 
 }
+
+} // namespace kk2
 
 #endif  // FPS_CHIRP_Z_HPP

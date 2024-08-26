@@ -1,6 +1,8 @@
 #ifndef MATH_KTH_ROOT_FLOOR_HPP
 #define MATH_KTH_ROOT_FLOOR_HPP 1
 
+namespace kk2 {
+
 uint64_t kth_root_floor_inner(uint64_t a, int k) {
     if (a <= 1 || k == 1) return a;
     if (64 <= k) return 1;
@@ -42,5 +44,7 @@ template <class return_type=uint64_t, class T, class U>
 return_type kth_root_ceil(T a, U k) {
     return (return_type)kth_root_ceil_inner((uint64_t)a, (int)k);
 }
+
+} // namespace kk2
 
 #endif // MATH_KTH_ROOT_FLOOR_HPP

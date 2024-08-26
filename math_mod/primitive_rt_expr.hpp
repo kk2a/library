@@ -3,6 +3,8 @@
 
 #include "pow_expr.hpp"
 
+namespace kk2 {
+
 constexpr int primitive_root_constexpr(int m) {
     if (m == 2) return 1;
     if (m == 167772161) return 3;
@@ -38,5 +40,7 @@ constexpr int primitive_root_constexpr(int m) {
     }
 }
 template <int m> static constexpr int primitive_root = primitive_root_constexpr(m);
+
+} // namespace kk2
 
 #endif // MOD_PRIMITIVE_ROOT_EXPR_HPP

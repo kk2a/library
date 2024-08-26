@@ -1,6 +1,7 @@
 #ifndef GRAPH_GRAPH_TEMPLATE_HPP
 #define GRAPH_GRAPH_TEMPLATE_HPP 1
 
+namespace kk2 {
 
 template <class T>
 struct WeightedEdge {
@@ -220,7 +221,6 @@ struct UnWeightedGraph : vector<UnWeightedEdges> {
     }
 };
 
-namespace kk2 {
 
 template <class T, bool is_one_indexed = true, bool is_directed = false>
 using WGraph = WeightedGraph<T, is_one_indexed, is_directed>;

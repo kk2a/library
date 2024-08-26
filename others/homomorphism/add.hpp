@@ -1,6 +1,8 @@
 #ifndef OTHERS_HOMOMORPHISM_ADD_HPP
 #define OTHERS_HOMOMORPHISM_ADD_HPP 1
 
+namespace kk2 {
+
 namespace homomorphism {
 
 template <class S>
@@ -16,5 +18,7 @@ template <class S>
 Add<S> AddUnit() { return Add<S>(); }
 
 } // namespace homomorphism
+
+} // namespace kk2
 
 #endif // OTHERS_HOMOMORPHISM_ADD_HPP

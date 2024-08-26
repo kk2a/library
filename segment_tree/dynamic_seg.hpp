@@ -1,6 +1,8 @@
 #ifndef SEGMENT_TREE_DYNAMIC_HPP
 #define SEGMENT_TREE_DYNAMIC_HPP 1
 
+namespace kk2 {
+
 template <class S, S (*op)(S, S), S (*e)(),
           class F, S (*mapping)(F, S),
           F (*composition)(F, F), F (*id)()>
@@ -178,5 +180,7 @@ using DynamicSegTree =
 
 } // namespace DynamicSegImpl
 using DynamicSegImpl::DynamicSegTree;
+
+} // namespace kk2
 
 #endif // SEGMENT_TREE_DYNAMIC_HPP

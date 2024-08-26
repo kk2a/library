@@ -1,6 +1,8 @@
 #ifndef FPS_MOD_POW_HPP
 #define FPS_MOD_POW_HPP 1
 
+namespace kk2 {
+
 // return f ^ k mod g
 template <class FPS, class mint = typename FPS::value_type, class T>
 FPS mod_pow(T k, FPS f, FPS g) {
@@ -27,5 +29,7 @@ FPS mod_pow(T k, FPS f, FPS g) {
     }
     return res;
 }
+
+} // namespace kk2
 
 #endif // FPS_MOD_POW_HPP

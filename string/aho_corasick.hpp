@@ -3,6 +3,8 @@
 
 #include "../data_structure/trie.hpp"
 
+namespace kk2 {
+
 template <int char_size, int margin, bool heavy=true>
 struct AhoCorasick : Trie<char_size + 1, margin> {
     using Trie<char_size + 1, margin>::Trie;
@@ -77,5 +79,7 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
 
     int count(int node) const { return correct[node]; }
 };
+
+} // namespace kk2
 
 #endif // STRING_AHO_CORASICK_HPP

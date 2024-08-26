@@ -3,6 +3,8 @@
 
 #include "butterfly.hpp"
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 FPS convolution(FPS& a, const FPS& b) {
     int n = int(a.size()), m = int(b.size());
@@ -38,5 +40,7 @@ FPS convolution(FPS& a, const FPS& b) {
     for (int i = 0; i < n + m - 1; i++) a[i] *= iz;
     return a;
 }
+
+} // namespace kk2
 
 #endif  // CONVOLUTION_HPP

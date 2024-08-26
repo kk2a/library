@@ -3,6 +3,8 @@
 
 #include "../data_structure/my_bitset_fast.hpp"
 
+namespace kk2 {
+
 struct MatrixF2 {
     using mat = MatrixF2;
     int _h, _w;
@@ -345,5 +347,7 @@ struct MatrixF2 {
         return mat(res);
     }
 };
+
+} // namespace kk2
 
 #endif // MATRIX_MATRIX_F2_HPP

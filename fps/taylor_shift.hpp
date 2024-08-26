@@ -3,6 +3,8 @@
 
 #include "../math_mod/comb.hpp"
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 FPS TaylorShift(FPS f, mint a) {
     int n = f.size();
@@ -14,5 +16,7 @@ FPS TaylorShift(FPS f, mint a) {
     for (int i = 0; i < n; i++) f[i] *= Comb<mint>::ifact(i);
     return f;
 }
+
+} // namespace kk2
 
 #endif // FPS_TAYLOR_SHIFT_HPP

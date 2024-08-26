@@ -1,6 +1,8 @@
 #ifndef POLY_GCD_HPP
 #define POLY_GCD_HPP 1
 
+namespace kk2 {
+
 namespace poly_gcd {
 
 template <class FPS>
@@ -123,5 +125,7 @@ pair<bool, FPS> PolyInv(FPS f, FPS g) {
 } // namespace poly_gcd
 using poly_gcd::PolyGcd;
 using poly_gcd::PolyInv;
+
+} // namespace kk2
 
 #endif // poly_gcd.hpp

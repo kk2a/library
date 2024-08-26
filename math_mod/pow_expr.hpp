@@ -1,6 +1,8 @@
 #ifndef MOD_POW_EXPR_HPP
 #define MOD_POW_EXPR_HPP 1
 
+namespace kk2 {
+
 constexpr long long pow_mod_constexpr(long long x, long long n, long long m) {
     if (m == 1) return 0;
     unsigned long long _m = (unsigned long long)(m);
@@ -13,5 +15,7 @@ constexpr long long pow_mod_constexpr(long long x, long long n, long long m) {
     }
     return r;
 }
+
+} // namespace kk2
 
 #endif // MOD_POW_EXPR_HPP

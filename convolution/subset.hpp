@@ -1,6 +1,8 @@
 #ifndef CONVOLUTION_SUBSET
 #define CONVOLUTION_SUBSET 1
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_subset(FPS& a, FPS b) {
     int n = int(size(a));  // == int(size(b)
@@ -56,5 +58,7 @@ FPS convolution_subset(FPS& a, FPS b) {
     for (int i = 0; i < n; i++) a[i] = f[i][chi[i]];
     return a;
 }
+
+} // namespace kk2
 
 #endif // CONVOLUTION_SUBSET

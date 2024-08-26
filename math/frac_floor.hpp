@@ -1,6 +1,8 @@
 #ifndef MATH_FLOOR_CEIL_HPP
 #define MATH_FLOOR_CEIL_HPP 1
 
+namespace kk2 {
+
 // floor(x) = ceil(x) - 1 (for all x not in Z) ...(1)
 // floor(x) = -ceil(-x)   (for all x)          ...(2)
 
@@ -26,5 +28,7 @@ T fracceil(T a, U b) {
     // ceil(x) = -floor(-x)      by (2)
     return -((-a) / b);
 }
+
+} // namespace kk2
 
 #endif // MATH_FLOOR_CEIL_HPP

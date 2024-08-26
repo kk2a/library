@@ -4,6 +4,7 @@
 #include "../convolution/convolution.hpp"
 #include "fps.hpp"
 
+namespace kk2 {
 
 template <class mint>
 FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(
@@ -120,5 +121,6 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
     return FormalPowerSeries<mint>(begin(b), begin(b) + deg);
 }
 
+} // namespace kk2
 
 #endif // FPS_NTT_FRIENDLY_HPP

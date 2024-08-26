@@ -1,6 +1,8 @@
 #ifndef MATH_EULER_PHI_HPP
 #define MATH_EULER_PHI_HPP 1
 
+namespace kk2 {
+
 long long euler_phi(long long a) {
     long long res = a, now = a;
     for (long long i = 2; i * i <= a; i++) {
@@ -16,5 +18,7 @@ long long euler_phi(long long a) {
     }
     return res;
 }
+
+} // namespace kk2
 
 #endif // MATH_EULER_PHI_HPP

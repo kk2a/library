@@ -1,6 +1,8 @@
 #ifndef CENTROID_HPP
 #define CENTROID_HPP 1
 
+namespace kk2 {
+
 template <class G>
 int centroid(const G& g) {
     int n = g.size();
@@ -54,5 +56,7 @@ int centroid(const G& g, vector<long long> weight) {
     };
     return find(find, 0);
 }
+
+} // namespace kk2
 
 #endif // CENTROID_HPP

@@ -1,6 +1,8 @@
 #ifndef LINEAR_RECURRENCE_HPP
 #define LINEAR_RECURRENCE_HPP 1
 
+namespace kk2 {
+
 // a_{i + k} = \sum_{j = 0}^{k - 1} c_{j} a_{i + k - j - 1}
 // return P of P / Q = a_0 + a_1 x + a_2 x^2 + ...
 template <class FPS, class mint = typename FPS::value_type>
@@ -30,5 +32,7 @@ mint BostanMori(const FPS& p, const FPS& q, long long n) {
     }
     return BostanMori(pp, qq, n >> 1);
 }
+
+} // namespace kk2
 
 #endif // LINEAR_RECURRENCE_HPP

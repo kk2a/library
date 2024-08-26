@@ -1,6 +1,7 @@
 #ifndef GRAPH_MAXFLOW_HPP
 #define GRAPH_MAXFLOW_HPP 1
 
+namespace kk2 {
 
 template <class WG>
 struct MaxFlow {
@@ -123,5 +124,7 @@ struct MaxFlow {
         return result;
     }
 };
+
+} // namespace kk2
 
 #endif // GRAPH_MAXFLOW_HPP

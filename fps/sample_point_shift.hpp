@@ -1,6 +1,8 @@
 #ifndef FPS__SAMPLE_POINT_SHIFT_HPP
 #define FPS__SAMPLE_POINT_SHIFT_HPP 1
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 vector<mint> SamplePointShift(vector<mint> &y, mint t, int m = -1) {
     if (m == -1) m = y.size();
@@ -54,5 +56,7 @@ vector<mint> SamplePointShift(vector<mint> &y, mint t, int m = -1) {
     }
     return ret;
 }
+
+} // namespace kk2
 
 #endif // FPS__SAMPLE_POINT_SHIFT_HPP

@@ -3,6 +3,8 @@
 
 #include "../math_mod/primitive_rt_expr.hpp"
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 void butterfly(FPS& a) {
     static int g = primitive_root<mint::getmod()>;
@@ -174,5 +176,7 @@ void doubling(FPS &a) {
     butterfly(b);
     copy(begin(b), end(b), back_inserter(a));
 }
+
+} // namespace kk2
 
 #endif  // BUTTERFLY_HPP

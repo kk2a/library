@@ -1,6 +1,8 @@
 #ifndef DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP
 #define DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP 1
 
+namespace kk2 {
+
 template <class S, S (*op)(S, S), S (*e)()>
 struct DisjointSparseTable {
     DisjointSparseTable() = default;
@@ -41,5 +43,7 @@ struct DisjointSparseTable {
     vector<vector<S>> table;
     vector<int> lookup;
 };
+
+} // namespace kk2
 
 #endif // DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP

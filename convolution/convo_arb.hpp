@@ -6,6 +6,8 @@
 #include "../fps/fps.hpp"
 #include "../math_mod/garner.hpp"
 
+namespace kk2 {
+
 template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_arb(FPS& a, const FPS& b) {
     int n = int(a.size()), m = int(b.size());
@@ -37,5 +39,7 @@ FPS convolution_arb(FPS& a, const FPS& b) {
     a = res;
     return res;
 }
+
+} // namespace kk2
 
 #endif  // CONVO_ARB_HPP

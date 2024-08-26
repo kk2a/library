@@ -3,6 +3,8 @@
 
 #include "point.hpp"
 
+namespace kk2 {
+
 struct Convex_hull {
     using i64 = long long;
   public:
@@ -41,5 +43,7 @@ struct Convex_hull {
         }
     }
 };
+
+} // namespace kk2
 
 #endif // GEOMETRY_CONVEX_HULL_HPP

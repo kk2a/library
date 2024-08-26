@@ -5,6 +5,8 @@
 #include "../../others/monoid/sum.hpp"
 #include "../../others/homomorphism/update.hpp"
 
+namespace kk2 {
+
 template <class S>
 using UpdateSum =
     LazySegTree<monoid::Sum<S>,
@@ -14,5 +16,7 @@ using UpdateSum =
                 homomorphism::UpdateMap<S, monoid::Sum<S>>,
                 homomorphism::UpdateComposition<S>,
                 homomorphism::UpdateUnit<S>>;
+
+} // namespace kk2
 
 #endif // SEGMENT_TREE_UTILITY_UPDATESUM_HPP

@@ -1,6 +1,8 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP 1
 
+namespace kk2 {
+
 template <class Field>
 struct MatrixField {
     using mat = MatrixField;
@@ -269,5 +271,7 @@ struct MatrixField {
     int _h, _w;
     vector<vector<Field>> _mat;
 };
+
+} // namespace kk2
 
 #endif // MATRIX_HPP

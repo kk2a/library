@@ -1,6 +1,8 @@
 #ifndef MOD_COMB_HPP
 #define MOD_COMB_HPP 1
 
+namespace kk2 {
+
 template <class mint>
 struct Comb {
     static inline vector<mint> _fact{1}, _ifact{1}, _inv{1};
@@ -78,5 +80,7 @@ struct Comb {
         return k == 0 ? 1 : binom(n + k - 1, k);
     }
 };
+
+} // namespace kk2
 
 #endif // MOD_COMB_HPP

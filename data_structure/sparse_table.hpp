@@ -1,6 +1,7 @@
 #ifndef DATA_STRUCTURE_SPARSE_TABLE_HPP
 #define DATA_STRUCTURE_SPARSE_TABLE_HPP 1
 
+namespace kk2 {
 
 // require: op(x, x) = x for all x
 template <class S, S (*op)(S, S), S (*e)()>
@@ -75,5 +76,7 @@ struct SparseTable {
     int _n, log;
     vector<vector<S>> table;
 };
+
+} // namespace kk2
 
 #endif // DATA_STRUCTURE_SPARSE_TABLE_HPP

@@ -1,6 +1,8 @@
 #ifndef OTHERS_MULTISET_HASH_HPP
 #define OTHERS_MULTISET_HASH_HPP 1
 
+namespace kk2 {
+
 template <typename T>
 struct MultiSetHash {
     constexpr static int b = 5;
@@ -108,5 +110,7 @@ unordered_map<T, typename MultiSetHash<T>::Hashs> MultiSetHash<T>::base;
 
 template <typename T>
 mt19937_64 MultiSetHash<T>::rng(time(0));
+
+} // namespace kk2
 
 #endif  // OTHERS_MULTISET_HASH_HPP

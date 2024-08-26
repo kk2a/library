@@ -1,6 +1,8 @@
 #ifndef OTHERS_MONOID_MAX_HPP
 #define OTHERS_MONOID_MAX_HPP 1
 
+namespace kk2 {
+
 namespace monoid {
 
 template <class S>
@@ -57,5 +59,7 @@ template <class S, class... Args>
 vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
     return vector<monoid::Max<S>>(n, monoid::Max<S>(args...));
 }
+
+} // namespace kk2
 
 #endif // OTHERS_MONOID_MAX_HPP
