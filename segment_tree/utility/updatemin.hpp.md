@@ -125,10 +125,10 @@ data:
     \ id_ = false) : a(a_), id(id_) {}\n    operator S() const { return a; }\n   \
     \ friend ostream& operator<<(ostream& os, const Update& update) {\n        os\
     \ << (update.id ? \"id\" : to_string(update.a));\n        return os;\n    }\n\n\
-    \    Update& composition(const Update& rhs) {\n        if (rhs.id) return *this;\n\
-    \        return *this = rhs;\n    }\n};\n\ntemplate <class S, class T>\nT UpdateMap(Update<S>\
+    \    Update& composition(const Update& f) {\n        if (f.id) return *this;\n\
+    \        return *this = f;\n    }\n};\n\ntemplate <class S, class T>\nT UpdateMap(Update<S>\
     \ f, T x) { return f.id ? x : x.update(f.a); }\n\ntemplate <class S>\nUpdate<S>\
-    \ UpdateComposition(Update<S> l, Update<S> r) { return l.composition(r); }\n\n\
+    \ UpdateComposition(Update<S> l, Update<S> r) { return r.composition(l); }\n\n\
     template <class S>\nUpdate<S> UpdateUnit() { return Update<S>(); }\n\n} // namespace\
     \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/updatemin.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class S>\nusing UpdateMin =\n    LazySegTree<monoid::Min<S>,\n\
@@ -152,7 +152,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatemin.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-27 04:41:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemin.hpp
