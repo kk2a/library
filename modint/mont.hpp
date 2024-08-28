@@ -26,7 +26,8 @@ struct LazyMontgomeryModInt {
     u32 _v;
 
     constexpr LazyMontgomeryModInt() : _v(0) {}
-    constexpr LazyMontgomeryModInt(const i64& b)
+    template <class T>
+    constexpr LazyMontgomeryModInt(const T& b)
          : _v(reduce(u64(b % p + p) * n2)) {}
 
     static constexpr u32 reduce(const u64& b) {
@@ -49,17 +50,17 @@ struct LazyMontgomeryModInt {
         return *this;
     }
 
-    constexpr mint operator+(const mint& b) const { return mint(*this) += b; }
-    constexpr mint operator-(const mint& b) const { return mint(*this) -= b; }
     constexpr mint operator-() const { return mint() - mint(*this); }
-    constexpr mint operator*(const mint& b) const { return mint(*this) *= b; }
-    constexpr mint operator/(const mint& b) const { return mint(*this) /= b; }
     constexpr bool operator==(const mint &b) const {
         return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);
     }
     constexpr bool operator!=(const mint &b) const {
         return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);
     }
+    friend constexpr mint operator+(const mint& a, const mint& b) { return mint(a) += b; }
+    friend constexpr mint operator-(const mint& a, const mint& b) { return mint(a) -= b; }
+    friend constexpr mint operator*(const mint& a, const mint& b) { return mint(a) *= b; }
+    friend constexpr mint operator/(const mint& a, const mint& b) { return mint(a) /= b; }
 
     template <class T>
     constexpr mint pow(T n) const {
@@ -92,8 +93,8 @@ template <int p>
 using Mont = LazyMontgomeryModInt<p>;
 
 
-using Mont998 = Mont<998244353>;
-using Mont107 = Mont<1000000007>;
+using mont998 = Mont<998244353>;
+using mont107 = Mont<1000000007>;
 
 }  // namespace kk2
 
