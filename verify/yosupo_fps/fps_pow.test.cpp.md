@@ -61,18 +61,18 @@ data:
     \ int first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n \
     \       return vector<T>(first, init);\n    }\n    else {\n        return vector<decltype(make_vector(init,\
     \ sizes...))>(first, make_vector(init, sizes...));\n    }\n}\n\ntemplate <class\
-    \ T>\nvoid fill_all(vector<T> &v, const T &x) {\n    fill(begin(v), end(v), x);\n\
-    }\n\ntemplate <class T, class U>\nvoid fill_all(vector<vector<T>> &v, const U\
-    \ &x) {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqi = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\ntemplate <class T, class S>\ninline bool chmax(T\
-    \ &a, const S &b) {\n    return (a < b ? a = b, 1 : 0);\n}\ntemplate <class T,\
-    \ class S>\ninline bool chmin(T &a, const S &b) {\n    return (a > b ? a = b,\
-    \ 1 : 0);\n}\n\n# define rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)\n# define\
-    \ rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n# define rep3(i, a, b) for (i64\
-    \ i = (a); i < (i64)(b); ++i)\n# define repi2(i, a) for (i64 i = (a) - 1; i >=\
-    \ 0; --i)\n# define repi3(i, a, b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n\
-    # define overload3(a, b, c, d, ...) d\n# define rep(...) overload3(__VA_ARGS__,\
+    \ T, class U>\nvoid fill_all(vector<T> &v, const U &x) {\n    fill(begin(v), end(v),\
+    \ T(x));\n}\n\ntemplate <class T, class U>\nvoid fill_all(vector<vector<T>> &v,\
+    \ const U &x) {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\
+    \ntemplate <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing\
+    \ pqi = priority_queue<T, vector<T>, greater<T>>;\n\ntemplate <class T, class\
+    \ S>\ninline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b, 1 : 0);\n\
+    }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n    return\
+    \ (a > b ? a = b, 1 : 0);\n}\n\n# define rep1(a) for (i64 _ = 0; _ < (i64)(a);\
+    \ ++_)\n# define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n# define rep3(i,\
+    \ a, b) for (i64 i = (a); i < (i64)(b); ++i)\n# define repi2(i, a) for (i64 i\
+    \ = (a) - 1; i >= 0; --i)\n# define repi3(i, a, b) for (i64 i = (a) - 1; i >=\
+    \ (i64)(b); --i)\n# define overload3(a, b, c, d, ...) d\n# define rep(...) overload3(__VA_ARGS__,\
     \ rep3, rep2, rep1)(__VA_ARGS__)\n# define repi(...) overload3(__VA_ARGS__, repi3,\
     \ repi2, rep1)(__VA_ARGS__)\n\n# define fi first\n# define se second\n# define\
     \ all(p) begin(p), end(p)\n\nvoid YES(bool b = 1) { cout << (b ? \"YES\" : \"\
@@ -457,7 +457,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-08-29 01:46:00+09:00'
+  timestamp: '2024-08-29 05:01:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_pow.test.cpp
