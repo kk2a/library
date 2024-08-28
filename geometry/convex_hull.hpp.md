@@ -15,33 +15,36 @@ data:
     \n\n\n\nnamespace kk2 {\n\nstruct Point {\n    using i64 = long long;\n    i64\
     \ x, y;\n    Point(i64 x = 0, i64 y = 0) : x(x), y(y) {}\n    bool operator<(const\
     \ Point& p) const {\n        return x != p.x ? x < p.x : y < p.y;\n    }\n   \
-    \ bool operator>(const Point& p) const {\n        return x != p.x ? x > p.x :\
-    \ y > p.y;\n    }\n    bool operator==(const Point& p) const {\n        return\
-    \ x == p.x && y == p.y;\n    }\n    bool operator!=(const Point& p) const {\n\
-    \        return x != p.x || y != p.y;\n    }\n\n    Point& operator+=(const Point&\
-    \ p) {\n        x += p.x;\n        y += p.y;\n        return *this;\n    }\n \
-    \   Point& operator-=(const Point& p) {\n        x -= p.x;\n        y -= p.y;\n\
-    \        return *this;\n    }\n    Point& operator*=(i64 k) {\n        x *= k;\n\
-    \        y *= k;\n        return *this;\n    }\n    Point& operator/=(i64 k) {\n\
-    \        x /= k;\n        y /= k;\n        return *this;\n    }\n\n    Point operator+(const\
-    \ Point& p) const {\n        return Point(*this) += p;\n    }\n    Point operator-(const\
-    \ Point& p) const {\n        return Point(*this) -= p;\n    }\n    Point operator*(i64\
-    \ k) const {\n        return Point(*this) *= k;\n    }\n    Point operator/(i64\
-    \ k) const {\n        return Point(*this) /= k;\n    }\n\n    i64 dot(const Point&\
-    \ p) const {\n        return x * p.x + y * p.y;\n    }\n    i64 cross(const Point&\
-    \ p) const {\n        return x * p.y - y * p.x;\n    }\n    i64 cross(const Point&\
-    \ p, const Point& O) const {\n        return (*this - O).cross(p - O);\n    }\n\
-    \    i64 norm() const {\n        return x * x + y * y;\n    }\n    i64 norm(const\
-    \ Point& p) const {\n        return (p - *this).norm();\n    }\n    long double\
-    \ abs() const {\n        return sqrt(norm());\n    }\n    long double dist(const\
-    \ Point& p) const {\n        return (p - *this).abs();\n    }\n    long double\
-    \ argument() const {\n        return atan2(y, x);\n    }\n    long double argument(const\
-    \ Point& p) const {\n        long double res = argument() - p.argument();\n  \
-    \      if (res < -PI) res += 2 * PI;\n        if (res > PI) res -= 2 * PI;\n \
-    \       return res;\n    }\n    long double argument(const Point& p, const Point&\
-    \ O) const {\n        return (*this - O).argument(p - O);\n    }\n\n    Point\
-    \ inplace_rotate90() {\n        swap(x, y);\n        x = -x;\n        return *this;\n\
-    \    }\n    Point inplace_rotate90(Point O) {\n        *this -= O;\n        inplace_rotate90();\n\
+    \ bool operator<=(const Point& p) const {\n        return x != p.x ? x < p.x :\
+    \ y <= p.y;\n    }\n    bool operator>(const Point& p) const {\n        return\
+    \ x != p.x ? x > p.x : y > p.y;\n    }\n    bool operator>=(const Point& p) const\
+    \ {\n        return x != p.x ? x > p.x : y >= p.y;\n    }\n    bool operator==(const\
+    \ Point& p) const {\n        return x == p.x && y == p.y;\n    }\n    bool operator!=(const\
+    \ Point& p) const {\n        return x != p.x || y != p.y;\n    }\n\n    Point&\
+    \ operator+=(const Point& p) {\n        x += p.x;\n        y += p.y;\n       \
+    \ return *this;\n    }\n    Point& operator-=(const Point& p) {\n        x -=\
+    \ p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point& operator*=(i64\
+    \ k) {\n        x *= k;\n        y *= k;\n        return *this;\n    }\n    Point&\
+    \ operator/=(i64 k) {\n        x /= k;\n        y /= k;\n        return *this;\n\
+    \    }\n\n    Point operator+(const Point& p) const {\n        return Point(*this)\
+    \ += p;\n    }\n    Point operator-(const Point& p) const {\n        return Point(*this)\
+    \ -= p;\n    }\n    Point operator*(i64 k) const {\n        return Point(*this)\
+    \ *= k;\n    }\n    Point operator/(i64 k) const {\n        return Point(*this)\
+    \ /= k;\n    }\n\n    i64 dot(const Point& p) const {\n        return x * p.x\
+    \ + y * p.y;\n    }\n    i64 cross(const Point& p) const {\n        return x *\
+    \ p.y - y * p.x;\n    }\n    i64 cross(const Point& p, const Point& O) const {\n\
+    \        return (*this - O).cross(p - O);\n    }\n    i64 norm() const {\n   \
+    \     return x * x + y * y;\n    }\n    i64 norm(const Point& p) const {\n   \
+    \     return (p - *this).norm();\n    }\n    long double abs() const {\n     \
+    \   return sqrt(norm());\n    }\n    long double dist(const Point& p) const {\n\
+    \        return (p - *this).abs();\n    }\n    long double argument() const {\n\
+    \        return atan2(y, x);\n    }\n    long double argument(const Point& p)\
+    \ const {\n        long double res = argument() - p.argument();\n        if (res\
+    \ < -PI) res += 2 * PI;\n        if (res > PI) res -= 2 * PI;\n        return\
+    \ res;\n    }\n    long double argument(const Point& p, const Point& O) const\
+    \ {\n        return (*this - O).argument(p - O);\n    }\n\n    Point inplace_rotate90()\
+    \ {\n        swap(x, y);\n        x = -x;\n        return *this;\n    }\n    Point\
+    \ inplace_rotate90(Point O) {\n        *this -= O;\n        inplace_rotate90();\n\
     \        return *this += O;\n    }\n    Point rotate90() const {\n        return\
     \ Point(-y, x);\n    }\n    Point rotate90(Point O) const {\n        return (*this\
     \ - O).rotate90() + O;\n    }\n    Point inplace_rotate180() {\n        x = -x;\n\
@@ -114,7 +117,7 @@ data:
   isVerificationFile: false
   path: geometry/convex_hull.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 01:45:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/convex_hull.hpp

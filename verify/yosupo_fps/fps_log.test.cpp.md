@@ -56,12 +56,15 @@ data:
     constexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
     \ double PI = 3.14159265358979323846;\n\ntemplate <class T>\nusing vc = vector<T>;\n\
     template <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc\
-    \ = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\ntemplate\
-    \ <class T, class... Sizes>\nauto make_vector(const T &init, int first, Sizes...\
-    \ sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return vector<T>(first,\
-    \ init);\n    }\n    else {\n        return vector<decltype(make_vector(init,\
+    \ = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\nnamespace\
+    \ kk2 {\n\ntemplate <class T, class... Sizes>\nauto make_vector(const T &init,\
+    \ int first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n \
+    \       return vector<T>(first, init);\n    }\n    else {\n        return vector<decltype(make_vector(init,\
     \ sizes...))>(first, make_vector(init, sizes...));\n    }\n}\n\ntemplate <class\
-    \ T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqi = priority_queue<T,\
+    \ T>\nvoid fill_all(vector<T> &v, const T &x) {\n    fill(begin(v), end(v), x);\n\
+    }\n\ntemplate <class T, class U>\nvoid fill_all(vector<vector<T>> &v, const U\
+    \ &x) {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqi = priority_queue<T,\
     \ vector<T>, greater<T>>;\n\ntemplate <class T, class S>\ninline bool chmax(T\
     \ &a, const S &b) {\n    return (a < b ? a = b, 1 : 0);\n}\ntemplate <class T,\
     \ class S>\ninline bool chmin(T &a, const S &b) {\n    return (a > b ? a = b,\
@@ -91,24 +94,25 @@ data:
     \ u32 r = get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r\
     \ * p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
     \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
-    \    \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n    constexpr\
-    \ LazyMontgomeryModInt(const i64& b)\n         : _v(reduce(u64(b % p + p) * n2))\
-    \ {}\n\n    static constexpr u32 reduce(const u64& b) {\n        return (b + u64(u32(b)\
-    \ * u32(-r)) * p) >> 32;\n    }\n    constexpr mint& operator+=(const mint& b)\
-    \ {\n        if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n\
-    \    }\n    constexpr mint& operator-=(const mint& b) {\n        if (i32(_v -=\
-    \ b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n    constexpr mint& operator*=(const\
-    \ mint& b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n  \
-    \  }\n    constexpr mint& operator/=(const mint& b) {\n        *this *= b.inv();\n\
-    \        return *this;\n    }\n\n    constexpr mint operator+(const mint& b) const\
-    \ { return mint(*this) += b; }\n    constexpr mint operator-(const mint& b) const\
-    \ { return mint(*this) -= b; }\n    constexpr mint operator-() const { return\
-    \ mint() - mint(*this); }\n    constexpr mint operator*(const mint& b) const {\
-    \ return mint(*this) *= b; }\n    constexpr mint operator/(const mint& b) const\
-    \ { return mint(*this) /= b; }\n    constexpr bool operator==(const mint &b) const\
-    \ {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);\n\
-    \    }\n    constexpr bool operator!=(const mint &b) const {\n        return (_v\
-    \ >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n    }\n\n    template\
+    \    \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n    template\
+    \ <class T>\n    constexpr LazyMontgomeryModInt(const T& b)\n         : _v(reduce(u64(b\
+    \ % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const u64& b) {\n    \
+    \    return (b + u64(u32(b) * u32(-r)) * p) >> 32;\n    }\n    constexpr mint&\
+    \ operator+=(const mint& b) {\n        if (i32(_v += b._v - 2 * p) < 0) _v +=\
+    \ 2 * p;\n        return *this;\n    }\n    constexpr mint& operator-=(const mint&\
+    \ b) {\n        if (i32(_v -= b._v) < 0) _v += 2 * p;\n        return *this;\n\
+    \    }\n    constexpr mint& operator*=(const mint& b) {\n        _v = reduce(u64(_v)\
+    \ * b._v);\n        return *this;\n    }\n    constexpr mint& operator/=(const\
+    \ mint& b) {\n        *this *= b.inv();\n        return *this;\n    }\n\n    constexpr\
+    \ mint operator-() const { return mint() - mint(*this); }\n    constexpr bool\
+    \ operator==(const mint &b) const {\n        return (_v >= p ? _v - p : _v) ==\
+    \ (b._v >= p ? b._v - p : b._v);\n    }\n    constexpr bool operator!=(const mint\
+    \ &b) const {\n        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p\
+    \ : b._v);\n    }\n    friend constexpr mint operator+(const mint& a, const mint&\
+    \ b) { return mint(a) += b; }\n    friend constexpr mint operator-(const mint&\
+    \ a, const mint& b) { return mint(a) -= b; }\n    friend constexpr mint operator*(const\
+    \ mint& a, const mint& b) { return mint(a) *= b; }\n    friend constexpr mint\
+    \ operator/(const mint& a, const mint& b) { return mint(a) /= b; }\n\n    template\
     \ <class T>\n    constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
     \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
     \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n    constexpr\
@@ -118,7 +122,7 @@ data:
     \       return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
     \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n    static constexpr\
     \ u32 getmod() { return p; }\n};\n\ntemplate <int p>\nusing Mont = LazyMontgomeryModInt<p>;\n\
-    \n\nusing Mont998 = Mont<998244353>;\nusing Mont107 = Mont<1000000007>;\n\n} \
+    \n\nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} \
     \ // namespace kk2\n\n\n#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/convolution.hpp\"\
     \n\n\n\n#line 1 \"convolution/butterfly.hpp\"\n\n\n\n#line 1 \"math_mod/primitive_rt_expr.hpp\"\
     \n\n\n\n#line 1 \"math_mod/pow_expr.hpp\"\n\n\n\nnamespace kk2 {\n\nconstexpr\
@@ -452,7 +456,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 01:46:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log.test.cpp
