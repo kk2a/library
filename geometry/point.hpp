@@ -3,10 +3,10 @@
 
 namespace kk2 {
 
+template <typename T>
 struct Point {
-    using i64 = long long;
-    i64 x, y;
-    Point(i64 x = 0, i64 y = 0) : x(x), y(y) {}
+    T x, y;
+    Point(T x = 0, T y = 0) : x(x), y(y) {}
     bool operator<(const Point& p) const {
         return x != p.x ? x < p.x : y < p.y;
     }
@@ -36,12 +36,12 @@ struct Point {
         y -= p.y;
         return *this;
     }
-    Point& operator*=(i64 k) {
+    Point& operator*=(T k) {
         x *= k;
         y *= k;
         return *this;
     }
-    Point& operator/=(i64 k) {
+    Point& operator/=(T k) {
         x /= k;
         y /= k;
         return *this;
@@ -53,26 +53,26 @@ struct Point {
     Point operator-(const Point& p) const {
         return Point(*this) -= p;
     }
-    Point operator*(i64 k) const {
+    Point operator*(T k) const {
         return Point(*this) *= k;
     }
-    Point operator/(i64 k) const {
+    Point operator/(T k) const {
         return Point(*this) /= k;
     }
 
-    i64 dot(const Point& p) const {
+    T dot(const Point& p) const {
         return x * p.x + y * p.y;
     }
-    i64 cross(const Point& p) const {
+    T cross(const Point& p) const {
         return x * p.y - y * p.x;
     }
-    i64 cross(const Point& p, const Point& O) const {
+    T cross(const Point& p, const Point& O) const {
         return (*this - O).cross(p - O);
     }
-    i64 norm() const {
+    T norm() const {
         return x * x + y * y;
     }
-    i64 norm(const Point& p) const {
+    T norm(const Point& p) const {
         return (p - *this).norm();
     }
     long double abs() const {
@@ -99,7 +99,7 @@ struct Point {
         x = -x;
         return *this;
     }
-    Point inplace_rotate90(Point O) {
+    Point inplace_rotate90(const Point& O) {
         *this -= O;
         inplace_rotate90();
         return *this += O;
@@ -115,7 +115,7 @@ struct Point {
         y = -y;
         return *this;
     }
-    Point inplace_rotate180(Point O) {
+    Point inplace_rotate180(const Point& O) {
         *this -= O;
         inplace_rotate180();
         return *this += O;
@@ -123,7 +123,7 @@ struct Point {
     Point rotate180() const {
         return Point(-x, -y);
     }
-    Point rotate180(Point O) const {
+    Point rotate180(const Point& O) const {
         return (*this - O).rotate180() + O;
     }
     Point inplace_rotate270() {
@@ -131,7 +131,7 @@ struct Point {
         y = -y;
         return *this;
     }
-    Point inplace_rotate270(Point O) {
+    Point inplace_rotate270(const Point& O) {
         *this -= O;
         inplace_rotate270();
         return *this += O;
@@ -139,23 +139,23 @@ struct Point {
     Point rotate270() const {
         return Point(y, -x);
     }
-    Point rotate270(Point O) const {
+    Point rotate270(const Point& O) const {
         return (*this - O).rotate270() + O;
     }
 
-    friend i64 dot(const Point& p, const Point& q) {
+    friend T dot(const Point& p, const Point& q) {
         return p.dot(q);
     }
-    friend i64 cross(const Point& p, const Point& q) {
+    friend T cross(const Point& p, const Point& q) {
         return p.cross(q);
     }
-    friend i64 cross(const Point& p, const Point& q, const Point& O) {
+    friend T cross(const Point& p, const Point& q, const Point& O) {
         return p.cross(q, O);
     }
-    friend i64 norm(const Point& p) {
+    friend T norm(const Point& p) {
         return p.norm();
     }
-    friend i64 norm(const Point& p, const Point& q) {
+    friend T norm(const Point& p, const Point& q) {
         return p.norm(q);
     }
     friend long double abs(const Point& p) {

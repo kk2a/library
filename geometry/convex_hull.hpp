@@ -5,37 +5,44 @@
 
 namespace kk2 {
 
-struct Convex_hull {
-    using i64 = long long;
-  public:
-    vector<Point> ps, hull;
+template <typename T>
+struct ConvexHull {
+    vector<Point<T>> ps, hull;
 
-    void add_point(i64 x, i64 y) {
+    ConvexHull() = default;
+    ConvexHull(const vector<Point<T>>& ps) : ps(ps) {}
+
+    void emplace_point(T x, T y) {
         ps.emplace_back(x, y);
     }
+    void push_point(const Point<T>& p) {
+        ps.push_back(p);
+    }
 
-    void query() {
+    void build() {
         int _n = size(ps);
         if (_n == 1) {
             hull = ps;
             return;
         }
-        vector<Point> res = ps;
-        sort(res.begin(), res.end());
-        vector<Point> up, dw;
-        up.emplace_back(res[0]); dw.emplace_back(res[0]);
-        up.emplace_back(res[1]); dw.emplace_back(res[1]);
+        sort(begin(ps), end(ps));
+        vector<Point<T>> up, dw;
+        up.push_back(ps[0]);
+        dw.push_back(ps[0]);
+        up.push_back(ps[1]);
+        dw.push_back(ps[1]);
+
         for (int i = 2; i < _n; i++) {
             while (size(up) >= 2 && cross(up[size(up) - 1]
-                   - up[size(up) - 2], res[i] - up[size(up) - 1]) >= 0) {
+                   - up[size(up) - 2], ps[i] - up[size(up) - 1]) >= 0) {
                 up.pop_back();
             }
             while (size(dw) >= 2 && cross(dw[size(dw) - 1]
-                   - dw[size(dw) - 2], res[i] - dw[size(dw) - 1]) <= 0) {
+                   - dw[size(dw) - 2], ps[i] - dw[size(dw) - 1]) <= 0) {
                 dw.pop_back();
             }
-            up.emplace_back(res[i]);
-            dw.emplace_back(res[i]);
+            up.push_back(ps[i]);
+            dw.push_back(ps[i]);
         }
         hull = up;
         for (int i = size(dw) - 2; i > 0; i--) {
