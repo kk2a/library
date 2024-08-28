@@ -71,6 +71,8 @@ using vvvc = vector<vvc<T>>;
 template <class T>
 using vvvvc = vector<vvvc<T>>;
 
+namespace kk2 {
+
 template <class T, class... Sizes>
 auto make_vector(const T &init, int first, Sizes... sizes) {
     if constexpr (sizeof...(sizes) == 0) {
@@ -80,6 +82,18 @@ auto make_vector(const T &init, int first, Sizes... sizes) {
         return vector<decltype(make_vector(init, sizes...))>(first, make_vector(init, sizes...));
     }
 }
+
+template <class T>
+void fill_all(vector<T> &v, const T &x) {
+    fill(begin(v), end(v), x);
+}
+
+template <class T, class U>
+void fill_all(vector<vector<T>> &v, const U &x) {
+    for (auto &u : v) fill_all(u, x);
+}
+
+} // namespace kk2
 
 template <class T>
 using pq = priority_queue<T>;
