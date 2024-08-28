@@ -83,9 +83,9 @@ auto make_vector(const T &init, int first, Sizes... sizes) {
     }
 }
 
-template <class T>
-void fill_all(vector<T> &v, const T &x) {
-    fill(begin(v), end(v), x);
+template <class T, class U>
+void fill_all(vector<T> &v, const U &x) {
+    fill(begin(v), end(v), T(x));
 }
 
 template <class T, class U>
