@@ -1,5 +1,5 @@
-#ifndef OTHERS_HOMOMORPHISM_AFFINE_HPP
-#define OTHERS_HOMOMORPHISM_AFFINE_HPP 1
+#ifndef MATH_HOMOMORPHISM_AFFINE_HPP
+#define MATH_HOMOMORPHISM_AFFINE_HPP 1
 
 namespace kk2 {
 
@@ -33,4 +33,4 @@ Affine<S> AffineUnit() { return Affine<S>(); }
 
 } // namespace kk2
 
-#endif // OTHERS_HOMOMORPHISM_AFFINE_HPP
+#endif // MATH_HOMOMORPHISM_AFFINE_HPP

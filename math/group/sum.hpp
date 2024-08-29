@@ -1,9 +1,9 @@
-#ifndef OTHERS_MONOID_SUM_HPP
-#define OTHERS_MONOID_SUM_HPP 1
+#ifndef MATH_GROUP_SUM_HPP
+#define MATH_GROUP_SUM_HPP 1
 
 namespace kk2 {
 
-namespace monoid {
+namespace group {
 
 template <class S>
 struct Sum {
@@ -51,13 +51,16 @@ Sum<S> SumOp(Sum<S> l, Sum<S> r) { return l.op(r); }
 template <class S>
 Sum<S> SumUnit() { return Sum<S>(); }
 
-} // namespace monoid
+template <class S>
+Sum<S> SumInv(Sum<S> x) { return Sum<S>(-x.a, -x.size); }
+
+} // namespace group
 
 template <class S, class... Args>
-vector<monoid::Sum<S>> GetVecSum(int n, Args... args) {
-    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));
+vector<group::Sum<S>> GetVecSum(int n, Args... args) {
+    return vector<group::Sum<S>>(n, group::Sum<S>(args...));
 }
 
 } // namespace kk2
 
-#endif // OTHERS_MONOID_SUM_HPP
+#endif // MATH_GROUP_SUM_HPP

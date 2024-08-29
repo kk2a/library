@@ -2,7 +2,7 @@
 #define SEGMENT_TREE_UTILITY_MINSEG_HPP 1
 
 #include "../seg.hpp"
-#include "../../others/monoid/min.hpp"
+#include "../../math/monoid/min.hpp"
 
 namespace kk2 {
 

@@ -2,7 +2,7 @@
 #define SEGMENT_TREE_UTILITY_MAXSEG_HPP 1
 
 #include "../seg.hpp"
-#include "../../others/monoid/max.hpp"
+#include "../../math/monoid/max.hpp"
 
 namespace kk2 {
 

@@ -1,5 +1,5 @@
-#ifndef OTHERS_HOMOMORPHISM_UPDATE_HPP
-#define OTHERS_HOMOMORPHISM_UPDATE_HPP 1
+#ifndef MATH_HOMOMORPHISM_UPDATE_HPP
+#define MATH_HOMOMORPHISM_UPDATE_HPP 1
 
 namespace kk2 {
 
@@ -36,4 +36,4 @@ Update<S> UpdateUnit() { return Update<S>(); }
 
 } // namespace kk2
 
-#endif // OTHERS_HOMOMORPHISM_UPDATE_HPP
+#endif // MATH_HOMOMORPHISM_UPDATE_HPP

@@ -2,8 +2,8 @@
 #define SEGMENT_TREE_UTILITY_ADDMIN_HPP 1
 
 #include "../lazy.hpp"
-#include "../../others/monoid/min.hpp"
-#include "../../others/homomorphism/add.hpp"
+#include "../../math/monoid/min.hpp"
+#include "../../math/homomorphism/add.hpp"
 
 namespace kk2 {
 

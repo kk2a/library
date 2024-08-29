@@ -2,8 +2,8 @@
 #define SEGMENT_TREE_UTILITY_UPDATEMAX_HPP 1
 
 #include "../lazy.hpp"
-#include "../../others/monoid/max.hpp"
-#include "../../others/homomorphism/update.hpp"
+#include "../../math/monoid/max.hpp"
+#include "../../math/homomorphism/update.hpp"
 
 namespace kk2 {
 

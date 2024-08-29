@@ -1,5 +1,5 @@
-#ifndef OTHERS_MONOID_MAX_HPP
-#define OTHERS_MONOID_MAX_HPP 1
+#ifndef MATH_MONOID_MAX_HPP
+#define MATH_MONOID_MAX_HPP 1
 
 namespace kk2 {
 
@@ -62,4 +62,4 @@ vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
 
 } // namespace kk2
 
-#endif // OTHERS_MONOID_MAX_HPP
+#endif // MATH_MONOID_MAX_H

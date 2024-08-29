@@ -1,5 +1,5 @@
-#ifndef OTHERS_HOMOMORPHISM_ADD_HPP
-#define OTHERS_HOMOMORPHISM_ADD_HPP 1
+#ifndef MATH_HOMOMORPHISM_ADD_HPP
+#define MATH_HOMOMORPHISM_ADD_HPP 1
 
 namespace kk2 {
 
@@ -21,4 +21,4 @@ Add<S> AddUnit() { return Add<S>(); }
 
 } // namespace kk2
 
-#endif // OTHERS_HOMOMORPHISM_ADD_HPP
+#endif // MATH_HOMOMORPHISM_ADD_HPP

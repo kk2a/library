@@ -1,5 +1,5 @@
-#ifndef OTHERS_MONOID_MIN_HPP
-#define OTHERS_MONOID_MIN_HPP 1
+#ifndef MATH_MONOID_MIN_HPP
+#define MATH_MONOID_MIN_HPP 1
 
 namespace kk2 {
 
@@ -62,4 +62,4 @@ vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
 
 } // namespace kk2
 
-#endif // OTHERS_MONOID_MIN_HPP
+#endif // MATH_MONOID_MIN_HPP

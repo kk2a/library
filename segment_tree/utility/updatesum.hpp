@@ -2,18 +2,18 @@
 #define SEGMENT_TREE_UTILITY_UPDATESUM_HPP 1
 
 #include "../lazy.hpp"
-#include "../../others/monoid/sum.hpp"
-#include "../../others/homomorphism/update.hpp"
+#include "../../math/group/sum.hpp"
+#include "../../math/homomorphism/update.hpp"
 
 namespace kk2 {
 
 template <class S>
 using UpdateSum =
-    LazySegTree<monoid::Sum<S>,
-                monoid::SumOp<S>,
-                monoid::SumUnit<S>,
+    LazySegTree<group::Sum<S>,
+                group::SumOp<S>,
+                group::SumUnit<S>,
                 homomorphism::Update<S>,
-                homomorphism::UpdateMap<S, monoid::Sum<S>>,
+                homomorphism::UpdateMap<S, group::Sum<S>>,
                 homomorphism::UpdateComposition<S>,
                 homomorphism::UpdateUnit<S>>;
 
