@@ -30,6 +30,11 @@ struct SparseTable {
         return op(table[i][l], table[i][r - (1 << i)]);
     }
 
+    S get(int i) const {
+        assert(0 <= i && i < _n);
+        return table[0][i];
+    }
+
     // return r s.t.
     // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true
     // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false
