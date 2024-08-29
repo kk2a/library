@@ -9,7 +9,7 @@ template <class S>
 struct Max {
     S a;
     bool minf;
-    Max() : a(0), minf(true) {}
+    Max() : a(S()), minf(true) {}
     Max (S a_, bool minf_ = false) : a(a_), minf(minf_) {}
     operator S() const { return a; }
     friend ostream& operator<<(ostream& os, const Max& max) {

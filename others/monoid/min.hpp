@@ -9,7 +9,7 @@ template <class S>
 struct Min {
     S a;
     bool inf;
-    Min() : a(0), inf(true) {}
+    Min() : a(S()), inf(true) {}
     Min(S a_, bool inf_ = false) : a(a_), inf(inf_) {}
     operator S() const { return a; }
     friend ostream& operator<<(ostream& os, const Min& min) {

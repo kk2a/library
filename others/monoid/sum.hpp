@@ -8,7 +8,7 @@ namespace monoid {
 template <class S>
 struct Sum {
     S a, size;
-    Sum() : a(0), size(0) {}
+    Sum() : a(S()), size(0) {}
     Sum(S a, S size = 1) : a(a), size(size) {}
     operator S() const { return a; }
     friend ostream& operator<<(ostream& os, const Sum& sum) {

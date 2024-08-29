@@ -9,7 +9,7 @@ template <class S>
 struct Update {
     S a;
     bool id;
-    Update() : a(0), id(true) {}
+    Update() : a(S()), id(true) {}
     Update(S a_, bool id_ = false) : a(a_), id(id_) {}
     operator S() const { return a; }
     friend ostream& operator<<(ostream& os, const Update& update) {
