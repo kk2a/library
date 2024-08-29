@@ -61,10 +61,10 @@ data:
     \    int _n, size, log;\n    std::vector<S> d;\n\n    void update(int k) { d[k]\
     \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"others/monoid/min.hpp\"\
     \n\n\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Min\
-    \ {\n    S a;\n    bool inf;\n    Min() : a(0), inf(true) {}\n    Min(S a_, bool\
-    \ inf_ = false) : a(a_), inf(inf_) {}\n    operator S() const { return a; }\n\
-    \    friend ostream& operator<<(ostream& os, const Min& min) {\n        os <<\
-    \ (min.inf ? \"inf\" : to_string(min.a));\n        return os;\n    }\n    friend\
+    \ {\n    S a;\n    bool inf;\n    Min() : a(S()), inf(true) {}\n    Min(S a_,\
+    \ bool inf_ = false) : a(a_), inf(inf_) {}\n    operator S() const { return a;\
+    \ }\n    friend ostream& operator<<(ostream& os, const Min& min) {\n        os\
+    \ << (min.inf ? \"inf\" : to_string(min.a));\n        return os;\n    }\n    friend\
     \ istream& operator>>(istream& is, Min& min) {\n        is >> min.a;\n       \
     \ min.inf = false;\n        return is;\n    }\n    Min& operator=(const S& rhs)\
     \ {\n        a = rhs;\n        inf = false;\n        return *this;\n    }\n\n\
@@ -92,7 +92,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/minseg.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 22:36:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/minseg.hpp

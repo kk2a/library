@@ -103,7 +103,7 @@ data:
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
     \ namespace kk2\n\n\n#line 1 \"others/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\
     \nnamespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n\
-    \    Min() : a(0), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
+    \    Min() : a(S()), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
     \ {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Min& min) {\n        os << (min.inf ? \"inf\" : to_string(min.a));\n\
     \        return os;\n    }\n    friend istream& operator>>(istream& is, Min& min)\
@@ -121,7 +121,7 @@ data:
     \ {\n    return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n}\n\n} //\
     \ namespace kk2\n\n\n#line 1 \"others/homomorphism/update.hpp\"\n\n\n\nnamespace\
     \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nstruct Update {\n \
-    \   S a;\n    bool id;\n    Update() : a(0), id(true) {}\n    Update(S a_, bool\
+    \   S a;\n    bool id;\n    Update() : a(S()), id(true) {}\n    Update(S a_, bool\
     \ id_ = false) : a(a_), id(id_) {}\n    operator S() const { return a; }\n   \
     \ friend ostream& operator<<(ostream& os, const Update& update) {\n        os\
     \ << (update.id ? \"id\" : to_string(update.a));\n        return os;\n    }\n\n\
@@ -152,7 +152,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatemin.hpp
   requiredBy: []
-  timestamp: '2024-08-27 04:41:37+09:00'
+  timestamp: '2024-08-29 22:36:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemin.hpp

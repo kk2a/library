@@ -103,7 +103,7 @@ data:
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
     \ namespace kk2\n\n\n#line 1 \"others/monoid/max.hpp\"\n\n\n\nnamespace kk2 {\n\
     \nnamespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n    bool minf;\n\
-    \    Max() : a(0), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_),\
+    \    Max() : a(S()), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_),\
     \ minf(minf_) {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Max& max) {\n        os << (max.minf ? \"minf\" : to_string(max.a));\n\
     \        return os;\n    }\n    friend istream& operator>>(istream& is, Max& max)\
@@ -121,7 +121,7 @@ data:
     \ {\n    return vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n}\n\n} //\
     \ namespace kk2\n\n\n#line 1 \"others/homomorphism/update.hpp\"\n\n\n\nnamespace\
     \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nstruct Update {\n \
-    \   S a;\n    bool id;\n    Update() : a(0), id(true) {}\n    Update(S a_, bool\
+    \   S a;\n    bool id;\n    Update() : a(S()), id(true) {}\n    Update(S a_, bool\
     \ id_ = false) : a(a_), id(id_) {}\n    operator S() const { return a; }\n   \
     \ friend ostream& operator<<(ostream& os, const Update& update) {\n        os\
     \ << (update.id ? \"id\" : to_string(update.a));\n        return os;\n    }\n\n\
@@ -152,7 +152,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatemax.hpp
   requiredBy: []
-  timestamp: '2024-08-27 04:41:37+09:00'
+  timestamp: '2024-08-29 22:36:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemax.hpp

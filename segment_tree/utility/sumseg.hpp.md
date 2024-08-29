@@ -61,8 +61,8 @@ data:
     \    int _n, size, log;\n    std::vector<S> d;\n\n    void update(int k) { d[k]\
     \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"others/monoid/sum.hpp\"\
     \n\n\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Sum\
-    \ {\n    S a, size;\n    Sum() : a(0), size(0) {}\n    Sum(S a, S size = 1) :\
-    \ a(a), size(size) {}\n    operator S() const { return a; }\n    friend ostream&\
+    \ {\n    S a, size;\n    Sum() : a(S()), size(0) {}\n    Sum(S a, S size = 1)\
+    \ : a(a), size(size) {}\n    operator S() const { return a; }\n    friend ostream&\
     \ operator<<(ostream& os, const Sum& sum) {\n        os << sum.a;\n        return\
     \ os;\n    }\n    friend istream& operator>>(istream& is, Sum& sum) {\n      \
     \  is >> sum.a;\n        sum.size = 1;\n        return is;\n    }\n    Sum& operator=(const\
@@ -91,7 +91,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/sumseg.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 22:36:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/sumseg.hpp

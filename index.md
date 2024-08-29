@@ -178,6 +178,9 @@ data:
       path: graph/tree/diameter.hpp
       title: graph/tree/diameter.hpp
     - icon: ':warning:'
+      path: graph/tree/euler_tour.hpp
+      title: graph/tree/euler_tour.hpp
+    - icon: ':warning:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: graph/tree/heavy_light_decomposition.hpp
   - name: .

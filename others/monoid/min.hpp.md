@@ -6,6 +6,9 @@ data:
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
   - icon: ':warning:'
+    path: graph/tree/euler_tour.hpp
+    title: graph/tree/euler_tour.hpp
+  - icon: ':warning:'
     path: segment_tree/utility/addmin.hpp
     title: segment_tree/utility/addmin.hpp
   - icon: ':warning:'
@@ -22,8 +25,8 @@ data:
     links: []
   bundledCode: "#line 1 \"others/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\nnamespace\
     \ monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n    Min()\
-    \ : a(0), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_) {}\n\
-    \    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
+    \ : a(S()), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
+    \ {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Min& min) {\n        os << (min.inf ? \"inf\" : to_string(min.a));\n\
     \        return os;\n    }\n    friend istream& operator>>(istream& is, Min& min)\
     \ {\n        is >> min.a;\n        min.inf = false;\n        return is;\n    }\n\
@@ -41,7 +44,7 @@ data:
     \ namespace kk2\n\n\n"
   code: "#ifndef OTHERS_MONOID_MIN_HPP\n#define OTHERS_MONOID_MIN_HPP 1\n\nnamespace\
     \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n\
-    \    bool inf;\n    Min() : a(0), inf(true) {}\n    Min(S a_, bool inf_ = false)\
+    \    bool inf;\n    Min() : a(S()), inf(true) {}\n    Min(S a_, bool inf_ = false)\
     \ : a(a_), inf(inf_) {}\n    operator S() const { return a; }\n    friend ostream&\
     \ operator<<(ostream& os, const Min& min) {\n        os << (min.inf ? \"inf\"\
     \ : to_string(min.a));\n        return os;\n    }\n    friend istream& operator>>(istream&\
@@ -62,11 +65,12 @@ data:
   isVerificationFile: false
   path: others/monoid/min.hpp
   requiredBy:
+  - graph/tree/euler_tour.hpp
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/addmin.hpp
   - segment_tree/utility/minseg.hpp
   - data_structure/static_rmq.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 22:36:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: others/monoid/min.hpp

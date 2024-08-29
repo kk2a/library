@@ -103,7 +103,7 @@ data:
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
     \ namespace kk2\n\n\n#line 1 \"others/monoid/max.hpp\"\n\n\n\nnamespace kk2 {\n\
     \nnamespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n    bool minf;\n\
-    \    Max() : a(0), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_),\
+    \    Max() : a(S()), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_),\
     \ minf(minf_) {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Max& max) {\n        os << (max.minf ? \"minf\" : to_string(max.a));\n\
     \        return os;\n    }\n    friend istream& operator>>(istream& is, Max& max)\
@@ -146,7 +146,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/addmax.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 22:36:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmax.hpp

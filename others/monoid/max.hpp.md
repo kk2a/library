@@ -19,7 +19,7 @@ data:
     links: []
   bundledCode: "#line 1 \"others/monoid/max.hpp\"\n\n\n\nnamespace kk2 {\n\nnamespace\
     \ monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n    bool minf;\n   \
-    \ Max() : a(0), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_), minf(minf_)\
+    \ Max() : a(S()), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_), minf(minf_)\
     \ {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Max& max) {\n        os << (max.minf ? \"minf\" : to_string(max.a));\n\
     \        return os;\n    }\n    friend istream& operator>>(istream& is, Max& max)\
@@ -38,9 +38,9 @@ data:
     \ namespace kk2\n\n\n"
   code: "#ifndef OTHERS_MONOID_MAX_HPP\n#define OTHERS_MONOID_MAX_HPP 1\n\nnamespace\
     \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n\
-    \    bool minf;\n    Max() : a(0), minf(true) {}\n    Max (S a_, bool minf_ =\
-    \ false) : a(a_), minf(minf_) {}\n    operator S() const { return a; }\n    friend\
-    \ ostream& operator<<(ostream& os, const Max& max) {\n        os << (max.minf\
+    \    bool minf;\n    Max() : a(S()), minf(true) {}\n    Max (S a_, bool minf_\
+    \ = false) : a(a_), minf(minf_) {}\n    operator S() const { return a; }\n   \
+    \ friend ostream& operator<<(ostream& os, const Max& max) {\n        os << (max.minf\
     \ ? \"minf\" : to_string(max.a));\n        return os;\n    }\n    friend istream&\
     \ operator>>(istream& is, Max& max) {\n        is >> max.a;\n        max.minf\
     \ = false;\n        return is;\n    }\n    Max& operator=(const S& rhs) {\n  \
@@ -62,7 +62,7 @@ data:
   - segment_tree/utility/maxseg.hpp
   - segment_tree/utility/updatemax.hpp
   - segment_tree/utility/addmax.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 22:36:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: others/monoid/max.hpp

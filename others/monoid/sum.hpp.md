@@ -21,7 +21,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"others/monoid/sum.hpp\"\n\n\n\nnamespace kk2 {\n\nnamespace\
-    \ monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n    Sum() : a(0),\
+    \ monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n    Sum() : a(S()),\
     \ size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n    operator S()\
     \ const { return a; }\n    friend ostream& operator<<(ostream& os, const Sum&\
     \ sum) {\n        os << sum.a;\n        return os;\n    }\n    friend istream&\
@@ -39,7 +39,7 @@ data:
     \ monoid::Sum<S>(args...));\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef OTHERS_MONOID_SUM_HPP\n#define OTHERS_MONOID_SUM_HPP 1\n\nnamespace\
     \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n\
-    \    Sum() : a(0), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n\
+    \    Sum() : a(S()), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n\
     \    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Sum& sum) {\n        os << sum.a;\n        return os;\n    }\n   \
     \ friend istream& operator>>(istream& is, Sum& sum) {\n        is >> sum.a;\n\
@@ -63,7 +63,7 @@ data:
   - segment_tree/utility/updatesum.hpp
   - segment_tree/utility/sumseg.hpp
   - segment_tree/utility/addsum.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 22:36:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: others/monoid/sum.hpp

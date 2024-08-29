@@ -7,7 +7,10 @@ data:
   - icon: ':warning:'
     path: others/monoid/min.hpp
     title: others/monoid/min.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/tree/euler_tour.hpp
+    title: graph/tree/euler_tour.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -27,10 +30,11 @@ data:
     \ }\n\n    S prod(int l, int r) const {\n        assert(0 <= l && l <= r && r\
     \ <= _n);\n        if (l == r) return e();\n        int i = 31 ^ __builtin_clz(r\
     \ - l);\n        return op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n  \
-    \  // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true\n\
-    \    // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false\n    template <bool\
-    \ (*f)(S)>\n    int max_right(int l) const {\n        return max_right(l, [](S\
-    \ x) { return f(x); });\n    }\n    template <class F>\n    int max_right(int\
+    \  S get(int i) const {\n        assert(0 <= i && i < _n);\n        return table[0][i];\n\
+    \    }\n\n    // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1]))\
+    \ == true\n    // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false\n    template\
+    \ <bool (*f)(S)>\n    int max_right(int l) const {\n        return max_right(l,\
+    \ [](S x) { return f(x); });\n    }\n    template <class F>\n    int max_right(int\
     \ l, F f) const {\n        assert(0 <= l && l <= _n);\n        assert(f(e()));\n\
     \        if (l == _n) return _n;\n        int left = l - 1, right = _n;\n    \
     \    while (right - left > 1) {\n            int mid = (left + right) >> 1;\n\
@@ -46,7 +50,7 @@ data:
     \        else left = mid;\n        }\n        return right;\n    }\n\n  private:\n\
     \    int _n, log;\n    vector<vector<S>> table;\n};\n\n} // namespace kk2\n\n\n\
     #line 1 \"others/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\nnamespace monoid {\n\
-    \ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n    Min() : a(0),\
+    \ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n    Min() : a(S()),\
     \ inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_) {}\n    operator\
     \ S() const { return a; }\n    friend ostream& operator<<(ostream& os, const Min&\
     \ min) {\n        os << (min.inf ? \"inf\" : to_string(min.a));\n        return\
@@ -95,8 +99,9 @@ data:
   - others/monoid/min.hpp
   isVerificationFile: false
   path: data_structure/static_rmq.hpp
-  requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  requiredBy:
+  - graph/tree/euler_tour.hpp
+  timestamp: '2024-08-29 22:37:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/static_rmq.hpp
