@@ -5,12 +5,12 @@ namespace kk2 {
 
 // A is an abelian group
 template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)>
-struct UnionFind_weight {
+struct WeighedUnionFind {
   private:
     vector<int> d;
     vector<A> diff_weight;
   public:
-    UnionFind_weight(int n = 0) : d(n, -1), diff_weight(n, e()) {}
+    WeighedUnionFind(int n = 0) : d(n, -1), diff_weight(n, e()) {}
     bool unite(int x, int y, A w) {
         w = op(w, op(weight(x), inv(weight(y))));
         x = find(x); y = find(y);
