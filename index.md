@@ -10,8 +10,8 @@ data:
       path: UnionFind/rollback.hpp
       title: UnionFind/rollback.hpp
     - icon: ':warning:'
-      path: UnionFind/weight.hpp
-      title: UnionFind/weight.hpp
+      path: UnionFind/weighted.hpp
+      title: UnionFind/weighted.hpp
   - name: convolution
     pages:
     - icon: ':warning:'

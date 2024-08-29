@@ -8,10 +8,10 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"UnionFind/weight.hpp\"\n\n\n\nnamespace kk2 {\n\n// A is\
-    \ an abelian group\ntemplate <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)>\n\
-    struct UnionFind_weight {\n  private:\n    vector<int> d;\n    vector<A> diff_weight;\n\
-    \  public:\n    UnionFind_weight(int n = 0) : d(n, -1), diff_weight(n, e()) {}\n\
+  bundledCode: "#line 1 \"UnionFind/weighted.hpp\"\n\n\n\nnamespace kk2 {\n\n// A\
+    \ is an abelian group\ntemplate <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)>\n\
+    struct WeighedUnionFind {\n  private:\n    vector<int> d;\n    vector<A> diff_weight;\n\
+    \  public:\n    WeighedUnionFind(int n = 0) : d(n, -1), diff_weight(n, e()) {}\n\
     \    bool unite(int x, int y, A w) {\n        w = op(w, op(weight(x), inv(weight(y))));\n\
     \        x = find(x); y = find(y);\n        if (x == y) return false;\n      \
     \  if (d[x] > d[y]) { swap(x, y); w = inv(w); }\n        d[x] += d[y];\n     \
@@ -25,8 +25,8 @@ data:
     \n\n"
   code: "#ifndef UNIONFIND_WEIGHT_HPP\n#define UNIONFIND_WEIGHT_HPP 1\n\nnamespace\
     \ kk2 {\n\n// A is an abelian group\ntemplate <class A, A (*op)(A, A), A (*e)(),\
-    \ A (*inv)(A)>\nstruct UnionFind_weight {\n  private:\n    vector<int> d;\n  \
-    \  vector<A> diff_weight;\n  public:\n    UnionFind_weight(int n = 0) : d(n, -1),\
+    \ A (*inv)(A)>\nstruct WeighedUnionFind {\n  private:\n    vector<int> d;\n  \
+    \  vector<A> diff_weight;\n  public:\n    WeighedUnionFind(int n = 0) : d(n, -1),\
     \ diff_weight(n, e()) {}\n    bool unite(int x, int y, A w) {\n        w = op(w,\
     \ op(weight(x), inv(weight(y))));\n        x = find(x); y = find(y);\n       \
     \ if (x == y) return false;\n        if (d[x] > d[y]) { swap(x, y); w = inv(w);\
@@ -40,15 +40,15 @@ data:
     \    }\n};\n\n} // namespace kk2\n\n#endif // UNIONFIND_WEIGHT_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: UnionFind/weight.hpp
+  path: UnionFind/weighted.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 13:23:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: UnionFind/weight.hpp
+documentation_of: UnionFind/weighted.hpp
 layout: document
 redirect_from:
-- /library/UnionFind/weight.hpp
-- /library/UnionFind/weight.hpp.html
-title: UnionFind/weight.hpp
+- /library/UnionFind/weighted.hpp
+- /library/UnionFind/weighted.hpp.html
+title: UnionFind/weighted.hpp
 ---
