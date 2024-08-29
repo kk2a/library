@@ -7,7 +7,7 @@ template <typename G>
 struct HeavyLightDecomposition {
     G& g;
     int root, id;
-    vector<int> sz, in, out, head, par, dep;
+    vector<int> sz, in, out, head, par, dep, edge_idx;
     HeavyLightDecomposition(G& g_, int root_ = 0) 
         : g(g_),
           root(root_),
@@ -17,8 +17,36 @@ struct HeavyLightDecomposition {
           out(g.size(), -1),
           head(g.size(), root),
           par(g.size(), root),
-          dep(g.size(), 0) {
+          dep(g.size(), 0),
+          edge_idx(g.size() - 1, -1) {
         init();
+    }
+
+    template <typename F>
+    void path_query(int u, int v, bool is_vertex_query, const F& f) {
+        int l = lca(u, v);
+        for (auto& [a, b] : ascend(u, l)) {
+            int s = a + 1, t = b;
+            s > t ? f(t, s) : f(s, t);
+        }
+        if (is_vertex_query) f(in[l], in[l] + 1);
+        for (auto& [a, b] : descend(l, v)) {
+            int s = a, t = b + 1;
+            s > t ? f(t, s) : f(s, t);
+        }
+    }
+
+    template <typename F>
+    void path_noncommutative_query(int u, int v, bool is_vertex_query, const F& f) {
+        int l = lca(u, v);
+        for (auto& [a, b] : ascend(u, l)) f(a + 1, b);
+        if (is_vertex_query) f(in[l], in[l] + 1);
+        for (auto& [a, b] : descend(l, v)) f(a, b + 1);
+    }
+
+    template <typename F>
+    void subtree_query(int u, bool is_vertex_query, const F& f) {
+        f(in[u] + (int)!is_vertex_query, out[u]);
     }
 
     int lca(int u, int v) const {
@@ -59,11 +87,32 @@ struct HeavyLightDecomposition {
             for (auto& e : g[now]) {
                 if ((int)e == par[now]) continue;
                 head[(int)e] = ((int)e == (int)g[now][0] ? head[now] : (int)e);
+                edge_idx[e.id] = id;
                 self(self, (int)e);
             }
             out[now] = id;
         };
         dfs_hld(dfs_hld, root);
+    }
+
+    // [u, v)
+    vector<pair<int, int>> ascend(int u, int v) const {
+        vector<pair<int, int>> res;
+        while (head[u] != head[v]) {
+            res.emplace_back(in[u], in[head[u]]);
+            u = par[head[u]];
+        }
+        if (u != v) res.emplace_back(in[u], in[v] + 1);
+        return res;
+    }
+
+    // (u, v]
+    vector<pair<int, int>> descend(int u, int v) const {
+        if (u == v) return {};
+        if (head[u] == head[v]) return {make_pair(in[u] + 1, in[v])};
+        auto res = descend(u, par[head[v]]);
+        res.emplace_back(in[head[v]], in[v]);
+        return res;
     }
 };
 
