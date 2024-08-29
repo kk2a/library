@@ -2,7 +2,7 @@
 #define DATA_STRUCTURE_STATIC_RMQ_HPP 1
 
 #include "sparse_table.hpp"
-#include "../others/monoid/min.hpp"
+#include "../math/monoid/min.hpp"
 
 namespace kk2 {
 
