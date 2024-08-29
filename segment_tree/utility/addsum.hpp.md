@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: others/homomorphism/add.hpp
-    title: others/homomorphism/add.hpp
+    path: math/group/sum.hpp
+    title: math/group/sum.hpp
   - icon: ':warning:'
-    path: others/monoid/sum.hpp
-    title: others/monoid/sum.hpp
+    path: math/homomorphism/add.hpp
+    title: math/homomorphism/add.hpp
   - icon: ':warning:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
@@ -101,51 +101,51 @@ data:
     \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
     \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/monoid/sum.hpp\"\n\n\n\nnamespace kk2 {\n\
-    \nnamespace monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n   \
-    \ Sum() : a(S()), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n\
-    \    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
-    \ os, const Sum& sum) {\n        os << sum.a;\n        return os;\n    }\n   \
-    \ friend istream& operator>>(istream& is, Sum& sum) {\n        is >> sum.a;\n\
-    \        sum.size = 1;\n        return is;\n    }\n    Sum& operator=(const S&\
-    \ rhs) {\n        a = rhs;\n        size = 1;\n        return *this;\n    }\n\n\
-    \    Sum& add(const S& rhs) {\n        a += rhs * size;\n        return *this;\n\
-    \    }\n    Sum& update(const S& rhs) {\n        a = rhs * size;\n        return\
-    \ *this;\n    }\n    Sum& multiply(const S& rhs) {\n        a *= rhs;\n      \
-    \  return *this;\n    }\n    Sum& op(const Sum& rhs) {\n        a += rhs.a;\n\
-    \        size += rhs.size;\n        return *this;\n    }\n};\n\ntemplate <class\
-    \ S>\nSum<S> SumOp(Sum<S> l, Sum<S> r) { return l.op(r); }\n\ntemplate <class\
-    \ S>\nSum<S> SumUnit() { return Sum<S>(); }\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args>\nvector<monoid::Sum<S>> GetVecSum(int n, Args... args)\
-    \ {\n    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/add.hpp\"\n\n\n\nnamespace\
+    \ namespace kk2\n\n\n#line 1 \"math/group/sum.hpp\"\n\n\n\nnamespace kk2 {\n\n\
+    namespace group {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n    Sum()\
+    \ : a(S()), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n    operator\
+    \ S() const { return a; }\n    friend ostream& operator<<(ostream& os, const Sum&\
+    \ sum) {\n        os << sum.a;\n        return os;\n    }\n    friend istream&\
+    \ operator>>(istream& is, Sum& sum) {\n        is >> sum.a;\n        sum.size\
+    \ = 1;\n        return is;\n    }\n    Sum& operator=(const S& rhs) {\n      \
+    \  a = rhs;\n        size = 1;\n        return *this;\n    }\n\n    Sum& add(const\
+    \ S& rhs) {\n        a += rhs * size;\n        return *this;\n    }\n    Sum&\
+    \ update(const S& rhs) {\n        a = rhs * size;\n        return *this;\n   \
+    \ }\n    Sum& multiply(const S& rhs) {\n        a *= rhs;\n        return *this;\n\
+    \    }\n    Sum& op(const Sum& rhs) {\n        a += rhs.a;\n        size += rhs.size;\n\
+    \        return *this;\n    }\n};\n\ntemplate <class S>\nSum<S> SumOp(Sum<S> l,\
+    \ Sum<S> r) { return l.op(r); }\n\ntemplate <class S>\nSum<S> SumUnit() { return\
+    \ Sum<S>(); }\n\ntemplate <class S>\nSum<S> SumInv(Sum<S> x) { return Sum<S>(-x.a,\
+    \ -x.size); }\n\n} // namespace group\n\ntemplate <class S, class... Args>\nvector<group::Sum<S>>\
+    \ GetVecSum(int n, Args... args) {\n    return vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
+    }\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/add.hpp\"\n\n\n\nnamespace\
     \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nusing Add = S;\n\n\
     template <class S, class T>\nT AddMap(Add<S> f, T x) { return x.add(f); }\n\n\
     template <class S>\nAdd<S> AddComposition(Add<S> l, Add<S> r) { return l + r;\
     \ }\n\ntemplate <class S>\nAdd<S> AddUnit() { return Add<S>(); }\n\n} // namespace\
     \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/addsum.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddSum =\n    LazySegTree<monoid::Sum<S>,\n\
-    \                monoid::SumOp<S>,\n                monoid::SumUnit<S>,\n    \
-    \            homomorphism::Add<S>,\n                homomorphism::AddMap<S, monoid::Sum<S>>,\n\
+    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddSum =\n    LazySegTree<group::Sum<S>,\n\
+    \                group::SumOp<S>,\n                group::SumUnit<S>,\n      \
+    \          homomorphism::Add<S>,\n                homomorphism::AddMap<S, group::Sum<S>>,\n\
     \                homomorphism::AddComposition<S>,\n                homomorphism::AddUnit<S>>;\n\
     \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_ADDSUM_HPP\n#define SEGMENT_TREE_UTILITY_ADDSUM_HPP\
-    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/sum.hpp\"\n#include\
-    \ \"../../others/homomorphism/add.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ S>\nusing AddSum =\n    LazySegTree<monoid::Sum<S>,\n                monoid::SumOp<S>,\n\
-    \                monoid::SumUnit<S>,\n                homomorphism::Add<S>,\n\
-    \                homomorphism::AddMap<S, monoid::Sum<S>>,\n                homomorphism::AddComposition<S>,\n\
+    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../math/group/sum.hpp\"\n#include\
+    \ \"../../math/homomorphism/add.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\n\
+    using AddSum =\n    LazySegTree<group::Sum<S>,\n                group::SumOp<S>,\n\
+    \                group::SumUnit<S>,\n                homomorphism::Add<S>,\n \
+    \               homomorphism::AddMap<S, group::Sum<S>>,\n                homomorphism::AddComposition<S>,\n\
     \                homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n#endif //\
     \ SEGMENT_TREE_UTILITY_ADDSUM_HPP\n"
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
-  - others/monoid/sum.hpp
-  - others/homomorphism/add.hpp
+  - math/group/sum.hpp
+  - math/homomorphism/add.hpp
   isVerificationFile: false
   path: segment_tree/utility/addsum.hpp
   requiredBy: []
-  timestamp: '2024-08-29 22:36:43+09:00'
+  timestamp: '2024-08-29 23:32:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addsum.hpp

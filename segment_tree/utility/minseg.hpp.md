@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: others/monoid/min.hpp
-    title: others/monoid/min.hpp
+    path: math/monoid/min.hpp
+    title: math/monoid/min.hpp
   - icon: ':warning:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
@@ -59,7 +59,7 @@ data:
     \                return r + 1 - size;\n            }\n            sm = op(d[r],\
     \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\nprivate:\n\
     \    int _n, size, log;\n    std::vector<S> d;\n\n    void update(int k) { d[k]\
-    \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"others/monoid/min.hpp\"\
+    \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/min.hpp\"\
     \n\n\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Min\
     \ {\n    S a;\n    bool inf;\n    Min() : a(S()), inf(true) {}\n    Min(S a_,\
     \ bool inf_ = false) : a(a_), inf(inf_) {}\n    operator S() const { return a;\
@@ -82,17 +82,17 @@ data:
     \                 monoid::MinOp<S>,\n                       monoid::MinUnit<S>>;\n\
     \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_MINSEG_HPP\n#define SEGMENT_TREE_UTILITY_MINSEG_HPP\
-    \ 1\n\n#include \"../seg.hpp\"\n#include \"../../others/monoid/min.hpp\"\n\nnamespace\
+    \ 1\n\n#include \"../seg.hpp\"\n#include \"../../math/monoid/min.hpp\"\n\nnamespace\
     \ kk2 {\n\ntemplate <class S>\nusing MinSeg = SegTree<monoid::Min<S>,\n      \
     \                 monoid::MinOp<S>,\n                       monoid::MinUnit<S>>;\n\
     \n} // namespace kk2\n\n#endif // SEGMENT_TREE_UTILITY_MINSEG_HPP\n"
   dependsOn:
   - segment_tree/seg.hpp
-  - others/monoid/min.hpp
+  - math/monoid/min.hpp
   isVerificationFile: false
   path: segment_tree/utility/minseg.hpp
   requiredBy: []
-  timestamp: '2024-08-29 22:36:43+09:00'
+  timestamp: '2024-08-29 23:32:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/minseg.hpp

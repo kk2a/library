@@ -5,8 +5,8 @@ data:
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
   - icon: ':warning:'
-    path: others/monoid/min.hpp
-    title: others/monoid/min.hpp
+    path: math/monoid/min.hpp
+    title: math/monoid/min.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: graph/tree/euler_tour.hpp
@@ -49,7 +49,7 @@ data:
     \ = (left + right) >> 1;\n            if (f(prod(mid, r))) right = mid;\n    \
     \        else left = mid;\n        }\n        return right;\n    }\n\n  private:\n\
     \    int _n, log;\n    vector<vector<S>> table;\n};\n\n} // namespace kk2\n\n\n\
-    #line 1 \"others/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\nnamespace monoid {\n\
+    #line 1 \"math/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\nnamespace monoid {\n\
     \ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n    Min() : a(S()),\
     \ inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_) {}\n    operator\
     \ S() const { return a; }\n    friend ostream& operator<<(ostream& os, const Min&\
@@ -77,7 +77,7 @@ data:
 
     #include "sparse_table.hpp"
 
-    #include "../others/monoid/min.hpp"
+    #include "../math/monoid/min.hpp"
 
 
     namespace kk2 {
@@ -96,12 +96,12 @@ data:
     '
   dependsOn:
   - data_structure/sparse_table.hpp
-  - others/monoid/min.hpp
+  - math/monoid/min.hpp
   isVerificationFile: false
   path: data_structure/static_rmq.hpp
   requiredBy:
   - graph/tree/euler_tour.hpp
-  timestamp: '2024-08-29 22:37:09+09:00'
+  timestamp: '2024-08-30 00:25:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/static_rmq.hpp

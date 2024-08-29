@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: others/homomorphism/affine.hpp
-    title: others/homomorphism/affine.hpp
+    path: math/group/sum.hpp
+    title: math/group/sum.hpp
   - icon: ':warning:'
-    path: others/monoid/sum.hpp
-    title: others/monoid/sum.hpp
+    path: math/homomorphism/affine.hpp
+    title: math/homomorphism/affine.hpp
   - icon: ':warning:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
@@ -101,26 +101,26 @@ data:
     \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
     \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/monoid/sum.hpp\"\n\n\n\nnamespace kk2 {\n\
-    \nnamespace monoid {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n   \
-    \ Sum() : a(S()), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n\
-    \    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
-    \ os, const Sum& sum) {\n        os << sum.a;\n        return os;\n    }\n   \
-    \ friend istream& operator>>(istream& is, Sum& sum) {\n        is >> sum.a;\n\
-    \        sum.size = 1;\n        return is;\n    }\n    Sum& operator=(const S&\
-    \ rhs) {\n        a = rhs;\n        size = 1;\n        return *this;\n    }\n\n\
-    \    Sum& add(const S& rhs) {\n        a += rhs * size;\n        return *this;\n\
-    \    }\n    Sum& update(const S& rhs) {\n        a = rhs * size;\n        return\
-    \ *this;\n    }\n    Sum& multiply(const S& rhs) {\n        a *= rhs;\n      \
-    \  return *this;\n    }\n    Sum& op(const Sum& rhs) {\n        a += rhs.a;\n\
-    \        size += rhs.size;\n        return *this;\n    }\n};\n\ntemplate <class\
-    \ S>\nSum<S> SumOp(Sum<S> l, Sum<S> r) { return l.op(r); }\n\ntemplate <class\
-    \ S>\nSum<S> SumUnit() { return Sum<S>(); }\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args>\nvector<monoid::Sum<S>> GetVecSum(int n, Args... args)\
-    \ {\n    return vector<monoid::Sum<S>>(n, monoid::Sum<S>(args...));\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/affine.hpp\"\n\n\n\nnamespace\
-    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nstruct Affine {\n \
-    \   S a, b; // x \\mapsto ax + b\n    Affine() : a(1), b(0) {};\n    Affine(S\
+    \ namespace kk2\n\n\n#line 1 \"math/group/sum.hpp\"\n\n\n\nnamespace kk2 {\n\n\
+    namespace group {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n    Sum()\
+    \ : a(S()), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n    operator\
+    \ S() const { return a; }\n    friend ostream& operator<<(ostream& os, const Sum&\
+    \ sum) {\n        os << sum.a;\n        return os;\n    }\n    friend istream&\
+    \ operator>>(istream& is, Sum& sum) {\n        is >> sum.a;\n        sum.size\
+    \ = 1;\n        return is;\n    }\n    Sum& operator=(const S& rhs) {\n      \
+    \  a = rhs;\n        size = 1;\n        return *this;\n    }\n\n    Sum& add(const\
+    \ S& rhs) {\n        a += rhs * size;\n        return *this;\n    }\n    Sum&\
+    \ update(const S& rhs) {\n        a = rhs * size;\n        return *this;\n   \
+    \ }\n    Sum& multiply(const S& rhs) {\n        a *= rhs;\n        return *this;\n\
+    \    }\n    Sum& op(const Sum& rhs) {\n        a += rhs.a;\n        size += rhs.size;\n\
+    \        return *this;\n    }\n};\n\ntemplate <class S>\nSum<S> SumOp(Sum<S> l,\
+    \ Sum<S> r) { return l.op(r); }\n\ntemplate <class S>\nSum<S> SumUnit() { return\
+    \ Sum<S>(); }\n\ntemplate <class S>\nSum<S> SumInv(Sum<S> x) { return Sum<S>(-x.a,\
+    \ -x.size); }\n\n} // namespace group\n\ntemplate <class S, class... Args>\nvector<group::Sum<S>>\
+    \ GetVecSum(int n, Args... args) {\n    return vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
+    }\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/affine.hpp\"\n\n\n\n\
+    namespace kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nstruct Affine\
+    \ {\n    S a, b; // x \\mapsto ax + b\n    Affine() : a(1), b(0) {};\n    Affine(S\
     \ a, S b) : a(a), b(b) {}\n    friend ostream& operator<<(ostream& os, const Affine&\
     \ aff) {\n        os << aff.a << \" \" << aff.b;\n        return os;\n    }\n\n\
     \    Affine& composition(const Affine& rhs) {\n        return *this = Affine(a\
@@ -129,28 +129,28 @@ data:
     \ AffineComposition(Affine<S> l, Affine<S> r) { return l.composition(r); }\n\n\
     template <class S>\nAffine<S> AffineUnit() { return Affine<S>(); }\n\n} // namespace\
     \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/affinesum.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AffineSum =\n    LazySegTree<monoid::Sum<S>,\n\
-    \                monoid::SumOp<S>,\n                monoid::SumUnit<S>,\n    \
-    \            homomorphism::Affine<S>,\n                homomorphism::AffineMap<S,\
-    \ monoid::Sum<S>>,\n                homomorphism::AffineComposition<S>,\n    \
-    \            homomorphism::AffineUnit<S>>;\n\n} // namespace kk2\n\n\n"
+    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AffineSum =\n    LazySegTree<group::Sum<S>,\n\
+    \                group::SumOp<S>,\n                group::SumUnit<S>,\n      \
+    \          homomorphism::Affine<S>,\n                homomorphism::AffineMap<S,\
+    \ group::Sum<S>>,\n                homomorphism::AffineComposition<S>,\n     \
+    \           homomorphism::AffineUnit<S>>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n#define SEGMENT_TREE_UTILITY_AFFINESUM_HPP\
-    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/sum.hpp\"\n#include\
-    \ \"../../others/homomorphism/affine.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ S>\nusing AffineSum =\n    LazySegTree<monoid::Sum<S>,\n                monoid::SumOp<S>,\n\
-    \                monoid::SumUnit<S>,\n                homomorphism::Affine<S>,\n\
-    \                homomorphism::AffineMap<S, monoid::Sum<S>>,\n               \
-    \ homomorphism::AffineComposition<S>,\n                homomorphism::AffineUnit<S>>;\n\
-    \n} // namespace kk2\n\n#endif // SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n"
+    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../math/group/sum.hpp\"\n#include\
+    \ \"../../math/homomorphism/affine.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ S>\nusing AffineSum =\n    LazySegTree<group::Sum<S>,\n                group::SumOp<S>,\n\
+    \                group::SumUnit<S>,\n                homomorphism::Affine<S>,\n\
+    \                homomorphism::AffineMap<S, group::Sum<S>>,\n                homomorphism::AffineComposition<S>,\n\
+    \                homomorphism::AffineUnit<S>>;\n\n} // namespace kk2\n\n#endif\
+    \ // SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n"
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
-  - others/monoid/sum.hpp
-  - others/homomorphism/affine.hpp
+  - math/group/sum.hpp
+  - math/homomorphism/affine.hpp
   isVerificationFile: false
   path: segment_tree/utility/affinesum.hpp
   requiredBy: []
-  timestamp: '2024-08-29 22:36:43+09:00'
+  timestamp: '2024-08-29 23:32:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/affinesum.hpp

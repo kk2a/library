@@ -18,20 +18,22 @@ data:
     \          root(root_),\n          id(0),\n          sz(g.size(), 0),\n      \
     \    in(g.size(), -1),\n          out(g.size(), -1),\n          head(g.size(),\
     \ root),\n          par(g.size(), root),\n          dep(g.size(), 0),\n      \
-    \    edge_idx(g.size() - 1, -1) {\n        init();\n    }\n\n    template <typename\
-    \ F>\n    void path_query(int u, int v, bool is_node_query, const F& f) {\n  \
-    \      int l = lca(u, v);\n        for (auto& [a, b] : ascend(u, l)) {\n     \
-    \       int s = a + 1, t = b;\n            s > t ? f(t, s) : f(s, t);\n      \
-    \  }\n        if (is_node_query) f(in[l], in[l] + 1);\n        for (auto& [a,\
-    \ b] : descend(l, v)) {\n            int s = a, t = b + 1;\n            s > t\
-    \ ? f(t, s) : f(s, t);\n        }\n    }\n\n    template <typename F>\n    void\
-    \ path_noncommutative_query(int u, int v, bool is_node_query, const F& f) {\n\
-    \        int l = lca(u, v);\n        for (auto& [a, b] : ascend(u, l)) f(a + 1,\
-    \ b);\n        if (is_node_query) f(in[l], in[l] + 1);\n        for (auto& [a,\
-    \ b] : descend(l, v)) f(a, b + 1);\n    }\n\n    template <typename F>\n    void\
-    \ subtree_query(int u, bool is_vertex_query, const F& f) {\n        f(in[u] +\
-    \ (int)!is_vertex_query, out[u]);\n    }\n\n    int lca(int u, int v) const {\n\
-    \        while (head[u] != head[v]) {\n            if (in[u] < in[v]) swap(u,\
+    \    edge_idx(g.size() - 1, -1) {\n        init();\n    }\n\n    int get_edge_idx(int\
+    \ i) const {\n        return edge_idx[i];\n    }\n\n    pair<int, int>> get_node_idx(int\
+    \ u) const {\n        return make_pair(in[u], out[u]);\n    }\n\n    template\
+    \ <typename F>\n    void path_query(int u, int v, bool is_node_query, const F&\
+    \ f) {\n        int l = lca(u, v);\n        for (auto& [a, b] : ascend(u, l))\
+    \ {\n            int s = a + 1, t = b;\n            s > t ? f(t, s) : f(s, t);\n\
+    \        }\n        if (is_node_query) f(in[l], in[l] + 1);\n        for (auto&\
+    \ [a, b] : descend(l, v)) {\n            int s = a, t = b + 1;\n            s\
+    \ > t ? f(t, s) : f(s, t);\n        }\n    }\n\n    template <typename F>\n  \
+    \  void path_noncommutative_query(int u, int v, bool is_node_query, const F& f)\
+    \ {\n        int l = lca(u, v);\n        for (auto& [a, b] : ascend(u, l)) f(a\
+    \ + 1, b);\n        if (is_node_query) f(in[l], in[l] + 1);\n        for (auto&\
+    \ [a, b] : descend(l, v)) f(a, b + 1);\n    }\n\n    template <typename F>\n \
+    \   void subtree_query(int u, bool is_vertex_query, const F& f) {\n        f(in[u]\
+    \ + (int)!is_vertex_query, out[u]);\n    }\n\n    int lca(int u, int v) const\
+    \ {\n        while (head[u] != head[v]) {\n            if (in[u] < in[v]) swap(u,\
     \ v);\n            u = par[head[u]];\n        }\n        return dep[u] < dep[v]\
     \ ? u : v;\n    }\n\n    int dist(int u, int v) const {\n        return dep[u]\
     \ + dep[v] - 2 * dep[lca(u, v)];\n    }\n\n  private:\n    void init() {\n   \
@@ -92,7 +94,7 @@ data:
   isVerificationFile: false
   path: graph/tree/auxiliary_tree.hpp
   requiredBy: []
-  timestamp: '2024-08-29 22:38:08+09:00'
+  timestamp: '2024-08-30 00:26:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/auxiliary_tree.hpp

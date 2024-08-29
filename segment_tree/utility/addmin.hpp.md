@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: others/homomorphism/add.hpp
-    title: others/homomorphism/add.hpp
+    path: math/homomorphism/add.hpp
+    title: math/homomorphism/add.hpp
   - icon: ':warning:'
-    path: others/monoid/min.hpp
-    title: others/monoid/min.hpp
+    path: math/monoid/min.hpp
+    title: math/monoid/min.hpp
   - icon: ':warning:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
@@ -101,8 +101,8 @@ data:
     \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
     \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\
-    \nnamespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n\
+    \ namespace kk2\n\n\n#line 1 \"math/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\n\
+    namespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n\
     \    Min() : a(S()), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
     \ {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Min& min) {\n        os << (min.inf ? \"inf\" : to_string(min.a));\n\
@@ -119,21 +119,21 @@ data:
     \ S>\nMin<S> MinUnit() { return Min<S>(); }\n\n} // namespace monoid\n\ntemplate\
     \ <class S, class... Args>\nvector<monoid::Min<S>> GetVecMin(int n, Args... args)\
     \ {\n    return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/add.hpp\"\n\n\n\nnamespace\
-    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nusing Add = S;\n\n\
-    template <class S, class T>\nT AddMap(Add<S> f, T x) { return x.add(f); }\n\n\
-    template <class S>\nAdd<S> AddComposition(Add<S> l, Add<S> r) { return l + r;\
-    \ }\n\ntemplate <class S>\nAdd<S> AddUnit() { return Add<S>(); }\n\n} // namespace\
-    \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/addmin.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddMin =\n    LazySegTree<monoid::Min<S>,\n\
+    \ namespace kk2\n\n\n#line 1 \"math/homomorphism/add.hpp\"\n\n\n\nnamespace kk2\
+    \ {\n\nnamespace homomorphism {\n\ntemplate <class S>\nusing Add = S;\n\ntemplate\
+    \ <class S, class T>\nT AddMap(Add<S> f, T x) { return x.add(f); }\n\ntemplate\
+    \ <class S>\nAdd<S> AddComposition(Add<S> l, Add<S> r) { return l + r; }\n\ntemplate\
+    \ <class S>\nAdd<S> AddUnit() { return Add<S>(); }\n\n} // namespace homomorphism\n\
+    \n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/addmin.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S>\nusing AddMin =\n    LazySegTree<monoid::Min<S>,\n\
     \                monoid::MinOp<S>,\n                monoid::MinUnit<S>,\n    \
     \            homomorphism::Add<S>,\n                homomorphism::AddMap<S, monoid::Min<S>>,\n\
     \                homomorphism::AddComposition<S>,\n                homomorphism::AddUnit<S>>;\n\
     \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_ADDMIN_HPP\n#define SEGMENT_TREE_UTILITY_ADDMIN_HPP\
-    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/min.hpp\"\n#include\
-    \ \"../../others/homomorphism/add.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ S>\nusing AddMin =\n    LazySegTree<monoid::Min<S>,\n                monoid::MinOp<S>,\n\
+    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../math/monoid/min.hpp\"\n#include\
+    \ \"../../math/homomorphism/add.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\n\
+    using AddMin =\n    LazySegTree<monoid::Min<S>,\n                monoid::MinOp<S>,\n\
     \                monoid::MinUnit<S>,\n                homomorphism::Add<S>,\n\
     \                homomorphism::AddMap<S, monoid::Min<S>>,\n                homomorphism::AddComposition<S>,\n\
     \                homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n#endif //\
@@ -141,12 +141,12 @@ data:
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
-  - others/monoid/min.hpp
-  - others/homomorphism/add.hpp
+  - math/monoid/min.hpp
+  - math/homomorphism/add.hpp
   isVerificationFile: false
   path: segment_tree/utility/addmin.hpp
   requiredBy: []
-  timestamp: '2024-08-29 22:36:43+09:00'
+  timestamp: '2024-08-29 23:32:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmin.hpp

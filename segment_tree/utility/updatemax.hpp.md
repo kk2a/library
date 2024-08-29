@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: others/homomorphism/update.hpp
-    title: others/homomorphism/update.hpp
+    path: math/homomorphism/update.hpp
+    title: math/homomorphism/update.hpp
   - icon: ':warning:'
-    path: others/monoid/max.hpp
-    title: others/monoid/max.hpp
+    path: math/monoid/max.hpp
+    title: math/monoid/max.hpp
   - icon: ':warning:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
@@ -101,8 +101,8 @@ data:
     \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
     \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/monoid/max.hpp\"\n\n\n\nnamespace kk2 {\n\
-    \nnamespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n    bool minf;\n\
+    \ namespace kk2\n\n\n#line 1 \"math/monoid/max.hpp\"\n\n\n\nnamespace kk2 {\n\n\
+    namespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n    bool minf;\n\
     \    Max() : a(S()), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_),\
     \ minf(minf_) {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Max& max) {\n        os << (max.minf ? \"minf\" : to_string(max.a));\n\
@@ -119,7 +119,7 @@ data:
     \ S>\nMax<S> MaxUnit() { return Max<S>(); }\n\n} // namespace monoid\n\ntemplate\
     \ <class S, class... Args>\nvector<monoid::Max<S>> GetVecMax(int n, Args... args)\
     \ {\n    return vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/update.hpp\"\n\n\n\nnamespace\
+    \ namespace kk2\n\n\n#line 1 \"math/homomorphism/update.hpp\"\n\n\n\nnamespace\
     \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nstruct Update {\n \
     \   S a;\n    bool id;\n    Update() : a(S()), id(true) {}\n    Update(S a_, bool\
     \ id_ = false) : a(a_), id(id_) {}\n    operator S() const { return a; }\n   \
@@ -137,8 +137,8 @@ data:
     \ monoid::Max<S>>,\n                homomorphism::UpdateComposition<S>,\n    \
     \            homomorphism::UpdateUnit<S>>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\n#define SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\
-    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/max.hpp\"\n#include\
-    \ \"../../others/homomorphism/update.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../math/monoid/max.hpp\"\n#include\
+    \ \"../../math/homomorphism/update.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
     \ S>\nusing UpdateMax =\n    LazySegTree<monoid::Max<S>,\n                monoid::MaxOp<S>,\n\
     \                monoid::MaxUnit<S>,\n                homomorphism::Update<S>,\n\
     \                homomorphism::UpdateMap<S, monoid::Max<S>>,\n               \
@@ -147,12 +147,12 @@ data:
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
-  - others/monoid/max.hpp
-  - others/homomorphism/update.hpp
+  - math/monoid/max.hpp
+  - math/homomorphism/update.hpp
   isVerificationFile: false
   path: segment_tree/utility/updatemax.hpp
   requiredBy: []
-  timestamp: '2024-08-29 22:36:43+09:00'
+  timestamp: '2024-08-29 23:32:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemax.hpp

@@ -17,7 +17,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: '#line 1 "others/homomorphism/add.hpp"
+  bundledCode: '#line 1 "math/homomorphism/add.hpp"
 
 
 
@@ -56,9 +56,9 @@ data:
 
 
     '
-  code: '#ifndef OTHERS_HOMOMORPHISM_ADD_HPP
+  code: '#ifndef MATH_HOMOMORPHISM_ADD_HPP
 
-    #define OTHERS_HOMOMORPHISM_ADD_HPP 1
+    #define MATH_HOMOMORPHISM_ADD_HPP 1
 
 
     namespace kk2 {
@@ -93,23 +93,23 @@ data:
     } // namespace kk2
 
 
-    #endif // OTHERS_HOMOMORPHISM_ADD_HPP
+    #endif // MATH_HOMOMORPHISM_ADD_HPP
 
     '
   dependsOn: []
   isVerificationFile: false
-  path: others/homomorphism/add.hpp
+  path: math/homomorphism/add.hpp
   requiredBy:
   - segment_tree/utility/addmin.hpp
   - segment_tree/utility/addsum.hpp
   - segment_tree/utility/addmax.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-08-29 23:32:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: others/homomorphism/add.hpp
+documentation_of: math/homomorphism/add.hpp
 layout: document
 redirect_from:
-- /library/others/homomorphism/add.hpp
-- /library/others/homomorphism/add.hpp.html
-title: others/homomorphism/add.hpp
+- /library/math/homomorphism/add.hpp
+- /library/math/homomorphism/add.hpp.html
+title: math/homomorphism/add.hpp
 ---

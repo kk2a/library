@@ -47,6 +47,9 @@ data:
   - name: data_structure
     pages:
     - icon: ':warning:'
+      path: data_structure/binary_indexed_tree.hpp
+      title: data_structure/binary_indexed_tree.hpp
+    - icon: ':warning:'
       path: data_structure/disjoint_sparse_table.hpp
       title: data_structure/disjoint_sparse_table.hpp
     - icon: ':warning:'
@@ -208,6 +211,30 @@ data:
     - icon: ':warning:'
       path: math/pow_expr.hpp
       title: math/pow_expr.hpp
+  - name: math/group
+    pages:
+    - icon: ':warning:'
+      path: math/group/sum.hpp
+      title: math/group/sum.hpp
+  - name: math/homomorphism
+    pages:
+    - icon: ':warning:'
+      path: math/homomorphism/add.hpp
+      title: math/homomorphism/add.hpp
+    - icon: ':warning:'
+      path: math/homomorphism/affine.hpp
+      title: math/homomorphism/affine.hpp
+    - icon: ':warning:'
+      path: math/homomorphism/update.hpp
+      title: math/homomorphism/update.hpp
+  - name: math/monoid
+    pages:
+    - icon: ':warning:'
+      path: math/monoid/max.hpp
+      title: math/monoid/max.hpp
+    - icon: ':warning:'
+      path: math/monoid/min.hpp
+      title: math/monoid/min.hpp
   - name: math_mod
     pages:
     - icon: ':warning:'
@@ -258,28 +285,6 @@ data:
     - icon: ':warning:'
       path: others/multisethash.hpp
       title: others/multisethash.hpp
-  - name: others/homomorphism
-    pages:
-    - icon: ':warning:'
-      path: others/homomorphism/add.hpp
-      title: others/homomorphism/add.hpp
-    - icon: ':warning:'
-      path: others/homomorphism/affine.hpp
-      title: others/homomorphism/affine.hpp
-    - icon: ':warning:'
-      path: others/homomorphism/update.hpp
-      title: others/homomorphism/update.hpp
-  - name: others/monoid
-    pages:
-    - icon: ':warning:'
-      path: others/monoid/max.hpp
-      title: others/monoid/max.hpp
-    - icon: ':warning:'
-      path: others/monoid/min.hpp
-      title: others/monoid/min.hpp
-    - icon: ':warning:'
-      path: others/monoid/sum.hpp
-      title: others/monoid/sum.hpp
   - name: segment_tree
     pages:
     - icon: ':warning:'

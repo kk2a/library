@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: others/homomorphism/update.hpp
-    title: others/homomorphism/update.hpp
+    path: math/homomorphism/update.hpp
+    title: math/homomorphism/update.hpp
   - icon: ':warning:'
-    path: others/monoid/min.hpp
-    title: others/monoid/min.hpp
+    path: math/monoid/min.hpp
+    title: math/monoid/min.hpp
   - icon: ':warning:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
@@ -101,8 +101,8 @@ data:
     \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
     \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\
-    \nnamespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n\
+    \ namespace kk2\n\n\n#line 1 \"math/monoid/min.hpp\"\n\n\n\nnamespace kk2 {\n\n\
+    namespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n\
     \    Min() : a(S()), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
     \ {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Min& min) {\n        os << (min.inf ? \"inf\" : to_string(min.a));\n\
@@ -119,7 +119,7 @@ data:
     \ S>\nMin<S> MinUnit() { return Min<S>(); }\n\n} // namespace monoid\n\ntemplate\
     \ <class S, class... Args>\nvector<monoid::Min<S>> GetVecMin(int n, Args... args)\
     \ {\n    return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/update.hpp\"\n\n\n\nnamespace\
+    \ namespace kk2\n\n\n#line 1 \"math/homomorphism/update.hpp\"\n\n\n\nnamespace\
     \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nstruct Update {\n \
     \   S a;\n    bool id;\n    Update() : a(S()), id(true) {}\n    Update(S a_, bool\
     \ id_ = false) : a(a_), id(id_) {}\n    operator S() const { return a; }\n   \
@@ -137,8 +137,8 @@ data:
     \ monoid::Min<S>>,\n                homomorphism::UpdateComposition<S>,\n    \
     \            homomorphism::UpdateUnit<S>>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_UPDATEMIN_HPP\n#define SEGMENT_TREE_UTILITY_UPDATEMIN_HPP\
-    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/min.hpp\"\n#include\
-    \ \"../../others/homomorphism/update.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../math/monoid/min.hpp\"\n#include\
+    \ \"../../math/homomorphism/update.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
     \ S>\nusing UpdateMin =\n    LazySegTree<monoid::Min<S>,\n                monoid::MinOp<S>,\n\
     \                monoid::MinUnit<S>,\n                homomorphism::Update<S>,\n\
     \                homomorphism::UpdateMap<S, monoid::Min<S>>,\n               \
@@ -147,12 +147,12 @@ data:
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
-  - others/monoid/min.hpp
-  - others/homomorphism/update.hpp
+  - math/monoid/min.hpp
+  - math/homomorphism/update.hpp
   isVerificationFile: false
   path: segment_tree/utility/updatemin.hpp
   requiredBy: []
-  timestamp: '2024-08-29 22:36:43+09:00'
+  timestamp: '2024-08-29 23:32:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemin.hpp

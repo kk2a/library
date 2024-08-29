@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: others/monoid/max.hpp
-    title: others/monoid/max.hpp
+    path: math/monoid/max.hpp
+    title: math/monoid/max.hpp
   - icon: ':warning:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
@@ -59,7 +59,7 @@ data:
     \                return r + 1 - size;\n            }\n            sm = op(d[r],\
     \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\nprivate:\n\
     \    int _n, size, log;\n    std::vector<S> d;\n\n    void update(int k) { d[k]\
-    \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"others/monoid/max.hpp\"\
+    \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/max.hpp\"\
     \n\n\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Max\
     \ {\n    S a;\n    bool minf;\n    Max() : a(S()), minf(true) {}\n    Max (S a_,\
     \ bool minf_ = false) : a(a_), minf(minf_) {}\n    operator S() const { return\
@@ -83,17 +83,17 @@ data:
     \      monoid::MaxOp<S>,\n                       monoid::MaxUnit<S>>;\n\n} //\
     \ namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_MAXSEG_HPP\n#define SEGMENT_TREE_UTILITY_MAXSEG_HPP\
-    \ 1\n\n#include \"../seg.hpp\"\n#include \"../../others/monoid/max.hpp\"\n\nnamespace\
+    \ 1\n\n#include \"../seg.hpp\"\n#include \"../../math/monoid/max.hpp\"\n\nnamespace\
     \ kk2 {\n\ntemplate <class S>\nusing MaxSeg = SegTree<monoid::Max<S>,\n      \
     \                 monoid::MaxOp<S>,\n                       monoid::MaxUnit<S>>;\n\
     \n} // namespace kk2\n\n#endif // SEGMENT_TREE_UTILITY_MAXSEG_HPP\n"
   dependsOn:
   - segment_tree/seg.hpp
-  - others/monoid/max.hpp
+  - math/monoid/max.hpp
   isVerificationFile: false
   path: segment_tree/utility/maxseg.hpp
   requiredBy: []
-  timestamp: '2024-08-29 22:36:43+09:00'
+  timestamp: '2024-08-29 23:32:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/maxseg.hpp

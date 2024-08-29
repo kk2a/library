@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: others/homomorphism/add.hpp
-    title: others/homomorphism/add.hpp
+    path: math/homomorphism/add.hpp
+    title: math/homomorphism/add.hpp
   - icon: ':warning:'
-    path: others/monoid/max.hpp
-    title: others/monoid/max.hpp
+    path: math/monoid/max.hpp
+    title: math/monoid/max.hpp
   - icon: ':warning:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
@@ -101,8 +101,8 @@ data:
     \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
     \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/monoid/max.hpp\"\n\n\n\nnamespace kk2 {\n\
-    \nnamespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n    bool minf;\n\
+    \ namespace kk2\n\n\n#line 1 \"math/monoid/max.hpp\"\n\n\n\nnamespace kk2 {\n\n\
+    namespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n    bool minf;\n\
     \    Max() : a(S()), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_),\
     \ minf(minf_) {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
     \ os, const Max& max) {\n        os << (max.minf ? \"minf\" : to_string(max.a));\n\
@@ -119,21 +119,21 @@ data:
     \ S>\nMax<S> MaxUnit() { return Max<S>(); }\n\n} // namespace monoid\n\ntemplate\
     \ <class S, class... Args>\nvector<monoid::Max<S>> GetVecMax(int n, Args... args)\
     \ {\n    return vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"others/homomorphism/add.hpp\"\n\n\n\nnamespace\
-    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nusing Add = S;\n\n\
-    template <class S, class T>\nT AddMap(Add<S> f, T x) { return x.add(f); }\n\n\
-    template <class S>\nAdd<S> AddComposition(Add<S> l, Add<S> r) { return l + r;\
-    \ }\n\ntemplate <class S>\nAdd<S> AddUnit() { return Add<S>(); }\n\n} // namespace\
-    \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/addmax.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddMax =\n    LazySegTree<monoid::Max<S>,\n\
+    \ namespace kk2\n\n\n#line 1 \"math/homomorphism/add.hpp\"\n\n\n\nnamespace kk2\
+    \ {\n\nnamespace homomorphism {\n\ntemplate <class S>\nusing Add = S;\n\ntemplate\
+    \ <class S, class T>\nT AddMap(Add<S> f, T x) { return x.add(f); }\n\ntemplate\
+    \ <class S>\nAdd<S> AddComposition(Add<S> l, Add<S> r) { return l + r; }\n\ntemplate\
+    \ <class S>\nAdd<S> AddUnit() { return Add<S>(); }\n\n} // namespace homomorphism\n\
+    \n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/addmax.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S>\nusing AddMax =\n    LazySegTree<monoid::Max<S>,\n\
     \                monoid::MaxOp<S>,\n                monoid::MaxUnit<S>,\n    \
     \            homomorphism::Add<S>,\n                homomorphism::AddMap<S, monoid::Max<S>>,\n\
     \                homomorphism::AddComposition<S>,\n                homomorphism::AddUnit<S>>;\n\
     \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_ADDMAX_HPP\n#define SEGMENT_TREE_UTILITY_ADDMAX_HPP\
-    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../others/monoid/max.hpp\"\n#include\
-    \ \"../../others/homomorphism/add.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ S>\nusing AddMax =\n    LazySegTree<monoid::Max<S>,\n                monoid::MaxOp<S>,\n\
+    \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../math/monoid/max.hpp\"\n#include\
+    \ \"../../math/homomorphism/add.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\n\
+    using AddMax =\n    LazySegTree<monoid::Max<S>,\n                monoid::MaxOp<S>,\n\
     \                monoid::MaxUnit<S>,\n                homomorphism::Add<S>,\n\
     \                homomorphism::AddMap<S, monoid::Max<S>>,\n                homomorphism::AddComposition<S>,\n\
     \                homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n#endif //\
@@ -141,12 +141,12 @@ data:
   dependsOn:
   - segment_tree/lazy.hpp
   - segment_tree/lazy_base.hpp
-  - others/monoid/max.hpp
-  - others/homomorphism/add.hpp
+  - math/monoid/max.hpp
+  - math/homomorphism/add.hpp
   isVerificationFile: false
   path: segment_tree/utility/addmax.hpp
   requiredBy: []
-  timestamp: '2024-08-29 22:36:43+09:00'
+  timestamp: '2024-08-29 23:32:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmax.hpp
