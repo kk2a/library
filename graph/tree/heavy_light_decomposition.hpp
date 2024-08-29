@@ -22,6 +22,14 @@ struct HeavyLightDecomposition {
         init();
     }
 
+    int get_edge_idx(int i) const {
+        return edge_idx[i];
+    }
+
+    pair<int, int>> get_node_idx(int u) const {
+        return make_pair(in[u], out[u]);
+    }
+
     template <typename F>
     void path_query(int u, int v, bool is_node_query, const F& f) {
         int l = lca(u, v);
