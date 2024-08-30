@@ -283,6 +283,9 @@ data:
       path: others/coordinate_compression.hpp
       title: others/coordinate_compression.hpp
     - icon: ':warning:'
+      path: others/mo.hpp
+      title: others/mo.hpp
+    - icon: ':warning:'
       path: others/multisethash.hpp
       title: others/multisethash.hpp
   - name: segment_tree
