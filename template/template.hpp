@@ -13,6 +13,8 @@
 #include <random>
 #include <type_traits>
 #include <limits>
+#include <fstream>
+#include <sstream>
 
 #include <cstring>
 #include <string>
