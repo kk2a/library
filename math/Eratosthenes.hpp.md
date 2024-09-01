@@ -37,14 +37,15 @@ data:
     \ (n > 1) {\n            int p = _minfactor[n];\n            int exp = 0;\n\n\
     \            while (_minfactor[n] == p) {\n                n /= p;\n         \
     \       ++exp;\n            }\n            res.emplace_back(p, exp);\n       \
-    \ }\n    }\n\n    static vector<int> divisors(int n) {\n        assert(n < (int)_isprime.size()\
-    \ && n != 0);\n        if (n == 1 || n == -1) return {1};\n        if (n < 0)\
-    \ n = -n;\n        vector<int> res{1};\n        auto pf = factorize(n);\n\n  \
-    \      for (auto p : pf) {\n            int s = (int)res.size();\n           \
-    \ for (int i = 0; i < s; ++i) {\n                int v = 1;\n                for\
-    \ (int j = 0; j < p.second; ++j) {\n                    v *= p.first;\n      \
-    \              res.push_back(res[i] * v);\n                }\n            }\n\
-    \        }\n        return res;\n    }\n};\n\n} // namespace kk2\n\n\n"
+    \ }\n        return res;\n    }\n\n    static vector<int> divisors(int n) {\n\
+    \        assert(n < (int)_isprime.size() && n != 0);\n        if (n == 1 || n\
+    \ == -1) return {1};\n        if (n < 0) n = -n;\n        vector<int> res{1};\n\
+    \        auto pf = factorize(n);\n\n        for (auto p : pf) {\n            int\
+    \ s = (int)res.size();\n            for (int i = 0; i < s; ++i) {\n          \
+    \      int v = 1;\n                for (int j = 0; j < p.second; ++j) {\n    \
+    \                v *= p.first;\n                    res.push_back(res[i] * v);\n\
+    \                }\n            }\n        }\n        return res;\n    }\n};\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_ERATOSTHENES\n#define MATH_ERATOSTHENES 1\n\nnamespace kk2 {\n\
     \nstruct Erato {\n    static inline vector<bool> _isprime{};\n    static inline\
     \ vector<int> _minfactor{}, _mobius{}, _primes{};\n\n    Erato() = delete;\n\n\
@@ -68,22 +69,22 @@ data:
     \ (n > 1) {\n            int p = _minfactor[n];\n            int exp = 0;\n\n\
     \            while (_minfactor[n] == p) {\n                n /= p;\n         \
     \       ++exp;\n            }\n            res.emplace_back(p, exp);\n       \
-    \ }\n    }\n\n    static vector<int> divisors(int n) {\n        assert(n < (int)_isprime.size()\
-    \ && n != 0);\n        if (n == 1 || n == -1) return {1};\n        if (n < 0)\
-    \ n = -n;\n        vector<int> res{1};\n        auto pf = factorize(n);\n\n  \
-    \      for (auto p : pf) {\n            int s = (int)res.size();\n           \
-    \ for (int i = 0; i < s; ++i) {\n                int v = 1;\n                for\
-    \ (int j = 0; j < p.second; ++j) {\n                    v *= p.first;\n      \
-    \              res.push_back(res[i] * v);\n                }\n            }\n\
-    \        }\n        return res;\n    }\n};\n\n} // namespace kk2\n\n#endif //\
-    \ MATH_ERATOSTHENES\n"
+    \ }\n        return res;\n    }\n\n    static vector<int> divisors(int n) {\n\
+    \        assert(n < (int)_isprime.size() && n != 0);\n        if (n == 1 || n\
+    \ == -1) return {1};\n        if (n < 0) n = -n;\n        vector<int> res{1};\n\
+    \        auto pf = factorize(n);\n\n        for (auto p : pf) {\n            int\
+    \ s = (int)res.size();\n            for (int i = 0; i < s; ++i) {\n          \
+    \      int v = 1;\n                for (int j = 0; j < p.second; ++j) {\n    \
+    \                v *= p.first;\n                    res.push_back(res[i] * v);\n\
+    \                }\n            }\n        }\n        return res;\n    }\n};\n\
+    \n} // namespace kk2\n\n#endif // MATH_ERATOSTHENES\n"
   dependsOn: []
   isVerificationFile: false
   path: math/Eratosthenes.hpp
   requiredBy:
   - convolution/lcm1.hpp
   - convolution/gcd1.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-09-01 22:03:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/Eratosthenes.hpp

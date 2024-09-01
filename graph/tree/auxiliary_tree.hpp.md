@@ -19,7 +19,7 @@ data:
     \    in(g.size(), -1),\n          out(g.size(), -1),\n          head(g.size(),\
     \ root),\n          par(g.size(), root),\n          dep(g.size(), 0),\n      \
     \    edge_idx(g.size() - 1, -1) {\n        init();\n    }\n\n    int get_edge_idx(int\
-    \ i) const {\n        return edge_idx[i];\n    }\n\n    pair<int, int>> get_node_idx(int\
+    \ i) const {\n        return edge_idx[i];\n    }\n\n    pair<int, int> get_node_idx(int\
     \ u) const {\n        return make_pair(in[u], out[u]);\n    }\n\n    template\
     \ <typename F>\n    void path_query(int u, int v, bool is_node_query, const F&\
     \ f) {\n        int l = lca(u, v);\n        for (auto& [a, b] : ascend(u, l))\
@@ -94,7 +94,7 @@ data:
   isVerificationFile: false
   path: graph/tree/auxiliary_tree.hpp
   requiredBy: []
-  timestamp: '2024-08-30 00:26:20+09:00'
+  timestamp: '2024-09-01 22:03:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/auxiliary_tree.hpp
