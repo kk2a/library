@@ -70,6 +70,11 @@ data:
     - icon: ':warning:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
+  - name: .
+    pages:
+    - icon: ':warning:'
+      path: expand_user_file.py
+      title: expand_user_file.py
   - name: fps
     pages:
     - icon: ':warning:'
@@ -186,11 +191,6 @@ data:
     - icon: ':warning:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: graph/tree/heavy_light_decomposition.hpp
-  - name: .
-    pages:
-    - icon: ':warning:'
-      path: kyopro.py
-      title: kyopro.py
   - name: math
     pages:
     - icon: ':warning:'
@@ -288,6 +288,14 @@ data:
     - icon: ':warning:'
       path: others/multisethash.hpp
       title: others/multisethash.hpp
+  - name: random
+    pages:
+    - icon: ':warning:'
+      path: random/gen.hpp
+      title: random/gen.hpp
+    - icon: ':warning:'
+      path: random/graph.hpp
+      title: random/graph.hpp
   - name: segment_tree
     pages:
     - icon: ':warning:'
