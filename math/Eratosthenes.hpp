@@ -67,6 +67,7 @@ struct Erato {
             }
             res.emplace_back(p, exp);
         }
+        return res;
     }
 
     static vector<int> divisors(int n) {

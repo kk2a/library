@@ -26,7 +26,7 @@ struct HeavyLightDecomposition {
         return edge_idx[i];
     }
 
-    pair<int, int>> get_node_idx(int u) const {
+    pair<int, int> get_node_idx(int u) const {
         return make_pair(in[u], out[u]);
     }
 

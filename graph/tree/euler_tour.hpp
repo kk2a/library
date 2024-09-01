@@ -9,12 +9,12 @@ template <typename G>
 struct EulerTour {
     const G& g;
     int root, id;
-    vector<int> in, out;
+    vector<int> in, out, par;
     vector<int> edge_in, edge_out;
 
     EulerTour(const G& g_, int root_ = 0)
         : g(g_), root(root_), id(0),
-          in(g.size(), -1), out(g.size(), -1),
+          in(g.size(), -1), out(g.size(), -1), par(g.size(), root),
           edge_in(g.size() - 1, -1), edge_out(g.size() - 1, -1) { init(); }
 
     pair<int, int> get_edge_idx(int i) const {
@@ -57,6 +57,7 @@ struct EulerTour {
             rmq_init[id++] = {dep, now};
             for (auto&& e : g[now]) {
                 if ((int)e == pre) continue;
+                par[(int)e] = now;
                 edge_in[e.id] = id;
                 self(self, e, now, dep + 1);
                 edge_out[e.id] = id++;
