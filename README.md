@@ -5,7 +5,9 @@
 
 
 ### kyopro.py
-#include <kk2/hoge>があれば，すべて展開します．初めて#include <kk2/hoge>が書かれた行から展開されます．以下のようにして使う．exe化してpath通すと楽．
+#include <kk2/hoge>をすべて展開したものをクリップボードに保存します．(ファイルを展開させたままにしたいならself.rollback()の行を消せば良いです．) その場で展開されるようにしているので，展開前の行の位置関係とかは保持されます．
+
+以下のようにして使います．
 
 ``` concole
 python kyopro.py hoge.cpp
