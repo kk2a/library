@@ -10,7 +10,7 @@
 以下のようにして使います．
 
 ``` concole
-python kyopro.py hoge.cpp
+python expand_user_file.py hoge.cpp
 ```
 
 includeされた各ファイルの関係はDAGになっているのでトポロジカルソートして，その順番に展開されていくようになっているので再定義とかはそもそも起きないのですが，保険でインクルードガードの部分は消していないです．
