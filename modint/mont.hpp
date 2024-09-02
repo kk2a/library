@@ -33,6 +33,22 @@ struct LazyMontgomeryModInt {
     static constexpr u32 reduce(const u64& b) {
         return (b + u64(u32(b) * u32(-r)) * p) >> 32;
     }
+    constexpr mint& operator++() {
+        return *this += 1;
+    }
+    constexpr mint& operator--() {
+        return *this -= 1;
+    }
+    constexpr mint operator++(int) {
+        mint ret = *this;
+        *this += 1;
+        return ret;
+    }
+    constexpr mint operator--(int) {
+        mint ret = *this;
+        *this -= 1;
+        return ret;
+    }
     constexpr mint& operator+=(const mint& b) {
         if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;
         return *this;
