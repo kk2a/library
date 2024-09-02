@@ -5,6 +5,7 @@ namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_xor(FPS& a, const FPS& b) {
+    assert(size(a) == size(b));
     int n = int(size(a));  // == int(size(b)
     if (!n) return {};
     assert((n & -n) == n);
