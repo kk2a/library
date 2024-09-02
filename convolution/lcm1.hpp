@@ -7,30 +7,30 @@ namespace kk2 {
 
 // 1-indexed
 template <class FPS, class mint = typename FPS::value_type> 
-FPS convolution_lcm(FPS& a, FPS b) {
+FPS convolution_lcm(FPS& a, const FPS& b) {
+    assert(size(a) == size(b));
     int n = int(size(a)); // = int(size(b))
     if (!n) return {};
     n--;
-
-    static const constexpr int mx = 1000000;
-    Erato pr(mx);
+    FPS c(b);
+    Erato::set_upper(n);
 
     auto fdt = [&](FPS& a) -> void {
-        for (const auto p : pr.primes) {
+        for (const auto p : Erato::primes()) {
             if (p > n) break;
             for (int i = 1; i <= n / p; i++) a[i * p] += a[i];
         }
     };
     auto ifdt = [&](FPS& a) -> void {
-        for (const auto p : pr.primes) {
+        for (const auto p : Erato::primes()) {
             if (p  > n) break;
             for (auto i = n / p; i > 0; i--) a[i * p] -= a[i];
         }
     };
 
     fdt(a);
-    fdt(b);
-    for (int i = 1; i <= n; i++) a[i] *= b[i];
+    fdt(c);
+    for (int i = 1; i <= n; i++) a[i] *= c[i];
     ifdt(a);
 
     return a;

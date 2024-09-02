@@ -9,7 +9,7 @@ struct Erato {
 
     Erato() = delete;
 
-    static void set_upper(int m) {
+    constexpr static void set_upper(int m) {
         _isprime.resize(m + 1, true);
         _minfactor.resize(m + 1, -1);
         _mobius.resize(m + 1, 1);
@@ -33,26 +33,26 @@ struct Erato {
         }
     }
 
-    static bool isprime(int n) {
+    constexpr static bool isprime(int n) {
         assert(n < (int)_isprime.size() && n != 0);
         return _isprime[n];
     }
 
-    static int mobius(int n) {
+    constexpr static int mobius(int n) {
         assert(n < (int)_mobius.size() && n != 0);
         return _mobius[n];
     }
 
-    static int minfactor(int n) {
+    constexpr static int minfactor(int n) {
         assert(n < (int)_minfactor.size() && n != 0);
         return _minfactor[n];
     }
 
-    static vector<int> primes() {
+    constexpr static vector<int> primes() {
         return _primes;
     }
 
-    static vector<pair<int, int>> factorize(int n) {
+    constexpr static vector<pair<int, int>> factorize(int n) {
         assert(n < (int)_isprime.size() && n != 0);
         if (n == 1 || n == -1) return {};
         if (n < 0) n = -n;
@@ -70,7 +70,7 @@ struct Erato {
         return res;
     }
 
-    static vector<int> divisors(int n) {
+    constexpr static vector<int> divisors(int n) {
         assert(n < (int)_isprime.size() && n != 0);
         if (n == 1 || n == -1) return {1};
         if (n < 0) n = -n;
