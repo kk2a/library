@@ -154,8 +154,8 @@ data:
   isVerificationFile: false
   path: geometry/point.hpp
   requiredBy:
-  - geometry/convex_hull.hpp
   - geometry/argument.hpp
+  - geometry/convex_hull.hpp
   timestamp: '2024-08-29 05:27:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
