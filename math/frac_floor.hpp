@@ -8,7 +8,7 @@ namespace kk2 {
 
 // return floor(a / b)
 template <typename T, typename U>
-T fracfloor(T a, U b) {
+constexpr T fracfloor(T a, U b) {
     assert(b != 0);
     if (a % b == 0) return a / b;
     if (a >= 0) return a / b;
@@ -20,7 +20,7 @@ T fracfloor(T a, U b) {
 
 // return ceil(a / b)
 template <typename T, typename U>
-T fracceil(T a, U b) {
+constexpr T fracceil(T a, U b) {
     assert(b != 0);
     if (a % b == 0) return a / b;
     if (a >= 0) return a / b + 1;
