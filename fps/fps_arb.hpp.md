@@ -13,9 +13,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/fps.hpp
-    title: fps/fps.hpp
   - icon: ':warning:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
@@ -361,7 +358,7 @@ data:
     \ p[ii]) % p[ii];\n        if (x < 0) x += p[ii];\n        for (int iii = ii +\
     \ 1; iii < nm + 1; iii++) {\n            kp[iii] = (kp[iii] + rmult[iii] * x)\
     \ % p[iii];\n            rmult[iii] = (rmult[iii] * p[ii]) % p[iii];\n       \
-    \ }\n    }\n    return kp[nm];\n}\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convo_arb.hpp\"\
+    \ }\n    }\n    return kp[nm];\n}\n\n} // namespace kk2\n\n\n#line 7 \"convolution/convo_arb.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
     FPS convolution_arb(FPS& a, const FPS& b) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
@@ -370,16 +367,15 @@ data:
     \    using mint2 = LazyMontgomeryModInt<MOD2>;\n    using mint3 = LazyMontgomeryModInt<MOD3>;\n\
     \n    vector<long long> a0(n), b0(m);\n    for (int i = 0; i < n; i++) a0[i] =\
     \ a[i].val();\n    for (int i = 0; i < m; i++) b0[i] = b[i].val();\n    auto a1\
-    \ = FormalPowerSeries<mint1>(begin(a0), end(a0));\n    auto b1 = FormalPowerSeries<mint1>(begin(b0),\
-    \ end(b0));\n    auto c1 = convolution<mint1>(a1, b1);\n    auto a2 = FormalPowerSeries<mint2>(begin(a0),\
-    \ end(a0));\n    auto b2 = FormalPowerSeries<mint2>(begin(b0), end(b0));\n   \
-    \ auto c2 = convolution<mint2>(a2, b2);\n    auto a3 = FormalPowerSeries<mint3>(begin(a0),\
-    \ end(a0));\n    auto b3 = FormalPowerSeries<mint3>(begin(b0), end(b0));\n   \
-    \ auto c3 = convolution<mint3>(a3, b3);\n    static const vector<long long> p\
-    \ = {MOD1, MOD2, MOD3, mint::getmod()};\n    FPS res(n + m - 1);\n    for (int\
-    \ i = 0; i < n + m - 1; i++) {\n        res[i] = mint(garner({c1[i].val(), c2[i].val(),\
-    \ c3[i].val()}, p));\n    }\n    a = res;\n    return res;\n}\n\n} // namespace\
-    \ kk2\n\n\n#line 6 \"fps/fps_arb.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\n\
+    \ = vector<mint1>(begin(a0), end(a0));\n    auto b1 = vector<mint1>(begin(b0),\
+    \ end(b0));\n    auto c1 = convolution<mint1>(a1, b1);\n    auto a2 = vector<mint2>(begin(a0),\
+    \ end(a0));\n    auto b2 = vector<mint2>(begin(b0), end(b0));\n    auto c2 = convolution<mint2>(a2,\
+    \ b2);\n    auto a3 = vector<mint3>(begin(a0), end(a0));\n    auto b3 = vector<mint3>(begin(b0),\
+    \ end(b0));\n    auto c3 = convolution<mint3>(a3, b3);\n    static const vector<long\
+    \ long> p = {MOD1, MOD2, MOD3, mint::getmod()};\n    a.reize(n + m - 1);\n   \
+    \ for (int i = 0; i < n + m - 1; i++) {\n        a[i] = mint(garner({c1[i].val(),\
+    \ c2[i].val(), c3[i].val()}, p));\n    }\n    return a;\n}\n\n} // namespace kk2\n\
+    \n\n#line 6 \"fps/fps_arb.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\n\
     void FormalPowerSeries<mint>::but() {\n    exit(1);\n}\n\ntemplate <class mint>\n\
     void FormalPowerSeries<mint>::ibut() {\n    exit(1);\n}\n\ntemplate <class mint>\n\
     void FormalPowerSeries<mint>::db() {\n    exit(1);\n}\n\ntemplate <class mint>\n\
@@ -426,13 +422,12 @@ data:
   - convolution/butterfly.hpp
   - math_mod/primitive_rt_expr.hpp
   - math_mod/pow_expr.hpp
-  - fps/fps.hpp
   - math_mod/garner.hpp
   - math_mod/inv.hpp
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy: []
-  timestamp: '2024-09-05 10:56:51+09:00'
+  timestamp: '2024-09-06 13:06:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_arb.hpp

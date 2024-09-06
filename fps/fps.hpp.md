@@ -3,12 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: convolution/convo_arb.hpp
-    title: convolution/convo_arb.hpp
-  - icon: ':warning:'
-    path: fps/fps_arb.hpp
-    title: fps/fps_arb.hpp
-  - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -354,8 +348,6 @@ data:
   - fps/multivariate_fps.hpp
   - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
-  - fps/fps_arb.hpp
-  - convolution/convo_arb.hpp
   timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
