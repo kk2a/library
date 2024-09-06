@@ -50,6 +50,9 @@ data:
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
     - icon: ':warning:'
+      path: data_structure/convex_hull_trick_add_monotone.hpp
+      title: data_structure/convex_hull_trick_add_monotone.hpp
+    - icon: ':warning:'
       path: data_structure/disjoint_sparse_table.hpp
       title: data_structure/disjoint_sparse_table.hpp
     - icon: ':warning:'
@@ -84,6 +87,12 @@ data:
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
     - icon: ':warning:'
+      path: fps/composition.hpp
+      title: fps/composition.hpp
+    - icon: ':warning:'
+      path: fps/compositional_inv.hpp
+      title: fps/compositional_inv.hpp
+    - icon: ':warning:'
       path: fps/find_root.hpp
       title: fps/find_root.hpp
     - icon: ':heavy_check_mark:'
@@ -92,12 +101,6 @@ data:
     - icon: ':warning:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
-    - icon: ':warning:'
-      path: fps/fps_com_inv.hpp
-      title: fps/fps_com_inv.hpp
-    - icon: ':warning:'
-      path: fps/fps_composition.hpp
-      title: fps/fps_composition.hpp
     - icon: ':warning:'
       path: fps/fps_sqrt.hpp
       title: fps/fps_sqrt.hpp
@@ -367,6 +370,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
+  - name: type_traits
+    pages:
+    - icon: ':warning:'
+      path: type_traits/type_traits.hpp
+      title: type_traits/type_traits.hpp
   verificationCategories:
   - name: verify/yosupo_fps
     pages:

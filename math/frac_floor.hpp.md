@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data_structure/convex_hull_trick_add_monotone.hpp
+    title: data_structure/convex_hull_trick_add_monotone.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -31,7 +34,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/frac_floor.hpp
-  requiredBy: []
+  requiredBy:
+  - data_structure/convex_hull_trick_add_monotone.hpp
   timestamp: '2024-09-05 03:39:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

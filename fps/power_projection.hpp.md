@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: fps/fps_com_inv.hpp
-    title: fps/fps_com_inv.hpp
+    path: fps/compositional_inv.hpp
+    title: fps/compositional_inv.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -121,7 +121,7 @@ data:
   isVerificationFile: false
   path: fps/power_projection.hpp
   requiredBy:
-  - fps/fps_com_inv.hpp
+  - fps/compositional_inv.hpp
   timestamp: '2024-08-27 00:19:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

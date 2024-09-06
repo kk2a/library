@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"fps/fps_com_inv.hpp\"\n\n\n\n#line 1 \"fps/power_projection.hpp\"\
+  bundledCode: "#line 1 \"fps/compositional_inv.hpp\"\n\n\n\n#line 1 \"fps/power_projection.hpp\"\
     \n\n\n\nnamespace kk2 {\n\n// n = \\deg f - 1\n// [X ^ n] f(X) ^ i g(X)  enumerate\
     \ for i = 0, ... , m \ntemplate <class FPS, class mint = typename FPS::value_type>\n\
     FPS power_projection(FPS f, FPS g = {1}, int m = -1) {\n    if (f.empty() || g.empty())\
@@ -63,15 +63,15 @@ data:
     \  FPS t(begin(q), begin(q) + k);\n    s.ibut(); t.ibut();\n    s *= invk; t *=\
     \ invk;\n    t[0] -= 1;\n    if (f[0] == mint(0)) return s.rev().pre(m + 1);\n\
     \    return (s.rev() * (t + (FPS{1} << k)).\n           rev().inv(m + 1)).pre(m\
-    \ + 1);\n}\n\n} // namespace kk2\n\n\n#line 5 \"fps/fps_com_inv.hpp\"\n\nnamespace\
-    \ kk2 {\n\n// calculate f ^ {-1} (X)  mod X ^ deg\ntemplate <class FPS, class\
-    \ mint = typename FPS::value_type>\nFPS compositional_inv(FPS f, int deg = -1)\
-    \ {\n    assert(int(size(f)) >= 2 and f[1] != 0);\n    if (deg == -1) deg = int(size(f));\n\
-    \    if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);\n    int n = deg - 1;\n\
-    \    FPS h = power_projection(f) * n;\n\n    for (int k = 1; k <= n; k++) h[k]\
-    \ /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n    FPS g = (h.log() * mint(-n).inv()).exp();\n\
-    \    g *= f[1].inv();\n    return (g << 1).pre(deg);\n}\n\n} // namespace kk2\n\
-    \n\n"
+    \ + 1);\n}\n\n} // namespace kk2\n\n\n#line 5 \"fps/compositional_inv.hpp\"\n\n\
+    namespace kk2 {\n\n// calculate f ^ {-1} (X)  mod X ^ deg\ntemplate <class FPS,\
+    \ class mint = typename FPS::value_type>\nFPS compositional_inv(FPS f, int deg\
+    \ = -1) {\n    assert(int(size(f)) >= 2 and f[1] != 0);\n    if (deg == -1) deg\
+    \ = int(size(f));\n    if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);\n    int\
+    \ n = deg - 1;\n    FPS h = power_projection(f) * n;\n\n    for (int k = 1; k\
+    \ <= n; k++) h[k] /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n    FPS g\
+    \ = (h.log() * mint(-n).inv()).exp();\n    g *= f[1].inv();\n    return (g <<\
+    \ 1).pre(deg);\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef FPS_COMPOSITION_INVERSION_HPP\n#define FPS_COMPOSITION_INVERSION_HPP\
     \ 1\n\n#include \"power_projection.hpp\"\n\nnamespace kk2 {\n\n// calculate f\
     \ ^ {-1} (X)  mod X ^ deg\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
@@ -85,15 +85,15 @@ data:
   dependsOn:
   - fps/power_projection.hpp
   isVerificationFile: false
-  path: fps/fps_com_inv.hpp
+  path: fps/compositional_inv.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-09-06 14:29:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: fps/fps_com_inv.hpp
+documentation_of: fps/compositional_inv.hpp
 layout: document
 redirect_from:
-- /library/fps/fps_com_inv.hpp
-- /library/fps/fps_com_inv.hpp.html
-title: fps/fps_com_inv.hpp
+- /library/fps/compositional_inv.hpp
+- /library/fps/compositional_inv.hpp.html
+title: fps/compositional_inv.hpp
 ---

@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"fps/fps_composition.hpp\"\n\n\n\nnamespace kk2 {\n\n// calculate\
+  bundledCode: "#line 1 \"fps/composition.hpp\"\n\n\n\nnamespace kk2 {\n\n// calculate\
     \ (g \\circ f) (X)\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
     FPS composition(FPS f, FPS g, int deg = -1) {\n    if (f.empty() || g.empty())\
     \ return {};\n    \n    auto rec = [&](auto self, FPS q,\n                   int\
@@ -81,15 +81,15 @@ data:
     \ */"
   dependsOn: []
   isVerificationFile: false
-  path: fps/fps_composition.hpp
+  path: fps/composition.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-09-06 14:29:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: fps/fps_composition.hpp
+documentation_of: fps/composition.hpp
 layout: document
 redirect_from:
-- /library/fps/fps_composition.hpp
-- /library/fps/fps_composition.hpp.html
-title: fps/fps_composition.hpp
+- /library/fps/composition.hpp
+- /library/fps/composition.hpp.html
+title: fps/composition.hpp
 ---
