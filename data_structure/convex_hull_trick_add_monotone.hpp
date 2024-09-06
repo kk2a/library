@@ -7,7 +7,7 @@
 namespace kk2 {
 
 template <typename T, bool isMin=true>
-struct ConvexHullTrickAddMonotone {
+struct CHTAddMonotone {
     struct Line {
         // ax + b
         T a, b;
@@ -16,7 +16,7 @@ struct ConvexHullTrickAddMonotone {
     };
     deque<Line> lines;
 
-    ConvexHullTrickAddMonotone() = default;
+    CHTAddMonotone() = default;
 
     bool empty() const { return lines.empty(); }
 
