@@ -80,46 +80,56 @@ data:
     \ << \" \" << p.y;\n    }\n    friend istream& operator>>(istream& is, Point&\
     \ p) {\n        return is >> p.x >> p.y;\n    }\n};\n\n} // namespace kk2\n\n\n\
     #line 5 \"geometry/convex_hull.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename\
-    \ T>\nstruct ConvexHull {\n    vector<Point<T>> ps, hull;\n\n    ConvexHull()\
+    \ T>\nstruct ConvexHull {\n    vector<Point<T>> ps, hull;\n    vector<int> idx;\n\
+    \n    ConvexHull() = default;\n    ConvexHull(const vector<Point<T>>& ps) : ps(ps)\
+    \ {}\n\n    void emplace_point(T x, T y) {\n        ps.emplace_back(x, y);\n \
+    \   }\n    void push_point(const Point<T>& p) {\n        ps.push_back(p);\n  \
+    \  }\n\n    void build() {\n        int _n = size(ps);\n        if (_n == 1) {\n\
+    \            hull = ps;\n            return;\n        }\n        vc<pair<Point<T>,\
+    \ int>> tmp(_n);\n        rep (i, _n) tmp[i] = {ps[i], i};\n        sort(all(tmp));\n\
+    \        vector<pair<Point<T>, int>> up, dw;\n        up.push_back(tmp[0]);\n\
+    \        dw.push_back(tmp[0]);\n        up.push_back(tmp[1]);\n        dw.push_back(tmp[1]);\n\
+    \n        for (int i = 2; i < _n; i++) {\n            while (size(up) >= 2 &&\
+    \ cross(up[size(up) - 1].first\n                   - up[size(up) - 2].first, tmp[i].first\
+    \ - up[size(up) - 1].first) >= 0) {\n                up.pop_back();\n        \
+    \    }\n            while (size(dw) >= 2 && cross(dw[size(dw) - 1].first\n   \
+    \                - dw[size(dw) - 2].first, tmp[i].first - dw[size(dw) - 1].first)\
+    \ <= 0) {\n                dw.pop_back();\n            }\n            up.push_back(tmp[i]);\
+    \ \n            dw.push_back(tmp[i]);\n        }\n        hull.reserve(size(up)\
+    \ + size(dw) - 2);\n        idx.resize(_n, -1);\n        for (int i = 0; i < (int)size(up);\
+    \ i++) {\n            hull.emplace_back(up[i].first);\n            idx[up[i].second]\
+    \ = i;\n        }\n        for (int i = size(dw) - 2; i > 0; i--) {\n        \
+    \    hull.emplace_back(dw[i].first);\n            idx[dw[i].second] = size(hull)\
+    \ - 1;\n        }\n    }\n};\n\n} // namespace kk2\n\n\n"
+  code: "#ifndef GEOMETRY_CONVEX_HULL_HPP\n#define GEOMETRY_CONVEX_HULL_HPP 1\n\n\
+    #include \"point.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename T>\nstruct ConvexHull\
+    \ {\n    vector<Point<T>> ps, hull;\n    vector<int> idx;\n\n    ConvexHull()\
     \ = default;\n    ConvexHull(const vector<Point<T>>& ps) : ps(ps) {}\n\n    void\
     \ emplace_point(T x, T y) {\n        ps.emplace_back(x, y);\n    }\n    void push_point(const\
     \ Point<T>& p) {\n        ps.push_back(p);\n    }\n\n    void build() {\n    \
     \    int _n = size(ps);\n        if (_n == 1) {\n            hull = ps;\n    \
-    \        return;\n        }\n        sort(begin(ps), end(ps));\n        vector<Point<T>>\
-    \ up, dw;\n        up.push_back(ps[0]);\n        dw.push_back(ps[0]);\n      \
-    \  up.push_back(ps[1]);\n        dw.push_back(ps[1]);\n\n        for (int i =\
-    \ 2; i < _n; i++) {\n            while (size(up) >= 2 && cross(up[size(up) - 1]\n\
-    \                   - up[size(up) - 2], ps[i] - up[size(up) - 1]) >= 0) {\n  \
-    \              up.pop_back();\n            }\n            while (size(dw) >= 2\
-    \ && cross(dw[size(dw) - 1]\n                   - dw[size(dw) - 2], ps[i] - dw[size(dw)\
-    \ - 1]) <= 0) {\n                dw.pop_back();\n            }\n            up.push_back(ps[i]);\n\
-    \            dw.push_back(ps[i]);\n        }\n        hull = up;\n        for\
-    \ (int i = size(dw) - 2; i > 0; i--) {\n            hull.emplace_back(dw[i]);\n\
-    \        }\n    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef GEOMETRY_CONVEX_HULL_HPP\n#define GEOMETRY_CONVEX_HULL_HPP 1\n\n\
-    #include \"point.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename T>\nstruct ConvexHull\
-    \ {\n    vector<Point<T>> ps, hull;\n\n    ConvexHull() = default;\n    ConvexHull(const\
-    \ vector<Point<T>>& ps) : ps(ps) {}\n\n    void emplace_point(T x, T y) {\n  \
-    \      ps.emplace_back(x, y);\n    }\n    void push_point(const Point<T>& p) {\n\
-    \        ps.push_back(p);\n    }\n\n    void build() {\n        int _n = size(ps);\n\
-    \        if (_n == 1) {\n            hull = ps;\n            return;\n       \
-    \ }\n        sort(begin(ps), end(ps));\n        vector<Point<T>> up, dw;\n   \
-    \     up.push_back(ps[0]);\n        dw.push_back(ps[0]);\n        up.push_back(ps[1]);\n\
-    \        dw.push_back(ps[1]);\n\n        for (int i = 2; i < _n; i++) {\n    \
-    \        while (size(up) >= 2 && cross(up[size(up) - 1]\n                   -\
-    \ up[size(up) - 2], ps[i] - up[size(up) - 1]) >= 0) {\n                up.pop_back();\n\
-    \            }\n            while (size(dw) >= 2 && cross(dw[size(dw) - 1]\n \
-    \                  - dw[size(dw) - 2], ps[i] - dw[size(dw) - 1]) <= 0) {\n   \
-    \             dw.pop_back();\n            }\n            up.push_back(ps[i]);\n\
-    \            dw.push_back(ps[i]);\n        }\n        hull = up;\n        for\
-    \ (int i = size(dw) - 2; i > 0; i--) {\n            hull.emplace_back(dw[i]);\n\
-    \        }\n    }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_CONVEX_HULL_HPP\n"
+    \        return;\n        }\n        vc<pair<Point<T>, int>> tmp(_n);\n      \
+    \  rep (i, _n) tmp[i] = {ps[i], i};\n        sort(all(tmp));\n        vector<pair<Point<T>,\
+    \ int>> up, dw;\n        up.push_back(tmp[0]);\n        dw.push_back(tmp[0]);\n\
+    \        up.push_back(tmp[1]);\n        dw.push_back(tmp[1]);\n\n        for (int\
+    \ i = 2; i < _n; i++) {\n            while (size(up) >= 2 && cross(up[size(up)\
+    \ - 1].first\n                   - up[size(up) - 2].first, tmp[i].first - up[size(up)\
+    \ - 1].first) >= 0) {\n                up.pop_back();\n            }\n       \
+    \     while (size(dw) >= 2 && cross(dw[size(dw) - 1].first\n                 \
+    \  - dw[size(dw) - 2].first, tmp[i].first - dw[size(dw) - 1].first) <= 0) {\n\
+    \                dw.pop_back();\n            }\n            up.push_back(tmp[i]);\
+    \ \n            dw.push_back(tmp[i]);\n        }\n        hull.reserve(size(up)\
+    \ + size(dw) - 2);\n        idx.resize(_n, -1);\n        for (int i = 0; i < (int)size(up);\
+    \ i++) {\n            hull.emplace_back(up[i].first);\n            idx[up[i].second]\
+    \ = i;\n        }\n        for (int i = size(dw) - 2; i > 0; i--) {\n        \
+    \    hull.emplace_back(dw[i].first);\n            idx[dw[i].second] = size(hull)\
+    \ - 1;\n        }\n    }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_CONVEX_HULL_HPP\n"
   dependsOn:
   - geometry/point.hpp
   isVerificationFile: false
   path: geometry/convex_hull.hpp
   requiredBy: []
-  timestamp: '2024-08-29 05:27:34+09:00'
+  timestamp: '2024-09-06 10:52:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/convex_hull.hpp
