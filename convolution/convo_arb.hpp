@@ -3,7 +3,6 @@
 
 #include "../modint/mont.hpp"
 #include "convolution.hpp"
-#include "../fps/fps.hpp"
 #include "../math_mod/garner.hpp"
 
 namespace kk2 {
@@ -22,22 +21,21 @@ FPS convolution_arb(FPS& a, const FPS& b) {
     vector<long long> a0(n), b0(m);
     for (int i = 0; i < n; i++) a0[i] = a[i].val();
     for (int i = 0; i < m; i++) b0[i] = b[i].val();
-    auto a1 = FormalPowerSeries<mint1>(begin(a0), end(a0));
-    auto b1 = FormalPowerSeries<mint1>(begin(b0), end(b0));
+    auto a1 = vector<mint1>(begin(a0), end(a0));
+    auto b1 = vector<mint1>(begin(b0), end(b0));
     auto c1 = convolution<mint1>(a1, b1);
-    auto a2 = FormalPowerSeries<mint2>(begin(a0), end(a0));
-    auto b2 = FormalPowerSeries<mint2>(begin(b0), end(b0));
+    auto a2 = vector<mint2>(begin(a0), end(a0));
+    auto b2 = vector<mint2>(begin(b0), end(b0));
     auto c2 = convolution<mint2>(a2, b2);
-    auto a3 = FormalPowerSeries<mint3>(begin(a0), end(a0));
-    auto b3 = FormalPowerSeries<mint3>(begin(b0), end(b0));
+    auto a3 = vector<mint3>(begin(a0), end(a0));
+    auto b3 = vector<mint3>(begin(b0), end(b0));
     auto c3 = convolution<mint3>(a3, b3);
     static const vector<long long> p = {MOD1, MOD2, MOD3, mint::getmod()};
-    FPS res(n + m - 1);
+    a.reize(n + m - 1);
     for (int i = 0; i < n + m - 1; i++) {
-        res[i] = mint(garner({c1[i].val(), c2[i].val(), c3[i].val()}, p));
+        a[i] = mint(garner({c1[i].val(), c2[i].val(), c3[i].val()}, p));
     }
-    a = res;
-    return res;
+    return a;
 }
 
 } // namespace kk2
