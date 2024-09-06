@@ -4,6 +4,7 @@
 #include "../fps/ntt_friendly.hpp"
 #include "../fps/sample_point_shift.hpp"
 #include "comb.hpp"
+#include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
@@ -31,7 +32,7 @@ struct CombLarge {
 
     template <class T>
     static mint multinomial(vector<T> r) {
-        static_assert(is_integral_v<T>, "T must be integral");
+        static_assert(is_integral_extended<T>::value, "T must be integral");
         long long n = 0;
         for (auto &x : r) {
             assert(x >= 0);

@@ -1,6 +1,8 @@
 #ifndef MODINT_HPP
 #define MODINT_HPP 1
 
+#include "../type_traits/type_traits.hpp"
+
 namespace kk2 {
 
 template <int p> struct ModInt {
@@ -24,13 +26,13 @@ template <int p> struct ModInt {
 
     ModInt() : _v(0) {}
     template <class T> ModInt(T v) {
-        if (is_signed_v<T>) {
+        if (is_signed_extended<T>::value) {
             v %= getmod();
             v += getmod();
             v %= getmod();
             _v = v;
         }
-        else if (is_unsigned_v<T>) {
+        else if (is_unsigned_extended<T>::value) {
             _v = v % getmod();
         }
         else ModInt();

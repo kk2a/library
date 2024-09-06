@@ -1,6 +1,8 @@
 #ifndef MOD_COMB_HPP
 #define MOD_COMB_HPP 1
 
+#include "../type_traits/type_traits.hpp"
+
 namespace kk2 {
 
 template <class mint>
@@ -51,7 +53,7 @@ struct Comb {
 
     template <class T>
     static mint multinomial(const vector<T>& r) {
-        static_assert(is_integral_v<T>, "T must be integral");
+        static_assert(is_integral_extended<T>::value, "T must be integral");
         int n = 0;
         for (auto &x : r) {
             if (x < 0) return 0;
