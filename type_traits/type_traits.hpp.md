@@ -5,6 +5,21 @@ data:
   - icon: ':warning:'
     path: data_structure/convex_hull_trick_add_monotone.hpp
     title: data_structure/convex_hull_trick_add_monotone.hpp
+  - icon: ':warning:'
+    path: fps/taylor_shift.hpp
+    title: fps/taylor_shift.hpp
+  - icon: ':warning:'
+    path: math/pow_expr.hpp
+    title: math/pow_expr.hpp
+  - icon: ':warning:'
+    path: math_mod/comb.hpp
+    title: math_mod/comb.hpp
+  - icon: ':warning:'
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
+  - icon: ':warning:'
+    path: modint/modint.hpp
+    title: modint/modint.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -51,6 +66,11 @@ data:
   isVerificationFile: false
   path: type_traits/type_traits.hpp
   requiredBy:
+  - math_mod/comb_large.hpp
+  - math_mod/comb.hpp
+  - math/pow_expr.hpp
+  - fps/taylor_shift.hpp
+  - modint/modint.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
   timestamp: '2024-09-06 16:31:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS

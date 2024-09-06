@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -8,21 +11,40 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/pow_expr.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate <class\
-    \ S, class T, class U>\nconstexpr S pow_constexpr(T x, U n) {\n    assert(!is_signed_v<U>\
+  bundledCode: "#line 1 \"math/pow_expr.hpp\"\n\n\n\n#line 1 \"type_traits/type_traits.hpp\"\
+    \n\n\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 =\n \
+    \   typename std::conditional<std::is_same<T, __int128_t>::value or\n        \
+    \                      std::is_same<T, __int128>::value,\n                   \
+    \           std::true_type, std::false_type>::type;\n\ntemplate <typename T>\n\
+    using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\
+    \ or\n                              std::is_same<T, unsigned __int128>::value,\n\
+    \                              std::true_type, std::false_type>::type;\n\ntemplate\
+    \ <typename T>\nusing is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\
+    \ or\n                              is_signed_int128<T>::value or\n          \
+    \                    is_unsigned_int128<T>::value,\n                         \
+    \     std::true_type, std::false_type>::type;\n\ntemplate <typename T>\nusing\
+    \ is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\
+    \ or\n                              is_signed_int128<T>::value,\n            \
+    \                  std::true_type, std::false_type>::type;\n\ntemplate <typename\
+    \ T>\nusing is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\
+    \ or\n                              is_unsigned_int128<T>::value,\n          \
+    \                    std::true_type, std::false_type>::type;\n\n} // namespace\
+    \ kk2\n\n\n#line 5 \"math/pow_expr.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ S, class T, class U>\nconstexpr S pow_constexpr(T x, U n) {\n    assert(!is_signed_extended<U>::value\
     \ || n >= 0);\n    S r = 1, y = x;\n    while (n) {\n        if (n & 1) r *= y;\n\
     \        y *= y;\n        n >>= 1;\n    }\n    return r;\n}\n\n} // namespace\
     \ kk2\n\n\n"
-  code: "#ifndef MATH_POW_EXPR_HPP\n#define MATH_POW_EXPR_HPP 1\n\nnamespace kk2 {\n\
-    \ntemplate <class S, class T, class U>\nconstexpr S pow_constexpr(T x, U n) {\n\
-    \    assert(!is_signed_v<U> || n >= 0);\n    S r = 1, y = x;\n    while (n) {\n\
-    \        if (n & 1) r *= y;\n        y *= y;\n        n >>= 1;\n    }\n    return\
-    \ r;\n}\n\n} // namespace kk2\n\n#endif // MATH_POW_EXPR_HPP\n"
-  dependsOn: []
+  code: "#ifndef MATH_POW_EXPR_HPP\n#define MATH_POW_EXPR_HPP 1\n\n#include \"../type_traits/type_traits.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U>\nconstexpr S pow_constexpr(T\
+    \ x, U n) {\n    assert(!is_signed_extended<U>::value || n >= 0);\n    S r = 1,\
+    \ y = x;\n    while (n) {\n        if (n & 1) r *= y;\n        y *= y;\n     \
+    \   n >>= 1;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n#endif // MATH_POW_EXPR_HPP\n"
+  dependsOn:
+  - type_traits/type_traits.hpp
   isVerificationFile: false
   path: math/pow_expr.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-09-06 16:42:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/pow_expr.hpp
