@@ -26,7 +26,9 @@ struct CHTAddMonotone {
         return x == 0 ? 0 : (x < 0 ? -1 : 1);
     }
 
-    static constexpr bool check(const Line &l1, const Line &l2, const Line &l3) {
+    template <typename Iterators>
+    static constexpr bool check(Iterators mid) {
+        auto [l1, l2, l3] = tie(*prev(mid), *mid, *next(mid));
         if (l2.b == l1.b or l3.b == l2.b) 
             return sgn(l2.a - l1.a) * sgn(l3.b - l2.b)
                    >= sgn(l3.a - l2.a) * sgn(l2.b - l1.b);
@@ -52,21 +54,24 @@ struct CHTAddMonotone {
                 if (lines.front().b <= b) return;
                 lines.pop_front();
             }
-            while ((int)lines.size() >= 2 and check(l, lines.front(), lines[1])) {
-                lines.pop_front();
-            }
             lines.emplace_front(l);
+            while ((int)lines.size() >= 3 and check(next(lines.begin()))) {
+                lines.erase(next(lines.begin()));
+            }
         }
-        else {
-            assert(lines.back().a >= a);
+        else if (lines.back().a >= a) {
             if (lines.back().a == a) {
                 if (lines.back().b <= b) return;
                 lines.pop_back();
             }
-            while ((int)lines.size() >= 2 and check(lines[lines.size() - 2], lines.back(), l)) {
-                lines.pop_back();
-            }
             lines.emplace_back(l);
+            while ((int)lines.size() >= 3 and check(prev(lines.end(), 2))) {
+                lines.erase(prev(lines.end(), 2));
+            }
+        }
+        else {
+            cerr << "Invalid input" << endl;
+            exit(1);
         }
     }
 
