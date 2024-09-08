@@ -1,6 +1,9 @@
 #ifndef MODINT_HPP
 #define MODINT_HPP 1
 
+#include <cassert>
+#include <iostream> 
+#include <utility>
 #include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
@@ -102,8 +105,8 @@ template <int p> struct ModInt {
             s -= t * u;
             m0 -= m1 * u;  
 
-            swap(s, t);
-            swap(m0, m1);
+            std::swap(s, t);
+            std::swap(m0, m1);
         }
         if (m0 < 0) m0 += getmod() / s;
         return m0;
@@ -128,11 +131,11 @@ template <int p> struct ModInt {
         return lhs._v != rhs._v;
     }
 
-    friend ostream& operator<<(ostream& os, const mint& mint_) {
+    friend std::ostream& operator<<(std::ostream& os, const mint& mint_) {
         os << mint_._v;
         return os;
     }
-    friend istream& operator>>(istream& is, mint& mint_) {
+    friend std::istream& operator>>(std::istream& is, mint& mint_) {
         long long x;
         is >> x;
         mint_ = mint(x);

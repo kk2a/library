@@ -1,6 +1,10 @@
 #ifndef MODINT_MONT_HPP
 #define MODINT_MONT_HPP 1
 
+#include <cassert>
+#include <cstdint>
+#include <iostream>
+
 namespace kk2 {
 
 template <int p>
@@ -90,11 +94,13 @@ struct LazyMontgomeryModInt {
     }
     constexpr mint inv() const { return pow(p - 2); }
 
-    friend ostream& operator<<(ostream& os, const mint& x) {
+    friend std::ostream& operator<<(std::ostream& os, const mint& x) {
         return os << x.val();
     }
-    friend istream& operator>>(istream& is, mint& x) {
-        i64 t; is >> t; x = mint(t);
+    friend std::istream& operator>>(std::istream& is, mint& x) {
+        i64 t;
+        is >> t;
+        x = mint(t);
         return (is);
     }
 

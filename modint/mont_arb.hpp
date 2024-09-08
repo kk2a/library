@@ -1,6 +1,10 @@
 #ifndef MODINT_MONT_ARB_HPP
 #define MODINT_MONT_ARB_HPP 1
 
+#include <cassert>
+#include <iostream>
+#include <utility>
+
 namespace kk2 {
 
 template <typename Int, typename UInt, typename Long, typename ULong, int id>
@@ -78,18 +82,20 @@ struct ArbitraryLazyMontgomeryModIntBase {
         Int s = getmod(), t = val(), m0 = 0, m1 = 1;
         while (t) {
             Int u = s / t;
-            swap(s -= t * u, t);
-            swap(m0 -= m1 * u, m1);
+            std::swap(s -= t * u, t);
+            std::swap(m0 -= m1 * u, m1);
         }
         if (m0 < 0) m0 += getmod();
         return mint(m0);
     }
 
-    friend ostream& operator<<(ostream& os, const mint& x) {
+    friend std::ostream& operator<<(std::ostream& os, const mint& x) {
         return os << x.val();
     }
-    friend istream& operator>>(istream& is, mint& x) {
-        Long t; is >> t; x = mint(t);
+    friend std::istream& operator>>(std::istream& is, mint& x) {
+        Long t;
+        is >> t;
+        x = mint(t);
         return (is);
     }
 
