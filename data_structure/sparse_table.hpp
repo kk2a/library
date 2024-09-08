@@ -1,16 +1,19 @@
 #ifndef DATA_STRUCTURE_SPARSE_TABLE_HPP
 #define DATA_STRUCTURE_SPARSE_TABLE_HPP 1
 
+#include <cassert>
+#include <vector>
+
 namespace kk2 {
 
 // require: op(x, x) = x for all x
 template <class S, S (*op)(S, S), S (*e)()>
 struct SparseTable {
     SparseTable() = default;
-    SparseTable(const vector<S>& v) : _n(int(v.size())) {
+    SparseTable(const std::vector<S>& v) : _n(int(v.size())) {
         log = 0;
         while ((1 << log) < _n) log++;
-        table.assign(log + 1, vector<S>(_n));
+        table.assign(log + 1, std::vector<S>(_n));
         for (int i = 0; i < _n; i++) table[0][i] = v[i];
         for (int i = 1; i <= log; i++) {
             for (int j = 0; j + (1 << i) <= _n; j++) {
@@ -79,7 +82,7 @@ struct SparseTable {
 
   private:
     int _n, log;
-    vector<vector<S>> table;
+    std::vector<std::vector<S>> table;
 };
 
 } // namespace kk2

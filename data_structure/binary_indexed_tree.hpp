@@ -1,6 +1,9 @@
 #ifndef DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP
 #define DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP 1
 
+#include <cassert>
+#include <vector>
+
 namespace kk2 {
 
 template <typename T>
@@ -28,7 +31,7 @@ struct BinaryIndexedTree {
     std::vector<T> data;
 
     T sum(int r) {
-        T s = 0;
+        T s{};
         for (; r > 0; r -= r & -r) s += data[r - 1];
         return s;
     }

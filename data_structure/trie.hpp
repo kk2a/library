@@ -1,13 +1,18 @@
 #ifndef DATA_STRUCTURE_TRIE_HPP
 #define DATA_STRUCTURE_TRIE_HPP 1
 
+#include <functional>
+#include <cstring>
+#include <string>
+#include <vector>
+
 namespace kk2 {
 
 template <int char_size>
 struct TrieNode {
     int nxt[char_size];
     int exist;
-    vector<int> accept;
+    std::vector<int> accept;
     TrieNode() : exist(0) { memset(nxt, -1, sizeof(nxt)); }
 };
 
@@ -15,7 +20,7 @@ template <int char_size, int margin>
 struct Trie {
     using Node = TrieNode<char_size>;
 
-    vector<Node> nodes;
+    std::vector<Node> nodes;
     constexpr static int root = 0;
 
     Trie() { nodes.emplace_back(); }
@@ -29,7 +34,7 @@ struct Trie {
 
     void update_child(int node) { ++nodes[node].exist; }
 
-    void add(const string& str) {
+    void add(const std::string& str) {
         const int id = nodes[root].exist;
         auto rec = [&](auto self, int now, int idx) -> void {
             if (idx == (int)str.size()) {
@@ -45,12 +50,12 @@ struct Trie {
     }
 
     template <void (*f)(int)>
-    void query(const string& str) {
+    void query(const std::string& str) {
         query(str, [](int idx) { f(idx); });
     }
 
     template <class F>
-    void query(const string& str, const F& f) {
+    void query(const std::string& str, const F& f) {
         int now = root;
         for (char c : str) {
             for (int& idx : nodes[now].accept) f(idx);

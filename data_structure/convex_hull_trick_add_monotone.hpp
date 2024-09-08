@@ -1,6 +1,11 @@
 #ifndef DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP
 #define DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP 1
 
+#include <cmath>
+#include <deque>
+#include <iterator>
+#include <iostream>
+#include <tuple>
 #include "../math/frac_floor.hpp"
 #include "../type_traits/type_traits.hpp"
 
@@ -14,7 +19,7 @@ struct CHTAddMonotone {
         Line(T a_, T b_) : a(a_), b(b_) {}
         T eval(T x) const { return a * x + b; }
     };
-    deque<Line> lines;
+    std::deque<Line> lines;
 
     CHTAddMonotone() = default;
 
@@ -28,7 +33,7 @@ struct CHTAddMonotone {
 
     template <typename Iterators>
     static constexpr bool check(Iterators mid) {
-        auto [l1, l2, l3] = tie(*prev(mid), *mid, *next(mid));
+        auto [l1, l2, l3] = std::tie(*std::prev(mid), *mid, *std::next(mid));
         if (l2.b == l1.b or l3.b == l2.b) 
             return sgn(l2.a - l1.a) * sgn(l3.b - l2.b)
                    >= sgn(l3.a - l2.a) * sgn(l2.b - l1.b);
@@ -37,8 +42,8 @@ struct CHTAddMonotone {
                    >= kk2::fracfloor(l3.b - l2.b, l2.a - l3.a);
         }
         else {
-            return (l2.b - l1.b) * sgn(l3.a - l2.a) / abs(l2.a - l1.a)
-                   >= (l3.b - l2.b) * sgn(l2.a - l1.a) / abs(l3.a - l2.a);
+            return (l2.b - l1.b) * sgn(l3.a - l2.a) / std::abs(l2.a - l1.a)
+                   >= (l3.b - l2.b) * sgn(l2.a - l1.a) / std::abs(l3.a - l2.a);
         }
     }
 
@@ -55,8 +60,8 @@ struct CHTAddMonotone {
                 lines.pop_front();
             }
             lines.emplace_front(l);
-            while ((int)lines.size() >= 3 and check(next(lines.begin()))) {
-                lines.erase(next(lines.begin()));
+            while ((int)lines.size() >= 3 and check(std::next(lines.begin()))) {
+                lines.erase(std::next(lines.begin()));
             }
         }
         else if (lines.back().a >= a) {
@@ -65,12 +70,12 @@ struct CHTAddMonotone {
                 lines.pop_back();
             }
             lines.emplace_back(l);
-            while ((int)lines.size() >= 3 and check(prev(lines.end(), 2))) {
-                lines.erase(prev(lines.end(), 2));
+            while ((int)lines.size() >= 3 and check(std::prev(lines.end(), 2))) {
+                lines.erase(std::prev(lines.end(), 2));
             }
         }
         else {
-            cerr << "Invalid input" << endl;
+            std::cerr << "Invalid input" << std::endl;
             exit(1);
         }
     }
