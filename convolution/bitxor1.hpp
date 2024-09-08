@@ -1,6 +1,9 @@
 #ifndef CONVOLUTION_XOR
 #define CONVOLUTION_XOR 1
 
+#include <cassert>
+#include <functional>
+
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
@@ -9,7 +12,7 @@ FPS convolution_xor(FPS& a, const FPS& b) {
     int n = int(size(a));  // == int(size(b)
     if (!n) return {};
     assert((n & -n) == n);
-    FPS c(b);
+    FPS c(b.begin(), b.end());
 
     auto fwht = [&](FPS& a) -> void {
         for (int i = 1; i < n; i <<= 1) {

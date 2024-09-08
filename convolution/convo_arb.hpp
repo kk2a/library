@@ -1,6 +1,7 @@
 #ifndef CONVO_ARB_HPP
 #define CONVO_ARB_HPP 1
 
+#include <vector>
 #include "../modint/mont.hpp"
 #include "convolution.hpp"
 #include "../math_mod/garner.hpp"
@@ -8,7 +9,7 @@
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS convolution_arb(FPS& a, const FPS& b) {
+FPS convolution_arb(FPS& a, const FPS& b, mint mod) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
     static constexpr long long MOD1 = 754974721;  // 2^24
@@ -18,22 +19,20 @@ FPS convolution_arb(FPS& a, const FPS& b) {
     using mint2 = LazyMontgomeryModInt<MOD2>;
     using mint3 = LazyMontgomeryModInt<MOD3>;
 
-    vector<long long> a0(n), b0(m);
-    for (int i = 0; i < n; i++) a0[i] = a[i].val();
-    for (int i = 0; i < m; i++) b0[i] = b[i].val();
-    auto a1 = vector<mint1>(begin(a0), end(a0));
-    auto b1 = vector<mint1>(begin(b0), end(b0));
-    auto c1 = convolution<mint1>(a1, b1);
-    auto a2 = vector<mint2>(begin(a0), end(a0));
-    auto b2 = vector<mint2>(begin(b0), end(b0));
-    auto c2 = convolution<mint2>(a2, b2);
-    auto a3 = vector<mint3>(begin(a0), end(a0));
-    auto b3 = vector<mint3>(begin(b0), end(b0));
-    auto c3 = convolution<mint3>(a3, b3);
-    static const vector<long long> p = {MOD1, MOD2, MOD3, mint::getmod()};
-    a.reize(n + m - 1);
+    std::vector<long long> a0(a.begin(), a.end()), b0(b.begin(), b.end());
+    auto a1 = std::vector<mint1>(a0.begin(), a0.end());
+    auto b1 = std::vector<mint1>(b0.begin(), b0.end());
+    convolution(a1, b1);
+    auto a2 = std::vector<mint2>(a0.begin(), a0.end());
+    auto b2 = std::vector<mint2>(b0.begin(), b0.end());
+    convolution(a2, b2);
+    auto a3 = std::vector<mint3>(a0.begin(), a0.end());
+    auto b3 = std::vector<mint3>(b0.begin(), b0.end());
+    convolution(a3, b3);
+    static const std::vector<long long> ps = {MOD1, MOD2, MOD3, (long long)mod};
+    a.resize(n + m - 1);
     for (int i = 0; i < n + m - 1; i++) {
-        a[i] = mint(garner({c1[i].val(), c2[i].val(), c3[i].val()}, p));
+        a[i] = mint(garner({a1[i].val(), a2[i].val(), a3[i].val()}, ps));
     }
     return a;
 }

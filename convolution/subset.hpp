@@ -1,24 +1,27 @@
 #ifndef CONVOLUTION_SUBSET
 #define CONVOLUTION_SUBSET 1
 
+#include <cassert>
+#include <functional>
+#include <vector>
+
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS convolution_subset(FPS& a, FPS b) {
+FPS convolution_subset(FPS& a, const FPS& b) {
     int n = int(size(a));  // == int(size(b)
     if (!n) return {};
-    int h = 0;
-    while (1 << h < n) h++;
-    n = 1 << h;
-    a.resize(n, 0), b.resize(n, 0);
-    vector<int> chi(n, 0);
+    int h = __builtin_ctz(n);
+
+    assert((n & (-n)) == n);
+    std::vector<int> chi(n, 0);
     for (int i = 1; i < n; i++) chi[i] = chi[i - (i & -i)] + 1;
-    vector<vector<mint>> f(n, vector<mint>(h + 1)), g(n, vector<mint>(h + 1));
+    std::vector<std::vector<mint>> f(n, std::vector<mint>(h + 1)), g(n, std::vector<mint>(h + 1));
     for (int i = 0; i < n; i++) {
         f[i][chi[i]] = a[i];
         g[i][chi[i]] = b[i];
     }
-    auto rfzt = [&] (vector<vector<mint>>& c) -> void {
+    auto rfzt = [&] (std::vector<std::vector<mint>>& c) -> void {
         for (int i = 1; i < n; i <<= 1) {
             for (int j = 0; j < n; j += 2 * i) {
                 for (int s = j; s < j + i; s++) {
@@ -30,7 +33,7 @@ FPS convolution_subset(FPS& a, FPS b) {
             }
         }
     };
-    auto rifzt = [&] (vector<vector<mint>>& c) -> void {
+    auto rifzt = [&] (std::vector<std::vector<mint>>& c) -> void {
         for (int i = 1; i < n; i <<= 1) {
             for (int j = 0; j < n; j += 2 * i) {
                 for (int s = j; s < j + i; s++) {
@@ -47,7 +50,7 @@ FPS convolution_subset(FPS& a, FPS b) {
     rfzt(g);
     for (int i = 0; i < n; i++) {
         for (int d = h; d >= 0; d--) {
-            mint x;
+            mint x{};
             for (int j = 0; j < d + 1; j++) {
                 x += f[i][j] * g[i][d - j];
             }

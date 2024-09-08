@@ -1,6 +1,7 @@
 #ifndef CONVOLUTION_GCD
 #define CONVOLUTION_GCD 1
 
+#include <cassert>
 #include "../math/Eratosthenes.hpp"
 
 namespace kk2 {
@@ -12,7 +13,7 @@ FPS convolution_gcd(FPS& a, const FPS& b) {
     int n = int(size(a)); // = int(size(b))
     if (!n) return {};
     n--;
-    FPS c(b);
+    FPS c(b.begin(), b.end());
     Erato::set_upper(n);
 
     auto fmt = [&](FPS& a) -> void {

@@ -1,6 +1,8 @@
 #ifndef CONVOLUTION_HPP
 #define CONVOLUTION_HPP 1
 
+#include <vector>
+#include <algorithm>
 #include "butterfly.hpp"
 
 namespace kk2 {

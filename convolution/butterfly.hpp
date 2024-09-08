@@ -1,6 +1,7 @@
 #ifndef BUTTERFLY_HPP
 #define BUTTERFLY_HPP 1
 
+#include <algorithm>
 #include "../math_mod/primitive_rt_expr.hpp"
 
 namespace kk2 {
@@ -166,7 +167,8 @@ void doubling(FPS &a) {
     int z = 1;
     while (z < n) z <<= 1;
     mint invz = mint(z).inv();
-    butterfly_inv(b); b *= invz;
+    butterfly_inv(b);
+    for (int i = 0; i < b.size(); i++) b[i] *= invz;
     mint r = 1, zeta = mint(primitive_root<mint::getmod()>).
                        pow((mint::getmod() - 1) / (n << 1));
     for (int i = 0; i < n; i++) {
@@ -174,7 +176,7 @@ void doubling(FPS &a) {
         r *= zeta;
     }
     butterfly(b);
-    copy(begin(b), end(b), back_inserter(a));
+    std::copy(b.begin(), b.end(), std::back_inserter(a));
 }
 
 } // namespace kk2
