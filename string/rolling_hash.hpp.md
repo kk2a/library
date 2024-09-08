@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/pow_expr.hpp
     title: math_mod/pow_expr.hpp
   _extendedRequiredBy: []
