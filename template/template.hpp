@@ -15,6 +15,7 @@
 #include <limits>
 #include <fstream>
 #include <sstream>
+#include <cassert>
 
 #include <cstring>
 #include <string>
@@ -31,18 +32,16 @@
 #include <chrono>
 #include <stack>
 
-using namespace std;
-
 using u32 = unsigned int;
 using i64 = long long;
 using u64 = unsigned long long;
 using i128 = __int128_t;
 using u128 = __uint128_t;
 
-using pi = pair<int, int>;
-using pl = pair<i64, i64>;
-using pil = pair<int, i64>;
-using pli = pair<i64, int>;
+using pi = std::pair<int, int>;
+using pl = std::pair<i64, i64>;
+using pil = std::pair<int, i64>;
+using pli = std::pair<i64, int>;
 
 template <class T>
 constexpr T infty = 0;
@@ -65,42 +64,42 @@ constexpr int modu = 1e9 + 7;
 constexpr long double PI = 3.14159265358979323846;
 
 template <class T>
-using vc = vector<T>;
+using vc = std::vector<T>;
 template <class T>
-using vvc = vector<vc<T>>;
+using vvc = std::vector<vc<T>>;
 template <class T>
-using vvvc = vector<vvc<T>>;
+using vvvc = std::vector<vvc<T>>;
 template <class T>
-using vvvvc = vector<vvvc<T>>;
+using vvvvc = std::vector<vvvc<T>>;
 
 namespace kk2 {
 
 template <class T, class... Sizes>
 auto make_vector(const T &init, int first, Sizes... sizes) {
     if constexpr (sizeof...(sizes) == 0) {
-        return vector<T>(first, init);
+        return std::vector<T>(first, init);
     }
     else {
-        return vector<decltype(make_vector(init, sizes...))>(first, make_vector(init, sizes...));
+        return std::vector<decltype(make_vector(init, sizes...))>(first, make_vector(init, sizes...));
     }
 }
 
 template <class T, class U>
-void fill_all(vector<T> &v, const U &x) {
-    fill(begin(v), end(v), T(x));
+void fill_all(std::vector<T> &v, const U &x) {
+    std::fill(begin(v), end(v), T(x));
 }
 
 template <class T, class U>
-void fill_all(vector<vector<T>> &v, const U &x) {
+void fill_all(std::vector<std::vector<T>> &v, const U &x) {
     for (auto &u : v) fill_all(u, x);
 }
 
 } // namespace kk2
 
 template <class T>
-using pq = priority_queue<T>;
+using pq = std::priority_queue<T>;
 template <class T>
-using pqi = priority_queue<T, vector<T>, greater<T>>;
+using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 template <class T, class S>
 inline bool chmax(T &a, const S &b) {
@@ -124,17 +123,17 @@ inline bool chmin(T &a, const S &b) {
 # define se second
 # define all(p) begin(p), end(p)
 
-void YES(bool b = 1) { cout << (b ? "YES" : "NO") << '\n'; }
-void NO(bool b = 1) { cout << (b ? "NO" : "YES") << '\n'; }
-void YESflush(bool b = 1) { cout << (b ? "YES" : "NO") << endl; }
-void NOflush(bool b = 1) { cout << (b ? "NO" : "YES") << endl; }
-void Yes(bool b = 1) { cout << (b ? "Yes" : "No") << '\n'; }
-void No(bool b = 1) { cout << (b ? "No" : "Yes") << '\n'; }
-void Yesflush(bool b = 1) { cout << (b ? "Yes" : "No") << endl; }
-void Noflush(bool b = 1) { cout << (b ? "No" : "Yes") << endl; }
-void yes(bool b = 1) { cout << (b ? "yes" : "no") << '\n'; }
-void no(bool b = 1) { cout << (b ? "no" : "yes") << '\n'; }
-void yesflush(bool b = 1) { cout << (b ? "yes" : "no") << endl; }
-void noflush(bool b = 1) { cout << (b ? "no" : "yes") << endl; }
+void YES(bool b = 1) { std::cout << (b ? "YES" : "NO") << '\n'; }
+void NO(bool b = 1) { std::cout << (b ? "NO" : "YES") << '\n'; }
+void YESflush(bool b = 1) { std::cout << (b ? "YES" : "NO") << std::endl; }
+void NOflush(bool b = 1) { std::cout << (b ? "NO" : "YES") << std::endl; }
+void Yes(bool b = 1) { std::cout << (b ? "Yes" : "No") << '\n'; }
+void No(bool b = 1) { std::cout << (b ? "No" : "Yes") << '\n'; }
+void Yesflush(bool b = 1) { std::cout << (b ? "Yes" : "No") << std::endl; }
+void Noflush(bool b = 1) { std::cout << (b ? "No" : "Yes") << std::endl; }
+void yes(bool b = 1) { std::cout << (b ? "yes" : "no") << '\n'; }
+void no(bool b = 1) { std::cout << (b ? "no" : "yes") << '\n'; }
+void yesflush(bool b = 1) { std::cout << (b ? "yes" : "no") << std::endl; }
+void noflush(bool b = 1) { std::cout << (b ? "no" : "yes") << std::endl; }
 
 #endif // TEMPLATE
