@@ -1,7 +1,7 @@
 #ifndef FPS_MULTIVARIATE_FPS_HPP
 #define FPS_MULTIVARIATE_FPS_HPP 1
 
-#include "fps.hpp"
+#include "ntt_friendly.hpp"
 #include "../convolution/multi_convo_truncated.hpp"
 
 namespace kk2 {
@@ -27,11 +27,12 @@ struct MultivariateFormalPowerSeries {
     int _id(int x, T y, Ts... ys) {
         assert(x < (int)base.size() && (int)y < base[x]);
         if constexpr (sizeof...(Ts) == 0) return y;
-        return y + base[x] * _id(x + 1, ys...);
+        else return y + base[x] * _id(x + 1, ys...);
     }
 
     template <typename... Args>
     int id(Args... args) {
+        static_assert(sizeof...(Args) > 0);
         return _id(0, args...);
     }
 
@@ -186,25 +187,25 @@ struct MultivariateFormalPowerSeries {
             vector<fps> a(k, fps(2 * d)), b(k, fps(2 * d)), c(k, fps(2 * d));
             for (int i = 0; i < min((int)f.size(), 2 * d); i++) a[chi[i]][i] = f[i];
             for (int i = 0; i < d; i++) b[chi[i]][i] = g[i];
-            for (auto& x : a) butterfly(x);
-            for (auto& x : b) butterfly(x);
+            for (auto& x : a) x.but();
+            for (auto& x : b) x.but();
             naive_and_dot(a, b, c);
             for (auto& x : c) {
-                butterfly_inv(x);
+                x.ibut();
                 x *= i2d;
             }
-            // compute g_k f
+            // compute g_d f
 
             for (auto& x : a) fill(begin(x), end(x), mint(0));
 
-            for (int i = 0; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];
-            for (auto& x : a) butterfly(x);
+            for (int i = d; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];
+            for (auto& x : a) x.but();
             naive_and_dot(a, b, c);
             for (auto& x : c) {
-                butterfly_inv(x);
+                x.ibut();
                 x *= i2d;
             }
-            // compute g_k^2 f
+            // compute g_d^2 f
 
             // by (2), (3)
             for (int i = d; i < 2 * d; i++) g[i] = -c[chi[i]][i];
