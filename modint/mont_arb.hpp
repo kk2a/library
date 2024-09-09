@@ -4,6 +4,7 @@
 #include <cassert>
 #include <iostream>
 #include <utility>
+#include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
@@ -28,8 +29,11 @@ struct ArbitraryLazyMontgomeryModIntBase {
     }
     UInt _v;
 
+    operator Int() const { return val(); }
+
     ArbitraryLazyMontgomeryModIntBase() : _v(0) {}
-    ArbitraryLazyMontgomeryModIntBase(const Long &b)
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    ArbitraryLazyMontgomeryModIntBase(const T &b)
         : _v(reduce(ULong(b % mod + mod) * n2)) {}
     
     static UInt reduce(const ULong &b) {
@@ -53,10 +57,26 @@ struct ArbitraryLazyMontgomeryModIntBase {
         return *this;
     }
 
-    mint operator+(const mint& b) const { return mint(*this) += b; }
-    mint operator-(const mint& b) const { return mint(*this) -= b; }
-    mint operator*(const mint& b) const { return mint(*this) *= b; }
-    mint operator/(const mint& b) const { return mint(*this) /= b; }
+    friend mint operator+(const mint& a, const mint& b) { return mint(a) += b; }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator+(const mint& a, T b) { return mint(a) += mint(b); }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator+(T a, const mint& b) { return mint(a) += b; }
+    friend mint operator-(const mint& a, const mint& b) { return mint(a) -= b; }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator-(const mint& a, T b) { return mint(a) -= mint(b); }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator-(T a, const mint& b) { return mint(a) -= b; }
+    friend mint operator*(const mint& a, const mint& b) { return mint(a) *= b; }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator*(const mint& a, T b) { return mint(a) *= mint(b); }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator*(T a, const mint& b) { return mint(a) *= b; }
+    friend mint operator/(const mint& a, const mint& b) { return mint(a) /= b; }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator/(const mint& a, T b) { return mint(a) /= mint(b); }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator/(T a, const mint& b) { return mint(a) /= b; }
 
     bool operator==(const mint& b) const {
         return (_v >= mod ? _v - mod : _v) == (b._v >= mod ? b._v - mod : b._v);

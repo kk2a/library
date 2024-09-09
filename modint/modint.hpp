@@ -4,6 +4,7 @@
 #include <cassert>
 #include <iostream> 
 #include <utility>
+#include <type_traits>
 #include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
@@ -27,19 +28,23 @@ template <int p> struct ModInt {
         return x;
     }
 
+    operator int() const { return _v; }
+
     ModInt() : _v(0) {}
-    template <class T> ModInt(T v) {
-        if (is_signed_extended<T>::value) {
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    ModInt(T v) {
+        if constexpr (is_signed_extended<T>::value) {
             v %= getmod();
-            v += getmod();
-            v %= getmod();
+            if (v < 0) v += getmod();
             _v = v;
         }
-        else if (is_unsigned_extended<T>::value) {
-            _v = v % getmod();
+        else if constexpr (is_unsigned_extended<T>::value) {
+            _v = v %= getmod();
         }
-        else ModInt();
-    } 
+        else {
+            ModInt();
+        }
+    }
 
     unsigned int val() const { return _v; }
 
@@ -115,13 +120,45 @@ template <int p> struct ModInt {
     friend mint operator+(const mint& lhs, const mint& rhs) {
         return mint(lhs) += rhs;
     }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator+(const mint& lhs, T rhs) {
+        return mint(lhs) += mint(rhs);
+    }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator+(T lhs, const mint& rhs) {
+        return mint(lhs) += rhs;
+    }
     friend mint operator-(const mint& lhs, const mint& rhs) {
+        return mint(lhs) -= rhs;
+    }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator-(const mint& lhs, T rhs) {
+        return mint(lhs) -= mint(rhs);
+    }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator-(T lhs, const mint& rhs) {
         return mint(lhs) -= rhs;
     }
     friend mint operator*(const mint& lhs, const mint& rhs) {
         return mint(lhs) *= rhs;
     }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator*(const mint& lhs, T rhs) {
+        return mint(lhs) *= mint(rhs);
+    }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator*(T lhs, const mint& rhs) {
+        return mint(lhs) *= rhs;
+    }
     friend mint operator/(const mint& lhs, const mint& rhs) {
+        return mint(lhs) /= rhs;
+    }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator/(const mint& lhs, T rhs) {
+        return mint(lhs) /= mint(rhs);
+    }
+    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+    friend mint operator/(T lhs, const mint& rhs) {
         return mint(lhs) /= rhs;
     }
     friend bool operator==(const mint& lhs, const mint& rhs) {

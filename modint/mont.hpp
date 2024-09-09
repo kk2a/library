@@ -4,6 +4,8 @@
 #include <cassert>
 #include <cstdint>
 #include <iostream>
+#include <type_traits>
+#include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
@@ -26,12 +28,14 @@ struct LazyMontgomeryModInt {
     static_assert(r * p == 1, "invalid, r * p != 1");
     static_assert(p < (1 << 30), "invalid, p >= 2 ^ 30");
     static_assert((p & 1) == 1, "invalid, p % 2 == 0");
-    
+
     u32 _v;
 
+    operator int() const { return val(); }
+
     constexpr LazyMontgomeryModInt() : _v(0) {}
-    template <class T>
-    constexpr LazyMontgomeryModInt(const T& b)
+    template <typename T, std::enable_if_t<kk2::is_integral_extended<T>::value>* = nullptr>
+    constexpr LazyMontgomeryModInt(T b)
          : _v(reduce(u64(b % p + p) * n2)) {}
 
     static constexpr u32 reduce(const u64& b) {
@@ -78,9 +82,25 @@ struct LazyMontgomeryModInt {
         return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);
     }
     friend constexpr mint operator+(const mint& a, const mint& b) { return mint(a) += b; }
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>* = nullptr>
+    friend constexpr mint operator+(const mint& a, T b) { return mint(a) += mint(b); }
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>* = nullptr>
+    friend constexpr mint operator+(T a, const mint& b) { return mint(a) += b; }
     friend constexpr mint operator-(const mint& a, const mint& b) { return mint(a) -= b; }
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>* = nullptr>
+    friend constexpr mint operator-(const mint& a, T b) { return mint(a) -= mint(b); }
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>* = nullptr>
+    friend constexpr mint operator-(T a, const mint& b) { return mint(a) -= b; }
     friend constexpr mint operator*(const mint& a, const mint& b) { return mint(a) *= b; }
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>* = nullptr>
+    friend constexpr mint operator*(const mint& a, T b) { return mint(a) *= mint(b); }
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>* = nullptr>
+    friend constexpr mint operator*(T a, const mint& b) { return mint(a) *= b; }
     friend constexpr mint operator/(const mint& a, const mint& b) { return mint(a) /= b; }
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>* = nullptr>
+    friend constexpr mint operator/(const mint& a, T b) { return mint(a) /= mint(b); }
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>* = nullptr>
+    friend constexpr mint operator/(T a, const mint& b) { return mint(a) /= b; }
 
     template <class T>
     constexpr mint pow(T n) const {
