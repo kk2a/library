@@ -10,8 +10,8 @@ data:
     links: []
   bundledCode: "#line 1 \"data_structure/disjoint_sparse_table.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
-    \ <class S, S (*op)(S, S), S (*e)()>\nstruct DisjointSparseTable {\n    DisjointSparseTable()\
-    \ = default;\n    DisjointSparseTable(const std::vector<S>& v) : _n(int(v.size()))\
+    \ <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable {\n    DisjointSparseTable()\
+    \ = default;\n\n    DisjointSparseTable(const std::vector<S> &v) : _n(int(v.size()))\
     \ {\n        log = 0;\n        while ((1 << log) < _n) log++;\n        table.assign(log\
     \ + 1, std::vector<S>(_n));\n        for (int i = 0; i < _n; ++i) table[0][i]\
     \ = v[i];\n        for (int i = 1; i <= log; ++i) {\n            int shift = 1\
@@ -30,9 +30,9 @@ data:
     \ table;\n    std::vector<int> lookup;\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n#define DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\nnamespace\
-    \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()>\nstruct DisjointSparseTable\
-    \ {\n    DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<S>&\
-    \ v) : _n(int(v.size())) {\n        log = 0;\n        while ((1 << log) < _n)\
+    \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable\
+    \ {\n    DisjointSparseTable() = default;\n\n    DisjointSparseTable(const std::vector<S>\
+    \ &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1 << log) < _n)\
     \ log++;\n        table.assign(log + 1, std::vector<S>(_n));\n        for (int\
     \ i = 0; i < _n; ++i) table[0][i] = v[i];\n        for (int i = 1; i <= log; ++i)\
     \ {\n            int shift = 1 << i;\n            for (int left = 0; left < _n;\
@@ -53,7 +53,7 @@ data:
   isVerificationFile: false
   path: data_structure/disjoint_sparse_table.hpp
   requiredBy: []
-  timestamp: '2024-09-08 23:48:45+09:00'
+  timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/disjoint_sparse_table.hpp

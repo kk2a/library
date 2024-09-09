@@ -23,13 +23,13 @@ data:
     - icon: ':warning:'
       path: convolution/bitxor1.hpp
       title: convolution/bitxor1.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/butterfly.hpp
       title: convolution/butterfly.hpp
     - icon: ':warning:'
       path: convolution/convo_arb.hpp
       title: convolution/convo_arb.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/convolution.hpp
       title: convolution/convolution.hpp
     - icon: ':warning:'
@@ -95,7 +95,7 @@ data:
     - icon: ':warning:'
       path: fps/find_root.hpp
       title: fps/find_root.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/fps.hpp
       title: fps/fps.hpp
     - icon: ':warning:'
@@ -116,7 +116,7 @@ data:
     - icon: ':warning:'
       path: fps/multivariate_fps.hpp
       title: fps/multivariate_fps.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/ntt_friendly.hpp
       title: fps/ntt_friendly.hpp
     - icon: ':warning:'
@@ -252,10 +252,10 @@ data:
     - icon: ':warning:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/pow_expr.hpp
       title: math_mod/pow_expr.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/primitive_rt_expr.hpp
       title: math_mod/primitive_rt_expr.hpp
   - name: matrix
@@ -271,7 +271,7 @@ data:
     - icon: ':warning:'
       path: modint/modint.hpp
       title: modint/modint.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: modint/mont.hpp
       title: modint/mont.hpp
     - icon: ':warning:'
@@ -364,27 +364,27 @@ data:
       title: string/suffix_array.hpp
   - name: template
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: type_traits
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   verificationCategories:
   - name: verify/yosupo_fps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp.test.cpp
       title: verify/yosupo_fps/fps_exp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
 layout: toppage

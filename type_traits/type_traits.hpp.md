@@ -32,68 +32,70 @@ data:
   - icon: ':warning:'
     path: modint/modint.hpp
     title: modint/modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':warning:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\
     \nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 =\n    typename\
-    \ std::conditional<std::is_same<T, __int128_t>::value or\n                   \
-    \           std::is_same<T, __int128>::value,\n                              std::true_type,\
-    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128 =\n\
-    \    typename std::conditional<std::is_same<T, __uint128_t>::value or\n      \
-    \                        std::is_same<T, unsigned __int128>::value,\n        \
-    \                      std::true_type, std::false_type>::type;\n\ntemplate <typename\
-    \ T>\nusing is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\
-    \ or\n                              is_signed_int128<T>::value or\n          \
-    \                    is_unsigned_int128<T>::value,\n                         \
-    \     std::true_type, std::false_type>::type;\n\ntemplate <typename T>\nusing\
-    \ is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\
-    \ or\n                              is_signed_int128<T>::value,\n            \
-    \                  std::true_type, std::false_type>::type;\n\ntemplate <typename\
-    \ T>\nusing is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\
-    \ or\n                              is_unsigned_int128<T>::value,\n          \
-    \                    std::true_type, std::false_type>::type;\n\n} // namespace\
-    \ kk2\n\n\n"
+    \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
+    \            or std::is_same<T, __int128>::value,\n                          \
+    \    std::true_type,\n                              std::false_type>::type;\n\n\
+    template <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
+    \ __int128>::value,\n                              std::true_type,\n         \
+    \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
+    \ is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\n\
+    \                                  or is_signed_int128<T>::value\n           \
+    \                       or is_unsigned_int128<T>::value,\n                   \
+    \           std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\n\
+    \                                  or is_signed_int128<T>::value,\n          \
+    \                    std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\n\
+    \                                  or is_unsigned_int128<T>::value,\n        \
+    \                      std::true_type,\n                              std::false_type>::type;\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef TYPE_TRAITS_HPP\n#define TYPE_TRAITS_HPP 1\n\n#include <type_traits>\n\
     \nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 =\n    typename\
-    \ std::conditional<std::is_same<T, __int128_t>::value or\n                   \
-    \           std::is_same<T, __int128>::value,\n                              std::true_type,\
-    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128 =\n\
-    \    typename std::conditional<std::is_same<T, __uint128_t>::value or\n      \
-    \                        std::is_same<T, unsigned __int128>::value,\n        \
-    \                      std::true_type, std::false_type>::type;\n\ntemplate <typename\
-    \ T>\nusing is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\
-    \ or\n                              is_signed_int128<T>::value or\n          \
-    \                    is_unsigned_int128<T>::value,\n                         \
-    \     std::true_type, std::false_type>::type;\n\ntemplate <typename T>\nusing\
-    \ is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\
-    \ or\n                              is_signed_int128<T>::value,\n            \
-    \                  std::true_type, std::false_type>::type;\n\ntemplate <typename\
-    \ T>\nusing is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\
-    \ or\n                              is_unsigned_int128<T>::value,\n          \
-    \                    std::true_type, std::false_type>::type;\n\n} // namespace\
-    \ kk2\n\n#endif // TYPE_TRAITS_HPP\n"
+    \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
+    \            or std::is_same<T, __int128>::value,\n                          \
+    \    std::true_type,\n                              std::false_type>::type;\n\n\
+    template <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
+    \ __int128>::value,\n                              std::true_type,\n         \
+    \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
+    \ is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\n\
+    \                                  or is_signed_int128<T>::value\n           \
+    \                       or is_unsigned_int128<T>::value,\n                   \
+    \           std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\n\
+    \                                  or is_signed_int128<T>::value,\n          \
+    \                    std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\n\
+    \                                  or is_unsigned_int128<T>::value,\n        \
+    \                      std::true_type,\n                              std::false_type>::type;\n\
+    \n} // namespace kk2\n\n#endif // TYPE_TRAITS_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: type_traits/type_traits.hpp
@@ -110,8 +112,8 @@ data:
   - modint/mont_arb.hpp
   - modint/mont.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
-  timestamp: '2024-09-10 07:56:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-10 08:16:31+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp

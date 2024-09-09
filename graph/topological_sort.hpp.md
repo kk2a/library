@@ -8,29 +8,31 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/topological_sort.hpp\"\n\n\n\n#include <vector>\n\
-    #include <queue>\n\nnamespace kk2 {\n\ntemplate <class G>\nstd::vector<int> topological_sort(const\
-    \ G& graph) {\n\tint siz = size(graph);\n\tstd::vector<int> indegree(siz);\n\t\
-    for (int i = 0; i < siz; i++) for (int j : graph[i]) indegree[j]++;\n\tstd::vector<int>\
-    \ res;\n\tstd::queue<int> que;\n\tfor (int i = 0; i < siz; i++) if (indegree[i]\
-    \ == 0) que.push(i);\n\twhile (!que.empty()) {\n\t\tint ver = que.front(); que.pop();\n\
-    \t\tres.push_back(ver);\n\t\tfor (int i : graph[ver]) {\n\t\t\tindegree[i]--;\n\
-    \t\t\tif (indegree[i] == 0) que.push(i);\n\t\t}\n\t}\n\treturn res;\n}\n\n} //\
+  bundledCode: "#line 1 \"graph/topological_sort.hpp\"\n\n\n\n#include <queue>\n#include\
+    \ <vector>\n\nnamespace kk2 {\n\ntemplate <class G> std::vector<int> topological_sort(const\
+    \ G &graph) {\n    int siz = size(graph);\n    std::vector<int> indegree(siz);\n\
+    \    for (int i = 0; i < siz; i++)\n        for (int j : graph[i]) indegree[j]++;\n\
+    \    std::vector<int> res;\n    std::queue<int> que;\n    for (int i = 0; i <\
+    \ siz; i++)\n        if (indegree[i] == 0) que.push(i);\n    while (!que.empty())\
+    \ {\n        int ver = que.front();\n        que.pop();\n        res.push_back(ver);\n\
+    \        for (int i : graph[ver]) {\n            indegree[i]--;\n            if\
+    \ (indegree[i] == 0) que.push(i);\n        }\n    }\n    return res;\n}\n\n} //\
     \ namespace kk2\n\n\n"
   code: "#ifndef TOPOLOGICAL_SORT_HPP\n#define TOPOLOGICAL_SORT_HPP 1\n\n#include\
-    \ <vector>\n#include <queue>\n\nnamespace kk2 {\n\ntemplate <class G>\nstd::vector<int>\
-    \ topological_sort(const G& graph) {\n\tint siz = size(graph);\n\tstd::vector<int>\
-    \ indegree(siz);\n\tfor (int i = 0; i < siz; i++) for (int j : graph[i]) indegree[j]++;\n\
-    \tstd::vector<int> res;\n\tstd::queue<int> que;\n\tfor (int i = 0; i < siz; i++)\
-    \ if (indegree[i] == 0) que.push(i);\n\twhile (!que.empty()) {\n\t\tint ver =\
-    \ que.front(); que.pop();\n\t\tres.push_back(ver);\n\t\tfor (int i : graph[ver])\
-    \ {\n\t\t\tindegree[i]--;\n\t\t\tif (indegree[i] == 0) que.push(i);\n\t\t}\n\t\
-    }\n\treturn res;\n}\n\n} // namespace kk2\n\n#endif // TOPOLOGICAL_SORT_HPP\n"
+    \ <queue>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class G> std::vector<int>\
+    \ topological_sort(const G &graph) {\n    int siz = size(graph);\n    std::vector<int>\
+    \ indegree(siz);\n    for (int i = 0; i < siz; i++)\n        for (int j : graph[i])\
+    \ indegree[j]++;\n    std::vector<int> res;\n    std::queue<int> que;\n    for\
+    \ (int i = 0; i < siz; i++)\n        if (indegree[i] == 0) que.push(i);\n    while\
+    \ (!que.empty()) {\n        int ver = que.front();\n        que.pop();\n     \
+    \   res.push_back(ver);\n        for (int i : graph[ver]) {\n            indegree[i]--;\n\
+    \            if (indegree[i] == 0) que.push(i);\n        }\n    }\n    return\
+    \ res;\n}\n\n} // namespace kk2\n\n#endif // TOPOLOGICAL_SORT_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/topological_sort.hpp
   requiredBy: []
-  timestamp: '2024-09-10 07:56:55+09:00'
+  timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/topological_sort.hpp

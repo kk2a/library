@@ -14,7 +14,7 @@ data:
   bundledCode: "#line 1 \"fps/chirp_Z.hpp\"\n\n\n\n#include <algorithm>\n#include\
     \ <vector>\n\nnamespace kk2 {\n\n// return f(a w ^ 0), f(a w ^ 1), ..., f(a w\
     \ ^ (n - 1))\ntemplate <class FPS, class mint = typename FPS::value_type>\nstd::vector<mint>\
-    \ ChirpZ(const FPS& f_, mint w, int n = -1, mint a = 1) {\n    FPS f(f_.begin(),\
+    \ ChirpZ(const FPS &f_, mint w, int n = -1, mint a = 1) {\n    FPS f(f_.begin(),\
     \ f_.end());\n    if (n == -1) n = f.size();\n    if (f.empty() || n == 0) return\
     \ std::vector<mint>(n, mint(0));\n    int m = f.size();\n    if (a != mint(1))\
     \ {\n        mint x = 1;\n        for (int i = 0; i < m; i++) {\n            f[i]\
@@ -27,12 +27,12 @@ data:
     \ iwc[i - 1];\n        iws *= iw;\n    }\n    for (int i = 0; i < m; i++) f[i]\
     \ *= iwc[i];\n    std::reverse(std::begin(f), std::end(f));\n    FPS g = f * wc;\n\
     \    std::vector<mint> ret{std::begin(g) + m - 1, std::begin(g) + m + n - 1};\n\
-    \    for (int i = 0; i < n; i++) ret[i] *= iwc[i];\n    return ret; \n}\n\n} //\
+    \    for (int i = 0; i < n; i++) ret[i] *= iwc[i];\n    return ret;\n}\n\n} //\
     \ namespace kk2\n\n\n"
   code: "#ifndef FPS_CHIRP_Z_HPP\n#define FPS_CHIRP_Z_HPP 1\n\n#include <algorithm>\n\
     #include <vector>\n\nnamespace kk2 {\n\n// return f(a w ^ 0), f(a w ^ 1), ...,\
     \ f(a w ^ (n - 1))\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-    std::vector<mint> ChirpZ(const FPS& f_, mint w, int n = -1, mint a = 1) {\n  \
+    std::vector<mint> ChirpZ(const FPS &f_, mint w, int n = -1, mint a = 1) {\n  \
     \  FPS f(f_.begin(), f_.end());\n    if (n == -1) n = f.size();\n    if (f.empty()\
     \ || n == 0) return std::vector<mint>(n, mint(0));\n    int m = f.size();\n  \
     \  if (a != mint(1)) {\n        mint x = 1;\n        for (int i = 0; i < m; i++)\
@@ -45,14 +45,14 @@ data:
     \ = iws * iwc[i - 1];\n        iws *= iw;\n    }\n    for (int i = 0; i < m; i++)\
     \ f[i] *= iwc[i];\n    std::reverse(std::begin(f), std::end(f));\n    FPS g =\
     \ f * wc;\n    std::vector<mint> ret{std::begin(g) + m - 1, std::begin(g) + m\
-    \ + n - 1};\n    for (int i = 0; i < n; i++) ret[i] *= iwc[i];\n    return ret;\
-    \ \n}\n\n} // namespace kk2\n\n#endif  // FPS_CHIRP_Z_HPP\n"
+    \ + n - 1};\n    for (int i = 0; i < n; i++) ret[i] *= iwc[i];\n    return ret;\n\
+    }\n\n} // namespace kk2\n\n#endif // FPS_CHIRP_Z_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/chirp_Z.hpp
   requiredBy:
   - fps/poly_interpolation.hpp
-  timestamp: '2024-09-09 21:04:16+09:00'
+  timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/chirp_Z.hpp

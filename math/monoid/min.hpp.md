@@ -25,44 +25,44 @@ data:
     links: []
   bundledCode: "#line 1 \"math/monoid/min.hpp\"\n\n\n\n#include <algorithm>\n#include\
     \ <iostream>\n#include <string>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
-    \ monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n    Min()\
-    \ : a(S()), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
-    \ {}\n    operator S() const { return a; }\n    friend std::ostream& operator<<(std::ostream&\
-    \ os, const Min& min) {\n        os << (min.inf ? \"inf\" : std::to_string(min.a));\n\
-    \        return os;\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ is, Min& min) {\n        is >> min.a;\n        min.inf = false;\n        return\
-    \ is;\n    }\n    Min& operator=(const S& rhs) {\n        a = rhs;\n        inf\
-    \ = false;\n        return *this;\n    }\n\n    Min& add(const S& rhs) {\n   \
-    \     if (inf) return *this;\n        a += rhs;\n        return *this;\n    }\n\
-    \    Min& update(const S& rhs) {\n        a = rhs;\n        inf = false;\n   \
-    \     return *this;\n    }\n    Min& op(const Min& rhs) {\n        if (rhs.inf)\
+    \ monoid {\n\ntemplate <class S> struct Min {\n    S a;\n    bool inf;\n\n   \
+    \ Min() : a(S()), inf(true) {}\n\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
+    \ {}\n\n    operator S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
+    \ &os, const Min &min) {\n        os << (min.inf ? \"inf\" : std::to_string(min.a));\n\
+    \        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
+    \ &is, Min &min) {\n        is >> min.a;\n        min.inf = false;\n        return\
+    \ is;\n    }\n\n    Min &operator=(const S &rhs) {\n        a = rhs;\n       \
+    \ inf = false;\n        return *this;\n    }\n\n    Min &add(const S &rhs) {\n\
+    \        if (inf) return *this;\n        a += rhs;\n        return *this;\n  \
+    \  }\n\n    Min &update(const S &rhs) {\n        a = rhs;\n        inf = false;\n\
+    \        return *this;\n    }\n\n    Min &op(const Min &rhs) {\n        if (rhs.inf)\
     \ return *this;\n        if (inf) return *this = rhs;\n        a = std::min(a,\
     \ rhs.a);\n        return *this;\n    }\n\n    bool is_inf() const { return inf;\
-    \ }\n};\n\ntemplate <class S>\nMin<S> MinOp(Min<S> l, Min<S> r) { return l.op(r);\
-    \ }\n\ntemplate <class S>\nMin<S> MinUnit() { return Min<S>(); }\n\n} // namespace\
+    \ }\n};\n\ntemplate <class S> Min<S> MinOp(Min<S> l, Min<S> r) {\n    return l.op(r);\n\
+    }\n\ntemplate <class S> Min<S> MinUnit() {\n    return Min<S>();\n}\n\n} // namespace\
     \ monoid\n\ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
     \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
     }\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_MONOID_MIN_HPP\n#define MATH_MONOID_MIN_HPP 1\n\n#include <algorithm>\n\
     #include <iostream>\n#include <string>\n#include <vector>\n\nnamespace kk2 {\n\
-    \nnamespace monoid {\n\ntemplate <class S>\nstruct Min {\n    S a;\n    bool inf;\n\
-    \    Min() : a(S()), inf(true) {}\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
-    \ {}\n    operator S() const { return a; }\n    friend std::ostream& operator<<(std::ostream&\
-    \ os, const Min& min) {\n        os << (min.inf ? \"inf\" : std::to_string(min.a));\n\
-    \        return os;\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ is, Min& min) {\n        is >> min.a;\n        min.inf = false;\n        return\
-    \ is;\n    }\n    Min& operator=(const S& rhs) {\n        a = rhs;\n        inf\
-    \ = false;\n        return *this;\n    }\n\n    Min& add(const S& rhs) {\n   \
-    \     if (inf) return *this;\n        a += rhs;\n        return *this;\n    }\n\
-    \    Min& update(const S& rhs) {\n        a = rhs;\n        inf = false;\n   \
-    \     return *this;\n    }\n    Min& op(const Min& rhs) {\n        if (rhs.inf)\
-    \ return *this;\n        if (inf) return *this = rhs;\n        a = std::min(a,\
-    \ rhs.a);\n        return *this;\n    }\n\n    bool is_inf() const { return inf;\
-    \ }\n};\n\ntemplate <class S>\nMin<S> MinOp(Min<S> l, Min<S> r) { return l.op(r);\
-    \ }\n\ntemplate <class S>\nMin<S> MinUnit() { return Min<S>(); }\n\n} // namespace\
-    \ monoid\n\ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
-    \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MIN_HPP\n"
+    \nnamespace monoid {\n\ntemplate <class S> struct Min {\n    S a;\n    bool inf;\n\
+    \n    Min() : a(S()), inf(true) {}\n\n    Min(S a_, bool inf_ = false) : a(a_),\
+    \ inf(inf_) {}\n\n    operator S() const { return a; }\n\n    friend std::ostream\
+    \ &operator<<(std::ostream &os, const Min &min) {\n        os << (min.inf ? \"\
+    inf\" : std::to_string(min.a));\n        return os;\n    }\n\n    friend std::istream\
+    \ &operator>>(std::istream &is, Min &min) {\n        is >> min.a;\n        min.inf\
+    \ = false;\n        return is;\n    }\n\n    Min &operator=(const S &rhs) {\n\
+    \        a = rhs;\n        inf = false;\n        return *this;\n    }\n\n    Min\
+    \ &add(const S &rhs) {\n        if (inf) return *this;\n        a += rhs;\n  \
+    \      return *this;\n    }\n\n    Min &update(const S &rhs) {\n        a = rhs;\n\
+    \        inf = false;\n        return *this;\n    }\n\n    Min &op(const Min &rhs)\
+    \ {\n        if (rhs.inf) return *this;\n        if (inf) return *this = rhs;\n\
+    \        a = std::min(a, rhs.a);\n        return *this;\n    }\n\n    bool is_inf()\
+    \ const { return inf; }\n};\n\ntemplate <class S> Min<S> MinOp(Min<S> l, Min<S>\
+    \ r) {\n    return l.op(r);\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    return\
+    \ Min<S>();\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
+    std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
+    \ monoid::Min<S>(args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MIN_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/monoid/min.hpp
@@ -72,7 +72,7 @@ data:
   - segment_tree/utility/addmin.hpp
   - graph/tree/euler_tour.hpp
   - data_structure/static_rmq.hpp
-  timestamp: '2024-09-10 07:56:55+09:00'
+  timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/min.hpp

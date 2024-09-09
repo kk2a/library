@@ -17,85 +17,18 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: '#line 1 "math/homomorphism/add.hpp"
-
-
-
-
-    namespace kk2 {
-
-
-    namespace homomorphism {
-
-
-    template <class S>
-
-    using Add = S;
-
-
-    template <class S, class T>
-
-    T AddMap(Add<S> f, T x) { return x.add(f); }
-
-
-    template <class S>
-
-    Add<S> AddComposition(Add<S> l, Add<S> r) { return l + r; }
-
-
-    template <class S>
-
-    Add<S> AddUnit() { return Add<S>(); }
-
-
-    } // namespace homomorphism
-
-
-    } // namespace kk2
-
-
-
-    '
-  code: '#ifndef MATH_HOMOMORPHISM_ADD_HPP
-
-    #define MATH_HOMOMORPHISM_ADD_HPP 1
-
-
-    namespace kk2 {
-
-
-    namespace homomorphism {
-
-
-    template <class S>
-
-    using Add = S;
-
-
-    template <class S, class T>
-
-    T AddMap(Add<S> f, T x) { return x.add(f); }
-
-
-    template <class S>
-
-    Add<S> AddComposition(Add<S> l, Add<S> r) { return l + r; }
-
-
-    template <class S>
-
-    Add<S> AddUnit() { return Add<S>(); }
-
-
-    } // namespace homomorphism
-
-
-    } // namespace kk2
-
-
-    #endif // MATH_HOMOMORPHISM_ADD_HPP
-
-    '
+  bundledCode: "#line 1 \"math/homomorphism/add.hpp\"\n\n\n\nnamespace kk2 {\n\nnamespace\
+    \ homomorphism {\n\ntemplate <class S> using Add = S;\n\ntemplate <class S, class\
+    \ T> T AddMap(Add<S> f, T x) {\n    return x.add(f);\n}\n\ntemplate <class S>\
+    \ Add<S> AddComposition(Add<S> l, Add<S> r) {\n    return l + r;\n}\n\ntemplate\
+    \ <class S> Add<S> AddUnit() {\n    return Add<S>();\n}\n\n} // namespace homomorphism\n\
+    \n} // namespace kk2\n\n\n"
+  code: "#ifndef MATH_HOMOMORPHISM_ADD_HPP\n#define MATH_HOMOMORPHISM_ADD_HPP 1\n\n\
+    namespace kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S> using Add =\
+    \ S;\n\ntemplate <class S, class T> T AddMap(Add<S> f, T x) {\n    return x.add(f);\n\
+    }\n\ntemplate <class S> Add<S> AddComposition(Add<S> l, Add<S> r) {\n    return\
+    \ l + r;\n}\n\ntemplate <class S> Add<S> AddUnit() {\n    return Add<S>();\n}\n\
+    \n} // namespace homomorphism\n\n} // namespace kk2\n\n#endif // MATH_HOMOMORPHISM_ADD_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/homomorphism/add.hpp
@@ -103,7 +36,7 @@ data:
   - segment_tree/utility/addsum.hpp
   - segment_tree/utility/addmin.hpp
   - segment_tree/utility/addmax.hpp
-  timestamp: '2024-08-29 23:32:51+09:00'
+  timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/homomorphism/add.hpp

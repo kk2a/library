@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_expr.hpp
     title: math_mod/pow_expr.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
   - icon: ':warning:'
     path: convolution/convo_arb.hpp
     title: convolution/convo_arb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':warning:'
@@ -23,28 +23,28 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/primitive_rt_expr.hpp\"\n\n\n\n#line 1 \"math_mod/pow_expr.hpp\"\
@@ -57,32 +57,31 @@ data:
     \ kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n    if (m == 2) return\
     \ 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049) return 3;\n \
     \   if (m == 754974721) return 11;\n    if (m == 998244353) return 3;\n    if\
-    \ (m == 1107296257) return 10;\n    int divs[20] = {}; \n    divs[0] = 2;\n  \
-    \  int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x /= 2;\n  \
-    \  for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x % i == 0) {\n\
-    \            divs[cnt++] = i;\n            while (x % i == 0) {\n            \
-    \    x /= i;\n            }\n        }\n    }\n    if (x > 1) {\n        divs[cnt++]\
-    \ = x;\n    }\n    for (int g = 2;; g++) {\n        bool ok = true;\n        for\
-    \ (int i = 0; i < cnt; i++) {\n            if (pow_mod_constexpr(g, (m - 1) /\
-    \ divs[i], m) == 1) {\n                ok = false;\n                break;\n \
-    \           }\n        }\n        if (ok) return g;\n    }\n}\ntemplate <int m>\
-    \ static constexpr int primitive_root = primitive_root_constexpr(m);\n\n} // namespace\
-    \ kk2\n\n\n"
+    \ (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0] = 2;\n   \
+    \ int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x /= 2;\n   \
+    \ for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x % i == 0) {\n\
+    \            divs[cnt++] = i;\n            while (x % i == 0) { x /= i; }\n  \
+    \      }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for (int g = 2;; g++)\
+    \ {\n        bool ok = true;\n        for (int i = 0; i < cnt; i++) {\n      \
+    \      if (pow_mod_constexpr(g, (m - 1) / divs[i], m) == 1) {\n              \
+    \  ok = false;\n                break;\n            }\n        }\n        if (ok)\
+    \ return g;\n    }\n}\n\ntemplate <int m>\nstatic constexpr int primitive_root\
+    \ = primitive_root_constexpr(m);\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MOD_PRIMITIVE_ROOT_EXPR_HPP\n#define MOD_PRIMITIVE_ROOT_EXPR_HPP\
     \ 1\n\n#include \"pow_expr.hpp\"\n\nnamespace kk2 {\n\nconstexpr int primitive_root_constexpr(int\
     \ m) {\n    if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m\
     \ == 469762049) return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353)\
-    \ return 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {}; \n  \
-    \  divs[0] = 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2\
-    \ == 0) x /= 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n      \
-    \  if (x % i == 0) {\n            divs[cnt++] = i;\n            while (x % i ==\
-    \ 0) {\n                x /= i;\n            }\n        }\n    }\n    if (x >\
-    \ 1) {\n        divs[cnt++] = x;\n    }\n    for (int g = 2;; g++) {\n       \
-    \ bool ok = true;\n        for (int i = 0; i < cnt; i++) {\n            if (pow_mod_constexpr(g,\
-    \ (m - 1) / divs[i], m) == 1) {\n                ok = false;\n               \
-    \ break;\n            }\n        }\n        if (ok) return g;\n    }\n}\ntemplate\
-    \ <int m> static constexpr int primitive_root = primitive_root_constexpr(m);\n\
-    \n} // namespace kk2\n\n#endif // MOD_PRIMITIVE_ROOT_EXPR_HPP\n"
+    \ return 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {};\n   \
+    \ divs[0] = 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 ==\
+    \ 0) x /= 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if\
+    \ (x % i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0)\
+    \ { x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
+    \ (int g = 2;; g++) {\n        bool ok = true;\n        for (int i = 0; i < cnt;\
+    \ i++) {\n            if (pow_mod_constexpr(g, (m - 1) / divs[i], m) == 1) {\n\
+    \                ok = false;\n                break;\n            }\n        }\n\
+    \        if (ok) return g;\n    }\n}\n\ntemplate <int m>\nstatic constexpr int\
+    \ primitive_root = primitive_root_constexpr(m);\n\n} // namespace kk2\n\n#endif\
+    \ // MOD_PRIMITIVE_ROOT_EXPR_HPP\n"
   dependsOn:
   - math_mod/pow_expr.hpp
   isVerificationFile: false
@@ -96,8 +95,8 @@ data:
   - convolution/convo_arb.hpp
   - convolution/multi_convo_truncated.hpp
   - convolution/butterfly.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-10 08:16:31+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
