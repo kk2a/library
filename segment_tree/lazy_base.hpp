@@ -1,6 +1,10 @@
 #ifndef LAZY_BASE_HPP
 #define LAZY_BASE_HPP 1
 
+#include <cassert>
+#include <functional>
+#include <vector>
+
 namespace kk2 {
 
 template <class S,
@@ -20,8 +24,8 @@ struct LazySegTreeBase {
         log = 0;
         while ((1ll << log) < _n) log++;
         size = 1 << log;
-        d = vector<S>(2 * size, e());
-        lz = vector<F>(size, id());
+        d = std::vector<S>(2 * size, e());
+        lz = std::vector<F>(size, id());
         for (int i = 0; i < _n; i++) d[size + i] = v[i];
         for (int i = size - 1; i >= 1; i--) {
             update(i);

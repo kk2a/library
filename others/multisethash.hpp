@@ -1,17 +1,24 @@
 #ifndef OTHERS_MULTISET_HASH_HPP
 #define OTHERS_MULTISET_HASH_HPP 1
 
+#include <algorithm>
+#include <array>
+#include <ctime>
+#include <iostream>
+#include <random>
+#include <unordered_map>
+
 namespace kk2 {
 
 template <typename T>
 struct MultiSetHash {
     constexpr static int b = 5;
     constexpr static int modp[b] = {998244353, 1000000007, 1000000009, 1000000021, 1000000033};
-    using Hashs = array<long long, b>;
+    using Hashs = std::array<long long, b>;
     int siz;
     Hashs table;
-    static mt19937_64 rng;
-    static unordered_map<T, Hashs> base;
+    static std::mt19937_64 rng;
+    static std::unordered_map<T, Hashs> base;
     static Hashs getbase(const T& x) {
         if (base.count(x)) return base[x];
         base[x] = Hashs();
@@ -22,14 +29,14 @@ struct MultiSetHash {
     }
 
     MultiSetHash() : siz(0) {
-        fill(begin(table), end(table), 0);
+        std::fill(std::begin(table), std::end(table), 0);
     }
 
     MultiSetHash(const T& x) : siz(1) {
         table = getbase(x);
     }
 
-    MultiSetHash(const vector<T>& v) : siz(v.size()) {
+    MultiSetHash(const std::vector<T>& v) : siz(v.size()) {
         for (int i = 0; i < siz; i++) {
             auto tmp = getbase(v[i]);
             for (int j = 0; j < b; ++j) {
@@ -95,21 +102,21 @@ struct MultiSetHash {
         return lhs.table != rhs.table || lhs.siz != rhs.siz;
     }
 
-    friend ostream& operator<<(ostream& os, const MultiSetHash& msh) {
+    friend std::ostream& operator<<(std::ostream& os, const MultiSetHash& msh) {
         os << "siz: " << msh.siz << " table: ";
         for (int i = 0; i < b; ++i) {
             os << msh.table[i] << " ";
         }
-        os << endl;
+        os << "\n";
         return os;
     }
 };
 
 template <typename T>
-unordered_map<T, typename MultiSetHash<T>::Hashs> MultiSetHash<T>::base;
+std::unordered_map<T, typename MultiSetHash<T>::Hashs> MultiSetHash<T>::base;
 
 template <typename T>
-mt19937_64 MultiSetHash<T>::rng(time(0));
+std::mt19937_64 MultiSetHash<T>::rng(time(0));
 
 } // namespace kk2
 

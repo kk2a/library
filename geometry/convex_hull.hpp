@@ -1,17 +1,20 @@
 #ifndef GEOMETRY_CONVEX_HULL_HPP
 #define GEOMETRY_CONVEX_HULL_HPP 1
 
+#include <algorithm>
+#include <vector>
+#include <utility>
 #include "point.hpp"
 
 namespace kk2 {
 
 template <typename T>
 struct ConvexHull {
-    vector<Point<T>> ps, hull;
-    vector<int> idx;
+    std::vector<Point<T>> ps, hull;
+    std::vector<int> idx;
 
     ConvexHull() = default;
-    ConvexHull(const vector<Point<T>>& ps) : ps(ps) {}
+    ConvexHull(const std::vector<Point<T>>& ps) : ps(ps) {}
 
     void emplace_point(T x, T y) {
         ps.emplace_back(x, y);
@@ -26,10 +29,10 @@ struct ConvexHull {
             hull = ps;
             return;
         }
-        vc<pair<Point<T>, int>> tmp(_n);
-        rep (i, _n) tmp[i] = {ps[i], i};
-        sort(all(tmp));
-        vector<pair<Point<T>, int>> up, dw;
+        std::vector<std::pair<Point<T>, int>> tmp(_n);
+        for (int i = 0; i < _n; i++) tmp[i] = {ps[i], i};
+        std::sort(std::begin(tmp), std::end(tmp));
+        std::vector<std::pair<Point<T>, int>> up, dw;
         up.push_back(tmp[0]);
         dw.push_back(tmp[0]);
         up.push_back(tmp[1]);

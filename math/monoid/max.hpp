@@ -1,6 +1,11 @@
 #ifndef MATH_MONOID_MAX_HPP
 #define MATH_MONOID_MAX_HPP 1
 
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+
 namespace kk2 {
 
 namespace monoid {
@@ -12,11 +17,11 @@ struct Max {
     Max() : a(S()), minf(true) {}
     Max (S a_, bool minf_ = false) : a(a_), minf(minf_) {}
     operator S() const { return a; }
-    friend ostream& operator<<(ostream& os, const Max& max) {
-        os << (max.minf ? "minf" : to_string(max.a));
+    friend std::ostream& operator<<(std::ostream& os, const Max& max) {
+        os << (max.minf ? "minf" : std::to_string(max.a));
         return os;
     }
-    friend istream& operator>>(istream& is, Max& max) {
+    friend std::istream& operator>>(std::istream& is, Max& max) {
         is >> max.a;
         max.minf = false;
         return is;
@@ -40,7 +45,7 @@ struct Max {
     Max& op(const Max& rhs) {
         if (rhs.minf) return *this;
         if (minf) return *this = rhs;
-        a = max(a, rhs.a);
+        a = std::max(a, rhs.a);
         return *this;
     }
 
@@ -56,8 +61,8 @@ Max<S> MaxUnit() { return Max<S>(); }
 } // namespace monoid
 
 template <class S, class... Args>
-vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
-    return vector<monoid::Max<S>>(n, monoid::Max<S>(args...));
+std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
+    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));
 }
 
 } // namespace kk2

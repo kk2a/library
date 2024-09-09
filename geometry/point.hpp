@@ -1,10 +1,15 @@
 #ifndef GEOMETRY_POINT_HPP
 #define GEOMETRY_POINT_HPP 1
 
+#include <algorithm>
+#include <cmath>
+#include <iostream>
+
 namespace kk2 {
 
 template <typename T>
 struct Point {
+    static constexpr long double PI = acos(-1.0);
     T x, y;
     Point(T x = 0, T y = 0) : x(x), y(y) {}
     bool operator<(const Point& p) const {
@@ -95,7 +100,7 @@ struct Point {
     }
 
     Point inplace_rotate90() {
-        swap(x, y);
+        std::swap(x, y);
         x = -x;
         return *this;
     }
@@ -127,7 +132,7 @@ struct Point {
         return (*this - O).rotate180() + O;
     }
     Point inplace_rotate270() {
-        swap(x, y);
+        std::swap(x, y);
         y = -y;
         return *this;
     }
@@ -192,10 +197,10 @@ struct Point {
         return p.rotate270(O);
     }
 
-    friend ostream& operator<<(ostream& os, const Point& p) {
+    friend std::ostream& operator<<(std::ostream& os, const Point& p) {
         return os << p.x << " " << p.y;
     }
-    friend istream& operator>>(istream& is, Point& p) {
+    friend std::istream& operator>>(std::istream& is, Point& p) {
         return is >> p.x >> p.y;
     }
 };

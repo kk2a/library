@@ -1,6 +1,11 @@
 #ifndef GRAPH_TREE_AUXILIARY_TREE_HPP
 #define GRAPH_TREE_AUXILIARY_TREE_HPP 1
 
+#include <algorithm>
+#include <functional>
+#include <stack>
+#include <utility>
+#include <vector>
 #include "heavy_light_decomposition.hpp"
 
 namespace kk2 {
@@ -11,19 +16,19 @@ struct AuxiliaryTree {
     HeavyLightDecomposition<G> hld;
     AuxiliaryTree(const G& g_, int root_ = 0) : g(g_), hld(g, root_) {}
 
-    pair<vector<vector<int>>, vector<int>> get(vector<int> ps) {
+    std::pair<std::vector<std::vector<int>>, std::vector<int>> get(std::vector<int> ps) {
         if (ps.empty()) return {};
-        sort(begin(ps), end(ps), [&](int i, int j){
+        std::sort(std::begin(ps), std::end(ps), [&](int i, int j){
             return hld.in[i] < hld.in[j]; });
         for (int i = 0, ps_size = ps.size(); i < ps_size - 1; i++) {
             ps.push_back(hld.lca(ps[i], ps[i + 1]));
         }
-        sort(begin(ps), end(ps), [&](int i, int j){
+        std::sort(std::begin(ps), std::end(ps), [&](int i, int j){
             return hld.in[i] < hld.in[j]; });
-        ps.erase(unique(begin(ps), end(ps)), end(ps));
+        ps.erase(std::unique(std::begin(ps), std::end(ps)), std::end(ps));
 
-        vector<vector<int>> aux(ps.size());
-        stack<int> st;
+        std::vector<std::vector<int>> aux(ps.size());
+        std::stack<int> st;
         st.emplace(0);
         for (int i = 1; i < (int)ps.size(); i++) {
             int l = hld.lca(ps[i], ps[st.top()]);
@@ -31,7 +36,7 @@ struct AuxiliaryTree {
             aux[st.top()].emplace_back(i);
             st.emplace(i);
         }
-        return make_pair(aux, ps);
+        return std::make_pair(aux, ps);
     }
 }; 
 

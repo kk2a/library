@@ -1,14 +1,19 @@
 #ifndef MATRIX_MATRIX_F2_HPP
 #define MATRIX_MATRIX_F2_HPP 1
 
-#include "../data_structure/my_bitset_fast.hpp"
+#include <algorithm>
+#include <cassert>
+#include <iostream>
+#include <string>
+#include <vector>
+#include "../data_structure/my_bitset.hpp"
 
 namespace kk2 {
 
 struct MatrixF2 {
     using mat = MatrixF2;
     int _h, _w;
-    vector<DynamicBitSet> _mat;
+    std::vector<DynamicBitSet> _mat;
 
     MatrixF2() : MatrixF2(0) {}
     MatrixF2(int n) : MatrixF2(n, n) {}
@@ -23,7 +28,7 @@ struct MatrixF2 {
             _mat.resize(h, DynamicBitSet(w));
         }
     }
-    MatrixF2(const vector<DynamicBitSet>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_) {}
+    MatrixF2(const std::vector<DynamicBitSet>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_) {}
 
     int get_h() const { return _h; }
     int get_w() const { return _w; }
@@ -35,20 +40,20 @@ struct MatrixF2 {
     }
 
     class Proxy {
-        vector<DynamicBitSet>& bs;
+        std::vector<DynamicBitSet>& bs;
         int i;
       public:
-        Proxy(vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_) {}
+        Proxy(std::vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_) {}
         operator DynamicBitSet() const { return bs[i]; }
 
-        string to_string() const {
+        std::string to_string() const {
             return bs[i].to_string();
         }
-        string to_reversed_string() const {
+        std::string to_reversed_string() const {
             return bs[i].to_reversed_string();
         }
 
-        Proxy& operator=(const string& s) {
+        Proxy& operator=(const std::string& s) {
             bs[i].set_reversed(s);
             return *this;
         }
@@ -110,7 +115,7 @@ struct MatrixF2 {
 
     void display() const {
         for (int i = 0; i < _h; i++) {
-            cout << _mat[i].to_reversed_string() << "\n";
+            std::cout << _mat[i].to_reversed_string() << "\n";
         }
     }
 
@@ -120,12 +125,12 @@ struct MatrixF2 {
         _mat[i].set(j, x);
     }
 
-    void set(int i, const string& s) {
+    void set(int i, const std::string& s) {
         assert((int)s.size() == _w);
         _mat[i].set(s);
     }
 
-    void set_reversed(int i, const string& s) {
+    void set_reversed(int i, const std::string& s) {
         assert((int)s.size() == _w);
         _mat[i].set_reversed(s);
     }
@@ -177,7 +182,7 @@ struct MatrixF2 {
 
     mat& operator*=(const mat& rhs) {
         assert(_w == rhs._h);
-        vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));
+        std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) {
                 if (_mat[i][j]) res[i] ^= rhs._mat[j];
@@ -210,7 +215,7 @@ struct MatrixF2 {
 
     mat& inplace_combine_top(const mat& rhs) {
         assert(_w == rhs._w);
-        _mat.insert(begin(_mat), begin(rhs._mat), end(rhs._mat));
+        _mat.insert(std::begin(_mat), std::begin(rhs._mat), std::end(rhs._mat));
         _h += rhs._h;
         return *this;
     }
@@ -222,7 +227,7 @@ struct MatrixF2 {
 
     mat& inplace_combine_bottom(const mat& rhs) {
         assert(_w == rhs._w);
-        _mat.insert(end(_mat), begin(rhs._mat), end(rhs._mat));
+        _mat.insert(std::end(_mat), std::begin(rhs._mat), std::end(rhs._mat));
         _h += rhs._h;
         return *this;
     }
@@ -271,7 +276,7 @@ struct MatrixF2 {
                 }
             }
             if (pivot == -1) continue;
-            if (r != pivot) swap(_mat[r], _mat[pivot]);
+            if (r != pivot) std::swap(_mat[r], _mat[pivot]);
             for (int j = 0; j < _h; j++) {
                 if (j == r) continue;
                 if (_mat[j][i]) _mat[j] ^= _mat[r];
@@ -286,12 +291,12 @@ struct MatrixF2 {
     }
 
     // it must be already swept and shrunk before calling this function
-    vector<DynamicBitSet> get_solution_base() const {
-        vector<DynamicBitSet> res(_w - _h, DynamicBitSet(_w));
-        vector<int> step(_h);
-        vector<bool> is_step(_w, false);
+    std::vector<DynamicBitSet> get_solution_base() const {
+        std::vector<DynamicBitSet> res(_w - _h, DynamicBitSet(_w));
+        std::vector<int> step(_h);
+        std::vector<bool> is_step(_w, false);
         int nowj = 0;
-        rep (i, _h) {
+        for (int i = 0; i < _h; i++) {
             while (!_mat[i].is_pinned(nowj)) nowj++;
             is_step[nowj] = true;
             step[i] = nowj;
@@ -304,7 +309,7 @@ struct MatrixF2 {
                 continue;
             }
             res[now][nowj] = 1;
-            rep (i, _h) if (_mat[i].is_pinned(nowj)) res[now][step[i]] = 1;
+            for (int i = 0; i < _h; i++) if (_mat[i].is_pinned(nowj)) res[now][step[i]] = 1;
             nowj++, now++;
         }
         return res;
@@ -320,11 +325,11 @@ struct MatrixF2 {
 
     mat inv() const {
         assert(_h == _w);
-        vector<DynamicBitSet> res(_h, _w);
+        std::vector<DynamicBitSet> res(_h, _w);
         for (int i = 0; i < _h; i++) {
             res[i][i] = 1;
         }
-        vector<DynamicBitSet> buf(_mat);
+        std::vector<DynamicBitSet> buf(_mat);
         for (int i = 0; i < _w; i++) {
             int pivot = -1;
             for (int j = i; j < _h; j++) {
@@ -334,8 +339,8 @@ struct MatrixF2 {
                 }
             }
             if (pivot == -1) continue;
-            swap(buf[i], buf[pivot]);
-            swap(res[i], res[pivot]);
+            std::swap(buf[i], buf[pivot]);
+            std::swap(res[i], res[pivot]);
             for (int j = 0; j < _h; j++) {
                 if (j == i) continue;
                 if (buf[j][i]) {

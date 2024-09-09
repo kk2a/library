@@ -1,13 +1,17 @@
 #ifndef GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
 #define GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP 1
 
+#include <functional>
+#include <vector>
+#include <utility>
+
 namespace kk2 {
 
 template <typename G>
 struct HeavyLightDecomposition {
     G& g;
     int root, id;
-    vector<int> sz, in, out, head, par, dep, edge_idx;
+    std::vector<int> sz, in, out, head, par, dep, edge_idx;
     HeavyLightDecomposition(G& g_, int root_ = 0) 
         : g(g_),
           root(root_),
@@ -26,8 +30,8 @@ struct HeavyLightDecomposition {
         return edge_idx[i];
     }
 
-    pair<int, int> get_node_idx(int u) const {
-        return make_pair(in[u], out[u]);
+    std::pair<int, int> get_node_idx(int u) const {
+        return std::make_pair(in[u], out[u]);
     }
 
     template <typename F>
@@ -59,7 +63,7 @@ struct HeavyLightDecomposition {
 
     int lca(int u, int v) const {
         while (head[u] != head[v]) {
-            if (in[u] < in[v]) swap(u, v);
+            if (in[u] < in[v]) std::swap(u, v);
             u = par[head[u]];
         }
         return dep[u] < dep[v] ? u : v;
@@ -76,7 +80,7 @@ struct HeavyLightDecomposition {
             for (auto& e : g[now]) {
                 if ((int)e == par[now]) {
                     if (g[now].size() >= 2 and e == g[now][0])
-                        swap(e, g[now][1]);
+                        std::swap(e, g[now][1]);
                     else 
                         continue;
                 }
@@ -85,7 +89,7 @@ struct HeavyLightDecomposition {
                 self(self, (int)e);
                 sz[now] += sz[(int)e];
                 if (sz[(int)e] > sz[(int)g[now][0]])
-                    swap(e, g[now][0]);
+                    std::swap(e, g[now][0]);
             }
         };
         dfs_sz(dfs_sz, root);
@@ -104,8 +108,8 @@ struct HeavyLightDecomposition {
     }
 
     // [u, v)
-    vector<pair<int, int>> ascend(int u, int v) const {
-        vector<pair<int, int>> res;
+    std::vector<std::pair<int, int>> ascend(int u, int v) const {
+        std::vector<std::pair<int, int>> res;
         while (head[u] != head[v]) {
             res.emplace_back(in[u], in[head[u]]);
             u = par[head[u]];
@@ -115,9 +119,9 @@ struct HeavyLightDecomposition {
     }
 
     // (u, v]
-    vector<pair<int, int>> descend(int u, int v) const {
+    std::vector<std::pair<int, int>> descend(int u, int v) const {
         if (u == v) return {};
-        if (head[u] == head[v]) return {make_pair(in[u] + 1, in[v])};
+        if (head[u] == head[v]) return {std::make_pair(in[u] + 1, in[v])};
         auto res = descend(u, par[head[v]]);
         res.emplace_back(in[head[v]], in[v]);
         return res;

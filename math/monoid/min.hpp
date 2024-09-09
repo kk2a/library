@@ -1,6 +1,11 @@
 #ifndef MATH_MONOID_MIN_HPP
 #define MATH_MONOID_MIN_HPP 1
 
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+
 namespace kk2 {
 
 namespace monoid {
@@ -12,11 +17,11 @@ struct Min {
     Min() : a(S()), inf(true) {}
     Min(S a_, bool inf_ = false) : a(a_), inf(inf_) {}
     operator S() const { return a; }
-    friend ostream& operator<<(ostream& os, const Min& min) {
-        os << (min.inf ? "inf" : to_string(min.a));
+    friend std::ostream& operator<<(std::ostream& os, const Min& min) {
+        os << (min.inf ? "inf" : std::to_string(min.a));
         return os;
     }
-    friend istream& operator>>(istream& is, Min& min) {
+    friend std::istream& operator>>(std::istream& is, Min& min) {
         is >> min.a;
         min.inf = false;
         return is;
@@ -40,7 +45,7 @@ struct Min {
     Min& op(const Min& rhs) {
         if (rhs.inf) return *this;
         if (inf) return *this = rhs;
-        a = min(a, rhs.a);
+        a = std::min(a, rhs.a);
         return *this;
     }
 
@@ -56,8 +61,8 @@ Min<S> MinUnit() { return Min<S>(); }
 } // namespace monoid
 
 template <class S, class... Args>
-vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
-    return vector<monoid::Min<S>>(n, monoid::Min<S>(args...));
+std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
+    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));
 }
 
 } // namespace kk2

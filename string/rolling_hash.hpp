@@ -1,6 +1,11 @@
 #ifndef ROLLING_HASH_HPP
 #define ROLLING_HASH_HPP 1
 
+#include <array>
+#include <string>
+#include <vector>
+#include <random>
+#include <ctime>
 #include "../math_mod/pow_expr.hpp"
 
 namespace kk2 {
@@ -11,21 +16,20 @@ struct RollingHash {
         long long h, pw, pwi;
     };
     constexpr static int b = 5;
-    using T = array<Hash, b>;
+    using T = std::array<Hash, b>;
     T table;
     constexpr static int modp[b] = {998244353, 1000000007, 1000000009, 1000000021, 1000000033};
     static int base[b], basei[b];
 
     static void setbase() {
-        mt19937_64 rng(time(0));
+        std::mt19937_64 rng(time(0));
         for (int i = 0; i < b; ++i) {
             base[i] = rng() % modp[i];
             basei[i] = quo(base[i], i);
         }
     }
 
-    template <class T>
-    RollingHash(const T &v) {
+    RollingHash(const int &v) {
         for (int i = 0; i < b; ++i) {
             table[i].h = v % modp[i];
             table[i].pw = base[i];
@@ -33,7 +37,7 @@ struct RollingHash {
         }
     }
 
-    RollingHash(char c) {
+    RollingHash(const char& c) {
         for (int i = 0; i < b; ++i) {
             table[i].h = c;
             table[i].pw = base[i];
@@ -42,7 +46,7 @@ struct RollingHash {
     }
 
     template <class T>
-    RollingHash(const vector<T> &v) {
+    RollingHash(const std::vector<T> &v) {
         int n = v.size();
         for (int i = 0; i < b; ++i) {
             table[i].h = 0;
@@ -56,7 +60,7 @@ struct RollingHash {
         }
     }
 
-    RollingHash(const string &s) {
+    RollingHash(const std::string &s) {
         int n = s.size();
         for (int i = 0; i < b; ++i) {
             table[i].h = 0;

@@ -1,6 +1,8 @@
 #ifndef MATH_HOMOMORPHISM_AFFINE_HPP
 #define MATH_HOMOMORPHISM_AFFINE_HPP 1
 
+#include <iostream>
+
 namespace kk2 {
 
 namespace homomorphism {
@@ -10,7 +12,7 @@ struct Affine {
     S a, b; // x \mapsto ax + b
     Affine() : a(1), b(0) {};
     Affine(S a, S b) : a(a), b(b) {}
-    friend ostream& operator<<(ostream& os, const Affine& aff) {
+    friend std::ostream& operator<<(std::ostream& os, const Affine& aff) {
         os << aff.a << " " << aff.b;
         return os;
     }

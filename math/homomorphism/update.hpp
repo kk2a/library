@@ -1,6 +1,9 @@
 #ifndef MATH_HOMOMORPHISM_UPDATE_HPP
 #define MATH_HOMOMORPHISM_UPDATE_HPP 1
 
+#include <iostream>
+#include <string>
+
 namespace kk2 {
 
 namespace homomorphism {
@@ -12,8 +15,8 @@ struct Update {
     Update() : a(S()), id(true) {}
     Update(S a_, bool id_ = false) : a(a_), id(id_) {}
     operator S() const { return a; }
-    friend ostream& operator<<(ostream& os, const Update& update) {
-        os << (update.id ? "id" : to_string(update.a));
+    friend std::ostream& operator<<(std::ostream& os, const Update& update) {
+        os << (update.id ? "id" : std::to_string(update.a));
         return os;
     }
 

@@ -1,6 +1,12 @@
 #ifndef STRING_AHO_CORASICK_HPP
 #define STRING_AHO_CORASICK_HPP 1
 
+#include <algorithm>
+#include <queue>
+#include <string>
+#include <type_traits>
+#include <unordered_map>
+#include <vector>
 #include "../data_structure/trie.hpp"
 
 namespace kk2 {
@@ -10,15 +16,15 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
     using Trie<char_size + 1, margin>::Trie;
 
     constexpr static int FAIL = char_size;
-    vector<int> correct;
+    std::vector<int> correct;
 
     void build() {
         correct.resize(this->size());
         for (int i = 0; i < (int)this->size(); ++i) {
-            sort(begin(this->nodes[i].accept), end(this->nodes[i].accept));
+            std::sort(std::begin(this->nodes[i].accept), std::end(this->nodes[i].accept));
             correct[i] = (int)this->nodes[i].accept.size();
         }
-        queue<int> que;
+        std::queue<int> que;
         for (int i = 0; i <= char_size; ++i) {
             if (this->nodes[this->root].nxt[i] == -1) {
                 this->nodes[this->root].nxt[i] = this->root;
@@ -42,9 +48,9 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
                     if (heavy) {
                         auto& u = this->nodes[now.nxt[i]].accept;
                         auto& v = this->nodes[this->nodes[fail].nxt[i]].accept;
-                        vector<int> accept;
-                        set_union(begin(u), end(u), begin(v), end(v),
-                                  back_inserter(accept));
+                        std::vector<int> accept;
+                        std::set_union(std::begin(u), std::end(u), std::begin(v), std::end(v),
+                                       std::back_inserter(accept));
                         u = accept;
                     }
                     que.emplace(now.nxt[i]);
@@ -53,14 +59,14 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
         }
     }
 
-    conditional_t<heavy, unordered_map<int, long long>, long long> match(
-        const string& str, int now_=0) {
-        unordered_map<int, int> visit_cnt;
+    std::conditional_t<heavy, std::unordered_map<int, long long>, long long> match(
+        const std::string& str, int now_=0) {
+        std::unordered_map<int, int> visit_cnt;
         for (char c : str) {
             now_ = this->nodes[now_].nxt[c - margin];
             visit_cnt[now_]++;
         }
-        conditional_t<heavy, unordered_map<int, long long>, long long> res{};
+        std::conditional_t<heavy, std::unordered_map<int, long long>, long long> res{};
         for (auto&& [now, cnt] : visit_cnt) {
             if constexpr (heavy) {
                 for (int idx : this->nodes[now].accept)

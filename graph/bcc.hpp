@@ -1,6 +1,8 @@
 #ifndef GRAPH_BCC_HPP
 #define GRAPH_BCC_HPP 1
 
+#include <vector>
+#include <functional>
 #include "lowlink.hpp"
 
 namespace kk2 {
@@ -9,15 +11,15 @@ template <class G>
 struct BCC : LowLink<G> {
     BCC(const G &g_) : LowLink<G>(g_) { init(); }
 
-    vector<vector<int>> bc_e;
-    vector<int> bc_id;
+    std::vector<std::vector<int>> bc_e;
+    std::vector<int> bc_id;
 
   private:
     // v is a child of u in DFS tree
     // edge(u, v) is a bridge <=> ord[u] < low[v]
     // u is an articulation point <=> u is root and 
     void init() {
-        bc_id = vector<int>(this->m, -1);
+        bc_id = std::vector<int>(this->m, -1);
         auto add = [&](int ei, int k) {
             bc_e[k].emplace_back(ei);
             bc_id[ei] = k;
@@ -43,9 +45,9 @@ struct BCC : LowLink<G> {
     }
 
   public:
-    vector<vector<int>> get_bcc_vertices() {
-        vector<bool> buf1(this->n), buf2(this->n);
-        vector<vector<int>> res;
+    std::vector<std::vector<int>> get_bcc_vertices() {
+        std::vector<bool> buf1(this->n), buf2(this->n);
+        std::vector<std::vector<int>> res;
         res.reserve(bc_e.size());
         for (auto &bc : bc_e) {
             if (bc.empty()) continue;

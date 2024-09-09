@@ -1,19 +1,27 @@
 #ifndef OTHERS_MO_HPP
 #define OTHERS_MO_HPP 1
 
+#include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <functional>
+#include <numeric>
+#include <vector>
+
+
 namespace kk2 {
 
 struct Mo {
     Mo(int n_, int q_) : n(n_), q(q_), ord(q) {
-        word_size = max<int>(1, n / max(1.0, sqrt(q * 2.0 / 3.0)));
-        iota(ord.begin(), ord.end(), 0);
+        word_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
+        std::iota(ord.begin(), ord.end(), 0);
         queries.reserve(q);
     }
 
-    Mo(int n_, const vector<pair<int, int>> &queries_)
+    Mo(int n_, const std::vector<std::pair<int, int>> &queries_)
         : n(n_), q(queries_.size()), ord(q), queries(queries_) {
-        word_size = max<int>(1, n / max(1.0, sqrt(q * 2.0 / 3.0)));
-        iota(ord.begin(), ord.end(), 0);
+        word_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
+        std::iota(ord.begin(), ord.end(), 0);
     }
 
     void add_query(int l, int r) {
@@ -21,7 +29,7 @@ struct Mo {
         queries.emplace_back(l, r);
     }
 
-    void add_query(const pair<int, int> &p) {
+    void add_query(const std::pair<int, int> &p) {
         add_query(p.first, p.second);
     }
 
@@ -29,7 +37,7 @@ struct Mo {
     void calculate(const IL& insert_left, const IR& insert_right,
                    const EL& erase_left, const ER& erase_right, const F& f) {
         assert(queries.size() == q);
-        vector<int> block_id(n);
+        std::vector<int> block_id(n);
         for (int i = 0, cnt = 0, b = 0; i < n; i++) {
             block_id[i] = b;
             if (++cnt == word_size) {
@@ -37,7 +45,7 @@ struct Mo {
                 cnt = 0;
             }
         }
-        sort(ord.begin(), ord.end(), [&](int l, int r) {
+        std::sort(ord.begin(), ord.end(), [&](int l, int r) {
             int l_b = block_id[queries[l].first];
             int r_b = block_id[queries[r].first];
             if (l_b != r_b) return l_b < r_b;
@@ -62,8 +70,8 @@ struct Mo {
 
   private:
     int n, q, word_size;
-    vector<int> ord;
-    vector<pair<int, int>> queries;
+    std::vector<int> ord;
+    std::vector<std::pair<int, int>> queries;
 };
 
 } // namespace kk2

@@ -1,21 +1,25 @@
 #ifndef GRAPH_SCC_HPP
 #define GRAPH_SCC_HPP 1
 
+#include <algorithm>
+#include <functional>
+#include <vector>
+
 namespace kk2 {
 
 template <class G>
 struct SCC {
     int n, m;
     const G &g;
-    vector<vector<int>> revg;
-    vector<int> ord, scc_id;
-    vector<bool> used;
-    vector<vector<int>> blng, dag;
+    std::vector<std::vector<int>> revg;
+    std::vector<int> ord, scc_id;
+    std::vector<bool> used;
+    std::vector<std::vector<int>> blng, dag;
     
     SCC(const G &g_) : n(g_.n), m(g_.m), g(g_) { init(); }
 
     int operator[](int k) const { return scc_id[k]; }
-    vector<int> same_scc(int u) const { return blng[u]; }
+    std::vector<int> same_scc(int u) const { return blng[u]; }
 
   private:
     void init() {
@@ -34,7 +38,7 @@ struct SCC {
         used.resize(n, false);
         ord.reserve(n);
         for (int u = 0; u < n; u++) dfs(dfs, u);
-        reverse(begin(ord), end(ord));
+        std::reverse(std::begin(ord), std::end(ord));
 
         scc_id.resize(n, -1);
         revg.resize(n);

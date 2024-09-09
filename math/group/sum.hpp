@@ -1,6 +1,9 @@
 #ifndef MATH_GROUP_SUM_HPP
 #define MATH_GROUP_SUM_HPP 1
 
+#include <iostream>
+#include <vector>
+
 namespace kk2 {
 
 namespace group {
@@ -11,11 +14,11 @@ struct Sum {
     Sum() : a(S()), size(0) {}
     Sum(S a, S size = 1) : a(a), size(size) {}
     operator S() const { return a; }
-    friend ostream& operator<<(ostream& os, const Sum& sum) {
+    friend std::ostream& operator<<(std::ostream& os, const Sum& sum) {
         os << sum.a;
         return os;
     }
-    friend istream& operator>>(istream& is, Sum& sum) {
+    friend std::istream& operator>>(std::istream& is, Sum& sum) {
         is >> sum.a;
         sum.size = 1;
         return is;
@@ -57,8 +60,8 @@ Sum<S> SumInv(Sum<S> x) { return Sum<S>(-x.a, -x.size); }
 } // namespace group
 
 template <class S, class... Args>
-vector<group::Sum<S>> GetVecSum(int n, Args... args) {
-    return vector<group::Sum<S>>(n, group::Sum<S>(args...));
+std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {
+    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));
 }
 
 } // namespace kk2

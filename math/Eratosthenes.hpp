@@ -1,11 +1,15 @@
 #ifndef MATH_ERATOSTHENES
 #define MATH_ERATOSTHENES 1
 
+#include <cassert>
+#include <vector>
+#include <utility>
+
 namespace kk2 {
 
 struct Erato {
-    static inline vector<bool> _isprime{};
-    static inline vector<int> _minfactor{}, _mobius{}, _primes{};
+    static inline std::vector<bool> _isprime{};
+    static inline std::vector<int> _minfactor{}, _mobius{}, _primes{};
 
     Erato() = delete;
 
@@ -48,15 +52,15 @@ struct Erato {
         return _minfactor[n];
     }
 
-    constexpr static vector<int> primes() {
+    constexpr static std::vector<int> primes() {
         return _primes;
     }
 
-    constexpr static vector<pair<int, int>> factorize(int n) {
+    constexpr static std::vector<std::pair<int, int>> factorize(int n) {
         assert(n < (int)_isprime.size() && n != 0);
         if (n == 1 || n == -1) return {};
         if (n < 0) n = -n;
-        vector<pair<int, int>> res;
+        std::vector<std::pair<int, int>> res;
         while (n > 1) {
             int p = _minfactor[n];
             int exp = 0;
@@ -70,11 +74,11 @@ struct Erato {
         return res;
     }
 
-    constexpr static vector<int> divisors(int n) {
+    constexpr static std::vector<int> divisors(int n) {
         assert(n < (int)_isprime.size() && n != 0);
         if (n == 1 || n == -1) return {1};
         if (n < 0) n = -n;
-        vector<int> res{1};
+        std::vector<int> res{1};
         auto pf = factorize(n);
 
         for (auto p : pf) {

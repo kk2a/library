@@ -1,13 +1,16 @@
 #ifndef MOD_COMB_HPP
 #define MOD_COMB_HPP 1
 
+#include <algorithm>
+#include <cassert>
+#include <vector>
 #include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
 template <class mint>
 struct Comb {
-    static inline vector<mint> _fact{1}, _ifact{1}, _inv{1};
+    static inline std::vector<mint> _fact{1}, _ifact{1}, _inv{1};
 
     Comb() = delete;
 
@@ -15,7 +18,7 @@ struct Comb {
         int n = (int)_fact.size();
         if (m == -1) m = n << 1;
         if (n > m) return;
-        m = min<int>(m, mint::getmod() - 1);
+        m = std::min<int>(m, mint::getmod() - 1);
         _fact.resize(m + 1);
         _ifact.resize(m + 1);
         _inv.resize(m + 1);
@@ -52,7 +55,7 @@ struct Comb {
     }
 
     template <class T>
-    static mint multinomial(const vector<T>& r) {
+    static mint multinomial(const std::vector<T>& r) {
         static_assert(is_integral_extended<T>::value, "T must be integral");
         int n = 0;
         for (auto &x : r) {
@@ -67,7 +70,7 @@ struct Comb {
     static mint binom_naive(int n, int k) {
         if (n < 0 || k < 0 || k > n) return 0;
         mint res = 1;
-        k = min(k, n - k);
+        k = std::min(k, n - k);
         for (int i = 1; i <= k; i++) res *= inv(i) * (n--);
         return res;
     }

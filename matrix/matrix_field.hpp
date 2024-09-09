@@ -1,6 +1,12 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP 1
 
+#include <algorithm>
+#include <cassert>
+#include <iostream>
+#include <string>
+#include <vector>
+
 namespace kk2 {
 
 template <class Field>
@@ -8,8 +14,8 @@ struct MatrixField {
     using mat = MatrixField;
     MatrixField() : MatrixField(0) {}
     MatrixField(int n) : MatrixField(n, n) {}
-    MatrixField(int h, int w) : MatrixField(vector<vector<Field>>(h, vector<Field>(w, Field()))) {}
-    MatrixField(const vector<vector<Field>>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_) {}
+    MatrixField(int h, int w) : MatrixField(std::vector<std::vector<Field>>(h, std::vector<Field>(w, Field()))) {}
+    MatrixField(const std::vector<std::vector<Field>>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_) {}
     
     int get_h() const { return _h; }
     int get_w() const { return _w; }
@@ -20,19 +26,15 @@ struct MatrixField {
         return _mat[i][j];
     }
 
-    vector<vector<Field>> get_mat() const {
-        return _mat;
-    }
-
-    vector<Field>& operator[](int i) {
+    std::vector<Field>& operator[](int i) {
         assert(0 <= i && i < _h);
         return _mat[i];
     }
 
     void display() const {
         for (int i = 0; i < _h; i++) {
-            for (int j = 0; j < _w; j++) cout << _mat[i][j] << " ";
-            cout << "\n";
+            for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << " ";
+            std::cout << "\n";
         }
     }
 
@@ -64,7 +66,7 @@ struct MatrixField {
     }
     mat& operator*=(const mat& rhs) {
         assert(_w == rhs._h);
-        vector<vector<Field>> res(_h, vector<Field>(rhs._w, Field()));
+        std::vector<std::vector<Field>> res(_h, std::vector<Field>(rhs._w, Field()));
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < rhs._w; j++) {
                 for (int k = 0; k < _w; k++) {
@@ -80,19 +82,19 @@ struct MatrixField {
     Field det(Field product_e = Field(1)) const {
         assert(_h == _w);
         int n = _h;
-        vector<vector<Field>> a(_mat);
+        std::vector<std::vector<Field>> a(_mat);
         Field res = 1;
         for (int i = 0; i < n; i++) {
             int pivot = -1;
             for (int j = i; j < n; j++) {
-                if (a[j][i] != 0) {
+                if (a[j][i] != Field(0)) {
                     pivot = j;
                     break;
                 }
             }
             if (pivot == -1) return Field(0);
             if (i != pivot) {
-                swap(a[i], a[pivot]);
+                std::swap(a[i], a[pivot]);
                 res = -res;
             }
             res *= a[i][i];
@@ -114,13 +116,13 @@ struct MatrixField {
     mat inv(Field product_e = Field(1)) const {
         assert(_h == _w);
         int n = _h;
-        vector<vector<Field>> res(n, vector<Field>(n, Field()));
+        std::vector<std::vector<Field>> res(n, std::vector<Field>(n, Field()));
         for (int i = 0; i < n; i++) res[i][i] = 1;
         mat a(_mat);
         for (int i = 0; i < n; i++) {
             int pivot = -1;
             for (int j = i; j < n; j++) {
-                if (a._mat[j][i] != 0) {
+                if (a._mat[j][i] != Field(0)) {
                     pivot = j;
                     break;
                 }
@@ -128,8 +130,8 @@ struct MatrixField {
             if (pivot == -1) {
                 return mat(n);
             }
-            swap(a._mat[i], a._mat[pivot]);
-            swap(res[i], res[pivot]);
+            std::swap(a._mat[i], a._mat[pivot]);
+            std::swap(res[i], res[pivot]);
             Field inv = product_e / a._mat[i][i];
             for (int j = 0; j < n; j++) {
                 a._mat[i][j] *= inv;
@@ -163,7 +165,7 @@ struct MatrixField {
 
     int rank(Field product_e = Field(1)) const {
         int n = _h, m = _w;
-        vector<vector<Field>> a(_mat);
+        std::vector<std::vector<Field>> a(_mat);
         int res = 0;
         for (int i = 0; i < m; i++) {
             int pivot = -1;
@@ -174,7 +176,7 @@ struct MatrixField {
                 }
             }
             if (pivot == -1) continue;
-            swap(a[res], a[pivot]);
+            std::swap(a[res], a[pivot]);
             Field inv = product_e / a[res][i];
             for (int j = i; j < m; j++) {
                 a[res][j] *= inv;
@@ -192,8 +194,8 @@ struct MatrixField {
 
     mat& inplace_combine_top(const mat& rhs) {
         assert(_w == rhs._w);
-        this->_mat.insert(begin(this->_mat),
-            begin(rhs._mat), end(rhs._mat));
+        this->_mat.insert(std::begin(this->_mat),
+            std::begin(rhs._mat), std::end(rhs._mat));
         this->_h += rhs._h;
         return *this;
     }
@@ -206,8 +208,8 @@ struct MatrixField {
 
     mat& inplace_combine_bottom(const mat& rhs) {
         assert(_w == rhs._w);
-        this->_mat.insert(end(this->_mat),
-            begin(rhs._mat), end(rhs._mat));
+        this->_mat.insert(std::end(this->_mat),
+            std::begin(rhs._mat), std::end(rhs._mat));
         this->_h += rhs._h;
         return *this;
     }
@@ -221,8 +223,8 @@ struct MatrixField {
     mat& inplace_combine_left(const mat& rhs) {
         assert(_h == rhs._h);
         for (int i = 0; i < _h; i++) {
-            this->_mat[i].insert(begin(this->_mat[i]),
-                begin(rhs._mat[i]), end(rhs._mat[i]));
+            this->_mat[i].insert(std::begin(this->_mat[i]),
+                std::begin(rhs._mat[i]), std::end(rhs._mat[i]));
         }
         this->_w += rhs._w;
         return *this;
@@ -237,8 +239,8 @@ struct MatrixField {
     mat& inplace_combine_right(const mat& rhs) {
         assert(_h == rhs._h);
         for (int i = 0; i < _h; i++) {
-            this->_mat[i].insert(end(this->_mat[i]),
-                begin(rhs._mat[i]), end(rhs._mat[i]));
+            this->_mat[i].insert(std::end(this->_mat[i]),
+                std::begin(rhs._mat[i]), std::end(rhs._mat[i]));
         }
         this->_w += rhs._w;
         return *this;
@@ -269,7 +271,7 @@ struct MatrixField {
 
   private:
     int _h, _w;
-    vector<vector<Field>> _mat;
+    std::vector<std::vector<Field>> _mat;
 };
 
 } // namespace kk2

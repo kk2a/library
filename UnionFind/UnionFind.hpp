@@ -1,16 +1,18 @@
 #ifndef UNIONFIND_HPP
 #define UNIONFIND_HPP 1
 
+#include <vector>
+
 namespace kk2 {
 
 struct UnionFind {
-    vector<int> d;
+    std::vector<int> d;
     UnionFind(int n = 0) : d(n, -1) {}
     bool same(int x, int y) { return find(x) == find(y); }
     bool unite(int x, int y) {
         x = find(x), y = find(y);
         if (x == y) return false;
-        if (d[x] > d[y]) swap(x, y);
+        if (d[x] > d[y]) std::swap(x, y);
         d[x] += d[y];
         d[y] = x;
         return true;

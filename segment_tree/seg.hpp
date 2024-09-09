@@ -1,6 +1,10 @@
 #ifndef SEGMENT_TREE_SEG_HPP
 #define SEGMENT_TREE_SEG_HPP 1
 
+#include <cassert>
+#include <functional>
+#include <vector>
+
 namespace kk2 {
 
 template <class S, S (*op)(S, S), S (*e)()> struct SegTree {

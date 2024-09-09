@@ -1,6 +1,11 @@
 #ifndef MATH_KTH_ROOT_FLOOR_HPP
 #define MATH_KTH_ROOT_FLOOR_HPP 1
 
+#include <algorithm>
+#include <cstdint>
+#include <cmath>
+#include <functional>
+
 namespace kk2 {
 
 uint64_t kth_root_floor_inner(uint64_t a, int k) {

@@ -1,6 +1,8 @@
 #ifndef MATH_FLOOR_CEIL_HPP
 #define MATH_FLOOR_CEIL_HPP 1
 
+#include <cassert>
+
 namespace kk2 {
 
 // floor(x) = ceil(x) - 1 (for all x not in Z) ...(1)

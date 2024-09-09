@@ -1,6 +1,12 @@
 #ifndef GRAPH_GRAPH_TEMPLATE_HPP
 #define GRAPH_GRAPH_TEMPLATE_HPP 1
 
+#include <cassert>
+#include <vector>
+#include <iostream>
+#include <type_traits>
+#include <utility>
+
 namespace kk2 {
 
 template <class T>
@@ -17,21 +23,21 @@ struct WeightedEdge {
 
     WeightedEdge rev() const { return WeightedEdge(from, cost, to, id); }
 
-    friend ostream& operator<<(ostream &os, const WeightedEdge &e) {
-        if (is_same_v<T, bool>) return os << e.from << "->" << e.to;
+    friend std::ostream& operator<<(std::ostream &os, const WeightedEdge &e) {
+        if (std::is_same_v<T, bool>) return os << e.from << "->" << e.to;
         return os << e.from << "->" << e.to << ":" << e.cost;
     }
 };
 template <class T>
-using WeightedEdges = vector<WeightedEdge<T>>;
+using WeightedEdges = std::vector<WeightedEdge<T>>;
 
 template <class T, bool is_directed = false>
-struct WeightedGraph : vector<WeightedEdges<T>> {
+struct WeightedGraph : std::vector<WeightedEdges<T>> {
     WeightedGraph(
         int n_ = 0,
         bool is_one_indexed = true
     ) :
-        vector<WeightedEdges<T>>(n_),
+        std::vector<WeightedEdges<T>>(n_),
         n(n_),
         m(0),
         oneindexed(is_one_indexed) {}
@@ -41,7 +47,7 @@ struct WeightedGraph : vector<WeightedEdges<T>> {
         int m_,
         bool is_one_indexed = true
     ) :
-        vector<WeightedEdges<T>>(n_),
+        std::vector<WeightedEdges<T>>(n_),
         n(n_),
         m(m_),
         oneindexed(is_one_indexed) {
@@ -50,10 +56,10 @@ struct WeightedGraph : vector<WeightedEdges<T>> {
 
     WeightedGraph(
         int n_,
-        const vector<WeightedEdges<T>>& g_,
+        const std::vector<WeightedEdges<T>>& g_,
         bool is_one_indexed = true
     ) :
-        vector<WeightedEdges<T>>(n_),
+        std::vector<WeightedEdges<T>>(n_),
         n(n_), 
         m(0),
         oneindexed(is_one_indexed) {
@@ -107,7 +113,7 @@ struct WeightedGraph : vector<WeightedEdges<T>> {
         for (int i = 0; i < m; i++) {
             int u, v;
             T w;
-            cin >> u >> v >> w;
+            std::cin >> u >> v >> w;
             if (oneindexed) { u--; v--; }
             _add_edge(u, v, w, i);
         }
@@ -143,21 +149,21 @@ struct UnWeightedEdge {
 
     UnWeightedEdge rev() const { return UnWeightedEdge(from, to, id); }
 
-    friend ostream& operator<<(ostream &os, const UnWeightedEdge &e) {
+    friend std::ostream& operator<<(std::ostream &os, const UnWeightedEdge &e) {
         return os << e.from << "->" << e.to;
     }
 };
 
-using UnWeightedEdges = vector<UnWeightedEdge>;
+using UnWeightedEdges = std::vector<UnWeightedEdge>;
 
 template <bool is_directed = false,
           bool is_functional = false>
-struct UnWeightedGraph : vector<UnWeightedEdges> {
+struct UnWeightedGraph : std::vector<UnWeightedEdges> {
     UnWeightedGraph(
         int n_ = 0,
         bool is_one_indexed = true
     ) :
-        vector<UnWeightedEdges>(n_),
+        std::vector<UnWeightedEdges>(n_),
         n(n_),
         m(0),
         oneindexed(is_one_indexed) {}
@@ -167,7 +173,7 @@ struct UnWeightedGraph : vector<UnWeightedEdges> {
         int m_,
         bool is_one_indexed = true
     ) :
-        vector<UnWeightedEdges>(n_),
+        std::vector<UnWeightedEdges>(n_),
         n(n_),
         m(m_),
         oneindexed(is_one_indexed) {
@@ -176,10 +182,10 @@ struct UnWeightedGraph : vector<UnWeightedEdges> {
 
     UnWeightedGraph(
         int n_,
-        const vector<UnWeightedEdges>& g_,
+        const std::vector<UnWeightedEdges>& g_,
         bool is_one_indexed = true
     ) :
-        vector<UnWeightedEdges>(n_),
+        std::vector<UnWeightedEdges>(n_),
         n(n_),
         m(0),
         oneindexed(is_one_indexed) {
@@ -210,7 +216,7 @@ struct UnWeightedGraph : vector<UnWeightedEdges> {
 
     UnWeightedGraph& inplace_rev() {
         static_assert(is_directed);
-        vector<pair<int, int>> rev(m);
+        std::vector<std::pair<int, int>> rev(m);
         for (int i = 0; i < m; i++) {
             rev[i] = {edges[i].to, edges[i].from};
         }
@@ -234,7 +240,7 @@ struct UnWeightedGraph : vector<UnWeightedEdges> {
         if constexpr (is_functional) { functional_graph(); return; }
         for (int i = 0; i < m; i++) {
             int u, v;
-            cin >> u >> v;
+            std::cin >> u >> v;
             if (oneindexed) { u--; v--; }
             _add_edge(u, v, i);
         }
@@ -245,7 +251,7 @@ struct UnWeightedGraph : vector<UnWeightedEdges> {
         assert(n == m);
         for (int i = 0; i < n; i++) {
             int u;
-            cin >> u;
+            std::cin >> u;
             if (oneindexed) u--;
             _add_edge(i, u, i);
         }

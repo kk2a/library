@@ -1,6 +1,8 @@
 #ifndef TYPE_TRAITS_HPP
 #define TYPE_TRAITS_HPP 1
 
+#include <type_traits>
+
 namespace kk2 {
 
 template <typename T>

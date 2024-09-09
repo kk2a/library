@@ -1,6 +1,7 @@
 #ifndef MATH_POW_EXPR_HPP
 #define MATH_POW_EXPR_HPP 1
 
+#include <cassert>
 #include "../type_traits/type_traits.hpp"
 
 namespace kk2 {

@@ -1,6 +1,8 @@
 #ifndef MOD_INV_HPP
 #define MOD_INV_HPP 1
 
+#include <utility>
+
 namespace kk2 {
 
 // require: modulo >= 1
@@ -12,8 +14,8 @@ constexpr T mod_inversion(T a, T modulo) {
     T m0 = 0, m1 = 1;
     while (t) {
         T u = s / t;
-        swap(s -= t * u, t);
-        swap(m0 -= m1 * u, m1);
+        std::swap(s -= t * u, t);
+        std::swap(m0 -= m1 * u, m1);
     }
     if (m0 < 0) m0 += modulo;
     return m0;

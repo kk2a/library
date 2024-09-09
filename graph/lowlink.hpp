@@ -1,14 +1,18 @@
 #ifndef GRAPH_LOWLINK_HPP
 #define GRAPH_LOWLINK_HPP 1
 
+#include <algorithm>
+#include <functional>
+#include <vector>
+
 namespace kk2 {
 
 template <class G>
 struct LowLink {
     int n, m;
     const G &g;
-    vector<int> ord, low;
-    vector<bool> root, used;
+    std::vector<int> ord, low;
+    std::vector<bool> root, used;
     LowLink(const G &g_) : n(g_.n), m(g_.m), g(g_),
                            ord(n, -1), low(n, -1), root(n, false),
                            used(m, false) {
@@ -24,11 +28,11 @@ struct LowLink {
                 if (e.id == ei) continue;
                 if (ord[e.to] == -1) {
                     used[e.id] = true;
-                    low[u] = min(low[u], self(self, e.to, e.id));
+                    low[u] = std::min(low[u], self(self, e.to, e.id));
                 }
                 // back edge
                 else if (ord[e.to] < ord[u]) {
-                    low[u] = min(low[u], ord[e.to]);
+                    low[u] = std::min(low[u], ord[e.to]);
                 }
             }
             return low[u];

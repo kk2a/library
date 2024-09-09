@@ -1,6 +1,10 @@
 #ifndef MOD_COMB_LARGE_HPP
 #define MOD_COMB_LARGE_HPP 1
 
+#include <algorithm>
+#include <cassert>
+#include <functional>
+#include <vector>
 #include "../fps/ntt_friendly.hpp"
 #include "../fps/sample_point_shift.hpp"
 #include "comb.hpp"
@@ -31,7 +35,7 @@ struct CombLarge {
     }
 
     template <class T>
-    static mint multinomial(vector<T> r) {
+    static mint multinomial(std::vector<T> r) {
         static_assert(is_integral_extended<T>::value, "T must be integral");
         long long n = 0;
         for (auto &x : r) {
@@ -53,14 +57,14 @@ struct CombLarge {
         return r == 0 ? 1 : binom(n + r - 1, r);
     }
   private:
-    static inline vector<mint> _block_fact{};
+    static inline std::vector<mint> _block_fact{};
     
     static void _build() {
         if (_block_fact.size()) return;
-        vector<mint> f{1};
+        std::vector<mint> f{1};
         f.reserve(BLOCK_SIZE);
         for (int i = 0; i < LOG_BLOCK_SIZE; i++) {
-            vector<mint> g = SamplePointShift<FPS>(f, mint(1 << i), 3 << i);
+            std::vector<mint> g = SamplePointShift<FPS>(f, mint(1 << i), 3 << i);
             const auto get = [&](int j) {
                 return j < (1 << i) ? f[j] : g[j - (1 << i)];
             };
@@ -71,9 +75,9 @@ struct CombLarge {
         }
 
         if (BLOCK_NUM > BLOCK_SIZE) {
-            vector<mint> g = SamplePointShift<FPS>(f, mint(BLOCK_SIZE),
+            std::vector<mint> g = SamplePointShift<FPS>(f, mint(BLOCK_SIZE),
                 BLOCK_NUM - BLOCK_SIZE);
-            move(begin(g), end(g), back_inserter(f));
+            std::move(std::begin(g), std::end(g), std::back_inserter(f));
         }
         else f.resize(BLOCK_NUM);
         for (int i = 0; i < BLOCK_NUM; i++) {
@@ -81,11 +85,11 @@ struct CombLarge {
         }
         // f[i] = prod_{j = 1} ^ (BLOCK_SIZE) (i * BLOCK_SIZE + j)
 
-        f.insert(begin(f), 1);
+        f.insert(std::begin(f), 1);
         for (int i = 1; i <= BLOCK_NUM; i++) {
             f[i] *= f[i - 1];
         }
-        _block_fact = move(f);
+        _block_fact = std::move(f);
     }
 
     static mint _large_fact(int n) {

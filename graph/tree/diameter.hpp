@@ -1,13 +1,17 @@
 #ifndef GRAPH_TREE_DIAMETER_HPP
 #define GRAPH_TREE_DIAMETER_HPP 1
 
+#include <algorithm>
+#include <functional>
+#include <vector>
+#include <utility>
 #include "../shortest_path.hpp"
 
 namespace kk2 {
 
 template <class G>
-pair<int, vector<int>> tree_diameter(const G& g) {
-    vector<int> dist(g.size(), -1), par(g.size(), -1);
+std::pair<int, std::vector<int>> tree_diameter(const G& g) {
+    std::vector<int> dist(g.size(), -1), par(g.size(), -1);
     auto dfs = [&](auto self, int now) -> void {
         for (auto& e : g[now]) {
             if ((int)e == par[now]) continue;
@@ -18,32 +22,32 @@ pair<int, vector<int>> tree_diameter(const G& g) {
     };
     dist[0] = 0;
     dfs(dfs, 0);
-    int u = max_element(begin(dist), end(dist)) - begin(dist);
+    int u = std::max_element(std::begin(dist), std::end(dist)) - std::begin(dist);
     dist[u] = 0;
-    fill(begin(par), end(par), -1);
+    std::fill(std::begin(par), std::end(par), -1);
     dfs(dfs, u);
-    int v = max_element(begin(dist), end(dist)) - begin(dist);
-    vector<int> path;
+    int v = std::max_element(std::begin(dist), std::end(dist)) - std::begin(dist);
+    std::vector<int> path;
     for (int now = v; now != -1; now = par[now]) {
         path.emplace_back(now);
     }
-    return make_pair(dist[v], path);
+    return std::make_pair(dist[v], path);
 }
 
 template <class WG, typename T = typename WG::value_type>
-pair<T, vector<int>> weighted_tree_diameter(const WG& g) {
+std::pair<T, std::vector<int>> weighted_tree_diameter(const WG& g) {
     auto sp = ShortestPath<WG, T>(g);
     auto [dist, _] = sp.query(0);
-    int u = max_element(begin(dist), end(dist)) - begin(dist);
+    int u = std::max_element(std::begin(dist), std::end(dist)) - std::begin(dist);
     auto [dist2, par] = sp.query(u);
-    int v = max_element(begin(dist2), end(dist2)) - begin(dist2);
-    vector<int> path;
+    int v = std::max_element(std::begin(dist2), std::end(dist2)) - std::begin(dist2);
+    std::vector<int> path;
     for (int now = v;;) {
         path.emplace_back(now);
         if (par[now] == -1) break;
         now = g.edges[par[now]].to ^ g.edges[par[now]].from ^ now;
     }
-    return make_pair(dist2[v], path);
+    return std::make_pair(dist2[v], path);
 }
 
 } // namespace kk2

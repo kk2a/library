@@ -1,6 +1,14 @@
 #ifndef GRAPH_MAXFLOW_HPP
 #define GRAPH_MAXFLOW_HPP 1
 
+#include <algorithm>
+#include <cassert>
+#include <functional>
+#include <numeric>
+#include <limits>
+#include <queue>
+#include <vector>
+
 namespace kk2 {
 
 template <class WG>
@@ -9,16 +17,16 @@ struct MaxFlow {
 
     using Cap = typename WG::value_type;
 
-    WG g;
+    const WG& g;
     int n, m;
-    vector<int> revi;
+    std::vector<int> revi;
 
     MaxFlow(const WG &g_) : g(g_), n(g.num_vertices()),
                             m(g.num_edges()) { init(); }
 
     void init() {
         revi.resize(m << 1, -1);
-        vector<int> count(n, 0);
+        std::vector<int> count(n, 0);
         for (int i = 0; i < m; i++) {
             auto e = g.edges[i];
             revi[i] = (int)g[e.to].size();
@@ -36,13 +44,13 @@ struct MaxFlow {
         assert(0 <= t && t < n);
         assert(s != t);
 
-        vector<int> level(n), iter(n);
-        queue<int> que;
+        std::vector<int> level(n), iter(n);
+        std::queue<int> que;
 
         auto bfs = [&]() {
-            fill(begin(level), end(level), -1);
+            std::fill(std::begin(level), std::end(level), -1);
             level[s] = 0;
-            que = queue<int>();
+            que = std::queue<int>();
             que.push(s);
             while (!que.empty()) {
                 int v = que.front();
@@ -63,7 +71,7 @@ struct MaxFlow {
                 if (level[v] <= level[e.to] || g[e.to][revi[e.id]].cost == 0) continue;
                 Cap d =
                     self(self, e.to,
-                         min(up - res, g[e.to][revi[e.id]].cost));
+                         std::min(up - res, g[e.to][revi[e.id]].cost));
                 if (d <= 0) continue;
                 g[v][i].cost += d;
                 g[e.to][revi[e.id]].cost -= d;
@@ -77,7 +85,7 @@ struct MaxFlow {
         while (flow < flow_limit) {
             bfs();
             if (level[t] == -1) break;
-            fill(begin(iter), end(iter), 0);
+            std::fill(std::begin(iter), std::end(iter), 0);
             while (flow < flow_limit) {
                 Cap f = dfs(dfs, t, flow_limit - flow);
                 if (!f) break;
@@ -87,9 +95,9 @@ struct MaxFlow {
         return flow;
     }
 
-    vector<bool> min_cut(int s) {
-        vector<bool> visited(n);
-        queue<int> que;
+    std::vector<bool> min_cut(int s) {
+        std::vector<bool> visited(n);
+        std::queue<int> que;
         que.push(s);
         while (!que.empty()) {
             int p = que.front();
@@ -116,8 +124,8 @@ struct MaxFlow {
                     g[e.to][revi[i]].cost};
     }
 
-    vector<edge> get_edges() {
-        vector<edge> result(m);
+    std::vector<edge> get_edges() {
+        std::vector<edge> result(m);
         for (int i = 0; i < m; i++) {
             result[i] = get_edge(i);
         }

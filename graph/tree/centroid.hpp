@@ -1,12 +1,17 @@
 #ifndef CENTROID_HPP
 #define CENTROID_HPP 1
 
+#include <cassert>
+#include <functional>
+#include <numeric>
+#include <vector>
+
 namespace kk2 {
 
 template <class G>
 int centroid(const G& g) {
     int n = g.size();
-    vector<int> sz(n, 0);
+    std::vector<int> sz(n, 0);
     auto dfs = [&](auto &&self, int u, int p = -1) -> int {
         sz[u] = 1;
         for (int v : g[u]) if (v != p) {
@@ -30,11 +35,11 @@ int centroid(const G& g) {
 }
 
 template <class G>
-int centroid(const G& g, vector<long long> weight) {
+int centroid(const G& g, const std::vector<long long>& weight) {
     assert((int)g.size() == (int)weight.size());
     int n = g.size();
-    vector<long long> sz(n, 0);
-    long long sum = accumulate(begin(weight), end(weight), 0LL);
+    std::vector<long long> sz(n, 0);
+    long long sum = std::accumulate(std::begin(weight), std::end(weight), 0LL);
     auto dfs = [&](auto &&self, int u, int p = -1) -> long long {
         sz[u] = weight[u];
         for (int v : g[u]) if (v != p) {
