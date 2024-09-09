@@ -12,7 +12,7 @@ constexpr int primitive_root_constexpr(int m) {
     if (m == 754974721) return 11;
     if (m == 998244353) return 3;
     if (m == 1107296257) return 10;
-    int divs[20] = {}; 
+    int divs[20] = {};
     divs[0] = 2;
     int cnt = 1;
     int x = (m - 1) / 2;
@@ -20,14 +20,10 @@ constexpr int primitive_root_constexpr(int m) {
     for (int i = 3; (long long)(i)*i <= x; i += 2) {
         if (x % i == 0) {
             divs[cnt++] = i;
-            while (x % i == 0) {
-                x /= i;
-            }
+            while (x % i == 0) { x /= i; }
         }
     }
-    if (x > 1) {
-        divs[cnt++] = x;
-    }
+    if (x > 1) { divs[cnt++] = x; }
     for (int g = 2;; g++) {
         bool ok = true;
         for (int i = 0; i < cnt; i++) {
@@ -39,7 +35,9 @@ constexpr int primitive_root_constexpr(int m) {
         if (ok) return g;
     }
 }
-template <int m> static constexpr int primitive_root = primitive_root_constexpr(m);
+
+template <int m>
+static constexpr int primitive_root = primitive_root_constexpr(m);
 
 } // namespace kk2
 

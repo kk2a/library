@@ -8,7 +8,7 @@ namespace kk2 {
 
 // return f(a w ^ 0), f(a w ^ 1), ..., f(a w ^ (n - 1))
 template <class FPS, class mint = typename FPS::value_type>
-std::vector<mint> ChirpZ(const FPS& f_, mint w, int n = -1, mint a = 1) {
+std::vector<mint> ChirpZ(const FPS &f_, mint w, int n = -1, mint a = 1) {
     FPS f(f_.begin(), f_.end());
     if (n == -1) n = f.size();
     if (f.empty() || n == 0) return std::vector<mint>(n, mint(0));
@@ -41,9 +41,9 @@ std::vector<mint> ChirpZ(const FPS& f_, mint w, int n = -1, mint a = 1) {
     FPS g = f * wc;
     std::vector<mint> ret{std::begin(g) + m - 1, std::begin(g) + m + n - 1};
     for (int i = 0; i < n; i++) ret[i] *= iwc[i];
-    return ret; 
+    return ret;
 }
 
 } // namespace kk2
 
-#endif  // FPS_CHIRP_Z_HPP
+#endif // FPS_CHIRP_Z_HPP

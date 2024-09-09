@@ -7,15 +7,20 @@
 
 namespace kk2 {
 
-template <class G>
-struct LowLink {
+template <class G> struct LowLink {
     int n, m;
     const G &g;
     std::vector<int> ord, low;
     std::vector<bool> root, used;
-    LowLink(const G &g_) : n(g_.n), m(g_.m), g(g_),
-                           ord(n, -1), low(n, -1), root(n, false),
-                           used(m, false) {
+
+    LowLink(const G &g_)
+        : n(g_.n),
+          m(g_.m),
+          g(g_),
+          ord(n, -1),
+          low(n, -1),
+          root(n, false),
+          used(m, false) {
         init();
     }
 
@@ -37,10 +42,11 @@ struct LowLink {
             }
             return low[u];
         };
-        for (int u = 0; u < n; u++) if (ord[u] == -1) {
-            dfs(dfs, u);
-            root[u] = true;
-        }
+        for (int u = 0; u < n; u++)
+            if (ord[u] == -1) {
+                dfs(dfs, u);
+                root[u] = true;
+            }
     }
 };
 

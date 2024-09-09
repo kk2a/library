@@ -17,28 +17,36 @@ template <class S,
 struct LazySegTreeBase {
   public:
     LazySegTreeBase() : LazySegTreeBase(0) {}
+
     LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n, e())) {}
+
     template <class... Args>
-    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n, S(args...))) {}
-    LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size())) {
+    LazySegTreeBase(int n, Args... args)
+        : LazySegTreeBase(std::vector<S>(n, S(args...))) {}
+
+    LazySegTreeBase(const std::vector<S> &v) : _n(int(v.size())) {
         log = 0;
         while ((1ll << log) < _n) log++;
         size = 1 << log;
         d = std::vector<S>(2 * size, e());
         lz = std::vector<F>(size, id());
         for (int i = 0; i < _n; i++) d[size + i] = v[i];
-        for (int i = size - 1; i >= 1; i--) {
-            update(i);
-        }
+        for (int i = size - 1; i >= 1; i--) { update(i); }
     }
 
     using Monoid = S;
+
     static S Op(S l, S r) { return op(l, r); }
+
     static S MonoidUnit() { return e(); }
+
     using Hom = F;
+
     static S Map(F f, S x) { return mapping(f, x); }
+
     static F Composition(F l, F r) { return composition(l, r); }
-    static F HomUnit() { return id(); } 
+
+    static F HomUnit() { return id(); }
 
     virtual ~LazySegTreeBase() = default;
 
@@ -49,8 +57,8 @@ struct LazySegTreeBase {
         d[p] = x;
         for (int i = 1; i <= log; i++) update(p >> i);
     }
-    template <class... Args>
-    void emplace_set(int p, Args... args) {
+
+    template <class... Args> void emplace_set(int p, Args... args) {
         set(p, S(args...));
     }
 
@@ -93,10 +101,11 @@ struct LazySegTreeBase {
         d[p] = mapping(f, d[p]);
         for (int i = 1; i <= log; i++) update(p >> i);
     }
-    template <class... Args>
-    void emplace_apply_point(int p, Args... args) {
+
+    template <class... Args> void emplace_apply_point(int p, Args... args) {
         apply(p, F(args...));
     }
+
     void apply(int l, int r, F f) {
         assert(0 <= l && l <= r && r <= _n);
         if (l == r) return;
@@ -126,6 +135,7 @@ struct LazySegTreeBase {
             if (((r >> i) << i) != r) update((r - 1) >> i);
         }
     }
+
     template <class... Args>
     void emplace_apply_range(int l, int r, Args... args) {
         apply(l, r, F(args...));
@@ -134,6 +144,7 @@ struct LazySegTreeBase {
     template <bool (*g)(S)> int max_right(int l) {
         return max_right(l, [](S x) { return g(x); });
     }
+
     template <class G> int max_right(int l, G g) {
         assert(0 <= l && l <= _n);
         assert(g(e()));
@@ -163,6 +174,7 @@ struct LazySegTreeBase {
     template <bool (*g)(S)> int min_left(int r) {
         return min_left(r, [](S x) { return g(x); });
     }
+
     template <class G> int min_left(int r, G g) {
         assert(0 <= r && r <= _n);
         assert(g(e()));
@@ -195,13 +207,15 @@ struct LazySegTreeBase {
     std::vector<F> lz;
 
     void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }
+
     virtual void all_apply(int k, F f) = 0;
+
     void push(int k) {
         all_apply(2 * k, lz[k]);
         all_apply(2 * k + 1, lz[k]);
         lz[k] = id();
     }
-}; 
+};
 
 } // namespace kk2
 

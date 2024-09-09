@@ -6,9 +6,9 @@
 
 namespace kk2 {
 
-template <typename T>
-struct BinaryIndexedTree {
+template <typename T> struct BinaryIndexedTree {
     BinaryIndexedTree() : _n(0) {}
+
     BinaryIndexedTree(int n) : _n(n), data(n) {}
 
     void add(int p, T x) {

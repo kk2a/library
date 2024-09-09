@@ -22,14 +22,13 @@ struct SubProductTree {
         r.resize(size << 1, _n);
         build();
     }
-    SubProductTree(const std::vector<mint> &v_, const FPS &f_) :
-        SubProductTree(v_) {
+
+    SubProductTree(const std::vector<mint> &v_, const FPS &f_)
+        : SubProductTree(v_) {
         this->f = f_;
     }
 
-    void set(const FPS &f_) {
-        this->f = f_;
-    }
+    void set(const FPS &f_) { this->f = f_; }
 
     void build() {
         for (int i = 0; i < _n; i++) {
@@ -73,7 +72,7 @@ struct SubProductTree {
 };
 
 template <class FPS, class mint = typename FPS::value_type>
-std::vector<mint> MultiEval(std::vector<mint> v, const FPS& f) {
+std::vector<mint> MultiEval(std::vector<mint> v, const FPS &f) {
     SubProductTree<FPS> mpe(v, f);
     return mpe.query();
 }

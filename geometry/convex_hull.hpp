@@ -2,26 +2,24 @@
 #define GEOMETRY_CONVEX_HULL_HPP 1
 
 #include <algorithm>
-#include <vector>
 #include <utility>
+#include <vector>
+
 #include "point.hpp"
 
 namespace kk2 {
 
-template <typename T>
-struct ConvexHull {
+template <typename T> struct ConvexHull {
     std::vector<Point<T>> ps, hull;
     std::vector<int> idx;
 
     ConvexHull() = default;
-    ConvexHull(const std::vector<Point<T>>& ps) : ps(ps) {}
 
-    void emplace_point(T x, T y) {
-        ps.emplace_back(x, y);
-    }
-    void push_point(const Point<T>& p) {
-        ps.push_back(p);
-    }
+    ConvexHull(const std::vector<Point<T>> &ps) : ps(ps) {}
+
+    void emplace_point(T x, T y) { ps.emplace_back(x, y); }
+
+    void push_point(const Point<T> &p) { ps.push_back(p); }
 
     void build() {
         int _n = size(ps);
@@ -39,15 +37,19 @@ struct ConvexHull {
         dw.push_back(tmp[1]);
 
         for (int i = 2; i < _n; i++) {
-            while (size(up) >= 2 && cross(up[size(up) - 1].first
-                   - up[size(up) - 2].first, tmp[i].first - up[size(up) - 1].first) >= 0) {
+            while (size(up) >= 2
+                   && cross(up[size(up) - 1].first - up[size(up) - 2].first,
+                            tmp[i].first - up[size(up) - 1].first)
+                          >= 0) {
                 up.pop_back();
             }
-            while (size(dw) >= 2 && cross(dw[size(dw) - 1].first
-                   - dw[size(dw) - 2].first, tmp[i].first - dw[size(dw) - 1].first) <= 0) {
+            while (size(dw) >= 2
+                   && cross(dw[size(dw) - 1].first - dw[size(dw) - 2].first,
+                            tmp[i].first - dw[size(dw) - 1].first)
+                          <= 0) {
                 dw.pop_back();
             }
-            up.push_back(tmp[i]); 
+            up.push_back(tmp[i]);
             dw.push_back(tmp[i]);
         }
         hull.reserve(size(up) + size(dw) - 2);

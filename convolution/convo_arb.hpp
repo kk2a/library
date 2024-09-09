@@ -2,19 +2,20 @@
 #define CONVO_ARB_HPP 1
 
 #include <vector>
+
+#include "../math_mod/garner.hpp"
 #include "../modint/mont.hpp"
 #include "convolution.hpp"
-#include "../math_mod/garner.hpp"
 
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS convolution_arb(FPS& a, const FPS& b, mint mod) {
+FPS convolution_arb(FPS &a, const FPS &b, mint mod) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
-    static constexpr long long MOD1 = 754974721;  // 2^24
-    static constexpr long long MOD2 = 167772161;  // 2^25
-    static constexpr long long MOD3 = 469762049;  // 2^26
+    static constexpr long long MOD1 = 754974721; // 2^24
+    static constexpr long long MOD2 = 167772161; // 2^25
+    static constexpr long long MOD3 = 469762049; // 2^26
     using mint1 = LazyMontgomeryModInt<MOD1>;
     using mint2 = LazyMontgomeryModInt<MOD2>;
     using mint3 = LazyMontgomeryModInt<MOD3>;
@@ -39,4 +40,4 @@ FPS convolution_arb(FPS& a, const FPS& b, mint mod) {
 
 } // namespace kk2
 
-#endif  // CONVO_ARB_HPP
+#endif // CONVO_ARB_HPP

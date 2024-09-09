@@ -1,22 +1,21 @@
 #ifndef CONVOLUTION_HPP
 #define CONVOLUTION_HPP 1
 
-#include <vector>
 #include <algorithm>
+#include <vector>
+
 #include "butterfly.hpp"
 
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS convolution(FPS& a, const FPS& b) {
+FPS convolution(FPS &a, const FPS &b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
     if (std::min(n, m) <= 60) {
         FPS res(n + m - 1);
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                res[i + j] += a[i] * b[j];
-            }
+            for (int j = 0; j < m; j++) { res[i + j] += a[i] * b[j]; }
         }
         a = res;
         return a;
@@ -27,8 +26,7 @@ FPS convolution(FPS& a, const FPS& b) {
         a.resize(z);
         butterfly(a);
         for (int i = 0; i < z; i++) a[i] *= a[i];
-    }
-    else {
+    } else {
         a.resize(z);
         butterfly(a);
         FPS t(b.begin(), b.end());
@@ -45,4 +43,4 @@ FPS convolution(FPS& a, const FPS& b) {
 
 } // namespace kk2
 
-#endif  // CONVOLUTION_HPP
+#endif // CONVOLUTION_HPP

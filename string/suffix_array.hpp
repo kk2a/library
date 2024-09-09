@@ -7,28 +7,36 @@
 #include <string>
 #include <vector>
 
-
 namespace kk2 {
 
 struct SuffixArray {
     SuffixArray() = default;
-    SuffixArray(const std::string& s_) :
-        _n((int)s_.size()), _s((int)s_.size()) {
+
+    SuffixArray(const std::string &s_)
+        : _n((int)s_.size()),
+          _s((int)s_.size()) {
         for (int i = 0; i < _n; ++i) _s[i] = s_[i];
         _upper = 255;
         init();
     }
+
     // all elements of s_ must be in [0, upper]
-    SuffixArray(const std::vector<int>& s_, int upper_) :
-        _n((int)s_.size()), _s(s_), _upper(upper_) {
+    SuffixArray(const std::vector<int> &s_, int upper_)
+        : _n((int)s_.size()),
+          _s(s_),
+          _upper(upper_) {
         init();
     }
+
     template <class T>
-    SuffixArray(const std::vector<T>& s_) :
-        _n((int)s_.size()), _s((int)s_.size()) {
+    SuffixArray(const std::vector<T> &s_)
+        : _n((int)s_.size()),
+          _s((int)s_.size()) {
         std::vector<int> idx(_n);
         std::iota(std::begin(idx), std::end(idx), 0);
-        std::sort(std::begin(idx), std::end(idx), [&](int l, int r) { return s_[l] < s_[r]; });
+        std::sort(std::begin(idx), std::end(idx), [&](int l, int r) {
+            return s_[l] < s_[r];
+        });
         _upper = 0;
         for (int i = 0; i < _n; ++i) {
             if (i && s_[idx[i - 1]] != s_[idx[i]]) _upper++;
@@ -39,7 +47,7 @@ struct SuffixArray {
 
     std::vector<int> GetSA() const { return _sa; }
 
-    bool op(int i, const std::string& t) const {
+    bool op(int i, const std::string &t) const {
         int off = _sa[i];
         int m = std::min(_n - off, (int)t.size());
         for (int j = 0; j < m; ++j) {
@@ -48,7 +56,7 @@ struct SuffixArray {
         return _n - off < (int)t.size();
     }
 
-    bool op(int i, const std::vector<int>& t) const {
+    bool op(int i, const std::vector<int> &t) const {
         int off = _sa[i];
         int m = std::min(_n - off, (int)t.size());
         for (int j = 0; j < m; ++j) {
@@ -58,7 +66,7 @@ struct SuffixArray {
     }
 
     // return the smallest index i s.t. s[sa[i]:] >= t
-    int lower_bound(const std::vector<int>& t) const {
+    int lower_bound(const std::vector<int> &t) const {
         int l = -1, r = _n;
         while (r - l > 1) {
             int m = (l + r) / 2;
@@ -68,7 +76,7 @@ struct SuffixArray {
         return r;
     }
 
-    int lower_bound(const std::string& t) const {
+    int lower_bound(const std::string &t) const {
         int l = -1, r = _n;
         while (r - l > 1) {
             int m = (l + r) / 2;
@@ -82,7 +90,7 @@ struct SuffixArray {
     int _n, _upper;
     std::vector<int> _sa, _s;
 
-    std::vector<int> sa_naive(const std::vector<int>& s) {
+    std::vector<int> sa_naive(const std::vector<int> &s) {
         int n = (int)s.size();
         std::vector<int> sa(n);
         std::iota(std::begin(sa), std::end(sa), 0);
@@ -98,7 +106,7 @@ struct SuffixArray {
         return sa;
     }
 
-    std::vector<int> sa_doubling(const std::vector<int>& s, int upper) {
+    std::vector<int> sa_doubling(const std::vector<int> &s, int upper) {
         int n = (int)s.size();
         std::vector<int> sa(n), cpy = s, tmp(n);
         std::iota(std::begin(sa), std::end(sa), 0);
@@ -112,15 +120,16 @@ struct SuffixArray {
             std::sort(std::begin(sa), std::end(sa), Compare);
             tmp[sa[0]] = 0;
             for (int i = 1; i < n; i++) {
-                tmp[sa[i]] = tmp[sa[i - 1]] + (Compare(sa[i - 1], sa[i]) ? 1 : 0);
+                tmp[sa[i]] =
+                    tmp[sa[i - 1]] + (Compare(sa[i - 1], sa[i]) ? 1 : 0);
             }
             std::swap(cpy, tmp);
         }
         return sa;
     }
 
-    template <int THRESHOLD_NAIVE=10, int THRESHOLD_DOUBLING=40>
-    std::vector<int> sa_is(const std::vector<int>& s, int upper) {
+    template <int THRESHOLD_NAIVE = 10, int THRESHOLD_DOUBLING = 40>
+    std::vector<int> sa_is(const std::vector<int> &s, int upper) {
         int n = (int)s.size();
         if (n == 0) return {};
         if (n == 1) return {0};
@@ -146,7 +155,7 @@ struct SuffixArray {
             if (i < upper) sum_l[i + 1] += sum_s[i];
         }
 
-        auto induce = [&](const std::vector<int>& lms) {
+        auto induce = [&](const std::vector<int> &lms) {
             std::fill(std::begin(sa), std::end(sa), -1);
             std::vector<int> buf(upper + 1);
             std::copy(std::begin(sum_s), std::end(sum_s), std::begin(buf));
@@ -158,16 +167,12 @@ struct SuffixArray {
             sa[buf[s[n - 1]]++] = n - 1;
             for (int i = 0; i < n; i++) {
                 int v = sa[i];
-                if (v >= 1 && !ls[v - 1]) {
-                    sa[buf[s[v - 1]]++] = v - 1;
-                }
+                if (v >= 1 && !ls[v - 1]) { sa[buf[s[v - 1]]++] = v - 1; }
             }
             std::copy(std::begin(sum_l), std::end(sum_l), std::begin(buf));
             for (int i = n - 1; i >= 0; i--) {
                 int v = sa[i];
-                if (v >= 1 && ls[v - 1]) {
-                    sa[--buf[s[v - 1] + 1]] = v - 1;
-                }
+                if (v >= 1 && ls[v - 1]) { sa[--buf[s[v - 1] + 1]] = v - 1; }
             }
         };
 
@@ -179,9 +184,7 @@ struct SuffixArray {
         std::vector<int> lms;
         lms.reserve(m);
         for (int i = 1; i < n; i++) {
-            if (!ls[i - 1] && ls[i]) {
-                lms.push_back(i);
-            }
+            if (!ls[i - 1] && ls[i]) { lms.push_back(i); }
         }
 
         induce(lms);
@@ -217,9 +220,7 @@ struct SuffixArray {
             std::vector<int> rec_sa =
                 sa_is<THRESHOLD_NAIVE, THRESHOLD_DOUBLING>(rec_s, rec_upper);
 
-            for (int i = 0; i < m; i++) {
-                sorted_lms[i] = lms[rec_sa[i]];
-            }
+            for (int i = 0; i < m; i++) { sorted_lms[i] = lms[rec_sa[i]]; }
             induce(sorted_lms);
         }
         return sa;

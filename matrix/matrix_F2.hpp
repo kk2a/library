@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 #include "../data_structure/my_bitset.hpp"
 
 namespace kk2 {
@@ -16,23 +17,29 @@ struct MatrixF2 {
     std::vector<DynamicBitSet> _mat;
 
     MatrixF2() : MatrixF2(0) {}
+
     MatrixF2(int n) : MatrixF2(n, n) {}
+
     MatrixF2(int h, int w) {
         if (h == 0) {
             _h = 0;
             _w = w;
-        }
-        else {
+        } else {
             _h = h;
             _w = w;
             _mat.resize(h, DynamicBitSet(w));
         }
     }
-    MatrixF2(const std::vector<DynamicBitSet>& mat_) : _h(mat_.size()), _w(mat_[0].size()), _mat(mat_) {}
+
+    MatrixF2(const std::vector<DynamicBitSet> &mat_)
+        : _h(mat_.size()),
+          _w(mat_[0].size()),
+          _mat(mat_) {}
 
     int get_h() const { return _h; }
+
     int get_w() const { return _w; }
-    
+
     bool at(int i, int j) {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);
@@ -40,28 +47,31 @@ struct MatrixF2 {
     }
 
     class Proxy {
-        std::vector<DynamicBitSet>& bs;
+        std::vector<DynamicBitSet> &bs;
         int i;
+
       public:
-        Proxy(std::vector<DynamicBitSet>& bs_, int i_) : bs(bs_), i(i_) {}
+        Proxy(std::vector<DynamicBitSet> &bs_, int i_) : bs(bs_), i(i_) {}
+
         operator DynamicBitSet() const { return bs[i]; }
 
-        std::string to_string() const {
-            return bs[i].to_string();
-        }
+        std::string to_string() const { return bs[i].to_string(); }
+
         std::string to_reversed_string() const {
             return bs[i].to_reversed_string();
         }
 
-        Proxy& operator=(const std::string& s) {
+        Proxy &operator=(const std::string &s) {
             bs[i].set_reversed(s);
             return *this;
         }
-        Proxy& operator=(const DynamicBitSet& x) {
+
+        Proxy &operator=(const DynamicBitSet &x) {
             bs[i] = x;
             return *this;
         }
-        Proxy& operator=(const Proxy& x) {
+
+        Proxy &operator=(const Proxy &x) {
             bs[i] = x.bs[x.i];
             return *this;
         }
@@ -71,38 +81,42 @@ struct MatrixF2 {
             return bs[i][j];
         }
 
-        Proxy& operator&=(const DynamicBitSet& x) {
+        Proxy &operator&=(const DynamicBitSet &x) {
             bs[i] &= x;
             return *this;
         }
-        Proxy& operator&=(const Proxy& x) {
+
+        Proxy &operator&=(const Proxy &x) {
             bs[i] &= x.bs[x.i];
             return *this;
         }
 
-        Proxy& operator|=(const DynamicBitSet& x) {
+        Proxy &operator|=(const DynamicBitSet &x) {
             bs[i] |= x;
             return *this;
         }
-        Proxy& operator|=(const Proxy& x) {
+
+        Proxy &operator|=(const Proxy &x) {
             bs[i] |= x.bs[x.i];
             return *this;
         }
 
-        Proxy& operator^=(const DynamicBitSet& x) {
+        Proxy &operator^=(const DynamicBitSet &x) {
             bs[i] ^= x;
             return *this;
         }
-        Proxy& operator^=(const Proxy& x) {
+
+        Proxy &operator^=(const Proxy &x) {
             bs[i] ^= x.bs[x.i];
             return *this;
         }
 
-        Proxy& flip() {
+        Proxy &flip() {
             bs[i].flip();
             return *this;
         }
-        Proxy& operator~() {
+
+        Proxy &operator~() {
             bs[i].flip();
             return *this;
         }
@@ -125,69 +139,59 @@ struct MatrixF2 {
         _mat[i].set(j, x);
     }
 
-    void set(int i, const std::string& s) {
+    void set(int i, const std::string &s) {
         assert((int)s.size() == _w);
         _mat[i].set(s);
     }
 
-    void set_reversed(int i, const std::string& s) {
+    void set_reversed(int i, const std::string &s) {
         assert((int)s.size() == _w);
         _mat[i].set_reversed(s);
     }
 
-    mat& operator+=(const mat& rhs) {
+    mat &operator+=(const mat &rhs) {
         assert(_h == rhs._h);
         assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) {
-            _mat[i] = _mat[i] ^ rhs._mat[i];
-        }
+        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }
         return *this;
     }
 
-    mat& operator-=(const mat& rhs) {
+    mat &operator-=(const mat &rhs) {
         assert(_h == rhs._h);
         assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) {
-            _mat[i] = _mat[i] ^ rhs._mat[i];
-        }
+        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }
         return *this;
     }
 
-    mat& operator^=(const mat& rhs) {
+    mat &operator^=(const mat &rhs) {
         assert(_h == rhs._h);
         assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) {
-            _mat[i] = _mat[i] ^ rhs._mat[i];
-        }
+        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }
         return *this;
     }
 
-    mat& operator|=(const mat& rhs) {
+    mat &operator|=(const mat &rhs) {
         assert(_h == rhs._h);
         assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) {
-            _mat[i] = _mat[i] | rhs._mat[i];
-        }
+        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] | rhs._mat[i]; }
         return *this;
     }
 
-    mat& operator&=(const mat& rhs) {
+    mat &operator&=(const mat &rhs) {
         assert(_h == rhs._h);
         assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) {
-            _mat[i] = _mat[i] & rhs._mat[i];
-        }
+        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }
         return *this;
     }
 
-    mat& operator*=(const mat& rhs) {
+    mat &operator*=(const mat &rhs) {
         assert(_w == rhs._h);
         std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) {
                 if (_mat[i][j]) res[i] ^= rhs._mat[j];
-                // cout << i << " " << j << " " << _mat[i][j] << " check" << endl;
-                // rep (i, 2) { cout << res[i] << endl; }
+                // cout << i << " " << j << " " << _mat[i][j] << " check" <<
+                // endl; rep (i, 2) { cout << res[i] << endl; }
             }
         }
         _w = rhs._w;
@@ -195,13 +199,31 @@ struct MatrixF2 {
         return *this;
     }
 
-    friend mat operator+(const mat& lhs, const mat& rhs) { return mat(lhs) += rhs; }
-    friend mat operator-(const mat& lhs, const mat& rhs) { return mat(lhs) -= rhs; }
-    friend mat operator^(const mat& lhs, const mat& rhs) { return mat(lhs) ^= rhs; }
-    friend mat operator|(const mat& lhs, const mat& rhs) { return mat(lhs) |= rhs; }
-    friend mat operator&(const mat& lhs, const mat& rhs) { return mat(lhs) &= rhs; }
-    friend mat operator*(const mat& lhs, const mat& rhs) { return mat(lhs) *= rhs; }
-    friend bool operator==(const mat& lhs, const mat& rhs) {
+    friend mat operator+(const mat &lhs, const mat &rhs) {
+        return mat(lhs) += rhs;
+    }
+
+    friend mat operator-(const mat &lhs, const mat &rhs) {
+        return mat(lhs) -= rhs;
+    }
+
+    friend mat operator^(const mat &lhs, const mat &rhs) {
+        return mat(lhs) ^= rhs;
+    }
+
+    friend mat operator|(const mat &lhs, const mat &rhs) {
+        return mat(lhs) |= rhs;
+    }
+
+    friend mat operator&(const mat &lhs, const mat &rhs) {
+        return mat(lhs) &= rhs;
+    }
+
+    friend mat operator*(const mat &lhs, const mat &rhs) {
+        return mat(lhs) *= rhs;
+    }
+
+    friend bool operator==(const mat &lhs, const mat &rhs) {
         assert(lhs._h == rhs._h);
         assert(lhs._w == rhs._w);
         for (int i = 0; i < lhs._h; i++) {
@@ -209,56 +231,56 @@ struct MatrixF2 {
         }
         return true;
     }
-    friend bool operator!=(const mat& lhs, const mat& rhs) {
+
+    friend bool operator!=(const mat &lhs, const mat &rhs) {
         return !(lhs == rhs);
     }
 
-    mat& inplace_combine_top(const mat& rhs) {
+    mat &inplace_combine_top(const mat &rhs) {
         assert(_w == rhs._w);
         _mat.insert(std::begin(_mat), std::begin(rhs._mat), std::end(rhs._mat));
         _h += rhs._h;
         return *this;
     }
 
-    mat combine_top(const mat& rhs) const {
+    mat combine_top(const mat &rhs) const {
         assert(_w == rhs._w);
         return mat(_mat).inplace_combine_top(rhs);
     }
 
-    mat& inplace_combine_bottom(const mat& rhs) {
+    mat &inplace_combine_bottom(const mat &rhs) {
         assert(_w == rhs._w);
         _mat.insert(std::end(_mat), std::begin(rhs._mat), std::end(rhs._mat));
         _h += rhs._h;
         return *this;
     }
 
-    mat combine_bottom(const mat& rhs) const {
+    mat combine_bottom(const mat &rhs) const {
         assert(_w == rhs._w);
         return mat(_mat).inplace_combine_bottom(rhs);
     }
 
-    mat& inplace_combine_right(const mat& rhs) {
+    mat &inplace_combine_right(const mat &rhs) {
         assert(_h == rhs._h);
-        for (int i = 0; i < _h; i++) 
-            _mat[i].inplace_combine_top(rhs._mat[i]);
+        for (int i = 0; i < _h; i++) _mat[i].inplace_combine_top(rhs._mat[i]);
         _w += rhs._w;
         return *this;
     }
 
-    mat combine_right(const mat& rhs) const {
+    mat combine_right(const mat &rhs) const {
         assert(_h == rhs._h);
         return mat(_mat).inplace_combine_right(rhs);
     }
 
-    mat& inplace_combine_left(const mat& rhs) {
+    mat &inplace_combine_left(const mat &rhs) {
         assert(_h == rhs._h);
-        for (int i = 0; i < _h; i++) 
+        for (int i = 0; i < _h; i++)
             _mat[i].inplace_combine_bottom(rhs._mat[i]);
         _w += rhs._w;
         return *this;
     }
 
-    mat combine_left(const mat& rhs) const {
+    mat combine_left(const mat &rhs) const {
         assert(_h == rhs._h);
         return mat(_mat).inplace_combine_left(rhs);
     }
@@ -309,26 +331,21 @@ struct MatrixF2 {
                 continue;
             }
             res[now][nowj] = 1;
-            for (int i = 0; i < _h; i++) if (_mat[i].is_pinned(nowj)) res[now][step[i]] = 1;
+            for (int i = 0; i < _h; i++)
+                if (_mat[i].is_pinned(nowj)) res[now][step[i]] = 1;
             nowj++, now++;
         }
         return res;
     }
 
-    int rank() const {
-        return mat(*this).sweep();
-    }
+    int rank() const { return mat(*this).sweep(); }
 
-    bool det() const {
-        return rank() == _h;
-    }
+    bool det() const { return rank() == _h; }
 
     mat inv() const {
         assert(_h == _w);
         std::vector<DynamicBitSet> res(_h, _w);
-        for (int i = 0; i < _h; i++) {
-            res[i][i] = 1;
-        }
+        for (int i = 0; i < _h; i++) { res[i][i] = 1; }
         std::vector<DynamicBitSet> buf(_mat);
         for (int i = 0; i < _w; i++) {
             int pivot = -1;

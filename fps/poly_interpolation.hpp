@@ -4,30 +4,28 @@
 #include <cassert>
 #include <functional>
 #include <vector>
-#include "multi_eval.hpp"
+
 #include "chirp_Z.hpp"
+#include "multi_eval.hpp"
 
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS PolyInterpolation(const std::vector<mint> &x,
-                      const std::vector<mint> &y) {
+FPS PolyInterpolation(const std::vector<mint> &x, const std::vector<mint> &y) {
     assert(x.size() == y.size());
     SubProductTree<FPS> mpe(x);
     FPS gp = mpe.pr[1].diff();
     std::vector<mint> vs = mpe.query(gp);
     auto rec = [&](auto self, int idx) -> FPS {
-        if (idx >= mpe.size) {  
+        if (idx >= mpe.size) {
             if (idx - mpe.size < (int)y.size()) {
                 return {y[idx - mpe.size] / vs[idx - mpe.size]};
-            }
-            else return {mint(1)};
+            } else return {mint(1)};
         }
         if (mpe.pr[idx << 1 | 0].empty()) return {};
-        else if (mpe.pr[idx << 1 | 1].empty())
-            return self(self, idx << 1 | 0);
-        return self(self, idx << 1 | 0) * mpe.pr[idx << 1 | 1] +
-               self(self, idx << 1 | 1) * mpe.pr[idx << 1 | 0];
+        else if (mpe.pr[idx << 1 | 1].empty()) return self(self, idx << 1 | 0);
+        return self(self, idx << 1 | 0) * mpe.pr[idx << 1 | 1]
+               + self(self, idx << 1 | 1) * mpe.pr[idx << 1 | 0];
     };
     return rec(rec, 1);
 }
@@ -35,7 +33,8 @@ FPS PolyInterpolation(const std::vector<mint> &x,
 // reference:
 // https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan
 template <class FPS, class mint = typename FPS::value_type>
-FPS PolyInterpolationGeo(const mint &a, const mint &r,
+FPS PolyInterpolationGeo(const mint &a,
+                         const mint &r,
                          const std::vector<mint> &y) {
     if (y.empty()) return {};
     if (y.size() == 1) return FPS{y[0]};
@@ -60,14 +59,15 @@ FPS PolyInterpolationGeo(const mint &a, const mint &r,
     std::vector<mint> w(n);
     q = 1;
     int idx1 = n - 1, idx2 = 0;
-    w[n - 1] = r.pow(1ll * (n - 1) * (n - 2) / 2).inv() * invs[idx1] * invs[idx2];
+    w[n - 1] =
+        r.pow(1ll * (n - 1) * (n - 2) / 2).inv() * invs[idx1] * invs[idx2];
     if ((n - 1) & 1) w[n - 1] *= -1;
     for (int i = n - 1; i > 0; i--) {
-        w[i - 1] = w[i] * q * (-1) * 
-                   s[idx1] * invs[idx1 - 1] *
-                   s[idx2] * invs[idx2 + 1];
+        w[i - 1] = w[i] * q * (-1) * s[idx1] * invs[idx1 - 1] * s[idx2]
+                   * invs[idx2 + 1];
         q *= r;
-        idx1--; idx2++;
+        idx1--;
+        idx2++;
     }
     for (int i = 0; i < n; i++) w[i] *= y[i];
 

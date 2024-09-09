@@ -8,25 +8,27 @@
 namespace kk2 {
 
 template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
-public:
+  public:
     SegTree() : SegTree(0) {}
+
     SegTree(int n) : SegTree(std::vector<S>(n, e())) {}
     template <class... Args>
-    SegTree(int n, Args... args) : SegTree(std::vector<S>(n, S(args...))) {};
-    SegTree(const std::vector<S>& v) : _n(int(v.size())) {
+    SegTree(int n, Args... args) : SegTree(std::vector<S>(n, S(args...))){};
+
+    SegTree(const std::vector<S> &v) : _n(int(v.size())) {
         log = 0;
         while ((1U << log) < (unsigned int)(_n)) log++;
         size = 1 << log;
         d = std::vector<S>(2 * size, e());
         for (int i = 0; i < _n; i++) d[size + i] = v[i];
-        for (int i = size - 1; i >= 1; i--) {
-            update(i);
-        }
+        for (int i = size - 1; i >= 1; i--) { update(i); }
     }
 
     using Monoid = S;
+
     static S Op(S l, S r) { return op(l, r); }
-    static S MonoidUnit() { return e(); } 
+
+    static S MonoidUnit() { return e(); }
 
     void set(int p, S x) {
         assert(0 <= p && p < _n);
@@ -34,8 +36,8 @@ public:
         d[p] = x;
         for (int i = 1; i <= log; i++) update(p >> i);
     }
-    template <class... Args>
-    void emplace_set(int p, Args... args) {
+
+    template <class... Args> void emplace_set(int p, Args... args) {
         set(p, S(args...));
     }
 
@@ -67,6 +69,7 @@ public:
     template <bool (*f)(S)> int max_right(int l) {
         return max_right(l, [](S x) { return f(x); });
     }
+
     template <class F> int max_right(int l, F f) {
         assert(0 <= l && l <= _n);
         assert(f(e()));
@@ -97,6 +100,7 @@ public:
     template <bool (*f)(S)> int min_left(int r) {
         return min_left(r, [](S x) { return f(x); });
     }
+
     template <class F> int min_left(int r, F f) {
         assert(0 <= r && r <= _n);
         assert(f(e()));
@@ -121,7 +125,7 @@ public:
         return 0;
     }
 
-private:
+  private:
     int _n, size, log;
     std::vector<S> d;
 

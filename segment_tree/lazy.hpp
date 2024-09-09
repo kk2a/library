@@ -12,8 +12,11 @@ template <class S,
           S (*mapping)(F, S),
           F (*composition)(F, F),
           F (*id)()>
-struct LazySegTree : public LazySegTreeBase<S, op, e, F, mapping, composition, id> {
-    using LazySegTreeBase<S, op, e, F, mapping, composition, id>::LazySegTreeBase;
+struct LazySegTree
+    : public LazySegTreeBase<S, op, e, F, mapping, composition, id> {
+    using LazySegTreeBase<S, op, e, F, mapping, composition, id>::
+        LazySegTreeBase;
+
   protected:
     void all_apply(int k, F f) override {
         this->d[k] = mapping(f, this->d[k]);

@@ -4,12 +4,12 @@
 #include <algorithm>
 #include <cassert>
 #include <vector>
+
 #include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
-template <class mint>
-struct Comb {
+template <class mint> struct Comb {
     static inline std::vector<mint> _fact{1}, _ifact{1}, _inv{1};
 
     Comb() = delete;
@@ -54,8 +54,7 @@ struct Comb {
         return fact(n) * ifact(k) * ifact(n - k);
     }
 
-    template <class T>
-    static mint multinomial(const std::vector<T>& r) {
+    template <class T> static mint multinomial(const std::vector<T> &r) {
         static_assert(is_integral_extended<T>::value, "T must be integral");
         int n = 0;
         for (auto &x : r) {

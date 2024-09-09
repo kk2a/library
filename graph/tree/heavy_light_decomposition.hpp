@@ -2,17 +2,17 @@
 #define GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP 1
 
 #include <functional>
-#include <vector>
 #include <utility>
+#include <vector>
 
 namespace kk2 {
 
-template <typename G>
-struct HeavyLightDecomposition {
-    G& g;
+template <typename G> struct HeavyLightDecomposition {
+    G &g;
     int root, id;
     std::vector<int> sz, in, out, head, par, dep, edge_idx;
-    HeavyLightDecomposition(G& g_, int root_ = 0) 
+
+    HeavyLightDecomposition(G &g_, int root_ = 0)
         : g(g_),
           root(root_),
           id(0),
@@ -26,38 +26,37 @@ struct HeavyLightDecomposition {
         init();
     }
 
-    int get_edge_idx(int i) const {
-        return edge_idx[i];
-    }
+    int get_edge_idx(int i) const { return edge_idx[i]; }
 
     std::pair<int, int> get_node_idx(int u) const {
         return std::make_pair(in[u], out[u]);
     }
 
     template <typename F>
-    void path_query(int u, int v, bool is_node_query, const F& f) {
+    void path_query(int u, int v, bool is_node_query, const F &f) {
         int l = lca(u, v);
-        for (auto& [a, b] : ascend(u, l)) {
+        for (auto &[a, b] : ascend(u, l)) {
             int s = a + 1, t = b;
             s > t ? f(t, s) : f(s, t);
         }
         if (is_node_query) f(in[l], in[l] + 1);
-        for (auto& [a, b] : descend(l, v)) {
+        for (auto &[a, b] : descend(l, v)) {
             int s = a, t = b + 1;
             s > t ? f(t, s) : f(s, t);
         }
     }
 
     template <typename F>
-    void path_noncommutative_query(int u, int v, bool is_node_query, const F& f) {
+    void
+    path_noncommutative_query(int u, int v, bool is_node_query, const F &f) {
         int l = lca(u, v);
-        for (auto& [a, b] : ascend(u, l)) f(a + 1, b);
+        for (auto &[a, b] : ascend(u, l)) f(a + 1, b);
         if (is_node_query) f(in[l], in[l] + 1);
-        for (auto& [a, b] : descend(l, v)) f(a, b + 1);
+        for (auto &[a, b] : descend(l, v)) f(a, b + 1);
     }
 
     template <typename F>
-    void subtree_query(int u, bool is_vertex_query, const F& f) {
+    void subtree_query(int u, bool is_vertex_query, const F &f) {
         f(in[u] + (int)!is_vertex_query, out[u]);
     }
 
@@ -77,26 +76,24 @@ struct HeavyLightDecomposition {
     void init() {
         auto dfs_sz = [&](auto self, int now) -> void {
             sz[now] = 1;
-            for (auto& e : g[now]) {
+            for (auto &e : g[now]) {
                 if ((int)e == par[now]) {
                     if (g[now].size() >= 2 and e == g[now][0])
                         std::swap(e, g[now][1]);
-                    else 
-                        continue;
+                    else continue;
                 }
                 par[(int)e] = now;
                 dep[(int)e] = dep[now] + 1;
                 self(self, (int)e);
                 sz[now] += sz[(int)e];
-                if (sz[(int)e] > sz[(int)g[now][0]])
-                    std::swap(e, g[now][0]);
+                if (sz[(int)e] > sz[(int)g[now][0]]) std::swap(e, g[now][0]);
             }
         };
         dfs_sz(dfs_sz, root);
 
         auto dfs_hld = [&](auto self, int now) -> void {
             in[now] = id++;
-            for (auto& e : g[now]) {
+            for (auto &e : g[now]) {
                 if ((int)e == par[now]) continue;
                 head[(int)e] = ((int)e == (int)g[now][0] ? head[now] : (int)e);
                 edge_idx[e.id] = id;

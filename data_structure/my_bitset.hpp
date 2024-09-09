@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <bitset>
 #include <cassert>
-#include <iterator>
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <vector>
 
@@ -32,17 +32,19 @@ struct DynamicBitSet {
     // For example, if the input is "1010",
     // the character at index 0 in the string is '1',
     // but in the bitset it will be considered as index 0.
-    DynamicBitSet(const std::string& s) : n(s.size()) {
+    DynamicBitSet(const std::string &s) : n(s.size()) {
         block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         set(s);
     }
 
     int size() const { return n; }
 
-    T& inplace_combine_top(const T& rhs) {
+    T &inplace_combine_top(const T &rhs) {
         block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         if (!(n & BLOCK_MASK)) {
-            std::copy(std::begin(rhs.block), std::end(rhs.block), std::begin(block) + (n >> BLOCK_SIZE_LOG));
+            std::copy(std::begin(rhs.block),
+                      std::end(rhs.block),
+                      std::begin(block) + (n >> BLOCK_SIZE_LOG));
             n += rhs.n;
             return *this;
         }
@@ -51,42 +53,55 @@ struct DynamicBitSet {
         UInt end_mask = ~start_mask;
         for (int i = 0; i < (rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             UInt x = rhs.block[i];
-            block[i + (n >> BLOCK_SIZE_LOG)] |= (x & start_mask) << (BLOCK_SIZE - start);
-            if (i + (n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG)
+            block[i + (n >> BLOCK_SIZE_LOG)] |= (x & start_mask)
+                                                << (BLOCK_SIZE - start);
+            if (i + (n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1)
+                >> BLOCK_SIZE_LOG)
                 block[i + (n >> BLOCK_SIZE_LOG) + 1] |= (x & end_mask) >> start;
         }
         n += rhs.n;
         return *this;
     }
 
-    T combine_top(const T& rhs) const {
+    T combine_top(const T &rhs) const {
         return T(*this).inplace_combine_top(rhs);
     }
 
-    T& inplace_combine_bottom(const T& rhs) {
+    T &inplace_combine_bottom(const T &rhs) {
         block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         if (!(rhs.n & BLOCK_MASK)) {
-            std::copy(std::begin(block), std::end(block), std::begin(block) + (rhs.n >> BLOCK_SIZE_LOG));
-            std::copy(std::begin(rhs.block), std::end(rhs.block), std::begin(block));
+            std::copy(std::begin(block),
+                      std::end(block),
+                      std::begin(block) + (rhs.n >> BLOCK_SIZE_LOG));
+            std::copy(
+                std::begin(rhs.block), std::end(rhs.block), std::begin(block));
             n += rhs.n;
             return *this;
         }
         int start = BLOCK_SIZE - (rhs.n & BLOCK_MASK);
         UInt start_mask = (ONE << start) - 1;
         UInt end_mask = ~start_mask;
-        for (int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) - 1; i >= 0; --i) {
+        for (int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) - 1; i >= 0;
+             --i) {
             UInt x = block[i];
-            block[i + (rhs.n >> BLOCK_SIZE_LOG)] |= (x & start_mask) << (BLOCK_SIZE - start);
-            if (i + (rhs.n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG)
-                block[i + (rhs.n >> BLOCK_SIZE_LOG) + 1] |= (x & end_mask) >> start;
+            block[i + (rhs.n >> BLOCK_SIZE_LOG)] |= (x & start_mask)
+                                                    << (BLOCK_SIZE - start);
+            if (i + (rhs.n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1)
+                >> BLOCK_SIZE_LOG)
+                block[i + (rhs.n >> BLOCK_SIZE_LOG) + 1] |=
+                    (x & end_mask) >> start;
         }
-        block[(rhs.n >> BLOCK_SIZE_LOG)] = ((block[0] & start_mask) << (BLOCK_SIZE - start)) | rhs.block.back();
-        std::copy(std::begin(rhs.block), std::prev(std::end(rhs.block)), std::begin(block));
+        block[(rhs.n >> BLOCK_SIZE_LOG)] =
+            ((block[0] & start_mask) << (BLOCK_SIZE - start))
+            | rhs.block.back();
+        std::copy(std::begin(rhs.block),
+                  std::prev(std::end(rhs.block)),
+                  std::begin(block));
         n += rhs.n;
         return *this;
     }
 
-    T combine_bottom(const T& rhs) const {
+    T combine_bottom(const T &rhs) const {
         return T(*this).inplace_combine_bottom(rhs);
     }
 
@@ -96,7 +111,7 @@ struct DynamicBitSet {
         else block[i >> BLOCK_SIZE_LOG] &= ~(ONE << (i & BLOCK_MASK));
     }
 
-    void set(const std::string& s) {
+    void set(const std::string &s) {
         assert((int)s.size() == n);
         for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             int r = n - (i << BLOCK_SIZE_LOG), l = std::max(0, r - BLOCK_SIZE);
@@ -106,7 +121,7 @@ struct DynamicBitSet {
         }
     }
 
-    void set_reversed(const std::string& s) {
+    void set_reversed(const std::string &s) {
         assert((int)s.size() == n);
         for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             int l = i << BLOCK_SIZE_LOG, r = std::min(n, l + BLOCK_SIZE);
@@ -117,60 +132,71 @@ struct DynamicBitSet {
     }
 
     class BitReference {
-        std::vector<UInt>& block;
+        std::vector<UInt> &block;
         int idx;
+
       public:
-        BitReference(std::vector<UInt>& block_, int idx_) : block(block_), idx(idx_) {}
-        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }
+        BitReference(std::vector<UInt> &block_, int idx_)
+            : block(block_),
+              idx(idx_) {}
 
-        BitReference& operator=(bool x) {
+        operator bool() const {
+            return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1;
+        }
+
+        BitReference &operator=(bool x) {
             if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
             else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
             return *this;
         }
 
-        BitReference& operator=(const BitReference& other) {
-            if (other) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
+        BitReference &operator=(const BitReference &other) {
+            if (other)
+                block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
             else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
             return *this;
         }
 
-        BitReference& operator&=(bool x) {
-            if (!x) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
+        BitReference &operator&=(bool x) {
+            if (!x)
+                block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
             return *this;
         }
 
-        BitReference& operator&=(const BitReference& other) {
-            if (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
+        BitReference &operator&=(const BitReference &other) {
+            if (!other)
+                block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
             return *this;
         }
 
-        BitReference& operator|=(bool x) {
+        BitReference &operator|=(bool x) {
             if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
             return *this;
         }
 
-        BitReference& operator|=(const BitReference& other) {
-            if (other) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
+        BitReference &operator|=(const BitReference &other) {
+            if (other)
+                block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
             return *this;
         }
 
-        BitReference& operator^=(bool x) {
+        BitReference &operator^=(bool x) {
             if (x) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);
             return *this;
         }
 
-        BitReference& operator^=(const BitReference& other) {
-            if (other) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);
+        BitReference &operator^=(const BitReference &other) {
+            if (other)
+                block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);
             return *this;
         }
 
-        BitReference& flip() {
+        BitReference &flip() {
             block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);
             return *this;
         }
 
-        BitReference& operator~() {
+        BitReference &operator~() {
             block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);
             return *this;
         }
@@ -190,29 +216,27 @@ struct DynamicBitSet {
         return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;
     }
 
-    T& operator=(const std::string& s) {
+    T &operator=(const std::string &s) {
         set(s);
         return *this;
     }
 
-    T& flip() {
+    T &flip() {
         UInt mask = (ONE << (n & BLOCK_MASK)) - 1;
-        for (UInt& x : block) x = ~x;
+        for (UInt &x : block) x = ~x;
         block.back() &= mask;
         return *this;
     }
 
-    T& flip(int i) {
+    T &flip(int i) {
         assert(0 <= i && i < n);
         block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);
         return *this;
     }
 
-    T& operator~() {
-        return flip();
-    }
+    T &operator~() { return flip(); }
 
-    T& operator&=(const T& other) {
+    T &operator&=(const T &other) {
         assert(n == other.n);
         for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             block[i] &= other.block[i];
@@ -220,7 +244,7 @@ struct DynamicBitSet {
         return *this;
     }
 
-    T& operator|=(const T& other) {
+    T &operator|=(const T &other) {
         assert(n == other.n);
         for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             block[i] |= other.block[i];
@@ -228,7 +252,7 @@ struct DynamicBitSet {
         return *this;
     }
 
-    T& operator^=(const T& other) {
+    T &operator^=(const T &other) {
         assert(n == other.n);
         for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             block[i] ^= other.block[i];
@@ -236,25 +260,21 @@ struct DynamicBitSet {
         return *this;
     }
 
-    friend T operator&(const T& lhs, const T& rhs) {
-        return T(lhs) &= rhs;
-    }
-    friend T operator|(const T& lhs, const T& rhs) {
-        return T(lhs) |= rhs;
-    }
-    friend T operator^(const T& lhs, const T& rhs) {
-        return T(lhs) ^= rhs;
-    }
-    friend bool operator==(const T& lhs, const T& rhs) {
+    friend T operator&(const T &lhs, const T &rhs) { return T(lhs) &= rhs; }
+
+    friend T operator|(const T &lhs, const T &rhs) { return T(lhs) |= rhs; }
+
+    friend T operator^(const T &lhs, const T &rhs) { return T(lhs) ^= rhs; }
+
+    friend bool operator==(const T &lhs, const T &rhs) {
         if (lhs.n != rhs.n) return false;
         for (int i = 0; i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             if (lhs.block[i] != rhs.block[i]) return false;
         }
         return true;
     }
-    friend bool operator!=(const T& lhs, const T& rhs) {
-        return !(lhs == rhs);
-    }
+
+    friend bool operator!=(const T &lhs, const T &rhs) { return !(lhs == rhs); }
 
     operator bool() const {
         for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
@@ -264,8 +284,11 @@ struct DynamicBitSet {
     }
 
     std::string to_string(UInt x) const {
-        return std::bitset<64>((unsigned long long)(x >> (BLOCK_SIZE / 2))).to_string() 
-             + std::bitset<64>((unsigned long long)(x & ((ONE << (BLOCK_SIZE / 2)) - 1))).to_string();
+        return std::bitset<64>((unsigned long long)(x >> (BLOCK_SIZE / 2)))
+                   .to_string()
+               + std::bitset<64>(
+                     (unsigned long long)(x & ((ONE << (BLOCK_SIZE / 2)) - 1)))
+                     .to_string();
     }
 
     std::string to_string() const {
@@ -303,7 +326,7 @@ struct DynamicBitSet {
         return res;
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const T& bs) {
+    friend std::ostream &operator<<(std::ostream &os, const T &bs) {
         return os << bs.to_string();
     }
 };

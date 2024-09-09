@@ -8,8 +8,7 @@
 
 namespace kk2 {
 
-template <class mint>
-struct FormalPowerSeries : std::vector<mint> {
+template <class mint> struct FormalPowerSeries : std::vector<mint> {
     using std::vector<mint>::vector;
     using FPS = FormalPowerSeries;
 
@@ -18,27 +17,30 @@ struct FormalPowerSeries : std::vector<mint> {
         for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];
         return *this;
     }
+
     FPS &operator+=(const mint &r) {
         if (this->empty()) this->resize(1);
         (*this)[0] += r;
         return *this;
     }
+
     FPS &operator-=(const FPS &r) {
         if (this->size() < r.size()) this->resize(r.size());
         for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];
         return *this;
     }
+
     FPS &operator-=(const mint &r) {
         if (this->empty()) this->resize(1);
         (*this)[0] -= r;
         return *this;
     }
+
     FPS &operator*=(const mint &r) {
-        for (int i = 0; i < (int)this->size(); i++) {
-            (*this)[i] *= r;
-        }
+        for (int i = 0; i < (int)this->size(); i++) { (*this)[i] *= r; }
         return *this;
     }
+
     FPS &operator/=(const FPS &r) {
         assert(!r.empty());
         if (this->size() < r.size()) {
@@ -62,8 +64,9 @@ struct FormalPowerSeries : std::vector<mint> {
             this->resize(n, mint(0));
             return *this;
         }
-        return *this = ((*this).rev().pre(n) * r.rev().inv(n)).pre(n).rev();        
+        return *this = ((*this).rev().pre(n) * r.rev().inv(n)).pre(n).rev();
     }
+
     FPS &operator%=(const FPS &r) {
         *this -= *this / r * r;
         shrink();
@@ -71,12 +74,19 @@ struct FormalPowerSeries : std::vector<mint> {
     }
 
     FPS operator+(const FPS &r) const { return FPS(*this) += r; }
+
     FPS operator+(const mint &r) const { return FPS(*this) += r; }
+
     FPS operator-(const FPS &r) const { return FPS(*this) -= r; }
+
     FPS operator-(const mint &r) const { return FPS(*this) -= r; }
+
     FPS operator*(const mint &r) const { return FPS(*this) *= r; }
+
     FPS operator/(const FPS &r) const { return FPS(*this) /= r; }
+
     FPS operator%(const FPS &r) const { return FPS(*this) %= r; }
+
     FPS operator-() const {
         FPS ret(this->size());
         for (int i = 0; i < (int)this->size(); i++) ret[i] = -(*this)[i];
@@ -127,6 +137,7 @@ struct FormalPowerSeries : std::vector<mint> {
         FPS ret(this->begin() + n, this->end());
         return ret;
     }
+
     FPS operator<<(int n) const {
         FPS ret(*this);
         ret.insert(ret.begin(), n, mint(0));
@@ -136,17 +147,14 @@ struct FormalPowerSeries : std::vector<mint> {
     FPS diff() const {
         const int n = (int)this->size();
         FPS ret(std::max(0, n - 1));
-        for (int i = 1; i < n; i++) {
-            ret[i - 1] = (*this)[i] * mint(i);
-        }
+        for (int i = 1; i < n; i++) { ret[i - 1] = (*this)[i] * mint(i); }
         return ret;
     }
 
     FPS inplace_diff() {
         if (this->empty()) return {};
         this->erase(this->begin());
-        for (int i = 1; i <= (int)this->size(); i++)
-            (*this)[i - 1] *= mint(i);
+        for (int i = 1; i <= (int)this->size(); i++) (*this)[i - 1] *= mint(i);
         return *this;
     }
 
@@ -161,9 +169,7 @@ struct FormalPowerSeries : std::vector<mint> {
             // - q / r = 1 / i (mod p)
             ret[i] = (-ret[mod % i]) * (mod / i);
         }
-        for (int i = 0; i < n; i++) {
-            ret[i + 1] *= (*this)[i];
-        }
+        for (int i = 0; i < n; i++) { ret[i + 1] *= (*this)[i]; }
         return ret;
     }
 
@@ -226,8 +232,7 @@ struct FormalPowerSeries : std::vector<mint> {
         return g;
     }
 
-    template <class T>
-    FPS pow(T k, int deg = -1) const {
+    template <class T> FPS pow(T k, int deg = -1) const {
         const int n = this->size();
         if (deg == -1) deg = n;
         if (k == 0) {
@@ -249,8 +254,7 @@ struct FormalPowerSeries : std::vector<mint> {
         return FPS(deg, mint(0));
     }
 
-    template <class T>
-    FPS sparse_pow(T k, int deg = -1) const {
+    template <class T> FPS sparse_pow(T k, int deg = -1) const {
         if (deg == -1) deg = this->size();
         if (k == 0) {
             FPS ret(deg);
@@ -259,10 +263,8 @@ struct FormalPowerSeries : std::vector<mint> {
         }
 
         int zero = 0;
-        while (zero != int(this->size()) &&
-               (*this)[zero] == mint(0)) zero++;
-        if (zero == int(this->size()) ||
-            __int128_t(zero) * k >= deg) {
+        while (zero != int(this->size()) && (*this)[zero] == mint(0)) zero++;
+        if (zero == int(this->size()) || __int128_t(zero) * k >= deg) {
             return FPS(deg, mint(0));
         }
         if (zero != 0) {
@@ -290,7 +292,7 @@ struct FormalPowerSeries : std::vector<mint> {
         mint denom = (*this)[0].inv();
         k %= mod;
         for (int a = 1; a < deg; a++) {
-            for (auto& [i, f_i] : fs) {
+            for (auto &[i, f_i] : fs) {
                 if (a < i) break;
                 g[a] += g[a - i] * f_i * (mint(i) * (k + 1) - a);
             }
@@ -371,9 +373,7 @@ struct FormalPowerSeries : std::vector<mint> {
 
     FPS inplace_imos(int n) {
         inplace_pre(n);
-        for (int i = 0; i < n - 1; i++) {
-            (*this)[i + 1] += (*this)[i];
-        }
+        for (int i = 0; i < n - 1; i++) { (*this)[i + 1] += (*this)[i]; }
         return *this;
     }
 
@@ -384,9 +384,7 @@ struct FormalPowerSeries : std::vector<mint> {
 
     FPS inplace_iimos(int n) {
         inplace_pre(n);
-        for (int i = 0; i < n - 1; i++) {
-            (*this)[i + 1] -= (*this)[i];
-        }
+        for (int i = 0; i < n - 1; i++) { (*this)[i + 1] -= (*this)[i]; }
         return *this;
     }
 
@@ -396,7 +394,9 @@ struct FormalPowerSeries : std::vector<mint> {
     }
 
     FPS &operator*=(const FPS &r);
+
     FPS operator*(const FPS &r) const { return FPS(*this) *= r; }
+
     void but();
     void ibut();
     void db();

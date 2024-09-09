@@ -7,18 +7,18 @@
 
 namespace kk2 {
 
-template <class G>
-struct SCC {
+template <class G> struct SCC {
     int n, m;
     const G &g;
     std::vector<std::vector<int>> revg;
     std::vector<int> ord, scc_id;
     std::vector<bool> used;
     std::vector<std::vector<int>> blng, dag;
-    
+
     SCC(const G &g_) : n(g_.n), m(g_.m), g(g_) { init(); }
 
     int operator[](int k) const { return scc_id[k]; }
+
     std::vector<int> same_scc(int u) const { return blng[u]; }
 
   private:
@@ -42,11 +42,11 @@ struct SCC {
 
         scc_id.resize(n, -1);
         revg.resize(n);
-        for (int u = 0; u < n; u++) for (auto &e : g[u]) {
-            revg[e.to].emplace_back(u);
-        }
+        for (int u = 0; u < n; u++)
+            for (auto &e : g[u]) { revg[e.to].emplace_back(u); }
         int k = 0;
-        for (auto &u : ord) if (scc_id[u] == -1) rdfs(rdfs, u, k++);
+        for (auto &u : ord)
+            if (scc_id[u] == -1) rdfs(rdfs, u, k++);
 
         dag.resize(k);
         blng.resize(k);

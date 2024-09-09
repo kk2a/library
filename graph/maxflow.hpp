@@ -4,25 +4,25 @@
 #include <algorithm>
 #include <cassert>
 #include <functional>
-#include <numeric>
 #include <limits>
+#include <numeric>
 #include <queue>
 #include <vector>
 
 namespace kk2 {
 
-template <class WG>
-struct MaxFlow {
+template <class WG> struct MaxFlow {
     static_assert(WG::directed(), "Directed graph required.");
 
     using Cap = typename WG::value_type;
 
-    const WG& g;
+    const WG &g;
     int n, m;
     std::vector<int> revi;
 
-    MaxFlow(const WG &g_) : g(g_), n(g.num_vertices()),
-                            m(g.num_edges()) { init(); }
+    MaxFlow(const WG &g_) : g(g_), n(g.num_vertices()), m(g.num_edges()) {
+        init();
+    }
 
     void init() {
         revi.resize(m << 1, -1);
@@ -33,7 +33,7 @@ struct MaxFlow {
             revi[m + i] = count[e.from]++;
             g.add_edge_naive(e.to, e.from, 0);
         }
-    } 
+    }
 
     Cap flow(int s, int t) {
         return flow(s, t, std::numeric_limits<Cap>::max());
@@ -68,10 +68,10 @@ struct MaxFlow {
             Cap res = 0;
             for (int &i = iter[v]; i < (int)g[v].size(); i++) {
                 auto &e = g[v][i];
-                if (level[v] <= level[e.to] || g[e.to][revi[e.id]].cost == 0) continue;
-                Cap d =
-                    self(self, e.to,
-                         std::min(up - res, g[e.to][revi[e.id]].cost));
+                if (level[v] <= level[e.to] || g[e.to][revi[e.id]].cost == 0)
+                    continue;
+                Cap d = self(
+                    self, e.to, std::min(up - res, g[e.to][revi[e.id]].cost));
                 if (d <= 0) continue;
                 g[v][i].cost += d;
                 g[e.to][revi[e.id]].cost -= d;
@@ -120,15 +120,15 @@ struct MaxFlow {
 
     edge get_edge(int i) {
         auto e = g.edges[i];
-        return edge{e.from, e.to, e.cost + g[e.to][revi[i]].cost,
+        return edge{e.from,
+                    e.to,
+                    e.cost + g[e.to][revi[i]].cost,
                     g[e.to][revi[i]].cost};
     }
 
     std::vector<edge> get_edges() {
         std::vector<edge> result(m);
-        for (int i = 0; i < m; i++) {
-            result[i] = get_edge(i);
-        }
+        for (int i = 0; i < m; i++) { result[i] = get_edge(i); }
         return result;
     }
 };

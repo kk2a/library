@@ -2,10 +2,11 @@
 #define FIND_ROOT_HPP 1
 
 #include <ctime>
-#include <vector>
 #include <random>
-#include "poly_gcd.hpp"
+#include <vector>
+
 #include "mod_pow.hpp"
+#include "poly_gcd.hpp"
 
 namespace kk2 {
 
@@ -15,9 +16,7 @@ std::vector<mint> find_root(FPS f) {
     std::vector<mint> res;
     if (p == 2) {
         for (int i = 0; i < 2; i++) {
-            if (f.eval(mint(i)) == mint(0)) {
-                res.push_back(mint(i));
-            }
+            if (f.eval(mint(i)) == mint(0)) { res.push_back(mint(i)); }
         }
         return res;
     }

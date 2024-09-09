@@ -9,8 +9,7 @@ namespace kk2 {
 // floor(x) = -ceil(-x)   (for all x)          ...(2)
 
 // return floor(a / b)
-template <typename T, typename U>
-constexpr T fracfloor(T a, U b) {
+template <typename T, typename U> constexpr T fracfloor(T a, U b) {
     assert(b != 0);
     if (a % b == 0) return a / b;
     if (a >= 0) return a / b;
@@ -21,8 +20,7 @@ constexpr T fracfloor(T a, U b) {
 }
 
 // return ceil(a / b)
-template <typename T, typename U>
-constexpr T fracceil(T a, U b) {
+template <typename T, typename U> constexpr T fracceil(T a, U b) {
     assert(b != 0);
     if (a % b == 0) return a / b;
     if (a >= 0) return a / b + 1;

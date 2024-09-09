@@ -8,19 +8,23 @@
 #include <numeric>
 #include <vector>
 
-
 namespace kk2 {
 
 struct Mo {
     Mo(int n_, int q_) : n(n_), q(q_), ord(q) {
-        word_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
+        word_size =
+            std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
         std::iota(ord.begin(), ord.end(), 0);
         queries.reserve(q);
     }
 
     Mo(int n_, const std::vector<std::pair<int, int>> &queries_)
-        : n(n_), q(queries_.size()), ord(q), queries(queries_) {
-        word_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
+        : n(n_),
+          q(queries_.size()),
+          ord(q),
+          queries(queries_) {
+        word_size =
+            std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
         std::iota(ord.begin(), ord.end(), 0);
     }
 
@@ -34,8 +38,11 @@ struct Mo {
     }
 
     template <typename IL, typename IR, typename EL, typename ER, typename F>
-    void calculate(const IL& insert_left, const IR& insert_right,
-                   const EL& erase_left, const ER& erase_right, const F& f) {
+    void calculate(const IL &insert_left,
+                   const IR &insert_right,
+                   const EL &erase_left,
+                   const ER &erase_right,
+                   const F &f) {
         assert(queries.size() == q);
         std::vector<int> block_id(n);
         for (int i = 0, cnt = 0, b = 0; i < n; i++) {
@@ -64,7 +71,7 @@ struct Mo {
     }
 
     template <typename I, typename E, typename F>
-    void calculate(const I& insert, const E& erase, const F& f) {
+    void calculate(const I &insert, const E &erase, const F &f) {
         calculate(insert, insert, erase, erase, f);
     }
 
@@ -76,4 +83,4 @@ struct Mo {
 
 } // namespace kk2
 
-#endif  // OTHERS_MO_HPP
+#endif // OTHERS_MO_HPP

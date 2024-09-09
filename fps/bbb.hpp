@@ -2,6 +2,7 @@
 #define FPS_BBB_HPP 1
 
 #include <vector>
+
 #include "multi_eval.hpp"
 
 namespace kk2 {

@@ -8,12 +8,12 @@ namespace kk2 {
 
 // return f ^ k mod g
 template <class FPS, class mint = typename FPS::value_type, class T>
-FPS mod_pow(T k, const FPS& f, const FPS& g) {
+FPS mod_pow(T k, const FPS &f, const FPS &g) {
     // assert(!is_signed_v<T> || k >= 0);
     assert(!g.empty());
 
     auto inv = g.rev().inv();
-    auto quo = [&] (const FPS& poly) {
+    auto quo = [&](const FPS &poly) {
         if (poly.size() < g.size()) return FPS{};
         int n = poly.size() - g.size() + 1;
         return (poly.rev().pre(n) * inv.pre(n)).pre(n).rev();

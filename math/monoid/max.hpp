@@ -10,39 +10,46 @@ namespace kk2 {
 
 namespace monoid {
 
-template <class S>
-struct Max {
+template <class S> struct Max {
     S a;
     bool minf;
+
     Max() : a(S()), minf(true) {}
-    Max (S a_, bool minf_ = false) : a(a_), minf(minf_) {}
+
+    Max(S a_, bool minf_ = false) : a(a_), minf(minf_) {}
+
     operator S() const { return a; }
-    friend std::ostream& operator<<(std::ostream& os, const Max& max) {
+
+    friend std::ostream &operator<<(std::ostream &os, const Max &max) {
         os << (max.minf ? "minf" : std::to_string(max.a));
         return os;
     }
-    friend std::istream& operator>>(std::istream& is, Max& max) {
+
+    friend std::istream &operator>>(std::istream &is, Max &max) {
         is >> max.a;
         max.minf = false;
         return is;
     }
-    Max& operator=(const S& rhs) {
+
+    Max &operator=(const S &rhs) {
         a = rhs;
         minf = false;
         return *this;
     }
 
-    Max& add(const S& rhs) {
+    Max &add(const S &rhs) {
         if (minf) return *this;
         a += rhs;
         return *this;
     }
-    Max& update(const S& rhs) {
+
+    Max &update(const S &rhs) {
         a = rhs;
         minf = false;
         return *this;
     }
-    Max& op(const Max& rhs) {
+
+    Max &op(const Max &rhs) {
         if (rhs.minf) return *this;
         if (minf) return *this = rhs;
         a = std::max(a, rhs.a);
@@ -52,11 +59,13 @@ struct Max {
     bool is_minf() const { return minf; }
 };
 
-template <class S>
-Max<S> MaxOp(Max<S> l, Max<S> r) { return l.op(r); }
+template <class S> Max<S> MaxOp(Max<S> l, Max<S> r) {
+    return l.op(r);
+}
 
-template <class S>
-Max<S> MaxUnit() { return Max<S>(); }
+template <class S> Max<S> MaxUnit() {
+    return Max<S>();
+}
 
 } // namespace monoid
 

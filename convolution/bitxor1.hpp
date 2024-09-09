@@ -7,14 +7,14 @@
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS convolution_xor(FPS& a, const FPS& b) {
+FPS convolution_xor(FPS &a, const FPS &b) {
     assert(size(a) == size(b));
-    int n = int(size(a));  // == int(size(b)
+    int n = int(size(a)); // == int(size(b)
     if (!n) return {};
     assert((n & -n) == n);
     FPS c(b.begin(), b.end());
 
-    auto fwht = [&](FPS& a) -> void {
+    auto fwht = [&](FPS &a) -> void {
         for (int i = 1; i < n; i <<= 1) {
             for (int j = 0; j < n; j++) {
                 if ((i & j) != 0) {
@@ -24,7 +24,7 @@ FPS convolution_xor(FPS& a, const FPS& b) {
             }
         }
     };
-    auto ifwht = [&](FPS& a) -> void {
+    auto ifwht = [&](FPS &a) -> void {
         for (int i = 1; i < n; i <<= 1) {
             for (int j = 0; j < n; j++) {
                 if ((i & j) != 0) {
@@ -37,7 +37,7 @@ FPS convolution_xor(FPS& a, const FPS& b) {
 
     fwht(a);
     fwht(c);
-    for (int i = 0; i < n; i++) a[i] *= c[i]; 
+    for (int i = 0; i < n; i++) a[i] *= c[i];
     ifwht(a);
 
     return a;

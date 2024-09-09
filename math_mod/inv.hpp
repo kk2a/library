@@ -1,13 +1,10 @@
 #ifndef MOD_INV_HPP
 #define MOD_INV_HPP 1
 
-#include <utility>
-
 namespace kk2 {
 
 // require: modulo >= 1
-template <class T>
-constexpr T mod_inversion(T a, T modulo) {
+template <class T> constexpr T mod_inversion(T a, T modulo) {
     a %= modulo;
     if (a < 0) a += modulo;
     T s = modulo, t = a;

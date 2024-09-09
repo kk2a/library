@@ -2,8 +2,8 @@
 #define MATH_ERATOSTHENES 1
 
 #include <cassert>
-#include <vector>
 #include <utility>
+#include <vector>
 
 namespace kk2 {
 
@@ -52,9 +52,7 @@ struct Erato {
         return _minfactor[n];
     }
 
-    constexpr static std::vector<int> primes() {
-        return _primes;
-    }
+    constexpr static std::vector<int> primes() { return _primes; }
 
     constexpr static std::vector<std::pair<int, int>> factorize(int n) {
         assert(n < (int)_isprime.size() && n != 0);

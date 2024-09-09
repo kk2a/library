@@ -2,13 +2,14 @@
 #define FPS_COMPOSITION_INVERSION_HPP 1
 
 #include <cassert>
+
 #include "power_projection.hpp"
 
 namespace kk2 {
 
 // calculate f ^ {-1} (X)  mod X ^ deg
 template <class FPS, class mint = typename FPS::value_type>
-FPS compositional_inv(const FPS& f, int deg = -1) {
+FPS compositional_inv(const FPS &f, int deg = -1) {
     assert(int(size(f)) >= 2 and f[1] != mint(0));
     if (deg == -1) deg = int(size(f));
     if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);

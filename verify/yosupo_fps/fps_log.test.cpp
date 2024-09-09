@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series"
 
-#include "../../template/template.hpp"
-#include "../../modint/mont.hpp"
 #include "../../fps/ntt_friendly.hpp"
+#include "../../modint/mont.hpp"
+#include "../../template/template.hpp"
 
 using mint = kk2::Mont<mod>;
 using FPS = kk2::FormalPowerSeries<mint>;
 
-int main () {
+int main() {
     int n;
     cin >> n;
     FPS f(n);

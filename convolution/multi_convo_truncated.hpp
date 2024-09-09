@@ -2,14 +2,18 @@
 #define CONVOLUTION_MULTI_ZERO 1
 
 #include <vector>
+
 #include "convolution.hpp"
 
 namespace kk2 {
 
 // reference: https://rushcheyo.blog.uoj.ac/blog/6547
-// 日本語: https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
+// 日本語:
+// https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
 template <class FPS, class mint = typename FPS::value_type>
-FPS multi_convolution_truncated(FPS& a, const FPS& b, const std::vector<int>& base) {
+FPS multi_convolution_truncated(FPS &a,
+                                const FPS &b,
+                                const std::vector<int> &base) {
     int n = int(a.size());
     if (!n) return {};
     int k = base.size();
@@ -26,8 +30,8 @@ FPS multi_convolution_truncated(FPS& a, const FPS& b, const std::vector<int>& ba
     std::vector<FPS> f(k, FPS(z));
     std::vector<FPS> g(k, FPS(z));
     for (int i = 0; i < n; i++) f[chi[i]][i] = a[i], g[chi[i]][i] = b[i];
-    for (auto& x : f) butterfly(x);
-    for (auto& x : g) butterfly(x);
+    for (auto &x : f) butterfly(x);
+    for (auto &x : g) butterfly(x);
     std::vector<mint> tmp(k);
     for (int ii = 0; ii < z; ii++) {
         for (int i = 0; i < k; i++) {
@@ -37,7 +41,7 @@ FPS multi_convolution_truncated(FPS& a, const FPS& b, const std::vector<int>& ba
         }
         for (int i = 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};
     }
-    for (auto& x : f) butterfly_inv(x);
+    for (auto &x : f) butterfly_inv(x);
     mint iz = mint(z).inv();
     for (int i = 0; i < n; i++) a[i] = f[chi[i]][i] * iz;
     return a;

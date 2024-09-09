@@ -7,8 +7,8 @@
 namespace kk2 {
 
 template <class mint>
-FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(
-        const FormalPowerSeries<mint> &r) {
+FormalPowerSeries<mint> &
+FormalPowerSeries<mint>::operator*=(const FormalPowerSeries<mint> &r) {
     if (this->empty() || r.empty()) {
         this->clear();
         return *this;
@@ -17,23 +17,19 @@ FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(
     return *this;
 }
 
-template <class mint> 
-void FormalPowerSeries<mint>::but() {
+template <class mint> void FormalPowerSeries<mint>::but() {
     butterfly(*this);
 }
 
-template <class mint>
-void FormalPowerSeries<mint>::ibut() {
+template <class mint> void FormalPowerSeries<mint>::ibut() {
     butterfly_inv(*this);
 }
 
-template <class mint>
-void FormalPowerSeries<mint>::db() {
+template <class mint> void FormalPowerSeries<mint>::db() {
     doubling(*this);
 }
 
-template <class mint>
-int FormalPowerSeries<mint>::but_pr() {
+template <class mint> int FormalPowerSeries<mint>::but_pr() {
     return primitive_root<mint::getmod()>;
 }
 
@@ -47,8 +43,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
     for (int d = 1; d < deg; d <<= 1) {
         FormalPowerSeries<mint> f(2 * d), g(2 * d);
         std::copy(std::begin(*this),
-                  std::begin(*this) + std::min((int)this->size(),
-                  2 * d),
+                  std::begin(*this) + std::min((int)this->size(), 2 * d),
                   std::begin(f));
         std::copy(std::begin(res), std::begin(res) + d, std::begin(g));
         f.but();
@@ -76,8 +71,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
     inv.push_back(mint(0));
     inv.push_back(mint(1));
 
-    FormalPowerSeries<mint> b{1, 1 < (int)this->size() ?
-                              (*this)[1] : mint(0)};
+    FormalPowerSeries<mint> b{1, 1 < (int)this->size() ? (*this)[1] : mint(0)};
     FormalPowerSeries<mint> c{1}, z1, z2{1, 1};
     mint im = mint{2}.inv(), intwo = mint{2}.inv();
     for (int m = 2; m < deg; m <<= 1) {
@@ -99,8 +93,8 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
         z2.resize(m << 1);
         z2.but();
 
-        FormalPowerSeries<mint> x(this->begin(), this->begin() +
-                                  std::min<int>(this->size(), m));
+        FormalPowerSeries<mint> x(
+            this->begin(), this->begin() + std::min<int>(this->size(), m));
         x.resize(m);
         x.inplace_diff();
         x.push_back(mint(0));
@@ -120,12 +114,13 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
         x *= im * intwo;
         x.pop_back();
         x.inplace_int();
-        for (int i = m; i < std::min<int>(this->size(),m << 1); i++)
+        for (int i = m; i < std::min<int>(this->size(), m << 1); i++)
             x[i] += (*this)[i];
         std::fill(std::begin(x), std::begin(x) + m, mint(0));
         x.but();
         x.inplace_dot(y);
-        x.ibut(); x *= im * intwo;
+        x.ibut();
+        x *= im * intwo;
         b.insert(std::end(b), std::begin(x) + m, std::end(x));
         im *= intwo;
     }

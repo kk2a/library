@@ -2,6 +2,7 @@
 #define FPS_SQRT_HPP 1
 
 #include <cassert>
+
 #include "../math_mod/mod_sqrt.hpp"
 
 namespace kk2 {
@@ -38,7 +39,7 @@ FPS sqrt(const FPS &f, int deg = -1) {
 }
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS sparse_sqrt(const FPS& f, int deg = -1) {
+FPS sparse_sqrt(const FPS &f, int deg = -1) {
     // using mint = typename FPS::value_type;
     if (deg == -1) deg = (int)f.size();
     if ((int)f.size() == 0) return FPS(deg, mint(0));

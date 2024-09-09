@@ -4,6 +4,7 @@
 #include <cassert>
 #include <iostream>
 #include <utility>
+
 #include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
@@ -22,73 +23,117 @@ struct ArbitraryLazyMontgomeryModIntBase {
         while (mod * ret != 1) ret *= UInt(2) - mod * ret;
         return ret;
     }
+
     static void setmod(UInt m) {
         assert(m < (UInt(1u) << (bit_length - 2)));
         assert((m & 1) == 1);
         mod = m, n2 = -ULong(m) % m, r = get_r();
     }
+
     UInt _v;
 
     operator Int() const { return val(); }
 
     ArbitraryLazyMontgomeryModIntBase() : _v(0) {}
-    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
+
+    template <class T,
+              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
     ArbitraryLazyMontgomeryModIntBase(const T &b)
         : _v(reduce(ULong(b % mod + mod) * n2)) {}
-    
+
     static UInt reduce(const ULong &b) {
         return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;
     }
 
-    mint& operator+=(const mint& b) {
+    mint &operator+=(const mint &b) {
         if (Int(_v += b._v - 2 * mod) < 0) _v += 2 * mod;
         return *this;
     }
-    mint& operator-=(const mint& b) {
+
+    mint &operator-=(const mint &b) {
         if (Int(_v -= b._v) < 0) _v += 2 * mod;
         return *this;
     }
-    mint& operator*=(const mint& b) {
+
+    mint &operator*=(const mint &b) {
         _v = reduce(ULong(_v) * b._v);
         return *this;
     }
-    mint& operator/=(const mint& b) {
+
+    mint &operator/=(const mint &b) {
         *this *= b.inv();
         return *this;
     }
 
-    friend mint operator+(const mint& a, const mint& b) { return mint(a) += b; }
-    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
-    friend mint operator+(const mint& a, T b) { return mint(a) += mint(b); }
-    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
-    friend mint operator+(T a, const mint& b) { return mint(a) += b; }
-    friend mint operator-(const mint& a, const mint& b) { return mint(a) -= b; }
-    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
-    friend mint operator-(const mint& a, T b) { return mint(a) -= mint(b); }
-    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
-    friend mint operator-(T a, const mint& b) { return mint(a) -= b; }
-    friend mint operator*(const mint& a, const mint& b) { return mint(a) *= b; }
-    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
-    friend mint operator*(const mint& a, T b) { return mint(a) *= mint(b); }
-    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
-    friend mint operator*(T a, const mint& b) { return mint(a) *= b; }
-    friend mint operator/(const mint& a, const mint& b) { return mint(a) /= b; }
-    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
-    friend mint operator/(const mint& a, T b) { return mint(a) /= mint(b); }
-    template <class T, std::enable_if_t<is_integral_extended<T>::value>* = nullptr>
-    friend mint operator/(T a, const mint& b) { return mint(a) /= b; }
+    friend mint operator+(const mint &a, const mint &b) { return mint(a) += b; }
 
-    bool operator==(const mint& b) const {
+    template <class T,
+              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    friend mint operator+(const mint &a, T b) {
+        return mint(a) += mint(b);
+    }
+
+    template <class T,
+              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    friend mint operator+(T a, const mint &b) {
+        return mint(a) += b;
+    }
+
+    friend mint operator-(const mint &a, const mint &b) { return mint(a) -= b; }
+
+    template <class T,
+              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    friend mint operator-(const mint &a, T b) {
+        return mint(a) -= mint(b);
+    }
+
+    template <class T,
+              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    friend mint operator-(T a, const mint &b) {
+        return mint(a) -= b;
+    }
+
+    friend mint operator*(const mint &a, const mint &b) { return mint(a) *= b; }
+
+    template <class T,
+              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    friend mint operator*(const mint &a, T b) {
+        return mint(a) *= mint(b);
+    }
+
+    template <class T,
+              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    friend mint operator*(T a, const mint &b) {
+        return mint(a) *= b;
+    }
+
+    friend mint operator/(const mint &a, const mint &b) { return mint(a) /= b; }
+
+    template <class T,
+              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    friend mint operator/(const mint &a, T b) {
+        return mint(a) /= mint(b);
+    }
+
+    template <class T,
+              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    friend mint operator/(T a, const mint &b) {
+        return mint(a) /= b;
+    }
+
+    bool operator==(const mint &b) const {
         return (_v >= mod ? _v - mod : _v) == (b._v >= mod ? b._v - mod : b._v);
     }
-    bool operator!=(const mint& b) const {
+
+    bool operator!=(const mint &b) const {
         return (_v >= mod ? _v - mod : _v) != (b._v >= mod ? b._v - mod : b._v);
     }
+
     mint operator-() const { return mint(0) - mint(*this); }
+
     mint operator+() const { return mint(*this); }
 
-    template <class T>
-    mint pow(T n) const {
+    template <class T> mint pow(T n) const {
         mint ret(1), mul(*this);
         while (n > 0) {
             if (n & 1) ret *= mul;
@@ -109,10 +154,11 @@ struct ArbitraryLazyMontgomeryModIntBase {
         return mint(m0);
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const mint& x) {
+    friend std::ostream &operator<<(std::ostream &os, const mint &x) {
         return os << x.val();
     }
-    friend std::istream& operator>>(std::istream& is, mint& x) {
+
+    friend std::istream &operator>>(std::istream &is, mint &x) {
         Long t;
         is >> t;
         x = mint(t);
@@ -123,18 +169,25 @@ struct ArbitraryLazyMontgomeryModIntBase {
         UInt ret = reduce(_v);
         return ret >= mod ? ret - mod : ret;
     }
+
     static UInt getmod() { return mod; }
 };
 
 template <int id>
 using ArbitraryLazyMontgomeryModInt =
-    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long,
-                                      unsigned long long, id>;
+    ArbitraryLazyMontgomeryModIntBase<int,
+                                      unsigned int,
+                                      long long,
+                                      unsigned long long,
+                                      id>;
 
 template <int id>
 using ArbitraryLazyMontgomeryModInt64bit =
-    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long,
-                                      __int128_t, __uint128_t, id>;
+    ArbitraryLazyMontgomeryModIntBase<long long,
+                                      unsigned long long,
+                                      __int128_t,
+                                      __uint128_t,
+                                      id>;
 
 } // namespace kk2
 

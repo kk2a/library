@@ -2,20 +2,21 @@
 #define BUTTERFLY_HPP 1
 
 #include <algorithm>
+
 #include "../math_mod/primitive_rt_expr.hpp"
 
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-void butterfly(FPS& a) {
+void butterfly(FPS &a) {
     static int g = primitive_root<mint::getmod()>;
     int n = int(a.size());
     int h = 0;
     while ((1U << h) < (unsigned int)(n)) h++;
     static bool first = true;
-    static mint sum_e2[30];  // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]
+    static mint sum_e2[30]; // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]
     static mint sum_e3[30];
-    static mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1
+    static mint es[30], ies[30]; // es[i]^(2^(2+i)) == 1
     if (first) {
         first = false;
         int cnt2 = __builtin_ctz(mint::getmod() - 1);
@@ -52,12 +53,11 @@ void butterfly(FPS& a) {
                     a[i + offset] = l + r;
                     a[i + offset + p] = l - r;
                 }
-                if (s + 1 != (1 << len)) 
+                if (s + 1 != (1 << len))
                     rot *= sum_e2[__builtin_ctz(~(unsigned int)(s))];
             }
             len++;
-        }
-        else {
+        } else {
             int p = 1 << (h - len - 2);
             mint rot = 1, imag = es[0];
             for (int s = 0; s < (1 << len); s++) {
@@ -76,7 +76,7 @@ void butterfly(FPS& a) {
                     a[i + offset + p * 3] = a0 - a2 - a1na3imag;
                 }
                 if (s + 1 != (1 << len))
-                rot *= sum_e3[__builtin_ctz(~(unsigned int)(s))];
+                    rot *= sum_e3[__builtin_ctz(~(unsigned int)(s))];
             }
             len += 2;
         }
@@ -84,15 +84,15 @@ void butterfly(FPS& a) {
 }
 
 template <class FPS, class mint = typename FPS::value_type>
-void butterfly_inv(FPS& a) {
+void butterfly_inv(FPS &a) {
     static constexpr int g = primitive_root<mint::getmod()>;
     int n = int(a.size());
     int h = 0;
     while ((1U << h) < (unsigned int)(n)) h++;
     static bool first = true;
-    static mint sum_ie2[30];  // sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]
+    static mint sum_ie2[30]; // sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]
     static mint sum_ie3[30];
-    static mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1
+    static mint es[30], ies[30]; // es[i]^(2^(2+i)) == 1
     if (first) {
         first = false;
         int cnt2 = __builtin_ctz(mint::getmod() - 1);
@@ -121,7 +121,7 @@ void butterfly_inv(FPS& a) {
             int p = 1 << (h - len);
             mint irot = 1;
             for (int s = 0; s < (1 << (len - 1)); s++) {
-                int offset = s << (h - len +  1);
+                int offset = s << (h - len + 1);
                 for (int i = 0; i < p; i++) {
                     auto l = a[i + offset];
                     auto r = a[i + offset + p];
@@ -132,8 +132,7 @@ void butterfly_inv(FPS& a) {
                     irot *= sum_ie2[__builtin_ctz(~(unsigned int)(s))];
             }
             len--;
-        }
-        else {
+        } else {
             int p = 1 << (h - len);
             mint irot = 1, iimag = ies[0];
             for (int s = 0; s < (1 << ((len - 2))); s++) {
@@ -146,7 +145,7 @@ void butterfly_inv(FPS& a) {
                     auto a2 = a[i + offset + p * 2];
                     auto a3 = a[i + offset + p * 3];
                     auto a2na3iimag = (a2 - a3) * iimag;
-                    
+
                     a[i + offset] = a0 + a1 + a2 + a3;
                     a[i + offset + p] = (a0 - a1 + a2na3iimag) * irot;
                     a[i + offset + p * 2] = (a0 + a1 - a2 - a3) * irot2;
@@ -169,8 +168,8 @@ void doubling(FPS &a) {
     mint invz = mint(z).inv();
     butterfly_inv(b);
     for (int i = 0; i < b.size(); i++) b[i] *= invz;
-    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).
-                       pow((mint::getmod() - 1) / (n << 1));
+    mint r = 1, zeta = mint(primitive_root<mint::getmod()>)
+                           .pow((mint::getmod() - 1) / (n << 1));
     for (int i = 0; i < n; i++) {
         b[i] *= r;
         r *= zeta;
@@ -181,4 +180,4 @@ void doubling(FPS &a) {
 
 } // namespace kk2
 
-#endif  // BUTTERFLY_HPP
+#endif // BUTTERFLY_HPP

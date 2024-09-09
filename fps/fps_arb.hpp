@@ -1,34 +1,30 @@
 #ifndef FPS_ARB_HPP
 #define FPS_ARB_HPP 1
 
-#include "fps.hpp"
 #include "../convolution/convo_arb.hpp"
+#include "fps.hpp"
 
 namespace kk2 {
 
-template <class mint>
-void FormalPowerSeries<mint>::but() {
+template <class mint> void FormalPowerSeries<mint>::but() {
     exit(1);
 }
 
-template <class mint>
-void FormalPowerSeries<mint>::ibut() {
+template <class mint> void FormalPowerSeries<mint>::ibut() {
     exit(1);
 }
 
-template <class mint>
-void FormalPowerSeries<mint>::db() {
+template <class mint> void FormalPowerSeries<mint>::db() {
     exit(1);
 }
 
-template <class mint>
-int FormalPowerSeries<mint>::but_pr() {
+template <class mint> int FormalPowerSeries<mint>::but_pr() {
     return 0;
 }
 
 template <class mint>
-FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(
-    const FormalPowerSeries<mint>& r) {
+FormalPowerSeries<mint> &
+FormalPowerSeries<mint>::operator*=(const FormalPowerSeries<mint> &r) {
     if (this->empty() || r.empty()) {
         this->clear();
         return *this;

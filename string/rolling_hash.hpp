@@ -2,10 +2,11 @@
 #define ROLLING_HASH_HPP 1
 
 #include <array>
+#include <ctime>
+#include <random>
 #include <string>
 #include <vector>
-#include <random>
-#include <ctime>
+
 #include "../math_mod/pow_expr.hpp"
 
 namespace kk2 {
@@ -15,10 +16,12 @@ struct RollingHash {
     struct Hash {
         long long h, pw, pwi;
     };
+
     constexpr static int b = 5;
     using T = std::array<Hash, b>;
     T table;
-    constexpr static int modp[b] = {998244353, 1000000007, 1000000009, 1000000021, 1000000033};
+    constexpr static int modp[b] = {
+        998244353, 1000000007, 1000000009, 1000000021, 1000000033};
     static int base[b], basei[b];
 
     static void setbase() {
@@ -37,7 +40,7 @@ struct RollingHash {
         }
     }
 
-    RollingHash(const char& c) {
+    RollingHash(const char &c) {
         for (int i = 0; i < b; ++i) {
             table[i].h = c;
             table[i].pw = base[i];
@@ -45,8 +48,7 @@ struct RollingHash {
         }
     }
 
-    template <class T>
-    RollingHash(const std::vector<T> &v) {
+    template <class T> RollingHash(const std::vector<T> &v) {
         int n = v.size();
         for (int i = 0; i < b; ++i) {
             table[i].h = 0;
@@ -82,27 +84,31 @@ struct RollingHash {
         }
     }
 
-    RollingHash& push_front(const RollingHash &otherHash) {
+    RollingHash &push_front(const RollingHash &otherHash) {
         for (int i = 0; i < b; ++i) {
-            table[i].h = (otherHash.table[i].h + table[i].h * otherHash.table[i].pw) % modp[i];
+            table[i].h =
+                (otherHash.table[i].h + table[i].h * otherHash.table[i].pw)
+                % modp[i];
             table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];
             table[i].pwi = table[i].pwi * otherHash.table[i].pwi % modp[i];
         }
         return *this;
     }
 
-    RollingHash& push_back(const RollingHash &otherHash) {
+    RollingHash &push_back(const RollingHash &otherHash) {
         for (int i = 0; i < b; ++i) {
-            table[i].h = (table[i].h + otherHash.table[i].h * table[i].pw) % modp[i];
+            table[i].h =
+                (table[i].h + otherHash.table[i].h * table[i].pw) % modp[i];
             table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];
             table[i].pwi = table[i].pwi * otherHash.table[i].pwi % modp[i];
         }
         return *this;
     }
 
-    RollingHash& pop_front(const RollingHash &otherHash) {
+    RollingHash &pop_front(const RollingHash &otherHash) {
         for (int i = 0; i < b; ++i) {
-            table[i].h = (table[i].h - otherHash.table[i].h) * otherHash.table[i].pwi % modp[i];
+            table[i].h = (table[i].h - otherHash.table[i].h)
+                         * otherHash.table[i].pwi % modp[i];
             if (table[i].h < 0) table[i].h += modp[i];
             table[i].pw = table[i].pw * otherHash.table[i].pwi % modp[i];
             table[i].pwi = table[i].pwi * otherHash.table[i].pw % modp[i];
@@ -110,9 +116,10 @@ struct RollingHash {
         return *this;
     }
 
-    RollingHash& pop_back(const RollingHash &otherHash) {
+    RollingHash &pop_back(const RollingHash &otherHash) {
         for (int i = 0; i < b; ++i) {
-            long long minus = otherHash.table[i].h * table[i].pw % modp[i] * otherHash.table[i].pwi % modp[i];
+            long long minus = otherHash.table[i].h * table[i].pw % modp[i]
+                              * otherHash.table[i].pwi % modp[i];
             table[i].h = (table[i].h - minus) % modp[i];
             if (table[i].h < 0) table[i].h += modp[i];
             table[i].pw = table[i].pw * otherHash.table[i].pwi % modp[i];
@@ -128,6 +135,7 @@ struct RollingHash {
         }
         return true;
     }
+
     friend bool operator!=(const RollingHash &lhs, const RollingHash &rhs) {
         return !(lhs == rhs);
     }
@@ -135,11 +143,12 @@ struct RollingHash {
   private:
     constexpr static long long quo(long long a, int i) {
         return pow_mod_constexpr(a, modp[i] - 2, modp[i]);
-    } 
+    }
 };
 
 int RollingHash::base[5] = {3, 3, 3, 3, 3};
-int RollingHash::basei[5] = {332748118, 333333336, 666666673, 666666681, 666666689};
+int RollingHash::basei[5] = {
+    332748118, 333333336, 666666673, 666666681, 666666689};
 
 
 using Roliha = RollingHash;

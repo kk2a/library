@@ -1,14 +1,14 @@
 #ifndef GRAPH_BCC_HPP
 #define GRAPH_BCC_HPP 1
 
-#include <vector>
 #include <functional>
+#include <vector>
+
 #include "lowlink.hpp"
 
 namespace kk2 {
 
-template <class G>
-struct BCC : LowLink<G> {
+template <class G> struct BCC : LowLink<G> {
     BCC(const G &g_) : LowLink<G>(g_) { init(); }
 
     std::vector<std::vector<int>> bc_e;
@@ -17,7 +17,7 @@ struct BCC : LowLink<G> {
   private:
     // v is a child of u in DFS tree
     // edge(u, v) is a bridge <=> ord[u] < low[v]
-    // u is an articulation point <=> u is root and 
+    // u is an articulation point <=> u is root and
     void init() {
         bc_id = std::vector<int>(this->m, -1);
         auto add = [&](int ei, int k) {
@@ -29,7 +29,8 @@ struct BCC : LowLink<G> {
                 if (e.id == ei) continue;
                 if (this->used[e.id]) {
                     int nk = k;
-                    if (this->low[e.to] >= this->ord[u]) nk = bc_e.size(), bc_e.emplace_back();
+                    if (this->low[e.to] >= this->ord[u])
+                        nk = bc_e.size(), bc_e.emplace_back();
                     add(e.id, nk);
                     self(self, e.to, nk, e.id);
                 }
@@ -39,9 +40,8 @@ struct BCC : LowLink<G> {
                 }
             }
         };
-        for (int u = 0; u < this->n; u++) if (this->root[u]) {
-            dfs(dfs, u);
-        }
+        for (int u = 0; u < this->n; u++)
+            if (this->root[u]) { dfs(dfs, u); }
     }
 
   public:
@@ -72,11 +72,12 @@ struct BCC : LowLink<G> {
                 buf2[fr] = buf2[to] = false;
             }
         }
-        for (int i = 0; i < this->n; i++) if (!buf1[i]) {
-            int k = (int)res.size();
-            res.emplace_back();
-            res[k].emplace_back(i);
-        }
+        for (int i = 0; i < this->n; i++)
+            if (!buf1[i]) {
+                int k = (int)res.size();
+                res.emplace_back();
+                res[k].emplace_back(i);
+            }
         return res;
     }
 };
