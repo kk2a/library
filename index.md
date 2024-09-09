@@ -62,8 +62,8 @@ data:
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
     - icon: ':warning:'
-      path: data_structure/my_bitset_fast.hpp
-      title: data_structure/my_bitset_fast.hpp
+      path: data_structure/my_bitset_old.hpp
+      title: data_structure/my_bitset_old.hpp
     - icon: ':warning:'
       path: data_structure/sparse_table.hpp
       title: data_structure/sparse_table.hpp
@@ -159,9 +159,6 @@ data:
     - icon: ':warning:'
       path: graph/graph.hpp
       title: graph/graph.hpp
-    - icon: ':warning:'
-      path: graph/kruskal.hpp
-      title: graph/kruskal.hpp
     - icon: ':warning:'
       path: graph/lowlink.hpp
       title: graph/lowlink.hpp
@@ -372,7 +369,7 @@ data:
       title: template/template.hpp
   - name: type_traits
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   verificationCategories:

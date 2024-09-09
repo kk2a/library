@@ -21,15 +21,16 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/updatemax.hpp\"\n\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
-    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
-    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
-    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
-    \ (*id)()>\nstruct LazySegTreeBase {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0)\
+    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class S,\n \
+    \         S (*op)(S, S),\n          S (*e)(),\n          class F,\n          S\
+    \ (*mapping)(F, S),\n          F (*composition)(F, F),\n          F (*id)()>\n\
+    struct LazySegTreeBase {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0)\
     \ {}\n    LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n\
     \    template <class... Args>\n    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
     \ S(args...))) {}\n    LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size()))\
     \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
-    \ = 1 << log;\n        d = vector<S>(2 * size, e());\n        lz = vector<F>(size,\
+    \ = 1 << log;\n        d = std::vector<S>(2 * size, e());\n        lz = std::vector<F>(size,\
     \ id());\n        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for\
     \ (int i = size - 1; i >= 1; i--) {\n            update(i);\n        }\n    }\n\
     \n    using Monoid = S;\n    static S Op(S l, S r) { return op(l, r); }\n    static\
@@ -101,41 +102,44 @@ data:
     \ composition, id>::LazySegTreeBase;\n  protected:\n    void all_apply(int k,\
     \ F f) override {\n        this->d[k] = mapping(f, this->d[k]);\n        if (k\
     \ < this->size) this->lz[k] = composition(f, this->lz[k]);\n    }\n};\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"math/monoid/max.hpp\"\n\n\n\nnamespace kk2 {\n\n\
-    namespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n    bool minf;\n\
-    \    Max() : a(S()), minf(true) {}\n    Max (S a_, bool minf_ = false) : a(a_),\
-    \ minf(minf_) {}\n    operator S() const { return a; }\n    friend ostream& operator<<(ostream&\
-    \ os, const Max& max) {\n        os << (max.minf ? \"minf\" : to_string(max.a));\n\
-    \        return os;\n    }\n    friend istream& operator>>(istream& is, Max& max)\
-    \ {\n        is >> max.a;\n        max.minf = false;\n        return is;\n   \
-    \ }\n    Max& operator=(const S& rhs) {\n        a = rhs;\n        minf = false;\n\
-    \        return *this;\n    }\n\n    Max& add(const S& rhs) {\n        if (minf)\
+    \ namespace kk2\n\n\n#line 1 \"math/monoid/max.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <iostream>\n#include <string>\n#line 8 \"math/monoid/max.hpp\"\n\nnamespace\
+    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S>\nstruct Max {\n    S a;\n\
+    \    bool minf;\n    Max() : a(S()), minf(true) {}\n    Max (S a_, bool minf_\
+    \ = false) : a(a_), minf(minf_) {}\n    operator S() const { return a; }\n   \
+    \ friend std::ostream& operator<<(std::ostream& os, const Max& max) {\n      \
+    \  os << (max.minf ? \"minf\" : std::to_string(max.a));\n        return os;\n\
+    \    }\n    friend std::istream& operator>>(std::istream& is, Max& max) {\n  \
+    \      is >> max.a;\n        max.minf = false;\n        return is;\n    }\n  \
+    \  Max& operator=(const S& rhs) {\n        a = rhs;\n        minf = false;\n \
+    \       return *this;\n    }\n\n    Max& add(const S& rhs) {\n        if (minf)\
     \ return *this;\n        a += rhs;\n        return *this;\n    }\n    Max& update(const\
     \ S& rhs) {\n        a = rhs;\n        minf = false;\n        return *this;\n\
     \    }\n    Max& op(const Max& rhs) {\n        if (rhs.minf) return *this;\n \
-    \       if (minf) return *this = rhs;\n        a = max(a, rhs.a);\n        return\
-    \ *this;\n    }\n\n    bool is_minf() const { return minf; }\n};\n\ntemplate <class\
-    \ S>\nMax<S> MaxOp(Max<S> l, Max<S> r) { return l.op(r); }\n\ntemplate <class\
-    \ S>\nMax<S> MaxUnit() { return Max<S>(); }\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args>\nvector<monoid::Max<S>> GetVecMax(int n, Args... args)\
-    \ {\n    return vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"math/homomorphism/update.hpp\"\n\n\n\nnamespace\
-    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S>\nstruct Update {\n \
-    \   S a;\n    bool id;\n    Update() : a(S()), id(true) {}\n    Update(S a_, bool\
-    \ id_ = false) : a(a_), id(id_) {}\n    operator S() const { return a; }\n   \
-    \ friend ostream& operator<<(ostream& os, const Update& update) {\n        os\
-    \ << (update.id ? \"id\" : to_string(update.a));\n        return os;\n    }\n\n\
-    \    Update& composition(const Update& f) {\n        if (f.id) return *this;\n\
-    \        return *this = f;\n    }\n};\n\ntemplate <class S, class T>\nT UpdateMap(Update<S>\
-    \ f, T x) { return f.id ? x : x.update(f.a); }\n\ntemplate <class S>\nUpdate<S>\
-    \ UpdateComposition(Update<S> l, Update<S> r) { return r.composition(l); }\n\n\
-    template <class S>\nUpdate<S> UpdateUnit() { return Update<S>(); }\n\n} // namespace\
-    \ homomorphism\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/updatemax.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing UpdateMax =\n    LazySegTree<monoid::Max<S>,\n\
-    \                monoid::MaxOp<S>,\n                monoid::MaxUnit<S>,\n    \
-    \            homomorphism::Update<S>,\n                homomorphism::UpdateMap<S,\
-    \ monoid::Max<S>>,\n                homomorphism::UpdateComposition<S>,\n    \
-    \            homomorphism::UpdateUnit<S>>;\n\n} // namespace kk2\n\n\n"
+    \       if (minf) return *this = rhs;\n        a = std::max(a, rhs.a);\n     \
+    \   return *this;\n    }\n\n    bool is_minf() const { return minf; }\n};\n\n\
+    template <class S>\nMax<S> MaxOp(Max<S> l, Max<S> r) { return l.op(r); }\n\ntemplate\
+    \ <class S>\nMax<S> MaxUnit() { return Max<S>(); }\n\n} // namespace monoid\n\n\
+    template <class S, class... Args>\nstd::vector<monoid::Max<S>> GetVecMax(int n,\
+    \ Args... args) {\n    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n\
+    }\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/update.hpp\"\n\n\n\n\
+    #line 6 \"math/homomorphism/update.hpp\"\n\nnamespace kk2 {\n\nnamespace homomorphism\
+    \ {\n\ntemplate <class S>\nstruct Update {\n    S a;\n    bool id;\n    Update()\
+    \ : a(S()), id(true) {}\n    Update(S a_, bool id_ = false) : a(a_), id(id_) {}\n\
+    \    operator S() const { return a; }\n    friend std::ostream& operator<<(std::ostream&\
+    \ os, const Update& update) {\n        os << (update.id ? \"id\" : std::to_string(update.a));\n\
+    \        return os;\n    }\n\n    Update& composition(const Update& f) {\n   \
+    \     if (f.id) return *this;\n        return *this = f;\n    }\n};\n\ntemplate\
+    \ <class S, class T>\nT UpdateMap(Update<S> f, T x) { return f.id ? x : x.update(f.a);\
+    \ }\n\ntemplate <class S>\nUpdate<S> UpdateComposition(Update<S> l, Update<S>\
+    \ r) { return r.composition(l); }\n\ntemplate <class S>\nUpdate<S> UpdateUnit()\
+    \ { return Update<S>(); }\n\n} // namespace homomorphism\n\n} // namespace kk2\n\
+    \n\n#line 7 \"segment_tree/utility/updatemax.hpp\"\n\nnamespace kk2 {\n\ntemplate\
+    \ <class S>\nusing UpdateMax =\n    LazySegTree<monoid::Max<S>,\n            \
+    \    monoid::MaxOp<S>,\n                monoid::MaxUnit<S>,\n                homomorphism::Update<S>,\n\
+    \                homomorphism::UpdateMap<S, monoid::Max<S>>,\n               \
+    \ homomorphism::UpdateComposition<S>,\n                homomorphism::UpdateUnit<S>>;\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\n#define SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\
     \ 1\n\n#include \"../lazy.hpp\"\n#include \"../../math/monoid/max.hpp\"\n#include\
     \ \"../../math/homomorphism/update.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
@@ -152,7 +156,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatemax.hpp
   requiredBy: []
-  timestamp: '2024-08-29 23:32:51+09:00'
+  timestamp: '2024-09-10 07:56:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemax.hpp

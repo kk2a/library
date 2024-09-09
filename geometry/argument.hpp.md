@@ -11,10 +11,12 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"geometry/argument.hpp\"\n\n\n\n#line 1 \"geometry/point.hpp\"\
-    \n\n\n\nnamespace kk2 {\n\ntemplate <typename T>\nstruct Point {\n    T x, y;\n\
-    \    Point(T x = 0, T y = 0) : x(x), y(y) {}\n    bool operator<(const Point&\
-    \ p) const {\n        return x != p.x ? x < p.x : y < p.y;\n    }\n    bool operator<=(const\
+  bundledCode: "#line 1 \"geometry/argument.hpp\"\n\n\n\n#include <algorithm>\n#line\
+    \ 1 \"geometry/point.hpp\"\n\n\n\n#line 5 \"geometry/point.hpp\"\n#include <cmath>\n\
+    #include <iostream>\n\nnamespace kk2 {\n\ntemplate <typename T>\nstruct Point\
+    \ {\n    static constexpr long double PI = acos(-1.0);\n    T x, y;\n    Point(T\
+    \ x = 0, T y = 0) : x(x), y(y) {}\n    bool operator<(const Point& p) const {\n\
+    \        return x != p.x ? x < p.x : y < p.y;\n    }\n    bool operator<=(const\
     \ Point& p) const {\n        return x != p.x ? x < p.x : y <= p.y;\n    }\n  \
     \  bool operator>(const Point& p) const {\n        return x != p.x ? x > p.x :\
     \ y > p.y;\n    }\n    bool operator>=(const Point& p) const {\n        return\
@@ -42,20 +44,20 @@ data:
     \ - p.argument();\n        if (res < -PI) res += 2 * PI;\n        if (res > PI)\
     \ res -= 2 * PI;\n        return res;\n    }\n    long double argument(const Point&\
     \ p, const Point& O) const {\n        return (*this - O).argument(p - O);\n  \
-    \  }\n\n    Point inplace_rotate90() {\n        swap(x, y);\n        x = -x;\n\
-    \        return *this;\n    }\n    Point inplace_rotate90(const Point& O) {\n\
-    \        *this -= O;\n        inplace_rotate90();\n        return *this += O;\n\
-    \    }\n    Point rotate90() const {\n        return Point(-y, x);\n    }\n  \
-    \  Point rotate90(Point O) const {\n        return (*this - O).rotate90() + O;\n\
-    \    }\n    Point inplace_rotate180() {\n        x = -x;\n        y = -y;\n  \
-    \      return *this;\n    }\n    Point inplace_rotate180(const Point& O) {\n \
-    \       *this -= O;\n        inplace_rotate180();\n        return *this += O;\n\
+    \  }\n\n    Point inplace_rotate90() {\n        std::swap(x, y);\n        x =\
+    \ -x;\n        return *this;\n    }\n    Point inplace_rotate90(const Point& O)\
+    \ {\n        *this -= O;\n        inplace_rotate90();\n        return *this +=\
+    \ O;\n    }\n    Point rotate90() const {\n        return Point(-y, x);\n    }\n\
+    \    Point rotate90(Point O) const {\n        return (*this - O).rotate90() +\
+    \ O;\n    }\n    Point inplace_rotate180() {\n        x = -x;\n        y = -y;\n\
+    \        return *this;\n    }\n    Point inplace_rotate180(const Point& O) {\n\
+    \        *this -= O;\n        inplace_rotate180();\n        return *this += O;\n\
     \    }\n    Point rotate180() const {\n        return Point(-x, -y);\n    }\n\
     \    Point rotate180(const Point& O) const {\n        return (*this - O).rotate180()\
-    \ + O;\n    }\n    Point inplace_rotate270() {\n        swap(x, y);\n        y\
-    \ = -y;\n        return *this;\n    }\n    Point inplace_rotate270(const Point&\
-    \ O) {\n        *this -= O;\n        inplace_rotate270();\n        return *this\
-    \ += O;\n    }\n    Point rotate270() const {\n        return Point(y, -x);\n\
+    \ + O;\n    }\n    Point inplace_rotate270() {\n        std::swap(x, y);\n   \
+    \     y = -y;\n        return *this;\n    }\n    Point inplace_rotate270(const\
+    \ Point& O) {\n        *this -= O;\n        inplace_rotate270();\n        return\
+    \ *this += O;\n    }\n    Point rotate270() const {\n        return Point(y, -x);\n\
     \    }\n    Point rotate270(const Point& O) const {\n        return (*this - O).rotate270()\
     \ + O;\n    }\n\n    friend T dot(const Point& p, const Point& q) {\n        return\
     \ p.dot(q);\n    }\n    friend T cross(const Point& p, const Point& q) {\n   \
@@ -76,44 +78,44 @@ data:
     \ Point& O) {\n        return p.rotate180(O);\n    }\n    friend Point rotate270(const\
     \ Point& p) {\n        return p.rotate270();\n    }\n    friend Point rotate270(const\
     \ Point& p, const Point& O) {\n        return p.rotate270(O);\n    }\n\n    friend\
-    \ ostream& operator<<(ostream& os, const Point& p) {\n        return os << p.x\
-    \ << \" \" << p.y;\n    }\n    friend istream& operator>>(istream& is, Point&\
-    \ p) {\n        return is >> p.x >> p.y;\n    }\n};\n\n} // namespace kk2\n\n\n\
-    #line 5 \"geometry/argument.hpp\"\n\nnamespace kk2 {\n\ntemplate <int id>\nstruct\
-    \ ArgumentSort {\n    using i64 = long long;\n    static Point O;\n    static\
-    \ void setO(const Point& p) { O = p; }\n\n  private:\n    // p - O = (x, y) \n\
-    \    // 1 : y < 0\n    // 2 : y >= 0 and x >= 0\n    // 3 : otherwise\n    static\
-    \ int location(const Point& p) {\n        Point q = p - O;\n        return q.y\
-    \ < 0 ? 1 : q.x >= 0 ? 2 : 3;\n    }\n\n    static bool cmp(const Point& a, const\
-    \ Point& b) {\n        int loc_a = location(a), loc_b = location(b);\n       \
-    \ i64 cr = cross(a, b, O);\n        return loc_a != loc_b ? loc_a < loc_b :\n\
-    \               cr == 0 ? norm(a, O) < norm(b, O) : cr > 0;\n    }\n\n  public:\n\
-    \    static void argument_sort(vector<Point>& ps) {\n        sort(begin(ps), end(ps),\
-    \ cmp);\n    }\n\n    template <class ForwardIt>\n    static ForwardIt min_up_argument(ForwardIt\
-    \ first, ForwardIt last, const Point& p) {\n        return lower_bound(first,\
-    \ last, p, cmp);\n    }\n};\ntemplate <int id>\nPoint ArgumentSort<id>::O(0, 0);\n\
-    \n} // namespace kk2\n\n\n"
-  code: "#ifndef GEOMETRY_ARGUMENT_HPP\n#define GEOMETRY_ARGUMENT_HPP 1\n\n#include\
-    \ \"point.hpp\"\n\nnamespace kk2 {\n\ntemplate <int id>\nstruct ArgumentSort {\n\
-    \    using i64 = long long;\n    static Point O;\n    static void setO(const Point&\
-    \ p) { O = p; }\n\n  private:\n    // p - O = (x, y) \n    // 1 : y < 0\n    //\
-    \ 2 : y >= 0 and x >= 0\n    // 3 : otherwise\n    static int location(const Point&\
-    \ p) {\n        Point q = p - O;\n        return q.y < 0 ? 1 : q.x >= 0 ? 2 :\
-    \ 3;\n    }\n\n    static bool cmp(const Point& a, const Point& b) {\n       \
-    \ int loc_a = location(a), loc_b = location(b);\n        i64 cr = cross(a, b,\
-    \ O);\n        return loc_a != loc_b ? loc_a < loc_b :\n               cr == 0\
-    \ ? norm(a, O) < norm(b, O) : cr > 0;\n    }\n\n  public:\n    static void argument_sort(vector<Point>&\
-    \ ps) {\n        sort(begin(ps), end(ps), cmp);\n    }\n\n    template <class\
+    \ std::ostream& operator<<(std::ostream& os, const Point& p) {\n        return\
+    \ os << p.x << \" \" << p.y;\n    }\n    friend std::istream& operator>>(std::istream&\
+    \ is, Point& p) {\n        return is >> p.x >> p.y;\n    }\n};\n\n} // namespace\
+    \ kk2\n\n\n#line 6 \"geometry/argument.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ T>\nstruct ArgumentSort {\n    using i64 = long long;\n    static Point<T> O;\n\
+    \    static void setO(const Point<T>& p) { O = p; }\n\n  private:\n    // p -\
+    \ O = (x, y) \n    // 1 : y < 0\n    // 2 : y >= 0 and x >= 0\n    // 3 : otherwise\n\
+    \    static int location(const Point<T>& p) {\n        Point<T> q = p - O;\n \
+    \       return q.y < 0 ? 1 : q.x >= 0 ? 2 : 3;\n    }\n\n    static bool cmp(const\
+    \ Point<T>& a, const Point<T>& b) {\n        int loc_a = location(a), loc_b =\
+    \ location(b);\n        i64 cr = cross(a, b, O);\n        return loc_a != loc_b\
+    \ ? loc_a < loc_b :\n               cr == 0 ? norm(a, O) < norm(b, O) : cr > 0;\n\
+    \    }\n\n  public:\n    static void argument_sort(vector<Point<T>>& ps) {\n \
+    \       std::sort(std::begin(ps), std::end(ps), cmp);\n    }\n\n    template <class\
     \ ForwardIt>\n    static ForwardIt min_up_argument(ForwardIt first, ForwardIt\
-    \ last, const Point& p) {\n        return lower_bound(first, last, p, cmp);\n\
-    \    }\n};\ntemplate <int id>\nPoint ArgumentSort<id>::O(0, 0);\n\n} // namespace\
-    \ kk2\n\n#endif // GEOMETRY_ARGUMENT_HPP\n"
+    \ last, const Point<T>& p) {\n        return std::lower_bound(first, last, p,\
+    \ cmp);\n    }\n};\n\n} // namespace kk2\n\n\n"
+  code: "#ifndef GEOMETRY_ARGUMENT_HPP\n#define GEOMETRY_ARGUMENT_HPP 1\n\n#include\
+    \ <algorithm>\n#include \"point.hpp\"\n\nnamespace kk2 {\n\ntemplate <class T>\n\
+    struct ArgumentSort {\n    using i64 = long long;\n    static Point<T> O;\n  \
+    \  static void setO(const Point<T>& p) { O = p; }\n\n  private:\n    // p - O\
+    \ = (x, y) \n    // 1 : y < 0\n    // 2 : y >= 0 and x >= 0\n    // 3 : otherwise\n\
+    \    static int location(const Point<T>& p) {\n        Point<T> q = p - O;\n \
+    \       return q.y < 0 ? 1 : q.x >= 0 ? 2 : 3;\n    }\n\n    static bool cmp(const\
+    \ Point<T>& a, const Point<T>& b) {\n        int loc_a = location(a), loc_b =\
+    \ location(b);\n        i64 cr = cross(a, b, O);\n        return loc_a != loc_b\
+    \ ? loc_a < loc_b :\n               cr == 0 ? norm(a, O) < norm(b, O) : cr > 0;\n\
+    \    }\n\n  public:\n    static void argument_sort(vector<Point<T>>& ps) {\n \
+    \       std::sort(std::begin(ps), std::end(ps), cmp);\n    }\n\n    template <class\
+    \ ForwardIt>\n    static ForwardIt min_up_argument(ForwardIt first, ForwardIt\
+    \ last, const Point<T>& p) {\n        return std::lower_bound(first, last, p,\
+    \ cmp);\n    }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_ARGUMENT_HPP\n"
   dependsOn:
   - geometry/point.hpp
   isVerificationFile: false
   path: geometry/argument.hpp
   requiredBy: []
-  timestamp: '2024-08-29 05:27:34+09:00'
+  timestamp: '2024-09-10 07:56:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/argument.hpp

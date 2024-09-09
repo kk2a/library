@@ -17,19 +17,20 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"segment_tree/seg.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
-    \ <class S, S (*op)(S, S), S (*e)()> struct SegTree {\npublic:\n    SegTree()\
-    \ : SegTree(0) {}\n    SegTree(int n) : SegTree(std::vector<S>(n, e())) {}\n \
-    \   template <class... Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n,\
-    \ S(args...))) {};\n    SegTree(const std::vector<S>& v) : _n(int(v.size())) {\n\
-    \        log = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n \
-    \       size = 1 << log;\n        d = std::vector<S>(2 * size, e());\n       \
-    \ for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for (int i = size\
-    \ - 1; i >= 1; i--) {\n            update(i);\n        }\n    }\n\n    using Monoid\
-    \ = S;\n    static S Op(S l, S r) { return op(l, r); }\n    static S MonoidUnit()\
-    \ { return e(); } \n\n    void set(int p, S x) {\n        assert(0 <= p && p <\
-    \ _n);\n        p += size;\n        d[p] = x;\n        for (int i = 1; i <= log;\
-    \ i++) update(p >> i);\n    }\n    template <class... Args>\n    void emplace_set(int\
+  bundledCode: "#line 1 \"segment_tree/seg.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class S, S (*op)(S,\
+    \ S), S (*e)()> struct SegTree {\npublic:\n    SegTree() : SegTree(0) {}\n   \
+    \ SegTree(int n) : SegTree(std::vector<S>(n, e())) {}\n    template <class...\
+    \ Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n, S(args...)))\
+    \ {};\n    SegTree(const std::vector<S>& v) : _n(int(v.size())) {\n        log\
+    \ = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n        size\
+    \ = 1 << log;\n        d = std::vector<S>(2 * size, e());\n        for (int i\
+    \ = 0; i < _n; i++) d[size + i] = v[i];\n        for (int i = size - 1; i >= 1;\
+    \ i--) {\n            update(i);\n        }\n    }\n\n    using Monoid = S;\n\
+    \    static S Op(S l, S r) { return op(l, r); }\n    static S MonoidUnit() { return\
+    \ e(); } \n\n    void set(int p, S x) {\n        assert(0 <= p && p < _n);\n \
+    \       p += size;\n        d[p] = x;\n        for (int i = 1; i <= log; i++)\
+    \ update(p >> i);\n    }\n    template <class... Args>\n    void emplace_set(int\
     \ p, Args... args) {\n        set(p, S(args...));\n    }\n\n    S get(int p) {\n\
     \        assert(0 <= p && p < _n);\n        return d[p + size];\n    }\n\n   \
     \ S prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= _n);\n     \
@@ -63,10 +64,11 @@ data:
     \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\nprivate:\n\
     \    int _n, size, log;\n    std::vector<S> d;\n\n    void update(int k) { d[k]\
     \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef SEGMENT_TREE_SEG_HPP\n#define SEGMENT_TREE_SEG_HPP 1\n\nnamespace\
-    \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SegTree {\npublic:\n\
-    \    SegTree() : SegTree(0) {}\n    SegTree(int n) : SegTree(std::vector<S>(n,\
-    \ e())) {}\n    template <class... Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n,\
+  code: "#ifndef SEGMENT_TREE_SEG_HPP\n#define SEGMENT_TREE_SEG_HPP 1\n\n#include\
+    \ <cassert>\n#include <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
+    \ <class S, S (*op)(S, S), S (*e)()> struct SegTree {\npublic:\n    SegTree()\
+    \ : SegTree(0) {}\n    SegTree(int n) : SegTree(std::vector<S>(n, e())) {}\n \
+    \   template <class... Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n,\
     \ S(args...))) {};\n    SegTree(const std::vector<S>& v) : _n(int(v.size())) {\n\
     \        log = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n \
     \       size = 1 << log;\n        d = std::vector<S>(2 * size, e());\n       \
@@ -116,7 +118,7 @@ data:
   - segment_tree/utility/minseg.hpp
   - segment_tree/utility/maxseg.hpp
   - segment_tree/utility/sumseg.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-09-10 07:56:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/seg.hpp

@@ -11,42 +11,45 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/lowlink.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate <class\
-    \ G>\nstruct LowLink {\n    int n, m;\n    const G &g;\n    vector<int> ord, low;\n\
-    \    vector<bool> root, used;\n    LowLink(const G &g_) : n(g_.n), m(g_.m), g(g_),\n\
-    \                           ord(n, -1), low(n, -1), root(n, false),\n        \
-    \                   used(m, false) {\n        init();\n    }\n\n  private:\n \
-    \   void init() {\n        int k = 0;\n        auto dfs = [&](auto self, int u,\
-    \ int ei = -1) -> int {\n            low[u] = ord[u] = k++;\n            for (auto\
-    \ &e : g[u]) {\n                if (e.id == ei) continue;\n                if\
-    \ (ord[e.to] == -1) {\n                    used[e.id] = true;\n              \
-    \      low[u] = min(low[u], self(self, e.to, e.id));\n                }\n    \
-    \            // back edge\n                else if (ord[e.to] < ord[u]) {\n  \
-    \                  low[u] = min(low[u], ord[e.to]);\n                }\n     \
-    \       }\n            return low[u];\n        };\n        for (int u = 0; u <\
-    \ n; u++) if (ord[u] == -1) {\n            dfs(dfs, u);\n            root[u] =\
-    \ true;\n        }\n    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef GRAPH_LOWLINK_HPP\n#define GRAPH_LOWLINK_HPP 1\n\nnamespace kk2 {\n\
-    \ntemplate <class G>\nstruct LowLink {\n    int n, m;\n    const G &g;\n    vector<int>\
-    \ ord, low;\n    vector<bool> root, used;\n    LowLink(const G &g_) : n(g_.n),\
+  bundledCode: "#line 1 \"graph/lowlink.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class G>\nstruct\
+    \ LowLink {\n    int n, m;\n    const G &g;\n    std::vector<int> ord, low;\n\
+    \    std::vector<bool> root, used;\n    LowLink(const G &g_) : n(g_.n), m(g_.m),\
+    \ g(g_),\n                           ord(n, -1), low(n, -1), root(n, false),\n\
+    \                           used(m, false) {\n        init();\n    }\n\n  private:\n\
+    \    void init() {\n        int k = 0;\n        auto dfs = [&](auto self, int\
+    \ u, int ei = -1) -> int {\n            low[u] = ord[u] = k++;\n            for\
+    \ (auto &e : g[u]) {\n                if (e.id == ei) continue;\n            \
+    \    if (ord[e.to] == -1) {\n                    used[e.id] = true;\n        \
+    \            low[u] = std::min(low[u], self(self, e.to, e.id));\n            \
+    \    }\n                // back edge\n                else if (ord[e.to] < ord[u])\
+    \ {\n                    low[u] = std::min(low[u], ord[e.to]);\n             \
+    \   }\n            }\n            return low[u];\n        };\n        for (int\
+    \ u = 0; u < n; u++) if (ord[u] == -1) {\n            dfs(dfs, u);\n         \
+    \   root[u] = true;\n        }\n    }\n};\n\n} // namespace kk2\n\n\n"
+  code: "#ifndef GRAPH_LOWLINK_HPP\n#define GRAPH_LOWLINK_HPP 1\n\n#include <algorithm>\n\
+    #include <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class\
+    \ G>\nstruct LowLink {\n    int n, m;\n    const G &g;\n    std::vector<int> ord,\
+    \ low;\n    std::vector<bool> root, used;\n    LowLink(const G &g_) : n(g_.n),\
     \ m(g_.m), g(g_),\n                           ord(n, -1), low(n, -1), root(n,\
     \ false),\n                           used(m, false) {\n        init();\n    }\n\
     \n  private:\n    void init() {\n        int k = 0;\n        auto dfs = [&](auto\
     \ self, int u, int ei = -1) -> int {\n            low[u] = ord[u] = k++;\n   \
     \         for (auto &e : g[u]) {\n                if (e.id == ei) continue;\n\
     \                if (ord[e.to] == -1) {\n                    used[e.id] = true;\n\
-    \                    low[u] = min(low[u], self(self, e.to, e.id));\n         \
-    \       }\n                // back edge\n                else if (ord[e.to] <\
-    \ ord[u]) {\n                    low[u] = min(low[u], ord[e.to]);\n          \
-    \      }\n            }\n            return low[u];\n        };\n        for (int\
-    \ u = 0; u < n; u++) if (ord[u] == -1) {\n            dfs(dfs, u);\n         \
-    \   root[u] = true;\n        }\n    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_LOWLINK_HPP\n"
+    \                    low[u] = std::min(low[u], self(self, e.to, e.id));\n    \
+    \            }\n                // back edge\n                else if (ord[e.to]\
+    \ < ord[u]) {\n                    low[u] = std::min(low[u], ord[e.to]);\n   \
+    \             }\n            }\n            return low[u];\n        };\n     \
+    \   for (int u = 0; u < n; u++) if (ord[u] == -1) {\n            dfs(dfs, u);\n\
+    \            root[u] = true;\n        }\n    }\n};\n\n} // namespace kk2\n\n#endif\
+    \ // GRAPH_LOWLINK_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/lowlink.hpp
   requiredBy:
   - graph/bcc.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-09-10 07:56:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/lowlink.hpp

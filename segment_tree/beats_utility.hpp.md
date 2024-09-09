@@ -15,15 +15,16 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/beats_utility.hpp\"\n\n\n\n#line 1 \"segment_tree/beats.hpp\"\
-    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\nnamespace kk2 {\n\ntemplate\
-    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
-    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
-    \ (*id)()>\nstruct LazySegTreeBase {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0)\
+    \n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class S,\n \
+    \         S (*op)(S, S),\n          S (*e)(),\n          class F,\n          S\
+    \ (*mapping)(F, S),\n          F (*composition)(F, F),\n          F (*id)()>\n\
+    struct LazySegTreeBase {\n  public:\n    LazySegTreeBase() : LazySegTreeBase(0)\
     \ {}\n    LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n\
     \    template <class... Args>\n    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
     \ S(args...))) {}\n    LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size()))\
     \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
-    \ = 1 << log;\n        d = vector<S>(2 * size, e());\n        lz = vector<F>(size,\
+    \ = 1 << log;\n        d = std::vector<S>(2 * size, e());\n        lz = std::vector<F>(size,\
     \ id());\n        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for\
     \ (int i = size - 1; i >= 1; i--) {\n            update(i);\n        }\n    }\n\
     \n    using Monoid = S;\n    static S Op(S l, S r) { return op(l, r); }\n    static\
@@ -131,7 +132,7 @@ data:
   isVerificationFile: false
   path: segment_tree/beats_utility.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-09-10 07:56:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/beats_utility.hpp

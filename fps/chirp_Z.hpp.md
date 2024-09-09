@@ -11,44 +11,48 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"fps/chirp_Z.hpp\"\n\n\n\nnamespace kk2 {\n\n// return f(a\
-    \ w ^ 0), f(a w ^ 1), ..., f(a w ^ (n - 1))\ntemplate <class FPS, class mint =\
-    \ typename FPS::value_type>\nvector<mint> ChirpZ(FPS f, mint w, int n = -1, mint\
-    \ a = 1) {\n    if (n == -1) n = f.size();\n    if (f.empty() || n == 0) return\
-    \ vector<mint>(n, mint(0));\n    int m = f.size();\n    if (a != 1) {\n      \
-    \  mint x = 1;\n        for (int i = 0; i < m; i++) {\n            f[i] *= x;\n\
-    \            x *= a;\n        }\n    }\n    if (w == 0) {\n        vector<mint>\
-    \ g(n, f[0]);\n        for (int i = 1; i < m; i++) g[0] += f[i];\n        return\
-    \ g;\n    }\n    FPS wc(n + m), iwc(max(n, m));\n    mint ws = 1, iw = w.inv(),\
-    \ iws = 1;\n    wc[0] = iwc[0] = 1;\n    for (int i = 1; i < n + m; i++) {\n \
-    \       wc[i] = ws * wc[i - 1];\n        ws *= w;\n    }\n    for (int i = 1;\
-    \ i < max(n, m); i++) {\n        iwc[i] = iws * iwc[i - 1];\n        iws *= iw;\n\
-    \    }\n    for (int i = 0; i < m; i++) f[i] *= iwc[i];\n    reverse(begin(f),\
-    \ end(f));\n    FPS g = f * wc;\n    vector<mint> ret{begin(g) + m - 1, begin(g)\
-    \ + m + n - 1};\n    for (int i = 0; i < n; i++) ret[i] *= iwc[i];\n    return\
-    \ ret; \n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef FPS_CHIRP_Z_HPP\n#define FPS_CHIRP_Z_HPP 1\n\nnamespace kk2 {\n\n\
-    // return f(a w ^ 0), f(a w ^ 1), ..., f(a w ^ (n - 1))\ntemplate <class FPS,\
-    \ class mint = typename FPS::value_type>\nvector<mint> ChirpZ(FPS f, mint w, int\
-    \ n = -1, mint a = 1) {\n    if (n == -1) n = f.size();\n    if (f.empty() ||\
-    \ n == 0) return vector<mint>(n, mint(0));\n    int m = f.size();\n    if (a !=\
-    \ 1) {\n        mint x = 1;\n        for (int i = 0; i < m; i++) {\n         \
-    \   f[i] *= x;\n            x *= a;\n        }\n    }\n    if (w == 0) {\n   \
-    \     vector<mint> g(n, f[0]);\n        for (int i = 1; i < m; i++) g[0] += f[i];\n\
-    \        return g;\n    }\n    FPS wc(n + m), iwc(max(n, m));\n    mint ws = 1,\
-    \ iw = w.inv(), iws = 1;\n    wc[0] = iwc[0] = 1;\n    for (int i = 1; i < n +\
-    \ m; i++) {\n        wc[i] = ws * wc[i - 1];\n        ws *= w;\n    }\n    for\
-    \ (int i = 1; i < max(n, m); i++) {\n        iwc[i] = iws * iwc[i - 1];\n    \
-    \    iws *= iw;\n    }\n    for (int i = 0; i < m; i++) f[i] *= iwc[i];\n    reverse(begin(f),\
-    \ end(f));\n    FPS g = f * wc;\n    vector<mint> ret{begin(g) + m - 1, begin(g)\
-    \ + m + n - 1};\n    for (int i = 0; i < n; i++) ret[i] *= iwc[i];\n    return\
-    \ ret; \n}\n\n} // namespace kk2\n\n#endif  // FPS_CHIRP_Z_HPP\n"
+  bundledCode: "#line 1 \"fps/chirp_Z.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <vector>\n\nnamespace kk2 {\n\n// return f(a w ^ 0), f(a w ^ 1), ..., f(a w\
+    \ ^ (n - 1))\ntemplate <class FPS, class mint = typename FPS::value_type>\nstd::vector<mint>\
+    \ ChirpZ(const FPS& f_, mint w, int n = -1, mint a = 1) {\n    FPS f(f_.begin(),\
+    \ f_.end());\n    if (n == -1) n = f.size();\n    if (f.empty() || n == 0) return\
+    \ std::vector<mint>(n, mint(0));\n    int m = f.size();\n    if (a != mint(1))\
+    \ {\n        mint x = 1;\n        for (int i = 0; i < m; i++) {\n            f[i]\
+    \ *= x;\n            x *= a;\n        }\n    }\n    if (w == mint(0)) {\n    \
+    \    std::vector<mint> g(n, f[0]);\n        for (int i = 1; i < m; i++) g[0] +=\
+    \ f[i];\n        return g;\n    }\n    FPS wc(n + m), iwc(std::max(n, m));\n \
+    \   mint ws = 1, iw = w.inv(), iws = 1;\n    wc[0] = iwc[0] = 1;\n    for (int\
+    \ i = 1; i < n + m; i++) {\n        wc[i] = ws * wc[i - 1];\n        ws *= w;\n\
+    \    }\n    for (int i = 1; i < std::max(n, m); i++) {\n        iwc[i] = iws *\
+    \ iwc[i - 1];\n        iws *= iw;\n    }\n    for (int i = 0; i < m; i++) f[i]\
+    \ *= iwc[i];\n    std::reverse(std::begin(f), std::end(f));\n    FPS g = f * wc;\n\
+    \    std::vector<mint> ret{std::begin(g) + m - 1, std::begin(g) + m + n - 1};\n\
+    \    for (int i = 0; i < n; i++) ret[i] *= iwc[i];\n    return ret; \n}\n\n} //\
+    \ namespace kk2\n\n\n"
+  code: "#ifndef FPS_CHIRP_Z_HPP\n#define FPS_CHIRP_Z_HPP 1\n\n#include <algorithm>\n\
+    #include <vector>\n\nnamespace kk2 {\n\n// return f(a w ^ 0), f(a w ^ 1), ...,\
+    \ f(a w ^ (n - 1))\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+    std::vector<mint> ChirpZ(const FPS& f_, mint w, int n = -1, mint a = 1) {\n  \
+    \  FPS f(f_.begin(), f_.end());\n    if (n == -1) n = f.size();\n    if (f.empty()\
+    \ || n == 0) return std::vector<mint>(n, mint(0));\n    int m = f.size();\n  \
+    \  if (a != mint(1)) {\n        mint x = 1;\n        for (int i = 0; i < m; i++)\
+    \ {\n            f[i] *= x;\n            x *= a;\n        }\n    }\n    if (w\
+    \ == mint(0)) {\n        std::vector<mint> g(n, f[0]);\n        for (int i = 1;\
+    \ i < m; i++) g[0] += f[i];\n        return g;\n    }\n    FPS wc(n + m), iwc(std::max(n,\
+    \ m));\n    mint ws = 1, iw = w.inv(), iws = 1;\n    wc[0] = iwc[0] = 1;\n   \
+    \ for (int i = 1; i < n + m; i++) {\n        wc[i] = ws * wc[i - 1];\n       \
+    \ ws *= w;\n    }\n    for (int i = 1; i < std::max(n, m); i++) {\n        iwc[i]\
+    \ = iws * iwc[i - 1];\n        iws *= iw;\n    }\n    for (int i = 0; i < m; i++)\
+    \ f[i] *= iwc[i];\n    std::reverse(std::begin(f), std::end(f));\n    FPS g =\
+    \ f * wc;\n    std::vector<mint> ret{std::begin(g) + m - 1, std::begin(g) + m\
+    \ + n - 1};\n    for (int i = 0; i < n; i++) ret[i] *= iwc[i];\n    return ret;\
+    \ \n}\n\n} // namespace kk2\n\n#endif  // FPS_CHIRP_Z_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/chirp_Z.hpp
   requiredBy:
   - fps/poly_interpolation.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-09-09 21:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/chirp_Z.hpp

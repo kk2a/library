@@ -15,8 +15,9 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/sumseg.hpp\"\n\n\n\n#line 1 \"segment_tree/seg.hpp\"\
-    \n\n\n\nnamespace kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct\
-    \ SegTree {\npublic:\n    SegTree() : SegTree(0) {}\n    SegTree(int n) : SegTree(std::vector<S>(n,\
+    \n\n\n\n#include <cassert>\n#include <functional>\n#include <vector>\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SegTree {\npublic:\n\
+    \    SegTree() : SegTree(0) {}\n    SegTree(int n) : SegTree(std::vector<S>(n,\
     \ e())) {}\n    template <class... Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n,\
     \ S(args...))) {};\n    SegTree(const std::vector<S>& v) : _n(int(v.size())) {\n\
     \        log = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n \
@@ -60,14 +61,15 @@ data:
     \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\nprivate:\n\
     \    int _n, size, log;\n    std::vector<S> d;\n\n    void update(int k) { d[k]\
     \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math/group/sum.hpp\"\
-    \n\n\n\nnamespace kk2 {\n\nnamespace group {\n\ntemplate <class S>\nstruct Sum\
-    \ {\n    S a, size;\n    Sum() : a(S()), size(0) {}\n    Sum(S a, S size = 1)\
-    \ : a(a), size(size) {}\n    operator S() const { return a; }\n    friend ostream&\
-    \ operator<<(ostream& os, const Sum& sum) {\n        os << sum.a;\n        return\
-    \ os;\n    }\n    friend istream& operator>>(istream& is, Sum& sum) {\n      \
-    \  is >> sum.a;\n        sum.size = 1;\n        return is;\n    }\n    Sum& operator=(const\
-    \ S& rhs) {\n        a = rhs;\n        size = 1;\n        return *this;\n    }\n\
-    \n    Sum& add(const S& rhs) {\n        a += rhs * size;\n        return *this;\n\
+    \n\n\n\n#include <iostream>\n#line 6 \"math/group/sum.hpp\"\n\nnamespace kk2 {\n\
+    \nnamespace group {\n\ntemplate <class S>\nstruct Sum {\n    S a, size;\n    Sum()\
+    \ : a(S()), size(0) {}\n    Sum(S a, S size = 1) : a(a), size(size) {}\n    operator\
+    \ S() const { return a; }\n    friend std::ostream& operator<<(std::ostream& os,\
+    \ const Sum& sum) {\n        os << sum.a;\n        return os;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& is, Sum& sum) {\n        is >> sum.a;\n\
+    \        sum.size = 1;\n        return is;\n    }\n    Sum& operator=(const S&\
+    \ rhs) {\n        a = rhs;\n        size = 1;\n        return *this;\n    }\n\n\
+    \    Sum& add(const S& rhs) {\n        a += rhs * size;\n        return *this;\n\
     \    }\n    Sum& update(const S& rhs) {\n        a = rhs * size;\n        return\
     \ *this;\n    }\n    Sum& multiply(const S& rhs) {\n        a *= rhs;\n      \
     \  return *this;\n    }\n    Sum& op(const Sum& rhs) {\n        a += rhs.a;\n\
@@ -75,12 +77,12 @@ data:
     \ S>\nSum<S> SumOp(Sum<S> l, Sum<S> r) { return l.op(r); }\n\ntemplate <class\
     \ S>\nSum<S> SumUnit() { return Sum<S>(); }\n\ntemplate <class S>\nSum<S> SumInv(Sum<S>\
     \ x) { return Sum<S>(-x.a, -x.size); }\n\n} // namespace group\n\ntemplate <class\
-    \ S, class... Args>\nvector<group::Sum<S>> GetVecSum(int n, Args... args) {\n\
-    \    return vector<group::Sum<S>>(n, group::Sum<S>(args...));\n}\n\n} // namespace\
-    \ kk2\n\n\n#line 6 \"segment_tree/utility/sumseg.hpp\"\n\nnamespace kk2 {\n\n\
-    template <class S>\nusing SumSeg = SegTree<group::Sum<S>,\n                  \
-    \     group::SumOp<S>,\n                       group::SumUnit<S>>;\n\n} // namespace\
-    \ kk2\n\n\n"
+    \ S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int n, Args... args)\
+    \ {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n}\n\n\
+    } // namespace kk2\n\n\n#line 6 \"segment_tree/utility/sumseg.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S>\nusing SumSeg = SegTree<group::Sum<S>,\n       \
+    \                group::SumOp<S>,\n                       group::SumUnit<S>>;\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_SUMSEG_HPP\n#define SEGMENT_TREE_UTILITY_SUMSEG_HPP\
     \ 1\n\n#include \"../seg.hpp\"\n#include \"../../math/group/sum.hpp\"\n\nnamespace\
     \ kk2 {\n\ntemplate <class S>\nusing SumSeg = SegTree<group::Sum<S>,\n       \
@@ -92,7 +94,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/sumseg.hpp
   requiredBy: []
-  timestamp: '2024-08-29 23:32:51+09:00'
+  timestamp: '2024-09-10 07:56:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/sumseg.hpp

@@ -33,46 +33,47 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/lazy.hpp\"\n\n\n\n#line 1 \"segment_tree/lazy_base.hpp\"\
-    \n\n\n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n    \
-    \      S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n        \
-    \  F (*composition)(F, F),\n          F (*id)()>\nstruct LazySegTreeBase {\n \
-    \ public:\n    LazySegTreeBase() : LazySegTreeBase(0) {}\n    LazySegTreeBase(int\
-    \ n) : LazySegTreeBase(std::vector<S>(n, e())) {}\n    template <class... Args>\n\
-    \    LazySegTreeBase(int n, Args... args) : LazySegTreeBase(std::vector<S>(n,\
-    \ S(args...))) {}\n    LazySegTreeBase(const std::vector<S>& v) : _n(int(v.size()))\
-    \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
-    \ = 1 << log;\n        d = vector<S>(2 * size, e());\n        lz = vector<F>(size,\
-    \ id());\n        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for\
-    \ (int i = size - 1; i >= 1; i--) {\n            update(i);\n        }\n    }\n\
-    \n    using Monoid = S;\n    static S Op(S l, S r) { return op(l, r); }\n    static\
-    \ S MonoidUnit() { return e(); }\n    using Hom = F;\n    static S Map(F f, S\
-    \ x) { return mapping(f, x); }\n    static F Composition(F l, F r) { return composition(l,\
-    \ r); }\n    static F HomUnit() { return id(); } \n\n    virtual ~LazySegTreeBase()\
-    \ = default;\n\n    void set(int p, S x) {\n        assert(0 <= p && p < _n);\n\
+    \n\n\n\n#include <cassert>\n#include <functional>\n#include <vector>\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n          S (*e)(),\n\
+    \          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
+    \ F),\n          F (*id)()>\nstruct LazySegTreeBase {\n  public:\n    LazySegTreeBase()\
+    \ : LazySegTreeBase(0) {}\n    LazySegTreeBase(int n) : LazySegTreeBase(std::vector<S>(n,\
+    \ e())) {}\n    template <class... Args>\n    LazySegTreeBase(int n, Args... args)\
+    \ : LazySegTreeBase(std::vector<S>(n, S(args...))) {}\n    LazySegTreeBase(const\
+    \ std::vector<S>& v) : _n(int(v.size())) {\n        log = 0;\n        while ((1ll\
+    \ << log) < _n) log++;\n        size = 1 << log;\n        d = std::vector<S>(2\
+    \ * size, e());\n        lz = std::vector<F>(size, id());\n        for (int i\
+    \ = 0; i < _n; i++) d[size + i] = v[i];\n        for (int i = size - 1; i >= 1;\
+    \ i--) {\n            update(i);\n        }\n    }\n\n    using Monoid = S;\n\
+    \    static S Op(S l, S r) { return op(l, r); }\n    static S MonoidUnit() { return\
+    \ e(); }\n    using Hom = F;\n    static S Map(F f, S x) { return mapping(f, x);\
+    \ }\n    static F Composition(F l, F r) { return composition(l, r); }\n    static\
+    \ F HomUnit() { return id(); } \n\n    virtual ~LazySegTreeBase() = default;\n\
+    \n    void set(int p, S x) {\n        assert(0 <= p && p < _n);\n        p +=\
+    \ size;\n        for (int i = log; i >= 1; i--) push(p >> i);\n        d[p] =\
+    \ x;\n        for (int i = 1; i <= log; i++) update(p >> i);\n    }\n    template\
+    \ <class... Args>\n    void emplace_set(int p, Args... args) {\n        set(p,\
+    \ S(args...));\n    }\n\n    S get(int p) {\n        assert(0 <= p && p < _n);\n\
     \        p += size;\n        for (int i = log; i >= 1; i--) push(p >> i);\n  \
-    \      d[p] = x;\n        for (int i = 1; i <= log; i++) update(p >> i);\n   \
-    \ }\n    template <class... Args>\n    void emplace_set(int p, Args... args) {\n\
-    \        set(p, S(args...));\n    }\n\n    S get(int p) {\n        assert(0 <=\
-    \ p && p < _n);\n        p += size;\n        for (int i = log; i >= 1; i--) push(p\
-    \ >> i);\n        return d[p];\n    }\n\n    S prod(int l, int r) {\n        assert(0\
-    \ <= l && l <= r && r <= _n);\n        if (l == r) return e();\n\n        l +=\
-    \ size;\n        r += size;\n\n        for (int i = log; i >= 1; i--) {\n    \
-    \        if (((l >> i) << i) != l) push(l >> i);\n            if (((r >> i) <<\
-    \ i) != r) push(r >> i);\n        }\n\n        S sml = e(), smr = e();\n     \
-    \   while (l < r) {\n            if (l & 1) sml = op(sml, d[l++]);\n         \
-    \   if (r & 1) smr = op(d[--r], smr);\n            l >>= 1;\n            r >>=\
-    \ 1;\n        }\n\n        return op(sml, smr);\n    }\n\n    S all_prod() { return\
-    \ d[1]; }\n\n    void apply(int p, F f) {\n        assert(0 <= p && p < _n);\n\
-    \        p += size;\n        for (int i = log; i >= 1; i--) push(p >> i);\n  \
-    \      d[p] = mapping(f, d[p]);\n        for (int i = 1; i <= log; i++) update(p\
-    \ >> i);\n    }\n    template <class... Args>\n    void emplace_apply_point(int\
-    \ p, Args... args) {\n        apply(p, F(args...));\n    }\n    void apply(int\
-    \ l, int r, F f) {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l\
-    \ == r) return;\n\n        l += size;\n        r += size;\n\n        for (int\
-    \ i = log; i >= 1; i--) {\n            if (((l >> i) << i) != l) push(l >> i);\n\
-    \            if (((r >> i) << i) != r) push((r - 1) >> i);\n        }\n\n    \
-    \    {\n            int l2 = l, r2 = r;\n            while (l < r) {\n       \
-    \         if (l & 1) all_apply(l++, f);\n                if (r & 1) all_apply(--r,\
+    \      return d[p];\n    }\n\n    S prod(int l, int r) {\n        assert(0 <=\
+    \ l && l <= r && r <= _n);\n        if (l == r) return e();\n\n        l += size;\n\
+    \        r += size;\n\n        for (int i = log; i >= 1; i--) {\n            if\
+    \ (((l >> i) << i) != l) push(l >> i);\n            if (((r >> i) << i) != r)\
+    \ push(r >> i);\n        }\n\n        S sml = e(), smr = e();\n        while (l\
+    \ < r) {\n            if (l & 1) sml = op(sml, d[l++]);\n            if (r & 1)\
+    \ smr = op(d[--r], smr);\n            l >>= 1;\n            r >>= 1;\n       \
+    \ }\n\n        return op(sml, smr);\n    }\n\n    S all_prod() { return d[1];\
+    \ }\n\n    void apply(int p, F f) {\n        assert(0 <= p && p < _n);\n     \
+    \   p += size;\n        for (int i = log; i >= 1; i--) push(p >> i);\n       \
+    \ d[p] = mapping(f, d[p]);\n        for (int i = 1; i <= log; i++) update(p >>\
+    \ i);\n    }\n    template <class... Args>\n    void emplace_apply_point(int p,\
+    \ Args... args) {\n        apply(p, F(args...));\n    }\n    void apply(int l,\
+    \ int r, F f) {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l ==\
+    \ r) return;\n\n        l += size;\n        r += size;\n\n        for (int i =\
+    \ log; i >= 1; i--) {\n            if (((l >> i) << i) != l) push(l >> i);\n \
+    \           if (((r >> i) << i) != r) push((r - 1) >> i);\n        }\n\n     \
+    \   {\n            int l2 = l, r2 = r;\n            while (l < r) {\n        \
+    \        if (l & 1) all_apply(l++, f);\n                if (r & 1) all_apply(--r,\
     \ f);\n                l >>= 1;\n                r >>= 1;\n            }\n   \
     \         l = l2;\n            r = r2;\n        }\n\n        for (int i = 1; i\
     \ <= log; i++) {\n            if (((l >> i) << i) != l) update(l >> i);\n    \
@@ -135,7 +136,7 @@ data:
   - segment_tree/utility/addsum.hpp
   - segment_tree/utility/addmin.hpp
   - segment_tree/utility/addmax.hpp
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2024-09-10 07:56:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/lazy.hpp
