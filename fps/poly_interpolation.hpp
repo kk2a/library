@@ -1,18 +1,21 @@
 #ifndef FPS_POLYNOMIAL_INTERPOLATION_HPP
 #define FPS_POLYNOMIAL_INTERPOLATION_HPP 1
 
+#include <cassert>
+#include <functional>
+#include <vector>
 #include "multi_eval.hpp"
 #include "chirp_Z.hpp"
 
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS PolyInterpolation(const vector<mint> &x,
-                      const vector<mint> &y) {
+FPS PolyInterpolation(const std::vector<mint> &x,
+                      const std::vector<mint> &y) {
     assert(x.size() == y.size());
-    MultiPointEvaluation<FPS> mpe(x);
+    SubProductTree<FPS> mpe(x);
     FPS gp = mpe.pr[1].diff();
-    vector<mint> vs = mpe.query(gp);
+    std::vector<mint> vs = mpe.query(gp);
     auto rec = [&](auto self, int idx) -> FPS {
         if (idx >= mpe.size) {  
             if (idx - mpe.size < (int)y.size()) {
@@ -33,14 +36,14 @@ FPS PolyInterpolation(const vector<mint> &x,
 // https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan
 template <class FPS, class mint = typename FPS::value_type>
 FPS PolyInterpolationGeo(const mint &a, const mint &r,
-                         const vector<mint> &y) {
+                         const std::vector<mint> &y) {
     if (y.empty()) return {};
     if (y.size() == 1) return FPS{y[0]};
     assert(a != mint(0) && r != mint(0) && r != mint(1));
 
     int n = (int)y.size();
     // https://yukicoder.me/wiki/%E9%80%86%E5%85%83
-    vector<mint> s(n + 1), invs(n), pre(n + 1);
+    std::vector<mint> s(n + 1), invs(n), pre(n + 1);
     s[0] = pre[0] = invs[0] = 1;
     mint q = r;
     for (int i = 1; i < n + 1; i++) {
@@ -54,7 +57,7 @@ FPS PolyInterpolationGeo(const mint &a, const mint &r,
         inv *= s[i];
     }
 
-    vector<mint> w(n);
+    std::vector<mint> w(n);
     q = 1;
     int idx1 = n - 1, idx2 = 0;
     w[n - 1] = r.pow(1ll * (n - 1) * (n - 2) / 2).inv() * invs[idx1] * invs[idx2];
@@ -69,7 +72,7 @@ FPS PolyInterpolationGeo(const mint &a, const mint &r,
     for (int i = 0; i < n; i++) w[i] *= y[i];
 
     FPS g{begin(w), end(w)};
-    vector<mint> tmp = ChirpZ(g, r, n);
+    std::vector<mint> tmp = ChirpZ(g, r, n);
     FPS gq{begin(tmp), end(tmp)};
     FPS prod(n);
     q = 1;

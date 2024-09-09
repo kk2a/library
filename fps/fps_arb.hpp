@@ -33,15 +33,15 @@ FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(
         this->clear();
         return *this;
     }
-    convolution_arb(*this, r);
+    convolution_arb(*this, r, mint::getmod());
     return *this;
 }
 
 template <class mint>
-FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg=-1) const {
+FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
     assert((*this)[0] != mint(0));
     if (deg == -1) deg = this->size();
-    FormalPowerSeries<mint> res{mint(1) / (*this)[0]};
+    FormalPowerSeries<mint> res{(*this)[0].inv()};
     for (int i = 1; i < deg; i <<= 1) {
         res = (res * mint(2) - this->pre(i << 1) * res * res).pre(i << 1);
     }
@@ -49,7 +49,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg=-1) const {
 }
 
 template <class mint>
-FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg=-1) const {
+FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
     assert(this->empty() || (*this)[0] == mint(0));
     if (deg == -1) deg = this->size();
     FormalPowerSeries<mint> ret{mint(1)};

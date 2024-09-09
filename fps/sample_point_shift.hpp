@@ -1,10 +1,13 @@
 #ifndef FPS__SAMPLE_POINT_SHIFT_HPP
 #define FPS__SAMPLE_POINT_SHIFT_HPP 1
 
+#include <algorithm>
+#include <vector>
+
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-vector<mint> SamplePointShift(vector<mint> &y, mint t, int m = -1) {
+std::vector<mint> SamplePointShift(std::vector<mint> &y, mint t, int m = -1) {
     if (m == -1) m = y.size();
     long long tval = t.val();
     int k = (int)y.size() - 1;
@@ -25,11 +28,11 @@ vector<mint> SamplePointShift(vector<mint> &y, mint t, int m = -1) {
     if (tval + m > mint::getmod()) {
         auto pref = SamplePointShift<FPS>(y, mint(t), mint::getmod() - tval);
         auto suf = SamplePointShift<FPS>(y, mint(0), m - (int)pref.size());
-        copy(begin(suf), end(suf), back_inserter(pref));
+        std::copy(std::begin(suf), std::end(suf), std::back_inserter(pref));
         return pref;
     }
 
-    vector<mint> inv(k + 1, 1);
+    std::vector<mint> inv(k + 1, 1);
     FPS d(k + 1);
     for (int i = 2; i <= k; i++) inv[k] *= i;
     inv[k] = inv[k].inv();
@@ -46,7 +49,7 @@ vector<mint> SamplePointShift(vector<mint> &y, mint t, int m = -1) {
 
     FPS dh = d * h;
 
-    vector<mint> ret(m);
+    std::vector<mint> ret(m);
     mint cur = t;
     for (int i = 1; i <= k; i++) cur *= t - i;
     for (int i = 0; i < m; i++) {

@@ -1,6 +1,9 @@
 #ifndef LINEAR_RECURRENCE_HPP
 #define LINEAR_RECURRENCE_HPP 1
 
+#include <cassert>
+
+
 namespace kk2 {
 
 // a_{i + k} = \sum_{j = 0}^{k - 1} c_{j} a_{i + k - j - 1}

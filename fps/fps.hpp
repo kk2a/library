@@ -1,11 +1,16 @@
 #ifndef FPS_HPP
 #define FPS_HPP 1
 
+#include <algorithm>
+#include <cassert>
+#include <utility>
+#include <vector>
+
 namespace kk2 {
 
 template <class mint>
-struct FormalPowerSeries : vector<mint> {
-    using vector<mint>::vector;
+struct FormalPowerSeries : std::vector<mint> {
+    using std::vector<mint>::vector;
     using FPS = FormalPowerSeries;
 
     FPS &operator+=(const FPS &r) {
@@ -35,6 +40,7 @@ struct FormalPowerSeries : vector<mint> {
         return *this;
     }
     FPS &operator/=(const FPS &r) {
+        assert(!r.empty());
         if (this->size() < r.size()) {
             this->clear();
             return *this;
@@ -84,29 +90,29 @@ struct FormalPowerSeries : vector<mint> {
 
     FPS rev() const {
         FPS ret(*this);
-        reverse(ret.begin(), ret.end());
+        std::reverse(ret.begin(), ret.end());
         return ret;
     }
 
     FPS inplace_rev() {
-        reverse(this->begin(), this->end());
+        std::reverse(this->begin(), this->end());
         return *this;
     }
 
     FPS dot(const FPS &r) const {
-        FPS ret(min(this->size(), r.size()));
+        FPS ret(std::min(this->size(), r.size()));
         for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i] * r[i];
         return ret;
     }
 
     FPS inplace_dot(const FPS &r) {
-        this->resize(min(this->size(), r.size()));
+        this->resize(std::min(this->size(), r.size()));
         for (int i = 0; i < (int)this->size(); i++) (*this)[i] *= r[i];
         return *this;
     }
 
     FPS pre(int n) const {
-        FPS ret(begin(*this), begin(*this) + min((int)this->size(), n));
+        FPS ret(this->begin(), this->begin() + std::min((int)this->size(), n));
         if ((int)ret.size() < n) ret.resize(n, mint(0));
         return ret;
     }
@@ -118,18 +124,18 @@ struct FormalPowerSeries : vector<mint> {
 
     FPS operator>>(int n) const {
         if (n >= (int)this->size()) return {};
-        FPS ret(begin(*this) + n, end(*this));
+        FPS ret(this->begin() + n, this->end());
         return ret;
     }
     FPS operator<<(int n) const {
         FPS ret(*this);
-        ret.insert(begin(ret), n, mint(0));
+        ret.insert(ret.begin(), n, mint(0));
         return ret;
     }
 
     FPS diff() const {
         const int n = (int)this->size();
-        FPS ret(max(0, n - 1));
+        FPS ret(std::max(0, n - 1));
         for (int i = 1; i < n; i++) {
             ret[i - 1] = (*this)[i] * mint(i);
         }
@@ -162,7 +168,7 @@ struct FormalPowerSeries : vector<mint> {
     }
 
     FPS inplace_int() {
-        static vector<mint> inv{0, 1};
+        static std::vector<mint> inv{0, 1};
         const int n = this->size();
         auto mod = mint::getmod();
         while ((int)inv.size() <= n) {
@@ -194,13 +200,13 @@ struct FormalPowerSeries : vector<mint> {
     FPS sparse_log(int deg = -1) const {
         assert(!this->empty() && (*this)[0] == mint(1));
         if (deg == -1) deg = this->size();
-        vector<pair<int, mint>> fs;
+        std::vector<std::pair<int, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {
             if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
         }
 
         int mod = mint::getmod();
-        static vector<mint> inv{1, 1};
+        static std::vector<mint> inv{1, 1};
         while ((int)inv.size() <= deg) {
             int i = inv.size();
             inv.push_back(-inv[mod % i] * (mod / i));
@@ -263,18 +269,18 @@ struct FormalPowerSeries : vector<mint> {
             FPS suf(this->begin() + zero, this->end());
             auto g = suf.sparse_pow(k, deg - zero * k);
             FPS ret(zero * k, mint(0));
-            copy(begin(g), end(g), back_inserter(ret));
+            std::copy(std::begin(g), std::end(g), std::back_inserter(ret));
             return ret;
         }
 
         int mod = mint::getmod();
-        static vector<mint> inv{1, 1};
+        static std::vector<mint> inv{1, 1};
         while ((int)inv.size() <= deg) {
             int i = inv.size();
             inv.push_back(-inv[mod % i] * (mod / i));
         }
 
-        vector<pair<int, mint>> fs;
+        std::vector<std::pair<int, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {
             if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
         }
@@ -301,7 +307,7 @@ struct FormalPowerSeries : vector<mint> {
         mint ir0 = r[0].inv();
         FPS ret = *this * ir0;
         ret.resize(deg);
-        vector<pair<int, mint>> gs;
+        std::vector<std::pair<int, mint>> gs;
         for (int i = 1; i < (int)r.size(); i++) {
             if (r[i] != mint(0)) gs.emplace_back(i, r[i] * ir0);
         }
@@ -317,7 +323,7 @@ struct FormalPowerSeries : vector<mint> {
     FPS sparse_inv(int deg = -1) const {
         assert(!this->empty() && (*this)[0] != mint(0));
         if (deg == -1) deg = this->size();
-        vector<pair<int, mint>> fs;
+        std::vector<std::pair<int, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {
             if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
         }
@@ -337,13 +343,13 @@ struct FormalPowerSeries : vector<mint> {
     FPS sparse_exp(int deg = -1) const {
         assert(this->empty() || (*this)[0] == mint(0));
         if (deg == -1) deg = this->size();
-        vector<pair<int, mint>> fs;
+        std::vector<std::pair<int, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {
             if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
         }
 
         int mod = mint::getmod();
-        static vector<mint> inv{1, 1};
+        static std::vector<mint> inv{1, 1};
         while ((int)inv.size() <= deg) {
             int i = inv.size();
             inv.push_back(-inv[mod % i] * (mod / i));

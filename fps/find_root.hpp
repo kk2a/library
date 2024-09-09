@@ -1,15 +1,18 @@
 #ifndef FIND_ROOT_HPP
 #define FIND_ROOT_HPP 1
 
+#include <ctime>
+#include <vector>
+#include <random>
 #include "poly_gcd.hpp"
 #include "mod_pow.hpp"
 
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-vector<mint> find_root(FPS f) {
+std::vector<mint> find_root(FPS f) {
     long long p = mint::getmod();
-    vector<mint> res;
+    std::vector<mint> res;
     if (p == 2) {
         for (int i = 0; i < 2; i++) {
             if (f.eval(mint(i)) == mint(0)) {
@@ -19,9 +22,9 @@ vector<mint> find_root(FPS f) {
         return res;
     }
 
-    vector<FPS> fs;
+    std::vector<FPS> fs;
     fs.push_back(PolyGcd(mod_pow(p, FPS{0, 1}, f) - FPS{0, 1}, f));
-    mt19937_64 rng(time(0));
+    std::mt19937_64 rng(time(0));
     while (!fs.empty()) {
         auto g = fs.back();
         fs.pop_back();

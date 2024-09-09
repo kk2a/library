@@ -1,21 +1,24 @@
 #ifndef POWER_PROJECTION_HPP
 #define POWER_PROJECTION_HPP 1
 
+#include <algorithm>
+#include <functional>
+#include <vector>
+
 namespace kk2 {
 
-// n = \deg f - 1
+// n = \deg f
 // [X ^ n] f(X) ^ i g(X)  enumerate for i = 0, ... , m 
 template <class FPS, class mint = typename FPS::value_type>
-FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
+FPS power_projection(const FPS& f, const FPS& g = {1}, int m = -1) {
     if (f.empty() || g.empty()) return {};
     int n = int(size(f)) - 1, k = 1;
-    g.resize(n + 1);
     if (m == -1) m = n;
     int h = 1;
     while (h < n + 1) h <<= 1;
     FPS p((n + 1) * k), q((n + 1) * k),
         np, nq, buf, buf2;
-    for (int i = 0; i <= n; i++) p[i * k] = g[i];
+    for (int i = 0; i <= n; i++) p[i * k] = i < (int)g.size() ? g[i] : mint(0);
     for (int i = 0; i <= n; i++) q[i * k] = -f[i];
     q[0] += 1;
     mint inv2 = mint(2).inv();
@@ -28,7 +31,7 @@ FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
 
         buf2.resize(k);
         auto db = [&]() -> void {
-            copy(begin(buf), end(buf), begin(buf2));
+            std::copy(std::begin(buf), std::end(buf), std::begin(buf2));
             buf2.ibut();
             buf2 *= invk;
             mint r = 1;
@@ -37,18 +40,18 @@ FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
                 r *= w;
             }
             buf2.but();
-            copy(begin(buf2), end(buf2), back_inserter(buf));
+            std::copy(std::begin(buf2), std::end(buf2), std::back_inserter(buf));
         };
 
         np.clear(), nq.clear();
         for (int i = 0; i <= n; i++) {
             buf.resize(k);
-            copy(begin(p) + i * k, begin(p) + (i + 1) * k, begin(buf));
+            std::copy(std::begin(p) + i * k, std::begin(p) + (i + 1) * k, std::begin(buf));
             db();
-            copy(begin(buf), end(buf), back_inserter(np));
+            std::copy(std::begin(buf), std::end(buf), std::back_inserter(np));
 
             buf.resize(k);
-            copy(begin(q) + i * k, begin(q) + (i + 1) * k, begin(buf));
+            std::copy(std::begin(q) + i * k, std::begin(q) + (i + 1) * k, std::begin(buf));
             if (i == 0) {
                 for (int j = 0; j < k; j++) buf[j] -= 1;
                 db();
@@ -57,7 +60,7 @@ FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
             }
             else db();
 
-            copy(begin(buf), end(buf), back_inserter(nq));
+            std::copy(std::begin(buf), std::end(buf), std::back_inserter(nq));
         }
 
         np.resize(2 * h * 2 * k);
@@ -67,7 +70,7 @@ FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
         w = mint(FPS::but_pr()).
             pow((mint::getmod() - 1) / (h << 1));
         invw = w.inv();
-        vector<int> btr;
+        std::vector<int> btr;
         if (n & 1) {
             btr.resize(h);
             for (int i = 0, lg = __builtin_ctz(h); i < h; i++) {
@@ -83,7 +86,7 @@ FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
                 q1[i] = nq[i * 2 * k + j];
             }
             p1.but(); q1.but();
-            for (int i = 0; i < 2 * h; i += 2) swap(q1[i], q1[i + 1]);
+            for (int i = 0; i < 2 * h; i += 2) std::swap(q1[i], q1[i + 1]);
             p1.inplace_dot(q1);
             for (int i = 0; i < h; i++) q1[i] = q1[i * 2] * q1[i * 2 + 1];
             if (n & 1) {
@@ -93,7 +96,7 @@ FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
                     buf[i] = (p1[i * 2] - p1[i * 2 + 1]) * c;
                     c *= invw;
                 }
-                swap(p1, buf);
+                std::swap(p1, buf);
             }
             else {
                 for (int i = 0; i < h; i++) p1[i] =
@@ -110,13 +113,13 @@ FPS power_projection(FPS f, FPS g = {1}, int m = -1) {
 
         np.resize((n / 2 + 1) * 2 * k);
         nq.resize((n / 2 + 1) * 2 * k);
-        swap(p, np); swap(q, nq);
+        std::swap(p, np); std::swap(q, nq);
         n >>= 1, h >>= 1, k <<= 1;
         invh *= 2, invk *= inv2;
     }
 
-    FPS s(begin(p), begin(p) + k);
-    FPS t(begin(q), begin(q) + k);
+    FPS s(std::begin(p), std::begin(p) + k);
+    FPS t(std::begin(q), std::begin(q) + k);
     s.ibut(); t.ibut();
     s *= invk; t *= invk;
     t[0] -= 1;

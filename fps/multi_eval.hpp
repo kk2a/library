@@ -1,17 +1,20 @@
 #ifndef FPS_MULTI_EVAL_HPP
 #define FPS_MULTI_EVAL_HPP 1
 
+#include <functional>
+#include <vector>
+
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-struct MultiPointEvaluation {
+struct SubProductTree {
     int _n, size;
-    vector<int> l, r;
-    vector<FPS> pr;
-    vector<mint> v;
+    std::vector<int> l, r;
+    std::vector<FPS> pr;
+    std::vector<mint> v;
     FPS f;
 
-    MultiPointEvaluation(const vector<mint> &v_) : _n(int(v_.size())), v(v_) {
+    SubProductTree(const std::vector<mint> &v_) : _n(int(v_.size())), v(v_) {
         size = 1;
         while (size < (unsigned int)(_n)) size <<= 1;
         pr.resize(size << 1);
@@ -19,8 +22,8 @@ struct MultiPointEvaluation {
         r.resize(size << 1, _n);
         build();
     }
-    MultiPointEvaluation(const vector<mint> &v_, const FPS &f_) :
-        MultiPointEvaluation(v_) {
+    SubProductTree(const std::vector<mint> &v_, const FPS &f_) :
+        SubProductTree(v_) {
         this->f = f_;
     }
 
@@ -43,14 +46,14 @@ struct MultiPointEvaluation {
         }
     }
 
-    vector<mint> query(const FPS &f) {
+    std::vector<mint> query(const FPS &f) {
         this->f = f;
         return query();
     }
 
-    vector<mint> query() {
+    std::vector<mint> query() {
         if (f.empty() || !_n) return FPS(_n, mint(0));
-        vector<mint> ret;
+        std::vector<mint> ret;
         ret.reserve(_n);
         auto rec = [&](auto self, FPS a, int idx) -> void {
             if (l[idx] == r[idx]) return;
@@ -70,8 +73,8 @@ struct MultiPointEvaluation {
 };
 
 template <class FPS, class mint = typename FPS::value_type>
-vector<mint> MultiEval(vector<mint> v, FPS f) {
-    MultiPointEvaluation<mint, FPS> mpe(v, f);
+std::vector<mint> MultiEval(std::vector<mint> v, const FPS& f) {
+    SubProductTree<FPS> mpe(v, f);
     return mpe.query();
 }
 

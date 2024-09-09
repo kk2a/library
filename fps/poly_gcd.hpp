@@ -1,12 +1,16 @@
 #ifndef POLY_GCD_HPP
 #define POLY_GCD_HPP 1
 
+#include <algorithm>
+#include <array>
+#include <utility>
+
 namespace kk2 {
 
 namespace poly_gcd {
 
 template <class FPS>
-using Vec = array<FPS, 2>;
+using Vec = std::array<FPS, 2>;
 
 template <class FPS>
 struct mat_poly {
@@ -23,8 +27,8 @@ struct mat_poly {
         FPS A11 = a10 * r.a01 + a11 * r.a11;
         A00.shrink(); A01.shrink();
         A10.shrink(); A11.shrink();
-        swap(a00, A00); swap(a01, A01);
-        swap(a10, A10); swap(a11, A11);
+        std::swap(a00, A00); std::swap(a01, A01);
+        std::swap(a10, A10); std::swap(a11, A11);
         return *this;
     }
 
@@ -53,8 +57,8 @@ void InnerNaiveGcd(mat_poly<FPS>& a, Vec<FPS>& b) {
     FPS x11 = a.a01 - quo * a.a11;
     rem.shrink();
     x10.shrink(); x11.shrink();
-    swap(x10, a.a10); swap(x11, a.a11);
-    swap(x10, a.a00); swap(x11, a.a01);
+    std::swap(x10, a.a10); std::swap(x11, a.a11);
+    std::swap(x10, a.a00); std::swap(x11, a.a01);
     b = {b[1], rem};
 }
 
@@ -82,8 +86,8 @@ mat_poly<FPS> InnerPolyGcd(const FPS& a, const FPS& b) {
     int n = (int)c[0].size(), m = (int)c[1].size();
     if (n < m) {
         mat_poly<FPS> ret = InnerPolyGcd(c[1], c[0]);
-        swap(ret.a00, ret.a01);
-        swap(ret.a10, ret.a11);
+        std::swap(ret.a00, ret.a01);
+        std::swap(ret.a10, ret.a11);
         return ret;
     }
 
@@ -113,7 +117,7 @@ FPS PolyGcd(FPS a, FPS b) {
 
 // f ^ {-1} mod g
 template <class FPS>
-pair<bool, FPS> PolyInv(FPS f, FPS g) {
+std::pair<bool, FPS> PolyInv(const FPS& f, const FPS& g) {
     Vec<FPS> c{f, g};
     mat_poly<FPS> m = InnerPolyGcd(f, g);
     FPS gcd_ = (m * c)[0];

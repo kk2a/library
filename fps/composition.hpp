@@ -1,17 +1,26 @@
 #ifndef FPS_COMPOSITION_HPP
 #define FPS_COMPOSITION_HPP 1
 
+#include <algorithm>
+#include <cassert>
+#include <functional>
+#include <utility>
+#include <vector>
+
 namespace kk2 {
 
 // calculate (g \circ f) (X)
 template <class FPS, class mint = typename FPS::value_type>
-FPS composition(FPS f, FPS g, int deg = -1) {
-    if (f.empty() || g.empty()) return {};
-    
+FPS composition(const FPS& f_, const FPS& g_, int deg = -1) {
+    if (f_.empty() || g_.empty()) return {};
+    if (deg == -1) deg = std::max(size(f_), size(g_));
+    FPS f(f_.begin(), f_.end()), g(g_.begin(), g_.end());
+    f.resize(deg), g.resize(deg);
+
     auto rec = [&](auto self, FPS q,
                    int n, int h, int k) -> FPS {
         if (n == 0) {
-            FPS t(begin(q), begin(q) + k);
+            FPS t(std::begin(q), std::begin(q) + k);
             t.push_back(1);
             FPS u = g * t.rev().inv().rev();
             FPS p(h * k);
@@ -22,8 +31,8 @@ FPS composition(FPS f, FPS g, int deg = -1) {
         }
         FPS nq(4 * h * k), nr(2 * h * k);
         for (int i = 0; i < k; i++) {
-            copy(begin(q) + i * h, begin(q) + i * h + n + 1,
-                 begin(nq) + i * 2 * h);
+            std::copy(std::begin(q) + i * h, std::begin(q) + i * h + n + 1,
+                      std::begin(nq) + i * 2 * h);
         }
         nq[k * 2 * h] += 1;
         int z = 1;
@@ -31,7 +40,7 @@ FPS composition(FPS f, FPS g, int deg = -1) {
         mint invz = mint(z).inv(), invz2 = invz * mint(2).inv();
         nq.resize(z << 1);
         nq.but();
-        for (int i = 0; i < 4 * h * k; i += 2) swap(nq[i], nq[i + 1]);
+        for (int i = 0; i < 4 * h * k; i += 2) std::swap(nq[i], nq[i + 1]);
         for (int i = 0; i < 2 * h * k; i++) {
             nr[i] = nq[i * 2] * nq[i * 2 + 1];
         }
@@ -55,7 +64,7 @@ FPS composition(FPS f, FPS g, int deg = -1) {
         np.resize(z << 1);
         np.but();
         for (int i = 1; i < 4 * h * k; i <<= 1) {
-            reverse(begin(nq) + i, begin(nq) + i * 2);
+            std::reverse(std::begin(nq) + i, std::begin(nq) + i * 2);
         }
         for (int i = 0; i < 4 * h * k; i++) {
             np[i] *= nq[i];
@@ -64,14 +73,12 @@ FPS composition(FPS f, FPS g, int deg = -1) {
         for (int i = 0; i < 4 * h * k; i++) np[i] *= invz2;
         p.assign(h * k, 0);
         for (int i = 0; i < k; i++) {
-            copy(begin(np) + i * 2 * h, begin(np) + i * 2 * h + n + 1,
-                 begin(p) + i * h);
+            std::copy(std::begin(np) + i * 2 * h, std::begin(np) + i * 2 * h + n + 1,
+                      std::begin(p) + i * h);
         }
         return p;
     }; 
 
-    if (deg == -1) deg = max(size(f), size(g));
-    f.resize(deg), g.resize(deg);
     int n = int(size(f)) - 1, k = 1;
     int h = 1;
     while (h < n + 1) h <<= 1;
