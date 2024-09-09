@@ -3,6 +3,7 @@
 #include "../../fps/ntt_friendly.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
+using namespace std;
 
 using mint = kk2::Mont<mod>;
 using FPS = kk2::FormalPowerSeries<mint>;
