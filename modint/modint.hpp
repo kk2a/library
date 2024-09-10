@@ -16,7 +16,7 @@ template <int p> struct ModInt {
   public:
     static int Mod;
 
-    constexpr static int getmod() {
+    constexpr static unsigned int getmod() {
         if (p > 0) return p;
         else return Mod;
     }
