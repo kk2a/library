@@ -12,6 +12,7 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
     SegTree() : SegTree(0) {}
 
     SegTree(int n) : SegTree(std::vector<S>(n, e())) {}
+
     template <class... Args>
     SegTree(int n, Args... args) : SegTree(std::vector<S>(n, S(args...))){};
 
