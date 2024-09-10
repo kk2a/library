@@ -6,6 +6,7 @@
 
 namespace kk2 {
 
+// return {gcd(a, b), x} where a * x + b * y = gcd(a, b)
 std::pair<long long, long long> inv_gcd(long long a, long long b) {
     a = a % b;
     if (a == 0) return {b, 0};
