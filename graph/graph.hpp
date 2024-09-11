@@ -49,15 +49,13 @@ struct WeightedGraph : std::vector<WeightedEdges<T>> {
     }
 
     WeightedGraph(int n_,
-                  const std::vector<WeightedEdges<T>> &g_,
+                  const WeightedEdges<T> &edges_,
                   bool is_one_indexed = true)
         : std::vector<WeightedEdges<T>>(n_),
           n(n_),
           m(0),
           oneindexed(is_one_indexed) {
-        for (int i = 0; i < n; i++) {
-            for (auto &e : g_[i]) { _add_edge(i, e.to, e.cost, m++); }
-        }
+        for (auto &e : edges_) { _add_edge(e.from, e.to, e.cost, m++); }
     }
 
     using value_type = T;
@@ -172,15 +170,13 @@ struct UnWeightedGraph : std::vector<UnWeightedEdges> {
     }
 
     UnWeightedGraph(int n_,
-                    const std::vector<UnWeightedEdges> &g_,
+                    const UnWeightedEdges &edges_,
                     bool is_one_indexed = true)
         : std::vector<UnWeightedEdges>(n_),
           n(n_),
           m(0),
           oneindexed(is_one_indexed) {
-        for (int i = 0; i < n; i++) {
-            for (auto &e : g_[i]) { _add_edge(i, e.to, m++); }
-        }
+        for (auto &e : edges_) { _add_edge(e.from, e.to, m++); }
     }
 
     constexpr static bool directed() { return is_directed; }
