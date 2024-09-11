@@ -15,6 +15,7 @@ struct WeighedUnionFind {
   public:
     WeighedUnionFind(int n = 0) : d(n, -1), diff_weight(n, e()) {}
 
+    // x -> y
     bool unite(int x, int y, A w) {
         w = op(w, op(weight(x), inv(weight(y))));
         x = find(x);
@@ -46,6 +47,7 @@ struct WeighedUnionFind {
         return diff_weight[x];
     }
 
+    // a -> b
     A diff(int a, int b) { return op(inv(weight(a)), weight(b)); }
 };
 
