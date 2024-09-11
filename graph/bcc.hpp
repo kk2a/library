@@ -9,16 +9,15 @@
 namespace kk2 {
 
 template <class G> struct BCC : LowLink<G> {
-    BCC(const G &g_) : LowLink<G>(g_) { init(); }
+    BCC(const G &g_) : LowLink<G>(g_) { init_bcc(); }
 
     std::vector<std::vector<int>> bc_e;
     std::vector<int> bc_id;
 
   private:
     // v is a child of u in DFS tree
-    // edge(u, v) is a bridge <=> ord[u] < low[v]
-    // u is an articulation point <=> u is root and
-    void init() {
+    // u is an articulation point <=> (u is root and deg(u) >= 2) or ord[u] <= low[v]
+    void init_bcc() {
         bc_id = std::vector<int>(this->m, -1);
         auto add = [&](int ei, int k) {
             bc_e[k].emplace_back(ei);
