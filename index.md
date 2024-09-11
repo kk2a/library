@@ -174,6 +174,9 @@ data:
     - icon: ':warning:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
+    - icon: ':warning:'
+      path: graph/two_edge_connected_components.hpp
+      title: graph/two_edge_connected_components.hpp
   - name: graph/tree
     pages:
     - icon: ':warning:'

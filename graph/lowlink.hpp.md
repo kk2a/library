@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: graph/bcc.hpp
     title: graph/bcc.hpp
+  - icon: ':warning:'
+    path: graph/two_edge_connected_components.hpp
+    title: graph/two_edge_connected_components.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -49,6 +52,7 @@ data:
   isVerificationFile: false
   path: graph/lowlink.hpp
   requiredBy:
+  - graph/two_edge_connected_components.hpp
   - graph/bcc.hpp
   timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS

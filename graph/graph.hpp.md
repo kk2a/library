@@ -25,11 +25,10 @@ data:
     \    WeightedGraph(int n_, int m_, bool is_one_indexed = true)\n        : std::vector<WeightedEdges<T>>(n_),\n\
     \          n(n_),\n          m(m_),\n          oneindexed(is_one_indexed) {\n\
     \        input();\n    }\n\n    WeightedGraph(int n_,\n                  const\
-    \ std::vector<WeightedEdges<T>> &g_,\n                  bool is_one_indexed =\
-    \ true)\n        : std::vector<WeightedEdges<T>>(n_),\n          n(n_),\n    \
-    \      m(0),\n          oneindexed(is_one_indexed) {\n        for (int i = 0;\
-    \ i < n; i++) {\n            for (auto &e : g_[i]) { _add_edge(i, e.to, e.cost,\
-    \ m++); }\n        }\n    }\n\n    using value_type = T;\n    using edge_type\
+    \ WeightedEdges<T> &edges_,\n                  bool is_one_indexed = true)\n \
+    \       : std::vector<WeightedEdges<T>>(n_),\n          n(n_),\n          m(0),\n\
+    \          oneindexed(is_one_indexed) {\n        for (auto &e : edges_) { _add_edge(e.from,\
+    \ e.to, e.cost, m++); }\n    }\n\n    using value_type = T;\n    using edge_type\
     \ = WeightedEdge<T>;\n\n    constexpr static bool directed() { return is_directed;\
     \ }\n\n    int n, m;\n    bool oneindexed;\n    WeightedEdges<T> edges;\n\n  \
     \  int num_vertices() const { return n; }\n\n    int num_edges() const { return\
@@ -66,11 +65,10 @@ data:
     \ n_, int m_, bool is_one_indexed = true)\n        : std::vector<UnWeightedEdges>(n_),\n\
     \          n(n_),\n          m(m_),\n          oneindexed(is_one_indexed) {\n\
     \        input();\n    }\n\n    UnWeightedGraph(int n_,\n                    const\
-    \ std::vector<UnWeightedEdges> &g_,\n                    bool is_one_indexed =\
-    \ true)\n        : std::vector<UnWeightedEdges>(n_),\n          n(n_),\n     \
-    \     m(0),\n          oneindexed(is_one_indexed) {\n        for (int i = 0; i\
-    \ < n; i++) {\n            for (auto &e : g_[i]) { _add_edge(i, e.to, m++); }\n\
-    \        }\n    }\n\n    constexpr static bool directed() { return is_directed;\
+    \ UnWeightedEdges &edges_,\n                    bool is_one_indexed = true)\n\
+    \        : std::vector<UnWeightedEdges>(n_),\n          n(n_),\n          m(0),\n\
+    \          oneindexed(is_one_indexed) {\n        for (auto &e : edges_) { _add_edge(e.from,\
+    \ e.to, m++); }\n    }\n\n    constexpr static bool directed() { return is_directed;\
     \ }\n\n    constexpr static bool functional() { return is_functional; }\n\n  \
     \  using edge_type = UnWeightedEdge;\n\n    int n, m;\n    bool oneindexed;\n\
     \    UnWeightedEdges edges;\n\n    int num_vertices() const { return n; }\n\n\
@@ -119,11 +117,10 @@ data:
     \    WeightedGraph(int n_, int m_, bool is_one_indexed = true)\n        : std::vector<WeightedEdges<T>>(n_),\n\
     \          n(n_),\n          m(m_),\n          oneindexed(is_one_indexed) {\n\
     \        input();\n    }\n\n    WeightedGraph(int n_,\n                  const\
-    \ std::vector<WeightedEdges<T>> &g_,\n                  bool is_one_indexed =\
-    \ true)\n        : std::vector<WeightedEdges<T>>(n_),\n          n(n_),\n    \
-    \      m(0),\n          oneindexed(is_one_indexed) {\n        for (int i = 0;\
-    \ i < n; i++) {\n            for (auto &e : g_[i]) { _add_edge(i, e.to, e.cost,\
-    \ m++); }\n        }\n    }\n\n    using value_type = T;\n    using edge_type\
+    \ WeightedEdges<T> &edges_,\n                  bool is_one_indexed = true)\n \
+    \       : std::vector<WeightedEdges<T>>(n_),\n          n(n_),\n          m(0),\n\
+    \          oneindexed(is_one_indexed) {\n        for (auto &e : edges_) { _add_edge(e.from,\
+    \ e.to, e.cost, m++); }\n    }\n\n    using value_type = T;\n    using edge_type\
     \ = WeightedEdge<T>;\n\n    constexpr static bool directed() { return is_directed;\
     \ }\n\n    int n, m;\n    bool oneindexed;\n    WeightedEdges<T> edges;\n\n  \
     \  int num_vertices() const { return n; }\n\n    int num_edges() const { return\
@@ -160,11 +157,10 @@ data:
     \ n_, int m_, bool is_one_indexed = true)\n        : std::vector<UnWeightedEdges>(n_),\n\
     \          n(n_),\n          m(m_),\n          oneindexed(is_one_indexed) {\n\
     \        input();\n    }\n\n    UnWeightedGraph(int n_,\n                    const\
-    \ std::vector<UnWeightedEdges> &g_,\n                    bool is_one_indexed =\
-    \ true)\n        : std::vector<UnWeightedEdges>(n_),\n          n(n_),\n     \
-    \     m(0),\n          oneindexed(is_one_indexed) {\n        for (int i = 0; i\
-    \ < n; i++) {\n            for (auto &e : g_[i]) { _add_edge(i, e.to, m++); }\n\
-    \        }\n    }\n\n    constexpr static bool directed() { return is_directed;\
+    \ UnWeightedEdges &edges_,\n                    bool is_one_indexed = true)\n\
+    \        : std::vector<UnWeightedEdges>(n_),\n          n(n_),\n          m(0),\n\
+    \          oneindexed(is_one_indexed) {\n        for (auto &e : edges_) { _add_edge(e.from,\
+    \ e.to, m++); }\n    }\n\n    constexpr static bool directed() { return is_directed;\
     \ }\n\n    constexpr static bool functional() { return is_functional; }\n\n  \
     \  using edge_type = UnWeightedEdge;\n\n    int n, m;\n    bool oneindexed;\n\
     \    UnWeightedEdges edges;\n\n    int num_vertices() const { return n; }\n\n\
@@ -199,7 +195,7 @@ data:
   isVerificationFile: false
   path: graph/graph.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-11 16:33:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/graph.hpp
