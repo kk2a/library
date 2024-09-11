@@ -42,6 +42,7 @@ template <class T> struct ArgumentSort {
         return std::lower_bound(first, last, p, cmp);
     }
 };
+template <class T> Point<T> ArgumentSort<T>::O;
 
 } // namespace kk2
 
