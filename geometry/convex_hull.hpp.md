@@ -81,12 +81,12 @@ data:
     \n\n#line 9 \"geometry/convex_hull.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename\
     \ T> struct ConvexHull {\n    std::vector<Point<T>> ps, hull;\n    std::vector<int>\
     \ idx;\n\n    ConvexHull() = default;\n\n    ConvexHull(const std::vector<Point<T>>\
-    \ &ps) : ps(ps) {}\n\n    void emplace_point(T x, T y) { ps.emplace_back(x, y);\
-    \ }\n\n    void push_point(const Point<T> &p) { ps.push_back(p); }\n\n    void\
-    \ build() {\n        int _n = size(ps);\n        if (_n == 1) {\n            hull\
-    \ = ps;\n            return;\n        }\n        std::vector<std::pair<Point<T>,\
-    \ int>> tmp(_n);\n        for (int i = 0; i < _n; i++) tmp[i] = {ps[i], i};\n\
-    \        std::sort(std::begin(tmp), std::end(tmp));\n        std::vector<std::pair<Point<T>,\
+    \ &ps) : ps(ps) {}\n\n    void add_point(T x, T y) { ps.emplace_back(x, y); }\n\
+    \n    void add_point(const Point<T> &p) { ps.push_back(p); }\n\n    void build()\
+    \ {\n        int _n = size(ps);\n        if (_n == 1) {\n            hull = ps;\n\
+    \            return;\n        }\n        std::vector<std::pair<Point<T>, int>>\
+    \ tmp(_n);\n        for (int i = 0; i < _n; i++) tmp[i] = {ps[i], i};\n      \
+    \  std::sort(std::begin(tmp), std::end(tmp));\n        std::vector<std::pair<Point<T>,\
     \ int>> up, dw;\n        up.push_back(tmp[0]);\n        dw.push_back(tmp[0]);\n\
     \        up.push_back(tmp[1]);\n        dw.push_back(tmp[1]);\n\n        for (int\
     \ i = 2; i < _n; i++) {\n            while (size(up) >= 2\n                  \
@@ -107,10 +107,10 @@ data:
     #include <algorithm>\n#include <utility>\n#include <vector>\n\n#include \"point.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename T> struct ConvexHull {\n    std::vector<Point<T>>\
     \ ps, hull;\n    std::vector<int> idx;\n\n    ConvexHull() = default;\n\n    ConvexHull(const\
-    \ std::vector<Point<T>> &ps) : ps(ps) {}\n\n    void emplace_point(T x, T y) {\
-    \ ps.emplace_back(x, y); }\n\n    void push_point(const Point<T> &p) { ps.push_back(p);\
-    \ }\n\n    void build() {\n        int _n = size(ps);\n        if (_n == 1) {\n\
-    \            hull = ps;\n            return;\n        }\n        std::vector<std::pair<Point<T>,\
+    \ std::vector<Point<T>> &ps) : ps(ps) {}\n\n    void add_point(T x, T y) { ps.emplace_back(x,\
+    \ y); }\n\n    void add_point(const Point<T> &p) { ps.push_back(p); }\n\n    void\
+    \ build() {\n        int _n = size(ps);\n        if (_n == 1) {\n            hull\
+    \ = ps;\n            return;\n        }\n        std::vector<std::pair<Point<T>,\
     \ int>> tmp(_n);\n        for (int i = 0; i < _n; i++) tmp[i] = {ps[i], i};\n\
     \        std::sort(std::begin(tmp), std::end(tmp));\n        std::vector<std::pair<Point<T>,\
     \ int>> up, dw;\n        up.push_back(tmp[0]);\n        dw.push_back(tmp[0]);\n\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: geometry/convex_hull.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-11 09:50:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/convex_hull.hpp
