@@ -91,7 +91,8 @@ data:
     \       std::sort(std::begin(ps), std::end(ps), cmp);\n    }\n\n    template <class\
     \ ForwardIt>\n    static ForwardIt\n    min_up_argument(ForwardIt first, ForwardIt\
     \ last, const Point<T> &p) {\n        return std::lower_bound(first, last, p,\
-    \ cmp);\n    }\n};\n\n} // namespace kk2\n\n\n"
+    \ cmp);\n    }\n};\ntemplate <class T> Point<T> ArgumentSort<T>::O;\n\n} // namespace\
+    \ kk2\n\n\n"
   code: "#ifndef GEOMETRY_ARGUMENT_HPP\n#define GEOMETRY_ARGUMENT_HPP 1\n\n#include\
     \ <algorithm>\n\n#include \"point.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
     \ T> struct ArgumentSort {\n    using i64 = long long;\n    static Point<T> O;\n\
@@ -106,13 +107,14 @@ data:
     \ argument_sort(vector<Point<T>> &ps) {\n        std::sort(std::begin(ps), std::end(ps),\
     \ cmp);\n    }\n\n    template <class ForwardIt>\n    static ForwardIt\n    min_up_argument(ForwardIt\
     \ first, ForwardIt last, const Point<T> &p) {\n        return std::lower_bound(first,\
-    \ last, p, cmp);\n    }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_ARGUMENT_HPP\n"
+    \ last, p, cmp);\n    }\n};\ntemplate <class T> Point<T> ArgumentSort<T>::O;\n\
+    \n} // namespace kk2\n\n#endif // GEOMETRY_ARGUMENT_HPP\n"
   dependsOn:
   - geometry/point.hpp
   isVerificationFile: false
   path: geometry/argument.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-11 09:55:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/argument.hpp
