@@ -17,9 +17,9 @@ template <typename T> struct ConvexHull {
 
     ConvexHull(const std::vector<Point<T>> &ps) : ps(ps) {}
 
-    void emplace_point(T x, T y) { ps.emplace_back(x, y); }
+    void add_point(T x, T y) { ps.emplace_back(x, y); }
 
-    void push_point(const Point<T> &p) { ps.push_back(p); }
+    void add_point(const Point<T> &p) { ps.push_back(p); }
 
     void build() {
         int _n = size(ps);
