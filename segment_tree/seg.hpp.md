@@ -20,7 +20,7 @@ data:
   bundledCode: "#line 1 \"segment_tree/seg.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class S, S (*op)(S,\
     \ S), S (*e)()> struct SegTree {\n  public:\n    SegTree() : SegTree(0) {}\n\n\
-    \    SegTree(int n) : SegTree(std::vector<S>(n, e())) {}\n    template <class...\
+    \    SegTree(int n) : SegTree(std::vector<S>(n, e())) {}\n\n    template <class...\
     \ Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n, S(args...))){};\n\
     \n    SegTree(const std::vector<S> &v) : _n(int(v.size())) {\n        log = 0;\n\
     \        while ((1U << log) < (unsigned int)(_n)) log++;\n        size = 1 <<\
@@ -68,7 +68,7 @@ data:
     \ <cassert>\n#include <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
     \ <class S, S (*op)(S, S), S (*e)()> struct SegTree {\n  public:\n    SegTree()\
     \ : SegTree(0) {}\n\n    SegTree(int n) : SegTree(std::vector<S>(n, e())) {}\n\
-    \    template <class... Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n,\
+    \n    template <class... Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n,\
     \ S(args...))){};\n\n    SegTree(const std::vector<S> &v) : _n(int(v.size()))\
     \ {\n        log = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n\
     \        size = 1 << log;\n        d = std::vector<S>(2 * size, e());\n      \
@@ -118,7 +118,7 @@ data:
   - segment_tree/utility/minseg.hpp
   - segment_tree/utility/maxseg.hpp
   - segment_tree/utility/sumseg.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-11 08:58:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/seg.hpp

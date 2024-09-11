@@ -33,17 +33,17 @@ data:
     \                      std::true_type,\n                              std::false_type>::type;\n\
     \n} // namespace kk2\n\n\n#line 10 \"modint/modint.hpp\"\n\nnamespace kk2 {\n\n\
     template <int p> struct ModInt {\n    using mint = ModInt;\n\n  public:\n    static\
-    \ int Mod;\n\n    constexpr static int getmod() {\n        if (p > 0) return p;\n\
-    \        else return Mod;\n    }\n\n    static void setmod(int Mod_) {\n     \
-    \   assert(1 <= Mod_);\n        Mod = Mod_;\n    }\n\n    static mint raw(int\
-    \ v) {\n        mint x;\n        x._v = v;\n        return x;\n    }\n\n    operator\
-    \ int() const { return _v; }\n\n    ModInt() : _v(0) {}\n\n    template <class\
-    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
-    \    ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value) {\n  \
-    \          v %= getmod();\n            if (v < 0) v += getmod();\n           \
-    \ _v = v;\n        } else if constexpr (is_unsigned_extended<T>::value) {\n  \
-    \          _v = v %= getmod();\n        } else {\n            ModInt();\n    \
-    \    }\n    }\n\n    unsigned int val() const { return _v; }\n\n    mint &operator++()\
+    \ int Mod;\n\n    constexpr static unsigned int getmod() {\n        if (p > 0)\
+    \ return p;\n        else return Mod;\n    }\n\n    static void setmod(int Mod_)\
+    \ {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n    }\n\n    static mint\
+    \ raw(int v) {\n        mint x;\n        x._v = v;\n        return x;\n    }\n\
+    \n    operator int() const { return _v; }\n\n    ModInt() : _v(0) {}\n\n    template\
+    \ <class T,\n              std::enable_if_t<is_integral_extended<T>::value> *\
+    \ = nullptr>\n    ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
+    \ {\n            v %= getmod();\n            if (v < 0) v += getmod();\n     \
+    \       _v = v;\n        } else if constexpr (is_unsigned_extended<T>::value)\
+    \ {\n            _v = v %= getmod();\n        } else {\n            ModInt();\n\
+    \        }\n    }\n\n    unsigned int val() const { return _v; }\n\n    mint &operator++()\
     \ {\n        _v++;\n        if (_v == getmod()) _v = 0;\n        return *this;\n\
     \    }\n\n    mint &operator--() {\n        if (_v == 0) _v = getmod();\n    \
     \    _v--;\n        return *this;\n    }\n\n    mint operator++(int) {\n     \
@@ -102,12 +102,12 @@ data:
   code: "#ifndef MODINT_HPP\n#define MODINT_HPP 1\n\n#include <cassert>\n#include\
     \ <iostream>\n#include <type_traits>\n#include <utility>\n\n#include \"../type_traits/type_traits.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <int p> struct ModInt {\n    using mint = ModInt;\n\
-    \n  public:\n    static int Mod;\n\n    constexpr static int getmod() {\n    \
-    \    if (p > 0) return p;\n        else return Mod;\n    }\n\n    static void\
-    \ setmod(int Mod_) {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n    }\n\
-    \n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n        return\
-    \ x;\n    }\n\n    operator int() const { return _v; }\n\n    ModInt() : _v(0)\
-    \ {}\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \n  public:\n    static int Mod;\n\n    constexpr static unsigned int getmod()\
+    \ {\n        if (p > 0) return p;\n        else return Mod;\n    }\n\n    static\
+    \ void setmod(int Mod_) {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n \
+    \   }\n\n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n  \
+    \      return x;\n    }\n\n    operator int() const { return _v; }\n\n    ModInt()\
+    \ : _v(0) {}\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
     \ {\n            v %= getmod();\n            if (v < 0) v += getmod();\n     \
     \       _v = v;\n        } else if constexpr (is_unsigned_extended<T>::value)\
@@ -173,7 +173,7 @@ data:
   isVerificationFile: false
   path: modint/modint.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-11 08:59:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/modint.hpp
