@@ -12,18 +12,19 @@
 
 namespace kk2 {
 
-template <int char_size, int margin, bool heavy = true>
+template <int char_size, int margin>
 struct AhoCorasick : Trie<char_size + 1, margin> {
     using Trie<char_size + 1, margin>::Trie;
 
     constexpr static int FAIL = char_size;
-    std::vector<int> correct;
+    std::vector<int> correct, perm;
 
     void build() {
         correct.resize(this->size());
+        int now = 0;
+        perm.resize(this->size());
+        perm[now++] = this->root;
         for (int i = 0; i < (int)this->size(); ++i) {
-            std::sort(std::begin(this->nodes[i].accept),
-                      std::end(this->nodes[i].accept));
             correct[i] = (int)this->nodes[i].accept.size();
         }
         std::queue<int> que;
@@ -37,6 +38,7 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
             }
         }
         while (!que.empty()) {
+            perm[now++] = que.front();
             auto &now = this->nodes[que.front()];
             int fail = now.nxt[FAIL];
             correct[que.front()] += correct[fail];
@@ -47,37 +49,38 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
                 } else {
                     this->nodes[now.nxt[i]].nxt[FAIL] =
                         this->nodes[fail].nxt[i];
-                    if (heavy) {
-                        auto &u = this->nodes[now.nxt[i]].accept;
-                        auto &v = this->nodes[this->nodes[fail].nxt[i]].accept;
-                        std::vector<int> accept;
-                        std::set_union(std::begin(u),
-                                       std::end(u),
-                                       std::begin(v),
-                                       std::end(v),
-                                       std::back_inserter(accept));
-                        u = accept;
-                    }
                     que.emplace(now.nxt[i]);
                 }
             }
         }
     }
 
-    std::conditional_t<heavy, std::unordered_map<int, long long>, long long>
-    match(const std::string &str, int now_ = 0) {
+    long long all_match(const std::string &str, int now_ = 0) {
         std::unordered_map<int, int> visit_cnt;
         for (char c : str) {
             now_ = this->nodes[now_].nxt[c - margin];
             visit_cnt[now_]++;
         }
-        std::conditional_t<heavy, std::unordered_map<int, long long>, long long>
-            res{};
+        long long res{};
         for (auto &&[now, cnt] : visit_cnt) {
-            if constexpr (heavy) {
-                for (int idx : this->nodes[now].accept) res[idx] += cnt;
-            } else {
-                res += (long long)correct[now] * cnt;
+            res += (long long)correct[now] * cnt;
+        }
+        return res;
+    }
+
+    std::unordered_map<int, long long> each_match(const std::string &str,
+                                                  int now_ = 0) {
+        std::unordered_map<int, long long> visit_cnt;
+        for (char c : str) {
+            now_ = this->nodes[now_].nxt[c - margin];
+            visit_cnt[now_]++;
+        }
+        std::unordered_map<int, long long> res;
+        for (int i = this->size() - 1; i > 0; --i) {
+            int now = perm[i];
+            visit_cnt[this->nodes[now].nxt[FAIL]] += visit_cnt[now];
+            for (int idx : this->nodes[now].accept) {
+                res[idx] += visit_cnt[now];
             }
         }
         return res;

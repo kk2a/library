@@ -2,6 +2,7 @@
 #define DATA_STRUCTURE_TRIE_HPP 1
 
 #include <cstring>
+#include <cassert>
 #include <functional>
 #include <string>
 #include <vector>
@@ -34,6 +35,7 @@ template <int char_size, int margin> struct Trie {
     void update_child(int node) { ++nodes[node].exist; }
 
     void add(const std::string &str) {
+        assert(!str.empty());
         const int id = nodes[root].exist;
         auto rec = [&](auto self, int now, int idx) -> void {
             if (idx == (int)str.size()) {
