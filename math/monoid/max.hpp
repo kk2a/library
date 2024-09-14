@@ -74,6 +74,11 @@ std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
     return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));
 }
 
+template <class S, class... Args>
+std::vector<std::vector<monoid::Max<S>>> GetVecMax2D(int h, int w, Args... args) {
+    return std::vector<std::vector<monoid::Max<S>>>(h, GetVecMax<S>(w, args...));
+}
+
 } // namespace kk2
 
 #endif // MATH_MONOID_MAX_H

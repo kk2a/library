@@ -74,6 +74,11 @@ std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
     return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));
 }
 
+template <class S, class... Args>
+std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int h, int w, Args... args) {
+    return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w, args...));
+}
+
 } // namespace kk2
 
 #endif // MATH_MONOID_MIN_HPP

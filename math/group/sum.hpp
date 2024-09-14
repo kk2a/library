@@ -75,6 +75,11 @@ std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {
     return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));
 }
 
+template <class S, class... Args>
+std::vector<std::vector<group::Sum<S>>> GetVecSum2D(int h, int w, Args... args) {
+    return std::vector<std::vector<group::Sum<S>>>(h, GetVecSum<S>(w, args...));
+}
+
 } // namespace kk2
 
 #endif // MATH_GROUP_SUM_HPP
