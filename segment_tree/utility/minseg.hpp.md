@@ -34,10 +34,12 @@ data:
     \ <class S> Min<S> MinUnit() {\n    return Min<S>();\n}\n\n} // namespace monoid\n\
     \ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
     \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/seg.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#include <functional>\n#line 7 \"segment_tree/seg.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SegTree {\n  public:\n\
-    \    SegTree() : SegTree(0) {}\n\n    SegTree(int n) : SegTree(std::vector<S>(n,\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
+    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
+    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/seg.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <functional>\n#line 7 \"segment_tree/seg.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SegTree\
+    \ {\n  public:\n    SegTree() : SegTree(0) {}\n\n    SegTree(int n) : SegTree(std::vector<S>(n,\
     \ e())) {}\n\n    template <class... Args>\n    SegTree(int n, Args... args) :\
     \ SegTree(std::vector<S>(n, S(args...))){};\n\n    SegTree(const std::vector<S>\
     \ &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1U << log) < (unsigned\
@@ -114,7 +116,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/minseg.hpp
   requiredBy: []
-  timestamp: '2024-09-11 08:58:56+09:00'
+  timestamp: '2024-09-14 19:52:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/minseg.hpp

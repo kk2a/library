@@ -12,6 +12,9 @@ data:
     path: segment_tree/utility/sumseg.hpp
     title: segment_tree/utility/sumseg.hpp
   - icon: ':warning:'
+    path: segment_tree/utility/sumseg2d.hpp
+    title: segment_tree/utility/sumseg2d.hpp
+  - icon: ':warning:'
     path: segment_tree/utility/updatesum.hpp
     title: segment_tree/utility/updatesum.hpp
   _extendedVerifiedWith: []
@@ -39,7 +42,9 @@ data:
     \ return Sum<S>(-x.a, -x.size);\n}\n\n} // namespace group\n\ntemplate <class\
     \ S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int n, Args... args)\
     \ {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n}\n\n\
-    } // namespace kk2\n\n\n"
+    template <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>> GetVecSum2D(int\
+    \ h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
+    \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_GROUP_SUM_HPP\n#define MATH_GROUP_SUM_HPP 1\n\n#include <iostream>\n\
     #include <vector>\n\nnamespace kk2 {\n\nnamespace group {\n\ntemplate <class S>\
     \ struct Sum {\n    S a, size;\n\n    Sum() : a(S()), size(0) {}\n\n    Sum(S\
@@ -59,7 +64,9 @@ data:
     \ return Sum<S>(-x.a, -x.size);\n}\n\n} // namespace group\n\ntemplate <class\
     \ S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int n, Args... args)\
     \ {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n}\n\n\
-    } // namespace kk2\n\n#endif // MATH_GROUP_SUM_HPP\n"
+    template <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>> GetVecSum2D(int\
+    \ h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
+    \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_GROUP_SUM_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/group/sum.hpp
@@ -68,7 +75,8 @@ data:
   - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/addsum.hpp
   - segment_tree/utility/sumseg.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
+  - segment_tree/utility/sumseg2d.hpp
+  timestamp: '2024-09-14 19:52:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/group/sum.hpp

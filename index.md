@@ -322,6 +322,9 @@ data:
     - icon: ':warning:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp
+    - icon: ':warning:'
+      path: segment_tree/seg2d.hpp
+      title: segment_tree/seg2d.hpp
   - name: segment_tree/utility
     pages:
     - icon: ':warning:'
@@ -340,11 +343,20 @@ data:
       path: segment_tree/utility/maxseg.hpp
       title: segment_tree/utility/maxseg.hpp
     - icon: ':warning:'
+      path: segment_tree/utility/maxseg2d.hpp
+      title: segment_tree/utility/maxseg2d.hpp
+    - icon: ':warning:'
       path: segment_tree/utility/minseg.hpp
       title: segment_tree/utility/minseg.hpp
     - icon: ':warning:'
+      path: segment_tree/utility/minseg2d.hpp
+      title: segment_tree/utility/minseg2d.hpp
+    - icon: ':warning:'
       path: segment_tree/utility/sumseg.hpp
       title: segment_tree/utility/sumseg.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/sumseg2d.hpp
+      title: segment_tree/utility/sumseg2d.hpp
     - icon: ':warning:'
       path: segment_tree/utility/updatemax.hpp
       title: segment_tree/utility/updatemax.hpp

@@ -39,13 +39,15 @@ data:
     \ SumInv(Sum<S> x) {\n    return Sum<S>(-x.a, -x.size);\n}\n\n} // namespace group\n\
     \ntemplate <class S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int\
     \ n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
-    }\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/update.hpp\"\n\n\n\n\
-    #line 5 \"math/homomorphism/update.hpp\"\n#include <string>\n\nnamespace kk2 {\n\
-    \nnamespace homomorphism {\n\ntemplate <class S> struct Update {\n    S a;\n \
-    \   bool id;\n\n    Update() : a(S()), id(true) {}\n\n    Update(S a_, bool id_\
-    \ = false) : a(a_), id(id_) {}\n\n    operator S() const { return a; }\n\n   \
-    \ friend std::ostream &operator<<(std::ostream &os, const Update &update) {\n\
-    \        os << (update.id ? \"id\" : std::to_string(update.a));\n        return\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>>\
+    \ GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
+    \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/update.hpp\"\
+    \n\n\n\n#line 5 \"math/homomorphism/update.hpp\"\n#include <string>\n\nnamespace\
+    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S> struct Update {\n  \
+    \  S a;\n    bool id;\n\n    Update() : a(S()), id(true) {}\n\n    Update(S a_,\
+    \ bool id_ = false) : a(a_), id(id_) {}\n\n    operator S() const { return a;\
+    \ }\n\n    friend std::ostream &operator<<(std::ostream &os, const Update &update)\
+    \ {\n        os << (update.id ? \"id\" : std::to_string(update.a));\n        return\
     \ os;\n    }\n\n    Update &composition(const Update &f) {\n        if (f.id)\
     \ return *this;\n        return *this = f;\n    }\n};\n\ntemplate <class S, class\
     \ T> T UpdateMap(Update<S> f, T x) {\n    return f.id ? x : x.update(f.a);\n}\n\
@@ -158,7 +160,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatesum.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-14 19:52:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatesum.hpp

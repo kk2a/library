@@ -39,8 +39,10 @@ data:
     \ <class S> Min<S> MinUnit() {\n    return Min<S>();\n}\n\n} // namespace monoid\n\
     \ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
     \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\n} // namespace kk2\n\n\n#line 1 \"data_structure/sparse_table.hpp\"\n\n\n\
-    \n#include <cassert>\n#line 6 \"data_structure/sparse_table.hpp\"\n\nnamespace\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
+    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
+    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"data_structure/sparse_table.hpp\"\
+    \n\n\n\n#include <cassert>\n#line 6 \"data_structure/sparse_table.hpp\"\n\nnamespace\
     \ kk2 {\n\n// require: op(x, x) = x for all x\ntemplate <class S, S (*op)(S, S),\
     \ S (*e)()> struct SparseTable {\n    SparseTable() = default;\n\n    SparseTable(const\
     \ std::vector<S> &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1\
@@ -145,7 +147,7 @@ data:
   isVerificationFile: false
   path: graph/tree/euler_tour.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-14 19:52:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/euler_tour.hpp

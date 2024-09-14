@@ -15,6 +15,9 @@ data:
     path: segment_tree/utility/minseg.hpp
     title: segment_tree/utility/minseg.hpp
   - icon: ':warning:'
+    path: segment_tree/utility/minseg2d.hpp
+    title: segment_tree/utility/minseg2d.hpp
+  - icon: ':warning:'
     path: segment_tree/utility/updatemin.hpp
     title: segment_tree/utility/updatemin.hpp
   _extendedVerifiedWith: []
@@ -42,7 +45,9 @@ data:
     }\n\ntemplate <class S> Min<S> MinUnit() {\n    return Min<S>();\n}\n\n} // namespace\
     \ monoid\n\ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
     \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\n} // namespace kk2\n\n\n"
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
+    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
+    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_MONOID_MIN_HPP\n#define MATH_MONOID_MIN_HPP 1\n\n#include <algorithm>\n\
     #include <iostream>\n#include <string>\n#include <vector>\n\nnamespace kk2 {\n\
     \nnamespace monoid {\n\ntemplate <class S> struct Min {\n    S a;\n    bool inf;\n\
@@ -62,7 +67,9 @@ data:
     \ r) {\n    return l.op(r);\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    return\
     \ Min<S>();\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
     std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
-    \ monoid::Min<S>(args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MIN_HPP\n"
+    \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
+    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
+    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MIN_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/monoid/min.hpp
@@ -70,9 +77,10 @@ data:
   - segment_tree/utility/minseg.hpp
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/addmin.hpp
+  - segment_tree/utility/minseg2d.hpp
   - graph/tree/euler_tour.hpp
   - data_structure/static_rmq.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-14 19:52:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/min.hpp

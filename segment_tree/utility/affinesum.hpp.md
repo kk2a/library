@@ -39,12 +39,14 @@ data:
     \ SumInv(Sum<S> x) {\n    return Sum<S>(-x.a, -x.size);\n}\n\n} // namespace group\n\
     \ntemplate <class S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int\
     \ n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
-    }\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/affine.hpp\"\n\n\n\n\
-    #line 5 \"math/homomorphism/affine.hpp\"\n\nnamespace kk2 {\n\nnamespace homomorphism\
-    \ {\n\ntemplate <class S> struct Affine {\n    S a, b; // x \\mapsto ax + b\n\
-    \    Affine() : a(1), b(0) {};\n\n    Affine(S a, S b) : a(a), b(b) {}\n\n   \
-    \ friend std::ostream &operator<<(std::ostream &os, const Affine &aff) {\n   \
-    \     os << aff.a << \" \" << aff.b;\n        return os;\n    }\n\n    Affine\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>>\
+    \ GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
+    \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/affine.hpp\"\
+    \n\n\n\n#line 5 \"math/homomorphism/affine.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+    \ homomorphism {\n\ntemplate <class S> struct Affine {\n    S a, b; // x \\mapsto\
+    \ ax + b\n    Affine() : a(1), b(0) {};\n\n    Affine(S a, S b) : a(a), b(b) {}\n\
+    \n    friend std::ostream &operator<<(std::ostream &os, const Affine &aff) {\n\
+    \        os << aff.a << \" \" << aff.b;\n        return os;\n    }\n\n    Affine\
     \ &composition(const Affine &rhs) {\n        return *this = Affine(a * rhs.a,\
     \ a * rhs.b + b);\n    }\n};\n\ntemplate <class S, class T> T AffineMap(Affine<S>\
     \ f, T x) {\n    return x.multiply(f.a).add(f.b);\n}\n\ntemplate <class S> Affine<S>\
@@ -157,7 +159,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/affinesum.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-14 19:52:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/affinesum.hpp
