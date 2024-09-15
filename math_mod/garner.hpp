@@ -7,9 +7,10 @@
 
 namespace kk2 {
 
+// d.size() + 1 == p.size()
 long long garner(const std::vector<long long> &d,
                  const std::vector<long long> &p) {
-    static int nm = d.size();
+    int nm = d.size();
     std::vector<long long> kp(nm + 1, 0), rmult(nm + 1, 1);
     for (int ii = 0; ii < nm; ii++) {
         long long x =
