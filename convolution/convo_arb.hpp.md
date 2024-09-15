@@ -43,16 +43,16 @@ data:
     \   while (t) {\n        T u = s / t;\n        std::swap(s -= t * u, t);\n   \
     \     std::swap(m0 -= m1 * u, m1);\n    }\n    if (m0 < 0) m0 += modulo;\n   \
     \ return m0;\n}\n\n} // namespace kk2\n\n\n#line 7 \"math_mod/garner.hpp\"\n\n\
-    namespace kk2 {\n\nlong long garner(const std::vector<long long> &d,\n       \
-    \          const std::vector<long long> &p) {\n    static int nm = d.size();\n\
-    \    std::vector<long long> kp(nm + 1, 0), rmult(nm + 1, 1);\n    for (int ii\
-    \ = 0; ii < nm; ii++) {\n        long long x =\n            (d[ii] - kp[ii]) *\
-    \ mod_inversion(rmult[ii], p[ii]) % p[ii];\n        if (x < 0) x += p[ii];\n \
-    \       for (int iii = ii + 1; iii < nm + 1; iii++) {\n            kp[iii] = (kp[iii]\
-    \ + rmult[iii] * x) % p[iii];\n            rmult[iii] = (rmult[iii] * p[ii]) %\
-    \ p[iii];\n        }\n    }\n    return kp[nm];\n}\n\n} // namespace kk2\n\n\n\
-    #line 1 \"modint/mont.hpp\"\n\n\n\n#include <cassert>\n#include <cstdint>\n#include\
-    \ <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/type_traits.hpp\"\
+    namespace kk2 {\n\n// d.size() + 1 == p.size()\nlong long garner(const std::vector<long\
+    \ long> &d,\n                 const std::vector<long long> &p) {\n    int nm =\
+    \ d.size();\n    std::vector<long long> kp(nm + 1, 0), rmult(nm + 1, 1);\n   \
+    \ for (int ii = 0; ii < nm; ii++) {\n        long long x =\n            (d[ii]\
+    \ - kp[ii]) * mod_inversion(rmult[ii], p[ii]) % p[ii];\n        if (x < 0) x +=\
+    \ p[ii];\n        for (int iii = ii + 1; iii < nm + 1; iii++) {\n            kp[iii]\
+    \ = (kp[iii] + rmult[iii] * x) % p[iii];\n            rmult[iii] = (rmult[iii]\
+    \ * p[ii]) % p[iii];\n        }\n    }\n    return kp[nm];\n}\n\n} // namespace\
+    \ kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#include <cassert>\n#include <cstdint>\n\
+    #include <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/type_traits.hpp\"\
     \n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate\
     \ <typename T>\nusing is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
     \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
@@ -300,7 +300,7 @@ data:
   path: convolution/convo_arb.hpp
   requiredBy:
   - fps/fps_arb.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-15 10:53:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/convo_arb.hpp
