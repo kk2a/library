@@ -68,6 +68,12 @@ template <typename S = int> struct CC {
         return std::upper_bound(std::begin(xs), std::end(xs), x)
                - std::begin(xs);
     }
+
+    bool exist(S x) {
+        if (!initialized) build();
+        int idx = lower(x);
+        return idx < (int)xs.size() && xs[idx] == x;
+    }
 };
 
 } // namespace kk2
