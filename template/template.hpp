@@ -110,6 +110,14 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
 #define se second
 #define all(p) std::begin(p), std::end(p)
 
+#ifdef KK2
+std::ifstream in("in.txt");
+std::ofstream out("out.txt");
+#else 
+#define in std::cin
+#define out std::cout
+#endif
+
 void YES(bool b = 1) {
     std::cout << (b ? "YES" : "NO") << '\n';
 }
