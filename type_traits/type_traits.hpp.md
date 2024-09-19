@@ -100,25 +100,25 @@ data:
   isVerificationFile: false
   path: type_traits/type_traits.hpp
   requiredBy:
-  - math_mod/comb_large.hpp
-  - math_mod/mod_sqrt.hpp
   - math_mod/comb.hpp
+  - math_mod/mod_sqrt.hpp
+  - math_mod/comb_large.hpp
+  - data_structure/convex_hull_trick_add_monotone.hpp
   - math/pow_expr.hpp
-  - fps/fps_sqrt.hpp
-  - fps/taylor_shift.hpp
-  - fps/fps_arb.hpp
   - convolution/convo_arb.hpp
   - modint/modint.hpp
   - modint/mont_arb.hpp
   - modint/mont.hpp
-  - data_structure/convex_hull_trick_add_monotone.hpp
+  - fps/taylor_shift.hpp
+  - fps/fps_arb.hpp
+  - fps/fps_sqrt.hpp
   timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: type_traits/type_traits.hpp
 layout: document
 redirect_from:

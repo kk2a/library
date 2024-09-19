@@ -85,8 +85,8 @@ data:
   isVerificationFile: false
   path: math/Eratosthenes.hpp
   requiredBy:
-  - convolution/gcd1.hpp
   - convolution/lcm1.hpp
+  - convolution/gcd1.hpp
   timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

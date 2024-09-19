@@ -74,12 +74,12 @@ data:
   isVerificationFile: false
   path: math/monoid/min.hpp
   requiredBy:
+  - data_structure/static_rmq.hpp
+  - graph/tree/euler_tour.hpp
   - segment_tree/utility/minseg.hpp
+  - segment_tree/utility/minseg2d.hpp
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/addmin.hpp
-  - segment_tree/utility/minseg2d.hpp
-  - graph/tree/euler_tour.hpp
-  - data_structure/static_rmq.hpp
   timestamp: '2024-09-14 19:52:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

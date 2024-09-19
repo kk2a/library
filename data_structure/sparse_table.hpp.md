@@ -86,8 +86,8 @@ data:
   isVerificationFile: false
   path: data_structure/sparse_table.hpp
   requiredBy:
-  - graph/tree/euler_tour.hpp
   - data_structure/static_rmq.hpp
+  - graph/tree/euler_tour.hpp
   timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -129,12 +129,12 @@ data:
   isVerificationFile: false
   path: segment_tree/lazy.hpp
   requiredBy:
+  - segment_tree/utility/updatemax.hpp
   - segment_tree/utility/updatesum.hpp
   - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/updatemin.hpp
-  - segment_tree/utility/updatemax.hpp
-  - segment_tree/utility/addsum.hpp
   - segment_tree/utility/addmin.hpp
+  - segment_tree/utility/addsum.hpp
   - segment_tree/utility/addmax.hpp
   timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS

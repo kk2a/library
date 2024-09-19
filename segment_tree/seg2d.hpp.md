@@ -103,9 +103,9 @@ data:
   isVerificationFile: false
   path: segment_tree/seg2d.hpp
   requiredBy:
-  - segment_tree/utility/maxseg2d.hpp
   - segment_tree/utility/sumseg2d.hpp
   - segment_tree/utility/minseg2d.hpp
+  - segment_tree/utility/maxseg2d.hpp
   timestamp: '2024-09-14 19:52:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -47,9 +47,9 @@ data:
   isVerificationFile: false
   path: math/homomorphism/update.hpp
   requiredBy:
+  - segment_tree/utility/updatemax.hpp
   - segment_tree/utility/updatesum.hpp
   - segment_tree/utility/updatemin.hpp
-  - segment_tree/utility/updatemax.hpp
   timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

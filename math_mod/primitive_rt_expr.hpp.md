@@ -88,20 +88,20 @@ data:
   path: math_mod/primitive_rt_expr.hpp
   requiredBy:
   - math_mod/comb_large.hpp
-  - fps/multivariate_fps.hpp
-  - fps/ntt_friendly.hpp
-  - fps/fps_arb.hpp
   - convolution/convolution.hpp
+  - convolution/butterfly.hpp
   - convolution/convo_arb.hpp
   - convolution/multi_convo_truncated.hpp
-  - convolution/butterfly.hpp
+  - fps/fps_arb.hpp
+  - fps/ntt_friendly.hpp
+  - fps/multivariate_fps.hpp
   timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: math_mod/primitive_rt_expr.hpp
 layout: document
 redirect_from:
