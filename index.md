@@ -212,8 +212,8 @@ data:
       path: math/kth_root_floor.hpp
       title: math/kth_root_floor.hpp
     - icon: ':warning:'
-      path: math/pow_expr.hpp
-      title: math/pow_expr.hpp
+      path: math/pow.hpp
+      title: math/pow.hpp
   - name: math/group
     pages:
     - icon: ':warning:'
@@ -256,11 +256,11 @@ data:
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
     - icon: ':heavy_check_mark:'
-      path: math_mod/pow_expr.hpp
-      title: math_mod/pow_expr.hpp
+      path: math_mod/pow_mod.hpp
+      title: math_mod/pow_mod.hpp
     - icon: ':heavy_check_mark:'
-      path: math_mod/primitive_rt_expr.hpp
-      title: math_mod/primitive_rt_expr.hpp
+      path: math_mod/primitive_root.hpp
+      title: math_mod/primitive_root.hpp
   - name: matrix
     pages:
     - icon: ':warning:'

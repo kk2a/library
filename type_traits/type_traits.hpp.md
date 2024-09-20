@@ -18,8 +18,8 @@ data:
     path: fps/taylor_shift.hpp
     title: fps/taylor_shift.hpp
   - icon: ':warning:'
-    path: math/pow_expr.hpp
-    title: math/pow_expr.hpp
+    path: math/pow.hpp
+    title: math/pow.hpp
   - icon: ':warning:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
@@ -104,7 +104,7 @@ data:
   - math_mod/mod_sqrt.hpp
   - math_mod/comb_large.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
-  - math/pow_expr.hpp
+  - math/pow.hpp
   - convolution/convo_arb.hpp
   - modint/modint.hpp
   - modint/mont_arb.hpp
