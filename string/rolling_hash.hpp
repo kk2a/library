@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-#include "../math_mod/pow_expr.hpp"
+#include "../math_mod/pow_mod.hpp"
 
 namespace kk2 {
 
@@ -142,7 +142,7 @@ struct RollingHash {
 
   private:
     constexpr static long long quo(long long a, int i) {
-        return pow_mod_constexpr(a, modp[i] - 2, modp[i]);
+        return pow_mod(a, modp[i] - 2, modp[i]);
     }
 };
 

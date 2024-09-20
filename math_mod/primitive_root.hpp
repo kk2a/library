@@ -1,7 +1,7 @@
 #ifndef MOD_PRIMITIVE_ROOT_EXPR_HPP
 #define MOD_PRIMITIVE_ROOT_EXPR_HPP 1
 
-#include "pow_expr.hpp"
+#include "pow_mod.hpp"
 
 namespace kk2 {
 
@@ -27,7 +27,7 @@ constexpr int primitive_root_constexpr(int m) {
     for (int g = 2;; g++) {
         bool ok = true;
         for (int i = 0; i < cnt; i++) {
-            if (pow_mod_constexpr(g, (m - 1) / divs[i], m) == 1) {
+            if (pow_mod(g, (m - 1) / divs[i], m) == 1) {
                 ok = false;
                 break;
             }

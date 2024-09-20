@@ -3,7 +3,7 @@
 
 #include <algorithm>
 
-#include "../math_mod/primitive_rt_expr.hpp"
+#include "../math_mod/primitive_root.hpp"
 
 namespace kk2 {
 

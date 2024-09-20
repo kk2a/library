@@ -3,7 +3,7 @@
 
 namespace kk2 {
 
-constexpr long long pow_mod_constexpr(long long x, long long n, long long m) {
+constexpr long long pow_mod(long long x, long long n, long long m) {
     if (m == 1) return 0;
     unsigned long long _m = (unsigned long long)(m);
     unsigned long long r = 1;
