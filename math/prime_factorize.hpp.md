@@ -180,7 +180,7 @@ data:
     \ u64 = unsigned long long;\n\ntemplate <class mint, class T> T pollard_rho(T\
     \ n) {\n    if (~n & 1) return 2;\n    if (is_prime(n)) return n;\n    if (mint::getmod()\
     \ != n) mint::setmod(n);\n\n    mint R, one = 1;\n    auto f = [&](mint x) {\n\
-    \        return x * x + R;\n    };\n    auto _rng = [&]() {\n        return kk2::random::rng(1,\
+    \        return x * x + R;\n    };\n    auto _rng = [&]() {\n        return kk2::random::rng(2,\
     \ n);\n    };\n    while (true) {\n        mint x, y, ys, q = one;\n        R\
     \ = _rng(), y = _rng();\n        T g = 1;\n        constexpr int m = 128;\n  \
     \      for (int r = 1; g == 1; r <<= 1) {\n            x = y;\n            for\
@@ -221,7 +221,7 @@ data:
     \ long;\n\ntemplate <class mint, class T> T pollard_rho(T n) {\n    if (~n & 1)\
     \ return 2;\n    if (is_prime(n)) return n;\n    if (mint::getmod() != n) mint::setmod(n);\n\
     \n    mint R, one = 1;\n    auto f = [&](mint x) {\n        return x * x + R;\n\
-    \    };\n    auto _rng = [&]() {\n        return kk2::random::rng(1, n);\n   \
+    \    };\n    auto _rng = [&]() {\n        return kk2::random::rng(2, n);\n   \
     \ };\n    while (true) {\n        mint x, y, ys, q = one;\n        R = _rng(),\
     \ y = _rng();\n        T g = 1;\n        constexpr int m = 128;\n        for (int\
     \ r = 1; g == 1; r <<= 1) {\n            x = y;\n            for (int i = 0; i\
@@ -265,7 +265,7 @@ data:
   isVerificationFile: false
   path: math/prime_factorize.hpp
   requiredBy: []
-  timestamp: '2024-09-21 16:17:28+09:00'
+  timestamp: '2024-09-21 16:33:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/prime_factorize.hpp
