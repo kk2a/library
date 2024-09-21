@@ -1,0 +1,22 @@
+#ifndef MATH_CONVERT_BASE_HPP
+#define MATH_CONVERT_BASE_HPP 1
+
+#include <algorithm>
+#include <cassert>
+#include <vector>
+
+template <class T> std::vector<T> convert_base(T x, T b) {
+    if (x == 0) return {0};
+    assert(b);
+    std::vector<T> res;
+    T k = abs(b);
+    while (x) {
+        res.emplace_back(x % k);
+        if (res.back() < 0) res.back() += k;
+        x -= res.back();
+        x /= b;
+    }
+    return res;
+}
+
+#endif // MATH_CONVERT_BASE_HPP
