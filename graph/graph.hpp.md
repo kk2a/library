@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: random/graph.hpp
+    title: random/graph.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -245,7 +248,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: graph/graph.hpp
-  requiredBy: []
+  requiredBy:
+  - random/graph.hpp
   timestamp: '2024-09-22 02:51:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
