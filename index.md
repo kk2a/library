@@ -209,11 +209,17 @@ data:
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
     - icon: ':warning:'
+      path: math/is_prime.hpp
+      title: math/is_prime.hpp
+    - icon: ':warning:'
       path: math/kth_root_floor.hpp
       title: math/kth_root_floor.hpp
     - icon: ':warning:'
       path: math/pow.hpp
       title: math/pow.hpp
+    - icon: ':warning:'
+      path: math/prime_factorize.hpp
+      title: math/prime_factorize.hpp
   - name: math/group
     pages:
     - icon: ':warning:'
@@ -299,6 +305,9 @@ data:
     - icon: ':warning:'
       path: random/graph.hpp
       title: random/graph.hpp
+    - icon: ':warning:'
+      path: random/seed.hpp
+      title: random/seed.hpp
   - name: segment_tree
     pages:
     - icon: ':warning:'

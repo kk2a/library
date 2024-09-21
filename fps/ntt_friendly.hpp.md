@@ -16,6 +16,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
@@ -44,39 +47,58 @@ data:
   bundledCode: "#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/convolution.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <vector>\n\n#line 1 \"convolution/butterfly.hpp\"\
     \n\n\n\n#line 5 \"convolution/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
-    \n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\nnamespace kk2 {\n\nconstexpr long\
-    \ long pow_mod(long long x, long long n, long long m) {\n    if (m == 1) return\
-    \ 0;\n    unsigned long long _m = (unsigned long long)(m);\n    unsigned long\
-    \ long r = 1;\n    unsigned long long y = (x % m + m) % m;\n    while (n) {\n\
-    \        if (n & 1) r = (r * y) % _m;\n        y = (y * y) % _m;\n        n >>=\
-    \ 1;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\
-    \n\nnamespace kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n    if\
-    \ (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049)\
-    \ return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return\
-    \ 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0]\
-    \ = 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x /=\
-    \ 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x % i\
-    \ == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0) { x /=\
-    \ i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for (int g\
-    \ = 2;; g++) {\n        bool ok = true;\n        for (int i = 0; i < cnt; i++)\
-    \ {\n            if (pow_mod(g, (m - 1) / divs[i], m) == 1) {\n              \
-    \  ok = false;\n                break;\n            }\n        }\n        if (ok)\
-    \ return g;\n    }\n}\n\ntemplate <int m>\nstatic constexpr int primitive_root\
-    \ = primitive_root_constexpr(m);\n\n} // namespace kk2\n\n\n#line 7 \"convolution/butterfly.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-    void butterfly(FPS &a) {\n    static int g = primitive_root<mint::getmod()>;\n\
-    \    int n = int(a.size());\n    int h = 0;\n    while ((1U << h) < (unsigned\
-    \ int)(n)) h++;\n    static bool first = true;\n    static mint sum_e2[30]; //\
-    \ sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]\n    static mint sum_e3[30];\n\
-    \    static mint es[30], ies[30]; // es[i]^(2^(2+i)) == 1\n    if (first) {\n\
-    \        first = false;\n        int cnt2 = __builtin_ctz(mint::getmod() - 1);\n\
-    \        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n \
-    \       for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n     \
-    \       es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n  \
-    \          ie *= ie;\n        }\n        mint now = 1;\n        for (int i = 0;\
-    \ i <= cnt2 - 2; i++) {\n            sum_e2[i] = es[i] * now;\n            now\
-    \ *= ies[i];\n        }\n        now = 1;\n        for (int i = 0; i <= cnt2 -\
-    \ 3; i++) {\n            sum_e3[i] = es[i + 1] * now;\n            now *= ies[i\
+    \n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n#line 1 \"\
+    type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\
+    \ntemplate <typename T>\nusing is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
+    \                              std::true_type,\n                             \
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128 =\n\
+    \    typename std::conditional<std::is_same<T, __uint128_t>::value\n         \
+    \                         or std::is_same<T, unsigned __int128>::value,\n    \
+    \                          std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\n\
+    \                                  or is_signed_int128<T>::value\n           \
+    \                       or is_unsigned_int128<T>::value,\n                   \
+    \           std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\n\
+    \                                  or is_signed_int128<T>::value,\n          \
+    \                    std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\n\
+    \                                  or is_unsigned_int128<T>::value,\n        \
+    \                      std::true_type,\n                              std::false_type>::type;\n\
+    \n} // namespace kk2\n\n\n#line 6 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\
+    \ntemplate <class S, class T, class U>\nconstexpr S pow_mod(T x, U n, T m) {\n\
+    \    assert(!is_signed_extended<U>::value || n >= 0);\n    if (m == 1) return\
+    \ S(0);\n    S _m = S(m), r = 1;\n    S y = S(x) % _m;\n    if (y < 0) y += _m;\n\
+    \    while (n) {\n        if (n & 1) r = (r * y) % _m;\n        y = (y * y) %\
+    \ _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line\
+    \ 5 \"math_mod/primitive_root.hpp\"\n\nnamespace kk2 {\n\nconstexpr int primitive_root_constexpr(int\
+    \ m) {\n    if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m\
+    \ == 469762049) return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353)\
+    \ return 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {};\n   \
+    \ divs[0] = 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 ==\
+    \ 0) x /= 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if\
+    \ (x % i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0)\
+    \ { x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
+    \ (int g = 2;; g++) {\n        bool ok = true;\n        for (int i = 0; i < cnt;\
+    \ i++) {\n            if (pow_mod<long long>(g, (m - 1) / divs[i], m) == 1) {\n\
+    \                ok = false;\n                break;\n            }\n        }\n\
+    \        if (ok) return g;\n    }\n}\n\ntemplate <int m>\nstatic constexpr int\
+    \ primitive_root = primitive_root_constexpr(m);\n\n} // namespace kk2\n\n\n#line\
+    \ 7 \"convolution/butterfly.hpp\"\n\nnamespace kk2 {\n\ntemplate <class FPS, class\
+    \ mint = typename FPS::value_type>\nvoid butterfly(FPS &a) {\n    static int g\
+    \ = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n    int h = 0;\n\
+    \    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool first = true;\n\
+    \    static mint sum_e2[30]; // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]\n\
+    \    static mint sum_e3[30];\n    static mint es[30], ies[30]; // es[i]^(2^(2+i))\
+    \ == 1\n    if (first) {\n        first = false;\n        int cnt2 = __builtin_ctz(mint::getmod()\
+    \ - 1);\n        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n\
+    \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n    \
+    \        es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n \
+    \           ie *= ie;\n        }\n        mint now = 1;\n        for (int i =\
+    \ 0; i <= cnt2 - 2; i++) {\n            sum_e2[i] = es[i] * now;\n           \
+    \ now *= ies[i];\n        }\n        now = 1;\n        for (int i = 0; i <= cnt2\
+    \ - 3; i++) {\n            sum_e3[i] = es[i + 1] * now;\n            now *= ies[i\
     \ + 1];\n        }\n    }\n\n    int len = 0;\n    while (len < h) {\n       \
     \ if (h - len == 1) {\n            int p = 1 << (h - len - 1);\n            mint\
     \ rot = 1;\n            for (int s = 0; s < (1 << len); s++) {\n             \
@@ -155,60 +177,60 @@ data:
     \        for (int i = 0; i < z; i++) a[i] *= t[i];\n    }\n    butterfly_inv(a);\n\
     \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
     \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n} // namespace kk2\n\n\n\
-    #line 1 \"fps/fps.hpp\"\n\n\n\n#line 5 \"fps/fps.hpp\"\n#include <cassert>\n#include\
-    \ <utility>\n#line 8 \"fps/fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\
-    \ struct FormalPowerSeries : std::vector<mint> {\n    using std::vector<mint>::vector;\n\
-    \    using FPS = FormalPowerSeries;\n\n    FPS &operator+=(const FPS &r) {\n \
-    \       if (this->size() < r.size()) this->resize(r.size());\n        for (int\
-    \ i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return *this;\n\
-    \    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
-    \        (*this)[0] += r;\n        return *this;\n    }\n\n    FPS &operator-=(const\
-    \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
-    \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n        return\
-    \ *this;\n    }\n\n    FPS &operator-=(const mint &r) {\n        if (this->empty())\
-    \ this->resize(1);\n        (*this)[0] -= r;\n        return *this;\n    }\n\n\
-    \    FPS &operator*=(const mint &r) {\n        for (int i = 0; i < (int)this->size();\
-    \ i++) { (*this)[i] *= r; }\n        return *this;\n    }\n\n    FPS &operator/=(const\
-    \ FPS &r) {\n        assert(!r.empty());\n        if (this->size() < r.size())\
-    \ {\n            this->clear();\n            return *this;\n        }\n      \
-    \  int n = this->size() - r.size() + 1;\n        if ((int)r.size() <= 64) {\n\
-    \            FPS f(*this), g(r);\n            g.shrink();\n            mint coeff\
-    \ = g.back().inv();\n            for (auto &x : g) x *= coeff;\n            int\
-    \ deg = (int)f.size() - (int)g.size() + 1;\n            int gs = g.size();\n \
-    \           FPS quo(deg);\n            for (int i = deg - 1; i >= 0; i--) {\n\
-    \                quo[i] = f[i + gs - 1];\n                for (int j = 0; j <\
-    \ gs; j++) f[i + j] -= quo[i] * g[j];\n            }\n            *this = quo\
-    \ * coeff;\n            this->resize(n, mint(0));\n            return *this;\n\
-    \        }\n        return *this = ((*this).rev().pre(n) * r.rev().inv(n)).pre(n).rev();\n\
-    \    }\n\n    FPS &operator%=(const FPS &r) {\n        *this -= *this / r * r;\n\
-    \        shrink();\n        return *this;\n    }\n\n    FPS operator+(const FPS\
-    \ &r) const { return FPS(*this) += r; }\n\n    FPS operator+(const mint &r) const\
-    \ { return FPS(*this) += r; }\n\n    FPS operator-(const FPS &r) const { return\
-    \ FPS(*this) -= r; }\n\n    FPS operator-(const mint &r) const { return FPS(*this)\
-    \ -= r; }\n\n    FPS operator*(const mint &r) const { return FPS(*this) *= r;\
-    \ }\n\n    FPS operator/(const FPS &r) const { return FPS(*this) /= r; }\n\n \
-    \   FPS operator%(const FPS &r) const { return FPS(*this) %= r; }\n\n    FPS operator-()\
-    \ const {\n        FPS ret(this->size());\n        for (int i = 0; i < (int)this->size();\
-    \ i++) ret[i] = -(*this)[i];\n        return ret;\n    }\n\n    FPS shrink() {\n\
-    \        while (this->size() && this->back() == mint(0)) this->pop_back();\n \
-    \       return *this;\n    }\n\n    FPS rev() const {\n        FPS ret(*this);\n\
-    \        std::reverse(ret.begin(), ret.end());\n        return ret;\n    }\n\n\
-    \    FPS inplace_rev() {\n        std::reverse(this->begin(), this->end());\n\
-    \        return *this;\n    }\n\n    FPS dot(const FPS &r) const {\n        FPS\
-    \ ret(std::min(this->size(), r.size()));\n        for (int i = 0; i < (int)ret.size();\
-    \ i++) ret[i] = (*this)[i] * r[i];\n        return ret;\n    }\n\n    FPS inplace_dot(const\
-    \ FPS &r) {\n        this->resize(std::min(this->size(), r.size()));\n       \
-    \ for (int i = 0; i < (int)this->size(); i++) (*this)[i] *= r[i];\n        return\
-    \ *this;\n    }\n\n    FPS pre(int n) const {\n        FPS ret(this->begin(),\
-    \ this->begin() + std::min((int)this->size(), n));\n        if ((int)ret.size()\
-    \ < n) ret.resize(n, mint(0));\n        return ret;\n    }\n\n    FPS inplace_pre(int\
-    \ n) {\n        this->resize(n);\n        return *this;\n    }\n\n    FPS operator>>(int\
-    \ n) const {\n        if (n >= (int)this->size()) return {};\n        FPS ret(this->begin()\
-    \ + n, this->end());\n        return ret;\n    }\n\n    FPS operator<<(int n)\
-    \ const {\n        FPS ret(*this);\n        ret.insert(ret.begin(), n, mint(0));\n\
-    \        return ret;\n    }\n\n    FPS diff() const {\n        const int n = (int)this->size();\n\
-    \        FPS ret(std::max(0, n - 1));\n        for (int i = 1; i < n; i++) { ret[i\
-    \ - 1] = (*this)[i] * mint(i); }\n        return ret;\n    }\n\n    FPS inplace_diff()\
+    #line 1 \"fps/fps.hpp\"\n\n\n\n#line 6 \"fps/fps.hpp\"\n#include <utility>\n#line\
+    \ 8 \"fps/fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> struct FormalPowerSeries\
+    \ : std::vector<mint> {\n    using std::vector<mint>::vector;\n    using FPS =\
+    \ FormalPowerSeries;\n\n    FPS &operator+=(const FPS &r) {\n        if (this->size()\
+    \ < r.size()) this->resize(r.size());\n        for (int i = 0; i < (int)r.size();\
+    \ i++) (*this)[i] += r[i];\n        return *this;\n    }\n\n    FPS &operator+=(const\
+    \ mint &r) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
+    \ += r;\n        return *this;\n    }\n\n    FPS &operator-=(const FPS &r) {\n\
+    \        if (this->size() < r.size()) this->resize(r.size());\n        for (int\
+    \ i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n        return *this;\n\
+    \    }\n\n    FPS &operator-=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
+    \        (*this)[0] -= r;\n        return *this;\n    }\n\n    FPS &operator*=(const\
+    \ mint &r) {\n        for (int i = 0; i < (int)this->size(); i++) { (*this)[i]\
+    \ *= r; }\n        return *this;\n    }\n\n    FPS &operator/=(const FPS &r) {\n\
+    \        assert(!r.empty());\n        if (this->size() < r.size()) {\n       \
+    \     this->clear();\n            return *this;\n        }\n        int n = this->size()\
+    \ - r.size() + 1;\n        if ((int)r.size() <= 64) {\n            FPS f(*this),\
+    \ g(r);\n            g.shrink();\n            mint coeff = g.back().inv();\n \
+    \           for (auto &x : g) x *= coeff;\n            int deg = (int)f.size()\
+    \ - (int)g.size() + 1;\n            int gs = g.size();\n            FPS quo(deg);\n\
+    \            for (int i = deg - 1; i >= 0; i--) {\n                quo[i] = f[i\
+    \ + gs - 1];\n                for (int j = 0; j < gs; j++) f[i + j] -= quo[i]\
+    \ * g[j];\n            }\n            *this = quo * coeff;\n            this->resize(n,\
+    \ mint(0));\n            return *this;\n        }\n        return *this = ((*this).rev().pre(n)\
+    \ * r.rev().inv(n)).pre(n).rev();\n    }\n\n    FPS &operator%=(const FPS &r)\
+    \ {\n        *this -= *this / r * r;\n        shrink();\n        return *this;\n\
+    \    }\n\n    FPS operator+(const FPS &r) const { return FPS(*this) += r; }\n\n\
+    \    FPS operator+(const mint &r) const { return FPS(*this) += r; }\n\n    FPS\
+    \ operator-(const FPS &r) const { return FPS(*this) -= r; }\n\n    FPS operator-(const\
+    \ mint &r) const { return FPS(*this) -= r; }\n\n    FPS operator*(const mint &r)\
+    \ const { return FPS(*this) *= r; }\n\n    FPS operator/(const FPS &r) const {\
+    \ return FPS(*this) /= r; }\n\n    FPS operator%(const FPS &r) const { return\
+    \ FPS(*this) %= r; }\n\n    FPS operator-() const {\n        FPS ret(this->size());\n\
+    \        for (int i = 0; i < (int)this->size(); i++) ret[i] = -(*this)[i];\n \
+    \       return ret;\n    }\n\n    FPS shrink() {\n        while (this->size()\
+    \ && this->back() == mint(0)) this->pop_back();\n        return *this;\n    }\n\
+    \n    FPS rev() const {\n        FPS ret(*this);\n        std::reverse(ret.begin(),\
+    \ ret.end());\n        return ret;\n    }\n\n    FPS inplace_rev() {\n       \
+    \ std::reverse(this->begin(), this->end());\n        return *this;\n    }\n\n\
+    \    FPS dot(const FPS &r) const {\n        FPS ret(std::min(this->size(), r.size()));\n\
+    \        for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i] * r[i];\n\
+    \        return ret;\n    }\n\n    FPS inplace_dot(const FPS &r) {\n        this->resize(std::min(this->size(),\
+    \ r.size()));\n        for (int i = 0; i < (int)this->size(); i++) (*this)[i]\
+    \ *= r[i];\n        return *this;\n    }\n\n    FPS pre(int n) const {\n     \
+    \   FPS ret(this->begin(), this->begin() + std::min((int)this->size(), n));\n\
+    \        if ((int)ret.size() < n) ret.resize(n, mint(0));\n        return ret;\n\
+    \    }\n\n    FPS inplace_pre(int n) {\n        this->resize(n);\n        return\
+    \ *this;\n    }\n\n    FPS operator>>(int n) const {\n        if (n >= (int)this->size())\
+    \ return {};\n        FPS ret(this->begin() + n, this->end());\n        return\
+    \ ret;\n    }\n\n    FPS operator<<(int n) const {\n        FPS ret(*this);\n\
+    \        ret.insert(ret.begin(), n, mint(0));\n        return ret;\n    }\n\n\
+    \    FPS diff() const {\n        const int n = (int)this->size();\n        FPS\
+    \ ret(std::max(0, n - 1));\n        for (int i = 1; i < n; i++) { ret[i - 1] =\
+    \ (*this)[i] * mint(i); }\n        return ret;\n    }\n\n    FPS inplace_diff()\
     \ {\n        if (this->empty()) return {};\n        this->erase(this->begin());\n\
     \        for (int i = 1; i <= (int)this->size(); i++) (*this)[i - 1] *= mint(i);\n\
     \        return *this;\n    }\n\n    FPS integral() const {\n        const int\
@@ -409,13 +431,14 @@ data:
   - convolution/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
+  - type_traits/type_traits.hpp
   - fps/fps.hpp
   isVerificationFile: false
   path: fps/ntt_friendly.hpp
   requiredBy:
   - math_mod/comb_large.hpp
   - fps/multivariate_fps.hpp
-  timestamp: '2024-09-21 00:30:33+09:00'
+  timestamp: '2024-09-21 14:19:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp
