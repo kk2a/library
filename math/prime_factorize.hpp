@@ -29,14 +29,14 @@ template <class mint, class T> T pollard_rho(T n) {
         return x * x + R;
     };
     auto _rng = [&]() {
-        return kk2::random::rng(1, n - 1);
+        return kk2::random::rng(1, n);
     };
     while (true) {
         mint x, y, ys, q = one;
         R = _rng(), y = _rng();
         T g = 1;
         constexpr int m = 128;
-        for (int r = 1; g == 1; r++) {
+        for (int r = 1; g == 1; r <<= 1) {
             x = y;
             for (int i = 0; i < r; i++) y = f(y);
             for (int k = 0; k < r && g == 1; k += m) {
