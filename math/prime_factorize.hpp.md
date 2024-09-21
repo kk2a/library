@@ -180,11 +180,11 @@ data:
     \ n) {\n    if (~n & 1) return 2;\n    if (is_prime(n)) return n;\n    if (mint::getmod()\
     \ != n) mint::setmod(n);\n\n    mint R, one = 1;\n    auto f = [&](mint x) {\n\
     \        return x * x + R;\n    };\n    auto _rng = [&]() {\n        return kk2::random::rng(1,\
-    \ n - 1);\n    };\n    while (true) {\n        mint x, y, ys, q = one;\n     \
-    \   R = _rng(), y = _rng();\n        T g = 1;\n        constexpr int m = 128;\n\
-    \        for (int r = 1; g == 1; r++) {\n            x = y;\n            for (int\
-    \ i = 0; i < r; i++) y = f(y);\n            for (int k = 0; k < r && g == 1; k\
-    \ += m) {\n                ys = y;\n                for (int i = 0; i < std::min(m,\
+    \ n);\n    };\n    while (true) {\n        mint x, y, ys, q = one;\n        R\
+    \ = _rng(), y = _rng();\n        T g = 1;\n        constexpr int m = 128;\n  \
+    \      for (int r = 1; g == 1; r <<= 1) {\n            x = y;\n            for\
+    \ (int i = 0; i < r; i++) y = f(y);\n            for (int k = 0; k < r && g ==\
+    \ 1; k += m) {\n                ys = y;\n                for (int i = 0; i < std::min(m,\
     \ r - k); i++) {\n                    y = f(y);\n                    q *= x -\
     \ y;\n                }\n                g = std::gcd(q.val(), n);\n         \
     \   }\n        }\n        if (g == n) do {\n                ys = f(ys);\n    \
@@ -220,17 +220,17 @@ data:
     \ long;\n\ntemplate <class mint, class T> T pollard_rho(T n) {\n    if (~n & 1)\
     \ return 2;\n    if (is_prime(n)) return n;\n    if (mint::getmod() != n) mint::setmod(n);\n\
     \n    mint R, one = 1;\n    auto f = [&](mint x) {\n        return x * x + R;\n\
-    \    };\n    auto _rng = [&]() {\n        return kk2::random::rng(1, n - 1);\n\
-    \    };\n    while (true) {\n        mint x, y, ys, q = one;\n        R = _rng(),\
+    \    };\n    auto _rng = [&]() {\n        return kk2::random::rng(1, n);\n   \
+    \ };\n    while (true) {\n        mint x, y, ys, q = one;\n        R = _rng(),\
     \ y = _rng();\n        T g = 1;\n        constexpr int m = 128;\n        for (int\
-    \ r = 1; g == 1; r++) {\n            x = y;\n            for (int i = 0; i < r;\
-    \ i++) y = f(y);\n            for (int k = 0; k < r && g == 1; k += m) {\n   \
-    \             ys = y;\n                for (int i = 0; i < std::min(m, r - k);\
-    \ i++) {\n                    y = f(y);\n                    q *= x - y;\n   \
-    \             }\n                g = std::gcd(q.val(), n);\n            }\n  \
-    \      }\n        if (g == n) do {\n                ys = f(ys);\n            \
-    \    g = std::gcd((x - ys).val(), n);\n            } while (g == 1);\n       \
-    \ if (g != n) return g;\n    }\n    exit(1);\n}\n\nstd::vector<i64> inner_factorize(i64\
+    \ r = 1; g == 1; r <<= 1) {\n            x = y;\n            for (int i = 0; i\
+    \ < r; i++) y = f(y);\n            for (int k = 0; k < r && g == 1; k += m) {\n\
+    \                ys = y;\n                for (int i = 0; i < std::min(m, r -\
+    \ k); i++) {\n                    y = f(y);\n                    q *= x - y;\n\
+    \                }\n                g = std::gcd(q.val(), n);\n            }\n\
+    \        }\n        if (g == n) do {\n                ys = f(ys);\n          \
+    \      g = std::gcd((x - ys).val(), n);\n            } while (g == 1);\n     \
+    \   if (g != n) return g;\n    }\n    exit(1);\n}\n\nstd::vector<i64> inner_factorize(i64\
     \ n) {\n    using mint32 = ArbitraryLazyMontgomeryModInt<54355165>;\n    using\
     \ mint64 = ArbitraryLazyMontgomeryModInt64bit<54355165>;\n    if (n == 1) return\
     \ {};\n    if (n < 0) n = -n;\n    u64 p;\n    if (n <= (1ll << 30)) {\n     \
@@ -264,7 +264,7 @@ data:
   isVerificationFile: false
   path: math/prime_factorize.hpp
   requiredBy: []
-  timestamp: '2024-09-21 15:58:12+09:00'
+  timestamp: '2024-09-21 16:08:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/prime_factorize.hpp
