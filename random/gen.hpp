@@ -25,8 +25,9 @@ u64 xorshift128plus(u64 &x, u64 &y) {
     return x + y;
 }
 
+constexpr int iterations = 100;
 void warm_up(u64 &x, u64 &y) {
-    for (int i = 0; i < 10; i++) xorshift128plus(x, y);
+    for (int i = 0; i < iterations; i++) xorshift128plus(x, y);
 }
 
 u64 rng() {
