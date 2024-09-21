@@ -27,7 +27,7 @@ constexpr int primitive_root_constexpr(int m) {
     for (int g = 2;; g++) {
         bool ok = true;
         for (int i = 0; i < cnt; i++) {
-            if (pow_mod(g, (m - 1) / divs[i], m) == 1) {
+            if (pow_mod<long long>(g, (m - 1) / divs[i], m) == 1) {
                 ok = false;
                 break;
             }
