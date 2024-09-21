@@ -29,7 +29,7 @@ template <class mint, class T> T pollard_rho(T n) {
         return x * x + R;
     };
     auto _rng = [&]() {
-        return kk2::random::rng(1, n);
+        return kk2::random::rng(2, n);
     };
     while (true) {
         mint x, y, ys, q = one;
