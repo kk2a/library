@@ -200,6 +200,9 @@ data:
       path: math/Eratosthenes.hpp
       title: math/Eratosthenes.hpp
     - icon: ':warning:'
+      path: math/convert_base.hpp
+      title: math/convert_base.hpp
+    - icon: ':warning:'
       path: math/euler_phi.hpp
       title: math/euler_phi.hpp
     - icon: ':warning:'

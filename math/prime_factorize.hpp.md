@@ -123,7 +123,7 @@ data:
     \                unsigned long long,\n                                      __int128_t,\n\
     \                                      __uint128_t,\n                        \
     \              id>;\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\
-    \n#line 6 \"random/gen.hpp\"\n#include <unordered_set>\n#line 8 \"random/gen.hpp\"\
+    \n#line 7 \"random/gen.hpp\"\n#include <unordered_set>\n#line 9 \"random/gen.hpp\"\
     \n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\nnamespace kk2 {\n\n\
     namespace random {\n\nusing u64 = unsigned long long;\n\nu64 non_deterministic_seed()\
     \ {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n  \
@@ -133,11 +133,11 @@ data:
     \ seed;\n}\n\nu64 deterministic_seed() {\n    return 5801799128519729247ull;\n\
     }\n\nu64 seed() {\n#if defined(KK2) && !defined(KK2_RANDOM_NON_DETERMINISTIC)\n\
     \    return deterministic_seed();\n#else\n    return non_deterministic_seed();\n\
-    #endif\n}\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line 10 \"random/gen.hpp\"\
+    #endif\n}\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line 11 \"random/gen.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace random {\n\nusing i64 = long long;\nusing u64\
     \ = unsigned long long;\n\nu64 xorshift128plus(u64 &x, u64 &y) {\n    u64 t =\
     \ x;\n    t ^= t << 23;\n    t ^= t >> 17;\n    t ^= y ^ (y >> 26);\n    x = y;\n\
-    \    y = t;\n    return x + y;\n}\n\nconstexpr int iterations = 100;\nvoid warm_up(u64\
+    \    y = t;\n    return x + y;\n}\n\nconstexpr int iterations = 100;\n\nvoid warm_up(u64\
     \ &x, u64 &y) {\n    for (int i = 0; i < iterations; i++) xorshift128plus(x, y);\n\
     }\n\nu64 rng() {\n    static bool first = true;\n    static u64 x = seed(), y\
     \ = seed();\n    if (first) {\n        warm_up(x, y);\n        first = false;\n\
@@ -147,27 +147,36 @@ data:
     \ r - l);\n    std::unordered_set<i64> st;\n    for (i64 i = n; i; --i) {\n  \
     \      i64 m = rng(l, r + 1 - i);\n        if (st.find(m) != st.end()) m = r -\
     \ i;\n        st.insert(m);\n    }\n    std::vector<i64> res(st.begin(), st.end());\n\
-    \    std::sort(res.begin(), res.end());\n    return res;\n}\n\n} // namespace\
-    \ random\n\n} // namespace kk2\n\n\n#line 1 \"math/is_prime.hpp\"\n\n\n\n#line\
-    \ 5 \"math/is_prime.hpp\"\n\n#line 8 \"math/is_prime.hpp\"\n\nnamespace kk2 {\n\
-    \nnamespace number_theory {\n\ntemplate <class T, class U> bool miller_rabin(const\
-    \ T &n, const std::vector<T> &ws) {\n    if (n <= 2) return n == 2;\n    if (~n\
-    \ & 1) return false;\n\n    T d = n - 1;\n    while (~d & 1) d >>= 1;\n    U e\
-    \ = 1, rev = n - 1;\n    for (T w : ws) {\n        if (w % n == 0) continue;\n\
-    \        T t = d;\n        U y = pow_mod<T, T, U>(w, t, n);\n        while (t\
-    \ != n - 1 and y != e and y != rev) {\n            y = y * y % n;\n          \
-    \  t <<= 1;\n        }\n        if (y != rev and ~t & 1) return false;\n    }\n\
-    \    return true;\n}\n\nbool miller_rabin_u64(unsigned long long n) {\n    return\
-    \ miller_rabin<unsigned long long, __uint128_t>(\n        n, {2, 325, 9375, 28178,\
-    \ 450775, 9780504, 1795265022});\n}\n\ntemplate <class mint>\nbool miller_rabin_mont(unsigned\
-    \ long long n,\n                       const std::vector<unsigned long long> &ws)\
-    \ {\n    if (n <= 2) return n == 2;\n    if (~n & 1) return false;\n\n    if (mint::getmod()\
-    \ != n) mint::setmod(n);\n    unsigned long long d = n - 1;\n    while (~d & 1)\
-    \ d >>= 1;\n    mint e = 1, rev = n - 1;\n    for (unsigned long long w : ws)\
-    \ {\n        if (w % n == 0) continue;\n        unsigned long long t = d;\n  \
-    \      mint y = mint(w).pow(t);\n        while (t != n - 1 and y != e and y !=\
-    \ rev) {\n            y *= y;\n            t <<= 1;\n        }\n        if (y\
-    \ != rev and ~t & 1) return false;\n    }\n    return true;\n}\n\nbool is_prime(unsigned\
+    \    std::sort(res.begin(), res.end());\n    return res;\n}\n\ntemplate <class\
+    \ Iter> void shuffle(Iter first, Iter last) {\n    if (first == last) return;\n\
+    \    int len = 1;\n    for (auto it = first + 1; it != last; ++it) {\n       \
+    \ len++;\n        int j = rng(0, len);\n        if (j != len - 1) std::iter_swap(first\
+    \ + j, it);\n    }\n}\n\ntemplate <class T> std::vector<T> perm(int n) {\n   \
+    \ std::vecotr<T> res(n);\n    std::iota(res.begin(), res.end(), T(0));\n    shuffle(res.begin(),\
+    \ res.end());\n    return res;\n}\n\ntemplate <class T> std::vector<T> choices(int\
+    \ l, int r, int k) {\n    assert(l < r and k <= r - l);\n    std::vector<T> res(r\
+    \ - l);\n    std::iota(res.begin(), res.end(), T(l));\n    shuffle(res.begin(),\
+    \ res.end());\n    res.resize(k);\n    return res;\n}\n\n} // namespace random\n\
+    \n} // namespace kk2\n\n\n#line 1 \"math/is_prime.hpp\"\n\n\n\n#line 5 \"math/is_prime.hpp\"\
+    \n\n#line 8 \"math/is_prime.hpp\"\n\nnamespace kk2 {\n\nnamespace number_theory\
+    \ {\n\ntemplate <class T, class U> bool miller_rabin(const T &n, const std::vector<T>\
+    \ &ws) {\n    if (n <= 2) return n == 2;\n    if (~n & 1) return false;\n\n  \
+    \  T d = n - 1;\n    while (~d & 1) d >>= 1;\n    U e = 1, rev = n - 1;\n    for\
+    \ (T w : ws) {\n        if (w % n == 0) continue;\n        T t = d;\n        U\
+    \ y = pow_mod<T, T, U>(w, t, n);\n        while (t != n - 1 and y != e and y !=\
+    \ rev) {\n            y = y * y % n;\n            t <<= 1;\n        }\n      \
+    \  if (y != rev and ~t & 1) return false;\n    }\n    return true;\n}\n\nbool\
+    \ miller_rabin_u64(unsigned long long n) {\n    return miller_rabin<unsigned long\
+    \ long, __uint128_t>(\n        n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\n\
+    }\n\ntemplate <class mint>\nbool miller_rabin_mont(unsigned long long n,\n   \
+    \                    const std::vector<unsigned long long> &ws) {\n    if (n <=\
+    \ 2) return n == 2;\n    if (~n & 1) return false;\n\n    if (mint::getmod() !=\
+    \ n) mint::setmod(n);\n    unsigned long long d = n - 1;\n    while (~d & 1) d\
+    \ >>= 1;\n    mint e = 1, rev = n - 1;\n    for (unsigned long long w : ws) {\n\
+    \        if (w % n == 0) continue;\n        unsigned long long t = d;\n      \
+    \  mint y = mint(w).pow(t);\n        while (t != n - 1 and y != e and y != rev)\
+    \ {\n            y *= y;\n            t <<= 1;\n        }\n        if (y != rev\
+    \ and ~t & 1) return false;\n    }\n    return true;\n}\n\nbool is_prime(unsigned\
     \ long long n) {\n    using mint32 = ArbitraryLazyMontgomeryModInt<54305750>;\n\
     \    using mint64 = ArbitraryLazyMontgomeryModInt64bit<54305750>;\n\n    if (n\
     \ <= 2) return n == 2;\n    if (~n & 1) return false;\n    if (n < (1ull << 30))\
@@ -265,7 +274,7 @@ data:
   isVerificationFile: false
   path: math/prime_factorize.hpp
   requiredBy: []
-  timestamp: '2024-09-21 16:33:50+09:00'
+  timestamp: '2024-09-22 02:51:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/prime_factorize.hpp
