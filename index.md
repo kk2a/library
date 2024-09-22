@@ -177,6 +177,9 @@ data:
     - icon: ':warning:'
       path: graph/two_edge_connected_components.hpp
       title: graph/two_edge_connected_components.hpp
+    - icon: ':warning:'
+      path: graph/warshall_floyd.hpp
+      title: graph/warshall_floyd.hpp
   - name: graph/tree
     pages:
     - icon: ':warning:'
