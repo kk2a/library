@@ -19,4 +19,11 @@ template <class T> std::vector<T> convert_base(T x, T b) {
     return res;
 }
 
+template <class T> T from_base(const std::vector<T> &v, T b) {
+    assert(b);
+    T res = 0;
+    for (int i = v.size() - 1; i >= 0; i--) res = res * b + v[i];
+    return res;
+}
+
 #endif // MATH_CONVERT_BASE_HPP
