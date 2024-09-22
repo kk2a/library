@@ -125,41 +125,43 @@ data:
     \ int(a.size());\n    int h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n\
     \    static bool first = true;\n    static mint sum_ie2[30]; // sum_ie[i] = es[0]\
     \ * ... * es[i - 1] * ies[i]\n    static mint sum_ie3[30];\n    static mint es[30],\
-    \ ies[30]; // es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n\
-    \        int cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
-    \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n  \
-    \          // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i - 2]\
-    \ = ie;\n            e *= e;\n            ie *= ie;\n        }\n        mint now\
-    \ = 1;\n        for (int i = 0; i <= cnt2 - 2; i++) {\n            sum_ie2[i]\
-    \ = ies[i] * now;\n            now *= es[i];\n        }\n        now = 1;\n  \
-    \      for (int i = 0; i <= cnt2 - 3; i++) {\n            sum_ie3[i] = ies[i +\
-    \ 1] * now;\n            now *= es[i + 1];\n        }\n    }\n    int len = h;\n\
-    \    while (len) {\n        if (len == 1) {\n            int p = 1 << (h - len);\n\
-    \            mint irot = 1;\n            for (int s = 0; s < (1 << (len - 1));\
-    \ s++) {\n                int offset = s << (h - len + 1);\n                for\
-    \ (int i = 0; i < p; i++) {\n                    auto l = a[i + offset];\n   \
-    \                 auto r = a[i + offset + p];\n                    a[i + offset]\
-    \ = l + r;\n                    a[i + offset + p] = (l - r) * irot;\n        \
-    \        }\n                if (s + 1 != (1 << (len - 1)))\n                 \
-    \   irot *= sum_ie2[__builtin_ctz(~(unsigned int)(s))];\n            }\n     \
-    \       len--;\n        } else {\n            int p = 1 << (h - len);\n      \
-    \      mint irot = 1, iimag = ies[0];\n            for (int s = 0; s < (1 << ((len\
-    \ - 2))); s++) {\n                mint irot2 = irot * irot;\n                mint\
-    \ irot3 = irot2 * irot;\n                int offset = s << (h - len + 2);\n  \
-    \              for (int i = 0; i < p; i++) {\n                    auto a0 = a[i\
-    \ + offset];\n                    auto a1 = a[i + offset + p];\n             \
-    \       auto a2 = a[i + offset + p * 2];\n                    auto a3 = a[i +\
-    \ offset + p * 3];\n                    auto a2na3iimag = (a2 - a3) * iimag;\n\
-    \n                    a[i + offset] = a0 + a1 + a2 + a3;\n                   \
-    \ a[i + offset + p] = (a0 - a1 + a2na3iimag) * irot;\n                    a[i\
-    \ + offset + p * 2] = (a0 + a1 - a2 - a3) * irot2;\n                    a[i +\
-    \ offset + p * 3] = (a0 - a1 - a2na3iimag) * irot3;\n                }\n     \
-    \           if (s + 1 != (1 << (len - 2)))\n                    irot *= sum_ie3[__builtin_ctz(~(unsigned\
-    \ int)(s))];\n            }\n            len -= 2;\n        }\n    }\n}\n\ntemplate\
-    \ <class FPS, class mint = typename FPS::value_type>\nvoid doubling(FPS &a) {\n\
-    \    int n = a.size();\n    auto b = a;\n    int z = 1;\n    while (z < n) z <<=\
-    \ 1;\n    mint invz = mint(z).inv();\n    butterfly_inv(b);\n    for (int i =\
-    \ 0; i < b.size(); i++) b[i] *= invz;\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>)\n\
+    \ ies[30]; // es[i]^(2^(2+i)) == 1\n    static mint invn[30];\n    if (first)\
+    \ {\n        first = false;\n        int cnt2 = __builtin_ctz(mint::getmod() -\
+    \ 1);\n        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n\
+    \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n    \
+    \        es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n \
+    \           ie *= ie;\n        }\n        mint now = 1;\n        for (int i =\
+    \ 0; i <= cnt2 - 2; i++) {\n            sum_ie2[i] = ies[i] * now;\n         \
+    \   now *= es[i];\n        }\n        now = 1;\n        for (int i = 0; i <= cnt2\
+    \ - 3; i++) {\n            sum_ie3[i] = ies[i + 1] * now;\n            now *=\
+    \ es[i + 1];\n        }\n\n        invn[0] = 1;\n        invn[1] = mint::getmod()\
+    \ / 2 + 1;\n        for (int i = 2; i < 30; i++) invn[i] = invn[i - 1] * invn[1];\n\
+    \    }\n    int len = h;\n    while (len) {\n        if (len == 1) {\n       \
+    \     int p = 1 << (h - len);\n            mint irot = 1;\n            for (int\
+    \ s = 0; s < (1 << (len - 1)); s++) {\n                int offset = s << (h -\
+    \ len + 1);\n                for (int i = 0; i < p; i++) {\n                 \
+    \   auto l = a[i + offset];\n                    auto r = a[i + offset + p];\n\
+    \                    a[i + offset] = l + r;\n                    a[i + offset\
+    \ + p] = (l - r) * irot;\n                }\n                if (s + 1 != (1 <<\
+    \ (len - 1)))\n                    irot *= sum_ie2[__builtin_ctz(~(unsigned int)(s))];\n\
+    \            }\n            len--;\n        } else {\n            int p = 1 <<\
+    \ (h - len);\n            mint irot = 1, iimag = ies[0];\n            for (int\
+    \ s = 0; s < (1 << ((len - 2))); s++) {\n                mint irot2 = irot * irot;\n\
+    \                mint irot3 = irot2 * irot;\n                int offset = s <<\
+    \ (h - len + 2);\n                for (int i = 0; i < p; i++) {\n            \
+    \        auto a0 = a[i + offset];\n                    auto a1 = a[i + offset\
+    \ + p];\n                    auto a2 = a[i + offset + p * 2];\n              \
+    \      auto a3 = a[i + offset + p * 3];\n                    auto a2na3iimag =\
+    \ (a2 - a3) * iimag;\n\n                    a[i + offset] = a0 + a1 + a2 + a3;\n\
+    \                    a[i + offset + p] = (a0 - a1 + a2na3iimag) * irot;\n    \
+    \                a[i + offset + p * 2] = (a0 + a1 - a2 - a3) * irot2;\n      \
+    \              a[i + offset + p * 3] = (a0 - a1 - a2na3iimag) * irot3;\n     \
+    \           }\n                if (s + 1 != (1 << (len - 2)))\n              \
+    \      irot *= sum_ie3[__builtin_ctz(~(unsigned int)(s))];\n            }\n  \
+    \          len -= 2;\n        }\n    }\n\n    for (int i = 0; i < n; i++) a[i]\
+    \ *= invn[h];\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+    void doubling(FPS &a) {\n    int n = a.size();\n    auto b = a;\n    int z = 1;\n\
+    \    butterfly_inv(b);\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>)\n\
     \                           .pow((mint::getmod() - 1) / (n << 1));\n    for (int\
     \ i = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n    }\n    butterfly(b);\n\
     \    std::copy(b.begin(), b.end(), std::back_inserter(a));\n}\n\n} // namespace\
@@ -174,10 +176,9 @@ data:
     \ < z; i++) a[i] *= a[i];\n    } else {\n        a.resize(z);\n        butterfly(a);\n\
     \        FPS t(b.begin(), b.end());\n        t.resize(z);\n        butterfly(t);\n\
     \        for (int i = 0; i < z; i++) a[i] *= t[i];\n    }\n    butterfly_inv(a);\n\
-    \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
-    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\n} // namespace kk2\n\n\n\
-    #line 1 \"fps/fps.hpp\"\n\n\n\n#line 6 \"fps/fps.hpp\"\n#include <utility>\n#line\
-    \ 8 \"fps/fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> struct FormalPowerSeries\
+    \    a.resize(n + m - 1);\n    return a;\n}\n\n} // namespace kk2\n\n\n#line 1\
+    \ \"fps/fps.hpp\"\n\n\n\n#line 6 \"fps/fps.hpp\"\n#include <utility>\n#line 8\
+    \ \"fps/fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> struct FormalPowerSeries\
     \ : std::vector<mint> {\n    using std::vector<mint>::vector;\n    using FPS =\
     \ FormalPowerSeries;\n\n    FPS &operator+=(const FPS &r) {\n        if (this->size()\
     \ < r.size()) this->resize(r.size());\n        for (int i = 0; i < (int)r.size();\
@@ -341,50 +342,46 @@ data:
     \ {\n    return primitive_root<mint::getmod()>;\n}\n\ntemplate <class mint>\n\
     FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {\n    assert((*this)[0]\
     \ != mint(0));\n    if (deg == -1) deg = (int)this->size();\n    FormalPowerSeries<mint>\
-    \ res(deg);\n    res[0] = {mint(1) / (*this)[0]};\n    auto ind = mint{2}.inv(),\
-    \ intwo = mint{2}.inv();\n    for (int d = 1; d < deg; d <<= 1) {\n        FormalPowerSeries<mint>\
-    \ f(2 * d), g(2 * d);\n        std::copy(std::begin(*this),\n                \
-    \  std::begin(*this) + std::min((int)this->size(), 2 * d),\n                 \
-    \ std::begin(f));\n        std::copy(std::begin(res), std::begin(res) + d, std::begin(g));\n\
-    \        f.but();\n        g.but();\n        f.inplace_dot(g);\n        f.ibut();\n\
-    \        f *= ind;\n        std::fill(std::begin(f), std::begin(f) + d, mint(0));\n\
-    \        f.but();\n        f.inplace_dot(g);\n        f.ibut();\n        f *=\
-    \ ind;\n        for (int j = d; j < std::min(2 * d, deg); j++) res[j] = -f[j];\n\
-    \        ind *= intwo;\n    }\n    return res.pre(deg);\n}\n\ntemplate <class\
-    \ mint>\nFormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {\n\
-    \    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg == -1) deg =\
-    \ (int)this->size();\n    FormalPowerSeries<mint> inv;\n    inv.reserve(deg +\
-    \ 1);\n    inv.push_back(mint(0));\n    inv.push_back(mint(1));\n\n    FormalPowerSeries<mint>\
+    \ res(deg);\n    res[0] = {mint(1) / (*this)[0]};\n    for (int d = 1; d < deg;\
+    \ d <<= 1) {\n        FormalPowerSeries<mint> f(2 * d), g(2 * d);\n        std::copy(std::begin(*this),\n\
+    \                  std::begin(*this) + std::min((int)this->size(), 2 * d),\n \
+    \                 std::begin(f));\n        std::copy(std::begin(res), std::begin(res)\
+    \ + d, std::begin(g));\n        f.but();\n        g.but();\n        f.inplace_dot(g);\n\
+    \        f.ibut();\n        std::fill(std::begin(f), std::begin(f) + d, mint(0));\n\
+    \        f.but();\n        f.inplace_dot(g);\n        f.ibut();\n        for (int\
+    \ j = d; j < std::min(2 * d, deg); j++) res[j] = -f[j];\n    }\n    return res.pre(deg);\n\
+    }\n\ntemplate <class mint>\nFormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int\
+    \ deg) const {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg\
+    \ == -1) deg = (int)this->size();\n    FormalPowerSeries<mint> inv;\n    inv.reserve(deg\
+    \ + 1);\n    inv.push_back(mint(0));\n    inv.push_back(mint(1));\n\n    FormalPowerSeries<mint>\
     \ b{1, 1 < (int)this->size() ? (*this)[1] : mint(0)};\n    FormalPowerSeries<mint>\
-    \ c{1}, z1, z2{1, 1};\n    mint im = mint{2}.inv(), intwo = mint{2}.inv();\n \
-    \   for (int m = 2; m < deg; m <<= 1) {\n        auto y = b;\n        y.resize(m\
-    \ << 1);\n        y.but();\n        z1 = z2;\n        FormalPowerSeries<mint>\
-    \ z(m);\n        z = y.dot(z1);\n        z.ibut();\n        z *= im;\n       \
-    \ std::fill(std::begin(z), std::begin(z) + (m >> 1), mint(0));\n        z.but();\n\
-    \        z.inplace_dot(-z1);\n        z.ibut();\n        z *= im;\n        c.insert(std::end(c),\
+    \ c{1}, z1, z2{1, 1};\n    for (int m = 2; m < deg; m <<= 1) {\n        auto y\
+    \ = b;\n        y.resize(m << 1);\n        y.but();\n        z1 = z2;\n      \
+    \  FormalPowerSeries<mint> z(m);\n        z = y.dot(z1);\n        z.ibut();\n\
+    \        std::fill(std::begin(z), std::begin(z) + (m >> 1), mint(0));\n      \
+    \  z.but();\n        z.inplace_dot(-z1);\n        z.ibut();\n        c.insert(std::end(c),\
     \ std::begin(z) + (m >> 1), std::end(z));\n        z2 = c;\n        z2.resize(m\
     \ << 1);\n        z2.but();\n\n        FormalPowerSeries<mint> x(\n          \
     \  this->begin(), this->begin() + std::min<int>(this->size(), m));\n        x.resize(m);\n\
     \        x.inplace_diff();\n        x.push_back(mint(0));\n        x.but();\n\
-    \        x.inplace_dot(y);\n        x.ibut();\n        x *= im;\n        x -=\
-    \ b.diff();\n        x.resize(m << 1);\n        for (int i = 0; i < m - 1; i++)\
-    \ {\n            x[m + i] = x[i];\n            x[i] = mint(0);\n        }\n  \
-    \      x.but();\n        x.inplace_dot(z2);\n        x.ibut();\n        x *= im\
-    \ * intwo;\n        x.pop_back();\n        x.inplace_int();\n        for (int\
-    \ i = m; i < std::min<int>(this->size(), m << 1); i++)\n            x[i] += (*this)[i];\n\
-    \        std::fill(std::begin(x), std::begin(x) + m, mint(0));\n        x.but();\n\
-    \        x.inplace_dot(y);\n        x.ibut();\n        x *= im * intwo;\n    \
-    \    b.insert(std::end(b), std::begin(x) + m, std::end(x));\n        im *= intwo;\n\
-    \    }\n    return FormalPowerSeries<mint>(std::begin(b), std::begin(b) + deg);\n\
-    }\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\
-    \n#include <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line\
-    \ 10 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt\
-    \ {\n    using mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using\
-    \ i64 = int64_t;\n    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n   \
-    \ static constexpr u32 get_r() {\n        u32 ret = p;\n        for (int i = 0;\
-    \ i < 4; ++i) ret *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr\
-    \ u32 r = get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r\
-    \ * p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
+    \        x.inplace_dot(y);\n        x.ibut();\n        x -= b.diff();\n      \
+    \  x.resize(m << 1);\n        for (int i = 0; i < m - 1; i++) {\n            x[m\
+    \ + i] = x[i];\n            x[i] = mint(0);\n        }\n        x.but();\n   \
+    \     x.inplace_dot(z2);\n        x.ibut();\n        x.pop_back();\n        x.inplace_int();\n\
+    \        for (int i = m; i < std::min<int>(this->size(), m << 1); i++)\n     \
+    \       x[i] += (*this)[i];\n        std::fill(std::begin(x), std::begin(x) +\
+    \ m, mint(0));\n        x.but();\n        x.inplace_dot(y);\n        x.ibut();\n\
+    \        b.insert(std::end(b), std::begin(x) + m, std::end(x));\n    }\n    return\
+    \ FormalPowerSeries<mint>(std::begin(b), std::begin(b) + deg);\n}\n\n} // namespace\
+    \ kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include\
+    \ <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line 10 \"modint/mont.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt {\n    using\
+    \ mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using i64 = int64_t;\n\
+    \    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n    static constexpr\
+    \ u32 get_r() {\n        u32 ret = p;\n        for (int i = 0; i < 4; ++i) ret\
+    \ *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr u32 r =\
+    \ get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r *\
+    \ p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
     \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
     \n    u32 _v;\n\n    operator int() const { return val(); }\n\n    constexpr LazyMontgomeryModInt()\
     \ : _v(0) {}\n\n    template <typename T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value>\
@@ -524,7 +521,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-09-21 14:19:58+09:00'
+  timestamp: '2024-09-23 06:34:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_pow.test.cpp

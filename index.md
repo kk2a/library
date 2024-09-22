@@ -209,6 +209,9 @@ data:
       path: math/euler_phi.hpp
       title: math/euler_phi.hpp
     - icon: ':warning:'
+      path: math/floor_sum.hpp
+      title: math/floor_sum.hpp
+    - icon: ':warning:'
       path: math/frac_floor.hpp
       title: math/frac_floor.hpp
     - icon: ':warning:'

@@ -22,30 +22,26 @@ data:
     \      return p;\n        }\n        FPS nq(4 * h * k), nr(2 * h * k);\n     \
     \   for (int i = 0; i < k; i++) {\n            std::copy(std::begin(q) + i * h,\n\
     \                      std::begin(q) + i * h + n + 1,\n                      std::begin(nq)\
-    \ + i * 2 * h);\n        }\n        nq[k * 2 * h] += 1;\n        int z = 1;\n\
-    \        while (z < 2 * h * k) z <<= 1;\n        mint invz = mint(z).inv(), invz2\
-    \ = invz * mint(2).inv();\n        nq.resize(z << 1);\n        nq.but();\n   \
-    \     for (int i = 0; i < 4 * h * k; i += 2) std::swap(nq[i], nq[i + 1]);\n  \
-    \      for (int i = 0; i < 2 * h * k; i++) {\n            nr[i] = nq[i * 2] *\
-    \ nq[i * 2 + 1];\n        }\n        nr.resize(z);\n        nr.ibut();\n     \
-    \   for (int i = 0; i < 2 * h * k; i++) nr[i] *= invz;\n        nr[0] -= 1;\n\
-    \        q.assign(h * k, 0);\n        for (int i = 0; i < 2 * k; i++) {\n    \
-    \        for (int j = 0; j <= n / 2; j++) {\n                q[i * h / 2 + j]\
-    \ = nr[i * h + j];\n            }\n        }\n        auto p = self(self, q, n\
-    \ / 2, h / 2, k * 2);\n        FPS np(4 * h * k);\n        for (int i = 0; i <\
-    \ 2 * k; i++) {\n            for (int j = 0; j <= n / 2; j++) {\n            \
-    \    np[i * 2 * h + j * 2 + n % 2] = p[i * h / 2 + j];\n            }\n      \
-    \  }\n        np.resize(z << 1);\n        np.but();\n        for (int i = 1; i\
-    \ < 4 * h * k; i <<= 1) {\n            std::reverse(std::begin(nq) + i, std::begin(nq)\
-    \ + i * 2);\n        }\n        for (int i = 0; i < 4 * h * k; i++) { np[i] *=\
-    \ nq[i]; }\n        np.ibut();\n        for (int i = 0; i < 4 * h * k; i++) np[i]\
-    \ *= invz2;\n        p.assign(h * k, 0);\n        for (int i = 0; i < k; i++)\
-    \ {\n            std::copy(std::begin(np) + i * 2 * h,\n                     \
-    \ std::begin(np) + i * 2 * h + n + 1,\n                      std::begin(p) + i\
-    \ * h);\n        }\n        return p;\n    };\n\n    int n = int(size(f)) - 1,\
-    \ k = 1;\n    int h = 1;\n    while (h < n + 1) h <<= 1;\n    FPS q(h * k);\n\
-    \    for (int i = 0; i <= n; i++) q[i] = -f[i];\n    FPS p = rec(rec, q, n, h,\
-    \ k);\n    return p.pre(n + 1).rev();\n}\n\n} // namespace kk2\n\n\n"
+    \ + i * 2 * h);\n        }\n        nq[k * 2 * h] += 1;\n        nq.but();\n \
+    \       for (int i = 0; i < 4 * h * k; i += 2) std::swap(nq[i], nq[i + 1]);\n\
+    \        for (int i = 0; i < 2 * h * k; i++) {\n            nr[i] = nq[i * 2]\
+    \ * nq[i * 2 + 1];\n        }\n        nr.ibut();\n        nr[0] -= 1;\n     \
+    \   q.assign(h * k, 0);\n        for (int i = 0; i < 2 * k; i++) {\n         \
+    \   for (int j = 0; j <= n / 2; j++) {\n                q[i * h / 2 + j] = nr[i\
+    \ * h + j];\n            }\n        }\n        auto p = self(self, q, n / 2, h\
+    \ / 2, k * 2);\n        FPS np(4 * h * k);\n        for (int i = 0; i < 2 * k;\
+    \ i++) {\n            for (int j = 0; j <= n / 2; j++) {\n                np[i\
+    \ * 2 * h + j * 2 + n % 2] = p[i * h / 2 + j];\n            }\n        }\n   \
+    \     np.but();\n        for (int i = 1; i < 4 * h * k; i <<= 1) {\n         \
+    \   std::reverse(std::begin(nq) + i, std::begin(nq) + i * 2);\n        }\n   \
+    \     for (int i = 0; i < 4 * h * k; i++) { np[i] *= nq[i]; }\n        np.ibut();\n\
+    \        p.assign(h * k, 0);\n        for (int i = 0; i < k; i++) {\n        \
+    \    std::copy(std::begin(np) + i * 2 * h,\n                      std::begin(np)\
+    \ + i * 2 * h + n + 1,\n                      std::begin(p) + i * h);\n      \
+    \  }\n        return p;\n    };\n\n    int n = int(size(f)) - 1, k = 1;\n    int\
+    \ h = 1;\n    while (h < n + 1) h <<= 1;\n    FPS q(h * k);\n    for (int i =\
+    \ 0; i <= n; i++) q[i] = -f[i];\n    FPS p = rec(rec, q, n, h, k);\n    return\
+    \ p.pre(n + 1).rev();\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef FPS_COMPOSITION_HPP\n#define FPS_COMPOSITION_HPP 1\n\n#include <algorithm>\n\
     #include <cassert>\n#include <functional>\n#include <utility>\n#include <vector>\n\
     \nnamespace kk2 {\n\n// calculate (g \\circ f) (X)\ntemplate <class FPS, class\
@@ -60,36 +56,32 @@ data:
     \      return p;\n        }\n        FPS nq(4 * h * k), nr(2 * h * k);\n     \
     \   for (int i = 0; i < k; i++) {\n            std::copy(std::begin(q) + i * h,\n\
     \                      std::begin(q) + i * h + n + 1,\n                      std::begin(nq)\
-    \ + i * 2 * h);\n        }\n        nq[k * 2 * h] += 1;\n        int z = 1;\n\
-    \        while (z < 2 * h * k) z <<= 1;\n        mint invz = mint(z).inv(), invz2\
-    \ = invz * mint(2).inv();\n        nq.resize(z << 1);\n        nq.but();\n   \
-    \     for (int i = 0; i < 4 * h * k; i += 2) std::swap(nq[i], nq[i + 1]);\n  \
-    \      for (int i = 0; i < 2 * h * k; i++) {\n            nr[i] = nq[i * 2] *\
-    \ nq[i * 2 + 1];\n        }\n        nr.resize(z);\n        nr.ibut();\n     \
-    \   for (int i = 0; i < 2 * h * k; i++) nr[i] *= invz;\n        nr[0] -= 1;\n\
-    \        q.assign(h * k, 0);\n        for (int i = 0; i < 2 * k; i++) {\n    \
-    \        for (int j = 0; j <= n / 2; j++) {\n                q[i * h / 2 + j]\
-    \ = nr[i * h + j];\n            }\n        }\n        auto p = self(self, q, n\
-    \ / 2, h / 2, k * 2);\n        FPS np(4 * h * k);\n        for (int i = 0; i <\
-    \ 2 * k; i++) {\n            for (int j = 0; j <= n / 2; j++) {\n            \
-    \    np[i * 2 * h + j * 2 + n % 2] = p[i * h / 2 + j];\n            }\n      \
-    \  }\n        np.resize(z << 1);\n        np.but();\n        for (int i = 1; i\
-    \ < 4 * h * k; i <<= 1) {\n            std::reverse(std::begin(nq) + i, std::begin(nq)\
-    \ + i * 2);\n        }\n        for (int i = 0; i < 4 * h * k; i++) { np[i] *=\
-    \ nq[i]; }\n        np.ibut();\n        for (int i = 0; i < 4 * h * k; i++) np[i]\
-    \ *= invz2;\n        p.assign(h * k, 0);\n        for (int i = 0; i < k; i++)\
-    \ {\n            std::copy(std::begin(np) + i * 2 * h,\n                     \
-    \ std::begin(np) + i * 2 * h + n + 1,\n                      std::begin(p) + i\
-    \ * h);\n        }\n        return p;\n    };\n\n    int n = int(size(f)) - 1,\
-    \ k = 1;\n    int h = 1;\n    while (h < n + 1) h <<= 1;\n    FPS q(h * k);\n\
-    \    for (int i = 0; i <= n; i++) q[i] = -f[i];\n    FPS p = rec(rec, q, n, h,\
-    \ k);\n    return p.pre(n + 1).rev();\n}\n\n} // namespace kk2\n\n#endif /* FPS_COMPOSITION_HPP\
+    \ + i * 2 * h);\n        }\n        nq[k * 2 * h] += 1;\n        nq.but();\n \
+    \       for (int i = 0; i < 4 * h * k; i += 2) std::swap(nq[i], nq[i + 1]);\n\
+    \        for (int i = 0; i < 2 * h * k; i++) {\n            nr[i] = nq[i * 2]\
+    \ * nq[i * 2 + 1];\n        }\n        nr.ibut();\n        nr[0] -= 1;\n     \
+    \   q.assign(h * k, 0);\n        for (int i = 0; i < 2 * k; i++) {\n         \
+    \   for (int j = 0; j <= n / 2; j++) {\n                q[i * h / 2 + j] = nr[i\
+    \ * h + j];\n            }\n        }\n        auto p = self(self, q, n / 2, h\
+    \ / 2, k * 2);\n        FPS np(4 * h * k);\n        for (int i = 0; i < 2 * k;\
+    \ i++) {\n            for (int j = 0; j <= n / 2; j++) {\n                np[i\
+    \ * 2 * h + j * 2 + n % 2] = p[i * h / 2 + j];\n            }\n        }\n   \
+    \     np.but();\n        for (int i = 1; i < 4 * h * k; i <<= 1) {\n         \
+    \   std::reverse(std::begin(nq) + i, std::begin(nq) + i * 2);\n        }\n   \
+    \     for (int i = 0; i < 4 * h * k; i++) { np[i] *= nq[i]; }\n        np.ibut();\n\
+    \        p.assign(h * k, 0);\n        for (int i = 0; i < k; i++) {\n        \
+    \    std::copy(std::begin(np) + i * 2 * h,\n                      std::begin(np)\
+    \ + i * 2 * h + n + 1,\n                      std::begin(p) + i * h);\n      \
+    \  }\n        return p;\n    };\n\n    int n = int(size(f)) - 1, k = 1;\n    int\
+    \ h = 1;\n    while (h < n + 1) h <<= 1;\n    FPS q(h * k);\n    for (int i =\
+    \ 0; i <= n; i++) q[i] = -f[i];\n    FPS p = rec(rec, q, n, h, k);\n    return\
+    \ p.pre(n + 1).rev();\n}\n\n} // namespace kk2\n\n#endif /* FPS_COMPOSITION_HPP\
     \ */\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/composition.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-23 06:34:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/composition.hpp
