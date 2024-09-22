@@ -7,14 +7,12 @@
 
 namespace kk2 {
 
-template <class WG, class T = typename WG::value_type>
-struct WarshallFroyd {
+template <class WG, class T = typename WG::value_type> struct WarshallFroyd {
     WG d;
     T inf = std::numeric_limits<T>::max();
     T zero = T();
 
     WarshallFroyd(const WG &g_) : d(g_) { init(); }
-    WarshallFroyd(const WG &g_, T inf_, T zero_) : d(g_), inf(inf_), zero(zero_) { init(); }
 
     void init() {
         assert(d.adjacency_matrix);
@@ -41,13 +39,16 @@ struct WarshallFroyd {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     if (d[i][k].cost == inf || d[k][j].cost == inf) continue;
-                    d[i][j].cost = std::min(d[i][j].cost, d[i][k].cost + d[k][j].cost);
+                    d[i][j].cost =
+                        std::min(d[i][j].cost, d[i][k].cost + d[k][j].cost);
                 }
             }
         }
     }
 
-    T operator()(int i, int j) const { return d[i][j].cost; }
+    T operator()(int i, int j) const {
+        return d[i][j].cost == inf ? -1 : d[i][j].cost;
+    }
 };
 
 } // namespace kk2
