@@ -36,8 +36,6 @@ FPS convolution(FPS &a, const FPS &b) {
     }
     butterfly_inv(a);
     a.resize(n + m - 1);
-    mint iz = mint(z).inv();
-    for (int i = 0; i < n + m - 1; i++) a[i] *= iz;
     return a;
 }
 

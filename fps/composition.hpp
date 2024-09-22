@@ -33,18 +33,12 @@ FPS composition(const FPS &f_, const FPS &g_, int deg = -1) {
                       std::begin(nq) + i * 2 * h);
         }
         nq[k * 2 * h] += 1;
-        int z = 1;
-        while (z < 2 * h * k) z <<= 1;
-        mint invz = mint(z).inv(), invz2 = invz * mint(2).inv();
-        nq.resize(z << 1);
         nq.but();
         for (int i = 0; i < 4 * h * k; i += 2) std::swap(nq[i], nq[i + 1]);
         for (int i = 0; i < 2 * h * k; i++) {
             nr[i] = nq[i * 2] * nq[i * 2 + 1];
         }
-        nr.resize(z);
         nr.ibut();
-        for (int i = 0; i < 2 * h * k; i++) nr[i] *= invz;
         nr[0] -= 1;
         q.assign(h * k, 0);
         for (int i = 0; i < 2 * k; i++) {
@@ -59,14 +53,12 @@ FPS composition(const FPS &f_, const FPS &g_, int deg = -1) {
                 np[i * 2 * h + j * 2 + n % 2] = p[i * h / 2 + j];
             }
         }
-        np.resize(z << 1);
         np.but();
         for (int i = 1; i < 4 * h * k; i <<= 1) {
             std::reverse(std::begin(nq) + i, std::begin(nq) + i * 2);
         }
         for (int i = 0; i < 4 * h * k; i++) { np[i] *= nq[i]; }
         np.ibut();
-        for (int i = 0; i < 4 * h * k; i++) np[i] *= invz2;
         p.assign(h * k, 0);
         for (int i = 0; i < k; i++) {
             std::copy(std::begin(np) + i * 2 * h,

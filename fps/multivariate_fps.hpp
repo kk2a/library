@@ -197,8 +197,6 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         // - [x^{k + i}]g_{2k} = [x^{k + i}](-g_k^2 f) ...(3)
         fps g(z);
         g[0] = f[0].inv(); // by (1)
-        mint inv2 = mint{2}.inv();
-        mint i2d = inv2;
         for (int d = 1; d < n; d <<= 1) {
             std::vector<fps> a(k, fps(2 * d)), b(k, fps(2 * d)),
                 c(k, fps(2 * d));
@@ -208,10 +206,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
             for (auto &x : a) x.but();
             for (auto &x : b) x.but();
             naive_and_dot(a, b, c);
-            for (auto &x : c) {
-                x.ibut();
-                x *= i2d;
-            }
+            for (auto &x : c) x.ibut();
             // compute g_d f
 
             for (auto &x : a) std::fill(std::begin(x), std::end(x), mint(0));
@@ -219,15 +214,11 @@ template <typename mint> struct MultivariateFormalPowerSeries {
             for (int i = d; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];
             for (auto &x : a) x.but();
             naive_and_dot(a, b, c);
-            for (auto &x : c) {
-                x.ibut();
-                x *= i2d;
-            }
+            for (auto &x : c) x.ibut();
             // compute g_d^2 f
 
             // by (2), (3)
             for (int i = d; i < 2 * d; i++) g[i] = -c[chi[i]][i];
-            i2d *= inv2;
         }
         mfps res(*this);
         res.f = fps(std::begin(g), std::begin(g) + n);

@@ -42,8 +42,6 @@ FPS multi_convolution_truncated(FPS &a,
         for (int i = 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};
     }
     for (auto &x : f) butterfly_inv(x);
-    mint iz = mint(z).inv();
-    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i] * iz;
     return a;
 }
 

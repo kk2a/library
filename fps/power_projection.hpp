@@ -20,9 +20,7 @@ FPS power_projection(const FPS &f, const FPS &g = {1}, int m = -1) {
     for (int i = 0; i <= n; i++) p[i * k] = i < (int)g.size() ? g[i] : mint(0);
     for (int i = 0; i <= n; i++) q[i * k] = -f[i];
     q[0] += 1;
-    mint inv2 = mint(2).inv();
-    mint invk = mint(k).inv();
-    mint invh = mint(h).inv();
+    mint inv2 = mint::getmod() / 2 + 1;
     while (n) {
         mint w = mint(FPS::but_pr()).pow((mint::getmod() - 1) / (k << 1));
         mint invw = w.inv();
@@ -31,7 +29,6 @@ FPS power_projection(const FPS &f, const FPS &g = {1}, int m = -1) {
         auto db = [&]() -> void {
             std::copy(std::begin(buf), std::end(buf), std::begin(buf2));
             buf2.ibut();
-            buf2 *= invk;
             mint r = 1;
             for (int i = 0; i < k; i++) {
                 buf2[i] *= r;
@@ -107,8 +104,6 @@ FPS power_projection(const FPS &f, const FPS &g = {1}, int m = -1) {
             q1.resize(h);
             p1.ibut();
             q1.ibut();
-            p1 *= invh;
-            q1 *= invh;
             for (int i = 0; i < h; i++) {
                 np[i * 2 * k + j] = p1[i];
                 nq[i * 2 * k + j] = q1[i];
@@ -120,15 +115,12 @@ FPS power_projection(const FPS &f, const FPS &g = {1}, int m = -1) {
         std::swap(p, np);
         std::swap(q, nq);
         n >>= 1, h >>= 1, k <<= 1;
-        invh *= 2, invk *= inv2;
     }
 
     FPS s(std::begin(p), std::begin(p) + k);
     FPS t(std::begin(q), std::begin(q) + k);
     s.ibut();
     t.ibut();
-    s *= invk;
-    t *= invk;
     t[0] -= 1;
     if (f[0] == mint(0)) return s.rev().pre(m + 1);
     return (s.rev() * (t + (FPS{1} << k)).rev().inv(m + 1)).pre(m + 1);

@@ -93,6 +93,7 @@ void butterfly_inv(FPS &a) {
     static mint sum_ie2[30]; // sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]
     static mint sum_ie3[30];
     static mint es[30], ies[30]; // es[i]^(2^(2+i)) == 1
+    static mint invn[30];
     if (first) {
         first = false;
         int cnt2 = __builtin_ctz(mint::getmod() - 1);
@@ -114,6 +115,10 @@ void butterfly_inv(FPS &a) {
             sum_ie3[i] = ies[i + 1] * now;
             now *= es[i + 1];
         }
+
+        invn[0] = 1;
+        invn[1] = mint::getmod() / 2 + 1;
+        for (int i = 2; i < 30; i++) invn[i] = invn[i - 1] * invn[1];
     }
     int len = h;
     while (len) {
@@ -157,6 +162,8 @@ void butterfly_inv(FPS &a) {
             len -= 2;
         }
     }
+
+    for (int i = 0; i < n; i++) a[i] *= invn[h];
 }
 
 template <class FPS, class mint = typename FPS::value_type>
@@ -164,10 +171,7 @@ void doubling(FPS &a) {
     int n = a.size();
     auto b = a;
     int z = 1;
-    while (z < n) z <<= 1;
-    mint invz = mint(z).inv();
     butterfly_inv(b);
-    for (int i = 0; i < b.size(); i++) b[i] *= invz;
     mint r = 1, zeta = mint(primitive_root<mint::getmod()>)
                            .pow((mint::getmod() - 1) / (n << 1));
     for (int i = 0; i < n; i++) {
