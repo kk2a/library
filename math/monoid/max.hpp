@@ -21,7 +21,8 @@ template <class S> struct Max {
     operator S() const { return a; }
 
     friend std::ostream &operator<<(std::ostream &os, const Max &max) {
-        os << (max.minf ? "minf" : std::to_string(max.a));
+        if (max.minf) os << "minf";
+        else os << max.a;
         return os;
     }
 

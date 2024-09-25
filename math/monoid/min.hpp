@@ -21,7 +21,8 @@ template <class S> struct Min {
     operator S() const { return a; }
 
     friend std::ostream &operator<<(std::ostream &os, const Min &min) {
-        os << (min.inf ? "inf" : std::to_string(min.a));
+        if (min.inf) os << "inf";
+        else os << min.a;
         return os;
     }
 
