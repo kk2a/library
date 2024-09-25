@@ -212,7 +212,6 @@ struct LazySegTree {
     }
 
     void push(int k) {
-        if (lz[k] == id()) return;
         all_apply(2 * k, lz[k]);
         all_apply(2 * k + 1, lz[k]);
         lz[k] = id();
