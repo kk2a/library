@@ -20,7 +20,7 @@ data:
     \ Max {\n    S a;\n    bool minf;\n\n    Max() : a(S()), minf(true) {}\n\n   \
     \ Max(S a_, bool minf_ = false) : a(a_), minf(minf_) {}\n\n    operator S() const\
     \ { return a; }\n\n    friend std::ostream &operator<<(std::ostream &os, const\
-    \ Max &max) {\n        os << (max.minf ? \"minf\" : std::to_string(max.a));\n\
+    \ Max &max) {\n        if (max.minf) os << \"minf\";\n        else os << max.a;\n\
     \        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
     \ &is, Max &max) {\n        is >> max.a;\n        max.minf = false;\n        return\
     \ is;\n    }\n\n    Max &operator=(const S &rhs) {\n        a = rhs;\n       \
@@ -116,7 +116,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/maxseg.hpp
   requiredBy: []
-  timestamp: '2024-09-14 19:52:31+09:00'
+  timestamp: '2024-09-25 19:24:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/maxseg.hpp

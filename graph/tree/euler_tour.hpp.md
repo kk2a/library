@@ -25,10 +25,10 @@ data:
     \ S a;\n    bool inf;\n\n    Min() : a(S()), inf(true) {}\n\n    Min(S a_, bool\
     \ inf_ = false) : a(a_), inf(inf_) {}\n\n    operator S() const { return a; }\n\
     \n    friend std::ostream &operator<<(std::ostream &os, const Min &min) {\n  \
-    \      os << (min.inf ? \"inf\" : std::to_string(min.a));\n        return os;\n\
-    \    }\n\n    friend std::istream &operator>>(std::istream &is, Min &min) {\n\
-    \        is >> min.a;\n        min.inf = false;\n        return is;\n    }\n\n\
-    \    Min &operator=(const S &rhs) {\n        a = rhs;\n        inf = false;\n\
+    \      if (min.inf) os << \"inf\";\n        else os << min.a;\n        return\
+    \ os;\n    }\n\n    friend std::istream &operator>>(std::istream &is, Min &min)\
+    \ {\n        is >> min.a;\n        min.inf = false;\n        return is;\n    }\n\
+    \n    Min &operator=(const S &rhs) {\n        a = rhs;\n        inf = false;\n\
     \        return *this;\n    }\n\n    Min &add(const S &rhs) {\n        if (inf)\
     \ return *this;\n        a += rhs;\n        return *this;\n    }\n\n    Min &update(const\
     \ S &rhs) {\n        a = rhs;\n        inf = false;\n        return *this;\n \
@@ -147,7 +147,7 @@ data:
   isVerificationFile: false
   path: graph/tree/euler_tour.hpp
   requiredBy: []
-  timestamp: '2024-09-14 19:52:31+09:00'
+  timestamp: '2024-09-25 19:24:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/euler_tour.hpp

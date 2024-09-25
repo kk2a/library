@@ -189,6 +189,9 @@ data:
       path: graph/tree/centroid.hpp
       title: graph/tree/centroid.hpp
     - icon: ':warning:'
+      path: graph/tree/centroid_decomposition.hpp
+      title: graph/tree/centroid_decomposition.hpp
+    - icon: ':warning:'
       path: graph/tree/diameter.hpp
       title: graph/tree/diameter.hpp
     - icon: ':warning:'
@@ -334,9 +337,6 @@ data:
     - icon: ':warning:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
-    - icon: ':warning:'
-      path: segment_tree/lazy_base.hpp
-      title: segment_tree/lazy_base.hpp
     - icon: ':warning:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp
