@@ -9,11 +9,12 @@ namespace kk2 {
 namespace group {
 
 template <class S> struct Sum {
-    S a, size;
+    S a;
+    int size;
 
-    Sum() : a(S()), size(0) {}
+    constexpr Sum() : a(S()), size(0) {}
 
-    Sum(S a, S size = 1) : a(a), size(size) {}
+    constexpr Sum(S a, S size = 1) : a(a), size(size) {}
 
     operator S() const { return a; }
 
@@ -28,55 +29,55 @@ template <class S> struct Sum {
         return is;
     }
 
-    Sum &operator=(const S &rhs) {
+    constexpr Sum &operator=(const S &rhs) {
         a = rhs;
         size = 1;
         return *this;
     }
 
-    Sum &add(const S &rhs) {
+    constexpr Sum &add(const S &rhs) {
         a += rhs * size;
         return *this;
     }
 
-    Sum &update(const S &rhs) {
+    constexpr Sum &update(const S &rhs) {
         a = rhs * size;
         return *this;
     }
 
-    Sum &multiply(const S &rhs) {
+    constexpr Sum &multiply(const S &rhs) {
         a *= rhs;
-        return *this;
-    }
-
-    Sum &op(const Sum &rhs) {
-        a += rhs.a;
-        size += rhs.size;
         return *this;
     }
 };
 
-template <class S> Sum<S> SumOp(Sum<S> l, Sum<S> r) {
-    return l.op(r);
+template <class S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {
+    l.a += r.a;
+    l.size += r.size;
+    return l;
 }
 
-template <class S> Sum<S> SumUnit() {
-    return Sum<S>();
+template <class S> constexpr Sum<S> SumUnit() {
+    constexpr static Sum<S> e = Sum<S>();
+    return e;
 }
 
-template <class S> Sum<S> SumInv(Sum<S> x) {
-    return Sum<S>(-x.a, -x.size);
+template <class S> constexpr Sum<S> SumInv(Sum<S> x) {
+    x.a = -x.a;
+    x.size = -x.size;
+    return x;
 }
 
 } // namespace group
 
 template <class S, class... Args>
-std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {
+constexpr std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {
     return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));
 }
 
 template <class S, class... Args>
-std::vector<std::vector<group::Sum<S>>> GetVecSum2D(int h, int w, Args... args) {
+constexpr std::vector<std::vector<group::Sum<S>>>
+GetVecSum2D(int h, int w, Args... args) {
     return std::vector<std::vector<group::Sum<S>>>(h, GetVecSum<S>(w, args...));
 }
 

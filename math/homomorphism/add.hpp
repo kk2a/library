@@ -7,16 +7,17 @@ namespace homomorphism {
 
 template <class S> using Add = S;
 
-template <class S, class T> T AddMap(Add<S> f, T x) {
+template <class S, class T> constexpr T AddMap(Add<S> f, T x) {
     return x.add(f);
 }
 
-template <class S> Add<S> AddComposition(Add<S> l, Add<S> r) {
+template <class S> constexpr Add<S> AddComposition(Add<S> l, Add<S> r) {
     return l + r;
 }
 
-template <class S> Add<S> AddUnit() {
-    return Add<S>();
+template <class S> constexpr Add<S> AddUnit() {
+    constexpr static Add<S> e = Add<S>();
+    return e;
 }
 
 } // namespace homomorphism

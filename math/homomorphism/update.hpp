@@ -2,7 +2,6 @@
 #define MATH_HOMOMORPHISM_UPDATE_HPP 1
 
 #include <iostream>
-#include <string>
 
 namespace kk2 {
 
@@ -12,33 +11,32 @@ template <class S> struct Update {
     S a;
     bool id;
 
-    Update() : a(S()), id(true) {}
+    constexpr Update() : a(S()), id(true) {}
 
-    Update(S a_, bool id_ = false) : a(a_), id(id_) {}
+    constexpr Update(S a_, bool id_ = false) : a(a_), id(id_) {}
 
     operator S() const { return a; }
 
     friend std::ostream &operator<<(std::ostream &os, const Update &update) {
-        os << (update.id ? "id" : std::to_string(update.a));
+        if (update.id) os << "id";
+        else os << update.a;
         return os;
-    }
-
-    Update &composition(const Update &f) {
-        if (f.id) return *this;
-        return *this = f;
     }
 };
 
-template <class S, class T> T UpdateMap(Update<S> f, T x) {
+template <class S, class T> constexpr T UpdateMap(Update<S> f, T x) {
     return f.id ? x : x.update(f.a);
 }
 
-template <class S> Update<S> UpdateComposition(Update<S> l, Update<S> r) {
-    return r.composition(l);
+template <class S>
+constexpr Update<S> UpdateComposition(Update<S> l, Update<S> r) {
+    if (l.id) return r;
+    return l;
 }
 
-template <class S> Update<S> UpdateUnit() {
-    return Update<S>();
+template <class S> constexpr Update<S> UpdateUnit() {
+    constexpr static Update<S> e = Update<S>();
+    return e;
 }
 
 } // namespace homomorphism

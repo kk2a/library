@@ -9,30 +9,30 @@ namespace homomorphism {
 
 template <class S> struct Affine {
     S a, b; // x \mapsto ax + b
-    Affine() : a(1), b(0) {};
+    constexpr Affine() : a(1), b(0) {};
 
-    Affine(S a, S b) : a(a), b(b) {}
+    constexpr Affine(S a, S b) : a(a), b(b) {}
 
     friend std::ostream &operator<<(std::ostream &os, const Affine &aff) {
         os << aff.a << " " << aff.b;
         return os;
     }
-
-    Affine &composition(const Affine &rhs) {
-        return *this = Affine(a * rhs.a, a * rhs.b + b);
-    }
 };
 
-template <class S, class T> T AffineMap(Affine<S> f, T x) {
+template <class S, class T> constexpr T AffineMap(Affine<S> f, T x) {
     return x.multiply(f.a).add(f.b);
 }
 
-template <class S> Affine<S> AffineComposition(Affine<S> l, Affine<S> r) {
-    return l.composition(r);
+template <class S>
+constexpr Affine<S> AffineComposition(Affine<S> l, Affine<S> r) {
+    l.b = l.a * r.b + l.b;
+    l.a = l.a * r.a;
+    return l;
 }
 
-template <class S> Affine<S> AffineUnit() {
-    return Affine<S>();
+template <class S> constexpr Affine<S> AffineUnit() {
+    constexpr static Affine<S> e = Affine<S>();
+    return e;
 }
 
 } // namespace homomorphism

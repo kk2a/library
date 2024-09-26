@@ -3,7 +3,6 @@
 
 #include <algorithm>
 #include <iostream>
-#include <string>
 #include <vector>
 
 namespace kk2 {
@@ -14,9 +13,9 @@ template <class S> struct Max {
     S a;
     bool minf;
 
-    Max() : a(S()), minf(true) {}
+    constexpr Max() : a(S()), minf(true) {}
 
-    Max(S a_, bool minf_ = false) : a(a_), minf(minf_) {}
+    constexpr Max(S a_, bool minf_ = false) : a(a_), minf(minf_) {}
 
     operator S() const { return a; }
 
@@ -32,52 +31,51 @@ template <class S> struct Max {
         return is;
     }
 
-    Max &operator=(const S &rhs) {
+    constexpr Max &operator=(const S &rhs) {
         a = rhs;
         minf = false;
         return *this;
     }
 
-    Max &add(const S &rhs) {
+    constexpr Max &add(const S &rhs) {
         if (minf) return *this;
         a += rhs;
         return *this;
     }
 
-    Max &update(const S &rhs) {
+    constexpr Max &update(const S &rhs) {
         a = rhs;
         minf = false;
         return *this;
     }
 
-    Max &op(const Max &rhs) {
-        if (rhs.minf) return *this;
-        if (minf) return *this = rhs;
-        a = std::max(a, rhs.a);
-        return *this;
-    }
-
-    bool is_minf() const { return minf; }
+    constexpr bool is_minf() { return minf; }
 };
 
-template <class S> Max<S> MaxOp(Max<S> l, Max<S> r) {
-    return l.op(r);
+template <class S> constexpr Max<S> MaxOp(Max<S> l, Max<S> r) {
+    if (r.minf) return l;
+    if (l.minf) return r;
+    l.a = std::max(l.a, r.a);
+    return l;
 }
 
-template <class S> Max<S> MaxUnit() {
-    return Max<S>();
+template <class S> constexpr Max<S> MaxUnit() {
+    constexpr static Max<S> e = Max<S>();
+    return e;
 }
 
 } // namespace monoid
 
 template <class S, class... Args>
-std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
+constexpr std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
     return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));
 }
 
 template <class S, class... Args>
-std::vector<std::vector<monoid::Max<S>>> GetVecMax2D(int h, int w, Args... args) {
-    return std::vector<std::vector<monoid::Max<S>>>(h, GetVecMax<S>(w, args...));
+constexpr std::vector<std::vector<monoid::Max<S>>>
+GetVecMax2D(int h, int w, Args... args) {
+    return std::vector<std::vector<monoid::Max<S>>>(h,
+                                                    GetVecMax<S>(w, args...));
 }
 
 } // namespace kk2

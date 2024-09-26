@@ -34,11 +34,11 @@ template <int p> struct ModInt {
 
     operator int() const { return _v; }
 
-    ModInt() : _v(0) {}
+    constexpr ModInt() : _v(0) {}
 
     template <class T,
               std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
-    ModInt(T v) {
+    constexpr ModInt(T v) {
         if constexpr (is_signed_extended<T>::value) {
             v %= getmod();
             if (v < 0) v += getmod();
