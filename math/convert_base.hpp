@@ -5,6 +5,8 @@
 #include <cassert>
 #include <vector>
 
+namespace kk2 {
+
 template <class T> std::vector<T> convert_base(T x, T b) {
     if (x == 0) return {0};
     assert(b);
@@ -25,5 +27,7 @@ template <class T> T from_base(const std::vector<T> &v, T b) {
     for (int i = v.size() - 1; i >= 0; i--) res = res * b + v[i];
     return res;
 }
+
+} // namespace kk2
 
 #endif // MATH_CONVERT_BASE_HPP
