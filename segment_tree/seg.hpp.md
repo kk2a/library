@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: segment_tree/utility/max_min_sum_seg.hpp
+    title: segment_tree/utility/max_min_sum_seg.hpp
+  - icon: ':warning:'
     path: segment_tree/utility/maxseg.hpp
     title: segment_tree/utility/maxseg.hpp
   - icon: ':warning:'
@@ -117,6 +120,7 @@ data:
   requiredBy:
   - segment_tree/utility/minseg.hpp
   - segment_tree/utility/sumseg.hpp
+  - segment_tree/utility/max_min_sum_seg.hpp
   - segment_tree/utility/maxseg.hpp
   timestamp: '2024-09-11 08:58:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS

@@ -364,6 +364,9 @@ data:
       path: segment_tree/utility/affinesum.hpp
       title: segment_tree/utility/affinesum.hpp
     - icon: ':warning:'
+      path: segment_tree/utility/max_min_sum_seg.hpp
+      title: segment_tree/utility/max_min_sum_seg.hpp
+    - icon: ':warning:'
       path: segment_tree/utility/maxseg.hpp
       title: segment_tree/utility/maxseg.hpp
     - icon: ':warning:'

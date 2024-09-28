@@ -6,6 +6,9 @@ data:
     path: segment_tree/utility/add_max_min_sum.hpp
     title: segment_tree/utility/add_max_min_sum.hpp
   - icon: ':warning:'
+    path: segment_tree/utility/max_min_sum_seg.hpp
+    title: segment_tree/utility/max_min_sum_seg.hpp
+  - icon: ':warning:'
     path: segment_tree/utility/update_max_min_sum.hpp
     title: segment_tree/utility/update_max_min_sum.hpp
   _extendedVerifiedWith: []
@@ -79,6 +82,7 @@ data:
   isVerificationFile: false
   path: math/monoid/max_min_sum.hpp
   requiredBy:
+  - segment_tree/utility/max_min_sum_seg.hpp
   - segment_tree/utility/add_max_min_sum.hpp
   - segment_tree/utility/update_max_min_sum.hpp
   timestamp: '2024-09-26 15:55:52+09:00'
