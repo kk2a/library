@@ -19,71 +19,72 @@ data:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/updatesum.hpp\"\n\n\n\n#line 1 \"math/group/sum.hpp\"\
     \n\n\n\n#include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
-    \ group {\n\ntemplate <class S> struct Sum {\n    S a, size;\n\n    Sum() : a(S()),\
-    \ size(0) {}\n\n    Sum(S a, S size = 1) : a(a), size(size) {}\n\n    operator\
-    \ S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
+    \ group {\n\ntemplate <class S> struct Sum {\n    S a;\n    int size;\n\n    constexpr\
+    \ Sum() : a(S()), size(0) {}\n\n    constexpr Sum(S a, S size = 1) : a(a), size(size)\
+    \ {}\n\n    operator S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
     \ &os, const Sum &sum) {\n        os << sum.a;\n        return os;\n    }\n\n\
     \    friend std::istream &operator>>(std::istream &is, Sum &sum) {\n        is\
-    \ >> sum.a;\n        sum.size = 1;\n        return is;\n    }\n\n    Sum &operator=(const\
-    \ S &rhs) {\n        a = rhs;\n        size = 1;\n        return *this;\n    }\n\
-    \n    Sum &add(const S &rhs) {\n        a += rhs * size;\n        return *this;\n\
-    \    }\n\n    Sum &update(const S &rhs) {\n        a = rhs * size;\n        return\
-    \ *this;\n    }\n\n    Sum &multiply(const S &rhs) {\n        a *= rhs;\n    \
-    \    return *this;\n    }\n\n    Sum &op(const Sum &rhs) {\n        a += rhs.a;\n\
-    \        size += rhs.size;\n        return *this;\n    }\n};\n\ntemplate <class\
-    \ S> Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n    return l.op(r);\n}\n\ntemplate <class\
-    \ S> Sum<S> SumUnit() {\n    return Sum<S>();\n}\n\ntemplate <class S> Sum<S>\
-    \ SumInv(Sum<S> x) {\n    return Sum<S>(-x.a, -x.size);\n}\n\n} // namespace group\n\
-    \ntemplate <class S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int\
+    \ >> sum.a;\n        sum.size = 1;\n        return is;\n    }\n\n    constexpr\
+    \ Sum &operator=(const S &rhs) {\n        a = rhs;\n        size = 1;\n      \
+    \  return *this;\n    }\n\n    constexpr Sum &add(const S &rhs) {\n        a +=\
+    \ rhs * size;\n        return *this;\n    }\n\n    constexpr Sum &update(const\
+    \ S &rhs) {\n        a = rhs * size;\n        return *this;\n    }\n\n    constexpr\
+    \ Sum &multiply(const S &rhs) {\n        a *= rhs;\n        return *this;\n  \
+    \  }\n};\n\ntemplate <class S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n\
+    \    l.a += r.a;\n    l.size += r.size;\n    return l;\n}\n\ntemplate <class S>\
+    \ constexpr Sum<S> SumUnit() {\n    constexpr static Sum<S> e = Sum<S>();\n  \
+    \  return e;\n}\n\ntemplate <class S> constexpr Sum<S> SumInv(Sum<S> x) {\n  \
+    \  x.a = -x.a;\n    x.size = -x.size;\n    return x;\n}\n\n} // namespace group\n\
+    \ntemplate <class S, class... Args>\nconstexpr std::vector<group::Sum<S>> GetVecSum(int\
     \ n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>>\
-    \ GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
+    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<group::Sum<S>>>\n\
+    GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
     \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/update.hpp\"\
-    \n\n\n\n#line 5 \"math/homomorphism/update.hpp\"\n#include <string>\n\nnamespace\
-    \ kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S> struct Update {\n  \
-    \  S a;\n    bool id;\n\n    Update() : a(S()), id(true) {}\n\n    Update(S a_,\
-    \ bool id_ = false) : a(a_), id(id_) {}\n\n    operator S() const { return a;\
-    \ }\n\n    friend std::ostream &operator<<(std::ostream &os, const Update &update)\
-    \ {\n        os << (update.id ? \"id\" : std::to_string(update.a));\n        return\
-    \ os;\n    }\n\n    Update &composition(const Update &f) {\n        if (f.id)\
-    \ return *this;\n        return *this = f;\n    }\n};\n\ntemplate <class S, class\
-    \ T> T UpdateMap(Update<S> f, T x) {\n    return f.id ? x : x.update(f.a);\n}\n\
-    \ntemplate <class S> Update<S> UpdateComposition(Update<S> l, Update<S> r) {\n\
-    \    return r.composition(l);\n}\n\ntemplate <class S> Update<S> UpdateUnit()\
-    \ {\n    return Update<S>();\n}\n\n} // namespace homomorphism\n\n} // namespace\
-    \ kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <functional>\n#line 7 \"segment_tree/lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
-    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
-    \ (*id)()>\nstruct LazySegTree {\n  public:\n    LazySegTree() : LazySegTree(0)\
-    \ {}\n\n    LazySegTree(int n) : LazySegTree(std::vector<S>(n, e())) {}\n\n  \
-    \  template <class... Args>\n    LazySegTree(int n, Args... args)\n        : LazySegTree(std::vector<S>(n,\
-    \ S(args...))) {}\n\n    LazySegTree(const std::vector<S> &v) : _n(int(v.size()))\
-    \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
-    \ = 1 << log;\n        d = std::vector<S>(2 * size, e());\n        lz = std::vector<F>(size,\
-    \ id());\n        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for\
-    \ (int i = size - 1; i >= 1; i--) { update(i); }\n    }\n\n    using Monoid =\
-    \ S;\n\n    static S Op(S l, S r) { return op(l, r); }\n\n    static S MonoidUnit()\
-    \ { return e(); }\n\n    using Hom = F;\n\n    static S Map(F f, S x) { return\
-    \ mapping(f, x); }\n\n    static F Composition(F l, F r) { return composition(l,\
-    \ r); }\n\n    static F HomUnit() { return id(); }\n\n    void set(int p, S x)\
-    \ {\n        assert(0 <= p && p < _n);\n        p += size;\n        for (int i\
-    \ = log; i >= 1; i--) push(p >> i);\n        d[p] = x;\n        for (int i = 1;\
-    \ i <= log; i++) update(p >> i);\n    }\n\n    template <class... Args> void emplace_set(int\
-    \ p, Args... args) {\n        set(p, S(args...));\n    }\n\n    S get(int p) {\n\
-    \        assert(0 <= p && p < _n);\n        p += size;\n        for (int i = log;\
-    \ i >= 1; i--) push(p >> i);\n        return d[p];\n    }\n\n    S prod(int l,\
-    \ int r) {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l == r)\
-    \ return e();\n\n        l += size;\n        r += size;\n\n        for (int i\
-    \ = log; i >= 1; i--) {\n            if (((l >> i) << i) != l) push(l >> i);\n\
-    \            if (((r >> i) << i) != r) push(r >> i);\n        }\n\n        S sml\
-    \ = e(), smr = e();\n        while (l < r) {\n            if (l & 1) sml = op(sml,\
-    \ d[l++]);\n            if (r & 1) smr = op(d[--r], smr);\n            l >>= 1;\n\
-    \            r >>= 1;\n        }\n\n        return op(sml, smr);\n    }\n\n  \
-    \  S all_prod() { return d[1]; }\n\n    void apply(int p, F f) {\n        assert(0\
+    \n\n\n\n#line 5 \"math/homomorphism/update.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+    \ homomorphism {\n\ntemplate <class S> struct Update {\n    S a;\n    bool id;\n\
+    \n    constexpr Update() : a(S()), id(true) {}\n\n    constexpr Update(S a_, bool\
+    \ id_ = false) : a(a_), id(id_) {}\n\n    operator S() const { return a; }\n\n\
+    \    friend std::ostream &operator<<(std::ostream &os, const Update &update) {\n\
+    \        if (update.id) os << \"id\";\n        else os << update.a;\n        return\
+    \ os;\n    }\n};\n\ntemplate <class S, class T> constexpr T UpdateMap(Update<S>\
+    \ f, T x) {\n    return f.id ? x : x.update(f.a);\n}\n\ntemplate <class S>\nconstexpr\
+    \ Update<S> UpdateComposition(Update<S> l, Update<S> r) {\n    if (l.id) return\
+    \ r;\n    return l;\n}\n\ntemplate <class S> constexpr Update<S> UpdateUnit()\
+    \ {\n    constexpr static Update<S> e = Update<S>();\n    return e;\n}\n\n} //\
+    \ namespace homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <functional>\n#line 7 \"segment_tree/lazy.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
+    \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
+    \ F),\n          F (*id)()>\nstruct LazySegTree {\n  public:\n    LazySegTree()\
+    \ : LazySegTree(0) {}\n\n    LazySegTree(int n) : LazySegTree(std::vector<S>(n,\
+    \ e())) {}\n\n    template <class... Args>\n    LazySegTree(int n, Args... args)\n\
+    \        : LazySegTree(std::vector<S>(n, S(args...))) {}\n\n    LazySegTree(const\
+    \ std::vector<S> &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1ll\
+    \ << log) < _n) log++;\n        size = 1 << log;\n        d = std::vector<S>(2\
+    \ * size, e());\n        lz = std::vector<F>(size, id());\n        for (int i\
+    \ = 0; i < _n; i++) d[size + i] = v[i];\n        for (int i = size - 1; i >= 1;\
+    \ i--) { update(i); }\n    }\n\n    using Monoid = S;\n\n    static S Op(S l,\
+    \ S r) { return op(l, r); }\n\n    static S MonoidUnit() { return e(); }\n\n \
+    \   using Hom = F;\n\n    static S Map(F f, S x) { return mapping(f, x); }\n\n\
+    \    static F Composition(F l, F r) { return composition(l, r); }\n\n    static\
+    \ F HomUnit() { return id(); }\n\n    void set(int p, S x) {\n        assert(0\
     \ <= p && p < _n);\n        p += size;\n        for (int i = log; i >= 1; i--)\
-    \ push(p >> i);\n        d[p] = mapping(f, d[p]);\n        for (int i = 1; i <=\
-    \ log; i++) update(p >> i);\n    }\n\n    template <class... Args> void emplace_apply_point(int\
+    \ push(p >> i);\n        d[p] = x;\n        for (int i = 1; i <= log; i++) update(p\
+    \ >> i);\n    }\n\n    template <class... Args> void emplace_set(int p, Args...\
+    \ args) {\n        set(p, S(args...));\n    }\n\n    S get(int p) {\n        assert(0\
+    \ <= p && p < _n);\n        p += size;\n        for (int i = log; i >= 1; i--)\
+    \ push(p >> i);\n        return d[p];\n    }\n\n    S prod(int l, int r) {\n \
+    \       assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return e();\n\
+    \n        l += size;\n        r += size;\n\n        for (int i = log; i >= 1;\
+    \ i--) {\n            if (((l >> i) << i) != l) push(l >> i);\n            if\
+    \ (((r >> i) << i) != r) push(r >> i);\n        }\n\n        S sml = e(), smr\
+    \ = e();\n        while (l < r) {\n            if (l & 1) sml = op(sml, d[l++]);\n\
+    \            if (r & 1) smr = op(d[--r], smr);\n            l >>= 1;\n       \
+    \     r >>= 1;\n        }\n\n        return op(sml, smr);\n    }\n\n    S all_prod()\
+    \ { return d[1]; }\n\n    void apply(int p, F f) {\n        assert(0 <= p && p\
+    \ < _n);\n        p += size;\n        for (int i = log; i >= 1; i--) push(p >>\
+    \ i);\n        d[p] = mapping(f, d[p]);\n        for (int i = 1; i <= log; i++)\
+    \ update(p >> i);\n    }\n\n    template <class... Args> void emplace_apply_point(int\
     \ p, Args... args) {\n        apply(p, F(args...));\n    }\n\n    void apply(int\
     \ l, int r, F f) {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l\
     \ == r) return;\n\n        l += size;\n        r += size;\n\n        for (int\
@@ -123,15 +124,15 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n\n    void all_apply(int k, F f) {\n        d[k] = mapping(f,\
     \ d[k]);\n        if (k < size) lz[k] = composition(f, lz[k]);\n    }\n\n    void\
-    \ push(int k) {\n        if (lz[k] == id()) return;\n        all_apply(2 * k,\
-    \ lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n        lz[k] = id();\n    }\n\
-    };\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/updatesum.hpp\"\n\
-    \nnamespace kk2 {\n\ntemplate <class S>\nusing UpdateSum = LazySegTree<group::Sum<S>,\n\
-    \                              group::SumOp<S>,\n                            \
-    \  group::SumUnit<S>,\n                              homomorphism::Update<S>,\n\
-    \                              homomorphism::UpdateMap<S, group::Sum<S>>,\n  \
-    \                            homomorphism::UpdateComposition<S>,\n           \
-    \                   homomorphism::UpdateUnit<S>>;\n\n} // namespace kk2\n\n\n"
+    \ push(int k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1,\
+    \ lz[k]);\n        lz[k] = id();\n    }\n};\n\n} // namespace kk2\n\n\n#line 7\
+    \ \"segment_tree/utility/updatesum.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ S>\nusing UpdateSum = LazySegTree<group::Sum<S>,\n                         \
+    \     group::SumOp<S>,\n                              group::SumUnit<S>,\n   \
+    \                           homomorphism::Update<S>,\n                       \
+    \       homomorphism::UpdateMap<S, group::Sum<S>>,\n                         \
+    \     homomorphism::UpdateComposition<S>,\n                              homomorphism::UpdateUnit<S>>;\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_UPDATESUM_HPP\n#define SEGMENT_TREE_UTILITY_UPDATESUM_HPP\
     \ 1\n\n#include \"../../math/group/sum.hpp\"\n#include \"../../math/homomorphism/update.hpp\"\
     \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing UpdateSum\
@@ -148,7 +149,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatesum.hpp
   requiredBy: []
-  timestamp: '2024-09-25 18:22:31+09:00'
+  timestamp: '2024-09-26 15:55:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatesum.hpp

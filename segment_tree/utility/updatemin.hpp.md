@@ -18,41 +18,41 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/updatemin.hpp\"\n\n\n\n#line 1 \"math/homomorphism/update.hpp\"\
-    \n\n\n\n#include <iostream>\n#include <string>\n\nnamespace kk2 {\n\nnamespace\
-    \ homomorphism {\n\ntemplate <class S> struct Update {\n    S a;\n    bool id;\n\
-    \n    Update() : a(S()), id(true) {}\n\n    Update(S a_, bool id_ = false) : a(a_),\
+    \n\n\n\n#include <iostream>\n\nnamespace kk2 {\n\nnamespace homomorphism {\n\n\
+    template <class S> struct Update {\n    S a;\n    bool id;\n\n    constexpr Update()\
+    \ : a(S()), id(true) {}\n\n    constexpr Update(S a_, bool id_ = false) : a(a_),\
     \ id(id_) {}\n\n    operator S() const { return a; }\n\n    friend std::ostream\
-    \ &operator<<(std::ostream &os, const Update &update) {\n        os << (update.id\
-    \ ? \"id\" : std::to_string(update.a));\n        return os;\n    }\n\n    Update\
-    \ &composition(const Update &f) {\n        if (f.id) return *this;\n        return\
-    \ *this = f;\n    }\n};\n\ntemplate <class S, class T> T UpdateMap(Update<S> f,\
-    \ T x) {\n    return f.id ? x : x.update(f.a);\n}\n\ntemplate <class S> Update<S>\
-    \ UpdateComposition(Update<S> l, Update<S> r) {\n    return r.composition(l);\n\
-    }\n\ntemplate <class S> Update<S> UpdateUnit() {\n    return Update<S>();\n}\n\
-    \n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/min.hpp\"\
-    \n\n\n\n#include <algorithm>\n#line 7 \"math/monoid/min.hpp\"\n#include <vector>\n\
-    \nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Min {\n \
-    \   S a;\n    bool inf;\n\n    Min() : a(S()), inf(true) {}\n\n    Min(S a_, bool\
-    \ inf_ = false) : a(a_), inf(inf_) {}\n\n    operator S() const { return a; }\n\
-    \n    friend std::ostream &operator<<(std::ostream &os, const Min &min) {\n  \
-    \      if (min.inf) os << \"inf\";\n        else os << min.a;\n        return\
-    \ os;\n    }\n\n    friend std::istream &operator>>(std::istream &is, Min &min)\
-    \ {\n        is >> min.a;\n        min.inf = false;\n        return is;\n    }\n\
-    \n    Min &operator=(const S &rhs) {\n        a = rhs;\n        inf = false;\n\
-    \        return *this;\n    }\n\n    Min &add(const S &rhs) {\n        if (inf)\
-    \ return *this;\n        a += rhs;\n        return *this;\n    }\n\n    Min &update(const\
-    \ S &rhs) {\n        a = rhs;\n        inf = false;\n        return *this;\n \
-    \   }\n\n    Min &op(const Min &rhs) {\n        if (rhs.inf) return *this;\n \
-    \       if (inf) return *this = rhs;\n        a = std::min(a, rhs.a);\n      \
-    \  return *this;\n    }\n\n    bool is_inf() const { return inf; }\n};\n\ntemplate\
-    \ <class S> Min<S> MinOp(Min<S> l, Min<S> r) {\n    return l.op(r);\n}\n\ntemplate\
-    \ <class S> Min<S> MinUnit() {\n    return Min<S>();\n}\n\n} // namespace monoid\n\
-    \ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
-    \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
-    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
-    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <functional>\n#line 7 \"segment_tree/lazy.hpp\"\
+    \ &operator<<(std::ostream &os, const Update &update) {\n        if (update.id)\
+    \ os << \"id\";\n        else os << update.a;\n        return os;\n    }\n};\n\
+    \ntemplate <class S, class T> constexpr T UpdateMap(Update<S> f, T x) {\n    return\
+    \ f.id ? x : x.update(f.a);\n}\n\ntemplate <class S>\nconstexpr Update<S> UpdateComposition(Update<S>\
+    \ l, Update<S> r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class\
+    \ S> constexpr Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
+    \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line\
+    \ 1 \"math/monoid/min.hpp\"\n\n\n\n#include <algorithm>\n#line 6 \"math/monoid/min.hpp\"\
+    \n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class\
+    \ S> struct Min {\n    S a;\n    bool inf;\n\n    constexpr Min() : a(S()), inf(true)\
+    \ {}\n\n    constexpr Min(S a_, bool inf_ = false) : a(a_), inf(inf_) {}\n\n \
+    \   operator S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
+    \ &os, const Min &min) {\n        if (min.inf) os << \"inf\";\n        else os\
+    \ << min.a;\n        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
+    \ &is, Min &min) {\n        is >> min.a;\n        min.inf = false;\n        return\
+    \ is;\n    }\n\n    constexpr Min &operator=(const S &rhs) {\n        a = rhs;\n\
+    \        inf = false;\n        return *this;\n    }\n\n    constexpr Min &add(const\
+    \ S &rhs) {\n        if (inf) return *this;\n        a += rhs;\n        return\
+    \ *this;\n    }\n\n    constexpr Min &update(const S &rhs) {\n        a = rhs;\n\
+    \        inf = false;\n        return *this;\n    }\n\n    constexpr bool is_inf()\
+    \ { return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
+    \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
+    \ r.a);\n    return l;\n}\n\ntemplate <class S> constexpr Min<S> MinUnit() {\n\
+    \    constexpr static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace\
+    \ monoid\n\ntemplate <class S, class... Args>\nconstexpr std::vector<monoid::Min<S>>\
+    \ GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
+    \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nconstexpr\
+    \ std::vector<std::vector<monoid::Min<S>>>\nGetVecMin2D(int h, int w, Args...\
+    \ args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w,\
+    \ args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\n\
+    \n\n\n#include <cassert>\n#include <functional>\n#line 7 \"segment_tree/lazy.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
     \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
     \ F),\n          F (*id)()>\nstruct LazySegTree {\n  public:\n    LazySegTree()\
@@ -124,15 +124,15 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n\n    void all_apply(int k, F f) {\n        d[k] = mapping(f,\
     \ d[k]);\n        if (k < size) lz[k] = composition(f, lz[k]);\n    }\n\n    void\
-    \ push(int k) {\n        if (lz[k] == id()) return;\n        all_apply(2 * k,\
-    \ lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n        lz[k] = id();\n    }\n\
-    };\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/updatemin.hpp\"\n\
-    \nnamespace kk2 {\n\ntemplate <class S>\nusing UpdateMin = LazySegTree<monoid::Min<S>,\n\
-    \                              monoid::MinOp<S>,\n                           \
-    \   monoid::MinUnit<S>,\n                              homomorphism::Update<S>,\n\
-    \                              homomorphism::UpdateMap<S, monoid::Min<S>>,\n \
-    \                             homomorphism::UpdateComposition<S>,\n          \
-    \                    homomorphism::UpdateUnit<S>>;\n\n} // namespace kk2\n\n\n"
+    \ push(int k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1,\
+    \ lz[k]);\n        lz[k] = id();\n    }\n};\n\n} // namespace kk2\n\n\n#line 7\
+    \ \"segment_tree/utility/updatemin.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ S>\nusing UpdateMin = LazySegTree<monoid::Min<S>,\n                        \
+    \      monoid::MinOp<S>,\n                              monoid::MinUnit<S>,\n\
+    \                              homomorphism::Update<S>,\n                    \
+    \          homomorphism::UpdateMap<S, monoid::Min<S>>,\n                     \
+    \         homomorphism::UpdateComposition<S>,\n                              homomorphism::UpdateUnit<S>>;\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_UPDATEMIN_HPP\n#define SEGMENT_TREE_UTILITY_UPDATEMIN_HPP\
     \ 1\n\n#include \"../../math/homomorphism/update.hpp\"\n#include \"../../math/monoid/min.hpp\"\
     \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing UpdateMin\
@@ -149,7 +149,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatemin.hpp
   requiredBy: []
-  timestamp: '2024-09-25 19:24:50+09:00'
+  timestamp: '2024-09-26 15:55:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemin.hpp

@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: segment_tree/utility/add_max_min_sum.hpp
+    title: segment_tree/utility/add_max_min_sum.hpp
+  - icon: ':warning:'
     path: segment_tree/utility/addmax.hpp
     title: segment_tree/utility/addmax.hpp
   - icon: ':warning:'
@@ -14,6 +17,9 @@ data:
   - icon: ':warning:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
+  - icon: ':warning:'
+    path: segment_tree/utility/update_max_min_sum.hpp
+    title: segment_tree/utility/update_max_min_sum.hpp
   - icon: ':warning:'
     path: segment_tree/utility/updatemax.hpp
     title: segment_tree/utility/updatemax.hpp
@@ -101,9 +107,8 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n\n    void all_apply(int k, F f) {\n        d[k] = mapping(f,\
     \ d[k]);\n        if (k < size) lz[k] = composition(f, lz[k]);\n    }\n\n    void\
-    \ push(int k) {\n        if (lz[k] == id()) return;\n        all_apply(2 * k,\
-    \ lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n        lz[k] = id();\n    }\n\
-    };\n\n} // namespace kk2\n\n\n"
+    \ push(int k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1,\
+    \ lz[k]);\n        lz[k] = id();\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef LAZY_HPP\n#define LAZY_HPP 1\n\n#include <cassert>\n#include <functional>\n\
     #include <vector>\n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S,\
     \ S),\n          S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n\
@@ -176,9 +181,9 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n\n    void all_apply(int k, F f) {\n        d[k] = mapping(f,\
     \ d[k]);\n        if (k < size) lz[k] = composition(f, lz[k]);\n    }\n\n    void\
-    \ push(int k) {\n        if (lz[k] == id()) return;\n        all_apply(2 * k,\
-    \ lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n        lz[k] = id();\n    }\n\
-    };\n\n} // namespace kk2\n\n#endif // LAZY_HPP\n"
+    \ push(int k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1,\
+    \ lz[k]);\n        lz[k] = id();\n    }\n};\n\n} // namespace kk2\n\n#endif //\
+    \ LAZY_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: segment_tree/lazy.hpp
@@ -187,10 +192,12 @@ data:
   - segment_tree/utility/updatesum.hpp
   - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/updatemin.hpp
+  - segment_tree/utility/add_max_min_sum.hpp
   - segment_tree/utility/addmin.hpp
+  - segment_tree/utility/update_max_min_sum.hpp
   - segment_tree/utility/addsum.hpp
   - segment_tree/utility/addmax.hpp
-  timestamp: '2024-09-25 18:22:31+09:00'
+  timestamp: '2024-09-25 23:12:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/lazy.hpp

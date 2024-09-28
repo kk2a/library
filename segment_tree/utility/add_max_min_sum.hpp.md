@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: math/group/sum.hpp
-    title: math/group/sum.hpp
+    path: math/homomorphism/add.hpp
+    title: math/homomorphism/add.hpp
   - icon: ':warning:'
-    path: math/homomorphism/affine.hpp
-    title: math/homomorphism/affine.hpp
+    path: math/monoid/max_min_sum.hpp
+    title: math/monoid/max_min_sum.hpp
   - icon: ':warning:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
@@ -17,40 +17,42 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"segment_tree/utility/affinesum.hpp\"\n\n\n\n#line 1 \"math/group/sum.hpp\"\
-    \n\n\n\n#include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
-    \ group {\n\ntemplate <class S> struct Sum {\n    S a;\n    int size;\n\n    constexpr\
-    \ Sum() : a(S()), size(0) {}\n\n    constexpr Sum(S a, S size = 1) : a(a), size(size)\
-    \ {}\n\n    operator S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
-    \ &os, const Sum &sum) {\n        os << sum.a;\n        return os;\n    }\n\n\
-    \    friend std::istream &operator>>(std::istream &is, Sum &sum) {\n        is\
-    \ >> sum.a;\n        sum.size = 1;\n        return is;\n    }\n\n    constexpr\
-    \ Sum &operator=(const S &rhs) {\n        a = rhs;\n        size = 1;\n      \
-    \  return *this;\n    }\n\n    constexpr Sum &add(const S &rhs) {\n        a +=\
-    \ rhs * size;\n        return *this;\n    }\n\n    constexpr Sum &update(const\
-    \ S &rhs) {\n        a = rhs * size;\n        return *this;\n    }\n\n    constexpr\
-    \ Sum &multiply(const S &rhs) {\n        a *= rhs;\n        return *this;\n  \
-    \  }\n};\n\ntemplate <class S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n\
-    \    l.a += r.a;\n    l.size += r.size;\n    return l;\n}\n\ntemplate <class S>\
-    \ constexpr Sum<S> SumUnit() {\n    constexpr static Sum<S> e = Sum<S>();\n  \
-    \  return e;\n}\n\ntemplate <class S> constexpr Sum<S> SumInv(Sum<S> x) {\n  \
-    \  x.a = -x.a;\n    x.size = -x.size;\n    return x;\n}\n\n} // namespace group\n\
-    \ntemplate <class S, class... Args>\nconstexpr std::vector<group::Sum<S>> GetVecSum(int\
-    \ n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<group::Sum<S>>>\n\
-    GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
-    \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/affine.hpp\"\
-    \n\n\n\n#line 5 \"math/homomorphism/affine.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-    \ homomorphism {\n\ntemplate <class S> struct Affine {\n    S a, b; // x \\mapsto\
-    \ ax + b\n    constexpr Affine() : a(1), b(0) {};\n\n    constexpr Affine(S a,\
-    \ S b) : a(a), b(b) {}\n\n    friend std::ostream &operator<<(std::ostream &os,\
-    \ const Affine &aff) {\n        os << aff.a << \" \" << aff.b;\n        return\
-    \ os;\n    }\n};\n\ntemplate <class S, class T> constexpr T AffineMap(Affine<S>\
-    \ f, T x) {\n    return x.multiply(f.a).add(f.b);\n}\n\ntemplate <class S>\nconstexpr\
-    \ Affine<S> AffineComposition(Affine<S> l, Affine<S> r) {\n    l.b = l.a * r.b\
-    \ + l.b;\n    l.a = l.a * r.a;\n    return l;\n}\n\ntemplate <class S> constexpr\
-    \ Affine<S> AffineUnit() {\n    constexpr static Affine<S> e = Affine<S>();\n\
+  bundledCode: "#line 1 \"segment_tree/utility/add_max_min_sum.hpp\"\n\n\n\n#line\
+    \ 1 \"math/homomorphism/add.hpp\"\n\n\n\nnamespace kk2 {\n\nnamespace homomorphism\
+    \ {\n\ntemplate <class S> using Add = S;\n\ntemplate <class S, class T> constexpr\
+    \ T AddMap(Add<S> f, T x) {\n    return x.add(f);\n}\n\ntemplate <class S> constexpr\
+    \ Add<S> AddComposition(Add<S> l, Add<S> r) {\n    return l + r;\n}\n\ntemplate\
+    \ <class S> constexpr Add<S> AddUnit() {\n    constexpr static Add<S> e = Add<S>();\n\
     \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line\
+    \ 1 \"math/monoid/max_min_sum.hpp\"\n\n\n\n#include <algorithm>\n#include <iostream>\n\
+    #include <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class\
+    \ S> struct MaxMinSum {\n    S sum, max, min;\n    int size;\n    bool is_unit;\n\
+    \n    constexpr MaxMinSum() : sum(0), max(0), min(0), size(0), is_unit(true) {}\n\
+    \n    constexpr MaxMinSum(S a, bool is_unit_ = false)\n        : sum(a),\n   \
+    \       max(a),\n          min(a),\n          size(1),\n          is_unit(is_unit_)\
+    \ {}\n\n    friend std::ostream &operator<<(std::ostream &os,\n              \
+    \                      const MaxMinSum &maxminSum) {\n        os << maxminSum.sum\
+    \ << \" \" << maxminSum.max << \" \" << maxminSum.min;\n        return os;\n \
+    \   }\n\n    friend std::istream &operator>>(std::istream &is, MaxMinSum &maxminSum)\
+    \ {\n        S a;\n        is >> a;\n        maxminSum.sum = maxminSum.max = maxminSum.min\
+    \ = a;\n        maxminSum.size = 1;\n        return is;\n    }\n\n    constexpr\
+    \ MaxMinSum &operator=(const S &rhs) {\n        sum = max = min = rhs;\n     \
+    \   size = 1;\n        is_unit = false;\n        return *this;\n    }\n\n    constexpr\
+    \ MaxMinSum &add(const S &rhs) {\n        if (is_unit) return *this;\n       \
+    \ sum += rhs * size;\n        max += rhs;\n        min += rhs;\n        return\
+    \ *this;\n    }\n\n    constexpr MaxMinSum &update(const S &rhs) {\n        sum\
+    \ = rhs * size;\n        max = min = rhs;\n        is_unit = false;\n        return\
+    \ *this;\n    }\n};\n\ntemplate <class S>\nconstexpr MaxMinSum<S> MaxMinSumOp(MaxMinSum<S>\
+    \ l, MaxMinSum<S> r) {\n    if (l.is_unit) return r;\n    if (r.is_unit) return\
+    \ l;\n    l.sum += r.sum;\n    l.size += r.size;\n    l.max = std::max(l.max,\
+    \ r.max);\n    l.min = std::min(l.min, r.min);\n    return l;\n}\n\ntemplate <class\
+    \ S> constexpr MaxMinSum<S> MaxMinSumUnit() {\n    constexpr static MaxMinSum<S>\
+    \ e = MaxMinSum<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate <class\
+    \ S, class... Args>\nconstexpr std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int\
+    \ n, Args... args) {\n    return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
+    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<monoid::MaxMinSum<S>>>\n\
+    GetVecMaxMinSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::MaxMinSum<S>>>(\n\
+    \        h, GetVecMaxMinSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line\
     \ 1 \"segment_tree/lazy.hpp\"\n\n\n\n#include <cassert>\n#include <functional>\n\
     #line 7 \"segment_tree/lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S,\n \
     \         S (*op)(S, S),\n          S (*e)(),\n          class F,\n          S\
@@ -125,36 +127,36 @@ data:
     \ d[k]);\n        if (k < size) lz[k] = composition(f, lz[k]);\n    }\n\n    void\
     \ push(int k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1,\
     \ lz[k]);\n        lz[k] = id();\n    }\n};\n\n} // namespace kk2\n\n\n#line 7\
-    \ \"segment_tree/utility/affinesum.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ S>\nusing AffineSum = LazySegTree<group::Sum<S>,\n                         \
-    \     group::SumOp<S>,\n                              group::SumUnit<S>,\n   \
-    \                           homomorphism::Affine<S>,\n                       \
-    \       homomorphism::AffineMap<S, group::Sum<S>>,\n                         \
-    \     homomorphism::AffineComposition<S>,\n                              homomorphism::AffineUnit<S>>;\n\
-    \n} // namespace kk2\n\n\n"
-  code: "#ifndef SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n#define SEGMENT_TREE_UTILITY_AFFINESUM_HPP\
-    \ 1\n\n#include \"../../math/group/sum.hpp\"\n#include \"../../math/homomorphism/affine.hpp\"\
-    \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing AffineSum\
-    \ = LazySegTree<group::Sum<S>,\n                              group::SumOp<S>,\n\
-    \                              group::SumUnit<S>,\n                          \
-    \    homomorphism::Affine<S>,\n                              homomorphism::AffineMap<S,\
-    \ group::Sum<S>>,\n                              homomorphism::AffineComposition<S>,\n\
-    \                              homomorphism::AffineUnit<S>>;\n\n} // namespace\
-    \ kk2\n\n#endif // SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n"
+    \ \"segment_tree/utility/add_max_min_sum.hpp\"\n\nnamespace kk2 {\n\ntemplate\
+    \ <class S>\nusing AddMaxMinSum = LazySegTree<monoid::MaxMinSum<S>,\n        \
+    \                         monoid::MaxMinSumOp<S>,\n                          \
+    \       monoid::MaxMinSumUnit<S>,\n                                 homomorphism::Add<S>,\n\
+    \                                 homomorphism::AddMap<S, monoid::MaxMinSum<S>>,\n\
+    \                                 homomorphism::AddComposition<S>,\n         \
+    \                        homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n\n"
+  code: "#ifndef SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP\n#define SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP\
+    \ 1\n\n#include \"../../math/homomorphism/add.hpp\"\n#include \"../../math/monoid/max_min_sum.hpp\"\
+    \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddMaxMinSum\
+    \ = LazySegTree<monoid::MaxMinSum<S>,\n                                 monoid::MaxMinSumOp<S>,\n\
+    \                                 monoid::MaxMinSumUnit<S>,\n                \
+    \                 homomorphism::Add<S>,\n                                 homomorphism::AddMap<S,\
+    \ monoid::MaxMinSum<S>>,\n                                 homomorphism::AddComposition<S>,\n\
+    \                                 homomorphism::AddUnit<S>>;\n\n} // namespace\
+    \ kk2\n\n#endif // SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP\n"
   dependsOn:
-  - math/group/sum.hpp
-  - math/homomorphism/affine.hpp
+  - math/homomorphism/add.hpp
+  - math/monoid/max_min_sum.hpp
   - segment_tree/lazy.hpp
   isVerificationFile: false
-  path: segment_tree/utility/affinesum.hpp
+  path: segment_tree/utility/add_max_min_sum.hpp
   requiredBy: []
   timestamp: '2024-09-26 15:55:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: segment_tree/utility/affinesum.hpp
+documentation_of: segment_tree/utility/add_max_min_sum.hpp
 layout: document
 redirect_from:
-- /library/segment_tree/utility/affinesum.hpp
-- /library/segment_tree/utility/affinesum.hpp.html
-title: segment_tree/utility/affinesum.hpp
+- /library/segment_tree/utility/add_max_min_sum.hpp
+- /library/segment_tree/utility/add_max_min_sum.hpp.html
+title: segment_tree/utility/add_max_min_sum.hpp
 ---

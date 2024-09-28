@@ -16,25 +16,26 @@ data:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/sumseg2d.hpp\"\n\n\n\n#line 1 \"math/group/sum.hpp\"\
     \n\n\n\n#include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
-    \ group {\n\ntemplate <class S> struct Sum {\n    S a, size;\n\n    Sum() : a(S()),\
-    \ size(0) {}\n\n    Sum(S a, S size = 1) : a(a), size(size) {}\n\n    operator\
-    \ S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
+    \ group {\n\ntemplate <class S> struct Sum {\n    S a;\n    int size;\n\n    constexpr\
+    \ Sum() : a(S()), size(0) {}\n\n    constexpr Sum(S a, S size = 1) : a(a), size(size)\
+    \ {}\n\n    operator S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
     \ &os, const Sum &sum) {\n        os << sum.a;\n        return os;\n    }\n\n\
     \    friend std::istream &operator>>(std::istream &is, Sum &sum) {\n        is\
-    \ >> sum.a;\n        sum.size = 1;\n        return is;\n    }\n\n    Sum &operator=(const\
-    \ S &rhs) {\n        a = rhs;\n        size = 1;\n        return *this;\n    }\n\
-    \n    Sum &add(const S &rhs) {\n        a += rhs * size;\n        return *this;\n\
-    \    }\n\n    Sum &update(const S &rhs) {\n        a = rhs * size;\n        return\
-    \ *this;\n    }\n\n    Sum &multiply(const S &rhs) {\n        a *= rhs;\n    \
-    \    return *this;\n    }\n\n    Sum &op(const Sum &rhs) {\n        a += rhs.a;\n\
-    \        size += rhs.size;\n        return *this;\n    }\n};\n\ntemplate <class\
-    \ S> Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n    return l.op(r);\n}\n\ntemplate <class\
-    \ S> Sum<S> SumUnit() {\n    return Sum<S>();\n}\n\ntemplate <class S> Sum<S>\
-    \ SumInv(Sum<S> x) {\n    return Sum<S>(-x.a, -x.size);\n}\n\n} // namespace group\n\
-    \ntemplate <class S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int\
+    \ >> sum.a;\n        sum.size = 1;\n        return is;\n    }\n\n    constexpr\
+    \ Sum &operator=(const S &rhs) {\n        a = rhs;\n        size = 1;\n      \
+    \  return *this;\n    }\n\n    constexpr Sum &add(const S &rhs) {\n        a +=\
+    \ rhs * size;\n        return *this;\n    }\n\n    constexpr Sum &update(const\
+    \ S &rhs) {\n        a = rhs * size;\n        return *this;\n    }\n\n    constexpr\
+    \ Sum &multiply(const S &rhs) {\n        a *= rhs;\n        return *this;\n  \
+    \  }\n};\n\ntemplate <class S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n\
+    \    l.a += r.a;\n    l.size += r.size;\n    return l;\n}\n\ntemplate <class S>\
+    \ constexpr Sum<S> SumUnit() {\n    constexpr static Sum<S> e = Sum<S>();\n  \
+    \  return e;\n}\n\ntemplate <class S> constexpr Sum<S> SumInv(Sum<S> x) {\n  \
+    \  x.a = -x.a;\n    x.size = -x.size;\n    return x;\n}\n\n} // namespace group\n\
+    \ntemplate <class S, class... Args>\nconstexpr std::vector<group::Sum<S>> GetVecSum(int\
     \ n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>>\
-    \ GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
+    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<group::Sum<S>>>\n\
+    GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
     \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/seg2d.hpp\"\
     \n\n\n\n#include <cassert>\n#line 6 \"segment_tree/seg2d.hpp\"\n\nnamespace kk2\
     \ {\n\n// commutative monoid\ntemplate <class S, S (*op)(S, S), S (*e)()> struct\
@@ -109,7 +110,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/sumseg2d.hpp
   requiredBy: []
-  timestamp: '2024-09-14 19:52:31+09:00'
+  timestamp: '2024-09-26 15:55:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/sumseg2d.hpp

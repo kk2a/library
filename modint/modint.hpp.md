@@ -37,9 +37,9 @@ data:
     \ return p;\n        else return Mod;\n    }\n\n    static void setmod(int Mod_)\
     \ {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n    }\n\n    static mint\
     \ raw(int v) {\n        mint x;\n        x._v = v;\n        return x;\n    }\n\
-    \n    operator int() const { return _v; }\n\n    ModInt() : _v(0) {}\n\n    template\
-    \ <class T,\n              std::enable_if_t<is_integral_extended<T>::value> *\
-    \ = nullptr>\n    ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
+    \n    operator int() const { return _v; }\n\n    constexpr ModInt() : _v(0) {}\n\
+    \n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    constexpr ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
     \ {\n            v %= getmod();\n            if (v < 0) v += getmod();\n     \
     \       _v = v;\n        } else if constexpr (is_unsigned_extended<T>::value)\
     \ {\n            _v = v %= getmod();\n        } else {\n            ModInt();\n\
@@ -106,9 +106,9 @@ data:
     \ {\n        if (p > 0) return p;\n        else return Mod;\n    }\n\n    static\
     \ void setmod(int Mod_) {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n \
     \   }\n\n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n  \
-    \      return x;\n    }\n\n    operator int() const { return _v; }\n\n    ModInt()\
-    \ : _v(0) {}\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
-    \ * = nullptr>\n    ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
+    \      return x;\n    }\n\n    operator int() const { return _v; }\n\n    constexpr\
+    \ ModInt() : _v(0) {}\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    constexpr ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
     \ {\n            v %= getmod();\n            if (v < 0) v += getmod();\n     \
     \       _v = v;\n        } else if constexpr (is_unsigned_extended<T>::value)\
     \ {\n            _v = v %= getmod();\n        } else {\n            ModInt();\n\
@@ -173,7 +173,7 @@ data:
   isVerificationFile: false
   path: modint/modint.hpp
   requiredBy: []
-  timestamp: '2024-09-11 08:59:39+09:00'
+  timestamp: '2024-09-26 15:55:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/modint.hpp

@@ -19,33 +19,35 @@ data:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/addmin.hpp\"\n\n\n\n#line 1 \"math/homomorphism/add.hpp\"\
     \n\n\n\nnamespace kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S> using\
-    \ Add = S;\n\ntemplate <class S, class T> T AddMap(Add<S> f, T x) {\n    return\
-    \ x.add(f);\n}\n\ntemplate <class S> Add<S> AddComposition(Add<S> l, Add<S> r)\
-    \ {\n    return l + r;\n}\n\ntemplate <class S> Add<S> AddUnit() {\n    return\
-    \ Add<S>();\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line\
-    \ 1 \"math/monoid/min.hpp\"\n\n\n\n#include <algorithm>\n#include <iostream>\n\
-    #include <string>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\
-    \ntemplate <class S> struct Min {\n    S a;\n    bool inf;\n\n    Min() : a(S()),\
-    \ inf(true) {}\n\n    Min(S a_, bool inf_ = false) : a(a_), inf(inf_) {}\n\n \
-    \   operator S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
-    \ &os, const Min &min) {\n        if (min.inf) os << \"inf\";\n        else os\
-    \ << min.a;\n        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
-    \ &is, Min &min) {\n        is >> min.a;\n        min.inf = false;\n        return\
-    \ is;\n    }\n\n    Min &operator=(const S &rhs) {\n        a = rhs;\n       \
-    \ inf = false;\n        return *this;\n    }\n\n    Min &add(const S &rhs) {\n\
-    \        if (inf) return *this;\n        a += rhs;\n        return *this;\n  \
-    \  }\n\n    Min &update(const S &rhs) {\n        a = rhs;\n        inf = false;\n\
-    \        return *this;\n    }\n\n    Min &op(const Min &rhs) {\n        if (rhs.inf)\
-    \ return *this;\n        if (inf) return *this = rhs;\n        a = std::min(a,\
-    \ rhs.a);\n        return *this;\n    }\n\n    bool is_inf() const { return inf;\
-    \ }\n};\n\ntemplate <class S> Min<S> MinOp(Min<S> l, Min<S> r) {\n    return l.op(r);\n\
-    }\n\ntemplate <class S> Min<S> MinUnit() {\n    return Min<S>();\n}\n\n} // namespace\
-    \ monoid\n\ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
-    \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
-    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
-    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <functional>\n#line 7 \"segment_tree/lazy.hpp\"\
+    \ Add = S;\n\ntemplate <class S, class T> constexpr T AddMap(Add<S> f, T x) {\n\
+    \    return x.add(f);\n}\n\ntemplate <class S> constexpr Add<S> AddComposition(Add<S>\
+    \ l, Add<S> r) {\n    return l + r;\n}\n\ntemplate <class S> constexpr Add<S>\
+    \ AddUnit() {\n    constexpr static Add<S> e = Add<S>();\n    return e;\n}\n\n\
+    } // namespace homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/min.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <iostream>\n#include <vector>\n\nnamespace\
+    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Min {\n    S a;\n \
+    \   bool inf;\n\n    constexpr Min() : a(S()), inf(true) {}\n\n    constexpr Min(S\
+    \ a_, bool inf_ = false) : a(a_), inf(inf_) {}\n\n    operator S() const { return\
+    \ a; }\n\n    friend std::ostream &operator<<(std::ostream &os, const Min &min)\
+    \ {\n        if (min.inf) os << \"inf\";\n        else os << min.a;\n        return\
+    \ os;\n    }\n\n    friend std::istream &operator>>(std::istream &is, Min &min)\
+    \ {\n        is >> min.a;\n        min.inf = false;\n        return is;\n    }\n\
+    \n    constexpr Min &operator=(const S &rhs) {\n        a = rhs;\n        inf\
+    \ = false;\n        return *this;\n    }\n\n    constexpr Min &add(const S &rhs)\
+    \ {\n        if (inf) return *this;\n        a += rhs;\n        return *this;\n\
+    \    }\n\n    constexpr Min &update(const S &rhs) {\n        a = rhs;\n      \
+    \  inf = false;\n        return *this;\n    }\n\n    constexpr bool is_inf() {\
+    \ return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
+    \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
+    \ r.a);\n    return l;\n}\n\ntemplate <class S> constexpr Min<S> MinUnit() {\n\
+    \    constexpr static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace\
+    \ monoid\n\ntemplate <class S, class... Args>\nconstexpr std::vector<monoid::Min<S>>\
+    \ GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
+    \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nconstexpr\
+    \ std::vector<std::vector<monoid::Min<S>>>\nGetVecMin2D(int h, int w, Args...\
+    \ args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w,\
+    \ args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\n\
+    \n\n\n#include <cassert>\n#include <functional>\n#line 7 \"segment_tree/lazy.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
     \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
     \ F),\n          F (*id)()>\nstruct LazySegTree {\n  public:\n    LazySegTree()\
@@ -117,15 +119,14 @@ data:
     \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
     \ * k + 1]); }\n\n    void all_apply(int k, F f) {\n        d[k] = mapping(f,\
     \ d[k]);\n        if (k < size) lz[k] = composition(f, lz[k]);\n    }\n\n    void\
-    \ push(int k) {\n        if (lz[k] == id()) return;\n        all_apply(2 * k,\
-    \ lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n        lz[k] = id();\n    }\n\
-    };\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/addmin.hpp\"\n\n\
-    namespace kk2 {\n\ntemplate <class S>\nusing AddMin = LazySegTree<monoid::Min<S>,\n\
-    \                           monoid::MinOp<S>,\n                           monoid::MinUnit<S>,\n\
-    \                           homomorphism::Add<S>,\n                          \
-    \ homomorphism::AddMap<S, monoid::Min<S>>,\n                           homomorphism::AddComposition<S>,\n\
-    \                           homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\
-    \n\n"
+    \ push(int k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1,\
+    \ lz[k]);\n        lz[k] = id();\n    }\n};\n\n} // namespace kk2\n\n\n#line 7\
+    \ \"segment_tree/utility/addmin.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\n\
+    using AddMin = LazySegTree<monoid::Min<S>,\n                           monoid::MinOp<S>,\n\
+    \                           monoid::MinUnit<S>,\n                           homomorphism::Add<S>,\n\
+    \                           homomorphism::AddMap<S, monoid::Min<S>>,\n       \
+    \                    homomorphism::AddComposition<S>,\n                      \
+    \     homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef SEGMENT_TREE_UTILITY_ADDMIN_HPP\n#define SEGMENT_TREE_UTILITY_ADDMIN_HPP\
     \ 1\n\n#include \"../../math/homomorphism/add.hpp\"\n#include \"../../math/monoid/min.hpp\"\
     \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddMin\
@@ -141,7 +142,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/addmin.hpp
   requiredBy: []
-  timestamp: '2024-09-25 19:24:50+09:00'
+  timestamp: '2024-09-26 15:55:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmin.hpp

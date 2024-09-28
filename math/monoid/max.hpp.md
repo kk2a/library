@@ -21,51 +21,53 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"math/monoid/max.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <iostream>\n#include <string>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
-    \ monoid {\n\ntemplate <class S> struct Max {\n    S a;\n    bool minf;\n\n  \
-    \  Max() : a(S()), minf(true) {}\n\n    Max(S a_, bool minf_ = false) : a(a_),\
-    \ minf(minf_) {}\n\n    operator S() const { return a; }\n\n    friend std::ostream\
-    \ &operator<<(std::ostream &os, const Max &max) {\n        if (max.minf) os <<\
-    \ \"minf\";\n        else os << max.a;\n        return os;\n    }\n\n    friend\
-    \ std::istream &operator>>(std::istream &is, Max &max) {\n        is >> max.a;\n\
-    \        max.minf = false;\n        return is;\n    }\n\n    Max &operator=(const\
-    \ S &rhs) {\n        a = rhs;\n        minf = false;\n        return *this;\n\
-    \    }\n\n    Max &add(const S &rhs) {\n        if (minf) return *this;\n    \
-    \    a += rhs;\n        return *this;\n    }\n\n    Max &update(const S &rhs)\
-    \ {\n        a = rhs;\n        minf = false;\n        return *this;\n    }\n\n\
-    \    Max &op(const Max &rhs) {\n        if (rhs.minf) return *this;\n        if\
-    \ (minf) return *this = rhs;\n        a = std::max(a, rhs.a);\n        return\
-    \ *this;\n    }\n\n    bool is_minf() const { return minf; }\n};\n\ntemplate <class\
-    \ S> Max<S> MaxOp(Max<S> l, Max<S> r) {\n    return l.op(r);\n}\n\ntemplate <class\
-    \ S> Max<S> MaxUnit() {\n    return Max<S>();\n}\n\n} // namespace monoid\n\n\
-    template <class S, class... Args>\nstd::vector<monoid::Max<S>> GetVecMax(int n,\
-    \ Args... args) {\n    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Max<S>>>\
-    \ GetVecMax2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\
-    \ GetVecMax<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n"
+    \ <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate\
+    \ <class S> struct Max {\n    S a;\n    bool minf;\n\n    constexpr Max() : a(S()),\
+    \ minf(true) {}\n\n    constexpr Max(S a_, bool minf_ = false) : a(a_), minf(minf_)\
+    \ {}\n\n    operator S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
+    \ &os, const Max &max) {\n        if (max.minf) os << \"minf\";\n        else\
+    \ os << max.a;\n        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
+    \ &is, Max &max) {\n        is >> max.a;\n        max.minf = false;\n        return\
+    \ is;\n    }\n\n    constexpr Max &operator=(const S &rhs) {\n        a = rhs;\n\
+    \        minf = false;\n        return *this;\n    }\n\n    constexpr Max &add(const\
+    \ S &rhs) {\n        if (minf) return *this;\n        a += rhs;\n        return\
+    \ *this;\n    }\n\n    constexpr Max &update(const S &rhs) {\n        a = rhs;\n\
+    \        minf = false;\n        return *this;\n    }\n\n    constexpr bool is_minf()\
+    \ { return minf; }\n};\n\ntemplate <class S> constexpr Max<S> MaxOp(Max<S> l,\
+    \ Max<S> r) {\n    if (r.minf) return l;\n    if (l.minf) return r;\n    l.a =\
+    \ std::max(l.a, r.a);\n    return l;\n}\n\ntemplate <class S> constexpr Max<S>\
+    \ MaxUnit() {\n    constexpr static Max<S> e = Max<S>();\n    return e;\n}\n\n\
+    } // namespace monoid\n\ntemplate <class S, class... Args>\nconstexpr std::vector<monoid::Max<S>>\
+    \ GetVecMax(int n, Args... args) {\n    return std::vector<monoid::Max<S>>(n,\
+    \ monoid::Max<S>(args...));\n}\n\ntemplate <class S, class... Args>\nconstexpr\
+    \ std::vector<std::vector<monoid::Max<S>>>\nGetVecMax2D(int h, int w, Args...\
+    \ args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\n          \
+    \                                          GetVecMax<S>(w, args...));\n}\n\n}\
+    \ // namespace kk2\n\n\n"
   code: "#ifndef MATH_MONOID_MAX_HPP\n#define MATH_MONOID_MAX_HPP 1\n\n#include <algorithm>\n\
-    #include <iostream>\n#include <string>\n#include <vector>\n\nnamespace kk2 {\n\
-    \nnamespace monoid {\n\ntemplate <class S> struct Max {\n    S a;\n    bool minf;\n\
-    \n    Max() : a(S()), minf(true) {}\n\n    Max(S a_, bool minf_ = false) : a(a_),\
-    \ minf(minf_) {}\n\n    operator S() const { return a; }\n\n    friend std::ostream\
-    \ &operator<<(std::ostream &os, const Max &max) {\n        if (max.minf) os <<\
-    \ \"minf\";\n        else os << max.a;\n        return os;\n    }\n\n    friend\
-    \ std::istream &operator>>(std::istream &is, Max &max) {\n        is >> max.a;\n\
-    \        max.minf = false;\n        return is;\n    }\n\n    Max &operator=(const\
-    \ S &rhs) {\n        a = rhs;\n        minf = false;\n        return *this;\n\
-    \    }\n\n    Max &add(const S &rhs) {\n        if (minf) return *this;\n    \
-    \    a += rhs;\n        return *this;\n    }\n\n    Max &update(const S &rhs)\
-    \ {\n        a = rhs;\n        minf = false;\n        return *this;\n    }\n\n\
-    \    Max &op(const Max &rhs) {\n        if (rhs.minf) return *this;\n        if\
-    \ (minf) return *this = rhs;\n        a = std::max(a, rhs.a);\n        return\
-    \ *this;\n    }\n\n    bool is_minf() const { return minf; }\n};\n\ntemplate <class\
-    \ S> Max<S> MaxOp(Max<S> l, Max<S> r) {\n    return l.op(r);\n}\n\ntemplate <class\
-    \ S> Max<S> MaxUnit() {\n    return Max<S>();\n}\n\n} // namespace monoid\n\n\
-    template <class S, class... Args>\nstd::vector<monoid::Max<S>> GetVecMax(int n,\
-    \ Args... args) {\n    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Max<S>>>\
-    \ GetVecMax2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\
-    \ GetVecMax<S>(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MAX_H\n"
+    #include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid\
+    \ {\n\ntemplate <class S> struct Max {\n    S a;\n    bool minf;\n\n    constexpr\
+    \ Max() : a(S()), minf(true) {}\n\n    constexpr Max(S a_, bool minf_ = false)\
+    \ : a(a_), minf(minf_) {}\n\n    operator S() const { return a; }\n\n    friend\
+    \ std::ostream &operator<<(std::ostream &os, const Max &max) {\n        if (max.minf)\
+    \ os << \"minf\";\n        else os << max.a;\n        return os;\n    }\n\n  \
+    \  friend std::istream &operator>>(std::istream &is, Max &max) {\n        is >>\
+    \ max.a;\n        max.minf = false;\n        return is;\n    }\n\n    constexpr\
+    \ Max &operator=(const S &rhs) {\n        a = rhs;\n        minf = false;\n  \
+    \      return *this;\n    }\n\n    constexpr Max &add(const S &rhs) {\n      \
+    \  if (minf) return *this;\n        a += rhs;\n        return *this;\n    }\n\n\
+    \    constexpr Max &update(const S &rhs) {\n        a = rhs;\n        minf = false;\n\
+    \        return *this;\n    }\n\n    constexpr bool is_minf() { return minf; }\n\
+    };\n\ntemplate <class S> constexpr Max<S> MaxOp(Max<S> l, Max<S> r) {\n    if\
+    \ (r.minf) return l;\n    if (l.minf) return r;\n    l.a = std::max(l.a, r.a);\n\
+    \    return l;\n}\n\ntemplate <class S> constexpr Max<S> MaxUnit() {\n    constexpr\
+    \ static Max<S> e = Max<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
+    \ <class S, class... Args>\nconstexpr std::vector<monoid::Max<S>> GetVecMax(int\
+    \ n, Args... args) {\n    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n\
+    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<monoid::Max<S>>>\n\
+    GetVecMax2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\n\
+    \                                                    GetVecMax<S>(w, args...));\n\
+    }\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MAX_H\n"
   dependsOn: []
   isVerificationFile: false
   path: math/monoid/max.hpp
@@ -74,7 +76,7 @@ data:
   - segment_tree/utility/maxseg.hpp
   - segment_tree/utility/addmax.hpp
   - segment_tree/utility/maxseg2d.hpp
-  timestamp: '2024-09-25 19:24:50+09:00'
+  timestamp: '2024-09-26 15:55:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/max.hpp

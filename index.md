@@ -254,6 +254,9 @@ data:
       path: math/monoid/max.hpp
       title: math/monoid/max.hpp
     - icon: ':warning:'
+      path: math/monoid/max_min_sum.hpp
+      title: math/monoid/max_min_sum.hpp
+    - icon: ':warning:'
       path: math/monoid/min.hpp
       title: math/monoid/min.hpp
   - name: math_mod
@@ -346,6 +349,9 @@ data:
   - name: segment_tree/utility
     pages:
     - icon: ':warning:'
+      path: segment_tree/utility/add_max_min_sum.hpp
+      title: segment_tree/utility/add_max_min_sum.hpp
+    - icon: ':warning:'
       path: segment_tree/utility/addmax.hpp
       title: segment_tree/utility/addmax.hpp
     - icon: ':warning:'
@@ -375,6 +381,9 @@ data:
     - icon: ':warning:'
       path: segment_tree/utility/sumseg2d.hpp
       title: segment_tree/utility/sumseg2d.hpp
+    - icon: ':warning:'
+      path: segment_tree/utility/update_max_min_sum.hpp
+      title: segment_tree/utility/update_max_min_sum.hpp
     - icon: ':warning:'
       path: segment_tree/utility/updatemax.hpp
       title: segment_tree/utility/updatemax.hpp
