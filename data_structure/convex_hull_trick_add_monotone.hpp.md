@@ -27,30 +27,30 @@ data:
     \ (a % b == 0) return a / b;\n    if (a >= 0) return a / b + 1;\n\n    // ceil(x)\
     \ = -floor(-x)      by (2)\n    return -((-a) / b);\n}\n\n} // namespace kk2\n\
     \n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\n\
-    namespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 =\n    typename\
-    \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
-    \            or std::is_same<T, __int128>::value,\n                          \
-    \    std::true_type,\n                              std::false_type>::type;\n\n\
-    template <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-    \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
-    \ __int128>::value,\n                              std::true_type,\n         \
-    \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
-    \ is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\n\
-    \                                  or is_signed_int128<T>::value\n           \
-    \                       or is_unsigned_int128<T>::value,\n                   \
-    \           std::true_type,\n                              std::false_type>::type;\n\
-    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\n\
-    \                                  or is_signed_int128<T>::value,\n          \
-    \                    std::true_type,\n                              std::false_type>::type;\n\
-    \ntemplate <typename T>\nusing is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\n\
+    namespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value\n                                                       or\
+    \ std::is_same<T, __int128>::value,\n                                        \
+    \           std::true_type,\n                                                \
+    \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+    \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n     \
+    \                             or std::is_same<T, unsigned __int128>::value,\n\
+    \                              std::true_type,\n                             \
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral_extended\
+    \ =\n    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
     \                                  or is_unsigned_int128<T>::value,\n        \
     \                      std::true_type,\n                              std::false_type>::type;\n\
-    \n} // namespace kk2\n\n\n#line 12 \"data_structure/convex_hull_trick_add_monotone.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <typename T, bool isMin = true> struct CHTAddMonotone\
-    \ {\n    struct Line {\n        // ax + b\n        T a, b;\n\n        Line(T a_,\
-    \ T b_) : a(a_), b(b_) {}\n\n        T eval(T x) const { return a * x + b; }\n\
-    \    };\n\n    std::deque<Line> lines;\n\n    CHTAddMonotone() = default;\n\n\
-    \    bool empty() const { return lines.empty(); }\n\n    void clear() { lines.clear();\
+    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\
+    \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\ntemplate <typename T>\n\
+    using is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\
+    \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\n} // namespace kk2\n\
+    \n\n#line 12 \"data_structure/convex_hull_trick_add_monotone.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <typename T, bool isMin = true> struct CHTAddMonotone {\n\
+    \    struct Line {\n        // ax + b\n        T a, b;\n\n        Line(T a_, T\
+    \ b_) : a(a_), b(b_) {}\n\n        T eval(T x) const { return a * x + b; }\n \
+    \   };\n\n    std::deque<Line> lines;\n\n    CHTAddMonotone() = default;\n\n \
+    \   bool empty() const { return lines.empty(); }\n\n    void clear() { lines.clear();\
     \ }\n\n    static constexpr int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1);\
     \ }\n\n    template <typename Iterators> static constexpr bool check(Iterators\
     \ mid) {\n        auto [l1, l2, l3] = std::tie(*std::prev(mid), *mid, *std::next(mid));\n\
@@ -121,7 +121,7 @@ data:
   isVerificationFile: false
   path: data_structure/convex_hull_trick_add_monotone.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 16:53:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/convex_hull_trick_add_monotone.hpp

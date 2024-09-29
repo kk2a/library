@@ -14,32 +14,33 @@ data:
   bundledCode: "#line 1 \"modint/modint.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <iostream>\n#include <type_traits>\n#include <utility>\n\n#line 1 \"type_traits/type_traits.hpp\"\
     \n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <typename T>\nusing is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-    \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
+    \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value\n                                                       or\
+    \ std::is_same<T, __int128>::value,\n                                        \
+    \           std::true_type,\n                                                \
+    \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+    \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n     \
+    \                             or std::is_same<T, unsigned __int128>::value,\n\
     \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128 =\n\
-    \    typename std::conditional<std::is_same<T, __uint128_t>::value\n         \
-    \                         or std::is_same<T, unsigned __int128>::value,\n    \
-    \                          std::true_type,\n                              std::false_type>::type;\n\
-    \ntemplate <typename T>\nusing is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\n\
-    \                                  or is_signed_int128<T>::value\n           \
-    \                       or is_unsigned_int128<T>::value,\n                   \
-    \           std::true_type,\n                              std::false_type>::type;\n\
-    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\n\
-    \                                  or is_signed_int128<T>::value,\n          \
-    \                    std::true_type,\n                              std::false_type>::type;\n\
-    \ntemplate <typename T>\nusing is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\n\
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral_extended\
+    \ =\n    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
     \                                  or is_unsigned_int128<T>::value,\n        \
     \                      std::true_type,\n                              std::false_type>::type;\n\
-    \n} // namespace kk2\n\n\n#line 10 \"modint/modint.hpp\"\n\nnamespace kk2 {\n\n\
-    template <int p> struct ModInt {\n    using mint = ModInt;\n\n  public:\n    static\
-    \ int Mod;\n\n    constexpr static unsigned int getmod() {\n        if (p > 0)\
-    \ return p;\n        else return Mod;\n    }\n\n    static void setmod(int Mod_)\
-    \ {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n    }\n\n    static mint\
-    \ raw(int v) {\n        mint x;\n        x._v = v;\n        return x;\n    }\n\
-    \n    operator int() const { return _v; }\n\n    constexpr ModInt() : _v(0) {}\n\
-    \n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
-    \ * = nullptr>\n    constexpr ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
+    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\
+    \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\ntemplate <typename T>\n\
+    using is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\
+    \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\n} // namespace kk2\n\
+    \n\n#line 10 \"modint/modint.hpp\"\n\nnamespace kk2 {\n\ntemplate <int p> struct\
+    \ ModInt {\n    using mint = ModInt;\n\n  public:\n    static int Mod;\n\n   \
+    \ constexpr static unsigned int getmod() {\n        if (p > 0) return p;\n   \
+    \     else return Mod;\n    }\n\n    static void setmod(int Mod_) {\n        assert(1\
+    \ <= Mod_);\n        Mod = Mod_;\n    }\n\n    static mint raw(int v) {\n    \
+    \    mint x;\n        x._v = v;\n        return x;\n    }\n\n    operator int()\
+    \ const { return _v; }\n\n    constexpr ModInt() : _v(0) {}\n\n    template <class\
+    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
+    \    constexpr ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
     \ {\n            v %= getmod();\n            if (v < 0) v += getmod();\n     \
     \       _v = v;\n        } else if constexpr (is_unsigned_extended<T>::value)\
     \ {\n            _v = v %= getmod();\n        } else {\n            ModInt();\n\
@@ -173,7 +174,7 @@ data:
   isVerificationFile: false
   path: modint/modint.hpp
   requiredBy: []
-  timestamp: '2024-09-26 15:55:52+09:00'
+  timestamp: '2024-09-29 16:53:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/modint.hpp

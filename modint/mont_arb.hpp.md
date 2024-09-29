@@ -26,35 +26,36 @@ data:
   bundledCode: "#line 1 \"modint/mont_arb.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <iostream>\n#include <utility>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\
     \n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing\
-    \ is_signed_int128 =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n\
-    \                                  or std::is_same<T, __int128>::value,\n    \
-    \                          std::true_type,\n                              std::false_type>::type;\n\
-    \ntemplate <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \ is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+    \                                                       or std::is_same<T, __int128>::value,\n\
+    \                                                   std::true_type,\n        \
+    \                                           std::false_type>::type;\n\ntemplate\
+    \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
     \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
     \ __int128>::value,\n                              std::true_type,\n         \
     \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
-    \ is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\n\
-    \                                  or is_signed_int128<T>::value\n           \
-    \                       or is_unsigned_int128<T>::value,\n                   \
-    \           std::true_type,\n                              std::false_type>::type;\n\
-    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\n\
-    \                                  or is_signed_int128<T>::value,\n          \
-    \                    std::true_type,\n                              std::false_type>::type;\n\
-    \ntemplate <typename T>\nusing is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\n\
-    \                                  or is_unsigned_int128<T>::value,\n        \
-    \                      std::true_type,\n                              std::false_type>::type;\n\
-    \n} // namespace kk2\n\n\n#line 9 \"modint/mont_arb.hpp\"\n\nnamespace kk2 {\n\
-    \ntemplate <typename Int, typename UInt, typename Long, typename ULong, int id>\n\
-    struct ArbitraryLazyMontgomeryModIntBase {\n    using mint = ArbitraryLazyMontgomeryModIntBase;\n\
-    \n    inline static UInt mod;\n    inline static UInt r;\n    inline static UInt\
-    \ n2;\n    static constexpr int bit_length = sizeof(UInt) * 8;\n\n    static UInt\
-    \ get_r() {\n        UInt ret = mod;\n        while (mod * ret != 1) ret *= UInt(2)\
-    \ - mod * ret;\n        return ret;\n    }\n\n    static void setmod(UInt m) {\n\
-    \        assert(m < (UInt(1u) << (bit_length - 2)));\n        assert((m & 1) ==\
-    \ 1);\n        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt _v;\n\
-    \n    operator Int() const { return val(); }\n\n    ArbitraryLazyMontgomeryModIntBase()\
-    \ : _v(0) {}\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
-    \ * = nullptr>\n    ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
+    \ is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\
+    \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
+    \                              std::true_type,\n                             \
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed_extended =\n\
+    \    typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+    \                              std::true_type,\n                             \
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_extended\
+    \ =\n    typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
+    \                              std::true_type,\n                             \
+    \ std::false_type>::type;\n\n} // namespace kk2\n\n\n#line 9 \"modint/mont_arb.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <typename Int, typename UInt, typename Long, typename\
+    \ ULong, int id>\nstruct ArbitraryLazyMontgomeryModIntBase {\n    using mint =\
+    \ ArbitraryLazyMontgomeryModIntBase;\n\n    inline static UInt mod;\n    inline\
+    \ static UInt r;\n    inline static UInt n2;\n    static constexpr int bit_length\
+    \ = sizeof(UInt) * 8;\n\n    static UInt get_r() {\n        UInt ret = mod;\n\
+    \        while (mod * ret != 1) ret *= UInt(2) - mod * ret;\n        return ret;\n\
+    \    }\n\n    static void setmod(UInt m) {\n        assert(m < (UInt(1u) << (bit_length\
+    \ - 2)));\n        assert((m & 1) == 1);\n        mod = m, n2 = -ULong(m) % m,\
+    \ r = get_r();\n    }\n\n    UInt _v;\n\n    operator Int() const { return val();\
+    \ }\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template <class\
+    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
+    \    ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
     \ % mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n       \
     \ return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\n    mint\
     \ &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod) < 0) _v\
@@ -186,7 +187,7 @@ data:
   - math/prime_factorize.hpp
   - math/is_prime.hpp
   - fps/fps_sqrt.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 16:53:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/mont_arb.hpp

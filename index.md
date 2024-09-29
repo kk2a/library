@@ -7,11 +7,11 @@ data:
       path: UnionFind/UnionFind.hpp
       title: UnionFind/UnionFind.hpp
     - icon: ':warning:'
+      path: UnionFind/potentialized.hpp
+      title: UnionFind/potentialized.hpp
+    - icon: ':warning:'
       path: UnionFind/rollback.hpp
       title: UnionFind/rollback.hpp
-    - icon: ':warning:'
-      path: UnionFind/weighted.hpp
-      title: UnionFind/weighted.hpp
   - name: convolution
     pages:
     - icon: ':warning:'
@@ -64,6 +64,15 @@ data:
     - icon: ':warning:'
       path: data_structure/my_bitset_old.hpp
       title: data_structure/my_bitset_old.hpp
+    - icon: ':warning:'
+      path: data_structure/prefix_sum.hpp
+      title: data_structure/prefix_sum.hpp
+    - icon: ':warning:'
+      path: data_structure/prefix_sum_2d.hpp
+      title: data_structure/prefix_sum_2d.hpp
+    - icon: ':warning:'
+      path: data_structure/prefix_sum_arbitrary.hpp
+      title: data_structure/prefix_sum_arbitrary.hpp
     - icon: ':warning:'
       path: data_structure/sparse_table.hpp
       title: data_structure/sparse_table.hpp
