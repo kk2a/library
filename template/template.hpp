@@ -63,18 +63,16 @@ template <class T> using vvvc = std::vector<vvc<T>>;
 template <class T> using vvvvc = std::vector<vvvc<T>>;
 
 template <class T> using pq = std::priority_queue<T>;
-template <class T>
-using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 namespace kk2 {
 
-template <class T, class... Sizes>
-auto make_vector(const T &init, int first, Sizes... sizes) {
+template <class T, class... Sizes> auto make_vector(const T &init, int first, Sizes... sizes) {
     if constexpr (sizeof...(sizes) == 0) {
         return std::vector<T>(first, init);
     } else {
-        return std::vector<decltype(make_vector(init, sizes...))>(
-            first, make_vector(init, sizes...));
+        return std::vector<decltype(make_vector(init, sizes...))>(first,
+                                                                  make_vector(init, sizes...));
     }
 }
 
@@ -82,8 +80,7 @@ template <class T, class U> void fill_all(std::vector<T> &v, const U &x) {
     std::fill(std::begin(v), std::end(v), T(x));
 }
 
-template <class T, class U>
-void fill_all(std::vector<std::vector<T>> &v, const U &x) {
+template <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x) {
     for (auto &u : v) fill_all(u, x);
 }
 
@@ -113,7 +110,7 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
 #ifdef KK2
 std::ifstream in("in.txt");
 std::ofstream out("out.txt");
-#else 
+#else
 #define in std::cin
 #define out std::cout
 #endif
