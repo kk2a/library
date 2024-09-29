@@ -12,8 +12,7 @@ namespace kk2 {
 
 template <typename T> struct MultiSetHash {
     constexpr static int b = 5;
-    constexpr static int modp[b] = {
-        998244353, 1000000007, 1000000009, 1000000021, 1000000033};
+    constexpr static int modp[b] = {998244353, 1000000007, 1000000009, 1000000021, 1000000033};
     using Hashs = std::array<long long, b>;
     int siz;
     Hashs table;
@@ -27,43 +26,33 @@ template <typename T> struct MultiSetHash {
         return base[x];
     }
 
-    MultiSetHash() : siz(0) {
-        std::fill(std::begin(table), std::end(table), 0);
-    }
+    MultiSetHash() : siz(0) { std::fill(std::begin(table), std::end(table), 0); }
 
     MultiSetHash(const T &x) : siz(1) { table = getbase(x); }
 
     MultiSetHash(const std::vector<T> &v) : siz(v.size()) {
         for (int i = 0; i < siz; i++) {
             auto tmp = getbase(v[i]);
-            for (int j = 0; j < b; ++j) {
-                table[j] = (table[j] + tmp[j]) % modp[j];
-            }
+            for (int j = 0; j < b; ++j) { table[j] = (table[j] + tmp[j]) % modp[j]; }
         }
     }
 
     MultiSetHash &merge(const MultiSetHash &rhs) {
-        for (int i = 0; rhs.siz; ++i) {
-            table[i] = (table[i] + rhs.table[i]) % modp[i];
-        }
+        for (int i = 0; rhs.siz; ++i) { table[i] = (table[i] + rhs.table[i]) % modp[i]; }
         siz += rhs.siz;
         return *this;
     }
 
     MultiSetHash &merge(const T &x) {
         auto tmp = getbase(x);
-        for (int i = 0; i < b; ++i) {
-            table[i] = (table[i] + tmp[i]) % modp[i];
-        }
+        for (int i = 0; i < b; ++i) { table[i] = (table[i] + tmp[i]) % modp[i]; }
         siz++;
         return *this;
     }
 
     // require: rhs \subset *this
     MultiSetHash &erase(const MultiSetHash &rhs) {
-        for (int i = 0; i < b; ++i) {
-            table[i] = (table[i] - rhs.table[i] + modp[i]) % modp[i];
-        }
+        for (int i = 0; i < b; ++i) { table[i] = (table[i] - rhs.table[i] + modp[i]) % modp[i]; }
         siz -= rhs.siz;
         return *this;
     }
@@ -71,15 +60,12 @@ template <typename T> struct MultiSetHash {
     // require: x \in *this
     MultiSetHash &erase(const T &x) {
         auto tmp = getbase(x);
-        for (int i = 0; i < b; ++i) {
-            table[i] = (table[i] - tmp[i] + modp[i]) % modp[i];
-        }
+        for (int i = 0; i < b; ++i) { table[i] = (table[i] - tmp[i] + modp[i]) % modp[i]; }
         siz--;
         return *this;
     }
 
-    friend MultiSetHash merge(const MultiSetHash &lhs,
-                              const MultiSetHash &rhs) {
+    friend MultiSetHash merge(const MultiSetHash &lhs, const MultiSetHash &rhs) {
         return MultiSetHash(lhs).merge(rhs);
     }
 
@@ -87,8 +73,7 @@ template <typename T> struct MultiSetHash {
         return MultiSetHash(lhs).merge(x);
     }
 
-    friend MultiSetHash erase(const MultiSetHash &lhs,
-                              const MultiSetHash &rhs) {
+    friend MultiSetHash erase(const MultiSetHash &lhs, const MultiSetHash &rhs) {
         return MultiSetHash(lhs).erase(rhs);
     }
 
@@ -112,8 +97,7 @@ template <typename T> struct MultiSetHash {
     }
 };
 
-template <typename T>
-std::unordered_map<T, typename MultiSetHash<T>::Hashs> MultiSetHash<T>::base;
+template <typename T> std::unordered_map<T, typename MultiSetHash<T>::Hashs> MultiSetHash<T>::base;
 
 template <typename T> std::mt19937_64 MultiSetHash<T>::rng(time(0));
 

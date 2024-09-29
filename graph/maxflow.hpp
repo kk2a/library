@@ -20,9 +20,7 @@ template <class WG> struct MaxFlow {
     int n, m;
     std::vector<int> revi;
 
-    MaxFlow(const WG &g_) : g(g_), n(g.num_vertices()), m(g.num_edges()) {
-        init();
-    }
+    MaxFlow(const WG &g_) : g(g_), n(g.num_vertices()), m(g.num_edges()) { init(); }
 
     void init() {
         revi.resize(m << 1, -1);
@@ -35,9 +33,7 @@ template <class WG> struct MaxFlow {
         }
     }
 
-    Cap flow(int s, int t) {
-        return flow(s, t, std::numeric_limits<Cap>::max());
-    }
+    Cap flow(int s, int t) { return flow(s, t, std::numeric_limits<Cap>::max()); }
 
     Cap flow(int s, int t, Cap flow_limit) {
         assert(0 <= s && s < n);
@@ -68,10 +64,8 @@ template <class WG> struct MaxFlow {
             Cap res = 0;
             for (int &i = iter[v]; i < (int)g[v].size(); i++) {
                 auto &e = g[v][i];
-                if (level[v] <= level[e.to] || g[e.to][revi[e.id]].cost == 0)
-                    continue;
-                Cap d = self(
-                    self, e.to, std::min(up - res, g[e.to][revi[e.id]].cost));
+                if (level[v] <= level[e.to] || g[e.to][revi[e.id]].cost == 0) continue;
+                Cap d = self(self, e.to, std::min(up - res, g[e.to][revi[e.id]].cost));
                 if (d <= 0) continue;
                 g[v][i].cost += d;
                 g[e.to][revi[e.id]].cost -= d;
@@ -120,10 +114,7 @@ template <class WG> struct MaxFlow {
 
     edge get_edge(int i) {
         auto e = g.edges[i];
-        return edge{e.from,
-                    e.to,
-                    e.cost + g[e.to][revi[i]].cost,
-                    g[e.to][revi[i]].cost};
+        return edge{e.from, e.to, e.cost + g[e.to][revi[i]].cost, g[e.to][revi[i]].cost};
     }
 
     std::vector<edge> get_edges() {

@@ -12,8 +12,7 @@
 
 namespace kk2 {
 
-template <int char_size, int margin>
-struct AhoCorasick : Trie<char_size + 1, margin> {
+template <int char_size, int margin> struct AhoCorasick : Trie<char_size + 1, margin> {
     using Trie<char_size + 1, margin>::Trie;
 
     constexpr static int FAIL = char_size;
@@ -32,8 +31,7 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
             if (this->nodes[this->root].nxt[i] == -1) {
                 this->nodes[this->root].nxt[i] = this->root;
             } else {
-                this->nodes[this->nodes[this->root].nxt[i]].nxt[FAIL] =
-                    this->root;
+                this->nodes[this->nodes[this->root].nxt[i]].nxt[FAIL] = this->root;
                 que.emplace(this->nodes[this->root].nxt[i]);
             }
         }
@@ -47,8 +45,7 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
                 if (now.nxt[i] == -1) {
                     now.nxt[i] = this->nodes[fail].nxt[i];
                 } else {
-                    this->nodes[now.nxt[i]].nxt[FAIL] =
-                        this->nodes[fail].nxt[i];
+                    this->nodes[now.nxt[i]].nxt[FAIL] = this->nodes[fail].nxt[i];
                     que.emplace(now.nxt[i]);
                 }
             }
@@ -62,14 +59,11 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
             visit_cnt[now_]++;
         }
         long long res{};
-        for (auto &&[now, cnt] : visit_cnt) {
-            res += (long long)correct[now] * cnt;
-        }
+        for (auto &&[now, cnt] : visit_cnt) { res += (long long)correct[now] * cnt; }
         return res;
     }
 
-    std::unordered_map<int, long long> each_match(const std::string &str,
-                                                  int now_ = 0) {
+    std::unordered_map<int, long long> each_match(const std::string &str, int now_ = 0) {
         std::unordered_map<int, long long> visit_cnt;
         for (char c : str) {
             now_ = this->nodes[now_].nxt[c - margin];
@@ -79,9 +73,7 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
         for (int i = this->size() - 1; i > 0; --i) {
             int now = perm[i];
             visit_cnt[this->nodes[now].nxt[FAIL]] += visit_cnt[now];
-            for (int idx : this->nodes[now].accept) {
-                res[idx] += visit_cnt[now];
-            }
+            for (int idx : this->nodes[now].accept) { res[idx] += visit_cnt[now]; }
         }
         return res;
     }

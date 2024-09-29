@@ -16,8 +16,7 @@ FPS convolution_subset(FPS &a, const FPS &b) {
     assert((n & (-n)) == n);
     std::vector<int> chi(n, 0);
     for (int i = 1; i < n; i++) chi[i] = chi[i - (i & -i)] + 1;
-    std::vector<std::vector<mint>> f(n, std::vector<mint>(h + 1)),
-        g(n, std::vector<mint>(h + 1));
+    std::vector<std::vector<mint>> f(n, std::vector<mint>(h + 1)), g(n, std::vector<mint>(h + 1));
     for (int i = 0; i < n; i++) {
         f[i][chi[i]] = a[i];
         g[i][chi[i]] = b[i];

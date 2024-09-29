@@ -1,8 +1,8 @@
 #ifndef DATA_STRUCTURE_TRIE_HPP
 #define DATA_STRUCTURE_TRIE_HPP 1
 
-#include <cstring>
 #include <cassert>
+#include <cstring>
 #include <functional>
 #include <string>
 #include <vector>

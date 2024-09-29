@@ -57,9 +57,7 @@ struct MatrixF2 {
 
         std::string to_string() const { return bs[i].to_string(); }
 
-        std::string to_reversed_string() const {
-            return bs[i].to_reversed_string();
-        }
+        std::string to_reversed_string() const { return bs[i].to_reversed_string(); }
 
         Proxy &operator=(const std::string &s) {
             bs[i].set_reversed(s);
@@ -128,9 +126,7 @@ struct MatrixF2 {
     }
 
     void display() const {
-        for (int i = 0; i < _h; i++) {
-            std::cout << _mat[i].to_reversed_string() << "\n";
-        }
+        for (int i = 0; i < _h; i++) { std::cout << _mat[i].to_reversed_string() << "\n"; }
     }
 
     void set(int i, int j, bool x) {
@@ -199,29 +195,17 @@ struct MatrixF2 {
         return *this;
     }
 
-    friend mat operator+(const mat &lhs, const mat &rhs) {
-        return mat(lhs) += rhs;
-    }
+    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) += rhs; }
 
-    friend mat operator-(const mat &lhs, const mat &rhs) {
-        return mat(lhs) -= rhs;
-    }
+    friend mat operator-(const mat &lhs, const mat &rhs) { return mat(lhs) -= rhs; }
 
-    friend mat operator^(const mat &lhs, const mat &rhs) {
-        return mat(lhs) ^= rhs;
-    }
+    friend mat operator^(const mat &lhs, const mat &rhs) { return mat(lhs) ^= rhs; }
 
-    friend mat operator|(const mat &lhs, const mat &rhs) {
-        return mat(lhs) |= rhs;
-    }
+    friend mat operator|(const mat &lhs, const mat &rhs) { return mat(lhs) |= rhs; }
 
-    friend mat operator&(const mat &lhs, const mat &rhs) {
-        return mat(lhs) &= rhs;
-    }
+    friend mat operator&(const mat &lhs, const mat &rhs) { return mat(lhs) &= rhs; }
 
-    friend mat operator*(const mat &lhs, const mat &rhs) {
-        return mat(lhs) *= rhs;
-    }
+    friend mat operator*(const mat &lhs, const mat &rhs) { return mat(lhs) *= rhs; }
 
     friend bool operator==(const mat &lhs, const mat &rhs) {
         assert(lhs._h == rhs._h);
@@ -232,9 +216,7 @@ struct MatrixF2 {
         return true;
     }
 
-    friend bool operator!=(const mat &lhs, const mat &rhs) {
-        return !(lhs == rhs);
-    }
+    friend bool operator!=(const mat &lhs, const mat &rhs) { return !(lhs == rhs); }
 
     mat &inplace_combine_top(const mat &rhs) {
         assert(_w == rhs._w);
@@ -274,8 +256,7 @@ struct MatrixF2 {
 
     mat &inplace_combine_left(const mat &rhs) {
         assert(_h == rhs._h);
-        for (int i = 0; i < _h; i++)
-            _mat[i].inplace_combine_bottom(rhs._mat[i]);
+        for (int i = 0; i < _h; i++) _mat[i].inplace_combine_bottom(rhs._mat[i]);
         _w += rhs._w;
         return *this;
     }

@@ -33,8 +33,7 @@ template <class G> int centroid(const G &g) {
     return find(find, 0);
 }
 
-template <class G>
-int centroid(const G &g, const std::vector<long long> &weight) {
+template <class G> int centroid(const G &g, const std::vector<long long> &weight) {
     assert((int)g.size() == (int)weight.size());
     int n = g.size();
     std::vector<long long> sz(n, 0);

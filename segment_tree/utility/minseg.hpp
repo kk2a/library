@@ -6,8 +6,7 @@
 
 namespace kk2 {
 
-template <class S>
-using MinSeg = SegTree<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<S>>;
+template <class S> using MinSeg = SegTree<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<S>>;
 
 } // namespace kk2
 

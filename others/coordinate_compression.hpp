@@ -43,8 +43,7 @@ template <typename S = int> struct CC {
 
     int get(S x) {
         if (!initialized) build();
-        return std::upper_bound(std::begin(xs), std::end(xs), x)
-               - std::begin(xs) - 1;
+        return std::upper_bound(std::begin(xs), std::end(xs), x) - std::begin(xs) - 1;
     }
 
     std::vector<int> get(const std::vector<S> &ys) {
@@ -59,14 +58,12 @@ template <typename S = int> struct CC {
 
     int lower(S x) {
         if (!initialized) build();
-        return std::lower_bound(std::begin(xs), std::end(xs), x)
-               - std::begin(xs);
+        return std::lower_bound(std::begin(xs), std::end(xs), x) - std::begin(xs);
     }
 
     int upper(S x) {
         if (!initialized) build();
-        return std::upper_bound(std::begin(xs), std::end(xs), x)
-               - std::begin(xs);
+        return std::upper_bound(std::begin(xs), std::end(xs), x) - std::begin(xs);
     }
 
     bool exist(S x) {

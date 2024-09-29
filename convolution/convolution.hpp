@@ -8,8 +8,7 @@
 
 namespace kk2 {
 
-template <class FPS, class mint = typename FPS::value_type>
-FPS convolution(FPS &a, const FPS &b) {
+template <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS &a, const FPS &b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
     if (std::min(n, m) <= 60) {

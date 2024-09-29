@@ -34,9 +34,7 @@ template <class T> using WeightedEdges = std::vector<WeightedEdge<T>>;
 
 template <class T, bool is_directed = false>
 struct WeightedAdjacencyList : std::vector<WeightedEdges<T>> {
-    WeightedAdjacencyList(int n_ = 0,
-                          bool is_one_indexed = true,
-                          bool is_adjacency_matrix = false)
+    WeightedAdjacencyList(int n_ = 0, bool is_one_indexed = true, bool is_adjacency_matrix = false)
         : std::vector<WeightedEdges<T>>(n_),
           n(n_),
           m(0),
@@ -103,9 +101,7 @@ struct WeightedAdjacencyList : std::vector<WeightedEdges<T>> {
         static_assert(is_directed);
         WeightedAdjacencyList res(n);
         res.m = m;
-        for (int i = 0; i < m; i++) {
-            res._add_edge(edges[i].to, edges[i].from, edges[i].cost, i);
-        }
+        for (int i = 0; i < m; i++) { res._add_edge(edges[i].to, edges[i].from, edges[i].cost, i); }
         return res;
     }
 
@@ -132,20 +128,16 @@ struct WeightedAdjacencyList : std::vector<WeightedEdges<T>> {
         _add_edge(from, to, cost, m++);
     }
 
-    void add_edge_naive(int from, int to, T cost) {
-        _add_edge(from, to, cost, m++);
-    }
+    void add_edge_naive(int from, int to, T cost) { _add_edge(from, to, cost, m++); }
 
   private:
     void _add_edge(int from, int to, T cost, int id) {
         if (adjacency_matrix) {
             (*this)[from][to] = WeightedEdge<T>(to, cost, from, id);
-            if constexpr (!is_directed)
-                (*this)[to][from] = WeightedEdge<T>(from, cost, to, id);
+            if constexpr (!is_directed) (*this)[to][from] = WeightedEdge<T>(from, cost, to, id);
         } else {
             (*this)[from].emplace_back(to, cost, from, id);
-            if constexpr (!is_directed)
-                (*this)[to].emplace_back(from, cost, to, id);
+            if constexpr (!is_directed) (*this)[to].emplace_back(from, cost, to, id);
         }
         edges.emplace_back(to, cost, from, id);
     }
@@ -154,10 +146,7 @@ struct WeightedAdjacencyList : std::vector<WeightedEdges<T>> {
 struct UnWeightedEdge {
     int from, to, id;
 
-    UnWeightedEdge(int to_, int from_ = -1, int id_ = -1)
-        : from(from_),
-          to(to_),
-          id(id_) {}
+    UnWeightedEdge(int to_, int from_ = -1, int id_ = -1) : from(from_), to(to_), id(id_) {}
 
     UnWeightedEdge() : from(-1), to(-1), id(-1) {}
 
@@ -244,9 +233,7 @@ struct UnWeightedAdjacencyList : std::vector<UnWeightedEdges> {
         static_assert(is_directed);
         UnWeightedAdjacencyList res(n);
         res.m = m;
-        for (int i = 0; i < m; i++) {
-            res._add_edge(edges[i].to, edges[i].from, i);
-        }
+        for (int i = 0; i < m; i++) { res._add_edge(edges[i].to, edges[i].from, i); }
         return res;
     }
 
@@ -294,8 +281,7 @@ struct UnWeightedAdjacencyList : std::vector<UnWeightedEdges> {
         if (adjacency_matrix) {
             (*this)[from][to] = UnWeightedEdge(to, from, id);
 
-            if constexpr (!is_directed)
-                (*this)[to][from] = UnWeightedEdge(from, to, id);
+            if constexpr (!is_directed) (*this)[to][from] = UnWeightedEdge(from, to, id);
         } else {
             (*this)[from].emplace_back(to, from, id);
             if constexpr (!is_directed) (*this)[to].emplace_back(from, to, id);
@@ -305,8 +291,7 @@ struct UnWeightedAdjacencyList : std::vector<UnWeightedEdges> {
 };
 
 
-template <class T, bool is_directed = false>
-using WAdjList = WeightedAdjacencyList<T, is_directed>;
+template <class T, bool is_directed = false> using WAdjList = WeightedAdjacencyList<T, is_directed>;
 template <bool is_directed = false, bool is_functional = false>
 using AdjList = UnWeightedAdjacencyList<is_directed, is_functional>;
 

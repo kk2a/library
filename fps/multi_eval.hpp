@@ -6,8 +6,7 @@
 
 namespace kk2 {
 
-template <class FPS, class mint = typename FPS::value_type>
-struct SubProductTree {
+template <class FPS, class mint = typename FPS::value_type> struct SubProductTree {
     int _n, size;
     std::vector<int> l, r;
     std::vector<FPS> pr;
@@ -23,8 +22,7 @@ struct SubProductTree {
         build();
     }
 
-    SubProductTree(const std::vector<mint> &v_, const FPS &f_)
-        : SubProductTree(v_) {
+    SubProductTree(const std::vector<mint> &v_, const FPS &f_) : SubProductTree(v_) {
         this->f = f_;
     }
 
@@ -58,9 +56,7 @@ struct SubProductTree {
             if (l[idx] == r[idx]) return;
             a %= pr[idx];
             if ((int)a.size() <= 64) {
-                for (int i = l[idx]; i < r[idx]; i++) {
-                    ret.push_back(a.eval(v[i]));
-                }
+                for (int i = l[idx]; i < r[idx]; i++) { ret.push_back(a.eval(v[i])); }
                 return;
             }
             self(self, a, idx << 1 | 0);

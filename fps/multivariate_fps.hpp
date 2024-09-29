@@ -42,9 +42,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         return _id(0, args...);
     }
 
-    template <typename... Args> mint &operator()(Args... args) {
-        return f[id(args...)];
-    }
+    template <typename... Args> mint &operator()(Args... args) { return f[id(args...)]; }
 
     mint &operator[](int i) { return f[i]; }
 
@@ -53,8 +51,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
             int x = i;
             std::cout << "f(";
             for (int j = 0; j < (int)base.size(); j++) {
-                std::cout << x % base[j]
-                          << (j + 1 == (int)base.size() ? ") = " : ", ");
+                std::cout << x % base[j] << (j + 1 == (int)base.size() ? ") = " : ", ");
                 x /= base[j];
             }
             std::cout << f[i] << "\n";
@@ -123,9 +120,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         return lhs.f == rhs.f && lhs.base == rhs.base;
     }
 
-    friend bool operator!=(const mfps &lhs, const mfps &rhs) {
-        return !(lhs == rhs);
-    }
+    friend bool operator!=(const mfps &lhs, const mfps &rhs) { return !(lhs == rhs); }
 
     mfps diff() const {
         mfps ret(*this);
@@ -180,8 +175,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
             for (int ii = 0; ii < (int)a[0].size(); ii++) {
                 for (int i = 0; i < k; i++) {
                     for (int j = 0; j < k; j++) {
-                        tmp[i + j - (i + j >= k ? k : 0)] +=
-                            a[i][ii] * b[j][ii];
+                        tmp[i + j - (i + j >= k ? k : 0)] += a[i][ii] * b[j][ii];
                     }
                 }
                 for (int i = 0; i < k; i++) c[i][ii] = tmp[i], tmp[i] = mint{0};
@@ -198,10 +192,8 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         fps g(z);
         g[0] = f[0].inv(); // by (1)
         for (int d = 1; d < n; d <<= 1) {
-            std::vector<fps> a(k, fps(2 * d)), b(k, fps(2 * d)),
-                c(k, fps(2 * d));
-            for (int i = 0; i < std::min((int)f.size(), 2 * d); i++)
-                a[chi[i]][i] = f[i];
+            std::vector<fps> a(k, fps(2 * d)), b(k, fps(2 * d)), c(k, fps(2 * d));
+            for (int i = 0; i < std::min((int)f.size(), 2 * d); i++) a[chi[i]][i] = f[i];
             for (int i = 0; i < d; i++) b[chi[i]][i] = g[i];
             for (auto &x : a) x.but();
             for (auto &x : b) x.but();
@@ -237,8 +229,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         for (int d = 1; d < n; d <<= 1) {
             int s = std::min(n, 2 * d);
             res.f.resize(s, mint(0));
-            res *= mfps(base, fps(std::begin(f), std::begin(f) + s)) - res.log()
-                   + 1;
+            res *= mfps(base, fps(std::begin(f), std::begin(f) + s)) - res.log() + 1;
         }
         return res;
     }
@@ -263,8 +254,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
     }
 };
 
-template <typename mint>
-std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv = {0, 1};
+template <typename mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv = {0, 1};
 
 } // namespace kk2
 

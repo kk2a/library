@@ -33,9 +33,7 @@ FPS PolyInterpolation(const std::vector<mint> &x, const std::vector<mint> &y) {
 // reference:
 // https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan
 template <class FPS, class mint = typename FPS::value_type>
-FPS PolyInterpolationGeo(const mint &a,
-                         const mint &r,
-                         const std::vector<mint> &y) {
+FPS PolyInterpolationGeo(const mint &a, const mint &r, const std::vector<mint> &y) {
     if (y.empty()) return {};
     if (y.size() == 1) return FPS{y[0]};
     assert(a != mint(0) && r != mint(0) && r != mint(1));
@@ -59,12 +57,10 @@ FPS PolyInterpolationGeo(const mint &a,
     std::vector<mint> w(n);
     q = 1;
     int idx1 = n - 1, idx2 = 0;
-    w[n - 1] =
-        r.pow(1ll * (n - 1) * (n - 2) / 2).inv() * invs[idx1] * invs[idx2];
+    w[n - 1] = r.pow(1ll * (n - 1) * (n - 2) / 2).inv() * invs[idx1] * invs[idx2];
     if ((n - 1) & 1) w[n - 1] *= -1;
     for (int i = n - 1; i > 0; i--) {
-        w[i - 1] = w[i] * q * (-1) * s[idx1] * invs[idx1 - 1] * s[idx2]
-                   * invs[idx2 + 1];
+        w[i - 1] = w[i] * q * (-1) * s[idx1] * invs[idx1 - 1] * s[idx2] * invs[idx2 + 1];
         q *= r;
         idx1--;
         idx2++;

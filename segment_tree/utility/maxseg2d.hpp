@@ -6,8 +6,7 @@
 
 namespace kk2 {
 
-template <class S>
-using MaxSeg2D = SegTree2D<monoid::Max<S>, monoid::MaxOp<S>, monoid::MaxUnit<S>>;
+template <class S> using MaxSeg2D = SegTree2D<monoid::Max<S>, monoid::MaxOp<S>, monoid::MaxUnit<S>>;
 
 } // namespace kk2
 

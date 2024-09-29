@@ -38,9 +38,7 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
         for (int i = 1; i <= log; i++) update(p >> i);
     }
 
-    template <class... Args> void emplace_set(int p, Args... args) {
-        set(p, S(args...));
-    }
+    template <class... Args> void emplace_set(int p, Args... args) { set(p, S(args...)); }
 
     S get(int p) {
         assert(0 <= p && p < _n);

@@ -7,8 +7,7 @@
 
 namespace kk2 {
 
-template <class FPS, class mint = typename FPS::value_type>
-FPS sqrt(const FPS &f, int deg = -1) {
+template <class FPS, class mint = typename FPS::value_type> FPS sqrt(const FPS &f, int deg = -1) {
     // using mint = typename FPS::value_type;
     if (deg == -1) deg = (int)f.size();
     if ((int)f.size() == 0) return FPS(deg, mint(0));
@@ -32,9 +31,7 @@ FPS sqrt(const FPS &f, int deg = -1) {
     assert(sqr * sqr % mint::getmod() == f[0].val());
     FPS ret = {mint(sqr)};
     mint inv2 = mint(2).inv();
-    for (int i = 1; i < deg; i <<= 1) {
-        ret = (ret + f.pre(i << 1) * ret.inv(i << 1)) * inv2;
-    }
+    for (int i = 1; i < deg; i <<= 1) { ret = (ret + f.pre(i << 1) * ret.inv(i << 1)) * inv2; }
     return ret.pre(deg);
 }
 

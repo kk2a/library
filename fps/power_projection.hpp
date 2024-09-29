@@ -35,23 +35,18 @@ FPS power_projection(const FPS &f, const FPS &g = {1}, int m = -1) {
                 r *= w;
             }
             buf2.but();
-            std::copy(
-                std::begin(buf2), std::end(buf2), std::back_inserter(buf));
+            std::copy(std::begin(buf2), std::end(buf2), std::back_inserter(buf));
         };
 
         np.clear(), nq.clear();
         for (int i = 0; i <= n; i++) {
             buf.resize(k);
-            std::copy(std::begin(p) + i * k,
-                      std::begin(p) + (i + 1) * k,
-                      std::begin(buf));
+            std::copy(std::begin(p) + i * k, std::begin(p) + (i + 1) * k, std::begin(buf));
             db();
             std::copy(std::begin(buf), std::end(buf), std::back_inserter(np));
 
             buf.resize(k);
-            std::copy(std::begin(q) + i * k,
-                      std::begin(q) + (i + 1) * k,
-                      std::begin(buf));
+            std::copy(std::begin(q) + i * k, std::begin(q) + (i + 1) * k, std::begin(buf));
             if (i == 0) {
                 for (int j = 0; j < k; j++) buf[j] -= 1;
                 db();
@@ -97,8 +92,7 @@ FPS power_projection(const FPS &f, const FPS &g = {1}, int m = -1) {
                 }
                 std::swap(p1, buf);
             } else {
-                for (int i = 0; i < h; i++)
-                    p1[i] = (p1[i * 2] + p1[i * 2 + 1]) * inv2;
+                for (int i = 0; i < h; i++) p1[i] = (p1[i * 2] + p1[i * 2 + 1]) * inv2;
             }
             p1.resize(h);
             q1.resize(h);

@@ -17,9 +17,7 @@ std::vector<mint> SamplePointShift(std::vector<mint> &y, mint t, int m = -1) {
         for (long long i = tval; i <= k and ptr < m; i++) { ret[ptr++] = y[i]; }
         if (k + 1 < tval + m) {
             auto suf = SamplePointShift<FPS>(y, mint(k + 1), m - ptr);
-            for (int i = k + 1; i < tval + m; i++) {
-                ret[ptr++] = suf[i - (k + 1)];
-            }
+            for (int i = k + 1; i < tval + m; i++) { ret[ptr++] = suf[i - (k + 1)]; }
         }
         return ret;
     }

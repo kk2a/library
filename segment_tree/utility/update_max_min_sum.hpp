@@ -8,14 +8,13 @@
 namespace kk2 {
 
 template <class S>
-using UpdateMaxMinSum =
-    LazySegTree<monoid::MaxMinSum<S>,
-                monoid::MaxMinSumOp<S>,
-                monoid::MaxMinSumUnit<S>,
-                homomorphism::Update<S>,
-                homomorphism::UpdateMap<S, monoid::MaxMinSum<S>>,
-                homomorphism::UpdateComposition<S>,
-                homomorphism::UpdateUnit<S>>;
+using UpdateMaxMinSum = LazySegTree<monoid::MaxMinSum<S>,
+                                    monoid::MaxMinSumOp<S>,
+                                    monoid::MaxMinSumUnit<S>,
+                                    homomorphism::Update<S>,
+                                    homomorphism::UpdateMap<S, monoid::MaxMinSum<S>>,
+                                    homomorphism::UpdateComposition<S>,
+                                    homomorphism::UpdateUnit<S>>;
 
 } // namespace kk2
 

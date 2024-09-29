@@ -12,8 +12,7 @@ namespace kk2 {
 
 struct Mo {
     Mo(int n_, int q_) : n(n_), q(q_), ord(q) {
-        word_size =
-            std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
+        word_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
         std::iota(ord.begin(), ord.end(), 0);
         queries.reserve(q);
     }
@@ -23,8 +22,7 @@ struct Mo {
           q(queries_.size()),
           ord(q),
           queries(queries_) {
-        word_size =
-            std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
+        word_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
         std::iota(ord.begin(), ord.end(), 0);
     }
 
@@ -33,9 +31,7 @@ struct Mo {
         queries.emplace_back(l, r);
     }
 
-    void add_query(const std::pair<int, int> &p) {
-        add_query(p.first, p.second);
-    }
+    void add_query(const std::pair<int, int> &p) { add_query(p.first, p.second); }
 
     template <typename IL, typename IR, typename EL, typename ER, typename F>
     void calculate(const IL &insert_left,

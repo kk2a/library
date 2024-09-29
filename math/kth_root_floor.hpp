@@ -25,8 +25,7 @@ uint64_t kth_root_floor_inner(uint64_t a, int k) {
 }
 
 // return floor(a ^ {1/k})
-template <class return_type = uint64_t, class T, class U>
-return_type kth_root_floor(T a, U k) {
+template <class return_type = uint64_t, class T, class U> return_type kth_root_floor(T a, U k) {
     return (return_type)kth_root_floor_inner((uint64_t)a, (int)k);
 }
 
@@ -45,8 +44,7 @@ uint64_t kth_root_ceil_inner(uint64_t a, int k) {
 }
 
 // return ceil(a ^ {1/k})
-template <class return_type = uint64_t, class T, class U>
-return_type kth_root_ceil(T a, U k) {
+template <class return_type = uint64_t, class T, class U> return_type kth_root_ceil(T a, U k) {
     return (return_type)kth_root_ceil_inner((uint64_t)a, (int)k);
 }
 

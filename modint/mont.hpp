@@ -35,13 +35,10 @@ template <int p> struct LazyMontgomeryModInt {
 
     constexpr LazyMontgomeryModInt() : _v(0) {}
 
-    template <typename T,
-              std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
+    template <typename T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
     constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p) * n2)) {}
 
-    static constexpr u32 reduce(const u64 &b) {
-        return (b + u64(u32(b) * u32(-r)) * p) >> 32;
-    }
+    static constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }
 
     constexpr mint &operator++() { return *this += 1; }
 
@@ -89,66 +86,50 @@ template <int p> struct LazyMontgomeryModInt {
         return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);
     }
 
-    friend constexpr mint operator+(const mint &a, const mint &b) {
-        return mint(a) += b;
-    }
+    friend constexpr mint operator+(const mint &a, const mint &b) { return mint(a) += b; }
 
-    template <class T,
-              std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
     friend constexpr mint operator+(const mint &a, T b) {
         return mint(a) += mint(b);
     }
 
-    template <class T,
-              std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
     friend constexpr mint operator+(T a, const mint &b) {
         return mint(a) += b;
     }
 
-    friend constexpr mint operator-(const mint &a, const mint &b) {
-        return mint(a) -= b;
-    }
+    friend constexpr mint operator-(const mint &a, const mint &b) { return mint(a) -= b; }
 
-    template <class T,
-              std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
     friend constexpr mint operator-(const mint &a, T b) {
         return mint(a) -= mint(b);
     }
 
-    template <class T,
-              std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
     friend constexpr mint operator-(T a, const mint &b) {
         return mint(a) -= b;
     }
 
-    friend constexpr mint operator*(const mint &a, const mint &b) {
-        return mint(a) *= b;
-    }
+    friend constexpr mint operator*(const mint &a, const mint &b) { return mint(a) *= b; }
 
-    template <class T,
-              std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
     friend constexpr mint operator*(const mint &a, T b) {
         return mint(a) *= mint(b);
     }
 
-    template <class T,
-              std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
     friend constexpr mint operator*(T a, const mint &b) {
         return mint(a) *= b;
     }
 
-    friend constexpr mint operator/(const mint &a, const mint &b) {
-        return mint(a) /= b;
-    }
+    friend constexpr mint operator/(const mint &a, const mint &b) { return mint(a) /= b; }
 
-    template <class T,
-              std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
     friend constexpr mint operator/(const mint &a, T b) {
         return mint(a) /= mint(b);
     }
 
-    template <class T,
-              std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>
     friend constexpr mint operator/(T a, const mint &b) {
         return mint(a) /= b;
     }
@@ -165,9 +146,7 @@ template <int p> struct LazyMontgomeryModInt {
 
     constexpr mint inv() const { return pow(p - 2); }
 
-    friend std::ostream &operator<<(std::ostream &os, const mint &x) {
-        return os << x.val();
-    }
+    friend std::ostream &operator<<(std::ostream &os, const mint &x) { return os << x.val(); }
 
     friend std::istream &operator>>(std::istream &is, mint &x) {
         i64 t;

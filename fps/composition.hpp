@@ -28,30 +28,23 @@ FPS composition(const FPS &f_, const FPS &g_, int deg = -1) {
         }
         FPS nq(4 * h * k), nr(2 * h * k);
         for (int i = 0; i < k; i++) {
-            std::copy(std::begin(q) + i * h,
-                      std::begin(q) + i * h + n + 1,
-                      std::begin(nq) + i * 2 * h);
+            std::copy(
+                std::begin(q) + i * h, std::begin(q) + i * h + n + 1, std::begin(nq) + i * 2 * h);
         }
         nq[k * 2 * h] += 1;
         nq.but();
         for (int i = 0; i < 4 * h * k; i += 2) std::swap(nq[i], nq[i + 1]);
-        for (int i = 0; i < 2 * h * k; i++) {
-            nr[i] = nq[i * 2] * nq[i * 2 + 1];
-        }
+        for (int i = 0; i < 2 * h * k; i++) { nr[i] = nq[i * 2] * nq[i * 2 + 1]; }
         nr.ibut();
         nr[0] -= 1;
         q.assign(h * k, 0);
         for (int i = 0; i < 2 * k; i++) {
-            for (int j = 0; j <= n / 2; j++) {
-                q[i * h / 2 + j] = nr[i * h + j];
-            }
+            for (int j = 0; j <= n / 2; j++) { q[i * h / 2 + j] = nr[i * h + j]; }
         }
         auto p = self(self, q, n / 2, h / 2, k * 2);
         FPS np(4 * h * k);
         for (int i = 0; i < 2 * k; i++) {
-            for (int j = 0; j <= n / 2; j++) {
-                np[i * 2 * h + j * 2 + n % 2] = p[i * h / 2 + j];
-            }
+            for (int j = 0; j <= n / 2; j++) { np[i * 2 * h + j * 2 + n % 2] = p[i * h / 2 + j]; }
         }
         np.but();
         for (int i = 1; i < 4 * h * k; i <<= 1) {

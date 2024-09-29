@@ -36,10 +36,8 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
     ArbitraryLazyMontgomeryModIntBase() : _v(0) {}
 
-    template <class T,
-              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
-    ArbitraryLazyMontgomeryModIntBase(const T &b)
-        : _v(reduce(ULong(b % mod + mod) * n2)) {}
+    template <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b % mod + mod) * n2)) {}
 
     static UInt reduce(const ULong &b) {
         return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;
@@ -67,56 +65,48 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
     friend mint operator+(const mint &a, const mint &b) { return mint(a) += b; }
 
-    template <class T,
-              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
     friend mint operator+(const mint &a, T b) {
         return mint(a) += mint(b);
     }
 
-    template <class T,
-              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
     friend mint operator+(T a, const mint &b) {
         return mint(a) += b;
     }
 
     friend mint operator-(const mint &a, const mint &b) { return mint(a) -= b; }
 
-    template <class T,
-              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
     friend mint operator-(const mint &a, T b) {
         return mint(a) -= mint(b);
     }
 
-    template <class T,
-              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
     friend mint operator-(T a, const mint &b) {
         return mint(a) -= b;
     }
 
     friend mint operator*(const mint &a, const mint &b) { return mint(a) *= b; }
 
-    template <class T,
-              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
     friend mint operator*(const mint &a, T b) {
         return mint(a) *= mint(b);
     }
 
-    template <class T,
-              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
     friend mint operator*(T a, const mint &b) {
         return mint(a) *= b;
     }
 
     friend mint operator/(const mint &a, const mint &b) { return mint(a) /= b; }
 
-    template <class T,
-              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
     friend mint operator/(const mint &a, T b) {
         return mint(a) /= mint(b);
     }
 
-    template <class T,
-              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
+    template <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>
     friend mint operator/(T a, const mint &b) {
         return mint(a) /= b;
     }
@@ -154,9 +144,7 @@ struct ArbitraryLazyMontgomeryModIntBase {
         return mint(m0);
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const mint &x) {
-        return os << x.val();
-    }
+    friend std::ostream &operator<<(std::ostream &os, const mint &x) { return os << x.val(); }
 
     friend std::istream &operator>>(std::istream &is, mint &x) {
         Long t;
@@ -175,19 +163,11 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
 template <int id>
 using ArbitraryLazyMontgomeryModInt =
-    ArbitraryLazyMontgomeryModIntBase<int,
-                                      unsigned int,
-                                      long long,
-                                      unsigned long long,
-                                      id>;
+    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned long long, id>;
 
 template <int id>
 using ArbitraryLazyMontgomeryModInt64bit =
-    ArbitraryLazyMontgomeryModIntBase<long long,
-                                      unsigned long long,
-                                      __int128_t,
-                                      __uint128_t,
-                                      id>;
+    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t, __uint128_t, id>;
 
 } // namespace kk2
 

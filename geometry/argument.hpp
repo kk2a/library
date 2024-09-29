@@ -26,9 +26,7 @@ template <class T> struct ArgumentSort {
     static bool cmp(const Point<T> &a, const Point<T> &b) {
         int loc_a = location(a), loc_b = location(b);
         i64 cr = cross(a, b, O);
-        return loc_a != loc_b ? loc_a < loc_b :
-               cr == 0        ? norm(a, O) < norm(b, O) :
-                                cr > 0;
+        return loc_a != loc_b ? loc_a < loc_b : cr == 0 ? norm(a, O) < norm(b, O) : cr > 0;
     }
 
   public:
@@ -37,8 +35,7 @@ template <class T> struct ArgumentSort {
     }
 
     template <class ForwardIt>
-    static ForwardIt
-    min_up_argument(ForwardIt first, ForwardIt last, const Point<T> &p) {
+    static ForwardIt min_up_argument(ForwardIt first, ForwardIt last, const Point<T> &p) {
         return std::lower_bound(first, last, p, cmp);
     }
 };

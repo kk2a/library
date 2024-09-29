@@ -7,8 +7,7 @@
 namespace kk2 {
 
 template <class S>
-using StaticRMQ =
-    SparseTable<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<S>>;
+using StaticRMQ = SparseTable<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<S>>;
 
 } // namespace kk2
 

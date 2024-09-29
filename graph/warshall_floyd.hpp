@@ -39,16 +39,13 @@ template <class WG, class T = typename WG::value_type> struct WarshallFroyd {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     if (d[i][k].cost == inf || d[k][j].cost == inf) continue;
-                    d[i][j].cost =
-                        std::min(d[i][j].cost, d[i][k].cost + d[k][j].cost);
+                    d[i][j].cost = std::min(d[i][j].cost, d[i][k].cost + d[k][j].cost);
                 }
             }
         }
     }
 
-    T operator()(int i, int j) const {
-        return d[i][j].cost == inf ? -1 : d[i][j].cost;
-    }
+    T operator()(int i, int j) const { return d[i][j].cost == inf ? -1 : d[i][j].cost; }
 };
 
 } // namespace kk2

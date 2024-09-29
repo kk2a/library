@@ -6,8 +6,7 @@
 
 namespace kk2 {
 
-template <class S>
-using SumSeg = SegTree<group::Sum<S>, group::SumOp<S>, group::SumUnit<S>>;
+template <class S> using SumSeg = SegTree<group::Sum<S>, group::SumOp<S>, group::SumUnit<S>>;
 
 } // namespace kk2
 

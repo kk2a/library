@@ -7,8 +7,7 @@
 namespace kk2 {
 
 template <class mint>
-FormalPowerSeries<mint> &
-FormalPowerSeries<mint>::operator*=(const FormalPowerSeries<mint> &r) {
+FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(const FormalPowerSeries<mint> &r) {
     if (this->empty() || r.empty()) {
         this->clear();
         return *this;
@@ -33,8 +32,7 @@ template <class mint> int FormalPowerSeries<mint>::but_pr() {
     return primitive_root<mint::getmod()>;
 }
 
-template <class mint>
-FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
+template <class mint> FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
     assert((*this)[0] != mint(0));
     if (deg == -1) deg = (int)this->size();
     FormalPowerSeries<mint> res(deg);
@@ -58,8 +56,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
     return res.pre(deg);
 }
 
-template <class mint>
-FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
+template <class mint> FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
     assert(this->empty() || (*this)[0] == mint(0));
     if (deg == -1) deg = (int)this->size();
     FormalPowerSeries<mint> inv;
@@ -86,8 +83,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
         z2.resize(m << 1);
         z2.but();
 
-        FormalPowerSeries<mint> x(
-            this->begin(), this->begin() + std::min<int>(this->size(), m));
+        FormalPowerSeries<mint> x(this->begin(), this->begin() + std::min<int>(this->size(), m));
         x.resize(m);
         x.inplace_diff();
         x.push_back(mint(0));
@@ -105,8 +101,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
         x.ibut();
         x.pop_back();
         x.inplace_int();
-        for (int i = m; i < std::min<int>(this->size(), m << 1); i++)
-            x[i] += (*this)[i];
+        for (int i = m; i < std::min<int>(this->size(), m << 1); i++) x[i] += (*this)[i];
         std::fill(std::begin(x), std::begin(x) + m, mint(0));
         x.but();
         x.inplace_dot(y);

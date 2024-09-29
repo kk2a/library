@@ -17,8 +17,7 @@ template <class S, S (*op)(S, S), S (*e)()> struct SparseTable {
         for (int i = 0; i < _n; i++) table[0][i] = v[i];
         for (int i = 1; i <= log; i++) {
             for (int j = 0; j + (1 << i) <= _n; j++) {
-                table[i][j] =
-                    op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
+                table[i][j] = op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
             }
         }
     }

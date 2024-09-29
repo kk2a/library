@@ -16,11 +16,7 @@ template <class FPS> struct mat_poly {
 
     mat_poly() = default;
 
-    mat_poly(FPS a00_, FPS a01_, FPS a10_, FPS a11_)
-        : a00(a00_),
-          a01(a01_),
-          a10(a10_),
-          a11(a11_) {}
+    mat_poly(FPS a00_, FPS a01_, FPS a10_, FPS a11_) : a00(a00_), a01(a01_), a10(a10_), a11(a11_) {}
 
     mat_poly &operator*=(const mat_poly &r) {
         FPS A00 = a00 * r.a00 + a01 * r.a10;
@@ -38,15 +34,12 @@ template <class FPS> struct mat_poly {
         return *this;
     }
 
-    static mat_poly identity() {
-        return mat_poly(FPS{1}, FPS(), FPS(), FPS{1});
-    }
+    static mat_poly identity() { return mat_poly(FPS{1}, FPS(), FPS(), FPS{1}); }
 
     mat_poly operator*(const mat_poly &r) const { return mat_poly(*this) *= r; }
 };
 
-template <class FPS>
-Vec<FPS> operator*(const mat_poly<FPS> &a, const Vec<FPS> &b) {
+template <class FPS> Vec<FPS> operator*(const mat_poly<FPS> &a, const Vec<FPS> &b) {
     FPS x0 = a.a00 * b[0] + a.a01 * b[1];
     FPS x1 = a.a10 * b[0] + a.a11 * b[1];
     x0.shrink();

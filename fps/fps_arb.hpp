@@ -23,8 +23,7 @@ template <class mint> int FormalPowerSeries<mint>::but_pr() {
 }
 
 template <class mint>
-FormalPowerSeries<mint> &
-FormalPowerSeries<mint>::operator*=(const FormalPowerSeries<mint> &r) {
+FormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(const FormalPowerSeries<mint> &r) {
     if (this->empty() || r.empty()) {
         this->clear();
         return *this;
@@ -33,8 +32,7 @@ FormalPowerSeries<mint>::operator*=(const FormalPowerSeries<mint> &r) {
     return *this;
 }
 
-template <class mint>
-FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
+template <class mint> FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
     assert((*this)[0] != mint(0));
     if (deg == -1) deg = this->size();
     FormalPowerSeries<mint> res{(*this)[0].inv()};
@@ -44,8 +42,7 @@ FormalPowerSeries<mint> FormalPowerSeries<mint>::inv(int deg) const {
     return res.pre(deg);
 }
 
-template <class mint>
-FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
+template <class mint> FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const {
     assert(this->empty() || (*this)[0] == mint(0));
     if (deg == -1) deg = this->size();
     FormalPowerSeries<mint> ret{mint(1)};

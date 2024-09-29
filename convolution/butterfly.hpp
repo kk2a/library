@@ -7,8 +7,7 @@
 
 namespace kk2 {
 
-template <class FPS, class mint = typename FPS::value_type>
-void butterfly(FPS &a) {
+template <class FPS, class mint = typename FPS::value_type> void butterfly(FPS &a) {
     static int g = primitive_root<mint::getmod()>;
     int n = int(a.size());
     int h = 0;
@@ -53,8 +52,7 @@ void butterfly(FPS &a) {
                     a[i + offset] = l + r;
                     a[i + offset + p] = l - r;
                 }
-                if (s + 1 != (1 << len))
-                    rot *= sum_e2[__builtin_ctz(~(unsigned int)(s))];
+                if (s + 1 != (1 << len)) rot *= sum_e2[__builtin_ctz(~(unsigned int)(s))];
             }
             len++;
         } else {
@@ -75,16 +73,14 @@ void butterfly(FPS &a) {
                     a[i + offset + p * 2] = a0 - a2 + a1na3imag;
                     a[i + offset + p * 3] = a0 - a2 - a1na3imag;
                 }
-                if (s + 1 != (1 << len))
-                    rot *= sum_e3[__builtin_ctz(~(unsigned int)(s))];
+                if (s + 1 != (1 << len)) rot *= sum_e3[__builtin_ctz(~(unsigned int)(s))];
             }
             len += 2;
         }
     }
 }
 
-template <class FPS, class mint = typename FPS::value_type>
-void butterfly_inv(FPS &a) {
+template <class FPS, class mint = typename FPS::value_type> void butterfly_inv(FPS &a) {
     static constexpr int g = primitive_root<mint::getmod()>;
     int n = int(a.size());
     int h = 0;
@@ -133,8 +129,7 @@ void butterfly_inv(FPS &a) {
                     a[i + offset] = l + r;
                     a[i + offset + p] = (l - r) * irot;
                 }
-                if (s + 1 != (1 << (len - 1)))
-                    irot *= sum_ie2[__builtin_ctz(~(unsigned int)(s))];
+                if (s + 1 != (1 << (len - 1))) irot *= sum_ie2[__builtin_ctz(~(unsigned int)(s))];
             }
             len--;
         } else {
@@ -156,8 +151,7 @@ void butterfly_inv(FPS &a) {
                     a[i + offset + p * 2] = (a0 + a1 - a2 - a3) * irot2;
                     a[i + offset + p * 3] = (a0 - a1 - a2na3iimag) * irot3;
                 }
-                if (s + 1 != (1 << (len - 2)))
-                    irot *= sum_ie3[__builtin_ctz(~(unsigned int)(s))];
+                if (s + 1 != (1 << (len - 2))) irot *= sum_ie3[__builtin_ctz(~(unsigned int)(s))];
             }
             len -= 2;
         }
@@ -166,14 +160,12 @@ void butterfly_inv(FPS &a) {
     for (int i = 0; i < n; i++) a[i] *= invn[h];
 }
 
-template <class FPS, class mint = typename FPS::value_type>
-void doubling(FPS &a) {
+template <class FPS, class mint = typename FPS::value_type> void doubling(FPS &a) {
     int n = a.size();
     auto b = a;
     int z = 1;
     butterfly_inv(b);
-    mint r = 1, zeta = mint(primitive_root<mint::getmod()>)
-                           .pow((mint::getmod() - 1) / (n << 1));
+    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).pow((mint::getmod() - 1) / (n << 1));
     for (int i = 0; i < n; i++) {
         b[i] *= r;
         r *= zeta;

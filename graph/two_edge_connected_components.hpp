@@ -22,8 +22,7 @@ template <class G> struct TwoEdgeConnectedComponents : LowLink<G> {
         int k = 0;
         std::vector<typename G::edge_type> bridges;
         auto dfs = [&](auto self, int now, int par, int ei) -> void {
-            if (par != -1 && this->ord[par] >= this->low[now])
-                comp[now] = comp[par];
+            if (par != -1 && this->ord[par] >= this->low[now]) comp[now] = comp[par];
             else {
                 comp[now] = k++;
                 if (par != -1) bridges.emplace_back((this->g).edges[ei]);

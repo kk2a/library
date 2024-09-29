@@ -36,8 +36,7 @@ bool miller_rabin_u64(unsigned long long n) {
 }
 
 template <class mint>
-bool miller_rabin_mont(unsigned long long n,
-                       const std::vector<unsigned long long> &ws) {
+bool miller_rabin_mont(unsigned long long n, const std::vector<unsigned long long> &ws) {
     if (n <= 2) return n == 2;
     if (~n & 1) return false;
 
@@ -67,8 +66,7 @@ bool is_prime(unsigned long long n) {
     if (n < (1ull << 30)) {
         return miller_rabin_mont<mint32>(n, {2, 7, 61});
     } else if (n < (1ull << 62)) {
-        return miller_rabin_mont<mint64>(
-            n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});
+        return miller_rabin_mont<mint64>(n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});
     } else {
         return miller_rabin_u64(n);
     }

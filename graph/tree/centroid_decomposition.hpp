@@ -22,9 +22,7 @@ template <class G> struct CentroidDecomposition {
         if (isbuild) build();
     }
 
-    void build() {
-        root = build_dfs(0);
-    }
+    void build() { root = build_dfs(0); }
 
     int get_size(int now, int par) {
         subsize[now] = 1;

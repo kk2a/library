@@ -72,8 +72,7 @@ constexpr std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
 }
 
 template <class S, class... Args>
-constexpr std::vector<std::vector<monoid::Min<S>>>
-GetVecMin2D(int h, int w, Args... args) {
+constexpr std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int h, int w, Args... args) {
     return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w, args...));
 }
 

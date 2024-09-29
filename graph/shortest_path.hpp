@@ -14,8 +14,7 @@ template <class WG, class T = typename WG::value_type> struct ShortestPath {
 
     int num_vertices() { return _n; }
 
-    std::pair<std::vector<T>, std::vector<int>>
-    query(int start, T e = _ZERO, T inf = _INF) {
+    std::pair<std::vector<T>, std::vector<int>> query(int start, T e = _ZERO, T inf = _INF) {
         T alt;
         std::vector<T> dist(_n, inf);
         std::vector<int> prev(_n, -1);

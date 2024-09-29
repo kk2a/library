@@ -9,8 +9,7 @@ namespace kk2 {
 // A is an abelian group
 // A must have operator+ and operator-
 // A() must return unit element
-template <class A>
-struct PotentializedUnionfind {
+template <class A> struct PotentializedUnionfind {
   private:
     std::vector<int> d;
     std::vector<A> diff_weight;
@@ -55,13 +54,12 @@ struct PotentializedUnionfind {
     A diff(int a, int b) { return -weight(a) + weight(b); }
 };
 
-template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)>
-struct EasyAbelianGroup {
+template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyAbelianGroup {
     A val;
+
     EasyAbelianGroup() : val(e()) {}
 
-    template <class... Args>
-    EasyAbelianGroup(Args... args) : val(args...) {}
+    template <class... Args> EasyAbelianGroup(Args... args) : val(args...) {}
 
     EasyAbelianGroup operator+(const EasyAbelianGroup &rhs) const {
         return EasyAbelianGroup(op(val, rhs.val));

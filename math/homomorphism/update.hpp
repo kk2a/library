@@ -28,8 +28,7 @@ template <class S, class T> constexpr T UpdateMap(Update<S> f, T x) {
     return f.id ? x : x.update(f.a);
 }
 
-template <class S>
-constexpr Update<S> UpdateComposition(Update<S> l, Update<S> r) {
+template <class S> constexpr Update<S> UpdateComposition(Update<S> l, Update<S> r) {
     if (l.id) return r;
     return l;
 }

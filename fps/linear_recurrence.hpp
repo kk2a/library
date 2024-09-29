@@ -26,9 +26,7 @@ mint BostanMori(const FPS &p, const FPS &q, long long n) {
     p2 *= mq;
     FPS q2 = q * mq;
     FPS pp(qsz - 1), qq(qsz);
-    for (int i = 0; i < qsz - 1; i++) {
-        pp[i] = (n & 1) ? p2[2 * i + 1] : p2[2 * i];
-    }
+    for (int i = 0; i < qsz - 1; i++) { pp[i] = (n & 1) ? p2[2 * i + 1] : p2[2 * i]; }
     for (int i = 0; i < qsz; i++) { qq[i] = q2[2 * i]; }
     return BostanMori(pp, qq, n >> 1);
 }

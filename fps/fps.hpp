@@ -264,9 +264,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
 
         int zero = 0;
         while (zero != int(this->size()) && (*this)[zero] == mint(0)) zero++;
-        if (zero == int(this->size()) || __int128_t(zero) * k >= deg) {
-            return FPS(deg, mint(0));
-        }
+        if (zero == int(this->size()) || __int128_t(zero) * k >= deg) { return FPS(deg, mint(0)); }
         if (zero != 0) {
             FPS suf(this->begin() + zero, this->end());
             auto g = suf.sparse_pow(k, deg - zero * k);

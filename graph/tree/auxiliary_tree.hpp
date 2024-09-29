@@ -17,18 +17,15 @@ template <typename G> struct AuxiliaryTree {
 
     AuxiliaryTree(const G &g_, int root_ = 0) : g(g_), hld(g, root_) {}
 
-    std::pair<std::vector<std::vector<int>>, std::vector<int>>
-    get(std::vector<int> ps) {
+    std::pair<std::vector<std::vector<int>>, std::vector<int>> get(std::vector<int> ps) {
         if (ps.empty()) return {};
-        std::sort(std::begin(ps), std::end(ps), [&](int i, int j) {
-            return hld.in[i] < hld.in[j];
-        });
+        std::sort(
+            std::begin(ps), std::end(ps), [&](int i, int j) { return hld.in[i] < hld.in[j]; });
         for (int i = 0, ps_size = ps.size(); i < ps_size - 1; i++) {
             ps.push_back(hld.lca(ps[i], ps[i + 1]));
         }
-        std::sort(std::begin(ps), std::end(ps), [&](int i, int j) {
-            return hld.in[i] < hld.in[j];
-        });
+        std::sort(
+            std::begin(ps), std::end(ps), [&](int i, int j) { return hld.in[i] < hld.in[j]; });
         ps.erase(std::unique(std::begin(ps), std::end(ps)), std::end(ps));
 
         std::vector<std::vector<int>> aux(ps.size());

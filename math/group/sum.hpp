@@ -76,8 +76,7 @@ constexpr std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {
 }
 
 template <class S, class... Args>
-constexpr std::vector<std::vector<group::Sum<S>>>
-GetVecSum2D(int h, int w, Args... args) {
+constexpr std::vector<std::vector<group::Sum<S>>> GetVecSum2D(int h, int w, Args... args) {
     return std::vector<std::vector<group::Sum<S>>>(h, GetVecSum<S>(w, args...));
 }
 

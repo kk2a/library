@@ -28,8 +28,7 @@ template <class G> struct BCC : LowLink<G> {
                 if (e.id == ei) continue;
                 if (this->used[e.id]) {
                     int nk = k;
-                    if (this->low[e.to] >= this->ord[u])
-                        nk = bc_e.size(), bc_e.emplace_back();
+                    if (this->low[e.to] >= this->ord[u]) nk = bc_e.size(), bc_e.emplace_back();
                     add(e.id, nk);
                     self(self, e.to, nk, e.id);
                 }

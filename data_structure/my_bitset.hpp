@@ -53,57 +53,42 @@ struct DynamicBitSet {
         UInt end_mask = ~start_mask;
         for (int i = 0; i < (rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             UInt x = rhs.block[i];
-            block[i + (n >> BLOCK_SIZE_LOG)] |= (x & start_mask)
-                                                << (BLOCK_SIZE - start);
-            if (i + (n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1)
-                >> BLOCK_SIZE_LOG)
+            block[i + (n >> BLOCK_SIZE_LOG)] |= (x & start_mask) << (BLOCK_SIZE - start);
+            if (i + (n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG)
                 block[i + (n >> BLOCK_SIZE_LOG) + 1] |= (x & end_mask) >> start;
         }
         n += rhs.n;
         return *this;
     }
 
-    T combine_top(const T &rhs) const {
-        return T(*this).inplace_combine_top(rhs);
-    }
+    T combine_top(const T &rhs) const { return T(*this).inplace_combine_top(rhs); }
 
     T &inplace_combine_bottom(const T &rhs) {
         block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         if (!(rhs.n & BLOCK_MASK)) {
-            std::copy(std::begin(block),
-                      std::end(block),
-                      std::begin(block) + (rhs.n >> BLOCK_SIZE_LOG));
             std::copy(
-                std::begin(rhs.block), std::end(rhs.block), std::begin(block));
+                std::begin(block), std::end(block), std::begin(block) + (rhs.n >> BLOCK_SIZE_LOG));
+            std::copy(std::begin(rhs.block), std::end(rhs.block), std::begin(block));
             n += rhs.n;
             return *this;
         }
         int start = BLOCK_SIZE - (rhs.n & BLOCK_MASK);
         UInt start_mask = (ONE << start) - 1;
         UInt end_mask = ~start_mask;
-        for (int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) - 1; i >= 0;
-             --i) {
+        for (int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) - 1; i >= 0; --i) {
             UInt x = block[i];
-            block[i + (rhs.n >> BLOCK_SIZE_LOG)] |= (x & start_mask)
-                                                    << (BLOCK_SIZE - start);
-            if (i + (rhs.n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1)
-                >> BLOCK_SIZE_LOG)
-                block[i + (rhs.n >> BLOCK_SIZE_LOG) + 1] |=
-                    (x & end_mask) >> start;
+            block[i + (rhs.n >> BLOCK_SIZE_LOG)] |= (x & start_mask) << (BLOCK_SIZE - start);
+            if (i + (rhs.n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG)
+                block[i + (rhs.n >> BLOCK_SIZE_LOG) + 1] |= (x & end_mask) >> start;
         }
         block[(rhs.n >> BLOCK_SIZE_LOG)] =
-            ((block[0] & start_mask) << (BLOCK_SIZE - start))
-            | rhs.block.back();
-        std::copy(std::begin(rhs.block),
-                  std::prev(std::end(rhs.block)),
-                  std::begin(block));
+            ((block[0] & start_mask) << (BLOCK_SIZE - start)) | rhs.block.back();
+        std::copy(std::begin(rhs.block), std::prev(std::end(rhs.block)), std::begin(block));
         n += rhs.n;
         return *this;
     }
 
-    T combine_bottom(const T &rhs) const {
-        return T(*this).inplace_combine_bottom(rhs);
-    }
+    T combine_bottom(const T &rhs) const { return T(*this).inplace_combine_bottom(rhs); }
 
     void set(int i, int x) {
         assert(0 <= i && i < n);
@@ -116,8 +101,7 @@ struct DynamicBitSet {
         for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             int r = n - (i << BLOCK_SIZE_LOG), l = std::max(0, r - BLOCK_SIZE);
             block[i] = 0;
-            for (int j = l; j < r; j++)
-                block[i] = (block[i] << 1) | (s[j] - '0');
+            for (int j = l; j < r; j++) block[i] = (block[i] << 1) | (s[j] - '0');
         }
     }
 
@@ -126,8 +110,7 @@ struct DynamicBitSet {
         for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
             int l = i << BLOCK_SIZE_LOG, r = std::min(n, l + BLOCK_SIZE);
             block[i] = 0;
-            for (int j = r - 1; j >= l; --j)
-                block[i] = (block[i] << 1) | (s[j] - '0');
+            for (int j = r - 1; j >= l; --j) block[i] = (block[i] << 1) | (s[j] - '0');
         }
     }
 
@@ -136,13 +119,9 @@ struct DynamicBitSet {
         int idx;
 
       public:
-        BitReference(std::vector<UInt> &block_, int idx_)
-            : block(block_),
-              idx(idx_) {}
+        BitReference(std::vector<UInt> &block_, int idx_) : block(block_), idx(idx_) {}
 
-        operator bool() const {
-            return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1;
-        }
+        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }
 
         BitReference &operator=(bool x) {
             if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
@@ -151,21 +130,18 @@ struct DynamicBitSet {
         }
 
         BitReference &operator=(const BitReference &other) {
-            if (other)
-                block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
+            if (other) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
             else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
             return *this;
         }
 
         BitReference &operator&=(bool x) {
-            if (!x)
-                block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
+            if (!x) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
             return *this;
         }
 
         BitReference &operator&=(const BitReference &other) {
-            if (!other)
-                block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
+            if (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));
             return *this;
         }
 
@@ -175,8 +151,7 @@ struct DynamicBitSet {
         }
 
         BitReference &operator|=(const BitReference &other) {
-            if (other)
-                block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
+            if (other) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
             return *this;
         }
 
@@ -186,8 +161,7 @@ struct DynamicBitSet {
         }
 
         BitReference &operator^=(const BitReference &other) {
-            if (other)
-                block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);
+            if (other) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);
             return *this;
         }
 
@@ -201,9 +175,7 @@ struct DynamicBitSet {
             return *this;
         }
 
-        bool val() const {
-            return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1;
-        }
+        bool val() const { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }
     };
 
     BitReference operator[](int i) {
@@ -284,10 +256,8 @@ struct DynamicBitSet {
     }
 
     std::string to_string(UInt x) const {
-        return std::bitset<64>((unsigned long long)(x >> (BLOCK_SIZE / 2)))
-                   .to_string()
-               + std::bitset<64>(
-                     (unsigned long long)(x & ((ONE << (BLOCK_SIZE / 2)) - 1)))
+        return std::bitset<64>((unsigned long long)(x >> (BLOCK_SIZE / 2))).to_string()
+               + std::bitset<64>((unsigned long long)(x & ((ONE << (BLOCK_SIZE / 2)) - 1)))
                      .to_string();
     }
 
@@ -302,9 +272,7 @@ struct DynamicBitSet {
             std::reverse(std::begin(tmp.back()), std::end(tmp.back()));
         }
         std::string res;
-        for (int i = (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i--;) {
-            res += tmp[i];
-        }
+        for (int i = (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i--;) { res += tmp[i]; }
         return res;
     }
 
@@ -326,9 +294,7 @@ struct DynamicBitSet {
         return res;
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const T &bs) {
-        return os << bs.to_string();
-    }
+    friend std::ostream &operator<<(std::ostream &os, const T &bs) { return os << bs.to_string(); }
 };
 
 } // namespace kk2

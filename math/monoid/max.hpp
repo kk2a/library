@@ -72,10 +72,8 @@ constexpr std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
 }
 
 template <class S, class... Args>
-constexpr std::vector<std::vector<monoid::Max<S>>>
-GetVecMax2D(int h, int w, Args... args) {
-    return std::vector<std::vector<monoid::Max<S>>>(h,
-                                                    GetVecMax<S>(w, args...));
+constexpr std::vector<std::vector<monoid::Max<S>>> GetVecMax2D(int h, int w, Args... args) {
+    return std::vector<std::vector<monoid::Max<S>>>(h, GetVecMax<S>(w, args...));
 }
 
 } // namespace kk2

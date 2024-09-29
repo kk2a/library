@@ -23,8 +23,7 @@ template <class S, class T> constexpr T AffineMap(Affine<S> f, T x) {
     return x.multiply(f.a).add(f.b);
 }
 
-template <class S>
-constexpr Affine<S> AffineComposition(Affine<S> l, Affine<S> r) {
+template <class S> constexpr Affine<S> AffineComposition(Affine<S> l, Affine<S> r) {
     l.b = l.a * r.b + l.b;
     l.a = l.a * r.a;
     return l;

@@ -12,9 +12,7 @@ namespace kk2 {
 struct SuffixArray {
     SuffixArray() = default;
 
-    SuffixArray(const std::string &s_)
-        : _n((int)s_.size()),
-          _s((int)s_.size()) {
+    SuffixArray(const std::string &s_) : _n((int)s_.size()), _s((int)s_.size()) {
         for (int i = 0; i < _n; ++i) _s[i] = s_[i];
         _upper = 255;
         init();
@@ -29,14 +27,11 @@ struct SuffixArray {
     }
 
     template <class T>
-    SuffixArray(const std::vector<T> &s_)
-        : _n((int)s_.size()),
-          _s((int)s_.size()) {
+    SuffixArray(const std::vector<T> &s_) : _n((int)s_.size()),
+                                            _s((int)s_.size()) {
         std::vector<int> idx(_n);
         std::iota(std::begin(idx), std::end(idx), 0);
-        std::sort(std::begin(idx), std::end(idx), [&](int l, int r) {
-            return s_[l] < s_[r];
-        });
+        std::sort(std::begin(idx), std::end(idx), [&](int l, int r) { return s_[l] < s_[r]; });
         _upper = 0;
         for (int i = 0; i < _n; ++i) {
             if (i && s_[idx[i - 1]] != s_[idx[i]]) _upper++;
@@ -120,8 +115,7 @@ struct SuffixArray {
             std::sort(std::begin(sa), std::end(sa), Compare);
             tmp[sa[0]] = 0;
             for (int i = 1; i < n; i++) {
-                tmp[sa[i]] =
-                    tmp[sa[i - 1]] + (Compare(sa[i - 1], sa[i]) ? 1 : 0);
+                tmp[sa[i]] = tmp[sa[i - 1]] + (Compare(sa[i - 1], sa[i]) ? 1 : 0);
             }
             std::swap(cpy, tmp);
         }
@@ -217,8 +211,7 @@ struct SuffixArray {
                 rec_s[lms_map[sorted_lms[i]]] = rec_upper;
             }
 
-            std::vector<int> rec_sa =
-                sa_is<THRESHOLD_NAIVE, THRESHOLD_DOUBLING>(rec_s, rec_upper);
+            std::vector<int> rec_sa = sa_is<THRESHOLD_NAIVE, THRESHOLD_DOUBLING>(rec_s, rec_upper);
 
             for (int i = 0; i < m; i++) { sorted_lms[i] = lms[rec_sa[i]]; }
             induce(sorted_lms);

@@ -14,28 +14,20 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
         size_h = size_w = 1;
         while (size_h < _h) size_h <<= 1;
         while (size_w < _w) size_w <<= 1;
-        d = std::vector<std::vector<S>>(size_h * 2,
-                                        std::vector<S>(size_w * 2, e()));
+        d = std::vector<std::vector<S>>(size_h * 2, std::vector<S>(size_w * 2, e()));
     }
 
     template <class... Args>
     SegTree2D(int h_, int w_, Args... args)
-        : SegTree2D(
-              std::vector<std::vector<S>>(h_, std::vector<S>(w_, S(args...)))) {
-    }
+        : SegTree2D(std::vector<std::vector<S>>(h_, std::vector<S>(w_, S(args...)))) {}
 
-    SegTree2D(const std::vector<std::vector<S>> &v)
-        : _h(int(v.size())),
-          _w(int(v[0].size())) {
+    SegTree2D(const std::vector<std::vector<S>> &v) : _h(int(v.size())), _w(int(v[0].size())) {
         size_h = size_w = 1;
         while (size_h < _h) size_h <<= 1;
         while (size_w < _w) size_w <<= 1;
-        d = std::vector<std::vector<S>>(size_h * 2,
-                                        std::vector<S>(size_w * 2, e()));
+        d = std::vector<std::vector<S>>(size_h * 2, std::vector<S>(size_w * 2, e()));
         for (int i = 0; i < _h; i++) {
-            for (int j = 0; j < _w; j++) {
-                d[i + size_h][j + size_w] = v[i][j];
-            }
+            for (int j = 0; j < _w; j++) { d[i + size_h][j + size_w] = v[i][j]; }
         }
         for (int j = size_w; j < size_w * 2; j++) {
             for (int i = size_h - 1; i; i--) updatei(i, j);
@@ -57,9 +49,7 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
         }
     }
 
-    template <class... Args> void emplace_set(int i, int j, Args... args) {
-        set(i, j, S(args...));
-    }
+    template <class... Args> void emplace_set(int i, int j, Args... args) { set(i, j, S(args...)); }
 
     S get(int i, int j) {
         assert(0 <= i && i < _h);

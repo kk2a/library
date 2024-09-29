@@ -32,9 +32,7 @@ template <typename G> struct EulerTour {
         return std::make_pair(edge_in[i], edge_out[i]);
     }
 
-    std::pair<int, int> get_node_idx(int u) const {
-        return std::make_pair(in[u], out[u]);
-    }
+    std::pair<int, int> get_node_idx(int u) const { return std::make_pair(in[u], out[u]); }
 
     int lca(int u, int v) const {
         if (in[u] > in[v]) std::swap(u, v);
@@ -44,19 +42,16 @@ template <typename G> struct EulerTour {
     int dist(int u, int v) const {
         int depu = std::pair<int, int>(rmq.get(in[u])).first;
         int depv = std::pair<int, int>(rmq.get(in[v])).first;
-        return depu + depv
-               - 2 * std::pair<int, int>(rmq.get(in[lca(u, v)])).first;
+        return depu + depv - 2 * std::pair<int, int>(rmq.get(in[lca(u, v)])).first;
     }
 
-    template <typename F>
-    void path_query(int u, int v, bool is_node_query, const F &f) {
+    template <typename F> void path_query(int u, int v, bool is_node_query, const F &f) {
         int l = lca(u, v);
         f(in[l] + (int)!is_node_query, in[u] + 1);
         f(in[l] + 1, in[v] + 1);
     }
 
-    template <typename F>
-    void subtree_query(int u, bool is_node_query, const F &f) {
+    template <typename F> void subtree_query(int u, bool is_node_query, const F &f) {
         f(in[u] + (int)!is_node_query, out[u]);
     }
 

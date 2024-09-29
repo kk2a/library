@@ -35,8 +35,7 @@ template <typename T, bool isMin = true> struct CHTAddMonotone {
     template <typename Iterators> static constexpr bool check(Iterators mid) {
         auto [l1, l2, l3] = std::tie(*std::prev(mid), *mid, *std::next(mid));
         if (l2.b == l1.b or l3.b == l2.b)
-            return sgn(l2.a - l1.a) * sgn(l3.b - l2.b)
-                   >= sgn(l3.a - l2.a) * sgn(l2.b - l1.b);
+            return sgn(l2.a - l1.a) * sgn(l3.b - l2.b) >= sgn(l3.a - l2.a) * sgn(l2.b - l1.b);
         if constexpr (is_integral_extended<T>::value) {
             return kk2::fracfloor(l2.b - l1.b, l1.a - l2.a)
                    >= kk2::fracfloor(l3.b - l2.b, l2.a - l3.a);
@@ -68,8 +67,7 @@ template <typename T, bool isMin = true> struct CHTAddMonotone {
                 lines.pop_back();
             }
             lines.emplace_back(l);
-            while ((int)lines.size() >= 3
-                   and check(std::prev(lines.end(), 2))) {
+            while ((int)lines.size() >= 3 and check(std::prev(lines.end(), 2))) {
                 lines.erase(std::prev(lines.end(), 2));
             }
         } else {

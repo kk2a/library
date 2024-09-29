@@ -23,8 +23,7 @@ template <class S> struct MaxMinSum {
           size(1),
           is_unit(is_unit_) {}
 
-    friend std::ostream &operator<<(std::ostream &os,
-                                    const MaxMinSum &maxminSum) {
+    friend std::ostream &operator<<(std::ostream &os, const MaxMinSum &maxminSum) {
         os << maxminSum.sum << " " << maxminSum.max << " " << maxminSum.min;
         return os;
     }
@@ -60,8 +59,7 @@ template <class S> struct MaxMinSum {
     }
 };
 
-template <class S>
-constexpr MaxMinSum<S> MaxMinSumOp(MaxMinSum<S> l, MaxMinSum<S> r) {
+template <class S> constexpr MaxMinSum<S> MaxMinSumOp(MaxMinSum<S> l, MaxMinSum<S> r) {
     if (l.is_unit) return r;
     if (r.is_unit) return l;
     l.sum += r.sum;
@@ -86,8 +84,7 @@ constexpr std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n, Args... args)
 template <class S, class... Args>
 constexpr std::vector<std::vector<monoid::MaxMinSum<S>>>
 GetVecMaxMinSum2D(int h, int w, Args... args) {
-    return std::vector<std::vector<monoid::MaxMinSum<S>>>(
-        h, GetVecMaxMinSum<S>(w, args...));
+    return std::vector<std::vector<monoid::MaxMinSum<S>>>(h, GetVecMaxMinSum<S>(w, args...));
 }
 
 } // namespace kk2

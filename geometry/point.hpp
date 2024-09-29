@@ -13,21 +13,13 @@ template <typename T> struct Point {
 
     Point(T x = 0, T y = 0) : x(x), y(y) {}
 
-    bool operator<(const Point &p) const {
-        return x != p.x ? x < p.x : y < p.y;
-    }
+    bool operator<(const Point &p) const { return x != p.x ? x < p.x : y < p.y; }
 
-    bool operator<=(const Point &p) const {
-        return x != p.x ? x < p.x : y <= p.y;
-    }
+    bool operator<=(const Point &p) const { return x != p.x ? x < p.x : y <= p.y; }
 
-    bool operator>(const Point &p) const {
-        return x != p.x ? x > p.x : y > p.y;
-    }
+    bool operator>(const Point &p) const { return x != p.x ? x > p.x : y > p.y; }
 
-    bool operator>=(const Point &p) const {
-        return x != p.x ? x > p.x : y >= p.y;
-    }
+    bool operator>=(const Point &p) const { return x != p.x ? x > p.x : y >= p.y; }
 
     bool operator==(const Point &p) const { return x == p.x && y == p.y; }
 
@@ -69,9 +61,7 @@ template <typename T> struct Point {
 
     T cross(const Point &p) const { return x * p.y - y * p.x; }
 
-    T cross(const Point &p, const Point &O) const {
-        return (*this - O).cross(p - O);
-    }
+    T cross(const Point &p, const Point &O) const { return (*this - O).cross(p - O); }
 
     T norm() const { return x * x + y * y; }
 
@@ -124,9 +114,7 @@ template <typename T> struct Point {
 
     Point rotate180() const { return Point(-x, -y); }
 
-    Point rotate180(const Point &O) const {
-        return (*this - O).rotate180() + O;
-    }
+    Point rotate180(const Point &O) const { return (*this - O).rotate180() + O; }
 
     Point inplace_rotate270() {
         std::swap(x, y);
@@ -142,17 +130,13 @@ template <typename T> struct Point {
 
     Point rotate270() const { return Point(y, -x); }
 
-    Point rotate270(const Point &O) const {
-        return (*this - O).rotate270() + O;
-    }
+    Point rotate270(const Point &O) const { return (*this - O).rotate270() + O; }
 
     friend T dot(const Point &p, const Point &q) { return p.dot(q); }
 
     friend T cross(const Point &p, const Point &q) { return p.cross(q); }
 
-    friend T cross(const Point &p, const Point &q, const Point &O) {
-        return p.cross(q, O);
-    }
+    friend T cross(const Point &p, const Point &q, const Point &O) { return p.cross(q, O); }
 
     friend T norm(const Point &p) { return p.norm(); }
 
@@ -160,46 +144,33 @@ template <typename T> struct Point {
 
     friend long double abs(const Point &p) { return p.abs(); }
 
-    friend long double dist(const Point &p, const Point &q) {
-        return (p - q).abs();
-    }
+    friend long double dist(const Point &p, const Point &q) { return (p - q).abs(); }
 
     friend long double argument(const Point &p) { return p.argument(); }
 
-    friend long double argument(const Point &p, const Point &q) {
-        return p.argument(q);
-    }
+    friend long double argument(const Point &p, const Point &q) { return p.argument(q); }
 
-    friend long double
-    argument(const Point &p, const Point &q, const Point &O) {
+    friend long double argument(const Point &p, const Point &q, const Point &O) {
         return p.argument(q, O);
     }
 
     friend Point rotate90(const Point &p) { return p.rotate90(); }
 
-    friend Point rotate90(const Point &p, const Point &O) {
-        return p.rotate90(O);
-    }
+    friend Point rotate90(const Point &p, const Point &O) { return p.rotate90(O); }
 
     friend Point rotate180(const Point &p) { return p.rotate180(); }
 
-    friend Point rotate180(const Point &p, const Point &O) {
-        return p.rotate180(O);
-    }
+    friend Point rotate180(const Point &p, const Point &O) { return p.rotate180(O); }
 
     friend Point rotate270(const Point &p) { return p.rotate270(); }
 
-    friend Point rotate270(const Point &p, const Point &O) {
-        return p.rotate270(O);
-    }
+    friend Point rotate270(const Point &p, const Point &O) { return p.rotate270(O); }
 
     friend std::ostream &operator<<(std::ostream &os, const Point &p) {
         return os << p.x << " " << p.y;
     }
 
-    friend std::istream &operator>>(std::istream &is, Point &p) {
-        return is >> p.x >> p.y;
-    }
+    friend std::istream &operator>>(std::istream &is, Point &p) { return is >> p.x >> p.y; }
 };
 
 } // namespace kk2

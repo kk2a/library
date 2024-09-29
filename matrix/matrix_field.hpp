@@ -17,8 +17,7 @@ template <class Field> struct MatrixField {
     MatrixField(int n) : MatrixField(n, n) {}
 
     MatrixField(int h, int w)
-        : MatrixField(std::vector<std::vector<Field>>(
-              h, std::vector<Field>(w, Field()))) {}
+        : MatrixField(std::vector<std::vector<Field>>(h, std::vector<Field>(w, Field()))) {}
 
     MatrixField(const std::vector<std::vector<Field>> &mat_)
         : _h(mat_.size()),
@@ -73,13 +72,10 @@ template <class Field> struct MatrixField {
 
     mat &operator*=(const mat &rhs) {
         assert(_w == rhs._h);
-        std::vector<std::vector<Field>> res(
-            _h, std::vector<Field>(rhs._w, Field()));
+        std::vector<std::vector<Field>> res(_h, std::vector<Field>(rhs._w, Field()));
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < rhs._w; j++) {
-                for (int k = 0; k < _w; k++) {
-                    res[i][j] += _mat[i][k] * rhs._mat[k][j];
-                }
+                for (int k = 0; k < _w; k++) { res[i][j] += _mat[i][k] * rhs._mat[k][j]; }
             }
         }
         _w = rhs._w;
@@ -191,8 +187,7 @@ template <class Field> struct MatrixField {
 
     mat &inplace_combine_top(const mat &rhs) {
         assert(_w == rhs._w);
-        this->_mat.insert(
-            std::begin(this->_mat), std::begin(rhs._mat), std::end(rhs._mat));
+        this->_mat.insert(std::begin(this->_mat), std::begin(rhs._mat), std::end(rhs._mat));
         this->_h += rhs._h;
         return *this;
     }
@@ -205,8 +200,7 @@ template <class Field> struct MatrixField {
 
     mat &inplace_combine_bottom(const mat &rhs) {
         assert(_w == rhs._w);
-        this->_mat.insert(
-            std::end(this->_mat), std::begin(rhs._mat), std::end(rhs._mat));
+        this->_mat.insert(std::end(this->_mat), std::begin(rhs._mat), std::end(rhs._mat));
         this->_h += rhs._h;
         return *this;
     }
@@ -220,9 +214,8 @@ template <class Field> struct MatrixField {
     mat &inplace_combine_left(const mat &rhs) {
         assert(_h == rhs._h);
         for (int i = 0; i < _h; i++) {
-            this->_mat[i].insert(std::begin(this->_mat[i]),
-                                 std::begin(rhs._mat[i]),
-                                 std::end(rhs._mat[i]));
+            this->_mat[i].insert(
+                std::begin(this->_mat[i]), std::begin(rhs._mat[i]), std::end(rhs._mat[i]));
         }
         this->_w += rhs._w;
         return *this;
@@ -237,9 +230,8 @@ template <class Field> struct MatrixField {
     mat &inplace_combine_right(const mat &rhs) {
         assert(_h == rhs._h);
         for (int i = 0; i < _h; i++) {
-            this->_mat[i].insert(std::end(this->_mat[i]),
-                                 std::begin(rhs._mat[i]),
-                                 std::end(rhs._mat[i]));
+            this->_mat[i].insert(
+                std::end(this->_mat[i]), std::begin(rhs._mat[i]), std::end(rhs._mat[i]));
         }
         this->_w += rhs._w;
         return *this;
@@ -251,25 +243,15 @@ template <class Field> struct MatrixField {
         return res.inplace_combine_right(rhs);
     }
 
-    friend mat operator+(const mat &lhs, const mat &rhs) {
-        return mat(lhs) += rhs;
-    }
+    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) += rhs; }
 
-    friend mat operator-(const mat &lhs, const mat &rhs) {
-        return mat(lhs) -= rhs;
-    }
+    friend mat operator-(const mat &lhs, const mat &rhs) { return mat(lhs) -= rhs; }
 
-    friend mat operator*(const mat &lhs, const mat &rhs) {
-        return mat(lhs) *= rhs;
-    }
+    friend mat operator*(const mat &lhs, const mat &rhs) { return mat(lhs) *= rhs; }
 
-    friend bool operator==(const mat &lhs, const mat &rhs) {
-        return lhs._mat == rhs._mat;
-    }
+    friend bool operator==(const mat &lhs, const mat &rhs) { return lhs._mat == rhs._mat; }
 
-    friend bool operator!=(const mat &lhs, const mat &rhs) {
-        return lhs._mat != rhs._mat;
-    }
+    friend bool operator!=(const mat &lhs, const mat &rhs) { return lhs._mat != rhs._mat; }
 
 
   private:

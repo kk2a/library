@@ -10,8 +10,7 @@
 
 namespace kk2 {
 
-template <class FPS, class mint = typename FPS::value_type>
-std::vector<mint> find_root(FPS f) {
+template <class FPS, class mint = typename FPS::value_type> std::vector<mint> find_root(FPS f) {
     long long p = mint::getmod();
     std::vector<mint> res;
     if (p == 2) {

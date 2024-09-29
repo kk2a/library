@@ -6,8 +6,8 @@
 
 namespace kk2 {
 
-// return b s.t. f(X) = \sum_{i = 0} ^ {n - 1} b_i \prod_{j = 0} ^ {i - 1} (X -
-// p_j)
+// return b s.t.
+// f(X) = \sum_{i = 0} ^ {n - 1} b_i \prod_{j = 0} ^ {i - 1} (X - p_j)
 template <class FPS, class mint = typename FPS::value_type>
 std::vector<mint> convert_to_newton_basis(const FPS &f, std::vector<mint> p) {
     int n = (int)f.size();
