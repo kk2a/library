@@ -55,10 +55,10 @@ data:
     \ }\n\n    template <typename Iterators> static constexpr bool check(Iterators\
     \ mid) {\n        auto [l1, l2, l3] = std::tie(*std::prev(mid), *mid, *std::next(mid));\n\
     \        if (l2.b == l1.b or l3.b == l2.b)\n            return sgn(l2.a - l1.a)\
-    \ * sgn(l3.b - l2.b)\n                   >= sgn(l3.a - l2.a) * sgn(l2.b - l1.b);\n\
-    \        if constexpr (is_integral_extended<T>::value) {\n            return kk2::fracfloor(l2.b\
-    \ - l1.b, l1.a - l2.a)\n                   >= kk2::fracfloor(l3.b - l2.b, l2.a\
-    \ - l3.a);\n        } else {\n            return (l2.b - l1.b) * sgn(l3.a - l2.a)\
+    \ * sgn(l3.b - l2.b) >= sgn(l3.a - l2.a) * sgn(l2.b - l1.b);\n        if constexpr\
+    \ (is_integral_extended<T>::value) {\n            return kk2::fracfloor(l2.b -\
+    \ l1.b, l1.a - l2.a)\n                   >= kk2::fracfloor(l3.b - l2.b, l2.a -\
+    \ l3.a);\n        } else {\n            return (l2.b - l1.b) * sgn(l3.a - l2.a)\
     \ / std::abs(l2.a - l1.a)\n                   >= (l3.b - l2.b) * sgn(l2.a - l1.a)\
     \ / std::abs(l3.a - l2.a);\n        }\n    }\n\n    void add(T a, T b) {\n   \
     \     if (!isMin) a = -a, b = -b;\n        Line l(a, b);\n        if (empty())\
@@ -70,15 +70,14 @@ data:
     \            }\n        } else if (lines.back().a >= a) {\n            if (lines.back().a\
     \ == a) {\n                if (lines.back().b <= b) return;\n                lines.pop_back();\n\
     \            }\n            lines.emplace_back(l);\n            while ((int)lines.size()\
-    \ >= 3\n                   and check(std::prev(lines.end(), 2))) {\n         \
-    \       lines.erase(std::prev(lines.end(), 2));\n            }\n        } else\
-    \ {\n            std::cerr << \"Invalid input\" << std::endl;\n            exit(1);\n\
-    \        }\n    }\n\n    T query(T x) const {\n        assert(!empty());\n   \
-    \     int l = -1, r = (int)lines.size() - 1;\n        while (r - l > 1) {\n  \
-    \          int mid = (l + r) / 2;\n            if (lines[mid].eval(x) >= lines[mid\
-    \ + 1].eval(x)) l = mid;\n            else r = mid;\n        }\n        if constexpr\
-    \ (isMin) return lines[r].eval(x);\n        else return -lines[r].eval(x);\n \
-    \   }\n};\n\n} // namespace kk2\n\n\n"
+    \ >= 3 and check(std::prev(lines.end(), 2))) {\n                lines.erase(std::prev(lines.end(),\
+    \ 2));\n            }\n        } else {\n            std::cerr << \"Invalid input\"\
+    \ << std::endl;\n            exit(1);\n        }\n    }\n\n    T query(T x) const\
+    \ {\n        assert(!empty());\n        int l = -1, r = (int)lines.size() - 1;\n\
+    \        while (r - l > 1) {\n            int mid = (l + r) / 2;\n           \
+    \ if (lines[mid].eval(x) >= lines[mid + 1].eval(x)) l = mid;\n            else\
+    \ r = mid;\n        }\n        if constexpr (isMin) return lines[r].eval(x);\n\
+    \        else return -lines[r].eval(x);\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n#define DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\
     \ 1\n\n#include <cmath>\n#include <deque>\n#include <iostream>\n#include <iterator>\n\
     #include <tuple>\n\n#include \"../math/frac_floor.hpp\"\n#include \"../type_traits/type_traits.hpp\"\
@@ -91,10 +90,10 @@ data:
     \ }\n\n    template <typename Iterators> static constexpr bool check(Iterators\
     \ mid) {\n        auto [l1, l2, l3] = std::tie(*std::prev(mid), *mid, *std::next(mid));\n\
     \        if (l2.b == l1.b or l3.b == l2.b)\n            return sgn(l2.a - l1.a)\
-    \ * sgn(l3.b - l2.b)\n                   >= sgn(l3.a - l2.a) * sgn(l2.b - l1.b);\n\
-    \        if constexpr (is_integral_extended<T>::value) {\n            return kk2::fracfloor(l2.b\
-    \ - l1.b, l1.a - l2.a)\n                   >= kk2::fracfloor(l3.b - l2.b, l2.a\
-    \ - l3.a);\n        } else {\n            return (l2.b - l1.b) * sgn(l3.a - l2.a)\
+    \ * sgn(l3.b - l2.b) >= sgn(l3.a - l2.a) * sgn(l2.b - l1.b);\n        if constexpr\
+    \ (is_integral_extended<T>::value) {\n            return kk2::fracfloor(l2.b -\
+    \ l1.b, l1.a - l2.a)\n                   >= kk2::fracfloor(l3.b - l2.b, l2.a -\
+    \ l3.a);\n        } else {\n            return (l2.b - l1.b) * sgn(l3.a - l2.a)\
     \ / std::abs(l2.a - l1.a)\n                   >= (l3.b - l2.b) * sgn(l2.a - l1.a)\
     \ / std::abs(l3.a - l2.a);\n        }\n    }\n\n    void add(T a, T b) {\n   \
     \     if (!isMin) a = -a, b = -b;\n        Line l(a, b);\n        if (empty())\
@@ -106,22 +105,22 @@ data:
     \            }\n        } else if (lines.back().a >= a) {\n            if (lines.back().a\
     \ == a) {\n                if (lines.back().b <= b) return;\n                lines.pop_back();\n\
     \            }\n            lines.emplace_back(l);\n            while ((int)lines.size()\
-    \ >= 3\n                   and check(std::prev(lines.end(), 2))) {\n         \
-    \       lines.erase(std::prev(lines.end(), 2));\n            }\n        } else\
-    \ {\n            std::cerr << \"Invalid input\" << std::endl;\n            exit(1);\n\
-    \        }\n    }\n\n    T query(T x) const {\n        assert(!empty());\n   \
-    \     int l = -1, r = (int)lines.size() - 1;\n        while (r - l > 1) {\n  \
-    \          int mid = (l + r) / 2;\n            if (lines[mid].eval(x) >= lines[mid\
-    \ + 1].eval(x)) l = mid;\n            else r = mid;\n        }\n        if constexpr\
-    \ (isMin) return lines[r].eval(x);\n        else return -lines[r].eval(x);\n \
-    \   }\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n"
+    \ >= 3 and check(std::prev(lines.end(), 2))) {\n                lines.erase(std::prev(lines.end(),\
+    \ 2));\n            }\n        } else {\n            std::cerr << \"Invalid input\"\
+    \ << std::endl;\n            exit(1);\n        }\n    }\n\n    T query(T x) const\
+    \ {\n        assert(!empty());\n        int l = -1, r = (int)lines.size() - 1;\n\
+    \        while (r - l > 1) {\n            int mid = (l + r) / 2;\n           \
+    \ if (lines[mid].eval(x) >= lines[mid + 1].eval(x)) l = mid;\n            else\
+    \ r = mid;\n        }\n        if constexpr (isMin) return lines[r].eval(x);\n\
+    \        else return -lines[r].eval(x);\n    }\n};\n\n} // namespace kk2\n\n#endif\
+    \ // DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n"
   dependsOn:
   - math/frac_floor.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: data_structure/convex_hull_trick_add_monotone.hpp
   requiredBy: []
-  timestamp: '2024-09-29 16:53:59+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/convex_hull_trick_add_monotone.hpp

@@ -18,11 +18,10 @@ data:
     \ << i;\n            for (int left = 0; left < _n; left += shift << 1) {\n   \
     \             int cent = std::min(left + shift, _n);\n                table[i][cent\
     \ - 1] = v[cent - 1];\n                for (int j = cent - 2; j >= left; --j)\
-    \ {\n                    table[i][j] = op(v[j], table[i][j + 1]);\n          \
-    \      }\n                if (cent == _n) break;\n                table[i][cent]\
-    \ = v[cent];\n                int right = std::min(cent + shift, _n);\n      \
-    \          for (int j = cent + 1; j < right; ++j) {\n                    table[i][j]\
-    \ = op(table[i][j - 1], v[j]);\n                }\n            }\n        }\n\
+    \ { table[i][j] = op(v[j], table[i][j + 1]); }\n                if (cent == _n)\
+    \ break;\n                table[i][cent] = v[cent];\n                int right\
+    \ = std::min(cent + shift, _n);\n                for (int j = cent + 1; j < right;\
+    \ ++j) { table[i][j] = op(table[i][j - 1], v[j]); }\n            }\n        }\n\
     \    }\n\n    S prod(int l, int r) const {\n        assert(0 <= l && l <= r &&\
     \ r <= _n);\n        if (l == r) return e();\n        if (l + 1 == r) return table[0][l];\n\
     \        --r;\n        int pos = 31 ^ __builtin_clz(l ^ r);\n        return op(table[pos][l],\
@@ -38,22 +37,21 @@ data:
     \ {\n            int shift = 1 << i;\n            for (int left = 0; left < _n;\
     \ left += shift << 1) {\n                int cent = std::min(left + shift, _n);\n\
     \                table[i][cent - 1] = v[cent - 1];\n                for (int j\
-    \ = cent - 2; j >= left; --j) {\n                    table[i][j] = op(v[j], table[i][j\
-    \ + 1]);\n                }\n                if (cent == _n) break;\n        \
-    \        table[i][cent] = v[cent];\n                int right = std::min(cent\
-    \ + shift, _n);\n                for (int j = cent + 1; j < right; ++j) {\n  \
-    \                  table[i][j] = op(table[i][j - 1], v[j]);\n                }\n\
-    \            }\n        }\n    }\n\n    S prod(int l, int r) const {\n       \
-    \ assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return e();\n    \
-    \    if (l + 1 == r) return table[0][l];\n        --r;\n        int pos = 31 ^\
-    \ __builtin_clz(l ^ r);\n        return op(table[pos][l], table[pos][r]);\n  \
-    \  }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>> table;\n\
+    \ = cent - 2; j >= left; --j) { table[i][j] = op(v[j], table[i][j + 1]); }\n \
+    \               if (cent == _n) break;\n                table[i][cent] = v[cent];\n\
+    \                int right = std::min(cent + shift, _n);\n                for\
+    \ (int j = cent + 1; j < right; ++j) { table[i][j] = op(table[i][j - 1], v[j]);\
+    \ }\n            }\n        }\n    }\n\n    S prod(int l, int r) const {\n   \
+    \     assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return e();\n\
+    \        if (l + 1 == r) return table[0][l];\n        --r;\n        int pos =\
+    \ 31 ^ __builtin_clz(l ^ r);\n        return op(table[pos][l], table[pos][r]);\n\
+    \    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>> table;\n\
     \    std::vector<int> lookup;\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/disjoint_sparse_table.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/disjoint_sparse_table.hpp

@@ -36,10 +36,10 @@ data:
     \    // edge(u, v) is a bridge <=> ord[u] < low[v]\n    void init_tecc() {\n \
     \       comp.resize(this->n, -1);\n        int k = 0;\n        std::vector<typename\
     \ G::edge_type> bridges;\n        auto dfs = [&](auto self, int now, int par,\
-    \ int ei) -> void {\n            if (par != -1 && this->ord[par] >= this->low[now])\n\
-    \                comp[now] = comp[par];\n            else {\n                comp[now]\
-    \ = k++;\n                if (par != -1) bridges.emplace_back((this->g).edges[ei]);\n\
-    \            }\n            for (auto &&e : this->g[now]) {\n                if\
+    \ int ei) -> void {\n            if (par != -1 && this->ord[par] >= this->low[now])\
+    \ comp[now] = comp[par];\n            else {\n                comp[now] = k++;\n\
+    \                if (par != -1) bridges.emplace_back((this->g).edges[ei]);\n \
+    \           }\n            for (auto &&e : this->g[now]) {\n                if\
     \ (comp[e.to] == -1) self(self, e.to, now, e.id);\n            }\n        };\n\
     \        for (int i = 0; i < this->n; i++) {\n            if (this->root[i]) dfs(dfs,\
     \ i, -1, -1);\n        }\n        group.resize(k);\n        for (int i = 0; i\
@@ -56,8 +56,8 @@ data:
     \    void init_tecc() {\n        comp.resize(this->n, -1);\n        int k = 0;\n\
     \        std::vector<typename G::edge_type> bridges;\n        auto dfs = [&](auto\
     \ self, int now, int par, int ei) -> void {\n            if (par != -1 && this->ord[par]\
-    \ >= this->low[now])\n                comp[now] = comp[par];\n            else\
-    \ {\n                comp[now] = k++;\n                if (par != -1) bridges.emplace_back((this->g).edges[ei]);\n\
+    \ >= this->low[now]) comp[now] = comp[par];\n            else {\n            \
+    \    comp[now] = k++;\n                if (par != -1) bridges.emplace_back((this->g).edges[ei]);\n\
     \            }\n            for (auto &&e : this->g[now]) {\n                if\
     \ (comp[e.to] == -1) self(self, e.to, now, e.id);\n            }\n        };\n\
     \        for (int i = 0; i < this->n; i++) {\n            if (this->root[i]) dfs(dfs,\
@@ -71,7 +71,7 @@ data:
   isVerificationFile: false
   path: graph/two_edge_connected_components.hpp
   requiredBy: []
-  timestamp: '2024-09-11 16:33:34+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/two_edge_connected_components.hpp

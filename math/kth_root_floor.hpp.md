@@ -16,7 +16,7 @@ data:
     \ {\n            if (b & 1) p *= q;\n        }\n        return p <= a;\n    };\n\
     \    uint64_t x = powl(a, (long double)1.0 / k);\n    while (!check(x)) --x;\n\
     \    while (check(x + 1)) ++x;\n    return x;\n}\n\n// return floor(a ^ {1/k})\n\
-    template <class return_type = uint64_t, class T, class U>\nreturn_type kth_root_floor(T\
+    template <class return_type = uint64_t, class T, class U> return_type kth_root_floor(T\
     \ a, U k) {\n    return (return_type)kth_root_floor_inner((uint64_t)a, (int)k);\n\
     }\n\nuint64_t kth_root_ceil_inner(uint64_t a, int k) {\n    if (a <= 1 || k ==\
     \ 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t x)\
@@ -24,7 +24,7 @@ data:
     \ *= q) {\n            if (b & 1) p *= q;\n        }\n        return p == a;\n\
     \    };\n    uint64_t x = kth_root_floor_inner(a, k);\n    return check(x) ? x\
     \ : x + 1;\n}\n\n// return ceil(a ^ {1/k})\ntemplate <class return_type = uint64_t,\
-    \ class T, class U>\nreturn_type kth_root_ceil(T a, U k) {\n    return (return_type)kth_root_ceil_inner((uint64_t)a,\
+    \ class T, class U> return_type kth_root_ceil(T a, U k) {\n    return (return_type)kth_root_ceil_inner((uint64_t)a,\
     \ (int)k);\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_KTH_ROOT_FLOOR_HPP\n#define MATH_KTH_ROOT_FLOOR_HPP 1\n\n#include\
     \ <algorithm>\n#include <cmath>\n#include <cstdint>\n#include <functional>\n\n\
@@ -34,7 +34,7 @@ data:
     \ q *= q) {\n            if (b & 1) p *= q;\n        }\n        return p <= a;\n\
     \    };\n    uint64_t x = powl(a, (long double)1.0 / k);\n    while (!check(x))\
     \ --x;\n    while (check(x + 1)) ++x;\n    return x;\n}\n\n// return floor(a ^\
-    \ {1/k})\ntemplate <class return_type = uint64_t, class T, class U>\nreturn_type\
+    \ {1/k})\ntemplate <class return_type = uint64_t, class T, class U> return_type\
     \ kth_root_floor(T a, U k) {\n    return (return_type)kth_root_floor_inner((uint64_t)a,\
     \ (int)k);\n}\n\nuint64_t kth_root_ceil_inner(uint64_t a, int k) {\n    if (a\
     \ <= 1 || k == 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t\
@@ -42,13 +42,13 @@ data:
     \ q *= q) {\n            if (b & 1) p *= q;\n        }\n        return p == a;\n\
     \    };\n    uint64_t x = kth_root_floor_inner(a, k);\n    return check(x) ? x\
     \ : x + 1;\n}\n\n// return ceil(a ^ {1/k})\ntemplate <class return_type = uint64_t,\
-    \ class T, class U>\nreturn_type kth_root_ceil(T a, U k) {\n    return (return_type)kth_root_ceil_inner((uint64_t)a,\
+    \ class T, class U> return_type kth_root_ceil(T a, U k) {\n    return (return_type)kth_root_ceil_inner((uint64_t)a,\
     \ (int)k);\n}\n\n} // namespace kk2\n\n#endif // MATH_KTH_ROOT_FLOOR_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/kth_root_floor.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/kth_root_floor.hpp

@@ -60,62 +60,56 @@ data:
     \ < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"\
     invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    operator int() const { return val();\
     \ }\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n\n    template <typename\
-    \ T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value> * =\
-    \ nullptr>\n    constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p)\
-    \ * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) {\n        return\
-    \ (b + u64(u32(b) * u32(-r)) * p) >> 32;\n    }\n\n    constexpr mint &operator++()\
-    \ { return *this += 1; }\n\n    constexpr mint &operator--() { return *this -=\
-    \ 1; }\n\n    constexpr mint operator++(int) {\n        mint ret = *this;\n  \
-    \      *this += 1;\n        return ret;\n    }\n\n    constexpr mint operator--(int)\
-    \ {\n        mint ret = *this;\n        *this -= 1;\n        return ret;\n   \
-    \ }\n\n    constexpr mint &operator+=(const mint &b) {\n        if (i32(_v +=\
-    \ b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
-    \ mint &operator-=(const mint &b) {\n        if (i32(_v -= b._v) < 0) _v += 2\
-    \ * p;\n        return *this;\n    }\n\n    constexpr mint &operator*=(const mint\
-    \ &b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n    }\n\n\
-    \    constexpr mint &operator/=(const mint &b) {\n        *this *= b.inv();\n\
-    \        return *this;\n    }\n\n    constexpr mint operator-() const { return\
-    \ mint() - mint(*this); }\n\n    constexpr bool operator==(const mint &b) const\
-    \ {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);\n\
-    \    }\n\n    constexpr bool operator!=(const mint &b) const {\n        return\
-    \ (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n    }\n\n    friend\
-    \ constexpr mint operator+(const mint &a, const mint &b) {\n        return mint(a)\
-    \ += b;\n    }\n\n    template <class T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n    constexpr\
+    \ LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static\
+    \ constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b) * u32(-r)) * p)\
+    \ >> 32; }\n\n    constexpr mint &operator++() { return *this += 1; }\n\n    constexpr\
+    \ mint &operator--() { return *this -= 1; }\n\n    constexpr mint operator++(int)\
+    \ {\n        mint ret = *this;\n        *this += 1;\n        return ret;\n   \
+    \ }\n\n    constexpr mint operator--(int) {\n        mint ret = *this;\n     \
+    \   *this -= 1;\n        return ret;\n    }\n\n    constexpr mint &operator+=(const\
+    \ mint &b) {\n        if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return\
+    \ *this;\n    }\n\n    constexpr mint &operator-=(const mint &b) {\n        if\
+    \ (i32(_v -= b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
+    \ mint &operator*=(const mint &b) {\n        _v = reduce(u64(_v) * b._v);\n  \
+    \      return *this;\n    }\n\n    constexpr mint &operator/=(const mint &b) {\n\
+    \        *this *= b.inv();\n        return *this;\n    }\n\n    constexpr mint\
+    \ operator-() const { return mint() - mint(*this); }\n\n    constexpr bool operator==(const\
+    \ mint &b) const {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v\
+    \ - p : b._v);\n    }\n\n    constexpr bool operator!=(const mint &b) const {\n\
+    \        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n  \
+    \  }\n\n    friend constexpr mint operator+(const mint &a, const mint &b) { return\
+    \ mint(a) += b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator+(const mint &a, T b) {\n  \
-    \      return mint(a) += mint(b);\n    }\n\n    template <class T,\n         \
-    \     std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n   \
-    \ friend constexpr mint operator+(T a, const mint &b) {\n        return mint(a)\
-    \ += b;\n    }\n\n    friend constexpr mint operator-(const mint &a, const mint\
-    \ &b) {\n        return mint(a) -= b;\n    }\n\n    template <class T,\n     \
-    \         std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend constexpr mint operator-(const mint &a, T b) {\n        return mint(a)\
-    \ -= mint(b);\n    }\n\n    template <class T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \      return mint(a) += mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator+(T a, const mint &b) {\n  \
+    \      return mint(a) += b;\n    }\n\n    friend constexpr mint operator-(const\
+    \ mint &a, const mint &b) { return mint(a) -= b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator-(const mint &a, T b) {\n  \
+    \      return mint(a) -= mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator-(T a, const mint &b) {\n  \
     \      return mint(a) -= b;\n    }\n\n    friend constexpr mint operator*(const\
-    \ mint &a, const mint &b) {\n        return mint(a) *= b;\n    }\n\n    template\
-    \ <class T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ mint &a, const mint &b) { return mint(a) *= b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator*(const mint &a, T b) {\n  \
-    \      return mint(a) *= mint(b);\n    }\n\n    template <class T,\n         \
-    \     std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n   \
-    \ friend constexpr mint operator*(T a, const mint &b) {\n        return mint(a)\
-    \ *= b;\n    }\n\n    friend constexpr mint operator/(const mint &a, const mint\
-    \ &b) {\n        return mint(a) /= b;\n    }\n\n    template <class T,\n     \
-    \         std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend constexpr mint operator/(const mint &a, T b) {\n        return mint(a)\
-    \ /= mint(b);\n    }\n\n    template <class T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \      return mint(a) *= mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator*(T a, const mint &b) {\n  \
+    \      return mint(a) *= b;\n    }\n\n    friend constexpr mint operator/(const\
+    \ mint &a, const mint &b) { return mint(a) /= b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator/(const mint &a, T b) {\n  \
+    \      return mint(a) /= mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator/(T a, const mint &b) {\n  \
     \      return mint(a) /= b;\n    }\n\n    template <class T> constexpr mint pow(T\
     \ n) const {\n        mint ret(1), mul(*this);\n        while (n > 0) {\n    \
     \        if (n & 1) ret *= mul;\n            mul *= mul;\n            n >>= 1;\n\
     \        }\n        return ret;\n    }\n\n    constexpr mint inv() const { return\
     \ pow(p - 2); }\n\n    friend std::ostream &operator<<(std::ostream &os, const\
-    \ mint &x) {\n        return os << x.val();\n    }\n\n    friend std::istream\
-    \ &operator>>(std::istream &is, mint &x) {\n        i64 t;\n        is >> t;\n\
-    \        x = mint(t);\n        return (is);\n    }\n\n    constexpr u32 val()\
-    \ const {\n        u32 ret = reduce(_v);\n        return ret >= p ? ret - p :\
-    \ ret;\n    }\n\n    static constexpr u32 getmod() { return p; }\n};\n\ntemplate\
-    \ <int p> using Mont = LazyMontgomeryModInt<p>;\n\n\nusing mont998 = Mont<998244353>;\n\
-    using mont107 = Mont<1000000007>;\n\n} // namespace kk2\n\n\n"
+    \ mint &x) { return os << x.val(); }\n\n    friend std::istream &operator>>(std::istream\
+    \ &is, mint &x) {\n        i64 t;\n        is >> t;\n        x = mint(t);\n  \
+    \      return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
+    \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n\n    static\
+    \ constexpr u32 getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
+    \n\nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
+    \ namespace kk2\n\n\n"
   code: "#ifndef MODINT_MONT_HPP\n#define MODINT_MONT_HPP 1\n\n#include <cassert>\n\
     #include <cstdint>\n#include <iostream>\n#include <type_traits>\n\n#include \"\
     ../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate <int p> struct\
@@ -128,62 +122,56 @@ data:
     \ < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"\
     invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    operator int() const { return val();\
     \ }\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n\n    template <typename\
-    \ T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value> * =\
-    \ nullptr>\n    constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p)\
-    \ * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) {\n        return\
-    \ (b + u64(u32(b) * u32(-r)) * p) >> 32;\n    }\n\n    constexpr mint &operator++()\
-    \ { return *this += 1; }\n\n    constexpr mint &operator--() { return *this -=\
-    \ 1; }\n\n    constexpr mint operator++(int) {\n        mint ret = *this;\n  \
-    \      *this += 1;\n        return ret;\n    }\n\n    constexpr mint operator--(int)\
-    \ {\n        mint ret = *this;\n        *this -= 1;\n        return ret;\n   \
-    \ }\n\n    constexpr mint &operator+=(const mint &b) {\n        if (i32(_v +=\
-    \ b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
-    \ mint &operator-=(const mint &b) {\n        if (i32(_v -= b._v) < 0) _v += 2\
-    \ * p;\n        return *this;\n    }\n\n    constexpr mint &operator*=(const mint\
-    \ &b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n    }\n\n\
-    \    constexpr mint &operator/=(const mint &b) {\n        *this *= b.inv();\n\
-    \        return *this;\n    }\n\n    constexpr mint operator-() const { return\
-    \ mint() - mint(*this); }\n\n    constexpr bool operator==(const mint &b) const\
-    \ {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);\n\
-    \    }\n\n    constexpr bool operator!=(const mint &b) const {\n        return\
-    \ (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n    }\n\n    friend\
-    \ constexpr mint operator+(const mint &a, const mint &b) {\n        return mint(a)\
-    \ += b;\n    }\n\n    template <class T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n    constexpr\
+    \ LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static\
+    \ constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b) * u32(-r)) * p)\
+    \ >> 32; }\n\n    constexpr mint &operator++() { return *this += 1; }\n\n    constexpr\
+    \ mint &operator--() { return *this -= 1; }\n\n    constexpr mint operator++(int)\
+    \ {\n        mint ret = *this;\n        *this += 1;\n        return ret;\n   \
+    \ }\n\n    constexpr mint operator--(int) {\n        mint ret = *this;\n     \
+    \   *this -= 1;\n        return ret;\n    }\n\n    constexpr mint &operator+=(const\
+    \ mint &b) {\n        if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return\
+    \ *this;\n    }\n\n    constexpr mint &operator-=(const mint &b) {\n        if\
+    \ (i32(_v -= b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
+    \ mint &operator*=(const mint &b) {\n        _v = reduce(u64(_v) * b._v);\n  \
+    \      return *this;\n    }\n\n    constexpr mint &operator/=(const mint &b) {\n\
+    \        *this *= b.inv();\n        return *this;\n    }\n\n    constexpr mint\
+    \ operator-() const { return mint() - mint(*this); }\n\n    constexpr bool operator==(const\
+    \ mint &b) const {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v\
+    \ - p : b._v);\n    }\n\n    constexpr bool operator!=(const mint &b) const {\n\
+    \        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n  \
+    \  }\n\n    friend constexpr mint operator+(const mint &a, const mint &b) { return\
+    \ mint(a) += b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator+(const mint &a, T b) {\n  \
-    \      return mint(a) += mint(b);\n    }\n\n    template <class T,\n         \
-    \     std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n   \
-    \ friend constexpr mint operator+(T a, const mint &b) {\n        return mint(a)\
-    \ += b;\n    }\n\n    friend constexpr mint operator-(const mint &a, const mint\
-    \ &b) {\n        return mint(a) -= b;\n    }\n\n    template <class T,\n     \
-    \         std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend constexpr mint operator-(const mint &a, T b) {\n        return mint(a)\
-    \ -= mint(b);\n    }\n\n    template <class T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \      return mint(a) += mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator+(T a, const mint &b) {\n  \
+    \      return mint(a) += b;\n    }\n\n    friend constexpr mint operator-(const\
+    \ mint &a, const mint &b) { return mint(a) -= b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator-(const mint &a, T b) {\n  \
+    \      return mint(a) -= mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator-(T a, const mint &b) {\n  \
     \      return mint(a) -= b;\n    }\n\n    friend constexpr mint operator*(const\
-    \ mint &a, const mint &b) {\n        return mint(a) *= b;\n    }\n\n    template\
-    \ <class T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ mint &a, const mint &b) { return mint(a) *= b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator*(const mint &a, T b) {\n  \
-    \      return mint(a) *= mint(b);\n    }\n\n    template <class T,\n         \
-    \     std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n   \
-    \ friend constexpr mint operator*(T a, const mint &b) {\n        return mint(a)\
-    \ *= b;\n    }\n\n    friend constexpr mint operator/(const mint &a, const mint\
-    \ &b) {\n        return mint(a) /= b;\n    }\n\n    template <class T,\n     \
-    \         std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend constexpr mint operator/(const mint &a, T b) {\n        return mint(a)\
-    \ /= mint(b);\n    }\n\n    template <class T,\n              std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \      return mint(a) *= mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator*(T a, const mint &b) {\n  \
+    \      return mint(a) *= b;\n    }\n\n    friend constexpr mint operator/(const\
+    \ mint &a, const mint &b) { return mint(a) /= b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator/(const mint &a, T b) {\n  \
+    \      return mint(a) /= mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator/(T a, const mint &b) {\n  \
     \      return mint(a) /= b;\n    }\n\n    template <class T> constexpr mint pow(T\
     \ n) const {\n        mint ret(1), mul(*this);\n        while (n > 0) {\n    \
     \        if (n & 1) ret *= mul;\n            mul *= mul;\n            n >>= 1;\n\
     \        }\n        return ret;\n    }\n\n    constexpr mint inv() const { return\
     \ pow(p - 2); }\n\n    friend std::ostream &operator<<(std::ostream &os, const\
-    \ mint &x) {\n        return os << x.val();\n    }\n\n    friend std::istream\
-    \ &operator>>(std::istream &is, mint &x) {\n        i64 t;\n        is >> t;\n\
-    \        x = mint(t);\n        return (is);\n    }\n\n    constexpr u32 val()\
-    \ const {\n        u32 ret = reduce(_v);\n        return ret >= p ? ret - p :\
-    \ ret;\n    }\n\n    static constexpr u32 getmod() { return p; }\n};\n\ntemplate\
-    \ <int p> using Mont = LazyMontgomeryModInt<p>;\n\n\nusing mont998 = Mont<998244353>;\n\
-    using mont107 = Mont<1000000007>;\n\n} // namespace kk2\n\n#endif // MODINT_MONT_HPP\n"
+    \ mint &x) { return os << x.val(); }\n\n    friend std::istream &operator>>(std::istream\
+    \ &is, mint &x) {\n        i64 t;\n        is >> t;\n        x = mint(t);\n  \
+    \      return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
+    \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n\n    static\
+    \ constexpr u32 getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
+    \n\nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
+    \ namespace kk2\n\n#endif // MODINT_MONT_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -191,7 +179,7 @@ data:
   requiredBy:
   - convolution/convo_arb.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-09-29 16:53:59+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

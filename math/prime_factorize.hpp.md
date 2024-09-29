@@ -31,7 +31,7 @@ data:
     links: []
   bundledCode: "#line 1 \"math/prime_factorize.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <map>\n#include <numeric>\n#include <utility>\n#include <vector>\n\n\
-    #line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n#line 1 \"type_traits/type_traits.hpp\"\
+    #line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n\n#line 1 \"type_traits/type_traits.hpp\"\
     \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing\
     \ is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
     \                                                       or std::is_same<T, __int128>::value,\n\
@@ -50,8 +50,8 @@ data:
     \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_extended\
     \ =\n    typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
     \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\n} // namespace kk2\n\n\n#line 6 \"math_mod/pow_mod.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U>\nconstexpr S pow_mod(T\
+    \ std::false_type>::type;\n\n} // namespace kk2\n\n\n#line 7 \"math_mod/pow_mod.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T\
     \ x, U n, T m) {\n    assert(!is_signed_extended<U>::value || n >= 0);\n    if\
     \ (m == 1) return S(0);\n    S _m = S(m), r = 1;\n    S y = S(x) % _m;\n    if\
     \ (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) % _m;\n  \
@@ -68,35 +68,34 @@ data:
     \ - 2)));\n        assert((m & 1) == 1);\n        mod = m, n2 = -ULong(m) % m,\
     \ r = get_r();\n    }\n\n    UInt _v;\n\n    operator Int() const { return val();\
     \ }\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template <class\
-    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
-    \    ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
-    \ % mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n       \
-    \ return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\n    mint\
-    \ &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod) < 0) _v\
-    \ += 2 * mod;\n        return *this;\n    }\n\n    mint &operator-=(const mint\
-    \ &b) {\n        if (Int(_v -= b._v) < 0) _v += 2 * mod;\n        return *this;\n\
-    \    }\n\n    mint &operator*=(const mint &b) {\n        _v = reduce(ULong(_v)\
+    \ T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n    ArbitraryLazyMontgomeryModIntBase(const\
+    \ T &b) : _v(reduce(ULong(b % mod + mod) * n2)) {}\n\n    static UInt reduce(const\
+    \ ULong &b) {\n        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n\
+    \    }\n\n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v -\
+    \ 2 * mod) < 0) _v += 2 * mod;\n        return *this;\n    }\n\n    mint &operator-=(const\
+    \ mint &b) {\n        if (Int(_v -= b._v) < 0) _v += 2 * mod;\n        return\
+    \ *this;\n    }\n\n    mint &operator*=(const mint &b) {\n        _v = reduce(ULong(_v)\
     \ * b._v);\n        return *this;\n    }\n\n    mint &operator/=(const mint &b)\
     \ {\n        *this *= b.inv();\n        return *this;\n    }\n\n    friend mint\
     \ operator+(const mint &a, const mint &b) { return mint(a) += b; }\n\n    template\
-    \ <class T,\n              std::enable_if_t<is_integral_extended<T>::value> *\
-    \ = nullptr>\n    friend mint operator+(const mint &a, T b) {\n        return\
-    \ mint(a) += mint(b);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ <class T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n  \
+    \  friend mint operator+(const mint &a, T b) {\n        return mint(a) += mint(b);\n\
+    \    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator+(T a, const mint &b) {\n        return\
     \ mint(a) += b;\n    }\n\n    friend mint operator-(const mint &a, const mint\
-    \ &b) { return mint(a) -= b; }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ &b) { return mint(a) -= b; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator-(const mint &a, T b) {\n        return\
-    \ mint(a) -= mint(b);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ mint(a) -= mint(b);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator-(T a, const mint &b) {\n        return\
     \ mint(a) -= b;\n    }\n\n    friend mint operator*(const mint &a, const mint\
-    \ &b) { return mint(a) *= b; }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ &b) { return mint(a) *= b; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator*(const mint &a, T b) {\n        return\
-    \ mint(a) *= mint(b);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ mint(a) *= mint(b);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator*(T a, const mint &b) {\n        return\
     \ mint(a) *= b;\n    }\n\n    friend mint operator/(const mint &a, const mint\
-    \ &b) { return mint(a) /= b; }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ &b) { return mint(a) /= b; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator/(const mint &a, T b) {\n        return\
-    \ mint(a) /= mint(b);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ mint(a) /= mint(b);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator/(T a, const mint &b) {\n        return\
     \ mint(a) /= b;\n    }\n\n    bool operator==(const mint &b) const {\n       \
     \ return (_v >= mod ? _v - mod : _v) == (b._v >= mod ? b._v - mod : b._v);\n \
@@ -110,20 +109,16 @@ data:
     \ m0 = 0, m1 = 1;\n        while (t) {\n            Int u = s / t;\n         \
     \   std::swap(s -= t * u, t);\n            std::swap(m0 -= m1 * u, m1);\n    \
     \    }\n        if (m0 < 0) m0 += getmod();\n        return mint(m0);\n    }\n\
-    \n    friend std::ostream &operator<<(std::ostream &os, const mint &x) {\n   \
-    \     return os << x.val();\n    }\n\n    friend std::istream &operator>>(std::istream\
-    \ &is, mint &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n \
-    \       return (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n\
-    \        return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
+    \n    friend std::ostream &operator<<(std::ostream &os, const mint &x) { return\
+    \ os << x.val(); }\n\n    friend std::istream &operator>>(std::istream &is, mint\
+    \ &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n        return\
+    \ (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n   \
+    \     return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
     \ { return mod; }\n};\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt\
-    \ =\n    ArbitraryLazyMontgomeryModIntBase<int,\n                            \
-    \          unsigned int,\n                                      long long,\n \
-    \                                     unsigned long long,\n                  \
-    \                    id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
-    \ =\n    ArbitraryLazyMontgomeryModIntBase<long long,\n                      \
-    \                unsigned long long,\n                                      __int128_t,\n\
-    \                                      __uint128_t,\n                        \
-    \              id>;\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\
+    \ =\n    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
+    \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
+    \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
+    \ __uint128_t, id>;\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\
     \n#line 7 \"random/gen.hpp\"\n#include <unordered_set>\n#line 9 \"random/gen.hpp\"\
     \n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\nnamespace kk2 {\n\n\
     namespace random {\n\nusing u64 = unsigned long long;\n\nu64 non_deterministic_seed()\
@@ -169,28 +164,27 @@ data:
     \  if (y != rev and ~t & 1) return false;\n    }\n    return true;\n}\n\nbool\
     \ miller_rabin_u64(unsigned long long n) {\n    return miller_rabin<unsigned long\
     \ long, __uint128_t>(\n        n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\n\
-    }\n\ntemplate <class mint>\nbool miller_rabin_mont(unsigned long long n,\n   \
-    \                    const std::vector<unsigned long long> &ws) {\n    if (n <=\
-    \ 2) return n == 2;\n    if (~n & 1) return false;\n\n    if (mint::getmod() !=\
-    \ n) mint::setmod(n);\n    unsigned long long d = n - 1;\n    while (~d & 1) d\
-    \ >>= 1;\n    mint e = 1, rev = n - 1;\n    for (unsigned long long w : ws) {\n\
-    \        if (w % n == 0) continue;\n        unsigned long long t = d;\n      \
-    \  mint y = mint(w).pow(t);\n        while (t != n - 1 and y != e and y != rev)\
-    \ {\n            y *= y;\n            t <<= 1;\n        }\n        if (y != rev\
-    \ and ~t & 1) return false;\n    }\n    return true;\n}\n\nbool is_prime(unsigned\
-    \ long long n) {\n    using mint32 = ArbitraryLazyMontgomeryModInt<54305750>;\n\
-    \    using mint64 = ArbitraryLazyMontgomeryModInt64bit<54305750>;\n\n    if (n\
-    \ <= 2) return n == 2;\n    if (~n & 1) return false;\n    if (n < (1ull << 30))\
-    \ {\n        return miller_rabin_mont<mint32>(n, {2, 7, 61});\n    } else if (n\
-    \ < (1ull << 62)) {\n        return miller_rabin_mont<mint64>(\n            n,\
-    \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\n    } else {\n       \
-    \ return miller_rabin_u64(n);\n    }\n}\n\n}; // namespace number_theory\n\nusing\
-    \ number_theory::is_prime;\n\n}; // namespace kk2\n\n\n#line 14 \"math/prime_factorize.hpp\"\
-    \n\nnamespace kk2 {\n\nnamespace number_theory {\n\nusing i64 = long long;\nusing\
-    \ u64 = unsigned long long;\n\ntemplate <class mint, class T> T pollard_rho(T\
-    \ n) {\n    if (~n & 1) return 2;\n    if (is_prime(n)) return n;\n    if (mint::getmod()\
-    \ != n) mint::setmod(n);\n\n    mint R, one = 1;\n    auto f = [&](mint x) {\n\
-    \        return x * x + R;\n    };\n    auto _rng = [&]() {\n        return kk2::random::rng(2,\
+    }\n\ntemplate <class mint>\nbool miller_rabin_mont(unsigned long long n, const\
+    \ std::vector<unsigned long long> &ws) {\n    if (n <= 2) return n == 2;\n   \
+    \ if (~n & 1) return false;\n\n    if (mint::getmod() != n) mint::setmod(n);\n\
+    \    unsigned long long d = n - 1;\n    while (~d & 1) d >>= 1;\n    mint e =\
+    \ 1, rev = n - 1;\n    for (unsigned long long w : ws) {\n        if (w % n ==\
+    \ 0) continue;\n        unsigned long long t = d;\n        mint y = mint(w).pow(t);\n\
+    \        while (t != n - 1 and y != e and y != rev) {\n            y *= y;\n \
+    \           t <<= 1;\n        }\n        if (y != rev and ~t & 1) return false;\n\
+    \    }\n    return true;\n}\n\nbool is_prime(unsigned long long n) {\n    using\
+    \ mint32 = ArbitraryLazyMontgomeryModInt<54305750>;\n    using mint64 = ArbitraryLazyMontgomeryModInt64bit<54305750>;\n\
+    \n    if (n <= 2) return n == 2;\n    if (~n & 1) return false;\n    if (n < (1ull\
+    \ << 30)) {\n        return miller_rabin_mont<mint32>(n, {2, 7, 61});\n    } else\
+    \ if (n < (1ull << 62)) {\n        return miller_rabin_mont<mint64>(n, {2, 325,\
+    \ 9375, 28178, 450775, 9780504, 1795265022});\n    } else {\n        return miller_rabin_u64(n);\n\
+    \    }\n}\n\n}; // namespace number_theory\n\nusing number_theory::is_prime;\n\
+    \n}; // namespace kk2\n\n\n#line 14 \"math/prime_factorize.hpp\"\n\nnamespace\
+    \ kk2 {\n\nnamespace number_theory {\n\nusing i64 = long long;\nusing u64 = unsigned\
+    \ long long;\n\ntemplate <class mint, class T> T pollard_rho(T n) {\n    if (~n\
+    \ & 1) return 2;\n    if (is_prime(n)) return n;\n    if (mint::getmod() != n)\
+    \ mint::setmod(n);\n\n    mint R, one = 1;\n    auto f = [&](mint x) {\n     \
+    \   return x * x + R;\n    };\n    auto _rng = [&]() {\n        return kk2::random::rng(2,\
     \ n);\n    };\n    while (true) {\n        mint x, y, ys, q = one;\n        R\
     \ = _rng(), y = _rng();\n        T g = 1;\n        constexpr int m = 128;\n  \
     \      for (int r = 1; g == 1; r <<= 1) {\n            x = y;\n            for\
@@ -275,7 +269,7 @@ data:
   isVerificationFile: false
   path: math/prime_factorize.hpp
   requiredBy: []
-  timestamp: '2024-09-29 16:53:59+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/prime_factorize.hpp

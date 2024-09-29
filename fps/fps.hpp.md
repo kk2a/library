@@ -132,10 +132,10 @@ data:
     \        if (k == 0) {\n            FPS ret(deg);\n            if (deg > 0) ret[0]\
     \ = mint(1);\n            return ret;\n        }\n\n        int zero = 0;\n  \
     \      while (zero != int(this->size()) && (*this)[zero] == mint(0)) zero++;\n\
-    \        if (zero == int(this->size()) || __int128_t(zero) * k >= deg) {\n   \
-    \         return FPS(deg, mint(0));\n        }\n        if (zero != 0) {\n   \
-    \         FPS suf(this->begin() + zero, this->end());\n            auto g = suf.sparse_pow(k,\
-    \ deg - zero * k);\n            FPS ret(zero * k, mint(0));\n            std::copy(std::begin(g),\
+    \        if (zero == int(this->size()) || __int128_t(zero) * k >= deg) { return\
+    \ FPS(deg, mint(0)); }\n        if (zero != 0) {\n            FPS suf(this->begin()\
+    \ + zero, this->end());\n            auto g = suf.sparse_pow(k, deg - zero * k);\n\
+    \            FPS ret(zero * k, mint(0));\n            std::copy(std::begin(g),\
     \ std::end(g), std::back_inserter(ret));\n            return ret;\n        }\n\
     \n        int mod = mint::getmod();\n        static std::vector<mint> inv{1, 1};\n\
     \        while ((int)inv.size() <= deg) {\n            int i = inv.size();\n \
@@ -287,10 +287,10 @@ data:
     \        if (k == 0) {\n            FPS ret(deg);\n            if (deg > 0) ret[0]\
     \ = mint(1);\n            return ret;\n        }\n\n        int zero = 0;\n  \
     \      while (zero != int(this->size()) && (*this)[zero] == mint(0)) zero++;\n\
-    \        if (zero == int(this->size()) || __int128_t(zero) * k >= deg) {\n   \
-    \         return FPS(deg, mint(0));\n        }\n        if (zero != 0) {\n   \
-    \         FPS suf(this->begin() + zero, this->end());\n            auto g = suf.sparse_pow(k,\
-    \ deg - zero * k);\n            FPS ret(zero * k, mint(0));\n            std::copy(std::begin(g),\
+    \        if (zero == int(this->size()) || __int128_t(zero) * k >= deg) { return\
+    \ FPS(deg, mint(0)); }\n        if (zero != 0) {\n            FPS suf(this->begin()\
+    \ + zero, this->end());\n            auto g = suf.sparse_pow(k, deg - zero * k);\n\
+    \            FPS ret(zero * k, mint(0));\n            std::copy(std::begin(g),\
     \ std::end(g), std::back_inserter(ret));\n            return ret;\n        }\n\
     \n        int mod = mint::getmod();\n        static std::vector<mint> inv{1, 1};\n\
     \        while ((int)inv.size() <= deg) {\n            int i = inv.size();\n \
@@ -350,7 +350,7 @@ data:
   - fps/fps_arb.hpp
   - fps/ntt_friendly.hpp
   - fps/multivariate_fps.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

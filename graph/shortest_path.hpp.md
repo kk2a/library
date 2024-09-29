@@ -15,7 +15,7 @@ data:
     \ <queue>\n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
     \ <class WG, class T = typename WG::value_type> struct ShortestPath {\n  public:\n\
     \    ShortestPath(const WG &g) : _n(g.size()), _g(g) {}\n\n    int num_vertices()\
-    \ { return _n; }\n\n    std::pair<std::vector<T>, std::vector<int>>\n    query(int\
+    \ { return _n; }\n\n    std::pair<std::vector<T>, std::vector<int>> query(int\
     \ start, T e = _ZERO, T inf = _INF) {\n        T alt;\n        std::vector<T>\
     \ dist(_n, inf);\n        std::vector<int> prev(_n, -1);\n        dist[start]\
     \ = e;\n\n        std::priority_queue<std::pair<T, int>,\n                   \
@@ -33,8 +33,8 @@ data:
     #include <queue>\n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\n\
     template <class WG, class T = typename WG::value_type> struct ShortestPath {\n\
     \  public:\n    ShortestPath(const WG &g) : _n(g.size()), _g(g) {}\n\n    int\
-    \ num_vertices() { return _n; }\n\n    std::pair<std::vector<T>, std::vector<int>>\n\
-    \    query(int start, T e = _ZERO, T inf = _INF) {\n        T alt;\n        std::vector<T>\
+    \ num_vertices() { return _n; }\n\n    std::pair<std::vector<T>, std::vector<int>>\
+    \ query(int start, T e = _ZERO, T inf = _INF) {\n        T alt;\n        std::vector<T>\
     \ dist(_n, inf);\n        std::vector<int> prev(_n, -1);\n        dist[start]\
     \ = e;\n\n        std::priority_queue<std::pair<T, int>,\n                   \
     \         std::vector<std::pair<T, int>>,\n                            std::greater<std::pair<T,\
@@ -52,7 +52,7 @@ data:
   path: graph/shortest_path.hpp
   requiredBy:
   - graph/tree/diameter.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/shortest_path.hpp

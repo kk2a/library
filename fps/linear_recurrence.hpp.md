@@ -18,9 +18,9 @@ data:
     \    if (n == 0) return p[0] / q[0];\n\n    int qsz = q.size();\n    FPS mq(q);\n\
     \    for (int i = 1; i < qsz; i += 2) mq[i] = -mq[i];\n    FPS p2(p);\n    p2.resize(qsz\
     \ - 1);\n    p2 *= mq;\n    FPS q2 = q * mq;\n    FPS pp(qsz - 1), qq(qsz);\n\
-    \    for (int i = 0; i < qsz - 1; i++) {\n        pp[i] = (n & 1) ? p2[2 * i +\
-    \ 1] : p2[2 * i];\n    }\n    for (int i = 0; i < qsz; i++) { qq[i] = q2[2 * i];\
-    \ }\n    return BostanMori(pp, qq, n >> 1);\n}\n\n} // namespace kk2\n\n\n"
+    \    for (int i = 0; i < qsz - 1; i++) { pp[i] = (n & 1) ? p2[2 * i + 1] : p2[2\
+    \ * i]; }\n    for (int i = 0; i < qsz; i++) { qq[i] = q2[2 * i]; }\n    return\
+    \ BostanMori(pp, qq, n >> 1);\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef LINEAR_RECURRENCE_HPP\n#define LINEAR_RECURRENCE_HPP 1\n\n#include\
     \ <cassert>\n\nnamespace kk2 {\n\n// a_{i + k} = \\sum_{j = 0}^{k - 1} c_{j} a_{i\
     \ + k - j - 1}\n// return P of P / Q = a_0 + a_1 x + a_2 x^2 + ...\ntemplate <class\
@@ -31,15 +31,14 @@ data:
     \    if (n == 0) return p[0] / q[0];\n\n    int qsz = q.size();\n    FPS mq(q);\n\
     \    for (int i = 1; i < qsz; i += 2) mq[i] = -mq[i];\n    FPS p2(p);\n    p2.resize(qsz\
     \ - 1);\n    p2 *= mq;\n    FPS q2 = q * mq;\n    FPS pp(qsz - 1), qq(qsz);\n\
-    \    for (int i = 0; i < qsz - 1; i++) {\n        pp[i] = (n & 1) ? p2[2 * i +\
-    \ 1] : p2[2 * i];\n    }\n    for (int i = 0; i < qsz; i++) { qq[i] = q2[2 * i];\
-    \ }\n    return BostanMori(pp, qq, n >> 1);\n}\n\n} // namespace kk2\n\n#endif\
-    \ // LINEAR_RECURRENCE_HPP\n"
+    \    for (int i = 0; i < qsz - 1; i++) { pp[i] = (n & 1) ? p2[2 * i + 1] : p2[2\
+    \ * i]; }\n    for (int i = 0; i < qsz; i++) { qq[i] = q2[2 * i]; }\n    return\
+    \ BostanMori(pp, qq, n >> 1);\n}\n\n} // namespace kk2\n\n#endif // LINEAR_RECURRENCE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/linear_recurrence.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/linear_recurrence.hpp

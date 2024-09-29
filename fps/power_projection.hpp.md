@@ -25,46 +25,44 @@ data:
     \        auto db = [&]() -> void {\n            std::copy(std::begin(buf), std::end(buf),\
     \ std::begin(buf2));\n            buf2.ibut();\n            mint r = 1;\n    \
     \        for (int i = 0; i < k; i++) {\n                buf2[i] *= r;\n      \
-    \          r *= w;\n            }\n            buf2.but();\n            std::copy(\n\
-    \                std::begin(buf2), std::end(buf2), std::back_inserter(buf));\n\
-    \        };\n\n        np.clear(), nq.clear();\n        for (int i = 0; i <= n;\
-    \ i++) {\n            buf.resize(k);\n            std::copy(std::begin(p) + i\
-    \ * k,\n                      std::begin(p) + (i + 1) * k,\n                 \
-    \     std::begin(buf));\n            db();\n            std::copy(std::begin(buf),\
-    \ std::end(buf), std::back_inserter(np));\n\n            buf.resize(k);\n    \
-    \        std::copy(std::begin(q) + i * k,\n                      std::begin(q)\
-    \ + (i + 1) * k,\n                      std::begin(buf));\n            if (i ==\
-    \ 0) {\n                for (int j = 0; j < k; j++) buf[j] -= 1;\n           \
-    \     db();\n                for (int j = 0; j < k; j++) buf[j] += 1;\n      \
-    \          for (int j = 0; j < k; j++) buf[k + j] -= 1;\n            } else db();\n\
-    \n            std::copy(std::begin(buf), std::end(buf), std::back_inserter(nq));\n\
-    \        }\n\n        np.resize(2 * h * 2 * k);\n        nq.resize(2 * h * 2 *\
-    \ k);\n        FPS p1(2 * h), q1(2 * h);\n\n        w = mint(FPS::but_pr()).pow((mint::getmod()\
-    \ - 1) / (h << 1));\n        invw = w.inv();\n        std::vector<int> btr;\n\
-    \        if (n & 1) {\n            btr.resize(h);\n            for (int i = 0,\
-    \ lg = __builtin_ctz(h); i < h; i++) {\n                btr[i] = (btr[i >> 1]\
-    \ >> 1) + ((i & 1) << (lg - 1));\n            }\n        }\n\n        for (int\
-    \ j = 0; j < 2 * k; j++) {\n            p1.assign(2 * h, 0);\n            q1.assign(2\
-    \ * h, 0);\n            for (int i = 0; i < h; i++) {\n                p1[i] =\
-    \ np[i * 2 * k + j];\n                q1[i] = nq[i * 2 * k + j];\n           \
-    \ }\n            p1.but();\n            q1.but();\n            for (int i = 0;\
-    \ i < 2 * h; i += 2) std::swap(q1[i], q1[i + 1]);\n            p1.inplace_dot(q1);\n\
-    \            for (int i = 0; i < h; i++) q1[i] = q1[i * 2] * q1[i * 2 + 1];\n\
-    \            if (n & 1) {\n                mint c = inv2;\n                buf.resize(h);\n\
+    \          r *= w;\n            }\n            buf2.but();\n            std::copy(std::begin(buf2),\
+    \ std::end(buf2), std::back_inserter(buf));\n        };\n\n        np.clear(),\
+    \ nq.clear();\n        for (int i = 0; i <= n; i++) {\n            buf.resize(k);\n\
+    \            std::copy(std::begin(p) + i * k, std::begin(p) + (i + 1) * k, std::begin(buf));\n\
+    \            db();\n            std::copy(std::begin(buf), std::end(buf), std::back_inserter(np));\n\
+    \n            buf.resize(k);\n            std::copy(std::begin(q) + i * k, std::begin(q)\
+    \ + (i + 1) * k, std::begin(buf));\n            if (i == 0) {\n              \
+    \  for (int j = 0; j < k; j++) buf[j] -= 1;\n                db();\n         \
+    \       for (int j = 0; j < k; j++) buf[j] += 1;\n                for (int j =\
+    \ 0; j < k; j++) buf[k + j] -= 1;\n            } else db();\n\n            std::copy(std::begin(buf),\
+    \ std::end(buf), std::back_inserter(nq));\n        }\n\n        np.resize(2 *\
+    \ h * 2 * k);\n        nq.resize(2 * h * 2 * k);\n        FPS p1(2 * h), q1(2\
+    \ * h);\n\n        w = mint(FPS::but_pr()).pow((mint::getmod() - 1) / (h << 1));\n\
+    \        invw = w.inv();\n        std::vector<int> btr;\n        if (n & 1) {\n\
+    \            btr.resize(h);\n            for (int i = 0, lg = __builtin_ctz(h);\
+    \ i < h; i++) {\n                btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (lg\
+    \ - 1));\n            }\n        }\n\n        for (int j = 0; j < 2 * k; j++)\
+    \ {\n            p1.assign(2 * h, 0);\n            q1.assign(2 * h, 0);\n    \
+    \        for (int i = 0; i < h; i++) {\n                p1[i] = np[i * 2 * k +\
+    \ j];\n                q1[i] = nq[i * 2 * k + j];\n            }\n           \
+    \ p1.but();\n            q1.but();\n            for (int i = 0; i < 2 * h; i +=\
+    \ 2) std::swap(q1[i], q1[i + 1]);\n            p1.inplace_dot(q1);\n         \
+    \   for (int i = 0; i < h; i++) q1[i] = q1[i * 2] * q1[i * 2 + 1];\n         \
+    \   if (n & 1) {\n                mint c = inv2;\n                buf.resize(h);\n\
     \                for (int i : btr) {\n                    buf[i] = (p1[i * 2]\
     \ - p1[i * 2 + 1]) * c;\n                    c *= invw;\n                }\n \
     \               std::swap(p1, buf);\n            } else {\n                for\
-    \ (int i = 0; i < h; i++)\n                    p1[i] = (p1[i * 2] + p1[i * 2 +\
-    \ 1]) * inv2;\n            }\n            p1.resize(h);\n            q1.resize(h);\n\
-    \            p1.ibut();\n            q1.ibut();\n            for (int i = 0; i\
-    \ < h; i++) {\n                np[i * 2 * k + j] = p1[i];\n                nq[i\
-    \ * 2 * k + j] = q1[i];\n            }\n        }\n\n        np.resize((n / 2\
-    \ + 1) * 2 * k);\n        nq.resize((n / 2 + 1) * 2 * k);\n        std::swap(p,\
-    \ np);\n        std::swap(q, nq);\n        n >>= 1, h >>= 1, k <<= 1;\n    }\n\
-    \n    FPS s(std::begin(p), std::begin(p) + k);\n    FPS t(std::begin(q), std::begin(q)\
-    \ + k);\n    s.ibut();\n    t.ibut();\n    t[0] -= 1;\n    if (f[0] == mint(0))\
-    \ return s.rev().pre(m + 1);\n    return (s.rev() * (t + (FPS{1} << k)).rev().inv(m\
-    \ + 1)).pre(m + 1);\n}\n\n} // namespace kk2\n\n\n"
+    \ (int i = 0; i < h; i++) p1[i] = (p1[i * 2] + p1[i * 2 + 1]) * inv2;\n      \
+    \      }\n            p1.resize(h);\n            q1.resize(h);\n            p1.ibut();\n\
+    \            q1.ibut();\n            for (int i = 0; i < h; i++) {\n         \
+    \       np[i * 2 * k + j] = p1[i];\n                nq[i * 2 * k + j] = q1[i];\n\
+    \            }\n        }\n\n        np.resize((n / 2 + 1) * 2 * k);\n       \
+    \ nq.resize((n / 2 + 1) * 2 * k);\n        std::swap(p, np);\n        std::swap(q,\
+    \ nq);\n        n >>= 1, h >>= 1, k <<= 1;\n    }\n\n    FPS s(std::begin(p),\
+    \ std::begin(p) + k);\n    FPS t(std::begin(q), std::begin(q) + k);\n    s.ibut();\n\
+    \    t.ibut();\n    t[0] -= 1;\n    if (f[0] == mint(0)) return s.rev().pre(m\
+    \ + 1);\n    return (s.rev() * (t + (FPS{1} << k)).rev().inv(m + 1)).pre(m + 1);\n\
+    }\n\n} // namespace kk2\n\n\n"
   code: "#ifndef POWER_PROJECTION_HPP\n#define POWER_PROJECTION_HPP 1\n\n#include\
     \ <algorithm>\n#include <functional>\n#include <vector>\n\nnamespace kk2 {\n\n\
     // n = \\deg f\n// [X ^ n] f(X) ^ i g(X)  enumerate for i = 0, ... , m\ntemplate\
@@ -80,51 +78,50 @@ data:
     \ {\n            std::copy(std::begin(buf), std::end(buf), std::begin(buf2));\n\
     \            buf2.ibut();\n            mint r = 1;\n            for (int i = 0;\
     \ i < k; i++) {\n                buf2[i] *= r;\n                r *= w;\n    \
-    \        }\n            buf2.but();\n            std::copy(\n                std::begin(buf2),\
-    \ std::end(buf2), std::back_inserter(buf));\n        };\n\n        np.clear(),\
-    \ nq.clear();\n        for (int i = 0; i <= n; i++) {\n            buf.resize(k);\n\
-    \            std::copy(std::begin(p) + i * k,\n                      std::begin(p)\
-    \ + (i + 1) * k,\n                      std::begin(buf));\n            db();\n\
-    \            std::copy(std::begin(buf), std::end(buf), std::back_inserter(np));\n\
-    \n            buf.resize(k);\n            std::copy(std::begin(q) + i * k,\n \
-    \                     std::begin(q) + (i + 1) * k,\n                      std::begin(buf));\n\
-    \            if (i == 0) {\n                for (int j = 0; j < k; j++) buf[j]\
-    \ -= 1;\n                db();\n                for (int j = 0; j < k; j++) buf[j]\
-    \ += 1;\n                for (int j = 0; j < k; j++) buf[k + j] -= 1;\n      \
-    \      } else db();\n\n            std::copy(std::begin(buf), std::end(buf), std::back_inserter(nq));\n\
-    \        }\n\n        np.resize(2 * h * 2 * k);\n        nq.resize(2 * h * 2 *\
-    \ k);\n        FPS p1(2 * h), q1(2 * h);\n\n        w = mint(FPS::but_pr()).pow((mint::getmod()\
-    \ - 1) / (h << 1));\n        invw = w.inv();\n        std::vector<int> btr;\n\
-    \        if (n & 1) {\n            btr.resize(h);\n            for (int i = 0,\
-    \ lg = __builtin_ctz(h); i < h; i++) {\n                btr[i] = (btr[i >> 1]\
-    \ >> 1) + ((i & 1) << (lg - 1));\n            }\n        }\n\n        for (int\
-    \ j = 0; j < 2 * k; j++) {\n            p1.assign(2 * h, 0);\n            q1.assign(2\
-    \ * h, 0);\n            for (int i = 0; i < h; i++) {\n                p1[i] =\
-    \ np[i * 2 * k + j];\n                q1[i] = nq[i * 2 * k + j];\n           \
-    \ }\n            p1.but();\n            q1.but();\n            for (int i = 0;\
-    \ i < 2 * h; i += 2) std::swap(q1[i], q1[i + 1]);\n            p1.inplace_dot(q1);\n\
-    \            for (int i = 0; i < h; i++) q1[i] = q1[i * 2] * q1[i * 2 + 1];\n\
-    \            if (n & 1) {\n                mint c = inv2;\n                buf.resize(h);\n\
+    \        }\n            buf2.but();\n            std::copy(std::begin(buf2), std::end(buf2),\
+    \ std::back_inserter(buf));\n        };\n\n        np.clear(), nq.clear();\n \
+    \       for (int i = 0; i <= n; i++) {\n            buf.resize(k);\n         \
+    \   std::copy(std::begin(p) + i * k, std::begin(p) + (i + 1) * k, std::begin(buf));\n\
+    \            db();\n            std::copy(std::begin(buf), std::end(buf), std::back_inserter(np));\n\
+    \n            buf.resize(k);\n            std::copy(std::begin(q) + i * k, std::begin(q)\
+    \ + (i + 1) * k, std::begin(buf));\n            if (i == 0) {\n              \
+    \  for (int j = 0; j < k; j++) buf[j] -= 1;\n                db();\n         \
+    \       for (int j = 0; j < k; j++) buf[j] += 1;\n                for (int j =\
+    \ 0; j < k; j++) buf[k + j] -= 1;\n            } else db();\n\n            std::copy(std::begin(buf),\
+    \ std::end(buf), std::back_inserter(nq));\n        }\n\n        np.resize(2 *\
+    \ h * 2 * k);\n        nq.resize(2 * h * 2 * k);\n        FPS p1(2 * h), q1(2\
+    \ * h);\n\n        w = mint(FPS::but_pr()).pow((mint::getmod() - 1) / (h << 1));\n\
+    \        invw = w.inv();\n        std::vector<int> btr;\n        if (n & 1) {\n\
+    \            btr.resize(h);\n            for (int i = 0, lg = __builtin_ctz(h);\
+    \ i < h; i++) {\n                btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (lg\
+    \ - 1));\n            }\n        }\n\n        for (int j = 0; j < 2 * k; j++)\
+    \ {\n            p1.assign(2 * h, 0);\n            q1.assign(2 * h, 0);\n    \
+    \        for (int i = 0; i < h; i++) {\n                p1[i] = np[i * 2 * k +\
+    \ j];\n                q1[i] = nq[i * 2 * k + j];\n            }\n           \
+    \ p1.but();\n            q1.but();\n            for (int i = 0; i < 2 * h; i +=\
+    \ 2) std::swap(q1[i], q1[i + 1]);\n            p1.inplace_dot(q1);\n         \
+    \   for (int i = 0; i < h; i++) q1[i] = q1[i * 2] * q1[i * 2 + 1];\n         \
+    \   if (n & 1) {\n                mint c = inv2;\n                buf.resize(h);\n\
     \                for (int i : btr) {\n                    buf[i] = (p1[i * 2]\
     \ - p1[i * 2 + 1]) * c;\n                    c *= invw;\n                }\n \
     \               std::swap(p1, buf);\n            } else {\n                for\
-    \ (int i = 0; i < h; i++)\n                    p1[i] = (p1[i * 2] + p1[i * 2 +\
-    \ 1]) * inv2;\n            }\n            p1.resize(h);\n            q1.resize(h);\n\
-    \            p1.ibut();\n            q1.ibut();\n            for (int i = 0; i\
-    \ < h; i++) {\n                np[i * 2 * k + j] = p1[i];\n                nq[i\
-    \ * 2 * k + j] = q1[i];\n            }\n        }\n\n        np.resize((n / 2\
-    \ + 1) * 2 * k);\n        nq.resize((n / 2 + 1) * 2 * k);\n        std::swap(p,\
-    \ np);\n        std::swap(q, nq);\n        n >>= 1, h >>= 1, k <<= 1;\n    }\n\
-    \n    FPS s(std::begin(p), std::begin(p) + k);\n    FPS t(std::begin(q), std::begin(q)\
-    \ + k);\n    s.ibut();\n    t.ibut();\n    t[0] -= 1;\n    if (f[0] == mint(0))\
-    \ return s.rev().pre(m + 1);\n    return (s.rev() * (t + (FPS{1} << k)).rev().inv(m\
-    \ + 1)).pre(m + 1);\n}\n\n} // namespace kk2\n\n#endif // POWER_PROJECTION_HPP\n"
+    \ (int i = 0; i < h; i++) p1[i] = (p1[i * 2] + p1[i * 2 + 1]) * inv2;\n      \
+    \      }\n            p1.resize(h);\n            q1.resize(h);\n            p1.ibut();\n\
+    \            q1.ibut();\n            for (int i = 0; i < h; i++) {\n         \
+    \       np[i * 2 * k + j] = p1[i];\n                nq[i * 2 * k + j] = q1[i];\n\
+    \            }\n        }\n\n        np.resize((n / 2 + 1) * 2 * k);\n       \
+    \ nq.resize((n / 2 + 1) * 2 * k);\n        std::swap(p, np);\n        std::swap(q,\
+    \ nq);\n        n >>= 1, h >>= 1, k <<= 1;\n    }\n\n    FPS s(std::begin(p),\
+    \ std::begin(p) + k);\n    FPS t(std::begin(q), std::begin(q) + k);\n    s.ibut();\n\
+    \    t.ibut();\n    t[0] -= 1;\n    if (f[0] == mint(0)) return s.rev().pre(m\
+    \ + 1);\n    return (s.rev() * (t + (FPS{1} << k)).rev().inv(m + 1)).pre(m + 1);\n\
+    }\n\n} // namespace kk2\n\n#endif // POWER_PROJECTION_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/power_projection.hpp
   requiredBy:
   - fps/compositional_inv.hpp
-  timestamp: '2024-09-23 06:34:12+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/power_projection.hpp

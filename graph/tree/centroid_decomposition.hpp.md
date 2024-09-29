@@ -15,9 +15,9 @@ data:
     \  int root;\n\n    CentroidDecomposition(const G &g_, bool isbuild = true)\n\
     \        : g(g_),\n          parent(g.size(), -1),\n          subsize(g.size(),\
     \ 0),\n          used(g.size(), false),\n          children(g.size()) {\n    \
-    \    if (isbuild) build();\n    }\n\n    void build() {\n        root = build_dfs(0);\n\
-    \    }\n\n    int get_size(int now, int par) {\n        subsize[now] = 1;\n  \
-    \      for (auto &e : g[now]) {\n            if (e.to == par or used[e.to]) continue;\n\
+    \    if (isbuild) build();\n    }\n\n    void build() { root = build_dfs(0); }\n\
+    \n    int get_size(int now, int par) {\n        subsize[now] = 1;\n        for\
+    \ (auto &e : g[now]) {\n            if (e.to == par or used[e.to]) continue;\n\
     \            subsize[now] += get_size(e.to, now);\n        }\n        return subsize[now];\n\
     \    }\n\n    int get_centroid(int now, int par, int mid) {\n        for (auto\
     \ &e : g[now]) {\n            if (e.to == par or used[e.to]) continue;\n     \
@@ -36,9 +36,9 @@ data:
     \  int root;\n\n    CentroidDecomposition(const G &g_, bool isbuild = true)\n\
     \        : g(g_),\n          parent(g.size(), -1),\n          subsize(g.size(),\
     \ 0),\n          used(g.size(), false),\n          children(g.size()) {\n    \
-    \    if (isbuild) build();\n    }\n\n    void build() {\n        root = build_dfs(0);\n\
-    \    }\n\n    int get_size(int now, int par) {\n        subsize[now] = 1;\n  \
-    \      for (auto &e : g[now]) {\n            if (e.to == par or used[e.to]) continue;\n\
+    \    if (isbuild) build();\n    }\n\n    void build() { root = build_dfs(0); }\n\
+    \n    int get_size(int now, int par) {\n        subsize[now] = 1;\n        for\
+    \ (auto &e : g[now]) {\n            if (e.to == par or used[e.to]) continue;\n\
     \            subsize[now] += get_size(e.to, now);\n        }\n        return subsize[now];\n\
     \    }\n\n    int get_centroid(int now, int par, int mid) {\n        for (auto\
     \ &e : g[now]) {\n            if (e.to == par or used[e.to]) continue;\n     \
@@ -54,7 +54,7 @@ data:
   isVerificationFile: false
   path: graph/tree/centroid_decomposition.hpp
   requiredBy: []
-  timestamp: '2024-09-25 21:40:38+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/centroid_decomposition.hpp

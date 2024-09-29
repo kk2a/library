@@ -35,24 +35,23 @@ data:
     } // namespace monoid\n\ntemplate <class S, class... Args>\nconstexpr std::vector<monoid::Max<S>>\
     \ GetVecMax(int n, Args... args) {\n    return std::vector<monoid::Max<S>>(n,\
     \ monoid::Max<S>(args...));\n}\n\ntemplate <class S, class... Args>\nconstexpr\
-    \ std::vector<std::vector<monoid::Max<S>>>\nGetVecMax2D(int h, int w, Args...\
-    \ args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\n          \
-    \                                          GetVecMax<S>(w, args...));\n}\n\n}\
-    \ // namespace kk2\n\n\n#line 1 \"segment_tree/seg.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <functional>\n#line 7 \"segment_tree/seg.hpp\"\n\nnamespace kk2 {\n\n\
-    template <class S, S (*op)(S, S), S (*e)()> struct SegTree {\n  public:\n    SegTree()\
-    \ : SegTree(0) {}\n\n    SegTree(int n) : SegTree(std::vector<S>(n, e())) {}\n\
-    \n    template <class... Args>\n    SegTree(int n, Args... args) : SegTree(std::vector<S>(n,\
-    \ S(args...))){};\n\n    SegTree(const std::vector<S> &v) : _n(int(v.size()))\
-    \ {\n        log = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n\
-    \        size = 1 << log;\n        d = std::vector<S>(2 * size, e());\n      \
-    \  for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for (int i = size\
-    \ - 1; i >= 1; i--) { update(i); }\n    }\n\n    using Monoid = S;\n\n    static\
-    \ S Op(S l, S r) { return op(l, r); }\n\n    static S MonoidUnit() { return e();\
-    \ }\n\n    void set(int p, S x) {\n        assert(0 <= p && p < _n);\n       \
-    \ p += size;\n        d[p] = x;\n        for (int i = 1; i <= log; i++) update(p\
-    \ >> i);\n    }\n\n    template <class... Args> void emplace_set(int p, Args...\
-    \ args) {\n        set(p, S(args...));\n    }\n\n    S get(int p) {\n        assert(0\
+    \ std::vector<std::vector<monoid::Max<S>>> GetVecMax2D(int h, int w, Args... args)\
+    \ {\n    return std::vector<std::vector<monoid::Max<S>>>(h, GetVecMax<S>(w, args...));\n\
+    }\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/seg.hpp\"\n\n\n\n#include\
+    \ <cassert>\n#include <functional>\n#line 7 \"segment_tree/seg.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SegTree {\n  public:\n\
+    \    SegTree() : SegTree(0) {}\n\n    SegTree(int n) : SegTree(std::vector<S>(n,\
+    \ e())) {}\n\n    template <class... Args>\n    SegTree(int n, Args... args) :\
+    \ SegTree(std::vector<S>(n, S(args...))){};\n\n    SegTree(const std::vector<S>\
+    \ &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1U << log) < (unsigned\
+    \ int)(_n)) log++;\n        size = 1 << log;\n        d = std::vector<S>(2 * size,\
+    \ e());\n        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for\
+    \ (int i = size - 1; i >= 1; i--) { update(i); }\n    }\n\n    using Monoid =\
+    \ S;\n\n    static S Op(S l, S r) { return op(l, r); }\n\n    static S MonoidUnit()\
+    \ { return e(); }\n\n    void set(int p, S x) {\n        assert(0 <= p && p <\
+    \ _n);\n        p += size;\n        d[p] = x;\n        for (int i = 1; i <= log;\
+    \ i++) update(p >> i);\n    }\n\n    template <class... Args> void emplace_set(int\
+    \ p, Args... args) { set(p, S(args...)); }\n\n    S get(int p) {\n        assert(0\
     \ <= p && p < _n);\n        return d[p + size];\n    }\n\n    S prod(int l, int\
     \ r) {\n        assert(0 <= l && l <= r && r <= _n);\n        S sml = e(), smr\
     \ = e();\n        l += size;\n        r += size;\n\n        while (l < r) {\n\
@@ -85,7 +84,7 @@ data:
     \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\n  private:\n\
     \    int _n, size, log;\n    std::vector<S> d;\n\n    void update(int k) { d[k]\
     \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 6 \"segment_tree/utility/maxseg.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing MaxSeg = SegTree<monoid::Max<S>,\
+    \n\nnamespace kk2 {\n\ntemplate <class S> using MaxSeg = SegTree<monoid::Max<S>,\
     \ monoid::MaxOp<S>, monoid::MaxUnit<S>>;\n\n} // namespace kk2\n\n\n"
   code: '#ifndef SEGMENT_TREE_UTILITY_MAXSEG_HPP
 
@@ -100,9 +99,7 @@ data:
     namespace kk2 {
 
 
-    template <class S>
-
-    using MaxSeg = SegTree<monoid::Max<S>, monoid::MaxOp<S>, monoid::MaxUnit<S>>;
+    template <class S> using MaxSeg = SegTree<monoid::Max<S>, monoid::MaxOp<S>, monoid::MaxUnit<S>>;
 
 
     } // namespace kk2
@@ -117,7 +114,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/maxseg.hpp
   requiredBy: []
-  timestamp: '2024-09-26 15:55:52+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/maxseg.hpp

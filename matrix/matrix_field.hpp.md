@@ -12,33 +12,32 @@ data:
     #include <cassert>\n#include <iostream>\n#include <string>\n#include <vector>\n\
     \nnamespace kk2 {\n\ntemplate <class Field> struct MatrixField {\n    using mat\
     \ = MatrixField;\n\n    MatrixField() : MatrixField(0) {}\n\n    MatrixField(int\
-    \ n) : MatrixField(n, n) {}\n\n    MatrixField(int h, int w)\n        : MatrixField(std::vector<std::vector<Field>>(\n\
-    \              h, std::vector<Field>(w, Field()))) {}\n\n    MatrixField(const\
-    \ std::vector<std::vector<Field>> &mat_)\n        : _h(mat_.size()),\n       \
-    \   _w(mat_[0].size()),\n          _mat(mat_) {}\n\n    int get_h() const { return\
-    \ _h; }\n\n    int get_w() const { return _w; }\n\n    Field at(int i, int j)\
-    \ const {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
-    \        return _mat[i][j];\n    }\n\n    std::vector<Field> &operator[](int i)\
-    \ {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n    }\n\n   \
-    \ void display() const {\n        for (int i = 0; i < _h; i++) {\n           \
-    \ for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << \" \";\n           \
-    \ std::cout << \"\\n\";\n        }\n    }\n\n    void set(int i, int j, Field\
-    \ x) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
-    \        _mat[i][j] = x;\n    }\n\n    mat &operator+=(const mat &rhs) {\n   \
-    \     assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i\
-    \ = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j] +=\
-    \ rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator-=(const\
-    \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
-    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
-    \ { _mat[i][j] -= rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\
-    \n    mat &operator*=(const mat &rhs) {\n        assert(_w == rhs._h);\n     \
-    \   std::vector<std::vector<Field>> res(\n            _h, std::vector<Field>(rhs._w,\
-    \ Field()));\n        for (int i = 0; i < _h; i++) {\n            for (int j =\
-    \ 0; j < rhs._w; j++) {\n                for (int k = 0; k < _w; k++) {\n    \
-    \                res[i][j] += _mat[i][k] * rhs._mat[k][j];\n                }\n\
-    \            }\n        }\n        _w = rhs._w;\n        _mat.swap(res);\n   \
-    \     return *this;\n    }\n\n    Field det(Field product_e = Field(1)) const\
-    \ {\n        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
+    \ n) : MatrixField(n, n) {}\n\n    MatrixField(int h, int w)\n        : MatrixField(std::vector<std::vector<Field>>(h,\
+    \ std::vector<Field>(w, Field()))) {}\n\n    MatrixField(const std::vector<std::vector<Field>>\
+    \ &mat_)\n        : _h(mat_.size()),\n          _w(mat_[0].size()),\n        \
+    \  _mat(mat_) {}\n\n    int get_h() const { return _h; }\n\n    int get_w() const\
+    \ { return _w; }\n\n    Field at(int i, int j) const {\n        assert(0 <= i\
+    \ && i < _h);\n        assert(0 <= j && j < _w);\n        return _mat[i][j];\n\
+    \    }\n\n    std::vector<Field> &operator[](int i) {\n        assert(0 <= i &&\
+    \ i < _h);\n        return _mat[i];\n    }\n\n    void display() const {\n   \
+    \     for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
+    \ std::cout << _mat[i][j] << \" \";\n            std::cout << \"\\n\";\n     \
+    \   }\n    }\n\n    void set(int i, int j, Field x) {\n        assert(0 <= i &&\
+    \ i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n    }\n\
+    \n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  for (int j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n        }\n\
+    \        return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n     \
+    \   assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
+    \ 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j] -=\
+    \ rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator*=(const\
+    \ mat &rhs) {\n        assert(_w == rhs._h);\n        std::vector<std::vector<Field>>\
+    \ res(_h, std::vector<Field>(rhs._w, Field()));\n        for (int i = 0; i < _h;\
+    \ i++) {\n            for (int j = 0; j < rhs._w; j++) {\n                for\
+    \ (int k = 0; k < _w; k++) { res[i][j] += _mat[i][k] * rhs._mat[k][j]; }\n   \
+    \         }\n        }\n        _w = rhs._w;\n        _mat.swap(res);\n      \
+    \  return *this;\n    }\n\n    Field det(Field product_e = Field(1)) const {\n\
+    \        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
     \ a(_mat);\n        Field res = 1;\n        for (int i = 0; i < n; i++) {\n  \
     \          int pivot = -1;\n            for (int j = i; j < n; j++) {\n      \
     \          if (a[j][i] != Field(0)) {\n                    pivot = j;\n      \
@@ -80,68 +79,65 @@ data:
     \ + 1; j < n; j++) {\n                Field r = a[j][i];\n                for\
     \ (int k = i; k < m; k++) { a[j][k] -= a[res][k] * r; }\n            }\n     \
     \       res++;\n        }\n        return res;\n    }\n\n    mat &inplace_combine_top(const\
-    \ mat &rhs) {\n        assert(_w == rhs._w);\n        this->_mat.insert(\n   \
-    \         std::begin(this->_mat), std::begin(rhs._mat), std::end(rhs._mat));\n\
-    \        this->_h += rhs._h;\n        return *this;\n    }\n\n    mat combine_top(const\
-    \ mat &rhs) const {\n        assert(_w == rhs._w);\n        mat res(this->_mat);\n\
-    \        return res.inplace_combine_top(rhs);\n    }\n\n    mat &inplace_combine_bottom(const\
-    \ mat &rhs) {\n        assert(_w == rhs._w);\n        this->_mat.insert(\n   \
-    \         std::end(this->_mat), std::begin(rhs._mat), std::end(rhs._mat));\n \
-    \       this->_h += rhs._h;\n        return *this;\n    }\n\n    mat combine_bottom(const\
-    \ mat &rhs) const {\n        assert(_w == rhs._w);\n        mat res(this->_mat);\n\
-    \        return res.inplace_combine_bottom(rhs);\n    }\n\n    mat &inplace_combine_left(const\
-    \ mat &rhs) {\n        assert(_h == rhs._h);\n        for (int i = 0; i < _h;\
-    \ i++) {\n            this->_mat[i].insert(std::begin(this->_mat[i]),\n      \
-    \                           std::begin(rhs._mat[i]),\n                       \
-    \          std::end(rhs._mat[i]));\n        }\n        this->_w += rhs._w;\n \
-    \       return *this;\n    }\n\n    mat combine_left(const mat &rhs) const {\n\
-    \        assert(_h == rhs._h);\n        mat res(this->_mat);\n        return res.inplace_combine_left(rhs);\n\
-    \    }\n\n    mat &inplace_combine_right(const mat &rhs) {\n        assert(_h\
-    \ == rhs._h);\n        for (int i = 0; i < _h; i++) {\n            this->_mat[i].insert(std::end(this->_mat[i]),\n\
-    \                                 std::begin(rhs._mat[i]),\n                 \
-    \                std::end(rhs._mat[i]));\n        }\n        this->_w += rhs._w;\n\
-    \        return *this;\n    }\n\n    mat combine_right(const mat &rhs) const {\n\
-    \        assert(_h == rhs._h);\n        mat res(this->_mat);\n        return res.inplace_combine_right(rhs);\n\
-    \    }\n\n    friend mat operator+(const mat &lhs, const mat &rhs) {\n       \
-    \ return mat(lhs) += rhs;\n    }\n\n    friend mat operator-(const mat &lhs, const\
-    \ mat &rhs) {\n        return mat(lhs) -= rhs;\n    }\n\n    friend mat operator*(const\
-    \ mat &lhs, const mat &rhs) {\n        return mat(lhs) *= rhs;\n    }\n\n    friend\
-    \ bool operator==(const mat &lhs, const mat &rhs) {\n        return lhs._mat ==\
-    \ rhs._mat;\n    }\n\n    friend bool operator!=(const mat &lhs, const mat &rhs)\
-    \ {\n        return lhs._mat != rhs._mat;\n    }\n\n\n  private:\n    int _h,\
-    \ _w;\n    std::vector<std::vector<Field>> _mat;\n};\n\n} // namespace kk2\n\n\
-    \n"
+    \ mat &rhs) {\n        assert(_w == rhs._w);\n        this->_mat.insert(std::begin(this->_mat),\
+    \ std::begin(rhs._mat), std::end(rhs._mat));\n        this->_h += rhs._h;\n  \
+    \      return *this;\n    }\n\n    mat combine_top(const mat &rhs) const {\n \
+    \       assert(_w == rhs._w);\n        mat res(this->_mat);\n        return res.inplace_combine_top(rhs);\n\
+    \    }\n\n    mat &inplace_combine_bottom(const mat &rhs) {\n        assert(_w\
+    \ == rhs._w);\n        this->_mat.insert(std::end(this->_mat), std::begin(rhs._mat),\
+    \ std::end(rhs._mat));\n        this->_h += rhs._h;\n        return *this;\n \
+    \   }\n\n    mat combine_bottom(const mat &rhs) const {\n        assert(_w ==\
+    \ rhs._w);\n        mat res(this->_mat);\n        return res.inplace_combine_bottom(rhs);\n\
+    \    }\n\n    mat &inplace_combine_left(const mat &rhs) {\n        assert(_h ==\
+    \ rhs._h);\n        for (int i = 0; i < _h; i++) {\n            this->_mat[i].insert(\n\
+    \                std::begin(this->_mat[i]), std::begin(rhs._mat[i]), std::end(rhs._mat[i]));\n\
+    \        }\n        this->_w += rhs._w;\n        return *this;\n    }\n\n    mat\
+    \ combine_left(const mat &rhs) const {\n        assert(_h == rhs._h);\n      \
+    \  mat res(this->_mat);\n        return res.inplace_combine_left(rhs);\n    }\n\
+    \n    mat &inplace_combine_right(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    \        for (int i = 0; i < _h; i++) {\n            this->_mat[i].insert(\n \
+    \               std::end(this->_mat[i]), std::begin(rhs._mat[i]), std::end(rhs._mat[i]));\n\
+    \        }\n        this->_w += rhs._w;\n        return *this;\n    }\n\n    mat\
+    \ combine_right(const mat &rhs) const {\n        assert(_h == rhs._h);\n     \
+    \   mat res(this->_mat);\n        return res.inplace_combine_right(rhs);\n   \
+    \ }\n\n    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs)\
+    \ += rhs; }\n\n    friend mat operator-(const mat &lhs, const mat &rhs) { return\
+    \ mat(lhs) -= rhs; }\n\n    friend mat operator*(const mat &lhs, const mat &rhs)\
+    \ { return mat(lhs) *= rhs; }\n\n    friend bool operator==(const mat &lhs, const\
+    \ mat &rhs) { return lhs._mat == rhs._mat; }\n\n    friend bool operator!=(const\
+    \ mat &lhs, const mat &rhs) { return lhs._mat != rhs._mat; }\n\n\n  private:\n\
+    \    int _h, _w;\n    std::vector<std::vector<Field>> _mat;\n};\n\n} // namespace\
+    \ kk2\n\n\n"
   code: "#ifndef MATRIX_HPP\n#define MATRIX_HPP 1\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <iostream>\n#include <string>\n#include <vector>\n\nnamespace\
     \ kk2 {\n\ntemplate <class Field> struct MatrixField {\n    using mat = MatrixField;\n\
     \n    MatrixField() : MatrixField(0) {}\n\n    MatrixField(int n) : MatrixField(n,\
-    \ n) {}\n\n    MatrixField(int h, int w)\n        : MatrixField(std::vector<std::vector<Field>>(\n\
-    \              h, std::vector<Field>(w, Field()))) {}\n\n    MatrixField(const\
-    \ std::vector<std::vector<Field>> &mat_)\n        : _h(mat_.size()),\n       \
-    \   _w(mat_[0].size()),\n          _mat(mat_) {}\n\n    int get_h() const { return\
-    \ _h; }\n\n    int get_w() const { return _w; }\n\n    Field at(int i, int j)\
-    \ const {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
-    \        return _mat[i][j];\n    }\n\n    std::vector<Field> &operator[](int i)\
-    \ {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n    }\n\n   \
-    \ void display() const {\n        for (int i = 0; i < _h; i++) {\n           \
-    \ for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << \" \";\n           \
-    \ std::cout << \"\\n\";\n        }\n    }\n\n    void set(int i, int j, Field\
-    \ x) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
-    \        _mat[i][j] = x;\n    }\n\n    mat &operator+=(const mat &rhs) {\n   \
-    \     assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i\
-    \ = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j] +=\
-    \ rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator-=(const\
-    \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
-    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
-    \ { _mat[i][j] -= rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\
-    \n    mat &operator*=(const mat &rhs) {\n        assert(_w == rhs._h);\n     \
-    \   std::vector<std::vector<Field>> res(\n            _h, std::vector<Field>(rhs._w,\
-    \ Field()));\n        for (int i = 0; i < _h; i++) {\n            for (int j =\
-    \ 0; j < rhs._w; j++) {\n                for (int k = 0; k < _w; k++) {\n    \
-    \                res[i][j] += _mat[i][k] * rhs._mat[k][j];\n                }\n\
-    \            }\n        }\n        _w = rhs._w;\n        _mat.swap(res);\n   \
-    \     return *this;\n    }\n\n    Field det(Field product_e = Field(1)) const\
-    \ {\n        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
+    \ n) {}\n\n    MatrixField(int h, int w)\n        : MatrixField(std::vector<std::vector<Field>>(h,\
+    \ std::vector<Field>(w, Field()))) {}\n\n    MatrixField(const std::vector<std::vector<Field>>\
+    \ &mat_)\n        : _h(mat_.size()),\n          _w(mat_[0].size()),\n        \
+    \  _mat(mat_) {}\n\n    int get_h() const { return _h; }\n\n    int get_w() const\
+    \ { return _w; }\n\n    Field at(int i, int j) const {\n        assert(0 <= i\
+    \ && i < _h);\n        assert(0 <= j && j < _w);\n        return _mat[i][j];\n\
+    \    }\n\n    std::vector<Field> &operator[](int i) {\n        assert(0 <= i &&\
+    \ i < _h);\n        return _mat[i];\n    }\n\n    void display() const {\n   \
+    \     for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
+    \ std::cout << _mat[i][j] << \" \";\n            std::cout << \"\\n\";\n     \
+    \   }\n    }\n\n    void set(int i, int j, Field x) {\n        assert(0 <= i &&\
+    \ i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n    }\n\
+    \n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  for (int j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n        }\n\
+    \        return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n     \
+    \   assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
+    \ 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j] -=\
+    \ rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator*=(const\
+    \ mat &rhs) {\n        assert(_w == rhs._h);\n        std::vector<std::vector<Field>>\
+    \ res(_h, std::vector<Field>(rhs._w, Field()));\n        for (int i = 0; i < _h;\
+    \ i++) {\n            for (int j = 0; j < rhs._w; j++) {\n                for\
+    \ (int k = 0; k < _w; k++) { res[i][j] += _mat[i][k] * rhs._mat[k][j]; }\n   \
+    \         }\n        }\n        _w = rhs._w;\n        _mat.swap(res);\n      \
+    \  return *this;\n    }\n\n    Field det(Field product_e = Field(1)) const {\n\
+    \        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
     \ a(_mat);\n        Field res = 1;\n        for (int i = 0; i < n; i++) {\n  \
     \          int pivot = -1;\n            for (int j = i; j < n; j++) {\n      \
     \          if (a[j][i] != Field(0)) {\n                    pivot = j;\n      \
@@ -183,42 +179,40 @@ data:
     \ + 1; j < n; j++) {\n                Field r = a[j][i];\n                for\
     \ (int k = i; k < m; k++) { a[j][k] -= a[res][k] * r; }\n            }\n     \
     \       res++;\n        }\n        return res;\n    }\n\n    mat &inplace_combine_top(const\
-    \ mat &rhs) {\n        assert(_w == rhs._w);\n        this->_mat.insert(\n   \
-    \         std::begin(this->_mat), std::begin(rhs._mat), std::end(rhs._mat));\n\
-    \        this->_h += rhs._h;\n        return *this;\n    }\n\n    mat combine_top(const\
-    \ mat &rhs) const {\n        assert(_w == rhs._w);\n        mat res(this->_mat);\n\
-    \        return res.inplace_combine_top(rhs);\n    }\n\n    mat &inplace_combine_bottom(const\
-    \ mat &rhs) {\n        assert(_w == rhs._w);\n        this->_mat.insert(\n   \
-    \         std::end(this->_mat), std::begin(rhs._mat), std::end(rhs._mat));\n \
-    \       this->_h += rhs._h;\n        return *this;\n    }\n\n    mat combine_bottom(const\
-    \ mat &rhs) const {\n        assert(_w == rhs._w);\n        mat res(this->_mat);\n\
-    \        return res.inplace_combine_bottom(rhs);\n    }\n\n    mat &inplace_combine_left(const\
-    \ mat &rhs) {\n        assert(_h == rhs._h);\n        for (int i = 0; i < _h;\
-    \ i++) {\n            this->_mat[i].insert(std::begin(this->_mat[i]),\n      \
-    \                           std::begin(rhs._mat[i]),\n                       \
-    \          std::end(rhs._mat[i]));\n        }\n        this->_w += rhs._w;\n \
-    \       return *this;\n    }\n\n    mat combine_left(const mat &rhs) const {\n\
-    \        assert(_h == rhs._h);\n        mat res(this->_mat);\n        return res.inplace_combine_left(rhs);\n\
-    \    }\n\n    mat &inplace_combine_right(const mat &rhs) {\n        assert(_h\
-    \ == rhs._h);\n        for (int i = 0; i < _h; i++) {\n            this->_mat[i].insert(std::end(this->_mat[i]),\n\
-    \                                 std::begin(rhs._mat[i]),\n                 \
-    \                std::end(rhs._mat[i]));\n        }\n        this->_w += rhs._w;\n\
-    \        return *this;\n    }\n\n    mat combine_right(const mat &rhs) const {\n\
-    \        assert(_h == rhs._h);\n        mat res(this->_mat);\n        return res.inplace_combine_right(rhs);\n\
-    \    }\n\n    friend mat operator+(const mat &lhs, const mat &rhs) {\n       \
-    \ return mat(lhs) += rhs;\n    }\n\n    friend mat operator-(const mat &lhs, const\
-    \ mat &rhs) {\n        return mat(lhs) -= rhs;\n    }\n\n    friend mat operator*(const\
-    \ mat &lhs, const mat &rhs) {\n        return mat(lhs) *= rhs;\n    }\n\n    friend\
-    \ bool operator==(const mat &lhs, const mat &rhs) {\n        return lhs._mat ==\
-    \ rhs._mat;\n    }\n\n    friend bool operator!=(const mat &lhs, const mat &rhs)\
-    \ {\n        return lhs._mat != rhs._mat;\n    }\n\n\n  private:\n    int _h,\
-    \ _w;\n    std::vector<std::vector<Field>> _mat;\n};\n\n} // namespace kk2\n\n\
-    #endif // MATRIX_HPP\n"
+    \ mat &rhs) {\n        assert(_w == rhs._w);\n        this->_mat.insert(std::begin(this->_mat),\
+    \ std::begin(rhs._mat), std::end(rhs._mat));\n        this->_h += rhs._h;\n  \
+    \      return *this;\n    }\n\n    mat combine_top(const mat &rhs) const {\n \
+    \       assert(_w == rhs._w);\n        mat res(this->_mat);\n        return res.inplace_combine_top(rhs);\n\
+    \    }\n\n    mat &inplace_combine_bottom(const mat &rhs) {\n        assert(_w\
+    \ == rhs._w);\n        this->_mat.insert(std::end(this->_mat), std::begin(rhs._mat),\
+    \ std::end(rhs._mat));\n        this->_h += rhs._h;\n        return *this;\n \
+    \   }\n\n    mat combine_bottom(const mat &rhs) const {\n        assert(_w ==\
+    \ rhs._w);\n        mat res(this->_mat);\n        return res.inplace_combine_bottom(rhs);\n\
+    \    }\n\n    mat &inplace_combine_left(const mat &rhs) {\n        assert(_h ==\
+    \ rhs._h);\n        for (int i = 0; i < _h; i++) {\n            this->_mat[i].insert(\n\
+    \                std::begin(this->_mat[i]), std::begin(rhs._mat[i]), std::end(rhs._mat[i]));\n\
+    \        }\n        this->_w += rhs._w;\n        return *this;\n    }\n\n    mat\
+    \ combine_left(const mat &rhs) const {\n        assert(_h == rhs._h);\n      \
+    \  mat res(this->_mat);\n        return res.inplace_combine_left(rhs);\n    }\n\
+    \n    mat &inplace_combine_right(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    \        for (int i = 0; i < _h; i++) {\n            this->_mat[i].insert(\n \
+    \               std::end(this->_mat[i]), std::begin(rhs._mat[i]), std::end(rhs._mat[i]));\n\
+    \        }\n        this->_w += rhs._w;\n        return *this;\n    }\n\n    mat\
+    \ combine_right(const mat &rhs) const {\n        assert(_h == rhs._h);\n     \
+    \   mat res(this->_mat);\n        return res.inplace_combine_right(rhs);\n   \
+    \ }\n\n    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs)\
+    \ += rhs; }\n\n    friend mat operator-(const mat &lhs, const mat &rhs) { return\
+    \ mat(lhs) -= rhs; }\n\n    friend mat operator*(const mat &lhs, const mat &rhs)\
+    \ { return mat(lhs) *= rhs; }\n\n    friend bool operator==(const mat &lhs, const\
+    \ mat &rhs) { return lhs._mat == rhs._mat; }\n\n    friend bool operator!=(const\
+    \ mat &lhs, const mat &rhs) { return lhs._mat != rhs._mat; }\n\n\n  private:\n\
+    \    int _h, _w;\n    std::vector<std::vector<Field>> _mat;\n};\n\n} // namespace\
+    \ kk2\n\n#endif // MATRIX_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: matrix/matrix_field.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/matrix_field.hpp

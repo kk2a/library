@@ -38,21 +38,21 @@ data:
     \ monoid\n\ntemplate <class S, class... Args>\nconstexpr std::vector<monoid::Min<S>>\
     \ GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
     \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nconstexpr\
-    \ std::vector<std::vector<monoid::Min<S>>>\nGetVecMin2D(int h, int w, Args...\
-    \ args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w,\
-    \ args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"data_structure/sparse_table.hpp\"\
-    \n\n\n\n#include <cassert>\n#line 6 \"data_structure/sparse_table.hpp\"\n\nnamespace\
+    \ std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int h, int w, Args... args)\
+    \ {\n    return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w, args...));\n\
+    }\n\n} // namespace kk2\n\n\n#line 1 \"data_structure/sparse_table.hpp\"\n\n\n\
+    \n#include <cassert>\n#line 6 \"data_structure/sparse_table.hpp\"\n\nnamespace\
     \ kk2 {\n\n// require: op(x, x) = x for all x\ntemplate <class S, S (*op)(S, S),\
     \ S (*e)()> struct SparseTable {\n    SparseTable() = default;\n\n    SparseTable(const\
     \ std::vector<S> &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1\
     \ << log) < _n) log++;\n        table.assign(log + 1, std::vector<S>(_n));\n \
     \       for (int i = 0; i < _n; i++) table[0][i] = v[i];\n        for (int i =\
     \ 1; i <= log; i++) {\n            for (int j = 0; j + (1 << i) <= _n; j++) {\n\
-    \                table[i][j] =\n                    op(table[i - 1][j], table[i\
-    \ - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    using Monoid\
-    \ = S;\n\n    static S Op(S l, S r) { return op(l, r); }\n\n    static S MonoidUnit()\
-    \ { return e(); }\n\n    S prod(int l, int r) const {\n        assert(0 <= l &&\
-    \ l <= r && r <= _n);\n        if (l == r) return e();\n        int i = 31 ^ __builtin_clz(r\
+    \                table[i][j] = op(table[i - 1][j], table[i - 1][j + (1 << (i -\
+    \ 1))]);\n            }\n        }\n    }\n\n    using Monoid = S;\n\n    static\
+    \ S Op(S l, S r) { return op(l, r); }\n\n    static S MonoidUnit() { return e();\
+    \ }\n\n    S prod(int l, int r) const {\n        assert(0 <= l && l <= r && r\
+    \ <= _n);\n        if (l == r) return e();\n        int i = 31 ^ __builtin_clz(r\
     \ - l);\n        return op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n  \
     \  S get(int i) const {\n        assert(0 <= i && i < _n);\n        return table[0][i];\n\
     \    }\n\n    // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1]))\
@@ -74,12 +74,32 @@ data:
     \ left = mid;\n        }\n        return right;\n    }\n\n  private:\n    int\
     \ _n, log;\n    std::vector<std::vector<S>> table;\n};\n\n} // namespace kk2\n\
     \n\n#line 6 \"data_structure/static_rmq.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ S>\nusing StaticRMQ =\n    SparseTable<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<S>>;\n\
+    \ S>\nusing StaticRMQ = SparseTable<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<S>>;\n\
     \n} // namespace kk2\n\n\n"
-  code: "#ifndef DATA_STRUCTURE_STATIC_RMQ_HPP\n#define DATA_STRUCTURE_STATIC_RMQ_HPP\
-    \ 1\n\n#include \"../math/monoid/min.hpp\"\n#include \"sparse_table.hpp\"\n\n\
-    namespace kk2 {\n\ntemplate <class S>\nusing StaticRMQ =\n    SparseTable<monoid::Min<S>,\
-    \ monoid::MinOp<S>, monoid::MinUnit<S>>;\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_STATIC_RMQ_HPP\n"
+  code: '#ifndef DATA_STRUCTURE_STATIC_RMQ_HPP
+
+    #define DATA_STRUCTURE_STATIC_RMQ_HPP 1
+
+
+    #include "../math/monoid/min.hpp"
+
+    #include "sparse_table.hpp"
+
+
+    namespace kk2 {
+
+
+    template <class S>
+
+    using StaticRMQ = SparseTable<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<S>>;
+
+
+    } // namespace kk2
+
+
+    #endif // DATA_STRUCTURE_STATIC_RMQ_HPP
+
+    '
   dependsOn:
   - math/monoid/min.hpp
   - data_structure/sparse_table.hpp
@@ -87,7 +107,7 @@ data:
   path: data_structure/static_rmq.hpp
   requiredBy:
   - graph/tree/euler_tour.hpp
-  timestamp: '2024-09-26 15:55:52+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/static_rmq.hpp

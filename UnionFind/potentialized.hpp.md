@@ -10,7 +10,7 @@ data:
     links: []
   bundledCode: "#line 1 \"UnionFind/potentialized.hpp\"\n\n\n\n#include <vector>\n\
     \nnamespace kk2 {\n\n// require:\n// A is an abelian group\n// A must have operator+\
-    \ and operator-\n// A() must return unit element\ntemplate <class A>\nstruct PotentializedUnionfind\
+    \ and operator-\n// A() must return unit element\ntemplate <class A> struct PotentializedUnionfind\
     \ {\n  private:\n    std::vector<int> d;\n    std::vector<A> diff_weight;\n\n\
     \  public:\n    PotentializedUnionfind(int n = 0) : d(n, -1), diff_weight(n, A())\
     \ {}\n\n    // x -> y : w\n    bool unite(int x, int y, A w) {\n        w = w\
@@ -24,9 +24,9 @@ data:
     \    int size(int x) { return -d[find(x)]; }\n\n    // root -> x\n    A weight(int\
     \ x) {\n        find(x);\n        return diff_weight[x];\n    }\n\n    // a ->\
     \ b\n    A diff(int a, int b) { return -weight(a) + weight(b); }\n};\n\ntemplate\
-    \ <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)>\nstruct EasyAbelianGroup {\n\
-    \    A val;\n    EasyAbelianGroup() : val(e()) {}\n\n    template <class... Args>\n\
-    \    EasyAbelianGroup(Args... args) : val(args...) {}\n\n    EasyAbelianGroup\
+    \ <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyAbelianGroup {\n\
+    \    A val;\n\n    EasyAbelianGroup() : val(e()) {}\n\n    template <class...\
+    \ Args> EasyAbelianGroup(Args... args) : val(args...) {}\n\n    EasyAbelianGroup\
     \ operator+(const EasyAbelianGroup &rhs) const {\n        return EasyAbelianGroup(op(val,\
     \ rhs.val));\n    }\n\n    EasyAbelianGroup operator-(const EasyAbelianGroup &rhs)\
     \ const {\n        return EasyAbelianGroup(op(val, inv(rhs.val)));\n    }\n\n\
@@ -35,7 +35,7 @@ data:
   code: "#ifndef UNIONFIND_POTENTIALIZED_HPP\n#define UNIONFIND_POTENTIALIZED_HPP\
     \ 1\n\n#include <vector>\n\nnamespace kk2 {\n\n// require:\n// A is an abelian\
     \ group\n// A must have operator+ and operator-\n// A() must return unit element\n\
-    template <class A>\nstruct PotentializedUnionfind {\n  private:\n    std::vector<int>\
+    template <class A> struct PotentializedUnionfind {\n  private:\n    std::vector<int>\
     \ d;\n    std::vector<A> diff_weight;\n\n  public:\n    PotentializedUnionfind(int\
     \ n = 0) : d(n, -1), diff_weight(n, A()) {}\n\n    // x -> y : w\n    bool unite(int\
     \ x, int y, A w) {\n        w = w + weight(x) - weight(y);\n        x = find(x);\n\
@@ -48,9 +48,9 @@ data:
     \ == find(y); }\n\n    int size(int x) { return -d[find(x)]; }\n\n    // root\
     \ -> x\n    A weight(int x) {\n        find(x);\n        return diff_weight[x];\n\
     \    }\n\n    // a -> b\n    A diff(int a, int b) { return -weight(a) + weight(b);\
-    \ }\n};\n\ntemplate <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)>\nstruct EasyAbelianGroup\
-    \ {\n    A val;\n    EasyAbelianGroup() : val(e()) {}\n\n    template <class...\
-    \ Args>\n    EasyAbelianGroup(Args... args) : val(args...) {}\n\n    EasyAbelianGroup\
+    \ }\n};\n\ntemplate <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyAbelianGroup\
+    \ {\n    A val;\n\n    EasyAbelianGroup() : val(e()) {}\n\n    template <class...\
+    \ Args> EasyAbelianGroup(Args... args) : val(args...) {}\n\n    EasyAbelianGroup\
     \ operator+(const EasyAbelianGroup &rhs) const {\n        return EasyAbelianGroup(op(val,\
     \ rhs.val));\n    }\n\n    EasyAbelianGroup operator-(const EasyAbelianGroup &rhs)\
     \ const {\n        return EasyAbelianGroup(op(val, inv(rhs.val)));\n    }\n\n\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: UnionFind/potentialized.hpp
   requiredBy: []
-  timestamp: '2024-09-29 16:43:43+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: UnionFind/potentialized.hpp

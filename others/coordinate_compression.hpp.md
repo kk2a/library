@@ -21,18 +21,17 @@ data:
     \ build();\n        return xs[i];\n    }\n\n    int size() {\n        if (!initialized)\
     \ build();\n        return xs.size();\n    }\n\n    int get(S x) {\n        if\
     \ (!initialized) build();\n        return std::upper_bound(std::begin(xs), std::end(xs),\
-    \ x)\n               - std::begin(xs) - 1;\n    }\n\n    std::vector<int> get(const\
-    \ std::vector<S> &ys) {\n        std::vector<int> ret(ys.size());\n        for\
-    \ (int i = 0; i < (int)ys.size(); ++i) ret[i] = get(ys[i]);\n        return ret;\n\
-    \    }\n\n    int operator()(S x) { return get(x); }\n\n    std::vector<int> operator()(const\
+    \ x) - std::begin(xs) - 1;\n    }\n\n    std::vector<int> get(const std::vector<S>\
+    \ &ys) {\n        std::vector<int> ret(ys.size());\n        for (int i = 0; i\
+    \ < (int)ys.size(); ++i) ret[i] = get(ys[i]);\n        return ret;\n    }\n\n\
+    \    int operator()(S x) { return get(x); }\n\n    std::vector<int> operator()(const\
     \ std::vector<S> &ys) { return get(ys); }\n\n    int lower(S x) {\n        if\
     \ (!initialized) build();\n        return std::lower_bound(std::begin(xs), std::end(xs),\
-    \ x)\n               - std::begin(xs);\n    }\n\n    int upper(S x) {\n      \
-    \  if (!initialized) build();\n        return std::upper_bound(std::begin(xs),\
-    \ std::end(xs), x)\n               - std::begin(xs);\n    }\n\n    bool exist(S\
-    \ x) {\n        if (!initialized) build();\n        int idx = lower(x);\n    \
-    \    return idx < (int)xs.size() && xs[idx] == x;\n    }\n};\n\n} // namespace\
-    \ kk2\n\n\n"
+    \ x) - std::begin(xs);\n    }\n\n    int upper(S x) {\n        if (!initialized)\
+    \ build();\n        return std::upper_bound(std::begin(xs), std::end(xs), x) -\
+    \ std::begin(xs);\n    }\n\n    bool exist(S x) {\n        if (!initialized) build();\n\
+    \        int idx = lower(x);\n        return idx < (int)xs.size() && xs[idx] ==\
+    \ x;\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef OTHERS_COORDINATE_COMPRESSION_HPP\n#define OTHERS_COORDINATE_COMPRESSION_HPP\
     \ 1\n\n#include <algorithm>\n#include <vector>\n\nnamespace kk2 {\n\n// Coordinate\
     \ Compression\ntemplate <typename S = int> struct CC {\n    std::vector<S> xs;\n\
@@ -46,23 +45,22 @@ data:
     \ {\n        if (!initialized) build();\n        return xs[i];\n    }\n\n    int\
     \ size() {\n        if (!initialized) build();\n        return xs.size();\n  \
     \  }\n\n    int get(S x) {\n        if (!initialized) build();\n        return\
-    \ std::upper_bound(std::begin(xs), std::end(xs), x)\n               - std::begin(xs)\
-    \ - 1;\n    }\n\n    std::vector<int> get(const std::vector<S> &ys) {\n      \
-    \  std::vector<int> ret(ys.size());\n        for (int i = 0; i < (int)ys.size();\
-    \ ++i) ret[i] = get(ys[i]);\n        return ret;\n    }\n\n    int operator()(S\
-    \ x) { return get(x); }\n\n    std::vector<int> operator()(const std::vector<S>\
-    \ &ys) { return get(ys); }\n\n    int lower(S x) {\n        if (!initialized)\
-    \ build();\n        return std::lower_bound(std::begin(xs), std::end(xs), x)\n\
-    \               - std::begin(xs);\n    }\n\n    int upper(S x) {\n        if (!initialized)\
-    \ build();\n        return std::upper_bound(std::begin(xs), std::end(xs), x)\n\
-    \               - std::begin(xs);\n    }\n\n    bool exist(S x) {\n        if\
-    \ (!initialized) build();\n        int idx = lower(x);\n        return idx < (int)xs.size()\
-    \ && xs[idx] == x;\n    }\n};\n\n} // namespace kk2\n\n#endif // OTHERS_COORDINATE_COMPRESSION_HPP\n"
+    \ std::upper_bound(std::begin(xs), std::end(xs), x) - std::begin(xs) - 1;\n  \
+    \  }\n\n    std::vector<int> get(const std::vector<S> &ys) {\n        std::vector<int>\
+    \ ret(ys.size());\n        for (int i = 0; i < (int)ys.size(); ++i) ret[i] = get(ys[i]);\n\
+    \        return ret;\n    }\n\n    int operator()(S x) { return get(x); }\n\n\
+    \    std::vector<int> operator()(const std::vector<S> &ys) { return get(ys); }\n\
+    \n    int lower(S x) {\n        if (!initialized) build();\n        return std::lower_bound(std::begin(xs),\
+    \ std::end(xs), x) - std::begin(xs);\n    }\n\n    int upper(S x) {\n        if\
+    \ (!initialized) build();\n        return std::upper_bound(std::begin(xs), std::end(xs),\
+    \ x) - std::begin(xs);\n    }\n\n    bool exist(S x) {\n        if (!initialized)\
+    \ build();\n        int idx = lower(x);\n        return idx < (int)xs.size() &&\
+    \ xs[idx] == x;\n    }\n};\n\n} // namespace kk2\n\n#endif // OTHERS_COORDINATE_COMPRESSION_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: others/coordinate_compression.hpp
   requiredBy: []
-  timestamp: '2024-09-19 10:01:52+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: others/coordinate_compression.hpp

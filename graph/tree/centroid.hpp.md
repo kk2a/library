@@ -19,7 +19,7 @@ data:
     \     int ret = self(self, v, u);\n                if (ret != -1) return ret;\n\
     \                if (sz[v] > n / 2) is_centroid = false;\n            }\n    \
     \    if ((n - sz[u]) > n / 2) is_centroid = false;\n        return is_centroid\
-    \ ? u : -1;\n    };\n    return find(find, 0);\n}\n\ntemplate <class G>\nint centroid(const\
+    \ ? u : -1;\n    };\n    return find(find, 0);\n}\n\ntemplate <class G> int centroid(const\
     \ G &g, const std::vector<long long> &weight) {\n    assert((int)g.size() == (int)weight.size());\n\
     \    int n = g.size();\n    std::vector<long long> sz(n, 0);\n    long long sum\
     \ = std::accumulate(std::begin(weight), std::end(weight), 0LL);\n    auto dfs\
@@ -43,7 +43,7 @@ data:
     \     int ret = self(self, v, u);\n                if (ret != -1) return ret;\n\
     \                if (sz[v] > n / 2) is_centroid = false;\n            }\n    \
     \    if ((n - sz[u]) > n / 2) is_centroid = false;\n        return is_centroid\
-    \ ? u : -1;\n    };\n    return find(find, 0);\n}\n\ntemplate <class G>\nint centroid(const\
+    \ ? u : -1;\n    };\n    return find(find, 0);\n}\n\ntemplate <class G> int centroid(const\
     \ G &g, const std::vector<long long> &weight) {\n    assert((int)g.size() == (int)weight.size());\n\
     \    int n = g.size();\n    std::vector<long long> sz(n, 0);\n    long long sum\
     \ = std::accumulate(std::begin(weight), std::end(weight), 0LL);\n    auto dfs\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: graph/tree/centroid.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/centroid.hpp

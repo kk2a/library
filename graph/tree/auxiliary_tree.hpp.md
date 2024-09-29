@@ -22,27 +22,26 @@ data:
     \ root),\n          par(g.size(), root),\n          dep(g.size(), 0),\n      \
     \    edge_idx(g.size() - 1, -1) {\n        init();\n    }\n\n    int get_edge_idx(int\
     \ i) const { return edge_idx[i]; }\n\n    std::pair<int, int> get_node_idx(int\
-    \ u) const {\n        return std::make_pair(in[u], out[u]);\n    }\n\n    template\
-    \ <typename F>\n    void path_query(int u, int v, bool is_node_query, const F\
-    \ &f) {\n        int l = lca(u, v);\n        for (auto &[a, b] : ascend(u, l))\
-    \ {\n            int s = a + 1, t = b;\n            s > t ? f(t, s) : f(s, t);\n\
-    \        }\n        if (is_node_query) f(in[l], in[l] + 1);\n        for (auto\
-    \ &[a, b] : descend(l, v)) {\n            int s = a, t = b + 1;\n            s\
-    \ > t ? f(t, s) : f(s, t);\n        }\n    }\n\n    template <typename F>\n  \
-    \  void\n    path_noncommutative_query(int u, int v, bool is_node_query, const\
-    \ F &f) {\n        int l = lca(u, v);\n        for (auto &[a, b] : ascend(u, l))\
-    \ f(a + 1, b);\n        if (is_node_query) f(in[l], in[l] + 1);\n        for (auto\
-    \ &[a, b] : descend(l, v)) f(a, b + 1);\n    }\n\n    template <typename F>\n\
-    \    void subtree_query(int u, bool is_vertex_query, const F &f) {\n        f(in[u]\
-    \ + (int)!is_vertex_query, out[u]);\n    }\n\n    int lca(int u, int v) const\
-    \ {\n        while (head[u] != head[v]) {\n            if (in[u] < in[v]) std::swap(u,\
-    \ v);\n            u = par[head[u]];\n        }\n        return dep[u] < dep[v]\
-    \ ? u : v;\n    }\n\n    int dist(int u, int v) const {\n        return dep[u]\
-    \ + dep[v] - 2 * dep[lca(u, v)];\n    }\n\n  private:\n    void init() {\n   \
-    \     auto dfs_sz = [&](auto self, int now) -> void {\n            sz[now] = 1;\n\
-    \            for (auto &e : g[now]) {\n                if ((int)e == par[now])\
-    \ {\n                    if (g[now].size() >= 2 and e == g[now][0])\n        \
-    \                std::swap(e, g[now][1]);\n                    else continue;\n\
+    \ u) const { return std::make_pair(in[u], out[u]); }\n\n    template <typename\
+    \ F> void path_query(int u, int v, bool is_node_query, const F &f) {\n       \
+    \ int l = lca(u, v);\n        for (auto &[a, b] : ascend(u, l)) {\n          \
+    \  int s = a + 1, t = b;\n            s > t ? f(t, s) : f(s, t);\n        }\n\
+    \        if (is_node_query) f(in[l], in[l] + 1);\n        for (auto &[a, b] :\
+    \ descend(l, v)) {\n            int s = a, t = b + 1;\n            s > t ? f(t,\
+    \ s) : f(s, t);\n        }\n    }\n\n    template <typename F>\n    void path_noncommutative_query(int\
+    \ u, int v, bool is_node_query, const F &f) {\n        int l = lca(u, v);\n  \
+    \      for (auto &[a, b] : ascend(u, l)) f(a + 1, b);\n        if (is_node_query)\
+    \ f(in[l], in[l] + 1);\n        for (auto &[a, b] : descend(l, v)) f(a, b + 1);\n\
+    \    }\n\n    template <typename F> void subtree_query(int u, bool is_vertex_query,\
+    \ const F &f) {\n        f(in[u] + (int)!is_vertex_query, out[u]);\n    }\n\n\
+    \    int lca(int u, int v) const {\n        while (head[u] != head[v]) {\n   \
+    \         if (in[u] < in[v]) std::swap(u, v);\n            u = par[head[u]];\n\
+    \        }\n        return dep[u] < dep[v] ? u : v;\n    }\n\n    int dist(int\
+    \ u, int v) const { return dep[u] + dep[v] - 2 * dep[lca(u, v)]; }\n\n  private:\n\
+    \    void init() {\n        auto dfs_sz = [&](auto self, int now) -> void {\n\
+    \            sz[now] = 1;\n            for (auto &e : g[now]) {\n            \
+    \    if ((int)e == par[now]) {\n                    if (g[now].size() >= 2 and\
+    \ e == g[now][0]) std::swap(e, g[now][1]);\n                    else continue;\n\
     \                }\n                par[(int)e] = now;\n                dep[(int)e]\
     \ = dep[now] + 1;\n                self(self, (int)e);\n                sz[now]\
     \ += sz[(int)e];\n                if (sz[(int)e] > sz[(int)g[now][0]]) std::swap(e,\
@@ -64,13 +63,12 @@ data:
     \ \"graph/tree/auxiliary_tree.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename G>\
     \ struct AuxiliaryTree {\n    G g;\n    HeavyLightDecomposition<G> hld;\n\n  \
     \  AuxiliaryTree(const G &g_, int root_ = 0) : g(g_), hld(g, root_) {}\n\n   \
-    \ std::pair<std::vector<std::vector<int>>, std::vector<int>>\n    get(std::vector<int>\
-    \ ps) {\n        if (ps.empty()) return {};\n        std::sort(std::begin(ps),\
-    \ std::end(ps), [&](int i, int j) {\n            return hld.in[i] < hld.in[j];\n\
-    \        });\n        for (int i = 0, ps_size = ps.size(); i < ps_size - 1; i++)\
-    \ {\n            ps.push_back(hld.lca(ps[i], ps[i + 1]));\n        }\n       \
-    \ std::sort(std::begin(ps), std::end(ps), [&](int i, int j) {\n            return\
-    \ hld.in[i] < hld.in[j];\n        });\n        ps.erase(std::unique(std::begin(ps),\
+    \ std::pair<std::vector<std::vector<int>>, std::vector<int>> get(std::vector<int>\
+    \ ps) {\n        if (ps.empty()) return {};\n        std::sort(\n            std::begin(ps),\
+    \ std::end(ps), [&](int i, int j) { return hld.in[i] < hld.in[j]; });\n      \
+    \  for (int i = 0, ps_size = ps.size(); i < ps_size - 1; i++) {\n            ps.push_back(hld.lca(ps[i],\
+    \ ps[i + 1]));\n        }\n        std::sort(\n            std::begin(ps), std::end(ps),\
+    \ [&](int i, int j) { return hld.in[i] < hld.in[j]; });\n        ps.erase(std::unique(std::begin(ps),\
     \ std::end(ps)), std::end(ps));\n\n        std::vector<std::vector<int>> aux(ps.size());\n\
     \        std::stack<int> st;\n        st.emplace(0);\n        for (int i = 1;\
     \ i < (int)ps.size(); i++) {\n            int l = hld.lca(ps[i], ps[st.top()]);\n\
@@ -83,25 +81,24 @@ data:
     \nnamespace kk2 {\n\ntemplate <typename G> struct AuxiliaryTree {\n    G g;\n\
     \    HeavyLightDecomposition<G> hld;\n\n    AuxiliaryTree(const G &g_, int root_\
     \ = 0) : g(g_), hld(g, root_) {}\n\n    std::pair<std::vector<std::vector<int>>,\
-    \ std::vector<int>>\n    get(std::vector<int> ps) {\n        if (ps.empty()) return\
-    \ {};\n        std::sort(std::begin(ps), std::end(ps), [&](int i, int j) {\n \
-    \           return hld.in[i] < hld.in[j];\n        });\n        for (int i = 0,\
-    \ ps_size = ps.size(); i < ps_size - 1; i++) {\n            ps.push_back(hld.lca(ps[i],\
-    \ ps[i + 1]));\n        }\n        std::sort(std::begin(ps), std::end(ps), [&](int\
-    \ i, int j) {\n            return hld.in[i] < hld.in[j];\n        });\n      \
-    \  ps.erase(std::unique(std::begin(ps), std::end(ps)), std::end(ps));\n\n    \
-    \    std::vector<std::vector<int>> aux(ps.size());\n        std::stack<int> st;\n\
-    \        st.emplace(0);\n        for (int i = 1; i < (int)ps.size(); i++) {\n\
-    \            int l = hld.lca(ps[i], ps[st.top()]);\n            while (ps[st.top()]\
-    \ != l) st.pop();\n            aux[st.top()].emplace_back(i);\n            st.emplace(i);\n\
-    \        }\n        return std::make_pair(aux, ps);\n    }\n};\n\n} // namespace\
-    \ kk2\n\n#endif // GRAPH_TREE_AUXILIARY_TREE_HPP\n"
+    \ std::vector<int>> get(std::vector<int> ps) {\n        if (ps.empty()) return\
+    \ {};\n        std::sort(\n            std::begin(ps), std::end(ps), [&](int i,\
+    \ int j) { return hld.in[i] < hld.in[j]; });\n        for (int i = 0, ps_size\
+    \ = ps.size(); i < ps_size - 1; i++) {\n            ps.push_back(hld.lca(ps[i],\
+    \ ps[i + 1]));\n        }\n        std::sort(\n            std::begin(ps), std::end(ps),\
+    \ [&](int i, int j) { return hld.in[i] < hld.in[j]; });\n        ps.erase(std::unique(std::begin(ps),\
+    \ std::end(ps)), std::end(ps));\n\n        std::vector<std::vector<int>> aux(ps.size());\n\
+    \        std::stack<int> st;\n        st.emplace(0);\n        for (int i = 1;\
+    \ i < (int)ps.size(); i++) {\n            int l = hld.lca(ps[i], ps[st.top()]);\n\
+    \            while (ps[st.top()] != l) st.pop();\n            aux[st.top()].emplace_back(i);\n\
+    \            st.emplace(i);\n        }\n        return std::make_pair(aux, ps);\n\
+    \    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_TREE_AUXILIARY_TREE_HPP\n"
   dependsOn:
   - graph/tree/heavy_light_decomposition.hpp
   isVerificationFile: false
   path: graph/tree/auxiliary_tree.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/auxiliary_tree.hpp

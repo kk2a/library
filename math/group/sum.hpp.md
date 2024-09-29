@@ -43,7 +43,7 @@ data:
     \    return x;\n}\n\n} // namespace group\n\ntemplate <class S, class... Args>\n\
     constexpr std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {\n    return\
     \ std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n}\n\ntemplate <class\
-    \ S, class... Args>\nconstexpr std::vector<std::vector<group::Sum<S>>>\nGetVecSum2D(int\
+    \ S, class... Args>\nconstexpr std::vector<std::vector<group::Sum<S>>> GetVecSum2D(int\
     \ h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
     \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_GROUP_SUM_HPP\n#define MATH_GROUP_SUM_HPP 1\n\n#include <iostream>\n\
@@ -66,8 +66,8 @@ data:
     \  x.a = -x.a;\n    x.size = -x.size;\n    return x;\n}\n\n} // namespace group\n\
     \ntemplate <class S, class... Args>\nconstexpr std::vector<group::Sum<S>> GetVecSum(int\
     \ n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<group::Sum<S>>>\n\
-    GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
+    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<group::Sum<S>>>\
+    \ GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
     \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_GROUP_SUM_HPP\n"
   dependsOn: []
   isVerificationFile: false
@@ -78,7 +78,7 @@ data:
   - segment_tree/utility/updatesum.hpp
   - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/addsum.hpp
-  timestamp: '2024-09-26 15:55:52+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/group/sum.hpp

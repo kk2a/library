@@ -28,7 +28,7 @@ data:
     \ &os, const Update &update) {\n        if (update.id) os << \"id\";\n       \
     \ else os << update.a;\n        return os;\n    }\n};\n\ntemplate <class S, class\
     \ T> constexpr T UpdateMap(Update<S> f, T x) {\n    return f.id ? x : x.update(f.a);\n\
-    }\n\ntemplate <class S>\nconstexpr Update<S> UpdateComposition(Update<S> l, Update<S>\
+    }\n\ntemplate <class S> constexpr Update<S> UpdateComposition(Update<S> l, Update<S>\
     \ r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class S> constexpr\
     \ Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
     \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n"
@@ -40,7 +40,7 @@ data:
     \ &operator<<(std::ostream &os, const Update &update) {\n        if (update.id)\
     \ os << \"id\";\n        else os << update.a;\n        return os;\n    }\n};\n\
     \ntemplate <class S, class T> constexpr T UpdateMap(Update<S> f, T x) {\n    return\
-    \ f.id ? x : x.update(f.a);\n}\n\ntemplate <class S>\nconstexpr Update<S> UpdateComposition(Update<S>\
+    \ f.id ? x : x.update(f.a);\n}\n\ntemplate <class S> constexpr Update<S> UpdateComposition(Update<S>\
     \ l, Update<S> r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class\
     \ S> constexpr Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
     \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n#endif\
@@ -53,7 +53,7 @@ data:
   - segment_tree/utility/updatesum.hpp
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/update_max_min_sum.hpp
-  timestamp: '2024-09-26 15:55:52+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/homomorphism/update.hpp

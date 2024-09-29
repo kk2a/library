@@ -9,8 +9,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/to_newton_basis.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <vector>\n\nnamespace kk2 {\n\n// return b s.t. f(X) = \\sum_{i = 0} ^ {n -\
-    \ 1} b_i \\prod_{j = 0} ^ {i - 1} (X -\n// p_j)\ntemplate <class FPS, class mint\
+    \ <vector>\n\nnamespace kk2 {\n\n// return b s.t.\n// f(X) = \\sum_{i = 0} ^ {n\
+    \ - 1} b_i \\prod_{j = 0} ^ {i - 1} (X - p_j)\ntemplate <class FPS, class mint\
     \ = typename FPS::value_type>\nstd::vector<mint> convert_to_newton_basis(const\
     \ FPS &f, std::vector<mint> p) {\n    int n = (int)f.size();\n    assert(n ==\
     \ (int)p.size());\n\n    int m = 1;\n    while (m < n) m <<= 1;\n\n    std::vector<FPS>\
@@ -24,8 +24,8 @@ data:
     \    std::vector<mint> b(n);\n    for (int i = 0; i < n; i++) { b[i] = buf[m +\
     \ i].eval(0); }\n    return b;\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef FPS_TO_NEWTON_BASIS_HPP\n#define FPS_TO_NEWTON_BASIS_HPP 1\n\n#include\
-    \ <cassert>\n#include <vector>\n\nnamespace kk2 {\n\n// return b s.t. f(X) = \\\
-    sum_{i = 0} ^ {n - 1} b_i \\prod_{j = 0} ^ {i - 1} (X -\n// p_j)\ntemplate <class\
+    \ <cassert>\n#include <vector>\n\nnamespace kk2 {\n\n// return b s.t.\n// f(X)\
+    \ = \\sum_{i = 0} ^ {n - 1} b_i \\prod_{j = 0} ^ {i - 1} (X - p_j)\ntemplate <class\
     \ FPS, class mint = typename FPS::value_type>\nstd::vector<mint> convert_to_newton_basis(const\
     \ FPS &f, std::vector<mint> p) {\n    int n = (int)f.size();\n    assert(n ==\
     \ (int)p.size());\n\n    int m = 1;\n    while (m < n) m <<= 1;\n\n    std::vector<FPS>\
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: fps/to_newton_basis.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/to_newton_basis.hpp

@@ -39,12 +39,12 @@ data:
     \ <= Mod_);\n        Mod = Mod_;\n    }\n\n    static mint raw(int v) {\n    \
     \    mint x;\n        x._v = v;\n        return x;\n    }\n\n    operator int()\
     \ const { return _v; }\n\n    constexpr ModInt() : _v(0) {}\n\n    template <class\
-    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
-    \    constexpr ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
-    \ {\n            v %= getmod();\n            if (v < 0) v += getmod();\n     \
-    \       _v = v;\n        } else if constexpr (is_unsigned_extended<T>::value)\
-    \ {\n            _v = v %= getmod();\n        } else {\n            ModInt();\n\
-    \        }\n    }\n\n    unsigned int val() const { return _v; }\n\n    mint &operator++()\
+    \ T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n    constexpr\
+    \ ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value) {\n     \
+    \       v %= getmod();\n            if (v < 0) v += getmod();\n            _v\
+    \ = v;\n        } else if constexpr (is_unsigned_extended<T>::value) {\n     \
+    \       _v = v %= getmod();\n        } else {\n            ModInt();\n       \
+    \ }\n    }\n\n    unsigned int val() const { return _v; }\n\n    mint &operator++()\
     \ {\n        _v++;\n        if (_v == getmod()) _v = 0;\n        return *this;\n\
     \    }\n\n    mint &operator--() {\n        if (_v == 0) _v = getmod();\n    \
     \    _v--;\n        return *this;\n    }\n\n    mint operator++(int) {\n     \
@@ -66,40 +66,35 @@ data:
     \        while (t) {\n            long long u = s / t;\n            s -= t * u;\n\
     \            m0 -= m1 * u;\n\n            std::swap(s, t);\n            std::swap(m0,\
     \ m1);\n        }\n        if (m0 < 0) m0 += getmod() / s;\n        return m0;\n\
-    \    }\n\n    friend mint operator+(const mint &lhs, const mint &rhs) {\n    \
-    \    return mint(lhs) += rhs;\n    }\n\n    template <class T,\n             \
-    \ std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n    friend mint\
-    \ operator+(const mint &lhs, T rhs) {\n        return mint(lhs) += mint(rhs);\n\
-    \    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \    }\n\n    friend mint operator+(const mint &lhs, const mint &rhs) { return\
+    \ mint(lhs) += rhs; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend mint operator+(const mint &lhs, T rhs) {\n        return\
+    \ mint(lhs) += mint(rhs);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator+(T lhs, const mint &rhs) {\n        return\
     \ mint(lhs) += rhs;\n    }\n\n    friend mint operator-(const mint &lhs, const\
-    \ mint &rhs) {\n        return mint(lhs) -= rhs;\n    }\n\n    template <class\
-    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend mint operator-(const mint &lhs, T rhs) {\n        return mint(lhs)\
-    \ -= mint(rhs);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ mint &rhs) { return mint(lhs) -= rhs; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend mint operator-(const mint &lhs, T rhs) {\n        return\
+    \ mint(lhs) -= mint(rhs);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator-(T lhs, const mint &rhs) {\n        return\
     \ mint(lhs) -= rhs;\n    }\n\n    friend mint operator*(const mint &lhs, const\
-    \ mint &rhs) {\n        return mint(lhs) *= rhs;\n    }\n\n    template <class\
-    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend mint operator*(const mint &lhs, T rhs) {\n        return mint(lhs)\
-    \ *= mint(rhs);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ mint &rhs) { return mint(lhs) *= rhs; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend mint operator*(const mint &lhs, T rhs) {\n        return\
+    \ mint(lhs) *= mint(rhs);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator*(T lhs, const mint &rhs) {\n        return\
     \ mint(lhs) *= rhs;\n    }\n\n    friend mint operator/(const mint &lhs, const\
-    \ mint &rhs) {\n        return mint(lhs) /= rhs;\n    }\n\n    template <class\
-    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend mint operator/(const mint &lhs, T rhs) {\n        return mint(lhs)\
-    \ /= mint(rhs);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ mint &rhs) { return mint(lhs) /= rhs; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend mint operator/(const mint &lhs, T rhs) {\n        return\
+    \ mint(lhs) /= mint(rhs);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator/(T lhs, const mint &rhs) {\n        return\
     \ mint(lhs) /= rhs;\n    }\n\n    friend bool operator==(const mint &lhs, const\
-    \ mint &rhs) {\n        return lhs._v == rhs._v;\n    }\n\n    friend bool operator!=(const\
-    \ mint &lhs, const mint &rhs) {\n        return lhs._v != rhs._v;\n    }\n\n \
-    \   friend std::ostream &operator<<(std::ostream &os, const mint &mint_) {\n \
-    \       os << mint_._v;\n        return os;\n    }\n\n    friend std::istream\
-    \ &operator>>(std::istream &is, mint &mint_) {\n        long long x;\n       \
-    \ is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\n  private:\n\
-    \    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod = 998244353;\n\
-    \n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\n\
-    } // namespace kk2\n\n\n"
+    \ mint &rhs) { return lhs._v == rhs._v; }\n\n    friend bool operator!=(const\
+    \ mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\n    friend std::ostream\
+    \ &operator<<(std::ostream &os, const mint &mint_) {\n        os << mint_._v;\n\
+    \        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
+    \ &is, mint &mint_) {\n        long long x;\n        is >> x;\n        mint_ =\
+    \ mint(x);\n        return is;\n    }\n\n  private:\n    unsigned int _v;\n};\n\
+    \ntemplate <int p> int ModInt<p>::Mod = 998244353;\n\n\nusing mint998 = ModInt<998244353>;\n\
+    using mint107 = ModInt<1000000007>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MODINT_HPP\n#define MODINT_HPP 1\n\n#include <cassert>\n#include\
     \ <iostream>\n#include <type_traits>\n#include <utility>\n\n#include \"../type_traits/type_traits.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <int p> struct ModInt {\n    using mint = ModInt;\n\
@@ -108,7 +103,7 @@ data:
     \ void setmod(int Mod_) {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n \
     \   }\n\n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n  \
     \      return x;\n    }\n\n    operator int() const { return _v; }\n\n    constexpr\
-    \ ModInt() : _v(0) {}\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ ModInt() : _v(0) {}\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    constexpr ModInt(T v) {\n        if constexpr (is_signed_extended<T>::value)\
     \ {\n            v %= getmod();\n            if (v < 0) v += getmod();\n     \
     \       _v = v;\n        } else if constexpr (is_unsigned_extended<T>::value)\
@@ -135,46 +130,41 @@ data:
     \        while (t) {\n            long long u = s / t;\n            s -= t * u;\n\
     \            m0 -= m1 * u;\n\n            std::swap(s, t);\n            std::swap(m0,\
     \ m1);\n        }\n        if (m0 < 0) m0 += getmod() / s;\n        return m0;\n\
-    \    }\n\n    friend mint operator+(const mint &lhs, const mint &rhs) {\n    \
-    \    return mint(lhs) += rhs;\n    }\n\n    template <class T,\n             \
-    \ std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n    friend mint\
-    \ operator+(const mint &lhs, T rhs) {\n        return mint(lhs) += mint(rhs);\n\
-    \    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \    }\n\n    friend mint operator+(const mint &lhs, const mint &rhs) { return\
+    \ mint(lhs) += rhs; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend mint operator+(const mint &lhs, T rhs) {\n        return\
+    \ mint(lhs) += mint(rhs);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator+(T lhs, const mint &rhs) {\n        return\
     \ mint(lhs) += rhs;\n    }\n\n    friend mint operator-(const mint &lhs, const\
-    \ mint &rhs) {\n        return mint(lhs) -= rhs;\n    }\n\n    template <class\
-    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend mint operator-(const mint &lhs, T rhs) {\n        return mint(lhs)\
-    \ -= mint(rhs);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ mint &rhs) { return mint(lhs) -= rhs; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend mint operator-(const mint &lhs, T rhs) {\n        return\
+    \ mint(lhs) -= mint(rhs);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator-(T lhs, const mint &rhs) {\n        return\
     \ mint(lhs) -= rhs;\n    }\n\n    friend mint operator*(const mint &lhs, const\
-    \ mint &rhs) {\n        return mint(lhs) *= rhs;\n    }\n\n    template <class\
-    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend mint operator*(const mint &lhs, T rhs) {\n        return mint(lhs)\
-    \ *= mint(rhs);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ mint &rhs) { return mint(lhs) *= rhs; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend mint operator*(const mint &lhs, T rhs) {\n        return\
+    \ mint(lhs) *= mint(rhs);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator*(T lhs, const mint &rhs) {\n        return\
     \ mint(lhs) *= rhs;\n    }\n\n    friend mint operator/(const mint &lhs, const\
-    \ mint &rhs) {\n        return mint(lhs) /= rhs;\n    }\n\n    template <class\
-    \ T,\n              std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n\
-    \    friend mint operator/(const mint &lhs, T rhs) {\n        return mint(lhs)\
-    \ /= mint(rhs);\n    }\n\n    template <class T,\n              std::enable_if_t<is_integral_extended<T>::value>\
+    \ mint &rhs) { return mint(lhs) /= rhs; }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend mint operator/(const mint &lhs, T rhs) {\n        return\
+    \ mint(lhs) /= mint(rhs);\n    }\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend mint operator/(T lhs, const mint &rhs) {\n        return\
     \ mint(lhs) /= rhs;\n    }\n\n    friend bool operator==(const mint &lhs, const\
-    \ mint &rhs) {\n        return lhs._v == rhs._v;\n    }\n\n    friend bool operator!=(const\
-    \ mint &lhs, const mint &rhs) {\n        return lhs._v != rhs._v;\n    }\n\n \
-    \   friend std::ostream &operator<<(std::ostream &os, const mint &mint_) {\n \
-    \       os << mint_._v;\n        return os;\n    }\n\n    friend std::istream\
-    \ &operator>>(std::istream &is, mint &mint_) {\n        long long x;\n       \
-    \ is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\n  private:\n\
-    \    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod = 998244353;\n\
-    \n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\n\
-    } // namespace kk2\n\n#endif // MODINT_HPP\n"
+    \ mint &rhs) { return lhs._v == rhs._v; }\n\n    friend bool operator!=(const\
+    \ mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\n    friend std::ostream\
+    \ &operator<<(std::ostream &os, const mint &mint_) {\n        os << mint_._v;\n\
+    \        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
+    \ &is, mint &mint_) {\n        long long x;\n        is >> x;\n        mint_ =\
+    \ mint(x);\n        return is;\n    }\n\n  private:\n    unsigned int _v;\n};\n\
+    \ntemplate <int p> int ModInt<p>::Mod = 998244353;\n\n\nusing mint998 = ModInt<998244353>;\n\
+    using mint107 = ModInt<1000000007>;\n\n} // namespace kk2\n\n#endif // MODINT_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: modint/modint.hpp
   requiredBy: []
-  timestamp: '2024-09-29 16:53:59+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/modint.hpp

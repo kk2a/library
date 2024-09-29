@@ -11,8 +11,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"data_structure/trie.hpp\"\n\n\n\n#include <cstring>\n#include\
-    \ <cassert>\n#include <functional>\n#include <string>\n#include <vector>\n\nnamespace\
+  bundledCode: "#line 1 \"data_structure/trie.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <cstring>\n#include <functional>\n#include <string>\n#include <vector>\n\nnamespace\
     \ kk2 {\n\ntemplate <int char_size> struct TrieNode {\n    int nxt[char_size];\n\
     \    int exist;\n    std::vector<int> accept;\n\n    TrieNode() : exist(0) { memset(nxt,\
     \ -1, sizeof(nxt)); }\n};\n\ntemplate <int char_size, int margin> struct Trie\
@@ -40,7 +40,7 @@ data:
     \     return (int)nodes[node_idx].accept.size() + nodes[node_idx].exist;\n   \
     \ }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef DATA_STRUCTURE_TRIE_HPP\n#define DATA_STRUCTURE_TRIE_HPP 1\n\n#include\
-    \ <cstring>\n#include <cassert>\n#include <functional>\n#include <string>\n#include\
+    \ <cassert>\n#include <cstring>\n#include <functional>\n#include <string>\n#include\
     \ <vector>\n\nnamespace kk2 {\n\ntemplate <int char_size> struct TrieNode {\n\
     \    int nxt[char_size];\n    int exist;\n    std::vector<int> accept;\n\n   \
     \ TrieNode() : exist(0) { memset(nxt, -1, sizeof(nxt)); }\n};\n\ntemplate <int\
@@ -72,7 +72,7 @@ data:
   path: data_structure/trie.hpp
   requiredBy:
   - string/aho_corasick.hpp
-  timestamp: '2024-09-13 00:22:13+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/trie.hpp

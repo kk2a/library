@@ -65,16 +65,16 @@ data:
     \   static mint homo(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n\
     \        return k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n} // namespace\
     \ kk2\n\n\n#line 7 \"fps/taylor_shift.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ FPS, class mint = typename FPS::value_type>\nFPS TaylorShift(const FPS &f_,\
-    \ mint a) {\n    FPS f(f_);\n    int n = f.size();\n    for (int i = 0; i < n;\
-    \ i++) f[i] *= Comb<mint>::fact(i);\n    std::reverse(std::begin(f), std::end(f));\n\
+    \ FPS, class mint = typename FPS::value_type> FPS TaylorShift(const FPS &f_, mint\
+    \ a) {\n    FPS f(f_);\n    int n = f.size();\n    for (int i = 0; i < n; i++)\
+    \ f[i] *= Comb<mint>::fact(i);\n    std::reverse(std::begin(f), std::end(f));\n\
     \    FPS g(n, mint(1));\n    for (int i = 1; i < n; i++) g[i] = g[i - 1] * a *\
     \ Comb<mint>::inv(i);\n    f = (f * g).pre(n).rev();\n    for (int i = 0; i <\
     \ n; i++) f[i] *= Comb<mint>::ifact(i);\n    return f;\n}\n\n} // namespace kk2\n\
     \n\n"
   code: "#ifndef FPS_TAYLOR_SHIFT_HPP\n#define FPS_TAYLOR_SHIFT_HPP 1\n\n#include\
     \ <algorithm>\n\n#include \"../math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class FPS, class mint = typename FPS::value_type>\nFPS TaylorShift(const FPS\
+    \ <class FPS, class mint = typename FPS::value_type> FPS TaylorShift(const FPS\
     \ &f_, mint a) {\n    FPS f(f_);\n    int n = f.size();\n    for (int i = 0; i\
     \ < n; i++) f[i] *= Comb<mint>::fact(i);\n    std::reverse(std::begin(f), std::end(f));\n\
     \    FPS g(n, mint(1));\n    for (int i = 1; i < n; i++) g[i] = g[i - 1] * a *\
@@ -87,7 +87,7 @@ data:
   isVerificationFile: false
   path: fps/taylor_shift.hpp
   requiredBy: []
-  timestamp: '2024-09-29 16:53:59+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/taylor_shift.hpp

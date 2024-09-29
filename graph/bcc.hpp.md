@@ -38,29 +38,28 @@ data:
     \      };\n        auto dfs = [&](auto self, int u, int k = -1, int ei = -1) ->\
     \ void {\n            for (auto &e : this->g[u]) {\n                if (e.id ==\
     \ ei) continue;\n                if (this->used[e.id]) {\n                   \
-    \ int nk = k;\n                    if (this->low[e.to] >= this->ord[u])\n    \
-    \                    nk = bc_e.size(), bc_e.emplace_back();\n                \
-    \    add(e.id, nk);\n                    self(self, e.to, nk, e.id);\n       \
-    \         }\n                // back edge\n                else if (this->ord[e.to]\
-    \ < this->ord[u]) {\n                    add(e.id, k);\n                }\n  \
-    \          }\n        };\n        for (int u = 0; u < this->n; u++)\n        \
-    \    if (this->root[u]) { dfs(dfs, u); }\n    }\n\n  public:\n    std::vector<std::vector<int>>\
-    \ get_bcc_vertices() {\n        std::vector<bool> buf1(this->n), buf2(this->n);\n\
-    \        std::vector<std::vector<int>> res;\n        res.reserve(bc_e.size());\n\
-    \        for (auto &bc : bc_e) {\n            if (bc.empty()) continue;\n    \
-    \        int k = (int)res.size();\n            res.emplace_back();\n         \
-    \   for (auto &ei : bc) {\n                auto e = this->g.edges[ei];\n     \
-    \           int fr = e.from, to = e.to;\n                if (!buf2[fr]) {\n  \
-    \                  res[k].emplace_back(fr);\n                    buf2[fr] = true;\n\
-    \                }\n                if (!buf2[to]) {\n                    res[k].emplace_back(to);\n\
-    \                    buf2[to] = true;\n                }\n                buf1[fr]\
-    \ = buf1[to] = true;\n            }\n            for (auto &ei : bc) {\n     \
-    \           auto e = this->g.edges[ei];\n                int fr = e.from, to =\
-    \ e.to;\n                buf2[fr] = buf2[to] = false;\n            }\n       \
-    \ }\n        for (int i = 0; i < this->n; i++)\n            if (!buf1[i]) {\n\
-    \                int k = (int)res.size();\n                res.emplace_back();\n\
-    \                res[k].emplace_back(i);\n            }\n        return res;\n\
-    \    }\n};\n\n} // namespace kk2\n\n\n"
+    \ int nk = k;\n                    if (this->low[e.to] >= this->ord[u]) nk = bc_e.size(),\
+    \ bc_e.emplace_back();\n                    add(e.id, nk);\n                 \
+    \   self(self, e.to, nk, e.id);\n                }\n                // back edge\n\
+    \                else if (this->ord[e.to] < this->ord[u]) {\n                \
+    \    add(e.id, k);\n                }\n            }\n        };\n        for\
+    \ (int u = 0; u < this->n; u++)\n            if (this->root[u]) { dfs(dfs, u);\
+    \ }\n    }\n\n  public:\n    std::vector<std::vector<int>> get_bcc_vertices()\
+    \ {\n        std::vector<bool> buf1(this->n), buf2(this->n);\n        std::vector<std::vector<int>>\
+    \ res;\n        res.reserve(bc_e.size());\n        for (auto &bc : bc_e) {\n \
+    \           if (bc.empty()) continue;\n            int k = (int)res.size();\n\
+    \            res.emplace_back();\n            for (auto &ei : bc) {\n        \
+    \        auto e = this->g.edges[ei];\n                int fr = e.from, to = e.to;\n\
+    \                if (!buf2[fr]) {\n                    res[k].emplace_back(fr);\n\
+    \                    buf2[fr] = true;\n                }\n                if (!buf2[to])\
+    \ {\n                    res[k].emplace_back(to);\n                    buf2[to]\
+    \ = true;\n                }\n                buf1[fr] = buf1[to] = true;\n  \
+    \          }\n            for (auto &ei : bc) {\n                auto e = this->g.edges[ei];\n\
+    \                int fr = e.from, to = e.to;\n                buf2[fr] = buf2[to]\
+    \ = false;\n            }\n        }\n        for (int i = 0; i < this->n; i++)\n\
+    \            if (!buf1[i]) {\n                int k = (int)res.size();\n     \
+    \           res.emplace_back();\n                res[k].emplace_back(i);\n   \
+    \         }\n        return res;\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef GRAPH_BCC_HPP\n#define GRAPH_BCC_HPP 1\n\n#include <functional>\n\
     #include <vector>\n\n#include \"lowlink.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
     \ G> struct BCC : LowLink<G> {\n    BCC(const G &g_) : LowLink<G>(g_) { init_bcc();\
@@ -72,35 +71,35 @@ data:
     \ k;\n        };\n        auto dfs = [&](auto self, int u, int k = -1, int ei\
     \ = -1) -> void {\n            for (auto &e : this->g[u]) {\n                if\
     \ (e.id == ei) continue;\n                if (this->used[e.id]) {\n          \
-    \          int nk = k;\n                    if (this->low[e.to] >= this->ord[u])\n\
-    \                        nk = bc_e.size(), bc_e.emplace_back();\n            \
-    \        add(e.id, nk);\n                    self(self, e.to, nk, e.id);\n   \
-    \             }\n                // back edge\n                else if (this->ord[e.to]\
-    \ < this->ord[u]) {\n                    add(e.id, k);\n                }\n  \
-    \          }\n        };\n        for (int u = 0; u < this->n; u++)\n        \
-    \    if (this->root[u]) { dfs(dfs, u); }\n    }\n\n  public:\n    std::vector<std::vector<int>>\
-    \ get_bcc_vertices() {\n        std::vector<bool> buf1(this->n), buf2(this->n);\n\
-    \        std::vector<std::vector<int>> res;\n        res.reserve(bc_e.size());\n\
-    \        for (auto &bc : bc_e) {\n            if (bc.empty()) continue;\n    \
-    \        int k = (int)res.size();\n            res.emplace_back();\n         \
-    \   for (auto &ei : bc) {\n                auto e = this->g.edges[ei];\n     \
-    \           int fr = e.from, to = e.to;\n                if (!buf2[fr]) {\n  \
-    \                  res[k].emplace_back(fr);\n                    buf2[fr] = true;\n\
-    \                }\n                if (!buf2[to]) {\n                    res[k].emplace_back(to);\n\
-    \                    buf2[to] = true;\n                }\n                buf1[fr]\
-    \ = buf1[to] = true;\n            }\n            for (auto &ei : bc) {\n     \
-    \           auto e = this->g.edges[ei];\n                int fr = e.from, to =\
-    \ e.to;\n                buf2[fr] = buf2[to] = false;\n            }\n       \
-    \ }\n        for (int i = 0; i < this->n; i++)\n            if (!buf1[i]) {\n\
-    \                int k = (int)res.size();\n                res.emplace_back();\n\
-    \                res[k].emplace_back(i);\n            }\n        return res;\n\
-    \    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_BCC_HPP\n"
+    \          int nk = k;\n                    if (this->low[e.to] >= this->ord[u])\
+    \ nk = bc_e.size(), bc_e.emplace_back();\n                    add(e.id, nk);\n\
+    \                    self(self, e.to, nk, e.id);\n                }\n        \
+    \        // back edge\n                else if (this->ord[e.to] < this->ord[u])\
+    \ {\n                    add(e.id, k);\n                }\n            }\n   \
+    \     };\n        for (int u = 0; u < this->n; u++)\n            if (this->root[u])\
+    \ { dfs(dfs, u); }\n    }\n\n  public:\n    std::vector<std::vector<int>> get_bcc_vertices()\
+    \ {\n        std::vector<bool> buf1(this->n), buf2(this->n);\n        std::vector<std::vector<int>>\
+    \ res;\n        res.reserve(bc_e.size());\n        for (auto &bc : bc_e) {\n \
+    \           if (bc.empty()) continue;\n            int k = (int)res.size();\n\
+    \            res.emplace_back();\n            for (auto &ei : bc) {\n        \
+    \        auto e = this->g.edges[ei];\n                int fr = e.from, to = e.to;\n\
+    \                if (!buf2[fr]) {\n                    res[k].emplace_back(fr);\n\
+    \                    buf2[fr] = true;\n                }\n                if (!buf2[to])\
+    \ {\n                    res[k].emplace_back(to);\n                    buf2[to]\
+    \ = true;\n                }\n                buf1[fr] = buf1[to] = true;\n  \
+    \          }\n            for (auto &ei : bc) {\n                auto e = this->g.edges[ei];\n\
+    \                int fr = e.from, to = e.to;\n                buf2[fr] = buf2[to]\
+    \ = false;\n            }\n        }\n        for (int i = 0; i < this->n; i++)\n\
+    \            if (!buf1[i]) {\n                int k = (int)res.size();\n     \
+    \           res.emplace_back();\n                res[k].emplace_back(i);\n   \
+    \         }\n        return res;\n    }\n};\n\n} // namespace kk2\n\n#endif //\
+    \ GRAPH_BCC_HPP\n"
   dependsOn:
   - graph/lowlink.hpp
   isVerificationFile: false
   path: graph/bcc.hpp
   requiredBy: []
-  timestamp: '2024-09-11 16:32:46+09:00'
+  timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bcc.hpp
