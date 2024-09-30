@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
+    title: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+    title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -62,20 +68,16 @@ data:
     \ d, ...) d\n#define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
     #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
     #define fi first\n#define se second\n#define all(p) std::begin(p), std::end(p)\n\
-    \n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"out.txt\");\n\
-    #else\n#define in std::cin\n#define out std::cout\n#endif\n\nvoid YES(bool b =\
-    \ 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n}\n\nvoid NO(bool b\
-    \ = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n}\n\nvoid YESflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << std::endl;\n}\n\nvoid NOflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << std::endl;\n}\n\nvoid Yes(bool\
-    \ b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n}\n\nvoid No(bool\
-    \ b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n}\n\nvoid Yesflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << std::endl;\n}\n\nvoid Noflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << std::endl;\n}\n\nvoid yes(bool\
-    \ b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n}\n\nvoid no(bool\
-    \ b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n}\n\nvoid yesflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << std::endl;\n}\n\nvoid noflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << std::endl;\n}\n\n\n"
+    \nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
+    \    }\n} iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream\
+    \ out(\"out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\
+    \nvoid YES(bool b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n\
+    }\n\nvoid NO(bool b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n\
+    }\n\nvoid Yes(bool b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n\
+    }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
+    }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
+    }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
+    }\n\n\n"
   code: "#ifndef TEMPLATE\n#define TEMPLATE 1\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
     )\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <chrono>\n#include <cmath>\n#include\
@@ -118,32 +120,29 @@ data:
     \ d, ...) d\n#define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
     #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
     #define fi first\n#define se second\n#define all(p) std::begin(p), std::end(p)\n\
-    \n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"out.txt\");\n\
-    #else\n#define in std::cin\n#define out std::cout\n#endif\n\nvoid YES(bool b =\
-    \ 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n}\n\nvoid NO(bool b\
-    \ = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n}\n\nvoid YESflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << std::endl;\n}\n\nvoid NOflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << std::endl;\n}\n\nvoid Yes(bool\
-    \ b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n}\n\nvoid No(bool\
-    \ b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n}\n\nvoid Yesflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << std::endl;\n}\n\nvoid Noflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << std::endl;\n}\n\nvoid yes(bool\
-    \ b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n}\n\nvoid no(bool\
-    \ b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n}\n\nvoid yesflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << std::endl;\n}\n\nvoid noflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << std::endl;\n}\n\n#endif\
-    \ // TEMPLATE\n"
+    \nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
+    \    }\n} iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream\
+    \ out(\"out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\
+    \nvoid YES(bool b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n\
+    }\n\nvoid NO(bool b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n\
+    }\n\nvoid Yes(bool b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n\
+    }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
+    }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
+    }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
+    }\n\n#endif // TEMPLATE\n"
   dependsOn: []
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-09-29 16:53:59+09:00'
+  timestamp: '2024-10-01 04:40:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_number_theory/number_theory_primality_test.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
 documentation_of: template/template.hpp
 layout: document
 redirect_from:

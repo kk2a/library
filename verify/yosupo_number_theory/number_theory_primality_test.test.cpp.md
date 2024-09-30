@@ -2,35 +2,40 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/is_prime.hpp
+    title: math/is_prime.hpp
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':heavy_check_mark:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: math/prime_factorize.hpp
-    title: math/prime_factorize.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
-    title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"math/is_prime.hpp\"\n\n\n\n#include <vector>\n\n#line 1\
-    \ \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n\n#line 1 \"type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing\
-    \ is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
-    \                                                       or std::is_same<T, __int128>::value,\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/primality_test
+    links:
+    - https://judge.yosupo.jp/problem/primality_test
+  bundledCode: "#line 1 \"verify/yosupo_number_theory/number_theory_primality_test.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#line\
+    \ 1 \"math/is_prime.hpp\"\n\n\n\n#include <vector>\n\n#line 1 \"math_mod/pow_mod.hpp\"\
+    \n\n\n\n#include <cassert>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n\
+    #include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128\
+    \ = typename std::conditional<std::is_same<T, __int128_t>::value\n           \
+    \                                            or std::is_same<T, __int128>::value,\n\
     \                                                   std::true_type,\n        \
     \                                           std::false_type>::type;\n\ntemplate\
     \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -140,52 +145,83 @@ data:
     \ < (1ull << 62)) {\n        return miller_rabin_mont<mint64>(n, {2, 325, 9375,\
     \ 28178, 450775, 9780504, 1795265022});\n    } else {\n        return miller_rabin_u64(n);\n\
     \    }\n}\n\n}; // namespace number_theory\n\nusing number_theory::is_prime;\n\
-    \n}; // namespace kk2\n\n\n"
-  code: "#ifndef MATH_MILLER_RABIN_HPP\n#define MATH_MILLER_RABIN_HPP 1\n\n#include\
-    \ <vector>\n\n#include \"../math_mod/pow_mod.hpp\"\n#include \"../modint/mont_arb.hpp\"\
-    \n\nnamespace kk2 {\n\nnamespace number_theory {\n\ntemplate <class T, class U>\
-    \ bool miller_rabin(const T &n, const std::vector<T> &ws) {\n    if (n <= 2) return\
-    \ n == 2;\n    if (~n & 1) return false;\n\n    T d = n - 1;\n    while (~d &\
-    \ 1) d >>= 1;\n    U e = 1, rev = n - 1;\n    for (T w : ws) {\n        if (w\
-    \ % n == 0) continue;\n        T t = d;\n        U y = pow_mod<T, T, U>(w, t,\
-    \ n);\n        while (t != n - 1 and y != e and y != rev) {\n            y = y\
-    \ * y % n;\n            t <<= 1;\n        }\n        if (y != rev and ~t & 1)\
-    \ return false;\n    }\n    return true;\n}\n\nbool miller_rabin_u64(unsigned\
-    \ long long n) {\n    return miller_rabin<unsigned long long, __uint128_t>(\n\
-    \        n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\n}\n\ntemplate\
-    \ <class mint>\nbool miller_rabin_mont(unsigned long long n, const std::vector<unsigned\
-    \ long long> &ws) {\n    if (n <= 2) return n == 2;\n    if (~n & 1) return false;\n\
-    \n    if (mint::getmod() != n) mint::setmod(n);\n    unsigned long long d = n\
-    \ - 1;\n    while (~d & 1) d >>= 1;\n    mint e = 1, rev = n - 1;\n    for (unsigned\
-    \ long long w : ws) {\n        if (w % n == 0) continue;\n        unsigned long\
-    \ long t = d;\n        mint y = mint(w).pow(t);\n        while (t != n - 1 and\
-    \ y != e and y != rev) {\n            y *= y;\n            t <<= 1;\n        }\n\
-    \        if (y != rev and ~t & 1) return false;\n    }\n    return true;\n}\n\n\
-    bool is_prime(unsigned long long n) {\n    using mint32 = ArbitraryLazyMontgomeryModInt<54305750>;\n\
-    \    using mint64 = ArbitraryLazyMontgomeryModInt64bit<54305750>;\n\n    if (n\
-    \ <= 2) return n == 2;\n    if (~n & 1) return false;\n    if (n < (1ull << 30))\
-    \ {\n        return miller_rabin_mont<mint32>(n, {2, 7, 61});\n    } else if (n\
-    \ < (1ull << 62)) {\n        return miller_rabin_mont<mint64>(n, {2, 325, 9375,\
-    \ 28178, 450775, 9780504, 1795265022});\n    } else {\n        return miller_rabin_u64(n);\n\
-    \    }\n}\n\n}; // namespace number_theory\n\nusing number_theory::is_prime;\n\
-    \n}; // namespace kk2\n\n#endif // MATH_MILLER_RABIN_HPP\n"
+    \n}; // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC\
+    \ optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include\
+    \ <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <iomanip>\n#line 19 \"template/template.hpp\"\n\
+    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+    \ <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n\
+    #include <string>\n#include <tuple>\n#line 31 \"template/template.hpp\"\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#line 35 \"template/template.hpp\"\
+    \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long\
+    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+    \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing\
+    \ pli = std::pair<i64, int>;\n\ntemplate <class T> constexpr T infty = 0;\ntemplate\
+    \ <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64>\
+    \ = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>)\
+    \ * infty<i64>;\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate\
+    \ <> constexpr u64 infty<u64> = infty<i64>;\ntemplate <> constexpr double infty<double>\
+    \ = infty<i64>;\ntemplate <> constexpr long double infty<long double> = infty<i64>;\n\
+    \nconstexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
+    \ double PI = 3.14159265358979323846;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+    template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
+    \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+    \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
+    \ pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\nnamespace\
+    \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(const T &init,\
+    \ int first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n \
+    \       return std::vector<T>(first, init);\n    } else {\n        return std::vector<decltype(make_vector(init,\
+    \ sizes...))>(first,\n                                                       \
+    \           make_vector(init, sizes...));\n    }\n}\n\ntemplate <class T, class\
+    \ U> void fill_all(std::vector<T> &v, const U &x) {\n    std::fill(std::begin(v),\
+    \ std::end(v), T(x));\n}\n\ntemplate <class T, class U> void fill_all(std::vector<std::vector<T>>\
+    \ &v, const U &x) {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace\
+    \ kk2\n\ntemplate <class T, class S> inline bool chmax(T &a, const S &b) {\n \
+    \   return (a < b ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool\
+    \ chmin(T &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n#define\
+    \ rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i =\
+    \ 0; i < (i64)(a); ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b);\
+    \ ++i)\n#define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i,\
+    \ a, b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c,\
+    \ d, ...) d\n#define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
+    #define fi first\n#define se second\n#define all(p) std::begin(p), std::end(p)\n\
+    \nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
+    \    }\n} iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream\
+    \ out(\"out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\
+    \nvoid YES(bool b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n\
+    }\n\nvoid NO(bool b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n\
+    }\n\nvoid Yes(bool b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n\
+    }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
+    }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
+    }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
+    }\n\n\n#line 5 \"verify/yosupo_number_theory/number_theory_primality_test.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int q;\n    cin >> q;\n    rep (q)\
+    \ {\n        u64 n;\n        cin >> n;\n        Yes(kk2::is_prime(n));\n    }\n\
+    \n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\
+    \ \"../../math/is_prime.hpp\"\n#include \"../../template/template.hpp\"\nusing\
+    \ namespace std;\n\nint main() {\n    int q;\n    cin >> q;\n    rep (q) {\n \
+    \       u64 n;\n        cin >> n;\n        Yes(kk2::is_prime(n));\n    }\n\n \
+    \   return 0;\n}\n"
   dependsOn:
+  - math/is_prime.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
   - modint/mont_arb.hpp
   - type_traits/type_traits.hpp
-  isVerificationFile: false
-  path: math/is_prime.hpp
-  requiredBy:
-  - math/prime_factorize.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_number_theory/number_theory_primality_test.test.cpp
-documentation_of: math/is_prime.hpp
+  - template/template.hpp
+  isVerificationFile: true
+  path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+  requiredBy: []
+  timestamp: '2024-10-01 04:40:11+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
 layout: document
 redirect_from:
-- /library/math/is_prime.hpp
-- /library/math/is_prime.hpp.html
-title: math/is_prime.hpp
+- /verify/verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+- /verify/verify/yosupo_number_theory/number_theory_primality_test.test.cpp.html
+title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
 ---

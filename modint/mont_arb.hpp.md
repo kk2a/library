@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':warning:'
@@ -17,10 +17,13 @@ data:
   - icon: ':warning:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+    title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"modint/mont_arb.hpp\"\n\n\n\n#include <cassert>\n#include\
@@ -178,8 +181,9 @@ data:
   - math/is_prime.hpp
   - fps/fps_sqrt.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_number_theory/number_theory_primality_test.test.cpp
 documentation_of: modint/mont_arb.hpp
 layout: document
 redirect_from:

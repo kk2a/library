@@ -238,7 +238,7 @@ data:
     - icon: ':warning:'
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/is_prime.hpp
       title: math/is_prime.hpp
     - icon: ':warning:'
@@ -316,7 +316,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint/mont.hpp
       title: modint/mont.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: modint/mont_arb.hpp
       title: modint/mont_arb.hpp
   - name: others
@@ -436,6 +436,11 @@ data:
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   verificationCategories:
+  - name: verify/yosupo_convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
+      title: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
   - name: verify/yosupo_fps
     pages:
     - icon: ':heavy_check_mark:'
@@ -450,5 +455,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
+  - name: verify/yosupo_number_theory
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+      title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
 layout: toppage
 ---

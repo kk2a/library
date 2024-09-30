@@ -475,32 +475,27 @@ data:
     \ d, ...) d\n#define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
     #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
     #define fi first\n#define se second\n#define all(p) std::begin(p), std::end(p)\n\
-    \n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"out.txt\");\n\
-    #else\n#define in std::cin\n#define out std::cout\n#endif\n\nvoid YES(bool b =\
-    \ 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n}\n\nvoid NO(bool b\
-    \ = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n}\n\nvoid YESflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << std::endl;\n}\n\nvoid NOflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << std::endl;\n}\n\nvoid Yes(bool\
-    \ b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n}\n\nvoid No(bool\
-    \ b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n}\n\nvoid Yesflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << std::endl;\n}\n\nvoid Noflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << std::endl;\n}\n\nvoid yes(bool\
-    \ b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n}\n\nvoid no(bool\
-    \ b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n}\n\nvoid yesflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << std::endl;\n}\n\nvoid noflush(bool\
-    \ b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << std::endl;\n}\n\n\n#line\
-    \ 6 \"verify/yosupo_fps/fps_log.test.cpp\"\nusing namespace std;\n\nusing mint\
-    \ = kk2::Mont<mod>;\nusing FPS = kk2::FormalPowerSeries<mint>;\n\nint main() {\n\
-    \    int n;\n    cin >> n;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto\
-    \ g = f.log();\n    for (auto v : g) cout << v << \" \";\n    cout << endl;\n\n\
-    \    return 0;\n}\n"
+    \nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
+    \    }\n} iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream\
+    \ out(\"out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\
+    \nvoid YES(bool b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n\
+    }\n\nvoid NO(bool b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n\
+    }\n\nvoid Yes(bool b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n\
+    }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
+    }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
+    }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
+    }\n\n\n#line 6 \"verify/yosupo_fps/fps_log.test.cpp\"\nusing namespace std;\n\n\
+    using FPS = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n\
+    \    cin >> n;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto g = f.log();\n\
+    \    rep (i, g.size()) cout << g[i] << \" \\n\"[i == g.size() - 1];\n\n    return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
     \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing mint\
-    \ = kk2::Mont<mod>;\nusing FPS = kk2::FormalPowerSeries<mint>;\n\nint main() {\n\
-    \    int n;\n    cin >> n;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto\
-    \ g = f.log();\n    for (auto v : g) cout << v << \" \";\n    cout << endl;\n\n\
-    \    return 0;\n}\n"
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
+    \ = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n    cin\
+    \ >> n;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto g = f.log();\n \
+    \   rep (i, g.size()) cout << g[i] << \" \\n\"[i == g.size() - 1];\n\n    return\
+    \ 0;\n}\n"
   dependsOn:
   - fps/ntt_friendly.hpp
   - convolution/convolution.hpp
@@ -515,7 +510,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log.test.cpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-01 04:40:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log.test.cpp
