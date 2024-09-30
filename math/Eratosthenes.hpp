@@ -14,9 +14,10 @@ struct Erato {
     Erato() = delete;
 
     constexpr static void set_upper(int m) {
-        _isprime.resize(m + 1, true);
-        _minfactor.resize(m + 1, -1);
-        _mobius.resize(m + 1, 1);
+        if ((int)_isprime.size() > m) return;
+        _isprime.assign(m + 1, true);
+        _minfactor.assign(m + 1, -1);
+        _mobius.assign(m + 1, 1);
         _isprime[1] = false;
         _minfactor[1] = 1;
 
