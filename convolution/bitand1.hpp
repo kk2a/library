@@ -2,11 +2,12 @@
 #define CONVOLUTION_AND 1
 
 #include <cassert>
-#include <functional>
+
+#include "zeta_mobius_transfrom.hpp"
 
 namespace kk2 {
 
-template <class FPS, class mint = typename FPS::value_type>
+template <class FPS>
 FPS convolution_and(FPS &a, const FPS &b) {
     assert(size(a) == size(b));
     int n = int(size(a)); // == int(size(b)
@@ -14,25 +15,10 @@ FPS convolution_and(FPS &a, const FPS &b) {
     assert((n & -n) == n);
     FPS c(b.begin(), b.end());
 
-    auto fzt = [&](FPS &a) -> void {
-        for (int i = 1; i < n; i <<= 1) {
-            for (int j = 0; j < n; j++) {
-                if ((i & j) == 0) a[j] += a[i ^ j];
-            }
-        }
-    };
-    auto ifzt = [&](FPS &a) -> void {
-        for (int i = 1; i < n; i <<= 1) {
-            for (int j = 0; j < n; j++) {
-                if ((i & j) == 0) a[j] -= a[i ^ j];
-            }
-        }
-    };
-
-    fzt(a);
-    fzt(c);
+    SuperSetZetaTransform(a);
+    SuperSetZetaTransform(c);
     for (int i = 0; i < n; i++) a[i] *= c[i];
-    ifzt(a);
+    InverseSuperSetZetaTransform(a);
 
     return a;
 }
