@@ -107,6 +107,13 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
 #define se second
 #define all(p) std::begin(p), std::end(p)
 
+struct IoSetUp {
+    IoSetUp() {
+        std::cin.tie(nullptr);
+        std::ios::sync_with_stdio(false);
+    }
+} iosetup;
+
 #ifdef KK2
 std::ifstream in("in.txt");
 std::ofstream out("out.txt");
@@ -123,14 +130,6 @@ void NO(bool b = 1) {
     std::cout << (b ? "NO" : "YES") << '\n';
 }
 
-void YESflush(bool b = 1) {
-    std::cout << (b ? "YES" : "NO") << std::endl;
-}
-
-void NOflush(bool b = 1) {
-    std::cout << (b ? "NO" : "YES") << std::endl;
-}
-
 void Yes(bool b = 1) {
     std::cout << (b ? "Yes" : "No") << '\n';
 }
@@ -139,28 +138,12 @@ void No(bool b = 1) {
     std::cout << (b ? "No" : "Yes") << '\n';
 }
 
-void Yesflush(bool b = 1) {
-    std::cout << (b ? "Yes" : "No") << std::endl;
-}
-
-void Noflush(bool b = 1) {
-    std::cout << (b ? "No" : "Yes") << std::endl;
-}
-
 void yes(bool b = 1) {
     std::cout << (b ? "yes" : "no") << '\n';
 }
 
 void no(bool b = 1) {
     std::cout << (b ? "no" : "yes") << '\n';
-}
-
-void yesflush(bool b = 1) {
-    std::cout << (b ? "yes" : "no") << std::endl;
-}
-
-void noflush(bool b = 1) {
-    std::cout << (b ? "no" : "yes") << std::endl;
 }
 
 #endif // TEMPLATE

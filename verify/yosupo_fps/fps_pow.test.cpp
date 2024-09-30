@@ -5,18 +5,16 @@
 #include "../../template/template.hpp"
 using namespace std;
 
-using mint = kk2::Mont<mod>;
-using FPS = kk2::FormalPowerSeries<mint>;
+using FPS = kk2::FormalPowerSeries<kk2::mont998>;
 
 int main() {
     int n;
-    long long m;
+    i64 m;
     cin >> n >> m;
     FPS f(n);
     rep (i, n) cin >> f[i];
     auto g = f.pow(m);
-    for (auto v : g) cout << v << " ";
-    cout << endl;
+    rep (i, g.size()) cout << g[i] << " \n"[i == g.size() - 1];
 
     return 0;
 }

@@ -5,8 +5,7 @@
 #include "../../template/template.hpp"
 using namespace std;
 
-using mint = kk2::Mont<mod>;
-using FPS = kk2::FormalPowerSeries<mint>;
+using FPS = kk2::FormalPowerSeries<kk2::mont998>;
 
 int main() {
     int n;
@@ -14,8 +13,7 @@ int main() {
     FPS f(n);
     rep (i, n) cin >> f[i];
     auto g = f.exp();
-    for (auto v : g) cout << v << " ";
-    cout << endl;
+    rep (i, g.size()) cout << g[i] << " \n"[i == g.size() - 1];
 
     return 0;
 }
