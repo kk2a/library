@@ -3,12 +3,12 @@
 
 #include <cassert>
 
-#include "../math/Eratosthenes.hpp"
+#include "divisor_multiple_transform.hpp"
 
 namespace kk2 {
 
 // 1-indexed
-template <class FPS, class mint = typename FPS::value_type>
+template <class FPS>
 FPS convolution_lcm(FPS &a, const FPS &b) {
     assert(size(a) == size(b));
     int n = int(size(a)); // = int(size(b))
@@ -17,23 +17,10 @@ FPS convolution_lcm(FPS &a, const FPS &b) {
     FPS c(b.begin(), b.end());
     Erato::set_upper(n);
 
-    auto fdt = [&](FPS &a) -> void {
-        for (const auto p : Erato::primes()) {
-            if (p > n) break;
-            for (int i = 1; i <= n / p; i++) a[i * p] += a[i];
-        }
-    };
-    auto ifdt = [&](FPS &a) -> void {
-        for (const auto p : Erato::primes()) {
-            if (p > n) break;
-            for (auto i = n / p; i > 0; i--) a[i * p] -= a[i];
-        }
-    };
-
-    fdt(a);
-    fdt(c);
+    DivisorTransform(a);
+    DivisorTransform(c);
     for (int i = 1; i <= n; i++) a[i] *= c[i];
-    ifdt(a);
+    InverseDivisorTransform(a);
 
     return a;
 }
