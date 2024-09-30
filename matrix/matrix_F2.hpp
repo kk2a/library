@@ -294,8 +294,8 @@ struct MatrixF2 {
     }
 
     // it must be already swept and shrunk before calling this function
-    std::vector<DynamicBitSet> get_solution_base() const {
-        std::vector<DynamicBitSet> res(_w - _h, DynamicBitSet(_w));
+    mat get_solution_base() const {
+        mat res(_w - _h, _w);
         std::vector<int> step(_h);
         std::vector<bool> is_step(_w, false);
         int nowj = 0;
@@ -314,6 +314,64 @@ struct MatrixF2 {
             res[now][nowj] = 1;
             for (int i = 0; i < _h; i++)
                 if (_mat[i].is_pinned(nowj)) res[now][step[i]] = 1;
+            nowj++, now++;
+        }
+        return res;
+    }
+
+    mat solve(const mat &b) const {
+        assert(_h == b._h);
+        assert(b._w == 1);
+        mat ab = combine_right(b);
+        ab.sweep();
+        ab.shrink();
+
+        // ab.display();
+
+        for (int i = 0; i < ab._h; i++) {
+            int left = -1;
+            for (int j = 0; j < ab._w; j++) {
+                if (ab[i][j]) {
+                    left = j;
+                    break;
+                }
+            }
+            if (left == ab._w - 1) return {};
+        }
+
+        mat res(1 + _w - ab._h, _w);
+        res[0] = DynamicBitSet(_w, 1);
+        for (int i = 0; i < ab._h; ++i) {
+            int left = -1;
+            bool cnt = 0;
+            for (int j = 0; j < ab._w; ++j) {
+                if (ab[i][j]) {
+                    if (left == -1) left = j;
+                    cnt = !cnt;
+                }
+            }
+            // std::cout << cnt << std::endl;
+            res[0][left] = !cnt;
+        }
+
+        std::vector<int> step(ab._h);
+        std::vector<bool> is_step(ab._w - 1, false);
+        int nowj = 0;
+        for (int i = 0; i < ab._h; i++) {
+            while (!ab[i][nowj]) nowj++;
+            is_step[nowj] = true;
+            step[i] = nowj;
+        }
+        int now = 1;
+        nowj = 0;
+        while (nowj < ab._w - 1) {
+            if (is_step[nowj]) {
+                nowj++;
+                continue;
+            }
+            res[now][nowj] = 1;
+            for (int i = 0; i < ab._h; i++)
+                if (ab[i][nowj]) res[now][step[i]] = 1;
             nowj++, now++;
         }
         return res;
