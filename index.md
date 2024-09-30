@@ -33,6 +33,9 @@ data:
       path: convolution/convolution.hpp
       title: convolution/convolution.hpp
     - icon: ':warning:'
+      path: convolution/divisor_multiple_transform.hpp
+      title: convolution/divisor_multiple_transform.hpp
+    - icon: ':warning:'
       path: convolution/gcd1.hpp
       title: convolution/gcd1.hpp
     - icon: ':warning:'
@@ -44,6 +47,12 @@ data:
     - icon: ':warning:'
       path: convolution/subset.hpp
       title: convolution/subset.hpp
+    - icon: ':warning:'
+      path: convolution/walsh_hadamard_transform.hpp
+      title: convolution/walsh_hadamard_transform.hpp
+    - icon: ':warning:'
+      path: convolution/zeta_mobius_transfrom.hpp
+      title: convolution/zeta_mobius_transfrom.hpp
   - name: data_structure
     pages:
     - icon: ':warning:'

@@ -2,25 +2,27 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: convolution/divisor_multiple_transform.hpp
-    title: convolution/divisor_multiple_transform.hpp
-  - icon: ':warning:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: convolution/gcd1.hpp
+    title: convolution/gcd1.hpp
+  - icon: ':warning:'
+    path: convolution/lcm1.hpp
+    title: convolution/lcm1.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"convolution/lcm1.hpp\"\n\n\n\n#include <cassert>\n\n#line\
-    \ 1 \"convolution/divisor_multiple_transform.hpp\"\n\n\n\n#line 1 \"math/Eratosthenes.hpp\"\
-    \n\n\n\n#line 5 \"math/Eratosthenes.hpp\"\n#include <utility>\n#include <vector>\n\
-    \nnamespace kk2 {\n\nstruct Erato {\n    static inline std::vector<bool> _isprime{};\n\
-    \    static inline std::vector<int> _minfactor{}, _mobius{}, _primes{};\n\n  \
-    \  Erato() = delete;\n\n    constexpr static void set_upper(int m) {\n       \
-    \ if ((int)_isprime.size() > m) return;\n        _isprime.assign(m + 1, true);\n\
+  bundledCode: "#line 1 \"convolution/divisor_multiple_transform.hpp\"\n\n\n\n#line\
+    \ 1 \"math/Eratosthenes.hpp\"\n\n\n\n#include <cassert>\n#include <utility>\n\
+    #include <vector>\n\nnamespace kk2 {\n\nstruct Erato {\n    static inline std::vector<bool>\
+    \ _isprime{};\n    static inline std::vector<int> _minfactor{}, _mobius{}, _primes{};\n\
+    \n    Erato() = delete;\n\n    constexpr static void set_upper(int m) {\n    \
+    \    if ((int)_isprime.size() > m) return;\n        _isprime.assign(m + 1, true);\n\
     \        _minfactor.assign(m + 1, -1);\n        _mobius.assign(m + 1, 1);\n  \
     \      _isprime[1] = false;\n        _minfactor[1] = 1;\n\n        for (int p\
     \ = 2; p <= m; ++p) {\n            if (!_isprime[p]) continue;\n\n           \
@@ -64,34 +66,38 @@ data:
     \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = n / p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace\
-    \ kk2\n\n\n#line 7 \"convolution/lcm1.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\n\
-    template <class FPS>\nFPS convolution_lcm(FPS &a, const FPS &b) {\n    assert(size(a)\
-    \ == size(b));\n    int n = int(size(a)); // = int(size(b))\n    if (!n) return\
-    \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n    Erato::set_upper(n);\n\n\
-    \    DivisorTransform(a);\n    DivisorTransform(c);\n    for (int i = 1; i <=\
-    \ n; i++) a[i] *= c[i];\n    InverseDivisorTransform(a);\n\n    return a;\n}\n\
-    \n} // namespace kk2\n\n\n"
-  code: "#ifndef CONVOLUTION_LCM\n#define CONVOLUTION_LCM 1\n\n#include <cassert>\n\
-    \n#include \"divisor_multiple_transform.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\n\
-    template <class FPS>\nFPS convolution_lcm(FPS &a, const FPS &b) {\n    assert(size(a)\
-    \ == size(b));\n    int n = int(size(a)); // = int(size(b))\n    if (!n) return\
-    \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n    Erato::set_upper(n);\n\n\
-    \    DivisorTransform(a);\n    DivisorTransform(c);\n    for (int i = 1; i <=\
-    \ n; i++) a[i] *= c[i];\n    InverseDivisorTransform(a);\n\n    return a;\n}\n\
-    \n} // namespace kk2\n\n#endif // CONVOLUTION_LCM\n"
+    \ kk2\n\n\n"
+  code: "#ifndef CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\n#define CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\
+    \ 1\n\n#include \"../math/Eratosthenes.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ FPS> void MultipleTransform(FPS &a) {\n    int n = int(a.size());\n    if (!n)\
+    \ return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p : Erato::primes())\
+    \ {\n        if (p > n) break;\n        for (int i = n / p; i; i--) a[i] += a[i\
+    \ * p];\n    }\n}\n\ntemplate <class FPS> void InverseMultipleTransform(FPS &a)\
+    \ {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
+    \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
+    \   for (int i = 1; i <= n / p; i++) a[i] -= a[i * p];\n    }\n}\n\ntemplate <class\
+    \ FPS> void DivisorTransform(FPS &a) {\n    int n = int(a.size());\n    if (!n)\
+    \ return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p : Erato::primes())\
+    \ {\n        if (p > n) break;\n        for (int i = 1; i <= n / p; i++) a[i *\
+    \ p] += a[i];\n    }\n}\n\ntemplate <class FPS> void InverseDivisorTransform(FPS\
+    \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
+    \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
+    \   for (int i = n / p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace\
+    \ kk2\n\n#endif // CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\n"
   dependsOn:
-  - convolution/divisor_multiple_transform.hpp
   - math/Eratosthenes.hpp
   isVerificationFile: false
-  path: convolution/lcm1.hpp
-  requiredBy: []
+  path: convolution/divisor_multiple_transform.hpp
+  requiredBy:
+  - convolution/lcm1.hpp
+  - convolution/gcd1.hpp
   timestamp: '2024-10-01 04:14:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: convolution/lcm1.hpp
+documentation_of: convolution/divisor_multiple_transform.hpp
 layout: document
 redirect_from:
-- /library/convolution/lcm1.hpp
-- /library/convolution/lcm1.hpp.html
-title: convolution/lcm1.hpp
+- /library/convolution/divisor_multiple_transform.hpp
+- /library/convolution/divisor_multiple_transform.hpp.html
+title: convolution/divisor_multiple_transform.hpp
 ---

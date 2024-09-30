@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: convolution/zeta_mobius_transfrom.hpp
+    title: convolution/zeta_mobius_transfrom.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -8,37 +11,44 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"convolution/bitor1.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <functional>\n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename\
-    \ FPS::value_type>\nFPS convolution_or(FPS &a, const FPS &b) {\n    assert(size(a)\
-    \ == size(b));\n    int n = int(size(a)); // == int(size(b)\n    if (!n) return\
-    \ {};\n    assert((n & -n) == n); // n is a power of 2\n    FPS c(b.begin(), b.end());\n\
-    \n    auto fzt = [&](FPS &x) -> void {\n        for (int i = 1; i < n; i <<= 1)\
-    \ {\n            for (int j = 0; j < n; j++) {\n                if ((i & j) !=\
-    \ 0) x[j] += x[i ^ j];\n            }\n        }\n    };\n    auto ifzt = [&](FPS\
-    \ &x) -> void {\n        for (int i = 1; i < n; i <<= 1) {\n            for (int\
-    \ j = 0; j < n; j++) {\n                if ((i & j) != 0) x[j] -= x[i ^ j];\n\
-    \            }\n        }\n    };\n\n    fzt(a);\n    fzt(c);\n    for (int i\
-    \ = 0; i < n; i++) a[i] *= c[i];\n    ifzt(a);\n\n    return a;\n}\n\n} // namespace\
-    \ kk2\n\n\n"
-  code: "#ifndef CONVOLUTION_OR\n#define CONVOLUTION_OR 1\n\n#include <cassert>\n\
-    #include <functional>\n\nnamespace kk2 {\n\ntemplate <class FPS, class mint =\
-    \ typename FPS::value_type>\nFPS convolution_or(FPS &a, const FPS &b) {\n    assert(size(a)\
-    \ == size(b));\n    int n = int(size(a)); // == int(size(b)\n    if (!n) return\
-    \ {};\n    assert((n & -n) == n); // n is a power of 2\n    FPS c(b.begin(), b.end());\n\
-    \n    auto fzt = [&](FPS &x) -> void {\n        for (int i = 1; i < n; i <<= 1)\
-    \ {\n            for (int j = 0; j < n; j++) {\n                if ((i & j) !=\
-    \ 0) x[j] += x[i ^ j];\n            }\n        }\n    };\n    auto ifzt = [&](FPS\
-    \ &x) -> void {\n        for (int i = 1; i < n; i <<= 1) {\n            for (int\
-    \ j = 0; j < n; j++) {\n                if ((i & j) != 0) x[j] -= x[i ^ j];\n\
-    \            }\n        }\n    };\n\n    fzt(a);\n    fzt(c);\n    for (int i\
-    \ = 0; i < n; i++) a[i] *= c[i];\n    ifzt(a);\n\n    return a;\n}\n\n} // namespace\
-    \ kk2\n\n#endif // CONVOLUTION_OR\n"
-  dependsOn: []
+  bundledCode: "#line 1 \"convolution/bitor1.hpp\"\n\n\n\n#include <cassert>\n\n#line\
+    \ 1 \"convolution/zeta_mobius_transfrom.hpp\"\n\n\n\n#line 5 \"convolution/zeta_mobius_transfrom.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class FPS> void SuperSetZetaTransform(FPS &a)\
+    \ {\n    int n = int(a.size());\n    if (!n) return;\n    assert((n & -n) == n);\n\
+    \    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; j++) {\n\
+    \            if ((i & j) == 0) a[j] += a[i ^ j];\n        }\n    }\n}\n\ntemplate\
+    \ <class FPS> void InverseSuperSetZetaTransform(FPS &a) {\n    int n = int(a.size());\n\
+    \    if (!n) return;\n    assert((n & -n) == n);\n    for (int i = 1; i < n; i\
+    \ <<= 1) {\n        for (int j = 0; j < n; j++) {\n            if ((i & j) ==\
+    \ 0) a[j] -= a[i ^ j];\n        }\n    }\n}\n\ntemplate <class FPS> void SubsetZetaTransform(FPS\
+    \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    assert((n & -n)\
+    \ == n);\n    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n;\
+    \ j++) {\n            if ((i & j) != 0) a[j] += a[i ^ j];\n        }\n    }\n\
+    }\n\ntemplate <class FPS> void InverseSubsetZetaTransform(FPS &a) {\n    int n\
+    \ = int(a.size());\n    if (!n) return;\n    assert((n & -n) == n);\n    for (int\
+    \ i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; j++) {\n          \
+    \  if ((i & j) != 0) a[j] -= a[i ^ j];\n        }\n    }\n}\n\n} // namespace\
+    \ kk2\n\n\n#line 7 \"convolution/bitor1.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ FPS>\nFPS convolution_or(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
+    \    int n = int(size(a)); // == int(size(b)\n    if (!n) return {};\n    assert((n\
+    \ & -n) == n); // n is a power of 2\n    FPS c(b.begin(), b.end());\n\n    SubsetZetaTransform(a);\n\
+    \    SubsetZetaTransform(c);\n    for (int i = 0; i < n; i++) a[i] *= c[i];\n\
+    \    InverseSubsetZetaTransform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\
+    \n\n"
+  code: "#ifndef CONVOLUTION_OR\n#define CONVOLUTION_OR 1\n\n#include <cassert>\n\n\
+    #include \"zeta_mobius_transfrom.hpp\"\n\nnamespace kk2 {\n\ntemplate <class FPS>\n\
+    FPS convolution_or(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
+    \    int n = int(size(a)); // == int(size(b)\n    if (!n) return {};\n    assert((n\
+    \ & -n) == n); // n is a power of 2\n    FPS c(b.begin(), b.end());\n\n    SubsetZetaTransform(a);\n\
+    \    SubsetZetaTransform(c);\n    for (int i = 0; i < n; i++) a[i] *= c[i];\n\
+    \    InverseSubsetZetaTransform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\
+    \n#endif // CONVOLUTION_OR\n"
+  dependsOn:
+  - convolution/zeta_mobius_transfrom.hpp
   isVerificationFile: false
   path: convolution/bitor1.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-10-01 04:14:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/bitor1.hpp

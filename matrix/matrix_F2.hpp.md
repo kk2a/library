@@ -245,30 +245,49 @@ data:
     \        if (_mat[j][i]) _mat[j] ^= _mat[r];\n            }\n            r++;\n\
     \        }\n        return r;\n    }\n\n    void shrink() {\n        while (_h\
     \ && !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;\n    }\n\n    // it must be already\
-    \ swept and shrunk before calling this function\n    std::vector<DynamicBitSet>\
-    \ get_solution_base() const {\n        std::vector<DynamicBitSet> res(_w - _h,\
-    \ DynamicBitSet(_w));\n        std::vector<int> step(_h);\n        std::vector<bool>\
-    \ is_step(_w, false);\n        int nowj = 0;\n        for (int i = 0; i < _h;\
-    \ i++) {\n            while (!_mat[i].is_pinned(nowj)) nowj++;\n            is_step[nowj]\
-    \ = true;\n            step[i] = nowj;\n        }\n        int now = 0;\n    \
-    \    nowj = 0;\n        while (nowj < _w) {\n            if (is_step[nowj]) {\n\
-    \                nowj++;\n                continue;\n            }\n         \
-    \   res[now][nowj] = 1;\n            for (int i = 0; i < _h; i++)\n          \
-    \      if (_mat[i].is_pinned(nowj)) res[now][step[i]] = 1;\n            nowj++,\
-    \ now++;\n        }\n        return res;\n    }\n\n    int rank() const { return\
-    \ mat(*this).sweep(); }\n\n    bool det() const { return rank() == _h; }\n\n \
-    \   mat inv() const {\n        assert(_h == _w);\n        std::vector<DynamicBitSet>\
-    \ res(_h, _w);\n        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n    \
-    \    std::vector<DynamicBitSet> buf(_mat);\n        for (int i = 0; i < _w; i++)\
-    \ {\n            int pivot = -1;\n            for (int j = i; j < _h; j++) {\n\
-    \                if (buf[j][i]) {\n                    pivot = j;\n          \
-    \          break;\n                }\n            }\n            if (pivot ==\
-    \ -1) continue;\n            std::swap(buf[i], buf[pivot]);\n            std::swap(res[i],\
-    \ res[pivot]);\n            for (int j = 0; j < _h; j++) {\n                if\
-    \ (j == i) continue;\n                if (buf[j][i]) {\n                    buf[j]\
-    \ ^= buf[i];\n                    res[j] ^= res[i];\n                }\n     \
-    \       }\n        }\n        return mat(res);\n    }\n};\n\n} // namespace kk2\n\
-    \n\n"
+    \ swept and shrunk before calling this function\n    mat get_solution_base() const\
+    \ {\n        mat res(_w - _h, _w);\n        std::vector<int> step(_h);\n     \
+    \   std::vector<bool> is_step(_w, false);\n        int nowj = 0;\n        for\
+    \ (int i = 0; i < _h; i++) {\n            while (!_mat[i].is_pinned(nowj)) nowj++;\n\
+    \            is_step[nowj] = true;\n            step[i] = nowj;\n        }\n \
+    \       int now = 0;\n        nowj = 0;\n        while (nowj < _w) {\n       \
+    \     if (is_step[nowj]) {\n                nowj++;\n                continue;\n\
+    \            }\n            res[now][nowj] = 1;\n            for (int i = 0; i\
+    \ < _h; i++)\n                if (_mat[i].is_pinned(nowj)) res[now][step[i]] =\
+    \ 1;\n            nowj++, now++;\n        }\n        return res;\n    }\n\n  \
+    \  mat solve(const mat &b) const {\n        assert(_h == b._h);\n        assert(b._w\
+    \ == 1);\n        mat ab = combine_right(b);\n        ab.sweep();\n        ab.shrink();\n\
+    \n        // ab.display();\n\n        for (int i = 0; i < ab._h; i++) {\n    \
+    \        int left = -1;\n            for (int j = 0; j < ab._w; j++) {\n     \
+    \           if (ab[i][j]) {\n                    left = j;\n                 \
+    \   break;\n                }\n            }\n            if (left == ab._w -\
+    \ 1) return {};\n        }\n\n        mat res(1 + _w - ab._h, _w);\n        res[0]\
+    \ = DynamicBitSet(_w, 1);\n        for (int i = 0; i < ab._h; ++i) {\n       \
+    \     int left = -1;\n            bool cnt = 0;\n            for (int j = 0; j\
+    \ < ab._w; ++j) {\n                if (ab[i][j]) {\n                    if (left\
+    \ == -1) left = j;\n                    cnt = !cnt;\n                }\n     \
+    \       }\n            // std::cout << cnt << std::endl;\n            res[0][left]\
+    \ = !cnt;\n        }\n\n        std::vector<int> step(ab._h);\n        std::vector<bool>\
+    \ is_step(ab._w - 1, false);\n        int nowj = 0;\n        for (int i = 0; i\
+    \ < ab._h; i++) {\n            while (!ab[i][nowj]) nowj++;\n            is_step[nowj]\
+    \ = true;\n            step[i] = nowj;\n        }\n        int now = 1;\n    \
+    \    nowj = 0;\n        while (nowj < ab._w - 1) {\n            if (is_step[nowj])\
+    \ {\n                nowj++;\n                continue;\n            }\n     \
+    \       res[now][nowj] = 1;\n            for (int i = 0; i < ab._h; i++)\n   \
+    \             if (ab[i][nowj]) res[now][step[i]] = 1;\n            nowj++, now++;\n\
+    \        }\n        return res;\n    }\n\n    int rank() const { return mat(*this).sweep();\
+    \ }\n\n    bool det() const { return rank() == _h; }\n\n    mat inv() const {\n\
+    \        assert(_h == _w);\n        std::vector<DynamicBitSet> res(_h, _w);\n\
+    \        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n        std::vector<DynamicBitSet>\
+    \ buf(_mat);\n        for (int i = 0; i < _w; i++) {\n            int pivot =\
+    \ -1;\n            for (int j = i; j < _h; j++) {\n                if (buf[j][i])\
+    \ {\n                    pivot = j;\n                    break;\n            \
+    \    }\n            }\n            if (pivot == -1) continue;\n            std::swap(buf[i],\
+    \ buf[pivot]);\n            std::swap(res[i], res[pivot]);\n            for (int\
+    \ j = 0; j < _h; j++) {\n                if (j == i) continue;\n             \
+    \   if (buf[j][i]) {\n                    buf[j] ^= buf[i];\n                \
+    \    res[j] ^= res[i];\n                }\n            }\n        }\n        return\
+    \ mat(res);\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATRIX_MATRIX_F2_HPP\n#define MATRIX_MATRIX_F2_HPP 1\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <iostream>\n#include <string>\n#include\
     \ <vector>\n\n#include \"../data_structure/my_bitset.hpp\"\n\nnamespace kk2 {\n\
@@ -369,36 +388,55 @@ data:
     \        if (_mat[j][i]) _mat[j] ^= _mat[r];\n            }\n            r++;\n\
     \        }\n        return r;\n    }\n\n    void shrink() {\n        while (_h\
     \ && !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;\n    }\n\n    // it must be already\
-    \ swept and shrunk before calling this function\n    std::vector<DynamicBitSet>\
-    \ get_solution_base() const {\n        std::vector<DynamicBitSet> res(_w - _h,\
-    \ DynamicBitSet(_w));\n        std::vector<int> step(_h);\n        std::vector<bool>\
-    \ is_step(_w, false);\n        int nowj = 0;\n        for (int i = 0; i < _h;\
-    \ i++) {\n            while (!_mat[i].is_pinned(nowj)) nowj++;\n            is_step[nowj]\
-    \ = true;\n            step[i] = nowj;\n        }\n        int now = 0;\n    \
-    \    nowj = 0;\n        while (nowj < _w) {\n            if (is_step[nowj]) {\n\
-    \                nowj++;\n                continue;\n            }\n         \
-    \   res[now][nowj] = 1;\n            for (int i = 0; i < _h; i++)\n          \
-    \      if (_mat[i].is_pinned(nowj)) res[now][step[i]] = 1;\n            nowj++,\
-    \ now++;\n        }\n        return res;\n    }\n\n    int rank() const { return\
-    \ mat(*this).sweep(); }\n\n    bool det() const { return rank() == _h; }\n\n \
-    \   mat inv() const {\n        assert(_h == _w);\n        std::vector<DynamicBitSet>\
-    \ res(_h, _w);\n        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n    \
-    \    std::vector<DynamicBitSet> buf(_mat);\n        for (int i = 0; i < _w; i++)\
-    \ {\n            int pivot = -1;\n            for (int j = i; j < _h; j++) {\n\
-    \                if (buf[j][i]) {\n                    pivot = j;\n          \
-    \          break;\n                }\n            }\n            if (pivot ==\
-    \ -1) continue;\n            std::swap(buf[i], buf[pivot]);\n            std::swap(res[i],\
-    \ res[pivot]);\n            for (int j = 0; j < _h; j++) {\n                if\
-    \ (j == i) continue;\n                if (buf[j][i]) {\n                    buf[j]\
-    \ ^= buf[i];\n                    res[j] ^= res[i];\n                }\n     \
-    \       }\n        }\n        return mat(res);\n    }\n};\n\n} // namespace kk2\n\
-    \n#endif // MATRIX_MATRIX_F2_HPP\n"
+    \ swept and shrunk before calling this function\n    mat get_solution_base() const\
+    \ {\n        mat res(_w - _h, _w);\n        std::vector<int> step(_h);\n     \
+    \   std::vector<bool> is_step(_w, false);\n        int nowj = 0;\n        for\
+    \ (int i = 0; i < _h; i++) {\n            while (!_mat[i].is_pinned(nowj)) nowj++;\n\
+    \            is_step[nowj] = true;\n            step[i] = nowj;\n        }\n \
+    \       int now = 0;\n        nowj = 0;\n        while (nowj < _w) {\n       \
+    \     if (is_step[nowj]) {\n                nowj++;\n                continue;\n\
+    \            }\n            res[now][nowj] = 1;\n            for (int i = 0; i\
+    \ < _h; i++)\n                if (_mat[i].is_pinned(nowj)) res[now][step[i]] =\
+    \ 1;\n            nowj++, now++;\n        }\n        return res;\n    }\n\n  \
+    \  mat solve(const mat &b) const {\n        assert(_h == b._h);\n        assert(b._w\
+    \ == 1);\n        mat ab = combine_right(b);\n        ab.sweep();\n        ab.shrink();\n\
+    \n        // ab.display();\n\n        for (int i = 0; i < ab._h; i++) {\n    \
+    \        int left = -1;\n            for (int j = 0; j < ab._w; j++) {\n     \
+    \           if (ab[i][j]) {\n                    left = j;\n                 \
+    \   break;\n                }\n            }\n            if (left == ab._w -\
+    \ 1) return {};\n        }\n\n        mat res(1 + _w - ab._h, _w);\n        res[0]\
+    \ = DynamicBitSet(_w, 1);\n        for (int i = 0; i < ab._h; ++i) {\n       \
+    \     int left = -1;\n            bool cnt = 0;\n            for (int j = 0; j\
+    \ < ab._w; ++j) {\n                if (ab[i][j]) {\n                    if (left\
+    \ == -1) left = j;\n                    cnt = !cnt;\n                }\n     \
+    \       }\n            // std::cout << cnt << std::endl;\n            res[0][left]\
+    \ = !cnt;\n        }\n\n        std::vector<int> step(ab._h);\n        std::vector<bool>\
+    \ is_step(ab._w - 1, false);\n        int nowj = 0;\n        for (int i = 0; i\
+    \ < ab._h; i++) {\n            while (!ab[i][nowj]) nowj++;\n            is_step[nowj]\
+    \ = true;\n            step[i] = nowj;\n        }\n        int now = 1;\n    \
+    \    nowj = 0;\n        while (nowj < ab._w - 1) {\n            if (is_step[nowj])\
+    \ {\n                nowj++;\n                continue;\n            }\n     \
+    \       res[now][nowj] = 1;\n            for (int i = 0; i < ab._h; i++)\n   \
+    \             if (ab[i][nowj]) res[now][step[i]] = 1;\n            nowj++, now++;\n\
+    \        }\n        return res;\n    }\n\n    int rank() const { return mat(*this).sweep();\
+    \ }\n\n    bool det() const { return rank() == _h; }\n\n    mat inv() const {\n\
+    \        assert(_h == _w);\n        std::vector<DynamicBitSet> res(_h, _w);\n\
+    \        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n        std::vector<DynamicBitSet>\
+    \ buf(_mat);\n        for (int i = 0; i < _w; i++) {\n            int pivot =\
+    \ -1;\n            for (int j = i; j < _h; j++) {\n                if (buf[j][i])\
+    \ {\n                    pivot = j;\n                    break;\n            \
+    \    }\n            }\n            if (pivot == -1) continue;\n            std::swap(buf[i],\
+    \ buf[pivot]);\n            std::swap(res[i], res[pivot]);\n            for (int\
+    \ j = 0; j < _h; j++) {\n                if (j == i) continue;\n             \
+    \   if (buf[j][i]) {\n                    buf[j] ^= buf[i];\n                \
+    \    res[j] ^= res[i];\n                }\n            }\n        }\n        return\
+    \ mat(res);\n    }\n};\n\n} // namespace kk2\n\n#endif // MATRIX_MATRIX_F2_HPP\n"
   dependsOn:
   - data_structure/my_bitset.hpp
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-01 04:13:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/matrix_F2.hpp
