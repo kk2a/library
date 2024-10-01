@@ -8,92 +8,65 @@ def good_path(path):
 
 class include_file:
     def __init__(self, file_path):
-        self.top = os.getcwd()
         self.file_path = good_path(file_path)
-        self.include_path = good_path(os.path.dirname("C:/Users/include/"))
-        self.backup_lines = []
+        self.include_path = good_path("C:/Users/include/")
 
-    def query(self):
-        self.backup_lines = self.backup()
-        file_id, get_file_path = self.find_and_memo()
-        file_id, get_file_path, adj_array = self.get_dag(file_id, get_file_path)
-        # print(adj_array)
-        self.expand_all_include_files(file_id, get_file_path, adj_array)
+    def expand(self):
+        self.expand_all_include_files()
+
+    def expand_clip(self):
+        backup_lines = self.backup()
+        self.expand_all_include_files()
         self.clip()
-        self.rollback()
+        self.rollback(backup_lines)
 
-    # 一週目で自分のファイルを探し．それらをメモする
-    def find_and_memo(self):
-        # ファイル名をキーにして，ファイルに数字を割り当てる
-        file_id = {}
-        # 数字をみて，ファイル名を取得する
-        get_file_path = []
+    def get_inlude_path(self, line, cur_file_path):
+        included_file = ''
+        if line.startswith('#include <kk2'):
+            included_file = line.split()[1].strip('<>\n')
+            included_file = good_path(os.path.join(self.include_path, included_file))
+        elif line.startswith('#include<kk2'):
+            included_file = line[8:].strip('<>\n')
+            included_file = good_path(os.path.join(self.include_path, included_file))
+        elif line.startswith('#include "'):
+            included_file = line.split()[1].strip('"\n')
+            included_file = good_path(os.path.join(os.path.dirname(cur_file_path), included_file))
+        elif line.startswith('#include"'):
+            included_file = line[8:].strip('"\n')
+            included_file = good_path(os.path.join(os.path.dirname(cur_file_path), included_file))
+        return included_file
 
-        with open(self.file_path, 'r', encoding="utf-8") as file:
-            for line in file:
-                if not line.startswith('#include <kk2'):
-                    continue
-                included_file = line.split()[1].strip('<>\n')
-                included_file = good_path(os.path.join(self.include_path, included_file))
-                if included_file in file_id.keys():
-                    continue
-                file_id[included_file] = len(file_id)
-                get_file_path.append(included_file)
-        return file_id, get_file_path
-
-    # id をもとに，隣接リストを作成する
-    def get_dag(self, file_id, get_file_path):
-        adj_array = [[] for _ in range(len(file_id))]
-        def rec(cur):
-            with open(cur, 'r', encoding="utf-8") as file:
-                for line in file:
-                    if not line.startswith('#include'):
-                        continue
-                    included_file = line.split()[1]
-                    if included_file.startswith('<'):
-                        continue
-                    included_file = included_file.strip('"\n')
-                    included_file = good_path(os.path.join(os.path.dirname(cur), included_file))
-                    if included_file in file_id.keys():
-                        adj_array[file_id[cur]].append(file_id[included_file])
-                        continue
-                    file_id[included_file] = len(file_id)
-                    get_file_path.append(included_file)
-                    adj_array.append([])
-                    adj_array[file_id[cur]].append(file_id[included_file])
-                    rec(included_file)
-
-        file_num = len(get_file_path)
-        for i in range(file_num):
-            rec(get_file_path[i])
-
-        return file_id, get_file_path, adj_array
-
-    def expand_all_include_files(self, file_id, get_file_path, adj_array):
-        used = [False] * len(file_id)
+    def expand_all_include_files(self):
+        file_path_set = set()
         lines = []
-        def rec(cur_id):
-            if used[cur_id]:
+        def rec(cur_file_path):
+            if file_path_set.__contains__(cur_file_path):
                 return
-            used[cur_id] = True
-            for next in adj_array[cur_id]:
-                rec(next)
+            file_path_set.add(cur_file_path)
 
-            with open(get_file_path[cur_id], 'r', encoding="utf-8") as file:
+            with open(cur_file_path, 'r', encoding="utf-8") as file:
                 for line in file:
-                    if not line.startswith('#include "'):
+                    included_file_path = self.get_inlude_path(line, cur_file_path)
+                    if included_file_path == '':
+                        continue
+
+                    rec(included_file_path)
+
+            with open(cur_file_path, 'r', encoding="utf-8") as file:
+                for line in file:
+                    inlcluded_file_path = self.get_inlude_path(line, cur_file_path)
+                    if inlcluded_file_path == '':
                         lines.append(line)
 
             lines.append("\n")
 
         with open(self.file_path, 'r', encoding="utf-8") as file:
             for line in file:
-                if not line.startswith('#include <kk2'):
+                included_file_path = self.get_inlude_path(line, self.file_path)
+                if included_file_path == '':
                     lines.append(line)
-                else:
-                    included_file = line.split()[1].strip('<>\n')
-                    included_file = good_path(os.path.join(self.include_path, included_file))
-                    rec(file_id[included_file])
+                    continue
+                rec(included_file_path)
 
         lines.append('\n// converted!!\n')
         with open(self.file_path, 'w', encoding="utf-8") as file:
@@ -104,8 +77,7 @@ class include_file:
             lines = file.readlines()
         return lines
 
-    def rollback(self):
-        lines = self.backup_lines
+    def rollback(self, lines):
         with open(self.file_path, 'w', encoding="utf-8") as file:
             file.write('')
             for line in lines:
@@ -124,7 +96,7 @@ def main(*args):
         exit(1)
     # input_file = './input.cpp'
     a = include_file(input_file)
-    a.query()
+    a.expand_clip()
 
 if __name__ == '__main__':
     args = sys.argv[1:]
