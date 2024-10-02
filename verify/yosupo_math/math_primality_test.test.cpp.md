@@ -29,16 +29,16 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/primality_test
     links:
     - https://judge.yosupo.jp/problem/primality_test
-  bundledCode: "#line 1 \"verify/yosupo_number_theory/number_theory_primality_test.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#line\
-    \ 1 \"math/is_prime.hpp\"\n\n\n\n#include <vector>\n\n#line 1 \"math_mod/pow_mod.hpp\"\
-    \n\n\n\n#include <cassert>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n\
-    #include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128\
-    \ = typename std::conditional<std::is_same<T, __int128_t>::value\n           \
-    \                                            or std::is_same<T, __int128>::value,\n\
-    \                                                   std::true_type,\n        \
-    \                                           std::false_type>::type;\n\ntemplate\
-    \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+  bundledCode: "#line 1 \"verify/yosupo_math/math_primality_test.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#line 1 \"math/is_prime.hpp\"\
+    \n\n\n\n#include <vector>\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include\
+    \ <cassert>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\
+    \nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename\
+    \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
+    \                                 or std::is_same<T, __int128>::value,\n     \
+    \                                              std::true_type,\n             \
+    \                                      std::false_type>::type;\n\ntemplate <typename\
+    \ T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
     \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
     \ __int128>::value,\n                              std::true_type,\n         \
     \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
@@ -196,10 +196,10 @@ data:
     }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
     }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
     }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
-    }\n\n\n#line 5 \"verify/yosupo_number_theory/number_theory_primality_test.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n    int q;\n    cin >> q;\n    rep (q)\
-    \ {\n        u64 n;\n        cin >> n;\n        Yes(kk2::is_prime(n));\n    }\n\
-    \n    return 0;\n}\n"
+    }\n\n\n#line 5 \"verify/yosupo_math/math_primality_test.test.cpp\"\nusing namespace\
+    \ std;\n\nint main() {\n    int q;\n    cin >> q;\n    rep (q) {\n        u64\
+    \ n;\n        cin >> n;\n        Yes(kk2::is_prime(n));\n    }\n\n    return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\
     \ \"../../math/is_prime.hpp\"\n#include \"../../template/template.hpp\"\nusing\
     \ namespace std;\n\nint main() {\n    int q;\n    cin >> q;\n    rep (q) {\n \
@@ -213,15 +213,15 @@ data:
   - type_traits/type_traits.hpp
   - template/template.hpp
   isVerificationFile: true
-  path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+  path: verify/yosupo_math/math_primality_test.test.cpp
   requiredBy: []
-  timestamp: '2024-10-01 04:40:11+09:00'
+  timestamp: '2024-10-02 15:19:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+documentation_of: verify/yosupo_math/math_primality_test.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_number_theory/number_theory_primality_test.test.cpp
-- /verify/verify/yosupo_number_theory/number_theory_primality_test.test.cpp.html
-title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+- /verify/verify/yosupo_math/math_primality_test.test.cpp
+- /verify/verify/yosupo_math/math_primality_test.test.cpp.html
+title: verify/yosupo_math/math_primality_test.test.cpp
 ---

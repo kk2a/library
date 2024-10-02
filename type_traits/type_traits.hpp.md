@@ -85,11 +85,11 @@ data:
     title: string/rolling_hash.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
-    title: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
+    path: verify/yosupo_convolution/convolution_ntt.test.cpp
+    title: verify/yosupo_convolution/convolution_ntt.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
-    title: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
+    path: verify/yosupo_convolution/convolution_ntt.test.cpp
+    title: verify/yosupo_convolution/convolution_ntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
@@ -115,11 +115,11 @@ data:
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
-    title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+    path: verify/yosupo_math/math_primality_test.test.cpp
+    title: verify/yosupo_math/math_primality_test.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
-    title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+    path: verify/yosupo_math/math_primality_test.test.cpp
+    title: verify/yosupo_math/math_primality_test.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -199,8 +199,8 @@ data:
   timestamp: '2024-09-29 16:53:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_number_theory/number_theory_primality_test.test.cpp
-  - verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+  - verify/yosupo_math/math_primality_test.test.cpp
+  - verify/yosupo_math/math_primality_test.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
@@ -209,8 +209,8 @@ data:
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
-  - verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
-  - verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
+  - verify/yosupo_convolution/convolution_ntt.test.cpp
+  - verify/yosupo_convolution/convolution_ntt.test.cpp
 documentation_of: type_traits/type_traits.hpp
 layout: document
 redirect_from:

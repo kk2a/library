@@ -19,8 +19,8 @@ data:
     title: math/prime_factorize.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
-    title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+    path: verify/yosupo_math/math_primality_test.test.cpp
+    title: verify/yosupo_math/math_primality_test.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -181,7 +181,7 @@ data:
   timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+  - verify/yosupo_math/math_primality_test.test.cpp
 documentation_of: math/is_prime.hpp
 layout: document
 redirect_from:

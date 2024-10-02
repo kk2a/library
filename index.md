@@ -439,8 +439,8 @@ data:
   - name: verify/yosupo_convolution
     pages:
     - icon: ':heavy_check_mark:'
-      path: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
-      title: verify/yosupo_convolution/convolution_convolution_ntt.test.cpp
+      path: verify/yosupo_convolution/convolution_ntt.test.cpp
+      title: verify/yosupo_convolution/convolution_ntt.test.cpp
   - name: verify/yosupo_fps
     pages:
     - icon: ':heavy_check_mark:'
@@ -455,10 +455,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
-  - name: verify/yosupo_number_theory
+  - name: verify/yosupo_math
     pages:
     - icon: ':heavy_check_mark:'
-      path: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
-      title: verify/yosupo_number_theory/number_theory_primality_test.test.cpp
+      path: verify/yosupo_math/math_primality_test.test.cpp
+      title: verify/yosupo_math/math_primality_test.test.cpp
 layout: toppage
 ---
