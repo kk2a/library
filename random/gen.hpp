@@ -49,6 +49,14 @@ i64 rng(i64 l, i64 r) {
 }
 
 // [l, r)
+template <class T>
+std::vector<T> random_vector(int n, T l, T r) {
+    std::vector<T> res(n);
+    for (int i = 0; i < n; i++) res[i] = rng(l, r);
+    return res;
+}
+
+// [l, r)
 std::vector<i64> distinct_rng(i64 l, i64 r, i64 n) {
     assert(l < r and n <= r - l);
     std::unordered_set<i64> st;
