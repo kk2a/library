@@ -38,12 +38,14 @@ data:
     \ = seed();\n    if (first) {\n        warm_up(x, y);\n        first = false;\n\
     \    }\n    return xorshift128plus(x, y);\n}\n\n// [l, r)\ni64 rng(i64 l, i64\
     \ r) {\n    assert(l < r);\n    return l + rng() % (r - l);\n}\n\n// [l, r)\n\
-    std::vector<i64> distinct_rng(i64 l, i64 r, i64 n) {\n    assert(l < r and n <=\
-    \ r - l);\n    std::unordered_set<i64> st;\n    for (i64 i = n; i; --i) {\n  \
-    \      i64 m = rng(l, r + 1 - i);\n        if (st.find(m) != st.end()) m = r -\
-    \ i;\n        st.insert(m);\n    }\n    std::vector<i64> res(st.begin(), st.end());\n\
-    \    std::sort(res.begin(), res.end());\n    return res;\n}\n\ntemplate <class\
-    \ Iter> void shuffle(Iter first, Iter last) {\n    if (first == last) return;\n\
+    template <class T>\nstd::vector<T> random_vector(int n, T l, T r) {\n    std::vector<T>\
+    \ res(n);\n    for (int i = 0; i < n; i++) res[i] = rng(l, r);\n    return res;\n\
+    }\n\n// [l, r)\nstd::vector<i64> distinct_rng(i64 l, i64 r, i64 n) {\n    assert(l\
+    \ < r and n <= r - l);\n    std::unordered_set<i64> st;\n    for (i64 i = n; i;\
+    \ --i) {\n        i64 m = rng(l, r + 1 - i);\n        if (st.find(m) != st.end())\
+    \ m = r - i;\n        st.insert(m);\n    }\n    std::vector<i64> res(st.begin(),\
+    \ st.end());\n    std::sort(res.begin(), res.end());\n    return res;\n}\n\ntemplate\
+    \ <class Iter> void shuffle(Iter first, Iter last) {\n    if (first == last) return;\n\
     \    int len = 1;\n    for (auto it = first + 1; it != last; ++it) {\n       \
     \ len++;\n        int j = rng(0, len);\n        if (j != len - 1) std::iter_swap(first\
     \ + j, it);\n    }\n}\n\ntemplate <class T> std::vector<T> perm(int n) {\n   \
@@ -64,16 +66,18 @@ data:
     \ = true;\n    static u64 x = seed(), y = seed();\n    if (first) {\n        warm_up(x,\
     \ y);\n        first = false;\n    }\n    return xorshift128plus(x, y);\n}\n\n\
     // [l, r)\ni64 rng(i64 l, i64 r) {\n    assert(l < r);\n    return l + rng() %\
-    \ (r - l);\n}\n\n// [l, r)\nstd::vector<i64> distinct_rng(i64 l, i64 r, i64 n)\
-    \ {\n    assert(l < r and n <= r - l);\n    std::unordered_set<i64> st;\n    for\
-    \ (i64 i = n; i; --i) {\n        i64 m = rng(l, r + 1 - i);\n        if (st.find(m)\
-    \ != st.end()) m = r - i;\n        st.insert(m);\n    }\n    std::vector<i64>\
-    \ res(st.begin(), st.end());\n    std::sort(res.begin(), res.end());\n    return\
-    \ res;\n}\n\ntemplate <class Iter> void shuffle(Iter first, Iter last) {\n   \
-    \ if (first == last) return;\n    int len = 1;\n    for (auto it = first + 1;\
-    \ it != last; ++it) {\n        len++;\n        int j = rng(0, len);\n        if\
-    \ (j != len - 1) std::iter_swap(first + j, it);\n    }\n}\n\ntemplate <class T>\
-    \ std::vector<T> perm(int n) {\n    std::vecotr<T> res(n);\n    std::iota(res.begin(),\
+    \ (r - l);\n}\n\n// [l, r)\ntemplate <class T>\nstd::vector<T> random_vector(int\
+    \ n, T l, T r) {\n    std::vector<T> res(n);\n    for (int i = 0; i < n; i++)\
+    \ res[i] = rng(l, r);\n    return res;\n}\n\n// [l, r)\nstd::vector<i64> distinct_rng(i64\
+    \ l, i64 r, i64 n) {\n    assert(l < r and n <= r - l);\n    std::unordered_set<i64>\
+    \ st;\n    for (i64 i = n; i; --i) {\n        i64 m = rng(l, r + 1 - i);\n   \
+    \     if (st.find(m) != st.end()) m = r - i;\n        st.insert(m);\n    }\n \
+    \   std::vector<i64> res(st.begin(), st.end());\n    std::sort(res.begin(), res.end());\n\
+    \    return res;\n}\n\ntemplate <class Iter> void shuffle(Iter first, Iter last)\
+    \ {\n    if (first == last) return;\n    int len = 1;\n    for (auto it = first\
+    \ + 1; it != last; ++it) {\n        len++;\n        int j = rng(0, len);\n   \
+    \     if (j != len - 1) std::iter_swap(first + j, it);\n    }\n}\n\ntemplate <class\
+    \ T> std::vector<T> perm(int n) {\n    std::vecotr<T> res(n);\n    std::iota(res.begin(),\
     \ res.end(), T(0));\n    shuffle(res.begin(), res.end());\n    return res;\n}\n\
     \ntemplate <class T> std::vector<T> choices(int l, int r, int k) {\n    assert(l\
     \ < r and k <= r - l);\n    std::vector<T> res(r - l);\n    std::iota(res.begin(),\
@@ -87,7 +91,7 @@ data:
   requiredBy:
   - random/graph.hpp
   - math/prime_factorize.hpp
-  timestamp: '2024-09-22 02:51:29+09:00'
+  timestamp: '2024-10-02 17:35:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/gen.hpp
