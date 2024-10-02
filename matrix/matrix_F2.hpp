@@ -289,8 +289,9 @@ struct MatrixF2 {
         return r;
     }
 
-    void shrink() {
+    mat &shrink() {
         while (_h && !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;
+        return *this;
     }
 
     // it must be already swept and shrunk before calling this function
@@ -329,29 +330,22 @@ struct MatrixF2 {
         // ab.display();
 
         for (int i = 0; i < ab._h; i++) {
-            int left = -1;
             for (int j = 0; j < ab._w; j++) {
                 if (ab[i][j]) {
-                    left = j;
+                    if (j == ab._w - 1) return mat();
                     break;
                 }
             }
-            if (left == ab._w - 1) return {};
         }
 
         mat res(1 + _w - ab._h, _w);
-        res[0] = DynamicBitSet(_w, 1);
         for (int i = 0; i < ab._h; ++i) {
-            int left = -1;
-            bool cnt = 0;
             for (int j = 0; j < ab._w; ++j) {
                 if (ab[i][j]) {
-                    if (left == -1) left = j;
-                    cnt = !cnt;
+                    res[0][j] = ab[i][ab._w - 1];
+                    break;
                 }
             }
-            // std::cout << cnt << std::endl;
-            res[0][left] = !cnt;
         }
 
         std::vector<int> step(ab._h);
