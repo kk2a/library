@@ -1,7 +1,7 @@
 import sys
 import os
 import pyperclip
-
+import re
 
 def good_path(path):
     return os.path.normcase(os.path.realpath(path))
@@ -13,8 +13,9 @@ class include_file:
 
     def expand(self):
         self.expand_all_include_files()
+        self.clip()
 
-    def expand_clip(self):
+    def expand_rollback(self):
         backup_lines = self.backup()
         self.expand_all_include_files()
         self.clip()
@@ -22,17 +23,12 @@ class include_file:
 
     def get_inlude_path(self, line, cur_file_path):
         included_file = ''
-        if line.startswith('#include <kk2'):
-            included_file = line.split()[1].strip('<>\n')
+        line = re.sub(r'\s+', '', line)
+        if line.startswith('#include<kk2/'):
+            included_file = line[8:].strip('<>')
             included_file = good_path(os.path.join(self.include_path, included_file))
-        elif line.startswith('#include<kk2'):
-            included_file = line[8:].strip('<>\n')
-            included_file = good_path(os.path.join(self.include_path, included_file))
-        elif line.startswith('#include "'):
-            included_file = line.split()[1].strip('"\n')
-            included_file = good_path(os.path.join(os.path.dirname(cur_file_path), included_file))
         elif line.startswith('#include"'):
-            included_file = line[8:].strip('"\n')
+            included_file = line[8:].strip('"')
             included_file = good_path(os.path.join(os.path.dirname(cur_file_path), included_file))
         return included_file
 
@@ -89,14 +85,28 @@ class include_file:
 
 
 def main(*args):
+    input_file = ''
+    rollback = True
     if len(args) == 1:
         input_file = args[0]
+    elif len(args) == 2:
+        input_file = args[0]
+        if args[1] == '--no-rollback':
+            rollback = False
+        elif args[1] == '--rollback':
+            rollback = True
+        else:
+            print(f'bad option: {args[1]}', file=sys.stderr)
+            exit(1)
     else:
         print('Usage: my-expand <input_file>', file=sys.stderr)
         exit(1)
     # input_file = './input.cpp'
     a = include_file(input_file)
-    a.expand_clip()
+    if (rollback):
+        a.expand_rollback()
+    else:
+        a.expand()
 
 if __name__ == '__main__':
     args = sys.argv[1:]
