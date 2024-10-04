@@ -1,15 +1,15 @@
 import sys
 import os
-import pyperclip
+import pyperclip # type: ignore
 import re
 
 def good_path(path):
     return os.path.normcase(os.path.realpath(path))
 
 class include_file:
-    def __init__(self, file_path):
+    def __init__(self, file_path, include_path):
         self.file_path = good_path(file_path)
-        self.include_path = good_path("C:/Users/include/")
+        self.include_path = good_path(include_path)
 
     def expand(self):
         self.expand_all_include_files()
@@ -53,6 +53,8 @@ class include_file:
                     inlcluded_file_path = self.get_inlude_path(line, cur_file_path)
                     if inlcluded_file_path == '':
                         lines.append(line)
+                    else:
+                        lines.append(f'// {line}')
 
             lines.append("\n")
 
@@ -63,6 +65,8 @@ class include_file:
                     lines.append(line)
                     continue
                 rec(included_file_path)
+                if included_file_path != '':
+                    lines.append(f"// {line}\n")
 
         lines.append('\n// converted!!\n')
         with open(self.file_path, 'w', encoding="utf-8") as file:
@@ -102,7 +106,8 @@ def main(*args):
         print('Usage: my-expand <input_file>', file=sys.stderr)
         exit(1)
     # input_file = './input.cpp'
-    a = include_file(input_file)
+    included_path = "C:/Users/include/"
+    a = include_file(input_file, included_path)
     if (rollback):
         a.expand_rollback()
     else:
