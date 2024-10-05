@@ -21,9 +21,9 @@ int main() {
     }
 
     auto res = a.solve(b);
-    if (!res._h) cout << -1 << "\n";
+    if (!res.get_h()) cout << -1 << "\n";
     else {
-        cout << res._h - 1 << "\n";
+        cout << res.get_h() - 1 << "\n";
         res.display();
     }
 
