@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_MY_BITSET_FAST_HPP
-#define DATA_STRUCTURE_MY_BITSET_FAST_HPP 1
+#ifndef DATA_STRUCTURE_MY_BITSET_HPP
+#define DATA_STRUCTURE_MY_BITSET_HPP 1
 
 #include <algorithm>
 #include <bitset>
@@ -299,4 +299,4 @@ struct DynamicBitSet {
 
 } // namespace kk2
 
-#endif // DATA_STRUCTURE_MY_BITSET_FAST_HPP
+#endif // DATA_STRUCTURE_MY_BITSET_HPP

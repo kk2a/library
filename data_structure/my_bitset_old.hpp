@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_MY_BITSET_HPP
-#define DATA_STRUCTURE_MY_BITSET_HPP 1
+#ifndef DATA_STRUCTURE_MY_BITSET_OLD_HPP
+#define DATA_STRUCTURE_MY_BITSET_OLD_HPP 1
 
 namespace kk2 {
 
@@ -247,4 +247,4 @@ struct DynamicBitSet {
 
 } // namespace kk2
 
-#endif // DATA_STRUCTURE_MY_BITSET_HPP
+#endif // DATA_STRUCTURE_MY_BITSET_OLD_HPP
