@@ -10,6 +10,7 @@
 namespace kk2 {
 
 template <class Field> struct MatrixField {
+    using value_type = Field;
     using mat = MatrixField;
     int _h, _w;
     std::vector<std::vector<Field>> _mat;
@@ -286,9 +287,7 @@ template <class Field> struct MatrixField {
         return *this;
     }
 
-    mat combine_top(const mat &rhs) const {
-        return mat(*this).inplace_combine_top(rhs);
-    }
+    mat combine_top(const mat &rhs) const { return mat(*this).inplace_combine_top(rhs); }
 
     mat &inplace_combine_bottom(const mat &rhs) {
         assert(_w == rhs._w);
@@ -297,9 +296,7 @@ template <class Field> struct MatrixField {
         return *this;
     }
 
-    mat combine_bottom(const mat &rhs) const {
-        return mat(*this).inplace_combine_bottom(rhs);
-    }
+    mat combine_bottom(const mat &rhs) const { return mat(*this).inplace_combine_bottom(rhs); }
 
     mat &inplace_combine_left(const mat &rhs) {
         assert(_h == rhs._h);
@@ -310,9 +307,7 @@ template <class Field> struct MatrixField {
         return *this;
     }
 
-    mat combine_left(const mat &rhs) const {
-        return mat(*this).inplace_combine_left(rhs);
-    }
+    mat combine_left(const mat &rhs) const { return mat(*this).inplace_combine_left(rhs); }
 
     mat &inplace_combine_right(const mat &rhs) {
         assert(_h == rhs._h);
@@ -323,9 +318,19 @@ template <class Field> struct MatrixField {
         return *this;
     }
 
-    mat combine_right(const mat &rhs) const {
-        return mat(*this).inplace_combine_right(rhs);
+    mat combine_right(const mat &rhs) const { return mat(*this).inplace_combine_right(rhs); }
+
+    mat &inplace_transpose() {
+        std::vector<std::vector<Field>> res(_w, std::vector<Field>(_h));
+        for (int i = 0; i < _h; i++) {
+            for (int j = 0; j < _w; j++) { res[j][i] = _mat[i][j]; }
+        }
+        _mat.swap(res);
+        std::swap(_h, _w);
+        return *this;
     }
+
+    mat transpose() const { return mat(*this).inplace_transpose(); }
 
     friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) += rhs; }
 
