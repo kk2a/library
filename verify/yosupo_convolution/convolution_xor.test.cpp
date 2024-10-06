@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution" 
 
-#include "../../convolution/xor1.hpp"
+#include "../../convolution/bitxor1.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
