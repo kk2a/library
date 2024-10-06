@@ -5,9 +5,8 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kk2a/library?style=flat-square)
 
 
-
 ### expand_user_file.py
-#include <kk2/hoge>をすべて展開したものをクリップボードに保存します．(ファイルを展開させたままにしたいならself.rollback()の行を消せば良いです．) その場で展開されるようにしているので，展開前の行の位置関係は保持されます．
+#include <kk2/hoge>, #include "hoge.hpp"をすべて展開したものをクリップボードに保存します．その場で展開されるようにしているので，展開前の行の位置関係は保持されます．
 
 以下のようにして使います．
 
