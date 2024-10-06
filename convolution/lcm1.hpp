@@ -9,7 +9,7 @@ namespace kk2 {
 
 // 1-indexed
 template <class FPS>
-FPS &convolution_lcm(FPS &a, const FPS &b) {
+FPS convolution_lcm(FPS &a, const FPS &b) {
     assert(size(a) == size(b));
     int n = int(size(a)); // = int(size(b))
     if (!n) return {};

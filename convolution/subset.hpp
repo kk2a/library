@@ -8,7 +8,7 @@
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS &convolution_subset(FPS &a, const FPS &b) {
+FPS convolution_subset(FPS &a, const FPS &b) {
     int n = int(size(a)); // == int(size(b)
     if (!n) return {};
     int h = __builtin_ctz(n);
