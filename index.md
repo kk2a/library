@@ -32,13 +32,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_arb.hpp
       title: convolution/convolution_arb.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/divisor_multiple_transform.hpp
       title: convolution/divisor_multiple_transform.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/gcd1.hpp
       title: convolution/gcd1.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/lcm1.hpp
       title: convolution/lcm1.hpp
     - icon: ':heavy_check_mark:'
@@ -220,7 +220,7 @@ data:
       title: graph/tree/heavy_light_decomposition.hpp
   - name: math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/Eratosthenes.hpp
       title: math/Eratosthenes.hpp
     - icon: ':warning:'
@@ -319,7 +319,7 @@ data:
     - icon: ':warning:'
       path: modint/modint.hpp
       title: modint/modint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/mont.hpp
       title: modint/mont.hpp
     - icon: ':heavy_check_mark:'
@@ -433,12 +433,12 @@ data:
       title: string/suffix_array.hpp
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   verificationCategories:
@@ -450,10 +450,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
       title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_gcd.test.cpp
       title: verify/yosupo_convolution/convolution_gcd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_lcm.test.cpp
       title: verify/yosupo_convolution/convolution_lcm.test.cpp
     - icon: ':heavy_check_mark:'

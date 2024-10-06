@@ -32,17 +32,16 @@ data:
     \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
     \ r.a);\n    return l;\n}\n\ntemplate <class S> constexpr Min<S> MinUnit() {\n\
     \    constexpr static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace\
-    \ monoid\n\ntemplate <class S, class... Args>\nconstexpr std::vector<monoid::Min<S>>\
-    \ GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
-    \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nconstexpr\
-    \ std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int h, int w, Args... args)\
-    \ {\n    return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w, args...));\n\
-    }\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/seg2d.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#line 6 \"segment_tree/seg2d.hpp\"\n\nnamespace kk2 {\n\n// commutative\
-    \ monoid\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {\n   \
-    \ SegTree2D() = default;\n\n    SegTree2D(int h_, int w_) : _h(h_), _w(w_) {\n\
-    \        size_h = size_w = 1;\n        while (size_h < _h) size_h <<= 1;\n   \
-    \     while (size_w < _w) size_w <<= 1;\n        d = std::vector<std::vector<S>>(size_h\
+    \ monoid\n\ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
+    \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
+    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
+    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/seg2d.hpp\"\
+    \n\n\n\n#include <cassert>\n#line 6 \"segment_tree/seg2d.hpp\"\n\nnamespace kk2\
+    \ {\n\n// commutative monoid\ntemplate <class S, S (*op)(S, S), S (*e)()> struct\
+    \ SegTree2D {\n    SegTree2D() = default;\n\n    SegTree2D(int h_, int w_) : _h(h_),\
+    \ _w(w_) {\n        size_h = size_w = 1;\n        while (size_h < _h) size_h <<=\
+    \ 1;\n        while (size_w < _w) size_w <<= 1;\n        d = std::vector<std::vector<S>>(size_h\
     \ * 2, std::vector<S>(size_w * 2, e()));\n    }\n\n    template <class... Args>\n\
     \    SegTree2D(int h_, int w_, Args... args)\n        : SegTree2D(std::vector<std::vector<S>>(h_,\
     \ std::vector<S>(w_, S(args...)))) {}\n\n    SegTree2D(const std::vector<std::vector<S>>\
@@ -107,7 +106,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/minseg2d.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-06 18:26:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/minseg2d.hpp

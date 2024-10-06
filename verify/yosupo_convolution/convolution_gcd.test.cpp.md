@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/gcd1.hpp
     title: convolution/gcd1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
@@ -36,10 +36,10 @@ data:
     \ \"math/Eratosthenes.hpp\"\n#include <utility>\n#include <vector>\n\nnamespace\
     \ kk2 {\n\nstruct Erato {\n    static inline std::vector<bool> _isprime{};\n \
     \   static inline std::vector<int> _minfactor{}, _mobius{}, _primes{};\n\n   \
-    \ Erato() = delete;\n\n    constexpr static void set_upper(int m) {\n        if\
-    \ ((int)_isprime.size() > m) return;\n        int start = std::max<int>(2, _isprime.size());\n\
-    \n        _isprime.resize(m + 1, true);\n        _minfactor.resize(m + 1, -1);\n\
-    \        _mobius.resize(m + 1, 1);\n        _isprime[1] = false;\n        _minfactor[1]\
+    \ Erato() = delete;\n\n    static void set_upper(int m) {\n        if ((int)_isprime.size()\
+    \ > m) return;\n        int start = std::max<int>(2, _isprime.size());\n\n   \
+    \     _isprime.resize(m + 1, true);\n        _minfactor.resize(m + 1, -1);\n \
+    \       _mobius.resize(m + 1, 1);\n        _isprime[1] = false;\n        _minfactor[1]\
     \ = 1;\n\n        for (const int &p : _primes) {\n            for (int q = p *\
     \ ((start + p - 1) / p); q <= m; q += p) {\n                _isprime[q] = false;\n\
     \n                if (_minfactor[q] == -1) _minfactor[q] = p;\n              \
@@ -50,99 +50,99 @@ data:
     \ for (int q = p * 2; q <= m; q += p) {\n                _isprime[q] = false;\n\
     \n                if (_minfactor[q] == -1) _minfactor[q] = p;\n              \
     \  if ((q / p) % p == 0) _mobius[q] = 0;\n                else _mobius[q] = -_mobius[q];\n\
-    \            }\n        }\n    }\n\n    constexpr static bool isprime(int n) {\n\
-    \        assert(n < (int)_isprime.size() && n != 0);\n        return _isprime[n];\n\
-    \    }\n\n    constexpr static int mobius(int n) {\n        assert(n < (int)_mobius.size()\
-    \ && n != 0);\n        return _mobius[n];\n    }\n\n    constexpr static int minfactor(int\
+    \            }\n        }\n    }\n\n    static bool isprime(int n) {\n       \
+    \ assert(n < (int)_isprime.size() && n != 0);\n        return _isprime[n];\n \
+    \   }\n\n    static int mobius(int n) {\n        assert(n < (int)_mobius.size()\
+    \ && n != 0);\n        return _mobius[n];\n    }\n\n    static int minfactor(int\
     \ n) {\n        assert(n < (int)_minfactor.size() && n != 0);\n        return\
-    \ _minfactor[n];\n    }\n\n    constexpr static const std::vector<int>& primes()\
-    \ { return _primes; }\n\n    constexpr static std::vector<std::pair<int, int>>\
-    \ factorize(int n) {\n        assert(n < (int)_isprime.size() && n != 0);\n  \
-    \      if (n == 1 || n == -1) return {};\n        if (n < 0) n = -n;\n       \
-    \ std::vector<std::pair<int, int>> res;\n        while (n > 1) {\n           \
-    \ int p = _minfactor[n];\n            int exp = 0;\n\n            while (_minfactor[n]\
-    \ == p) {\n                n /= p;\n                ++exp;\n            }\n  \
-    \          res.emplace_back(p, exp);\n        }\n        return res;\n    }\n\n\
-    \    constexpr static std::vector<int> divisors(int n) {\n        assert(n < (int)_isprime.size()\
-    \ && n != 0);\n        if (n == 1 || n == -1) return {1};\n        if (n < 0)\
-    \ n = -n;\n        std::vector<int> res{1};\n        auto pf = factorize(n);\n\
-    \n        for (auto p : pf) {\n            int s = (int)res.size();\n        \
-    \    for (int i = 0; i < s; ++i) {\n                int v = 1;\n             \
-    \   for (int j = 0; j < p.second; ++j) {\n                    v *= p.first;\n\
-    \                    res.push_back(res[i] * v);\n                }\n         \
-    \   }\n        }\n        return res;\n    }\n};\n\n} // namespace kk2\n\n\n#line\
-    \ 5 \"convolution/divisor_multiple_transform.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class FPS> void MultipleTransform(FPS &a) {\n    int n = int(a.size());\n \
+    \ _minfactor[n];\n    }\n\n    static const std::vector<int>& primes() { return\
+    \ _primes; }\n\n    static std::vector<std::pair<int, int>> factorize(int n) {\n\
+    \        assert(n < (int)_isprime.size() && n != 0);\n        if (n == 1 || n\
+    \ == -1) return {};\n        if (n < 0) n = -n;\n        std::vector<std::pair<int,\
+    \ int>> res;\n        while (n > 1) {\n            int p = _minfactor[n];\n  \
+    \          int exp = 0;\n\n            while (_minfactor[n] == p) {\n        \
+    \        n /= p;\n                ++exp;\n            }\n            res.emplace_back(p,\
+    \ exp);\n        }\n        return res;\n    }\n\n    static std::vector<int>\
+    \ divisors(int n) {\n        assert(n < (int)_isprime.size() && n != 0);\n   \
+    \     if (n == 1 || n == -1) return {1};\n        if (n < 0) n = -n;\n       \
+    \ std::vector<int> res{1};\n        auto pf = factorize(n);\n\n        for (auto\
+    \ p : pf) {\n            int s = (int)res.size();\n            for (int i = 0;\
+    \ i < s; ++i) {\n                int v = 1;\n                for (int j = 0; j\
+    \ < p.second; ++j) {\n                    v *= p.first;\n                    res.push_back(res[i]\
+    \ * v);\n                }\n            }\n        }\n        return res;\n  \
+    \  }\n};\n\n} // namespace kk2\n\n\n#line 5 \"convolution/divisor_multiple_transform.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class FPS> void MultipleTransform(FPS &a) {\n\
+    \    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
+    \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
+    \   for (int i = n / p; i; i--) a[i] += a[i * p];\n    }\n}\n\ntemplate <class\
+    \ FPS> void InverseMultipleTransform(FPS &a) {\n    int n = int(a.size());\n \
     \   if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p\
+    \ : Erato::primes()) {\n        if (p > n) break;\n        for (int i = 1; i <=\
+    \ n / p; i++) a[i] -= a[i * p];\n    }\n}\n\ntemplate <class FPS> void DivisorTransform(FPS\
+    \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
+    \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
+    \   for (int i = 1; i <= n / p; i++) a[i * p] += a[i];\n    }\n}\n\ntemplate <class\
+    \ FPS> void InverseDivisorTransform(FPS &a) {\n    int n = int(a.size());\n  \
+    \  if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p\
     \ : Erato::primes()) {\n        if (p > n) break;\n        for (int i = n / p;\
-    \ i; i--) a[i] += a[i * p];\n    }\n}\n\ntemplate <class FPS> void InverseMultipleTransform(FPS\
-    \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
-    \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
-    \   for (int i = 1; i <= n / p; i++) a[i] -= a[i * p];\n    }\n}\n\ntemplate <class\
-    \ FPS> void DivisorTransform(FPS &a) {\n    int n = int(a.size());\n    if (!n)\
-    \ return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p : Erato::primes())\
-    \ {\n        if (p > n) break;\n        for (int i = 1; i <= n / p; i++) a[i *\
-    \ p] += a[i];\n    }\n}\n\ntemplate <class FPS> void InverseDivisorTransform(FPS\
-    \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
-    \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
-    \   for (int i = n / p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace\
-    \ kk2\n\n\n#line 7 \"convolution/gcd1.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\n\
-    template <class FPS>\nFPS convolution_gcd(FPS &a, const FPS &b) {\n    assert(size(a)\
-    \ == size(b));\n    int n = int(size(a)); // = int(size(b))\n    if (!n) return\
-    \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n\n    MultipleTransform(a);\n\
-    \    MultipleTransform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n \
-    \   InverseMultipleTransform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\n\
-    \n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include <cstdint>\n\
-    #include <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
-    \ __int128_t>::value\n                                                       or\
-    \ std::is_same<T, __int128>::value,\n                                        \
-    \           std::true_type,\n                                                \
-    \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
-    \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n     \
-    \                             or std::is_same<T, unsigned __int128>::value,\n\
+    \ i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace kk2\n\n\n#line 7 \"\
+    convolution/gcd1.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\ntemplate <class FPS>\n\
+    FPS convolution_gcd(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
+    \    int n = int(size(a)); // = int(size(b))\n    if (!n) return {};\n    n--;\n\
+    \    FPS c(b.begin(), b.end());\n\n    MultipleTransform(a);\n    MultipleTransform(c);\n\
+    \    for (int i = 1; i <= n; i++) a[i] *= c[i];\n    InverseMultipleTransform(a);\n\
+    \n    return a;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\
+    \n#line 5 \"modint/mont.hpp\"\n#include <cstdint>\n#include <iostream>\n#include\
+    \ <type_traits>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename\
+    \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
+    \                                 or std::is_same<T, __int128>::value,\n     \
+    \                                              std::true_type,\n             \
+    \                                      std::false_type>::type;\n\ntemplate <typename\
+    \ T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
+    \ __int128>::value,\n                              std::true_type,\n         \
+    \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
+    \ is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\
+    \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
     \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral_extended\
-    \ =\n    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-    \                                  or is_unsigned_int128<T>::value,\n        \
-    \                      std::true_type,\n                              std::false_type>::type;\n\
-    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\
-    \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-    \                              std::false_type>::type;\n\ntemplate <typename T>\n\
-    using is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\
-    \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
-    \                              std::false_type>::type;\n\n} // namespace kk2\n\
-    \n\n#line 10 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\ntemplate <int p> struct\
-    \ LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n    using i32\
-    \ = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n    using u64\
-    \ = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32 ret = p;\n  \
-    \      for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n        return ret;\n\
-    \    }\n\n    static constexpr u32 r = get_r();\n    static constexpr u32 n2 =\
-    \ -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\");\n    static_assert(p\
-    \ < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"\
-    invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    operator int() const { return val();\
-    \ }\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n\n    template <typename\
-    \ T, std::enable_if_t<kk2::is_integral_extended<T>::value> * = nullptr>\n    constexpr\
-    \ LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static\
-    \ constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b) * u32(-r)) * p)\
-    \ >> 32; }\n\n    constexpr mint &operator++() { return *this += 1; }\n\n    constexpr\
-    \ mint &operator--() { return *this -= 1; }\n\n    constexpr mint operator++(int)\
-    \ {\n        mint ret = *this;\n        *this += 1;\n        return ret;\n   \
-    \ }\n\n    constexpr mint operator--(int) {\n        mint ret = *this;\n     \
-    \   *this -= 1;\n        return ret;\n    }\n\n    constexpr mint &operator+=(const\
-    \ mint &b) {\n        if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return\
-    \ *this;\n    }\n\n    constexpr mint &operator-=(const mint &b) {\n        if\
-    \ (i32(_v -= b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
-    \ mint &operator*=(const mint &b) {\n        _v = reduce(u64(_v) * b._v);\n  \
-    \      return *this;\n    }\n\n    constexpr mint &operator/=(const mint &b) {\n\
-    \        *this *= b.inv();\n        return *this;\n    }\n\n    constexpr mint\
-    \ operator-() const { return mint() - mint(*this); }\n\n    constexpr bool operator==(const\
-    \ mint &b) const {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v\
-    \ - p : b._v);\n    }\n\n    constexpr bool operator!=(const mint &b) const {\n\
-    \        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n  \
-    \  }\n\n    friend constexpr mint operator+(const mint &a, const mint &b) { return\
-    \ mint(a) += b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed_extended =\n\
+    \    typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+    \                              std::true_type,\n                             \
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_extended\
+    \ =\n    typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
+    \                              std::true_type,\n                             \
+    \ std::false_type>::type;\n\n} // namespace kk2\n\n\n#line 10 \"modint/mont.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt {\n    using\
+    \ mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using i64 = int64_t;\n\
+    \    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n    static constexpr\
+    \ u32 get_r() {\n        u32 ret = p;\n        for (int i = 0; i < 4; ++i) ret\
+    \ *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr u32 r =\
+    \ get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r *\
+    \ p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
+    \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
+    \n    u32 _v;\n\n    operator int() const { return val(); }\n\n    constexpr LazyMontgomeryModInt()\
+    \ : _v(0) {}\n\n    template <typename T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p\
+    \ + p) * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) { return (b\
+    \ + u64(u32(b) * u32(-r)) * p) >> 32; }\n\n    constexpr mint &operator++() {\
+    \ return *this += 1; }\n\n    constexpr mint &operator--() { return *this -= 1;\
+    \ }\n\n    constexpr mint operator++(int) {\n        mint ret = *this;\n     \
+    \   *this += 1;\n        return ret;\n    }\n\n    constexpr mint operator--(int)\
+    \ {\n        mint ret = *this;\n        *this -= 1;\n        return ret;\n   \
+    \ }\n\n    constexpr mint &operator+=(const mint &b) {\n        if (i32(_v +=\
+    \ b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
+    \ mint &operator-=(const mint &b) {\n        if (i32(_v -= b._v) < 0) _v += 2\
+    \ * p;\n        return *this;\n    }\n\n    constexpr mint &operator*=(const mint\
+    \ &b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n    }\n\n\
+    \    constexpr mint &operator/=(const mint &b) {\n        *this *= b.inv();\n\
+    \        return *this;\n    }\n\n    constexpr mint operator-() const { return\
+    \ mint() - mint(*this); }\n\n    constexpr bool operator==(const mint &b) const\
+    \ {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);\n\
+    \    }\n\n    constexpr bool operator!=(const mint &b) const {\n        return\
+    \ (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n    }\n\n    friend\
+    \ constexpr mint operator+(const mint &a, const mint &b) { return mint(a) += b;\
+    \ }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator+(const mint &a, T b) {\n  \
     \      return mint(a) += mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    friend constexpr mint operator+(T a, const mint &b) {\n  \
@@ -245,8 +245,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_gcd.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 17:17:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-06 18:26:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_gcd.test.cpp
 layout: document

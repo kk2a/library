@@ -41,9 +41,9 @@ data:
     \ r.max);\n    l.min = std::min(l.min, r.min);\n    return l;\n}\n\ntemplate <class\
     \ S> constexpr MaxMinSum<S> MaxMinSumUnit() {\n    constexpr static MaxMinSum<S>\
     \ e = MaxMinSum<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate <class\
-    \ S, class... Args>\nconstexpr std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int\
-    \ n, Args... args) {\n    return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<monoid::MaxMinSum<S>>>\n\
+    \ S, class... Args>\nstd::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n,\
+    \ Args... args) {\n    return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::MaxMinSum<S>>>\n\
     GetVecMaxMinSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::MaxMinSum<S>>>(h,\
     \ GetVecMaxMinSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_MONOID_MAX_MIN_SUM_HPP\n#define MATH_MONOID_MAX_MIN_SUM_HPP\
@@ -70,9 +70,9 @@ data:
     \ r.max);\n    l.min = std::min(l.min, r.min);\n    return l;\n}\n\ntemplate <class\
     \ S> constexpr MaxMinSum<S> MaxMinSumUnit() {\n    constexpr static MaxMinSum<S>\
     \ e = MaxMinSum<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate <class\
-    \ S, class... Args>\nconstexpr std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int\
-    \ n, Args... args) {\n    return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<monoid::MaxMinSum<S>>>\n\
+    \ S, class... Args>\nstd::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n,\
+    \ Args... args) {\n    return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::MaxMinSum<S>>>\n\
     GetVecMaxMinSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::MaxMinSum<S>>>(h,\
     \ GetVecMaxMinSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MAX_MIN_SUM_HPP\n"
   dependsOn: []
@@ -82,7 +82,7 @@ data:
   - segment_tree/utility/max_min_sum_seg.hpp
   - segment_tree/utility/add_max_min_sum.hpp
   - segment_tree/utility/update_max_min_sum.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-06 18:26:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/max_min_sum.hpp

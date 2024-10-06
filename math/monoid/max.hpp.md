@@ -37,12 +37,11 @@ data:
     \ Max<S> r) {\n    if (r.minf) return l;\n    if (l.minf) return r;\n    l.a =\
     \ std::max(l.a, r.a);\n    return l;\n}\n\ntemplate <class S> constexpr Max<S>\
     \ MaxUnit() {\n    constexpr static Max<S> e = Max<S>();\n    return e;\n}\n\n\
-    } // namespace monoid\n\ntemplate <class S, class... Args>\nconstexpr std::vector<monoid::Max<S>>\
+    } // namespace monoid\n\ntemplate <class S, class... Args>\nstd::vector<monoid::Max<S>>\
     \ GetVecMax(int n, Args... args) {\n    return std::vector<monoid::Max<S>>(n,\
-    \ monoid::Max<S>(args...));\n}\n\ntemplate <class S, class... Args>\nconstexpr\
-    \ std::vector<std::vector<monoid::Max<S>>> GetVecMax2D(int h, int w, Args... args)\
-    \ {\n    return std::vector<std::vector<monoid::Max<S>>>(h, GetVecMax<S>(w, args...));\n\
-    }\n\n} // namespace kk2\n\n\n"
+    \ monoid::Max<S>(args...));\n}\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Max<S>>>\
+    \ GetVecMax2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\
+    \ GetVecMax<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_MONOID_MAX_HPP\n#define MATH_MONOID_MAX_HPP 1\n\n#include <algorithm>\n\
     #include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid\
     \ {\n\ntemplate <class S> struct Max {\n    S a;\n    bool minf;\n\n    constexpr\
@@ -61,9 +60,9 @@ data:
     \ (r.minf) return l;\n    if (l.minf) return r;\n    l.a = std::max(l.a, r.a);\n\
     \    return l;\n}\n\ntemplate <class S> constexpr Max<S> MaxUnit() {\n    constexpr\
     \ static Max<S> e = Max<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args>\nconstexpr std::vector<monoid::Max<S>> GetVecMax(int\
-    \ n, Args... args) {\n    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nconstexpr std::vector<std::vector<monoid::Max<S>>>\
+    \ <class S, class... Args>\nstd::vector<monoid::Max<S>> GetVecMax(int n, Args...\
+    \ args) {\n    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Max<S>>>\
     \ GetVecMax2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\
     \ GetVecMax<S>(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MAX_H\n"
   dependsOn: []
@@ -74,7 +73,7 @@ data:
   - segment_tree/utility/maxseg.hpp
   - segment_tree/utility/addmax.hpp
   - segment_tree/utility/maxseg2d.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-06 18:26:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/max.hpp

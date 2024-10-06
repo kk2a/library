@@ -43,12 +43,11 @@ data:
     \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
     \ r.a);\n    return l;\n}\n\ntemplate <class S> constexpr Min<S> MinUnit() {\n\
     \    constexpr static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace\
-    \ monoid\n\ntemplate <class S, class... Args>\nconstexpr std::vector<monoid::Min<S>>\
-    \ GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
-    \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nconstexpr\
-    \ std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int h, int w, Args... args)\
-    \ {\n    return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w, args...));\n\
-    }\n\n} // namespace kk2\n\n\n"
+    \ monoid\n\ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
+    \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
+    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
+    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_MONOID_MIN_HPP\n#define MATH_MONOID_MIN_HPP 1\n\n#include <algorithm>\n\
     #include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid\
     \ {\n\ntemplate <class S> struct Min {\n    S a;\n    bool inf;\n\n    constexpr\
@@ -67,10 +66,9 @@ data:
     \ if (l.inf) return r;\n    l.a = std::min(l.a, r.a);\n    return l;\n}\n\ntemplate\
     \ <class S> constexpr Min<S> MinUnit() {\n    constexpr static Min<S> e = Min<S>();\n\
     \    return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
-    constexpr std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {\n    return\
-    \ std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n}\n\ntemplate <class\
-    \ S, class... Args>\nconstexpr std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int\
-    \ h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
+    std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
+    \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
+    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
     \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MIN_HPP\n"
   dependsOn: []
   isVerificationFile: false
@@ -82,7 +80,7 @@ data:
   - segment_tree/utility/minseg2d.hpp
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/addmin.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-06 18:26:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/min.hpp
