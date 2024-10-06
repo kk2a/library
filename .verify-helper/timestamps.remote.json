@@ -11,7 +11,8 @@
 "verify/yosupo_fps/fps_inv.test.cpp": "2024-10-06 17:19:15 +0900",
 "verify/yosupo_fps/fps_log.test.cpp": "2024-10-06 17:19:15 +0900",
 "verify/yosupo_fps/fps_pow.test.cpp": "2024-10-06 17:19:15 +0900",
-"verify/yosupo_math/math_primality_test.test.cpp": "2024-10-05 17:47:42 +0900",
-"verify/yosupo_math/matrix_system_of_linear_equations.test.cpp": "2024-10-05 17:47:42 +0900",
-"verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp": "2024-10-05 17:47:57 +0900"
+"verify/yosupo_linalg/matrix_det.test.cpp": "2024-10-06 20:03:15 +0900",
+"verify/yosupo_linalg/matrix_inv.test.cpp": "2024-10-06 20:03:15 +0900",
+"verify/yosupo_linalg/matrix_pow.test.cpp": "2024-10-06 20:03:15 +0900",
+"verify/yosupo_math/math_primality_test.test.cpp": "2024-10-05 17:47:42 +0900"
 }
