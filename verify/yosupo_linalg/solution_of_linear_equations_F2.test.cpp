@@ -8,8 +8,8 @@ int main() {
     int n, m;
     cin >> n >> m;
     kk2::MatrixF2 a(n, m), b(1, n);
-    auto res = a.input(cin).solve(b.input(cin).inplace_transpose());
-    if (!res.get_h()) cout << -1 << "\n";
+    if (const auto res = a.input(cin).solve(b.input(cin).inplace_transpose()); !res.get_h())
+        cout << -1 << "\n";
     else {
         cout << res.get_h() - 1 << "\n";
         res.output(cout);
