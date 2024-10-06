@@ -25,7 +25,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
         }
     }
 
-    friend std::ostream &operator<<(std::ostream &os, FPS &fps_) const {
+    friend std::ostream &operator<<(std::ostream &os, const FPS &fps_) {
         for (int i = 0; i < (int)fps_.size(); i++) {
             os << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');
         }
