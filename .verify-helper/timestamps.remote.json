@@ -1,6 +1,13 @@
 {
-"verify/yosupo_fps/fps_exp.test.cpp": "2024-10-06 16:26:20 +0900",
-"verify/yosupo_fps/fps_inv.test.cpp": "2024-10-06 16:26:20 +0900",
+"verify/yosupo_convolution/convolution_and.test.cpp": "2024-10-06 17:17:10 +0900",
+"verify/yosupo_convolution/convolution_multi_truncated.test.cpp": "2024-10-06 17:17:10 +0900",
+"verify/yosupo_convolution/convolution_ntt.test.cpp": "2024-10-06 17:17:10 +0900",
+"verify/yosupo_convolution/convolution_or.test.cpp": "2024-10-06 17:17:10 +0900",
+"verify/yosupo_convolution/convolution_xor.test.cpp": "2024-10-06 17:17:10 +0900",
+"verify/yosupo_fps/fps_exp.test.cpp": "2024-10-06 17:19:15 +0900",
+"verify/yosupo_fps/fps_inv.test.cpp": "2024-10-06 17:19:15 +0900",
+"verify/yosupo_fps/fps_log.test.cpp": "2024-10-06 17:19:15 +0900",
+"verify/yosupo_fps/fps_pow.test.cpp": "2024-10-06 17:19:15 +0900",
 "verify/yosupo_math/math_primality_test.test.cpp": "2024-10-05 17:47:42 +0900",
 "verify/yosupo_math/matrix_system_of_linear_equations.test.cpp": "2024-10-05 17:47:42 +0900",
 "verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp": "2024-10-05 17:47:57 +0900"
