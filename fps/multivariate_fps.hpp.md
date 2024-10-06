@@ -199,13 +199,13 @@ data:
     [i == (int)this->size() - 1];\n        }\n    }\n\n    void output(std::ostream\
     \ &os) const {\n        for (int i = 0; i < (int)this->size(); i++) {\n      \
     \      os << (*this)[i] << (i + 1 == (int)this->size() ? \"\" : \" \");\n    \
-    \    }\n    }\n\n    friend std::ofstream &operator<<(std::ofstream &os, FPS &fps_)\
+    \    }\n    }\n\n    friend std::ostream &operator<<(std::ostream &os, FPS &fps_)\
     \ const {\n        for (int i = 0; i < (int)fps_.size(); i++) {\n            os\
     \ << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');\n        }\n        return\
     \ os;\n    }\n\n    FPS &input(std::istream &is) {\n        for (int i = 0; i\
     \ < (int)this->size(); i++) is >> (*this)[i];\n        return *this;\n    }\n\n\
-    \    friend std::ifstream &operator>>(std::ifstream &is, FPS &fps_) {\n      \
-    \  for (auto &x : fps_) is >> x;\n        return is;\n    }\n\n    FPS &operator+=(const\
+    \    friend std::istream &operator>>(std::istream &is, FPS &fps_) {\n        for\
+    \ (auto &x : fps_) is >> x;\n        return is;\n    }\n\n    FPS &operator+=(const\
     \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
     \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return\
     \ *this;\n    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
@@ -405,18 +405,18 @@ data:
     \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for (int\
     \ x : base) n *= x;\n        f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const\
     \ std::vector<int> &base_, const fps &f_)\n        : base(base_),\n          f(f_)\
-    \ {}\n\n    friend std::ofstream &operator<<(std::ofstream &os, MFPS &mfps_) const\
+    \ {}\n\n    friend std::ostream &operator<<(std::ostream &os, MFPS &mfps_) const\
     \ {\n        for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] <<\
     \ (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n        return os;\n    }\n\n\
     \    void output(std::ostream &os) const {\n        for (int i = 0; i < (int)f.size();\
     \ i++) os << f[i] << (i + 1 == (int)f.size() ? \"\\n\" : \" \");\n    }\n\n  \
     \  MFPS &input(std::istream &is) {\n        for (auto &x : f) is >> x;\n     \
-    \   return *this;\n    }\n\n    friend std::ifstream &operator>>(std::ifstream\
-    \ &is, MFPS &mfps_) {\n        for (auto &x : mfps_.f) is >> x;\n        return\
-    \ is;\n    }\n\n    template <typename T, typename... Ts> int _id(int x, T y,\
-    \ Ts... ys) {\n        assert(x < (int)base.size() && (int)y < base[x]);\n   \
-    \     if constexpr (sizeof...(Ts) == 0) return y;\n        else return y + base[x]\
-    \ * _id(x + 1, ys...);\n    }\n\n    template <typename... Args> int id(Args...\
+    \   return *this;\n    }\n\n    friend std::istream &operator>>(std::istream &is,\
+    \ MFPS &mfps_) {\n        for (auto &x : mfps_.f) is >> x;\n        return is;\n\
+    \    }\n\n    template <typename T, typename... Ts> int _id(int x, T y, Ts...\
+    \ ys) {\n        assert(x < (int)base.size() && (int)y < base[x]);\n        if\
+    \ constexpr (sizeof...(Ts) == 0) return y;\n        else return y + base[x] *\
+    \ _id(x + 1, ys...);\n    }\n\n    template <typename... Args> int id(Args...\
     \ args) {\n        static_assert(sizeof...(Args) > 0);\n        return _id(0,\
     \ args...);\n    }\n\n    template <typename... Args> mint &operator()(Args...\
     \ args) { return f[id(args...)]; }\n\n    mint &operator[](int i) { return f[i];\
@@ -518,18 +518,18 @@ data:
     \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for (int\
     \ x : base) n *= x;\n        f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const\
     \ std::vector<int> &base_, const fps &f_)\n        : base(base_),\n          f(f_)\
-    \ {}\n\n    friend std::ofstream &operator<<(std::ofstream &os, MFPS &mfps_) const\
+    \ {}\n\n    friend std::ostream &operator<<(std::ostream &os, MFPS &mfps_) const\
     \ {\n        for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] <<\
     \ (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n        return os;\n    }\n\n\
     \    void output(std::ostream &os) const {\n        for (int i = 0; i < (int)f.size();\
     \ i++) os << f[i] << (i + 1 == (int)f.size() ? \"\\n\" : \" \");\n    }\n\n  \
     \  MFPS &input(std::istream &is) {\n        for (auto &x : f) is >> x;\n     \
-    \   return *this;\n    }\n\n    friend std::ifstream &operator>>(std::ifstream\
-    \ &is, MFPS &mfps_) {\n        for (auto &x : mfps_.f) is >> x;\n        return\
-    \ is;\n    }\n\n    template <typename T, typename... Ts> int _id(int x, T y,\
-    \ Ts... ys) {\n        assert(x < (int)base.size() && (int)y < base[x]);\n   \
-    \     if constexpr (sizeof...(Ts) == 0) return y;\n        else return y + base[x]\
-    \ * _id(x + 1, ys...);\n    }\n\n    template <typename... Args> int id(Args...\
+    \   return *this;\n    }\n\n    friend std::istream &operator>>(std::istream &is,\
+    \ MFPS &mfps_) {\n        for (auto &x : mfps_.f) is >> x;\n        return is;\n\
+    \    }\n\n    template <typename T, typename... Ts> int _id(int x, T y, Ts...\
+    \ ys) {\n        assert(x < (int)base.size() && (int)y < base[x]);\n        if\
+    \ constexpr (sizeof...(Ts) == 0) return y;\n        else return y + base[x] *\
+    \ _id(x + 1, ys...);\n    }\n\n    template <typename... Args> int id(Args...\
     \ args) {\n        static_assert(sizeof...(Args) > 0);\n        return _id(0,\
     \ args...);\n    }\n\n    template <typename... Args> mint &operator()(Args...\
     \ args) { return f[id(args...)]; }\n\n    mint &operator[](int i) { return f[i];\
@@ -634,7 +634,7 @@ data:
   isVerificationFile: false
   path: fps/multivariate_fps.hpp
   requiredBy: []
-  timestamp: '2024-10-07 04:00:22+09:00'
+  timestamp: '2024-10-07 04:21:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/multivariate_fps.hpp

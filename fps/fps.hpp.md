@@ -43,12 +43,12 @@ data:
     \ std::cout << (*this)[i] << \" \\n\"[i == (int)this->size() - 1];\n        }\n\
     \    }\n\n    void output(std::ostream &os) const {\n        for (int i = 0; i\
     \ < (int)this->size(); i++) {\n            os << (*this)[i] << (i + 1 == (int)this->size()\
-    \ ? \"\" : \" \");\n        }\n    }\n\n    friend std::ofstream &operator<<(std::ofstream\
+    \ ? \"\" : \" \");\n        }\n    }\n\n    friend std::ostream &operator<<(std::ostream\
     \ &os, FPS &fps_) const {\n        for (int i = 0; i < (int)fps_.size(); i++)\
     \ {\n            os << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');\n  \
     \      }\n        return os;\n    }\n\n    FPS &input(std::istream &is) {\n  \
     \      for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];\n       \
-    \ return *this;\n    }\n\n    friend std::ifstream &operator>>(std::ifstream &is,\
+    \ return *this;\n    }\n\n    friend std::istream &operator>>(std::istream &is,\
     \ FPS &fps_) {\n        for (auto &x : fps_) is >> x;\n        return is;\n  \
     \  }\n\n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size())\
     \ this->resize(r.size());\n        for (int i = 0; i < (int)r.size(); i++) (*this)[i]\
@@ -210,12 +210,12 @@ data:
     \ std::cout << (*this)[i] << \" \\n\"[i == (int)this->size() - 1];\n        }\n\
     \    }\n\n    void output(std::ostream &os) const {\n        for (int i = 0; i\
     \ < (int)this->size(); i++) {\n            os << (*this)[i] << (i + 1 == (int)this->size()\
-    \ ? \"\" : \" \");\n        }\n    }\n\n    friend std::ofstream &operator<<(std::ofstream\
+    \ ? \"\" : \" \");\n        }\n    }\n\n    friend std::ostream &operator<<(std::ostream\
     \ &os, FPS &fps_) const {\n        for (int i = 0; i < (int)fps_.size(); i++)\
     \ {\n            os << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');\n  \
     \      }\n        return os;\n    }\n\n    FPS &input(std::istream &is) {\n  \
     \      for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];\n       \
-    \ return *this;\n    }\n\n    friend std::ifstream &operator>>(std::ifstream &is,\
+    \ return *this;\n    }\n\n    friend std::istream &operator>>(std::istream &is,\
     \ FPS &fps_) {\n        for (auto &x : fps_) is >> x;\n        return is;\n  \
     \  }\n\n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size())\
     \ this->resize(r.size());\n        for (int i = 0; i < (int)r.size(); i++) (*this)[i]\
@@ -377,7 +377,7 @@ data:
   - fps/fps_arb.hpp
   - fps/ntt_friendly.hpp
   - fps/multivariate_fps.hpp
-  timestamp: '2024-10-07 04:00:22+09:00'
+  timestamp: '2024-10-07 04:21:09+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp

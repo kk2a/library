@@ -184,13 +184,13 @@ data:
     \ << \" \\n\"[i == (int)this->size() - 1];\n        }\n    }\n\n    void output(std::ostream\
     \ &os) const {\n        for (int i = 0; i < (int)this->size(); i++) {\n      \
     \      os << (*this)[i] << (i + 1 == (int)this->size() ? \"\" : \" \");\n    \
-    \    }\n    }\n\n    friend std::ofstream &operator<<(std::ofstream &os, FPS &fps_)\
+    \    }\n    }\n\n    friend std::ostream &operator<<(std::ostream &os, FPS &fps_)\
     \ const {\n        for (int i = 0; i < (int)fps_.size(); i++) {\n            os\
     \ << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');\n        }\n        return\
     \ os;\n    }\n\n    FPS &input(std::istream &is) {\n        for (int i = 0; i\
     \ < (int)this->size(); i++) is >> (*this)[i];\n        return *this;\n    }\n\n\
-    \    friend std::ifstream &operator>>(std::ifstream &is, FPS &fps_) {\n      \
-    \  for (auto &x : fps_) is >> x;\n        return is;\n    }\n\n    FPS &operator+=(const\
+    \    friend std::istream &operator>>(std::istream &is, FPS &fps_) {\n        for\
+    \ (auto &x : fps_) is >> x;\n        return is;\n    }\n\n    FPS &operator+=(const\
     \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
     \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return\
     \ *this;\n    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
@@ -526,7 +526,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_exp.test.cpp
   requiredBy: []
-  timestamp: '2024-10-07 04:00:22+09:00'
+  timestamp: '2024-10-07 04:21:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_exp.test.cpp
