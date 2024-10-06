@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
+    title: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"matrix/matrix_F2.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -243,31 +246,28 @@ data:
     \            if (r != pivot) std::swap(_mat[r], _mat[pivot]);\n            for\
     \ (int j = 0; j < _h; j++) {\n                if (j == r) continue;\n        \
     \        if (_mat[j][i]) _mat[j] ^= _mat[r];\n            }\n            r++;\n\
-    \        }\n        return r;\n    }\n\n    void shrink() {\n        while (_h\
-    \ && !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;\n    }\n\n    // it must be already\
-    \ swept and shrunk before calling this function\n    mat get_solution_base() const\
-    \ {\n        mat res(_w - _h, _w);\n        std::vector<int> step(_h);\n     \
-    \   std::vector<bool> is_step(_w, false);\n        int nowj = 0;\n        for\
-    \ (int i = 0; i < _h; i++) {\n            while (!_mat[i].is_pinned(nowj)) nowj++;\n\
-    \            is_step[nowj] = true;\n            step[i] = nowj;\n        }\n \
-    \       int now = 0;\n        nowj = 0;\n        while (nowj < _w) {\n       \
-    \     if (is_step[nowj]) {\n                nowj++;\n                continue;\n\
+    \        }\n        return r;\n    }\n\n    mat &shrink() {\n        while (_h\
+    \ && !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;\n        return *this;\n    }\n\
+    \n    // it must be already swept and shrunk before calling this function\n  \
+    \  mat get_solution_base() const {\n        mat res(_w - _h, _w);\n        std::vector<int>\
+    \ step(_h);\n        std::vector<bool> is_step(_w, false);\n        int nowj =\
+    \ 0;\n        for (int i = 0; i < _h; i++) {\n            while (!_mat[i].is_pinned(nowj))\
+    \ nowj++;\n            is_step[nowj] = true;\n            step[i] = nowj;\n  \
+    \      }\n        int now = 0;\n        nowj = 0;\n        while (nowj < _w) {\n\
+    \            if (is_step[nowj]) {\n                nowj++;\n                continue;\n\
     \            }\n            res[now][nowj] = 1;\n            for (int i = 0; i\
     \ < _h; i++)\n                if (_mat[i].is_pinned(nowj)) res[now][step[i]] =\
     \ 1;\n            nowj++, now++;\n        }\n        return res;\n    }\n\n  \
     \  mat solve(const mat &b) const {\n        assert(_h == b._h);\n        assert(b._w\
     \ == 1);\n        mat ab = combine_right(b);\n        ab.sweep();\n        ab.shrink();\n\
     \n        // ab.display();\n\n        for (int i = 0; i < ab._h; i++) {\n    \
-    \        int left = -1;\n            for (int j = 0; j < ab._w; j++) {\n     \
-    \           if (ab[i][j]) {\n                    left = j;\n                 \
-    \   break;\n                }\n            }\n            if (left == ab._w -\
-    \ 1) return {};\n        }\n\n        mat res(1 + _w - ab._h, _w);\n        res[0]\
-    \ = DynamicBitSet(_w, 1);\n        for (int i = 0; i < ab._h; ++i) {\n       \
-    \     int left = -1;\n            bool cnt = 0;\n            for (int j = 0; j\
-    \ < ab._w; ++j) {\n                if (ab[i][j]) {\n                    if (left\
-    \ == -1) left = j;\n                    cnt = !cnt;\n                }\n     \
-    \       }\n            // std::cout << cnt << std::endl;\n            res[0][left]\
-    \ = !cnt;\n        }\n\n        std::vector<int> step(ab._h);\n        std::vector<bool>\
+    \        for (int j = 0; j < ab._w; j++) {\n                if (ab[i][j]) {\n\
+    \                    if (j == ab._w - 1) return mat();\n                    break;\n\
+    \                }\n            }\n        }\n\n        mat res(1 + _w - ab._h,\
+    \ _w);\n        for (int i = 0; i < ab._h; ++i) {\n            for (int j = 0;\
+    \ j < ab._w; ++j) {\n                if (ab[i][j]) {\n                    res[0][j]\
+    \ = ab[i][ab._w - 1];\n                    break;\n                }\n       \
+    \     }\n        }\n\n        std::vector<int> step(ab._h);\n        std::vector<bool>\
     \ is_step(ab._w - 1, false);\n        int nowj = 0;\n        for (int i = 0; i\
     \ < ab._h; i++) {\n            while (!ab[i][nowj]) nowj++;\n            is_step[nowj]\
     \ = true;\n            step[i] = nowj;\n        }\n        int now = 1;\n    \
@@ -386,31 +386,28 @@ data:
     \            if (r != pivot) std::swap(_mat[r], _mat[pivot]);\n            for\
     \ (int j = 0; j < _h; j++) {\n                if (j == r) continue;\n        \
     \        if (_mat[j][i]) _mat[j] ^= _mat[r];\n            }\n            r++;\n\
-    \        }\n        return r;\n    }\n\n    void shrink() {\n        while (_h\
-    \ && !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;\n    }\n\n    // it must be already\
-    \ swept and shrunk before calling this function\n    mat get_solution_base() const\
-    \ {\n        mat res(_w - _h, _w);\n        std::vector<int> step(_h);\n     \
-    \   std::vector<bool> is_step(_w, false);\n        int nowj = 0;\n        for\
-    \ (int i = 0; i < _h; i++) {\n            while (!_mat[i].is_pinned(nowj)) nowj++;\n\
-    \            is_step[nowj] = true;\n            step[i] = nowj;\n        }\n \
-    \       int now = 0;\n        nowj = 0;\n        while (nowj < _w) {\n       \
-    \     if (is_step[nowj]) {\n                nowj++;\n                continue;\n\
+    \        }\n        return r;\n    }\n\n    mat &shrink() {\n        while (_h\
+    \ && !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;\n        return *this;\n    }\n\
+    \n    // it must be already swept and shrunk before calling this function\n  \
+    \  mat get_solution_base() const {\n        mat res(_w - _h, _w);\n        std::vector<int>\
+    \ step(_h);\n        std::vector<bool> is_step(_w, false);\n        int nowj =\
+    \ 0;\n        for (int i = 0; i < _h; i++) {\n            while (!_mat[i].is_pinned(nowj))\
+    \ nowj++;\n            is_step[nowj] = true;\n            step[i] = nowj;\n  \
+    \      }\n        int now = 0;\n        nowj = 0;\n        while (nowj < _w) {\n\
+    \            if (is_step[nowj]) {\n                nowj++;\n                continue;\n\
     \            }\n            res[now][nowj] = 1;\n            for (int i = 0; i\
     \ < _h; i++)\n                if (_mat[i].is_pinned(nowj)) res[now][step[i]] =\
     \ 1;\n            nowj++, now++;\n        }\n        return res;\n    }\n\n  \
     \  mat solve(const mat &b) const {\n        assert(_h == b._h);\n        assert(b._w\
     \ == 1);\n        mat ab = combine_right(b);\n        ab.sweep();\n        ab.shrink();\n\
     \n        // ab.display();\n\n        for (int i = 0; i < ab._h; i++) {\n    \
-    \        int left = -1;\n            for (int j = 0; j < ab._w; j++) {\n     \
-    \           if (ab[i][j]) {\n                    left = j;\n                 \
-    \   break;\n                }\n            }\n            if (left == ab._w -\
-    \ 1) return {};\n        }\n\n        mat res(1 + _w - ab._h, _w);\n        res[0]\
-    \ = DynamicBitSet(_w, 1);\n        for (int i = 0; i < ab._h; ++i) {\n       \
-    \     int left = -1;\n            bool cnt = 0;\n            for (int j = 0; j\
-    \ < ab._w; ++j) {\n                if (ab[i][j]) {\n                    if (left\
-    \ == -1) left = j;\n                    cnt = !cnt;\n                }\n     \
-    \       }\n            // std::cout << cnt << std::endl;\n            res[0][left]\
-    \ = !cnt;\n        }\n\n        std::vector<int> step(ab._h);\n        std::vector<bool>\
+    \        for (int j = 0; j < ab._w; j++) {\n                if (ab[i][j]) {\n\
+    \                    if (j == ab._w - 1) return mat();\n                    break;\n\
+    \                }\n            }\n        }\n\n        mat res(1 + _w - ab._h,\
+    \ _w);\n        for (int i = 0; i < ab._h; ++i) {\n            for (int j = 0;\
+    \ j < ab._w; ++j) {\n                if (ab[i][j]) {\n                    res[0][j]\
+    \ = ab[i][ab._w - 1];\n                    break;\n                }\n       \
+    \     }\n        }\n\n        std::vector<int> step(ab._h);\n        std::vector<bool>\
     \ is_step(ab._w - 1, false);\n        int nowj = 0;\n        for (int i = 0; i\
     \ < ab._h; i++) {\n            while (!ab[i][nowj]) nowj++;\n            is_step[nowj]\
     \ = true;\n            step[i] = nowj;\n        }\n        int now = 1;\n    \
@@ -436,9 +433,10 @@ data:
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2024-10-01 04:13:14+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-10-05 17:33:01+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
 documentation_of: matrix/matrix_F2.hpp
 layout: document
 redirect_from:

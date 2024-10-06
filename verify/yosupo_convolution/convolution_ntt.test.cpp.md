@@ -236,20 +236,21 @@ data:
     \ <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
     #include <functional>\n#include <iomanip>\n#line 19 \"template/template.hpp\"\n\
     #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n\
-    #include <string>\n#include <tuple>\n#line 31 \"template/template.hpp\"\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#line 35 \"template/template.hpp\"\
-    \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long\
-    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
-    \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing\
-    \ pli = std::pair<i64, int>;\n\ntemplate <class T> constexpr T infty = 0;\ntemplate\
-    \ <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64>\
-    \ = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>)\
-    \ * infty<i64>;\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate\
-    \ <> constexpr u64 infty<u64> = infty<i64>;\ntemplate <> constexpr double infty<double>\
-    \ = infty<i64>;\ntemplate <> constexpr long double infty<long double> = infty<i64>;\n\
-    \nconstexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
-    \ double PI = 3.14159265358979323846;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+    \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
+    #include <stack>\n#include <string>\n#include <tuple>\n#line 32 \"template/template.hpp\"\
+    \n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#line\
+    \ 36 \"template/template.hpp\"\n\nusing u32 = unsigned int;\nusing i64 = long\
+    \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+    \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
+    template <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
+    \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
+    \ << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
+    template <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64\
+    \ infty<u64> = infty<i64>;\ntemplate <> constexpr double infty<double> = infty<i64>;\n\
+    template <> constexpr long double infty<long double> = infty<i64>;\n\nconstexpr\
+    \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long double PI\
+    \ = 3.14159265358979323846;\n\ntemplate <class T> using vc = std::vector<T>;\n\
     template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
     \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
     \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
@@ -305,7 +306,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_ntt.test.cpp
   requiredBy: []
-  timestamp: '2024-10-02 15:19:06+09:00'
+  timestamp: '2024-10-05 17:47:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_ntt.test.cpp

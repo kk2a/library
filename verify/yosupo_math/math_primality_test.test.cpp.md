@@ -151,9 +151,9 @@ data:
     \ <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
     #include <functional>\n#include <iomanip>\n#line 19 \"template/template.hpp\"\n\
     #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n\
-    #include <string>\n#include <tuple>\n#line 31 \"template/template.hpp\"\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#line 35 \"template/template.hpp\"\
+    \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
+    #include <stack>\n#include <string>\n#include <tuple>\n#line 32 \"template/template.hpp\"\
+    \n#include <unordered_map>\n#include <unordered_set>\n#line 36 \"template/template.hpp\"\
     \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long\
     \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
     \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing\
@@ -215,7 +215,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/math_primality_test.test.cpp
   requiredBy: []
-  timestamp: '2024-10-02 15:19:06+09:00'
+  timestamp: '2024-10-05 17:47:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/math_primality_test.test.cpp

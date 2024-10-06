@@ -21,6 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/math_primality_test.test.cpp
     title: verify/yosupo_math/math_primality_test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
+    title: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
+    title: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -31,12 +37,12 @@ data:
     \ <bitset>\n#include <cassert>\n#include <chrono>\n#include <cmath>\n#include\
     \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
     \ <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n#include\
-    \ <map>\n#include <numeric>\n#include <queue>\n#include <random>\n#include <set>\n\
-    #include <sstream>\n#include <stack>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n#include\
-    \ <utility>\n#include <vector>\n\nusing u32 = unsigned int;\nusing i64 = long\
-    \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
-    \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+    \ <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n#include\
+    \ <tuple>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\nusing u32 = unsigned int;\nusing i64\
+    \ = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing\
+    \ u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
     \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
     template <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
     \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
@@ -83,12 +89,12 @@ data:
     \ <bitset>\n#include <cassert>\n#include <chrono>\n#include <cmath>\n#include\
     \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
     \ <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n#include\
-    \ <map>\n#include <numeric>\n#include <queue>\n#include <random>\n#include <set>\n\
-    #include <sstream>\n#include <stack>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n#include\
-    \ <utility>\n#include <vector>\n\nusing u32 = unsigned int;\nusing i64 = long\
-    \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
-    \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+    \ <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n#include\
+    \ <tuple>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\nusing u32 = unsigned int;\nusing i64\
+    \ = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing\
+    \ u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
     \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
     template <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
     \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
@@ -134,9 +140,11 @@ data:
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-10-01 04:40:11+09:00'
+  timestamp: '2024-10-05 17:47:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
+  - verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
   - verify/yosupo_math/math_primality_test.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp

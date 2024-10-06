@@ -120,6 +120,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/math_primality_test.test.cpp
     title: verify/yosupo_math/math_primality_test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
+    title: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -199,6 +202,7 @@ data:
   timestamp: '2024-09-29 16:53:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
   - verify/yosupo_math/math_primality_test.test.cpp
   - verify/yosupo_math/math_primality_test.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp

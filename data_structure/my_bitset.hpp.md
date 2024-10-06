@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
+    title: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -145,7 +148,7 @@ data:
     \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return res;\n\
     \    }\n\n    friend std::ostream &operator<<(std::ostream &os, const T &bs) {\
     \ return os << bs.to_string(); }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef DATA_STRUCTURE_MY_BITSET_FAST_HPP\n#define DATA_STRUCTURE_MY_BITSET_FAST_HPP\
+  code: "#ifndef DATA_STRUCTURE_MY_BITSET_HPP\n#define DATA_STRUCTURE_MY_BITSET_HPP\
     \ 1\n\n#include <algorithm>\n#include <bitset>\n#include <cassert>\n#include <iostream>\n\
     #include <iterator>\n#include <string>\n#include <vector>\n\nnamespace kk2 {\n\
     \nstruct DynamicBitSet {\n    using T = DynamicBitSet;\n    using UInt = __uint128_t;\n\
@@ -278,15 +281,16 @@ data:
     \ i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            std::reverse(std::begin(tmp[i]),\
     \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return res;\n\
     \    }\n\n    friend std::ostream &operator<<(std::ostream &os, const T &bs) {\
-    \ return os << bs.to_string(); }\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_MY_BITSET_FAST_HPP\n"
+    \ return os << bs.to_string(); }\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_MY_BITSET_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/my_bitset.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-10-05 17:33:01+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
 documentation_of: data_structure/my_bitset.hpp
 layout: document
 redirect_from:
