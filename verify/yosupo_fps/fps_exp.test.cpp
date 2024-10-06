@@ -13,7 +13,7 @@ int main() {
     FPS f(n);
     rep (i, n) cin >> f[i];
     auto g = f.exp();
-    rep (i, g.size()) cout << g[i] << " \n"[i == g.size() - 1];
+    rep (i, g.size()) cout << g[i] << " \n"[i == n - 1];
 
     return 0;
 }
