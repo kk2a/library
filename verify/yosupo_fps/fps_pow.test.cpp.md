@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
@@ -184,13 +184,13 @@ data:
     \ << \" \\n\"[i == (int)this->size() - 1];\n        }\n    }\n\n    void output(std::ostream\
     \ &os) const {\n        for (int i = 0; i < (int)this->size(); i++) {\n      \
     \      os << (*this)[i] << (i + 1 == (int)this->size() ? \"\" : \" \");\n    \
-    \    }\n    }\n\n    friend std::ostream &operator<<(std::ostream &os, FPS &fps_)\
-    \ const {\n        for (int i = 0; i < (int)fps_.size(); i++) {\n            os\
-    \ << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');\n        }\n        return\
-    \ os;\n    }\n\n    FPS &input(std::istream &is) {\n        for (int i = 0; i\
-    \ < (int)this->size(); i++) is >> (*this)[i];\n        return *this;\n    }\n\n\
-    \    friend std::istream &operator>>(std::istream &is, FPS &fps_) {\n        for\
-    \ (auto &x : fps_) is >> x;\n        return is;\n    }\n\n    FPS &operator+=(const\
+    \    }\n    }\n\n    friend std::ostream &operator<<(std::ostream &os, const FPS\
+    \ &fps_) {\n        for (int i = 0; i < (int)fps_.size(); i++) {\n           \
+    \ os << fps_[i] << (i + 1 == (int)fps_.size() ? \"\" : \" \");\n        }\n  \
+    \      return os;\n    }\n\n    FPS &input(std::istream &is) {\n        for (int\
+    \ i = 0; i < (int)this->size(); i++) is >> (*this)[i];\n        return *this;\n\
+    \    }\n\n    friend std::istream &operator>>(std::istream &is, FPS &fps_) {\n\
+    \        for (auto &x : fps_) is >> x;\n        return is;\n    }\n\n    FPS &operator+=(const\
     \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
     \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return\
     \ *this;\n    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
@@ -526,8 +526,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-10-07 04:21:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-07 04:46:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_pow.test.cpp
 layout: document

@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'
@@ -199,13 +199,13 @@ data:
     [i == (int)this->size() - 1];\n        }\n    }\n\n    void output(std::ostream\
     \ &os) const {\n        for (int i = 0; i < (int)this->size(); i++) {\n      \
     \      os << (*this)[i] << (i + 1 == (int)this->size() ? \"\" : \" \");\n    \
-    \    }\n    }\n\n    friend std::ostream &operator<<(std::ostream &os, FPS &fps_)\
-    \ const {\n        for (int i = 0; i < (int)fps_.size(); i++) {\n            os\
-    \ << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');\n        }\n        return\
-    \ os;\n    }\n\n    FPS &input(std::istream &is) {\n        for (int i = 0; i\
-    \ < (int)this->size(); i++) is >> (*this)[i];\n        return *this;\n    }\n\n\
-    \    friend std::istream &operator>>(std::istream &is, FPS &fps_) {\n        for\
-    \ (auto &x : fps_) is >> x;\n        return is;\n    }\n\n    FPS &operator+=(const\
+    \    }\n    }\n\n    friend std::ostream &operator<<(std::ostream &os, const FPS\
+    \ &fps_) {\n        for (int i = 0; i < (int)fps_.size(); i++) {\n           \
+    \ os << fps_[i] << (i + 1 == (int)fps_.size() ? \"\" : \" \");\n        }\n  \
+    \      return os;\n    }\n\n    FPS &input(std::istream &is) {\n        for (int\
+    \ i = 0; i < (int)this->size(); i++) is >> (*this)[i];\n        return *this;\n\
+    \    }\n\n    friend std::istream &operator>>(std::istream &is, FPS &fps_) {\n\
+    \        for (auto &x : fps_) is >> x;\n        return is;\n    }\n\n    FPS &operator+=(const\
     \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
     \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return\
     \ *this;\n    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
@@ -405,7 +405,7 @@ data:
     \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for (int\
     \ x : base) n *= x;\n        f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const\
     \ std::vector<int> &base_, const fps &f_)\n        : base(base_),\n          f(f_)\
-    \ {}\n\n    friend std::ostream &operator<<(std::ostream &os, MFPS &mfps_) const\
+    \ {}\n\n    friend std::ostream &operator<<(std::ostream &os, const MFPS &mfps_)\
     \ {\n        for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] <<\
     \ (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n        return os;\n    }\n\n\
     \    void output(std::ostream &os) const {\n        for (int i = 0; i < (int)f.size();\
@@ -518,7 +518,7 @@ data:
     \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for (int\
     \ x : base) n *= x;\n        f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const\
     \ std::vector<int> &base_, const fps &f_)\n        : base(base_),\n          f(f_)\
-    \ {}\n\n    friend std::ostream &operator<<(std::ostream &os, MFPS &mfps_) const\
+    \ {}\n\n    friend std::ostream &operator<<(std::ostream &os, const MFPS &mfps_)\
     \ {\n        for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] <<\
     \ (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n        return os;\n    }\n\n\
     \    void output(std::ostream &os) const {\n        for (int i = 0; i < (int)f.size();\
@@ -634,7 +634,7 @@ data:
   isVerificationFile: false
   path: fps/multivariate_fps.hpp
   requiredBy: []
-  timestamp: '2024-10-07 04:21:09+09:00'
+  timestamp: '2024-10-07 04:46:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/multivariate_fps.hpp

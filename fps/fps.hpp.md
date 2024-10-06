@@ -8,23 +8,23 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: verify/yosupo_math/many_factrials.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/fps.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
@@ -44,11 +44,11 @@ data:
     \    }\n\n    void output(std::ostream &os) const {\n        for (int i = 0; i\
     \ < (int)this->size(); i++) {\n            os << (*this)[i] << (i + 1 == (int)this->size()\
     \ ? \"\" : \" \");\n        }\n    }\n\n    friend std::ostream &operator<<(std::ostream\
-    \ &os, FPS &fps_) const {\n        for (int i = 0; i < (int)fps_.size(); i++)\
-    \ {\n            os << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');\n  \
-    \      }\n        return os;\n    }\n\n    FPS &input(std::istream &is) {\n  \
-    \      for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];\n       \
-    \ return *this;\n    }\n\n    friend std::istream &operator>>(std::istream &is,\
+    \ &os, const FPS &fps_) {\n        for (int i = 0; i < (int)fps_.size(); i++)\
+    \ {\n            os << fps_[i] << (i + 1 == (int)fps_.size() ? \"\" : \" \");\n\
+    \        }\n        return os;\n    }\n\n    FPS &input(std::istream &is) {\n\
+    \        for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];\n     \
+    \   return *this;\n    }\n\n    friend std::istream &operator>>(std::istream &is,\
     \ FPS &fps_) {\n        for (auto &x : fps_) is >> x;\n        return is;\n  \
     \  }\n\n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size())\
     \ this->resize(r.size());\n        for (int i = 0; i < (int)r.size(); i++) (*this)[i]\
@@ -211,11 +211,11 @@ data:
     \    }\n\n    void output(std::ostream &os) const {\n        for (int i = 0; i\
     \ < (int)this->size(); i++) {\n            os << (*this)[i] << (i + 1 == (int)this->size()\
     \ ? \"\" : \" \");\n        }\n    }\n\n    friend std::ostream &operator<<(std::ostream\
-    \ &os, FPS &fps_) const {\n        for (int i = 0; i < (int)fps_.size(); i++)\
-    \ {\n            os << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');\n  \
-    \      }\n        return os;\n    }\n\n    FPS &input(std::istream &is) {\n  \
-    \      for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];\n       \
-    \ return *this;\n    }\n\n    friend std::istream &operator>>(std::istream &is,\
+    \ &os, const FPS &fps_) {\n        for (int i = 0; i < (int)fps_.size(); i++)\
+    \ {\n            os << fps_[i] << (i + 1 == (int)fps_.size() ? \"\" : \" \");\n\
+    \        }\n        return os;\n    }\n\n    FPS &input(std::istream &is) {\n\
+    \        for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];\n     \
+    \   return *this;\n    }\n\n    friend std::istream &operator>>(std::istream &is,\
     \ FPS &fps_) {\n        for (auto &x : fps_) is >> x;\n        return is;\n  \
     \  }\n\n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size())\
     \ this->resize(r.size());\n        for (int i = 0; i < (int)r.size(); i++) (*this)[i]\
@@ -377,8 +377,8 @@ data:
   - fps/fps_arb.hpp
   - fps/ntt_friendly.hpp
   - fps/multivariate_fps.hpp
-  timestamp: '2024-10-07 04:21:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-10-07 04:46:01+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
