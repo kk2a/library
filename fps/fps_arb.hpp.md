@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
   - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
   - icon: ':question:'
@@ -252,7 +252,7 @@ data:
     \        butterfly(t);\n        for (int i = 0; i < z; i++) a[i] *= t[i];\n  \
     \  }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    return a;\n}\n\n} //\
     \ namespace kk2\n\n\n#line 9 \"convolution/convolution_arb.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS &convolution_arb(FPS\
+    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution_arb(FPS\
     \ &a, const FPS &b, mint mod) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
     \ // 2^24\n    static constexpr long long MOD2 = 167772161; // 2^25\n    static\
@@ -474,7 +474,7 @@ data:
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy: []
-  timestamp: '2024-10-06 17:17:10+09:00'
+  timestamp: '2024-10-06 18:10:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_arb.hpp

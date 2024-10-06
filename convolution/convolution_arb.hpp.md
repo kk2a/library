@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
   - icon: ':question:'
@@ -33,12 +33,12 @@ data:
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/convolution_arb.hpp\"\n\n\n\n#include <vector>\n\
@@ -252,7 +252,7 @@ data:
     \        butterfly(t);\n        for (int i = 0; i < z; i++) a[i] *= t[i];\n  \
     \  }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    return a;\n}\n\n} //\
     \ namespace kk2\n\n\n#line 9 \"convolution/convolution_arb.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS &convolution_arb(FPS\
+    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution_arb(FPS\
     \ &a, const FPS &b, mint mod) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
     \ // 2^24\n    static constexpr long long MOD2 = 167772161; // 2^25\n    static\
@@ -271,7 +271,7 @@ data:
   code: "#ifndef CONVO_ARB_HPP\n#define CONVO_ARB_HPP 1\n\n#include <vector>\n\n#include\
     \ \"../math_mod/garner.hpp\"\n#include \"../modint/mont.hpp\"\n#include \"convolution.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-    FPS &convolution_arb(FPS &a, const FPS &b, mint mod) {\n    int n = int(a.size()),\
+    FPS convolution_arb(FPS &a, const FPS &b, mint mod) {\n    int n = int(a.size()),\
     \ m = int(b.size());\n    if (!n || !m) return {};\n    static constexpr long\
     \ long MOD1 = 754974721; // 2^24\n    static constexpr long long MOD2 = 167772161;\
     \ // 2^25\n    static constexpr long long MOD3 = 469762049; // 2^26\n    using\
@@ -301,8 +301,8 @@ data:
   path: convolution/convolution_arb.hpp
   requiredBy:
   - fps/fps_arb.hpp
-  timestamp: '2024-10-06 17:17:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-10-06 18:10:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
 documentation_of: convolution/convolution_arb.hpp
