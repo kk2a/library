@@ -31,7 +31,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         : base(base_),
           f(f_) {}
 
-    friend std::ofstream &operator<<(std::ofstream &os, MFPS &mfps_) const {
+    friend std::ostream &operator<<(std::ostream &os, MFPS &mfps_) const {
         for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? "" : " ");
         return os;
     }
@@ -45,7 +45,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         return *this;
     }
 
-    friend std::ifstream &operator>>(std::ifstream &is, MFPS &mfps_) {
+    friend std::istream &operator>>(std::istream &is, MFPS &mfps_) {
         for (auto &x : mfps_.f) is >> x;
         return is;
     }
