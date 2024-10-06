@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -375,7 +376,7 @@ struct MatrixF2 {
 
     bool det() const { return rank() == _h; }
 
-    mat inv() const {
+    std::optional<mat> inv() const {
         assert(_h == _w);
         std::vector<DynamicBitSet> res(_h, _w);
         for (int i = 0; i < _h; i++) { res[i][i] = 1; }
@@ -388,7 +389,7 @@ struct MatrixF2 {
                     break;
                 }
             }
-            if (pivot == -1) continue;
+            if (pivot == -1) return {};
             std::swap(buf[i], buf[pivot]);
             std::swap(res[i], res[pivot]);
             for (int j = 0; j < _h; j++) {

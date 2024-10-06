@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -123,7 +124,7 @@ template <class Field> struct MatrixField {
         return res;
     }
 
-    mat inv() const {
+    std::optional<mat> inv() const {
         assert(_h == _w);
         int n = _h;
         std::vector<std::vector<Field>> res(n, std::vector<Field>(n, Field()));
@@ -137,7 +138,7 @@ template <class Field> struct MatrixField {
                     break;
                 }
             }
-            if (pivot == -1) { return mat(n); }
+            if (pivot == -1) { return {}; }
             std::swap(a._mat[i], a._mat[pivot]);
             std::swap(res[i], res[pivot]);
             Field inv = a._mat[i][i].inv();
