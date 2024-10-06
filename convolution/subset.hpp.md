@@ -10,9 +10,9 @@ data:
     links: []
   bundledCode: "#line 1 \"convolution/subset.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class FPS, class\
-    \ mint = typename FPS::value_type>\nFPS &convolution_subset(FPS &a, const FPS\
-    \ &b) {\n    int n = int(size(a)); // == int(size(b)\n    if (!n) return {};\n\
-    \    int h = __builtin_ctz(n);\n\n    assert((n & (-n)) == n);\n    std::vector<int>\
+    \ mint = typename FPS::value_type>\nFPS convolution_subset(FPS &a, const FPS &b)\
+    \ {\n    int n = int(size(a)); // == int(size(b)\n    if (!n) return {};\n   \
+    \ int h = __builtin_ctz(n);\n\n    assert((n & (-n)) == n);\n    std::vector<int>\
     \ chi(n, 0);\n    for (int i = 1; i < n; i++) chi[i] = chi[i - (i & -i)] + 1;\n\
     \    std::vector<std::vector<mint>> f(n, std::vector<mint>(h + 1)), g(n, std::vector<mint>(h\
     \ + 1));\n    for (int i = 0; i < n; i++) {\n        f[i][chi[i]] = a[i];\n  \
@@ -33,7 +33,7 @@ data:
     \    return a;\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef CONVOLUTION_SUBSET\n#define CONVOLUTION_SUBSET 1\n\n#include <cassert>\n\
     #include <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class\
-    \ FPS, class mint = typename FPS::value_type>\nFPS &convolution_subset(FPS &a,\
+    \ FPS, class mint = typename FPS::value_type>\nFPS convolution_subset(FPS &a,\
     \ const FPS &b) {\n    int n = int(size(a)); // == int(size(b)\n    if (!n) return\
     \ {};\n    int h = __builtin_ctz(n);\n\n    assert((n & (-n)) == n);\n    std::vector<int>\
     \ chi(n, 0);\n    for (int i = 1; i < n; i++) chi[i] = chi[i - (i & -i)] + 1;\n\
@@ -58,7 +58,7 @@ data:
   isVerificationFile: false
   path: convolution/subset.hpp
   requiredBy: []
-  timestamp: '2024-10-06 16:26:20+09:00'
+  timestamp: '2024-10-06 17:17:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/subset.hpp

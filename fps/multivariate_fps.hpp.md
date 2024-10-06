@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'
@@ -161,7 +161,7 @@ data:
     \    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n \
     \   }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
     }\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convolution.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS &convolution(FPS\
+    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS\
     \ &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
     \ || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m -\
     \ 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j <\
@@ -175,7 +175,7 @@ data:
     \ kk2\n\n\n#line 7 \"convolution/multi_convolution_truncated.hpp\"\n\nnamespace\
     \ kk2 {\n\n// reference: https://rushcheyo.blog.uoj.ac/blog/6547\n// \u65E5\u672C\
     \u8A9E:\n// https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
-    template <class FPS, class mint = typename FPS::value_type>\nFPS &multi_convolution_truncated(FPS\
+    template <class FPS, class mint = typename FPS::value_type>\nFPS multi_convolution_truncated(FPS\
     \ &a, const FPS &b, const std::vector<int> &base) {\n    int n = int(a.size());\n\
     \    if (!n) return {};\n    int k = base.size();\n    if (!k) return convolution(a,\
     \ b);\n    // chi[i] = \\sum_{j} \\floor(i / (base[0]...base[j]))\n    std::vector<int>\
@@ -607,7 +607,7 @@ data:
   isVerificationFile: false
   path: fps/multivariate_fps.hpp
   requiredBy: []
-  timestamp: '2024-10-06 16:45:07+09:00'
+  timestamp: '2024-10-06 17:17:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/multivariate_fps.hpp

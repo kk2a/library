@@ -241,7 +241,7 @@ data:
     \       r *= zeta;\n    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(),\
     \ std::back_inserter(a));\n}\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convolution.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\
-    \ FPS &convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    \ FPS convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n\
     \ + m - 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0;\
     \ j < m; j++) { res[i + j] += a[i] * b[j]; }\n        }\n        a = res;\n  \
@@ -301,7 +301,7 @@ data:
   path: convolution/convolution_arb.hpp
   requiredBy:
   - fps/fps_arb.hpp
-  timestamp: '2024-10-06 16:45:07+09:00'
+  timestamp: '2024-10-06 17:17:10+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp

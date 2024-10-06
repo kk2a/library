@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
@@ -165,7 +165,7 @@ data:
     \    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n \
     \   }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
     }\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convolution.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS &convolution(FPS\
+    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS\
     \ &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
     \ || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m -\
     \ 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j <\
@@ -487,15 +487,15 @@ data:
     }\n\n\n#line 6 \"verify/yosupo_fps/fps_pow.test.cpp\"\nusing namespace std;\n\n\
     using FPS = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n\
     \    i64 m;\n    cin >> n >> m;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n\
-    \    auto g = f.pow(m);\n    rep (i, g.size()) cout << g[i] << \" \\n\"[i == g.size()\
+    \    auto g = f.pow(m);\n    rep (i, g.size()) cout << g[i] << \" \\n\"[i == n\
     \ - 1];\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
     \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
     \ = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n    i64\
     \ m;\n    cin >> n >> m;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto\
-    \ g = f.pow(m);\n    rep (i, g.size()) cout << g[i] << \" \\n\"[i == g.size()\
-    \ - 1];\n\n    return 0;\n}"
+    \ g = f.pow(m);\n    rep (i, g.size()) cout << g[i] << \" \\n\"[i == n - 1];\n\
+    \n    return 0;\n}"
   dependsOn:
   - fps/ntt_friendly.hpp
   - convolution/convolution.hpp
@@ -510,8 +510,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 16:26:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-06 17:19:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_pow.test.cpp
 layout: document

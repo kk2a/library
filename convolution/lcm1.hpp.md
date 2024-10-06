@@ -73,7 +73,7 @@ data:
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = n / p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace\
     \ kk2\n\n\n#line 7 \"convolution/lcm1.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\n\
-    template <class FPS>\nFPS &convolution_lcm(FPS &a, const FPS &b) {\n    assert(size(a)\
+    template <class FPS>\nFPS convolution_lcm(FPS &a, const FPS &b) {\n    assert(size(a)\
     \ == size(b));\n    int n = int(size(a)); // = int(size(b))\n    if (!n) return\
     \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n    Erato::set_upper(n);\n\n\
     \    DivisorTransform(a);\n    DivisorTransform(c);\n    for (int i = 1; i <=\
@@ -81,7 +81,7 @@ data:
     \n} // namespace kk2\n\n\n"
   code: "#ifndef CONVOLUTION_LCM\n#define CONVOLUTION_LCM 1\n\n#include <cassert>\n\
     \n#include \"divisor_multiple_transform.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\n\
-    template <class FPS>\nFPS &convolution_lcm(FPS &a, const FPS &b) {\n    assert(size(a)\
+    template <class FPS>\nFPS convolution_lcm(FPS &a, const FPS &b) {\n    assert(size(a)\
     \ == size(b));\n    int n = int(size(a)); // = int(size(b))\n    if (!n) return\
     \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n    Erato::set_upper(n);\n\n\
     \    DivisorTransform(a);\n    DivisorTransform(c);\n    for (int i = 1; i <=\
@@ -93,7 +93,7 @@ data:
   isVerificationFile: false
   path: convolution/lcm1.hpp
   requiredBy: []
-  timestamp: '2024-10-06 16:26:34+09:00'
+  timestamp: '2024-10-06 17:17:10+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/bitxor1.hpp
     title: convolution/bitxor1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/walsh_hadamard_transform.hpp
     title: convolution/walsh_hadamard_transform.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_xor_convolution
@@ -41,7 +41,7 @@ data:
     \       if ((i & j) != 0) {\n                auto x = a[j], y = a[i ^ j];\n  \
     \              a[j] = (-x + y) / 2, a[i ^ j] = (x + y) / 2;\n            }\n \
     \       }\n    }\n}\n\n} // namespace kk2\n\n\n#line 7 \"convolution/bitxor1.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class FPS>\nFPS &convolution_xor(FPS &a, const\
+    \n\nnamespace kk2 {\n\ntemplate <class FPS>\nFPS convolution_xor(FPS &a, const\
     \ FPS &b) {\n    assert(size(a) == size(b));\n    int n = int(size(a)); // ==\
     \ int(size(b)\n    if (!n) return {};\n    assert((n & -n) == n);\n    FPS c(b.begin(),\
     \ b.end());\n\n    WalshHadamardTransform(a);\n    WalshHadamardTransform(c);\n\
@@ -200,8 +200,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_xor.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 16:58:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-06 17:17:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_xor.test.cpp
 layout: document

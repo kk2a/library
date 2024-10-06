@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
@@ -39,10 +39,10 @@ data:
   - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt.test.cpp
     title: verify/yosupo_convolution/convolution_ntt.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,10 +51,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   _isVerificationFailed: true
@@ -184,7 +184,7 @@ data:
     \    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n \
     \   }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
     }\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convolution.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS &convolution(FPS\
+    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS\
     \ &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
     \ || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m -\
     \ 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j <\
@@ -198,10 +198,10 @@ data:
     \ kk2\n\n\n"
   code: "#ifndef CONVOLUTION_HPP\n#define CONVOLUTION_HPP 1\n\n#include <algorithm>\n\
     #include <vector>\n\n#include \"butterfly.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class FPS, class mint = typename FPS::value_type> FPS &convolution(FPS &a,\
-    \ const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n ||\
-    \ !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m - 1);\n\
-    \        for (int i = 0; i < n; i++) {\n            for (int j = 0; j < m; j++)\
+    \ <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS &a, const\
+    \ FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m)\
+    \ return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m - 1);\n \
+    \       for (int i = 0; i < n; i++) {\n            for (int j = 0; j < m; j++)\
     \ { res[i + j] += a[i] * b[j]; }\n        }\n        a = res;\n        return\
     \ a;\n    }\n    int z = 1;\n    while (z < n + m - 1) z <<= 1;\n    if (a ==\
     \ b) {\n        a.resize(z);\n        butterfly(a);\n        for (int i = 0; i\
@@ -225,7 +225,7 @@ data:
   - fps/ntt_friendly.hpp
   - fps/multivariate_fps.hpp
   - fps/multivariate_fps.hpp
-  timestamp: '2024-10-06 16:26:20+09:00'
+  timestamp: '2024-10-06 17:17:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp

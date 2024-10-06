@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/bitand1.hpp\"\n\n\n\n#include <cassert>\n\n\
@@ -32,7 +32,7 @@ data:
     \ i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; j++) {\n          \
     \  if ((i & j) != 0) a[j] -= a[i ^ j];\n        }\n    }\n}\n\n} // namespace\
     \ kk2\n\n\n#line 7 \"convolution/bitand1.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class FPS>\nFPS &convolution_and(FPS &a, const FPS &b) {\n    assert(size(a)\
+    \ <class FPS>\nFPS convolution_and(FPS &a, const FPS &b) {\n    assert(size(a)\
     \ == size(b));\n    int n = int(size(a)); // == int(size(b)\n    if (!n) return\
     \ {};\n    assert((n & -n) == n);\n    FPS c(b.begin(), b.end());\n\n    SuperSetZetaTransform(a);\n\
     \    SuperSetZetaTransform(c);\n    for (int i = 0; i < n; i++) a[i] *= c[i];\n\
@@ -40,7 +40,7 @@ data:
     \n\n"
   code: "#ifndef CONVOLUTION_AND\n#define CONVOLUTION_AND 1\n\n#include <cassert>\n\
     \n#include \"zeta_mobius_transfrom.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ FPS>\nFPS &convolution_and(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
+    \ FPS>\nFPS convolution_and(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
     \    int n = int(size(a)); // == int(size(b)\n    if (!n) return {};\n    assert((n\
     \ & -n) == n);\n    FPS c(b.begin(), b.end());\n\n    SuperSetZetaTransform(a);\n\
     \    SuperSetZetaTransform(c);\n    for (int i = 0; i < n; i++) a[i] *= c[i];\n\
@@ -51,8 +51,8 @@ data:
   isVerificationFile: false
   path: convolution/bitand1.hpp
   requiredBy: []
-  timestamp: '2024-10-06 16:26:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-10-06 17:17:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
 documentation_of: convolution/bitand1.hpp

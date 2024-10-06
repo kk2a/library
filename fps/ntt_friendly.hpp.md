@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':question:'
@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/convolution.hpp\"\
@@ -167,7 +167,7 @@ data:
     \       r *= zeta;\n    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(),\
     \ std::back_inserter(a));\n}\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convolution.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\
-    \ FPS &convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    \ FPS convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n\
     \ + m - 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0;\
     \ j < m; j++) { res[i + j] += a[i] * b[j]; }\n        }\n        a = res;\n  \
@@ -428,8 +428,8 @@ data:
   requiredBy:
   - math_mod/comb_large.hpp
   - fps/multivariate_fps.hpp
-  timestamp: '2024-10-06 16:26:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-10-06 17:17:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/bitor1.hpp
     title: convolution/bitor1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -45,14 +45,14 @@ data:
     \ == n);\n    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n;\
     \ j++) {\n            if ((i & j) != 0) a[j] -= a[i ^ j];\n        }\n    }\n\
     }\n\n} // namespace kk2\n\n\n#line 7 \"convolution/bitor1.hpp\"\n\nnamespace kk2\
-    \ {\n\ntemplate <class FPS>\nFPS &convolution_or(FPS &a, const FPS &b) {\n   \
-    \ assert(size(a) == size(b));\n    int n = int(size(a)); // == int(size(b)\n \
-    \   if (!n) return {};\n    assert((n & -n) == n); // n is a power of 2\n    FPS\
-    \ c(b.begin(), b.end());\n\n    SubsetZetaTransform(a);\n    SubsetZetaTransform(c);\n\
-    \    for (int i = 0; i < n; i++) a[i] *= c[i];\n    InverseSubsetZetaTransform(a);\n\
-    \n    return a;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\
-    \n#line 5 \"modint/mont.hpp\"\n#include <cstdint>\n#include <iostream>\n#include\
-    \ <type_traits>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\
+    \ {\n\ntemplate <class FPS>\nFPS convolution_or(FPS &a, const FPS &b) {\n    assert(size(a)\
+    \ == size(b));\n    int n = int(size(a)); // == int(size(b)\n    if (!n) return\
+    \ {};\n    assert((n & -n) == n); // n is a power of 2\n    FPS c(b.begin(), b.end());\n\
+    \n    SubsetZetaTransform(a);\n    SubsetZetaTransform(c);\n    for (int i = 0;\
+    \ i < n; i++) a[i] *= c[i];\n    InverseSubsetZetaTransform(a);\n\n    return\
+    \ a;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5\
+    \ \"modint/mont.hpp\"\n#include <cstdint>\n#include <iostream>\n#include <type_traits>\n\
+    \n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename\
     \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
     \                                 or std::is_same<T, __int128>::value,\n     \
@@ -207,8 +207,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_or.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 16:58:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-06 17:17:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_or.test.cpp
 layout: document

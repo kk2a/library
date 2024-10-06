@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'
@@ -165,7 +165,7 @@ data:
     \    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n \
     \   }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
     }\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convolution.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS &convolution(FPS\
+    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS\
     \ &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
     \ || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n + m -\
     \ 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j <\
@@ -487,15 +487,15 @@ data:
     }\n\n\n#line 6 \"verify/yosupo_fps/fps_inv.test.cpp\"\nusing namespace std;\n\n\
     using FPS = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n\
     \    cin >> n;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto g = f.inv();\n\
-    \    rep (i, g.size()) cout << g[i] << \" \\n\"[i == g.size() - 1];\n\n    return\
-    \ 0;\n}\n"
+    \    rep (i, g.size()) cout << g[i] << \" \\n\"[i == n - 1];\n\n    return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
     \ = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n    cin\
     \ >> n;\n    FPS f(n);\n    rep (i, n) cin >> f[i];\n    auto g = f.inv();\n \
-    \   rep (i, g.size()) cout << g[i] << \" \\n\"[i == g.size() - 1];\n\n    return\
-    \ 0;\n}"
+    \   rep (i, g.size()) cout << g[i] << \" \\n\"[i == n - 1];\n\n    return 0;\n\
+    }"
   dependsOn:
   - fps/ntt_friendly.hpp
   - convolution/convolution.hpp
@@ -510,7 +510,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_inv.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 16:26:20+09:00'
+  timestamp: '2024-10-06 17:19:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_inv.test.cpp

@@ -87,7 +87,7 @@ data:
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = n / p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace\
     \ kk2\n\n\n#line 7 \"convolution/gcd1.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\n\
-    template <class FPS>\nFPS &convolution_gcd(FPS &a, const FPS &b) {\n    assert(size(a)\
+    template <class FPS>\nFPS convolution_gcd(FPS &a, const FPS &b) {\n    assert(size(a)\
     \ == size(b));\n    int n = int(size(a)); // = int(size(b))\n    if (!n) return\
     \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n\n    MultipleTransform(a);\n\
     \    MultipleTransform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n \
@@ -245,7 +245,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_gcd.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 16:45:22+09:00'
+  timestamp: '2024-10-06 17:17:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_gcd.test.cpp
