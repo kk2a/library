@@ -7,6 +7,15 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_det_f2.test.cpp
+    title: verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
+    title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_product_f2.test.cpp
+    title: verify/yosupo_linalg/matrix_product_f2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   _isVerificationFailed: false
@@ -439,7 +448,10 @@ data:
   timestamp: '2024-10-06 20:03:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - verify/yosupo_linalg/matrix_product_f2.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
 documentation_of: matrix/matrix_F2.hpp
 layout: document
 redirect_from:

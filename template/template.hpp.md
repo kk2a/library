@@ -43,14 +43,23 @@ data:
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_det_f2.test.cpp
+    title: verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
+    title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_product_f2.test.cpp
+    title: verify/yosupo_linalg/matrix_product_f2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
@@ -197,12 +206,15 @@ data:
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - verify/yosupo_linalg/matrix_product_f2.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/matrix_pow.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp
   - verify/yosupo_linalg/matrix_inv.test.cpp
+  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
