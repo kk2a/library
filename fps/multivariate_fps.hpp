@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../convolution/multi_convo_truncated.hpp"
+#include "../convolution/multi_convolution_truncated.hpp"
 #include "ntt_friendly.hpp"
 
 namespace kk2 {

@@ -1,7 +1,7 @@
 #ifndef FPS_ARB_HPP
 #define FPS_ARB_HPP 1
 
-#include "../convolution/convo_arb.hpp"
+#include "../convolution/convolution_arb.hpp"
 #include "fps.hpp"
 
 namespace kk2 {
