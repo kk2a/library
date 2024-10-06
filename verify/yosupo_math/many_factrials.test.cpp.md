@@ -1,33 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/sample_point_shift.hpp
     title: fps/sample_point_shift.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: modint/mont.hpp
+    title: modint/mont.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -37,11 +40,14 @@ data:
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_factorials
@@ -471,26 +477,88 @@ data:
     \ /= den;\n        } else {\n            res = -1;\n            mint den = 1;\n\
     \            for (int i = mint::getmod() - 1; i > n; i++) { den *= i; }\n    \
     \        res /= den;\n        }\n        return res;\n    }\n};\n\n} // namespace\
-    \ kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
-    )\n\n// #include <bits/stdc++.h>\n#line 8 \"template/template.hpp\"\n#include\
-    \ <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include <chrono>\n\
-    #include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#line\
-    \ 17 \"template/template.hpp\"\n#include <iomanip>\n#include <iostream>\n#include\
-    \ <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
-    #include <stack>\n#include <string>\n#include <tuple>\n#line 32 \"template/template.hpp\"\
-    \n#include <unordered_map>\n#include <unordered_set>\n#line 36 \"template/template.hpp\"\
-    \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long\
-    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
-    \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing\
-    \ pli = std::pair<i64, int>;\n\ntemplate <class T> constexpr T infty = 0;\ntemplate\
-    \ <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64>\
-    \ = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>)\
-    \ * infty<i64>;\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate\
-    \ <> constexpr u64 infty<u64> = infty<i64>;\ntemplate <> constexpr double infty<double>\
-    \ = infty<i64>;\ntemplate <> constexpr long double infty<long double> = infty<i64>;\n\
-    \nconstexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
-    \ double PI = 3.14159265358979323846;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+    \ kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include\
+    \ <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line 10 \"modint/mont.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt {\n    using\
+    \ mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using i64 = int64_t;\n\
+    \    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n    static constexpr\
+    \ u32 get_r() {\n        u32 ret = p;\n        for (int i = 0; i < 4; ++i) ret\
+    \ *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr u32 r =\
+    \ get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r *\
+    \ p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
+    \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
+    \n    u32 _v;\n\n    operator int() const { return val(); }\n\n    constexpr LazyMontgomeryModInt()\
+    \ : _v(0) {}\n\n    template <typename T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p\
+    \ + p) * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) { return (b\
+    \ + u64(u32(b) * u32(-r)) * p) >> 32; }\n\n    constexpr mint &operator++() {\
+    \ return *this += 1; }\n\n    constexpr mint &operator--() { return *this -= 1;\
+    \ }\n\n    constexpr mint operator++(int) {\n        mint ret = *this;\n     \
+    \   *this += 1;\n        return ret;\n    }\n\n    constexpr mint operator--(int)\
+    \ {\n        mint ret = *this;\n        *this -= 1;\n        return ret;\n   \
+    \ }\n\n    constexpr mint &operator+=(const mint &b) {\n        if (i32(_v +=\
+    \ b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
+    \ mint &operator-=(const mint &b) {\n        if (i32(_v -= b._v) < 0) _v += 2\
+    \ * p;\n        return *this;\n    }\n\n    constexpr mint &operator*=(const mint\
+    \ &b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n    }\n\n\
+    \    constexpr mint &operator/=(const mint &b) {\n        *this *= b.inv();\n\
+    \        return *this;\n    }\n\n    constexpr mint operator-() const { return\
+    \ mint() - mint(*this); }\n\n    constexpr bool operator==(const mint &b) const\
+    \ {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);\n\
+    \    }\n\n    constexpr bool operator!=(const mint &b) const {\n        return\
+    \ (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n    }\n\n    friend\
+    \ constexpr mint operator+(const mint &a, const mint &b) { return mint(a) += b;\
+    \ }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator+(const mint &a, T b) {\n  \
+    \      return mint(a) += mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator+(T a, const mint &b) {\n  \
+    \      return mint(a) += b;\n    }\n\n    friend constexpr mint operator-(const\
+    \ mint &a, const mint &b) { return mint(a) -= b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator-(const mint &a, T b) {\n  \
+    \      return mint(a) -= mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator-(T a, const mint &b) {\n  \
+    \      return mint(a) -= b;\n    }\n\n    friend constexpr mint operator*(const\
+    \ mint &a, const mint &b) { return mint(a) *= b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator*(const mint &a, T b) {\n  \
+    \      return mint(a) *= mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator*(T a, const mint &b) {\n  \
+    \      return mint(a) *= b;\n    }\n\n    friend constexpr mint operator/(const\
+    \ mint &a, const mint &b) { return mint(a) /= b; }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator/(const mint &a, T b) {\n  \
+    \      return mint(a) /= mint(b);\n    }\n\n    template <class T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ * = nullptr>\n    friend constexpr mint operator/(T a, const mint &b) {\n  \
+    \      return mint(a) /= b;\n    }\n\n    template <class T> constexpr mint pow(T\
+    \ n) const {\n        mint ret(1), mul(*this);\n        while (n > 0) {\n    \
+    \        if (n & 1) ret *= mul;\n            mul *= mul;\n            n >>= 1;\n\
+    \        }\n        return ret;\n    }\n\n    constexpr mint inv() const { return\
+    \ pow(p - 2); }\n\n    friend std::ostream &operator<<(std::ostream &os, const\
+    \ mint &x) { return os << x.val(); }\n\n    friend std::istream &operator>>(std::istream\
+    \ &is, mint &x) {\n        i64 t;\n        is >> t;\n        x = mint(t);\n  \
+    \      return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
+    \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n\n    static\
+    \ constexpr u32 getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
+    \n\nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
+    \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"\
+    O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#line 8 \"template/template.hpp\"\
+    \n#include <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include\
+    \ <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #line 17 \"template/template.hpp\"\n#include <iomanip>\n#line 19 \"template/template.hpp\"\
+    \n#include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n\
+    #include <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include\
+    \ <sstream>\n#include <stack>\n#include <string>\n#include <tuple>\n#line 32 \"\
+    template/template.hpp\"\n#include <unordered_map>\n#include <unordered_set>\n\
+    #line 36 \"template/template.hpp\"\n\nusing u32 = unsigned int;\nusing i64 = long\
+    \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+    \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
+    template <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
+    \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
+    \ << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
+    template <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64\
+    \ infty<u64> = infty<i64>;\ntemplate <> constexpr double infty<double> = infty<i64>;\n\
+    template <> constexpr long double infty<long double> = infty<i64>;\n\nconstexpr\
+    \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long double PI\
+    \ = 3.14159265358979323846;\n\ntemplate <class T> using vc = std::vector<T>;\n\
     template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
     \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
     \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
@@ -522,15 +590,16 @@ data:
     }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
     }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
     }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
-    }\n\n\n#line 5 \"verify/yosupo_math/many_factrials.test.cpp\"\nusing namespace\
+    }\n\n\n#line 6 \"verify/yosupo_math/many_factrials.test.cpp\"\nusing namespace\
     \ std;\n\nint main() {\n    int t;\n    cin >> t;\n    rep (t) {\n        int\
-    \ n;\n        cin >> n;\n        cout << kk2::CombLarge::fact(n) << \"\\n\";\n\
-    \    }\n\n    return 0;\n}\n"
+    \ n;\n        cin >> n;\n        cout << kk2::CombLarge<kk2::mont998>::fact(n)\
+    \ << \"\\n\";\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_factorials\" \n\n\
-    #include \"../../math_mod/comb_large.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    rep (t)\
-    \ {\n        int n;\n        cin >> n;\n        cout << kk2::CombLarge::fact(n)\
-    \ << \"\\n\";\n    }\n\n    return 0;\n}"
+    #include \"../../math_mod/comb_large.hpp\"\n#include \"../../modint/mont.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int t;\n    cin >> t;\n    rep (t) {\n        int n;\n        cin >>\
+    \ n;\n        cout << kk2::CombLarge<kk2::mont998>::fact(n) << \"\\n\";\n    }\n\
+    \n    return 0;\n}"
   dependsOn:
   - math_mod/comb_large.hpp
   - fps/ntt_friendly.hpp
@@ -543,12 +612,14 @@ data:
   - fps/sample_point_shift.hpp
   - type_traits/type_traits.hpp
   - math_mod/comb.hpp
+  - modint/mont.hpp
+  - type_traits/type_traits.hpp
   - template/template.hpp
   isVerificationFile: true
   path: verify/yosupo_math/many_factrials.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 20:18:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-06 23:42:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/many_factrials.test.cpp
 layout: document

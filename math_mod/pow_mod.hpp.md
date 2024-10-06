@@ -5,10 +5,10 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'
@@ -32,10 +32,10 @@ data:
   - icon: ':x:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
   - icon: ':warning:'
@@ -66,7 +66,7 @@ data:
   - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
   - icon: ':heavy_check_mark:'

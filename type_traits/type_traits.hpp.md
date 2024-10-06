@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
@@ -53,13 +53,13 @@ data:
   - icon: ':x:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   - icon: ':warning:'
@@ -68,7 +68,7 @@ data:
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
   - icon: ':warning:'
@@ -162,10 +162,13 @@ data:
   - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_math/many_factrials.test.cpp
+    title: verify/yosupo_math/many_factrials.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -253,6 +256,7 @@ data:
   timestamp: '2024-09-29 16:53:59+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/primality_test.test.cpp

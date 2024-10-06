@@ -72,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
   - icon: ':heavy_check_mark:'
