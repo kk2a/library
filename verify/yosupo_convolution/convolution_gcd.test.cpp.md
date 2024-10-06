@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -30,7 +30,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/gcd_convolution
   bundledCode: "#line 1 \"verify/yosupo_convolution/convolution_gcd.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\" \n\n#line 1 \"convolution/gcd1.hpp\"\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n\n#line 1 \"convolution/gcd1.hpp\"\
     \n\n\n\n#include <cassert>\n\n#line 1 \"convolution/divisor_multiple_transform.hpp\"\
     \n\n\n\n#line 1 \"math/Eratosthenes.hpp\"\n\n\n\n#include <algorithm>\n#line 6\
     \ \"math/Eratosthenes.hpp\"\n#include <utility>\n#include <vector>\n\nnamespace\
@@ -184,57 +184,65 @@ data:
     \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long\
     \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
     \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing\
-    \ pli = std::pair<i64, int>;\n\ntemplate <class T> constexpr T infty = 0;\ntemplate\
-    \ <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64>\
-    \ = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>)\
-    \ * infty<i64>;\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate\
-    \ <> constexpr u64 infty<u64> = infty<i64>;\ntemplate <> constexpr double infty<double>\
-    \ = infty<i64>;\ntemplate <> constexpr long double infty<long double> = infty<i64>;\n\
-    \nconstexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
-    \ double PI = 3.14159265358979323846;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+    \ pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
     template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
     \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
     \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
-    \ pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\nnamespace\
-    \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(const T &init,\
-    \ int first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n \
-    \       return std::vector<T>(first, init);\n    } else {\n        return std::vector<decltype(make_vector(init,\
-    \ sizes...))>(first,\n                                                       \
-    \           make_vector(init, sizes...));\n    }\n}\n\ntemplate <class T, class\
-    \ U> void fill_all(std::vector<T> &v, const U &x) {\n    std::fill(std::begin(v),\
-    \ std::end(v), T(x));\n}\n\ntemplate <class T, class U> void fill_all(std::vector<std::vector<T>>\
-    \ &v, const U &x) {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace\
-    \ kk2\n\ntemplate <class T, class S> inline bool chmax(T &a, const S &b) {\n \
-    \   return (a < b ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool\
-    \ chmin(T &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n#define\
-    \ rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i =\
-    \ 0; i < (i64)(a); ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b);\
-    \ ++i)\n#define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i,\
-    \ a, b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c,\
-    \ d, ...) d\n#define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
-    #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
-    #define fi first\n#define se second\n#define all(p) std::begin(p), std::end(p)\n\
-    \nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
-    \    }\n} iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream\
-    \ out(\"out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\
-    \nvoid YES(bool b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n\
-    }\n\nvoid NO(bool b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n\
-    }\n\nvoid Yes(bool b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n\
-    }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
-    }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
-    }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
+    \ pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate <class\
+    \ T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int> = (1 << 30)\
+    \ - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\n\
+    template <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\n\
+    template <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64\
+    \ infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
+    template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
+    \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
+    constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
+    \nnamespace kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int first,\
+    \ Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return\
+    \ std::vector<T>(first);\n    } else {\n        return std::vector<decltype(make_vector(sizes...))>(first,\
+    \ make_vector(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
+    \ &v, const U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate\
+    \ <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x)\
+    \ {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate\
+    \ <class T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b\
+    \ ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const\
+    \ S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\nvoid YES(bool b = 1) {\n \
+    \   std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n}\n\nvoid NO(bool b = 1) {\n\
+    \    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n}\n\nvoid Yes(bool b = 1)\
+    \ {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n}\n\nvoid No(bool b =\
+    \ 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n}\n\nvoid yes(bool\
+    \ b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n}\n\nvoid no(bool\
+    \ b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n}\n\n#define rep1(a)\
+    \ for (i64 _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a);\
+    \ ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i,\
+    \ a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a)\
+    \ - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
+    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
+    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
+    \ all(p) std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n   \
+    \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
+    } iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"\
+    out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\ntemplate\
+    \ <class T, class U> std::ostream &operator<<(std::ostream &os, const std::pair<T,\
+    \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
+    \ <class T, class U> std::istream &operator>>(std::istream &is, std::pair<T, U>\
+    \ &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
+    \ T> std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) {\n \
+    \   for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
+    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class T> std::istream &operator>>(std::istream\
+    \ &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n    return is;\n\
     }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_gcd.test.cpp\"\nusing namespace\
     \ std;\n\nint main() {\n    int n;\n    cin >> n;\n    vc<kk2::mont998> a(n +\
     \ 1), b(n + 1);\n    rep (i, n) cin >> a[i + 1];\n    rep (i, n) cin >> b[i +\
     \ 1];\n    kk2::convolution_gcd(a, b);\n    rep (i, n) cout << a[i + 1] << \"\
     \ \\n\"[i == n - 1];\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\" \n\n\
-    #include \"../../convolution/gcd1.hpp\"\n#include \"../../modint/mont.hpp\"\n\
-    #include \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n\
-    \    int n;\n    cin >> n;\n    vc<kk2::mont998> a(n + 1), b(n + 1);\n    rep\
-    \ (i, n) cin >> a[i + 1];\n    rep (i, n) cin >> b[i + 1];\n    kk2::convolution_gcd(a,\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n\n#include\
+    \ \"../../convolution/gcd1.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
+    \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
+    \ n;\n    cin >> n;\n    vc<kk2::mont998> a(n + 1), b(n + 1);\n    rep (i, n)\
+    \ cin >> a[i + 1];\n    rep (i, n) cin >> b[i + 1];\n    kk2::convolution_gcd(a,\
     \ b);\n    rep (i, n) cout << a[i + 1] << \" \\n\"[i == n - 1];\n\n    return\
-    \ 0;\n}"
+    \ 0;\n}\n"
   dependsOn:
   - convolution/gcd1.hpp
   - convolution/divisor_multiple_transform.hpp
@@ -245,7 +253,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_gcd.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 18:26:21+09:00'
+  timestamp: '2024-10-07 04:00:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_gcd.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: matrix/basis.hpp
     title: matrix/basis.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
   _extendedRequiredBy: []
@@ -33,15 +33,20 @@ data:
     \ &operator[](int i) {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n\
     \    }\n\n    void display() const {\n        for (int i = 0; i < _h; i++) {\n\
     \            for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << \" \\n\"\
-    [j == _w - 1];\n        }\n    }\n\n    void set(int i, int j, Field x) {\n  \
-    \      assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j]\
-    \ = x;\n    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       for (int j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n     \
-    \   }\n        return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n\
-    \        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int\
-    \ i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j]\
-    \ -= rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator*=(const\
+    [j == _w - 1];\n        }\n    }\n\n    mat &input(std::istream &is) {\n     \
+    \   for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\
+    \ is >> _mat[i][j]; }\n        }\n        return *this;\n    }\n\n    void output(std::ostream\
+    \ &os) const {\n        for (int i = 0; i < _h; i++) {\n            for (int j\
+    \ = 0; j < _w; j++) { os << _mat[i][j] << \" \\n\"[j == _w - 1]; }\n        }\n\
+    \    }\n\n    void set(int i, int j, Field x) {\n        assert(0 <= i && i <\
+    \ _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n    }\n\n\
+    \    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n      \
+    \  assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n           \
+    \ for (int j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n        }\n\
+    \        return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n     \
+    \   assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
+    \ 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j] -=\
+    \ rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator*=(const\
     \ mat &rhs) {\n        assert(_w == rhs._h);\n        std::vector<std::vector<Field>>\
     \ res(_h, std::vector<Field>(rhs._w, Field()));\n        for (int i = 0; i < _h;\
     \ i++) {\n            for (int j = 0; j < rhs._w; j++) {\n                for\
@@ -222,7 +227,7 @@ data:
   isVerificationFile: false
   path: matrix/frobenius_form.hpp
   requiredBy: []
-  timestamp: '2024-10-06 20:03:15+09:00'
+  timestamp: '2024-10-07 04:00:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/frobenius_form.hpp

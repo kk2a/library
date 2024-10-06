@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
   _extendedVerifiedWith:
@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -38,7 +38,9 @@ data:
     \ at index 0 in the string is '1',\n    // but in the bitset it will be considered\
     \ as index 0.\n    DynamicBitSet(const std::string &s) : n(s.size()) {\n     \
     \   block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        set(s);\n \
-    \   }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
+    \   }\n\n    friend std::istream &operator>>(std::istream &is, T &bs) {\n    \
+    \    std::string s;\n        is >> s;\n        bs.set_reversed(s);\n        return\
+    \ is;\n    }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
     \ T &rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
     \        if (!(n & BLOCK_MASK)) {\n            std::copy(std::begin(rhs.block),\n\
     \                      std::end(rhs.block),\n                      std::begin(block)\
@@ -83,8 +85,10 @@ data:
     \ {\n        std::vector<UInt> &block;\n        int idx;\n\n      public:\n  \
     \      BitReference(std::vector<UInt> &block_, int idx_) : block(block_), idx(idx_)\
     \ {}\n\n        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG] >>\
-    \ (idx & BLOCK_MASK)) & 1; }\n\n        BitReference &operator=(bool x) {\n  \
-    \          if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+    \ (idx & BLOCK_MASK)) & 1; }\n\n        friend std::istream &operator>>(std::istream\
+    \ &is, BitReference a) {\n            bool c;\n            is >> c;\n        \
+    \    a = c;\n            return is;\n        }\n\n        BitReference &operator=(bool\
+    \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
     \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
     \            return *this;\n        }\n\n        BitReference &operator=(const\
     \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
@@ -172,7 +176,9 @@ data:
     \ at index 0 in the string is '1',\n    // but in the bitset it will be considered\
     \ as index 0.\n    DynamicBitSet(const std::string &s) : n(s.size()) {\n     \
     \   block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        set(s);\n \
-    \   }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
+    \   }\n\n    friend std::istream &operator>>(std::istream &is, T &bs) {\n    \
+    \    std::string s;\n        is >> s;\n        bs.set_reversed(s);\n        return\
+    \ is;\n    }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
     \ T &rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
     \        if (!(n & BLOCK_MASK)) {\n            std::copy(std::begin(rhs.block),\n\
     \                      std::end(rhs.block),\n                      std::begin(block)\
@@ -217,8 +223,10 @@ data:
     \ {\n        std::vector<UInt> &block;\n        int idx;\n\n      public:\n  \
     \      BitReference(std::vector<UInt> &block_, int idx_) : block(block_), idx(idx_)\
     \ {}\n\n        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG] >>\
-    \ (idx & BLOCK_MASK)) & 1; }\n\n        BitReference &operator=(bool x) {\n  \
-    \          if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+    \ (idx & BLOCK_MASK)) & 1; }\n\n        friend std::istream &operator>>(std::istream\
+    \ &is, BitReference a) {\n            bool c;\n            is >> c;\n        \
+    \    a = c;\n            return is;\n        }\n\n        BitReference &operator=(bool\
+    \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
     \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
     \            return *this;\n        }\n\n        BitReference &operator=(const\
     \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
@@ -296,8 +304,8 @@ data:
   path: data_structure/my_bitset.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
-  timestamp: '2024-10-05 17:33:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-07 04:00:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp

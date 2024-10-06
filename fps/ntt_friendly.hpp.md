@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/convolution.hpp\"\
@@ -181,10 +181,22 @@ data:
     \        butterfly(t);\n        for (int i = 0; i < z; i++) a[i] *= t[i];\n  \
     \  }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    return a;\n}\n\n} //\
     \ namespace kk2\n\n\n#line 1 \"fps/fps.hpp\"\n\n\n\n#line 6 \"fps/fps.hpp\"\n\
-    #include <utility>\n#line 8 \"fps/fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ mint> struct FormalPowerSeries : std::vector<mint> {\n    using std::vector<mint>::vector;\n\
-    \    using FPS = FormalPowerSeries;\n\n    FPS &operator+=(const FPS &r) {\n \
-    \       if (this->size() < r.size()) this->resize(r.size());\n        for (int\
+    #include <iostream>\n#include <utility>\n#line 9 \"fps/fps.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class mint> struct FormalPowerSeries : std::vector<mint>\
+    \ {\n    using std::vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
+    \n    void display() const {\n        for (int i = 0; i < (int)this->size(); i++)\
+    \ {\n            std::cout << (*this)[i] << \" \\n\"[i == (int)this->size() -\
+    \ 1];\n        }\n    }\n\n    void output(std::ostream &os) const {\n       \
+    \ for (int i = 0; i < (int)this->size(); i++) {\n            os << (*this)[i]\
+    \ << (i + 1 == (int)this->size() ? \"\" : \" \");\n        }\n    }\n\n    friend\
+    \ std::ofstream &operator<<(std::ofstream &os, FPS &fps_) const {\n        for\
+    \ (int i = 0; i < (int)fps_.size(); i++) {\n            os << fps_[i] << (i +\
+    \ 1 == (int)fps_.size() ? '' : ' ');\n        }\n        return os;\n    }\n\n\
+    \    FPS &input(std::istream &is) {\n        for (int i = 0; i < (int)this->size();\
+    \ i++) is >> (*this)[i];\n        return *this;\n    }\n\n    friend std::ifstream\
+    \ &operator>>(std::ifstream &is, FPS &fps_) {\n        for (auto &x : fps_) is\
+    \ >> x;\n        return is;\n    }\n\n    FPS &operator+=(const FPS &r) {\n  \
+    \      if (this->size() < r.size()) this->resize(r.size());\n        for (int\
     \ i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return *this;\n\
     \    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += r;\n        return *this;\n    }\n\n    FPS &operator-=(const\
@@ -431,8 +443,8 @@ data:
   requiredBy:
   - math_mod/comb_large.hpp
   - fps/multivariate_fps.hpp
-  timestamp: '2024-10-06 17:17:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-07 04:00:22+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp

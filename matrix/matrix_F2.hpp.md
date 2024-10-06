@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   _extendedRequiredBy: []
@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"matrix/matrix_F2.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -40,7 +40,9 @@ data:
     \ at index 0 in the string is '1',\n    // but in the bitset it will be considered\
     \ as index 0.\n    DynamicBitSet(const std::string &s) : n(s.size()) {\n     \
     \   block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        set(s);\n \
-    \   }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
+    \   }\n\n    friend std::istream &operator>>(std::istream &is, T &bs) {\n    \
+    \    std::string s;\n        is >> s;\n        bs.set_reversed(s);\n        return\
+    \ is;\n    }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
     \ T &rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
     \        if (!(n & BLOCK_MASK)) {\n            std::copy(std::begin(rhs.block),\n\
     \                      std::end(rhs.block),\n                      std::begin(block)\
@@ -85,8 +87,10 @@ data:
     \ {\n        std::vector<UInt> &block;\n        int idx;\n\n      public:\n  \
     \      BitReference(std::vector<UInt> &block_, int idx_) : block(block_), idx(idx_)\
     \ {}\n\n        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG] >>\
-    \ (idx & BLOCK_MASK)) & 1; }\n\n        BitReference &operator=(bool x) {\n  \
-    \          if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+    \ (idx & BLOCK_MASK)) & 1; }\n\n        friend std::istream &operator>>(std::istream\
+    \ &is, BitReference a) {\n            bool c;\n            is >> c;\n        \
+    \    a = c;\n            return is;\n        }\n\n        BitReference &operator=(bool\
+    \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
     \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
     \            return *this;\n        }\n\n        BitReference &operator=(const\
     \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
@@ -172,9 +176,11 @@ data:
     \    class Proxy {\n        std::vector<DynamicBitSet> &bs;\n        int i;\n\n\
     \      public:\n        Proxy(std::vector<DynamicBitSet> &bs_, int i_) : bs(bs_),\
     \ i(i_) {}\n\n        operator DynamicBitSet() const { return bs[i]; }\n\n   \
-    \     std::string to_string() const { return bs[i].to_string(); }\n\n        std::string\
-    \ to_reversed_string() const { return bs[i].to_reversed_string(); }\n\n      \
-    \  Proxy &operator=(const std::string &s) {\n            bs[i].set_reversed(s);\n\
+    \     friend std::istream &operator>>(std::istream &is, Proxy p) {\n         \
+    \   std::string s;\n            is >> s;\n            p = s;\n            return\
+    \ is;\n        }\n\n        std::string to_string() const { return bs[i].to_string();\
+    \ }\n\n        std::string to_reversed_string() const { return bs[i].to_reversed_string();\
+    \ }\n\n        Proxy &operator=(const std::string &s) {\n            bs[i].set_reversed(s);\n\
     \            return *this;\n        }\n\n        Proxy &operator=(const DynamicBitSet\
     \ &x) {\n            bs[i] = x;\n            return *this;\n        }\n\n    \
     \    Proxy &operator=(const Proxy &x) {\n            bs[i] = x.bs[x.i];\n    \
@@ -194,33 +200,37 @@ data:
     \      bs[i].flip();\n            return *this;\n        }\n    };\n\n    Proxy\
     \ operator[](int i) {\n        assert(0 <= i && i < _h);\n        return Proxy(_mat,\
     \ i);\n    }\n\n    void display() const {\n        for (int i = 0; i < _h; i++)\
-    \ { std::cout << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    void\
-    \ set(int i, int j, bool x) {\n        assert(0 <= i && i < _h);\n        assert(0\
-    \ <= j && j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void set(int i, const\
-    \ std::string &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set(s);\n\
-    \    }\n\n    void set_reversed(int i, const std::string &s) {\n        assert((int)s.size()\
-    \ == _w);\n        _mat[i].set_reversed(s);\n    }\n\n    mat &operator+=(const\
+    \ { std::cout << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    mat\
+    \ &input(std::istream &is) {\n        for (int i = 0; i < _h; i++) {\n       \
+    \     std::string s;\n            is >> s;\n            _mat[i].set_reversed(s);\n\
+    \        }\n        return *this;\n    }\n\n    void output(std::ostream &os)\
+    \ const {\n        for (int i = 0; i < _h; i++) {\n            os << _mat[i].to_reversed_string()\
+    \ << \"\\n\";\n        }\n    }\n\n    void set(int i, int j, bool x) {\n    \
+    \    assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i].set(j,\
+    \ x);\n    }\n\n    void set(int i, const std::string &s) {\n        assert((int)s.size()\
+    \ == _w);\n        _mat[i].set(s);\n    }\n\n    void set_reversed(int i, const\
+    \ std::string &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set_reversed(s);\n\
+    \    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) { _mat[i]\
+    \ = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator-=(const\
     \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
     \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }\n \
-    \       return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n      \
+    \       return *this;\n    }\n\n    mat &operator^=(const mat &rhs) {\n      \
     \  assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
     \ 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n\
-    \    }\n\n    mat &operator^=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    \    }\n\n    mat &operator|=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
     \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) { _mat[i]\
-    \ = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator|=(const\
+    \ = _mat[i] | rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator&=(const\
     \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
-    \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] | rhs._mat[i]; }\n \
-    \       return *this;\n    }\n\n    mat &operator&=(const mat &rhs) {\n      \
-    \  assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
-    \ 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }\n        return *this;\n\
-    \    }\n\n    mat &operator*=(const mat &rhs) {\n        assert(_w == rhs._h);\n\
-    \        std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n        for\
-    \ (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\n   \
-    \             if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                // cout\
-    \ << i << \" \" << j << \" \" << _mat[i][j] << \" check\" <<\n               \
-    \ // endl; rep (i, 2) { cout << res[i] << endl; }\n            }\n        }\n\
-    \        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n \
-    \   friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) +=\
+    \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }\n \
+    \       return *this;\n    }\n\n    mat &operator*=(const mat &rhs) {\n      \
+    \  assert(_w == rhs._h);\n        std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n\
+    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
+    \ {\n                if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                //\
+    \ cout << i << \" \" << j << \" \" << _mat[i][j] << \" check\" <<\n          \
+    \      // endl; rep (i, 2) { cout << res[i] << endl; }\n            }\n      \
+    \  }\n        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\
+    \n    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) +=\
     \ rhs; }\n\n    friend mat operator-(const mat &lhs, const mat &rhs) { return\
     \ mat(lhs) -= rhs; }\n\n    friend mat operator^(const mat &lhs, const mat &rhs)\
     \ { return mat(lhs) ^= rhs; }\n\n    friend mat operator|(const mat &lhs, const\
@@ -296,8 +306,11 @@ data:
     \ res[pivot]);\n            for (int j = 0; j < _h; j++) {\n                if\
     \ (j == i) continue;\n                if (buf[j][i]) {\n                    buf[j]\
     \ ^= buf[i];\n                    res[j] ^= res[i];\n                }\n     \
-    \       }\n        }\n        return mat(res);\n    }\n};\n\n} // namespace kk2\n\
-    \n\n"
+    \       }\n        }\n        return mat(res);\n    }\n\n    mat transpose() {\n\
+    \        mat res(_w, _h);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  for (int j = 0; j < _w; j++) { res[j][i] = _mat[i][j]; }\n        }\n     \
+    \   return res;\n    }\n\n    mat &inplace_transpose() {\n        return *this\
+    \ = transpose();\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATRIX_MATRIX_F2_HPP\n#define MATRIX_MATRIX_F2_HPP 1\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <iostream>\n#include <optional>\n\
     #include <string>\n#include <vector>\n\n#include \"../data_structure/my_bitset.hpp\"\
@@ -314,9 +327,11 @@ data:
     \    class Proxy {\n        std::vector<DynamicBitSet> &bs;\n        int i;\n\n\
     \      public:\n        Proxy(std::vector<DynamicBitSet> &bs_, int i_) : bs(bs_),\
     \ i(i_) {}\n\n        operator DynamicBitSet() const { return bs[i]; }\n\n   \
-    \     std::string to_string() const { return bs[i].to_string(); }\n\n        std::string\
-    \ to_reversed_string() const { return bs[i].to_reversed_string(); }\n\n      \
-    \  Proxy &operator=(const std::string &s) {\n            bs[i].set_reversed(s);\n\
+    \     friend std::istream &operator>>(std::istream &is, Proxy p) {\n         \
+    \   std::string s;\n            is >> s;\n            p = s;\n            return\
+    \ is;\n        }\n\n        std::string to_string() const { return bs[i].to_string();\
+    \ }\n\n        std::string to_reversed_string() const { return bs[i].to_reversed_string();\
+    \ }\n\n        Proxy &operator=(const std::string &s) {\n            bs[i].set_reversed(s);\n\
     \            return *this;\n        }\n\n        Proxy &operator=(const DynamicBitSet\
     \ &x) {\n            bs[i] = x;\n            return *this;\n        }\n\n    \
     \    Proxy &operator=(const Proxy &x) {\n            bs[i] = x.bs[x.i];\n    \
@@ -336,33 +351,37 @@ data:
     \      bs[i].flip();\n            return *this;\n        }\n    };\n\n    Proxy\
     \ operator[](int i) {\n        assert(0 <= i && i < _h);\n        return Proxy(_mat,\
     \ i);\n    }\n\n    void display() const {\n        for (int i = 0; i < _h; i++)\
-    \ { std::cout << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    void\
-    \ set(int i, int j, bool x) {\n        assert(0 <= i && i < _h);\n        assert(0\
-    \ <= j && j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void set(int i, const\
-    \ std::string &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set(s);\n\
-    \    }\n\n    void set_reversed(int i, const std::string &s) {\n        assert((int)s.size()\
-    \ == _w);\n        _mat[i].set_reversed(s);\n    }\n\n    mat &operator+=(const\
+    \ { std::cout << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    mat\
+    \ &input(std::istream &is) {\n        for (int i = 0; i < _h; i++) {\n       \
+    \     std::string s;\n            is >> s;\n            _mat[i].set_reversed(s);\n\
+    \        }\n        return *this;\n    }\n\n    void output(std::ostream &os)\
+    \ const {\n        for (int i = 0; i < _h; i++) {\n            os << _mat[i].to_reversed_string()\
+    \ << \"\\n\";\n        }\n    }\n\n    void set(int i, int j, bool x) {\n    \
+    \    assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i].set(j,\
+    \ x);\n    }\n\n    void set(int i, const std::string &s) {\n        assert((int)s.size()\
+    \ == _w);\n        _mat[i].set(s);\n    }\n\n    void set_reversed(int i, const\
+    \ std::string &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set_reversed(s);\n\
+    \    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) { _mat[i]\
+    \ = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator-=(const\
     \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
     \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }\n \
-    \       return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n      \
+    \       return *this;\n    }\n\n    mat &operator^=(const mat &rhs) {\n      \
     \  assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
     \ 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n\
-    \    }\n\n    mat &operator^=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    \    }\n\n    mat &operator|=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
     \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) { _mat[i]\
-    \ = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator|=(const\
+    \ = _mat[i] | rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator&=(const\
     \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
-    \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] | rhs._mat[i]; }\n \
-    \       return *this;\n    }\n\n    mat &operator&=(const mat &rhs) {\n      \
-    \  assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
-    \ 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }\n        return *this;\n\
-    \    }\n\n    mat &operator*=(const mat &rhs) {\n        assert(_w == rhs._h);\n\
-    \        std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n        for\
-    \ (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\n   \
-    \             if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                // cout\
-    \ << i << \" \" << j << \" \" << _mat[i][j] << \" check\" <<\n               \
-    \ // endl; rep (i, 2) { cout << res[i] << endl; }\n            }\n        }\n\
-    \        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n \
-    \   friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) +=\
+    \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }\n \
+    \       return *this;\n    }\n\n    mat &operator*=(const mat &rhs) {\n      \
+    \  assert(_w == rhs._h);\n        std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n\
+    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
+    \ {\n                if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                //\
+    \ cout << i << \" \" << j << \" \" << _mat[i][j] << \" check\" <<\n          \
+    \      // endl; rep (i, 2) { cout << res[i] << endl; }\n            }\n      \
+    \  }\n        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\
+    \n    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) +=\
     \ rhs; }\n\n    friend mat operator-(const mat &lhs, const mat &rhs) { return\
     \ mat(lhs) -= rhs; }\n\n    friend mat operator^(const mat &lhs, const mat &rhs)\
     \ { return mat(lhs) ^= rhs; }\n\n    friend mat operator|(const mat &lhs, const\
@@ -438,15 +457,18 @@ data:
     \ res[pivot]);\n            for (int j = 0; j < _h; j++) {\n                if\
     \ (j == i) continue;\n                if (buf[j][i]) {\n                    buf[j]\
     \ ^= buf[i];\n                    res[j] ^= res[i];\n                }\n     \
-    \       }\n        }\n        return mat(res);\n    }\n};\n\n} // namespace kk2\n\
-    \n#endif // MATRIX_MATRIX_F2_HPP\n"
+    \       }\n        }\n        return mat(res);\n    }\n\n    mat transpose() {\n\
+    \        mat res(_w, _h);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  for (int j = 0; j < _w; j++) { res[j][i] = _mat[i][j]; }\n        }\n     \
+    \   return res;\n    }\n\n    mat &inplace_transpose() {\n        return *this\
+    \ = transpose();\n    }\n};\n\n} // namespace kk2\n\n#endif // MATRIX_MATRIX_F2_HPP\n"
   dependsOn:
   - data_structure/my_bitset.hpp
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2024-10-06 20:03:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-07 04:00:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp

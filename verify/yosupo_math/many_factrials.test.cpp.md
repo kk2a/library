@@ -1,60 +1,60 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/sample_point_shift.hpp
     title: fps/sample_point_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_factorials
     links:
     - https://judge.yosupo.jp/problem/many_factorials
   bundledCode: "#line 1 \"verify/yosupo_math/many_factrials.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/many_factorials\" \n\n#line 1 \"math_mod/comb_large.hpp\"\
+    \ \"https://judge.yosupo.jp/problem/many_factorials\"\n\n#line 1 \"math_mod/comb_large.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
     \ <vector>\n\n#line 1 \"fps/ntt_friendly.hpp\"\n\n\n\n#line 1 \"convolution/convolution.hpp\"\
     \n\n\n\n#line 6 \"convolution/convolution.hpp\"\n\n#line 1 \"convolution/butterfly.hpp\"\
@@ -190,10 +190,22 @@ data:
     \        butterfly(t);\n        for (int i = 0; i < z; i++) a[i] *= t[i];\n  \
     \  }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    return a;\n}\n\n} //\
     \ namespace kk2\n\n\n#line 1 \"fps/fps.hpp\"\n\n\n\n#line 6 \"fps/fps.hpp\"\n\
-    #include <utility>\n#line 8 \"fps/fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ mint> struct FormalPowerSeries : std::vector<mint> {\n    using std::vector<mint>::vector;\n\
-    \    using FPS = FormalPowerSeries;\n\n    FPS &operator+=(const FPS &r) {\n \
-    \       if (this->size() < r.size()) this->resize(r.size());\n        for (int\
+    #include <iostream>\n#include <utility>\n#line 9 \"fps/fps.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class mint> struct FormalPowerSeries : std::vector<mint>\
+    \ {\n    using std::vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
+    \n    void display() const {\n        for (int i = 0; i < (int)this->size(); i++)\
+    \ {\n            std::cout << (*this)[i] << \" \\n\"[i == (int)this->size() -\
+    \ 1];\n        }\n    }\n\n    void output(std::ostream &os) const {\n       \
+    \ for (int i = 0; i < (int)this->size(); i++) {\n            os << (*this)[i]\
+    \ << (i + 1 == (int)this->size() ? \"\" : \" \");\n        }\n    }\n\n    friend\
+    \ std::ofstream &operator<<(std::ofstream &os, FPS &fps_) const {\n        for\
+    \ (int i = 0; i < (int)fps_.size(); i++) {\n            os << fps_[i] << (i +\
+    \ 1 == (int)fps_.size() ? '' : ' ');\n        }\n        return os;\n    }\n\n\
+    \    FPS &input(std::istream &is) {\n        for (int i = 0; i < (int)this->size();\
+    \ i++) is >> (*this)[i];\n        return *this;\n    }\n\n    friend std::ifstream\
+    \ &operator>>(std::ifstream &is, FPS &fps_) {\n        for (auto &x : fps_) is\
+    \ >> x;\n        return is;\n    }\n\n    FPS &operator+=(const FPS &r) {\n  \
+    \      if (this->size() < r.size()) this->resize(r.size());\n        for (int\
     \ i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return *this;\n\
     \    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += r;\n        return *this;\n    }\n\n    FPS &operator-=(const\
@@ -478,17 +490,17 @@ data:
     \            for (int i = mint::getmod() - 1; i > n; i++) { den *= i; }\n    \
     \        res /= den;\n        }\n        return res;\n    }\n};\n\n} // namespace\
     \ kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include\
-    \ <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line 10 \"modint/mont.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt {\n    using\
-    \ mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using i64 = int64_t;\n\
-    \    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n    static constexpr\
-    \ u32 get_r() {\n        u32 ret = p;\n        for (int i = 0; i < 4; ++i) ret\
-    \ *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr u32 r =\
-    \ get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r *\
-    \ p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
-    \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
-    \n    u32 _v;\n\n    operator int() const { return val(); }\n\n    constexpr LazyMontgomeryModInt()\
-    \ : _v(0) {}\n\n    template <typename T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ <cstdint>\n#line 8 \"modint/mont.hpp\"\n\n#line 10 \"modint/mont.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
+    \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
+    \    using u64 = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32\
+    \ ret = p;\n        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n        return\
+    \ ret;\n    }\n\n    static constexpr u32 r = get_r();\n    static constexpr u32\
+    \ n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\");\n\
+    \    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
+    \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    operator int() const\
+    \ { return val(); }\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n\n   \
+    \ template <typename T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p\
     \ + p) * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) { return (b\
     \ + u64(u32(b) * u32(-r)) * p) >> 32; }\n\n    constexpr mint &operator++() {\
@@ -551,55 +563,63 @@ data:
     \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
     \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
     \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
-    template <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-    \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-    \ << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
-    template <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64\
-    \ infty<u64> = infty<i64>;\ntemplate <> constexpr double infty<double> = infty<i64>;\n\
-    template <> constexpr long double infty<long double> = infty<i64>;\n\nconstexpr\
-    \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long double PI\
-    \ = 3.14159265358979323846;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-    template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
-    \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-    \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
-    \ pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\nnamespace\
-    \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(const T &init,\
-    \ int first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n \
-    \       return std::vector<T>(first, init);\n    } else {\n        return std::vector<decltype(make_vector(init,\
-    \ sizes...))>(first,\n                                                       \
-    \           make_vector(init, sizes...));\n    }\n}\n\ntemplate <class T, class\
-    \ U> void fill_all(std::vector<T> &v, const U &x) {\n    std::fill(std::begin(v),\
-    \ std::end(v), T(x));\n}\n\ntemplate <class T, class U> void fill_all(std::vector<std::vector<T>>\
-    \ &v, const U &x) {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace\
-    \ kk2\n\ntemplate <class T, class S> inline bool chmax(T &a, const S &b) {\n \
-    \   return (a < b ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool\
-    \ chmin(T &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n#define\
-    \ rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i =\
-    \ 0; i < (i64)(a); ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b);\
-    \ ++i)\n#define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i,\
-    \ a, b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c,\
-    \ d, ...) d\n#define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
-    #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
-    #define fi first\n#define se second\n#define all(p) std::begin(p), std::end(p)\n\
-    \nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
-    \    }\n} iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream\
-    \ out(\"out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\
-    \nvoid YES(bool b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n\
-    }\n\nvoid NO(bool b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n\
-    }\n\nvoid Yes(bool b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n\
-    }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
-    }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
-    }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
+    template <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc =\
+    \ std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
+    template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using\
+    \ pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate <class T> constexpr T infty =\
+    \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+    \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+    \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+    \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+    \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double infty<double>\
+    \ = infty<i64>;\ntemplate <> constexpr long double infty<long double> = infty<i64>;\n\
+    \nconstexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
+    \ double PI = 3.14159265358979323846;\n\nnamespace kk2 {\n\ntemplate <class T,\
+    \ class... Sizes> auto make_vector(int first, Sizes... sizes) {\n    if constexpr\
+    \ (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n    } else\
+    \ {\n        return std::vector<decltype(make_vector(sizes...))>(first, make_vector(sizes...));\n\
+    \    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T> &v, const\
+    \ U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate <class\
+    \ T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x) {\n  \
+    \  for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate <class\
+    \ T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b,\
+    \ 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
+    \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\nvoid YES(bool b = 1) {\n    std::cout\
+    \ << (b ? \"YES\" : \"NO\") << '\\n';\n}\n\nvoid NO(bool b = 1) {\n    std::cout\
+    \ << (b ? \"NO\" : \"YES\") << '\\n';\n}\n\nvoid Yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"Yes\" : \"No\") << '\\n';\n}\n\nvoid No(bool b = 1) {\n    std::cout\
+    \ << (b ? \"No\" : \"Yes\") << '\\n';\n}\n\nvoid yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"yes\" : \"no\") << '\\n';\n}\n\nvoid no(bool b = 1) {\n    std::cout\
+    \ << (b ? \"no\" : \"yes\") << '\\n';\n}\n\n#define rep1(a) for (i64 _ = 0; _\
+    \ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n#define\
+    \ rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a) for\
+    \ (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a) - 1;\
+    \ i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
+    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
+    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
+    \ all(p) std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n   \
+    \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
+    } iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"\
+    out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\ntemplate\
+    \ <class T, class U> std::ostream &operator<<(std::ostream &os, const std::pair<T,\
+    \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
+    \ <class T, class U> std::istream &operator>>(std::istream &is, std::pair<T, U>\
+    \ &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
+    \ T> std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) {\n \
+    \   for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
+    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class T> std::istream &operator>>(std::istream\
+    \ &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n    return is;\n\
     }\n\n\n#line 6 \"verify/yosupo_math/many_factrials.test.cpp\"\nusing namespace\
     \ std;\n\nint main() {\n    int t;\n    cin >> t;\n    rep (t) {\n        int\
     \ n;\n        cin >> n;\n        cout << kk2::CombLarge<kk2::mont998>::fact(n)\
     \ << \"\\n\";\n    }\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_factorials\" \n\n\
-    #include \"../../math_mod/comb_large.hpp\"\n#include \"../../modint/mont.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int t;\n    cin >> t;\n    rep (t) {\n        int n;\n        cin >>\
-    \ n;\n        cout << kk2::CombLarge<kk2::mont998>::fact(n) << \"\\n\";\n    }\n\
-    \n    return 0;\n}"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_factorials\"\n\n#include\
+    \ \"../../math_mod/comb_large.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
+    \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
+    \ t;\n    cin >> t;\n    rep (t) {\n        int n;\n        cin >> n;\n      \
+    \  cout << kk2::CombLarge<kk2::mont998>::fact(n) << \"\\n\";\n    }\n\n    return\
+    \ 0;\n}\n"
   dependsOn:
   - math_mod/comb_large.hpp
   - fps/ntt_friendly.hpp
@@ -618,8 +638,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/many_factrials.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 23:42:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-07 04:00:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/many_factrials.test.cpp
 layout: document

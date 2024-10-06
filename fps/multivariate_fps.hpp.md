@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -191,60 +191,71 @@ data:
     \ 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto &x\
     \ : f) butterfly_inv(x);\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i];\n\
     \    return a;\n}\n\n} // namespace kk2\n\n\n#line 1 \"fps/ntt_friendly.hpp\"\n\
-    \n\n\n#line 1 \"fps/fps.hpp\"\n\n\n\n#line 6 \"fps/fps.hpp\"\n#include <utility>\n\
-    #line 8 \"fps/fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> struct FormalPowerSeries\
+    \n\n\n#line 1 \"fps/fps.hpp\"\n\n\n\n#line 7 \"fps/fps.hpp\"\n#include <utility>\n\
+    #line 9 \"fps/fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> struct FormalPowerSeries\
     \ : std::vector<mint> {\n    using std::vector<mint>::vector;\n    using FPS =\
-    \ FormalPowerSeries;\n\n    FPS &operator+=(const FPS &r) {\n        if (this->size()\
-    \ < r.size()) this->resize(r.size());\n        for (int i = 0; i < (int)r.size();\
-    \ i++) (*this)[i] += r[i];\n        return *this;\n    }\n\n    FPS &operator+=(const\
-    \ mint &r) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
-    \ += r;\n        return *this;\n    }\n\n    FPS &operator-=(const FPS &r) {\n\
-    \        if (this->size() < r.size()) this->resize(r.size());\n        for (int\
-    \ i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n        return *this;\n\
-    \    }\n\n    FPS &operator-=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
-    \        (*this)[0] -= r;\n        return *this;\n    }\n\n    FPS &operator*=(const\
-    \ mint &r) {\n        for (int i = 0; i < (int)this->size(); i++) { (*this)[i]\
-    \ *= r; }\n        return *this;\n    }\n\n    FPS &operator/=(const FPS &r) {\n\
-    \        assert(!r.empty());\n        if (this->size() < r.size()) {\n       \
-    \     this->clear();\n            return *this;\n        }\n        int n = this->size()\
-    \ - r.size() + 1;\n        if ((int)r.size() <= 64) {\n            FPS f(*this),\
-    \ g(r);\n            g.shrink();\n            mint coeff = g.back().inv();\n \
-    \           for (auto &x : g) x *= coeff;\n            int deg = (int)f.size()\
-    \ - (int)g.size() + 1;\n            int gs = g.size();\n            FPS quo(deg);\n\
-    \            for (int i = deg - 1; i >= 0; i--) {\n                quo[i] = f[i\
-    \ + gs - 1];\n                for (int j = 0; j < gs; j++) f[i + j] -= quo[i]\
-    \ * g[j];\n            }\n            *this = quo * coeff;\n            this->resize(n,\
-    \ mint(0));\n            return *this;\n        }\n        return *this = ((*this).rev().pre(n)\
-    \ * r.rev().inv(n)).pre(n).rev();\n    }\n\n    FPS &operator%=(const FPS &r)\
-    \ {\n        *this -= *this / r * r;\n        shrink();\n        return *this;\n\
-    \    }\n\n    FPS operator+(const FPS &r) const { return FPS(*this) += r; }\n\n\
-    \    FPS operator+(const mint &r) const { return FPS(*this) += r; }\n\n    FPS\
-    \ operator-(const FPS &r) const { return FPS(*this) -= r; }\n\n    FPS operator-(const\
-    \ mint &r) const { return FPS(*this) -= r; }\n\n    FPS operator*(const mint &r)\
-    \ const { return FPS(*this) *= r; }\n\n    FPS operator/(const FPS &r) const {\
-    \ return FPS(*this) /= r; }\n\n    FPS operator%(const FPS &r) const { return\
-    \ FPS(*this) %= r; }\n\n    FPS operator-() const {\n        FPS ret(this->size());\n\
-    \        for (int i = 0; i < (int)this->size(); i++) ret[i] = -(*this)[i];\n \
-    \       return ret;\n    }\n\n    FPS shrink() {\n        while (this->size()\
-    \ && this->back() == mint(0)) this->pop_back();\n        return *this;\n    }\n\
-    \n    FPS rev() const {\n        FPS ret(*this);\n        std::reverse(ret.begin(),\
-    \ ret.end());\n        return ret;\n    }\n\n    FPS inplace_rev() {\n       \
-    \ std::reverse(this->begin(), this->end());\n        return *this;\n    }\n\n\
-    \    FPS dot(const FPS &r) const {\n        FPS ret(std::min(this->size(), r.size()));\n\
-    \        for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i] * r[i];\n\
-    \        return ret;\n    }\n\n    FPS inplace_dot(const FPS &r) {\n        this->resize(std::min(this->size(),\
-    \ r.size()));\n        for (int i = 0; i < (int)this->size(); i++) (*this)[i]\
-    \ *= r[i];\n        return *this;\n    }\n\n    FPS pre(int n) const {\n     \
-    \   FPS ret(this->begin(), this->begin() + std::min((int)this->size(), n));\n\
-    \        if ((int)ret.size() < n) ret.resize(n, mint(0));\n        return ret;\n\
-    \    }\n\n    FPS inplace_pre(int n) {\n        this->resize(n);\n        return\
-    \ *this;\n    }\n\n    FPS operator>>(int n) const {\n        if (n >= (int)this->size())\
-    \ return {};\n        FPS ret(this->begin() + n, this->end());\n        return\
-    \ ret;\n    }\n\n    FPS operator<<(int n) const {\n        FPS ret(*this);\n\
-    \        ret.insert(ret.begin(), n, mint(0));\n        return ret;\n    }\n\n\
-    \    FPS diff() const {\n        const int n = (int)this->size();\n        FPS\
-    \ ret(std::max(0, n - 1));\n        for (int i = 1; i < n; i++) { ret[i - 1] =\
-    \ (*this)[i] * mint(i); }\n        return ret;\n    }\n\n    FPS inplace_diff()\
+    \ FormalPowerSeries;\n\n    void display() const {\n        for (int i = 0; i\
+    \ < (int)this->size(); i++) {\n            std::cout << (*this)[i] << \" \\n\"\
+    [i == (int)this->size() - 1];\n        }\n    }\n\n    void output(std::ostream\
+    \ &os) const {\n        for (int i = 0; i < (int)this->size(); i++) {\n      \
+    \      os << (*this)[i] << (i + 1 == (int)this->size() ? \"\" : \" \");\n    \
+    \    }\n    }\n\n    friend std::ofstream &operator<<(std::ofstream &os, FPS &fps_)\
+    \ const {\n        for (int i = 0; i < (int)fps_.size(); i++) {\n            os\
+    \ << fps_[i] << (i + 1 == (int)fps_.size() ? '' : ' ');\n        }\n        return\
+    \ os;\n    }\n\n    FPS &input(std::istream &is) {\n        for (int i = 0; i\
+    \ < (int)this->size(); i++) is >> (*this)[i];\n        return *this;\n    }\n\n\
+    \    friend std::ifstream &operator>>(std::ifstream &is, FPS &fps_) {\n      \
+    \  for (auto &x : fps_) is >> x;\n        return is;\n    }\n\n    FPS &operator+=(const\
+    \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
+    \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return\
+    \ *this;\n    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty())\
+    \ this->resize(1);\n        (*this)[0] += r;\n        return *this;\n    }\n\n\
+    \    FPS &operator-=(const FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
+    \        for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n       \
+    \ return *this;\n    }\n\n    FPS &operator-=(const mint &r) {\n        if (this->empty())\
+    \ this->resize(1);\n        (*this)[0] -= r;\n        return *this;\n    }\n\n\
+    \    FPS &operator*=(const mint &r) {\n        for (int i = 0; i < (int)this->size();\
+    \ i++) { (*this)[i] *= r; }\n        return *this;\n    }\n\n    FPS &operator/=(const\
+    \ FPS &r) {\n        assert(!r.empty());\n        if (this->size() < r.size())\
+    \ {\n            this->clear();\n            return *this;\n        }\n      \
+    \  int n = this->size() - r.size() + 1;\n        if ((int)r.size() <= 64) {\n\
+    \            FPS f(*this), g(r);\n            g.shrink();\n            mint coeff\
+    \ = g.back().inv();\n            for (auto &x : g) x *= coeff;\n            int\
+    \ deg = (int)f.size() - (int)g.size() + 1;\n            int gs = g.size();\n \
+    \           FPS quo(deg);\n            for (int i = deg - 1; i >= 0; i--) {\n\
+    \                quo[i] = f[i + gs - 1];\n                for (int j = 0; j <\
+    \ gs; j++) f[i + j] -= quo[i] * g[j];\n            }\n            *this = quo\
+    \ * coeff;\n            this->resize(n, mint(0));\n            return *this;\n\
+    \        }\n        return *this = ((*this).rev().pre(n) * r.rev().inv(n)).pre(n).rev();\n\
+    \    }\n\n    FPS &operator%=(const FPS &r) {\n        *this -= *this / r * r;\n\
+    \        shrink();\n        return *this;\n    }\n\n    FPS operator+(const FPS\
+    \ &r) const { return FPS(*this) += r; }\n\n    FPS operator+(const mint &r) const\
+    \ { return FPS(*this) += r; }\n\n    FPS operator-(const FPS &r) const { return\
+    \ FPS(*this) -= r; }\n\n    FPS operator-(const mint &r) const { return FPS(*this)\
+    \ -= r; }\n\n    FPS operator*(const mint &r) const { return FPS(*this) *= r;\
+    \ }\n\n    FPS operator/(const FPS &r) const { return FPS(*this) /= r; }\n\n \
+    \   FPS operator%(const FPS &r) const { return FPS(*this) %= r; }\n\n    FPS operator-()\
+    \ const {\n        FPS ret(this->size());\n        for (int i = 0; i < (int)this->size();\
+    \ i++) ret[i] = -(*this)[i];\n        return ret;\n    }\n\n    FPS shrink() {\n\
+    \        while (this->size() && this->back() == mint(0)) this->pop_back();\n \
+    \       return *this;\n    }\n\n    FPS rev() const {\n        FPS ret(*this);\n\
+    \        std::reverse(ret.begin(), ret.end());\n        return ret;\n    }\n\n\
+    \    FPS inplace_rev() {\n        std::reverse(this->begin(), this->end());\n\
+    \        return *this;\n    }\n\n    FPS dot(const FPS &r) const {\n        FPS\
+    \ ret(std::min(this->size(), r.size()));\n        for (int i = 0; i < (int)ret.size();\
+    \ i++) ret[i] = (*this)[i] * r[i];\n        return ret;\n    }\n\n    FPS inplace_dot(const\
+    \ FPS &r) {\n        this->resize(std::min(this->size(), r.size()));\n       \
+    \ for (int i = 0; i < (int)this->size(); i++) (*this)[i] *= r[i];\n        return\
+    \ *this;\n    }\n\n    FPS pre(int n) const {\n        FPS ret(this->begin(),\
+    \ this->begin() + std::min((int)this->size(), n));\n        if ((int)ret.size()\
+    \ < n) ret.resize(n, mint(0));\n        return ret;\n    }\n\n    FPS inplace_pre(int\
+    \ n) {\n        this->resize(n);\n        return *this;\n    }\n\n    FPS operator>>(int\
+    \ n) const {\n        if (n >= (int)this->size()) return {};\n        FPS ret(this->begin()\
+    \ + n, this->end());\n        return ret;\n    }\n\n    FPS operator<<(int n)\
+    \ const {\n        FPS ret(*this);\n        ret.insert(ret.begin(), n, mint(0));\n\
+    \        return ret;\n    }\n\n    FPS diff() const {\n        const int n = (int)this->size();\n\
+    \        FPS ret(std::max(0, n - 1));\n        for (int i = 1; i < n; i++) { ret[i\
+    \ - 1] = (*this)[i] * mint(i); }\n        return ret;\n    }\n\n    FPS inplace_diff()\
     \ {\n        if (this->empty()) return {};\n        this->erase(this->begin());\n\
     \        for (int i = 1; i <= (int)this->size(); i++) (*this)[i - 1] *= mint(i);\n\
     \        return *this;\n    }\n\n    FPS integral() const {\n        const int\
@@ -394,27 +405,35 @@ data:
     \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for (int\
     \ x : base) n *= x;\n        f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const\
     \ std::vector<int> &base_, const fps &f_)\n        : base(base_),\n          f(f_)\
-    \ {}\n\n    template <typename T, typename... Ts> int _id(int x, T y, Ts... ys)\
-    \ {\n        assert(x < (int)base.size() && (int)y < base[x]);\n        if constexpr\
-    \ (sizeof...(Ts) == 0) return y;\n        else return y + base[x] * _id(x + 1,\
-    \ ys...);\n    }\n\n    template <typename... Args> int id(Args... args) {\n \
-    \       static_assert(sizeof...(Args) > 0);\n        return _id(0, args...);\n\
-    \    }\n\n    template <typename... Args> mint &operator()(Args... args) { return\
-    \ f[id(args...)]; }\n\n    mint &operator[](int i) { return f[i]; }\n\n    void\
-    \ display() const {\n        for (int i = 0; i < (int)f.size(); i++) {\n     \
-    \       int x = i;\n            std::cout << \"f(\";\n            for (int j =\
-    \ 0; j < (int)base.size(); j++) {\n                std::cout << x % base[j] <<\
-    \ (j + 1 == (int)base.size() ? \") = \" : \", \");\n                x /= base[j];\n\
-    \            }\n            std::cout << f[i] << \"\\n\";\n        }\n    }\n\n\
-    \    mfps &operator+=(const mfps &rhs) {\n        assert(base == rhs.base && f.size()\
-    \ == rhs.f.size());\n        for (int i = 0; i < (int)f.size(); i++) f[i] += rhs.f[i];\n\
-    \        return *this;\n    }\n\n    mfps &operator-=(const mfps &rhs) {\n   \
-    \     assert(base == rhs.base && f.size() == rhs.f.size());\n        for (int\
-    \ i = 0; i < (int)f.size(); i++) f[i] -= rhs.f[i];\n        return *this;\n  \
-    \  }\n\n    mfps &operator*=(const mfps &rhs) {\n        assert(base == rhs.base\
-    \ && f.size() == rhs.f.size());\n        multi_convolution_truncated(f, rhs.f,\
-    \ base);\n        return *this;\n    }\n\n    mfps &operator+=(const mint &rhs)\
-    \ {\n        assert(!f.empty());\n        f[0] += rhs;\n        return *this;\n\
+    \ {}\n\n    friend std::ofstream &operator<<(std::ofstream &os, MFPS &mfps_) const\
+    \ {\n        for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] <<\
+    \ (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n        return os;\n    }\n\n\
+    \    void output(std::ostream &os) const {\n        for (int i = 0; i < (int)f.size();\
+    \ i++) os << f[i] << (i + 1 == (int)f.size() ? \"\\n\" : \" \");\n    }\n\n  \
+    \  MFPS &input(std::istream &is) {\n        for (auto &x : f) is >> x;\n     \
+    \   return *this;\n    }\n\n    friend std::ifstream &operator>>(std::ifstream\
+    \ &is, MFPS &mfps_) {\n        for (auto &x : mfps_.f) is >> x;\n        return\
+    \ is;\n    }\n\n    template <typename T, typename... Ts> int _id(int x, T y,\
+    \ Ts... ys) {\n        assert(x < (int)base.size() && (int)y < base[x]);\n   \
+    \     if constexpr (sizeof...(Ts) == 0) return y;\n        else return y + base[x]\
+    \ * _id(x + 1, ys...);\n    }\n\n    template <typename... Args> int id(Args...\
+    \ args) {\n        static_assert(sizeof...(Args) > 0);\n        return _id(0,\
+    \ args...);\n    }\n\n    template <typename... Args> mint &operator()(Args...\
+    \ args) { return f[id(args...)]; }\n\n    mint &operator[](int i) { return f[i];\
+    \ }\n\n    void display() const {\n        for (int i = 0; i < (int)f.size();\
+    \ i++) {\n            int x = i;\n            std::cout << \"f(\";\n         \
+    \   for (int j = 0; j < (int)base.size(); j++) {\n                std::cout <<\
+    \ x % base[j] << (j + 1 == (int)base.size() ? \") = \" : \", \");\n          \
+    \      x /= base[j];\n            }\n            std::cout << f[i] << \"\\n\"\
+    ;\n        }\n    }\n\n    mfps &operator+=(const mfps &rhs) {\n        assert(base\
+    \ == rhs.base && f.size() == rhs.f.size());\n        for (int i = 0; i < (int)f.size();\
+    \ i++) f[i] += rhs.f[i];\n        return *this;\n    }\n\n    mfps &operator-=(const\
+    \ mfps &rhs) {\n        assert(base == rhs.base && f.size() == rhs.f.size());\n\
+    \        for (int i = 0; i < (int)f.size(); i++) f[i] -= rhs.f[i];\n        return\
+    \ *this;\n    }\n\n    mfps &operator*=(const mfps &rhs) {\n        assert(base\
+    \ == rhs.base && f.size() == rhs.f.size());\n        multi_convolution_truncated(f,\
+    \ rhs.f, base);\n        return *this;\n    }\n\n    mfps &operator+=(const mint\
+    \ &rhs) {\n        assert(!f.empty());\n        f[0] += rhs;\n        return *this;\n\
     \    }\n\n    mfps &operator-=(const mint &rhs) {\n        assert(!f.empty());\n\
     \        f[0] -= rhs;\n        return *this;\n    }\n\n    mfps &operator*=(const\
     \ mint &rhs) {\n        for (auto &x : f) x *= rhs;\n        return *this;\n \
@@ -499,27 +518,35 @@ data:
     \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for (int\
     \ x : base) n *= x;\n        f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const\
     \ std::vector<int> &base_, const fps &f_)\n        : base(base_),\n          f(f_)\
-    \ {}\n\n    template <typename T, typename... Ts> int _id(int x, T y, Ts... ys)\
-    \ {\n        assert(x < (int)base.size() && (int)y < base[x]);\n        if constexpr\
-    \ (sizeof...(Ts) == 0) return y;\n        else return y + base[x] * _id(x + 1,\
-    \ ys...);\n    }\n\n    template <typename... Args> int id(Args... args) {\n \
-    \       static_assert(sizeof...(Args) > 0);\n        return _id(0, args...);\n\
-    \    }\n\n    template <typename... Args> mint &operator()(Args... args) { return\
-    \ f[id(args...)]; }\n\n    mint &operator[](int i) { return f[i]; }\n\n    void\
-    \ display() const {\n        for (int i = 0; i < (int)f.size(); i++) {\n     \
-    \       int x = i;\n            std::cout << \"f(\";\n            for (int j =\
-    \ 0; j < (int)base.size(); j++) {\n                std::cout << x % base[j] <<\
-    \ (j + 1 == (int)base.size() ? \") = \" : \", \");\n                x /= base[j];\n\
-    \            }\n            std::cout << f[i] << \"\\n\";\n        }\n    }\n\n\
-    \    mfps &operator+=(const mfps &rhs) {\n        assert(base == rhs.base && f.size()\
-    \ == rhs.f.size());\n        for (int i = 0; i < (int)f.size(); i++) f[i] += rhs.f[i];\n\
-    \        return *this;\n    }\n\n    mfps &operator-=(const mfps &rhs) {\n   \
-    \     assert(base == rhs.base && f.size() == rhs.f.size());\n        for (int\
-    \ i = 0; i < (int)f.size(); i++) f[i] -= rhs.f[i];\n        return *this;\n  \
-    \  }\n\n    mfps &operator*=(const mfps &rhs) {\n        assert(base == rhs.base\
-    \ && f.size() == rhs.f.size());\n        multi_convolution_truncated(f, rhs.f,\
-    \ base);\n        return *this;\n    }\n\n    mfps &operator+=(const mint &rhs)\
-    \ {\n        assert(!f.empty());\n        f[0] += rhs;\n        return *this;\n\
+    \ {}\n\n    friend std::ofstream &operator<<(std::ofstream &os, MFPS &mfps_) const\
+    \ {\n        for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] <<\
+    \ (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n        return os;\n    }\n\n\
+    \    void output(std::ostream &os) const {\n        for (int i = 0; i < (int)f.size();\
+    \ i++) os << f[i] << (i + 1 == (int)f.size() ? \"\\n\" : \" \");\n    }\n\n  \
+    \  MFPS &input(std::istream &is) {\n        for (auto &x : f) is >> x;\n     \
+    \   return *this;\n    }\n\n    friend std::ifstream &operator>>(std::ifstream\
+    \ &is, MFPS &mfps_) {\n        for (auto &x : mfps_.f) is >> x;\n        return\
+    \ is;\n    }\n\n    template <typename T, typename... Ts> int _id(int x, T y,\
+    \ Ts... ys) {\n        assert(x < (int)base.size() && (int)y < base[x]);\n   \
+    \     if constexpr (sizeof...(Ts) == 0) return y;\n        else return y + base[x]\
+    \ * _id(x + 1, ys...);\n    }\n\n    template <typename... Args> int id(Args...\
+    \ args) {\n        static_assert(sizeof...(Args) > 0);\n        return _id(0,\
+    \ args...);\n    }\n\n    template <typename... Args> mint &operator()(Args...\
+    \ args) { return f[id(args...)]; }\n\n    mint &operator[](int i) { return f[i];\
+    \ }\n\n    void display() const {\n        for (int i = 0; i < (int)f.size();\
+    \ i++) {\n            int x = i;\n            std::cout << \"f(\";\n         \
+    \   for (int j = 0; j < (int)base.size(); j++) {\n                std::cout <<\
+    \ x % base[j] << (j + 1 == (int)base.size() ? \") = \" : \", \");\n          \
+    \      x /= base[j];\n            }\n            std::cout << f[i] << \"\\n\"\
+    ;\n        }\n    }\n\n    mfps &operator+=(const mfps &rhs) {\n        assert(base\
+    \ == rhs.base && f.size() == rhs.f.size());\n        for (int i = 0; i < (int)f.size();\
+    \ i++) f[i] += rhs.f[i];\n        return *this;\n    }\n\n    mfps &operator-=(const\
+    \ mfps &rhs) {\n        assert(base == rhs.base && f.size() == rhs.f.size());\n\
+    \        for (int i = 0; i < (int)f.size(); i++) f[i] -= rhs.f[i];\n        return\
+    \ *this;\n    }\n\n    mfps &operator*=(const mfps &rhs) {\n        assert(base\
+    \ == rhs.base && f.size() == rhs.f.size());\n        multi_convolution_truncated(f,\
+    \ rhs.f, base);\n        return *this;\n    }\n\n    mfps &operator+=(const mint\
+    \ &rhs) {\n        assert(!f.empty());\n        f[0] += rhs;\n        return *this;\n\
     \    }\n\n    mfps &operator-=(const mint &rhs) {\n        assert(!f.empty());\n\
     \        f[0] -= rhs;\n        return *this;\n    }\n\n    mfps &operator*=(const\
     \ mint &rhs) {\n        for (auto &x : f) x *= rhs;\n        return *this;\n \
@@ -607,7 +634,7 @@ data:
   isVerificationFile: false
   path: fps/multivariate_fps.hpp
   requiredBy: []
-  timestamp: '2024-10-06 17:17:10+09:00'
+  timestamp: '2024-10-07 04:00:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/multivariate_fps.hpp
