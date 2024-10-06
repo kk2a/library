@@ -11,9 +11,8 @@ int main() {
     int n;
     cin >> n;
     FPS f(n);
-    rep (i, n) cin >> f[i];
-    auto g = f.inv();
-    rep (i, g.size()) cout << g[i] << " \n"[i == n - 1];
+    cin >> f;
+    cout << f.inv() << endl;
 
     return 0;
 }

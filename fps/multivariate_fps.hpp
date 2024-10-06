@@ -31,6 +31,16 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         : base(base_),
           f(f_) {}
 
+    std::ofstream &operator<<(std::ofstream &os) const {
+        for (int i = 0; i < (int)f.size(); i++) os << f[i] << (i + 1 == (int)f.size() ? "" : " ");
+        return os;
+    }
+
+    std::ifstream &operator>>(std::ifstream &is) {
+        for (auto &x : f) is >> x;
+        return is;
+    }
+
     template <typename T, typename... Ts> int _id(int x, T y, Ts... ys) {
         assert(x < (int)base.size() && (int)y < base[x]);
         if constexpr (sizeof...(Ts) == 0) return y;

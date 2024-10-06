@@ -45,19 +45,6 @@ using pl = std::pair<i64, i64>;
 using pil = std::pair<int, i64>;
 using pli = std::pair<i64, int>;
 
-template <class T> constexpr T infty = 0;
-template <> constexpr int infty<int> = (1 << 30) - 123;
-template <> constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);
-template <> constexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;
-template <> constexpr u32 infty<u32> = infty<int>;
-template <> constexpr u64 infty<u64> = infty<i64>;
-template <> constexpr double infty<double> = infty<i64>;
-template <> constexpr long double infty<long double> = infty<i64>;
-
-constexpr int mod = 998244353;
-constexpr int modu = 1e9 + 7;
-constexpr long double PI = 3.14159265358979323846;
-
 template <class T> using vc = std::vector<T>;
 template <class T> using vvc = std::vector<vc<T>>;
 template <class T> using vvvc = std::vector<vvc<T>>;
@@ -66,14 +53,27 @@ template <class T> using vvvvc = std::vector<vvvc<T>>;
 template <class T> using pq = std::priority_queue<T>;
 template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
+template <class T> constexpr T infty = 0;
+template <> constexpr int infty<int> = (1 << 30) - 123;
+template <> constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);
+template <> constexpr i128 infty<i128> = i128(1) << 126 - i128(1) << 63;
+template <> constexpr u32 infty<u32> = infty<int>;
+template <> constexpr u64 infty<u64> = infty<i64>;
+template <> constexpr u128 infty<u128> = infty<i128>;
+template <> constexpr double infty<double> = infty<i64>;
+template <> constexpr long double infty<long double> = infty<i64>;
+
+constexpr int mod = 998244353;
+constexpr int modu = 1e9 + 7;
+constexpr long double PI = 3.14159265358979323846;
+
 namespace kk2 {
 
-template <class T, class... Sizes> auto make_vector(const T &init, int first, Sizes... sizes) {
+template <class T, class... Sizes> auto make_vector(int first, Sizes... sizes) {
     if constexpr (sizeof...(sizes) == 0) {
-        return std::vector<T>(first, init);
+        return std::vector<T>(first);
     } else {
-        return std::vector<decltype(make_vector(init, sizes...))>(first,
-                                                                  make_vector(init, sizes...));
+        return std::vector<decltype(make_vector(sizes...))>(first, make_vector(sizes...));
     }
 }
 
@@ -93,6 +93,30 @@ template <class T, class S> inline bool chmax(T &a, const S &b) {
 
 template <class T, class S> inline bool chmin(T &a, const S &b) {
     return (a > b ? a = b, 1 : 0);
+}
+
+void YES(bool b = 1) {
+    std::cout << (b ? "YES" : "NO") << '\n';
+}
+
+void NO(bool b = 1) {
+    std::cout << (b ? "NO" : "YES") << '\n';
+}
+
+void Yes(bool b = 1) {
+    std::cout << (b ? "Yes" : "No") << '\n';
+}
+
+void No(bool b = 1) {
+    std::cout << (b ? "No" : "Yes") << '\n';
+}
+
+void yes(bool b = 1) {
+    std::cout << (b ? "yes" : "no") << '\n';
+}
+
+void no(bool b = 1) {
+    std::cout << (b ? "no" : "yes") << '\n';
 }
 
 #define rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)
@@ -123,28 +147,24 @@ std::ofstream out("out.txt");
 #define out std::cout
 #endif
 
-void YES(bool b = 1) {
-    std::cout << (b ? "YES" : "NO") << '\n';
+template <class T, class U> std::ostream &operator<<(std::ostream &os, const std::pair<T, U> &p) {
+    os << p.first << ' ' << p.second;
+    return os;
 }
 
-void NO(bool b = 1) {
-    std::cout << (b ? "NO" : "YES") << '\n';
+template <class T, class U> std::istream &operator>>(std::istream &is, std::pair<T, U> &p) {
+    is >> p.first >> p.second;
+    return is;
 }
 
-void Yes(bool b = 1) {
-    std::cout << (b ? "Yes" : "No") << '\n';
+template <class T> std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) {
+    for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size() ? "" : " "); }
+    return os;
 }
 
-void No(bool b = 1) {
-    std::cout << (b ? "No" : "Yes") << '\n';
-}
-
-void yes(bool b = 1) {
-    std::cout << (b ? "yes" : "no") << '\n';
-}
-
-void no(bool b = 1) {
-    std::cout << (b ? "no" : "yes") << '\n';
+template <class T> std::isream &operator>>(std::istream &is, std::vector<T> &v) {
+    for (auto &x : v) is >> x;
+    return is;
 }
 
 #endif // TEMPLATE

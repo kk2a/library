@@ -8,11 +8,7 @@ int main() {
     int n;
     cin >> n;
     kk2::MatrixF2 a(n, n);
-    rep (i, n) {
-        string s;
-        cin >> s;
-        a[i] = s;
-    }
+    rep (i, n) cin >> a[i];
     cout << a.det() << "\n";
 
     return 0;

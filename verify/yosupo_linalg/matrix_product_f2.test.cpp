@@ -8,16 +8,8 @@ int main() {
     int n, m, k;
     cin >> n >> m >> k;
     kk2::MatrixF2 a(n, m), b(m, k);
-    rep (i, n) {
-        string s;
-        cin >> s;
-        a[i] = s;
-    }
-    rep (i, m) {
-        string s;
-        cin >> s;
-        b[i] = s;
-    }
+    rep (i, n) cin >> a[i];
+    rep (i, m) cin >> b[i];
     (a * b).display(); 
 
     return 0;

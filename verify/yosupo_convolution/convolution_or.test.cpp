@@ -14,7 +14,7 @@ int main() {
     kk2::convolution_or(a, b);
     vc<kk2::mont998> c(1 << n);
     rep (i, 1 << n) c[~i & ((1 << n) - 1)] = a[i];
-    rep (i, 1 << n) cout << c[i] << " \n"[i == (1 << n) - 1];
+    cout << c << endl;
 
     return 0;
 }

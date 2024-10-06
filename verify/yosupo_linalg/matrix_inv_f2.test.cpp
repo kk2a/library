@@ -8,11 +8,7 @@ int main() {
     int n;
     cin >> n;
     kk2::MatrixF2 a(n, n);
-    rep (i, n) {
-        string s;
-        cin >> s;
-        a[i] = s;
-    }
+    rep (i, n) cin >> a[i];
     if (auto const inv = a.inv()) inv->display();
     else cout << -1 << "\n";
 

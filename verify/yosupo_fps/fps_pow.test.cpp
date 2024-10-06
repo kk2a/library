@@ -11,10 +11,8 @@ int main() {
     int n;
     i64 m;
     cin >> n >> m;
-    FPS f(n);
-    rep (i, n) cin >> f[i];
-    auto g = f.pow(m);
-    rep (i, g.size()) cout << g[i] << " \n"[i == n - 1];
+    cin >> f;
+    cout << f.pow(m) << endl;
 
     return 0;
 }

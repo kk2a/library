@@ -8,17 +8,10 @@ int main() {
     int n, m;
     cin >> n >> m;
     kk2::MatrixF2 a(n, m);
-    rep (i, n) {
-        string s;
-        cin >> s;
-        a[i] = s;
-    }
-    kk2::MatrixF2 b(n, 1);
-    {
-        string s;
-        cin >> s;
-        rep (i, n) b[i][0] = s[i] - '0';
-    }
+    rep (i, n) cin >> a[i];
+    kk2::MatrixF2 b(1, n);
+    cin >> b[0];
+    b.inplace_transpose();
 
     auto res = a.solve(b);
     if (!res.get_h()) cout << -1 << "\n";

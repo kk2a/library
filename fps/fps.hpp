@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <iostream>
 #include <utility>
 #include <vector>
 
@@ -11,6 +12,28 @@ namespace kk2 {
 template <class mint> struct FormalPowerSeries : std::vector<mint> {
     using std::vector<mint>::vector;
     using FPS = FormalPowerSeries;
+
+    void display() const {
+        for (int i = 0; i < (int)this->size(); i++) {
+            std::cout << (*this)[i] << " \n"[i == (int)this->size() - 1];
+        }
+    }
+
+    std::ofstream &operator<<(std::ofstream &os) const {
+        for (int i = 0; i < (int)this->size(); i++) {
+            os << (*this)[i] << (i + 1 == (int)this->size() ? '' : ' ');
+        }
+        return os;
+    }
+
+    void input() {
+        for (auto &x : *this) std::cin >> x;
+    }
+
+    std::ifstream &operator>>(std::ifstream &is) {
+        for (auto &x : *this) is >> x;
+        return is;
+    }
 
     FPS &operator+=(const FPS &r) {
         if (this->size() < r.size()) this->resize(r.size());
