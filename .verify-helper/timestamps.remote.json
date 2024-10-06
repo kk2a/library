@@ -1,5 +1,6 @@
 {
 "verify/yosupo_convolution/convolution_and.test.cpp": "2024-10-06 17:17:10 +0900",
+"verify/yosupo_convolution/convolution_arbitrary.test.cpp": "2024-10-06 18:10:56 +0900",
 "verify/yosupo_convolution/convolution_multi_truncated.test.cpp": "2024-10-06 17:17:10 +0900",
 "verify/yosupo_convolution/convolution_ntt.test.cpp": "2024-10-06 17:17:10 +0900",
 "verify/yosupo_convolution/convolution_or.test.cpp": "2024-10-06 17:17:10 +0900",
