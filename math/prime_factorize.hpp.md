@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/prime_factorize.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -153,7 +153,7 @@ data:
     \    int len = 1;\n    for (auto it = first + 1; it != last; ++it) {\n       \
     \ len++;\n        int j = rng(0, len);\n        if (j != len - 1) std::iter_swap(first\
     \ + j, it);\n    }\n}\n\ntemplate <class T> std::vector<T> perm(int n) {\n   \
-    \ std::vecotr<T> res(n);\n    std::iota(res.begin(), res.end(), T(0));\n    shuffle(res.begin(),\
+    \ std::vector<T> res(n);\n    std::iota(res.begin(), res.end(), T(0));\n    shuffle(res.begin(),\
     \ res.end());\n    return res;\n}\n\ntemplate <class T> std::vector<T> choices(int\
     \ l, int r, int k) {\n    assert(l < r and k <= r - l);\n    std::vector<T> res(r\
     \ - l);\n    std::iota(res.begin(), res.end(), T(l));\n    shuffle(res.begin(),\
@@ -209,8 +209,8 @@ data:
     \    auto r = inner_factorize(n / p);\n    std::copy(r.begin(), r.end(), std::back_inserter(l));\n\
     \    return l;\n}\n\nstd::vector<std::pair<i64, int>> factorize(i64 n) {\n   \
     \ auto tmp = inner_factorize(n);\n    std::sort(tmp.begin(), tmp.end());\n   \
-    \ std::vector<std::pair<i64, int>> res;\n    for (int i = 0; i < tmp.size(); i++)\
-    \ {\n        if (i == 0 or res.back().first != tmp[i]) {\n            res.emplace_back(tmp[i],\
+    \ std::vector<std::pair<i64, int>> res;\n    for (int i = 0; i < (int)tmp.size();\
+    \ i++) {\n        if (i == 0 or res.back().first != tmp[i]) {\n            res.emplace_back(tmp[i],\
     \ 1);\n        } else {\n            res.back().second++;\n        }\n    }\n\
     \    return res;\n}\n\nstd::map<i64, int> factorize_map(i64 n) {\n    auto tmp\
     \ = inner_factorize(n);\n    std::map<i64, int> res;\n    for (auto x : tmp) res[x]++;\n\
@@ -250,8 +250,8 @@ data:
     \    auto r = inner_factorize(n / p);\n    std::copy(r.begin(), r.end(), std::back_inserter(l));\n\
     \    return l;\n}\n\nstd::vector<std::pair<i64, int>> factorize(i64 n) {\n   \
     \ auto tmp = inner_factorize(n);\n    std::sort(tmp.begin(), tmp.end());\n   \
-    \ std::vector<std::pair<i64, int>> res;\n    for (int i = 0; i < tmp.size(); i++)\
-    \ {\n        if (i == 0 or res.back().first != tmp[i]) {\n            res.emplace_back(tmp[i],\
+    \ std::vector<std::pair<i64, int>> res;\n    for (int i = 0; i < (int)tmp.size();\
+    \ i++) {\n        if (i == 0 or res.back().first != tmp[i]) {\n            res.emplace_back(tmp[i],\
     \ 1);\n        } else {\n            res.back().second++;\n        }\n    }\n\
     \    return res;\n}\n\nstd::map<i64, int> factorize_map(i64 n) {\n    auto tmp\
     \ = inner_factorize(n);\n    std::map<i64, int> res;\n    for (auto x : tmp) res[x]++;\n\
@@ -274,8 +274,8 @@ data:
   isVerificationFile: false
   path: math/prime_factorize.hpp
   requiredBy: []
-  timestamp: '2024-10-02 17:35:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-10-06 23:46:11+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
 documentation_of: math/prime_factorize.hpp

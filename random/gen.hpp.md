@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
@@ -52,7 +52,7 @@ data:
     \    int len = 1;\n    for (auto it = first + 1; it != last; ++it) {\n       \
     \ len++;\n        int j = rng(0, len);\n        if (j != len - 1) std::iter_swap(first\
     \ + j, it);\n    }\n}\n\ntemplate <class T> std::vector<T> perm(int n) {\n   \
-    \ std::vecotr<T> res(n);\n    std::iota(res.begin(), res.end(), T(0));\n    shuffle(res.begin(),\
+    \ std::vector<T> res(n);\n    std::iota(res.begin(), res.end(), T(0));\n    shuffle(res.begin(),\
     \ res.end());\n    return res;\n}\n\ntemplate <class T> std::vector<T> choices(int\
     \ l, int r, int k) {\n    assert(l < r and k <= r - l);\n    std::vector<T> res(r\
     \ - l);\n    std::iota(res.begin(), res.end(), T(l));\n    shuffle(res.begin(),\
@@ -80,7 +80,7 @@ data:
     \ {\n    if (first == last) return;\n    int len = 1;\n    for (auto it = first\
     \ + 1; it != last; ++it) {\n        len++;\n        int j = rng(0, len);\n   \
     \     if (j != len - 1) std::iter_swap(first + j, it);\n    }\n}\n\ntemplate <class\
-    \ T> std::vector<T> perm(int n) {\n    std::vecotr<T> res(n);\n    std::iota(res.begin(),\
+    \ T> std::vector<T> perm(int n) {\n    std::vector<T> res(n);\n    std::iota(res.begin(),\
     \ res.end(), T(0));\n    shuffle(res.begin(), res.end());\n    return res;\n}\n\
     \ntemplate <class T> std::vector<T> choices(int l, int r, int k) {\n    assert(l\
     \ < r and k <= r - l);\n    std::vector<T> res(r - l);\n    std::iota(res.begin(),\
@@ -94,8 +94,8 @@ data:
   requiredBy:
   - random/graph.hpp
   - math/prime_factorize.hpp
-  timestamp: '2024-10-02 17:35:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-10-06 23:46:11+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
 documentation_of: random/gen.hpp

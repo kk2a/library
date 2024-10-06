@@ -238,7 +238,7 @@ data:
     - icon: ':warning:'
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/is_prime.hpp
       title: math/is_prime.hpp
     - icon: ':heavy_check_mark:'
@@ -247,7 +247,7 @@ data:
     - icon: ':warning:'
       path: math/pow.hpp
       title: math/pow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/prime_factorize.hpp
       title: math/prime_factorize.hpp
   - name: math/group
@@ -294,7 +294,7 @@ data:
     - icon: ':warning:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/pow_mod.hpp
       title: math_mod/pow_mod.hpp
     - icon: ':heavy_check_mark:'
@@ -322,7 +322,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint/mont.hpp
       title: modint/mont.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/mont_arb.hpp
       title: modint/mont_arb.hpp
   - name: others
@@ -338,13 +338,13 @@ data:
       title: others/multisethash.hpp
   - name: random
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: random/gen.hpp
       title: random/gen.hpp
     - icon: ':warning:'
       path: random/graph.hpp
       title: random/graph.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: random/seed.hpp
       title: random/seed.hpp
   - name: segment_tree
@@ -433,12 +433,12 @@ data:
       title: string/suffix_array.hpp
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   verificationCategories:
@@ -513,7 +513,7 @@ data:
       title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - name: verify/yosupo_math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/factrize.test.cpp
       title: verify/yosupo_math/factrize.test.cpp
     - icon: ':heavy_check_mark:'
