@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -303,14 +303,14 @@ data:
     \ &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n    return is;\n\
     }\n\n\n#line 6 \"verify/yosupo_linalg/matrix_product.test.cpp\"\nusing namespace\
     \ std;\n\nint main() {\n    int n, m, k;\n    cin >> n >> m >> k;\n    kk2::MatrixField<kk2::mont998>\
-    \ a(n, m), b(m, k);\n    (a.input(cin) * b.input(cin)).output(cout);\n\n    return\
-    \ 0;\n}\n"
+    \ a(n, m), b(m, k);\n    a.input(cin), b.input(cin);\n    (a * b).output(cout);\n\
+    \n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
     \ \"../../matrix/matrix_field.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
     \ n, m, k;\n    cin >> n >> m >> k;\n    kk2::MatrixField<kk2::mont998> a(n, m),\
-    \ b(m, k);\n    (a.input(cin) * b.input(cin)).output(cout);\n\n    return 0;\n\
-    }\n"
+    \ b(m, k);\n    a.input(cin), b.input(cin);\n    (a * b).output(cout);\n\n   \
+    \ return 0;\n}\n"
   dependsOn:
   - matrix/matrix_field.hpp
   - modint/mont.hpp
@@ -319,8 +319,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2024-10-07 04:00:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-07 05:01:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_product.test.cpp
 layout: document

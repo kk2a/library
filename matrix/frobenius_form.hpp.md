@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: matrix/basis.hpp
     title: matrix/basis.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
   _extendedRequiredBy: []

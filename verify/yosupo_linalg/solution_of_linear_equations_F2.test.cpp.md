@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations_mod_2
@@ -371,15 +371,17 @@ data:
     \ &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n    return is;\n\
     }\n\n\n#line 5 \"verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp\"\
     \nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n  \
-    \  kk2::MatrixF2 a(n, m), b(1, n);\n    if (const auto res = a.input(cin).solve(b.input(cin).inplace_transpose());\
-    \ !res.get_h())\n        cout << -1 << \"\\n\";\n    else {\n        cout << res.get_h()\
-    \ - 1 << \"\\n\";\n        res.output(cout);\n    }\n\n    return 0;\n}\n"
+    \  kk2::MatrixF2 a(n, m), b(1, n);\n    a.input(cin), b.input(cin);\n    if (const\
+    \ auto res = a.solve(b.inplace_transpose()); !res.get_h())\n        cout << -1\
+    \ << \"\\n\";\n    else {\n        cout << res.get_h() - 1 << \"\\n\";\n     \
+    \   res.output(cout);\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations_mod_2\"\
     \n\n#include \"../../matrix/matrix_F2.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n  \
-    \  kk2::MatrixF2 a(n, m), b(1, n);\n    if (const auto res = a.input(cin).solve(b.input(cin).inplace_transpose());\
-    \ !res.get_h())\n        cout << -1 << \"\\n\";\n    else {\n        cout << res.get_h()\
-    \ - 1 << \"\\n\";\n        res.output(cout);\n    }\n\n    return 0;\n}\n"
+    \  kk2::MatrixF2 a(n, m), b(1, n);\n    a.input(cin), b.input(cin);\n    if (const\
+    \ auto res = a.solve(b.inplace_transpose()); !res.get_h())\n        cout << -1\
+    \ << \"\\n\";\n    else {\n        cout << res.get_h() - 1 << \"\\n\";\n     \
+    \   res.output(cout);\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - matrix/matrix_F2.hpp
   - data_structure/my_bitset.hpp
@@ -387,8 +389,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-07 04:05:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-07 05:01:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
 layout: document

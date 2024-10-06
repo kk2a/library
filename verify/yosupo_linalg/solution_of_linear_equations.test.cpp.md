@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -304,16 +304,17 @@ data:
     \ &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n    return is;\n\
     }\n\n\n#line 6 \"verify/yosupo_linalg/solution_of_linear_equations.test.cpp\"\n\
     using namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    kk2::MatrixField<kk2::mont998>\
-    \ a(n, m), b(n, 1);\n    if (const auto res = a.input(cin).solve(b.input(cin));\
-    \ !res.get_h()) cout << -1 << \"\\n\";\n    else {\n        cout << res.get_h()\
-    \ - 1 << \"\\n\";\n        res.output(cout);\n    }\n\n    return 0;\n}\n"
+    \ a(n, m), b(n, 1);\n    a.input(cin), b.input(cin);\n    if (const auto res =\
+    \ a.solve(b); !res.get_h()) cout << -1 << \"\\n\";\n    else {\n        cout <<\
+    \ res.get_h() - 1 << \"\\n\";\n        res.output(cout);\n    }\n\n    return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
     \n\n#include \"../../matrix/matrix_field.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
     \ {\n    int n, m;\n    cin >> n >> m;\n    kk2::MatrixField<kk2::mont998> a(n,\
-    \ m), b(n, 1);\n    if (const auto res = a.input(cin).solve(b.input(cin)); !res.get_h())\
-    \ cout << -1 << \"\\n\";\n    else {\n        cout << res.get_h() - 1 << \"\\\
-    n\";\n        res.output(cout);\n    }\n\n    return 0;\n}\n"
+    \ m), b(n, 1);\n    a.input(cin), b.input(cin);\n    if (const auto res = a.solve(b);\
+    \ !res.get_h()) cout << -1 << \"\\n\";\n    else {\n        cout << res.get_h()\
+    \ - 1 << \"\\n\";\n        res.output(cout);\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - matrix/matrix_field.hpp
   - modint/mont.hpp
@@ -322,8 +323,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2024-10-07 04:05:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-07 05:01:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
 layout: document
