@@ -1,6 +1,7 @@
 #ifndef MATH_ERATOSTHENES
 #define MATH_ERATOSTHENES 1
 
+#include <algorithm>
 #include <cassert>
 #include <utility>
 #include <vector>
@@ -15,13 +16,25 @@ struct Erato {
 
     constexpr static void set_upper(int m) {
         if ((int)_isprime.size() > m) return;
-        _isprime.assign(m + 1, true);
-        _minfactor.assign(m + 1, -1);
-        _mobius.assign(m + 1, 1);
+        int start = std::max<int>(2, _isprime.size());
+
+        _isprime.resize(m + 1, true);
+        _minfactor.resize(m + 1, -1);
+        _mobius.resize(m + 1, 1);
         _isprime[1] = false;
         _minfactor[1] = 1;
 
-        for (int p = 2; p <= m; ++p) {
+        for (const int &p : _primes) {
+            for (int q = p * ((start + p - 1) / p); q <= m; q += p) {
+                _isprime[q] = false;
+
+                if (_minfactor[q] == -1) _minfactor[q] = p;
+                if ((q / p) % p == 0) _mobius[q] = 0;
+                else _mobius[q] = -_mobius[q];
+            }
+        }
+
+        for (int p = start; p <= m; ++p) {
             if (!_isprime[p]) continue;
 
             _minfactor[p] = p;
