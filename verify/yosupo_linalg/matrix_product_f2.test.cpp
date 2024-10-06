@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_product_mod_2" 
 
-#include "../matrix/matrix_f2.hpp"
+#include "../../matrix/matrix_f2.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
