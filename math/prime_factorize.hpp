@@ -81,7 +81,7 @@ std::vector<std::pair<i64, int>> factorize(i64 n) {
     auto tmp = inner_factorize(n);
     std::sort(tmp.begin(), tmp.end());
     std::vector<std::pair<i64, int>> res;
-    for (int i = 0; i < tmp.size(); i++) {
+    for (int i = 0; i < (int)tmp.size(); i++) {
         if (i == 0 or res.back().first != tmp[i]) {
             res.emplace_back(tmp[i], 1);
         } else {

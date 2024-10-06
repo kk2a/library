@@ -81,7 +81,7 @@ template <class Iter> void shuffle(Iter first, Iter last) {
 }
 
 template <class T> std::vector<T> perm(int n) {
-    std::vecotr<T> res(n);
+    std::vector<T> res(n);
     std::iota(res.begin(), res.end(), T(0));
     shuffle(res.begin(), res.end());
     return res;
