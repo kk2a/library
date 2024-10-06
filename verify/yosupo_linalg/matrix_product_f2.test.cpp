@@ -8,7 +8,8 @@ int main() {
     int n, m, k;
     cin >> n >> m >> k;
     kk2::MatrixF2 a(n, m), b(m, k);
-    (a.input(cin) * b.input(cin)).output(cout);
+    a.input(cin), b.input(cin);
+    (a * b).output(cout);
 
     return 0;
 }
