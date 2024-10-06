@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
+  - icon: ':x:'
+    path: math/prime_factorize.hpp
+    title: math/prime_factorize.hpp
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
@@ -17,67 +20,72 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/yosupo_math/factrize.test.cpp
-    title: verify/yosupo_math/factrize.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"math/prime_factorize.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <map>\n#include <numeric>\n#include <utility>\n#include <vector>\n\n\
-    #line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n\n#line 1 \"type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing\
-    \ is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
-    \                                                       or std::is_same<T, __int128>::value,\n\
-    \                                                   std::true_type,\n        \
-    \                                           std::false_type>::type;\n\ntemplate\
-    \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-    \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
-    \ __int128>::value,\n                              std::true_type,\n         \
-    \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
-    \ is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\
-    \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/factorize
+    links:
+    - https://judge.yosupo.jp/problem/factorize
+  bundledCode: "#line 1 \"verify/yosupo_math/factrize.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/factorize\" \n\n#line 1 \"math/prime_factorize.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <map>\n#include <numeric>\n#include <utility>\n\
+    #include <vector>\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n\
+    \n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
+    \ kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value\n                                                       or\
+    \ std::is_same<T, __int128>::value,\n                                        \
+    \           std::true_type,\n                                                \
+    \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+    \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n     \
+    \                             or std::is_same<T, unsigned __int128>::value,\n\
     \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed_extended =\n\
-    \    typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-    \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_extended\
-    \ =\n    typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-    \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\n} // namespace kk2\n\n\n#line 7 \"math_mod/pow_mod.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T\
-    \ x, U n, T m) {\n    assert(!is_signed_extended<U>::value || n >= 0);\n    if\
-    \ (m == 1) return S(0);\n    S _m = S(m), r = 1;\n    S y = S(x) % _m;\n    if\
-    \ (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) % _m;\n  \
-    \      y = (y * y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n} // namespace\
-    \ kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\n\n\n\n#line 5 \"modint/mont_arb.hpp\"\
-    \n#include <iostream>\n#line 7 \"modint/mont_arb.hpp\"\n\n#line 9 \"modint/mont_arb.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <typename Int, typename UInt, typename Long, typename\
-    \ ULong, int id>\nstruct ArbitraryLazyMontgomeryModIntBase {\n    using mint =\
-    \ ArbitraryLazyMontgomeryModIntBase;\n\n    inline static UInt mod;\n    inline\
-    \ static UInt r;\n    inline static UInt n2;\n    static constexpr int bit_length\
-    \ = sizeof(UInt) * 8;\n\n    static UInt get_r() {\n        UInt ret = mod;\n\
-    \        while (mod * ret != 1) ret *= UInt(2) - mod * ret;\n        return ret;\n\
-    \    }\n\n    static void setmod(UInt m) {\n        assert(m < (UInt(1u) << (bit_length\
-    \ - 2)));\n        assert((m & 1) == 1);\n        mod = m, n2 = -ULong(m) % m,\
-    \ r = get_r();\n    }\n\n    UInt _v;\n\n    operator Int() const { return val();\
-    \ }\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template <class\
-    \ T, std::enable_if_t<is_integral_extended<T>::value> * = nullptr>\n    ArbitraryLazyMontgomeryModIntBase(const\
-    \ T &b) : _v(reduce(ULong(b % mod + mod) * n2)) {}\n\n    static UInt reduce(const\
-    \ ULong &b) {\n        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n\
-    \    }\n\n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v -\
-    \ 2 * mod) < 0) _v += 2 * mod;\n        return *this;\n    }\n\n    mint &operator-=(const\
-    \ mint &b) {\n        if (Int(_v -= b._v) < 0) _v += 2 * mod;\n        return\
-    \ *this;\n    }\n\n    mint &operator*=(const mint &b) {\n        _v = reduce(ULong(_v)\
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral_extended\
+    \ =\n    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+    \                                  or is_unsigned_int128<T>::value,\n        \
+    \                      std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\
+    \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\ntemplate <typename T>\n\
+    using is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\
+    \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\n} // namespace kk2\n\
+    \n\n#line 7 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S,\
+    \ class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(!is_signed_extended<U>::value\
+    \ || n >= 0);\n    if (m == 1) return S(0);\n    S _m = S(m), r = 1;\n    S y\
+    \ = S(x) % _m;\n    if (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r\
+    \ = (r * y) % _m;\n        y = (y * y) % _m;\n        n >>= 1;\n    }\n    return\
+    \ r;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\n\n\n\n#line\
+    \ 5 \"modint/mont_arb.hpp\"\n#include <iostream>\n#line 7 \"modint/mont_arb.hpp\"\
+    \n\n#line 9 \"modint/mont_arb.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename Int,\
+    \ typename UInt, typename Long, typename ULong, int id>\nstruct ArbitraryLazyMontgomeryModIntBase\
+    \ {\n    using mint = ArbitraryLazyMontgomeryModIntBase;\n\n    inline static\
+    \ UInt mod;\n    inline static UInt r;\n    inline static UInt n2;\n    static\
+    \ constexpr int bit_length = sizeof(UInt) * 8;\n\n    static UInt get_r() {\n\
+    \        UInt ret = mod;\n        while (mod * ret != 1) ret *= UInt(2) - mod\
+    \ * ret;\n        return ret;\n    }\n\n    static void setmod(UInt m) {\n   \
+    \     assert(m < (UInt(1u) << (bit_length - 2)));\n        assert((m & 1) == 1);\n\
+    \        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt _v;\n\n\
+    \    operator Int() const { return val(); }\n\n    ArbitraryLazyMontgomeryModIntBase()\
+    \ : _v(0) {}\n\n    template <class T, std::enable_if_t<is_integral_extended<T>::value>\
+    \ * = nullptr>\n    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b\
+    \ % mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n       \
+    \ return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\n    mint\
+    \ &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod) < 0) _v\
+    \ += 2 * mod;\n        return *this;\n    }\n\n    mint &operator-=(const mint\
+    \ &b) {\n        if (Int(_v -= b._v) < 0) _v += 2 * mod;\n        return *this;\n\
+    \    }\n\n    mint &operator*=(const mint &b) {\n        _v = reduce(ULong(_v)\
     \ * b._v);\n        return *this;\n    }\n\n    mint &operator/=(const mint &b)\
     \ {\n        *this *= b.inv();\n        return *this;\n    }\n\n    friend mint\
     \ operator+(const mint &a, const mint &b) { return mint(a) += b; }\n\n    template\
@@ -221,49 +229,72 @@ data:
     \ j = 0; j < sz; j++) { res.emplace_back(res[j] * x); }\n        }\n    }\n  \
     \  std::sort(res.begin(), res.end());\n    return res;\n}\n\n} // namespace number_theory\n\
     \nusing number_theory::divisors;\nusing number_theory::factorize;\nusing number_theory::factorize_map;\n\
-    \n} // namespace kk2\n\n\n\n"
-  code: "#ifndef MATH_PRIME_FACTRIZATION_HPP\n#define MATH_PRIME_FACTRIZATION_HPP\
-    \ 1\n\n#include <algorithm>\n#include <map>\n#include <numeric>\n#include <utility>\n\
-    #include <vector>\n\n#include \"../math_mod/pow_mod.hpp\"\n#include \"../modint/mont_arb.hpp\"\
-    \n#include \"../random/gen.hpp\"\n#include \"is_prime.hpp\"\n\nnamespace kk2 {\n\
-    \nnamespace number_theory {\n\nusing i64 = long long;\nusing u64 = unsigned long\
-    \ long;\n\ntemplate <class mint, class T> T pollard_rho(T n) {\n    if (~n & 1)\
-    \ return 2;\n    if (is_prime(n)) return n;\n    if (mint::getmod() != n) mint::setmod(n);\n\
-    \n    mint R, one = 1;\n    auto f = [&](mint x) {\n        return x * x + R;\n\
-    \    };\n    auto _rng = [&]() {\n        return kk2::random::rng(2, n);\n   \
-    \ };\n    while (true) {\n        mint x, y, ys, q = one;\n        R = _rng(),\
-    \ y = _rng();\n        T g = 1;\n        constexpr int m = 128;\n        for (int\
-    \ r = 1; g == 1; r <<= 1) {\n            x = y;\n            for (int i = 0; i\
-    \ < r; i++) y = f(y);\n            for (int k = 0; k < r && g == 1; k += m) {\n\
-    \                ys = y;\n                for (int i = 0; i < std::min(m, r -\
-    \ k); i++) {\n                    y = f(y);\n                    q *= x - y;\n\
-    \                }\n                g = std::gcd(q.val(), n);\n            }\n\
-    \        }\n        if (g == n) do {\n                ys = f(ys);\n          \
-    \      g = std::gcd((x - ys).val(), n);\n            } while (g == 1);\n     \
-    \   if (g != n) return g;\n    }\n    exit(1);\n}\n\nstd::vector<i64> inner_factorize(i64\
-    \ n) {\n    using mint32 = ArbitraryLazyMontgomeryModInt<54355165>;\n    using\
-    \ mint64 = ArbitraryLazyMontgomeryModInt64bit<54355165>;\n    if (n == 1) return\
-    \ {};\n    if (n < 0) n = -n;\n    u64 p;\n    if (n <= (1ll << 30)) {\n     \
-    \   p = pollard_rho<mint32, unsigned int>(n);\n    } else if (n <= (1ll << 62))\
-    \ {\n        p = pollard_rho<mint64, unsigned long long>(n);\n    } else {\n \
-    \       exit(1);\n    }\n    if (p == n) return {i64(p)};\n    auto l = inner_factorize(p);\n\
-    \    auto r = inner_factorize(n / p);\n    std::copy(r.begin(), r.end(), std::back_inserter(l));\n\
-    \    return l;\n}\n\nstd::vector<std::pair<i64, int>> factorize(i64 n) {\n   \
-    \ auto tmp = inner_factorize(n);\n    std::sort(tmp.begin(), tmp.end());\n   \
-    \ std::vector<std::pair<i64, int>> res;\n    for (int i = 0; i < tmp.size(); i++)\
-    \ {\n        if (i == 0 or res.back().first != tmp[i]) {\n            res.emplace_back(tmp[i],\
-    \ 1);\n        } else {\n            res.back().second++;\n        }\n    }\n\
-    \    return res;\n}\n\nstd::map<i64, int> factorize_map(i64 n) {\n    auto tmp\
-    \ = inner_factorize(n);\n    std::map<i64, int> res;\n    for (auto x : tmp) res[x]++;\n\
-    \    return res;\n}\n\nstd::vector<i64> divisors(i64 n) {\n    if (n == 0) return\
-    \ {};\n\n    auto f = factorize(n);\n    std::vector<i64> res = {1};\n    for\
-    \ (auto [p, k] : f) {\n        int sz = res.size();\n        i64 x = 1;\n    \
-    \    for (int i = 0; i < k; i++) {\n            x *= p;\n            for (int\
-    \ j = 0; j < sz; j++) { res.emplace_back(res[j] * x); }\n        }\n    }\n  \
-    \  std::sort(res.begin(), res.end());\n    return res;\n}\n\n} // namespace number_theory\n\
-    \nusing number_theory::divisors;\nusing number_theory::factorize;\nusing number_theory::factorize_map;\n\
-    \n} // namespace kk2\n\n\n#endif // MATH_PRIME_FACTRIZATION_HPP\n"
+    \n} // namespace kk2\n\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC\
+    \ optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#line 8 \"template/template.hpp\"\
+    \n#include <array>\n#include <bitset>\n#line 12 \"template/template.hpp\"\n#include\
+    \ <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <iomanip>\n#line 19 \"template/template.hpp\"\n#include\
+    \ <iterator>\n#include <limits>\n#line 23 \"template/template.hpp\"\n#include\
+    \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
+    #include <stack>\n#include <string>\n#include <tuple>\n#line 32 \"template/template.hpp\"\
+    \n#include <unordered_map>\n#line 36 \"template/template.hpp\"\n\nusing u32 =\
+    \ unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+    \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\n\
+    using pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing pli =\
+    \ std::pair<i64, int>;\n\ntemplate <class T> constexpr T infty = 0;\ntemplate\
+    \ <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64>\
+    \ = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>)\
+    \ * infty<i64>;\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate\
+    \ <> constexpr u64 infty<u64> = infty<i64>;\ntemplate <> constexpr double infty<double>\
+    \ = infty<i64>;\ntemplate <> constexpr long double infty<long double> = infty<i64>;\n\
+    \nconstexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
+    \ double PI = 3.14159265358979323846;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+    template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
+    \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+    \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
+    \ pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\nnamespace\
+    \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(const T &init,\
+    \ int first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n \
+    \       return std::vector<T>(first, init);\n    } else {\n        return std::vector<decltype(make_vector(init,\
+    \ sizes...))>(first,\n                                                       \
+    \           make_vector(init, sizes...));\n    }\n}\n\ntemplate <class T, class\
+    \ U> void fill_all(std::vector<T> &v, const U &x) {\n    std::fill(std::begin(v),\
+    \ std::end(v), T(x));\n}\n\ntemplate <class T, class U> void fill_all(std::vector<std::vector<T>>\
+    \ &v, const U &x) {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace\
+    \ kk2\n\ntemplate <class T, class S> inline bool chmax(T &a, const S &b) {\n \
+    \   return (a < b ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool\
+    \ chmin(T &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n#define\
+    \ rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i =\
+    \ 0; i < (i64)(a); ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b);\
+    \ ++i)\n#define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i,\
+    \ a, b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c,\
+    \ d, ...) d\n#define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
+    #define fi first\n#define se second\n#define all(p) std::begin(p), std::end(p)\n\
+    \nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
+    \    }\n} iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream\
+    \ out(\"out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\
+    \nvoid YES(bool b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n\
+    }\n\nvoid NO(bool b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n\
+    }\n\nvoid Yes(bool b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n\
+    }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
+    }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
+    }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
+    }\n\n\n#line 5 \"verify/yosupo_math/factrize.test.cpp\"\nusing namespace std;\n\
+    \nint main() {\n    int q;\n    cin >> q;\n    rep (q) {\n        i64 a;\n   \
+    \     cin >> a;\n        int cnt = 0;\n        auto f = kk2::factorize(a);\n \
+    \       for (auto [p, e] : f) cnt += e;\n        cout << cnt << ' ';\n       \
+    \ for (auto [p, e] : f)\n            rep (e) cout << p << ' ';\n        cout <<\
+    \ '\\n';\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\" \n\n#include\
+    \ \"../../math/prime_factorize.hpp\"\n#include \"../../template/template.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    int q;\n    cin >> q;\n    rep (q)\
+    \ {\n        i64 a;\n        cin >> a;\n        int cnt = 0;\n        auto f =\
+    \ kk2::factorize(a);\n        for (auto [p, e] : f) cnt += e;\n        cout <<\
+    \ cnt << ' ';\n        for (auto [p, e] : f)\n            rep (e) cout << p <<\
+    \ ' ';\n        cout << '\\n';\n    }\n\n    return 0;\n}"
   dependsOn:
+  - math/prime_factorize.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
   - modint/mont_arb.hpp
@@ -271,17 +302,17 @@ data:
   - random/gen.hpp
   - random/seed.hpp
   - math/is_prime.hpp
-  isVerificationFile: false
-  path: math/prime_factorize.hpp
+  - template/template.hpp
+  isVerificationFile: true
+  path: verify/yosupo_math/factrize.test.cpp
   requiredBy: []
-  timestamp: '2024-10-02 17:35:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/yosupo_math/factrize.test.cpp
-documentation_of: math/prime_factorize.hpp
+  timestamp: '2024-10-06 20:18:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: verify/yosupo_math/factrize.test.cpp
 layout: document
 redirect_from:
-- /library/math/prime_factorize.hpp
-- /library/math/prime_factorize.hpp.html
-title: math/prime_factorize.hpp
+- /verify/verify/yosupo_math/factrize.test.cpp
+- /verify/verify/yosupo_math/factrize.test.cpp.html
+title: verify/yosupo_math/factrize.test.cpp
 ---

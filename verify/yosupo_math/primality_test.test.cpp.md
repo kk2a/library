@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'
@@ -29,8 +29,8 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/primality_test
     links:
     - https://judge.yosupo.jp/problem/primality_test
-  bundledCode: "#line 1 \"verify/yosupo_math/math_primality_test.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#line 1 \"math/is_prime.hpp\"\
+  bundledCode: "#line 1 \"verify/yosupo_math/primality_test.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/primality_test\"\n\n#line 1 \"math/is_prime.hpp\"\
     \n\n\n\n#include <vector>\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include\
     \ <cassert>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\
     \nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename\
@@ -196,7 +196,7 @@ data:
     }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
     }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
     }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
-    }\n\n\n#line 5 \"verify/yosupo_math/math_primality_test.test.cpp\"\nusing namespace\
+    }\n\n\n#line 5 \"verify/yosupo_math/primality_test.test.cpp\"\nusing namespace\
     \ std;\n\nint main() {\n    int q;\n    cin >> q;\n    rep (q) {\n        u64\
     \ n;\n        cin >> n;\n        Yes(kk2::is_prime(n));\n    }\n\n    return 0;\n\
     }\n"
@@ -213,15 +213,15 @@ data:
   - type_traits/type_traits.hpp
   - template/template.hpp
   isVerificationFile: true
-  path: verify/yosupo_math/math_primality_test.test.cpp
+  path: verify/yosupo_math/primality_test.test.cpp
   requiredBy: []
-  timestamp: '2024-10-05 17:47:42+09:00'
+  timestamp: '2024-10-06 20:18:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_math/math_primality_test.test.cpp
+documentation_of: verify/yosupo_math/primality_test.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_math/math_primality_test.test.cpp
-- /verify/verify/yosupo_math/math_primality_test.test.cpp.html
-title: verify/yosupo_math/math_primality_test.test.cpp
+- /verify/verify/yosupo_math/primality_test.test.cpp
+- /verify/verify/yosupo_math/primality_test.test.cpp.html
+title: verify/yosupo_math/primality_test.test.cpp
 ---

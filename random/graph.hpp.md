@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy: []

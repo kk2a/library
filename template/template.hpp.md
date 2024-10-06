@@ -48,18 +48,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/factrize.test.cpp
+    title: verify/yosupo_math/factrize.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_math/math_primality_test.test.cpp
-    title: verify/yosupo_math/math_primality_test.test.cpp
+    path: verify/yosupo_math/kth_root_int.test.cpp
+    title: verify/yosupo_math/kth_root_int.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/many_factrials.test.cpp
+    title: verify/yosupo_math/many_factrials.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_math/primality_test.test.cpp
+    title: verify/yosupo_math/primality_test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_math/sum_of_floor_linear.test.cpp
+    title: verify/yosupo_math/sum_of_floor_linear.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -176,7 +188,11 @@ data:
   timestamp: '2024-10-05 17:47:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/math_primality_test.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_math/kth_root_int.test.cpp
+  - verify/yosupo_math/primality_test.test.cpp
+  - verify/yosupo_math/sum_of_floor_linear.test.cpp
+  - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp

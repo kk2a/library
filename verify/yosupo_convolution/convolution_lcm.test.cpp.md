@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'

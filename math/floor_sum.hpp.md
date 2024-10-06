@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_math/sum_of_floor_linear.test.cpp
+    title: verify/yosupo_math/sum_of_floor_linear.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/practice2/editorial/579
@@ -33,8 +36,9 @@ data:
   path: math/floor_sum.hpp
   requiredBy: []
   timestamp: '2024-09-23 06:36:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_math/sum_of_floor_linear.test.cpp
 documentation_of: math/floor_sum.hpp
 layout: document
 redirect_from:

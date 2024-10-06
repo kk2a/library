@@ -8,13 +8,16 @@ data:
   - icon: ':warning:'
     path: fps/taylor_shift.hpp
     title: fps/taylor_shift.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_math/many_factrials.test.cpp
+    title: verify/yosupo_math/many_factrials.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/comb.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -106,8 +109,9 @@ data:
   - math_mod/comb_large.hpp
   - fps/taylor_shift.hpp
   timestamp: '2024-09-29 16:53:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_math/many_factrials.test.cpp
 documentation_of: math_mod/comb.hpp
 layout: document
 redirect_from:
