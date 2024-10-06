@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix" 
+#define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix"
 
 #include "../../matrix/matrix_field.hpp"
 #include "../../modint/mont.hpp"
@@ -10,8 +10,7 @@ int main() {
     i64 k;
     cin >> n >> k;
     kk2::MatrixField<kk2::mont998> a(n, n);
-    rep (i, n) rep (j, n) cin >> a[i][j];
-    a.pow(k).display();
+    a.input(cin).pow(k).output(cout);
 
     return 0;
 }

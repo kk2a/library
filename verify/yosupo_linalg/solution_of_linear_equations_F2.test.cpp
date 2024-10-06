@@ -7,17 +7,12 @@ using namespace std;
 int main() {
     int n, m;
     cin >> n >> m;
-    kk2::MatrixF2 a(n, m);
-    rep (i, n) cin >> a[i];
-    kk2::MatrixF2 b(1, n);
-    cin >> b[0];
-    b.inplace_transpose();
-
-    auto res = a.solve(b);
+    kk2::MatrixF2 a(n, m), b(1, n);
+    auto res = a.input(cin).solve(b.input(cin).inplace_transpose());
     if (!res.get_h()) cout << -1 << "\n";
     else {
         cout << res.get_h() - 1 << "\n";
-        res.display();
+        res.output(cout);
     }
 
     return 0;

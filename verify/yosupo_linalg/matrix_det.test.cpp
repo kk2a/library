@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det" 
+#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 
 #include "../../matrix/matrix_field.hpp"
 #include "../../modint/mont.hpp"
@@ -9,8 +9,7 @@ int main() {
     int n;
     cin >> n;
     kk2::MatrixField<kk2::mont998> a(n, n);
-    rep (i, n) rep (j, n) cin >> a[i][j];
-    cout << a.det() << "\n";
+    cout << a.input(cin).det() << "\n";
 
     return 0;
 }

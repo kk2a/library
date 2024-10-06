@@ -57,6 +57,19 @@ template <class Field> struct MatrixField {
         }
     }
 
+    mat &input(std::istream &is) {
+        for (int i = 0; i < _h; i++) {
+            for (int j = 0; j < _w; j++) { is >> _mat[i][j]; }
+        }
+        return *this;
+    }
+
+    void output(std::ostream &os) const {
+        for (int i = 0; i < _h; i++) {
+            for (int j = 0; j < _w; j++) { os << _mat[i][j] << " \n"[j == _w - 1]; }
+        }
+    }
+
     void set(int i, int j, Field x) {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/many_factorials" 
+#define PROBLEM "https://judge.yosupo.jp/problem/many_factorials"
 
 #include "../../math_mod/comb_large.hpp"
 #include "../../modint/mont.hpp"

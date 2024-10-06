@@ -11,8 +11,7 @@ int main() {
     int n;
     cin >> n;
     FPS f(n);
-    cin >> f;
-    cout << f.inv() << endl;
+    f.input(cin).inv().output(cout);
 
     return 0;
 }

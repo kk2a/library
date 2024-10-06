@@ -11,8 +11,8 @@ int main() {
     int n;
     i64 m;
     cin >> n >> m;
-    cin >> f;
-    cout << f.pow(m) << endl;
+    FPS f(n);
+    f.input(cin).pow(m).output(cout);
 
     return 0;
 }

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/factorize" 
+#define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 
 #include "../../math/prime_factorize.hpp"
 #include "../../template/template.hpp"

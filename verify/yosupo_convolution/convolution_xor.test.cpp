@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution" 
+#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution"
 
 #include "../../convolution/bitxor1.hpp"
 #include "../../modint/mont.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix_mod_2" 
+#define PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix_mod_2"
 
 #include "../../matrix/matrix_F2.hpp"
 #include "../../template/template.hpp"
@@ -8,8 +8,7 @@ int main() {
     int n;
     cin >> n;
     kk2::MatrixF2 a(n, n);
-    rep (i, n) cin >> a[i];
-    if (auto const inv = a.inv()) inv->display();
+    if (auto const inv = a.input(cin).inv()) inv->output(cout);
     else cout << -1 << "\n";
 
     return 0;

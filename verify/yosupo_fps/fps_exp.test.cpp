@@ -11,8 +11,7 @@ int main() {
     int n;
     cin >> n;
     FPS f(n);
-    cin >> f;
-    cout << f.exp() << endl;
+    f.input(cin).exp().output(cout);
 
     return 0;
 }

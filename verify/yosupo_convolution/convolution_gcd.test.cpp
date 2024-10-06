@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/gcd_convolution" 
+#define PROBLEM "https://judge.yosupo.jp/problem/gcd_convolution"
 
 #include "../../convolution/gcd1.hpp"
 #include "../../modint/mont.hpp"

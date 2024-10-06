@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/multivariate_convolution" 
+#define PROBLEM "https://judge.yosupo.jp/problem/multivariate_convolution"
 
 #include "../../convolution/multi_convolution_truncated.hpp"
 #include "../../modint/mont.hpp"

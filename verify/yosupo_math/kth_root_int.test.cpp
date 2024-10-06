@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/kth_root_integer" 
+#define PROBLEM "https://judge.yosupo.jp/problem/kth_root_integer"
 
 #include "../../math/kth_root_floor.hpp"
 #include "../../template/template.hpp"

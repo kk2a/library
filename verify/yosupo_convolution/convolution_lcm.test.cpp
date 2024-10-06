@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/lcm_convolution" 
+#define PROBLEM "https://judge.yosupo.jp/problem/lcm_convolution"
 
 #include "../../convolution/lcm1.hpp"
 #include "../../modint/mont.hpp"

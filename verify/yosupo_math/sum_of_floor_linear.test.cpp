@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/sum_of_floor_of_linear" 
+#define PROBLEM "https://judge.yosupo.jp/problem/sum_of_floor_of_linear"
 
 #include "../../math/floor_sum.hpp"
 #include "../../template/template.hpp"

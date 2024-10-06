@@ -56,7 +56,7 @@ template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::great
 template <class T> constexpr T infty = 0;
 template <> constexpr int infty<int> = (1 << 30) - 123;
 template <> constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);
-template <> constexpr i128 infty<i128> = i128(1) << 126 - i128(1) << 63;
+template <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);
 template <> constexpr u32 infty<u32> = infty<int>;
 template <> constexpr u64 infty<u64> = infty<i64>;
 template <> constexpr u128 infty<u128> = infty<i128>;
@@ -162,7 +162,7 @@ template <class T> std::ostream &operator<<(std::ostream &os, const std::vector<
     return os;
 }
 
-template <class T> std::isream &operator>>(std::istream &is, std::vector<T> &v) {
+template <class T> std::istream &operator>>(std::istream &is, std::vector<T> &v) {
     for (auto &x : v) is >> x;
     return is;
 }

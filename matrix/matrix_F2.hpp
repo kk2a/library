@@ -56,10 +56,10 @@ struct MatrixF2 {
 
         operator DynamicBitSet() const { return bs[i]; }
 
-        std::ifstream &operator>>(std::ifstream &is) {
+        friend std::istream &operator>>(std::istream &is, Proxy p) {
             std::string s;
             is >> s;
-            bs[i].set_reversed(s);
+            p = s;
             return is;
         }
 
@@ -135,6 +135,21 @@ struct MatrixF2 {
 
     void display() const {
         for (int i = 0; i < _h; i++) { std::cout << _mat[i].to_reversed_string() << "\n"; }
+    }
+
+    mat &input(std::istream &is) {
+        for (int i = 0; i < _h; i++) {
+            std::string s;
+            is >> s;
+            _mat[i].set_reversed(s);
+        }
+        return *this;
+    }
+
+    void output(std::ostream &os) const {
+        for (int i = 0; i < _h; i++) {
+            os << _mat[i].to_reversed_string() << "\n";
+        }
     }
 
     void set(int i, int j, bool x) {
@@ -410,7 +425,7 @@ struct MatrixF2 {
         return mat(res);
     }
 
-    mat transpose() const {
+    mat transpose() {
         mat res(_w, _h);
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) { res[j][i] = _mat[i][j]; }

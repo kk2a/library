@@ -37,6 +37,13 @@ struct DynamicBitSet {
         set(s);
     }
 
+    friend std::istream &operator>>(std::istream &is, T &bs) {
+        std::string s;
+        is >> s;
+        bs.set_reversed(s);
+        return is;
+    }
+
     int size() const { return n; }
 
     T &inplace_combine_top(const T &rhs) {
@@ -122,6 +129,13 @@ struct DynamicBitSet {
         BitReference(std::vector<UInt> &block_, int idx_) : block(block_), idx(idx_) {}
 
         operator bool() const { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }
+
+        friend std::istream &operator>>(std::istream &is, BitReference a) {
+            bool c;
+            is >> c;
+            a = c;
+            return is;
+        }
 
         BitReference &operator=(bool x) {
             if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);
