@@ -7,6 +7,9 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
+  - icon: ':x:'
+    path: convolution/multi_convolution_truncated.hpp
+    title: convolution/multi_convolution_truncated.hpp
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
@@ -32,12 +35,14 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
+    PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution
     links:
-    - https://judge.yosupo.jp/problem/convolution_mod
-  bundledCode: "#line 1 \"verify/yosupo_convolution/convolution_ntt.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#line 1 \"convolution/convolution.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <vector>\n\n#line 1 \"convolution/butterfly.hpp\"\
+    - https://judge.yosupo.jp/problem/multivariate_convolution
+  bundledCode: "#line 1 \"verify/yosupo_convolution/convolution_multi_truncated.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
+    \ \n\n#line 1 \"convolution/multi_convolution_truncated.hpp\"\n\n\n\n#include\
+    \ <vector>\n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
+    #line 6 \"convolution/convolution.hpp\"\n\n#line 1 \"convolution/butterfly.hpp\"\
     \n\n\n\n#line 5 \"convolution/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
     \n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n\n#line 1\
     \ \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace kk2\
@@ -169,18 +174,37 @@ data:
     \   butterfly(a);\n        FPS t(b.begin(), b.end());\n        t.resize(z);\n\
     \        butterfly(t);\n        for (int i = 0; i < z; i++) a[i] *= t[i];\n  \
     \  }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    return a;\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\
-    \n#include <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line\
-    \ 10 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt\
-    \ {\n    using mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using\
-    \ i64 = int64_t;\n    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n   \
-    \ static constexpr u32 get_r() {\n        u32 ret = p;\n        for (int i = 0;\
-    \ i < 4; ++i) ret *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr\
-    \ u32 r = get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r\
-    \ * p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
-    \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
-    \n    u32 _v;\n\n    operator int() const { return val(); }\n\n    constexpr LazyMontgomeryModInt()\
-    \ : _v(0) {}\n\n    template <typename T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
+    \ namespace kk2\n\n\n#line 7 \"convolution/multi_convolution_truncated.hpp\"\n\
+    \nnamespace kk2 {\n\n// reference: https://rushcheyo.blog.uoj.ac/blog/6547\n//\
+    \ \u65E5\u672C\u8A9E:\n// https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
+    template <class FPS, class mint = typename FPS::value_type>\nFPS &multi_convolution_truncated(FPS\
+    \ &a, const FPS &b, const std::vector<int> &base) {\n    int n = int(a.size());\n\
+    \    if (!n) return {};\n    int k = base.size();\n    if (!k) return convolution(a,\
+    \ b);\n    // chi[i] = \\sum_{j} \\floor(i / (base[0]...base[j]))\n    std::vector<int>\
+    \ chi(n, 0);\n    for (int i = 0; i < n; i++) {\n        int x = i;\n        for\
+    \ (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);\n        chi[i] %= k;\n\
+    \    }\n    int z = 1;\n    while (z < 2 * n - 1) z <<= 1;\n    std::vector<FPS>\
+    \ f(k, FPS(z));\n    std::vector<FPS> g(k, FPS(z));\n    for (int i = 0; i < n;\
+    \ i++) f[chi[i]][i] = a[i], g[chi[i]][i] = b[i];\n    for (auto &x : f) butterfly(x);\n\
+    \    for (auto &x : g) butterfly(x);\n    std::vector<mint> tmp(k);\n    for (int\
+    \ ii = 0; ii < z; ii++) {\n        for (int i = 0; i < k; i++) {\n           \
+    \ for (int j = 0; j < k; j++) {\n                tmp[i + j - (i + j >= k ? k :\
+    \ 0)] += f[i][ii] * g[j][ii];\n            }\n        }\n        for (int i =\
+    \ 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto &x\
+    \ : f) butterfly_inv(x);\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i];\n\
+    \    return a;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\
+    \n#line 5 \"modint/mont.hpp\"\n#include <cstdint>\n#include <iostream>\n#line\
+    \ 8 \"modint/mont.hpp\"\n\n#line 10 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\n\
+    template <int p> struct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
+    \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
+    \    using u64 = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32\
+    \ ret = p;\n        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n        return\
+    \ ret;\n    }\n\n    static constexpr u32 r = get_r();\n    static constexpr u32\
+    \ n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\");\n\
+    \    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
+    \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    operator int() const\
+    \ { return val(); }\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n\n   \
+    \ template <typename T, std::enable_if_t<kk2::is_integral_extended<T>::value>\
     \ * = nullptr>\n    constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p\
     \ + p) * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) { return (b\
     \ + u64(u32(b) * u32(-r)) * p) >> 32; }\n\n    constexpr mint &operator++() {\
@@ -282,19 +306,22 @@ data:
     }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
     }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
     }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
-    }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_ntt.test.cpp\"\nusing namespace\
-    \ std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vc<kk2::mont998>\
-    \ a(n), b(m);\n    rep (i, n) cin >> a[i];\n    rep (i, m) cin >> b[i];\n    kk2::convolution(a,\
-    \ b);\n    rep (i, n + m - 1) cout << a[i] << \" \\n\"[i == n + m - 2];\n\n  \
-    \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#include\
-    \ \"../../convolution/convolution.hpp\"\n#include \"../../modint/mont.hpp\"\n\
-    #include \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n\
-    \    int n, m;\n    cin >> n >> m;\n    vc<kk2::mont998> a(n), b(m);\n    rep\
-    \ (i, n) cin >> a[i];\n    rep (i, m) cin >> b[i];\n    kk2::convolution(a, b);\n\
-    \    rep (i, n + m - 1) cout << a[i] << \" \\n\"[i == n + m - 2];\n\n    return\
-    \ 0;\n}\n"
+    }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_multi_truncated.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int k;\n    cin >> k;\n    vc<int>\
+    \ base(k);\n    rep (i, k) cin >> base[i];\n    int n = 1;\n    rep (i, k) n *=\
+    \ base[i];\n    vc<kk2::mont998> a(n), b(n);\n    rep (i, n) cin >> a[i];\n  \
+    \  rep (i, n) cin >> b[i];\n    kk2::multi_convolution_truncated(a, b, base);\n\
+    \    rep (i, n) cout << a[i] << \" \\n\"[i == n - 1];\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
+    \ \n\n#include \"../../convolution/multi_convolution_truncated.hpp\"\n#include\
+    \ \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\nusing namespace\
+    \ std;\n\nint main() {\n    int k;\n    cin >> k;\n    vc<int> base(k);\n    rep\
+    \ (i, k) cin >> base[i];\n    int n = 1;\n    rep (i, k) n *= base[i];\n    vc<kk2::mont998>\
+    \ a(n), b(n);\n    rep (i, n) cin >> a[i];\n    rep (i, n) cin >> b[i];\n    kk2::multi_convolution_truncated(a,\
+    \ b, base);\n    rep (i, n) cout << a[i] << \" \\n\"[i == n - 1];\n\n    return\
+    \ 0;\n}"
   dependsOn:
+  - convolution/multi_convolution_truncated.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
   - math_mod/primitive_root.hpp
@@ -304,15 +331,15 @@ data:
   - type_traits/type_traits.hpp
   - template/template.hpp
   isVerificationFile: true
-  path: verify/yosupo_convolution/convolution_ntt.test.cpp
+  path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   requiredBy: []
-  timestamp: '2024-10-06 16:26:20+09:00'
+  timestamp: '2024-10-06 16:45:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_convolution/convolution_ntt.test.cpp
+documentation_of: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_convolution/convolution_ntt.test.cpp
-- /verify/verify/yosupo_convolution/convolution_ntt.test.cpp.html
-title: verify/yosupo_convolution/convolution_ntt.test.cpp
+- /verify/verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+- /verify/verify/yosupo_convolution/convolution_multi_truncated.test.cpp.html
+title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
 ---

@@ -2,21 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':warning:'
-    path: convolution/convo_arb.hpp
-    title: convolution/convo_arb.hpp
-  - icon: ':warning:'
-    path: convolution/convo_arb.hpp
-    title: convolution/convo_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':warning:'
-    path: convolution/multi_convo_truncated.hpp
-    title: convolution/multi_convo_truncated.hpp
+  - icon: ':x:'
+    path: convolution/convolution_arb.hpp
+    title: convolution/convolution_arb.hpp
+  - icon: ':x:'
+    path: convolution/convolution_arb.hpp
+    title: convolution/convolution_arb.hpp
+  - icon: ':x:'
+    path: convolution/multi_convolution_truncated.hpp
+    title: convolution/multi_convolution_truncated.hpp
   - icon: ':warning:'
     path: data_structure/convex_hull_trick_add_monotone.hpp
     title: data_structure/convex_hull_trick_add_monotone.hpp
@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
@@ -65,16 +65,16 @@ data:
   - icon: ':warning:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
   - icon: ':warning:'
     path: modint/modint.hpp
     title: modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':heavy_check_mark:'
@@ -84,10 +84,28 @@ data:
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+    title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+    title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_gcd.test.cpp
+    title: verify/yosupo_convolution/convolution_gcd.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_lcm.test.cpp
+    title: verify/yosupo_convolution/convolution_lcm.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+    title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+    title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_ntt.test.cpp
     title: verify/yosupo_convolution/convolution_ntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_ntt.test.cpp
     title: verify/yosupo_convolution/convolution_ntt.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,16 +120,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,9 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
     title: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\
@@ -185,11 +203,11 @@ data:
   - math/pow.hpp
   - math/is_prime.hpp
   - math/is_prime.hpp
+  - convolution/multi_convolution_truncated.hpp
+  - convolution/convolution_arb.hpp
+  - convolution/convolution_arb.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
-  - convolution/convo_arb.hpp
-  - convolution/convo_arb.hpp
-  - convolution/multi_convo_truncated.hpp
   - modint/modint.hpp
   - modint/mont_arb.hpp
   - modint/mont.hpp
@@ -200,7 +218,7 @@ data:
   - fps/multivariate_fps.hpp
   - fps/fps_sqrt.hpp
   timestamp: '2024-09-29 16:53:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
   - verify/yosupo_math/math_primality_test.test.cpp
@@ -213,6 +231,12 @@ data:
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_ntt.test.cpp
   - verify/yosupo_convolution/convolution_ntt.test.cpp
 documentation_of: type_traits/type_traits.hpp

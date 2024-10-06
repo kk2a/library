@@ -2,19 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: convolution/convo_arb.hpp
-    title: convolution/convo_arb.hpp
+  - icon: ':x:'
+    path: convolution/convolution_arb.hpp
+    title: convolution/convolution_arb.hpp
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+    title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/inv.hpp\"\n\n\n\nnamespace kk2 {\n\n// require:\
@@ -34,11 +37,12 @@ data:
   path: math_mod/inv.hpp
   requiredBy:
   - math_mod/garner.hpp
-  - convolution/convo_arb.hpp
+  - convolution/convolution_arb.hpp
   - fps/fps_arb.hpp
   timestamp: '2024-09-10 08:16:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
 documentation_of: math_mod/inv.hpp
 layout: document
 redirect_from:

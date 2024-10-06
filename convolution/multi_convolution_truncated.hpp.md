@@ -1,34 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+    title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
     - https://rushcheyo.blog.uoj.ac/blog/6547
-  bundledCode: "#line 1 \"convolution/multi_convo_truncated.hpp\"\n\n\n\n#include\
+  bundledCode: "#line 1 \"convolution/multi_convolution_truncated.hpp\"\n\n\n\n#include\
     \ <vector>\n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
     #line 6 \"convolution/convolution.hpp\"\n\n#line 1 \"convolution/butterfly.hpp\"\
     \n\n\n\n#line 5 \"convolution/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
@@ -152,7 +155,7 @@ data:
     \       r *= zeta;\n    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(),\
     \ std::back_inserter(a));\n}\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convolution.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\
-    \ FPS convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    \ FPS &convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n\
     \ + m - 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0;\
     \ j < m; j++) { res[i + j] += a[i] * b[j]; }\n        }\n        a = res;\n  \
@@ -162,10 +165,10 @@ data:
     \   butterfly(a);\n        FPS t(b.begin(), b.end());\n        t.resize(z);\n\
     \        butterfly(t);\n        for (int i = 0; i < z; i++) a[i] *= t[i];\n  \
     \  }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    return a;\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 7 \"convolution/multi_convo_truncated.hpp\"\n\nnamespace\
-    \ kk2 {\n\n// reference: https://rushcheyo.blog.uoj.ac/blog/6547\n// \u65E5\u672C\
-    \u8A9E:\n// https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
-    template <class FPS, class mint = typename FPS::value_type>\nFPS multi_convolution_truncated(FPS\
+    \ namespace kk2\n\n\n#line 7 \"convolution/multi_convolution_truncated.hpp\"\n\
+    \nnamespace kk2 {\n\n// reference: https://rushcheyo.blog.uoj.ac/blog/6547\n//\
+    \ \u65E5\u672C\u8A9E:\n// https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
+    template <class FPS, class mint = typename FPS::value_type>\nFPS &multi_convolution_truncated(FPS\
     \ &a, const FPS &b, const std::vector<int> &base) {\n    int n = int(a.size());\n\
     \    if (!n) return {};\n    int k = base.size();\n    if (!k) return convolution(a,\
     \ b);\n    // chi[i] = \\sum_{j} \\floor(i / (base[0]...base[j]))\n    std::vector<int>\
@@ -179,11 +182,12 @@ data:
     \ for (int j = 0; j < k; j++) {\n                tmp[i + j - (i + j >= k ? k :\
     \ 0)] += f[i][ii] * g[j][ii];\n            }\n        }\n        for (int i =\
     \ 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto &x\
-    \ : f) butterfly_inv(x);\n    return a;\n}\n\n} // namespace kk2\n\n\n"
+    \ : f) butterfly_inv(x);\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i];\n\
+    \    return a;\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef CONVOLUTION_MULTI_ZERO\n#define CONVOLUTION_MULTI_ZERO 1\n\n#include\
     \ <vector>\n\n#include \"convolution.hpp\"\n\nnamespace kk2 {\n\n// reference:\
     \ https://rushcheyo.blog.uoj.ac/blog/6547\n// \u65E5\u672C\u8A9E:\n// https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
-    template <class FPS, class mint = typename FPS::value_type>\nFPS multi_convolution_truncated(FPS\
+    template <class FPS, class mint = typename FPS::value_type>\nFPS &multi_convolution_truncated(FPS\
     \ &a, const FPS &b, const std::vector<int> &base) {\n    int n = int(a.size());\n\
     \    if (!n) return {};\n    int k = base.size();\n    if (!k) return convolution(a,\
     \ b);\n    // chi[i] = \\sum_{j} \\floor(i / (base[0]...base[j]))\n    std::vector<int>\
@@ -197,8 +201,8 @@ data:
     \ for (int j = 0; j < k; j++) {\n                tmp[i + j - (i + j >= k ? k :\
     \ 0)] += f[i][ii] * g[j][ii];\n            }\n        }\n        for (int i =\
     \ 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto &x\
-    \ : f) butterfly_inv(x);\n    return a;\n}\n\n} // namespace kk2\n\n#endif //\
-    \ CONVOLUTION_MULTI_ZERO\n"
+    \ : f) butterfly_inv(x);\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i];\n\
+    \    return a;\n}\n\n} // namespace kk2\n\n#endif // CONVOLUTION_MULTI_ZERO\n"
   dependsOn:
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
@@ -206,16 +210,17 @@ data:
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
-  path: convolution/multi_convo_truncated.hpp
+  path: convolution/multi_convolution_truncated.hpp
   requiredBy:
   - fps/multivariate_fps.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: convolution/multi_convo_truncated.hpp
+  timestamp: '2024-10-06 16:45:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+documentation_of: convolution/multi_convolution_truncated.hpp
 layout: document
 redirect_from:
-- /library/convolution/multi_convo_truncated.hpp
-- /library/convolution/multi_convo_truncated.hpp.html
-title: convolution/multi_convo_truncated.hpp
+- /library/convolution/multi_convolution_truncated.hpp
+- /library/convolution/multi_convolution_truncated.hpp.html
+title: convolution/multi_convolution_truncated.hpp
 ---

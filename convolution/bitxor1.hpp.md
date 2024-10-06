@@ -24,7 +24,7 @@ data:
     \            if ((i & j) != 0) {\n                auto x = a[j], y = a[i ^ j];\n\
     \                a[j] = (-x + y) / 2, a[i ^ j] = (x + y) / 2;\n            }\n\
     \        }\n    }\n}\n\n} // namespace kk2\n\n\n#line 7 \"convolution/bitxor1.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class FPS>\nFPS convolution_xor(FPS &a, const\
+    \n\nnamespace kk2 {\n\ntemplate <class FPS>\nFPS &convolution_xor(FPS &a, const\
     \ FPS &b) {\n    assert(size(a) == size(b));\n    int n = int(size(a)); // ==\
     \ int(size(b)\n    if (!n) return {};\n    assert((n & -n) == n);\n    FPS c(b.begin(),\
     \ b.end());\n\n    WalshHadamardTransform(a);\n    WalshHadamardTransform(c);\n\
@@ -32,7 +32,7 @@ data:
     \n    return a;\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef CONVOLUTION_XOR\n#define CONVOLUTION_XOR 1\n\n#include <cassert>\n\
     \n#include \"walsh_hadamard_transform.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ FPS>\nFPS convolution_xor(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
+    \ FPS>\nFPS &convolution_xor(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
     \    int n = int(size(a)); // == int(size(b)\n    if (!n) return {};\n    assert((n\
     \ & -n) == n);\n    FPS c(b.begin(), b.end());\n\n    WalshHadamardTransform(a);\n\
     \    WalshHadamardTransform(c);\n    for (int i = 0; i < n; i++) a[i] *= c[i];\n\
@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: convolution/bitxor1.hpp
   requiredBy: []
-  timestamp: '2024-10-01 04:14:21+09:00'
+  timestamp: '2024-10-06 16:26:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/bitxor1.hpp

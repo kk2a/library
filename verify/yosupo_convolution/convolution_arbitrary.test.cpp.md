@@ -1,44 +1,55 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: convolution/convolution_arb.hpp
+    title: convolution/convolution_arb.hpp
+  - icon: ':x:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: modint/mont.hpp
+    title: modint/mont.hpp
+  - icon: ':question:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: fps/fps_arb.hpp
-    title: fps/fps_arb.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"convolution/convo_arb.hpp\"\n\n\n\n#include <vector>\n\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
+    links:
+    - https://judge.yosupo.jp/problem/convolution_mod_1000000007
+  bundledCode: "#line 1 \"verify/yosupo_convolution/convolution_arbitrary.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
+    \ \n\n#line 1 \"convolution/convolution_arb.hpp\"\n\n\n\n#include <vector>\n\n\
     #line 1 \"math_mod/garner.hpp\"\n\n\n\n#line 5 \"math_mod/garner.hpp\"\n\n#line\
     \ 1 \"math_mod/inv.hpp\"\n\n\n\nnamespace kk2 {\n\n// require: modulo >= 1\ntemplate\
     \ <class T> constexpr T mod_inversion(T a, T modulo) {\n    a %= modulo;\n   \
@@ -238,7 +249,7 @@ data:
     \       r *= zeta;\n    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(),\
     \ std::back_inserter(a));\n}\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convolution.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\
-    \ FPS convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    \ FPS &convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n\
     \ + m - 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0;\
     \ j < m; j++) { res[i + j] += a[i] * b[j]; }\n        }\n        a = res;\n  \
@@ -248,8 +259,8 @@ data:
     \   butterfly(a);\n        FPS t(b.begin(), b.end());\n        t.resize(z);\n\
     \        butterfly(t);\n        for (int i = 0; i < z; i++) a[i] *= t[i];\n  \
     \  }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    return a;\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 9 \"convolution/convo_arb.hpp\"\n\nnamespace kk2 {\n\
-    \ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution_arb(FPS\
+    \ namespace kk2\n\n\n#line 9 \"convolution/convolution_arb.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS &convolution_arb(FPS\
     \ &a, const FPS &b, mint mod) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
     \ // 2^24\n    static constexpr long long MOD2 = 167772161; // 2^25\n    static\
@@ -264,27 +275,72 @@ data:
     \ const std::vector<long long> ps = {MOD1, MOD2, MOD3, (long long)mod};\n    a.resize(n\
     \ + m - 1);\n    for (int i = 0; i < n + m - 1; i++) {\n        a[i] = mint(garner({a1[i].val(),\
     \ a2[i].val(), a3[i].val()}, ps));\n    }\n    return a;\n}\n\n} // namespace\
-    \ kk2\n\n\n"
-  code: "#ifndef CONVO_ARB_HPP\n#define CONVO_ARB_HPP 1\n\n#include <vector>\n\n#include\
-    \ \"../math_mod/garner.hpp\"\n#include \"../modint/mont.hpp\"\n#include \"convolution.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-    FPS convolution_arb(FPS &a, const FPS &b, mint mod) {\n    int n = int(a.size()),\
-    \ m = int(b.size());\n    if (!n || !m) return {};\n    static constexpr long\
-    \ long MOD1 = 754974721; // 2^24\n    static constexpr long long MOD2 = 167772161;\
-    \ // 2^25\n    static constexpr long long MOD3 = 469762049; // 2^26\n    using\
-    \ mint1 = LazyMontgomeryModInt<MOD1>;\n    using mint2 = LazyMontgomeryModInt<MOD2>;\n\
-    \    using mint3 = LazyMontgomeryModInt<MOD3>;\n\n    std::vector<long long> a0(a.begin(),\
-    \ a.end()), b0(b.begin(), b.end());\n    auto a1 = std::vector<mint1>(a0.begin(),\
-    \ a0.end());\n    auto b1 = std::vector<mint1>(b0.begin(), b0.end());\n    convolution(a1,\
-    \ b1);\n    auto a2 = std::vector<mint2>(a0.begin(), a0.end());\n    auto b2 =\
-    \ std::vector<mint2>(b0.begin(), b0.end());\n    convolution(a2, b2);\n    auto\
-    \ a3 = std::vector<mint3>(a0.begin(), a0.end());\n    auto b3 = std::vector<mint3>(b0.begin(),\
-    \ b0.end());\n    convolution(a3, b3);\n    static const std::vector<long long>\
-    \ ps = {MOD1, MOD2, MOD3, (long long)mod};\n    a.resize(n + m - 1);\n    for\
-    \ (int i = 0; i < n + m - 1; i++) {\n        a[i] = mint(garner({a1[i].val(),\
-    \ a2[i].val(), a3[i].val()}, ps));\n    }\n    return a;\n}\n\n} // namespace\
-    \ kk2\n\n#endif // CONVO_ARB_HPP\n"
+    \ kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
+    )\n\n// #include <bits/stdc++.h>\n#line 8 \"template/template.hpp\"\n#include\
+    \ <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include <chrono>\n\
+    #include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <iomanip>\n#line 19 \"template/template.hpp\"\n#include\
+    \ <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+    \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
+    #include <stack>\n#include <string>\n#include <tuple>\n#line 32 \"template/template.hpp\"\
+    \n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#line\
+    \ 36 \"template/template.hpp\"\n\nusing u32 = unsigned int;\nusing i64 = long\
+    \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+    \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
+    template <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
+    \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
+    \ << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>) * infty<i64>;\n\
+    template <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64\
+    \ infty<u64> = infty<i64>;\ntemplate <> constexpr double infty<double> = infty<i64>;\n\
+    template <> constexpr long double infty<long double> = infty<i64>;\n\nconstexpr\
+    \ int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long double PI\
+    \ = 3.14159265358979323846;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+    template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
+    \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+    \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
+    \ pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\nnamespace\
+    \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(const T &init,\
+    \ int first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n \
+    \       return std::vector<T>(first, init);\n    } else {\n        return std::vector<decltype(make_vector(init,\
+    \ sizes...))>(first,\n                                                       \
+    \           make_vector(init, sizes...));\n    }\n}\n\ntemplate <class T, class\
+    \ U> void fill_all(std::vector<T> &v, const U &x) {\n    std::fill(std::begin(v),\
+    \ std::end(v), T(x));\n}\n\ntemplate <class T, class U> void fill_all(std::vector<std::vector<T>>\
+    \ &v, const U &x) {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace\
+    \ kk2\n\ntemplate <class T, class S> inline bool chmax(T &a, const S &b) {\n \
+    \   return (a < b ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool\
+    \ chmin(T &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n#define\
+    \ rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i =\
+    \ 0; i < (i64)(a); ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b);\
+    \ ++i)\n#define repi2(i, a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i,\
+    \ a, b) for (i64 i = (a) - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c,\
+    \ d, ...) d\n#define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n\
+    #define fi first\n#define se second\n#define all(p) std::begin(p), std::end(p)\n\
+    \nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
+    \    }\n} iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream\
+    \ out(\"out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\
+    \nvoid YES(bool b = 1) {\n    std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n\
+    }\n\nvoid NO(bool b = 1) {\n    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n\
+    }\n\nvoid Yes(bool b = 1) {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n\
+    }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
+    }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
+    }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
+    }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_arbitrary.test.cpp\"\n\
+    using namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vc<kk2::mont107>\
+    \ a(n), b(m);\n    rep (i, n) cin >> a[i];\n    rep (i, m) cin >> b[i];\n    kk2::convolution_arb(a,\
+    \ b, modu);\n    rep (i, n + m - 1) cout << a[i] << \" \\n\"[i == n + m - 2];\n\
+    \n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
+    \ \n\n#include \"../../convolution/convolution_arb.hpp\"\n#include \"../../modint/mont.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int n, m;\n    cin >> n >> m;\n    vc<kk2::mont107> a(n), b(m);\n   \
+    \ rep (i, n) cin >> a[i];\n    rep (i, m) cin >> b[i];\n    kk2::convolution_arb(a,\
+    \ b, modu);\n    rep (i, n + m - 1) cout << a[i] << \" \\n\"[i == n + m - 2];\n\
+    \n    return 0;\n}"
   dependsOn:
+  - convolution/convolution_arb.hpp
   - math_mod/garner.hpp
   - math_mod/inv.hpp
   - modint/mont.hpp
@@ -294,17 +350,18 @@ data:
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
-  isVerificationFile: false
-  path: convolution/convo_arb.hpp
-  requiredBy:
-  - fps/fps_arb.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  - modint/mont.hpp
+  - template/template.hpp
+  isVerificationFile: true
+  path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  requiredBy: []
+  timestamp: '2024-10-06 16:45:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: convolution/convo_arb.hpp
+documentation_of: verify/yosupo_convolution/convolution_arbitrary.test.cpp
 layout: document
 redirect_from:
-- /library/convolution/convo_arb.hpp
-- /library/convolution/convo_arb.hpp.html
-title: convolution/convo_arb.hpp
+- /verify/verify/yosupo_convolution/convolution_arbitrary.test.cpp
+- /verify/verify/yosupo_convolution/convolution_arbitrary.test.cpp.html
+title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
 ---

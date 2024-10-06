@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':warning:'
-    path: convolution/convo_arb.hpp
-    title: convolution/convo_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: convolution/convolution_arb.hpp
+    title: convolution/convolution_arb.hpp
+  - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -41,7 +41,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"fps/fps_arb.hpp\"\n\n\n\n#line 1 \"convolution/convo_arb.hpp\"\
+  bundledCode: "#line 1 \"fps/fps_arb.hpp\"\n\n\n\n#line 1 \"convolution/convolution_arb.hpp\"\
     \n\n\n\n#include <vector>\n\n#line 1 \"math_mod/garner.hpp\"\n\n\n\n#line 5 \"\
     math_mod/garner.hpp\"\n\n#line 1 \"math_mod/inv.hpp\"\n\n\n\nnamespace kk2 {\n\
     \n// require: modulo >= 1\ntemplate <class T> constexpr T mod_inversion(T a, T\
@@ -241,7 +241,7 @@ data:
     \       r *= zeta;\n    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(),\
     \ std::back_inserter(a));\n}\n\n} // namespace kk2\n\n\n#line 8 \"convolution/convolution.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\
-    \ FPS convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    \ FPS &convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    if (std::min(n, m) <= 60) {\n        FPS res(n\
     \ + m - 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0;\
     \ j < m; j++) { res[i + j] += a[i] * b[j]; }\n        }\n        a = res;\n  \
@@ -251,8 +251,8 @@ data:
     \   butterfly(a);\n        FPS t(b.begin(), b.end());\n        t.resize(z);\n\
     \        butterfly(t);\n        for (int i = 0; i < z; i++) a[i] *= t[i];\n  \
     \  }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    return a;\n}\n\n} //\
-    \ namespace kk2\n\n\n#line 9 \"convolution/convo_arb.hpp\"\n\nnamespace kk2 {\n\
-    \ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution_arb(FPS\
+    \ namespace kk2\n\n\n#line 9 \"convolution/convolution_arb.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS &convolution_arb(FPS\
     \ &a, const FPS &b, mint mod) {\n    int n = int(a.size()), m = int(b.size());\n\
     \    if (!n || !m) return {};\n    static constexpr long long MOD1 = 754974721;\
     \ // 2^24\n    static constexpr long long MOD2 = 167772161; // 2^25\n    static\
@@ -440,7 +440,7 @@ data:
     \ 1; i < deg; i <<= 1) {\n        ret = (ret * (pre(i << 1) + mint{1} - ret.log(i\
     \ << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n}\n\n} // namespace kk2\n\
     \n\n"
-  code: "#ifndef FPS_ARB_HPP\n#define FPS_ARB_HPP 1\n\n#include \"../convolution/convo_arb.hpp\"\
+  code: "#ifndef FPS_ARB_HPP\n#define FPS_ARB_HPP 1\n\n#include \"../convolution/convolution_arb.hpp\"\
     \n#include \"fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> void FormalPowerSeries<mint>::but()\
     \ {\n    exit(1);\n}\n\ntemplate <class mint> void FormalPowerSeries<mint>::ibut()\
     \ {\n    exit(1);\n}\n\ntemplate <class mint> void FormalPowerSeries<mint>::db()\
@@ -460,7 +460,7 @@ data:
     \ << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n}\n\n} // namespace kk2\n\
     \n#endif // FPS_ARB_HPP\n"
   dependsOn:
-  - convolution/convo_arb.hpp
+  - convolution/convolution_arb.hpp
   - math_mod/garner.hpp
   - math_mod/inv.hpp
   - modint/mont.hpp
@@ -474,7 +474,7 @@ data:
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-06 16:45:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_arb.hpp
