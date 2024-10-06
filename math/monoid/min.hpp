@@ -67,12 +67,12 @@ template <class S> constexpr Min<S> MinUnit() {
 } // namespace monoid
 
 template <class S, class... Args>
-constexpr std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
+std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
     return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));
 }
 
 template <class S, class... Args>
-constexpr std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int h, int w, Args... args) {
+std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int h, int w, Args... args) {
     return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w, args...));
 }
 

@@ -77,12 +77,12 @@ template <class S> constexpr MaxMinSum<S> MaxMinSumUnit() {
 } // namespace monoid
 
 template <class S, class... Args>
-constexpr std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n, Args... args) {
+std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n, Args... args) {
     return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));
 }
 
 template <class S, class... Args>
-constexpr std::vector<std::vector<monoid::MaxMinSum<S>>>
+std::vector<std::vector<monoid::MaxMinSum<S>>>
 GetVecMaxMinSum2D(int h, int w, Args... args) {
     return std::vector<std::vector<monoid::MaxMinSum<S>>>(h, GetVecMaxMinSum<S>(w, args...));
 }

@@ -14,7 +14,7 @@ struct Erato {
 
     Erato() = delete;
 
-    constexpr static void set_upper(int m) {
+    static void set_upper(int m) {
         if ((int)_isprime.size() > m) return;
         int start = std::max<int>(2, _isprime.size());
 
@@ -51,24 +51,24 @@ struct Erato {
         }
     }
 
-    constexpr static bool isprime(int n) {
+    static bool isprime(int n) {
         assert(n < (int)_isprime.size() && n != 0);
         return _isprime[n];
     }
 
-    constexpr static int mobius(int n) {
+    static int mobius(int n) {
         assert(n < (int)_mobius.size() && n != 0);
         return _mobius[n];
     }
 
-    constexpr static int minfactor(int n) {
+    static int minfactor(int n) {
         assert(n < (int)_minfactor.size() && n != 0);
         return _minfactor[n];
     }
 
-    constexpr static const std::vector<int>& primes() { return _primes; }
+    static const std::vector<int>& primes() { return _primes; }
 
-    constexpr static std::vector<std::pair<int, int>> factorize(int n) {
+    static std::vector<std::pair<int, int>> factorize(int n) {
         assert(n < (int)_isprime.size() && n != 0);
         if (n == 1 || n == -1) return {};
         if (n < 0) n = -n;
@@ -86,7 +86,7 @@ struct Erato {
         return res;
     }
 
-    constexpr static std::vector<int> divisors(int n) {
+    static std::vector<int> divisors(int n) {
         assert(n < (int)_isprime.size() && n != 0);
         if (n == 1 || n == -1) return {1};
         if (n < 0) n = -n;

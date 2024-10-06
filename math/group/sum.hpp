@@ -71,12 +71,12 @@ template <class S> constexpr Sum<S> SumInv(Sum<S> x) {
 } // namespace group
 
 template <class S, class... Args>
-constexpr std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {
+std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {
     return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));
 }
 
 template <class S, class... Args>
-constexpr std::vector<std::vector<group::Sum<S>>> GetVecSum2D(int h, int w, Args... args) {
+std::vector<std::vector<group::Sum<S>>> GetVecSum2D(int h, int w, Args... args) {
     return std::vector<std::vector<group::Sum<S>>>(h, GetVecSum<S>(w, args...));
 }
 
