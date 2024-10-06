@@ -11,7 +11,7 @@ namespace kk2 {
 // 日本語:
 // https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
 template <class FPS, class mint = typename FPS::value_type>
-FPS multi_convolution_truncated(FPS &a, const FPS &b, const std::vector<int> &base) {
+FPS &multi_convolution_truncated(FPS &a, const FPS &b, const std::vector<int> &base) {
     int n = int(a.size());
     if (!n) return {};
     int k = base.size();
@@ -40,6 +40,7 @@ FPS multi_convolution_truncated(FPS &a, const FPS &b, const std::vector<int> &ba
         for (int i = 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};
     }
     for (auto &x : f) butterfly_inv(x);
+    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i];
     return a;
 }
 

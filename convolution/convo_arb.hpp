@@ -10,7 +10,7 @@
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS convolution_arb(FPS &a, const FPS &b, mint mod) {
+FPS &convolution_arb(FPS &a, const FPS &b, mint mod) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
     static constexpr long long MOD1 = 754974721; // 2^24
