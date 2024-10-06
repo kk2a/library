@@ -21,6 +21,7 @@
 "verify/yosupo_linalg/solution_of_linear_equations.test.cpp": "2024-10-06 20:03:15 +0900",
 "verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp": "2024-10-06 20:03:15 +0900",
 "verify/yosupo_math/kth_root_int.test.cpp": "2024-10-06 20:18:38 +0900",
+"verify/yosupo_math/many_factrials.test.cpp": "2024-10-06 23:42:09 +0900",
 "verify/yosupo_math/primality_test.test.cpp": "2024-10-06 20:18:38 +0900",
 "verify/yosupo_math/sum_of_floor_linear.test.cpp": "2024-10-06 20:18:38 +0900"
 }
