@@ -67,7 +67,7 @@ data:
     - icon: ':warning:'
       path: data_structure/hash_map.hpp
       title: data_structure/hash_map.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
     - icon: ':warning:'
@@ -308,10 +308,10 @@ data:
     - icon: ':warning:'
       path: matrix/frobenius_form.hpp
       title: matrix/frobenius_form.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: matrix/matrix_F2.hpp
       title: matrix/matrix_F2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: matrix/matrix_field.hpp
       title: matrix/matrix_field.hpp
   - name: modint
@@ -319,7 +319,7 @@ data:
     - icon: ':warning:'
       path: modint/modint.hpp
       title: modint/modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/mont.hpp
       title: modint/mont.hpp
     - icon: ':heavy_check_mark:'
@@ -433,12 +433,12 @@ data:
       title: string/suffix_array.hpp
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   verificationCategories:
@@ -482,16 +482,39 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
+  - name: verify/yosupo_linalg
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_linalg/matrix_det.test.cpp
+      title: verify/yosupo_linalg/matrix_det.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_linalg/matrix_det_f2.test.cpp
+      title: verify/yosupo_linalg/matrix_det_f2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_linalg/matrix_inv.test.cpp
+      title: verify/yosupo_linalg/matrix_inv.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
+      title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_linalg/matrix_pow.test.cpp
+      title: verify/yosupo_linalg/matrix_pow.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_linalg/matrix_product.test.cpp
+      title: verify/yosupo_linalg/matrix_product.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_linalg/matrix_product_f2.test.cpp
+      title: verify/yosupo_linalg/matrix_product_f2.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+      title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+      title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - name: verify/yosupo_math
     pages:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/math_primality_test.test.cpp
       title: verify/yosupo_math/math_primality_test.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-      title: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
-      title: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
 layout: toppage
 ---

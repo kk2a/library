@@ -74,7 +74,7 @@ data:
   - icon: ':warning:'
     path: modint/modint.hpp
     title: modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':heavy_check_mark:'
@@ -142,17 +142,29 @@ data:
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_math/math_primality_test.test.cpp
-    title: verify/yosupo_math/math_primality_test.test.cpp
+    path: verify/yosupo_linalg/matrix_det.test.cpp
+    title: verify/yosupo_linalg/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_inv.test.cpp
+    title: verify/yosupo_linalg/matrix_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_pow.test.cpp
+    title: verify/yosupo_linalg/matrix_pow.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_linalg/matrix_product.test.cpp
+    title: verify/yosupo_linalg/matrix_product.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+    title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/math_primality_test.test.cpp
     title: verify/yosupo_math/math_primality_test.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-    title: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+    path: verify/yosupo_math/math_primality_test.test.cpp
+    title: verify/yosupo_math/math_primality_test.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\
@@ -227,9 +239,8 @@ data:
   - fps/multivariate_fps.hpp
   - fps/fps_sqrt.hpp
   timestamp: '2024-09-29 16:53:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
   - verify/yosupo_math/math_primality_test.test.cpp
   - verify/yosupo_math/math_primality_test.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
@@ -240,6 +251,11 @@ data:
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_linalg/matrix_det.test.cpp
+  - verify/yosupo_linalg/matrix_pow.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/yosupo_linalg/matrix_product.test.cpp
+  - verify/yosupo_linalg/matrix_inv.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp

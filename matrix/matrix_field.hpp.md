@@ -10,32 +10,45 @@ data:
     title: matrix/frobenius_form.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-    title: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+    path: verify/yosupo_linalg/matrix_det.test.cpp
+    title: verify/yosupo_linalg/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_inv.test.cpp
+    title: verify/yosupo_linalg/matrix_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_pow.test.cpp
+    title: verify/yosupo_linalg/matrix_pow.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_linalg/matrix_product.test.cpp
+    title: verify/yosupo_linalg/matrix_product.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+    title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"matrix/matrix_field.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <cassert>\n#include <iostream>\n#include <string>\n#include <vector>\n\
-    \nnamespace kk2 {\n\ntemplate <class Field> struct MatrixField {\n    using value_type\
-    \ = Field;\n    using mat = MatrixField;\n    int _h, _w;\n    std::vector<std::vector<Field>>\
-    \ _mat;\n\n    MatrixField() : MatrixField(0) {}\n\n    MatrixField(int n) : MatrixField(n,\
-    \ n) {}\n\n    MatrixField(int h, int w) {\n        if (h == 0) {\n          \
-    \  _h = 0;\n            _w = w;\n        } else {\n            _h = h;\n     \
-    \       _w = w;\n            _mat.resize(h, std::vector<Field>(w, Field()));\n\
-    \        }\n    }\n\n    MatrixField(const std::vector<std::vector<Field>> &mat_)\n\
-    \        : _h(mat_.size()),\n          _w(mat_[0].size()),\n          _mat(mat_)\
-    \ {}\n\n    int get_h() const { return _h; }\n\n    int get_w() const { return\
-    \ _w; }\n\n    Field &at(int i, int j) const {\n        assert(0 <= i && i < _h);\n\
-    \        assert(0 <= j && j < _w);\n        return _mat[i][j];\n    }\n\n    std::vector<Field>\
-    \ &operator[](int i) {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n\
-    \    }\n\n    void display() const {\n        for (int i = 0; i < _h; i++) {\n\
-    \            for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << \" \\n\"\
-    [j == _w - 1];\n        }\n    }\n\n    void set(int i, int j, Field x) {\n  \
-    \      assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j]\
-    \ = x;\n    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    #include <cassert>\n#include <iostream>\n#include <optional>\n#include <string>\n\
+    #include <vector>\n\nnamespace kk2 {\n\ntemplate <class Field> struct MatrixField\
+    \ {\n    using value_type = Field;\n    using mat = MatrixField;\n    int _h,\
+    \ _w;\n    std::vector<std::vector<Field>> _mat;\n\n    MatrixField() : MatrixField(0)\
+    \ {}\n\n    MatrixField(int n) : MatrixField(n, n) {}\n\n    MatrixField(int h,\
+    \ int w) {\n        if (h == 0) {\n            _h = 0;\n            _w = w;\n\
+    \        } else {\n            _h = h;\n            _w = w;\n            _mat.resize(h,\
+    \ std::vector<Field>(w, Field()));\n        }\n    }\n\n    MatrixField(const\
+    \ std::vector<std::vector<Field>> &mat_)\n        : _h(mat_.size()),\n       \
+    \   _w(mat_[0].size()),\n          _mat(mat_) {}\n\n    int get_h() const { return\
+    \ _h; }\n\n    int get_w() const { return _w; }\n\n    Field &at(int i, int j)\
+    \ const {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
+    \        return _mat[i][j];\n    }\n\n    std::vector<Field> &operator[](int i)\
+    \ {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n    }\n\n   \
+    \ void display() const {\n        for (int i = 0; i < _h; i++) {\n           \
+    \ for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << \" \\n\"[j == _w - 1];\n\
+    \        }\n    }\n\n    void set(int i, int j, Field x) {\n        assert(0 <=\
+    \ i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n\
+    \    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
     \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
     \       for (int j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n     \
     \   }\n        return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n\
@@ -59,14 +72,14 @@ data:
     \ { a[i][j] *= inv; }\n            for (int j = 0; j < n; j++) {\n           \
     \     if (i == j) continue;\n                Field r = a[j][i];\n            \
     \    for (int k = i; k < n; k++) { a[j][k] -= a[i][k] * r; }\n            }\n\
-    \        }\n        return res;\n    }\n\n    mat inv() const {\n        assert(_h\
-    \ == _w);\n        int n = _h;\n        std::vector<std::vector<Field>> res(n,\
-    \ std::vector<Field>(n, Field()));\n        for (int i = 0; i < n; i++) res[i][i]\
-    \ = 1;\n        mat a(_mat);\n        for (int i = 0; i < n; i++) {\n        \
-    \    int pivot = -1;\n            for (int j = i; j < n; j++) {\n            \
-    \    if (a._mat[j][i] != Field(0)) {\n                    pivot = j;\n       \
-    \             break;\n                }\n            }\n            if (pivot\
-    \ == -1) { return mat(n); }\n            std::swap(a._mat[i], a._mat[pivot]);\n\
+    \        }\n        return res;\n    }\n\n    std::optional<mat> inv() const {\n\
+    \        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
+    \ res(n, std::vector<Field>(n, Field()));\n        for (int i = 0; i < n; i++)\
+    \ res[i][i] = 1;\n        mat a(_mat);\n        for (int i = 0; i < n; i++) {\n\
+    \            int pivot = -1;\n            for (int j = i; j < n; j++) {\n    \
+    \            if (a._mat[j][i] != Field(0)) {\n                    pivot = j;\n\
+    \                    break;\n                }\n            }\n            if\
+    \ (pivot == -1) { return {}; }\n            std::swap(a._mat[i], a._mat[pivot]);\n\
     \            std::swap(res[i], res[pivot]);\n            Field inv = a._mat[i][i].inv();\n\
     \            for (int j = 0; j < n; j++) {\n                a._mat[i][j] *= inv;\n\
     \                res[i][j] *= inv;\n            }\n            for (int j = 0;\
@@ -149,24 +162,24 @@ data:
     \ mat &lhs, const mat &rhs) { return lhs._mat != rhs._mat; }\n};\n\n} // namespace\
     \ kk2\n\n\n"
   code: "#ifndef MATRIX_MATRIX_FIELD_HPP\n#define MATRIX_MATRIX_FIELD_HPP 1\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <iostream>\n#include <string>\n#include\
-    \ <vector>\n\nnamespace kk2 {\n\ntemplate <class Field> struct MatrixField {\n\
-    \    using value_type = Field;\n    using mat = MatrixField;\n    int _h, _w;\n\
-    \    std::vector<std::vector<Field>> _mat;\n\n    MatrixField() : MatrixField(0)\
-    \ {}\n\n    MatrixField(int n) : MatrixField(n, n) {}\n\n    MatrixField(int h,\
-    \ int w) {\n        if (h == 0) {\n            _h = 0;\n            _w = w;\n\
-    \        } else {\n            _h = h;\n            _w = w;\n            _mat.resize(h,\
-    \ std::vector<Field>(w, Field()));\n        }\n    }\n\n    MatrixField(const\
-    \ std::vector<std::vector<Field>> &mat_)\n        : _h(mat_.size()),\n       \
-    \   _w(mat_[0].size()),\n          _mat(mat_) {}\n\n    int get_h() const { return\
-    \ _h; }\n\n    int get_w() const { return _w; }\n\n    Field &at(int i, int j)\
-    \ const {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
-    \        return _mat[i][j];\n    }\n\n    std::vector<Field> &operator[](int i)\
-    \ {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n    }\n\n   \
-    \ void display() const {\n        for (int i = 0; i < _h; i++) {\n           \
-    \ for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << \" \\n\"[j == _w - 1];\n\
-    \        }\n    }\n\n    void set(int i, int j, Field x) {\n        assert(0 <=\
-    \ i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n\
+    \ <algorithm>\n#include <cassert>\n#include <iostream>\n#include <optional>\n\
+    #include <string>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class Field>\
+    \ struct MatrixField {\n    using value_type = Field;\n    using mat = MatrixField;\n\
+    \    int _h, _w;\n    std::vector<std::vector<Field>> _mat;\n\n    MatrixField()\
+    \ : MatrixField(0) {}\n\n    MatrixField(int n) : MatrixField(n, n) {}\n\n   \
+    \ MatrixField(int h, int w) {\n        if (h == 0) {\n            _h = 0;\n  \
+    \          _w = w;\n        } else {\n            _h = h;\n            _w = w;\n\
+    \            _mat.resize(h, std::vector<Field>(w, Field()));\n        }\n    }\n\
+    \n    MatrixField(const std::vector<std::vector<Field>> &mat_)\n        : _h(mat_.size()),\n\
+    \          _w(mat_[0].size()),\n          _mat(mat_) {}\n\n    int get_h() const\
+    \ { return _h; }\n\n    int get_w() const { return _w; }\n\n    Field &at(int\
+    \ i, int j) const {\n        assert(0 <= i && i < _h);\n        assert(0 <= j\
+    \ && j < _w);\n        return _mat[i][j];\n    }\n\n    std::vector<Field> &operator[](int\
+    \ i) {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n    }\n\n\
+    \    void display() const {\n        for (int i = 0; i < _h; i++) {\n        \
+    \    for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << \" \\n\"[j == _w\
+    \ - 1];\n        }\n    }\n\n    void set(int i, int j, Field x) {\n        assert(0\
+    \ <= i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n\
     \    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
     \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
     \       for (int j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n     \
@@ -191,14 +204,14 @@ data:
     \ { a[i][j] *= inv; }\n            for (int j = 0; j < n; j++) {\n           \
     \     if (i == j) continue;\n                Field r = a[j][i];\n            \
     \    for (int k = i; k < n; k++) { a[j][k] -= a[i][k] * r; }\n            }\n\
-    \        }\n        return res;\n    }\n\n    mat inv() const {\n        assert(_h\
-    \ == _w);\n        int n = _h;\n        std::vector<std::vector<Field>> res(n,\
-    \ std::vector<Field>(n, Field()));\n        for (int i = 0; i < n; i++) res[i][i]\
-    \ = 1;\n        mat a(_mat);\n        for (int i = 0; i < n; i++) {\n        \
-    \    int pivot = -1;\n            for (int j = i; j < n; j++) {\n            \
-    \    if (a._mat[j][i] != Field(0)) {\n                    pivot = j;\n       \
-    \             break;\n                }\n            }\n            if (pivot\
-    \ == -1) { return mat(n); }\n            std::swap(a._mat[i], a._mat[pivot]);\n\
+    \        }\n        return res;\n    }\n\n    std::optional<mat> inv() const {\n\
+    \        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
+    \ res(n, std::vector<Field>(n, Field()));\n        for (int i = 0; i < n; i++)\
+    \ res[i][i] = 1;\n        mat a(_mat);\n        for (int i = 0; i < n; i++) {\n\
+    \            int pivot = -1;\n            for (int j = i; j < n; j++) {\n    \
+    \            if (a._mat[j][i] != Field(0)) {\n                    pivot = j;\n\
+    \                    break;\n                }\n            }\n            if\
+    \ (pivot == -1) { return {}; }\n            std::swap(a._mat[i], a._mat[pivot]);\n\
     \            std::swap(res[i], res[pivot]);\n            Field inv = a._mat[i][i].inv();\n\
     \            for (int j = 0; j < n; j++) {\n                a._mat[i][j] *= inv;\n\
     \                res[i][j] *= inv;\n            }\n            for (int j = 0;\
@@ -286,10 +299,14 @@ data:
   requiredBy:
   - matrix/basis.hpp
   - matrix/frobenius_form.hpp
-  timestamp: '2024-10-05 17:47:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-06 20:03:15+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
+  - verify/yosupo_linalg/matrix_det.test.cpp
+  - verify/yosupo_linalg/matrix_pow.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/yosupo_linalg/matrix_product.test.cpp
+  - verify/yosupo_linalg/matrix_inv.test.cpp
 documentation_of: matrix/matrix_field.hpp
 layout: document
 redirect_from:

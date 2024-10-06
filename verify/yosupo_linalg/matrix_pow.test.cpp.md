@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -20,16 +20,16 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
     links:
-    - https://judge.yosupo.jp/problem/system_of_linear_equations
-  bundledCode: "#line 1 \"verify/yosupo_math/matrix_system_of_linear_equations.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
-    \n\n#line 1 \"matrix/matrix_field.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <iostream>\n#include <string>\n#include <vector>\n\nnamespace\
-    \ kk2 {\n\ntemplate <class Field> struct MatrixField {\n    using value_type =\
-    \ Field;\n    using mat = MatrixField;\n    int _h, _w;\n    std::vector<std::vector<Field>>\
-    \ _mat;\n\n    MatrixField() : MatrixField(0) {}\n\n    MatrixField(int n) : MatrixField(n,\
+    - https://judge.yosupo.jp/problem/pow_of_matrix
+  bundledCode: "#line 1 \"verify/yosupo_linalg/matrix_pow.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/pow_of_matrix\" \n\n#line 1 \"matrix/matrix_field.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include\
+    \ <optional>\n#include <string>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
+    \ <class Field> struct MatrixField {\n    using value_type = Field;\n    using\
+    \ mat = MatrixField;\n    int _h, _w;\n    std::vector<std::vector<Field>> _mat;\n\
+    \n    MatrixField() : MatrixField(0) {}\n\n    MatrixField(int n) : MatrixField(n,\
     \ n) {}\n\n    MatrixField(int h, int w) {\n        if (h == 0) {\n          \
     \  _h = 0;\n            _w = w;\n        } else {\n            _h = h;\n     \
     \       _w = w;\n            _mat.resize(h, std::vector<Field>(w, Field()));\n\
@@ -67,14 +67,14 @@ data:
     \ { a[i][j] *= inv; }\n            for (int j = 0; j < n; j++) {\n           \
     \     if (i == j) continue;\n                Field r = a[j][i];\n            \
     \    for (int k = i; k < n; k++) { a[j][k] -= a[i][k] * r; }\n            }\n\
-    \        }\n        return res;\n    }\n\n    mat inv() const {\n        assert(_h\
-    \ == _w);\n        int n = _h;\n        std::vector<std::vector<Field>> res(n,\
-    \ std::vector<Field>(n, Field()));\n        for (int i = 0; i < n; i++) res[i][i]\
-    \ = 1;\n        mat a(_mat);\n        for (int i = 0; i < n; i++) {\n        \
-    \    int pivot = -1;\n            for (int j = i; j < n; j++) {\n            \
-    \    if (a._mat[j][i] != Field(0)) {\n                    pivot = j;\n       \
-    \             break;\n                }\n            }\n            if (pivot\
-    \ == -1) { return mat(n); }\n            std::swap(a._mat[i], a._mat[pivot]);\n\
+    \        }\n        return res;\n    }\n\n    std::optional<mat> inv() const {\n\
+    \        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
+    \ res(n, std::vector<Field>(n, Field()));\n        for (int i = 0; i < n; i++)\
+    \ res[i][i] = 1;\n        mat a(_mat);\n        for (int i = 0; i < n; i++) {\n\
+    \            int pivot = -1;\n            for (int j = i; j < n; j++) {\n    \
+    \            if (a._mat[j][i] != Field(0)) {\n                    pivot = j;\n\
+    \                    break;\n                }\n            }\n            if\
+    \ (pivot == -1) { return {}; }\n            std::swap(a._mat[i], a._mat[pivot]);\n\
     \            std::swap(res[i], res[pivot]);\n            Field inv = a._mat[i][i].inv();\n\
     \            for (int j = 0; j < n; j++) {\n                a._mat[i][j] *= inv;\n\
     \                res[i][j] *= inv;\n            }\n            for (int j = 0;\
@@ -241,15 +241,15 @@ data:
     \n#include <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include\
     \ <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
     #include <functional>\n#include <iomanip>\n#line 19 \"template/template.hpp\"\n\
-    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
-    #include <stack>\n#line 30 \"template/template.hpp\"\n#include <tuple>\n#line\
-    \ 32 \"template/template.hpp\"\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#line 36 \"template/template.hpp\"\n\nusing u32 = unsigned\
-    \ int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing i128 =\
-    \ __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\n\
-    using pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing pli =\
-    \ std::pair<i64, int>;\n\ntemplate <class T> constexpr T infty = 0;\ntemplate\
+    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#line\
+    \ 24 \"template/template.hpp\"\n#include <queue>\n#include <random>\n#include\
+    \ <set>\n#include <sstream>\n#include <stack>\n#line 30 \"template/template.hpp\"\
+    \n#include <tuple>\n#line 32 \"template/template.hpp\"\n#include <unordered_map>\n\
+    #include <unordered_set>\n#include <utility>\n#line 36 \"template/template.hpp\"\
+    \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long\
+    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+    \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing\
+    \ pli = std::pair<i64, int>;\n\ntemplate <class T> constexpr T infty = 0;\ntemplate\
     \ <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64>\
     \ = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128> = i128(infty<i64>)\
     \ * infty<i64>;\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate\
@@ -288,36 +288,31 @@ data:
     }\n\nvoid No(bool b = 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n\
     }\n\nvoid yes(bool b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n\
     }\n\nvoid no(bool b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n\
-    }\n\n\n#line 6 \"verify/yosupo_math/matrix_system_of_linear_equations.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n  \
-    \  kk2::MatrixField<kk2::mont998> a(n, m);\n    rep (i, n) rep (j, m) cin >> a[i][j];\n\
-    \    kk2::MatrixField<kk2::mont998> b(n, 1);\n    rep (i, n) cin >> b[i][0];\n\
-    \n    auto res = a.solve(b);\n    if (!res._h) cout << -1 << \"\\n\";\n    else\
-    \ {\n        cout << res._h - 1 << \"\\n\";\n        res.display();\n    }\n\n\
-    \    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
-    \n\n#include \"../../matrix/matrix_field.hpp\"\n#include \"../../modint/mont.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    cin >> n >> m;\n    kk2::MatrixField<kk2::mont998> a(n,\
-    \ m);\n    rep (i, n) rep (j, m) cin >> a[i][j];\n    kk2::MatrixField<kk2::mont998>\
-    \ b(n, 1);\n    rep (i, n) cin >> b[i][0];\n\n    auto res = a.solve(b);\n   \
-    \ if (!res._h) cout << -1 << \"\\n\";\n    else {\n        cout << res._h - 1\
-    \ << \"\\n\";\n        res.display();\n    }\n\n    return 0;\n}"
+    }\n\n\n#line 6 \"verify/yosupo_linalg/matrix_pow.test.cpp\"\nusing namespace std;\n\
+    \nint main() {\n    int n;\n    i64 k;\n    cin >> n >> k;\n    kk2::MatrixField<kk2::mont998>\
+    \ a(n, n);\n    rep (i, n) rep (j, n) cin >> a[i][j];\n    a.pow(k).display();\n\
+    \n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_matrix\" \n\n#include\
+    \ \"../../matrix/matrix_field.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
+    \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
+    \ n;\n    i64 k;\n    cin >> n >> k;\n    kk2::MatrixField<kk2::mont998> a(n,\
+    \ n);\n    rep (i, n) rep (j, n) cin >> a[i][j];\n    a.pow(k).display();\n\n\
+    \    return 0;\n}"
   dependsOn:
   - matrix/matrix_field.hpp
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
   isVerificationFile: true
-  path: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
+  path: verify/yosupo_linalg/matrix_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-10-05 17:47:42+09:00'
+  timestamp: '2024-10-06 20:03:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
+documentation_of: verify/yosupo_linalg/matrix_pow.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-- /verify/verify/yosupo_math/matrix_system_of_linear_equations.test.cpp.html
-title: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
+- /verify/verify/yosupo_linalg/matrix_pow.test.cpp
+- /verify/verify/yosupo_linalg/matrix_pow.test.cpp.html
+title: verify/yosupo_linalg/matrix_pow.test.cpp
 ---

@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
-    title: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+    title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"matrix/matrix_F2.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <iostream>\n#include <string>\n#include <vector>\n\n#line\
-    \ 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 5 \"data_structure/my_bitset.hpp\"\
+    \ <cassert>\n#include <iostream>\n#include <optional>\n#include <string>\n#include\
+    \ <vector>\n\n#line 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 5 \"data_structure/my_bitset.hpp\"\
     \n#include <bitset>\n#line 8 \"data_structure/my_bitset.hpp\"\n#include <iterator>\n\
     #line 11 \"data_structure/my_bitset.hpp\"\n\nnamespace kk2 {\n\nstruct DynamicBitSet\
     \ {\n    using T = DynamicBitSet;\n    using UInt = __uint128_t;\n    constexpr\
@@ -149,7 +149,7 @@ data:
     \ i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            std::reverse(std::begin(tmp[i]),\
     \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return res;\n\
     \    }\n\n    friend std::ostream &operator<<(std::ostream &os, const T &bs) {\
-    \ return os << bs.to_string(); }\n};\n\n} // namespace kk2\n\n\n#line 11 \"matrix/matrix_F2.hpp\"\
+    \ return os << bs.to_string(); }\n};\n\n} // namespace kk2\n\n\n#line 12 \"matrix/matrix_F2.hpp\"\
     \n\nnamespace kk2 {\n\nstruct MatrixF2 {\n    using mat = MatrixF2;\n    int _h,\
     \ _w;\n    std::vector<DynamicBitSet> _mat;\n\n    MatrixF2() : MatrixF2(0) {}\n\
     \n    MatrixF2(int n) : MatrixF2(n, n) {}\n\n    MatrixF2(int h, int w) {\n  \
@@ -276,36 +276,38 @@ data:
     \       res[now][nowj] = 1;\n            for (int i = 0; i < ab._h; i++)\n   \
     \             if (ab[i][nowj]) res[now][step[i]] = 1;\n            nowj++, now++;\n\
     \        }\n        return res;\n    }\n\n    int rank() const { return mat(*this).sweep();\
-    \ }\n\n    bool det() const { return rank() == _h; }\n\n    mat inv() const {\n\
-    \        assert(_h == _w);\n        std::vector<DynamicBitSet> res(_h, _w);\n\
-    \        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n        std::vector<DynamicBitSet>\
-    \ buf(_mat);\n        for (int i = 0; i < _w; i++) {\n            int pivot =\
-    \ -1;\n            for (int j = i; j < _h; j++) {\n                if (buf[j][i])\
-    \ {\n                    pivot = j;\n                    break;\n            \
-    \    }\n            }\n            if (pivot == -1) continue;\n            std::swap(buf[i],\
-    \ buf[pivot]);\n            std::swap(res[i], res[pivot]);\n            for (int\
-    \ j = 0; j < _h; j++) {\n                if (j == i) continue;\n             \
-    \   if (buf[j][i]) {\n                    buf[j] ^= buf[i];\n                \
-    \    res[j] ^= res[i];\n                }\n            }\n        }\n        return\
-    \ mat(res);\n    }\n};\n\n} // namespace kk2\n\n\n"
+    \ }\n\n    bool det() const { return rank() == _h; }\n\n    std::optional<mat>\
+    \ inv() const {\n        assert(_h == _w);\n        std::vector<DynamicBitSet>\
+    \ res(_h, _w);\n        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n    \
+    \    std::vector<DynamicBitSet> buf(_mat);\n        for (int i = 0; i < _w; i++)\
+    \ {\n            int pivot = -1;\n            for (int j = i; j < _h; j++) {\n\
+    \                if (buf[j][i]) {\n                    pivot = j;\n          \
+    \          break;\n                }\n            }\n            if (pivot ==\
+    \ -1) return {};\n            std::swap(buf[i], buf[pivot]);\n            std::swap(res[i],\
+    \ res[pivot]);\n            for (int j = 0; j < _h; j++) {\n                if\
+    \ (j == i) continue;\n                if (buf[j][i]) {\n                    buf[j]\
+    \ ^= buf[i];\n                    res[j] ^= res[i];\n                }\n     \
+    \       }\n        }\n        return mat(res);\n    }\n};\n\n} // namespace kk2\n\
+    \n\n"
   code: "#ifndef MATRIX_MATRIX_F2_HPP\n#define MATRIX_MATRIX_F2_HPP 1\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <iostream>\n#include <string>\n#include\
-    \ <vector>\n\n#include \"../data_structure/my_bitset.hpp\"\n\nnamespace kk2 {\n\
-    \nstruct MatrixF2 {\n    using mat = MatrixF2;\n    int _h, _w;\n    std::vector<DynamicBitSet>\
-    \ _mat;\n\n    MatrixF2() : MatrixF2(0) {}\n\n    MatrixF2(int n) : MatrixF2(n,\
-    \ n) {}\n\n    MatrixF2(int h, int w) {\n        if (h == 0) {\n            _h\
-    \ = 0;\n            _w = w;\n        } else {\n            _h = h;\n         \
-    \   _w = w;\n            _mat.resize(h, DynamicBitSet(w));\n        }\n    }\n\
-    \n    MatrixF2(const std::vector<DynamicBitSet> &mat_)\n        : _h(mat_.size()),\n\
-    \          _w(mat_[0].size()),\n          _mat(mat_) {}\n\n    int get_h() const\
-    \ { return _h; }\n\n    int get_w() const { return _w; }\n\n    bool at(int i,\
-    \ int j) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
-    \        return _mat[i][j].val();\n    }\n\n    class Proxy {\n        std::vector<DynamicBitSet>\
-    \ &bs;\n        int i;\n\n      public:\n        Proxy(std::vector<DynamicBitSet>\
-    \ &bs_, int i_) : bs(bs_), i(i_) {}\n\n        operator DynamicBitSet() const\
-    \ { return bs[i]; }\n\n        std::string to_string() const { return bs[i].to_string();\
-    \ }\n\n        std::string to_reversed_string() const { return bs[i].to_reversed_string();\
-    \ }\n\n        Proxy &operator=(const std::string &s) {\n            bs[i].set_reversed(s);\n\
+    \ <algorithm>\n#include <cassert>\n#include <iostream>\n#include <optional>\n\
+    #include <string>\n#include <vector>\n\n#include \"../data_structure/my_bitset.hpp\"\
+    \n\nnamespace kk2 {\n\nstruct MatrixF2 {\n    using mat = MatrixF2;\n    int _h,\
+    \ _w;\n    std::vector<DynamicBitSet> _mat;\n\n    MatrixF2() : MatrixF2(0) {}\n\
+    \n    MatrixF2(int n) : MatrixF2(n, n) {}\n\n    MatrixF2(int h, int w) {\n  \
+    \      if (h == 0) {\n            _h = 0;\n            _w = w;\n        } else\
+    \ {\n            _h = h;\n            _w = w;\n            _mat.resize(h, DynamicBitSet(w));\n\
+    \        }\n    }\n\n    MatrixF2(const std::vector<DynamicBitSet> &mat_)\n  \
+    \      : _h(mat_.size()),\n          _w(mat_[0].size()),\n          _mat(mat_)\
+    \ {}\n\n    int get_h() const { return _h; }\n\n    int get_w() const { return\
+    \ _w; }\n\n    bool at(int i, int j) {\n        assert(0 <= i && i < _h);\n  \
+    \      assert(0 <= j && j < _w);\n        return _mat[i][j].val();\n    }\n\n\
+    \    class Proxy {\n        std::vector<DynamicBitSet> &bs;\n        int i;\n\n\
+    \      public:\n        Proxy(std::vector<DynamicBitSet> &bs_, int i_) : bs(bs_),\
+    \ i(i_) {}\n\n        operator DynamicBitSet() const { return bs[i]; }\n\n   \
+    \     std::string to_string() const { return bs[i].to_string(); }\n\n        std::string\
+    \ to_reversed_string() const { return bs[i].to_reversed_string(); }\n\n      \
+    \  Proxy &operator=(const std::string &s) {\n            bs[i].set_reversed(s);\n\
     \            return *this;\n        }\n\n        Proxy &operator=(const DynamicBitSet\
     \ &x) {\n            bs[i] = x;\n            return *this;\n        }\n\n    \
     \    Proxy &operator=(const Proxy &x) {\n            bs[i] = x.bs[x.i];\n    \
@@ -416,27 +418,28 @@ data:
     \       res[now][nowj] = 1;\n            for (int i = 0; i < ab._h; i++)\n   \
     \             if (ab[i][nowj]) res[now][step[i]] = 1;\n            nowj++, now++;\n\
     \        }\n        return res;\n    }\n\n    int rank() const { return mat(*this).sweep();\
-    \ }\n\n    bool det() const { return rank() == _h; }\n\n    mat inv() const {\n\
-    \        assert(_h == _w);\n        std::vector<DynamicBitSet> res(_h, _w);\n\
-    \        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n        std::vector<DynamicBitSet>\
-    \ buf(_mat);\n        for (int i = 0; i < _w; i++) {\n            int pivot =\
-    \ -1;\n            for (int j = i; j < _h; j++) {\n                if (buf[j][i])\
-    \ {\n                    pivot = j;\n                    break;\n            \
-    \    }\n            }\n            if (pivot == -1) continue;\n            std::swap(buf[i],\
-    \ buf[pivot]);\n            std::swap(res[i], res[pivot]);\n            for (int\
-    \ j = 0; j < _h; j++) {\n                if (j == i) continue;\n             \
-    \   if (buf[j][i]) {\n                    buf[j] ^= buf[i];\n                \
-    \    res[j] ^= res[i];\n                }\n            }\n        }\n        return\
-    \ mat(res);\n    }\n};\n\n} // namespace kk2\n\n#endif // MATRIX_MATRIX_F2_HPP\n"
+    \ }\n\n    bool det() const { return rank() == _h; }\n\n    std::optional<mat>\
+    \ inv() const {\n        assert(_h == _w);\n        std::vector<DynamicBitSet>\
+    \ res(_h, _w);\n        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n    \
+    \    std::vector<DynamicBitSet> buf(_mat);\n        for (int i = 0; i < _w; i++)\
+    \ {\n            int pivot = -1;\n            for (int j = i; j < _h; j++) {\n\
+    \                if (buf[j][i]) {\n                    pivot = j;\n          \
+    \          break;\n                }\n            }\n            if (pivot ==\
+    \ -1) return {};\n            std::swap(buf[i], buf[pivot]);\n            std::swap(res[i],\
+    \ res[pivot]);\n            for (int j = 0; j < _h; j++) {\n                if\
+    \ (j == i) continue;\n                if (buf[j][i]) {\n                    buf[j]\
+    \ ^= buf[i];\n                    res[j] ^= res[i];\n                }\n     \
+    \       }\n        }\n        return mat(res);\n    }\n};\n\n} // namespace kk2\n\
+    \n#endif // MATRIX_MATRIX_F2_HPP\n"
   dependsOn:
   - data_structure/my_bitset.hpp
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2024-10-05 17:33:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-06 20:03:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
 documentation_of: matrix/matrix_F2.hpp
 layout: document
 redirect_from:

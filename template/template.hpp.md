@@ -40,17 +40,29 @@ data:
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_det.test.cpp
+    title: verify/yosupo_linalg/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_inv.test.cpp
+    title: verify/yosupo_linalg/matrix_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_pow.test.cpp
+    title: verify/yosupo_linalg/matrix_pow.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_linalg/matrix_product.test.cpp
+    title: verify/yosupo_linalg/matrix_product.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+    title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+    title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/math_primality_test.test.cpp
     title: verify/yosupo_math/math_primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-    title: verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
-    title: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
@@ -162,15 +174,19 @@ data:
   path: template/template.hpp
   requiredBy: []
   timestamp: '2024-10-05 17:47:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/matrix_system_of_linear_equations.test.cpp
-  - verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
   - verify/yosupo_math/math_primality_test.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_linalg/matrix_det.test.cpp
+  - verify/yosupo_linalg/matrix_pow.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/yosupo_linalg/matrix_product.test.cpp
+  - verify/yosupo_linalg/matrix_inv.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp

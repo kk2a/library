@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
-    title: verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+    title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -288,9 +288,9 @@ data:
   requiredBy:
   - matrix/matrix_F2.hpp
   timestamp: '2024-10-05 17:33:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_math/matrix_system_of_linear_equations_F2.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
 documentation_of: data_structure/my_bitset.hpp
 layout: document
 redirect_from:
