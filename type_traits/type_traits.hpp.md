@@ -85,6 +85,9 @@ data:
     title: string/rolling_hash.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_and.test.cpp
+    title: verify/yosupo_convolution/convolution_and.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - icon: ':x:'
@@ -108,6 +111,12 @@ data:
   - icon: ':x:'
     path: verify/yosupo_convolution/convolution_ntt.test.cpp
     title: verify/yosupo_convolution/convolution_ntt.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_or.test.cpp
+    title: verify/yosupo_convolution/convolution_or.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_xor.test.cpp
+    title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
@@ -233,7 +242,10 @@ data:
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - verify/yosupo_convolution/convolution_xor.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_and.test.cpp
+  - verify/yosupo_convolution/convolution_or.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - verify/yosupo_convolution/convolution_lcm.test.cpp

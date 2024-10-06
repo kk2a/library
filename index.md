@@ -14,13 +14,13 @@ data:
       title: UnionFind/rollback.hpp
   - name: convolution
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: convolution/bitand1.hpp
       title: convolution/bitand1.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: convolution/bitor1.hpp
       title: convolution/bitor1.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: convolution/bitxor1.hpp
       title: convolution/bitxor1.hpp
     - icon: ':question:'
@@ -47,10 +47,10 @@ data:
     - icon: ':warning:'
       path: convolution/subset.hpp
       title: convolution/subset.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: convolution/walsh_hadamard_transform.hpp
       title: convolution/walsh_hadamard_transform.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: convolution/zeta_mobius_transfrom.hpp
       title: convolution/zeta_mobius_transfrom.hpp
   - name: data_structure
