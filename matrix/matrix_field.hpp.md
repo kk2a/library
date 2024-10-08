@@ -9,24 +9,24 @@ data:
     path: matrix/frobenius_form.hpp
     title: matrix/frobenius_form.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"matrix/matrix_field.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -46,39 +46,39 @@ data:
     \ {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n    }\n\n   \
     \ void display() const {\n        for (int i = 0; i < _h; i++) {\n           \
     \ for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << \" \\n\"[j == _w - 1];\n\
-    \        }\n    }\n\n    mat &input(std::istream &is) {\n        for (int i =\
-    \ 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { is >> _mat[i][j];\
-    \ }\n        }\n        return *this;\n    }\n\n    void output(std::ostream &os)\
-    \ const {\n        for (int i = 0; i < _h; i++) {\n            for (int j = 0;\
-    \ j < _w; j++) { os << _mat[i][j] << \" \\n\"[j == _w - 1]; }\n        }\n   \
-    \ }\n\n    void set(int i, int j, Field x) {\n        assert(0 <= i && i < _h);\n\
-    \        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n    }\n\n    mat\
-    \ &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w\
-    \ == rhs._w);\n        for (int i = 0; i < _h; i++) {\n            for (int j\
-    \ = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n        }\n        return\
-    \ *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n        assert(_h ==\
-    \ rhs._h);\n        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++)\
-    \ {\n            for (int j = 0; j < _w; j++) { _mat[i][j] -= rhs._mat[i][j];\
-    \ }\n        }\n        return *this;\n    }\n\n    mat &operator*=(const mat\
-    \ &rhs) {\n        assert(_w == rhs._h);\n        std::vector<std::vector<Field>>\
-    \ res(_h, std::vector<Field>(rhs._w, Field()));\n        for (int i = 0; i < _h;\
-    \ i++) {\n            for (int j = 0; j < rhs._w; j++) {\n                for\
-    \ (int k = 0; k < _w; k++) { res[i][j] += _mat[i][k] * rhs._mat[k][j]; }\n   \
-    \         }\n        }\n        _w = rhs._w;\n        _mat.swap(res);\n      \
-    \  return *this;\n    }\n\n    Field det() const {\n        assert(_h == _w);\n\
-    \        int n = _h;\n        std::vector<std::vector<Field>> a(_mat);\n     \
-    \   Field res = 1;\n        for (int i = 0; i < n; i++) {\n            int pivot\
-    \ = -1;\n            for (int j = i; j < n; j++) {\n                if (a[j][i]\
-    \ != Field(0)) {\n                    pivot = j;\n                    break;\n\
-    \                }\n            }\n            if (pivot == -1) return Field(0);\n\
-    \            if (i != pivot) {\n                std::swap(a[i], a[pivot]);\n \
-    \               res = -res;\n            }\n            res *= a[i][i];\n    \
-    \        Field inv = a[i][i].inv();\n            for (int j = i + 1; j < n; j++)\
-    \ { a[i][j] *= inv; }\n            for (int j = 0; j < n; j++) {\n           \
-    \     if (i == j) continue;\n                Field r = a[j][i];\n            \
-    \    for (int k = i; k < n; k++) { a[j][k] -= a[i][k] * r; }\n            }\n\
-    \        }\n        return res;\n    }\n\n    std::optional<mat> inv() const {\n\
+    \        }\n    }\n\n    template <class IStream>\n    mat &input(IStream &is)\
+    \ {\n        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w;\
+    \ j++) { is >> _mat[i][j]; }\n        }\n        return *this;\n    }\n\n    template\
+    \ <class OStream>\n    void output(OStream &os) const {\n        for (int i =\
+    \ 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) os << _mat[i][j]\
+    \ << \" \\n\"[j == _w - 1];\n        }\n    }\n\n    void set(int i, int j, Field\
+    \ x) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
+    \        _mat[i][j] = x;\n    }\n\n    mat &operator+=(const mat &rhs) {\n   \
+    \     assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i\
+    \ = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j] +=\
+    \ rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator-=(const\
+    \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
+    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
+    \ { _mat[i][j] -= rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\
+    \n    mat &operator*=(const mat &rhs) {\n        assert(_w == rhs._h);\n     \
+    \   std::vector<std::vector<Field>> res(_h, std::vector<Field>(rhs._w, Field()));\n\
+    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < rhs._w;\
+    \ j++) {\n                for (int k = 0; k < _w; k++) { res[i][j] += _mat[i][k]\
+    \ * rhs._mat[k][j]; }\n            }\n        }\n        _w = rhs._w;\n      \
+    \  _mat.swap(res);\n        return *this;\n    }\n\n    Field det() const {\n\
     \        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
+    \ a(_mat);\n        Field res = 1;\n        for (int i = 0; i < n; i++) {\n  \
+    \          int pivot = -1;\n            for (int j = i; j < n; j++) {\n      \
+    \          if (a[j][i] != Field(0)) {\n                    pivot = j;\n      \
+    \              break;\n                }\n            }\n            if (pivot\
+    \ == -1) return Field(0);\n            if (i != pivot) {\n                std::swap(a[i],\
+    \ a[pivot]);\n                res = -res;\n            }\n            res *= a[i][i];\n\
+    \            Field inv = a[i][i].inv();\n            for (int j = i + 1; j < n;\
+    \ j++) { a[i][j] *= inv; }\n            for (int j = 0; j < n; j++) {\n      \
+    \          if (i == j) continue;\n                Field r = a[j][i];\n       \
+    \         for (int k = i; k < n; k++) { a[j][k] -= a[i][k] * r; }\n          \
+    \  }\n        }\n        return res;\n    }\n\n    std::optional<mat> inv() const\
+    \ {\n        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
     \ res(n, std::vector<Field>(n, Field()));\n        for (int i = 0; i < n; i++)\
     \ res[i][i] = 1;\n        mat a(_mat);\n        for (int i = 0; i < n; i++) {\n\
     \            int pivot = -1;\n            for (int j = i; j < n; j++) {\n    \
@@ -183,39 +183,39 @@ data:
     \ i) {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n    }\n\n\
     \    void display() const {\n        for (int i = 0; i < _h; i++) {\n        \
     \    for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << \" \\n\"[j == _w\
-    \ - 1];\n        }\n    }\n\n    mat &input(std::istream &is) {\n        for (int\
-    \ i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { is >> _mat[i][j];\
-    \ }\n        }\n        return *this;\n    }\n\n    void output(std::ostream &os)\
-    \ const {\n        for (int i = 0; i < _h; i++) {\n            for (int j = 0;\
-    \ j < _w; j++) { os << _mat[i][j] << \" \\n\"[j == _w - 1]; }\n        }\n   \
-    \ }\n\n    void set(int i, int j, Field x) {\n        assert(0 <= i && i < _h);\n\
-    \        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n    }\n\n    mat\
-    \ &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w\
-    \ == rhs._w);\n        for (int i = 0; i < _h; i++) {\n            for (int j\
-    \ = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n        }\n        return\
-    \ *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n        assert(_h ==\
-    \ rhs._h);\n        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++)\
-    \ {\n            for (int j = 0; j < _w; j++) { _mat[i][j] -= rhs._mat[i][j];\
-    \ }\n        }\n        return *this;\n    }\n\n    mat &operator*=(const mat\
-    \ &rhs) {\n        assert(_w == rhs._h);\n        std::vector<std::vector<Field>>\
-    \ res(_h, std::vector<Field>(rhs._w, Field()));\n        for (int i = 0; i < _h;\
-    \ i++) {\n            for (int j = 0; j < rhs._w; j++) {\n                for\
-    \ (int k = 0; k < _w; k++) { res[i][j] += _mat[i][k] * rhs._mat[k][j]; }\n   \
-    \         }\n        }\n        _w = rhs._w;\n        _mat.swap(res);\n      \
-    \  return *this;\n    }\n\n    Field det() const {\n        assert(_h == _w);\n\
-    \        int n = _h;\n        std::vector<std::vector<Field>> a(_mat);\n     \
-    \   Field res = 1;\n        for (int i = 0; i < n; i++) {\n            int pivot\
-    \ = -1;\n            for (int j = i; j < n; j++) {\n                if (a[j][i]\
-    \ != Field(0)) {\n                    pivot = j;\n                    break;\n\
-    \                }\n            }\n            if (pivot == -1) return Field(0);\n\
-    \            if (i != pivot) {\n                std::swap(a[i], a[pivot]);\n \
-    \               res = -res;\n            }\n            res *= a[i][i];\n    \
-    \        Field inv = a[i][i].inv();\n            for (int j = i + 1; j < n; j++)\
-    \ { a[i][j] *= inv; }\n            for (int j = 0; j < n; j++) {\n           \
-    \     if (i == j) continue;\n                Field r = a[j][i];\n            \
-    \    for (int k = i; k < n; k++) { a[j][k] -= a[i][k] * r; }\n            }\n\
-    \        }\n        return res;\n    }\n\n    std::optional<mat> inv() const {\n\
-    \        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
+    \ - 1];\n        }\n    }\n\n    template <class IStream>\n    mat &input(IStream\
+    \ &is) {\n        for (int i = 0; i < _h; i++) {\n            for (int j = 0;\
+    \ j < _w; j++) { is >> _mat[i][j]; }\n        }\n        return *this;\n    }\n\
+    \n    template <class OStream>\n    void output(OStream &os) const {\n       \
+    \ for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) os\
+    \ << _mat[i][j] << \" \\n\"[j == _w - 1];\n        }\n    }\n\n    void set(int\
+    \ i, int j, Field x) {\n        assert(0 <= i && i < _h);\n        assert(0 <=\
+    \ j && j < _w);\n        _mat[i][j] = x;\n    }\n\n    mat &operator+=(const mat\
+    \ &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n    \
+    \    for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
+    \ { _mat[i][j] += rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\
+    \n    mat &operator-=(const mat &rhs) {\n        assert(_h == rhs._h);\n     \
+    \   assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n          \
+    \  for (int j = 0; j < _w; j++) { _mat[i][j] -= rhs._mat[i][j]; }\n        }\n\
+    \        return *this;\n    }\n\n    mat &operator*=(const mat &rhs) {\n     \
+    \   assert(_w == rhs._h);\n        std::vector<std::vector<Field>> res(_h, std::vector<Field>(rhs._w,\
+    \ Field()));\n        for (int i = 0; i < _h; i++) {\n            for (int j =\
+    \ 0; j < rhs._w; j++) {\n                for (int k = 0; k < _w; k++) { res[i][j]\
+    \ += _mat[i][k] * rhs._mat[k][j]; }\n            }\n        }\n        _w = rhs._w;\n\
+    \        _mat.swap(res);\n        return *this;\n    }\n\n    Field det() const\
+    \ {\n        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
+    \ a(_mat);\n        Field res = 1;\n        for (int i = 0; i < n; i++) {\n  \
+    \          int pivot = -1;\n            for (int j = i; j < n; j++) {\n      \
+    \          if (a[j][i] != Field(0)) {\n                    pivot = j;\n      \
+    \              break;\n                }\n            }\n            if (pivot\
+    \ == -1) return Field(0);\n            if (i != pivot) {\n                std::swap(a[i],\
+    \ a[pivot]);\n                res = -res;\n            }\n            res *= a[i][i];\n\
+    \            Field inv = a[i][i].inv();\n            for (int j = i + 1; j < n;\
+    \ j++) { a[i][j] *= inv; }\n            for (int j = 0; j < n; j++) {\n      \
+    \          if (i == j) continue;\n                Field r = a[j][i];\n       \
+    \         for (int k = i; k < n; k++) { a[j][k] -= a[i][k] * r; }\n          \
+    \  }\n        }\n        return res;\n    }\n\n    std::optional<mat> inv() const\
+    \ {\n        assert(_h == _w);\n        int n = _h;\n        std::vector<std::vector<Field>>\
     \ res(n, std::vector<Field>(n, Field()));\n        for (int i = 0; i < n; i++)\
     \ res[i][i] = 1;\n        mat a(_mat);\n        for (int i = 0; i < n; i++) {\n\
     \            int pivot = -1;\n            for (int j = i; j < n; j++) {\n    \
@@ -309,8 +309,8 @@ data:
   requiredBy:
   - matrix/basis.hpp
   - matrix/frobenius_form.hpp
-  timestamp: '2024-10-07 04:00:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-08 15:42:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/matrix_pow.test.cpp

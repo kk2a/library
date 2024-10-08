@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/walsh_hadamard_transform.hpp
     title: convolution/walsh_hadamard_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -162,13 +162,13 @@ data:
     \ <class T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b\
     \ ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const\
     \ S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\nvoid YES(bool b = 1) {\n \
-    \   std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n}\n\nvoid NO(bool b = 1) {\n\
-    \    std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n}\n\nvoid Yes(bool b = 1)\
-    \ {\n    std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n}\n\nvoid No(bool b =\
-    \ 1) {\n    std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n}\n\nvoid yes(bool\
-    \ b = 1) {\n    std::cout << (b ? \"yes\" : \"no\") << '\\n';\n}\n\nvoid no(bool\
-    \ b = 1) {\n    std::cout << (b ? \"no\" : \"yes\") << '\\n';\n}\n\n#define rep1(a)\
-    \ for (i64 _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a);\
+    \   std::cout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n \
+    \   std::cout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid Yes(bool b = 1) {\n\
+    \    std::cout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n\
+    \    std::cout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid yes(bool b = 1) {\n\
+    \    std::cout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n\
+    \    std::cout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#define rep1(a) for (i64\
+    \ _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a);\
     \ ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i,\
     \ a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a)\
     \ - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
@@ -178,18 +178,18 @@ data:
     \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
     } iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"\
     out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\ntemplate\
-    \ <class T, class U> std::ostream &operator<<(std::ostream &os, const std::pair<T,\
+    \ <class OStream, class T, class U>\nOStream &operator<<(OStream &os, const std::pair<T,\
     \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
-    \ <class T, class U> std::istream &operator>>(std::istream &is, std::pair<T, U>\
-    \ &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
-    \ T> std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) {\n \
-    \   for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
-    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class T> std::istream &operator>>(std::istream\
-    \ &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n    return is;\n\
-    }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_xor.test.cpp\"\nusing namespace\
-    \ std;\n\nint main() {\n    int n;\n    cin >> n;\n    vc<kk2::mont998> a(1 <<\
-    \ n), b(1 << n);\n    cin >> a >> b;\n    cout << kk2::convolution_xor(a, b) <<\
-    \ endl;\n\n    return 0;\n}\n"
+    \ <class IStream, class T, class U> IStream &operator>>(IStream &is, std::pair<T,\
+    \ U> &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
+    \ OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &v)\
+    \ {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
+    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
+    \ &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n\
+    \    return is;\n}\n\n\n#line 6 \"verify/yosupo_convolution/convolution_xor.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vc<kk2::mont998>\
+    \ a(1 << n), b(1 << n);\n    cin >> a >> b;\n    cout << kk2::convolution_xor(a,\
+    \ b) << endl;\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\
     \n\n#include \"../../convolution/bitxor1.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
@@ -205,7 +205,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_xor.test.cpp
   requiredBy: []
-  timestamp: '2024-10-07 04:00:22+09:00'
+  timestamp: '2024-10-08 15:42:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_xor.test.cpp

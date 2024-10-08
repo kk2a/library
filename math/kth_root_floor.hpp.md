@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/kth_root_floor.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -52,7 +52,7 @@ data:
   path: math/kth_root_floor.hpp
   requiredBy: []
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/kth_root_int.test.cpp
 documentation_of: math/kth_root_floor.hpp

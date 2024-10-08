@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/sample_point_shift.hpp
     title: fps/sample_point_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_factorials
@@ -195,66 +195,67 @@ data:
     \ {\n    using std::vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
     \n    void display() const {\n        for (int i = 0; i < (int)this->size(); i++)\
     \ {\n            std::cout << (*this)[i] << \" \\n\"[i == (int)this->size() -\
-    \ 1];\n        }\n    }\n\n    void output(std::ostream &os) const {\n       \
-    \ for (int i = 0; i < (int)this->size(); i++) {\n            os << (*this)[i]\
-    \ << (i + 1 == (int)this->size() ? \"\" : \" \");\n        }\n    }\n\n    friend\
-    \ std::ostream &operator<<(std::ostream &os, const FPS &fps_) {\n        for (int\
-    \ i = 0; i < (int)fps_.size(); i++) {\n            os << fps_[i] << (i + 1 ==\
-    \ (int)fps_.size() ? \"\" : \" \");\n        }\n        return os;\n    }\n\n\
-    \    FPS &input(std::istream &is) {\n        for (int i = 0; i < (int)this->size();\
-    \ i++) is >> (*this)[i];\n        return *this;\n    }\n\n    friend std::istream\
-    \ &operator>>(std::istream &is, FPS &fps_) {\n        for (auto &x : fps_) is\
-    \ >> x;\n        return is;\n    }\n\n    FPS &operator+=(const FPS &r) {\n  \
-    \      if (this->size() < r.size()) this->resize(r.size());\n        for (int\
-    \ i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];\n        return *this;\n\
-    \    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
-    \        (*this)[0] += r;\n        return *this;\n    }\n\n    FPS &operator-=(const\
-    \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n  \
-    \      for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];\n        return\
-    \ *this;\n    }\n\n    FPS &operator-=(const mint &r) {\n        if (this->empty())\
-    \ this->resize(1);\n        (*this)[0] -= r;\n        return *this;\n    }\n\n\
-    \    FPS &operator*=(const mint &r) {\n        for (int i = 0; i < (int)this->size();\
-    \ i++) { (*this)[i] *= r; }\n        return *this;\n    }\n\n    FPS &operator/=(const\
-    \ FPS &r) {\n        assert(!r.empty());\n        if (this->size() < r.size())\
-    \ {\n            this->clear();\n            return *this;\n        }\n      \
-    \  int n = this->size() - r.size() + 1;\n        if ((int)r.size() <= 64) {\n\
-    \            FPS f(*this), g(r);\n            g.shrink();\n            mint coeff\
-    \ = g.back().inv();\n            for (auto &x : g) x *= coeff;\n            int\
-    \ deg = (int)f.size() - (int)g.size() + 1;\n            int gs = g.size();\n \
-    \           FPS quo(deg);\n            for (int i = deg - 1; i >= 0; i--) {\n\
-    \                quo[i] = f[i + gs - 1];\n                for (int j = 0; j <\
-    \ gs; j++) f[i + j] -= quo[i] * g[j];\n            }\n            *this = quo\
-    \ * coeff;\n            this->resize(n, mint(0));\n            return *this;\n\
-    \        }\n        return *this = ((*this).rev().pre(n) * r.rev().inv(n)).pre(n).rev();\n\
-    \    }\n\n    FPS &operator%=(const FPS &r) {\n        *this -= *this / r * r;\n\
-    \        shrink();\n        return *this;\n    }\n\n    FPS operator+(const FPS\
-    \ &r) const { return FPS(*this) += r; }\n\n    FPS operator+(const mint &r) const\
-    \ { return FPS(*this) += r; }\n\n    FPS operator-(const FPS &r) const { return\
-    \ FPS(*this) -= r; }\n\n    FPS operator-(const mint &r) const { return FPS(*this)\
-    \ -= r; }\n\n    FPS operator*(const mint &r) const { return FPS(*this) *= r;\
-    \ }\n\n    FPS operator/(const FPS &r) const { return FPS(*this) /= r; }\n\n \
-    \   FPS operator%(const FPS &r) const { return FPS(*this) %= r; }\n\n    FPS operator-()\
-    \ const {\n        FPS ret(this->size());\n        for (int i = 0; i < (int)this->size();\
-    \ i++) ret[i] = -(*this)[i];\n        return ret;\n    }\n\n    FPS shrink() {\n\
-    \        while (this->size() && this->back() == mint(0)) this->pop_back();\n \
-    \       return *this;\n    }\n\n    FPS rev() const {\n        FPS ret(*this);\n\
-    \        std::reverse(ret.begin(), ret.end());\n        return ret;\n    }\n\n\
-    \    FPS inplace_rev() {\n        std::reverse(this->begin(), this->end());\n\
-    \        return *this;\n    }\n\n    FPS dot(const FPS &r) const {\n        FPS\
-    \ ret(std::min(this->size(), r.size()));\n        for (int i = 0; i < (int)ret.size();\
-    \ i++) ret[i] = (*this)[i] * r[i];\n        return ret;\n    }\n\n    FPS inplace_dot(const\
-    \ FPS &r) {\n        this->resize(std::min(this->size(), r.size()));\n       \
-    \ for (int i = 0; i < (int)this->size(); i++) (*this)[i] *= r[i];\n        return\
-    \ *this;\n    }\n\n    FPS pre(int n) const {\n        FPS ret(this->begin(),\
-    \ this->begin() + std::min((int)this->size(), n));\n        if ((int)ret.size()\
-    \ < n) ret.resize(n, mint(0));\n        return ret;\n    }\n\n    FPS inplace_pre(int\
-    \ n) {\n        this->resize(n);\n        return *this;\n    }\n\n    FPS operator>>(int\
-    \ n) const {\n        if (n >= (int)this->size()) return {};\n        FPS ret(this->begin()\
-    \ + n, this->end());\n        return ret;\n    }\n\n    FPS operator<<(int n)\
-    \ const {\n        FPS ret(*this);\n        ret.insert(ret.begin(), n, mint(0));\n\
-    \        return ret;\n    }\n\n    FPS diff() const {\n        const int n = (int)this->size();\n\
-    \        FPS ret(std::max(0, n - 1));\n        for (int i = 1; i < n; i++) { ret[i\
-    \ - 1] = (*this)[i] * mint(i); }\n        return ret;\n    }\n\n    FPS inplace_diff()\
+    \ 1];\n        }\n    }\n\n    template <class OStream> void output(OStream &os)\
+    \ const {\n        for (int i = 0; i < (int)this->size(); i++) {\n           \
+    \ os << (*this)[i] << (i + 1 == (int)this->size() ? \"\" : \" \");\n        }\n\
+    \    }\n\n    template <class OStream> friend OStream &operator<<(OStream &os,\
+    \ const FPS &fps_) {\n        for (int i = 0; i < (int)fps_.size(); i++) {\n \
+    \           os << fps_[i] << (i + 1 == (int)fps_.size() ? \"\" : \" \");\n   \
+    \     }\n        return os;\n    }\n\n    template <class IStream> FPS &input(IStream\
+    \ &is) {\n        for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];\n\
+    \        return *this;\n    }\n\n    template <class IStream> friend IStream &operator>>(IStream\
+    \ &is, FPS &fps_) {\n        for (auto &x : fps_) is >> x;\n        return is;\n\
+    \    }\n\n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size())\
+    \ this->resize(r.size());\n        for (int i = 0; i < (int)r.size(); i++) (*this)[i]\
+    \ += r[i];\n        return *this;\n    }\n\n    FPS &operator+=(const mint &r)\
+    \ {\n        if (this->empty()) this->resize(1);\n        (*this)[0] += r;\n \
+    \       return *this;\n    }\n\n    FPS &operator-=(const FPS &r) {\n        if\
+    \ (this->size() < r.size()) this->resize(r.size());\n        for (int i = 0; i\
+    \ < (int)r.size(); i++) (*this)[i] -= r[i];\n        return *this;\n    }\n\n\
+    \    FPS &operator-=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
+    \        (*this)[0] -= r;\n        return *this;\n    }\n\n    FPS &operator*=(const\
+    \ mint &r) {\n        for (int i = 0; i < (int)this->size(); i++) { (*this)[i]\
+    \ *= r; }\n        return *this;\n    }\n\n    FPS &operator/=(const FPS &r) {\n\
+    \        assert(!r.empty());\n        if (this->size() < r.size()) {\n       \
+    \     this->clear();\n            return *this;\n        }\n        int n = this->size()\
+    \ - r.size() + 1;\n        if ((int)r.size() <= 64) {\n            FPS f(*this),\
+    \ g(r);\n            g.shrink();\n            mint coeff = g.back().inv();\n \
+    \           for (auto &x : g) x *= coeff;\n            int deg = (int)f.size()\
+    \ - (int)g.size() + 1;\n            int gs = g.size();\n            FPS quo(deg);\n\
+    \            for (int i = deg - 1; i >= 0; i--) {\n                quo[i] = f[i\
+    \ + gs - 1];\n                for (int j = 0; j < gs; j++) f[i + j] -= quo[i]\
+    \ * g[j];\n            }\n            *this = quo * coeff;\n            this->resize(n,\
+    \ mint(0));\n            return *this;\n        }\n        return *this = ((*this).rev().pre(n)\
+    \ * r.rev().inv(n)).pre(n).rev();\n    }\n\n    FPS &operator%=(const FPS &r)\
+    \ {\n        *this -= *this / r * r;\n        shrink();\n        return *this;\n\
+    \    }\n\n    FPS operator+(const FPS &r) const { return FPS(*this) += r; }\n\n\
+    \    FPS operator+(const mint &r) const { return FPS(*this) += r; }\n\n    FPS\
+    \ operator-(const FPS &r) const { return FPS(*this) -= r; }\n\n    FPS operator-(const\
+    \ mint &r) const { return FPS(*this) -= r; }\n\n    FPS operator*(const mint &r)\
+    \ const { return FPS(*this) *= r; }\n\n    FPS operator/(const FPS &r) const {\
+    \ return FPS(*this) /= r; }\n\n    FPS operator%(const FPS &r) const { return\
+    \ FPS(*this) %= r; }\n\n    FPS operator-() const {\n        FPS ret(this->size());\n\
+    \        for (int i = 0; i < (int)this->size(); i++) ret[i] = -(*this)[i];\n \
+    \       return ret;\n    }\n\n    FPS shrink() {\n        while (this->size()\
+    \ && this->back() == mint(0)) this->pop_back();\n        return *this;\n    }\n\
+    \n    FPS rev() const {\n        FPS ret(*this);\n        std::reverse(ret.begin(),\
+    \ ret.end());\n        return ret;\n    }\n\n    FPS inplace_rev() {\n       \
+    \ std::reverse(this->begin(), this->end());\n        return *this;\n    }\n\n\
+    \    FPS dot(const FPS &r) const {\n        FPS ret(std::min(this->size(), r.size()));\n\
+    \        for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i] * r[i];\n\
+    \        return ret;\n    }\n\n    FPS inplace_dot(const FPS &r) {\n        this->resize(std::min(this->size(),\
+    \ r.size()));\n        for (int i = 0; i < (int)this->size(); i++) (*this)[i]\
+    \ *= r[i];\n        return *this;\n    }\n\n    FPS pre(int n) const {\n     \
+    \   FPS ret(this->begin(), this->begin() + std::min((int)this->size(), n));\n\
+    \        if ((int)ret.size() < n) ret.resize(n, mint(0));\n        return ret;\n\
+    \    }\n\n    FPS inplace_pre(int n) {\n        this->resize(n);\n        return\
+    \ *this;\n    }\n\n    FPS operator>>(int n) const {\n        if (n >= (int)this->size())\
+    \ return {};\n        FPS ret(this->begin() + n, this->end());\n        return\
+    \ ret;\n    }\n\n    FPS operator<<(int n) const {\n        FPS ret(*this);\n\
+    \        ret.insert(ret.begin(), n, mint(0));\n        return ret;\n    }\n\n\
+    \    FPS diff() const {\n        const int n = (int)this->size();\n        FPS\
+    \ ret(std::max(0, n - 1));\n        for (int i = 1; i < n; i++) { ret[i - 1] =\
+    \ (*this)[i] * mint(i); }\n        return ret;\n    }\n\n    FPS inplace_diff()\
     \ {\n        if (this->empty()) return {};\n        this->erase(this->begin());\n\
     \        for (int i = 1; i <= (int)this->size(); i++) (*this)[i - 1] *= mint(i);\n\
     \        return *this;\n    }\n\n    FPS integral() const {\n        const int\
@@ -586,33 +587,33 @@ data:
     \ T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b,\
     \ 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
     \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\nvoid YES(bool b = 1) {\n    std::cout\
-    \ << (b ? \"YES\" : \"NO\") << '\\n';\n}\n\nvoid NO(bool b = 1) {\n    std::cout\
-    \ << (b ? \"NO\" : \"YES\") << '\\n';\n}\n\nvoid Yes(bool b = 1) {\n    std::cout\
-    \ << (b ? \"Yes\" : \"No\") << '\\n';\n}\n\nvoid No(bool b = 1) {\n    std::cout\
-    \ << (b ? \"No\" : \"Yes\") << '\\n';\n}\n\nvoid yes(bool b = 1) {\n    std::cout\
-    \ << (b ? \"yes\" : \"no\") << '\\n';\n}\n\nvoid no(bool b = 1) {\n    std::cout\
-    \ << (b ? \"no\" : \"yes\") << '\\n';\n}\n\n#define rep1(a) for (i64 _ = 0; _\
-    \ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n#define\
-    \ rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a) for\
-    \ (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a) - 1;\
-    \ i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
-    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
-    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
-    \ all(p) std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n   \
-    \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
-    } iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"\
-    out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\ntemplate\
-    \ <class T, class U> std::ostream &operator<<(std::ostream &os, const std::pair<T,\
-    \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
-    \ <class T, class U> std::istream &operator>>(std::istream &is, std::pair<T, U>\
-    \ &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
-    \ T> std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) {\n \
-    \   for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
-    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class T> std::istream &operator>>(std::istream\
-    \ &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n    return is;\n\
-    }\n\n\n#line 6 \"verify/yosupo_math/many_factrials.test.cpp\"\nusing namespace\
-    \ std;\n\nint main() {\n    int t;\n    cin >> t;\n    rep (t) {\n        int\
-    \ n;\n        cin >> n;\n        cout << kk2::CombLarge<kk2::mont998>::fact(n)\
+    \ << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    std::cout\
+    \ << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid Yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    std::cout\
+    \ << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    std::cout\
+    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#define rep1(a) for (i64 _ = 0; _ < (i64)(a);\
+    \ ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n#define rep3(i,\
+    \ a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a) for (i64 i =\
+    \ (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a) - 1; i >= (i64)(b);\
+    \ --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...) overload3(__VA_ARGS__,\
+    \ rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__, repi3,\
+    \ repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define all(p)\
+    \ std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n\
+    \        std::ios::sync_with_stdio(false);\n    }\n} iosetup;\n\n#ifdef KK2\n\
+    std::ifstream in(\"in.txt\");\nstd::ofstream out(\"out.txt\");\n#else\n#define\
+    \ in std::cin\n#define out std::cout\n#endif\n\ntemplate <class OStream, class\
+    \ T, class U>\nOStream &operator<<(OStream &os, const std::pair<T, U> &p) {\n\
+    \    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate <class IStream,\
+    \ class T, class U> IStream &operator>>(IStream &is, std::pair<T, U> &p) {\n \
+    \   is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class OStream,\
+    \ class T> OStream &operator<<(OStream &os, const std::vector<T> &v) {\n    for\
+    \ (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
+    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
+    \ &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n\
+    \    return is;\n}\n\n\n#line 6 \"verify/yosupo_math/many_factrials.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    rep (t)\
+    \ {\n        int n;\n        cin >> n;\n        cout << kk2::CombLarge<kk2::mont998>::fact(n)\
     \ << \"\\n\";\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_factorials\"\n\n#include\
     \ \"../../math_mod/comb_large.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
@@ -638,8 +639,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/many_factrials.test.cpp
   requiredBy: []
-  timestamp: '2024-10-07 04:46:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-08 15:42:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/many_factrials.test.cpp
 layout: document

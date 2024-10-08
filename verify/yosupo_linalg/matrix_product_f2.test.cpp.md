@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product_mod_2
@@ -39,9 +39,9 @@ data:
     \ at index 0 in the string is '1',\n    // but in the bitset it will be considered\
     \ as index 0.\n    DynamicBitSet(const std::string &s) : n(s.size()) {\n     \
     \   block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        set(s);\n \
-    \   }\n\n    friend std::istream &operator>>(std::istream &is, T &bs) {\n    \
-    \    std::string s;\n        is >> s;\n        bs.set_reversed(s);\n        return\
-    \ is;\n    }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
+    \   }\n\n    template <class IStream> friend IStream &operator>>(IStream &is,\
+    \ T &bs) {\n        std::string s;\n        is >> s;\n        bs.set_reversed(s);\n\
+    \        return is;\n    }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
     \ T &rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
     \        if (!(n & BLOCK_MASK)) {\n            std::copy(std::begin(rhs.block),\n\
     \                      std::end(rhs.block),\n                      std::begin(block)\
@@ -160,24 +160,27 @@ data:
     \ std::end(tmp.back()));\n        }\n        std::string res;\n        for (int\
     \ i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            std::reverse(std::begin(tmp[i]),\
     \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return res;\n\
-    \    }\n\n    friend std::ostream &operator<<(std::ostream &os, const T &bs) {\
-    \ return os << bs.to_string(); }\n};\n\n} // namespace kk2\n\n\n#line 12 \"matrix/matrix_F2.hpp\"\
-    \n\nnamespace kk2 {\n\nstruct MatrixF2 {\n    using mat = MatrixF2;\n    int _h,\
-    \ _w;\n    std::vector<DynamicBitSet> _mat;\n\n    MatrixF2() : MatrixF2(0) {}\n\
-    \n    MatrixF2(int n) : MatrixF2(n, n) {}\n\n    MatrixF2(int h, int w) {\n  \
-    \      if (h == 0) {\n            _h = 0;\n            _w = w;\n        } else\
-    \ {\n            _h = h;\n            _w = w;\n            _mat.resize(h, DynamicBitSet(w));\n\
-    \        }\n    }\n\n    MatrixF2(const std::vector<DynamicBitSet> &mat_)\n  \
-    \      : _h(mat_.size()),\n          _w(mat_[0].size()),\n          _mat(mat_)\
-    \ {}\n\n    int get_h() const { return _h; }\n\n    int get_w() const { return\
-    \ _w; }\n\n    bool at(int i, int j) {\n        assert(0 <= i && i < _h);\n  \
-    \      assert(0 <= j && j < _w);\n        return _mat[i][j].val();\n    }\n\n\
-    \    class Proxy {\n        std::vector<DynamicBitSet> &bs;\n        int i;\n\n\
-    \      public:\n        Proxy(std::vector<DynamicBitSet> &bs_, int i_) : bs(bs_),\
-    \ i(i_) {}\n\n        operator DynamicBitSet() const { return bs[i]; }\n\n   \
-    \     friend std::istream &operator>>(std::istream &is, Proxy p) {\n         \
-    \   std::string s;\n            is >> s;\n            p = s;\n            return\
-    \ is;\n        }\n\n        std::string to_string() const { return bs[i].to_string();\
+    \    }\n\n    template <class OStream> friend OStream &operator<<(OStream &os,\
+    \ const T &bs) {\n        return os << bs.to_string();\n    }\n};\n\n} // namespace\
+    \ kk2\n\n\n#line 12 \"matrix/matrix_F2.hpp\"\n\nnamespace kk2 {\n\nstruct MatrixF2\
+    \ {\n    using mat = MatrixF2;\n    int _h, _w;\n    std::vector<DynamicBitSet>\
+    \ _mat;\n\n    MatrixF2() : MatrixF2(0) {}\n\n    MatrixF2(int n) : MatrixF2(n,\
+    \ n) {}\n\n    MatrixF2(int h, int w) {\n        if (h == 0) {\n            _h\
+    \ = 0;\n            _w = w;\n        } else {\n            _h = h;\n         \
+    \   _w = w;\n            _mat.resize(h, DynamicBitSet(w));\n        }\n    }\n\
+    \n    MatrixF2(const std::vector<DynamicBitSet> &mat_)\n        : _h(mat_.size()),\n\
+    \          _w(mat_[0].size()),\n          _mat(mat_) {}\n\n    int get_h() const\
+    \ { return _h; }\n\n    int get_w() const { return _w; }\n\n    bool at(int i,\
+    \ int j) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
+    \        return _mat[i][j].val();\n    }\n\n    class Proxy {\n        std::vector<DynamicBitSet>\
+    \ &bs;\n        int i;\n\n      public:\n        Proxy(std::vector<DynamicBitSet>\
+    \ &bs_, int i_) : bs(bs_), i(i_) {}\n\n        operator DynamicBitSet() const\
+    \ { return bs[i]; }\n\n        template <class IStream>\n        friend IStream\
+    \ &operator>>(IStream &is, Proxy p) {\n            std::string s;\n          \
+    \  is >> s;\n            p = s;\n            return is;\n        }\n\n       \
+    \ template <class OStream>\n        friend OStream &operator<<(OStream &os, Proxy\
+    \ p) {\n            os << p.to_reversed_string();\n            return os;\n  \
+    \      }\n\n        std::string to_string() const { return bs[i].to_string();\
     \ }\n\n        std::string to_reversed_string() const { return bs[i].to_reversed_string();\
     \ }\n\n        Proxy &operator=(const std::string &s) {\n            bs[i].set_reversed(s);\n\
     \            return *this;\n        }\n\n        Proxy &operator=(const DynamicBitSet\
@@ -199,16 +202,17 @@ data:
     \      bs[i].flip();\n            return *this;\n        }\n    };\n\n    Proxy\
     \ operator[](int i) {\n        assert(0 <= i && i < _h);\n        return Proxy(_mat,\
     \ i);\n    }\n\n    void display() const {\n        for (int i = 0; i < _h; i++)\
-    \ { std::cout << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    mat\
-    \ &input(std::istream &is) {\n        for (int i = 0; i < _h; i++) {\n       \
-    \     std::string s;\n            is >> s;\n            _mat[i].set_reversed(s);\n\
-    \        }\n        return *this;\n    }\n\n    void output(std::ostream &os)\
-    \ const {\n        for (int i = 0; i < _h; i++) {\n            os << _mat[i].to_reversed_string()\
-    \ << \"\\n\";\n        }\n    }\n\n    void set(int i, int j, bool x) {\n    \
-    \    assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i].set(j,\
-    \ x);\n    }\n\n    void set(int i, const std::string &s) {\n        assert((int)s.size()\
-    \ == _w);\n        _mat[i].set(s);\n    }\n\n    void set_reversed(int i, const\
-    \ std::string &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set_reversed(s);\n\
+    \ { std::cout << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    template\
+    \ <class IStream>\n    mat &input(IStream &is) {\n        for (int i = 0; i <\
+    \ _h; i++) {\n            std::string s;\n            is >> s;\n            _mat[i].set_reversed(s);\n\
+    \        }\n        return *this;\n    }\n\n    template <class OStream>\n   \
+    \ void output(OStream &os) const {\n        for (int i = 0; i < _h; i++) {\n \
+    \           os << _mat[i].to_reversed_string() << \"\\n\";\n        }\n    }\n\
+    \n    void set(int i, int j, bool x) {\n        assert(0 <= i && i < _h);\n  \
+    \      assert(0 <= j && j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void\
+    \ set(int i, const std::string &s) {\n        assert((int)s.size() == _w);\n \
+    \       _mat[i].set(s);\n    }\n\n    void set_reversed(int i, const std::string\
+    \ &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set_reversed(s);\n\
     \    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
     \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) { _mat[i]\
     \ = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator-=(const\
@@ -345,34 +349,34 @@ data:
     \ T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b,\
     \ 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
     \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\nvoid YES(bool b = 1) {\n    std::cout\
-    \ << (b ? \"YES\" : \"NO\") << '\\n';\n}\n\nvoid NO(bool b = 1) {\n    std::cout\
-    \ << (b ? \"NO\" : \"YES\") << '\\n';\n}\n\nvoid Yes(bool b = 1) {\n    std::cout\
-    \ << (b ? \"Yes\" : \"No\") << '\\n';\n}\n\nvoid No(bool b = 1) {\n    std::cout\
-    \ << (b ? \"No\" : \"Yes\") << '\\n';\n}\n\nvoid yes(bool b = 1) {\n    std::cout\
-    \ << (b ? \"yes\" : \"no\") << '\\n';\n}\n\nvoid no(bool b = 1) {\n    std::cout\
-    \ << (b ? \"no\" : \"yes\") << '\\n';\n}\n\n#define rep1(a) for (i64 _ = 0; _\
-    \ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n#define\
-    \ rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a) for\
-    \ (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a) - 1;\
-    \ i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
-    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
-    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
-    \ all(p) std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n   \
-    \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
-    } iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"\
-    out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\ntemplate\
-    \ <class T, class U> std::ostream &operator<<(std::ostream &os, const std::pair<T,\
-    \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
-    \ <class T, class U> std::istream &operator>>(std::istream &is, std::pair<T, U>\
-    \ &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
-    \ T> std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) {\n \
-    \   for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
-    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class T> std::istream &operator>>(std::istream\
-    \ &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n    return is;\n\
-    }\n\n\n#line 5 \"verify/yosupo_linalg/matrix_product_f2.test.cpp\"\nusing namespace\
-    \ std;\n\nint main() {\n    int n, m, k;\n    cin >> n >> m >> k;\n    kk2::MatrixF2\
-    \ a(n, m), b(m, k);\n    a.input(cin), b.input(cin);\n    (a * b).output(cout);\n\
-    \n    return 0;\n}\n"
+    \ << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    std::cout\
+    \ << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid Yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    std::cout\
+    \ << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    std::cout\
+    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#define rep1(a) for (i64 _ = 0; _ < (i64)(a);\
+    \ ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n#define rep3(i,\
+    \ a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a) for (i64 i =\
+    \ (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a) - 1; i >= (i64)(b);\
+    \ --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...) overload3(__VA_ARGS__,\
+    \ rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__, repi3,\
+    \ repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define all(p)\
+    \ std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n\
+    \        std::ios::sync_with_stdio(false);\n    }\n} iosetup;\n\n#ifdef KK2\n\
+    std::ifstream in(\"in.txt\");\nstd::ofstream out(\"out.txt\");\n#else\n#define\
+    \ in std::cin\n#define out std::cout\n#endif\n\ntemplate <class OStream, class\
+    \ T, class U>\nOStream &operator<<(OStream &os, const std::pair<T, U> &p) {\n\
+    \    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate <class IStream,\
+    \ class T, class U> IStream &operator>>(IStream &is, std::pair<T, U> &p) {\n \
+    \   is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class OStream,\
+    \ class T> OStream &operator<<(OStream &os, const std::vector<T> &v) {\n    for\
+    \ (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
+    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
+    \ &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n\
+    \    return is;\n}\n\n\n#line 5 \"verify/yosupo_linalg/matrix_product_f2.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int n, m, k;\n    cin >> n >> m >>\
+    \ k;\n    kk2::MatrixF2 a(n, m), b(m, k);\n    a.input(cin), b.input(cin);\n \
+    \   (a * b).output(cout);\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n\
     \n#include \"../../matrix/matrix_F2.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nint main() {\n    int n, m, k;\n    cin >> n >> m >>\
@@ -385,8 +389,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_product_f2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-07 05:01:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-08 15:42:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_product_f2.test.cpp
 layout: document

@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -38,9 +38,9 @@ data:
     \ at index 0 in the string is '1',\n    // but in the bitset it will be considered\
     \ as index 0.\n    DynamicBitSet(const std::string &s) : n(s.size()) {\n     \
     \   block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        set(s);\n \
-    \   }\n\n    friend std::istream &operator>>(std::istream &is, T &bs) {\n    \
-    \    std::string s;\n        is >> s;\n        bs.set_reversed(s);\n        return\
-    \ is;\n    }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
+    \   }\n\n    template <class IStream> friend IStream &operator>>(IStream &is,\
+    \ T &bs) {\n        std::string s;\n        is >> s;\n        bs.set_reversed(s);\n\
+    \        return is;\n    }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
     \ T &rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
     \        if (!(n & BLOCK_MASK)) {\n            std::copy(std::begin(rhs.block),\n\
     \                      std::end(rhs.block),\n                      std::begin(block)\
@@ -159,8 +159,9 @@ data:
     \ std::end(tmp.back()));\n        }\n        std::string res;\n        for (int\
     \ i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            std::reverse(std::begin(tmp[i]),\
     \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return res;\n\
-    \    }\n\n    friend std::ostream &operator<<(std::ostream &os, const T &bs) {\
-    \ return os << bs.to_string(); }\n};\n\n} // namespace kk2\n\n\n"
+    \    }\n\n    template <class OStream> friend OStream &operator<<(OStream &os,\
+    \ const T &bs) {\n        return os << bs.to_string();\n    }\n};\n\n} // namespace\
+    \ kk2\n\n\n"
   code: "#ifndef DATA_STRUCTURE_MY_BITSET_HPP\n#define DATA_STRUCTURE_MY_BITSET_HPP\
     \ 1\n\n#include <algorithm>\n#include <bitset>\n#include <cassert>\n#include <iostream>\n\
     #include <iterator>\n#include <string>\n#include <vector>\n\nnamespace kk2 {\n\
@@ -176,9 +177,9 @@ data:
     \ at index 0 in the string is '1',\n    // but in the bitset it will be considered\
     \ as index 0.\n    DynamicBitSet(const std::string &s) : n(s.size()) {\n     \
     \   block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        set(s);\n \
-    \   }\n\n    friend std::istream &operator>>(std::istream &is, T &bs) {\n    \
-    \    std::string s;\n        is >> s;\n        bs.set_reversed(s);\n        return\
-    \ is;\n    }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
+    \   }\n\n    template <class IStream> friend IStream &operator>>(IStream &is,\
+    \ T &bs) {\n        std::string s;\n        is >> s;\n        bs.set_reversed(s);\n\
+    \        return is;\n    }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
     \ T &rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
     \        if (!(n & BLOCK_MASK)) {\n            std::copy(std::begin(rhs.block),\n\
     \                      std::end(rhs.block),\n                      std::begin(block)\
@@ -297,15 +298,16 @@ data:
     \ std::end(tmp.back()));\n        }\n        std::string res;\n        for (int\
     \ i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            std::reverse(std::begin(tmp[i]),\
     \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return res;\n\
-    \    }\n\n    friend std::ostream &operator<<(std::ostream &os, const T &bs) {\
-    \ return os << bs.to_string(); }\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_MY_BITSET_HPP\n"
+    \    }\n\n    template <class OStream> friend OStream &operator<<(OStream &os,\
+    \ const T &bs) {\n        return os << bs.to_string();\n    }\n};\n\n} // namespace\
+    \ kk2\n\n#endif // DATA_STRUCTURE_MY_BITSET_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/my_bitset.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
-  timestamp: '2024-10-07 04:00:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-08 15:42:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
