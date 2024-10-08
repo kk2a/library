@@ -95,28 +95,15 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
     return (a > b ? a = b, 1 : 0);
 }
 
-void YES(bool b = 1) {
-    std::cout << (b ? "YES\n" : "NO\n");
-}
+enum yes_no_enum { Yes, No, YES, NO, yes, no };
 
-void NO(bool b = 1) {
-    std::cout << (b ? "NO\n" : "YES\n");
-}
-
-void Yes(bool b = 1) {
-    std::cout << (b ? "Yes\n" : "No\n");
-}
-
-void No(bool b = 1) {
-    std::cout << (b ? "No\n" : "Yes\n");
-}
-
-void yes(bool b = 1) {
-    std::cout << (b ? "yes\n" : "no\n");
-}
-
-void no(bool b = 1) {
-    std::cout << (b ? "no\n" : "yes\n");
+template <yes_no_enum YN> void yn(bool b = 1) {
+    if constexpr (YN == Yes) std::cout << (b ? "Yes" : "No") << '\n';
+    if constexpr (YN == No) std::cout << (b ? "No" : "Yes") << '\n';
+    if constexpr (YN == YES) std::cout << (b ? "YES" : "NO") << '\n';
+    if constexpr (YN == NO) std::cout << (b ? "NO" : "YES") << '\n';
+    if constexpr (YN == yes) std::cout << (b ? "yes" : "no") << '\n';
+    if constexpr (YN == no) std::cout << (b ? "no" : "yes") << '\n';
 }
 
 #define rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)
