@@ -25,48 +25,45 @@ template <class T> struct WeightedEdge {
 
     WeightedEdge rev() const { return WeightedEdge(from, cost, to, id); }
 
-    friend std::ostream &operator<<(std::ostream &os, const WeightedEdge &e) {
-        if (std::is_same_v<T, bool>) return os << e.from << "->" << e.to;
-        return os << e.from << "->" << e.to << ":" << e.cost;
+    template <class OStream> friend OStream &operator<<(OStream &os, const WeightedEdge &e) {
+        return os << e.from << " -> " << e.to << " : " << e.cost;
     }
 };
 template <class T> using WeightedEdges = std::vector<WeightedEdge<T>>;
 
 template <class T, bool is_directed = false>
 struct WeightedAdjacencyList : std::vector<WeightedEdges<T>> {
-    WeightedAdjacencyList(int n_ = 0, bool is_one_indexed = true, bool is_adjacency_matrix = false)
+    WeightedAdjacencyList() = default;
+
+    WeightedAdjacencyList(int n_, bool is_one_indexed)
         : std::vector<WeightedEdges<T>>(n_),
           n(n_),
           m(0),
-          oneindexed(is_one_indexed),
-          adjacency_matrix(is_adjacency_matrix) {
-        if (adjacency_matrix) this->assign(n, WeightedEdges<T>(n));
-    }
+          oneindexed(is_one_indexed) {}
 
-    WeightedAdjacencyList(int n_,
-                          int m_,
-                          bool is_one_indexed = true,
-                          bool is_adjacency_matrix = false)
+    WeightedAdjacencyList(int n_, int m_, bool is_one_indexed)
         : std::vector<WeightedEdges<T>>(n_),
           n(n_),
           m(m_),
-          oneindexed(is_one_indexed),
-          adjacency_matrix(is_adjacency_matrix) {
-        if (adjacency_matrix) this->assign(n, WeightedEdges<T>(n));
-        input();
-    }
+          oneindexed(is_one_indexed) {}
 
-    WeightedAdjacencyList(int n_,
-                          const WeightedEdges<T> &edges_,
-                          bool is_one_indexed = true,
-                          bool is_adjacency_matrix = false)
+    WeightedAdjacencyList(int n_, const WeightedEdges<T> &edges_, bool is_one_indexed)
         : std::vector<WeightedEdges<T>>(n_),
           n(n_),
           m(0),
-          oneindexed(is_one_indexed),
-          adjacency_matrix(is_adjacency_matrix) {
-        if (adjacency_matrix) this->assign(n, WeightedEdges<T>(n));
+          oneindexed(is_one_indexed) {
         for (auto &e : edges_) { _add_edge(e.from, e.to, e.cost, m++); }
+    }
+
+    template <class IStream> WeightedAdjacencyList &input(IStream &is) {
+        for (int i = 0; i < m; i++) {
+            int u, v;
+            T w;
+            is >> u >> v >> w;
+            if (oneindexed) --u, --v;
+            _add_edge(u, v, w, i);
+        }
+        return *this;
     }
 
     using value_type = T;
@@ -75,14 +72,14 @@ struct WeightedAdjacencyList : std::vector<WeightedEdges<T>> {
     constexpr static bool directed() { return is_directed; }
 
     int n, m;
-    bool oneindexed, adjacency_matrix;
+    bool oneindexed;
     WeightedEdges<T> edges;
 
     int num_vertices() const { return n; }
 
     int num_edges() const { return m; }
 
-    void clear() {
+    void edge_clear() {
         for (int i = 0; i < n; i++) (*this)[i].clear();
         edges.clear();
         m = 0;
@@ -91,8 +88,8 @@ struct WeightedAdjacencyList : std::vector<WeightedEdges<T>> {
     WeightedAdjacencyList &inplace_rev() {
         static_assert(is_directed);
         WeightedEdges<T> rev(m);
-        for (int i = 0; i < m; i++) { rev[i] = edges[i].rev(); }
-        clear();
+        for (int i = 0; i < m; i++) rev[i] = edges[i].rev();
+        edge_clear();
         for (auto &e : rev) _add_edge(e.from, e.to, e.cost, m++);
         return *this;
     }
@@ -101,30 +98,12 @@ struct WeightedAdjacencyList : std::vector<WeightedEdges<T>> {
         static_assert(is_directed);
         WeightedAdjacencyList res(n);
         res.m = m;
-        for (int i = 0; i < m; i++) { res._add_edge(edges[i].to, edges[i].from, edges[i].cost, i); }
+        for (int i = 0; i < m; i++) res._add_edge(edges[i].to, edges[i].from, edges[i].cost, i);
         return res;
     }
 
-  private:
-    void input() {
-        for (int i = 0; i < m; i++) {
-            int u, v;
-            T w;
-            std::cin >> u >> v >> w;
-            if (oneindexed) {
-                u--;
-                v--;
-            }
-            _add_edge(u, v, w, i);
-        }
-    }
-
-  public:
     void add_edge(int from, int to, T cost) {
-        if (oneindexed) {
-            from--;
-            to--;
-        }
+        if (oneindexed) --from, --to;
         _add_edge(from, to, cost, m++);
     }
 
@@ -132,13 +111,8 @@ struct WeightedAdjacencyList : std::vector<WeightedEdges<T>> {
 
   private:
     void _add_edge(int from, int to, T cost, int id) {
-        if (adjacency_matrix) {
-            (*this)[from][to] = WeightedEdge<T>(to, cost, from, id);
-            if constexpr (!is_directed) (*this)[to][from] = WeightedEdge<T>(from, cost, to, id);
-        } else {
-            (*this)[from].emplace_back(to, cost, from, id);
-            if constexpr (!is_directed) (*this)[to].emplace_back(from, cost, to, id);
-        }
+        (*this)[from].emplace_back(to, cost, from, id);
+        if constexpr (!is_directed) (*this)[to].emplace_back(from, cost, to, id);
         edges.emplace_back(to, cost, from, id);
     }
 };
@@ -163,41 +137,46 @@ using UnWeightedEdges = std::vector<UnWeightedEdge>;
 
 template <bool is_directed = false, bool is_functional = false>
 struct UnWeightedAdjacencyList : std::vector<UnWeightedEdges> {
-    UnWeightedAdjacencyList(int n_ = 0,
-                            bool is_one_indexed = true,
-                            bool is_adjacency_matrix = false)
+    UnWeightedAdjacencyList() = default;
+
+    UnWeightedAdjacencyList(int n_, bool is_one_indexed)
         : std::vector<UnWeightedEdges>(n_),
           n(n_),
           m(0),
-          oneindexed(is_one_indexed),
-          adjacency_matrix(is_adjacency_matrix) {
-        if (adjacency_matrix) this->assign(n, UnWeightedEdges(n));
-    }
+          oneindexed(is_one_indexed) {}
 
-    UnWeightedAdjacencyList(int n_,
-                            int m_,
-                            bool is_one_indexed = true,
-                            bool is_adjacency_matrix = false)
+    UnWeightedAdjacencyList(int n_, int m_, bool is_one_indexed)
         : std::vector<UnWeightedEdges>(n_),
           n(n_),
           m(m_),
-          oneindexed(is_one_indexed),
-          adjacency_matrix(is_adjacency_matrix) {
-        if (adjacency_matrix) this->assign(n, UnWeightedEdges(n));
-        input();
-    }
+          oneindexed(is_one_indexed) {}
 
-    UnWeightedAdjacencyList(int n_,
-                            const UnWeightedEdges &edges_,
-                            bool is_one_indexed = true,
-                            bool is_adjacency_matrix = false)
+    UnWeightedAdjacencyList(int n_, const UnWeightedEdges &edges_, bool is_one_indexed)
         : std::vector<UnWeightedEdges>(n_),
           n(n_),
           m(0),
-          oneindexed(is_one_indexed),
-          adjacency_matrix(is_adjacency_matrix) {
-        if (adjacency_matrix) this->assign(n, UnWeightedEdges(n));
+          oneindexed(is_one_indexed) {
         for (auto &e : edges_) { _add_edge(e.from, e.to, m++); }
+    }
+
+    template <class IStream> UnWeightedAdjacencyList &input(IStream &is) {
+        if constexpr (is_functional) {
+            assert(n == m);
+            for (int i = 0; i < n; i++) {
+                int u;
+                is >> u;
+                if (oneindexed) --u;
+                _add_edge(i, u, i);
+            }
+        } else {
+            for (int i = 0; i < m; i++) {
+                int u, v;
+                is >> u >> v;
+                if (oneindexed) --u, --v;
+                _add_edge(u, v, i);
+            }
+        }
+        return *this;
     }
 
     constexpr static bool directed() { return is_directed; }
@@ -207,14 +186,14 @@ struct UnWeightedAdjacencyList : std::vector<UnWeightedEdges> {
     using edge_type = UnWeightedEdge;
 
     int n, m;
-    bool oneindexed, adjacency_matrix;
+    bool oneindexed;
     UnWeightedEdges edges;
 
     int num_vertices() const { return n; }
 
     int num_edges() const { return m; }
 
-    void clear() {
+    void edge_clear() {
         for (int i = 0; i < n; i++) (*this)[i].clear();
         edges.clear();
         m = 0;
@@ -223,8 +202,8 @@ struct UnWeightedAdjacencyList : std::vector<UnWeightedEdges> {
     UnWeightedAdjacencyList &inplace_rev() {
         static_assert(is_directed);
         std::vector<std::pair<int, int>> rev(m);
-        for (int i = 0; i < m; i++) { rev[i] = {edges[i].to, edges[i].from}; }
-        clear();
+        for (int i = 0; i < m; i++) rev[i] = {edges[i].to, edges[i].from};
+        edge_clear();
         for (auto &&[u, v] : rev) _add_edge(u, v, m++);
         return *this;
     }
@@ -233,44 +212,12 @@ struct UnWeightedAdjacencyList : std::vector<UnWeightedEdges> {
         static_assert(is_directed);
         UnWeightedAdjacencyList res(n);
         res.m = m;
-        for (int i = 0; i < m; i++) { res._add_edge(edges[i].to, edges[i].from, i); }
+        for (int i = 0; i < m; i++) res._add_edge(edges[i].to, edges[i].from, i);
         return res;
     }
 
-  private:
-    void input() {
-        if constexpr (is_functional) {
-            functional_graph();
-            return;
-        }
-        for (int i = 0; i < m; i++) {
-            int u, v;
-            std::cin >> u >> v;
-            if (oneindexed) {
-                u--;
-                v--;
-            }
-            _add_edge(u, v, i);
-        }
-    }
-
-    void functional_graph() {
-        static_assert(is_directed);
-        assert(n == m);
-        for (int i = 0; i < n; i++) {
-            int u;
-            std::cin >> u;
-            if (oneindexed) u--;
-            _add_edge(i, u, i);
-        }
-    }
-
-  public:
     void add_edge(int from, int to) {
-        if (oneindexed) {
-            from--;
-            to--;
-        }
+        if (oneindexed) --from, --to;
         _add_edge(from, to, m++);
     }
 
@@ -278,22 +225,18 @@ struct UnWeightedAdjacencyList : std::vector<UnWeightedEdges> {
 
   private:
     void _add_edge(int from, int to, int id) {
-        if (adjacency_matrix) {
-            (*this)[from][to] = UnWeightedEdge(to, from, id);
-
-            if constexpr (!is_directed) (*this)[to][from] = UnWeightedEdge(from, to, id);
-        } else {
-            (*this)[from].emplace_back(to, from, id);
-            if constexpr (!is_directed) (*this)[to].emplace_back(from, to, id);
-        }
+        (*this)[from].emplace_back(to, from, id);
+        if constexpr (!is_directed) (*this)[to].emplace_back(from, to, id);
         edges.emplace_back(to, from, id);
     }
 };
 
+template <typename T> using WAdjList = WeightedAdjacencyList<T, false>;
+template <typename T> using DWAdjList = WeightedAdjacencyList<T, true>;
 
-template <class T, bool is_directed = false> using WAdjList = WeightedAdjacencyList<T, is_directed>;
-template <bool is_directed = false, bool is_functional = false>
-using AdjList = UnWeightedAdjacencyList<is_directed, is_functional>;
+using AdjList = UnWeightedAdjacencyList<false, false>;
+using DAdjList = UnWeightedAdjacencyList<true, false>;
+using FAdjList = UnWeightedAdjacencyList<true, true>;
 
 } // namespace kk2
 
