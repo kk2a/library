@@ -67,7 +67,7 @@ data:
     - icon: ':warning:'
       path: data_structure/hash_map.hpp
       title: data_structure/hash_map.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
     - icon: ':warning:'
@@ -91,11 +91,6 @@ data:
     - icon: ':warning:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
-  - name: .
-    pages:
-    - icon: ':warning:'
-      path: expand_user_file.py
-      title: expand_user_file.py
   - name: fps
     pages:
     - icon: ':warning:'
@@ -174,7 +169,7 @@ data:
     - icon: ':warning:'
       path: graph/bcc.hpp
       title: graph/bcc.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/graph.hpp
       title: graph/graph.hpp
     - icon: ':warning:'
@@ -186,7 +181,7 @@ data:
     - icon: ':warning:'
       path: graph/scc.hpp
       title: graph/scc.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path.hpp
       title: graph/shortest_path.hpp
     - icon: ':warning:'
@@ -209,7 +204,7 @@ data:
     - icon: ':warning:'
       path: graph/tree/centroid_decomposition.hpp
       title: graph/tree/centroid_decomposition.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/diameter.hpp
       title: graph/tree/diameter.hpp
     - icon: ':warning:'
@@ -308,10 +303,10 @@ data:
     - icon: ':warning:'
       path: matrix/frobenius_form.hpp
       title: matrix/frobenius_form.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: matrix/matrix_F2.hpp
       title: matrix/matrix_F2.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: matrix/matrix_field.hpp
       title: matrix/matrix_field.hpp
   - name: modint
@@ -484,27 +479,27 @@ data:
       title: verify/yosupo_fps/fps_pow.test.cpp
   - name: verify/yosupo_graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/shortest_path.test.cpp
       title: verify/yosupo_graph/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_diameter.test.cpp
       title: verify/yosupo_graph/tree_diameter.test.cpp
   - name: verify/yosupo_linalg
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_det.test.cpp
       title: verify/yosupo_linalg/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_det_f2.test.cpp
       title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv.test.cpp
       title: verify/yosupo_linalg/matrix_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
       title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_pow.test.cpp
       title: verify/yosupo_linalg/matrix_pow.test.cpp
     - icon: ':x:'
@@ -538,3 +533,8 @@ data:
       title: verify/yosupo_math/sum_of_floor_linear.test.cpp
 layout: toppage
 ---
+[![Actions Status](https://github.com/kk2a/library/workflows/verify/badge.svg)](https://gitub.com/kk2a/library/actions)
+[![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://kk2a.github.io/library/)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kk2a/library?style=flat-square)
+
+ああああああああああ

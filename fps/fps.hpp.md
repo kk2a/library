@@ -376,17 +376,17 @@ data:
   path: fps/fps.hpp
   requiredBy:
   - math_mod/comb_large.hpp
-  - fps/multivariate_fps.hpp
-  - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
+  - fps/ntt_friendly.hpp
+  - fps/multivariate_fps.hpp
   timestamp: '2024-10-08 15:42:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
 documentation_of: fps/fps.hpp
 layout: document
 redirect_from:

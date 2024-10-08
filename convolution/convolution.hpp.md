@@ -221,24 +221,24 @@ data:
   isVerificationFile: false
   path: convolution/convolution.hpp
   requiredBy:
-  - convolution/convolution_arb.hpp
-  - convolution/multi_convolution_truncated.hpp
   - math_mod/comb_large.hpp
-  - fps/multivariate_fps.hpp
-  - fps/multivariate_fps.hpp
-  - fps/ntt_friendly.hpp
+  - convolution/multi_convolution_truncated.hpp
+  - convolution/convolution_arb.hpp
   - fps/fps_arb.hpp
+  - fps/ntt_friendly.hpp
+  - fps/multivariate_fps.hpp
+  - fps/multivariate_fps.hpp
   timestamp: '2024-10-06 17:17:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
 documentation_of: convolution/convolution.hpp
 layout: document
 redirect_from:

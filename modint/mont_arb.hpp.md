@@ -179,9 +179,9 @@ data:
   isVerificationFile: false
   path: modint/mont_arb.hpp
   requiredBy:
-  - math/is_prime.hpp
-  - math/prime_factorize.hpp
   - math_mod/mod_sqrt.hpp
+  - math/prime_factorize.hpp
+  - math/is_prime.hpp
   - fps/fps_sqrt.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_ALL_WA

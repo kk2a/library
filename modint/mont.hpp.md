@@ -51,13 +51,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':x:'
@@ -227,25 +227,25 @@ data:
   timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_convolution/convolution_and.test.cpp
-  - verify/yosupo_convolution/convolution_xor.test.cpp
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_convolution/convolution_or.test.cpp
-  - verify/yosupo_convolution/convolution_lcm.test.cpp
-  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - verify/yosupo_convolution/convolution_gcd.test.cpp
-  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
-  - verify/yosupo_linalg/matrix_inv.test.cpp
-  - verify/yosupo_linalg/matrix_product.test.cpp
-  - verify/yosupo_linalg/matrix_pow.test.cpp
-  - verify/yosupo_linalg/matrix_det.test.cpp
-  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_linalg/matrix_det.test.cpp
+  - verify/yosupo_linalg/matrix_pow.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/yosupo_linalg/matrix_product.test.cpp
+  - verify/yosupo_linalg/matrix_inv.test.cpp
+  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - verify/yosupo_convolution/convolution_xor.test.cpp
+  - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_and.test.cpp
+  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
+  - verify/yosupo_convolution/convolution_or.test.cpp
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_convolution/convolution_lcm.test.cpp
 documentation_of: modint/mont.hpp
 layout: document
 redirect_from:

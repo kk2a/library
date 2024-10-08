@@ -70,8 +70,8 @@ data:
   path: math/monoid/max.hpp
   requiredBy:
   - segment_tree/utility/updatemax.hpp
-  - segment_tree/utility/addmax.hpp
   - segment_tree/utility/maxseg.hpp
+  - segment_tree/utility/addmax.hpp
   - segment_tree/utility/maxseg2d.hpp
   timestamp: '2024-10-06 18:26:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
