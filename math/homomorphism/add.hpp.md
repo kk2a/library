@@ -38,10 +38,10 @@ data:
   isVerificationFile: false
   path: math/homomorphism/add.hpp
   requiredBy:
-  - segment_tree/utility/add_max_min_sum.hpp
-  - segment_tree/utility/addmin.hpp
   - segment_tree/utility/addsum.hpp
   - segment_tree/utility/addmax.hpp
+  - segment_tree/utility/addmin.hpp
+  - segment_tree/utility/add_max_min_sum.hpp
   timestamp: '2024-09-26 15:55:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
