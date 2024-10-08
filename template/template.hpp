@@ -96,27 +96,27 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
 }
 
 void YES(bool b = 1) {
-    std::cout << (b ? "YES" : "NO") << '\n';
+    std::cout << (b ? "YES\n" : "NO\n");
 }
 
 void NO(bool b = 1) {
-    std::cout << (b ? "NO" : "YES") << '\n';
+    std::cout << (b ? "NO\n" : "YES\n");
 }
 
 void Yes(bool b = 1) {
-    std::cout << (b ? "Yes" : "No") << '\n';
+    std::cout << (b ? "Yes\n" : "No\n");
 }
 
 void No(bool b = 1) {
-    std::cout << (b ? "No" : "Yes") << '\n';
+    std::cout << (b ? "No\n" : "Yes\n");
 }
 
 void yes(bool b = 1) {
-    std::cout << (b ? "yes" : "no") << '\n';
+    std::cout << (b ? "yes\n" : "no\n");
 }
 
 void no(bool b = 1) {
-    std::cout << (b ? "no" : "yes") << '\n';
+    std::cout << (b ? "no\n" : "yes\n");
 }
 
 #define rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)
@@ -147,22 +147,23 @@ std::ofstream out("out.txt");
 #define out std::cout
 #endif
 
-template <class T, class U> std::ostream &operator<<(std::ostream &os, const std::pair<T, U> &p) {
+template <class OStream, class T, class U>
+OStream &operator<<(OStream &os, const std::pair<T, U> &p) {
     os << p.first << ' ' << p.second;
     return os;
 }
 
-template <class T, class U> std::istream &operator>>(std::istream &is, std::pair<T, U> &p) {
+template <class IStream, class T, class U> IStream &operator>>(IStream &is, std::pair<T, U> &p) {
     is >> p.first >> p.second;
     return is;
 }
 
-template <class T> std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) {
+template <class OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &v) {
     for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size() ? "" : " "); }
     return os;
 }
 
-template <class T> std::istream &operator>>(std::istream &is, std::vector<T> &v) {
+template <class IStream, class T> IStream &operator>>(IStream &is, std::vector<T> &v) {
     for (auto &x : v) is >> x;
     return is;
 }

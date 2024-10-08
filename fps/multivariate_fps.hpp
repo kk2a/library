@@ -31,21 +31,25 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         : base(base_),
           f(f_) {}
 
-    friend std::ostream &operator<<(std::ostream &os, const MFPS &mfps_) {
+    template <class OStream>
+    friend OStream &operator<<(OStream &os, const MFPS &mfps_) {
         for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? "" : " ");
         return os;
     }
 
-    void output(std::ostream &os) const {
+    template <class OStream>
+    void output(OStream &os) const {
         for (int i = 0; i < (int)f.size(); i++) os << f[i] << (i + 1 == (int)f.size() ? "\n" : " ");
     }
 
-    MFPS &input(std::istream &is) {
+    template <class IStream>
+    MFPS &input(IStream &is) {
         for (auto &x : f) is >> x;
         return *this;
     }
 
-    friend std::istream &operator>>(std::istream &is, MFPS &mfps_) {
+    template <class IStream>
+    friend IStream &operator>>(IStream &is, MFPS &mfps_) {
         for (auto &x : mfps_.f) is >> x;
         return is;
     }

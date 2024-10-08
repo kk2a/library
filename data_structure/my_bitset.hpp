@@ -37,7 +37,7 @@ struct DynamicBitSet {
         set(s);
     }
 
-    friend std::istream &operator>>(std::istream &is, T &bs) {
+    template <class IStream> friend IStream &operator>>(IStream &is, T &bs) {
         std::string s;
         is >> s;
         bs.set_reversed(s);
@@ -308,7 +308,9 @@ struct DynamicBitSet {
         return res;
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const T &bs) { return os << bs.to_string(); }
+    template <class OStream> friend OStream &operator<<(OStream &os, const T &bs) {
+        return os << bs.to_string();
+    }
 };
 
 } // namespace kk2

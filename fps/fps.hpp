@@ -19,25 +19,25 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
         }
     }
 
-    void output(std::ostream &os) const {
+    template <class OStream> void output(OStream &os) const {
         for (int i = 0; i < (int)this->size(); i++) {
             os << (*this)[i] << (i + 1 == (int)this->size() ? "" : " ");
         }
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const FPS &fps_) {
+    template <class OStream> friend OStream &operator<<(OStream &os, const FPS &fps_) {
         for (int i = 0; i < (int)fps_.size(); i++) {
             os << fps_[i] << (i + 1 == (int)fps_.size() ? "" : " ");
         }
         return os;
     }
 
-    FPS &input(std::istream &is) {
+    template <class IStream> FPS &input(IStream &is) {
         for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];
         return *this;
     }
 
-    friend std::istream &operator>>(std::istream &is, FPS &fps_) {
+    template <class IStream> friend IStream &operator>>(IStream &is, FPS &fps_) {
         for (auto &x : fps_) is >> x;
         return is;
     }

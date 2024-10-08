@@ -57,16 +57,18 @@ template <class Field> struct MatrixField {
         }
     }
 
-    mat &input(std::istream &is) {
+    template <class IStream>
+    mat &input(IStream &is) {
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) { is >> _mat[i][j]; }
         }
         return *this;
     }
 
-    void output(std::ostream &os) const {
+    template <class OStream>
+    void output(OStream &os) const {
         for (int i = 0; i < _h; i++) {
-            for (int j = 0; j < _w; j++) { os << _mat[i][j] << " \n"[j == _w - 1]; }
+            for (int j = 0; j < _w; j++) os << _mat[i][j] << " \n"[j == _w - 1];
         }
     }
 
