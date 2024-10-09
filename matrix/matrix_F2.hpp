@@ -352,7 +352,7 @@ struct MatrixF2 {
         return res;
     }
 
-    mat solve(const mat &b) const {
+    std::optional<mat> solve(const mat &b) const {
         assert(_h == b._h);
         assert(b._w == 1);
         mat ab = combine_right(b);
@@ -364,7 +364,7 @@ struct MatrixF2 {
         for (int i = 0; i < ab._h; i++) {
             for (int j = 0; j < ab._w; j++) {
                 if (ab[i][j]) {
-                    if (j == ab._w - 1) return mat();
+                    if (j == ab._w - 1) return {};
                     break;
                 }
             }

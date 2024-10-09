@@ -9,6 +9,8 @@
 #include <string>
 #include <vector>
 
+#include "../bit/bitcount.hpp"
+
 namespace kk2 {
 
 struct DynamicBitSet {
@@ -218,6 +220,46 @@ struct DynamicBitSet {
         assert(0 <= i && i < n);
         block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);
         return *this;
+    }
+
+    int ctz() const {
+        int res = 0;
+        int i = 0;
+        for (; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; ++i) {
+            if (block[i]) break;
+            res += BLOCK_SIZE;
+        }
+        assert(i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
+        res += kk2::ctz(block[i]);
+        return res;
+    }
+
+    int clz() const {
+        int res = 0;
+        int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
+        for (; i--;) {
+            if (block[i]) break;
+            if (i + 1 == (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) {
+                res += n & BLOCK_MASK;
+            } else {
+                res += BLOCK_SIZE;
+            }
+        }
+        assert(i >= 0);
+        if (i + 1 == (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) {
+            res += kk2::clz(block[i]) - (BLOCK_SIZE - (n & BLOCK_MASK));
+        } else {
+            res += kk2::clz(block[i]);
+        }
+        return res;
+    }
+
+    int popcount() const {
+        int res = 0;
+        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
+            res += kk2::popcount(block[i]);
+        }
+        return res;
     }
 
     T &operator~() { return flip(); }
