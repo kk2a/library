@@ -12,6 +12,11 @@ data:
     - icon: ':warning:'
       path: UnionFind/rollback.hpp
       title: UnionFind/rollback.hpp
+  - name: bit
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: bit/bitcount.hpp
+      title: bit/bitcount.hpp
   - name: convolution
     pages:
     - icon: ':heavy_check_mark:'

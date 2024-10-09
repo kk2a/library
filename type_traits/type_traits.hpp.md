@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':heavy_check_mark:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
   - icon: ':heavy_check_mark:'
@@ -20,6 +23,9 @@ data:
   - icon: ':warning:'
     path: data_structure/convex_hull_trick_add_monotone.hpp
     title: data_structure/convex_hull_trick_add_monotone.hpp
+  - icon: ':heavy_check_mark:'
+    path: data_structure/my_bitset.hpp
+    title: data_structure/my_bitset.hpp
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
@@ -71,6 +77,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: matrix/matrix_F2.hpp
+    title: matrix/matrix_F2.hpp
   - icon: ':warning:'
     path: modint/modint.hpp
     title: modint/modint.hpp
@@ -145,8 +154,14 @@ data:
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_det_f2.test.cpp
+    title: verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
+    title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
@@ -154,8 +169,14 @@ data:
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_product_f2.test.cpp
+    title: verify/yosupo_linalg/matrix_product_f2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+    title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
@@ -232,6 +253,7 @@ data:
   - math_mod/pow_mod.hpp
   - math_mod/comb_large.hpp
   - math_mod/comb_large.hpp
+  - data_structure/my_bitset.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
   - string/rolling_hash.hpp
   - math/prime_factorize.hpp
@@ -239,6 +261,8 @@ data:
   - math/pow.hpp
   - math/is_prime.hpp
   - math/is_prime.hpp
+  - bit/bitcount.hpp
+  - matrix/matrix_F2.hpp
   - convolution/multi_convolution_truncated.hpp
   - convolution/convolution_arb.hpp
   - convolution/convolution_arb.hpp
@@ -271,11 +295,15 @@ data:
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - verify/yosupo_linalg/matrix_product_f2.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/matrix_pow.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp
   - verify/yosupo_linalg/matrix_inv.test.cpp
+  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp

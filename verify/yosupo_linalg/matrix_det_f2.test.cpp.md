@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':heavy_check_mark:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   - icon: ':heavy_check_mark:'
@@ -10,6 +13,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
+  - icon: ':heavy_check_mark:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -26,6 +32,44 @@ data:
     \ <optional>\n#include <string>\n#include <vector>\n\n#line 1 \"data_structure/my_bitset.hpp\"\
     \n\n\n\n#line 5 \"data_structure/my_bitset.hpp\"\n#include <bitset>\n#line 8 \"\
     data_structure/my_bitset.hpp\"\n#include <iterator>\n#line 11 \"data_structure/my_bitset.hpp\"\
+    \n\n#line 1 \"bit/bitcount.hpp\"\n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n#line\
+    \ 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
+    \ kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value\n                                                       or\
+    \ std::is_same<T, __int128>::value,\n                                        \
+    \           std::true_type,\n                                                \
+    \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+    \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n     \
+    \                             or std::is_same<T, unsigned __int128>::value,\n\
+    \                              std::true_type,\n                             \
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral_extended\
+    \ =\n    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+    \                                  or is_unsigned_int128<T>::value,\n        \
+    \                      std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_signed_extended =\n    typename std::conditional<std::is_signed<T>::value\
+    \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\ntemplate <typename T>\n\
+    using is_unsigned_extended =\n    typename std::conditional<std::is_unsigned<T>::value\
+    \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\n} // namespace kk2\n\
+    \n\n#line 7 \"bit/bitcount.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename T> int\
+    \ ctz(T x) {\n    static_assert(is_integral_extended<T>::value);\n    assert(x\
+    \ != T(0));\n\n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n\
+    \    } else if constexpr (sizeof(T) <= 8) {\n        return __builtin_ctzll(x);\n\
+    \    } else {\n        if (x & 0xffffffffffffffff)\n            return __builtin_ctzll((unsigned\
+    \ long long)(x & 0xffffffffffffffff));\n        return 64 + __builtin_ctzll((unsigned\
+    \ long long)(x >> 64));\n    }\n}\n\ntemplate <typename T> int clz(T x) {\n  \
+    \  static_assert(is_integral_extended<T>::value);\n    assert(x != T(0));\n\n\
+    \    if constexpr (sizeof(T) <= 4) {\n        return __builtin_clz(x);\n    }\
+    \ else if constexpr (sizeof(T) <= 8) {\n        return __builtin_clzll(x);\n \
+    \   } else {\n        if (x >> 64) return __builtin_clzll((unsigned long long)(x\
+    \ >> 64));\n        return 64 + __builtin_clzll((unsigned long long)(x & 0xffffffffffffffff));\n\
+    \    }\n}\n\ntemplate <typename T> int popcount(T x) {\n    static_assert(is_integral_extended<T>::value);\n\
+    \n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_popcount(x);\n\
+    \    } else if constexpr (sizeof(T) <= 8) {\n        return __builtin_popcountll(x);\n\
+    \    } else {\n        return __builtin_popcountll((unsigned long long)(x >> 64))\n\
+    \               + __builtin_popcountll((unsigned long long)(x & 0xffffffffffffffff));\n\
+    \    }\n}\n\n}; // namespace kk2\n\n\n#line 13 \"data_structure/my_bitset.hpp\"\
     \n\nnamespace kk2 {\n\nstruct DynamicBitSet {\n    using T = DynamicBitSet;\n\
     \    using UInt = __uint128_t;\n    constexpr static int BLOCK_SIZE = sizeof(UInt)\
     \ * 8;\n    constexpr static int BLOCK_SIZE_LOG = __builtin_ctz(BLOCK_SIZE);\n\
@@ -121,26 +165,41 @@ data:
     \ - 1;\n        for (UInt &x : block) x = ~x;\n        block.back() &= mask;\n\
     \        return *this;\n    }\n\n    T &flip(int i) {\n        assert(0 <= i &&\
     \ i < n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n  \
-    \      return *this;\n    }\n\n    T &operator~() { return flip(); }\n\n    T\
-    \ &operator&=(const T &other) {\n        assert(n == other.n);\n        for (int\
-    \ i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i]\
-    \ &= other.block[i];\n        }\n        return *this;\n    }\n\n    T &operator|=(const\
+    \      return *this;\n    }\n\n    int ctz() const {\n        int res = 0;\n \
+    \       int i = 0;\n        for (; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
+    \ ++i) {\n            if (block[i]) break;\n            res += BLOCK_SIZE;\n \
+    \       }\n        assert(i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n     \
+    \   res += kk2::ctz(block[i]);\n        return res;\n    }\n\n    int clz() const\
+    \ {\n        int res = 0;\n        int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
+    \        for (; i--;) {\n            if (block[i]) break;\n            if (i +\
+    \ 1 == (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) {\n                res += n & BLOCK_MASK;\n\
+    \            } else {\n                res += BLOCK_SIZE;\n            }\n   \
+    \     }\n        assert(i >= 0);\n        if (i + 1 == (n + BLOCK_SIZE - 1) >>\
+    \ BLOCK_SIZE_LOG) {\n            res += kk2::clz(block[i]) - (BLOCK_SIZE - (n\
+    \ & BLOCK_MASK));\n        } else {\n            res += kk2::clz(block[i]);\n\
+    \        }\n        return res;\n    }\n\n    int popcount() const {\n       \
+    \ int res = 0;\n        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
+    \ i++) {\n            res += kk2::popcount(block[i]);\n        }\n        return\
+    \ res;\n    }\n\n    T &operator~() { return flip(); }\n\n    T &operator&=(const\
     \ T &other) {\n        assert(n == other.n);\n        for (int i = 0; i < (n +\
-    \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] |= other.block[i];\n\
-    \        }\n        return *this;\n    }\n\n    T &operator^=(const T &other)\
+    \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] &= other.block[i];\n\
+    \        }\n        return *this;\n    }\n\n    T &operator|=(const T &other)\
     \ {\n        assert(n == other.n);\n        for (int i = 0; i < (n + BLOCK_SIZE\
-    \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] ^= other.block[i];\n  \
-    \      }\n        return *this;\n    }\n\n    friend T operator&(const T &lhs,\
-    \ const T &rhs) { return T(lhs) &= rhs; }\n\n    friend T operator|(const T &lhs,\
-    \ const T &rhs) { return T(lhs) |= rhs; }\n\n    friend T operator^(const T &lhs,\
-    \ const T &rhs) { return T(lhs) ^= rhs; }\n\n    friend bool operator==(const\
-    \ T &lhs, const T &rhs) {\n        if (lhs.n != rhs.n) return false;\n       \
-    \ for (int i = 0; i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n   \
-    \         if (lhs.block[i] != rhs.block[i]) return false;\n        }\n       \
-    \ return true;\n    }\n\n    friend bool operator!=(const T &lhs, const T &rhs)\
-    \ { return !(lhs == rhs); }\n\n    operator bool() const {\n        for (int i\
-    \ = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            if (block[i])\
-    \ return true;\n        }\n        return false;\n    }\n\n    std::string to_string(UInt\
+    \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] |= other.block[i];\n  \
+    \      }\n        return *this;\n    }\n\n    T &operator^=(const T &other) {\n\
+    \        assert(n == other.n);\n        for (int i = 0; i < (n + BLOCK_SIZE -\
+    \ 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] ^= other.block[i];\n    \
+    \    }\n        return *this;\n    }\n\n    friend T operator&(const T &lhs, const\
+    \ T &rhs) { return T(lhs) &= rhs; }\n\n    friend T operator|(const T &lhs, const\
+    \ T &rhs) { return T(lhs) |= rhs; }\n\n    friend T operator^(const T &lhs, const\
+    \ T &rhs) { return T(lhs) ^= rhs; }\n\n    friend bool operator==(const T &lhs,\
+    \ const T &rhs) {\n        if (lhs.n != rhs.n) return false;\n        for (int\
+    \ i = 0; i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            if\
+    \ (lhs.block[i] != rhs.block[i]) return false;\n        }\n        return true;\n\
+    \    }\n\n    friend bool operator!=(const T &lhs, const T &rhs) { return !(lhs\
+    \ == rhs); }\n\n    operator bool() const {\n        for (int i = 0; i < (n +\
+    \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            if (block[i]) return\
+    \ true;\n        }\n        return false;\n    }\n\n    std::string to_string(UInt\
     \ x) const {\n        return std::bitset<64>((unsigned long long)(x >> (BLOCK_SIZE\
     \ / 2))).to_string()\n               + std::bitset<64>((unsigned long long)(x\
     \ & ((ONE << (BLOCK_SIZE / 2)) - 1)))\n                     .to_string();\n  \
@@ -280,48 +339,49 @@ data:
     \            }\n            res[now][nowj] = 1;\n            for (int i = 0; i\
     \ < _h; i++)\n                if (_mat[i].is_pinned(nowj)) res[now][step[i]] =\
     \ 1;\n            nowj++, now++;\n        }\n        return res;\n    }\n\n  \
-    \  mat solve(const mat &b) const {\n        assert(_h == b._h);\n        assert(b._w\
-    \ == 1);\n        mat ab = combine_right(b);\n        ab.sweep();\n        ab.shrink();\n\
-    \n        // ab.display();\n\n        for (int i = 0; i < ab._h; i++) {\n    \
-    \        for (int j = 0; j < ab._w; j++) {\n                if (ab[i][j]) {\n\
-    \                    if (j == ab._w - 1) return mat();\n                    break;\n\
-    \                }\n            }\n        }\n\n        mat res(1 + _w - ab._h,\
-    \ _w);\n        for (int i = 0; i < ab._h; ++i) {\n            for (int j = 0;\
-    \ j < ab._w; ++j) {\n                if (ab[i][j]) {\n                    res[0][j]\
-    \ = ab[i][ab._w - 1];\n                    break;\n                }\n       \
-    \     }\n        }\n\n        std::vector<int> step(ab._h);\n        std::vector<bool>\
-    \ is_step(ab._w - 1, false);\n        int nowj = 0;\n        for (int i = 0; i\
-    \ < ab._h; i++) {\n            while (!ab[i][nowj]) nowj++;\n            is_step[nowj]\
-    \ = true;\n            step[i] = nowj;\n        }\n        int now = 1;\n    \
-    \    nowj = 0;\n        while (nowj < ab._w - 1) {\n            if (is_step[nowj])\
-    \ {\n                nowj++;\n                continue;\n            }\n     \
-    \       res[now][nowj] = 1;\n            for (int i = 0; i < ab._h; i++)\n   \
-    \             if (ab[i][nowj]) res[now][step[i]] = 1;\n            nowj++, now++;\n\
-    \        }\n        return res;\n    }\n\n    int rank() const { return mat(*this).sweep();\
-    \ }\n\n    bool det() const { return rank() == _h; }\n\n    std::optional<mat>\
-    \ inv() const {\n        assert(_h == _w);\n        std::vector<DynamicBitSet>\
-    \ res(_h, _w);\n        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n    \
-    \    std::vector<DynamicBitSet> buf(_mat);\n        for (int i = 0; i < _w; i++)\
-    \ {\n            int pivot = -1;\n            for (int j = i; j < _h; j++) {\n\
-    \                if (buf[j][i]) {\n                    pivot = j;\n          \
-    \          break;\n                }\n            }\n            if (pivot ==\
-    \ -1) return {};\n            std::swap(buf[i], buf[pivot]);\n            std::swap(res[i],\
-    \ res[pivot]);\n            for (int j = 0; j < _h; j++) {\n                if\
-    \ (j == i) continue;\n                if (buf[j][i]) {\n                    buf[j]\
-    \ ^= buf[i];\n                    res[j] ^= res[i];\n                }\n     \
-    \       }\n        }\n        return mat(res);\n    }\n\n    mat transpose() {\n\
-    \        mat res(_w, _h);\n        for (int i = 0; i < _h; i++) {\n          \
-    \  for (int j = 0; j < _w; j++) { res[j][i] = _mat[i][j]; }\n        }\n     \
-    \   return res;\n    }\n\n    mat &inplace_transpose() {\n        return *this\
-    \ = transpose();\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\
-    \n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n\
-    #line 8 \"template/template.hpp\"\n#include <array>\n#line 11 \"template/template.hpp\"\
-    \n#include <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n\
-    #include <fstream>\n#include <functional>\n#include <iomanip>\n#line 20 \"template/template.hpp\"\
-    \n#include <limits>\n#include <map>\n#include <numeric>\n#line 24 \"template/template.hpp\"\
+    \  std::optional<mat> solve(const mat &b) const {\n        assert(_h == b._h);\n\
+    \        assert(b._w == 1);\n        mat ab = combine_right(b);\n        ab.sweep();\n\
+    \        ab.shrink();\n\n        // ab.display();\n\n        for (int i = 0; i\
+    \ < ab._h; i++) {\n            for (int j = 0; j < ab._w; j++) {\n           \
+    \     if (ab[i][j]) {\n                    if (j == ab._w - 1) return {};\n  \
+    \                  break;\n                }\n            }\n        }\n\n   \
+    \     mat res(1 + _w - ab._h, _w);\n        for (int i = 0; i < ab._h; ++i) {\n\
+    \            for (int j = 0; j < ab._w; ++j) {\n                if (ab[i][j])\
+    \ {\n                    res[0][j] = ab[i][ab._w - 1];\n                    break;\n\
+    \                }\n            }\n        }\n\n        std::vector<int> step(ab._h);\n\
+    \        std::vector<bool> is_step(ab._w - 1, false);\n        int nowj = 0;\n\
+    \        for (int i = 0; i < ab._h; i++) {\n            while (!ab[i][nowj]) nowj++;\n\
+    \            is_step[nowj] = true;\n            step[i] = nowj;\n        }\n \
+    \       int now = 1;\n        nowj = 0;\n        while (nowj < ab._w - 1) {\n\
+    \            if (is_step[nowj]) {\n                nowj++;\n                continue;\n\
+    \            }\n            res[now][nowj] = 1;\n            for (int i = 0; i\
+    \ < ab._h; i++)\n                if (ab[i][nowj]) res[now][step[i]] = 1;\n   \
+    \         nowj++, now++;\n        }\n        return res;\n    }\n\n    int rank()\
+    \ const { return mat(*this).sweep(); }\n\n    bool det() const { return rank()\
+    \ == _h; }\n\n    std::optional<mat> inv() const {\n        assert(_h == _w);\n\
+    \        std::vector<DynamicBitSet> res(_h, _w);\n        for (int i = 0; i <\
+    \ _h; i++) { res[i][i] = 1; }\n        std::vector<DynamicBitSet> buf(_mat);\n\
+    \        for (int i = 0; i < _w; i++) {\n            int pivot = -1;\n       \
+    \     for (int j = i; j < _h; j++) {\n                if (buf[j][i]) {\n     \
+    \               pivot = j;\n                    break;\n                }\n  \
+    \          }\n            if (pivot == -1) return {};\n            std::swap(buf[i],\
+    \ buf[pivot]);\n            std::swap(res[i], res[pivot]);\n            for (int\
+    \ j = 0; j < _h; j++) {\n                if (j == i) continue;\n             \
+    \   if (buf[j][i]) {\n                    buf[j] ^= buf[i];\n                \
+    \    res[j] ^= res[i];\n                }\n            }\n        }\n        return\
+    \ mat(res);\n    }\n\n    mat transpose() {\n        mat res(_w, _h);\n      \
+    \  for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\
+    \ res[j][i] = _mat[i][j]; }\n        }\n        return res;\n    }\n\n    mat\
+    \ &inplace_transpose() {\n        return *this = transpose();\n    }\n};\n\n}\
+    \ // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"\
+    O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#line 8 \"template/template.hpp\"\
+    \n#include <array>\n#line 11 \"template/template.hpp\"\n#include <chrono>\n#include\
+    \ <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <iomanip>\n#line 20 \"template/template.hpp\"\n#include\
+    \ <limits>\n#include <map>\n#include <numeric>\n#line 24 \"template/template.hpp\"\
     \n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#line 30 \"template/template.hpp\"\n#include <tuple>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#line\
+    \ <stack>\n#line 30 \"template/template.hpp\"\n#include <tuple>\n#line 32 \"template/template.hpp\"\
+    \n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#line\
     \ 36 \"template/template.hpp\"\n\nusing u32 = unsigned int;\nusing i64 = long\
     \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
     \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
@@ -384,11 +444,13 @@ data:
   dependsOn:
   - matrix/matrix_F2.hpp
   - data_structure/my_bitset.hpp
+  - bit/bitcount.hpp
+  - type_traits/type_traits.hpp
   - template/template.hpp
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_det_f2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-09 00:31:59+09:00'
+  timestamp: '2024-10-09 14:51:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_det_f2.test.cpp
