@@ -13,9 +13,9 @@ int main() {
         string s;
         cin >> s;
         rep (j, m) {
-            if (s[j] == 'J') J_init[i * m + j] = 1;
-            if (s[j] == 'O') O_init[i * m + j] = 1;
-            if (s[j] == 'I') I_init[i * m + j] = 1;
+            if (s[j] == 'J') J_init[i + j * n] = 1;
+            if (s[j] == 'O') O_init[i + j * n] = 1;
+            if (s[j] == 'I') I_init[i + j * n] = 1;
         }
     }
 
