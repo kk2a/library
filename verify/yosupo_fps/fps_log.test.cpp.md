@@ -28,6 +28,9 @@ data:
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -52,7 +55,7 @@ data:
     \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/type_traits.hpp: line 5: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
     \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
@@ -68,11 +71,12 @@ data:
   - type_traits/type_traits.hpp
   - fps/fps.hpp
   - modint/mont.hpp
+  - type_traits/type_traits.hpp
   - template/template.hpp
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 00:54:52+09:00'
+  timestamp: '2024-10-12 01:10:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log.test.cpp

@@ -31,6 +31,9 @@ data:
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -52,7 +55,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/type_traits.hpp: line 5: #pragma once found in a non-first line\n"
   code: "#ifndef FPS_ARB_HPP\n#define FPS_ARB_HPP 1\n\n#include \"../convolution/convolution_arb.hpp\"\
     \n#include \"fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> void FormalPowerSeries<mint>::but()\
     \ {\n    exit(1);\n}\n\ntemplate <class mint> void FormalPowerSeries<mint>::ibut()\
@@ -82,11 +85,12 @@ data:
   - convolution/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
+  - type_traits/type_traits.hpp
   - fps/fps.hpp
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy: []
-  timestamp: '2024-10-12 00:54:52+09:00'
+  timestamp: '2024-10-12 01:10:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_arb.hpp

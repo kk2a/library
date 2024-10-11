@@ -30,7 +30,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/type_traits.hpp: line 5: #pragma once found in a non-first line\n"
   code: "#ifndef MOD_COMB_HPP\n#define MOD_COMB_HPP 1\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\n\
     \nnamespace kk2 {\n\ntemplate <class mint> struct Comb {\n    static inline std::vector<mint>\
@@ -69,7 +69,7 @@ data:
   requiredBy:
   - math_mod/comb_large.hpp
   - fps/taylor_shift.hpp
-  timestamp: '2024-10-12 00:54:52+09:00'
+  timestamp: '2024-10-12 01:10:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp

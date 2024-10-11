@@ -31,7 +31,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/type_traits.hpp: line 5: #pragma once found in a non-first line\n"
   code: "#ifndef FPS_SQRT_HPP\n#define FPS_SQRT_HPP 1\n\n#include <cassert>\n\n#include\
     \ \"../math_mod/mod_sqrt.hpp\"\n\nnamespace kk2 {\n\ntemplate <class FPS, class\
     \ mint = typename FPS::value_type> FPS sqrt(const FPS &f, int deg = -1) {\n  \
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: fps/fps_sqrt.hpp
   requiredBy: []
-  timestamp: '2024-10-12 00:54:52+09:00'
+  timestamp: '2024-10-12 01:10:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_sqrt.hpp

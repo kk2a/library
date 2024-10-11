@@ -25,6 +25,9 @@ data:
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: fps/fps_arb.hpp
@@ -50,7 +53,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/type_traits.hpp: line 5: #pragma once found in a non-first line\n"
   code: "#ifndef CONVO_ARB_HPP\n#define CONVO_ARB_HPP 1\n\n#include <vector>\n\n#include\
     \ \"../math_mod/garner.hpp\"\n#include \"../modint/mont.hpp\"\n#include \"convolution.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
@@ -79,11 +82,12 @@ data:
   - convolution/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
+  - type_traits/type_traits.hpp
   isVerificationFile: false
   path: convolution/convolution_arb.hpp
   requiredBy:
   - fps/fps_arb.hpp
-  timestamp: '2024-10-12 00:54:52+09:00'
+  timestamp: '2024-10-12 01:10:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
