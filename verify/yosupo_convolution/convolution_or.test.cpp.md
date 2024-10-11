@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -52,13 +52,13 @@ data:
     \ i < n; i++) a[i] *= c[i];\n    InverseSubsetZetaTransform(a);\n\n    return\
     \ a;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5\
     \ \"modint/mont.hpp\"\n#include <cstdint>\n#include <iostream>\n#include <type_traits>\n\
-    \n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename\
-    \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
-    \                                 or std::is_same<T, __int128>::value,\n     \
-    \                                              std::true_type,\n             \
-    \                                      std::false_type>::type;\n\ntemplate <typename\
-    \ T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n// #pragma once\n\n#line 7 \"\
+    type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing\
+    \ is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+    \                                                       or std::is_same<T, __int128>::value,\n\
+    \                                                   std::true_type,\n        \
+    \                                           std::false_type>::type;\n\ntemplate\
+    \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
     \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
     \ __int128>::value,\n                              std::true_type,\n         \
     \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
@@ -211,7 +211,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_or.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 14:10:48+09:00'
+  timestamp: '2024-10-12 00:40:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_or.test.cpp

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primality_test
@@ -32,13 +32,13 @@ data:
   bundledCode: "#line 1 \"verify/yosupo_math/primality_test.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/primality_test\"\n\n#line 1 \"math/is_prime.hpp\"\
     \n\n\n\n#include <vector>\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include\
-    \ <cassert>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\
-    \nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename\
-    \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
-    \                                 or std::is_same<T, __int128>::value,\n     \
-    \                                              std::true_type,\n             \
-    \                                      std::false_type>::type;\n\ntemplate <typename\
-    \ T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \ <cassert>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n// #pragma once\n\
+    \n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128\
+    \ = typename std::conditional<std::is_same<T, __int128_t>::value\n           \
+    \                                            or std::is_same<T, __int128>::value,\n\
+    \                                                   std::true_type,\n        \
+    \                                           std::false_type>::type;\n\ntemplate\
+    \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
     \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
     \ __int128>::value,\n                              std::true_type,\n         \
     \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
@@ -221,8 +221,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/primality_test.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 14:10:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-12 00:40:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/primality_test.test.cpp
 layout: document

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_det
@@ -162,8 +162,8 @@ data:
     \ mat &lhs, const mat &rhs) { return lhs._mat != rhs._mat; }\n};\n\n} // namespace\
     \ kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include\
     \ <cstdint>\n#line 7 \"modint/mont.hpp\"\n#include <type_traits>\n\n#line 1 \"\
-    type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\n\
-    \nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename\
+    type_traits/type_traits.hpp\"\n\n\n\n// #pragma once\n\n#line 7 \"type_traits/type_traits.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename\
     \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
     \                                 or std::is_same<T, __int128>::value,\n     \
     \                                              std::true_type,\n             \
@@ -315,8 +315,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 14:10:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-12 00:40:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_det.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -13,8 +13,8 @@ data:
     links: []
   bundledCode: "#line 1 \"modint/modint.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <iostream>\n#include <type_traits>\n#include <utility>\n\n#line 1 \"type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+    \n\n\n\n// #pragma once\n\n#line 7 \"type_traits/type_traits.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
     \ __int128_t>::value\n                                                       or\
     \ std::is_same<T, __int128>::value,\n                                        \
     \           std::true_type,\n                                                \
@@ -164,7 +164,7 @@ data:
   isVerificationFile: false
   path: modint/modint.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-12 00:40:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/modint.hpp

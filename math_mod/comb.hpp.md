@@ -1,30 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: fps/taylor_shift.hpp
     title: fps/taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/comb.hpp\"\n\n\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <vector>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\
-    \n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128\
-    \ = typename std::conditional<std::is_same<T, __int128_t>::value\n           \
-    \                                            or std::is_same<T, __int128>::value,\n\
+    \n// #pragma once\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename\
+    \ T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+    \                                                       or std::is_same<T, __int128>::value,\n\
     \                                                   std::true_type,\n        \
     \                                           std::false_type>::type;\n\ntemplate\
     \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -108,8 +108,8 @@ data:
   requiredBy:
   - math_mod/comb_large.hpp
   - fps/taylor_shift.hpp
-  timestamp: '2024-09-29 16:53:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-12 00:40:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
 documentation_of: math_mod/comb.hpp

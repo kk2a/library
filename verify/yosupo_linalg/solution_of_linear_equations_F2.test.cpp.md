@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations_mod_2
@@ -34,9 +34,9 @@ data:
     \n#include <bitset>\n#line 8 \"data_structure/my_bitset.hpp\"\n#include <iterator>\n\
     #line 11 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"bit/bitcount.hpp\"\n\n\n\
     \n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\
-    \n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128\
-    \ = typename std::conditional<std::is_same<T, __int128_t>::value\n           \
-    \                                            or std::is_same<T, __int128>::value,\n\
+    \n// #pragma once\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename\
+    \ T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+    \                                                       or std::is_same<T, __int128>::value,\n\
     \                                                   std::true_type,\n        \
     \                                           std::false_type>::type;\n\ntemplate\
     \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -453,8 +453,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 14:10:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-12 00:40:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
 layout: document

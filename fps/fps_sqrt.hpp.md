@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -20,10 +20,10 @@ data:
   bundledCode: "#line 1 \"fps/fps_sqrt.hpp\"\n\n\n\n#include <cassert>\n\n#line 1\
     \ \"math_mod/mod_sqrt.hpp\"\n\n\n\n#line 5 \"math_mod/mod_sqrt.hpp\"\n\n#line\
     \ 1 \"modint/mont_arb.hpp\"\n\n\n\n#line 5 \"modint/mont_arb.hpp\"\n#include <iostream>\n\
-    #include <utility>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include\
-    \ <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128\
-    \ = typename std::conditional<std::is_same<T, __int128_t>::value\n           \
-    \                                            or std::is_same<T, __int128>::value,\n\
+    #include <utility>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n// #pragma\
+    \ once\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\n\
+    using is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+    \                                                       or std::is_same<T, __int128>::value,\n\
     \                                                   std::true_type,\n        \
     \                                           std::false_type>::type;\n\ntemplate\
     \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -174,7 +174,7 @@ data:
   isVerificationFile: false
   path: fps/fps_sqrt.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-12 00:40:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_sqrt.hpp

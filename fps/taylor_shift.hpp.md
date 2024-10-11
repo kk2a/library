@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -16,13 +16,13 @@ data:
     links: []
   bundledCode: "#line 1 \"fps/taylor_shift.hpp\"\n\n\n\n#include <algorithm>\n\n#line\
     \ 1 \"math_mod/comb.hpp\"\n\n\n\n#line 5 \"math_mod/comb.hpp\"\n#include <cassert>\n\
-    #include <vector>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n#include <type_traits>\n\
-    \nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename\
-    \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
-    \                                 or std::is_same<T, __int128>::value,\n     \
-    \                                              std::true_type,\n             \
-    \                                      std::false_type>::type;\n\ntemplate <typename\
-    \ T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    #include <vector>\n\n#line 1 \"type_traits/type_traits.hpp\"\n\n\n\n// #pragma\
+    \ once\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\n\
+    using is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+    \                                                       or std::is_same<T, __int128>::value,\n\
+    \                                                   std::true_type,\n        \
+    \                                           std::false_type>::type;\n\ntemplate\
+    \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
     \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
     \ __int128>::value,\n                              std::true_type,\n         \
     \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
@@ -87,7 +87,7 @@ data:
   isVerificationFile: false
   path: fps/taylor_shift.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-12 00:40:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/taylor_shift.hpp

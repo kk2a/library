@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   - icon: ':heavy_check_mark:'
@@ -27,8 +27,8 @@ data:
     #define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\n\
     \n#line 1 \"modint/mont.hpp\"\n\n\n\n#include <cassert>\n#include <cstdint>\n\
     #include <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 5 \"type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+    \n\n\n\n// #pragma once\n\n#line 7 \"type_traits/type_traits.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
     \ __int128_t>::value\n                                                       or\
     \ std::is_same<T, __int128>::value,\n                                        \
     \           std::true_type,\n                                                \
@@ -216,7 +216,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 22:57:20+09:00'
+  timestamp: '2024-10-12 00:40:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
