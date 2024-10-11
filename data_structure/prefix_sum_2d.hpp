@@ -6,13 +6,13 @@
 
 namespace kk2 {
 
-template <class T> struct Prefix2D {
+template <class T> struct PrefixSum2D {
     std::vector<std::vector<T>> acc;
     int h, w;
 
-    constexpr Prefix2D() = default;
+    constexpr PrefixSum2D() = default;
 
-    constexpr Prefix2D(const std::vector<std::vector<T>> &a)
+    constexpr PrefixSum2D(const std::vector<std::vector<T>> &a)
         : acc(a.size() + 1, std::vector<T>(a[0].size() + 1)),
           h((int)a.size()),
           w((int)a[0].size()) {
