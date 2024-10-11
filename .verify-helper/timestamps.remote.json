@@ -7,6 +7,7 @@
 "verify/yosupo_convolution/convolution_ntt_friendly.test.cpp": "2024-10-11 14:10:48 +0900",
 "verify/yosupo_convolution/convolution_or.test.cpp": "2024-10-11 14:10:48 +0900",
 "verify/yosupo_convolution/convolution_xor.test.cpp": "2024-10-11 14:10:48 +0900",
+"verify/yosupo_ds/ds_point_add_range_sum.test.cpp": "2024-10-11 23:06:51 +0900",
 "verify/yosupo_ds/ds_potentialized_unionfind.test.cpp": "2024-10-11 22:57:20 +0900",
 "verify/yosupo_ds/ds_static_range_sum.test.cpp": "2024-10-11 16:05:33 +0900",
 "verify/yosupo_ds/ds_unionfind.test.cpp": "2024-10-11 22:57:20 +0900",
