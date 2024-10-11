@@ -60,7 +60,7 @@ template <class S> constexpr Max<S> MaxOp(Max<S> l, Max<S> r) {
 }
 
 template <class S> constexpr Max<S> MaxUnit() {
-    constexpr static Max<S> e = Max<S>();
+    static Max<S> e = Max<S>();
     return e;
 }
 

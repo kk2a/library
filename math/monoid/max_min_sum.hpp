@@ -70,7 +70,7 @@ template <class S> constexpr MaxMinSum<S> MaxMinSumOp(MaxMinSum<S> l, MaxMinSum<
 }
 
 template <class S> constexpr MaxMinSum<S> MaxMinSumUnit() {
-    constexpr static MaxMinSum<S> e = MaxMinSum<S>();
+    static MaxMinSum<S> e = MaxMinSum<S>();
     return e;
 }
 
