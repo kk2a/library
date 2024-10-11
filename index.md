@@ -73,7 +73,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/prefix_sum_2d.hpp
       title: data_structure/prefix_sum_2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/prefix_sum_arbitrary.hpp
       title: data_structure/prefix_sum_arbitrary.hpp
     - icon: ':heavy_check_mark:'
@@ -425,7 +425,7 @@ data:
     - icon: ':warning:'
       path: template/fastio.hpp
       title: template/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: type_traits
@@ -450,7 +450,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj-0560.test.cpp
       title: verify/aoj/aoj-0560.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj-0560_2.test.cpp
       title: verify/aoj/aoj-0560_2.test.cpp
   - name: verify/yosupo_convolution
