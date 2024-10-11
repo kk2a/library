@@ -52,8 +52,8 @@ data:
   isVerificationFile: false
   path: graph/lowlink.hpp
   requiredBy:
-  - graph/two_edge_connected_components.hpp
   - graph/bcc.hpp
+  - graph/two_edge_connected_components.hpp
   timestamp: '2024-09-10 08:16:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

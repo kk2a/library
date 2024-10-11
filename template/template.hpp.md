@@ -39,57 +39,57 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/shortest_path.test.cpp
     title: verify/yosupo_graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/sum_of_floor_linear.test.cpp
     title: verify/yosupo_math/sum_of_floor_linear.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
@@ -126,25 +126,22 @@ data:
     \  for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate <class\
     \ T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b,\
     \ 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
-    \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\nenum yes_no_enum { Yes, No, YES,\
-    \ NO, yes, no };\n\ntemplate <yes_no_enum YN> void yn(bool b = 1) {\n    if constexpr\
-    \ (YN == Yes) std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n    if constexpr\
-    \ (YN == No) std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n    if constexpr (YN\
-    \ == YES) std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n    if constexpr (YN\
-    \ == NO) std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n    if constexpr (YN ==\
-    \ yes) std::cout << (b ? \"yes\" : \"no\") << '\\n';\n    if constexpr (YN ==\
-    \ no) std::cout << (b ? \"no\" : \"yes\") << '\\n';\n}\n\n#define rep1(a) for\
-    \ (i64 _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a);\
-    \ ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i,\
-    \ a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a)\
-    \ - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
-    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
-    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
-    \ all(p) std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n   \
-    \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
-    } iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"\
-    out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\ntemplate\
-    \ <class OStream, class T, class U>\nOStream &operator<<(OStream &os, const std::pair<T,\
+    \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\nvoid Yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    std::cout\
+    \ << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    std::cout\
+    \ << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    std::cout\
+    \ << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    std::cout\
+    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#define rep1(a) for (i64 _ = 0; _ < (i64)(a);\
+    \ ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n#define rep3(i,\
+    \ a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a) for (i64 i =\
+    \ (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a) - 1; i >= (i64)(b);\
+    \ --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...) overload3(__VA_ARGS__,\
+    \ rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__, repi3,\
+    \ repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define all(p)\
+    \ std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n\
+    \        std::ios::sync_with_stdio(false);\n    }\n} iosetup;\n\ntemplate <class\
+    \ OStream, class T, class U>\nOStream &operator<<(OStream &os, const std::pair<T,\
     \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
     \ <class IStream, class T, class U> IStream &operator>>(IStream &is, std::pair<T,\
     \ U> &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
@@ -187,25 +184,22 @@ data:
     \  for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate <class\
     \ T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b,\
     \ 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
-    \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\nenum yes_no_enum { Yes, No, YES,\
-    \ NO, yes, no };\n\ntemplate <yes_no_enum YN> void yn(bool b = 1) {\n    if constexpr\
-    \ (YN == Yes) std::cout << (b ? \"Yes\" : \"No\") << '\\n';\n    if constexpr\
-    \ (YN == No) std::cout << (b ? \"No\" : \"Yes\") << '\\n';\n    if constexpr (YN\
-    \ == YES) std::cout << (b ? \"YES\" : \"NO\") << '\\n';\n    if constexpr (YN\
-    \ == NO) std::cout << (b ? \"NO\" : \"YES\") << '\\n';\n    if constexpr (YN ==\
-    \ yes) std::cout << (b ? \"yes\" : \"no\") << '\\n';\n    if constexpr (YN ==\
-    \ no) std::cout << (b ? \"no\" : \"yes\") << '\\n';\n}\n\n#define rep1(a) for\
-    \ (i64 _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a);\
-    \ ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i,\
-    \ a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a)\
-    \ - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
-    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
-    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
-    \ all(p) std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n   \
-    \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
-    } iosetup;\n\n#ifdef KK2\nstd::ifstream in(\"in.txt\");\nstd::ofstream out(\"\
-    out.txt\");\n#else\n#define in std::cin\n#define out std::cout\n#endif\n\ntemplate\
-    \ <class OStream, class T, class U>\nOStream &operator<<(OStream &os, const std::pair<T,\
+    \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\nvoid Yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    std::cout\
+    \ << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    std::cout\
+    \ << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    std::cout\
+    \ << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    std::cout\
+    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#define rep1(a) for (i64 _ = 0; _ < (i64)(a);\
+    \ ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n#define rep3(i,\
+    \ a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a) for (i64 i =\
+    \ (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a) - 1; i >= (i64)(b);\
+    \ --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...) overload3(__VA_ARGS__,\
+    \ rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__, repi3,\
+    \ repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define all(p)\
+    \ std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n\
+    \        std::ios::sync_with_stdio(false);\n    }\n} iosetup;\n\ntemplate <class\
+    \ OStream, class T, class U>\nOStream &operator<<(OStream &os, const std::pair<T,\
     \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
     \ <class IStream, class T, class U> IStream &operator>>(IStream &is, std::pair<T,\
     \ U> &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
@@ -218,37 +212,37 @@ data:
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-10-09 00:31:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-11 14:10:48+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_convolution/convolution_and.test.cpp
+  - verify/yosupo_convolution/convolution_xor.test.cpp
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_convolution/convolution_or.test.cpp
+  - verify/yosupo_convolution/convolution_lcm.test.cpp
+  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/yosupo_math/kth_root_int.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
-  - verify/yosupo_math/sum_of_floor_linear.test.cpp
   - verify/yosupo_math/factrize.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_math/sum_of_floor_linear.test.cpp
+  - verify/yosupo_linalg/matrix_inv.test.cpp
+  - verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - verify/yosupo_linalg/matrix_product.test.cpp
+  - verify/yosupo_linalg/matrix_product_f2.test.cpp
+  - verify/yosupo_linalg/matrix_pow.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
+  - verify/yosupo_linalg/matrix_det.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_graph/tree_diameter.test.cpp
   - verify/yosupo_graph/shortest_path.test.cpp
-  - verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - verify/yosupo_linalg/matrix_det.test.cpp
-  - verify/yosupo_linalg/matrix_pow.test.cpp
-  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - verify/yosupo_linalg/matrix_product.test.cpp
-  - verify/yosupo_linalg/matrix_inv.test.cpp
-  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - verify/yosupo_convolution/convolution_xor.test.cpp
-  - verify/yosupo_convolution/convolution_gcd.test.cpp
-  - verify/yosupo_convolution/convolution_and.test.cpp
-  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - verify/yosupo_convolution/convolution_or.test.cpp
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_convolution/convolution_lcm.test.cpp
 documentation_of: template/template.hpp
 layout: document
 redirect_from:

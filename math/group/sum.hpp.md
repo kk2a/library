@@ -72,11 +72,11 @@ data:
   isVerificationFile: false
   path: math/group/sum.hpp
   requiredBy:
-  - segment_tree/utility/sumseg2d.hpp
-  - segment_tree/utility/sumseg.hpp
-  - segment_tree/utility/updatesum.hpp
-  - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/addsum.hpp
+  - segment_tree/utility/sumseg.hpp
+  - segment_tree/utility/sumseg2d.hpp
+  - segment_tree/utility/affinesum.hpp
+  - segment_tree/utility/updatesum.hpp
   timestamp: '2024-10-06 18:26:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

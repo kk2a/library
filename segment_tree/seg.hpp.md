@@ -118,10 +118,10 @@ data:
   isVerificationFile: false
   path: segment_tree/seg.hpp
   requiredBy:
-  - segment_tree/utility/minseg.hpp
-  - segment_tree/utility/sumseg.hpp
   - segment_tree/utility/max_min_sum_seg.hpp
+  - segment_tree/utility/sumseg.hpp
   - segment_tree/utility/maxseg.hpp
+  - segment_tree/utility/minseg.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

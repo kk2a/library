@@ -76,10 +76,10 @@ data:
   requiredBy:
   - data_structure/static_rmq.hpp
   - graph/tree/euler_tour.hpp
-  - segment_tree/utility/minseg.hpp
-  - segment_tree/utility/minseg2d.hpp
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/addmin.hpp
+  - segment_tree/utility/minseg2d.hpp
+  - segment_tree/utility/minseg.hpp
   timestamp: '2024-10-06 18:26:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

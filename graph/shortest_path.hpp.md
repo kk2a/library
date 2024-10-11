@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/shortest_path.test.cpp
     title: verify/yosupo_graph/shortest_path.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/shortest_path.hpp\"\n\n\n\n#include <limits>\n#include\
@@ -52,7 +52,7 @@ data:
   path: graph/shortest_path.hpp
   requiredBy: []
   timestamp: '2024-10-08 15:38:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/shortest_path.test.cpp
 documentation_of: graph/shortest_path.hpp

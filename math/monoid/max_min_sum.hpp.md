@@ -80,8 +80,8 @@ data:
   path: math/monoid/max_min_sum.hpp
   requiredBy:
   - segment_tree/utility/max_min_sum_seg.hpp
-  - segment_tree/utility/add_max_min_sum.hpp
   - segment_tree/utility/update_max_min_sum.hpp
+  - segment_tree/utility/add_max_min_sum.hpp
   timestamp: '2024-10-06 18:26:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

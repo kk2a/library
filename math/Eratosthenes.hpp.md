@@ -105,14 +105,14 @@ data:
   isVerificationFile: false
   path: math/Eratosthenes.hpp
   requiredBy:
-  - convolution/lcm1.hpp
   - convolution/gcd1.hpp
   - convolution/divisor_multiple_transform.hpp
+  - convolution/lcm1.hpp
   timestamp: '2024-10-06 18:26:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_convolution/convolution_gcd.test.cpp
   - verify/yosupo_convolution/convolution_lcm.test.cpp
+  - verify/yosupo_convolution/convolution_gcd.test.cpp
 documentation_of: math/Eratosthenes.hpp
 layout: document
 redirect_from:
