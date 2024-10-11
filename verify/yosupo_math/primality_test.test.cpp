@@ -10,7 +10,7 @@ int main() {
     rep (q) {
         u64 n;
         cin >> n;
-        yn<Yes>(kk2::is_prime(n));
+        Yes(kk2::is_prime(n));
     }
 
     return 0;
