@@ -1,5 +1,7 @@
 #ifndef TYPE_TRAITS_HPP
-#define TYPE_TRAITS_HPP 1
+#define TYPE_TRAITS_HPP
+
+// #pragma once
 
 #include <type_traits>
 
