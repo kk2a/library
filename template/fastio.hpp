@@ -146,18 +146,30 @@ struct Scanner {
         x = next_u128();
         return *this;
     }
+
+    Scanner &operator>>(char &x) {
+        x = next_char();
+        return *this;
+    }
+
+    Scanner &operator>>(std::string &x) {
+        x = next_string();
+        return *this;
+    }
 };
 
-#ifdef KK2
-Scanner kin(INPUT_FILE);
-#elif defined(INTERACTIVE)
-#define kin std::cin
-#else
-Scanner kin;
-#endif
+char Scanner::buf[Scanner::INPUT_BUF];
 
 } // namespace fastio
 
 } // namespace kk2
+
+#ifdef INTERACTIVE
+#define kin std::cin
+#elif defined(KK2)
+kk2::fastio::Scanner kin(INPUT_FILE);
+#else
+kk2::fastio::Scanner kin;
+#endif
 
 #endif // TEMPLATE_FASTIO_HPP
