@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     int n, q;
     cin >> n >> q;
-    vc<int> a(n);
+    auto a = kk2::GetVecMin<int>(n);
     cin >> a;
     kk2::StaticRMQ<int> rmq(a);
 

@@ -29,7 +29,7 @@ template <class S> constexpr Affine<S> AffineComposition(Affine<S> l, Affine<S> 
     return l;
 }
 
-template <class S> constexpr Affine<S> AffineUnit() {
+template <class S> Affine<S> AffineUnit() {
     constexpr static Affine<S> e = Affine<S>();
     return e;
 }

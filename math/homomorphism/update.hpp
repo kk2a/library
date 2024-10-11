@@ -33,7 +33,7 @@ template <class S> constexpr Update<S> UpdateComposition(Update<S> l, Update<S> 
     return l;
 }
 
-template <class S> constexpr Update<S> UpdateUnit() {
+template <class S> Update<S> UpdateUnit() {
     constexpr static Update<S> e = Update<S>();
     return e;
 }

@@ -15,7 +15,7 @@ template <class S> constexpr Add<S> AddComposition(Add<S> l, Add<S> r) {
     return l + r;
 }
 
-template <class S> constexpr Add<S> AddUnit() {
+template <class S> Add<S> AddUnit() {
     constexpr static Add<S> e = Add<S>();
     return e;
 }
