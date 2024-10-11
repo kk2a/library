@@ -39,7 +39,7 @@ data:
     \ l, MaxMinSum<S> r) {\n    if (l.is_unit) return r;\n    if (r.is_unit) return\
     \ l;\n    l.sum += r.sum;\n    l.size += r.size;\n    l.max = std::max(l.max,\
     \ r.max);\n    l.min = std::min(l.min, r.min);\n    return l;\n}\n\ntemplate <class\
-    \ S> constexpr MaxMinSum<S> MaxMinSumUnit() {\n    static MaxMinSum<S> e = MaxMinSum<S>();\n\
+    \ S> MaxMinSum<S> MaxMinSumUnit() {\n    constexpr static MaxMinSum<S> e = MaxMinSum<S>();\n\
     \    return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
     std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n, Args... args) {\n   \
     \ return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
@@ -68,7 +68,7 @@ data:
     \ l, MaxMinSum<S> r) {\n    if (l.is_unit) return r;\n    if (r.is_unit) return\
     \ l;\n    l.sum += r.sum;\n    l.size += r.size;\n    l.max = std::max(l.max,\
     \ r.max);\n    l.min = std::min(l.min, r.min);\n    return l;\n}\n\ntemplate <class\
-    \ S> constexpr MaxMinSum<S> MaxMinSumUnit() {\n    static MaxMinSum<S> e = MaxMinSum<S>();\n\
+    \ S> MaxMinSum<S> MaxMinSumUnit() {\n    constexpr static MaxMinSum<S> e = MaxMinSum<S>();\n\
     \    return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
     std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n, Args... args) {\n   \
     \ return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
@@ -82,7 +82,7 @@ data:
   - segment_tree/utility/max_min_sum_seg.hpp
   - segment_tree/utility/update_max_min_sum.hpp
   - segment_tree/utility/add_max_min_sum.hpp
-  timestamp: '2024-10-11 22:54:21+09:00'
+  timestamp: '2024-10-11 23:06:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/max_min_sum.hpp

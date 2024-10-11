@@ -241,7 +241,7 @@ data:
       title: math/prime_factorize.hpp
   - name: math/group
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/group/sum.hpp
       title: math/group/sum.hpp
   - name: math/homomorphism
@@ -353,7 +353,7 @@ data:
     - icon: ':x:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp
     - icon: ':warning:'
@@ -391,7 +391,7 @@ data:
     - icon: ':warning:'
       path: segment_tree/utility/minseg2d.hpp
       title: segment_tree/utility/minseg2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/utility/sumseg.hpp
       title: segment_tree/utility/sumseg.hpp
     - icon: ':warning:'
@@ -473,7 +473,7 @@ data:
       title: verify/yosupo_convolution/convolution_xor.test.cpp
   - name: verify/yosupo_ds
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
       title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'

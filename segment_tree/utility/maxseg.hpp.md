@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
   _extendedRequiredBy: []
@@ -30,8 +30,8 @@ data:
     \        minf = false;\n        return *this;\n    }\n\n    constexpr bool is_minf()\
     \ { return minf; }\n};\n\ntemplate <class S> constexpr Max<S> MaxOp(Max<S> l,\
     \ Max<S> r) {\n    if (r.minf) return l;\n    if (l.minf) return r;\n    l.a =\
-    \ std::max(l.a, r.a);\n    return l;\n}\n\ntemplate <class S> constexpr Max<S>\
-    \ MaxUnit() {\n    static Max<S> e = Max<S>();\n    return e;\n}\n\n} // namespace\
+    \ std::max(l.a, r.a);\n    return l;\n}\n\ntemplate <class S> Max<S> MaxUnit()\
+    \ {\n    constexpr static Max<S> e = Max<S>();\n    return e;\n}\n\n} // namespace\
     \ monoid\n\ntemplate <class S, class... Args>\nstd::vector<monoid::Max<S>> GetVecMax(int\
     \ n, Args... args) {\n    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n\
     }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Max<S>>>\
@@ -113,7 +113,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/maxseg.hpp
   requiredBy: []
-  timestamp: '2024-10-11 22:54:21+09:00'
+  timestamp: '2024-10-11 23:06:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/maxseg.hpp

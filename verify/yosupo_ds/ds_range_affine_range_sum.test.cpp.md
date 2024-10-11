@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
   - icon: ':x:'
@@ -129,8 +129,8 @@ data:
     \ * size;\n        return *this;\n    }\n\n    constexpr Sum &multiply(const S\
     \ &rhs) {\n        a *= rhs;\n        return *this;\n    }\n};\n\ntemplate <class\
     \ S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n    l.a += r.a;\n    l.size\
-    \ += r.size;\n    return l;\n}\n\ntemplate <class S> constexpr Sum<S> SumUnit()\
-    \ {\n    static Sum<S> e = Sum<S>();\n    return e;\n}\n\ntemplate <class S> constexpr\
+    \ += r.size;\n    return l;\n}\n\ntemplate <class S> Sum<S> SumUnit() {\n    constexpr\
+    \ static Sum<S> e = Sum<S>();\n    return e;\n}\n\ntemplate <class S> constexpr\
     \ Sum<S> SumInv(Sum<S> x) {\n    x.a = -x.a;\n    x.size = -x.size;\n    return\
     \ x;\n}\n\n} // namespace group\n\ntemplate <class S, class... Args>\nstd::vector<group::Sum<S>>\
     \ GetVecSum(int n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
@@ -315,7 +315,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 22:54:21+09:00'
+  timestamp: '2024-10-11 23:06:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

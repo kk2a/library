@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/utility/sumseg.hpp
     title: segment_tree/utility/sumseg.hpp
   - icon: ':warning:'
@@ -18,7 +18,7 @@ data:
     path: segment_tree/utility/updatesum.hpp
     title: segment_tree/utility/updatesum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/group/sum.hpp\"\n\n\n\n#include <iostream>\n#include\
@@ -43,8 +43,8 @@ data:
     \ * size;\n        return *this;\n    }\n\n    constexpr Sum &multiply(const S\
     \ &rhs) {\n        a *= rhs;\n        return *this;\n    }\n};\n\ntemplate <class\
     \ S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n    l.a += r.a;\n    l.size\
-    \ += r.size;\n    return l;\n}\n\ntemplate <class S> constexpr Sum<S> SumUnit()\
-    \ {\n    static Sum<S> e = Sum<S>();\n    return e;\n}\n\ntemplate <class S> constexpr\
+    \ += r.size;\n    return l;\n}\n\ntemplate <class S> Sum<S> SumUnit() {\n    constexpr\
+    \ static Sum<S> e = Sum<S>();\n    return e;\n}\n\ntemplate <class S> constexpr\
     \ Sum<S> SumInv(Sum<S> x) {\n    x.a = -x.a;\n    x.size = -x.size;\n    return\
     \ x;\n}\n\n} // namespace group\n\ntemplate <class S, class... Args>\nstd::vector<group::Sum<S>>\
     \ GetVecSum(int n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
@@ -66,7 +66,7 @@ data:
     \ Sum &multiply(const S &rhs) {\n        a *= rhs;\n        return *this;\n  \
     \  }\n};\n\ntemplate <class S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n\
     \    l.a += r.a;\n    l.size += r.size;\n    return l;\n}\n\ntemplate <class S>\
-    \ constexpr Sum<S> SumUnit() {\n    static Sum<S> e = Sum<S>();\n    return e;\n\
+    \ Sum<S> SumUnit() {\n    constexpr static Sum<S> e = Sum<S>();\n    return e;\n\
     }\n\ntemplate <class S> constexpr Sum<S> SumInv(Sum<S> x) {\n    x.a = -x.a;\n\
     \    x.size = -x.size;\n    return x;\n}\n\n} // namespace group\n\ntemplate <class\
     \ S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int n, Args... args)\
@@ -83,8 +83,8 @@ data:
   - segment_tree/utility/sumseg2d.hpp
   - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/updatesum.hpp
-  timestamp: '2024-10-11 22:54:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-10-11 23:06:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp

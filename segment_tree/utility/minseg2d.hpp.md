@@ -30,10 +30,10 @@ data:
     \  inf = false;\n        return *this;\n    }\n\n    constexpr bool is_inf() {\
     \ return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
     \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
-    \ r.a);\n    return l;\n}\n\ntemplate <class S> constexpr Min<S> MinUnit() {\n\
-    \    static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace monoid\n\n\
-    template <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int n,\
-    \ Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
+    \ r.a);\n    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr\
+    \ static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
+    \ <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int n, Args...\
+    \ args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
     }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
     \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
     \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/seg2d.hpp\"\
@@ -106,7 +106,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/minseg2d.hpp
   requiredBy: []
-  timestamp: '2024-10-11 22:54:21+09:00'
+  timestamp: '2024-10-11 23:06:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/minseg2d.hpp
