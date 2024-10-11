@@ -59,8 +59,8 @@ template <class S> constexpr Max<S> MaxOp(Max<S> l, Max<S> r) {
     return l;
 }
 
-template <class S> constexpr Max<S> MaxUnit() {
-    static Max<S> e = Max<S>();
+template <class S> Max<S> MaxUnit() {
+    constexpr static Max<S> e = Max<S>();
     return e;
 }
 

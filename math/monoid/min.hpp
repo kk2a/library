@@ -59,8 +59,8 @@ template <class S> constexpr Min<S> MinOp(Min<S> l, Min<S> r) {
     return l;
 }
 
-template <class S> constexpr Min<S> MinUnit() {
-    static Min<S> e = Min<S>();
+template <class S> Min<S> MinUnit() {
+    constexpr static Min<S> e = Min<S>();
     return e;
 }
 

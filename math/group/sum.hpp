@@ -57,8 +57,8 @@ template <class S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {
     return l;
 }
 
-template <class S> constexpr Sum<S> SumUnit() {
-    static Sum<S> e = Sum<S>();
+template <class S> Sum<S> SumUnit() {
+    constexpr static Sum<S> e = Sum<S>();
     return e;
 }
 
