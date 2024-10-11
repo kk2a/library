@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/graph_scc.test.cpp
+    title: verify/yosupo_graph/graph_scc.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/topological_sort.hpp\"\n\n\n\n#include <queue>\n#include\
@@ -33,8 +36,9 @@ data:
   path: graph/topological_sort.hpp
   requiredBy: []
   timestamp: '2024-09-10 08:16:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_graph/graph_scc.test.cpp
 documentation_of: graph/topological_sort.hpp
 layout: document
 redirect_from:

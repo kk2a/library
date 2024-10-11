@@ -5,10 +5,13 @@ data:
   - icon: ':warning:'
     path: graph/tree/auxiliary_tree.hpp
     title: graph/tree/auxiliary_tree.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_lca.test.cpp
+    title: verify/yosupo_graph/tree_lca.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n\n#include\
@@ -112,8 +115,9 @@ data:
   requiredBy:
   - graph/tree/auxiliary_tree.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_graph/tree_lca.test.cpp
 documentation_of: graph/tree/heavy_light_decomposition.hpp
 layout: document
 redirect_from:

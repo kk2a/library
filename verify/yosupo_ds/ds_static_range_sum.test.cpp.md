@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/kth_root_floor.hpp
-    title: math/kth_root_floor.hpp
+    path: data_structure/prefix_sum.hpp
+    title: data_structure/prefix_sum.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -14,42 +14,43 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
     links:
-    - https://judge.yosupo.jp/problem/kth_root_integer
-  bundledCode: "#line 1 \"verify/yosupo_math/kth_root_int.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/kth_root_integer\"\n\n#line 1 \"math/kth_root_floor.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cmath>\n#include <cstdint>\n#include <functional>\n\
-    \nnamespace kk2 {\n\nuint64_t kth_root_floor_inner(uint64_t a, int k) {\n    if\
-    \ (a <= 1 || k == 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t\
-    \ x) {\n        __uint128_t p = 1, q = x;\n        for (int b = k; b; b >>= 1,\
-    \ q *= q) {\n            if (b & 1) p *= q;\n        }\n        return p <= a;\n\
-    \    };\n    uint64_t x = powl(a, (long double)1.0 / k);\n    while (!check(x))\
-    \ --x;\n    while (check(x + 1)) ++x;\n    return x;\n}\n\n// return floor(a ^\
-    \ {1/k})\ntemplate <class return_type = uint64_t, class T, class U> return_type\
-    \ kth_root_floor(T a, U k) {\n    return (return_type)kth_root_floor_inner((uint64_t)a,\
-    \ (int)k);\n}\n\nuint64_t kth_root_ceil_inner(uint64_t a, int k) {\n    if (a\
-    \ <= 1 || k == 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t\
-    \ x) {\n        __uint128_t p = 1, q = x;\n        for (int b = k; b; b >>= 1,\
-    \ q *= q) {\n            if (b & 1) p *= q;\n        }\n        return p == a;\n\
-    \    };\n    uint64_t x = kth_root_floor_inner(a, k);\n    return check(x) ? x\
-    \ : x + 1;\n}\n\n// return ceil(a ^ {1/k})\ntemplate <class return_type = uint64_t,\
-    \ class T, class U> return_type kth_root_ceil(T a, U k) {\n    return (return_type)kth_root_ceil_inner((uint64_t)a,\
-    \ (int)k);\n}\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\
-    \n\n#pragma GCC optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n\
-    #line 8 \"template/template.hpp\"\n#include <array>\n#include <bitset>\n#include\
-    \ <cassert>\n#include <chrono>\n#line 13 \"template/template.hpp\"\n#include <cstring>\n\
-    #include <deque>\n#include <fstream>\n#line 17 \"template/template.hpp\"\n#include\
+    - https://judge.yosupo.jp/problem/static_range_sum
+  bundledCode: "#line 1 \"verify/yosupo_ds/ds_static_range_sum.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n\n#line 1 \"data_structure/prefix_sum.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <vector>\n\
+    \nnamespace kk2 {\n\ntemplate <class T> struct PrefixSum {\n    std::vector<T>\
+    \ acc;\n    int n;\n\n    constexpr PrefixSum() = default;\n\n    constexpr PrefixSum(const\
+    \ std::vector<T> &a) : acc(a.size() + 1), n((int)a.size()) {\n        for (int\
+    \ i = 0; i < n; ++i) { acc[i + 1] = acc[i] + a[i]; }\n    }\n\n    constexpr T\
+    \ sum(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n   \
+    \     return acc[r] - acc[l];\n    }\n\n    constexpr T get(int i) const {\n \
+    \       assert(0 <= i && i < n);\n        return acc[i + 1] - acc[i];\n    }\n\
+    \n    constexpr T operator[](int i) const {\n        assert(0 <= i && i < n);\n\
+    \        return acc[i + 1] - acc[i];\n    }\n\n    constexpr T operator()(int\
+    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        return\
+    \ acc[r] - acc[l];\n    }\n\n    constexpr int size() const { return n; }\n\n\
+    \    // require: acc is non-decreasing\n    // return r s.t.\n    // r = n or\
+    \ sum(l, r) >= x\n    // r = l or sum(l, r) < x\n    constexpr int lower(int l,\
+    \ T x) const {\n        assert(0 <= l && l <= n);\n        int ng = l - 1, ok\
+    \ = n;\n        while (ok - ng > 1) {\n            int mid = (ok + ng) >> 1;\n\
+    \            if (acc[mid] - acc[l] < x) ng = mid;\n            else ok = mid;\n\
+    \        }\n        return ok;\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"\
+    template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\")\n\n//\
+    \ #include <bits/stdc++.h>\n#line 9 \"template/template.hpp\"\n#include <bitset>\n\
+    #line 11 \"template/template.hpp\"\n#include <chrono>\n#include <cmath>\n#include\
+    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
     \ <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n#include\
     \ <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n#include <random>\n\
     #include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n#include\
     \ <tuple>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\nusing u32 = unsigned int;\nusing i64\
-    \ = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing\
-    \ u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-    \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
-    template <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc =\
-    \ std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
+    #include <utility>\n#line 36 \"template/template.hpp\"\n\nusing u32 = unsigned\
+    \ int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing i128 =\
+    \ __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\n\
+    using pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing pli =\
+    \ std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\ntemplate\
+    \ <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
     template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using\
     \ pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\n\ntemplate <class T> constexpr T infty =\
@@ -93,28 +94,30 @@ data:
     \ {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
     \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
     \ &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n\
-    \    return is;\n}\n\n\n#line 5 \"verify/yosupo_math/kth_root_int.test.cpp\"\n\
-    using namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    rep (t) {\n\
-    \        u64 a, k;\n        cin >> a >> k;\n        cout << kk2::kth_root_floor(a,\
-    \ k) << \"\\n\";\n    }\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\n\n\
-    #include \"../../math/kth_root_floor.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    rep (t)\
-    \ {\n        u64 a, k;\n        cin >> a >> k;\n        cout << kk2::kth_root_floor(a,\
-    \ k) << \"\\n\";\n    }\n\n    return 0;\n}\n"
+    \    return is;\n}\n\n\n#line 5 \"verify/yosupo_ds/ds_static_range_sum.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n  \
+    \  vc<i64> a(n);\n    cin >> a;\n    kk2::PrefixSum<i64> ps(a);\n\n    rep (q)\
+    \ {\n        int l, r;\n        cin >> l >> r;\n        cout << ps.sum(l, r) <<\
+    \ \"\\n\";\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n\n\
+    #include \"../../data_structure/prefix_sum.hpp\"\n#include \"../../template/template.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n  \
+    \  vc<i64> a(n);\n    cin >> a;\n    kk2::PrefixSum<i64> ps(a);\n\n    rep (q)\
+    \ {\n        int l, r;\n        cin >> l >> r;\n        cout << ps.sum(l, r) <<\
+    \ \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
-  - math/kth_root_floor.hpp
+  - data_structure/prefix_sum.hpp
   - template/template.hpp
   isVerificationFile: true
-  path: verify/yosupo_math/kth_root_int.test.cpp
+  path: verify/yosupo_ds/ds_static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 14:10:48+09:00'
+  timestamp: '2024-10-11 16:05:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_math/kth_root_int.test.cpp
+documentation_of: verify/yosupo_ds/ds_static_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_math/kth_root_int.test.cpp
-- /verify/verify/yosupo_math/kth_root_int.test.cpp.html
-title: verify/yosupo_math/kth_root_int.test.cpp
+- /verify/verify/yosupo_ds/ds_static_range_sum.test.cpp
+- /verify/verify/yosupo_ds/ds_static_range_sum.test.cpp.html
+title: verify/yosupo_ds/ds_static_range_sum.test.cpp
 ---

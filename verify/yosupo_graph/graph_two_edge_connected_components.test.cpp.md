@@ -5,8 +5,11 @@ data:
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/shortest_path.hpp
-    title: graph/shortest_path.hpp
+    path: graph/lowlink.hpp
+    title: graph/lowlink.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/two_edge_connected_components.hpp
+    title: graph/two_edge_connected_components.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -17,21 +20,21 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/shortest_path
+    PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
     links:
-    - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "#line 1 \"verify/yosupo_graph/shortest_path.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/shortest_path\" \n\n#line 1 \"graph/graph.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <iostream>\n#include <type_traits>\n#include\
-    \ <utility>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class T> struct\
-    \ WeightedEdge {\n    int from, to, id;\n    T cost;\n\n    WeightedEdge(int to_,\
-    \ T cost_, int from_ = -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n\
-    \          id(id_),\n          cost(cost_) {}\n\n    WeightedEdge() : from(-1),\
-    \ to(-1), id(-1), cost(0) {}\n\n    operator int() const { return to; }\n\n  \
-    \  WeightedEdge rev() const { return WeightedEdge(from, cost, to, id); }\n\n \
-    \   template <class OStream> friend OStream &operator<<(OStream &os, const WeightedEdge\
-    \ &e) {\n        return os << e.from << \" -> \" << e.to << \" : \" << e.cost;\n\
-    \    }\n};\ntemplate <class T> using WeightedEdges = std::vector<WeightedEdge<T>>;\n\
+    - https://judge.yosupo.jp/problem/two_edge_connected_components
+  bundledCode: "#line 1 \"verify/yosupo_graph/graph_two_edge_connected_components.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
+    \n\n#line 1 \"graph/graph.hpp\"\n\n\n\n#include <cassert>\n#include <iostream>\n\
+    #include <type_traits>\n#include <utility>\n#include <vector>\n\nnamespace kk2\
+    \ {\n\ntemplate <class T> struct WeightedEdge {\n    int from, to, id;\n    T\
+    \ cost;\n\n    WeightedEdge(int to_, T cost_, int from_ = -1, int id_ = -1)\n\
+    \        : from(from_),\n          to(to_),\n          id(id_),\n          cost(cost_)\
+    \ {}\n\n    WeightedEdge() : from(-1), to(-1), id(-1), cost(0) {}\n\n    operator\
+    \ int() const { return to; }\n\n    WeightedEdge rev() const { return WeightedEdge(from,\
+    \ cost, to, id); }\n\n    template <class OStream> friend OStream &operator<<(OStream\
+    \ &os, const WeightedEdge &e) {\n        return os << e.from << \" -> \" << e.to\
+    \ << \" : \" << e.cost;\n    }\n};\ntemplate <class T> using WeightedEdges = std::vector<WeightedEdge<T>>;\n\
     \ntemplate <class T, bool is_directed = false>\nstruct WeightedAdjacencyList :\
     \ std::vector<WeightedEdges<T>> {\n    WeightedAdjacencyList() = default;\n\n\
     \    WeightedAdjacencyList(int n_, bool is_one_indexed)\n        : std::vector<WeightedEdges<T>>(n_),\n\
@@ -109,38 +112,57 @@ data:
     \ false>;\ntemplate <typename T> using DWAdjList = WeightedAdjacencyList<T, true>;\n\
     \nusing AdjList = UnWeightedAdjacencyList<false, false>;\nusing DAdjList = UnWeightedAdjacencyList<true,\
     \ false>;\nusing FAdjList = UnWeightedAdjacencyList<true, true>;\n\n} // namespace\
-    \ kk2\n\n\n#line 1 \"graph/shortest_path.hpp\"\n\n\n\n#include <limits>\n#include\
-    \ <queue>\n#line 8 \"graph/shortest_path.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-    \ shortest_path {\n\nstruct edge {\n    int to, id;\n};\n\ntemplate <class T>\n\
-    struct Result {\n    std::vector<T> dist;\n    std::vector<edge> prev;\n    Result(std::vector<T>\
-    \ dist_, std::vector<edge> prev_)\n        : dist(dist_), prev(prev_) {}\n};\n\
-    \ntemplate <class WG, class T = typename WG::value_type> \nResult<T> ShortestPath(const\
-    \ WG &g, int start) {\n    T alt;\n    int n = g.size();\n    std::vector<T> dist(n,\
-    \ std::numeric_limits<T>::max());\n    std::vector<edge> prev(n, {-1, -1});\n\n\
-    \    std::priority_queue<std::pair<T, int>,\n                        std::vector<std::pair<T,\
-    \ int>>,\n                        std::greater<std::pair<T, int>>>\n        pq;\n\
-    \    dist[start] = 0;\n    pq.push({T(), start});\n\n    while (!pq.empty()) {\n\
-    \        auto q = pq.top();\n        pq.pop();\n        if (dist[q.second] < q.first)\
-    \ continue;\n        for (auto edge : g[q.second]) {\n            alt = q.first\
-    \ + edge.cost;\n            if (alt < dist[edge.to]) {\n                pq.push({alt,\
-    \ edge.to});\n                dist[edge.to] = alt;\n                prev[edge.to]\
-    \ = {edge.from, edge.id};\n            }\n        }\n    }\n\n    return {dist,\
-    \ prev};\n}\n\n} // namespace shortest_path\n\nusing shortest_path::ShortestPath;\n\
-    \n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC\
-    \ optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n\
-    #include <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include\
+    \ kk2\n\n\n#line 1 \"graph/two_edge_connected_components.hpp\"\n\n\n\n#line 5\
+    \ \"graph/two_edge_connected_components.hpp\"\n\n#line 1 \"graph/lowlink.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <functional>\n#line 7 \"graph/lowlink.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class G> struct LowLink {\n    int n, m;\n  \
+    \  const G &g;\n    std::vector<int> ord, low;\n    std::vector<bool> root, used;\n\
+    \n    LowLink(const G &g_)\n        : n(g_.n),\n          m(g_.m),\n         \
+    \ g(g_),\n          ord(n, -1),\n          low(n, -1),\n          root(n, false),\n\
+    \          used(m, false) {\n        init();\n    }\n\n  private:\n    void init()\
+    \ {\n        int k = 0;\n        auto dfs = [&](auto self, int u, int ei = -1)\
+    \ -> int {\n            low[u] = ord[u] = k++;\n            for (auto &e : g[u])\
+    \ {\n                if (e.id == ei) continue;\n                if (ord[e.to]\
+    \ == -1) {\n                    used[e.id] = true;\n                    low[u]\
+    \ = std::min(low[u], self(self, e.to, e.id));\n                }\n           \
+    \     // back edge\n                else if (ord[e.to] < ord[u]) {\n         \
+    \           low[u] = std::min(low[u], ord[e.to]);\n                }\n       \
+    \     }\n            return low[u];\n        };\n        for (int u = 0; u < n;\
+    \ u++)\n            if (ord[u] == -1) {\n                dfs(dfs, u);\n      \
+    \          root[u] = true;\n            }\n    }\n};\n\n} // namespace kk2\n\n\
+    \n#line 7 \"graph/two_edge_connected_components.hpp\"\n\nnamespace kk2 {\n\ntemplate\
+    \ <class G> struct TwoEdgeConnectedComponents : LowLink<G> {\n    TwoEdgeConnectedComponents(const\
+    \ G &g_) : LowLink<G>(g_) { init_tecc(); }\n\n    std::vector<int> comp;\n   \
+    \ std::vector<std::vector<int>> group;\n    G forest;\n\n    int size() const\
+    \ { return group.size(); }\n\n  private:\n    // v is a child of u in DFS tree\n\
+    \    // edge(u, v) is a bridge <=> ord[u] < low[v]\n    void init_tecc() {\n \
+    \       comp.resize(this->n, -1);\n        int k = 0;\n        std::vector<typename\
+    \ G::edge_type> bridges;\n        auto dfs = [&](auto self, int now, int par,\
+    \ int ei) -> void {\n            if (par != -1 && this->ord[par] >= this->low[now])\
+    \ comp[now] = comp[par];\n            else {\n                comp[now] = k++;\n\
+    \                if (par != -1) bridges.emplace_back((this->g).edges[ei]);\n \
+    \           }\n            for (auto &&e : this->g[now]) {\n                if\
+    \ (comp[e.to] == -1) self(self, e.to, now, e.id);\n            }\n        };\n\
+    \        for (int i = 0; i < this->n; i++) {\n            if (this->root[i]) dfs(dfs,\
+    \ i, -1, -1);\n        }\n        group.resize(k);\n        for (int i = 0; i\
+    \ < this->n; i++) { group[comp[i]].emplace_back(i); }\n        for (auto &&e :\
+    \ bridges) {\n            e.from = comp[e.from];\n            e.to = comp[e.to];\n\
+    \        }\n        forest = G(k, bridges, this->g.oneindexed);\n    }\n};\n\n\
+    } // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"\
+    O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#line 8 \"template/template.hpp\"\
+    \n#include <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include\
     \ <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <iomanip>\n#line 19 \"template/template.hpp\"\n\
-    #include <iterator>\n#line 21 \"template/template.hpp\"\n#include <map>\n#include\
-    \ <numeric>\n#include <optional>\n#line 25 \"template/template.hpp\"\n#include\
-    \ <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n\
-    #include <tuple>\n#line 32 \"template/template.hpp\"\n#include <unordered_map>\n\
-    #include <unordered_set>\n#line 36 \"template/template.hpp\"\n\nusing u32 = unsigned\
-    \ int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing i128 =\
-    \ __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\n\
-    using pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing pli =\
-    \ std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\ntemplate\
-    \ <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
+    #line 17 \"template/template.hpp\"\n#include <iomanip>\n#line 19 \"template/template.hpp\"\
+    \n#include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n\
+    #include <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include\
+    \ <sstream>\n#include <stack>\n#include <string>\n#include <tuple>\n#line 32 \"\
+    template/template.hpp\"\n#include <unordered_map>\n#include <unordered_set>\n\
+    #line 36 \"template/template.hpp\"\n\nusing u32 = unsigned int;\nusing i64 = long\
+    \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+    \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
+    template <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc =\
+    \ std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
     template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using\
     \ pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\n\ntemplate <class T> constexpr T infty =\
@@ -184,39 +206,33 @@ data:
     \ {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
     \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
     \ &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n\
-    \    return is;\n}\n\n\n#line 6 \"verify/yosupo_graph/shortest_path.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, m, s, t;\n    cin >> n >> m\
-    \ >> s >> t;\n    kk2::DWAdjList<i64> g(n, m, false);\n    g.input(cin);\n   \
-    \ auto [dist, prev] = kk2::ShortestPath(g, s);\n\n    if (prev[t].to == -1) {\n\
-    \        cout << -1 << \"\\n\";\n        return 0;\n    }\n\n    std::vector<int>\
-    \ path;\n    for (int now = t; now != -1; now = prev[now].to) path.emplace_back(now);\n\
-    \n    cout << dist[t] << \" \" << path.size() - 1 << \"\\n\";\n    for (int i\
-    \ = path.size() - 1; i; --i) cout << path[i] << \" \" << path[i - 1] << \"\\n\"\
-    ;\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\" \n\n#include\
-    \ \"../../graph/graph.hpp\"\n#include \"../../graph/shortest_path.hpp\"\n#include\
-    \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ n, m, s, t;\n    cin >> n >> m >> s >> t;\n    kk2::DWAdjList<i64> g(n, m, false);\n\
-    \    g.input(cin);\n    auto [dist, prev] = kk2::ShortestPath(g, s);\n\n    if\
-    \ (prev[t].to == -1) {\n        cout << -1 << \"\\n\";\n        return 0;\n  \
-    \  }\n\n    std::vector<int> path;\n    for (int now = t; now != -1; now = prev[now].to)\
-    \ path.emplace_back(now);\n\n    cout << dist[t] << \" \" << path.size() - 1 <<\
-    \ \"\\n\";\n    for (int i = path.size() - 1; i; --i) cout << path[i] << \" \"\
-    \ << path[i - 1] << \"\\n\";\n\n    return 0;\n}\n"
+    \    return is;\n}\n\n\n#line 6 \"verify/yosupo_graph/graph_two_edge_connected_components.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n  \
+    \  kk2::AdjList g(n, m, false);\n    g.input(cin);\n    kk2::TwoEdgeConnectedComponents<kk2::AdjList>\
+    \ tecc(g);\n    cout << tecc.size() << \"\\n\";\n    for (auto &v : tecc.group)\
+    \ cout << v.size() << \" \" << v << \"\\n\";\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
+    \n\n#include \"../../graph/graph.hpp\"\n#include \"../../graph/two_edge_connected_components.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int n, m;\n    cin >> n >> m;\n    kk2::AdjList g(n, m, false);\n   \
+    \ g.input(cin);\n    kk2::TwoEdgeConnectedComponents<kk2::AdjList> tecc(g);\n\
+    \    cout << tecc.size() << \"\\n\";\n    for (auto &v : tecc.group) cout << v.size()\
+    \ << \" \" << v << \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - graph/graph.hpp
-  - graph/shortest_path.hpp
+  - graph/two_edge_connected_components.hpp
+  - graph/lowlink.hpp
   - template/template.hpp
   isVerificationFile: true
-  path: verify/yosupo_graph/shortest_path.test.cpp
+  path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 14:10:48+09:00'
+  timestamp: '2024-10-11 16:05:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_graph/shortest_path.test.cpp
+documentation_of: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_graph/shortest_path.test.cpp
-- /verify/verify/yosupo_graph/shortest_path.test.cpp.html
-title: verify/yosupo_graph/shortest_path.test.cpp
+- /verify/verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+- /verify/verify/yosupo_graph/graph_two_edge_connected_components.test.cpp.html
+title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
 ---

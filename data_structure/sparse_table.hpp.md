@@ -2,16 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
   - icon: ':warning:'
     path: graph/tree/euler_tour.hpp
     title: graph/tree/euler_tour.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_static_rmq.test.cpp
+    title: verify/yosupo_ds/ds_static_rmq.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/sparse_table.hpp\"\n\n\n\n#include <cassert>\n\
@@ -88,8 +91,9 @@ data:
   - data_structure/static_rmq.hpp
   - graph/tree/euler_tour.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_ds/ds_static_rmq.test.cpp
 documentation_of: data_structure/sparse_table.hpp
 layout: document
 redirect_from:

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'

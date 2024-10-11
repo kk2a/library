@@ -14,7 +14,7 @@ data:
       title: UnionFind/rollback.hpp
   - name: bit
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/bitcount.hpp
       title: bit/bitcount.hpp
   - name: convolution
@@ -72,13 +72,13 @@ data:
     - icon: ':warning:'
       path: data_structure/hash_map.hpp
       title: data_structure/hash_map.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
     - icon: ':warning:'
       path: data_structure/my_bitset_old.hpp
       title: data_structure/my_bitset_old.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/prefix_sum.hpp
       title: data_structure/prefix_sum.hpp
     - icon: ':warning:'
@@ -87,10 +87,10 @@ data:
     - icon: ':warning:'
       path: data_structure/prefix_sum_arbitrary.hpp
       title: data_structure/prefix_sum_arbitrary.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data_structure/sparse_table.hpp
       title: data_structure/sparse_table.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
     - icon: ':warning:'
@@ -171,28 +171,28 @@ data:
       title: geometry/point.hpp
   - name: graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/bcc.hpp
       title: graph/bcc.hpp
     - icon: ':heavy_check_mark:'
       path: graph/graph.hpp
       title: graph/graph.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.hpp
       title: graph/lowlink.hpp
     - icon: ':warning:'
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/scc.hpp
       title: graph/scc.hpp
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path.hpp
       title: graph/shortest_path.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.hpp
       title: graph/two_edge_connected_components.hpp
     - icon: ':warning:'
@@ -215,7 +215,7 @@ data:
     - icon: ':warning:'
       path: graph/tree/euler_tour.hpp
       title: graph/tree/euler_tour.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: graph/tree/heavy_light_decomposition.hpp
   - name: math
@@ -238,21 +238,21 @@ data:
     - icon: ':warning:'
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/is_prime.hpp
       title: math/is_prime.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/kth_root_floor.hpp
       title: math/kth_root_floor.hpp
     - icon: ':warning:'
       path: math/pow.hpp
       title: math/pow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/prime_factorize.hpp
       title: math/prime_factorize.hpp
   - name: math/group
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/group/sum.hpp
       title: math/group/sum.hpp
   - name: math/homomorphism
@@ -260,7 +260,7 @@ data:
     - icon: ':warning:'
       path: math/homomorphism/add.hpp
       title: math/homomorphism/add.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/homomorphism/affine.hpp
       title: math/homomorphism/affine.hpp
     - icon: ':warning:'
@@ -274,7 +274,7 @@ data:
     - icon: ':warning:'
       path: math/monoid/max_min_sum.hpp
       title: math/monoid/max_min_sum.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/monoid/min.hpp
       title: math/monoid/min.hpp
   - name: math_mod
@@ -308,10 +308,10 @@ data:
     - icon: ':warning:'
       path: matrix/frobenius_form.hpp
       title: matrix/frobenius_form.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: matrix/matrix_F2.hpp
       title: matrix/matrix_F2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: matrix/matrix_field.hpp
       title: matrix/matrix_field.hpp
   - name: modint
@@ -322,7 +322,7 @@ data:
     - icon: ':question:'
       path: modint/mont.hpp
       title: modint/mont.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: modint/mont_arb.hpp
       title: modint/mont_arb.hpp
   - name: others
@@ -338,13 +338,13 @@ data:
       title: others/multisethash.hpp
   - name: random
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: random/gen.hpp
       title: random/gen.hpp
     - icon: ':warning:'
       path: random/graph.hpp
       title: random/graph.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: random/seed.hpp
       title: random/seed.hpp
   - name: segment_tree
@@ -361,10 +361,10 @@ data:
     - icon: ':warning:'
       path: segment_tree/dynamic_seg.hpp
       title: segment_tree/dynamic_seg.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp
     - icon: ':warning:'
@@ -384,7 +384,7 @@ data:
     - icon: ':warning:'
       path: segment_tree/utility/addsum.hpp
       title: segment_tree/utility/addsum.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: segment_tree/utility/affinesum.hpp
       title: segment_tree/utility/affinesum.hpp
     - icon: ':warning:'
@@ -402,7 +402,7 @@ data:
     - icon: ':warning:'
       path: segment_tree/utility/minseg2d.hpp
       title: segment_tree/utility/minseg2d.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: segment_tree/utility/sumseg.hpp
       title: segment_tree/utility/sumseg.hpp
     - icon: ':warning:'
@@ -471,6 +471,26 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_xor.test.cpp
       title: verify/yosupo_convolution/convolution_xor.test.cpp
+  - name: verify/yosupo_ds
+    pages:
+    - icon: ':x:'
+      path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+      title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+      title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+      title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_ds/ds_static_range_sum.test.cpp
+      title: verify/yosupo_ds/ds_static_range_sum.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_ds/ds_static_rmq.test.cpp
+      title: verify/yosupo_ds/ds_static_rmq.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_ds/ds_unionfind.test.cpp
+      title: verify/yosupo_ds/ds_unionfind.test.cpp
   - name: verify/yosupo_fps
     pages:
     - icon: ':heavy_check_mark:'
@@ -488,11 +508,23 @@ data:
   - name: verify/yosupo_graph
     pages:
     - icon: ':heavy_check_mark:'
-      path: verify/yosupo_graph/shortest_path.test.cpp
-      title: verify/yosupo_graph/shortest_path.test.cpp
+      path: verify/yosupo_graph/graph_bcc.test.cpp
+      title: verify/yosupo_graph/graph_bcc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_graph/graph_scc.test.cpp
+      title: verify/yosupo_graph/graph_scc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_graph/graph_shortest_path.test.cpp
+      title: verify/yosupo_graph/graph_shortest_path.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+      title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_diameter.test.cpp
       title: verify/yosupo_graph/tree_diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_graph/tree_lca.test.cpp
+      title: verify/yosupo_graph/tree_lca.test.cpp
   - name: verify/yosupo_linalg
     pages:
     - icon: ':heavy_check_mark:'
@@ -510,24 +542,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_pow.test.cpp
       title: verify/yosupo_linalg/matrix_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_product.test.cpp
       title: verify/yosupo_linalg/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_product_f2.test.cpp
       title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
       title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
       title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - name: verify/yosupo_math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/factrize.test.cpp
       title: verify/yosupo_math/factrize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/kth_root_int.test.cpp
       title: verify/yosupo_math/kth_root_int.test.cpp
     - icon: ':x:'

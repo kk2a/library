@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/graph_bcc.test.cpp
+    title: verify/yosupo_graph/graph_bcc.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/bcc.hpp\"\n\n\n\n#include <functional>\n#include <vector>\n\
@@ -100,8 +103,9 @@ data:
   path: graph/bcc.hpp
   requiredBy: []
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_graph/graph_bcc.test.cpp
 documentation_of: graph/bcc.hpp
 layout: document
 redirect_from:

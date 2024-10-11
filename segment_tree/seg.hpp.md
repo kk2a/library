@@ -11,13 +11,16 @@ data:
   - icon: ':warning:'
     path: segment_tree/utility/minseg.hpp
     title: segment_tree/utility/minseg.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: segment_tree/utility/sumseg.hpp
     title: segment_tree/utility/sumseg.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/seg.hpp\"\n\n\n\n#include <cassert>\n#include\
@@ -123,8 +126,9 @@ data:
   - segment_tree/utility/maxseg.hpp
   - segment_tree/utility/minseg.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
 documentation_of: segment_tree/seg.hpp
 layout: document
 redirect_from:

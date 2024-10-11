@@ -27,6 +27,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_static_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_static_range_sum.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_static_rmq.test.cpp
+    title: verify/yosupo_ds/ds_static_rmq.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
@@ -40,11 +52,23 @@ data:
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_graph/shortest_path.test.cpp
-    title: verify/yosupo_graph/shortest_path.test.cpp
+    path: verify/yosupo_graph/graph_bcc.test.cpp
+    title: verify/yosupo_graph/graph_bcc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/graph_scc.test.cpp
+    title: verify/yosupo_graph/graph_scc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/graph_shortest_path.test.cpp
+    title: verify/yosupo_graph/graph_shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+    title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_lca.test.cpp
+    title: verify/yosupo_graph/tree_lca.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
@@ -60,22 +84,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
   - icon: ':x:'
@@ -237,12 +261,20 @@ data:
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - verify/yosupo_ds/ds_static_rmq.test.cpp
+  - verify/yosupo_ds/ds_static_range_sum.test.cpp
+  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_graph/tree_lca.test.cpp
   - verify/yosupo_graph/tree_diameter.test.cpp
-  - verify/yosupo_graph/shortest_path.test.cpp
+  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_scc.test.cpp
+  - verify/yosupo_graph/graph_shortest_path.test.cpp
 documentation_of: template/template.hpp
 layout: document
 redirect_from:

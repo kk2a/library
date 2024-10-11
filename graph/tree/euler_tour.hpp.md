@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   _extendedRequiredBy: []

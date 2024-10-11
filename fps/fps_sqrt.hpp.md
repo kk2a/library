@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'

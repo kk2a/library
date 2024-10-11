@@ -5,8 +5,8 @@ data:
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/tree/diameter.hpp
-    title: graph/tree/diameter.hpp
+    path: graph/tree/heavy_light_decomposition.hpp
+    title: graph/tree/heavy_light_decomposition.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -17,15 +17,15 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
+    PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
-    - https://judge.yosupo.jp/problem/tree_diameter
-  bundledCode: "#line 1 \"verify/yosupo_graph/tree_diameter.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#line 1 \"graph/graph.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <iostream>\n#include <type_traits>\n#include\
-    \ <utility>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class T> struct\
-    \ WeightedEdge {\n    int from, to, id;\n    T cost;\n\n    WeightedEdge(int to_,\
-    \ T cost_, int from_ = -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n\
+    - https://judge.yosupo.jp/problem/lca
+  bundledCode: "#line 1 \"verify/yosupo_graph/tree_lca.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/lca\" \n\n#line 1 \"graph/graph.hpp\"\n\n\n\
+    \n#include <cassert>\n#include <iostream>\n#include <type_traits>\n#include <utility>\n\
+    #include <vector>\n\nnamespace kk2 {\n\ntemplate <class T> struct WeightedEdge\
+    \ {\n    int from, to, id;\n    T cost;\n\n    WeightedEdge(int to_, T cost_,\
+    \ int from_ = -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n\
     \          id(id_),\n          cost(cost_) {}\n\n    WeightedEdge() : from(-1),\
     \ to(-1), id(-1), cost(0) {}\n\n    operator int() const { return to; }\n\n  \
     \  WeightedEdge rev() const { return WeightedEdge(from, cost, to, id); }\n\n \
@@ -109,33 +109,57 @@ data:
     \ false>;\ntemplate <typename T> using DWAdjList = WeightedAdjacencyList<T, true>;\n\
     \nusing AdjList = UnWeightedAdjacencyList<false, false>;\nusing DAdjList = UnWeightedAdjacencyList<true,\
     \ false>;\nusing FAdjList = UnWeightedAdjacencyList<true, true>;\n\n} // namespace\
-    \ kk2\n\n\n#line 1 \"graph/tree/diameter.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <functional>\n#line 8 \"graph/tree/diameter.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class G> std::pair<int, std::vector<int>> tree_diameter(const G &g) {\n   \
-    \ std::vector<int> dist(g.size(), -1), par(g.size(), -1);\n    auto dfs = [&](auto\
-    \ self, int now) -> void {\n        for (auto &e : g[now]) {\n            if ((int)e\
-    \ == par[now]) continue;\n            par[(int)e] = now;\n            dist[(int)e]\
-    \ = dist[now] + 1;\n            self(self, (int)e);\n        }\n    };\n    dist[0]\
-    \ = 0;\n    dfs(dfs, 0);\n    int u = std::max_element(std::begin(dist), std::end(dist))\
-    \ - std::begin(dist);\n    dist[u] = 0;\n    std::fill(std::begin(par), std::end(par),\
-    \ -1);\n    dfs(dfs, u);\n    int v = std::max_element(std::begin(dist), std::end(dist))\
-    \ - std::begin(dist);\n    std::vector<int> path;\n    for (int now = v; now !=\
-    \ -1; now = par[now]) { path.emplace_back(now); }\n    return std::make_pair(dist[v],\
-    \ path);\n}\n\ntemplate <class WG, typename T = typename WG::value_type>\nstd::pair<T,\
-    \ std::vector<int>> weighted_tree_diameter(const WG &g) {\n    std::vector<T>\
-    \ dist(g.size(), -1);\n    std::vector<int> par(g.size(), -1);\n\n    auto dfs\
-    \ = [&](auto self, int now) -> void {\n        for (auto &e : g[now]) {\n    \
-    \        if ((int)e == par[now]) continue;\n            par[(int)e] = now;\n \
-    \           dist[(int)e] = dist[now] + e.cost;\n            self(self, (int)e);\n\
-    \        }\n    };\n    dist[0] = 0;\n    dfs(dfs, 0);\n    int u = std::max_element(std::begin(dist),\
-    \ std::end(dist)) - std::begin(dist);\n    dist[u] = 0;\n    std::fill(std::begin(par),\
-    \ std::end(par), -1);\n    dfs(dfs, u);\n    int v = std::max_element(std::begin(dist),\
-    \ std::end(dist)) - std::begin(dist);\n    std::vector<int> path;\n    for (int\
-    \ now = v; now != -1; now = par[now]) { path.emplace_back(now); }\n    return\
-    \ std::make_pair(dist[v], path);\n}\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\
-    \n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n\
-    #line 8 \"template/template.hpp\"\n#include <array>\n#include <bitset>\n#line\
-    \ 11 \"template/template.hpp\"\n#include <chrono>\n#include <cmath>\n#include\
+    \ kk2\n\n\n#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n\n#include\
+    \ <functional>\n#line 7 \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <typename G> struct HeavyLightDecomposition {\n    G &g;\n\
+    \    int root, id;\n    std::vector<int> sz, in, out, head, par, dep, edge_idx;\n\
+    \n    HeavyLightDecomposition(G &g_, int root_ = 0)\n        : g(g_),\n      \
+    \    root(root_),\n          id(0),\n          sz(g.size(), 0),\n          in(g.size(),\
+    \ -1),\n          out(g.size(), -1),\n          head(g.size(), root),\n      \
+    \    par(g.size(), root),\n          dep(g.size(), 0),\n          edge_idx(g.size()\
+    \ - 1, -1) {\n        init();\n    }\n\n    int get_edge_idx(int i) const { return\
+    \ edge_idx[i]; }\n\n    std::pair<int, int> get_node_idx(int u) const { return\
+    \ std::make_pair(in[u], out[u]); }\n\n    template <typename F> void path_query(int\
+    \ u, int v, bool is_node_query, const F &f) {\n        int l = lca(u, v);\n  \
+    \      for (auto &[a, b] : ascend(u, l)) {\n            int s = a + 1, t = b;\n\
+    \            s > t ? f(t, s) : f(s, t);\n        }\n        if (is_node_query)\
+    \ f(in[l], in[l] + 1);\n        for (auto &[a, b] : descend(l, v)) {\n       \
+    \     int s = a, t = b + 1;\n            s > t ? f(t, s) : f(s, t);\n        }\n\
+    \    }\n\n    template <typename F>\n    void path_noncommutative_query(int u,\
+    \ int v, bool is_node_query, const F &f) {\n        int l = lca(u, v);\n     \
+    \   for (auto &[a, b] : ascend(u, l)) f(a + 1, b);\n        if (is_node_query)\
+    \ f(in[l], in[l] + 1);\n        for (auto &[a, b] : descend(l, v)) f(a, b + 1);\n\
+    \    }\n\n    template <typename F> void subtree_query(int u, bool is_vertex_query,\
+    \ const F &f) {\n        f(in[u] + (int)!is_vertex_query, out[u]);\n    }\n\n\
+    \    int lca(int u, int v) const {\n        while (head[u] != head[v]) {\n   \
+    \         if (in[u] < in[v]) std::swap(u, v);\n            u = par[head[u]];\n\
+    \        }\n        return dep[u] < dep[v] ? u : v;\n    }\n\n    int dist(int\
+    \ u, int v) const { return dep[u] + dep[v] - 2 * dep[lca(u, v)]; }\n\n  private:\n\
+    \    void init() {\n        auto dfs_sz = [&](auto self, int now) -> void {\n\
+    \            sz[now] = 1;\n            for (auto &e : g[now]) {\n            \
+    \    if ((int)e == par[now]) {\n                    if (g[now].size() >= 2 and\
+    \ e == g[now][0]) std::swap(e, g[now][1]);\n                    else continue;\n\
+    \                }\n                par[(int)e] = now;\n                dep[(int)e]\
+    \ = dep[now] + 1;\n                self(self, (int)e);\n                sz[now]\
+    \ += sz[(int)e];\n                if (sz[(int)e] > sz[(int)g[now][0]]) std::swap(e,\
+    \ g[now][0]);\n            }\n        };\n        dfs_sz(dfs_sz, root);\n\n  \
+    \      auto dfs_hld = [&](auto self, int now) -> void {\n            in[now] =\
+    \ id++;\n            for (auto &e : g[now]) {\n                if ((int)e == par[now])\
+    \ continue;\n                head[(int)e] = ((int)e == (int)g[now][0] ? head[now]\
+    \ : (int)e);\n                edge_idx[e.id] = id;\n                self(self,\
+    \ (int)e);\n            }\n            out[now] = id;\n        };\n        dfs_hld(dfs_hld,\
+    \ root);\n    }\n\n    // [u, v)\n    std::vector<std::pair<int, int>> ascend(int\
+    \ u, int v) const {\n        std::vector<std::pair<int, int>> res;\n        while\
+    \ (head[u] != head[v]) {\n            res.emplace_back(in[u], in[head[u]]);\n\
+    \            u = par[head[u]];\n        }\n        if (u != v) res.emplace_back(in[u],\
+    \ in[v] + 1);\n        return res;\n    }\n\n    // (u, v]\n    std::vector<std::pair<int,\
+    \ int>> descend(int u, int v) const {\n        if (u == v) return {};\n      \
+    \  if (head[u] == head[v]) return {std::make_pair(in[u] + 1, in[v])};\n      \
+    \  auto res = descend(u, par[head[v]]);\n        res.emplace_back(in[head[v]],\
+    \ in[v]);\n        return res;\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"\
+    template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\")\n\n//\
+    \ #include <bits/stdc++.h>\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #line 11 \"template/template.hpp\"\n#include <chrono>\n#include <cmath>\n#include\
     \ <cstring>\n#include <deque>\n#include <fstream>\n#line 17 \"template/template.hpp\"\
     \n#include <iomanip>\n#line 19 \"template/template.hpp\"\n#include <iterator>\n\
     #include <limits>\n#include <map>\n#include <numeric>\n#include <optional>\n#include\
@@ -190,31 +214,33 @@ data:
     \ std::vector<T> &v) {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i]\
     \ << (i + 1 == (int)v.size() ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate\
     \ <class IStream, class T> IStream &operator>>(IStream &is, std::vector<T> &v)\
-    \ {\n    for (auto &x : v) is >> x;\n    return is;\n}\n\n\n#line 6 \"verify/yosupo_graph/tree_diameter.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    kk2::WAdjList<i64>\
-    \ g(n, n - 1, false);\n    g.input(cin);\n    auto [d, path] = kk2::weighted_tree_diameter(g);\n\
-    \    cout << d << \" \" << path.size() << endl;\n    cout << path << endl;\n\n\
-    \    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#include\
-    \ \"../../graph/graph.hpp\"\n#include \"../../graph/tree/diameter.hpp\"\n#include\
-    \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ n;\n    cin >> n;\n    kk2::WAdjList<i64> g(n, n - 1, false);\n    g.input(cin);\n\
-    \    auto [d, path] = kk2::weighted_tree_diameter(g);\n    cout << d << \" \"\
-    \ << path.size() << endl;\n    cout << path << endl;\n\n    return 0;\n}\n"
+    \ {\n    for (auto &x : v) is >> x;\n    return is;\n}\n\n\n#line 6 \"verify/yosupo_graph/tree_lca.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n  \
+    \  kk2::AdjList g(n, false);\n    rep (i, n - 1) {\n        int p;\n        cin\
+    \ >> p;\n        g.add_edge(i + 1, p);\n    }\n    kk2::HeavyLightDecomposition<kk2::AdjList>\
+    \ hld(g);\n    rep (q) {\n        int u, v;\n        cin >> u >> v;\n        cout\
+    \ << hld.lca(u, v) << \"\\n\";\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\" \n\n#include \"../../graph/graph.hpp\"\
+    \n#include \"../../graph/tree/heavy_light_decomposition.hpp\"\n#include \"../../template/template.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n  \
+    \  kk2::AdjList g(n, false);\n    rep (i, n - 1) {\n        int p;\n        cin\
+    \ >> p;\n        g.add_edge(i + 1, p);\n    }\n    kk2::HeavyLightDecomposition<kk2::AdjList>\
+    \ hld(g);\n    rep (q) {\n        int u, v;\n        cin >> u >> v;\n        cout\
+    \ << hld.lca(u, v) << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - graph/graph.hpp
-  - graph/tree/diameter.hpp
+  - graph/tree/heavy_light_decomposition.hpp
   - template/template.hpp
   isVerificationFile: true
-  path: verify/yosupo_graph/tree_diameter.test.cpp
+  path: verify/yosupo_graph/tree_lca.test.cpp
   requiredBy: []
   timestamp: '2024-10-11 16:05:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_graph/tree_diameter.test.cpp
+documentation_of: verify/yosupo_graph/tree_lca.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_graph/tree_diameter.test.cpp
-- /verify/verify/yosupo_graph/tree_diameter.test.cpp.html
-title: verify/yosupo_graph/tree_diameter.test.cpp
+- /verify/verify/yosupo_graph/tree_lca.test.cpp
+- /verify/verify/yosupo_graph/tree_lca.test.cpp.html
+title: verify/yosupo_graph/tree_lca.test.cpp
 ---

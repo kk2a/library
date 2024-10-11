@@ -7,11 +7,23 @@ data:
     title: random/graph.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_graph/shortest_path.test.cpp
-    title: verify/yosupo_graph/shortest_path.test.cpp
+    path: verify/yosupo_graph/graph_bcc.test.cpp
+    title: verify/yosupo_graph/graph_bcc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/graph_scc.test.cpp
+    title: verify/yosupo_graph/graph_scc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/graph_shortest_path.test.cpp
+    title: verify/yosupo_graph/graph_shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+    title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_lca.test.cpp
+    title: verify/yosupo_graph/tree_lca.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -202,8 +214,12 @@ data:
   timestamp: '2024-10-08 15:38:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_graph/tree_lca.test.cpp
   - verify/yosupo_graph/tree_diameter.test.cpp
-  - verify/yosupo_graph/shortest_path.test.cpp
+  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_scc.test.cpp
+  - verify/yosupo_graph/graph_shortest_path.test.cpp
 documentation_of: graph/graph.hpp
 layout: document
 redirect_from:

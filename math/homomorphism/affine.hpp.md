@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/homomorphism/affine.hpp\"\n\n\n\n#include <iostream>\n\
@@ -40,8 +43,9 @@ data:
   requiredBy:
   - segment_tree/utility/affinesum.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
 documentation_of: math/homomorphism/affine.hpp
 layout: document
 redirect_from:

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
   _extendedRequiredBy: []

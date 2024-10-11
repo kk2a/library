@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/homomorphism/affine.hpp
     title: math/homomorphism/affine.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/affinesum.hpp\"\n\n\n\n#line 1 \"math/group/sum.hpp\"\
@@ -148,8 +151,9 @@ data:
   path: segment_tree/utility/affinesum.hpp
   requiredBy: []
   timestamp: '2024-10-06 18:26:21+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
 documentation_of: segment_tree/utility/affinesum.hpp
 layout: document
 redirect_from:

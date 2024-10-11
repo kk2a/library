@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   - icon: ':warning:'

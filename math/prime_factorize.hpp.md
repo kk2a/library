@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
@@ -24,12 +24,12 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/prime_factorize.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -275,7 +275,7 @@ data:
   path: math/prime_factorize.hpp
   requiredBy: []
   timestamp: '2024-10-06 23:46:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
 documentation_of: math/prime_factorize.hpp

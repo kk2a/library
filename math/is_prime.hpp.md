@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'
@@ -14,11 +14,11 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: verify/yosupo_math/primality_test.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/is_prime.hpp\"\n\n\n\n#include <vector>\n\n#line 1\
@@ -182,7 +182,7 @@ data:
   requiredBy:
   - math/prime_factorize.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp

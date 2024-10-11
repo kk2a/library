@@ -26,10 +26,10 @@ data:
   - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':x:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
   - icon: ':x:'

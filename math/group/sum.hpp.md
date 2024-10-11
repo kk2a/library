@@ -5,10 +5,10 @@ data:
   - icon: ':warning:'
     path: segment_tree/utility/addsum.hpp
     title: segment_tree/utility/addsum.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: segment_tree/utility/sumseg.hpp
     title: segment_tree/utility/sumseg.hpp
   - icon: ':warning:'
@@ -17,10 +17,16 @@ data:
   - icon: ':warning:'
     path: segment_tree/utility/updatesum.hpp
     title: segment_tree/utility/updatesum.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/group/sum.hpp\"\n\n\n\n#include <iostream>\n#include\
@@ -78,8 +84,10 @@ data:
   - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/updatesum.hpp
   timestamp: '2024-10-06 18:26:21+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
 documentation_of: math/group/sum.hpp
 layout: document
 redirect_from:

@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_graph/shortest_path.test.cpp
-    title: verify/yosupo_graph/shortest_path.test.cpp
+    path: verify/yosupo_graph/graph_shortest_path.test.cpp
+    title: verify/yosupo_graph/graph_shortest_path.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -54,7 +54,7 @@ data:
   timestamp: '2024-10-08 15:38:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_graph/shortest_path.test.cpp
+  - verify/yosupo_graph/graph_shortest_path.test.cpp
 documentation_of: graph/shortest_path.hpp
 layout: document
 redirect_from:
