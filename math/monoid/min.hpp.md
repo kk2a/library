@@ -45,9 +45,9 @@ data:
     \ { return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
     \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
     \ r.a);\n    return l;\n}\n\ntemplate <class S> constexpr Min<S> MinUnit() {\n\
-    \    constexpr static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace\
-    \ monoid\n\ntemplate <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int\
-    \ n, Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
+    \    static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace monoid\n\n\
+    template <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int n,\
+    \ Args... args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
     }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
     \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
     \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n"
@@ -67,8 +67,8 @@ data:
     \   }\n\n    constexpr bool is_inf() { return inf; }\n};\n\ntemplate <class S>\
     \ constexpr Min<S> MinOp(Min<S> l, Min<S> r) {\n    if (r.inf) return l;\n   \
     \ if (l.inf) return r;\n    l.a = std::min(l.a, r.a);\n    return l;\n}\n\ntemplate\
-    \ <class S> constexpr Min<S> MinUnit() {\n    constexpr static Min<S> e = Min<S>();\n\
-    \    return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
+    \ <class S> constexpr Min<S> MinUnit() {\n    static Min<S> e = Min<S>();\n  \
+    \  return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
     std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
     \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
     \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
@@ -83,7 +83,7 @@ data:
   - segment_tree/utility/addmin.hpp
   - segment_tree/utility/minseg2d.hpp
   - segment_tree/utility/minseg.hpp
-  timestamp: '2024-10-06 18:26:21+09:00'
+  timestamp: '2024-10-11 22:54:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp

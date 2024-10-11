@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_unionfind.test.cpp
+    title: verify/yosupo_ds/ds_unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"UnionFind/UnionFind.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
+  bundledCode: "#line 1 \"unionfind/unionfind.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
     \ kk2 {\n\nstruct UnionFind {\n    std::vector<int> d;\n\n    UnionFind(int n\
     \ = 0) : d(n, -1) {}\n\n    bool same(int x, int y) { return find(x) == find(y);\
     \ }\n\n    bool unite(int x, int y) {\n        x = find(x), y = find(y);\n   \
@@ -28,15 +31,16 @@ data:
     \n#endif // UNIONFIND_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: UnionFind/UnionFind.hpp
+  path: unionfind/unionfind.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: UnionFind/UnionFind.hpp
+  timestamp: '2024-10-11 22:57:20+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_ds/ds_unionfind.test.cpp
+documentation_of: unionfind/unionfind.hpp
 layout: document
 redirect_from:
-- /library/UnionFind/UnionFind.hpp
-- /library/UnionFind/UnionFind.hpp.html
-title: UnionFind/UnionFind.hpp
+- /library/unionfind/unionfind.hpp
+- /library/unionfind/unionfind.hpp.html
+title: unionfind/unionfind.hpp
 ---

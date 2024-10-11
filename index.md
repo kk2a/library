@@ -1,17 +1,6 @@
 ---
 data:
   libraryCategories:
-  - name: UnionFind
-    pages:
-    - icon: ':warning:'
-      path: UnionFind/UnionFind.hpp
-      title: UnionFind/UnionFind.hpp
-    - icon: ':warning:'
-      path: UnionFind/potentialized.hpp
-      title: UnionFind/potentialized.hpp
-    - icon: ':warning:'
-      path: UnionFind/rollback.hpp
-      title: UnionFind/rollback.hpp
   - name: bit
     pages:
     - icon: ':heavy_check_mark:'
@@ -28,10 +17,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/bitxor1.hpp
       title: convolution/bitxor1.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/butterfly.hpp
       title: convolution/butterfly.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/convolution.hpp
       title: convolution/convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -113,7 +102,7 @@ data:
     - icon: ':warning:'
       path: fps/find_root.hpp
       title: fps/find_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/fps.hpp
       title: fps/fps.hpp
     - icon: ':warning:'
@@ -134,7 +123,7 @@ data:
     - icon: ':warning:'
       path: fps/multivariate_fps.hpp
       title: fps/multivariate_fps.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/ntt_friendly.hpp
       title: fps/ntt_friendly.hpp
     - icon: ':warning:'
@@ -149,7 +138,7 @@ data:
     - icon: ':warning:'
       path: fps/product.hpp
       title: fps/product.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/sample_point_shift.hpp
       title: fps/sample_point_shift.hpp
     - icon: ':warning:'
@@ -229,7 +218,7 @@ data:
     - icon: ':warning:'
       path: math/euler_phi.hpp
       title: math/euler_phi.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/floor_sum.hpp
       title: math/floor_sum.hpp
     - icon: ':warning:'
@@ -238,7 +227,7 @@ data:
     - icon: ':warning:'
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/is_prime.hpp
       title: math/is_prime.hpp
     - icon: ':heavy_check_mark:'
@@ -279,10 +268,10 @@ data:
       title: math/monoid/min.hpp
   - name: math_mod
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/comb.hpp
       title: math_mod/comb.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
     - icon: ':heavy_check_mark:'
@@ -294,10 +283,10 @@ data:
     - icon: ':warning:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/pow_mod.hpp
       title: math_mod/pow_mod.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/primitive_root.hpp
       title: math_mod/primitive_root.hpp
   - name: matrix
@@ -322,7 +311,7 @@ data:
     - icon: ':question:'
       path: modint/mont.hpp
       title: modint/mont.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/mont_arb.hpp
       title: modint/mont_arb.hpp
   - name: others
@@ -444,6 +433,17 @@ data:
     - icon: ':question:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
+  - name: unionfind
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: unionfind/potentialized.hpp
+      title: unionfind/potentialized.hpp
+    - icon: ':warning:'
+      path: unionfind/rollback.hpp
+      title: unionfind/rollback.hpp
+    - icon: ':heavy_check_mark:'
+      path: unionfind/unionfind.hpp
+      title: unionfind/unionfind.hpp
   verificationCategories:
   - name: verify/yosupo_convolution
     pages:
@@ -476,7 +476,7 @@ data:
     - icon: ':x:'
       path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
       title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
       title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     - icon: ':x:'
@@ -488,7 +488,7 @@ data:
     - icon: ':x:'
       path: verify/yosupo_ds/ds_static_rmq.test.cpp
       title: verify/yosupo_ds/ds_static_rmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_unionfind.test.cpp
       title: verify/yosupo_ds/ds_unionfind.test.cpp
   - name: verify/yosupo_fps
@@ -562,13 +562,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/kth_root_int.test.cpp
       title: verify/yosupo_math/kth_root_int.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/many_factrials.test.cpp
       title: verify/yosupo_math/many_factrials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/primality_test.test.cpp
       title: verify/yosupo_math/primality_test.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/sum_of_floor_linear.test.cpp
       title: verify/yosupo_math/sum_of_floor_linear.test.cpp
 layout: toppage

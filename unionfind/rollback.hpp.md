@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"UnionFind/rollback.hpp\"\n\n\n\n#include <utility>\n#include\
+  bundledCode: "#line 1 \"unionfind/rollback.hpp\"\n\n\n\n#include <utility>\n#include\
     \ <vector>\n\nnamespace kk2 {\n\nstruct UnionFind_rollback {\n    std::vector<int>\
     \ d;\n    std::vector<std::pair<int, int>> hist;\n    std::vector<int> snaps;\n\
     \n    UnionFind_rollback(int n = 0) : d(n, -1) {}\n\n    bool same(int x, int\
@@ -39,15 +39,15 @@ data:
     \ UNIONFIND_ROLLBACK_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: UnionFind/rollback.hpp
+  path: unionfind/rollback.hpp
   requiredBy: []
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-10-11 22:57:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: UnionFind/rollback.hpp
+documentation_of: unionfind/rollback.hpp
 layout: document
 redirect_from:
-- /library/UnionFind/rollback.hpp
-- /library/UnionFind/rollback.hpp.html
-title: UnionFind/rollback.hpp
+- /library/unionfind/rollback.hpp
+- /library/unionfind/rollback.hpp.html
+title: unionfind/rollback.hpp
 ---

@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+    title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"UnionFind/potentialized.hpp\"\n\n\n\n#include <vector>\n\
+  bundledCode: "#line 1 \"unionfind/potentialized.hpp\"\n\n\n\n#include <vector>\n\
     \nnamespace kk2 {\n\n// require:\n// A is an abelian group\n// A must have operator+\
     \ and operator-\n// A() must return unit element\ntemplate <class A> struct PotentializedUnionfind\
     \ {\n  private:\n    std::vector<int> d;\n    std::vector<A> diff_weight;\n\n\
@@ -58,15 +61,16 @@ data:
     };\n\n} // namespace kk2\n\n#endif // UNIONFIND_POTENTIALIZED_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: UnionFind/potentialized.hpp
+  path: unionfind/potentialized.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: UnionFind/potentialized.hpp
+  timestamp: '2024-10-11 22:57:20+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+documentation_of: unionfind/potentialized.hpp
 layout: document
 redirect_from:
-- /library/UnionFind/potentialized.hpp
-- /library/UnionFind/potentialized.hpp.html
-title: UnionFind/potentialized.hpp
+- /library/unionfind/potentialized.hpp
+- /library/unionfind/potentialized.hpp.html
+title: unionfind/potentialized.hpp
 ---

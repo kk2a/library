@@ -32,13 +32,13 @@ data:
     \ Sum &multiply(const S &rhs) {\n        a *= rhs;\n        return *this;\n  \
     \  }\n};\n\ntemplate <class S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n\
     \    l.a += r.a;\n    l.size += r.size;\n    return l;\n}\n\ntemplate <class S>\
-    \ constexpr Sum<S> SumUnit() {\n    constexpr static Sum<S> e = Sum<S>();\n  \
-    \  return e;\n}\n\ntemplate <class S> constexpr Sum<S> SumInv(Sum<S> x) {\n  \
-    \  x.a = -x.a;\n    x.size = -x.size;\n    return x;\n}\n\n} // namespace group\n\
-    \ntemplate <class S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int\
-    \ n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>>\
-    \ GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
+    \ constexpr Sum<S> SumUnit() {\n    static Sum<S> e = Sum<S>();\n    return e;\n\
+    }\n\ntemplate <class S> constexpr Sum<S> SumInv(Sum<S> x) {\n    x.a = -x.a;\n\
+    \    x.size = -x.size;\n    return x;\n}\n\n} // namespace group\n\ntemplate <class\
+    \ S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int n, Args... args)\
+    \ {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n}\n\n\
+    template <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>> GetVecSum2D(int\
+    \ h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
     \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/seg.hpp\"\
     \n\n\n\n#include <cassert>\n#include <functional>\n#line 7 \"segment_tree/seg.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SegTree\
@@ -116,7 +116,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/sumseg.hpp
   requiredBy: []
-  timestamp: '2024-10-06 18:26:21+09:00'
+  timestamp: '2024-10-11 22:54:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
