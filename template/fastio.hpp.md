@@ -46,9 +46,12 @@ data:
     \ {\n        x = next_u64();\n        return *this;\n    }\n\n    Scanner &operator>>(__int128_t\
     \ &x) {\n        x = next_i128();\n        return *this;\n    }\n\n    Scanner\
     \ &operator>>(__uint128_t &x) {\n        x = next_u128();\n        return *this;\n\
-    \    }\n};\n\n#ifdef KK2\nScanner kin(INPUT_FILE);\n#elif defined(INTERACTIVE)\n\
-    #define kin std::cin\n#else\nScanner kin;\n#endif\n\n} // namespace fastio\n\n\
-    } // namespace kk2\n\n\n"
+    \    }\n\n    Scanner &operator>>(char &x) {\n        x = next_char();\n     \
+    \   return *this;\n    }\n\n    Scanner &operator>>(std::string &x) {\n      \
+    \  x = next_string();\n        return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\n\
+    \n} // namespace fastio\n\n} // namespace kk2\n\n#ifdef INTERACTIVE\n#define kin\
+    \ std::cin\n#elif defined(KK2)\nkk2::fastio::Scanner kin(INPUT_FILE);\n#else\n\
+    kk2::fastio::Scanner kin;\n#endif\n\n\n"
   code: "#ifndef TEMPLATE_FASTIO_HPP\n#define TEMPLATE_FASTIO_HPP 1\n\n#include <cctype>\n\
     #include <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <string>\n\
     \nnamespace kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\n#define\
@@ -87,14 +90,17 @@ data:
     \ {\n        x = next_u64();\n        return *this;\n    }\n\n    Scanner &operator>>(__int128_t\
     \ &x) {\n        x = next_i128();\n        return *this;\n    }\n\n    Scanner\
     \ &operator>>(__uint128_t &x) {\n        x = next_u128();\n        return *this;\n\
-    \    }\n};\n\n#ifdef KK2\nScanner kin(INPUT_FILE);\n#elif defined(INTERACTIVE)\n\
-    #define kin std::cin\n#else\nScanner kin;\n#endif\n\n} // namespace fastio\n\n\
-    } // namespace kk2\n\n#endif // TEMPLATE_FASTIO_HPP\n"
+    \    }\n\n    Scanner &operator>>(char &x) {\n        x = next_char();\n     \
+    \   return *this;\n    }\n\n    Scanner &operator>>(std::string &x) {\n      \
+    \  x = next_string();\n        return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\n\
+    \n} // namespace fastio\n\n} // namespace kk2\n\n#ifdef INTERACTIVE\n#define kin\
+    \ std::cin\n#elif defined(KK2)\nkk2::fastio::Scanner kin(INPUT_FILE);\n#else\n\
+    kk2::fastio::Scanner kin;\n#endif\n\n#endif // TEMPLATE_FASTIO_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: template/fastio.hpp
   requiredBy: []
-  timestamp: '2024-10-11 14:10:48+09:00'
+  timestamp: '2024-10-11 15:00:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/fastio.hpp
