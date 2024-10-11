@@ -10,9 +10,6 @@ data:
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: math/prime_factorize.hpp
@@ -41,7 +38,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 5: #pragma once found in a non-first line\n"
+    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef MATH_MILLER_RABIN_HPP\n#define MATH_MILLER_RABIN_HPP 1\n\n#include\
     \ <vector>\n\n#include \"../math_mod/pow_mod.hpp\"\n#include \"../modint/mont_arb.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace number_theory {\n\ntemplate <class T, class U>\
@@ -74,12 +71,11 @@ data:
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
   - modint/mont_arb.hpp
-  - type_traits/type_traits.hpp
   isVerificationFile: false
   path: math/is_prime.hpp
   requiredBy:
   - math/prime_factorize.hpp
-  timestamp: '2024-10-12 01:10:28+09:00'
+  timestamp: '2024-10-12 01:25:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/primality_test.test.cpp

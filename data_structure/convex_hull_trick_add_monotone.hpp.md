@@ -24,7 +24,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 5: #pragma once found in a non-first line\n"
+    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n#define DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\
     \ 1\n\n#include <cmath>\n#include <deque>\n#include <iostream>\n#include <iterator>\n\
     #include <tuple>\n\n#include \"../math/frac_floor.hpp\"\n#include \"../type_traits/type_traits.hpp\"\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: data_structure/convex_hull_trick_add_monotone.hpp
   requiredBy: []
-  timestamp: '2024-10-12 01:10:28+09:00'
+  timestamp: '2024-10-12 01:25:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/convex_hull_trick_add_monotone.hpp

@@ -45,7 +45,7 @@ data:
     \  [Previous line repeated 2 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 5: #pragma once found in a non-first line\n"
+    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef CONVOLUTION_MULTI_ZERO\n#define CONVOLUTION_MULTI_ZERO 1\n\n#include\
     \ <vector>\n\n#include \"convolution.hpp\"\n\nnamespace kk2 {\n\n// reference:\
     \ https://rushcheyo.blog.uoj.ac/blog/6547\n// \u65E5\u672C\u8A9E:\n// https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
@@ -75,7 +75,7 @@ data:
   path: convolution/multi_convolution_truncated.hpp
   requiredBy:
   - fps/multivariate_fps.hpp
-  timestamp: '2024-10-12 01:10:28+09:00'
+  timestamp: '2024-10-12 01:25:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
