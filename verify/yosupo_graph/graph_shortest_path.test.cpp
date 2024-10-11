@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/shortest_path" 
+#define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 
 #include "../../graph/graph.hpp"
 #include "../../graph/shortest_path.hpp"

@@ -14,6 +14,8 @@ template <class G> struct TwoEdgeConnectedComponents : LowLink<G> {
     std::vector<std::vector<int>> group;
     G forest;
 
+    int size() const { return group.size(); }
+
   private:
     // v is a child of u in DFS tree
     // edge(u, v) is a bridge <=> ord[u] < low[v]

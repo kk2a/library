@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter" 
+#define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
 
 #include "../../graph/graph.hpp"
 #include "../../graph/tree/diameter.hpp"

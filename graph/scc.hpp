@@ -19,7 +19,9 @@ template <class G> struct SCC {
 
     int operator[](int k) const { return scc_id[k]; }
 
-    std::vector<int> same_scc(int u) const { return blng[u]; }
+    const std::vector<int> &same_scc(int u) const { return blng[u]; }
+
+    int size() const { return dag.size(); }
 
   private:
     void init() {
