@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/topological_sort.hpp
     title: graph/topological_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

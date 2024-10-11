@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/aoj/aoj-0560_2.test.cpp
+    title: verify/aoj/aoj-0560_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/prefix_sum_arbitrary.hpp\"\n\n\n\n#include\
@@ -69,8 +72,9 @@ data:
   path: data_structure/prefix_sum_arbitrary.hpp
   requiredBy: []
   timestamp: '2024-09-29 19:18:08+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/aoj/aoj-0560_2.test.cpp
 documentation_of: data_structure/prefix_sum_arbitrary.hpp
 layout: document
 redirect_from:

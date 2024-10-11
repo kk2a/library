@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':heavy_check_mark:'
