@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: math/monoid/max_min_sum.hpp
     title: math/monoid/max_min_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []
@@ -27,18 +27,18 @@ data:
     \ update.a;\n        return os;\n    }\n};\n\ntemplate <class S, class T> constexpr\
     \ T UpdateMap(Update<S> f, T x) {\n    return f.id ? x : x.update(f.a);\n}\n\n\
     template <class S> constexpr Update<S> UpdateComposition(Update<S> l, Update<S>\
-    \ r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class S> constexpr\
-    \ Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
-    \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line\
-    \ 1 \"math/monoid/max_min_sum.hpp\"\n\n\n\n#include <algorithm>\n#line 6 \"math/monoid/max_min_sum.hpp\"\
-    \n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class\
-    \ S> struct MaxMinSum {\n    S sum, max, min;\n    int size;\n    bool is_unit;\n\
-    \n    constexpr MaxMinSum() : sum(0), max(0), min(0), size(0), is_unit(true) {}\n\
-    \n    constexpr MaxMinSum(S a, bool is_unit_ = false)\n        : sum(a),\n   \
-    \       max(a),\n          min(a),\n          size(1),\n          is_unit(is_unit_)\
-    \ {}\n\n    friend std::ostream &operator<<(std::ostream &os, const MaxMinSum\
-    \ &maxminSum) {\n        os << maxminSum.sum << \" \" << maxminSum.max << \" \"\
-    \ << maxminSum.min;\n        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
+    \ r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class S> Update<S>\
+    \ UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n    return\
+    \ e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/max_min_sum.hpp\"\
+    \n\n\n\n#include <algorithm>\n#line 6 \"math/monoid/max_min_sum.hpp\"\n#include\
+    \ <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct\
+    \ MaxMinSum {\n    S sum, max, min;\n    int size;\n    bool is_unit;\n\n    constexpr\
+    \ MaxMinSum() : sum(0), max(0), min(0), size(0), is_unit(true) {}\n\n    constexpr\
+    \ MaxMinSum(S a, bool is_unit_ = false)\n        : sum(a),\n          max(a),\n\
+    \          min(a),\n          size(1),\n          is_unit(is_unit_) {}\n\n   \
+    \ friend std::ostream &operator<<(std::ostream &os, const MaxMinSum &maxminSum)\
+    \ {\n        os << maxminSum.sum << \" \" << maxminSum.max << \" \" << maxminSum.min;\n\
+    \        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
     \ &is, MaxMinSum &maxminSum) {\n        S a;\n        is >> a;\n        maxminSum.sum\
     \ = maxminSum.max = maxminSum.min = a;\n        maxminSum.size = 1;\n        return\
     \ is;\n    }\n\n    constexpr MaxMinSum &operator=(const S &rhs) {\n        sum\
@@ -156,7 +156,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/update_max_min_sum.hpp
   requiredBy: []
-  timestamp: '2024-10-11 23:06:51+09:00'
+  timestamp: '2024-10-11 23:12:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/update_max_min_sum.hpp

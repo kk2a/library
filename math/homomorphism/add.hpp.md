@@ -24,15 +24,15 @@ data:
     \ homomorphism {\n\ntemplate <class S> using Add = S;\n\ntemplate <class S, class\
     \ T> constexpr T AddMap(Add<S> f, T x) {\n    return x.add(f);\n}\n\ntemplate\
     \ <class S> constexpr Add<S> AddComposition(Add<S> l, Add<S> r) {\n    return\
-    \ l + r;\n}\n\ntemplate <class S> constexpr Add<S> AddUnit() {\n    constexpr\
-    \ static Add<S> e = Add<S>();\n    return e;\n}\n\n} // namespace homomorphism\n\
-    \n} // namespace kk2\n\n\n"
+    \ l + r;\n}\n\ntemplate <class S> Add<S> AddUnit() {\n    constexpr static Add<S>\
+    \ e = Add<S>();\n    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace\
+    \ kk2\n\n\n"
   code: "#ifndef MATH_HOMOMORPHISM_ADD_HPP\n#define MATH_HOMOMORPHISM_ADD_HPP 1\n\n\
     namespace kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S> using Add =\
     \ S;\n\ntemplate <class S, class T> constexpr T AddMap(Add<S> f, T x) {\n    return\
     \ x.add(f);\n}\n\ntemplate <class S> constexpr Add<S> AddComposition(Add<S> l,\
-    \ Add<S> r) {\n    return l + r;\n}\n\ntemplate <class S> constexpr Add<S> AddUnit()\
-    \ {\n    constexpr static Add<S> e = Add<S>();\n    return e;\n}\n\n} // namespace\
+    \ Add<S> r) {\n    return l + r;\n}\n\ntemplate <class S> Add<S> AddUnit() {\n\
+    \    constexpr static Add<S> e = Add<S>();\n    return e;\n}\n\n} // namespace\
     \ homomorphism\n\n} // namespace kk2\n\n#endif // MATH_HOMOMORPHISM_ADD_HPP\n"
   dependsOn: []
   isVerificationFile: false
@@ -42,7 +42,7 @@ data:
   - segment_tree/utility/addmax.hpp
   - segment_tree/utility/addmin.hpp
   - segment_tree/utility/add_max_min_sum.hpp
-  timestamp: '2024-09-26 15:55:52+09:00'
+  timestamp: '2024-10-11 23:12:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/homomorphism/add.hpp

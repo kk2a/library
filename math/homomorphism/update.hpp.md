@@ -29,9 +29,9 @@ data:
     \ else os << update.a;\n        return os;\n    }\n};\n\ntemplate <class S, class\
     \ T> constexpr T UpdateMap(Update<S> f, T x) {\n    return f.id ? x : x.update(f.a);\n\
     }\n\ntemplate <class S> constexpr Update<S> UpdateComposition(Update<S> l, Update<S>\
-    \ r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class S> constexpr\
-    \ Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
-    \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n"
+    \ r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class S> Update<S>\
+    \ UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n    return\
+    \ e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_HOMOMORPHISM_UPDATE_HPP\n#define MATH_HOMOMORPHISM_UPDATE_HPP\
     \ 1\n\n#include <iostream>\n\nnamespace kk2 {\n\nnamespace homomorphism {\n\n\
     template <class S> struct Update {\n    S a;\n    bool id;\n\n    constexpr Update()\
@@ -42,7 +42,7 @@ data:
     \ntemplate <class S, class T> constexpr T UpdateMap(Update<S> f, T x) {\n    return\
     \ f.id ? x : x.update(f.a);\n}\n\ntemplate <class S> constexpr Update<S> UpdateComposition(Update<S>\
     \ l, Update<S> r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class\
-    \ S> constexpr Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
+    \ S> Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
     \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n#endif\
     \ // MATH_HOMOMORPHISM_UPDATE_HPP\n"
   dependsOn: []
@@ -53,7 +53,7 @@ data:
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/update_max_min_sum.hpp
   - segment_tree/utility/updatesum.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-11 23:12:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/homomorphism/update.hpp

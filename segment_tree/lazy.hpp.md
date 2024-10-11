@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: segment_tree/utility/addsum.hpp
     title: segment_tree/utility/addsum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
   - icon: ':warning:'
@@ -30,12 +30,12 @@ data:
     path: segment_tree/utility/updatesum.hpp
     title: segment_tree/utility/updatesum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/lazy.hpp\"\n\n\n\n#include <cassert>\n#include\
@@ -200,7 +200,7 @@ data:
   - segment_tree/utility/updatesum.hpp
   - segment_tree/utility/add_max_min_sum.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
 documentation_of: segment_tree/lazy.hpp

@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []
@@ -21,15 +21,15 @@ data:
     \n\n\n\nnamespace kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S> using\
     \ Add = S;\n\ntemplate <class S, class T> constexpr T AddMap(Add<S> f, T x) {\n\
     \    return x.add(f);\n}\n\ntemplate <class S> constexpr Add<S> AddComposition(Add<S>\
-    \ l, Add<S> r) {\n    return l + r;\n}\n\ntemplate <class S> constexpr Add<S>\
-    \ AddUnit() {\n    constexpr static Add<S> e = Add<S>();\n    return e;\n}\n\n\
-    } // namespace homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/max.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <iostream>\n#include <vector>\n\nnamespace\
-    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Max {\n    S a;\n \
-    \   bool minf;\n\n    constexpr Max() : a(S()), minf(true) {}\n\n    constexpr\
-    \ Max(S a_, bool minf_ = false) : a(a_), minf(minf_) {}\n\n    operator S() const\
-    \ { return a; }\n\n    friend std::ostream &operator<<(std::ostream &os, const\
-    \ Max &max) {\n        if (max.minf) os << \"minf\";\n        else os << max.a;\n\
+    \ l, Add<S> r) {\n    return l + r;\n}\n\ntemplate <class S> Add<S> AddUnit()\
+    \ {\n    constexpr static Add<S> e = Add<S>();\n    return e;\n}\n\n} // namespace\
+    \ homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/max.hpp\"\n\n\n\
+    \n#include <algorithm>\n#include <iostream>\n#include <vector>\n\nnamespace kk2\
+    \ {\n\nnamespace monoid {\n\ntemplate <class S> struct Max {\n    S a;\n    bool\
+    \ minf;\n\n    constexpr Max() : a(S()), minf(true) {}\n\n    constexpr Max(S\
+    \ a_, bool minf_ = false) : a(a_), minf(minf_) {}\n\n    operator S() const {\
+    \ return a; }\n\n    friend std::ostream &operator<<(std::ostream &os, const Max\
+    \ &max) {\n        if (max.minf) os << \"minf\";\n        else os << max.a;\n\
     \        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
     \ &is, Max &max) {\n        is >> max.a;\n        max.minf = false;\n        return\
     \ is;\n    }\n\n    constexpr Max &operator=(const S &rhs) {\n        a = rhs;\n\
@@ -140,7 +140,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/addmax.hpp
   requiredBy: []
-  timestamp: '2024-10-11 23:06:51+09:00'
+  timestamp: '2024-10-11 23:12:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmax.hpp

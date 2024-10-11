@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -140,16 +140,16 @@ data:
     \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
     \ &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n\
     \    return is;\n}\n\n\n#line 5 \"verify/yosupo_ds/ds_static_rmq.test.cpp\"\n\
-    using namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n    vc<int>\
-    \ a(n);\n    cin >> a;\n    kk2::StaticRMQ<int> rmq(a);\n\n    rep (q) {\n   \
-    \     int l, r;\n        cin >> l >> r;\n        cout << rmq.prod(l, r) << \"\\\
-    n\";\n    }\n\n    return 0;\n}\n"
+    using namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n    auto\
+    \ a = kk2::GetVecMin<int>(n);\n    cin >> a;\n    kk2::StaticRMQ<int> rmq(a);\n\
+    \n    rep (q) {\n        int l, r;\n        cin >> l >> r;\n        cout << rmq.prod(l,\
+    \ r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include\
     \ \"../../data_structure/static_rmq.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n  \
-    \  vc<int> a(n);\n    cin >> a;\n    kk2::StaticRMQ<int> rmq(a);\n\n    rep (q)\
-    \ {\n        int l, r;\n        cin >> l >> r;\n        cout << rmq.prod(l, r)\
-    \ << \"\\n\";\n    }\n\n    return 0;\n}\n"
+    \  auto a = kk2::GetVecMin<int>(n);\n    cin >> a;\n    kk2::StaticRMQ<int> rmq(a);\n\
+    \n    rep (q) {\n        int l, r;\n        cin >> l >> r;\n        cout << rmq.prod(l,\
+    \ r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - data_structure/static_rmq.hpp
   - math/monoid/min.hpp
@@ -158,8 +158,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_rmq.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 23:06:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-11 23:12:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq.test.cpp
 layout: document

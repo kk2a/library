@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: math/homomorphism/add.hpp
     title: math/homomorphism/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []
@@ -21,13 +21,13 @@ data:
     \n\n\n\nnamespace kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S> using\
     \ Add = S;\n\ntemplate <class S, class T> constexpr T AddMap(Add<S> f, T x) {\n\
     \    return x.add(f);\n}\n\ntemplate <class S> constexpr Add<S> AddComposition(Add<S>\
-    \ l, Add<S> r) {\n    return l + r;\n}\n\ntemplate <class S> constexpr Add<S>\
-    \ AddUnit() {\n    constexpr static Add<S> e = Add<S>();\n    return e;\n}\n\n\
-    } // namespace homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/min.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <iostream>\n#include <vector>\n\nnamespace\
-    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Min {\n    S a;\n \
-    \   bool inf;\n\n    constexpr Min() : a(S()), inf(true) {}\n\n    constexpr Min(S\
-    \ a_, bool inf_ = false) : a(a_), inf(inf_) {}\n\n    operator S() const { return\
+    \ l, Add<S> r) {\n    return l + r;\n}\n\ntemplate <class S> Add<S> AddUnit()\
+    \ {\n    constexpr static Add<S> e = Add<S>();\n    return e;\n}\n\n} // namespace\
+    \ homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/min.hpp\"\n\n\n\
+    \n#include <algorithm>\n#include <iostream>\n#include <vector>\n\nnamespace kk2\
+    \ {\n\nnamespace monoid {\n\ntemplate <class S> struct Min {\n    S a;\n    bool\
+    \ inf;\n\n    constexpr Min() : a(S()), inf(true) {}\n\n    constexpr Min(S a_,\
+    \ bool inf_ = false) : a(a_), inf(inf_) {}\n\n    operator S() const { return\
     \ a; }\n\n    friend std::ostream &operator<<(std::ostream &os, const Min &min)\
     \ {\n        if (min.inf) os << \"inf\";\n        else os << min.a;\n        return\
     \ os;\n    }\n\n    friend std::istream &operator>>(std::istream &is, Min &min)\
@@ -140,7 +140,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/addmin.hpp
   requiredBy: []
-  timestamp: '2024-10-11 23:06:51+09:00'
+  timestamp: '2024-10-11 23:12:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmin.hpp

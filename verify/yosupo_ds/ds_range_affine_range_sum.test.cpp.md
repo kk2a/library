@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/homomorphism/affine.hpp
     title: math/homomorphism/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -145,147 +145,147 @@ data:
     \ os;\n    }\n};\n\ntemplate <class S, class T> constexpr T AffineMap(Affine<S>\
     \ f, T x) {\n    return x.multiply(f.a).add(f.b);\n}\n\ntemplate <class S> constexpr\
     \ Affine<S> AffineComposition(Affine<S> l, Affine<S> r) {\n    l.b = l.a * r.b\
-    \ + l.b;\n    l.a = l.a * r.a;\n    return l;\n}\n\ntemplate <class S> constexpr\
-    \ Affine<S> AffineUnit() {\n    constexpr static Affine<S> e = Affine<S>();\n\
-    \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line\
-    \ 1 \"segment_tree/lazy.hpp\"\n\n\n\n#line 5 \"segment_tree/lazy.hpp\"\n#include\
-    \ <functional>\n#line 7 \"segment_tree/lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
-    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
-    \ (*id)()>\nstruct LazySegTree {\n  public:\n    LazySegTree() : LazySegTree(0)\
-    \ {}\n\n    LazySegTree(int n) : LazySegTree(std::vector<S>(n, e())) {}\n\n  \
-    \  template <class... Args>\n    LazySegTree(int n, Args... args) : LazySegTree(std::vector<S>(n,\
-    \ S(args...))) {}\n\n    LazySegTree(const std::vector<S> &v) : _n(int(v.size()))\
-    \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
-    \ = 1 << log;\n        d = std::vector<S>(2 * size, e());\n        lz = std::vector<F>(size,\
-    \ id());\n        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for\
-    \ (int i = size - 1; i >= 1; i--) { update(i); }\n    }\n\n    using Monoid =\
-    \ S;\n\n    static S Op(S l, S r) { return op(l, r); }\n\n    static S MonoidUnit()\
-    \ { return e(); }\n\n    using Hom = F;\n\n    static S Map(F f, S x) { return\
-    \ mapping(f, x); }\n\n    static F Composition(F l, F r) { return composition(l,\
-    \ r); }\n\n    static F HomUnit() { return id(); }\n\n    void set(int p, S x)\
-    \ {\n        assert(0 <= p && p < _n);\n        p += size;\n        for (int i\
-    \ = log; i >= 1; i--) push(p >> i);\n        d[p] = x;\n        for (int i = 1;\
-    \ i <= log; i++) update(p >> i);\n    }\n\n    template <class... Args> void emplace_set(int\
-    \ p, Args... args) { set(p, S(args...)); }\n\n    S get(int p) {\n        assert(0\
-    \ <= p && p < _n);\n        p += size;\n        for (int i = log; i >= 1; i--)\
-    \ push(p >> i);\n        return d[p];\n    }\n\n    S prod(int l, int r) {\n \
-    \       assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return e();\n\
-    \n        l += size;\n        r += size;\n\n        for (int i = log; i >= 1;\
-    \ i--) {\n            if (((l >> i) << i) != l) push(l >> i);\n            if\
-    \ (((r >> i) << i) != r) push(r >> i);\n        }\n\n        S sml = e(), smr\
-    \ = e();\n        while (l < r) {\n            if (l & 1) sml = op(sml, d[l++]);\n\
-    \            if (r & 1) smr = op(d[--r], smr);\n            l >>= 1;\n       \
-    \     r >>= 1;\n        }\n\n        return op(sml, smr);\n    }\n\n    S all_prod()\
-    \ { return d[1]; }\n\n    void apply(int p, F f) {\n        assert(0 <= p && p\
-    \ < _n);\n        p += size;\n        for (int i = log; i >= 1; i--) push(p >>\
-    \ i);\n        d[p] = mapping(f, d[p]);\n        for (int i = 1; i <= log; i++)\
-    \ update(p >> i);\n    }\n\n    template <class... Args> void emplace_apply_point(int\
-    \ p, Args... args) { apply(p, F(args...)); }\n\n    void apply(int l, int r, F\
-    \ f) {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return;\n\
-    \n        l += size;\n        r += size;\n\n        for (int i = log; i >= 1;\
-    \ i--) {\n            if (((l >> i) << i) != l) push(l >> i);\n            if\
-    \ (((r >> i) << i) != r) push((r - 1) >> i);\n        }\n\n        {\n       \
-    \     int l2 = l, r2 = r;\n            while (l < r) {\n                if (l\
-    \ & 1) all_apply(l++, f);\n                if (r & 1) all_apply(--r, f);\n   \
-    \             l >>= 1;\n                r >>= 1;\n            }\n            l\
-    \ = l2;\n            r = r2;\n        }\n\n        for (int i = 1; i <= log; i++)\
-    \ {\n            if (((l >> i) << i) != l) update(l >> i);\n            if (((r\
-    \ >> i) << i) != r) update((r - 1) >> i);\n        }\n    }\n\n    template <class...\
-    \ Args> void emplace_apply_range(int l, int r, Args... args) {\n        apply(l,\
-    \ r, F(args...));\n    }\n\n    template <bool (*g)(S)> int max_right(int l) {\n\
-    \        return max_right(l, [](S x) { return g(x); });\n    }\n\n    template\
-    \ <class G> int max_right(int l, G g) {\n        assert(0 <= l && l <= _n);\n\
-    \        assert(g(e()));\n        if (l == _n) return _n;\n        l += size;\n\
-    \        for (int i = log; i >= 1; i--) push(l >> i);\n        S sm = e();\n \
-    \       do {\n            while (l % 2 == 0) l >>= 1;\n            if (!g(op(sm,\
-    \ d[l]))) {\n                while (l < size) {\n                    push(l);\n\
-    \                    l = (2 * l);\n                    if (g(op(sm, d[l]))) {\n\
-    \                        sm = op(sm, d[l]);\n                        l++;\n  \
-    \                  }\n                }\n                return l - size;\n  \
-    \          }\n            sm = op(sm, d[l]);\n            l++;\n        } while\
-    \ ((l & -l) != l);\n        return _n;\n    }\n\n    template <bool (*g)(S)> int\
-    \ min_left(int r) {\n        return min_left(r, [](S x) { return g(x); });\n \
-    \   }\n\n    template <class G> int min_left(int r, G g) {\n        assert(0 <=\
-    \ r && r <= _n);\n        assert(g(e()));\n        if (r == 0) return 0;\n   \
-    \     r += size;\n        for (int i = log; i >= 1; i--) push((r - 1) >> i);\n\
-    \        S sm = e();\n        do {\n            r--;\n            while (r > 1\
-    \ && (r % 2)) r >>= 1;\n            if (!g(op(d[r], sm))) {\n                while\
-    \ (r < size) {\n                    push(r);\n                    r = (2 * r +\
-    \ 1);\n                    if (g(op(d[r], sm))) {\n                        sm\
-    \ = op(d[r], sm);\n                        r--;\n                    }\n     \
-    \           }\n                return r + 1 - size;\n            }\n         \
-    \   sm = op(d[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
-    \    }\n\n  private:\n    int _n, size, log;\n    std::vector<S> d;\n    std::vector<F>\
-    \ lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }\n\n   \
-    \ void all_apply(int k, F f) {\n        d[k] = mapping(f, d[k]);\n        if (k\
-    \ < size) lz[k] = composition(f, lz[k]);\n    }\n\n    void push(int k) {\n  \
-    \      all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n      \
-    \  lz[k] = id();\n    }\n};\n\n} // namespace kk2\n\n\n#line 7 \"segment_tree/utility/affinesum.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing AffineSum = LazySegTree<group::Sum<S>,\n\
-    \                              group::SumOp<S>,\n                            \
-    \  group::SumUnit<S>,\n                              homomorphism::Affine<S>,\n\
-    \                              homomorphism::AffineMap<S, group::Sum<S>>,\n  \
-    \                            homomorphism::AffineComposition<S>,\n           \
-    \                   homomorphism::AffineUnit<S>>;\n\n} // namespace kk2\n\n\n\
-    #line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
-    )\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n#include <array>\n#include\
-    \ <bitset>\n#line 11 \"template/template.hpp\"\n#include <chrono>\n#include <cmath>\n\
-    #include <cstring>\n#include <deque>\n#include <fstream>\n#line 17 \"template/template.hpp\"\
-    \n#include <iomanip>\n#line 19 \"template/template.hpp\"\n#include <iterator>\n\
-    #include <limits>\n#include <map>\n#include <numeric>\n#include <optional>\n#include\
-    \ <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n\
-    #include <string>\n#include <tuple>\n#line 32 \"template/template.hpp\"\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#line 36 \"template/template.hpp\"\
-    \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long\
-    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
-    \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing\
-    \ pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-    template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
-    \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-    \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
-    \ pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate <class\
-    \ T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int> = (1 << 30)\
-    \ - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\n\
-    template <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\n\
-    template <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64\
-    \ infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-    template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-    \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-    constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-    \nnamespace kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int first,\
-    \ Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return\
-    \ std::vector<T>(first);\n    } else {\n        return std::vector<decltype(make_vector(sizes...))>(first,\
-    \ make_vector(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
-    \ &v, const U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate\
-    \ <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x)\
-    \ {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate\
-    \ <class T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b\
-    \ ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const\
-    \ S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\nvoid Yes(bool b = 1) {\n \
-    \   std::cout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n \
-    \   std::cout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n\
-    \    std::cout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n\
-    \    std::cout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n\
-    \    std::cout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n\
-    \    std::cout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#define rep1(a) for (i64\
-    \ _ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a);\
-    \ ++i)\n#define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i,\
-    \ a) for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a)\
-    \ - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
-    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
-    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
-    \ all(p) std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n   \
-    \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
-    } iosetup;\n\ntemplate <class OStream, class T, class U>\nOStream &operator<<(OStream\
-    \ &os, const std::pair<T, U> &p) {\n    os << p.first << ' ' << p.second;\n  \
-    \  return os;\n}\n\ntemplate <class IStream, class T, class U> IStream &operator>>(IStream\
-    \ &is, std::pair<T, U> &p) {\n    is >> p.first >> p.second;\n    return is;\n\
-    }\n\ntemplate <class OStream, class T> OStream &operator<<(OStream &os, const\
-    \ std::vector<T> &v) {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i]\
-    \ << (i + 1 == (int)v.size() ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate\
-    \ <class IStream, class T> IStream &operator>>(IStream &is, std::vector<T> &v)\
-    \ {\n    for (auto &x : v) is >> x;\n    return is;\n}\n\n\n#line 6 \"verify/yosupo_ds/ds_range_affine_range_sum.test.cpp\"\
+    \ + l.b;\n    l.a = l.a * r.a;\n    return l;\n}\n\ntemplate <class S> Affine<S>\
+    \ AffineUnit() {\n    constexpr static Affine<S> e = Affine<S>();\n    return\
+    \ e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
+    \n\n\n\n#line 5 \"segment_tree/lazy.hpp\"\n#include <functional>\n#line 7 \"segment_tree/lazy.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
+    \  S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n          F (*composition)(F,\
+    \ F),\n          F (*id)()>\nstruct LazySegTree {\n  public:\n    LazySegTree()\
+    \ : LazySegTree(0) {}\n\n    LazySegTree(int n) : LazySegTree(std::vector<S>(n,\
+    \ e())) {}\n\n    template <class... Args>\n    LazySegTree(int n, Args... args)\
+    \ : LazySegTree(std::vector<S>(n, S(args...))) {}\n\n    LazySegTree(const std::vector<S>\
+    \ &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1ll << log) < _n)\
+    \ log++;\n        size = 1 << log;\n        d = std::vector<S>(2 * size, e());\n\
+    \        lz = std::vector<F>(size, id());\n        for (int i = 0; i < _n; i++)\
+    \ d[size + i] = v[i];\n        for (int i = size - 1; i >= 1; i--) { update(i);\
+    \ }\n    }\n\n    using Monoid = S;\n\n    static S Op(S l, S r) { return op(l,\
+    \ r); }\n\n    static S MonoidUnit() { return e(); }\n\n    using Hom = F;\n\n\
+    \    static S Map(F f, S x) { return mapping(f, x); }\n\n    static F Composition(F\
+    \ l, F r) { return composition(l, r); }\n\n    static F HomUnit() { return id();\
+    \ }\n\n    void set(int p, S x) {\n        assert(0 <= p && p < _n);\n       \
+    \ p += size;\n        for (int i = log; i >= 1; i--) push(p >> i);\n        d[p]\
+    \ = x;\n        for (int i = 1; i <= log; i++) update(p >> i);\n    }\n\n    template\
+    \ <class... Args> void emplace_set(int p, Args... args) { set(p, S(args...));\
+    \ }\n\n    S get(int p) {\n        assert(0 <= p && p < _n);\n        p += size;\n\
+    \        for (int i = log; i >= 1; i--) push(p >> i);\n        return d[p];\n\
+    \    }\n\n    S prod(int l, int r) {\n        assert(0 <= l && l <= r && r <=\
+    \ _n);\n        if (l == r) return e();\n\n        l += size;\n        r += size;\n\
+    \n        for (int i = log; i >= 1; i--) {\n            if (((l >> i) << i) !=\
+    \ l) push(l >> i);\n            if (((r >> i) << i) != r) push(r >> i);\n    \
+    \    }\n\n        S sml = e(), smr = e();\n        while (l < r) {\n         \
+    \   if (l & 1) sml = op(sml, d[l++]);\n            if (r & 1) smr = op(d[--r],\
+    \ smr);\n            l >>= 1;\n            r >>= 1;\n        }\n\n        return\
+    \ op(sml, smr);\n    }\n\n    S all_prod() { return d[1]; }\n\n    void apply(int\
+    \ p, F f) {\n        assert(0 <= p && p < _n);\n        p += size;\n        for\
+    \ (int i = log; i >= 1; i--) push(p >> i);\n        d[p] = mapping(f, d[p]);\n\
+    \        for (int i = 1; i <= log; i++) update(p >> i);\n    }\n\n    template\
+    \ <class... Args> void emplace_apply_point(int p, Args... args) { apply(p, F(args...));\
+    \ }\n\n    void apply(int l, int r, F f) {\n        assert(0 <= l && l <= r &&\
+    \ r <= _n);\n        if (l == r) return;\n\n        l += size;\n        r += size;\n\
+    \n        for (int i = log; i >= 1; i--) {\n            if (((l >> i) << i) !=\
+    \ l) push(l >> i);\n            if (((r >> i) << i) != r) push((r - 1) >> i);\n\
+    \        }\n\n        {\n            int l2 = l, r2 = r;\n            while (l\
+    \ < r) {\n                if (l & 1) all_apply(l++, f);\n                if (r\
+    \ & 1) all_apply(--r, f);\n                l >>= 1;\n                r >>= 1;\n\
+    \            }\n            l = l2;\n            r = r2;\n        }\n\n      \
+    \  for (int i = 1; i <= log; i++) {\n            if (((l >> i) << i) != l) update(l\
+    \ >> i);\n            if (((r >> i) << i) != r) update((r - 1) >> i);\n      \
+    \  }\n    }\n\n    template <class... Args> void emplace_apply_range(int l, int\
+    \ r, Args... args) {\n        apply(l, r, F(args...));\n    }\n\n    template\
+    \ <bool (*g)(S)> int max_right(int l) {\n        return max_right(l, [](S x) {\
+    \ return g(x); });\n    }\n\n    template <class G> int max_right(int l, G g)\
+    \ {\n        assert(0 <= l && l <= _n);\n        assert(g(e()));\n        if (l\
+    \ == _n) return _n;\n        l += size;\n        for (int i = log; i >= 1; i--)\
+    \ push(l >> i);\n        S sm = e();\n        do {\n            while (l % 2 ==\
+    \ 0) l >>= 1;\n            if (!g(op(sm, d[l]))) {\n                while (l <\
+    \ size) {\n                    push(l);\n                    l = (2 * l);\n  \
+    \                  if (g(op(sm, d[l]))) {\n                        sm = op(sm,\
+    \ d[l]);\n                        l++;\n                    }\n              \
+    \  }\n                return l - size;\n            }\n            sm = op(sm,\
+    \ d[l]);\n            l++;\n        } while ((l & -l) != l);\n        return _n;\n\
+    \    }\n\n    template <bool (*g)(S)> int min_left(int r) {\n        return min_left(r,\
+    \ [](S x) { return g(x); });\n    }\n\n    template <class G> int min_left(int\
+    \ r, G g) {\n        assert(0 <= r && r <= _n);\n        assert(g(e()));\n   \
+    \     if (r == 0) return 0;\n        r += size;\n        for (int i = log; i >=\
+    \ 1; i--) push((r - 1) >> i);\n        S sm = e();\n        do {\n           \
+    \ r--;\n            while (r > 1 && (r % 2)) r >>= 1;\n            if (!g(op(d[r],\
+    \ sm))) {\n                while (r < size) {\n                    push(r);\n\
+    \                    r = (2 * r + 1);\n                    if (g(op(d[r], sm)))\
+    \ {\n                        sm = op(d[r], sm);\n                        r--;\n\
+    \                    }\n                }\n                return r + 1 - size;\n\
+    \            }\n            sm = op(d[r], sm);\n        } while ((r & -r) != r);\n\
+    \        return 0;\n    }\n\n  private:\n    int _n, size, log;\n    std::vector<S>\
+    \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
+    \ * k + 1]); }\n\n    void all_apply(int k, F f) {\n        d[k] = mapping(f,\
+    \ d[k]);\n        if (k < size) lz[k] = composition(f, lz[k]);\n    }\n\n    void\
+    \ push(int k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1,\
+    \ lz[k]);\n        lz[k] = id();\n    }\n};\n\n} // namespace kk2\n\n\n#line 7\
+    \ \"segment_tree/utility/affinesum.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ S>\nusing AffineSum = LazySegTree<group::Sum<S>,\n                         \
+    \     group::SumOp<S>,\n                              group::SumUnit<S>,\n   \
+    \                           homomorphism::Affine<S>,\n                       \
+    \       homomorphism::AffineMap<S, group::Sum<S>>,\n                         \
+    \     homomorphism::AffineComposition<S>,\n                              homomorphism::AffineUnit<S>>;\n\
+    \n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC\
+    \ optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include\
+    \ <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #line 17 \"template/template.hpp\"\n#include <iomanip>\n#line 19 \"template/template.hpp\"\
+    \n#include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n\
+    #include <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include\
+    \ <sstream>\n#include <stack>\n#include <string>\n#include <tuple>\n#line 32 \"\
+    template/template.hpp\"\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#line 36 \"template/template.hpp\"\n\nusing u32 = unsigned\
+    \ int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing i128 =\
+    \ __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\n\
+    using pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing pli =\
+    \ std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\ntemplate\
+    \ <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
+    template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using\
+    \ pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate <class T> constexpr T infty =\
+    \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+    \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+    \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+    \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+    \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double infty<double>\
+    \ = infty<i64>;\ntemplate <> constexpr long double infty<long double> = infty<i64>;\n\
+    \nconstexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
+    \ double PI = 3.14159265358979323846;\n\nnamespace kk2 {\n\ntemplate <class T,\
+    \ class... Sizes> auto make_vector(int first, Sizes... sizes) {\n    if constexpr\
+    \ (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n    } else\
+    \ {\n        return std::vector<decltype(make_vector(sizes...))>(first, make_vector(sizes...));\n\
+    \    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T> &v, const\
+    \ U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate <class\
+    \ T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x) {\n  \
+    \  for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate <class\
+    \ T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b,\
+    \ 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
+    \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\nvoid Yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    std::cout\
+    \ << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    std::cout\
+    \ << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    std::cout\
+    \ << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    std::cout\
+    \ << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    std::cout\
+    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#define rep1(a) for (i64 _ = 0; _ < (i64)(a);\
+    \ ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n#define rep3(i,\
+    \ a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a) for (i64 i =\
+    \ (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a) - 1; i >= (i64)(b);\
+    \ --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...) overload3(__VA_ARGS__,\
+    \ rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__, repi3,\
+    \ repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define all(p)\
+    \ std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n\
+    \        std::ios::sync_with_stdio(false);\n    }\n} iosetup;\n\ntemplate <class\
+    \ OStream, class T, class U>\nOStream &operator<<(OStream &os, const std::pair<T,\
+    \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
+    \ <class IStream, class T, class U> IStream &operator>>(IStream &is, std::pair<T,\
+    \ U> &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
+    \ OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &v)\
+    \ {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
+    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
+    \ &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n\
+    \    return is;\n}\n\n\n#line 6 \"verify/yosupo_ds/ds_range_affine_range_sum.test.cpp\"\
     \nusing namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n  \
     \  auto a = kk2::GetVecSum<kk2::mont998>(n);\n    cin >> a;\n    kk2::AffineSum<kk2::mont998>\
     \ seg(a);\n\n    rep (q) {\n        int t;\n        cin >> t;\n        if (t ==\
@@ -315,8 +315,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 23:06:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-11 23:12:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
 layout: document

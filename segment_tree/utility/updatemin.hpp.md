@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: math/homomorphism/update.hpp
     title: math/homomorphism/update.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []
@@ -27,7 +27,7 @@ data:
     \ntemplate <class S, class T> constexpr T UpdateMap(Update<S> f, T x) {\n    return\
     \ f.id ? x : x.update(f.a);\n}\n\ntemplate <class S> constexpr Update<S> UpdateComposition(Update<S>\
     \ l, Update<S> r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class\
-    \ S> constexpr Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
+    \ S> Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
     \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line\
     \ 1 \"math/monoid/min.hpp\"\n\n\n\n#include <algorithm>\n#line 6 \"math/monoid/min.hpp\"\
     \n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class\
@@ -147,7 +147,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatemin.hpp
   requiredBy: []
-  timestamp: '2024-10-11 23:06:51+09:00'
+  timestamp: '2024-10-11 23:12:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemin.hpp
