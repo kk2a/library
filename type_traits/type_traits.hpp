@@ -1,9 +1,7 @@
 #ifndef TYPE_TRAITS_HPP
 #define TYPE_TRAITS_HPP 1
 
-/*
-#pragma once
-*/
+#pragma once // oj-verify
 
 #include <type_traits>
 
