@@ -82,7 +82,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
   - name: fps
@@ -411,7 +411,7 @@ data:
       title: segment_tree/utility/updatesum.hpp
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/aho_corasick.hpp
       title: string/aho_corasick.hpp
     - icon: ':warning:'
@@ -422,10 +422,10 @@ data:
       title: string/suffix_array.hpp
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/fastio.hpp
       title: template/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: type_traits
@@ -598,10 +598,10 @@ data:
       title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - name: verify/yuki
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yuki/yuki-0430.test.cpp
       title: verify/yuki/yuki-0430.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yuki/yuki-0430_2.test.cpp
       title: verify/yuki/yuki-0430_2.test.cpp
 layout: toppage

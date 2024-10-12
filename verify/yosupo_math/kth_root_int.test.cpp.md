@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/kth_root_floor.hpp
     title: math/kth_root_floor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

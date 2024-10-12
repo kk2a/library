@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path.hpp
     title: graph/shortest_path.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
