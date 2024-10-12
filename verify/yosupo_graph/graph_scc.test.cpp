@@ -8,13 +8,13 @@ using namespace std;
 
 int main() {
     int n, m;
-    cin >> n >> m;
+    kin >> n >> m;
     kk2::DAdjList g(n, m, false);
-    g.input(cin);
+    g.input(kin);
     kk2::SCC<kk2::DAdjList> scc(g);
     auto perm = kk2::topological_sort(scc.dag);
-    cout << scc.size() << "\n";
-    for (auto &v : perm) { cout << scc.same_scc(v).size() << " " << scc.same_scc(v) << "\n"; }
+    kout << scc.size() << "\n";
+    for (auto &v : perm) { kout << scc.same_scc(v).size() << " " << scc.same_scc(v) << "\n"; }
 
     return 0;
 }

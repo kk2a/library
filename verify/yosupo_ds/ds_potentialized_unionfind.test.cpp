@@ -7,29 +7,29 @@ using namespace std;
 
 int main() {
     int n, q;
-    cin >> n >> q;
+    kin >> n >> q;
     kk2::PotentializedUnionfind<kk2::mont998> puf(n);
 
     rep (q) {
         int t;
-        cin >> t;
+        kin >> t;
         if (t == 0) {
             int u, v;
             kk2::mont998 w;
-            cin >> u >> v >> w;
+            kin >> u >> v >> w;
             if (puf.same(u, v)) {
-                cout << (puf.diff(u, v) == w) << "\n";
+                kout << (puf.diff(u, v) == w) << "\n";
             } else {
-                cout << "1\n";
+                kout << "1\n";
                 puf.unite(u, v, w);
             }
         }
         if (t == 1) {
             int u, v;
-            cin >> u >> v;
+            kin >> u >> v;
             if (puf.same(u, v)) {
-                cout << puf.diff(u, v) << "\n";
-            } else cout << "-1\n";
+                kout << puf.diff(u, v) << "\n";
+            } else kout << "-1\n";
         }
     }
 

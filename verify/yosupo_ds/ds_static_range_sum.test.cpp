@@ -6,15 +6,15 @@ using namespace std;
 
 int main() {
     int n, q;
-    cin >> n >> q;
+    kin >> n >> q;
     vc<i64> a(n);
-    cin >> a;
+    kin >> a;
     kk2::PrefixSum<i64> ps(a);
 
     rep (q) {
         int l, r;
-        cin >> l >> r;
-        cout << ps.sum(l, r) << "\n";
+        kin >> l >> r;
+        kout << ps.sum(l, r) << "\n";
     }
 
     return 0;

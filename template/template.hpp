@@ -95,30 +95,6 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
     return (a > b ? a = b, 1 : 0);
 }
 
-void Yes(bool b = 1) {
-    std::cout << (b ? "Yes\n" : "No\n");
-}
-
-void No(bool b = 1) {
-    std::cout << (b ? "No\n" : "Yes\n");
-}
-
-void YES(bool b = 1) {
-    std::cout << (b ? "YES\n" : "NO\n");
-}
-
-void NO(bool b = 1) {
-    std::cout << (b ? "NO\n" : "YES\n");
-}
-
-void yes(bool b = 1) {
-    std::cout << (b ? "yes\n" : "no\n");
-}
-
-void no(bool b = 1) {
-    std::cout << (b ? "no\n" : "yes\n");
-}
-
 #define rep1(a) for (i64 _ = 0; _ < (i64)(a); ++_)
 #define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)
 #define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)
@@ -132,12 +108,7 @@ void no(bool b = 1) {
 #define se second
 #define all(p) std::begin(p), std::end(p)
 
-struct IoSetUp {
-    IoSetUp() {
-        std::cin.tie(nullptr);
-        std::ios::sync_with_stdio(false);
-    }
-} iosetup;
+#include "fastio.hpp"
 
 template <class OStream, class T, class U>
 OStream &operator<<(OStream &os, const std::pair<T, U> &p) {
@@ -158,6 +129,30 @@ template <class OStream, class T> OStream &operator<<(OStream &os, const std::ve
 template <class IStream, class T> IStream &operator>>(IStream &is, std::vector<T> &v) {
     for (auto &x : v) is >> x;
     return is;
+}
+
+void Yes(bool b = 1) {
+    kout << (b ? "Yes\n" : "No\n");
+}
+
+void No(bool b = 1) {
+    kout << (b ? "No\n" : "Yes\n");
+}
+
+void YES(bool b = 1) {
+    kout << (b ? "YES\n" : "NO\n");
+}
+
+void NO(bool b = 1) {
+    kout << (b ? "NO\n" : "YES\n");
+}
+
+void yes(bool b = 1) {
+    kout << (b ? "yes\n" : "no\n");
+}
+
+void no(bool b = 1) {
+    kout << (b ? "no\n" : "yes\n");
 }
 
 #endif // TEMPLATE

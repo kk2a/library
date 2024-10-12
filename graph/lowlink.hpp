@@ -24,6 +24,23 @@ template <class G> struct LowLink {
         init();
     }
 
+    std::vector<typename G::edge_type> get_bridges() {
+        std::vector<bool> used(n);
+        std::vector<typename G::edge_type> res;
+        auto dfs = [&](auto self, int now) -> void {
+            used[now] = true;
+            for (auto &&e : g[now]) {
+                if (used[e.to]) continue;
+                if (ord[now] < low[e.to]) res.emplace_back(e);
+                self(self, e.to);
+            }
+        };
+        for (int i = 0; i < n; i++) {
+            if (root[i]) dfs(dfs, i);
+        }
+        return res;
+    }
+
   private:
     void init() {
         int k = 0;

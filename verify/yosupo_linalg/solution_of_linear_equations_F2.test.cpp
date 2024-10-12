@@ -6,14 +6,14 @@ using namespace std;
 
 int main() {
     int n, m;
-    cin >> n >> m;
+    kin >> n >> m;
     kk2::MatrixF2 a(n, m), b(1, n);
-    a.input(cin), b.input(cin);
+    a.input(kin), b.input(kin);
     if (const auto res = a.solve(b.inplace_transpose())) {
-        cout << res->get_h() - 1 << "\n";
-        res->output(cout);
+        kout << res->get_h() - 1 << "\n";
+        res->output(kout);
     } else {
-        cout << -1 << "\n";
+        kout << -1 << "\n";
     }
 
     return 0;

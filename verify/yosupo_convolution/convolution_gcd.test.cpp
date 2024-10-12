@@ -7,12 +7,12 @@ using namespace std;
 
 int main() {
     int n;
-    cin >> n;
+    kin >> n;
     vc<kk2::mont998> a(n + 1), b(n + 1);
-    rep (i, n) cin >> a[i + 1];
-    rep (i, n) cin >> b[i + 1];
+    rep (i, n) kin >> a[i + 1];
+    rep (i, n) kin >> b[i + 1];
     kk2::convolution_gcd(a, b);
-    rep (i, n) cout << a[i + 1] << " \n"[i == n - 1];
+    rep (i, n) kout << a[i + 1] << " \n"[i == n - 1];
 
     return 0;
 }

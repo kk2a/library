@@ -6,11 +6,11 @@ using namespace std;
 
 int main() {
     int t;
-    cin >> t;
+    kin >> t;
     rep (t) {
         i64 n, m, a, b;
-        cin >> n >> m >> a >> b;
-        cout << kk2::sum_of_floor(n, m, a, b) << "\n";
+        kin >> n >> m >> a >> b;
+        kout << kk2::sum_of_floor(n, m, a, b) << "\n";
     }
 
     return 0;

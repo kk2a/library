@@ -6,11 +6,11 @@ using namespace std;
 
 int main() {
     int t;
-    cin >> t;
+    kin >> t;
     rep (t) {
         u64 a, k;
-        cin >> a >> k;
-        cout << kk2::kth_root_floor(a, k) << "\n";
+        kin >> a >> k;
+        kout << kk2::kth_root_floor(a, k) << "\n";
     }
 
     return 0;

@@ -7,13 +7,13 @@ using namespace std;
 
 int main() {
     int n, m;
-    cin >> n >> m;
+    kin >> n >> m;
     kk2::MatrixField<kk2::mont998> a(n, m), b(n, 1);
-    a.input(cin), b.input(cin);
-    if (const auto res = a.solve(b); !res.get_h()) cout << -1 << "\n";
+    a.input(kin), b.input(kin);
+    if (const auto res = a.solve(b); !res.get_h()) kout << -1 << "\n";
     else {
-        cout << res.get_h() - 1 << "\n";
-        res.output(cout);
+        kout << res.get_h() - 1 << "\n";
+        res.output(kout);
     }
 
     return 0;

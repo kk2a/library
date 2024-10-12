@@ -7,10 +7,10 @@ using namespace std;
 
 int main() {
     int n;
-    cin >> n;
+    kin >> n;
     vc<kk2::mont998> a(1 << n), b(1 << n);
-    cin >> a >> b;
-    cout << kk2::convolution_xor(a, b) << endl;
+    kin >> a >> b;
+    kout << kk2::convolution_xor(a, b) << endl;
 
     return 0;
 }

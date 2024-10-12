@@ -6,10 +6,10 @@ using namespace std;
 
 int main() {
     int n;
-    cin >> n;
+    kin >> n;
     kk2::MatrixF2 a(n, n);
-    if (auto const inv = a.input(cin).inv()) inv->output(cout);
-    else cout << -1 << "\n";
+    if (auto const inv = a.input(kin).inv()) inv->output(kout);
+    else kout << -1 << "\n";
 
     return 0;
 }

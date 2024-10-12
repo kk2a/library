@@ -19,13 +19,15 @@ template <class S> struct Min {
 
     operator S() const { return a; }
 
-    friend std::ostream &operator<<(std::ostream &os, const Min &min) {
+    template <class OStream>
+    friend OStream &operator<<(OStream &os, const Min &min) {
         if (min.inf) os << "inf";
         else os << min.a;
         return os;
     }
 
-    friend std::istream &operator>>(std::istream &is, Min &min) {
+    template <class IStream>
+    friend IStream &operator>>(IStream &is, Min &min) {
         is >> min.a;
         min.inf = false;
         return is;

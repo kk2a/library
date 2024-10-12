@@ -6,9 +6,9 @@ using namespace std;
 
 int main() {
     int n;
-    cin >> n;
+    kin >> n;
     kk2::MatrixF2 a(n, n);
-    cout << a.input(cin).det() << "\n";
+    kout << a.input(kin).det() << "\n";
 
     return 0;
 }

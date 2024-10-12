@@ -18,12 +18,14 @@ template <class S> struct Sum {
 
     operator S() const { return a; }
 
-    friend std::ostream &operator<<(std::ostream &os, const Sum &sum) {
+    template <class OStream>
+    friend OStream &operator<<(OStream &os, const Sum &sum) {
         os << sum.a;
         return os;
     }
 
-    friend std::istream &operator>>(std::istream &is, Sum &sum) {
+    template <class IStream>
+    friend IStream &operator>>(IStream &is, Sum &sum) {
         is >> sum.a;
         sum.size = 1;
         return is;

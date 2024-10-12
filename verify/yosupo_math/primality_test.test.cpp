@@ -6,10 +6,10 @@ using namespace std;
 
 int main() {
     int q;
-    cin >> q;
+    kin >> q;
     rep (q) {
         u64 n;
-        cin >> n;
+        kin >> n;
         Yes(kk2::is_prime(n));
     }
 

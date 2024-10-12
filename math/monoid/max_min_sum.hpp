@@ -23,12 +23,14 @@ template <class S> struct MaxMinSum {
           size(1),
           is_unit(is_unit_) {}
 
-    friend std::ostream &operator<<(std::ostream &os, const MaxMinSum &maxminSum) {
+    template <class OStream>
+    friend OStream &operator<<(OStream &os, const MaxMinSum &maxminSum) {
         os << maxminSum.sum << " " << maxminSum.max << " " << maxminSum.min;
         return os;
     }
 
-    friend std::istream &operator>>(std::istream &is, MaxMinSum &maxminSum) {
+    template <class IStream>
+    friend IStream &operator>>(IStream &is, MaxMinSum &maxminSum) {
         S a;
         is >> a;
         maxminSum.sum = maxminSum.max = maxminSum.min = a;

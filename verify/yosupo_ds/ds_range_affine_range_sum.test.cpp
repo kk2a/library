@@ -7,24 +7,24 @@ using namespace std;
 
 int main() {
     int n, q;
-    cin >> n >> q;
+    kin >> n >> q;
     auto a = kk2::GetVecSum<kk2::mont998>(n);
-    cin >> a;
+    kin >> a;
     kk2::AffineSum<kk2::mont998> seg(a);
 
     rep (q) {
         int t;
-        cin >> t;
+        kin >> t;
         if (t == 0) {
             int l, r;
             kk2::mont998 b, c;
-            cin >> l >> r >> b >> c;
+            kin >> l >> r >> b >> c;
             seg.emplace_apply_range(l, r, b, c);
         }
         if (t == 1) {
             int l, r;
-            cin >> l >> r;
-            cout << seg.prod(l, r).a << "\n";
+            kin >> l >> r;
+            kout << seg.prod(l, r).a << "\n";
         }
     }
 

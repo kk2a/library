@@ -17,7 +17,8 @@ template <class S> struct Update {
 
     operator S() const { return a; }
 
-    friend std::ostream &operator<<(std::ostream &os, const Update &update) {
+    template <class OStream>
+    friend OStream &operator<<(OStream &os, const Update &update) {
         if (update.id) os << "id";
         else os << update.a;
         return os;

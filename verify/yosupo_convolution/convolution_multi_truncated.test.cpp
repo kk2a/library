@@ -7,14 +7,14 @@ using namespace std;
 
 int main() {
     int k;
-    cin >> k;
+    kin >> k;
     vc<int> base(k);
-    cin >> base;
+    kin >> base;
     int n = 1;
     rep (i, k) n *= base[i];
     vc<kk2::mont998> a(n), b(n);
-    cin >> a >> b;
-    cout << kk2::multi_convolution_truncated(a, b, base) << endl;
+    kin >> a >> b;
+    kout << kk2::multi_convolution_truncated(a, b, base) << endl;
 
     return 0;
 }

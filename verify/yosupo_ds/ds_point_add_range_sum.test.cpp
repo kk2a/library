@@ -6,23 +6,23 @@ using namespace std;
 
 int main() {
     int n, q;
-    cin >> n >> q;
+    kin >> n >> q;
     auto a = kk2::GetVecSum<i64>(n);
-    cin >> a;
+    kin >> a;
     kk2::SumSeg<i64> seg(a);
 
     rep (q) {
         int t;
-        cin >> t;
+        kin >> t;
         if (t == 0) {
             int p, x;
-            cin >> p >> x;
+            kin >> p >> x;
             seg.emplace_set(p, seg.get(p).a + x);
         }
         if (t == 1) {
             int l, r;
-            cin >> l >> r;
-            cout << seg.prod(l, r).a << "\n";
+            kin >> l >> r;
+            kout << seg.prod(l, r).a << "\n";
         }
     }
 

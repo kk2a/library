@@ -7,12 +7,12 @@ using namespace std;
 
 int main() {
     int n;
-    cin >> n;
+    kin >> n;
     kk2::WAdjList<i64> g(n, n - 1, false);
-    g.input(cin);
+    g.input(kin);
     auto [d, path] = kk2::weighted_tree_diameter(g);
-    cout << d << " " << path.size() << endl;
-    cout << path << endl;
+    kout << d << " " << path.size() << endl;
+    kout << path << endl;
 
     return 0;
 }

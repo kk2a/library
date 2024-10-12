@@ -7,12 +7,12 @@ using namespace std;
 
 int main() {
     int n, m;
-    cin >> n >> m;
+    kin >> n >> m;
     kk2::AdjList g(n, m, false);
-    g.input(cin);
+    g.input(kin);
     kk2::TwoEdgeConnectedComponents<kk2::AdjList> tecc(g);
-    cout << tecc.size() << "\n";
-    for (auto &v : tecc.group) cout << v.size() << " " << v << "\n";
+    kout << tecc.size() << "\n";
+    for (auto &v : tecc.group) kout << v.size() << " " << v << "\n";
 
     return 0;
 }

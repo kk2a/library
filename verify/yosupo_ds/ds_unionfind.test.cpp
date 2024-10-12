@@ -6,21 +6,21 @@ using namespace std;
 
 int main() {
     int n, q;
-    cin >> n >> q;
+    kin >> n >> q;
     kk2::UnionFind uf(n);
 
     rep (q) {
         int t;
-        cin >> t;
+        kin >> t;
         if (t == 0) {
             int u, v;
-            cin >> u >> v;
+            kin >> u >> v;
             uf.unite(u, v);
         }
         if (t == 1) {
             int u, v;
-            cin >> u >> v;
-            cout << uf.same(u, v) << "\n";
+            kin >> u >> v;
+            kout << uf.same(u, v) << "\n";
         }
     }
 

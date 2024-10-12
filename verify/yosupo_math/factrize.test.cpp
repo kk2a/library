@@ -6,17 +6,17 @@ using namespace std;
 
 int main() {
     int q;
-    cin >> q;
+    kin >> q;
     rep (q) {
         i64 a;
-        cin >> a;
+        kin >> a;
         int cnt = 0;
         auto f = kk2::factorize(a);
         for (auto [p, e] : f) cnt += e;
-        cout << cnt << ' ';
+        kout << cnt << ' ';
         for (auto [p, e] : f)
-            rep (e) cout << p << ' ';
-        cout << '\n';
+            rep (e) kout << p << ' ';
+        kout << '\n';
     }
 
     return 0;

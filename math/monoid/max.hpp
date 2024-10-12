@@ -19,13 +19,15 @@ template <class S> struct Max {
 
     operator S() const { return a; }
 
-    friend std::ostream &operator<<(std::ostream &os, const Max &max) {
+    template <class OStream>
+    friend OStream &operator<<(OStream &os, const Max &max) {
         if (max.minf) os << "minf";
         else os << max.a;
         return os;
     }
 
-    friend std::istream &operator>>(std::istream &is, Max &max) {
+    template <class IStream>
+    friend IStream &operator>>(IStream &is, Max &max) {
         is >> max.a;
         max.minf = false;
         return is;

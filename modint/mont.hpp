@@ -146,9 +146,11 @@ template <int p> struct LazyMontgomeryModInt {
 
     constexpr mint inv() const { return pow(p - 2); }
 
-    friend std::ostream &operator<<(std::ostream &os, const mint &x) { return os << x.val(); }
+    template <class OStream> friend OStream &operator<<(OStream &os, const mint &x) {
+        return os << x.val();
+    }
 
-    friend std::istream &operator>>(std::istream &is, mint &x) {
+    template <class IStream> friend IStream &operator>>(IStream &is, mint &x) {
         i64 t;
         is >> t;
         x = mint(t);

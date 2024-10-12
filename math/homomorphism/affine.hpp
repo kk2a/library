@@ -13,7 +13,8 @@ template <class S> struct Affine {
 
     constexpr Affine(S a, S b) : a(a), b(b) {}
 
-    friend std::ostream &operator<<(std::ostream &os, const Affine &aff) {
+    template <class OStream>
+    friend OStream &operator<<(OStream &os, const Affine &aff) {
         os << aff.a << " " << aff.b;
         return os;
     }

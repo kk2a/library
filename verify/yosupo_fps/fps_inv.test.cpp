@@ -9,9 +9,9 @@ using FPS = kk2::FormalPowerSeries<kk2::mont998>;
 
 int main() {
     int n;
-    cin >> n;
+    kin >> n;
     FPS f(n);
-    f.input(cin).inv().output(cout);
+    f.input(kin).inv().output(kout);
 
     return 0;
 }

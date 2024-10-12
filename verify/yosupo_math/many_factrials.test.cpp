@@ -7,11 +7,11 @@ using namespace std;
 
 int main() {
     int t;
-    cin >> t;
+    kin >> t;
     rep (t) {
         int n;
-        cin >> n;
-        cout << kk2::CombLarge<kk2::mont998>::fact(n) << "\n";
+        kin >> n;
+        kout << kk2::CombLarge<kk2::mont998>::fact(n) << "\n";
     }
 
     return 0;

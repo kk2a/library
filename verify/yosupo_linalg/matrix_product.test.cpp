@@ -7,10 +7,10 @@ using namespace std;
 
 int main() {
     int n, m, k;
-    cin >> n >> m >> k;
+    kin >> n >> m >> k;
     kk2::MatrixField<kk2::mont998> a(n, m), b(m, k);
-    a.input(cin), b.input(cin);
-    (a * b).output(cout);
+    a.input(kin), b.input(kin);
+    (a * b).output(kout);
 
     return 0;
 }
