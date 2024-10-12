@@ -11,6 +11,9 @@ data:
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -43,8 +46,8 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\
     \ \"../../math/is_prime.hpp\"\n#include \"../../template/template.hpp\"\nusing\
-    \ namespace std;\n\nint main() {\n    int q;\n    cin >> q;\n    rep (q) {\n \
-    \       u64 n;\n        cin >> n;\n        Yes(kk2::is_prime(n));\n    }\n\n \
+    \ namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep (q) {\n \
+    \       u64 n;\n        kin >> n;\n        Yes(kk2::is_prime(n));\n    }\n\n \
     \   return 0;\n}\n"
   dependsOn:
   - math/is_prime.hpp
@@ -52,10 +55,11 @@ data:
   - type_traits/type_traits.hpp
   - modint/mont_arb.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_math/primality_test.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/primality_test.test.cpp

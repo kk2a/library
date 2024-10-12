@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -15,9 +18,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
@@ -39,18 +42,19 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_matrix\"\n\n#include\
     \ \"../../matrix/matrix_field.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ n;\n    i64 k;\n    cin >> n >> k;\n    kk2::MatrixField<kk2::mont998> a(n,\
-    \ n);\n    a.input(cin).pow(k).output(cout);\n\n    return 0;\n}\n"
+    \ n;\n    i64 k;\n    kin >> n >> k;\n    kk2::MatrixField<kk2::mont998> a(n,\
+    \ n);\n    a.input(kin).pow(k).output(kout);\n\n    return 0;\n}\n"
   dependsOn:
   - matrix/matrix_field.hpp
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-13 03:33:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_pow.test.cpp
 layout: document

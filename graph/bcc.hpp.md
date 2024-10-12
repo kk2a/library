@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/bcc.hpp\"\n\n\n\n#include <functional>\n#include <vector>\n\
@@ -20,9 +20,16 @@ data:
     \  const G &g;\n    std::vector<int> ord, low;\n    std::vector<bool> root, used;\n\
     \n    LowLink(const G &g_)\n        : n(g_.n),\n          m(g_.m),\n         \
     \ g(g_),\n          ord(n, -1),\n          low(n, -1),\n          root(n, false),\n\
-    \          used(m, false) {\n        init();\n    }\n\n  private:\n    void init()\
-    \ {\n        int k = 0;\n        auto dfs = [&](auto self, int u, int ei = -1)\
-    \ -> int {\n            low[u] = ord[u] = k++;\n            for (auto &e : g[u])\
+    \          used(m, false) {\n        init();\n    }\n\n    std::vector<typename\
+    \ G::edge_type> get_bridges() {\n        std::vector<bool> used(n);\n        std::vector<typename\
+    \ G::edge_type> res;\n        auto dfs = [&](auto self, int now) -> void {\n \
+    \           used[now] = true;\n            for (auto &&e : g[now]) {\n       \
+    \         if (used[e.to]) continue;\n                if (ord[now] < low[e.to])\
+    \ res.emplace_back(e);\n                self(self, e.to);\n            }\n   \
+    \     };\n        for (int i = 0; i < n; i++) {\n            if (root[i]) dfs(dfs,\
+    \ i);\n        }\n        return res;\n    }\n\n  private:\n    void init() {\n\
+    \        int k = 0;\n        auto dfs = [&](auto self, int u, int ei = -1) ->\
+    \ int {\n            low[u] = ord[u] = k++;\n            for (auto &e : g[u])\
     \ {\n                if (e.id == ei) continue;\n                if (ord[e.to]\
     \ == -1) {\n                    used[e.id] = true;\n                    low[u]\
     \ = std::min(low[u], self(self, e.to, e.id));\n                }\n           \
@@ -102,8 +109,8 @@ data:
   isVerificationFile: false
   path: graph/bcc.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-13 03:33:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_bcc.test.cpp
 documentation_of: graph/bcc.hpp

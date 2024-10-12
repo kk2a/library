@@ -29,6 +29,9 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -62,8 +65,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
     \n\n#include \"../../convolution/convolution_arb.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    cin >> n >> m;\n    vc<kk2::mont107> a(n), b(m);\n   \
-    \ cin >> a >> b;\n    cout << kk2::convolution_arb(a, b, modu) << endl;\n\n  \
+    \ {\n    int n, m;\n    kin >> n >> m;\n    vc<kk2::mont107> a(n), b(m);\n   \
+    \ kin >> a >> b;\n    kout << kk2::convolution_arb(a, b, modu) << endl;\n\n  \
     \  return 0;\n}\n"
   dependsOn:
   - convolution/convolution_arb.hpp
@@ -77,10 +80,11 @@ data:
   - math_mod/pow_mod.hpp
   - modint/mont.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_arbitrary.test.cpp

@@ -22,11 +22,11 @@ data:
     \ {\n\nnamespace homomorphism {\n\ntemplate <class S> struct Update {\n    S a;\n\
     \    bool id;\n\n    constexpr Update() : a(S()), id(true) {}\n\n    constexpr\
     \ Update(S a_, bool id_ = false) : a(a_), id(id_) {}\n\n    operator S() const\
-    \ { return a; }\n\n    friend std::ostream &operator<<(std::ostream &os, const\
-    \ Update &update) {\n        if (update.id) os << \"id\";\n        else os <<\
-    \ update.a;\n        return os;\n    }\n};\n\ntemplate <class S, class T> constexpr\
-    \ T UpdateMap(Update<S> f, T x) {\n    return f.id ? x : x.update(f.a);\n}\n\n\
-    template <class S> constexpr Update<S> UpdateComposition(Update<S> l, Update<S>\
+    \ { return a; }\n\n    template <class OStream>\n    friend OStream &operator<<(OStream\
+    \ &os, const Update &update) {\n        if (update.id) os << \"id\";\n       \
+    \ else os << update.a;\n        return os;\n    }\n};\n\ntemplate <class S, class\
+    \ T> constexpr T UpdateMap(Update<S> f, T x) {\n    return f.id ? x : x.update(f.a);\n\
+    }\n\ntemplate <class S> constexpr Update<S> UpdateComposition(Update<S> l, Update<S>\
     \ r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class S> Update<S>\
     \ UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n    return\
     \ e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/max_min_sum.hpp\"\
@@ -36,25 +36,26 @@ data:
     \ MaxMinSum() : sum(0), max(0), min(0), size(0), is_unit(true) {}\n\n    constexpr\
     \ MaxMinSum(S a, bool is_unit_ = false)\n        : sum(a),\n          max(a),\n\
     \          min(a),\n          size(1),\n          is_unit(is_unit_) {}\n\n   \
-    \ friend std::ostream &operator<<(std::ostream &os, const MaxMinSum &maxminSum)\
-    \ {\n        os << maxminSum.sum << \" \" << maxminSum.max << \" \" << maxminSum.min;\n\
-    \        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
-    \ &is, MaxMinSum &maxminSum) {\n        S a;\n        is >> a;\n        maxminSum.sum\
-    \ = maxminSum.max = maxminSum.min = a;\n        maxminSum.size = 1;\n        return\
-    \ is;\n    }\n\n    constexpr MaxMinSum &operator=(const S &rhs) {\n        sum\
-    \ = max = min = rhs;\n        size = 1;\n        is_unit = false;\n        return\
-    \ *this;\n    }\n\n    constexpr MaxMinSum &add(const S &rhs) {\n        if (is_unit)\
-    \ return *this;\n        sum += rhs * size;\n        max += rhs;\n        min\
-    \ += rhs;\n        return *this;\n    }\n\n    constexpr MaxMinSum &update(const\
-    \ S &rhs) {\n        sum = rhs * size;\n        max = min = rhs;\n        is_unit\
-    \ = false;\n        return *this;\n    }\n};\n\ntemplate <class S> constexpr MaxMinSum<S>\
-    \ MaxMinSumOp(MaxMinSum<S> l, MaxMinSum<S> r) {\n    if (l.is_unit) return r;\n\
-    \    if (r.is_unit) return l;\n    l.sum += r.sum;\n    l.size += r.size;\n  \
-    \  l.max = std::max(l.max, r.max);\n    l.min = std::min(l.min, r.min);\n    return\
-    \ l;\n}\n\ntemplate <class S> MaxMinSum<S> MaxMinSumUnit() {\n    constexpr static\
-    \ MaxMinSum<S> e = MaxMinSum<S>();\n    return e;\n}\n\n} // namespace monoid\n\
-    \ntemplate <class S, class... Args>\nstd::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int\
-    \ n, Args... args) {\n    return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
+    \ template <class OStream>\n    friend OStream &operator<<(OStream &os, const\
+    \ MaxMinSum &maxminSum) {\n        os << maxminSum.sum << \" \" << maxminSum.max\
+    \ << \" \" << maxminSum.min;\n        return os;\n    }\n\n    template <class\
+    \ IStream>\n    friend IStream &operator>>(IStream &is, MaxMinSum &maxminSum)\
+    \ {\n        S a;\n        is >> a;\n        maxminSum.sum = maxminSum.max = maxminSum.min\
+    \ = a;\n        maxminSum.size = 1;\n        return is;\n    }\n\n    constexpr\
+    \ MaxMinSum &operator=(const S &rhs) {\n        sum = max = min = rhs;\n     \
+    \   size = 1;\n        is_unit = false;\n        return *this;\n    }\n\n    constexpr\
+    \ MaxMinSum &add(const S &rhs) {\n        if (is_unit) return *this;\n       \
+    \ sum += rhs * size;\n        max += rhs;\n        min += rhs;\n        return\
+    \ *this;\n    }\n\n    constexpr MaxMinSum &update(const S &rhs) {\n        sum\
+    \ = rhs * size;\n        max = min = rhs;\n        is_unit = false;\n        return\
+    \ *this;\n    }\n};\n\ntemplate <class S> constexpr MaxMinSum<S> MaxMinSumOp(MaxMinSum<S>\
+    \ l, MaxMinSum<S> r) {\n    if (l.is_unit) return r;\n    if (r.is_unit) return\
+    \ l;\n    l.sum += r.sum;\n    l.size += r.size;\n    l.max = std::max(l.max,\
+    \ r.max);\n    l.min = std::min(l.min, r.min);\n    return l;\n}\n\ntemplate <class\
+    \ S> MaxMinSum<S> MaxMinSumUnit() {\n    constexpr static MaxMinSum<S> e = MaxMinSum<S>();\n\
+    \    return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
+    std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n, Args... args) {\n   \
+    \ return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
     }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::MaxMinSum<S>>>\n\
     GetVecMaxMinSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::MaxMinSum<S>>>(h,\
     \ GetVecMaxMinSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
@@ -156,7 +157,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/update_max_min_sum.hpp
   requiredBy: []
-  timestamp: '2024-10-11 23:12:32+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/update_max_min_sum.hpp

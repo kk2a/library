@@ -1,15 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -43,19 +46,20 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n\
     \n#include \"../../matrix/matrix_F2.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, m, k;\n    cin >> n >> m >>\
-    \ k;\n    kk2::MatrixF2 a(n, m), b(m, k);\n    a.input(cin), b.input(cin);\n \
-    \   (a * b).output(cout);\n\n    return 0;\n}\n"
+    \nusing namespace std;\n\nint main() {\n    int n, m, k;\n    kin >> n >> m >>\
+    \ k;\n    kk2::MatrixF2 a(n, m), b(m, k);\n    a.input(kin), b.input(kin);\n \
+    \   (a * b).output(kout);\n\n    return 0;\n}\n"
   dependsOn:
   - matrix/matrix_F2.hpp
   - data_structure/my_bitset.hpp
   - bit/bitcount.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_product_f2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_product_f2.test.cpp

@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: math/kth_root_floor.hpp
-    title: math/kth_root_floor.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
@@ -17,96 +17,36 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
+    PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
     links:
-    - https://judge.yosupo.jp/problem/kth_root_integer
-  bundledCode: "#line 1 \"verify/yosupo_math/kth_root_int.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/kth_root_integer\"\n\n#line 1 \"math/kth_root_floor.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cmath>\n#include <cstdint>\n#include <functional>\n\
-    \nnamespace kk2 {\n\nuint64_t kth_root_floor_inner(uint64_t a, int k) {\n    if\
-    \ (a <= 1 || k == 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t\
-    \ x) {\n        __uint128_t p = 1, q = x;\n        for (int b = k; b; b >>= 1,\
-    \ q *= q) {\n            if (b & 1) p *= q;\n        }\n        return p <= a;\n\
-    \    };\n    uint64_t x = powl(a, (long double)1.0 / k);\n    while (!check(x))\
-    \ --x;\n    while (check(x + 1)) ++x;\n    return x;\n}\n\n// return floor(a ^\
-    \ {1/k})\ntemplate <class return_type = uint64_t, class T, class U> return_type\
-    \ kth_root_floor(T a, U k) {\n    return (return_type)kth_root_floor_inner((uint64_t)a,\
-    \ (int)k);\n}\n\nuint64_t kth_root_ceil_inner(uint64_t a, int k) {\n    if (a\
-    \ <= 1 || k == 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t\
-    \ x) {\n        __uint128_t p = 1, q = x;\n        for (int b = k; b; b >>= 1,\
-    \ q *= q) {\n            if (b & 1) p *= q;\n        }\n        return p == a;\n\
-    \    };\n    uint64_t x = kth_root_floor_inner(a, k);\n    return check(x) ? x\
-    \ : x + 1;\n}\n\n// return ceil(a ^ {1/k})\ntemplate <class return_type = uint64_t,\
-    \ class T, class U> return_type kth_root_ceil(T a, U k) {\n    return (return_type)kth_root_ceil_inner((uint64_t)a,\
-    \ (int)k);\n}\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\
-    \n\n#pragma GCC optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n\
-    #line 8 \"template/template.hpp\"\n#include <array>\n#include <bitset>\n#include\
-    \ <cassert>\n#include <chrono>\n#line 13 \"template/template.hpp\"\n#include <cstring>\n\
-    #include <deque>\n#include <fstream>\n#line 17 \"template/template.hpp\"\n#include\
-    \ <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n#include\
-    \ <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n#include <random>\n\
-    #include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n#include\
-    \ <tuple>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\nusing u32 = unsigned int;\nusing i64\
-    \ = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing\
-    \ u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-    \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
-    template <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc =\
-    \ std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-    template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using\
-    \ pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate <class T> constexpr T infty =\
-    \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-    \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-    \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-    \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-    \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double infty<double>\
-    \ = infty<i64>;\ntemplate <> constexpr long double infty<long double> = infty<i64>;\n\
-    \nconstexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
-    \ double PI = 3.14159265358979323846;\n\nnamespace kk2 {\n\ntemplate <class T,\
-    \ class... Sizes> auto make_vector(int first, Sizes... sizes) {\n    if constexpr\
-    \ (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n    } else\
-    \ {\n        return std::vector<decltype(make_vector(sizes...))>(first, make_vector(sizes...));\n\
-    \    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T> &v, const\
-    \ U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate <class\
-    \ T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x) {\n  \
-    \  for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate <class\
-    \ T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b,\
-    \ 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
-    \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\n#define rep1(a) for (i64 _ = 0;\
-    \ _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n\
-    #define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a)\
-    \ for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a)\
-    \ - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
-    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
-    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
-    \ all(p) std::begin(p), std::end(p)\n\n#line 1 \"template/fastio.hpp\"\n\n\n\n\
-    #include <cctype>\n#line 6 \"template/fastio.hpp\"\n#include <cstdio>\n#line 9\
-    \ \"template/fastio.hpp\"\n\nnamespace kk2 {\n\nnamespace fastio {\n\n#define\
-    \ INPUT_FILE \"in.txt\"\n#define OUTPUT_FILE \"out.txt\"\n\nstruct Scanner {\n\
-    \  private:\n    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos\
-    \ = INPUT_BUF;\n    static char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n\
-    \    Scanner() : fp(stdin) {}\n\n    Scanner(const char *file) : fp(fopen(file,\
-    \ \"r\")) {}\n\n    ~Scanner() {\n        if (fp != stdin) fclose(fp);\n    }\n\
-    \n    char now() {\n        if (pos == INPUT_BUF) {\n            size_t len =\
-    \ fread(buf, 1, INPUT_BUF, fp);\n            if (len != INPUT_BUF) buf[len] =\
-    \ '\\0';\n            pos = 0;\n        }\n        return buf[pos];\n    }\n\n\
-    \    void skip_space() {\n        while (isspace(now())) ++pos;\n    }\n\n   \
-    \ uint32_t next_u32() {\n        skip_space();\n        uint32_t res = 0;\n  \
-    \      while (isdigit(now())) {\n            res = res * 10 + (now() - '0');\n\
-    \            ++pos;\n        }\n        return res;\n    }\n\n    int32_t next_i32()\
-    \ {\n        skip_space();\n        if (now() == '-') {\n            ++pos;\n\
-    \            return (int32_t)(-next_u32());\n        } else return (int32_t)next_u32();\n\
-    \    }\n\n    uint64_t next_u64() {\n        skip_space();\n        uint64_t res\
-    \ = 0;\n        while (isdigit(now())) {\n            res = res * 10 + (now()\
-    \ - '0');\n            ++pos;\n        }\n        return res;\n    }\n\n    int64_t\
-    \ next_i64() {\n        skip_space();\n        if (now() == '-') {\n         \
-    \   ++pos;\n            return (int64_t)(-next_u64());\n        } else return\
-    \ (int64_t)next_u64();\n    }\n\n    __uint128_t next_u128() {\n        skip_space();\n\
-    \        __uint128_t res = 0;\n        while (isdigit(now())) {\n            res\
-    \ = res * 10 + (now() - '0');\n            ++pos;\n        }\n        return res;\n\
-    \    }\n\n    __int128_t next_i128() {\n        skip_space();\n        if (now()\
-    \ == '-') {\n            ++pos;\n            return (__int128_t)(-next_u128());\n\
+    - https://judge.yosupo.jp/problem/many_aplusb
+  bundledCode: "#line 1 \"verify/yosupo_others/many_a_plus_b.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/many_aplusb\" \n\n#line 1 \"template/fastio.hpp\"\
+    \n\n\n\n#include <cctype>\n#include <cstdint>\n#include <cstdio>\n#include <fstream>\n\
+    #include <string>\n\nnamespace kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE\
+    \ \"in.txt\"\n#define OUTPUT_FILE \"out.txt\"\n\nstruct Scanner {\n  private:\n\
+    \    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos = INPUT_BUF;\n\
+    \    static char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n    Scanner() :\
+    \ fp(stdin) {}\n\n    Scanner(const char *file) : fp(fopen(file, \"r\")) {}\n\n\
+    \    ~Scanner() {\n        if (fp != stdin) fclose(fp);\n    }\n\n    char now()\
+    \ {\n        if (pos == INPUT_BUF) {\n            size_t len = fread(buf, 1, INPUT_BUF,\
+    \ fp);\n            if (len != INPUT_BUF) buf[len] = '\\0';\n            pos =\
+    \ 0;\n        }\n        return buf[pos];\n    }\n\n    void skip_space() {\n\
+    \        while (isspace(now())) ++pos;\n    }\n\n    uint32_t next_u32() {\n \
+    \       skip_space();\n        uint32_t res = 0;\n        while (isdigit(now()))\
+    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
+    \ }\n        return res;\n    }\n\n    int32_t next_i32() {\n        skip_space();\n\
+    \        if (now() == '-') {\n            ++pos;\n            return (int32_t)(-next_u32());\n\
+    \        } else return (int32_t)next_u32();\n    }\n\n    uint64_t next_u64()\
+    \ {\n        skip_space();\n        uint64_t res = 0;\n        while (isdigit(now()))\
+    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
+    \ }\n        return res;\n    }\n\n    int64_t next_i64() {\n        skip_space();\n\
+    \        if (now() == '-') {\n            ++pos;\n            return (int64_t)(-next_u64());\n\
+    \        } else return (int64_t)next_u64();\n    }\n\n    __uint128_t next_u128()\
+    \ {\n        skip_space();\n        __uint128_t res = 0;\n        while (isdigit(now()))\
+    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
+    \ }\n        return res;\n    }\n\n    __int128_t next_i128() {\n        skip_space();\n\
+    \        if (now() == '-') {\n            ++pos;\n            return (__int128_t)(-next_u128());\n\
     \        } else return (__int128_t)next_u128();\n    }\n\n    char next_char()\
     \ {\n        skip_space();\n        auto res = now();\n        ++pos;\n      \
     \  return res;\n    }\n\n    std::string next_string() {\n        skip_space();\n\
@@ -215,43 +155,85 @@ data:
     \    }\n} iosetup;\n#define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\n\
     kk2::fastio::Scanner kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n\
     #define endl '\\n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n\
-    #define endl '\\n'\n#endif\n\n\n#line 112 \"template/template.hpp\"\n\ntemplate\
-    \ <class OStream, class T, class U>\nOStream &operator<<(OStream &os, const std::pair<T,\
-    \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
-    \ <class IStream, class T, class U> IStream &operator>>(IStream &is, std::pair<T,\
-    \ U> &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
-    \ OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &v)\
-    \ {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
-    \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
-    \ &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n\
-    \    return is;\n}\n\nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\n\" : \"\
-    No\\n\");\n}\n\nvoid No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"Yes\\n\"\
-    );\n}\n\nvoid YES(bool b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\
-    \nvoid NO(bool b = 1) {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid\
-    \ yes(bool b = 1) {\n    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool\
-    \ b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n\n#line 5 \"verify/yosupo_math/kth_root_int.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t)\
-    \ {\n        u64 a, k;\n        kin >> a >> k;\n        kout << kk2::kth_root_floor(a,\
-    \ k) << \"\\n\";\n    }\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\n\n\
-    #include \"../../math/kth_root_floor.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t)\
-    \ {\n        u64 a, k;\n        kin >> a >> k;\n        kout << kk2::kth_root_floor(a,\
-    \ k) << \"\\n\";\n    }\n\n    return 0;\n}\n"
+    #define endl '\\n'\n#endif\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma\
+    \ GCC optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <chrono>\n#include\
+    \ <cmath>\n#include <cstring>\n#include <deque>\n#line 16 \"template/template.hpp\"\
+    \n#include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    #include <limits>\n#include <map>\n#include <numeric>\n#include <optional>\n#include\
+    \ <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n\
+    #line 30 \"template/template.hpp\"\n#include <tuple>\n#include <type_traits>\n\
+    #include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include\
+    \ <vector>\n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
+    \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
+    \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
+    \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+    template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
+    \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+    \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
+    \ pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate <class\
+    \ T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int> = (1 << 30)\
+    \ - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\n\
+    template <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\n\
+    template <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64\
+    \ infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
+    template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
+    \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
+    constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
+    \nnamespace kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int first,\
+    \ Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return\
+    \ std::vector<T>(first);\n    } else {\n        return std::vector<decltype(make_vector(sizes...))>(first,\
+    \ make_vector(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
+    \ &v, const U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate\
+    \ <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x)\
+    \ {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate\
+    \ <class T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b\
+    \ ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const\
+    \ S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n#define rep1(a) for (i64 _\
+    \ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n\
+    #define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a)\
+    \ for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a)\
+    \ - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
+    \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
+    \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
+    \ all(p) std::begin(p), std::end(p)\n\n#line 112 \"template/template.hpp\"\n\n\
+    template <class OStream, class T, class U>\nOStream &operator<<(OStream &os, const\
+    \ std::pair<T, U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n\
+    }\n\ntemplate <class IStream, class T, class U> IStream &operator>>(IStream &is,\
+    \ std::pair<T, U> &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\n\
+    template <class OStream, class T> OStream &operator<<(OStream &os, const std::vector<T>\
+    \ &v) {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 ==\
+    \ (int)v.size() ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream,\
+    \ class T> IStream &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto\
+    \ &x : v) is >> x;\n    return is;\n}\n\nvoid Yes(bool b = 1) {\n    kout << (b\
+    \ ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    kout << (b ? \"\
+    No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    kout << (b ? \"YES\\\
+    n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    kout << (b ? \"NO\\n\" : \"\
+    YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    kout << (b ? \"yes\\n\" : \"no\\\
+    n\");\n}\n\nvoid no(bool b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n\
+    }\n\n\n#line 5 \"verify/yosupo_others/many_a_plus_b.test.cpp\"\nusing namespace\
+    \ std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t) {\n        i64\
+    \ a, b;\n        kin >> a >> b;\n        kout << a + b << \"\\n\";\n    }\n\n\
+    \    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\" \n\n#include\
+    \ \"../../template/fastio.hpp\"\n#include \"../../template/template.hpp\"\nusing\
+    \ namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t) {\n \
+    \       i64 a, b;\n        kin >> a >> b;\n        kout << a + b << \"\\n\";\n\
+    \    }\n\n    return 0;\n}\n"
   dependsOn:
-  - math/kth_root_floor.hpp
+  - template/fastio.hpp
   - template/template.hpp
   - template/fastio.hpp
   isVerificationFile: true
-  path: verify/yosupo_math/kth_root_int.test.cpp
+  path: verify/yosupo_others/many_a_plus_b.test.cpp
   requiredBy: []
   timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_math/kth_root_int.test.cpp
+documentation_of: verify/yosupo_others/many_a_plus_b.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_math/kth_root_int.test.cpp
-- /verify/verify/yosupo_math/kth_root_int.test.cpp.html
-title: verify/yosupo_math/kth_root_int.test.cpp
+- /verify/verify/yosupo_others/many_a_plus_b.test.cpp
+- /verify/verify/yosupo_others/many_a_plus_b.test.cpp.html
+title: verify/yosupo_others/many_a_plus_b.test.cpp
 ---

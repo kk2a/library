@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bcc.hpp
     title: graph/bcc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_connected_components.hpp
     title: graph/two_edge_connected_components.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/lowlink.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -26,12 +26,19 @@ data:
     \    std::vector<bool> root, used;\n\n    LowLink(const G &g_)\n        : n(g_.n),\n\
     \          m(g_.m),\n          g(g_),\n          ord(n, -1),\n          low(n,\
     \ -1),\n          root(n, false),\n          used(m, false) {\n        init();\n\
-    \    }\n\n  private:\n    void init() {\n        int k = 0;\n        auto dfs\
-    \ = [&](auto self, int u, int ei = -1) -> int {\n            low[u] = ord[u] =\
-    \ k++;\n            for (auto &e : g[u]) {\n                if (e.id == ei) continue;\n\
-    \                if (ord[e.to] == -1) {\n                    used[e.id] = true;\n\
-    \                    low[u] = std::min(low[u], self(self, e.to, e.id));\n    \
-    \            }\n                // back edge\n                else if (ord[e.to]\
+    \    }\n\n    std::vector<typename G::edge_type> get_bridges() {\n        std::vector<bool>\
+    \ used(n);\n        std::vector<typename G::edge_type> res;\n        auto dfs\
+    \ = [&](auto self, int now) -> void {\n            used[now] = true;\n       \
+    \     for (auto &&e : g[now]) {\n                if (used[e.to]) continue;\n \
+    \               if (ord[now] < low[e.to]) res.emplace_back(e);\n             \
+    \   self(self, e.to);\n            }\n        };\n        for (int i = 0; i <\
+    \ n; i++) {\n            if (root[i]) dfs(dfs, i);\n        }\n        return\
+    \ res;\n    }\n\n  private:\n    void init() {\n        int k = 0;\n        auto\
+    \ dfs = [&](auto self, int u, int ei = -1) -> int {\n            low[u] = ord[u]\
+    \ = k++;\n            for (auto &e : g[u]) {\n                if (e.id == ei)\
+    \ continue;\n                if (ord[e.to] == -1) {\n                    used[e.id]\
+    \ = true;\n                    low[u] = std::min(low[u], self(self, e.to, e.id));\n\
+    \                }\n                // back edge\n                else if (ord[e.to]\
     \ < ord[u]) {\n                    low[u] = std::min(low[u], ord[e.to]);\n   \
     \             }\n            }\n            return low[u];\n        };\n     \
     \   for (int u = 0; u < n; u++)\n            if (ord[u] == -1) {\n           \
@@ -43,7 +50,14 @@ data:
     \ low;\n    std::vector<bool> root, used;\n\n    LowLink(const G &g_)\n      \
     \  : n(g_.n),\n          m(g_.m),\n          g(g_),\n          ord(n, -1),\n \
     \         low(n, -1),\n          root(n, false),\n          used(m, false) {\n\
-    \        init();\n    }\n\n  private:\n    void init() {\n        int k = 0;\n\
+    \        init();\n    }\n\n    std::vector<typename G::edge_type> get_bridges()\
+    \ {\n        std::vector<bool> used(n);\n        std::vector<typename G::edge_type>\
+    \ res;\n        auto dfs = [&](auto self, int now) -> void {\n            used[now]\
+    \ = true;\n            for (auto &&e : g[now]) {\n                if (used[e.to])\
+    \ continue;\n                if (ord[now] < low[e.to]) res.emplace_back(e);\n\
+    \                self(self, e.to);\n            }\n        };\n        for (int\
+    \ i = 0; i < n; i++) {\n            if (root[i]) dfs(dfs, i);\n        }\n   \
+    \     return res;\n    }\n\n  private:\n    void init() {\n        int k = 0;\n\
     \        auto dfs = [&](auto self, int u, int ei = -1) -> int {\n            low[u]\
     \ = ord[u] = k++;\n            for (auto &e : g[u]) {\n                if (e.id\
     \ == ei) continue;\n                if (ord[e.to] == -1) {\n                 \
@@ -60,8 +74,8 @@ data:
   requiredBy:
   - graph/bcc.hpp
   - graph/two_edge_connected_components.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-13 03:33:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp

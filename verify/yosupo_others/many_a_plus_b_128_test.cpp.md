@@ -1,15 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data_structure/sparse_table.hpp
-    title: data_structure/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
-    path: data_structure/static_rmq.hpp
-    title: data_structure/static_rmq.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/monoid/min.hpp
-    title: math/monoid/min.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
@@ -20,83 +14,23 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/staticrmq
     links:
-    - https://judge.yosupo.jp/problem/staticrmq
-  bundledCode: "#line 1 \"verify/yosupo_ds/ds_static_rmq.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#line 1 \"data_structure/static_rmq.hpp\"\
-    \n\n\n\n#line 1 \"math/monoid/min.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate\
-    \ <class S> struct Min {\n    S a;\n    bool inf;\n\n    constexpr Min() : a(S()),\
-    \ inf(true) {}\n\n    constexpr Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
-    \ {}\n\n    operator S() const { return a; }\n\n    template <class OStream>\n\
-    \    friend OStream &operator<<(OStream &os, const Min &min) {\n        if (min.inf)\
-    \ os << \"inf\";\n        else os << min.a;\n        return os;\n    }\n\n   \
-    \ template <class IStream>\n    friend IStream &operator>>(IStream &is, Min &min)\
-    \ {\n        is >> min.a;\n        min.inf = false;\n        return is;\n    }\n\
-    \n    constexpr Min &operator=(const S &rhs) {\n        a = rhs;\n        inf\
-    \ = false;\n        return *this;\n    }\n\n    constexpr Min &add(const S &rhs)\
-    \ {\n        if (inf) return *this;\n        a += rhs;\n        return *this;\n\
-    \    }\n\n    constexpr Min &update(const S &rhs) {\n        a = rhs;\n      \
-    \  inf = false;\n        return *this;\n    }\n\n    constexpr bool is_inf() {\
-    \ return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
-    \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
-    \ r.a);\n    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr\
-    \ static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int n, Args...\
-    \ args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
-    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
-    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"data_structure/sparse_table.hpp\"\
-    \n\n\n\n#include <cassert>\n#line 6 \"data_structure/sparse_table.hpp\"\n\nnamespace\
-    \ kk2 {\n\n// require: op(x, x) = x for all x\ntemplate <class S, S (*op)(S, S),\
-    \ S (*e)()> struct SparseTable {\n    SparseTable() = default;\n\n    SparseTable(const\
-    \ std::vector<S> &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1\
-    \ << log) < _n) log++;\n        table.assign(log + 1, std::vector<S>(_n));\n \
-    \       for (int i = 0; i < _n; i++) table[0][i] = v[i];\n        for (int i =\
-    \ 1; i <= log; i++) {\n            for (int j = 0; j + (1 << i) <= _n; j++) {\n\
-    \                table[i][j] = op(table[i - 1][j], table[i - 1][j + (1 << (i -\
-    \ 1))]);\n            }\n        }\n    }\n\n    using Monoid = S;\n\n    static\
-    \ S Op(S l, S r) { return op(l, r); }\n\n    static S MonoidUnit() { return e();\
-    \ }\n\n    S prod(int l, int r) const {\n        assert(0 <= l && l <= r && r\
-    \ <= _n);\n        if (l == r) return e();\n        int i = 31 ^ __builtin_clz(r\
-    \ - l);\n        return op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n  \
-    \  S get(int i) const {\n        assert(0 <= i && i < _n);\n        return table[0][i];\n\
-    \    }\n\n    // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1]))\
-    \ == true\n    // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false\n    template\
-    \ <bool (*f)(S)> int max_right(int l) const {\n        return max_right(l, [](S\
-    \ x) { return f(x); });\n    }\n\n    template <class F> int max_right(int l,\
-    \ F f) const {\n        assert(0 <= l && l <= _n);\n        assert(f(e()));\n\
-    \        if (l == _n) return _n;\n        int left = l - 1, right = _n;\n    \
-    \    while (right - left > 1) {\n            int mid = (left + right) >> 1;\n\
-    \            if (f(prod(l, mid))) left = mid;\n            else right = mid;\n\
-    \        }\n        return right;\n    }\n\n    // return l s.t.\n    // l = r\
-    \ or f(op(a[l], a[l+1], ..., a[r-1])) == false\n    // l = 0 or f(op(a[l], a[l+1],\
-    \ ..., a[r]))   == true\n    template <bool (*f)(S)> int min_left(int r) const\
-    \ {\n        return min_left(r, [](S x) { return f(x); });\n    }\n\n    template\
-    \ <class F> int min_left(int r, F f) const {\n        assert(0 <= r && r <= _n);\n\
-    \        assert(f(e()));\n        if (r == 0) return 0;\n        int left = -1,\
-    \ right = r;\n        while (right - left > 1) {\n            int mid = (left\
-    \ + right) >> 1;\n            if (f(prod(mid, r))) right = mid;\n            else\
-    \ left = mid;\n        }\n        return right;\n    }\n\n  private:\n    int\
-    \ _n, log;\n    std::vector<std::vector<S>> table;\n};\n\n} // namespace kk2\n\
-    \n\n#line 6 \"data_structure/static_rmq.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ S>\nusing StaticRMQ = SparseTable<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<S>>;\n\
-    \n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC\
-    \ optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#line 8 \"template/template.hpp\"\
-    \n#include <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include\
-    \ <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <iomanip>\n#line 19 \"template/template.hpp\"\n\
-    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
-    #include <stack>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#line\
-    \ 36 \"template/template.hpp\"\n\nusing u32 = unsigned int;\nusing i64 = long\
-    \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
-    \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+    - https://judge.yosupo.jp/problem/many_aplusb_128bit
+  bundledCode: "#line 1 \"verify/yosupo_others/many_a_plus_b_128_test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb_128bit\" \n\n#line 1 \"\
+    template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\")\n\n//\
+    \ #include <bits/stdc++.h>\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <chrono>\n#include <cmath>\n#include <cstring>\n\
+    #include <deque>\n#include <fstream>\n#include <functional>\n#include <iomanip>\n\
+    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
+    #include <numeric>\n#include <optional>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n#include\
+    \ <tuple>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\nusing u32 = unsigned int;\nusing i64\
+    \ = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing\
+    \ u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
     \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
     template <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc =\
     \ std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
@@ -275,33 +209,29 @@ data:
     );\n}\n\nvoid YES(bool b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\
     \nvoid NO(bool b = 1) {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid\
     \ yes(bool b = 1) {\n    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool\
-    \ b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n\n#line 5 \"verify/yosupo_ds/ds_static_rmq.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n  \
-    \  auto a = kk2::GetVecMin<int>(n);\n    kin >> a;\n    kk2::StaticRMQ<int> rmq(a);\n\
-    \n    rep (q) {\n        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l,\
-    \ r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include\
-    \ \"../../data_structure/static_rmq.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n  \
-    \  auto a = kk2::GetVecMin<int>(n);\n    kin >> a;\n    kk2::StaticRMQ<int> rmq(a);\n\
-    \n    rep (q) {\n        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l,\
-    \ r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
+    \ b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n\n#line 5 \"verify/yosupo_others/many_a_plus_b_128_test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t)\
+    \ {\n        i128 a, b;\n        kin >> a >> b;\n        kout << a + b << \"\\\
+    n\";\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb_128bit\" \n\
+    \n#include \"../../template/template.hpp\"\n#include \"../../template/fastio.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t)\
+    \ {\n        i128 a, b;\n        kin >> a >> b;\n        kout << a + b << \"\\\
+    n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
-  - data_structure/static_rmq.hpp
-  - math/monoid/min.hpp
-  - data_structure/sparse_table.hpp
   - template/template.hpp
   - template/fastio.hpp
-  isVerificationFile: true
-  path: verify/yosupo_ds/ds_static_rmq.test.cpp
+  - template/fastio.hpp
+  isVerificationFile: false
+  path: verify/yosupo_others/many_a_plus_b_128_test.cpp
   requiredBy: []
   timestamp: '2024-10-13 03:33:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: verify/yosupo_ds/ds_static_rmq.test.cpp
+documentation_of: verify/yosupo_others/many_a_plus_b_128_test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_ds/ds_static_rmq.test.cpp
-- /verify/verify/yosupo_ds/ds_static_rmq.test.cpp.html
-title: verify/yosupo_ds/ds_static_rmq.test.cpp
+- /library/verify/yosupo_others/many_a_plus_b_128_test.cpp
+- /library/verify/yosupo_others/many_a_plus_b_128_test.cpp.html
+title: verify/yosupo_others/many_a_plus_b_128_test.cpp
 ---

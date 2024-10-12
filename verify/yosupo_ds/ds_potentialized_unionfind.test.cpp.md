@@ -5,6 +5,9 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -39,24 +42,25 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
     \n\n#include \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\
     \n#include \"../../unionfind/potentialized.hpp\"\nusing namespace std;\n\nint\
-    \ main() {\n    int n, q;\n    cin >> n >> q;\n    kk2::PotentializedUnionfind<kk2::mont998>\
-    \ puf(n);\n\n    rep (q) {\n        int t;\n        cin >> t;\n        if (t ==\
-    \ 0) {\n            int u, v;\n            kk2::mont998 w;\n            cin >>\
-    \ u >> v >> w;\n            if (puf.same(u, v)) {\n                cout << (puf.diff(u,\
-    \ v) == w) << \"\\n\";\n            } else {\n                cout << \"1\\n\"\
+    \ main() {\n    int n, q;\n    kin >> n >> q;\n    kk2::PotentializedUnionfind<kk2::mont998>\
+    \ puf(n);\n\n    rep (q) {\n        int t;\n        kin >> t;\n        if (t ==\
+    \ 0) {\n            int u, v;\n            kk2::mont998 w;\n            kin >>\
+    \ u >> v >> w;\n            if (puf.same(u, v)) {\n                kout << (puf.diff(u,\
+    \ v) == w) << \"\\n\";\n            } else {\n                kout << \"1\\n\"\
     ;\n                puf.unite(u, v, w);\n            }\n        }\n        if (t\
-    \ == 1) {\n            int u, v;\n            cin >> u >> v;\n            if (puf.same(u,\
-    \ v)) {\n                cout << puf.diff(u, v) << \"\\n\";\n            } else\
-    \ cout << \"-1\\n\";\n        }\n    }\n\n    return 0;\n}\n"
+    \ == 1) {\n            int u, v;\n            kin >> u >> v;\n            if (puf.same(u,\
+    \ v)) {\n                kout << puf.diff(u, v) << \"\\n\";\n            } else\
+    \ kout << \"-1\\n\";\n        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
+  - template/fastio.hpp
   - unionfind/potentialized.hpp
   isVerificationFile: true
   path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp

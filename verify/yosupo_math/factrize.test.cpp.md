@@ -20,6 +20,9 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -52,11 +55,11 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
     \ \"../../math/prime_factorize.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int q;\n    cin >> q;\n    rep (q)\
-    \ {\n        i64 a;\n        cin >> a;\n        int cnt = 0;\n        auto f =\
-    \ kk2::factorize(a);\n        for (auto [p, e] : f) cnt += e;\n        cout <<\
-    \ cnt << ' ';\n        for (auto [p, e] : f)\n            rep (e) cout << p <<\
-    \ ' ';\n        cout << '\\n';\n    }\n\n    return 0;\n}\n"
+    \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep (q)\
+    \ {\n        i64 a;\n        kin >> a;\n        int cnt = 0;\n        auto f =\
+    \ kk2::factorize(a);\n        for (auto [p, e] : f) cnt += e;\n        kout <<\
+    \ cnt << ' ';\n        for (auto [p, e] : f)\n            rep (e) kout << p <<\
+    \ ' ';\n        kout << '\\n';\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - math/prime_factorize.hpp
   - math_mod/pow_mod.hpp
@@ -66,10 +69,11 @@ data:
   - random/seed.hpp
   - math/is_prime.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_math/factrize.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/factrize.test.cpp

@@ -14,6 +14,9 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -45,9 +48,9 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#include\
     \ \"../../convolution/lcm1.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ n;\n    cin >> n;\n    vc<kk2::mont998> a(n + 1), b(n + 1);\n    rep (i, n)\
-    \ cin >> a[i + 1];\n    rep (i, n) cin >> b[i + 1];\n    kk2::convolution_lcm(a,\
-    \ b);\n    rep (i, n) cout << a[i + 1] << \" \\n\"[i == n - 1];\n\n    return\
+    \ n;\n    kin >> n;\n    vc<kk2::mont998> a(n + 1), b(n + 1);\n    rep (i, n)\
+    \ kin >> a[i + 1];\n    rep (i, n) kin >> b[i + 1];\n    kk2::convolution_lcm(a,\
+    \ b);\n    rep (i, n) kout << a[i + 1] << \" \\n\"[i == n - 1];\n\n    return\
     \ 0;\n}\n"
   dependsOn:
   - convolution/lcm1.hpp
@@ -56,10 +59,11 @@ data:
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_lcm.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_lcm.test.cpp

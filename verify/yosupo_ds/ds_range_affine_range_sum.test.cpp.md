@@ -17,6 +17,9 @@ data:
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -48,12 +51,12 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n\n#include \"../../modint/mont.hpp\"\n#include \"../../segment_tree/utility/affinesum.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, q;\n    cin >> n >> q;\n    auto a = kk2::GetVecSum<kk2::mont998>(n);\n\
-    \    cin >> a;\n    kk2::AffineSum<kk2::mont998> seg(a);\n\n    rep (q) {\n  \
-    \      int t;\n        cin >> t;\n        if (t == 0) {\n            int l, r;\n\
-    \            kk2::mont998 b, c;\n            cin >> l >> r >> b >> c;\n      \
+    \ {\n    int n, q;\n    kin >> n >> q;\n    auto a = kk2::GetVecSum<kk2::mont998>(n);\n\
+    \    kin >> a;\n    kk2::AffineSum<kk2::mont998> seg(a);\n\n    rep (q) {\n  \
+    \      int t;\n        kin >> t;\n        if (t == 0) {\n            int l, r;\n\
+    \            kk2::mont998 b, c;\n            kin >> l >> r >> b >> c;\n      \
     \      seg.emplace_apply_range(l, r, b, c);\n        }\n        if (t == 1) {\n\
-    \            int l, r;\n            cin >> l >> r;\n            cout << seg.prod(l,\
+    \            int l, r;\n            kin >> l >> r;\n            kout << seg.prod(l,\
     \ r).a << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - modint/mont.hpp
@@ -63,10 +66,11 @@ data:
   - math/homomorphism/affine.hpp
   - segment_tree/lazy.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

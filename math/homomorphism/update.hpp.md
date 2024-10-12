@@ -24,27 +24,27 @@ data:
     \nnamespace kk2 {\n\nnamespace homomorphism {\n\ntemplate <class S> struct Update\
     \ {\n    S a;\n    bool id;\n\n    constexpr Update() : a(S()), id(true) {}\n\n\
     \    constexpr Update(S a_, bool id_ = false) : a(a_), id(id_) {}\n\n    operator\
-    \ S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
-    \ &os, const Update &update) {\n        if (update.id) os << \"id\";\n       \
-    \ else os << update.a;\n        return os;\n    }\n};\n\ntemplate <class S, class\
-    \ T> constexpr T UpdateMap(Update<S> f, T x) {\n    return f.id ? x : x.update(f.a);\n\
-    }\n\ntemplate <class S> constexpr Update<S> UpdateComposition(Update<S> l, Update<S>\
-    \ r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class S> Update<S>\
-    \ UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n    return\
-    \ e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n"
+    \ S() const { return a; }\n\n    template <class OStream>\n    friend OStream\
+    \ &operator<<(OStream &os, const Update &update) {\n        if (update.id) os\
+    \ << \"id\";\n        else os << update.a;\n        return os;\n    }\n};\n\n\
+    template <class S, class T> constexpr T UpdateMap(Update<S> f, T x) {\n    return\
+    \ f.id ? x : x.update(f.a);\n}\n\ntemplate <class S> constexpr Update<S> UpdateComposition(Update<S>\
+    \ l, Update<S> r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class\
+    \ S> Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
+    \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_HOMOMORPHISM_UPDATE_HPP\n#define MATH_HOMOMORPHISM_UPDATE_HPP\
     \ 1\n\n#include <iostream>\n\nnamespace kk2 {\n\nnamespace homomorphism {\n\n\
     template <class S> struct Update {\n    S a;\n    bool id;\n\n    constexpr Update()\
     \ : a(S()), id(true) {}\n\n    constexpr Update(S a_, bool id_ = false) : a(a_),\
-    \ id(id_) {}\n\n    operator S() const { return a; }\n\n    friend std::ostream\
-    \ &operator<<(std::ostream &os, const Update &update) {\n        if (update.id)\
-    \ os << \"id\";\n        else os << update.a;\n        return os;\n    }\n};\n\
-    \ntemplate <class S, class T> constexpr T UpdateMap(Update<S> f, T x) {\n    return\
-    \ f.id ? x : x.update(f.a);\n}\n\ntemplate <class S> constexpr Update<S> UpdateComposition(Update<S>\
-    \ l, Update<S> r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class\
-    \ S> Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
-    \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n#endif\
-    \ // MATH_HOMOMORPHISM_UPDATE_HPP\n"
+    \ id(id_) {}\n\n    operator S() const { return a; }\n\n    template <class OStream>\n\
+    \    friend OStream &operator<<(OStream &os, const Update &update) {\n       \
+    \ if (update.id) os << \"id\";\n        else os << update.a;\n        return os;\n\
+    \    }\n};\n\ntemplate <class S, class T> constexpr T UpdateMap(Update<S> f, T\
+    \ x) {\n    return f.id ? x : x.update(f.a);\n}\n\ntemplate <class S> constexpr\
+    \ Update<S> UpdateComposition(Update<S> l, Update<S> r) {\n    if (l.id) return\
+    \ r;\n    return l;\n}\n\ntemplate <class S> Update<S> UpdateUnit() {\n    constexpr\
+    \ static Update<S> e = Update<S>();\n    return e;\n}\n\n} // namespace homomorphism\n\
+    \n} // namespace kk2\n\n#endif // MATH_HOMOMORPHISM_UPDATE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/homomorphism/update.hpp
@@ -53,7 +53,7 @@ data:
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/update_max_min_sum.hpp
   - segment_tree/utility/updatesum.hpp
-  timestamp: '2024-10-11 23:12:32+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/homomorphism/update.hpp

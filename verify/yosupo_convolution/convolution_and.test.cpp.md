@@ -11,6 +11,9 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -42,8 +45,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
     \n\n#include \"../../convolution/bitand1.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n;\n    cin >> n;\n    vc<kk2::mont998> a(1 << n), b(1 << n);\n \
-    \   cin >> a >> b;\n    cout << kk2::convolution_and(a, b) << endl;\n\n    return\
+    \ {\n    int n;\n    kin >> n;\n    vc<kk2::mont998> a(1 << n), b(1 << n);\n \
+    \   kin >> a >> b;\n    kout << kk2::convolution_and(a, b) << endl;\n\n    return\
     \ 0;\n}\n"
   dependsOn:
   - convolution/bitand1.hpp
@@ -51,10 +54,11 @@ data:
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_and.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_and.test.cpp

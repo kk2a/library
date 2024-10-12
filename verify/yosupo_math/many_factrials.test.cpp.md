@@ -32,6 +32,9 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -65,8 +68,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_factorials\"\n\n#include\
     \ \"../../math_mod/comb_large.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ t;\n    cin >> t;\n    rep (t) {\n        int n;\n        cin >> n;\n      \
-    \  cout << kk2::CombLarge<kk2::mont998>::fact(n) << \"\\n\";\n    }\n\n    return\
+    \ t;\n    kin >> t;\n    rep (t) {\n        int n;\n        kin >> n;\n      \
+    \  kout << kk2::CombLarge<kk2::mont998>::fact(n) << \"\\n\";\n    }\n\n    return\
     \ 0;\n}\n"
   dependsOn:
   - math_mod/comb_large.hpp
@@ -81,10 +84,11 @@ data:
   - math_mod/comb.hpp
   - modint/mont.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_math/many_factrials.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/many_factrials.test.cpp

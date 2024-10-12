@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
@@ -20,7 +20,7 @@ data:
   - icon: ':warning:'
     path: data_structure/convex_hull_trick_add_monotone.hpp
     title: data_structure/convex_hull_trick_add_monotone.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   - icon: ':warning:'
@@ -62,7 +62,7 @@ data:
   - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
   - icon: ':warning:'
@@ -120,19 +120,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':x:'

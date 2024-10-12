@@ -20,6 +20,9 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -53,9 +56,9 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
     \n\n#include \"../../convolution/multi_convolution_truncated.hpp\"\n#include \"\
     ../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\nusing namespace\
-    \ std;\n\nint main() {\n    int k;\n    cin >> k;\n    vc<int> base(k);\n    cin\
+    \ std;\n\nint main() {\n    int k;\n    kin >> k;\n    vc<int> base(k);\n    kin\
     \ >> base;\n    int n = 1;\n    rep (i, k) n *= base[i];\n    vc<kk2::mont998>\
-    \ a(n), b(n);\n    cin >> a >> b;\n    cout << kk2::multi_convolution_truncated(a,\
+    \ a(n), b(n);\n    kin >> a >> b;\n    kout << kk2::multi_convolution_truncated(a,\
     \ b, base) << endl;\n\n    return 0;\n}\n"
   dependsOn:
   - convolution/multi_convolution_truncated.hpp
@@ -66,10 +69,11 @@ data:
   - type_traits/type_traits.hpp
   - modint/mont.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_multi_truncated.test.cpp

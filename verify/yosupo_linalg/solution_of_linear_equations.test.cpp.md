@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -39,19 +42,20 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
     \n\n#include \"../../matrix/matrix_field.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    cin >> n >> m;\n    kk2::MatrixField<kk2::mont998> a(n,\
-    \ m), b(n, 1);\n    a.input(cin), b.input(cin);\n    if (const auto res = a.solve(b);\
-    \ !res.get_h()) cout << -1 << \"\\n\";\n    else {\n        cout << res.get_h()\
-    \ - 1 << \"\\n\";\n        res.output(cout);\n    }\n\n    return 0;\n}\n"
+    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::MatrixField<kk2::mont998> a(n,\
+    \ m), b(n, 1);\n    a.input(kin), b.input(kin);\n    if (const auto res = a.solve(b);\
+    \ !res.get_h()) kout << -1 << \"\\n\";\n    else {\n        kout << res.get_h()\
+    \ - 1 << \"\\n\";\n        res.output(kout);\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - matrix/matrix_field.hpp
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/solution_of_linear_equations.test.cpp

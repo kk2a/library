@@ -1,15 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -18,9 +21,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix_mod_2
@@ -43,20 +46,21 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix_mod_2\"\n\
     \n#include \"../../matrix/matrix_F2.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    kk2::MatrixF2\
-    \ a(n, n);\n    if (auto const inv = a.input(cin).inv()) inv->output(cout);\n\
-    \    else cout << -1 << \"\\n\";\n\n    return 0;\n}\n"
+    \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    kk2::MatrixF2\
+    \ a(n, n);\n    if (auto const inv = a.input(kin).inv()) inv->output(kout);\n\
+    \    else kout << -1 << \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - matrix/matrix_F2.hpp
   - data_structure/my_bitset.hpp
   - bit/bitcount.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-13 03:33:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_inv_f2.test.cpp
 layout: document

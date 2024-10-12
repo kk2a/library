@@ -79,19 +79,20 @@ data:
     \ * = nullptr>\n    friend mint operator/(T lhs, const mint &rhs) {\n        return\
     \ mint(lhs) /= rhs;\n    }\n\n    friend bool operator==(const mint &lhs, const\
     \ mint &rhs) { return lhs._v == rhs._v; }\n\n    friend bool operator!=(const\
-    \ mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\n    friend std::ostream\
-    \ &operator<<(std::ostream &os, const mint &mint_) {\n        os << mint_._v;\n\
-    \        return os;\n    }\n\n    friend std::istream &operator>>(std::istream\
-    \ &is, mint &mint_) {\n        long long x;\n        is >> x;\n        mint_ =\
-    \ mint(x);\n        return is;\n    }\n\n  private:\n    unsigned int _v;\n};\n\
-    \ntemplate <int p> int ModInt<p>::Mod = 998244353;\n\n\nusing mint998 = ModInt<998244353>;\n\
-    using mint107 = ModInt<1000000007>;\n\n} // namespace kk2\n\n#endif // MODINT_HPP\n"
+    \ mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\n    template <class\
+    \ OStream>\n    friend OStream &operator<<(OStream &os, const mint &mint_) {\n\
+    \        os << mint_._v;\n        return os;\n    }\n\n    template <class IStream>\n\
+    \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+    \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\n\
+    \  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod =\
+    \ 998244353;\n\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
+    \n} // namespace kk2\n\n#endif // MODINT_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: modint/modint.hpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/modint.hpp

@@ -93,16 +93,17 @@ data:
     \ m0 = 0, m1 = 1;\n        while (t) {\n            Int u = s / t;\n         \
     \   std::swap(s -= t * u, t);\n            std::swap(m0 -= m1 * u, m1);\n    \
     \    }\n        if (m0 < 0) m0 += getmod();\n        return mint(m0);\n    }\n\
-    \n    friend std::ostream &operator<<(std::ostream &os, const mint &x) { return\
-    \ os << x.val(); }\n\n    friend std::istream &operator>>(std::istream &is, mint\
-    \ &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n        return\
-    \ (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n   \
-    \     return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
-    \ { return mod; }\n};\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt\
-    \ =\n    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
-    \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
-    \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
-    \ __uint128_t, id>;\n\n} // namespace kk2\n\n#endif // MODINT_MONT_ARB_HPP\n"
+    \n    template <class OStream> friend OStream &operator<<(OStream &os, const mint\
+    \ &x) {\n        return os << x.val();\n    }\n\n    template <class IStream>\
+    \ friend IStream &operator>>(IStream &is, mint &x) {\n        Long t;\n      \
+    \  is >> t;\n        x = mint(t);\n        return (is);\n    }\n\n    UInt val()\
+    \ const {\n        UInt ret = reduce(_v);\n        return ret >= mod ? ret - mod\
+    \ : ret;\n    }\n\n    static UInt getmod() { return mod; }\n};\n\ntemplate <int\
+    \ id>\nusing ArbitraryLazyMontgomeryModInt =\n    ArbitraryLazyMontgomeryModIntBase<int,\
+    \ unsigned int, long long, unsigned long long, id>;\n\ntemplate <int id>\nusing\
+    \ ArbitraryLazyMontgomeryModInt64bit =\n    ArbitraryLazyMontgomeryModIntBase<long\
+    \ long, unsigned long long, __int128_t, __uint128_t, id>;\n\n} // namespace kk2\n\
+    \n#endif // MODINT_MONT_ARB_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -112,7 +113,7 @@ data:
   - math/prime_factorize.hpp
   - math_mod/mod_sqrt.hpp
   - fps/fps_sqrt.hpp
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/primality_test.test.cpp

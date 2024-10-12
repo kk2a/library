@@ -17,6 +17,9 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -50,8 +53,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#include\
     \ \"../../convolution/convolution.hpp\"\n#include \"../../modint/mont.hpp\"\n\
     #include \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n\
-    \    int n, m;\n    cin >> n >> m;\n    vc<kk2::mont998> a(n), b(m);\n    cin\
-    \ >> a >> b;\n    cout << kk2::convolution(a, b) << endl;\n\n    return 0;\n}\n"
+    \    int n, m;\n    kin >> n >> m;\n    vc<kk2::mont998> a(n), b(m);\n    kin\
+    \ >> a >> b;\n    kout << kk2::convolution(a, b) << endl;\n\n    return 0;\n}\n"
   dependsOn:
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
@@ -60,10 +63,11 @@ data:
   - type_traits/type_traits.hpp
   - modint/mont.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp

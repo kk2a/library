@@ -57,13 +57,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':x:'
@@ -145,14 +145,15 @@ data:
     \ n) const {\n        mint ret(1), mul(*this);\n        while (n > 0) {\n    \
     \        if (n & 1) ret *= mul;\n            mul *= mul;\n            n >>= 1;\n\
     \        }\n        return ret;\n    }\n\n    constexpr mint inv() const { return\
-    \ pow(p - 2); }\n\n    friend std::ostream &operator<<(std::ostream &os, const\
-    \ mint &x) { return os << x.val(); }\n\n    friend std::istream &operator>>(std::istream\
-    \ &is, mint &x) {\n        i64 t;\n        is >> t;\n        x = mint(t);\n  \
-    \      return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
-    \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n\n    static\
-    \ constexpr u32 getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
-    \n\nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
-    \ namespace kk2\n\n#endif // MODINT_MONT_HPP\n"
+    \ pow(p - 2); }\n\n    template <class OStream> friend OStream &operator<<(OStream\
+    \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
+    \ <class IStream> friend IStream &operator>>(IStream &is, mint &x) {\n       \
+    \ i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n    }\n\
+    \n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n        return\
+    \ ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32 getmod() { return\
+    \ p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\n\nusing\
+    \ mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} // namespace\
+    \ kk2\n\n#endif // MODINT_MONT_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -160,7 +161,7 @@ data:
   requiredBy:
   - convolution/convolution_arb.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp

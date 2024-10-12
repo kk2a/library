@@ -11,6 +11,9 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -42,10 +45,10 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
     \n\n#include \"../../convolution/bitor1.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n;\n    cin >> n;\n    vc<kk2::mont998> a(1 << n), b(1 << n);\n \
-    \   rep (i, 1 << n) cin >> a[~i & ((1 << n) - 1)];\n    rep (i, 1 << n) cin >>\
+    \ {\n    int n;\n    kin >> n;\n    vc<kk2::mont998> a(1 << n), b(1 << n);\n \
+    \   rep (i, 1 << n) kin >> a[~i & ((1 << n) - 1)];\n    rep (i, 1 << n) kin >>\
     \ b[~i & ((1 << n) - 1)];\n    kk2::convolution_or(a, b);\n    vc<kk2::mont998>\
-    \ c(1 << n);\n    rep (i, 1 << n) c[~i & ((1 << n) - 1)] = a[i];\n    cout <<\
+    \ c(1 << n);\n    rep (i, 1 << n) c[~i & ((1 << n) - 1)] = a[i];\n    kout <<\
     \ c << endl;\n\n    return 0;\n}\n"
   dependsOn:
   - convolution/bitor1.hpp
@@ -53,10 +56,11 @@ data:
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_or.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_or.test.cpp

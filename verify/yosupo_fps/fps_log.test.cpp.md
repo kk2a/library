@@ -23,6 +23,9 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   - icon: ':question:'
@@ -56,8 +59,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
     \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
-    \ = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n    cin\
-    \ >> n;\n    FPS f(n);\n    f.input(cin).log().output(cout);\n\n    return 0;\n\
+    \ = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n    kin\
+    \ >> n;\n    FPS f(n);\n    f.input(kin).log().output(kout);\n\n    return 0;\n\
     }\n"
   dependsOn:
   - fps/ntt_friendly.hpp
@@ -69,10 +72,11 @@ data:
   - fps/fps.hpp
   - modint/mont.hpp
   - template/template.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log.test.cpp
   requiredBy: []
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log.test.cpp

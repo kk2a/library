@@ -24,30 +24,30 @@ data:
     \n\n\n\n#include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
     \ group {\n\ntemplate <class S> struct Sum {\n    S a;\n    int size;\n\n    constexpr\
     \ Sum() : a(S()), size(0) {}\n\n    constexpr Sum(S a, S size = 1) : a(a), size(size)\
-    \ {}\n\n    operator S() const { return a; }\n\n    friend std::ostream &operator<<(std::ostream\
-    \ &os, const Sum &sum) {\n        os << sum.a;\n        return os;\n    }\n\n\
-    \    friend std::istream &operator>>(std::istream &is, Sum &sum) {\n        is\
-    \ >> sum.a;\n        sum.size = 1;\n        return is;\n    }\n\n    constexpr\
-    \ Sum &operator=(const S &rhs) {\n        a = rhs;\n        size = 1;\n      \
-    \  return *this;\n    }\n\n    constexpr Sum &add(const S &rhs) {\n        a +=\
-    \ rhs * size;\n        return *this;\n    }\n\n    constexpr Sum &update(const\
-    \ S &rhs) {\n        a = rhs * size;\n        return *this;\n    }\n\n    constexpr\
-    \ Sum &multiply(const S &rhs) {\n        a *= rhs;\n        return *this;\n  \
-    \  }\n};\n\ntemplate <class S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n\
-    \    l.a += r.a;\n    l.size += r.size;\n    return l;\n}\n\ntemplate <class S>\
-    \ Sum<S> SumUnit() {\n    constexpr static Sum<S> e = Sum<S>();\n    return e;\n\
-    }\n\ntemplate <class S> constexpr Sum<S> SumInv(Sum<S> x) {\n    x.a = -x.a;\n\
-    \    x.size = -x.size;\n    return x;\n}\n\n} // namespace group\n\ntemplate <class\
-    \ S, class... Args>\nstd::vector<group::Sum<S>> GetVecSum(int n, Args... args)\
-    \ {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n}\n\n\
-    template <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>> GetVecSum2D(int\
-    \ h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
+    \ {}\n\n    operator S() const { return a; }\n\n    template <class OStream>\n\
+    \    friend OStream &operator<<(OStream &os, const Sum &sum) {\n        os <<\
+    \ sum.a;\n        return os;\n    }\n\n    template <class IStream>\n    friend\
+    \ IStream &operator>>(IStream &is, Sum &sum) {\n        is >> sum.a;\n       \
+    \ sum.size = 1;\n        return is;\n    }\n\n    constexpr Sum &operator=(const\
+    \ S &rhs) {\n        a = rhs;\n        size = 1;\n        return *this;\n    }\n\
+    \n    constexpr Sum &add(const S &rhs) {\n        a += rhs * size;\n        return\
+    \ *this;\n    }\n\n    constexpr Sum &update(const S &rhs) {\n        a = rhs\
+    \ * size;\n        return *this;\n    }\n\n    constexpr Sum &multiply(const S\
+    \ &rhs) {\n        a *= rhs;\n        return *this;\n    }\n};\n\ntemplate <class\
+    \ S> constexpr Sum<S> SumOp(Sum<S> l, Sum<S> r) {\n    l.a += r.a;\n    l.size\
+    \ += r.size;\n    return l;\n}\n\ntemplate <class S> Sum<S> SumUnit() {\n    constexpr\
+    \ static Sum<S> e = Sum<S>();\n    return e;\n}\n\ntemplate <class S> constexpr\
+    \ Sum<S> SumInv(Sum<S> x) {\n    x.a = -x.a;\n    x.size = -x.size;\n    return\
+    \ x;\n}\n\n} // namespace group\n\ntemplate <class S, class... Args>\nstd::vector<group::Sum<S>>\
+    \ GetVecSum(int n, Args... args) {\n    return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));\n\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<group::Sum<S>>>\
+    \ GetVecSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<group::Sum<S>>>(h,\
     \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/homomorphism/affine.hpp\"\
     \n\n\n\n#line 5 \"math/homomorphism/affine.hpp\"\n\nnamespace kk2 {\n\nnamespace\
     \ homomorphism {\n\ntemplate <class S> struct Affine {\n    S a, b; // x \\mapsto\
     \ ax + b\n    constexpr Affine() : a(1), b(0) {};\n\n    constexpr Affine(S a,\
-    \ S b) : a(a), b(b) {}\n\n    friend std::ostream &operator<<(std::ostream &os,\
-    \ const Affine &aff) {\n        os << aff.a << \" \" << aff.b;\n        return\
+    \ S b) : a(a), b(b) {}\n\n    template <class OStream>\n    friend OStream &operator<<(OStream\
+    \ &os, const Affine &aff) {\n        os << aff.a << \" \" << aff.b;\n        return\
     \ os;\n    }\n};\n\ntemplate <class S, class T> constexpr T AffineMap(Affine<S>\
     \ f, T x) {\n    return x.multiply(f.a).add(f.b);\n}\n\ntemplate <class S> constexpr\
     \ Affine<S> AffineComposition(Affine<S> l, Affine<S> r) {\n    l.b = l.a * r.b\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/affinesum.hpp
   requiredBy: []
-  timestamp: '2024-10-11 23:12:32+09:00'
+  timestamp: '2024-10-13 03:33:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
