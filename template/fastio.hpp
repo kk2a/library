@@ -410,7 +410,7 @@ char Printer::leading_zero[1000][4];
 
 } // namespace kk2
 
-#ifdef INTERACTIVE || USE_STDIO
+#if defined(INTERACTIVE) || defined(USE_STDIO)
 struct IoSetUp {
     IoSetUp() {
         std::cin.tie(nullptr);
