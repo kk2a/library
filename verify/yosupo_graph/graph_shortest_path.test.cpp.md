@@ -27,123 +27,125 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#line 1 \"graph/graph.hpp\"\
     \n\n\n\n#include <cassert>\n#include <iostream>\n#include <type_traits>\n#include\
     \ <utility>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class T> struct\
-    \ WeightedEdge {\n    int from, to, id;\n    T cost;\n\n    WeightedEdge(int to_,\
-    \ T cost_, int from_ = -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n\
-    \          id(id_),\n          cost(cost_) {}\n\n    WeightedEdge() : from(-1),\
-    \ to(-1), id(-1), cost(0) {}\n\n    operator int() const { return to; }\n\n  \
-    \  WeightedEdge rev() const { return WeightedEdge(from, cost, to, id); }\n\n \
-    \   template <class OStream> friend OStream &operator<<(OStream &os, const WeightedEdge\
-    \ &e) {\n        return os << e.from << \" -> \" << e.to << \" : \" << e.cost;\n\
-    \    }\n};\ntemplate <class T> using WeightedEdges = std::vector<WeightedEdge<T>>;\n\
-    \ntemplate <class T, bool is_directed = false>\nstruct WeightedAdjacencyList :\
-    \ std::vector<WeightedEdges<T>> {\n    WeightedAdjacencyList() = default;\n\n\
-    \    WeightedAdjacencyList(int n_, bool is_one_indexed)\n        : std::vector<WeightedEdges<T>>(n_),\n\
+    \ Edge {\n    int from, to, id;\n    T cost;\n\n    Edge(int to_, T cost_, int\
+    \ from_ = -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n    \
+    \      id(id_),\n          cost(cost_) {}\n\n    Edge() : from(-1), to(-1), id(-1),\
+    \ cost(0) {}\n\n    operator int() const { return to; }\n\n    Edge rev() const\
+    \ { return Edge(from, cost, to, id); }\n\n    template <class OStream> friend\
+    \ OStream &operator<<(OStream &os, const Edge &e) {\n        return os << e.from\
+    \ << \" -> \" << e.to << \" : \" << e.cost;\n    }\n};\ntemplate <class T> using\
+    \ Edges = std::vector<Edge<T>>;\n\ntemplate <class T, bool is_directed, bool is_functional>\n\
+    struct AdjacencyList : std::vector<Edges<T>> {\n    AdjacencyList() = default;\n\
+    \n    AdjacencyList(int n_, bool is_one_indexed)\n        : std::vector<Edges<T>>(n_),\n\
     \          n(n_),\n          m(0),\n          oneindexed(is_one_indexed) {}\n\n\
-    \    WeightedAdjacencyList(int n_, int m_, bool is_one_indexed)\n        : std::vector<WeightedEdges<T>>(n_),\n\
+    \    AdjacencyList(int n_, int m_, bool is_one_indexed)\n        : std::vector<Edges<T>>(n_),\n\
     \          n(n_),\n          m(m_),\n          oneindexed(is_one_indexed) {}\n\
-    \n    WeightedAdjacencyList(int n_, const WeightedEdges<T> &edges_, bool is_one_indexed)\n\
-    \        : std::vector<WeightedEdges<T>>(n_),\n          n(n_),\n          m(0),\n\
-    \          oneindexed(is_one_indexed) {\n        for (auto &e : edges_) { _add_edge(e.from,\
-    \ e.to, e.cost, m++); }\n    }\n\n    template <class IStream> WeightedAdjacencyList\
-    \ &input(IStream &is) {\n        for (int i = 0; i < m; i++) {\n            int\
-    \ u, v;\n            T w;\n            is >> u >> v >> w;\n            if (oneindexed)\
-    \ --u, --v;\n            _add_edge(u, v, w, i);\n        }\n        return *this;\n\
-    \    }\n\n    using value_type = T;\n    using edge_type = WeightedEdge<T>;\n\n\
-    \    constexpr static bool directed() { return is_directed; }\n\n    int n, m;\n\
-    \    bool oneindexed;\n    WeightedEdges<T> edges;\n\n    int num_vertices() const\
-    \ { return n; }\n\n    int num_edges() const { return m; }\n\n    void edge_clear()\
-    \ {\n        for (int i = 0; i < n; i++) (*this)[i].clear();\n        edges.clear();\n\
-    \        m = 0;\n    }\n\n    WeightedAdjacencyList &inplace_rev() {\n       \
-    \ static_assert(is_directed);\n        WeightedEdges<T> rev(m);\n        for (int\
-    \ i = 0; i < m; i++) rev[i] = edges[i].rev();\n        edge_clear();\n       \
-    \ for (auto &e : rev) _add_edge(e.from, e.to, e.cost, m++);\n        return *this;\n\
-    \    }\n\n    WeightedAdjacencyList rev() const {\n        static_assert(is_directed);\n\
-    \        WeightedAdjacencyList res(n);\n        res.m = m;\n        for (int i\
-    \ = 0; i < m; i++) res._add_edge(edges[i].to, edges[i].from, edges[i].cost, i);\n\
-    \        return res;\n    }\n\n    void add_edge(int from, int to, T cost) {\n\
-    \        if (oneindexed) --from, --to;\n        _add_edge(from, to, cost, m++);\n\
-    \    }\n\n    void add_edge_naive(int from, int to, T cost) { _add_edge(from,\
-    \ to, cost, m++); }\n\n  private:\n    void _add_edge(int from, int to, T cost,\
-    \ int id) {\n        (*this)[from].emplace_back(to, cost, from, id);\n       \
-    \ if constexpr (!is_directed) (*this)[to].emplace_back(from, cost, to, id);\n\
-    \        edges.emplace_back(to, cost, from, id);\n    }\n};\n\nstruct UnWeightedEdge\
-    \ {\n    int from, to, id;\n\n    UnWeightedEdge(int to_, int from_ = -1, int\
-    \ id_ = -1) : from(from_), to(to_), id(id_) {}\n\n    UnWeightedEdge() : from(-1),\
-    \ to(-1), id(-1) {}\n\n    operator int() const { return to; }\n\n    UnWeightedEdge\
-    \ rev() const { return UnWeightedEdge(from, to, id); }\n\n    friend std::ostream\
-    \ &operator<<(std::ostream &os, const UnWeightedEdge &e) {\n        return os\
-    \ << e.from << \"->\" << e.to;\n    }\n};\n\nusing UnWeightedEdges = std::vector<UnWeightedEdge>;\n\
-    \ntemplate <bool is_directed = false, bool is_functional = false>\nstruct UnWeightedAdjacencyList\
-    \ : std::vector<UnWeightedEdges> {\n    UnWeightedAdjacencyList() = default;\n\
-    \n    UnWeightedAdjacencyList(int n_, bool is_one_indexed)\n        : std::vector<UnWeightedEdges>(n_),\n\
+    \n    AdjacencyList(int n_, const Edges<T> &edges_, bool is_one_indexed)\n   \
+    \     : std::vector<Edges<T>>(n_),\n          n(n_),\n          m(0),\n      \
+    \    oneindexed(is_one_indexed) {\n        for (auto &e : edges_) { _add_edge(e.from,\
+    \ e.to, e.cost, m++); }\n    }\n\n    template <class IStream> AdjacencyList &input(IStream\
+    \ &is) {\n        if constexpr (is_functional) {\n            assert(n == m);\n\
+    \            for (int i = 0; i < n; i++) {\n                int u;\n         \
+    \       is >> u;\n                if (oneindexed) --u;\n                _add_edge(i,\
+    \ u, T(), i);\n            }\n        } else {\n            for (int i = 0; i\
+    \ < m; i++) {\n                int u, v;\n                T w{};\n           \
+    \     is >> u >> v;\n                if constexpr (!std::is_same_v<T, bool>) is\
+    \ >> w;\n                if (oneindexed) --u, --v;\n                _add_edge(u,\
+    \ v, w, i);\n            }\n        }\n        return *this;\n    }\n\n    using\
+    \ value_type = T;\n    using edge_type = Edge<T>;\n\n    constexpr static bool\
+    \ directed() { return is_directed; }\n\n    constexpr static bool functional()\
+    \ { return is_functional; }\n\n    int n, m;\n    bool oneindexed;\n    Edges<T>\
+    \ edges;\n\n    int num_vertices() const { return n; }\n\n    int num_edges()\
+    \ const { return m; }\n\n    void edge_clear() {\n        for (int i = 0; i <\
+    \ n; i++) (*this)[i].clear();\n        edges.clear();\n        m = 0;\n    }\n\
+    \n    AdjacencyList &inplace_rev() {\n        static_assert(is_directed);\n  \
+    \      Edges<T> rev(m);\n        for (int i = 0; i < m; i++) rev[i] = edges[i].rev();\n\
+    \        edge_clear();\n        for (auto &e : rev) _add_edge(e.from, e.to, e.cost,\
+    \ m++);\n        return *this;\n    }\n\n    AdjacencyList rev() const {\n   \
+    \     static_assert(is_directed);\n        AdjacencyList res(n);\n        res.m\
+    \ = m;\n        for (int i = 0; i < m; i++) res._add_edge(edges[i].to, edges[i].from,\
+    \ edges[i].cost, i);\n        return res;\n    }\n\n    void add_edge(int from,\
+    \ int to, T cost = T()) {\n        if (oneindexed) --from, --to;\n        _add_edge(from,\
+    \ to, cost, m++);\n    }\n\n    void add_edge_naive(int from, int to, T cost =\
+    \ T()) { _add_edge(from, to, cost, m++); }\n\n  private:\n    void _add_edge(int\
+    \ from, int to, T cost, int id) {\n        (*this)[from].emplace_back(to, cost,\
+    \ from, id);\n        if constexpr (!is_directed) (*this)[to].emplace_back(from,\
+    \ cost, to, id);\n        edges.emplace_back(to, cost, from, id);\n    }\n};\n\
+    \ntemplate <class T, bool is_directed, bool is_functional>\nstruct AdjacencyMatrix\
+    \ : std::vector<Edges<T>> {\n    AdjacencyMatrix() = default;\n\n    AdjacencyMatrix(int\
+    \ n_, bool is_one_indexed)\n        : std::vector<Edges<T>>(n_, Edges<T>(n_)),\n\
     \          n(n_),\n          m(0),\n          oneindexed(is_one_indexed) {}\n\n\
-    \    UnWeightedAdjacencyList(int n_, int m_, bool is_one_indexed)\n        : std::vector<UnWeightedEdges>(n_),\n\
-    \          n(n_),\n          m(m_),\n          oneindexed(is_one_indexed) {}\n\
-    \n    UnWeightedAdjacencyList(int n_, const UnWeightedEdges &edges_, bool is_one_indexed)\n\
-    \        : std::vector<UnWeightedEdges>(n_),\n          n(n_),\n          m(0),\n\
-    \          oneindexed(is_one_indexed) {\n        for (auto &e : edges_) { _add_edge(e.from,\
-    \ e.to, m++); }\n    }\n\n    template <class IStream> UnWeightedAdjacencyList\
-    \ &input(IStream &is) {\n        if constexpr (is_functional) {\n            assert(n\
-    \ == m);\n            for (int i = 0; i < n; i++) {\n                int u;\n\
-    \                is >> u;\n                if (oneindexed) --u;\n            \
-    \    _add_edge(i, u, i);\n            }\n        } else {\n            for (int\
-    \ i = 0; i < m; i++) {\n                int u, v;\n                is >> u >>\
-    \ v;\n                if (oneindexed) --u, --v;\n                _add_edge(u,\
-    \ v, i);\n            }\n        }\n        return *this;\n    }\n\n    constexpr\
-    \ static bool directed() { return is_directed; }\n\n    constexpr static bool\
-    \ functional() { return is_functional; }\n\n    using edge_type = UnWeightedEdge;\n\
-    \n    int n, m;\n    bool oneindexed;\n    UnWeightedEdges edges;\n\n    int num_vertices()\
-    \ const { return n; }\n\n    int num_edges() const { return m; }\n\n    void edge_clear()\
-    \ {\n        for (int i = 0; i < n; i++) (*this)[i].clear();\n        edges.clear();\n\
-    \        m = 0;\n    }\n\n    UnWeightedAdjacencyList &inplace_rev() {\n     \
-    \   static_assert(is_directed);\n        std::vector<std::pair<int, int>> rev(m);\n\
-    \        for (int i = 0; i < m; i++) rev[i] = {edges[i].to, edges[i].from};\n\
-    \        edge_clear();\n        for (auto &&[u, v] : rev) _add_edge(u, v, m++);\n\
-    \        return *this;\n    }\n\n    UnWeightedAdjacencyList rev() const {\n \
-    \       static_assert(is_directed);\n        UnWeightedAdjacencyList res(n);\n\
-    \        res.m = m;\n        for (int i = 0; i < m; i++) res._add_edge(edges[i].to,\
-    \ edges[i].from, i);\n        return res;\n    }\n\n    void add_edge(int from,\
-    \ int to) {\n        if (oneindexed) --from, --to;\n        _add_edge(from, to,\
-    \ m++);\n    }\n\n    void add_edge_naive(int from, int to) { _add_edge(from,\
-    \ to, m++); }\n\n  private:\n    void _add_edge(int from, int to, int id) {\n\
-    \        (*this)[from].emplace_back(to, from, id);\n        if constexpr (!is_directed)\
-    \ (*this)[to].emplace_back(from, to, id);\n        edges.emplace_back(to, from,\
-    \ id);\n    }\n};\n\ntemplate <typename T> using WAdjList = WeightedAdjacencyList<T,\
-    \ false>;\ntemplate <typename T> using DWAdjList = WeightedAdjacencyList<T, true>;\n\
-    \nusing AdjList = UnWeightedAdjacencyList<false, false>;\nusing DAdjList = UnWeightedAdjacencyList<true,\
-    \ false>;\nusing FAdjList = UnWeightedAdjacencyList<true, true>;\n\n} // namespace\
-    \ kk2\n\n\n#line 1 \"graph/shortest_path.hpp\"\n\n\n\n#include <limits>\n#include\
-    \ <queue>\n#line 8 \"graph/shortest_path.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-    \ shortest_path {\n\nstruct edge {\n    int to, id;\n};\n\ntemplate <class T>\n\
-    struct Result {\n    std::vector<T> dist;\n    std::vector<edge> prev;\n    Result(std::vector<T>\
-    \ dist_, std::vector<edge> prev_)\n        : dist(dist_), prev(prev_) {}\n};\n\
-    \ntemplate <class WG, class T = typename WG::value_type> \nResult<T> ShortestPath(const\
-    \ WG &g, int start) {\n    T alt;\n    int n = g.size();\n    std::vector<T> dist(n,\
-    \ std::numeric_limits<T>::max());\n    std::vector<edge> prev(n, {-1, -1});\n\n\
-    \    std::priority_queue<std::pair<T, int>,\n                        std::vector<std::pair<T,\
-    \ int>>,\n                        std::greater<std::pair<T, int>>>\n        pq;\n\
-    \    dist[start] = 0;\n    pq.push({T(), start});\n\n    while (!pq.empty()) {\n\
-    \        auto q = pq.top();\n        pq.pop();\n        if (dist[q.second] < q.first)\
-    \ continue;\n        for (auto edge : g[q.second]) {\n            alt = q.first\
-    \ + edge.cost;\n            if (alt < dist[edge.to]) {\n                pq.push({alt,\
-    \ edge.to});\n                dist[edge.to] = alt;\n                prev[edge.to]\
-    \ = {edge.from, edge.id};\n            }\n        }\n    }\n\n    return {dist,\
-    \ prev};\n}\n\n} // namespace shortest_path\n\nusing shortest_path::ShortestPath;\n\
-    \n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC\
-    \ optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n\
-    #include <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\n#include\
-    \ <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <iomanip>\n#line 19 \"template/template.hpp\"\n\
-    #include <iterator>\n#line 21 \"template/template.hpp\"\n#include <map>\n#include\
-    \ <numeric>\n#include <optional>\n#line 25 \"template/template.hpp\"\n#include\
-    \ <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n\
-    #include <tuple>\n#line 32 \"template/template.hpp\"\n#include <unordered_map>\n\
-    #include <unordered_set>\n#line 36 \"template/template.hpp\"\n\nusing u32 = unsigned\
-    \ int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing i128 =\
-    \ __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\n\
-    using pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing pli =\
-    \ std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\ntemplate\
-    \ <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
+    \    AdjacencyMatrix(int n_, int m_, bool is_one_indexed)\n        : std::vector<Edges<T>>(n_,\
+    \ Edges<T>(n_)),\n          n(n_),\n          m(m_),\n          oneindexed(is_one_indexed)\
+    \ {}\n\n    AdjacencyMatrix(int n_, const Edges<T> &edges_, bool is_one_indexed)\n\
+    \        : std::vector<Edges<T>>(n_, Edges<T>(n_)),\n          n(n_),\n      \
+    \    m(0),\n          oneindexed(is_one_indexed) {\n        for (auto &e : edges_)\
+    \ { _add_edge(e.from, e.to, e.cost, m++); }\n    }\n\n    template <class IStream>\
+    \ AdjacencyMatrix &input(IStream &is) {\n        if constexpr (is_functional)\
+    \ {\n            assert(n == m);\n            for (int i = 0; i < n; i++) {\n\
+    \                int u;\n                is >> u;\n                if (oneindexed)\
+    \ --u;\n                _add_edge(i, u, T(), i);\n            }\n        } else\
+    \ {\n            for (int i = 0; i < m; i++) {\n                int u, v;\n  \
+    \              T w{};\n                is >> u >> v;\n                if constexpr\
+    \ (!std::is_same_v<T, bool>) is >> w;\n                if (oneindexed) --u, --v;\n\
+    \                _add_edge(u, v, w, i);\n            }\n        }\n        return\
+    \ *this;\n    }\n\n    using value_type = T;\n    using edge_type = Edge<T>;\n\
+    \n    constexpr static bool directed() { return is_directed; }\n\n    constexpr\
+    \ static bool functional() { return is_functional; }\n\n    int n, m;\n    bool\
+    \ oneindexed;\n    Edges<T> edges;\n\n    int num_vertices() const { return n;\
+    \ }\n\n    int num_edges() const { return m; }\n\n    void edge_clear() {\n  \
+    \      for (int i = 0; i < n; i++) (*this)[i].clear();\n        m = 0;\n    }\n\
+    \n    AdjacencyMatrix &inplace_rev() {\n        static_assert(is_directed);\n\
+    \        for (int i = 0; i < n; i++) {\n            for (int j = i + 1; j < n;\
+    \ j++) { std::swap((*this)[i][j], (*this)[j][i]); }\n        }\n        return\
+    \ *this;\n    }\n\n    AdjacencyMatrix rev() const {\n        static_assert(is_directed);\n\
+    \        return AdjacencyMatrix(*this).inplace_rev();\n    }\n\n    void add_edge(int\
+    \ from, int to, T cost = T()) {\n        if (oneindexed) --from, --to;\n     \
+    \   _add_edge(from, to, cost, m++);\n    }\n\n    void add_edge_naive(int from,\
+    \ int to, T cost = T()) { _add_edge(from, to, cost, m++); }\n\n  private:\n  \
+    \  void _add_edge(int from, int to, T cost, int id) {\n        (*this)[from][to]\
+    \ = Edge<T>(to, cost, from, id);\n        if constexpr (!is_directed) (*this)[to][from]\
+    \ = Edge<T>(from, cost, to, id);\n        edges.emplace_back(to, cost, from, id);\n\
+    \    }\n};\n\ntemplate <typename T> using WAdjList = AdjacencyList<T, false, false>;\n\
+    template <typename T> using DWAdjList = AdjacencyList<T, true, false>;\nusing\
+    \ AdjList = AdjacencyList<bool, false, false>;\nusing DAdjList = AdjacencyList<bool,\
+    \ true, false>;\nusing FAdjList = AdjacencyList<bool, true, true>;\n\ntemplate\
+    \ <typename T> using WAdjMat = AdjacencyMatrix<T, false, false>;\ntemplate <typename\
+    \ T> using DWAdjMat = AdjacencyMatrix<T, true, false>;\nusing AdjMat = AdjacencyMatrix<bool,\
+    \ false, false>;\nusing DAdjMat = AdjacencyMatrix<bool, true, false>;\nusing FAdjMat\
+    \ = AdjacencyMatrix<bool, true, true>;\n\n} // namespace kk2\n\n\n#line 1 \"graph/shortest_path.hpp\"\
+    \n\n\n\n#include <limits>\n#include <queue>\n#line 8 \"graph/shortest_path.hpp\"\
+    \n\nnamespace kk2 {\n\nnamespace shortest_path {\n\nstruct edge {\n    int to,\
+    \ id;\n};\n\ntemplate <class T>\nstruct Result {\n    std::vector<T> dist;\n \
+    \   std::vector<edge> prev;\n    Result(std::vector<T> dist_, std::vector<edge>\
+    \ prev_)\n        : dist(dist_), prev(prev_) {}\n};\n\ntemplate <class WG, class\
+    \ T = typename WG::value_type> \nResult<T> ShortestPath(const WG &g, int start)\
+    \ {\n    T alt;\n    int n = g.size();\n    std::vector<T> dist(n, std::numeric_limits<T>::max());\n\
+    \    std::vector<edge> prev(n, {-1, -1});\n\n    std::priority_queue<std::pair<T,\
+    \ int>,\n                        std::vector<std::pair<T, int>>,\n           \
+    \             std::greater<std::pair<T, int>>>\n        pq;\n    dist[start] =\
+    \ 0;\n    pq.push({T(), start});\n\n    while (!pq.empty()) {\n        auto q\
+    \ = pq.top();\n        pq.pop();\n        if (dist[q.second] < q.first) continue;\n\
+    \        for (auto edge : g[q.second]) {\n            alt = q.first + edge.cost;\n\
+    \            if (alt < dist[edge.to]) {\n                pq.push({alt, edge.to});\n\
+    \                dist[edge.to] = alt;\n                prev[edge.to] = {edge.from,\
+    \ edge.id};\n            }\n        }\n    }\n\n    return {dist, prev};\n}\n\n\
+    } // namespace shortest_path\n\nusing shortest_path::ShortestPath;\n\n} // namespace\
+    \ kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
+    )\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n#include <array>\n#include\
+    \ <bitset>\n#line 11 \"template/template.hpp\"\n#include <chrono>\n#include <cmath>\n\
+    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
+    #include <iomanip>\n#line 19 \"template/template.hpp\"\n#include <iterator>\n\
+    #line 21 \"template/template.hpp\"\n#include <map>\n#include <numeric>\n#include\
+    \ <optional>\n#line 25 \"template/template.hpp\"\n#include <random>\n#include\
+    \ <set>\n#include <sstream>\n#include <stack>\n#include <string>\n#include <tuple>\n\
+    #line 32 \"template/template.hpp\"\n#include <unordered_map>\n#include <unordered_set>\n\
+    #line 36 \"template/template.hpp\"\n\nusing u32 = unsigned int;\nusing i64 = long\
+    \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+    \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
+    template <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc =\
+    \ std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
     template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using\
     \ pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\n\ntemplate <class T> constexpr T infty =\
@@ -346,7 +348,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 04:00:53+09:00'
+  timestamp: '2024-10-13 05:57:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_shortest_path.test.cpp
