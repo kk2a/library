@@ -14,11 +14,13 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/many_aplusb_128bit
     links:
     - https://judge.yosupo.jp/problem/many_aplusb_128bit
-  bundledCode: "#line 1 \"verify/yosupo_others/many_a_plus_b_128_test.cpp\"\n#define\
+  bundledCode: "#line 1 \"verify/yosupo_others/many_a_plus_b_128bit.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb_128bit\" \n\n#line 1 \"\
     template/template.hpp\"\n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\")\n\n//\
     \ #include <bits/stdc++.h>\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
@@ -209,7 +211,7 @@ data:
     );\n}\n\nvoid YES(bool b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\
     \nvoid NO(bool b = 1) {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid\
     \ yes(bool b = 1) {\n    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool\
-    \ b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n\n#line 5 \"verify/yosupo_others/many_a_plus_b_128_test.cpp\"\
+    \ b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n\n#line 5 \"verify/yosupo_others/many_a_plus_b_128bit.test.cpp\"\
     \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t)\
     \ {\n        i128 a, b;\n        kin >> a >> b;\n        kout << a + b << \"\\\
     n\";\n    }\n\n    return 0;\n}\n"
@@ -222,16 +224,16 @@ data:
   - template/template.hpp
   - template/fastio.hpp
   - template/fastio.hpp
-  isVerificationFile: false
-  path: verify/yosupo_others/many_a_plus_b_128_test.cpp
+  isVerificationFile: true
+  path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 04:00:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-10-13 05:06:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_others/many_a_plus_b_128_test.cpp
+documentation_of: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
 layout: document
 redirect_from:
-- /library/verify/yosupo_others/many_a_plus_b_128_test.cpp
-- /library/verify/yosupo_others/many_a_plus_b_128_test.cpp.html
-title: verify/yosupo_others/many_a_plus_b_128_test.cpp
+- /verify/verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+- /verify/verify/yosupo_others/many_a_plus_b_128bit.test.cpp.html
+title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
 ---

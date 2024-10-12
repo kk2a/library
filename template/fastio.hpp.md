@@ -5,12 +5,6 @@ data:
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':warning:'
-    path: verify/yosupo_others/many_a_plus_b_128_test.cpp
-    title: verify/yosupo_others/many_a_plus_b_128_test.cpp
-  - icon: ':warning:'
-    path: verify/yosupo_others/many_a_plus_b_128_test.cpp
-    title: verify/yosupo_others/many_a_plus_b_128_test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj-0560.test.cpp
@@ -114,39 +108,45 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/sum_of_floor_linear.test.cpp
     title: verify/yosupo_math/sum_of_floor_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+    title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+    title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - icon: ':x:'
     path: verify/yuki/yuki-0430.test.cpp
     title: verify/yuki/yuki-0430.test.cpp
@@ -432,8 +432,6 @@ data:
   isVerificationFile: false
   path: template/fastio.hpp
   requiredBy:
-  - verify/yosupo_others/many_a_plus_b_128_test.cpp
-  - verify/yosupo_others/many_a_plus_b_128_test.cpp
   - template/template.hpp
   timestamp: '2024-10-13 04:00:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -483,6 +481,8 @@ data:
   - verify/yosupo_graph/graph_bcc.test.cpp
   - verify/yosupo_graph/graph_scc.test.cpp
   - verify/yosupo_graph/graph_shortest_path.test.cpp
+  - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+  - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - verify/yosupo_others/many_a_plus_b.test.cpp
   - verify/yosupo_others/many_a_plus_b.test.cpp
 documentation_of: template/fastio.hpp
