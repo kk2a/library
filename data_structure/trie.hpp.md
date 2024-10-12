@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: string/aho_corasick.hpp
     title: string/aho_corasick.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yuki/yuki-0430.test.cpp
+    title: verify/yuki/yuki-0430.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki-0430_2.test.cpp
+    title: verify/yuki/yuki-0430_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/trie.hpp\"\n\n\n\n#include <cassert>\n#include\
@@ -73,8 +79,10 @@ data:
   requiredBy:
   - string/aho_corasick.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yuki/yuki-0430_2.test.cpp
+  - verify/yuki/yuki-0430.test.cpp
 documentation_of: data_structure/trie.hpp
 layout: document
 redirect_from:

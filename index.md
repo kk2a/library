@@ -82,7 +82,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
   - name: fps
@@ -411,7 +411,7 @@ data:
       title: segment_tree/utility/updatesum.hpp
   - name: string
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: string/aho_corasick.hpp
       title: string/aho_corasick.hpp
     - icon: ':warning:'
@@ -558,10 +558,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv.test.cpp
       title: verify/yosupo_linalg/matrix_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
       title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_pow.test.cpp
       title: verify/yosupo_linalg/matrix_pow.test.cpp
     - icon: ':x:'
@@ -598,6 +598,14 @@ data:
     - icon: ':x:'
       path: verify/yosupo_others/many_a_plus_b.test.cpp
       title: verify/yosupo_others/many_a_plus_b.test.cpp
+  - name: verify/yuki
+    pages:
+    - icon: ':x:'
+      path: verify/yuki/yuki-0430.test.cpp
+      title: verify/yuki/yuki-0430.test.cpp
+    - icon: ':x:'
+      path: verify/yuki/yuki-0430_2.test.cpp
+      title: verify/yuki/yuki-0430_2.test.cpp
 layout: toppage
 ---
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kk2a/library?style=flat-square)

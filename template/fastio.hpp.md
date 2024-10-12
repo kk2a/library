@@ -108,10 +108,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':x:'
@@ -147,6 +147,12 @@ data:
   - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki-0430.test.cpp
+    title: verify/yuki/yuki-0430.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki-0430_2.test.cpp
+    title: verify/yuki/yuki-0430_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -446,6 +452,8 @@ data:
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/sum_of_floor_linear.test.cpp
+  - verify/yuki/yuki-0430_2.test.cpp
+  - verify/yuki/yuki-0430.test.cpp
   - verify/yosupo_linalg/matrix_inv.test.cpp
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp
