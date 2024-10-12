@@ -24,7 +24,7 @@ int main() {
     rep (q) {
         int l, r;
         kin >> l >> r;
-        kout << rmq.prod(l, r) << "\n";
+        kout << dst.prod(l, r) << "\n";
     }
 
     return 0;
