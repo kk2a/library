@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/disjoint_sparse_table.hpp
     title: data_structure/disjoint_sparse_table.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -235,14 +235,14 @@ data:
     \ b);\n}\n\nS e() {\n    return 1e9 + 1;\n}\n\nint main() {\n    int n, q;\n \
     \   kin >> n >> q;\n    vc<int> a(n);\n    kin >> a;\n    kk2::DisjointSparseTable<S,\
     \ op, e> dst(a);\n\n    rep (q) {\n        int l, r;\n        kin >> l >> r;\n\
-    \        kout << rmq.prod(l, r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
+    \        kout << dst.prod(l, r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include\
     \ \"../../data_structure/disjoint_sparse_table.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nusing S = int;\n\nS op(S a, S b) {\n    return min(a,\
     \ b);\n}\n\nS e() {\n    return 1e9 + 1;\n}\n\nint main() {\n    int n, q;\n \
     \   kin >> n >> q;\n    vc<int> a(n);\n    kin >> a;\n    kk2::DisjointSparseTable<S,\
     \ op, e> dst(a);\n\n    rep (q) {\n        int l, r;\n        kin >> l >> r;\n\
-    \        kout << rmq.prod(l, r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
+    \        kout << dst.prod(l, r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - data_structure/disjoint_sparse_table.hpp
   - template/template.hpp
@@ -250,8 +250,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 04:00:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-13 04:16:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq_2.test.cpp
 layout: document
