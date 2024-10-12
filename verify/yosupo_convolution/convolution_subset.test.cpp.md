@@ -1,24 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: convolution/butterfly.hpp
-    title: convolution/butterfly.hpp
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':question:'
-    path: fps/fps.hpp
-    title: fps/fps.hpp
-  - icon: ':question:'
-    path: fps/ntt_friendly.hpp
-    title: fps/ntt_friendly.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: convolution/subset.hpp
+    title: convolution/subset.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -38,9 +23,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
     links:
-    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
+    - https://judge.yosupo.jp/problem/subset_convolution
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -51,38 +36,31 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
-    \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
-    \ = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n    kin\
-    \ >> n;\n    FPS f(n);\n    f.input(kin).inv().output(kout);\n\n    return 0;\n\
-    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\" \n\
+    \n#include \"../../convolution/subset.hpp\"\n#include \"../../modint/mont.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int n;\n    kin >> n;\n    vc<kk2::mont998> a(1 << n), b(1 << n);\n \
+    \   kin >> a >> b;\n    kout << kk2::convolution_subset(a, b) << endl;\n\n   \
+    \ return 0;\n}\n"
   dependsOn:
-  - fps/ntt_friendly.hpp
-  - convolution/convolution.hpp
-  - convolution/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
-  - fps/fps.hpp
+  - convolution/subset.hpp
   - modint/mont.hpp
+  - type_traits/type_traits.hpp
   - template/template.hpp
   - template/fastio.hpp
   isVerificationFile: true
-  path: verify/yosupo_fps/fps_inv.test.cpp
+  path: verify/yosupo_convolution/convolution_subset.test.cpp
   requiredBy: []
   timestamp: '2024-10-13 04:00:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_fps/fps_inv.test.cpp
+documentation_of: verify/yosupo_convolution/convolution_subset.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_fps/fps_inv.test.cpp
-- /verify/verify/yosupo_fps/fps_inv.test.cpp.html
-title: verify/yosupo_fps/fps_inv.test.cpp
+- /verify/verify/yosupo_convolution/convolution_subset.test.cpp
+- /verify/verify/yosupo_convolution/convolution_subset.test.cpp.html
+title: verify/yosupo_convolution/convolution_subset.test.cpp
 ---

@@ -61,7 +61,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-13 04:00:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp

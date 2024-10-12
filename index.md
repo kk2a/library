@@ -38,7 +38,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/multi_convolution_truncated.hpp
       title: convolution/multi_convolution_truncated.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convolution/subset.hpp
       title: convolution/subset.hpp
     - icon: ':heavy_check_mark:'
@@ -49,13 +49,13 @@ data:
       title: convolution/zeta_mobius_transfrom.hpp
   - name: data_structure
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
     - icon: ':warning:'
       path: data_structure/convex_hull_trick_add_monotone.hpp
       title: data_structure/convex_hull_trick_add_monotone.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data_structure/disjoint_sparse_table.hpp
       title: data_structure/disjoint_sparse_table.hpp
     - icon: ':warning:'
@@ -482,6 +482,9 @@ data:
       path: verify/yosupo_convolution/convolution_or.test.cpp
       title: verify/yosupo_convolution/convolution_or.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_convolution/convolution_subset.test.cpp
+      title: verify/yosupo_convolution/convolution_subset.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_xor.test.cpp
       title: verify/yosupo_convolution/convolution_xor.test.cpp
   - name: verify/yosupo_ds
@@ -489,6 +492,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
       title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+      title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
       title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
@@ -501,6 +507,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_rmq.test.cpp
       title: verify/yosupo_ds/ds_static_rmq.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
+      title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_unionfind.test.cpp
       title: verify/yosupo_ds/ds_unionfind.test.cpp
@@ -512,10 +521,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
   - name: verify/yosupo_graph

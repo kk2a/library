@@ -37,11 +37,17 @@ data:
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_convolution/convolution_subset.test.cpp
+    title: verify/yosupo_convolution/convolution_subset.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+    title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
@@ -54,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
+    title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
@@ -63,10 +72,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':x:'
@@ -307,7 +316,7 @@ data:
     \    }\n\n    Printer &operator<<(const char *x) {\n        put_cstr(x);\n   \
     \     return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar\
     \ Printer::buf[Printer::OUTPUT_BUF];\nchar Printer::helper[1000][4];\nchar Printer::leading_zero[1000][4];\n\
-    \n} // namespace fastio\n\n} // namespace kk2\n\n#ifdef INTERACTIVE || USE_STDIO\n\
+    \n} // namespace fastio\n\n} // namespace kk2\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\n\
     struct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
     \    }\n} iosetup;\n#define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\n\
     kk2::fastio::Scanner kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n\
@@ -389,7 +398,7 @@ data:
   path: template/template.hpp
   requiredBy:
   - verify/yosupo_others/many_a_plus_b_128_test.cpp
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-13 04:00:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
@@ -399,6 +408,7 @@ data:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_subset.test.cpp
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/yosupo_math/kth_root_int.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
@@ -419,7 +429,9 @@ data:
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_static_rmq.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+  - verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
+  - verify/yosupo_ds/ds_static_rmq_2.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp

@@ -37,6 +37,9 @@ data:
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_convolution/convolution_subset.test.cpp
+    title: verify/yosupo_convolution/convolution_subset.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,10 +54,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':x:'
@@ -172,6 +175,7 @@ data:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_subset.test.cpp
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_linalg/matrix_inv.test.cpp

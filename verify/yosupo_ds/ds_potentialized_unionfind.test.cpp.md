@@ -60,7 +60,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-13 04:00:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
