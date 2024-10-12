@@ -30,5 +30,7 @@
 "verify/yosupo_graph/tree_lca.test.cpp": "2024-10-13 04:00:53 +0900",
 "verify/yosupo_linalg/matrix_det.test.cpp": "2024-10-13 04:00:53 +0900",
 "verify/yosupo_linalg/matrix_det_f2.test.cpp": "2024-10-13 04:00:53 +0900",
-"verify/yosupo_linalg/matrix_inv.test.cpp": "2024-10-13 04:00:53 +0900"
+"verify/yosupo_linalg/matrix_inv.test.cpp": "2024-10-13 04:00:53 +0900",
+"verify/yosupo_linalg/matrix_inv_f2.test.cpp": "2024-10-13 04:00:53 +0900",
+"verify/yosupo_linalg/matrix_pow.test.cpp": "2024-10-13 04:00:53 +0900"
 }
