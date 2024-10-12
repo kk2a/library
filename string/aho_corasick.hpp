@@ -14,6 +14,7 @@ namespace kk2 {
 
 template <int char_size, int margin> struct AhoCorasick : Trie<char_size + 1, margin> {
     using Trie<char_size + 1, margin>::Trie;
+    using Trie<char_size + 1, margin>::count;
 
     constexpr static int FAIL = char_size;
     std::vector<int> correct, perm;
@@ -63,13 +64,13 @@ template <int char_size, int margin> struct AhoCorasick : Trie<char_size + 1, ma
         return res;
     }
 
-    std::unordered_map<int, long long> each_match(const std::string &str, int now_ = 0) {
-        std::unordered_map<int, long long> visit_cnt;
+    std::vector<long long> each_match(const std::string &str, int now_ = 0) {
+        std::vector<int> visit_cnt(this->size());
         for (char c : str) {
             now_ = this->nodes[now_].nxt[c - margin];
             visit_cnt[now_]++;
         }
-        std::unordered_map<int, long long> res;
+        std::vector<long long> res(this->count());
         for (int i = this->size() - 1; i > 0; --i) {
             int now = perm[i];
             visit_cnt[this->nodes[now].nxt[FAIL]] += visit_cnt[now];
