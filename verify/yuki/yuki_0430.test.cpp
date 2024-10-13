@@ -16,7 +16,6 @@ int main() {
     for (auto &x : c) ac.add(x);
     ac.build();
     kout << ac.all_match(s) << endl;
-    
 
     return 0;
 }
