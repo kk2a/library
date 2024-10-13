@@ -7,11 +7,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/yuki/yuki-0430.test.cpp
-    title: verify/yuki/yuki-0430.test.cpp
+    path: verify/yuki/yuki_0430.test.cpp
+    title: verify/yuki/yuki_0430.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yuki/yuki-0430_2.test.cpp
-    title: verify/yuki/yuki-0430_2.test.cpp
+    path: verify/yuki/yuki_0430_2.test.cpp
+    title: verify/yuki/yuki_0430_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -125,8 +125,8 @@ data:
   timestamp: '2024-10-13 04:52:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yuki/yuki-0430_2.test.cpp
-  - verify/yuki/yuki-0430.test.cpp
+  - verify/yuki/yuki_0430.test.cpp
+  - verify/yuki/yuki_0430_2.test.cpp
 documentation_of: string/aho_corasick.hpp
 layout: document
 redirect_from:

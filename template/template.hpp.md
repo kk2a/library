@@ -7,11 +7,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/aoj/aoj-0560.test.cpp
-    title: verify/aoj/aoj-0560.test.cpp
+    path: verify/aoj/aoj_0560.test.cpp
+    title: verify/aoj/aoj_0560.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/aoj/aoj-0560_2.test.cpp
-    title: verify/aoj/aoj-0560_2.test.cpp
+    path: verify/aoj/aoj_0560_2.test.cpp
+    title: verify/aoj/aoj_0560_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_grl_1_c.test.cpp
+    title: verify/aoj/aoj_grl_1_c.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
@@ -142,11 +145,11 @@ data:
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yuki/yuki-0430.test.cpp
-    title: verify/yuki/yuki-0430.test.cpp
+    path: verify/yuki/yuki_0430.test.cpp
+    title: verify/yuki/yuki_0430.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yuki/yuki-0430_2.test.cpp
-    title: verify/yuki/yuki-0430_2.test.cpp
+    path: verify/yuki/yuki_0430_2.test.cpp
+    title: verify/yuki/yuki_0430_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -420,8 +423,8 @@ data:
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/sum_of_floor_linear.test.cpp
-  - verify/yuki/yuki-0430_2.test.cpp
-  - verify/yuki/yuki-0430.test.cpp
+  - verify/yuki/yuki_0430.test.cpp
+  - verify/yuki/yuki_0430_2.test.cpp
   - verify/yosupo_linalg/matrix_inv.test.cpp
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp
@@ -431,8 +434,9 @@ data:
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - verify/aoj/aoj-0560_2.test.cpp
-  - verify/aoj/aoj-0560.test.cpp
+  - verify/aoj/aoj_0560.test.cpp
+  - verify/aoj/aoj_0560_2.test.cpp
+  - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_static_rmq.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp

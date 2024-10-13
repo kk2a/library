@@ -2,57 +2,57 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_grl_1_c.test.cpp
+    title: verify/aoj/aoj_grl_1_c.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/warshall_floyd.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <cassert>\n#include <limits>\n\nnamespace kk2 {\n\ntemplate <class WG,\
-    \ class T = typename WG::value_type> struct WarshallFroyd {\n    WG d;\n    T\
-    \ inf = std::numeric_limits<T>::max();\n    T zero = T();\n\n    WarshallFroyd(const\
-    \ WG &g_) : d(g_) { init(); }\n\n    void init() {\n        assert(d.adjacency_matrix);\n\
-    \        int n = d.size();\n\n        for (auto &&e : d.edges) {\n           \
-    \ d[e.from][e.to].cost = std::min(d[e.from][e.to].cost, e.cost);\n           \
-    \ if constexpr (!WG::directed()) {\n                d[e.to][e.from].cost = std::min(d[e.to][e.from].cost,\
-    \ e.cost);\n            }\n        }\n\n        for (int i = 0; i < n; i++) {\n\
-    \            for (int j = 0; j < n; j++) {\n                if (i == j) {\n  \
-    \                  d[i][j].cost = zero;\n                } else if (d[i][j].id\
-    \ == -1) {\n                    d[i][j].cost = inf;\n                }\n     \
-    \       }\n        }\n\n        for (int k = 0; k < n; k++) {\n            for\
-    \ (int i = 0; i < n; i++) {\n                for (int j = 0; j < n; j++) {\n \
-    \                   if (d[i][k].cost == inf || d[k][j].cost == inf) continue;\n\
-    \                    d[i][j].cost = std::min(d[i][j].cost, d[i][k].cost + d[k][j].cost);\n\
-    \                }\n            }\n        }\n    }\n\n    T operator()(int i,\
-    \ int j) const { return d[i][j].cost == inf ? -1 : d[i][j].cost; }\n};\n\n} //\
-    \ namespace kk2\n\n\n"
+    #include <cassert>\n#include <limits>\n#include <vector>\n\nnamespace kk2 {\n\n\
+    namespace shortest_path {\n\ntemplate <typename T> struct edge {\n    T len;\n\
+    \    bool is_valid;\n};\n\ntemplate <typename WG, typename T = typename WG::value_type>\n\
+    std::vector<std::vector<edge<T>>> WarshallFroyd(const WG &g) {\n    int n = g.size();\n\
+    \    std::vector<std::vector<edge<T>>> res(n, std::vector<edge<T>>(n, {0, false}));\n\
+    \    for (int i = 0; i < n; ++i) res[i][i] = {0, true};\n    for (auto &&e : g.edges)\
+    \ {\n        res[e.from][e.to] = {e.cost, true};\n        if constexpr (!WG::directed())\
+    \ res[e.to][e.from] = {e.cost, true};\n    }\n\n    for (int k = 0; k < n; ++k)\
+    \ {\n        for (int i = 0; i < n; ++i) {\n            for (int j = 0; j < n;\
+    \ ++j) {\n                if (!res[i][k].is_valid or !res[k][j].is_valid) continue;\n\
+    \                if (res[i][j].is_valid)\n                    res[i][j].len =\
+    \ std::min(res[i][j].len, res[i][k].len + res[k][j].len);\n                else\
+    \ {\n                    res[i][j].len = res[i][k].len + res[k][j].len;\n    \
+    \                res[i][j].is_valid = true;\n                }\n            }\n\
+    \        }\n    }\n\n    return res;\n}\n\n} // namespace shortest_path\n\nusing\
+    \ shortest_path::WarshallFroyd;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef GRAPH_WARSHALL_FLOYD_HPP\n#define GRAPH_WARSHALL_FLOYD_HPP 1\n\n\
-    #include <algorithm>\n#include <cassert>\n#include <limits>\n\nnamespace kk2 {\n\
-    \ntemplate <class WG, class T = typename WG::value_type> struct WarshallFroyd\
-    \ {\n    WG d;\n    T inf = std::numeric_limits<T>::max();\n    T zero = T();\n\
-    \n    WarshallFroyd(const WG &g_) : d(g_) { init(); }\n\n    void init() {\n \
-    \       assert(d.adjacency_matrix);\n        int n = d.size();\n\n        for\
-    \ (auto &&e : d.edges) {\n            d[e.from][e.to].cost = std::min(d[e.from][e.to].cost,\
-    \ e.cost);\n            if constexpr (!WG::directed()) {\n                d[e.to][e.from].cost\
-    \ = std::min(d[e.to][e.from].cost, e.cost);\n            }\n        }\n\n    \
-    \    for (int i = 0; i < n; i++) {\n            for (int j = 0; j < n; j++) {\n\
-    \                if (i == j) {\n                    d[i][j].cost = zero;\n   \
-    \             } else if (d[i][j].id == -1) {\n                    d[i][j].cost\
-    \ = inf;\n                }\n            }\n        }\n\n        for (int k =\
-    \ 0; k < n; k++) {\n            for (int i = 0; i < n; i++) {\n              \
-    \  for (int j = 0; j < n; j++) {\n                    if (d[i][k].cost == inf\
-    \ || d[k][j].cost == inf) continue;\n                    d[i][j].cost = std::min(d[i][j].cost,\
-    \ d[i][k].cost + d[k][j].cost);\n                }\n            }\n        }\n\
-    \    }\n\n    T operator()(int i, int j) const { return d[i][j].cost == inf ?\
-    \ -1 : d[i][j].cost; }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_WARSHALL_FLOYD_HPP\n"
+    #include <algorithm>\n#include <cassert>\n#include <limits>\n#include <vector>\n\
+    \nnamespace kk2 {\n\nnamespace shortest_path {\n\ntemplate <typename T> struct\
+    \ edge {\n    T len;\n    bool is_valid;\n};\n\ntemplate <typename WG, typename\
+    \ T = typename WG::value_type>\nstd::vector<std::vector<edge<T>>> WarshallFroyd(const\
+    \ WG &g) {\n    int n = g.size();\n    std::vector<std::vector<edge<T>>> res(n,\
+    \ std::vector<edge<T>>(n, {0, false}));\n    for (int i = 0; i < n; ++i) res[i][i]\
+    \ = {0, true};\n    for (auto &&e : g.edges) {\n        res[e.from][e.to] = {e.cost,\
+    \ true};\n        if constexpr (!WG::directed()) res[e.to][e.from] = {e.cost,\
+    \ true};\n    }\n\n    for (int k = 0; k < n; ++k) {\n        for (int i = 0;\
+    \ i < n; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if\
+    \ (!res[i][k].is_valid or !res[k][j].is_valid) continue;\n                if (res[i][j].is_valid)\n\
+    \                    res[i][j].len = std::min(res[i][j].len, res[i][k].len + res[k][j].len);\n\
+    \                else {\n                    res[i][j].len = res[i][k].len + res[k][j].len;\n\
+    \                    res[i][j].is_valid = true;\n                }\n         \
+    \   }\n        }\n    }\n\n    return res;\n}\n\n} // namespace shortest_path\n\
+    \nusing shortest_path::WarshallFroyd;\n\n} // namespace kk2\n\n#endif // GRAPH_WARSHALL_FLOYD_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/warshall_floyd.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-10-13 16:54:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/aoj/aoj_grl_1_c.test.cpp
 documentation_of: graph/warshall_floyd.hpp
 layout: document
 redirect_from:

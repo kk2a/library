@@ -184,7 +184,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.hpp
       title: graph/two_edge_connected_components.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/warshall_floyd.hpp
       title: graph/warshall_floyd.hpp
   - name: graph/tree
@@ -448,11 +448,14 @@ data:
   - name: verify/aoj
     pages:
     - icon: ':heavy_check_mark:'
-      path: verify/aoj/aoj-0560.test.cpp
-      title: verify/aoj/aoj-0560.test.cpp
+      path: verify/aoj/aoj_0560.test.cpp
+      title: verify/aoj/aoj_0560.test.cpp
     - icon: ':heavy_check_mark:'
-      path: verify/aoj/aoj-0560_2.test.cpp
-      title: verify/aoj/aoj-0560_2.test.cpp
+      path: verify/aoj/aoj_0560_2.test.cpp
+      title: verify/aoj/aoj_0560_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aoj/aoj_grl_1_c.test.cpp
+      title: verify/aoj/aoj_grl_1_c.test.cpp
   - name: verify/yosupo_convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -599,11 +602,11 @@ data:
   - name: verify/yuki
     pages:
     - icon: ':heavy_check_mark:'
-      path: verify/yuki/yuki-0430.test.cpp
-      title: verify/yuki/yuki-0430.test.cpp
+      path: verify/yuki/yuki_0430.test.cpp
+      title: verify/yuki/yuki_0430.test.cpp
     - icon: ':heavy_check_mark:'
-      path: verify/yuki/yuki-0430_2.test.cpp
-      title: verify/yuki/yuki-0430_2.test.cpp
+      path: verify/yuki/yuki_0430_2.test.cpp
+      title: verify/yuki/yuki_0430_2.test.cpp
 layout: toppage
 ---
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kk2a/library?style=flat-square)

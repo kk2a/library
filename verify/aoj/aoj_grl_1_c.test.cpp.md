@@ -2,8 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data_structure/prefix_sum_2d.hpp
-    title: data_structure/prefix_sum_2d.hpp
+    path: graph/graph.hpp
+    title: graph/graph.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/warshall_floyd.hpp
+    title: graph/warshall_floyd.hpp
   - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
@@ -17,66 +20,137 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0560
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0560
-  bundledCode: "#line 1 \"verify/aoj/aoj-0560.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0560\"\
-    \ \n\n#line 1 \"data_structure/prefix_sum_2d.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <vector>\n\nnamespace kk2 {\n\ntemplate <class T> struct PrefixSum2D\
-    \ {\n    std::vector<std::vector<T>> acc;\n    int h, w;\n\n    constexpr PrefixSum2D()\
-    \ = default;\n\n    constexpr PrefixSum2D(const std::vector<std::vector<T>> &a)\n\
-    \        : acc(a.size() + 1, std::vector<T>(a[0].size() + 1)),\n          h((int)a.size()),\n\
-    \          w((int)a[0].size()) {\n        for (int i = 0; i < h; ++i) {\n    \
-    \        for (int j = 0; j < w; ++j) {\n                acc[i + 1][j + 1] = acc[i\
-    \ + 1][j] + acc[i][j + 1] - acc[i][j] + a[i][j];\n            }\n        }\n \
-    \   }\n\n    constexpr T sum(int li, int lj, int ri, int rj) const {\n       \
-    \ assert(0 <= li && li <= ri && ri <= h);\n        assert(0 <= lj && lj <= rj\
-    \ && rj <= w);\n        return acc[ri][rj] - acc[li][rj] - acc[ri][lj] + acc[li][lj];\n\
-    \    }\n\n    constexpr T get(int i, int j) const {\n        assert(0 <= i &&\
-    \ i < h);\n        assert(0 <= j && j < w);\n        return acc[i + 1][j + 1]\
-    \ - acc[i][j + 1] - acc[i + 1][j] + acc[i][j];\n    }\n\n    constexpr T operator()(int\
-    \ li, int lj, int ri, int rj) const {\n        assert(0 <= li && li <= ri && ri\
-    \ <= h);\n        assert(0 <= lj && lj <= rj && rj <= w);\n        return acc[ri][rj]\
-    \ - acc[li][rj] - acc[ri][lj] + acc[li][lj];\n    }\n\n    constexpr T operator()(int\
-    \ i, int j) const {\n        assert(0 <= i && i < h);\n        assert(0 <= j &&\
-    \ j < w);\n        return acc[i + 1][j + 1] - acc[i][j + 1] - acc[i + 1][j] +\
-    \ acc[i][j];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
+  bundledCode: "#line 1 \"verify/aoj/aoj_grl_1_c.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\
+    \ \n\n#line 1 \"graph/graph.hpp\"\n\n\n\n#include <cassert>\n#include <iostream>\n\
+    #include <type_traits>\n#include <utility>\n#include <vector>\n\nnamespace kk2\
+    \ {\n\nnamespace graph {\n\ntemplate <class T> struct _Edge {\n    int from, to,\
+    \ id;\n    T cost;\n\n    _Edge(int to_, T cost_, int from_ = -1, int id_ = -1)\n\
+    \        : from(from_),\n          to(to_),\n          id(id_),\n          cost(cost_)\
+    \ {}\n\n    _Edge() : from(-1), to(-1), id(-1), cost() {}\n\n    operator int()\
+    \ const { return to; }\n\n    _Edge rev() const { return _Edge(from, cost, to,\
+    \ id); }\n\n    template <class OStream> friend OStream &operator<<(OStream &os,\
+    \ const _Edge &e) {\n        return os << e.from << \" -> \" << e.to << \" : \"\
+    \ << e.cost;\n    }\n};\ntemplate <class T> using _Edges = std::vector<_Edge<T>>;\n\
+    \nstruct empty {};\n\ntemplate <class T, bool is_directed> struct AdjacencyList\
+    \ : std::vector<_Edges<T>> {\n    AdjacencyList() = default;\n\n    AdjacencyList(int\
+    \ n_, bool is_one_indexed)\n        : std::vector<_Edges<T>>(n_),\n          n(n_),\n\
+    \          m(0),\n          oneindexed(is_one_indexed) {}\n\n    AdjacencyList(int\
+    \ n_, int m_, bool is_one_indexed)\n        : std::vector<_Edges<T>>(n_),\n  \
+    \        n(n_),\n          m(m_),\n          oneindexed(is_one_indexed) {}\n\n\
+    \    AdjacencyList(int n_, const _Edges<T> &edges_, bool is_one_indexed)\n   \
+    \     : std::vector<_Edges<T>>(n_),\n          n(n_),\n          m(0),\n     \
+    \     oneindexed(is_one_indexed) {\n        for (auto &e : edges_) { _add_edge(e.from,\
+    \ e.to, e.cost, m++); }\n    }\n\n    template <class IStream> AdjacencyList &input(IStream\
+    \ &is) {\n        for (int i = 0; i < m; i++) {\n            int u, v;\n     \
+    \       T w{};\n            is >> u >> v;\n            if constexpr (!std::is_same_v<T,\
+    \ empty>) is >> w;\n            if (oneindexed) --u, --v;\n            _add_edge(u,\
+    \ v, w, i);\n        }\n        return *this;\n    }\n\n    using value_type =\
+    \ T;\n    using edge_type = _Edge<T>;\n\n    constexpr static bool directed()\
+    \ { return is_directed; }\n\n    int n, m;\n    bool oneindexed;\n    _Edges<T>\
+    \ edges;\n\n    int num_vertices() const { return n; }\n\n    int num_edges()\
+    \ const { return m; }\n\n    void edge_clear() {\n        for (int i = 0; i <\
+    \ n; i++) (*this)[i].clear();\n        edges.clear();\n        m = 0;\n    }\n\
+    \n    void add_edge(int from, int to, T cost = T{}) {\n        if (oneindexed)\
+    \ --from, --to;\n        _add_edge(from, to, cost, m++);\n    }\n\n    void add_edge_naive(int\
+    \ from, int to, T cost = T{}) { _add_edge(from, to, cost, m++); }\n\n  private:\n\
+    \    void _add_edge(int from, int to, T cost, int id) {\n        (*this)[from].emplace_back(to,\
+    \ cost, from, id);\n        if constexpr (!is_directed) (*this)[to].emplace_back(from,\
+    \ cost, to, id);\n        edges.emplace_back(to, cost, from, id);\n    }\n};\n\
+    \ntemplate <class T, bool is_directed> struct AdjacencyMatrix : std::vector<_Edges<T>>\
+    \ {\n    AdjacencyMatrix() = default;\n\n    AdjacencyMatrix(int n_, bool is_one_indexed)\n\
+    \        : std::vector<_Edges<T>>(n_, _Edges<T>(n_)),\n          n(n_),\n    \
+    \      m(0),\n          oneindexed(is_one_indexed) {}\n\n    AdjacencyMatrix(int\
+    \ n_, int m_, bool is_one_indexed)\n        : std::vector<_Edges<T>>(n_, _Edges<T>(n_)),\n\
+    \          n(n_),\n          m(m_),\n          oneindexed(is_one_indexed) {}\n\
+    \n    AdjacencyMatrix(int n_, const _Edges<T> &edges_, bool is_one_indexed)\n\
+    \        : std::vector<_Edges<T>>(n_, _Edges<T>(n_)),\n          n(n_),\n    \
+    \      m(0),\n          oneindexed(is_one_indexed) {\n        for (auto &e : edges_)\
+    \ { _add_edge(e.from, e.to, e.cost, m++); }\n    }\n\n    template <class IStream>\
+    \ AdjacencyMatrix &input(IStream &is) {\n        for (int i = 0; i < m; i++) {\n\
+    \            int u, v;\n            T w{};\n            is >> u >> v;\n      \
+    \      if constexpr (!std::is_same_v<T, empty>) is >> w;\n            if (oneindexed)\
+    \ --u, --v;\n            _add_edge(u, v, w, i);\n        }\n        return *this;\n\
+    \    }\n\n    using value_type = T;\n    using edge_type = _Edge<T>;\n\n    constexpr\
+    \ static bool directed() { return is_directed; }\n\n    int n, m;\n    bool oneindexed;\n\
+    \    _Edges<T> edges;\n\n    int num_vertices() const { return n; }\n\n    int\
+    \ num_edges() const { return m; }\n\n    void edge_clear() {\n        for (int\
+    \ i = 0; i < n; i++) (*this)[i].clear();\n        m = 0;\n    }\n\n    void add_edge(int\
+    \ from, int to, T cost = T{}) {\n        if (oneindexed) --from, --to;\n     \
+    \   _add_edge(from, to, cost, m++);\n    }\n\n    void add_edge_naive(int from,\
+    \ int to, T cost = T{}) { _add_edge(from, to, cost, m++); }\n\n  private:\n  \
+    \  void _add_edge(int from, int to, T cost, int id) {\n        (*this)[from][to]\
+    \ = _Edge<T>(to, cost, from, id);\n        if constexpr (!is_directed) (*this)[to][from]\
+    \ = _Edge<T>(from, cost, to, id);\n        edges.emplace_back(to, cost, from,\
+    \ id);\n    }\n};\n\ntemplate <class T, class IStream>\n_Edges<T> &input(_Edges<T>\
+    \ &edges, bool is_one_indexed, IStream &is) {\n    for (int i = 0; i < (int)edges.size();\
+    \ i++) {\n        int u, v;\n        T w{};\n        is >> u >> v;\n        if\
+    \ (is_one_indexed) --u, --v;\n        if constexpr (!std::is_same_v<T, empty>)\
+    \ is >> w;\n        edges[i] = _Edge<T>(v, w, u, i);\n    }\n    return edges;\n\
+    }\n\n} // namespace graph\n\ntemplate <typename T> using WAdjList = graph::AdjacencyList<T,\
+    \ false>;\ntemplate <typename T> using DWAdjList = graph::AdjacencyList<T, true>;\n\
+    using AdjList = graph::AdjacencyList<graph::empty, false>;\nusing DAdjList = graph::AdjacencyList<graph::empty,\
+    \ true>;\n\ntemplate <typename T> using WAdjMat = graph::AdjacencyMatrix<T, false>;\n\
+    template <typename T> using DWAdjMat = graph::AdjacencyMatrix<T, true>;\nusing\
+    \ AdjMat = graph::AdjacencyMatrix<graph::empty, false>;\nusing DAdjMat = graph::AdjacencyMatrix<graph::empty,\
+    \ true>;\n\ntemplate <typename T> using WEdge = graph::_Edge<T>;\ntemplate <typename\
+    \ T> using WEdges = graph::_Edges<T>;\nusing Edge = graph::_Edge<graph::empty>;\n\
+    using Edges = graph::_Edges<graph::empty>;\nusing graph::input;\n\n} // namespace\
+    \ kk2\n\n\n#line 1 \"graph/warshall_floyd.hpp\"\n\n\n\n#include <algorithm>\n\
+    #line 6 \"graph/warshall_floyd.hpp\"\n#include <limits>\n#line 8 \"graph/warshall_floyd.hpp\"\
+    \n\nnamespace kk2 {\n\nnamespace shortest_path {\n\ntemplate <typename T> struct\
+    \ edge {\n    T len;\n    bool is_valid;\n};\n\ntemplate <typename WG, typename\
+    \ T = typename WG::value_type>\nstd::vector<std::vector<edge<T>>> WarshallFroyd(const\
+    \ WG &g) {\n    int n = g.size();\n    std::vector<std::vector<edge<T>>> res(n,\
+    \ std::vector<edge<T>>(n, {0, false}));\n    for (int i = 0; i < n; ++i) res[i][i]\
+    \ = {0, true};\n    for (auto &&e : g.edges) {\n        res[e.from][e.to] = {e.cost,\
+    \ true};\n        if constexpr (!WG::directed()) res[e.to][e.from] = {e.cost,\
+    \ true};\n    }\n\n    for (int k = 0; k < n; ++k) {\n        for (int i = 0;\
+    \ i < n; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if\
+    \ (!res[i][k].is_valid or !res[k][j].is_valid) continue;\n                if (res[i][j].is_valid)\n\
+    \                    res[i][j].len = std::min(res[i][j].len, res[i][k].len + res[k][j].len);\n\
+    \                else {\n                    res[i][j].len = res[i][k].len + res[k][j].len;\n\
+    \                    res[i][j].is_valid = true;\n                }\n         \
+    \   }\n        }\n    }\n\n    return res;\n}\n\n} // namespace shortest_path\n\
+    \nusing shortest_path::WarshallFroyd;\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\
     \n\n\n\n#pragma GCC optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n\
-    #include <algorithm>\n#include <array>\n#include <bitset>\n#line 11 \"template/template.hpp\"\
-    \n#include <chrono>\n#include <cmath>\n#include <cstring>\n#include <deque>\n\
-    #include <fstream>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
-    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
-    #include <stack>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#line\
-    \ 36 \"template/template.hpp\"\n\nusing u32 = unsigned int;\nusing i64 = long\
-    \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
-    \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-    \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
-    template <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc =\
-    \ std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-    template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using\
-    \ pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate <class T> constexpr T infty =\
-    \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-    \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-    \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-    \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-    \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double infty<double>\
-    \ = infty<i64>;\ntemplate <> constexpr long double infty<long double> = infty<i64>;\n\
-    \nconstexpr int mod = 998244353;\nconstexpr int modu = 1e9 + 7;\nconstexpr long\
-    \ double PI = 3.14159265358979323846;\n\nnamespace kk2 {\n\ntemplate <class T,\
-    \ class... Sizes> auto make_vector(int first, Sizes... sizes) {\n    if constexpr\
-    \ (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n    } else\
-    \ {\n        return std::vector<decltype(make_vector(sizes...))>(first, make_vector(sizes...));\n\
-    \    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T> &v, const\
-    \ U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate <class\
-    \ T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x) {\n  \
-    \  for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate <class\
-    \ T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b,\
-    \ 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
-    \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\n#define rep1(a) for (i64 _ = 0;\
-    \ _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n\
+    #line 8 \"template/template.hpp\"\n#include <array>\n#include <bitset>\n#line\
+    \ 11 \"template/template.hpp\"\n#include <chrono>\n#include <cmath>\n#include\
+    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
+    \ <iomanip>\n#line 19 \"template/template.hpp\"\n#include <iterator>\n#line 21\
+    \ \"template/template.hpp\"\n#include <map>\n#include <numeric>\n#include <optional>\n\
+    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
+    \ <stack>\n#include <string>\n#include <tuple>\n#line 32 \"template/template.hpp\"\
+    \n#include <unordered_map>\n#include <unordered_set>\n#line 36 \"template/template.hpp\"\
+    \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long\
+    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+    \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing\
+    \ pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+    template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc\
+    \ = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+    \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using\
+    \ pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate <class\
+    \ T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int> = (1 << 30)\
+    \ - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\n\
+    template <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\n\
+    template <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64\
+    \ infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
+    template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
+    \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
+    constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
+    \nnamespace kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int first,\
+    \ Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return\
+    \ std::vector<T>(first);\n    } else {\n        return std::vector<decltype(make_vector(sizes...))>(first,\
+    \ make_vector(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
+    \ &v, const U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate\
+    \ <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x)\
+    \ {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate\
+    \ <class T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b\
+    \ ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const\
+    \ S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n#define rep1(a) for (i64 _\
+    \ = 0; _ < (i64)(a); ++_)\n#define rep2(i, a) for (i64 i = 0; i < (i64)(a); ++i)\n\
     #define rep3(i, a, b) for (i64 i = (a); i < (i64)(b); ++i)\n#define repi2(i, a)\
     \ for (i64 i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (i64 i = (a)\
     \ - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
@@ -230,43 +304,39 @@ data:
     );\n}\n\nvoid YES(bool b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\
     \nvoid NO(bool b = 1) {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid\
     \ yes(bool b = 1) {\n    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool\
-    \ b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n\n#line 5 \"verify/aoj/aoj-0560.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, m, k;\n    kin >> n >> m >>\
-    \ k;\n    vvc<int> J_init, O_init, I_init;\n    J_init = O_init = I_init = vvc<int>(n,\
-    \ vc<int>(m));\n    rep (i, n) {\n        string s;\n        kin >> s;\n     \
-    \   rep (j, m) {\n            if (s[j] == 'J') J_init[i][j] = 1;\n           \
-    \ if (s[j] == 'O') O_init[i][j] = 1;\n            if (s[j] == 'I') I_init[i][j]\
-    \ = 1;\n        }\n    }\n\n    kk2::PrefixSum2D<int> J_ps(J_init), O_ps(O_init),\
-    \ I_ps(I_init);\n    rep (k) {\n        int x1, y1, x2, y2;\n        kin >> x1\
-    \ >> y1 >> x2 >> y2;\n        --x1, --y1;\n        kout << J_ps(x1, y1, x2, y2)\
-    \ << \" \" << O_ps(x1, y1, x2, y2) << \" \" << I_ps(x1, y1, x2, y2) << \"\\n\"\
-    ;\n    }\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0560\"\
-    \ \n\n#include \"../../data_structure/prefix_sum_2d.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, m, k;\n    kin >> n >> m >>\
-    \ k;\n    vvc<int> J_init, O_init, I_init;\n    J_init = O_init = I_init = vvc<int>(n,\
-    \ vc<int>(m));\n    rep (i, n) {\n        string s;\n        kin >> s;\n     \
-    \   rep (j, m) {\n            if (s[j] == 'J') J_init[i][j] = 1;\n           \
-    \ if (s[j] == 'O') O_init[i][j] = 1;\n            if (s[j] == 'I') I_init[i][j]\
-    \ = 1;\n        }\n    }\n\n    kk2::PrefixSum2D<int> J_ps(J_init), O_ps(O_init),\
-    \ I_ps(I_init);\n    rep (k) {\n        int x1, y1, x2, y2;\n        kin >> x1\
-    \ >> y1 >> x2 >> y2;\n        --x1, --y1;\n        kout << J_ps(x1, y1, x2, y2)\
-    \ << \" \" << O_ps(x1, y1, x2, y2) << \" \" << I_ps(x1, y1, x2, y2) << \"\\n\"\
-    ;\n    }\n\n    return 0;\n}\n"
+    \ b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n\n#line 6 \"verify/aoj/aoj_grl_1_c.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n  \
+    \  kk2::DWAdjMat<int> g(n, m, false);\n    g.input(kin);\n    auto dist = kk2::WarshallFroyd(g);\n\
+    \    rep (i, n) {\n        if (dist[i][i].len < 0) {\n            kout << \"NEGATIVE\
+    \ CYCLE\" << endl;\n            return 0;\n        }\n    }\n\n    rep (i, n)\
+    \ {\n        rep (j, n) {\n            if (dist[i][j].is_valid) kout << dist[i][j].len;\n\
+    \            else kout << \"INF\";\n            kout << \" \\n\"[j == n - 1];\n\
+    \        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\
+    \ \n\n#include \"../../graph/graph.hpp\"\n#include \"../../graph/warshall_floyd.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::DWAdjMat<int> g(n, m, false);\n\
+    \    g.input(kin);\n    auto dist = kk2::WarshallFroyd(g);\n    rep (i, n) {\n\
+    \        if (dist[i][i].len < 0) {\n            kout << \"NEGATIVE CYCLE\" <<\
+    \ endl;\n            return 0;\n        }\n    }\n\n    rep (i, n) {\n       \
+    \ rep (j, n) {\n            if (dist[i][j].is_valid) kout << dist[i][j].len;\n\
+    \            else kout << \"INF\";\n            kout << \" \\n\"[j == n - 1];\n\
+    \        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
-  - data_structure/prefix_sum_2d.hpp
+  - graph/graph.hpp
+  - graph/warshall_floyd.hpp
   - template/template.hpp
   - template/fastio.hpp
   isVerificationFile: true
-  path: verify/aoj/aoj-0560.test.cpp
+  path: verify/aoj/aoj_grl_1_c.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 04:00:53+09:00'
+  timestamp: '2024-10-13 16:54:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/aoj/aoj-0560.test.cpp
+documentation_of: verify/aoj/aoj_grl_1_c.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/aoj/aoj-0560.test.cpp
-- /verify/verify/aoj/aoj-0560.test.cpp.html
-title: verify/aoj/aoj-0560.test.cpp
+- /verify/verify/aoj/aoj_grl_1_c.test.cpp
+- /verify/verify/aoj/aoj_grl_1_c.test.cpp.html
+title: verify/aoj/aoj_grl_1_c.test.cpp
 ---

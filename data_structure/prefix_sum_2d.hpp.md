@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/aoj/aoj-0560.test.cpp
-    title: verify/aoj/aoj-0560.test.cpp
+    path: verify/aoj/aoj_0560.test.cpp
+    title: verify/aoj/aoj_0560.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -59,7 +59,7 @@ data:
   timestamp: '2024-10-11 23:42:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aoj/aoj-0560.test.cpp
+  - verify/aoj/aoj_0560.test.cpp
 documentation_of: data_structure/prefix_sum_2d.hpp
 layout: document
 redirect_from:
