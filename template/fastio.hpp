@@ -220,7 +220,7 @@ struct Printer {
         constexpr static __uint128_t pow10_20 = pow10_10 * pow10_10;
 
         __uint128_t y;
-        if (x >= pow10_20) {
+        if (x >= pow10_20) { // 10^20
             div_mod<__uint128_t>(y, x, pow10_20);
             put_u64(uint64_t(y));
             div_mod<__uint128_t>(y, x, __uint128_t(10000000000000000ull));
@@ -232,7 +232,7 @@ struct Printer {
             div_mod<__uint128_t>(y, x, __uint128_t(10000ull));
             put_cstr(leading_zero[y]);
             put_cstr(leading_zero[x]);
-        } else if (x >= __uint128_t(10000)) {
+        } else if (x >= __uint128_t(10000)) { // 10^4
             div_mod<__uint128_t>(y, x, __uint128_t(10000));
             put_u64(uint64_t(y));
             put_cstr(leading_zero[x]);
