@@ -109,7 +109,7 @@ data:
   - fps/multivariate_fps.hpp
   - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-14 04:02:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp

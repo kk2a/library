@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':question:'
     path: template/template.hpp
@@ -78,6 +81,12 @@ data:
   - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/arg_sort.test.cpp
+    title: verify/yosupo_geometry/arg_sort.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/static_convex_hull.test.cpp
+    title: verify/yosupo_geometry/static_convex_hull.test.cpp
   - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
@@ -161,282 +170,125 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <iostream>\n#include\
-    \ <string>\n\nnamespace kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\
-    \n#define OUTPUT_FILE \"out.txt\"\n\nstruct Scanner {\n  private:\n    static\
-    \ constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos = INPUT_BUF;\n    static\
-    \ char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n    Scanner() : fp(stdin)\
-    \ {}\n\n    Scanner(const char *file) : fp(fopen(file, \"r\")) {}\n\n    ~Scanner()\
-    \ {\n        if (fp != stdin) fclose(fp);\n    }\n\n    char now() {\n       \
-    \ if (pos == INPUT_BUF) {\n            size_t len = fread(buf, 1, INPUT_BUF, fp);\n\
-    \            if (len != INPUT_BUF) buf[len] = '\\0';\n            pos = 0;\n \
-    \       }\n        return buf[pos];\n    }\n\n    void skip_space() {\n      \
-    \  while (isspace(now())) ++pos;\n    }\n\n    uint32_t next_u32() {\n       \
-    \ skip_space();\n        uint32_t res = 0;\n        while (isdigit(now())) {\n\
-    \            res = res * 10 + (now() - '0');\n            ++pos;\n        }\n\
-    \        return res;\n    }\n\n    int32_t next_i32() {\n        skip_space();\n\
-    \        if (now() == '-') {\n            ++pos;\n            return (int32_t)(-next_u32());\n\
-    \        } else return (int32_t)next_u32();\n    }\n\n    uint64_t next_u64()\
-    \ {\n        skip_space();\n        uint64_t res = 0;\n        while (isdigit(now()))\
-    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
-    \ }\n        return res;\n    }\n\n    int64_t next_i64() {\n        skip_space();\n\
-    \        if (now() == '-') {\n            ++pos;\n            return (int64_t)(-next_u64());\n\
-    \        } else return (int64_t)next_u64();\n    }\n\n    __uint128_t next_u128()\
-    \ {\n        skip_space();\n        __uint128_t res = 0;\n        while (isdigit(now()))\
-    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
-    \ }\n        return res;\n    }\n\n    __int128_t next_i128() {\n        skip_space();\n\
-    \        if (now() == '-') {\n            ++pos;\n            return (__int128_t)(-next_u128());\n\
-    \        } else return (__int128_t)next_u128();\n    }\n\n    char next_char()\
-    \ {\n        skip_space();\n        auto res = now();\n        ++pos;\n      \
-    \  return res;\n    }\n\n    std::string next_string() {\n        skip_space();\n\
-    \        std::string res;\n        while (true) {\n            char c = now();\n\
-    \            if (isspace(c) or c == '\\0') break;\n            res.push_back(now());\n\
-    \            ++pos;\n        }\n        return res;\n    }\n\n    Scanner &operator>>(int\
-    \ &x) {\n        x = next_i32();\n        return *this;\n    }\n\n    Scanner\
-    \ &operator>>(unsigned int &x) {\n        x = next_u32();\n        return *this;\n\
-    \    }\n\n    Scanner &operator>>(long &x) {\n        x = next_i64();\n      \
-    \  return *this;\n    }\n\n    Scanner &operator>>(long long &x) {\n        x\
-    \ = next_i64();\n        return *this;\n    }\n\n    Scanner &operator>>(unsigned\
-    \ long &x) {\n        x = next_u64();\n        return *this;\n    }\n\n    Scanner\
-    \ &operator>>(unsigned long long &x) {\n        x = next_u64();\n        return\
-    \ *this;\n    }\n\n    Scanner &operator>>(__int128_t &x) {\n        x = next_i128();\n\
-    \        return *this;\n    }\n\n    Scanner &operator>>(__uint128_t &x) {\n \
-    \       x = next_u128();\n        return *this;\n    }\n\n    Scanner &operator>>(char\
-    \ &x) {\n        x = next_char();\n        return *this;\n    }\n\n    Scanner\
-    \ &operator>>(std::string &x) {\n        x = next_string();\n        return *this;\n\
-    \    }\n};\n\nstruct Printer {\n  private:\n    static char helper[1000][4];\n\
-    \    static char leading_zero[1000][4];\n    constexpr static size_t OUTPUT_BUF\
-    \ = 1 << 17;\n    static char buf[OUTPUT_BUF];\n    size_t pos = 0;\n    FILE\
-    \ *fp;\n\n    static constexpr uint32_t pow10_32(uint32_t n) { return n == 0 ?\
-    \ 1 : pow10_32(n - 1) * 10; }\n\n    static constexpr uint64_t pow10_64(uint32_t\
-    \ n) { return n == 0 ? 1 : pow10_64(n - 1) * 10; }\n\n    static constexpr __uint128_t\
-    \ pow10_128(uint32_t n) {\n        return n == 0 ? 1 : pow10_128(n - 1) * 10;\n\
-    \    }\n\n    template <class T, class U> static constexpr void div_mod(T &a,\
-    \ U &b, U mod) {\n        a = b / mod;\n        b -= a * mod;\n    }\n\n    static\
-    \ void init() {\n        buf[0] = '\\0';\n        for (size_t i = 0; i < 1000;\
-    \ ++i) {\n            leading_zero[i][0] = i / 100 + '0';\n            leading_zero[i][1]\
-    \ = i / 10 % 10 + '0';\n            leading_zero[i][2] = i % 10 + '0';\n     \
-    \       leading_zero[i][3] = '\\0';\n\n            size_t j = 0;\n           \
-    \ if (i >= 100) helper[i][j++] = i / 100 + '0';\n            if (i >= 10) helper[i][j++]\
-    \ = i / 10 % 10 + '0';\n            helper[i][j++] = i % 10 + '0';\n         \
-    \   helper[i][j] = '\\0';\n        }\n    }\n\n  public:\n    Printer() : fp(stdout)\
-    \ { init(); }\n\n    Printer(const char *file) : fp(fopen(file, \"w\")) { init();\
-    \ }\n\n    ~Printer() {\n        write();\n        if (fp != stdout) fclose(fp);\n\
-    \    }\n\n    void write() {\n        fwrite(buf, 1, pos, fp);\n        pos =\
-    \ 0;\n    }\n\n    void flush() {\n        write();\n        fflush(fp);\n   \
-    \ }\n\n    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n\
-    \        buf[pos++] = c;\n    }\n\n    void put_cstr(const char *s) {\n      \
-    \  while (*s) put_char(*(s++));\n    }\n\n    void put_u32(uint32_t x) {\n   \
-    \     uint32_t y;\n        if (x >= pow10_32(9)) {\n            div_mod(y, x,\
-    \ pow10_32(9));\n            put_cstr(helper[y]);\n            div_mod(y, x, pow10_32(6));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_32(3));\n\
-    \            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= pow10_32(6)) {\n            div_mod(y, x, pow10_32(6));\n\
-    \            put_cstr(helper[y]);\n            div_mod(y, x, pow10_32(3));\n \
-    \           put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= pow10_32(3)) {\n            div_mod(y, x, pow10_32(3));\n\
-    \            put_cstr(helper[y]);\n            put_cstr(leading_zero[x]);\n  \
-    \      } else put_cstr(helper[x]);\n    }\n\n    void put_i32(int32_t x) {\n \
-    \       if (x < 0) {\n            put_char('-');\n            put_u32(-x);\n \
-    \       } else put_u32(x);\n    }\n\n    void put_u64(uint64_t x) {\n        uint64_t\
-    \ y;\n        if (x >= pow10_64(18)) {\n            div_mod(y, x, pow10_64(18));\n\
-    \            put_cstr(helper[y]);\n            div_mod(y, x, pow10_64(15));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(12));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(9));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(6));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(3));\n\
-    \            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= pow10_64(9)) {\n            div_mod(y, x, pow10_64(9));\n\
-    \            put_u32(uint32_t(y));\n            div_mod(y, x, pow10_64(6));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(3));\n\
-    \            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else put_u32(uint32_t(x));\n    }\n\n    void put_i64(int64_t x) {\n\
-    \        if (x < 0) {\n            put_char('-');\n            put_u64(-x);\n\
-    \        } else put_u64(x);\n    }\n\n    void put_u128(__uint128_t x) {\n   \
-    \     __uint128_t y;\n        if (x >= pow10_128(36)) {\n            div_mod(y,\
-    \ x, pow10_128(36));\n            put_cstr(helper[y]);\n            div_mod(y,\
-    \ x, pow10_128(33));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(30));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(27));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(24));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(21));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(18));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(15));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(12));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(9));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(6));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(3));\n            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= pow10_128(18)) {\n            div_mod(y, x, pow10_128(18));\n\
-    \            put_u64(uint64_t(y));\n            div_mod(y, x, pow10_128(15));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_128(12));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_128(9));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_128(6));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_128(3));\n\
-    \            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else put_u64(uint64_t(x));\n    }\n\n    void put_i128(__int128_t x)\
-    \ {\n        if (x < 0) {\n            put_char('-');\n            put_u128(-x);\n\
-    \        } else put_u128(x);\n    }\n\n    Printer &operator<<(int x) {\n    \
-    \    put_i32(x);\n        return *this;\n    }\n\n    Printer &operator<<(unsigned\
-    \ int x) {\n        put_u32(x);\n        return *this;\n    }\n\n    Printer &operator<<(long\
-    \ x) {\n        put_i64(x);\n        return *this;\n    }\n\n    Printer &operator<<(long\
-    \ long x) {\n        put_i64(x);\n        return *this;\n    }\n\n    Printer\
-    \ &operator<<(unsigned long x) {\n        put_u64(x);\n        return *this;\n\
-    \    }\n\n    Printer &operator<<(unsigned long long x) {\n        put_u64(x);\n\
-    \        return *this;\n    }\n\n    Printer &operator<<(__int128_t x) {\n   \
-    \     put_i128(x);\n        return *this;\n    }\n\n    Printer &operator<<(__uint128_t\
-    \ x) {\n        put_u128(x);\n        return *this;\n    }\n\n    Printer &operator<<(char\
-    \ x) {\n        put_char(x);\n        return *this;\n    }\n\n    Printer &operator<<(const\
-    \ std::string &x) {\n        for (char c : x) put_char(c);\n        return *this;\n\
-    \    }\n\n    Printer &operator<<(const char *x) {\n        put_cstr(x);\n   \
-    \     return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar\
-    \ Printer::buf[Printer::OUTPUT_BUF];\nchar Printer::helper[1000][4];\nchar Printer::leading_zero[1000][4];\n\
-    \n} // namespace fastio\n\n} // namespace kk2\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\n\
-    #define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\nkk2::fastio::Scanner\
-    \ kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n#define endl '\\\
-    n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n#define endl\
-    \ '\\n'\n#endif\n\n\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef TEMPLATE_FASTIO_HPP\n#define TEMPLATE_FASTIO_HPP 1\n\n#include <cctype>\n\
     #include <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <iostream>\n\
-    #include <string>\n\nnamespace kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE\
-    \ \"in.txt\"\n#define OUTPUT_FILE \"out.txt\"\n\nstruct Scanner {\n  private:\n\
-    \    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos = INPUT_BUF;\n\
-    \    static char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n    Scanner() :\
-    \ fp(stdin) {}\n\n    Scanner(const char *file) : fp(fopen(file, \"r\")) {}\n\n\
-    \    ~Scanner() {\n        if (fp != stdin) fclose(fp);\n    }\n\n    char now()\
-    \ {\n        if (pos == INPUT_BUF) {\n            size_t len = fread(buf, 1, INPUT_BUF,\
-    \ fp);\n            if (len != INPUT_BUF) buf[len] = '\\0';\n            pos =\
-    \ 0;\n        }\n        return buf[pos];\n    }\n\n    void skip_space() {\n\
-    \        while (isspace(now())) ++pos;\n    }\n\n    uint32_t next_u32() {\n \
-    \       skip_space();\n        uint32_t res = 0;\n        while (isdigit(now()))\
-    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
-    \ }\n        return res;\n    }\n\n    int32_t next_i32() {\n        skip_space();\n\
-    \        if (now() == '-') {\n            ++pos;\n            return (int32_t)(-next_u32());\n\
-    \        } else return (int32_t)next_u32();\n    }\n\n    uint64_t next_u64()\
-    \ {\n        skip_space();\n        uint64_t res = 0;\n        while (isdigit(now()))\
-    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
-    \ }\n        return res;\n    }\n\n    int64_t next_i64() {\n        skip_space();\n\
-    \        if (now() == '-') {\n            ++pos;\n            return (int64_t)(-next_u64());\n\
-    \        } else return (int64_t)next_u64();\n    }\n\n    __uint128_t next_u128()\
-    \ {\n        skip_space();\n        __uint128_t res = 0;\n        while (isdigit(now()))\
-    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
-    \ }\n        return res;\n    }\n\n    __int128_t next_i128() {\n        skip_space();\n\
-    \        if (now() == '-') {\n            ++pos;\n            return (__int128_t)(-next_u128());\n\
-    \        } else return (__int128_t)next_u128();\n    }\n\n    char next_char()\
-    \ {\n        skip_space();\n        auto res = now();\n        ++pos;\n      \
-    \  return res;\n    }\n\n    std::string next_string() {\n        skip_space();\n\
-    \        std::string res;\n        while (true) {\n            char c = now();\n\
-    \            if (isspace(c) or c == '\\0') break;\n            res.push_back(now());\n\
-    \            ++pos;\n        }\n        return res;\n    }\n\n    Scanner &operator>>(int\
-    \ &x) {\n        x = next_i32();\n        return *this;\n    }\n\n    Scanner\
-    \ &operator>>(unsigned int &x) {\n        x = next_u32();\n        return *this;\n\
-    \    }\n\n    Scanner &operator>>(long &x) {\n        x = next_i64();\n      \
-    \  return *this;\n    }\n\n    Scanner &operator>>(long long &x) {\n        x\
-    \ = next_i64();\n        return *this;\n    }\n\n    Scanner &operator>>(unsigned\
-    \ long &x) {\n        x = next_u64();\n        return *this;\n    }\n\n    Scanner\
-    \ &operator>>(unsigned long long &x) {\n        x = next_u64();\n        return\
-    \ *this;\n    }\n\n    Scanner &operator>>(__int128_t &x) {\n        x = next_i128();\n\
-    \        return *this;\n    }\n\n    Scanner &operator>>(__uint128_t &x) {\n \
-    \       x = next_u128();\n        return *this;\n    }\n\n    Scanner &operator>>(char\
-    \ &x) {\n        x = next_char();\n        return *this;\n    }\n\n    Scanner\
-    \ &operator>>(std::string &x) {\n        x = next_string();\n        return *this;\n\
-    \    }\n};\n\nstruct Printer {\n  private:\n    static char helper[1000][4];\n\
-    \    static char leading_zero[1000][4];\n    constexpr static size_t OUTPUT_BUF\
-    \ = 1 << 17;\n    static char buf[OUTPUT_BUF];\n    size_t pos = 0;\n    FILE\
-    \ *fp;\n\n    static constexpr uint32_t pow10_32(uint32_t n) { return n == 0 ?\
-    \ 1 : pow10_32(n - 1) * 10; }\n\n    static constexpr uint64_t pow10_64(uint32_t\
-    \ n) { return n == 0 ? 1 : pow10_64(n - 1) * 10; }\n\n    static constexpr __uint128_t\
-    \ pow10_128(uint32_t n) {\n        return n == 0 ? 1 : pow10_128(n - 1) * 10;\n\
-    \    }\n\n    template <class T, class U> static constexpr void div_mod(T &a,\
-    \ U &b, U mod) {\n        a = b / mod;\n        b -= a * mod;\n    }\n\n    static\
-    \ void init() {\n        buf[0] = '\\0';\n        for (size_t i = 0; i < 1000;\
-    \ ++i) {\n            leading_zero[i][0] = i / 100 + '0';\n            leading_zero[i][1]\
-    \ = i / 10 % 10 + '0';\n            leading_zero[i][2] = i % 10 + '0';\n     \
-    \       leading_zero[i][3] = '\\0';\n\n            size_t j = 0;\n           \
-    \ if (i >= 100) helper[i][j++] = i / 100 + '0';\n            if (i >= 10) helper[i][j++]\
-    \ = i / 10 % 10 + '0';\n            helper[i][j++] = i % 10 + '0';\n         \
-    \   helper[i][j] = '\\0';\n        }\n    }\n\n  public:\n    Printer() : fp(stdout)\
-    \ { init(); }\n\n    Printer(const char *file) : fp(fopen(file, \"w\")) { init();\
-    \ }\n\n    ~Printer() {\n        write();\n        if (fp != stdout) fclose(fp);\n\
-    \    }\n\n    void write() {\n        fwrite(buf, 1, pos, fp);\n        pos =\
-    \ 0;\n    }\n\n    void flush() {\n        write();\n        fflush(fp);\n   \
-    \ }\n\n    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n\
-    \        buf[pos++] = c;\n    }\n\n    void put_cstr(const char *s) {\n      \
-    \  while (*s) put_char(*(s++));\n    }\n\n    void put_u32(uint32_t x) {\n   \
-    \     uint32_t y;\n        if (x >= pow10_32(9)) {\n            div_mod(y, x,\
-    \ pow10_32(9));\n            put_cstr(helper[y]);\n            div_mod(y, x, pow10_32(6));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_32(3));\n\
-    \            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= pow10_32(6)) {\n            div_mod(y, x, pow10_32(6));\n\
-    \            put_cstr(helper[y]);\n            div_mod(y, x, pow10_32(3));\n \
-    \           put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= pow10_32(3)) {\n            div_mod(y, x, pow10_32(3));\n\
-    \            put_cstr(helper[y]);\n            put_cstr(leading_zero[x]);\n  \
-    \      } else put_cstr(helper[x]);\n    }\n\n    void put_i32(int32_t x) {\n \
-    \       if (x < 0) {\n            put_char('-');\n            put_u32(-x);\n \
-    \       } else put_u32(x);\n    }\n\n    void put_u64(uint64_t x) {\n        uint64_t\
-    \ y;\n        if (x >= pow10_64(18)) {\n            div_mod(y, x, pow10_64(18));\n\
-    \            put_cstr(helper[y]);\n            div_mod(y, x, pow10_64(15));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(12));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(9));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(6));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(3));\n\
-    \            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= pow10_64(9)) {\n            div_mod(y, x, pow10_64(9));\n\
-    \            put_u32(uint32_t(y));\n            div_mod(y, x, pow10_64(6));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_64(3));\n\
-    \            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else put_u32(uint32_t(x));\n    }\n\n    void put_i64(int64_t x) {\n\
+    #include <string>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace\
+    \ kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\n#define OUTPUT_FILE\
+    \ \"out.txt\"\n\nstruct Scanner {\n  private:\n    static constexpr size_t INPUT_BUF\
+    \ = 1 << 17;\n    size_t pos = 0, end = 0;\n    static char buf[INPUT_BUF];\n\
+    \    FILE *fp;\n\n  public:\n    Scanner() : fp(stdin) {}\n\n    Scanner(const\
+    \ char *file) : fp(fopen(file, \"r\")) {}\n\n    ~Scanner() {\n        if (fp\
+    \ != stdin) fclose(fp);\n    }\n\n    char now() {\n        if (pos == end) {\n\
+    \            while (!(end = fread(buf, 1, INPUT_BUF, fp))) {}\n            if\
+    \ (end != INPUT_BUF) buf[end] = '\\0';\n            pos = 0;\n        }\n    \
+    \    return buf[pos];\n    }\n\n    void skip_space() {\n        while (isspace(now()))\
+    \ ++pos;\n    }\n\n    template <class T, std::enable_if_t<is_unsigned_extended<T>::value>\
+    \ * = nullptr>\n    T next_unsigned_integral() {\n        skip_space();\n    \
+    \    T res{};\n        while (isdigit(now())) {\n            res = res * 10 +\
+    \ (now() - '0');\n            ++pos;\n        }\n        return res;\n    }\n\n\
+    \    template <class T, std::enable_if_t<is_signed_extended<T>::value> * = nullptr>\n\
+    \    T next_signed_integral() {\n        skip_space();\n        if (now() == '-')\
+    \ {\n            ++pos;\n            return T(-next_unsigned_integral<typename\
+    \ to_unsigned<T>::type>());\n        } else return (T)next_unsigned_integral<typename\
+    \ to_unsigned<T>::type>();\n    }\n\n    char next_char() {\n        skip_space();\n\
+    \        auto res = now();\n        ++pos;\n        return res;\n    }\n\n   \
+    \ std::string next_string() {\n        skip_space();\n        std::string res;\n\
+    \        while (true) {\n            char c = now();\n            if (isspace(c)\
+    \ or c == '\\0') break;\n            res.push_back(now());\n            ++pos;\n\
+    \        }\n        return res;\n    }\n\n    template <class T, std::enable_if_t<is_unsigned_extended<T>::value>\
+    \ * = nullptr>\n    Scanner &operator>>(T &x) {\n        x = next_unsigned_integral<T>();\n\
+    \        return *this;\n    }\n\n    template <class T, std::enable_if_t<is_signed_extended<T>::value>\
+    \ * = nullptr>\n    Scanner &operator>>(T &x) {\n        x = next_signed_integral<T>();\n\
+    \        return *this;\n    }\n\n    Scanner &operator>>(char &x) {\n        x\
+    \ = next_char();\n        return *this;\n    }\n\n    Scanner &operator>>(std::string\
+    \ &x) {\n        x = next_string();\n        return *this;\n    }\n};\n\nstruct\
+    \ Printer {\n  private:\n    static char helper[10000][5];\n    static char leading_zero[10000][5];\n\
+    \    constexpr static size_t OUTPUT_BUF = 1 << 17;\n    static char buf[OUTPUT_BUF];\n\
+    \    size_t pos = 0;\n    FILE *fp;\n\n    template <class T> static constexpr\
+    \ void div_mod(T &a, T &b, T mod) {\n        a = b / mod;\n        b -= a * mod;\n\
+    \    }\n\n    static void init() {\n        buf[0] = '\\0';\n        for (size_t\
+    \ i = 0; i < 10000; ++i) {\n            leading_zero[i][0] = i / 1000 + '0';\n\
+    \            leading_zero[i][1] = i / 100 % 10 + '0';\n            leading_zero[i][2]\
+    \ = i / 10 % 10 + '0';\n            leading_zero[i][3] = i % 10 + '0';\n     \
+    \       leading_zero[i][4] = '\\0';\n\n            size_t j = 0;\n           \
+    \ if (i >= 1000) helper[i][j++] = i / 1000 + '0';\n            if (i >= 100) helper[i][j++]\
+    \ = i / 100 % 10 + '0';\n            if (i >= 10) helper[i][j++] = i / 10 % 10\
+    \ + '0';\n            helper[i][j++] = i % 10 + '0';\n            helper[i][j]\
+    \ = '\\0';\n        }\n    }\n\n  public:\n    Printer() : fp(stdout) { init();\
+    \ }\n\n    Printer(const char *file) : fp(fopen(file, \"w\")) { init(); }\n\n\
+    \    ~Printer() {\n        write();\n        if (fp != stdout) fclose(fp);\n \
+    \   }\n\n    void write() {\n        fwrite(buf, 1, pos, fp);\n        pos = 0;\n\
+    \    }\n\n    void flush() {\n        write();\n        fflush(fp);\n    }\n\n\
+    \    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n      \
+    \  buf[pos++] = c;\n    }\n\n    void put_cstr(const char *s) {\n        while\
+    \ (*s) put_char(*(s++));\n    }\n\n    void put_u32(uint32_t x) {\n        uint32_t\
+    \ y;\n        if (x >= 100000000) { // 10^8\n            div_mod<uint32_t>(y,\
+    \ x, 100000000);\n            put_cstr(helper[y]);\n            div_mod<uint32_t>(y,\
+    \ x, 10000);\n            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
+    \        } else if (x >= 10000) { // 10^4\n            div_mod<uint32_t>(y, x,\
+    \ 10000);\n            put_cstr(helper[y]);\n            put_cstr(leading_zero[x]);\n\
+    \        } else put_cstr(helper[x]);\n    }\n\n    void put_i32(int32_t x) {\n\
+    \        if (x < 0) {\n            put_char('-');\n            put_u32(-x);\n\
+    \        } else put_u32(x);\n    }\n\n    void put_u64(uint64_t x) {\n       \
+    \ uint64_t y;\n        if (x >= 1000000000000ull) { // 10^12\n            div_mod<uint64_t>(y,\
+    \ x, 1000000000000ull);\n            put_u32(y);\n            div_mod<uint64_t>(y,\
+    \ x, 100000000ull);\n            put_cstr(leading_zero[y]);\n            div_mod<uint64_t>(y,\
+    \ x, 10000ull);\n            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
+    \        } else if (x >= 10000ull) { // 10^4\n            div_mod<uint64_t>(y,\
+    \ x, 10000ull);\n            put_u32(y);\n            put_cstr(leading_zero[x]);\n\
+    \        } else put_cstr(helper[x]); \n    }\n\n    void put_i64(int64_t x) {\n\
     \        if (x < 0) {\n            put_char('-');\n            put_u64(-x);\n\
     \        } else put_u64(x);\n    }\n\n    void put_u128(__uint128_t x) {\n   \
-    \     __uint128_t y;\n        if (x >= pow10_128(36)) {\n            div_mod(y,\
-    \ x, pow10_128(36));\n            put_cstr(helper[y]);\n            div_mod(y,\
-    \ x, pow10_128(33));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(30));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(27));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(24));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(21));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(18));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(15));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(12));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(9));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(6));\n            put_cstr(leading_zero[y]);\n            div_mod(y,\
-    \ x, pow10_128(3));\n            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= pow10_128(18)) {\n            div_mod(y, x, pow10_128(18));\n\
-    \            put_u64(uint64_t(y));\n            div_mod(y, x, pow10_128(15));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_128(12));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_128(9));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_128(6));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod(y, x, pow10_128(3));\n\
-    \            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else put_u64(uint64_t(x));\n    }\n\n    void put_i128(__int128_t x)\
-    \ {\n        if (x < 0) {\n            put_char('-');\n            put_u128(-x);\n\
-    \        } else put_u128(x);\n    }\n\n    Printer &operator<<(int x) {\n    \
-    \    put_i32(x);\n        return *this;\n    }\n\n    Printer &operator<<(unsigned\
-    \ int x) {\n        put_u32(x);\n        return *this;\n    }\n\n    Printer &operator<<(long\
-    \ x) {\n        put_i64(x);\n        return *this;\n    }\n\n    Printer &operator<<(long\
-    \ long x) {\n        put_i64(x);\n        return *this;\n    }\n\n    Printer\
-    \ &operator<<(unsigned long x) {\n        put_u64(x);\n        return *this;\n\
-    \    }\n\n    Printer &operator<<(unsigned long long x) {\n        put_u64(x);\n\
-    \        return *this;\n    }\n\n    Printer &operator<<(__int128_t x) {\n   \
-    \     put_i128(x);\n        return *this;\n    }\n\n    Printer &operator<<(__uint128_t\
-    \ x) {\n        put_u128(x);\n        return *this;\n    }\n\n    Printer &operator<<(char\
-    \ x) {\n        put_char(x);\n        return *this;\n    }\n\n    Printer &operator<<(const\
-    \ std::string &x) {\n        for (char c : x) put_char(c);\n        return *this;\n\
-    \    }\n\n    Printer &operator<<(const char *x) {\n        put_cstr(x);\n   \
-    \     return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar\
-    \ Printer::buf[Printer::OUTPUT_BUF];\nchar Printer::helper[1000][4];\nchar Printer::leading_zero[1000][4];\n\
-    \n} // namespace fastio\n\n} // namespace kk2\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\n\
+    \     constexpr static __uint128_t pow10_10 = 10000000000ull;\n        constexpr\
+    \ static __uint128_t pow10_20 = pow10_10 * pow10_10;\n\n        __uint128_t y;\n\
+    \        if (x >= pow10_20) { // 10^20\n            div_mod<__uint128_t>(y, x,\
+    \ pow10_20);\n            put_u64(uint64_t(y));\n            div_mod<__uint128_t>(y,\
+    \ x, __uint128_t(10000000000000000ull));\n            put_cstr(leading_zero[y]);\n\
+    \            div_mod<__uint128_t>(y, x, __uint128_t(1000000000000ull));\n    \
+    \        put_cstr(leading_zero[y]);\n            div_mod<__uint128_t>(y, x, __uint128_t(100000000ull));\n\
+    \            put_cstr(leading_zero[y]);\n            div_mod<__uint128_t>(y, x,\
+    \ __uint128_t(10000ull));\n            put_cstr(leading_zero[y]);\n          \
+    \  put_cstr(leading_zero[x]);\n        } else if (x >= __uint128_t(10000)) { //\
+    \ 10^4\n            div_mod<__uint128_t>(y, x, __uint128_t(10000));\n        \
+    \    put_u64(uint64_t(y));\n            put_cstr(leading_zero[x]);\n        }\
+    \ else put_cstr(helper[x]);\n    }\n\n    void put_i128(__int128_t x) {\n    \
+    \    if (x < 0) {\n            put_char('-');\n            put_u128(-x);\n   \
+    \     } else put_u128(x);\n    }\n\n    template <class T, std::enable_if_t<is_unsigned_extended<T>::value>\
+    \ * = nullptr>\n    Printer &operator<<(T x) {\n        if constexpr (sizeof(T)\
+    \ <= 4) put_u32(x);\n        else if constexpr (sizeof(T) <= 8) put_u64(x);\n\
+    \        else put_u128(x);\n        return *this;\n    }\n\n    template <class\
+    \ T, std::enable_if_t<is_signed_extended<T>::value> * = nullptr>\n    Printer\
+    \ &operator<<(T x) {\n        if constexpr (sizeof(T) <= 4) put_i32(x);\n    \
+    \    else if constexpr (sizeof(T) <= 8) put_i64(x);\n        else put_i128(x);\n\
+    \        return *this;\n    }\n\n    Printer &operator<<(char x) {\n        put_char(x);\n\
+    \        return *this;\n    }\n\n    Printer &operator<<(const std::string &x)\
+    \ {\n        for (char c : x) put_char(c);\n        return *this;\n    }\n\n \
+    \   Printer &operator<<(const char *x) {\n        put_cstr(x);\n        return\
+    \ *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar Printer::buf[Printer::OUTPUT_BUF];\n\
+    char Printer::helper[10000][5];\nchar Printer::leading_zero[10000][5];\n\n} //\
+    \ namespace fastio\n\n} // namespace kk2\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\n\
     #define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\nkk2::fastio::Scanner\
     \ kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n#define endl '\\\
     n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n#define endl\
     \ '\\n'\n#endif\n\n#endif // TEMPLATE_FASTIO_HPP\n"
-  dependsOn: []
+  dependsOn:
+  - type_traits/type_traits.hpp
   isVerificationFile: false
   path: template/fastio.hpp
   requiredBy:
   - template/template.hpp
-  timestamp: '2024-10-13 18:25:45+09:00'
+  timestamp: '2024-10-14 04:07:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
@@ -453,6 +305,8 @@ data:
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/sum_of_floor_linear.test.cpp
+  - verify/yosupo_geometry/arg_sort.test.cpp
+  - verify/yosupo_geometry/static_convex_hull.test.cpp
   - verify/yuki/yuki_0430.test.cpp
   - verify/yuki/yuki_0430_2.test.cpp
   - verify/yosupo_linalg/matrix_inv.test.cpp

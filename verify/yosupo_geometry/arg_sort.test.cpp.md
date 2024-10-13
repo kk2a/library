@@ -2,14 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
-    path: bit/bitcount.hpp
-    title: bit/bitcount.hpp
+    path: geometry/argument_sort.hpp
+    title: geometry/argument_sort.hpp
   - icon: ':x:'
-    path: data_structure/my_bitset.hpp
-    title: data_structure/my_bitset.hpp
-  - icon: ':x:'
-    path: matrix/matrix_F2.hpp
-    title: matrix/matrix_F2.hpp
+    path: geometry/point.hpp
+    title: geometry/point.hpp
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
@@ -26,9 +23,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_product_mod_2
+    PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
     links:
-    - https://judge.yosupo.jp/problem/matrix_product_mod_2
+    - https://judge.yosupo.jp/problem/sort_points_by_argument
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -37,35 +34,31 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n\
-    \n#include \"../../matrix/matrix_F2.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, m, k;\n    kin >> n >> m >>\
-    \ k;\n    kk2::MatrixF2 a(n, m), b(m, k);\n    a.input(kin), b.input(kin);\n \
-    \   (a * b).output(kout);\n\n    return 0;\n}\n"
+    \ geometry/point.hpp: line 4: #pragma once found in a non-first line\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
+    \ \n\n#include \"../../geometry/point.hpp\"\n#include \"../../geometry/argument_sort.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int n;\n    kin >> n;\n    vc<kk2::Point<i64>> p(n);\n    kin >> p;\n\
+    \    kk2::ArgumentSort<i64>().argument_sort(p);\n    rep (i, n) kout << p[i] <<\
+    \ endl;\n\n    return 0;\n}\n"
   dependsOn:
-  - matrix/matrix_F2.hpp
-  - data_structure/my_bitset.hpp
-  - bit/bitcount.hpp
-  - type_traits/type_traits.hpp
+  - geometry/point.hpp
+  - geometry/argument_sort.hpp
   - template/template.hpp
   - template/fastio.hpp
+  - type_traits/type_traits.hpp
   isVerificationFile: true
-  path: verify/yosupo_linalg/matrix_product_f2.test.cpp
+  path: verify/yosupo_geometry/arg_sort.test.cpp
   requiredBy: []
-  timestamp: '2024-10-14 04:07:04+09:00'
+  timestamp: '2024-10-14 05:57:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_linalg/matrix_product_f2.test.cpp
+documentation_of: verify/yosupo_geometry/arg_sort.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_linalg/matrix_product_f2.test.cpp
-- /verify/verify/yosupo_linalg/matrix_product_f2.test.cpp.html
-title: verify/yosupo_linalg/matrix_product_f2.test.cpp
+- /verify/verify/yosupo_geometry/arg_sort.test.cpp
+- /verify/verify/yosupo_geometry/arg_sort.test.cpp.html
+title: verify/yosupo_geometry/arg_sort.test.cpp
 ---

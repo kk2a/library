@@ -58,7 +58,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_det_f2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 18:25:45+09:00'
+  timestamp: '2024-10-14 04:07:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_det_f2.test.cpp

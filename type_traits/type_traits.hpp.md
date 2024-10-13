@@ -77,7 +77,22 @@ data:
   - icon: ':warning:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
+    path: template/template.hpp
+    title: template/template.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_0560.test.cpp
+    title: verify/aoj/aoj_0560.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_0560_2.test.cpp
+    title: verify/aoj/aoj_0560_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_grl_1_c.test.cpp
+    title: verify/aoj/aoj_grl_1_c.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
@@ -106,11 +121,29 @@ data:
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+    title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_static_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_static_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_static_rmq.test.cpp
+    title: verify/yosupo_ds/ds_static_rmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
+    title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_unionfind.test.cpp
+    title: verify/yosupo_ds/ds_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
@@ -123,6 +156,30 @@ data:
   - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/arg_sort.test.cpp
+    title: verify/yosupo_geometry/arg_sort.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/static_convex_hull.test.cpp
+    title: verify/yosupo_geometry/static_convex_hull.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_bcc.test.cpp
+    title: verify/yosupo_graph/graph_bcc.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_scc.test.cpp
+    title: verify/yosupo_graph/graph_scc.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_shortest_path.test.cpp
+    title: verify/yosupo_graph/graph_shortest_path.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+    title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/tree_diameter.test.cpp
+    title: verify/yosupo_graph/tree_diameter.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/tree_lca.test.cpp
+    title: verify/yosupo_graph/tree_lca.test.cpp
   - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
@@ -154,11 +211,29 @@ data:
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_math/kth_root_int.test.cpp
+    title: verify/yosupo_math/kth_root_int.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/sum_of_floor_linear.test.cpp
+    title: verify/yosupo_math/sum_of_floor_linear.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_others/many_a_plus_b.test.cpp
+    title: verify/yosupo_others/many_a_plus_b.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+    title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki_0430.test.cpp
+    title: verify/yuki/yuki_0430.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki_0430_2.test.cpp
+    title: verify/yuki/yuki_0430_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -192,7 +267,14 @@ data:
     \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_extended\
     \ =\n    typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
     \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\n} // namespace kk2\n\n#endif // TYPE_TRAITS_HPP\n"
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing make_unsigned_int128\
+    \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
+    \ unsigned __int128>;\n\ntemplate <typename T>\nusing to_unsigned =\n    typename\
+    \ std::conditional<is_signed_int128<T>::value,\n                             \
+    \ make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
+    \                                                        std::make_unsigned<T>,\n\
+    \                                                        std::common_type<T>>::type>::type;\n\
+    \n} // namespace kk2\n\n#endif // TYPE_TRAITS_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: type_traits/type_traits.hpp
@@ -211,6 +293,8 @@ data:
   - convolution/butterfly.hpp
   - convolution/convolution_arb.hpp
   - convolution/multi_convolution_truncated.hpp
+  - template/template.hpp
+  - template/fastio.hpp
   - string/rolling_hash.hpp
   - math_mod/comb_large.hpp
   - math_mod/primitive_root.hpp
@@ -222,7 +306,7 @@ data:
   - fps/ntt_friendly.hpp
   - fps/taylor_shift.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-12 01:25:04+09:00'
+  timestamp: '2024-10-14 04:02:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
@@ -234,9 +318,15 @@ data:
   - verify/yosupo_convolution/convolution_gcd.test.cpp
   - verify/yosupo_convolution/convolution_subset.test.cpp
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
+  - verify/yosupo_math/kth_root_int.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_math/sum_of_floor_linear.test.cpp
+  - verify/yosupo_geometry/arg_sort.test.cpp
+  - verify/yosupo_geometry/static_convex_hull.test.cpp
+  - verify/yuki/yuki_0430.test.cpp
+  - verify/yuki/yuki_0430_2.test.cpp
   - verify/yosupo_linalg/matrix_inv.test.cpp
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp
@@ -246,12 +336,29 @@ data:
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/aoj/aoj_0560.test.cpp
+  - verify/aoj/aoj_0560_2.test.cpp
+  - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - verify/yosupo_ds/ds_static_rmq.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+  - verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+  - verify/yosupo_ds/ds_unionfind.test.cpp
+  - verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  - verify/yosupo_ds/ds_static_range_sum.test.cpp
+  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/tree_diameter.test.cpp
+  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_scc.test.cpp
+  - verify/yosupo_graph/graph_shortest_path.test.cpp
+  - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+  - verify/yosupo_others/many_a_plus_b.test.cpp
 documentation_of: type_traits/type_traits.hpp
 layout: document
 redirect_from:

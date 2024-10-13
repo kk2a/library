@@ -164,7 +164,7 @@ data:
   requiredBy:
   - convolution/convolution_arb.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-14 04:02:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp

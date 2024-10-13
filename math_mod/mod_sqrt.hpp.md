@@ -50,7 +50,7 @@ data:
   path: math_mod/mod_sqrt.hpp
   requiredBy:
   - fps/fps_sqrt.hpp
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-14 04:02:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math_mod/mod_sqrt.hpp

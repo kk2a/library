@@ -113,7 +113,7 @@ data:
   - math/prime_factorize.hpp
   - math_mod/mod_sqrt.hpp
   - fps/fps_sqrt.hpp
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-14 04:02:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/primality_test.test.cpp

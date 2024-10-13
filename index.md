@@ -149,15 +149,15 @@ data:
       title: fps/to_newton_basis.hpp
   - name: geometry
     pages:
-    - icon: ':warning:'
-      path: geometry/argument.hpp
-      title: geometry/argument.hpp
-    - icon: ':warning:'
-      path: geometry/convex_hull.hpp
-      title: geometry/convex_hull.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
+      path: geometry/argument_sort.hpp
+      title: geometry/argument_sort.hpp
+    - icon: ':x:'
       path: geometry/point.hpp
       title: geometry/point.hpp
+    - icon: ':x:'
+      path: geometry/static_convex_hull.hpp
+      title: geometry/static_convex_hull.hpp
   - name: graph
     pages:
     - icon: ':x:'
@@ -525,6 +525,14 @@ data:
     - icon: ':x:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
+  - name: verify/yosupo_geometry
+    pages:
+    - icon: ':x:'
+      path: verify/yosupo_geometry/arg_sort.test.cpp
+      title: verify/yosupo_geometry/arg_sort.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_geometry/static_convex_hull.test.cpp
+      title: verify/yosupo_geometry/static_convex_hull.test.cpp
   - name: verify/yosupo_graph
     pages:
     - icon: ':x:'

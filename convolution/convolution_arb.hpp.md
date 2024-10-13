@@ -83,7 +83,7 @@ data:
   path: convolution/convolution_arb.hpp
   requiredBy:
   - fps/fps_arb.hpp
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-14 04:02:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
