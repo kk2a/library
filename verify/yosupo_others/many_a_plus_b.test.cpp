@@ -8,7 +8,7 @@ int main() {
     int t;
     kin >> t;
     rep (t) {
-        i64 a, b;
+        u64 a, b;
         kin >> a >> b;
         kout << a + b << "\n";
     }
