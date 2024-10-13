@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -69,120 +69,120 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/sum_of_floor_linear.test.cpp
     title: verify/yosupo_math/sum_of_floor_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430.test.cpp
     title: verify/yuki/yuki_0430.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430_2.test.cpp
     title: verify/yuki/yuki_0430_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <string>\n\nnamespace\
-    \ kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\n#define OUTPUT_FILE\
-    \ \"out.txt\"\n\nstruct Scanner {\n  private:\n    static constexpr size_t INPUT_BUF\
-    \ = 1 << 17;\n    size_t pos = INPUT_BUF;\n    static char buf[INPUT_BUF];\n \
-    \   FILE *fp;\n\n  public:\n    Scanner() : fp(stdin) {}\n\n    Scanner(const\
-    \ char *file) : fp(fopen(file, \"r\")) {}\n\n    ~Scanner() {\n        if (fp\
-    \ != stdin) fclose(fp);\n    }\n\n    char now() {\n        if (pos == INPUT_BUF)\
-    \ {\n            size_t len = fread(buf, 1, INPUT_BUF, fp);\n            if (len\
-    \ != INPUT_BUF) buf[len] = '\\0';\n            pos = 0;\n        }\n        return\
-    \ buf[pos];\n    }\n\n    void skip_space() {\n        while (isspace(now()))\
-    \ ++pos;\n    }\n\n    uint32_t next_u32() {\n        skip_space();\n        uint32_t\
-    \ res = 0;\n        while (isdigit(now())) {\n            res = res * 10 + (now()\
-    \ - '0');\n            ++pos;\n        }\n        return res;\n    }\n\n    int32_t\
-    \ next_i32() {\n        skip_space();\n        if (now() == '-') {\n         \
-    \   ++pos;\n            return (int32_t)(-next_u32());\n        } else return\
-    \ (int32_t)next_u32();\n    }\n\n    uint64_t next_u64() {\n        skip_space();\n\
-    \        uint64_t res = 0;\n        while (isdigit(now())) {\n            res\
-    \ = res * 10 + (now() - '0');\n            ++pos;\n        }\n        return res;\n\
-    \    }\n\n    int64_t next_i64() {\n        skip_space();\n        if (now() ==\
-    \ '-') {\n            ++pos;\n            return (int64_t)(-next_u64());\n   \
-    \     } else return (int64_t)next_u64();\n    }\n\n    __uint128_t next_u128()\
+    \ <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <iostream>\n#include\
+    \ <string>\n\nnamespace kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\
+    \n#define OUTPUT_FILE \"out.txt\"\n\nstruct Scanner {\n  private:\n    static\
+    \ constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos = INPUT_BUF;\n    static\
+    \ char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n    Scanner() : fp(stdin)\
+    \ {}\n\n    Scanner(const char *file) : fp(fopen(file, \"r\")) {}\n\n    ~Scanner()\
+    \ {\n        if (fp != stdin) fclose(fp);\n    }\n\n    char now() {\n       \
+    \ if (pos == INPUT_BUF) {\n            size_t len = fread(buf, 1, INPUT_BUF, fp);\n\
+    \            if (len != INPUT_BUF) buf[len] = '\\0';\n            pos = 0;\n \
+    \       }\n        return buf[pos];\n    }\n\n    void skip_space() {\n      \
+    \  while (isspace(now())) ++pos;\n    }\n\n    uint32_t next_u32() {\n       \
+    \ skip_space();\n        uint32_t res = 0;\n        while (isdigit(now())) {\n\
+    \            res = res * 10 + (now() - '0');\n            ++pos;\n        }\n\
+    \        return res;\n    }\n\n    int32_t next_i32() {\n        skip_space();\n\
+    \        if (now() == '-') {\n            ++pos;\n            return (int32_t)(-next_u32());\n\
+    \        } else return (int32_t)next_u32();\n    }\n\n    uint64_t next_u64()\
+    \ {\n        skip_space();\n        uint64_t res = 0;\n        while (isdigit(now()))\
+    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
+    \ }\n        return res;\n    }\n\n    int64_t next_i64() {\n        skip_space();\n\
+    \        if (now() == '-') {\n            ++pos;\n            return (int64_t)(-next_u64());\n\
+    \        } else return (int64_t)next_u64();\n    }\n\n    __uint128_t next_u128()\
     \ {\n        skip_space();\n        __uint128_t res = 0;\n        while (isdigit(now()))\
     \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
     \ }\n        return res;\n    }\n\n    __int128_t next_i128() {\n        skip_space();\n\
@@ -224,7 +224,8 @@ data:
     \ { init(); }\n\n    Printer(const char *file) : fp(fopen(file, \"w\")) { init();\
     \ }\n\n    ~Printer() {\n        write();\n        if (fp != stdout) fclose(fp);\n\
     \    }\n\n    void write() {\n        fwrite(buf, 1, pos, fp);\n        pos =\
-    \ 0;\n    }\n\n    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n\
+    \ 0;\n    }\n\n    void flush() {\n        write();\n        fflush(fp);\n   \
+    \ }\n\n    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n\
     \        buf[pos++] = c;\n    }\n\n    void put_cstr(const char *s) {\n      \
     \  while (*s) put_char(*(s++));\n    }\n\n    void put_u32(uint32_t x) {\n   \
     \     uint32_t y;\n        if (x >= pow10_32(9)) {\n            div_mod(y, x,\
@@ -291,33 +292,32 @@ data:
     \     return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar\
     \ Printer::buf[Printer::OUTPUT_BUF];\nchar Printer::helper[1000][4];\nchar Printer::leading_zero[1000][4];\n\
     \n} // namespace fastio\n\n} // namespace kk2\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\n\
-    struct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
-    \    }\n} iosetup;\n#define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\n\
-    kk2::fastio::Scanner kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n\
-    #define endl '\\n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n\
-    #define endl '\\n'\n#endif\n\n\n"
+    #define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\nkk2::fastio::Scanner\
+    \ kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n#define endl '\\\
+    n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n#define endl\
+    \ '\\n'\n#endif\n\n\n"
   code: "#ifndef TEMPLATE_FASTIO_HPP\n#define TEMPLATE_FASTIO_HPP 1\n\n#include <cctype>\n\
-    #include <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <string>\n\
-    \nnamespace kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\n#define\
-    \ OUTPUT_FILE \"out.txt\"\n\nstruct Scanner {\n  private:\n    static constexpr\
-    \ size_t INPUT_BUF = 1 << 17;\n    size_t pos = INPUT_BUF;\n    static char buf[INPUT_BUF];\n\
-    \    FILE *fp;\n\n  public:\n    Scanner() : fp(stdin) {}\n\n    Scanner(const\
-    \ char *file) : fp(fopen(file, \"r\")) {}\n\n    ~Scanner() {\n        if (fp\
-    \ != stdin) fclose(fp);\n    }\n\n    char now() {\n        if (pos == INPUT_BUF)\
-    \ {\n            size_t len = fread(buf, 1, INPUT_BUF, fp);\n            if (len\
-    \ != INPUT_BUF) buf[len] = '\\0';\n            pos = 0;\n        }\n        return\
-    \ buf[pos];\n    }\n\n    void skip_space() {\n        while (isspace(now()))\
-    \ ++pos;\n    }\n\n    uint32_t next_u32() {\n        skip_space();\n        uint32_t\
-    \ res = 0;\n        while (isdigit(now())) {\n            res = res * 10 + (now()\
-    \ - '0');\n            ++pos;\n        }\n        return res;\n    }\n\n    int32_t\
-    \ next_i32() {\n        skip_space();\n        if (now() == '-') {\n         \
-    \   ++pos;\n            return (int32_t)(-next_u32());\n        } else return\
-    \ (int32_t)next_u32();\n    }\n\n    uint64_t next_u64() {\n        skip_space();\n\
-    \        uint64_t res = 0;\n        while (isdigit(now())) {\n            res\
-    \ = res * 10 + (now() - '0');\n            ++pos;\n        }\n        return res;\n\
-    \    }\n\n    int64_t next_i64() {\n        skip_space();\n        if (now() ==\
-    \ '-') {\n            ++pos;\n            return (int64_t)(-next_u64());\n   \
-    \     } else return (int64_t)next_u64();\n    }\n\n    __uint128_t next_u128()\
+    #include <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <iostream>\n\
+    #include <string>\n\nnamespace kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE\
+    \ \"in.txt\"\n#define OUTPUT_FILE \"out.txt\"\n\nstruct Scanner {\n  private:\n\
+    \    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos = INPUT_BUF;\n\
+    \    static char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n    Scanner() :\
+    \ fp(stdin) {}\n\n    Scanner(const char *file) : fp(fopen(file, \"r\")) {}\n\n\
+    \    ~Scanner() {\n        if (fp != stdin) fclose(fp);\n    }\n\n    char now()\
+    \ {\n        if (pos == INPUT_BUF) {\n            size_t len = fread(buf, 1, INPUT_BUF,\
+    \ fp);\n            if (len != INPUT_BUF) buf[len] = '\\0';\n            pos =\
+    \ 0;\n        }\n        return buf[pos];\n    }\n\n    void skip_space() {\n\
+    \        while (isspace(now())) ++pos;\n    }\n\n    uint32_t next_u32() {\n \
+    \       skip_space();\n        uint32_t res = 0;\n        while (isdigit(now()))\
+    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
+    \ }\n        return res;\n    }\n\n    int32_t next_i32() {\n        skip_space();\n\
+    \        if (now() == '-') {\n            ++pos;\n            return (int32_t)(-next_u32());\n\
+    \        } else return (int32_t)next_u32();\n    }\n\n    uint64_t next_u64()\
+    \ {\n        skip_space();\n        uint64_t res = 0;\n        while (isdigit(now()))\
+    \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
+    \ }\n        return res;\n    }\n\n    int64_t next_i64() {\n        skip_space();\n\
+    \        if (now() == '-') {\n            ++pos;\n            return (int64_t)(-next_u64());\n\
+    \        } else return (int64_t)next_u64();\n    }\n\n    __uint128_t next_u128()\
     \ {\n        skip_space();\n        __uint128_t res = 0;\n        while (isdigit(now()))\
     \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n       \
     \ }\n        return res;\n    }\n\n    __int128_t next_i128() {\n        skip_space();\n\
@@ -359,7 +359,8 @@ data:
     \ { init(); }\n\n    Printer(const char *file) : fp(fopen(file, \"w\")) { init();\
     \ }\n\n    ~Printer() {\n        write();\n        if (fp != stdout) fclose(fp);\n\
     \    }\n\n    void write() {\n        fwrite(buf, 1, pos, fp);\n        pos =\
-    \ 0;\n    }\n\n    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n\
+    \ 0;\n    }\n\n    void flush() {\n        write();\n        fflush(fp);\n   \
+    \ }\n\n    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n\
     \        buf[pos++] = c;\n    }\n\n    void put_cstr(const char *s) {\n      \
     \  while (*s) put_char(*(s++));\n    }\n\n    void put_u32(uint32_t x) {\n   \
     \     uint32_t y;\n        if (x >= pow10_32(9)) {\n            div_mod(y, x,\
@@ -426,18 +427,17 @@ data:
     \     return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar\
     \ Printer::buf[Printer::OUTPUT_BUF];\nchar Printer::helper[1000][4];\nchar Printer::leading_zero[1000][4];\n\
     \n} // namespace fastio\n\n} // namespace kk2\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\n\
-    struct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
-    \    }\n} iosetup;\n#define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\n\
-    kk2::fastio::Scanner kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n\
-    #define endl '\\n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n\
-    #define endl '\\n'\n#endif\n\n#endif // TEMPLATE_FASTIO_HPP\n"
+    #define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\nkk2::fastio::Scanner\
+    \ kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n#define endl '\\\
+    n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n#define endl\
+    \ '\\n'\n#endif\n\n#endif // TEMPLATE_FASTIO_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: template/fastio.hpp
   requiredBy:
   - template/template.hpp
-  timestamp: '2024-10-13 04:00:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-13 18:25:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp

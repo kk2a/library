@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bcc.hpp
     title: graph/bcc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
@@ -200,12 +200,14 @@ data:
     \ - 1; i >= (i64)(b); --i)\n#define overload3(a, b, c, d, ...) d\n#define rep(...)\
     \ overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define repi(...) overload3(__VA_ARGS__,\
     \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
-    \ all(p) std::begin(p), std::end(p)\n\n#line 1 \"template/fastio.hpp\"\n\n\n\n\
-    #include <cctype>\n#include <cstdint>\n#include <cstdio>\n#line 9 \"template/fastio.hpp\"\
-    \n\nnamespace kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\n#define\
-    \ OUTPUT_FILE \"out.txt\"\n\nstruct Scanner {\n  private:\n    static constexpr\
-    \ size_t INPUT_BUF = 1 << 17;\n    size_t pos = INPUT_BUF;\n    static char buf[INPUT_BUF];\n\
-    \    FILE *fp;\n\n  public:\n    Scanner() : fp(stdin) {}\n\n    Scanner(const\
+    \ all(p) std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n   \
+    \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
+    } iosetup;\n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#line 10 \"template/fastio.hpp\"\n\nnamespace\
+    \ kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\n#define OUTPUT_FILE\
+    \ \"out.txt\"\n\nstruct Scanner {\n  private:\n    static constexpr size_t INPUT_BUF\
+    \ = 1 << 17;\n    size_t pos = INPUT_BUF;\n    static char buf[INPUT_BUF];\n \
+    \   FILE *fp;\n\n  public:\n    Scanner() : fp(stdin) {}\n\n    Scanner(const\
     \ char *file) : fp(fopen(file, \"r\")) {}\n\n    ~Scanner() {\n        if (fp\
     \ != stdin) fclose(fp);\n    }\n\n    char now() {\n        if (pos == INPUT_BUF)\
     \ {\n            size_t len = fread(buf, 1, INPUT_BUF, fp);\n            if (len\
@@ -263,7 +265,8 @@ data:
     \ { init(); }\n\n    Printer(const char *file) : fp(fopen(file, \"w\")) { init();\
     \ }\n\n    ~Printer() {\n        write();\n        if (fp != stdout) fclose(fp);\n\
     \    }\n\n    void write() {\n        fwrite(buf, 1, pos, fp);\n        pos =\
-    \ 0;\n    }\n\n    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n\
+    \ 0;\n    }\n\n    void flush() {\n        write();\n        fflush(fp);\n   \
+    \ }\n\n    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n\
     \        buf[pos++] = c;\n    }\n\n    void put_cstr(const char *s) {\n      \
     \  while (*s) put_char(*(s++));\n    }\n\n    void put_u32(uint32_t x) {\n   \
     \     uint32_t y;\n        if (x >= pow10_32(9)) {\n            div_mod(y, x,\
@@ -330,15 +333,14 @@ data:
     \     return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar\
     \ Printer::buf[Printer::OUTPUT_BUF];\nchar Printer::helper[1000][4];\nchar Printer::leading_zero[1000][4];\n\
     \n} // namespace fastio\n\n} // namespace kk2\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\n\
-    struct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n\
-    \    }\n} iosetup;\n#define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\n\
-    kk2::fastio::Scanner kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n\
-    #define endl '\\n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n\
-    #define endl '\\n'\n#endif\n\n\n#line 112 \"template/template.hpp\"\n\ntemplate\
-    \ <class OStream, class T, class U>\nOStream &operator<<(OStream &os, const std::pair<T,\
-    \ U> &p) {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate\
-    \ <class IStream, class T, class U> IStream &operator>>(IStream &is, std::pair<T,\
-    \ U> &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
+    #define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\nkk2::fastio::Scanner\
+    \ kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n#define endl '\\\
+    n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n#define endl\
+    \ '\\n'\n#endif\n\n\n#line 119 \"template/template.hpp\"\n\ntemplate <class OStream,\
+    \ class T, class U>\nOStream &operator<<(OStream &os, const std::pair<T, U> &p)\
+    \ {\n    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate <class\
+    \ IStream, class T, class U> IStream &operator>>(IStream &is, std::pair<T, U>\
+    \ &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class\
     \ OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &v)\
     \ {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size()\
     \ ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
@@ -370,8 +372,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_bcc.test.cpp
   requiredBy: []
-  timestamp: '2024-10-13 16:54:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-13 18:25:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_bcc.test.cpp
 layout: document

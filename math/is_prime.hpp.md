@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -76,7 +76,7 @@ data:
   requiredBy:
   - math/prime_factorize.hpp
   timestamp: '2024-10-13 03:33:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp

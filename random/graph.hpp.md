@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy: []
