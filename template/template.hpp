@@ -108,6 +108,13 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
 #define se second
 #define all(p) std::begin(p), std::end(p)
 
+struct IoSetUp {
+    IoSetUp() {
+        std::cin.tie(nullptr);
+        std::ios::sync_with_stdio(false);
+    }
+} iosetup;
+
 #include "fastio.hpp"
 
 template <class OStream, class T, class U>

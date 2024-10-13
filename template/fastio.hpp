@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <fstream>
+#include <iostream>
 #include <string>
 
 namespace kk2 {
@@ -220,6 +221,11 @@ struct Printer {
         pos = 0;
     }
 
+    void flush() {
+        write();
+        fflush(fp);
+    }
+
     void put_char(char c) {
         if (pos == OUTPUT_BUF) write();
         buf[pos++] = c;
@@ -411,12 +417,6 @@ char Printer::leading_zero[1000][4];
 } // namespace kk2
 
 #if defined(INTERACTIVE) || defined(USE_STDIO)
-struct IoSetUp {
-    IoSetUp() {
-        std::cin.tie(nullptr);
-        std::ios::sync_with_stdio(false);
-    }
-} iosetup;
 #define kin std::cin
 #define kout std::cout
 #elif defined(KK2)
