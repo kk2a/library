@@ -1,7 +1,7 @@
 #ifndef TEMPLATE
 #define TEMPLATE 1
 
-#pragma GCC optimize("O3,unroll-loops")
+// #pragma GCC optimize("O3,unroll-loops")
 
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -33,6 +33,8 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+
+#include "fastio.hpp"
 
 using u32 = unsigned int;
 using i64 = long long;
@@ -114,8 +116,6 @@ struct IoSetUp {
         std::ios::sync_with_stdio(false);
     }
 } iosetup;
-
-#include "fastio.hpp"
 
 template <class OStream, class T, class U>
 OStream &operator<<(OStream &os, const std::pair<T, U> &p) {
