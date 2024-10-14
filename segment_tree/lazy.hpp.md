@@ -33,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+    title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -203,6 +206,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
 documentation_of: segment_tree/lazy.hpp
 layout: document
 redirect_from:

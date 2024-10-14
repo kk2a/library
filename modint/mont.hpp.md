@@ -43,11 +43,17 @@ data:
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+    title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+    title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
@@ -66,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':x:'
@@ -185,6 +191,8 @@ data:
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp

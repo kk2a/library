@@ -52,11 +52,17 @@ data:
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+    title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+    title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
@@ -114,10 +120,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':x:'
@@ -277,7 +283,9 @@ data:
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_static_rmq.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+  - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp

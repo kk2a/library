@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+    title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -128,6 +131,7 @@ data:
   timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
 documentation_of: segment_tree/seg.hpp
 layout: document
