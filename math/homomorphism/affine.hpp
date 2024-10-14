@@ -2,6 +2,7 @@
 #define MATH_HOMOMORPHISM_AFFINE_HPP 1
 
 #include <iostream>
+#include <vector>
 
 namespace kk2 {
 
@@ -13,10 +14,16 @@ template <class S> struct Affine {
 
     constexpr Affine(S a, S b) : a(a), b(b) {}
 
-    template <class OStream>
-    friend OStream &operator<<(OStream &os, const Affine &aff) {
+    constexpr S apply(S x) const { return a * x + b; }
+
+    template <class OStream> friend OStream &operator<<(OStream &os, const Affine &aff) {
         os << aff.a << " " << aff.b;
         return os;
+    }
+
+    template <class IStream> friend IStream &operator>>(IStream &is, Affine &aff) {
+        is >> aff.a >> aff.b;
+        return is;
     }
 };
 
@@ -36,6 +43,16 @@ template <class S> Affine<S> AffineUnit() {
 }
 
 } // namespace homomorphism
+
+template <class S, class... Args>
+std::vector<homomorphism::Affine<S>> GetVecAffine(int n, Args... args) {
+    return std::vector<homomorphism::Affine<S>>(n, homomorphism::Affine<S>(args...));
+}
+
+template <class S, class... Args>
+std::vector<std::vector<homomorphism::Affine<S>>> GetVecAffine2D(int h, int w, Args... args) {
+    return std::vector<std::vector<homomorphism::Affine<S>>>(h, GetVecAffine<S>(w, args...));
+}
 
 } // namespace kk2
 
