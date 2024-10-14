@@ -59,7 +59,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/primality_test.test.cpp
   requiredBy: []
-  timestamp: '2024-10-14 04:07:04+09:00'
+  timestamp: '2024-10-14 19:35:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/primality_test.test.cpp

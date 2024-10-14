@@ -63,67 +63,73 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_cycle_detection.test.cpp
+    title: verify/yosupo_graph/graph_cycle_detection.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+    title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':x:'
@@ -183,7 +189,7 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef TEMPLATE\n#define TEMPLATE 1\n\n#pragma GCC optimize(\"O3,unroll-loops\"\
+  code: "#ifndef TEMPLATE\n#define TEMPLATE 1\n\n// #pragma GCC optimize(\"O3,unroll-loops\"\
     )\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <chrono>\n#include <cmath>\n#include\
     \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
@@ -191,12 +197,12 @@ data:
     \ <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n#include <random>\n\
     #include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n#include\
     \ <tuple>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\nusing u32 = unsigned int;\nusing i64\
-    \ = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing\
-    \ u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-    \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\n\
-    template <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc =\
-    \ std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
+    #include <utility>\n#include <vector>\n\n#include \"fastio.hpp\"\n\nusing u32\
+    \ = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+    \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\n\
+    using pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\nusing pli =\
+    \ std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\ntemplate\
+    \ <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
     template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using\
     \ pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\n\ntemplate <class T> constexpr T infty =\
@@ -226,28 +232,28 @@ data:
     \ repi3, repi2, rep1)(__VA_ARGS__)\n\n#define fi first\n#define se second\n#define\
     \ all(p) std::begin(p), std::end(p)\n\nstruct IoSetUp {\n    IoSetUp() {\n   \
     \     std::cin.tie(nullptr);\n        std::ios::sync_with_stdio(false);\n    }\n\
-    } iosetup;\n\n#include \"fastio.hpp\"\n\ntemplate <class OStream, class T, class\
-    \ U>\nOStream &operator<<(OStream &os, const std::pair<T, U> &p) {\n    os <<\
-    \ p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate <class IStream, class\
-    \ T, class U> IStream &operator>>(IStream &is, std::pair<T, U> &p) {\n    is >>\
-    \ p.first >> p.second;\n    return is;\n}\n\ntemplate <class OStream, class T>\
-    \ OStream &operator<<(OStream &os, const std::vector<T> &v) {\n    for (int i\
-    \ = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size() ? \"\"\
-    \ : \" \"); }\n    return os;\n}\n\ntemplate <class IStream, class T> IStream\
-    \ &operator>>(IStream &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n\
-    \    return is;\n}\n\nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\n\" : \"\
-    No\\n\");\n}\n\nvoid No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"Yes\\n\"\
-    );\n}\n\nvoid YES(bool b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\
-    \nvoid NO(bool b = 1) {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid\
-    \ yes(bool b = 1) {\n    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool\
-    \ b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#endif // TEMPLATE\n"
+    } iosetup;\n\ntemplate <class OStream, class T, class U>\nOStream &operator<<(OStream\
+    \ &os, const std::pair<T, U> &p) {\n    os << p.first << ' ' << p.second;\n  \
+    \  return os;\n}\n\ntemplate <class IStream, class T, class U> IStream &operator>>(IStream\
+    \ &is, std::pair<T, U> &p) {\n    is >> p.first >> p.second;\n    return is;\n\
+    }\n\ntemplate <class OStream, class T> OStream &operator<<(OStream &os, const\
+    \ std::vector<T> &v) {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i]\
+    \ << (i + 1 == (int)v.size() ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate\
+    \ <class IStream, class T> IStream &operator>>(IStream &is, std::vector<T> &v)\
+    \ {\n    for (auto &x : v) is >> x;\n    return is;\n}\n\nvoid Yes(bool b = 1)\
+    \ {\n    kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n \
+    \   kout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    kout\
+    \ << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    kout << (b\
+    \ ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    kout << (b ? \"\
+    yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout << (b ? \"no\\n\"\
+    \ : \"yes\\n\");\n}\n\n#endif // TEMPLATE\n"
   dependsOn:
   - template/fastio.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-10-14 04:07:04+09:00'
+  timestamp: '2024-10-14 19:35:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
@@ -295,9 +301,11 @@ data:
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/tree_diameter.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
   - verify/yosupo_graph/graph_scc.test.cpp
   - verify/yosupo_graph/graph_shortest_path.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp

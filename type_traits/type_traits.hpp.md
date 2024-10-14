@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
@@ -20,7 +20,7 @@ data:
   - icon: ':warning:'
     path: data_structure/convex_hull_trick_add_monotone.hpp
     title: data_structure/convex_hull_trick_add_monotone.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   - icon: ':warning:'
@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
@@ -62,7 +62,7 @@ data:
   - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
   - icon: ':warning:'
@@ -138,67 +138,73 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_cycle_detection.test.cpp
+    title: verify/yosupo_graph/graph_cycle_detection.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+    title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':x:'
@@ -360,9 +366,11 @@ data:
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/tree_diameter.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
   - verify/yosupo_graph/graph_scc.test.cpp
   - verify/yosupo_graph/graph_shortest_path.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp

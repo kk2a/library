@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
@@ -53,8 +53,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-10-14 04:07:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-14 19:35:34+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_pow.test.cpp
 layout: document

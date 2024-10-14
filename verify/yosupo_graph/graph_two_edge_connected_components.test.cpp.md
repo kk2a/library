@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_connected_components.hpp
     title: graph/two_edge_connected_components.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -61,8 +61,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-10-14 04:07:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-14 19:35:34+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
 layout: document

@@ -9,27 +9,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_cycle_detection.test.cpp
+    title: verify/yosupo_graph/graph_cycle_detection.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+    title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/graph.hpp\"\n\n\n\n#include <cassert>\n#include <iostream>\n\
@@ -188,13 +194,15 @@ data:
   requiredBy:
   - random/graph.hpp
   timestamp: '2024-10-13 16:54:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/tree_diameter.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
   - verify/yosupo_graph/graph_scc.test.cpp
   - verify/yosupo_graph/graph_shortest_path.test.cpp
 documentation_of: graph/graph.hpp
