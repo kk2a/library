@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#include "../../functional/rev.hpp"
+#include "../../functional/reverse_args.hpp"
 #include "../../math/homomorphism/affine.hpp"
 #include "../../modint/mont.hpp"
 #include "../../segment_tree/seg.hpp"
@@ -13,10 +13,7 @@ int main() {
     auto a = kk2::GetVecAffine<kk2::mont998>(n);
     kin >> a;
     kk2::SegTree<kk2::homomorphism::Affine<kk2::mont998>,
-                 kk2::rev<kk2::homomorphism::Affine<kk2::mont998>,
-                          kk2::homomorphism::Affine<kk2::mont998>,
-                          kk2::homomorphism::Affine<kk2::mont998>,
-                          kk2::homomorphism::AffineComposition<kk2::mont998>>,
+                 kk2::reverse_args<kk2::homomorphism::AffineComposition<kk2::mont998>>,
                  kk2::homomorphism::AffineUnit<kk2::mont998>>
         seg(a);
 
