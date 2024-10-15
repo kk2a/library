@@ -32,12 +32,15 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
     path: fps/taylor_shift.hpp
     title: fps/taylor_shift.hpp
+  - icon: ':heavy_check_mark:'
+    path: functional/reverse_args.hpp
+    title: functional/reverse_args.hpp
   - icon: ':x:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
@@ -138,49 +141,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
   - icon: ':x:'
@@ -286,7 +289,13 @@ data:
     \ make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
     \                                                        std::make_unsigned<T>,\n\
     \                                                        std::common_type<T>>::type>::type;\n\
-    \n} // namespace kk2\n\n#endif // TYPE_TRAITS_HPP\n"
+    \ntemplate <typename T>\nusing is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T>\
+    \ && std::is_function_v<std::remove_pointer_t<T>>,\n                         \
+    \     std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T, std::enable_if_t<is_function_pointer<T>::value> * = nullptr>\n\
+    struct is_two_args_function_pointer : std::false_type {};\n\ntemplate <typename\
+    \ R, typename T1, typename T2>\nstruct is_two_args_function_pointer<R(*)(T1, T2)>\
+    \ : std::true_type {};\n\n} // namespace kk2\n\n#endif // TYPE_TRAITS_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: type_traits/type_traits.hpp
@@ -313,12 +322,13 @@ data:
   - math_mod/mod_sqrt.hpp
   - math_mod/comb.hpp
   - math_mod/pow_mod.hpp
+  - functional/reverse_args.hpp
   - fps/multivariate_fps.hpp
   - fps/fps_sqrt.hpp
   - fps/ntt_friendly.hpp
   - fps/taylor_shift.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-14 04:02:19+09:00'
+  timestamp: '2024-10-15 17:47:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp

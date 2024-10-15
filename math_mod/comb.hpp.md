@@ -69,7 +69,7 @@ data:
   requiredBy:
   - math_mod/comb_large.hpp
   - fps/taylor_shift.hpp
-  timestamp: '2024-10-14 04:02:19+09:00'
+  timestamp: '2024-10-15 17:47:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
