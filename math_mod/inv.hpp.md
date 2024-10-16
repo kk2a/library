@@ -20,18 +20,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math_mod/inv.hpp\"\n\n\n\nnamespace kk2 {\n\n// require:\
-    \ modulo >= 1\ntemplate <class T> constexpr T mod_inversion(T a, T modulo) {\n\
-    \    a %= modulo;\n    if (a < 0) a += modulo;\n    T s = modulo, t = a;\n   \
-    \ T m0 = 0, m1 = 1;\n    while (t) {\n        T u = s / t;\n        std::swap(s\
-    \ -= t * u, t);\n        std::swap(m0 -= m1 * u, m1);\n    }\n    if (m0 < 0)\
-    \ m0 += modulo;\n    return m0;\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef MOD_INV_HPP\n#define MOD_INV_HPP 1\n\nnamespace kk2 {\n\n// require:\
-    \ modulo >= 1\ntemplate <class T> constexpr T mod_inversion(T a, T modulo) {\n\
-    \    a %= modulo;\n    if (a < 0) a += modulo;\n    T s = modulo, t = a;\n   \
-    \ T m0 = 0, m1 = 1;\n    while (t) {\n        T u = s / t;\n        std::swap(s\
-    \ -= t * u, t);\n        std::swap(m0 -= m1 * u, m1);\n    }\n    if (m0 < 0)\
-    \ m0 += modulo;\n    return m0;\n}\n\n} // namespace kk2\n\n#endif // MOD_INV_HPP\n"
+  bundledCode: "#line 1 \"math_mod/inv.hpp\"\n\n\n\n#include <algorithm>\n\nnamespace\
+    \ kk2 {\n\n// require: modulo >= 1\ntemplate <class T> constexpr T mod_inversion(T\
+    \ a, T modulo) {\n    a %= modulo;\n    if (a < 0) a += modulo;\n    T s = modulo,\
+    \ t = a;\n    T m0 = 0, m1 = 1;\n    while (t) {\n        T u = s / t;\n     \
+    \   std::swap(s -= t * u, t);\n        std::swap(m0 -= m1 * u, m1);\n    }\n \
+    \   if (m0 < 0) m0 += modulo;\n    return m0;\n}\n\n} // namespace kk2\n\n\n"
+  code: "#ifndef MOD_INV_HPP\n#define MOD_INV_HPP 1\n\n#include <algorithm>\n\nnamespace\
+    \ kk2 {\n\n// require: modulo >= 1\ntemplate <class T> constexpr T mod_inversion(T\
+    \ a, T modulo) {\n    a %= modulo;\n    if (a < 0) a += modulo;\n    T s = modulo,\
+    \ t = a;\n    T m0 = 0, m1 = 1;\n    while (t) {\n        T u = s / t;\n     \
+    \   std::swap(s -= t * u, t);\n        std::swap(m0 -= m1 * u, m1);\n    }\n \
+    \   if (m0 < 0) m0 += modulo;\n    return m0;\n}\n\n} // namespace kk2\n\n#endif\
+    \ // MOD_INV_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math_mod/inv.hpp
@@ -39,7 +40,7 @@ data:
   - convolution/convolution_arb.hpp
   - math_mod/garner.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2024-10-16 14:12:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp

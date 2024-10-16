@@ -14,7 +14,7 @@ data:
   - icon: ':x:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
   _extendedVerifiedWith:
@@ -24,6 +24,9 @@ data:
   - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/sqrt_mod.test.cpp
+    title: verify/yosupo_math/sqrt_mod.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -116,6 +119,7 @@ data:
   timestamp: '2024-10-15 17:47:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/yosupo_math/sqrt_mod.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp
 documentation_of: modint/mont_arb.hpp

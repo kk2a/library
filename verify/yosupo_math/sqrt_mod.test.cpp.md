@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/warshall_floyd.hpp
-    title: graph/warshall_floyd.hpp
+  - icon: ':x:'
+    path: math_mod/mod_sqrt.hpp
+    title: math_mod/mod_sqrt.hpp
+  - icon: ':x:'
+    path: modint/mont_arb.hpp
+    title: modint/mont_arb.hpp
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
@@ -18,14 +18,14 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
+    PROBLEM: https://judge.yosupo.jp/problem/sqrt_mod
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
+    - https://judge.yosupo.jp/problem/sqrt_mod
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -41,32 +41,27 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\
-    \ \n\n#include \"../../graph/graph.hpp\"\n#include \"../../graph/warshall_floyd.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::DWAdjMat<int> g(n, m, false);\n\
-    \    g.input(kin);\n    auto dist = kk2::WarshallFroyd(g);\n    rep (i, n) {\n\
-    \        if (dist[i][i].len < 0) {\n            kout << \"NEGATIVE CYCLE\" <<\
-    \ endl;\n            return 0;\n        }\n    }\n\n    rep (i, n) {\n       \
-    \ rep (j, n) {\n            if (dist[i][j].is_valid) kout << dist[i][j].len;\n\
-    \            else kout << \"INF\";\n            kout << \" \\n\"[j == n - 1];\n\
-    \        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\" \n\n#include\
+    \ \"../../math_mod/mod_sqrt.hpp\"\n#include \"../../template/template.hpp\"\n\
+    using namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t) {\n\
+    \        int y, p;\n        kin >> y >> p;\n        kout << kk2::mod_sqrt(y, p)\
+    \ << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
-  - graph/graph.hpp
-  - graph/warshall_floyd.hpp
+  - math_mod/mod_sqrt.hpp
+  - modint/mont_arb.hpp
+  - type_traits/type_traits.hpp
   - template/template.hpp
   - template/fastio.hpp
-  - type_traits/type_traits.hpp
   isVerificationFile: true
-  path: verify/aoj/aoj_grl_1_c.test.cpp
+  path: verify/yosupo_math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-10-15 17:47:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-16 14:12:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/aoj/aoj_grl_1_c.test.cpp
+documentation_of: verify/yosupo_math/sqrt_mod.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/aoj/aoj_grl_1_c.test.cpp
-- /verify/verify/aoj/aoj_grl_1_c.test.cpp.html
-title: verify/aoj/aoj_grl_1_c.test.cpp
+- /verify/verify/yosupo_math/sqrt_mod.test.cpp
+- /verify/verify/yosupo_math/sqrt_mod.test.cpp.html
+title: verify/yosupo_math/sqrt_mod.test.cpp
 ---
