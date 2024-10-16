@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -15,13 +15,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560_2.test.cpp
     title: verify/aoj/aoj_0560_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,19 +30,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_subset.test.cpp
     title: verify/yosupo_convolution/convolution_subset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,102 +87,102 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/sqrt_mod.test.cpp
     title: verify/yosupo_math/sqrt_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/sum_of_floor_linear.test.cpp
     title: verify/yosupo_math/sum_of_floor_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430.test.cpp
     title: verify/yuki/yuki_0430.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430_2.test.cpp
     title: verify/yuki/yuki_0430_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -228,29 +228,30 @@ data:
     \        return *this;\n    }\n\n    Scanner &operator>>(char &x) {\n        x\
     \ = next_char();\n        return *this;\n    }\n\n    Scanner &operator>>(std::string\
     \ &x) {\n        x = next_string();\n        return *this;\n    }\n};\n\nstruct\
-    \ Printer {\n  private:\n    static char helper[10000][5];\n    static char leading_zero[10000][5];\n\
-    \    constexpr static size_t OUTPUT_BUF = 1 << 17;\n    static char buf[OUTPUT_BUF];\n\
-    \    size_t pos = 0;\n    FILE *fp;\n\n    template <class T> static constexpr\
-    \ void div_mod(T &a, T &b, T mod) {\n        a = b / mod;\n        b -= a * mod;\n\
-    \    }\n\n    static void init() {\n        buf[0] = '\\0';\n        for (size_t\
-    \ i = 0; i < 10000; ++i) {\n            leading_zero[i][0] = i / 1000 + '0';\n\
-    \            leading_zero[i][1] = i / 100 % 10 + '0';\n            leading_zero[i][2]\
-    \ = i / 10 % 10 + '0';\n            leading_zero[i][3] = i % 10 + '0';\n     \
-    \       leading_zero[i][4] = '\\0';\n\n            size_t j = 0;\n           \
-    \ if (i >= 1000) helper[i][j++] = i / 1000 + '0';\n            if (i >= 100) helper[i][j++]\
-    \ = i / 100 % 10 + '0';\n            if (i >= 10) helper[i][j++] = i / 10 % 10\
-    \ + '0';\n            helper[i][j++] = i % 10 + '0';\n            helper[i][j]\
-    \ = '\\0';\n        }\n    }\n\n  public:\n    Printer() : fp(stdout) { init();\
-    \ }\n\n    Printer(const char *file) : fp(fopen(file, \"w\")) { init(); }\n\n\
-    \    ~Printer() {\n        write();\n        if (fp != stdout) fclose(fp);\n \
-    \   }\n\n    void write() {\n        fwrite(buf, 1, pos, fp);\n        pos = 0;\n\
-    \    }\n\n    void flush() {\n        write();\n        fflush(fp);\n    }\n\n\
-    \    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n      \
-    \  buf[pos++] = c;\n    }\n\n    void put_cstr(const char *s) {\n        while\
-    \ (*s) put_char(*(s++));\n    }\n\n    void put_u32(uint32_t x) {\n        uint32_t\
-    \ y;\n        if (x >= 100000000) { // 10^8\n            div_mod<uint32_t>(y,\
-    \ x, 100000000);\n            put_cstr(helper[y]);\n            div_mod<uint32_t>(y,\
-    \ x, 10000);\n            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
+    \ endl_struct_t {};\n\nstruct Printer {\n  private:\n    static char helper[10000][5];\n\
+    \    static char leading_zero[10000][5];\n    constexpr static size_t OUTPUT_BUF\
+    \ = 1 << 17;\n    static char buf[OUTPUT_BUF];\n    size_t pos = 0;\n    FILE\
+    \ *fp;\n\n    template <class T> static constexpr void div_mod(T &a, T &b, T mod)\
+    \ {\n        a = b / mod;\n        b -= a * mod;\n    }\n\n    static void init()\
+    \ {\n        buf[0] = '\\0';\n        for (size_t i = 0; i < 10000; ++i) {\n \
+    \           leading_zero[i][0] = i / 1000 + '0';\n            leading_zero[i][1]\
+    \ = i / 100 % 10 + '0';\n            leading_zero[i][2] = i / 10 % 10 + '0';\n\
+    \            leading_zero[i][3] = i % 10 + '0';\n            leading_zero[i][4]\
+    \ = '\\0';\n\n            size_t j = 0;\n            if (i >= 1000) helper[i][j++]\
+    \ = i / 1000 + '0';\n            if (i >= 100) helper[i][j++] = i / 100 % 10 +\
+    \ '0';\n            if (i >= 10) helper[i][j++] = i / 10 % 10 + '0';\n       \
+    \     helper[i][j++] = i % 10 + '0';\n            helper[i][j] = '\\0';\n    \
+    \    }\n    }\n\n  public:\n    Printer() : fp(stdout) { init(); }\n\n    Printer(const\
+    \ char *file) : fp(fopen(file, \"w\")) { init(); }\n\n    ~Printer() {\n     \
+    \   write();\n        if (fp != stdout) fclose(fp);\n    }\n\n    void write()\
+    \ {\n        fwrite(buf, 1, pos, fp);\n        pos = 0;\n    }\n\n    void flush()\
+    \ {\n        write();\n        fflush(fp);\n    }\n\n    void put_char(char c)\
+    \ {\n        if (pos == OUTPUT_BUF) write();\n        buf[pos++] = c;\n    }\n\
+    \n    void put_cstr(const char *s) {\n        while (*s) put_char(*(s++));\n \
+    \   }\n\n    void put_u32(uint32_t x) {\n        uint32_t y;\n        if (x >=\
+    \ 100000000) { // 10^8\n            div_mod<uint32_t>(y, x, 100000000);\n    \
+    \        put_cstr(helper[y]);\n            div_mod<uint32_t>(y, x, 10000);\n \
+    \           put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
     \        } else if (x >= 10000) { // 10^4\n            div_mod<uint32_t>(y, x,\
     \ 10000);\n            put_cstr(helper[y]);\n            put_cstr(leading_zero[x]);\n\
     \        } else put_cstr(helper[x]);\n    }\n\n    void put_i32(int32_t x) {\n\
@@ -290,21 +291,25 @@ data:
     \        return *this;\n    }\n\n    Printer &operator<<(const std::string &x)\
     \ {\n        for (char c : x) put_char(c);\n        return *this;\n    }\n\n \
     \   Printer &operator<<(const char *x) {\n        put_cstr(x);\n        return\
-    \ *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar Printer::buf[Printer::OUTPUT_BUF];\n\
-    char Printer::helper[10000][5];\nchar Printer::leading_zero[10000][5];\n\n} //\
-    \ namespace fastio\n\n} // namespace kk2\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\n\
-    #define kin std::cin\n#define kout std::cout\n#elif defined(KK2)\nkk2::fastio::Scanner\
-    \ kin(INPUT_FILE);\nkk2::fastio::Printer kout(OUTPUT_FILE);\n#define endl '\\\
-    n'\n#else\nkk2::fastio::Scanner kin;\nkk2::fastio::Printer kout;\n#define endl\
-    \ '\\n'\n#endif\n\n#endif // TEMPLATE_FASTIO_HPP\n"
+    \ *this;\n    }\n\n    // std::cout << std::endl; \u306F\u95A2\u6570\u30DD\u30A4\
+    \u30F3\u30BF\u3092\u6E21\u3057\u3066\u3044\u308B\u3089\u3057\u3044\n    Printer\
+    \ &operator<<(endl_struct_t) {\n        put_char('\\n');\n        flush();\n \
+    \       return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar\
+    \ Printer::buf[Printer::OUTPUT_BUF];\nchar Printer::helper[10000][5];\nchar Printer::leading_zero[10000][5];\n\
+    \n} // namespace fastio\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\nauto\
+    \ &kin = std::cin;\nauto &kout = std::cout;\nauto& (*kendl)(std::ostream&) = std::endl<char,\
+    \ std::char_traits<char>>;\n#elif defined(KK2)\nfastio::Scanner kin(INPUT_FILE);\n\
+    fastio::Printer kout(OUTPUT_FILE);\nfastio::endl_struct_t kendl;\n#else\nfastio::Scanner\
+    \ kin;\nfastio::Printer kout;\nfastio::endl_struct_t kendl;\n#endif\n\n} // namespace\
+    \ kk2\n\n#endif // TEMPLATE_FASTIO_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: template/fastio.hpp
   requiredBy:
   - template/template.hpp
-  timestamp: '2024-10-15 17:47:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-17 02:51:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp
