@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primality_test
@@ -60,7 +60,7 @@ data:
   path: verify/yosupo_math/primality_test.test.cpp
   requiredBy: []
   timestamp: '2024-10-15 17:47:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/primality_test.test.cpp
 layout: document

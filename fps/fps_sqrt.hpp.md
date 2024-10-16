@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []

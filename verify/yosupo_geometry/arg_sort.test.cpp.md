@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/point.hpp
     title: geometry/point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
