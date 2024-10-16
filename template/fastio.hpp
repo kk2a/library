@@ -108,6 +108,8 @@ struct Scanner {
     }
 };
 
+struct endl_struct_t {};
+
 struct Printer {
   private:
     static char helper[10000][5];
@@ -276,6 +278,13 @@ struct Printer {
         put_cstr(x);
         return *this;
     }
+
+    // std::cout << std::endl; は関数ポインタを渡しているらしい
+    Printer &operator<<(endl_struct_t) {
+        put_char('\n');
+        flush();
+        return *this;
+    }
 };
 
 char Scanner::buf[Scanner::INPUT_BUF];
@@ -285,19 +294,20 @@ char Printer::leading_zero[10000][5];
 
 } // namespace fastio
 
-} // namespace kk2
-
 #if defined(INTERACTIVE) || defined(USE_STDIO)
-#define kin std::cin
-#define kout std::cout
+auto &kin = std::cin;
+auto &kout = std::cout;
+auto& (*kendl)(std::ostream&) = std::endl<char, std::char_traits<char>>;
 #elif defined(KK2)
-kk2::fastio::Scanner kin(INPUT_FILE);
-kk2::fastio::Printer kout(OUTPUT_FILE);
-#define endl '\n'
+fastio::Scanner kin(INPUT_FILE);
+fastio::Printer kout(OUTPUT_FILE);
+fastio::endl_struct_t kendl;
 #else
-kk2::fastio::Scanner kin;
-kk2::fastio::Printer kout;
-#define endl '\n'
+fastio::Scanner kin;
+fastio::Printer kout;
+fastio::endl_struct_t kendl;
 #endif
+
+} // namespace kk2
 
 #endif // TEMPLATE_FASTIO_HPP

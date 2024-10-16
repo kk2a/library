@@ -110,6 +110,10 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
 #define se second
 #define all(p) std::begin(p), std::end(p)
 
+using kk2::kin;
+using kk2::kout;
+using kk2::kendl;
+
 struct IoSetUp {
     IoSetUp() {
         std::cin.tie(nullptr);
