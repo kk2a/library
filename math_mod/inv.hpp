@@ -1,6 +1,8 @@
 #ifndef MOD_INV_HPP
 #define MOD_INV_HPP 1
 
+#include <algorithm>
+
 namespace kk2 {
 
 // require: modulo >= 1
