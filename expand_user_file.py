@@ -32,9 +32,13 @@ class include_file:
             included_file = good_path(os.path.join(os.path.dirname(cur_file_path), included_file))
         return included_file
 
+    def is_pragma_once(self, line):
+        return re.sub(r'\s+', '', line).startswith('#pragmaonce')
+
     def expand_all_include_files(self):
         file_path_set = set()
         lines = []
+
         def rec(cur_file_path):
             if file_path_set.__contains__(cur_file_path):
                 return
@@ -42,33 +46,19 @@ class include_file:
 
             with open(cur_file_path, 'r', encoding="utf-8") as file:
                 for line in file:
+                    if self.is_pragma_once(line):
+                        continue
                     included_file_path = self.get_inlude_path(line, cur_file_path)
                     if included_file_path == '':
-                        continue
-
-                    rec(included_file_path)
-
-            with open(cur_file_path, 'r', encoding="utf-8") as file:
-                for line in file:
-                    inlcluded_file_path = self.get_inlude_path(line, cur_file_path)
-                    if inlcluded_file_path == '':
                         lines.append(line)
-                    else:
-                        lines.append(f'// {line}')
+                        continue
+                    rec(included_file_path)
+                    lines.append(f'// {line}')
 
             lines.append("\n")
 
-        with open(self.file_path, 'r', encoding="utf-8") as file:
-            for line in file:
-                included_file_path = self.get_inlude_path(line, self.file_path)
-                if included_file_path == '':
-                    lines.append(line)
-                    continue
-                rec(included_file_path)
-                if included_file_path != '':
-                    lines.append(f"// {line}\n")
-
-        lines.append('\n// converted!!\n')
+        rec(self.file_path)
+        lines.append('// converted!!\n')
         with open(self.file_path, 'w', encoding="utf-8") as file:
             file.write(''.join(lines))
 
