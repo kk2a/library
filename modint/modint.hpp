@@ -171,12 +171,14 @@ template <int p> struct ModInt {
 
     friend bool operator!=(const mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }
 
-    template <class OStream> friend OStream &operator<<(OStream &os, const mint &mint_) {
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    friend OStream &operator<<(OStream &os, const mint &mint_) {
         os << mint_._v;
         return os;
     }
 
-    template <class IStream> friend IStream &operator>>(IStream &is, mint &mint_) {
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    friend IStream &operator>>(IStream &is, mint &mint_) {
         long long x;
         is >> x;
         mint_ = mint(x);

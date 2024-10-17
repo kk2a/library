@@ -11,7 +11,7 @@ int main() {
     vc<kk2::Point<i64>> p(n);
     kin >> p;
     kk2::ArgumentSort<i64>().argument_sort(p);
-    rep (i, n) kout << p[i] << endl;
+    rep (i, n) kout << p[i] << "\n";
 
     return 0;
 }

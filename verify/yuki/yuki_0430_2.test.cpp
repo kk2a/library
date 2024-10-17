@@ -17,7 +17,7 @@ int main() {
     ac.build();
     auto each = ac.each_match(s);
     i64 res = accumulate(all(each), 0LL);
-    kout << res << endl;
+    kout << res << kendl;
 
     return 0;
 }

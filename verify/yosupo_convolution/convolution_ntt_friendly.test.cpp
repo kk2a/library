@@ -10,7 +10,7 @@ int main() {
     kin >> n >> m;
     vc<kk2::mont998> a(n), b(m);
     kin >> a >> b;
-    kout << kk2::convolution(a, b) << endl;
+    kout << kk2::convolution(a, b) << kendl;
 
     return 0;
 }

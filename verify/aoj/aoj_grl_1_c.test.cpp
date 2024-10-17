@@ -13,7 +13,7 @@ int main() {
     auto dist = kk2::WarshallFroyd(g);
     rep (i, n) {
         if (dist[i][i].len < 0) {
-            kout << "NEGATIVE CYCLE" << endl;
+            kout << "NEGATIVE CYCLE" << kendl;
             return 0;
         }
     }

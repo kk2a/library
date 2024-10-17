@@ -15,7 +15,7 @@ int main() {
     kk2::AhoCorasick<26, 'A'> ac;
     for (auto &x : c) ac.add(x);
     ac.build();
-    kout << ac.all_match(s) << endl;
+    kout << ac.all_match(s) << kendl;
 
     return 0;
 }

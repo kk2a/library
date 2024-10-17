@@ -16,8 +16,8 @@ int main() {
         kk2::ConvexHull ch(p);
         ch.build();
         auto hull = ch.hull;
-        kout << ch.hull.size() << endl;
-        for (auto &q : ch.hull) kout << q << endl;
+        kout << ch.hull.size() << "\n";
+        for (auto &q : ch.hull) kout << q << "\n";
     }
 
     return 0;

@@ -11,8 +11,8 @@ int main() {
     kk2::WAdjList<i64> g(n, n - 1, false);
     g.input(kin);
     auto [d, path] = kk2::weighted_tree_diameter(g);
-    kout << d << " " << path.size() << endl;
-    kout << path << endl;
+    kout << d << " " << path.size() << kendl;
+    kout << path << kendl;
 
     return 0;
 }

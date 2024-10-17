@@ -136,11 +136,13 @@ struct ArbitraryLazyMontgomeryModIntBase {
         return mint(m0);
     }
 
-    template <class OStream> friend OStream &operator<<(OStream &os, const mint &x) {
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    friend OStream &operator<<(OStream &os, const mint &x) {
         return os << x.val();
     }
 
-    template <class IStream> friend IStream &operator>>(IStream &is, mint &x) {
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    friend IStream &operator>>(IStream &is, mint &x) {
         Long t;
         is >> t;
         x = mint(t);
