@@ -6,7 +6,7 @@
 namespace kk2 {
 
 // reverse_args<f>(y, x) = f(x, y)
-template <auto f, std::enable_if_t<is_two_args_function_pointer<decltype(f)>::value> * = nullptr>
+template <auto f, is_two_args_function_pointer_t<decltype(f)> * = nullptr>
 auto reverse_args(auto x, auto y) {
     return f(y, x);
 }
