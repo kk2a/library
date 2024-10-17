@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -94,8 +94,9 @@ data:
     \       while (t) {\n            Int u = s / t;\n            std::swap(s -= t\
     \ * u, t);\n            std::swap(m0 -= m1 * u, m1);\n        }\n        if (m0\
     \ < 0) m0 += getmod();\n        return mint(m0);\n    }\n\n    template <class\
-    \ OStream> friend OStream &operator<<(OStream &os, const mint &x) {\n        return\
-    \ os << x.val();\n    }\n\n    template <class IStream> friend IStream &operator>>(IStream\
+    \ OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
+    \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
+    \ <class IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream\
     \ &is, mint &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n \
     \       return (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n\
     \        return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
@@ -113,7 +114,7 @@ data:
   - math/prime_factorize.hpp
   - math_mod/mod_sqrt.hpp
   - fps/fps_sqrt.hpp
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-17 14:18:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/sqrt_mod.test.cpp

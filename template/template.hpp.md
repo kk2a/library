@@ -1,66 +1,66 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560.test.cpp
     title: verify/aoj/aoj_0560.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560_2.test.cpp
     title: verify/aoj/aoj_0560_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_subset.test.cpp
     title: verify/yosupo_convolution/convolution_subset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - icon: ':x:'
@@ -176,7 +176,7 @@ data:
     title: verify/yuki/yuki_0430_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -234,30 +234,31 @@ data:
     \ all(p) std::begin(p), std::end(p)\n\nusing kk2::kendl;\nusing kk2::kin;\nusing\
     \ kk2::kout;\n\nstruct IoSetUp {\n    IoSetUp() {\n        std::cin.tie(nullptr);\n\
     \        std::ios::sync_with_stdio(false);\n    }\n} iosetup;\n\ntemplate <class\
-    \ OStream, class T, class U, is_ostream_t<OStream> * = nullptr>\nOStream &operator<<(OStream\
-    \ &os, const std::pair<T, U> &p) {\n    os << p.first << ' ' << p.second;\n  \
-    \  return os;\n}\n\ntemplate <class IStream, class T, class U, is_istream_t<IStream>\
-    \ * = nullptr>\nIStream &operator>>(IStream &is, std::pair<T, U> &p) {\n    is\
-    \ >> p.first >> p.second;\n    return is;\n}\n\ntemplate <class OStream, class\
-    \ T, is_ostream_t<OStream> * = nullptr>\nOStream &operator<<(OStream &os, const\
-    \ std::vector<T> &v) {\n    for (int i = 0; i < (int)v.size(); i++) { os << v[i]\
-    \ << (i + 1 == (int)v.size() ? \"\" : \" \"); }\n    return os;\n}\n\ntemplate\
-    \ <class IStream, class T, is_istream_t<IStream> * = nullptr>\nIStream &operator>>(IStream\
-    \ &is, std::vector<T> &v) {\n    for (auto &x : v) is >> x;\n    return is;\n\
-    }\n\nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\n\
-    void No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool\
-    \ b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1)\
-    \ {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n\
-    \    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout\
-    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#endif // TEMPLATE\n"
+    \ OStream, class T, class U, kk2::is_ostream_t<OStream> * = nullptr>\nOStream\
+    \ &operator<<(OStream &os, const std::pair<T, U> &p) {\n    os << p.first << '\
+    \ ' << p.second;\n    return os;\n}\n\ntemplate <class IStream, class T, class\
+    \ U, kk2::is_istream_t<IStream> * = nullptr>\nIStream &operator>>(IStream &is,\
+    \ std::pair<T, U> &p) {\n    is >> p.first >> p.second;\n    return is;\n}\n\n\
+    template <class OStream, class T, kk2::is_ostream_t<OStream> * = nullptr>\nOStream\
+    \ &operator<<(OStream &os, const std::vector<T> &v) {\n    for (int i = 0; i <\
+    \ (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size() ? \"\" : \" \");\
+    \ }\n    return os;\n}\n\ntemplate <class IStream, class T, kk2::is_istream_t<IStream>\
+    \ * = nullptr>\nIStream &operator>>(IStream &is, std::vector<T> &v) {\n    for\
+    \ (auto &x : v) is >> x;\n    return is;\n}\n\nvoid Yes(bool b = 1) {\n    kout\
+    \ << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    kout << (b\
+    \ ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    kout << (b ? \"\
+    YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    kout << (b ? \"NO\\n\"\
+    \ : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    kout << (b ? \"yes\\n\" : \"\
+    no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\"\
+    );\n}\n\n#endif // TEMPLATE\n"
   dependsOn:
   - type_traits/type_traits.hpp
   - template/fastio.hpp
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-10-17 14:18:33+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp

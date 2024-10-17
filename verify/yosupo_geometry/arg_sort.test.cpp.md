@@ -7,13 +7,13 @@ data:
   - icon: ':x:'
     path: geometry/point.hpp
     title: geometry/point.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -42,7 +42,7 @@ data:
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
     \ {\n    int n;\n    kin >> n;\n    vc<kk2::Point<i64>> p(n);\n    kin >> p;\n\
     \    kk2::ArgumentSort<i64>().argument_sort(p);\n    rep (i, n) kout << p[i] <<\
-    \ endl;\n\n    return 0;\n}\n"
+    \ \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - geometry/point.hpp
   - type_traits/type_traits.hpp
@@ -52,7 +52,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_geometry/arg_sort.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-17 14:18:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/arg_sort.test.cpp

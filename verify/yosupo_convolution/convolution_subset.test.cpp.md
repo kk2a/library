@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/subset.hpp
     title: convolution/subset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
@@ -43,8 +43,8 @@ data:
     \n#include \"../../convolution/subset.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
     \ {\n    int n;\n    kin >> n;\n    vc<kk2::mont998> a(1 << n), b(1 << n);\n \
-    \   kin >> a >> b;\n    kout << kk2::convolution_subset(a, b) << endl;\n\n   \
-    \ return 0;\n}\n"
+    \   kin >> a >> b;\n    kout << kk2::convolution_subset(a, b) << kendl;\n\n  \
+    \  return 0;\n}\n"
   dependsOn:
   - convolution/subset.hpp
   - modint/mont.hpp
@@ -54,8 +54,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_subset.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-17 14:18:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_subset.test.cpp
 layout: document

@@ -10,13 +10,13 @@ data:
   - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -58,7 +58,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_rmq.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-17 14:18:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq.test.cpp

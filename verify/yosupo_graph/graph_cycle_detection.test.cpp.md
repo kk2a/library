@@ -4,16 +4,16 @@ data:
   - icon: ':x:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -56,7 +56,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-17 14:18:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_cycle_detection.test.cpp

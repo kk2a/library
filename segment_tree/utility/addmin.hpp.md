@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':x:'
@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []

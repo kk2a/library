@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -78,20 +78,21 @@ data:
     \ = nullptr> friend mint operator/(T lhs, const mint &rhs) {\n        return mint(lhs)\
     \ /= rhs;\n    }\n\n    friend bool operator==(const mint &lhs, const mint &rhs)\
     \ { return lhs._v == rhs._v; }\n\n    friend bool operator!=(const mint &lhs,\
-    \ const mint &rhs) { return lhs._v != rhs._v; }\n\n    template <class OStream>\
-    \ friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
-    \ mint_._v;\n        return os;\n    }\n\n    template <class IStream> friend\
-    \ IStream &operator>>(IStream &is, mint &mint_) {\n        long long x;\n    \
-    \    is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\n  private:\n\
-    \    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod = 998244353;\n\
-    \n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\n\
-    } // namespace kk2\n\n#endif // MODINT_HPP\n"
+    \ const mint &rhs) { return lhs._v != rhs._v; }\n\n    template <class OStream,\
+    \ is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream &os,\
+    \ const mint &mint_) {\n        os << mint_._v;\n        return os;\n    }\n\n\
+    \    template <class IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream\
+    \ &operator>>(IStream &is, mint &mint_) {\n        long long x;\n        is >>\
+    \ x;\n        mint_ = mint(x);\n        return is;\n    }\n\n  private:\n    unsigned\
+    \ int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod = 998244353;\n\n\nusing mint998\
+    \ = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\n} // namespace\
+    \ kk2\n\n#endif // MODINT_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: modint/modint.hpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-17 14:18:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/modint.hpp

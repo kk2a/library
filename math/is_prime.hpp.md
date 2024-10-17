@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   - icon: ':x:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -75,7 +75,7 @@ data:
   path: math/is_prime.hpp
   requiredBy:
   - math/prime_factorize.hpp
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-17 14:18:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/primality_test.test.cpp

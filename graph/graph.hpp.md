@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -9,7 +9,7 @@ data:
     path: random/graph.hpp
     title: random/graph.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: verify/yosupo_graph/tree_lca.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -138,7 +138,7 @@ data:
   requiredBy:
   - random/graph.hpp
   timestamp: '2024-10-17 14:04:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp

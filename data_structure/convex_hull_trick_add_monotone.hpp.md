@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []

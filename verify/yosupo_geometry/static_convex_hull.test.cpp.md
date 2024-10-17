@@ -7,13 +7,13 @@ data:
   - icon: ':x:'
     path: geometry/static_convex_hull.hpp
     title: geometry/static_convex_hull.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -43,8 +43,8 @@ data:
     \ {\n    int t;\n    kin >> t;\n    rep (t) {\n        int n;\n        kin >>\
     \ n;\n        vc<kk2::Point<i64>> p(n);\n        kin >> p;\n        kk2::ConvexHull\
     \ ch(p);\n        ch.build();\n        auto hull = ch.hull;\n        kout << ch.hull.size()\
-    \ << endl;\n        for (auto &q : ch.hull) kout << q << endl;\n    }\n\n    return\
-    \ 0;\n}\n"
+    \ << \"\\n\";\n        for (auto &q : ch.hull) kout << q << \"\\n\";\n    }\n\n\
+    \    return 0;\n}\n"
   dependsOn:
   - geometry/point.hpp
   - type_traits/type_traits.hpp
@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_geometry/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-17 14:18:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/static_convex_hull.test.cpp

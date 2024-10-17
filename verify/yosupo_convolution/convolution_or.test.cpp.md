@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/bitor1.hpp
     title: convolution/bitor1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -49,7 +49,7 @@ data:
     \   rep (i, 1 << n) kin >> a[~i & ((1 << n) - 1)];\n    rep (i, 1 << n) kin >>\
     \ b[~i & ((1 << n) - 1)];\n    kk2::convolution_or(a, b);\n    vc<kk2::mont998>\
     \ c(1 << n);\n    rep (i, 1 << n) c[~i & ((1 << n) - 1)] = a[i];\n    kout <<\
-    \ c << endl;\n\n    return 0;\n}\n"
+    \ c << kendl;\n\n    return 0;\n}\n"
   dependsOn:
   - convolution/bitor1.hpp
   - convolution/zeta_mobius_transfrom.hpp
@@ -60,8 +60,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_or.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-17 14:18:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_or.test.cpp
 layout: document

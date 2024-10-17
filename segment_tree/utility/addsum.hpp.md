@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
   - icon: ':warning:'
     path: math/homomorphism/add.hpp
     title: math/homomorphism/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []

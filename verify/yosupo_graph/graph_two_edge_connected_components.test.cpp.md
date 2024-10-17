@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':x:'
@@ -10,13 +10,13 @@ data:
   - icon: ':x:'
     path: graph/two_edge_connected_components.hpp
     title: graph/two_edge_connected_components.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -59,7 +59,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-17 14:18:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp

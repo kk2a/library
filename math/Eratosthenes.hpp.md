@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/gcd1.hpp
     title: convolution/gcd1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/lcm1.hpp
     title: convolution/lcm1.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/Eratosthenes.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -109,7 +109,7 @@ data:
   - convolution/divisor_multiple_transform.hpp
   - convolution/lcm1.hpp
   timestamp: '2024-10-06 18:26:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
