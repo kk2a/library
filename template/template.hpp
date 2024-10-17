@@ -34,6 +34,7 @@
 #include <utility>
 #include <vector>
 
+#include "../type_traits/type_traits.hpp"
 #include "fastio.hpp"
 
 using u32 = unsigned int;
@@ -110,9 +111,9 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
 #define se second
 #define all(p) std::begin(p), std::end(p)
 
+using kk2::kendl;
 using kk2::kin;
 using kk2::kout;
-using kk2::kendl;
 
 struct IoSetUp {
     IoSetUp() {
@@ -121,23 +122,26 @@ struct IoSetUp {
     }
 } iosetup;
 
-template <class OStream, class T, class U>
+template <class OStream, class T, class U, is_ostream_t<OStream> * = nullptr>
 OStream &operator<<(OStream &os, const std::pair<T, U> &p) {
     os << p.first << ' ' << p.second;
     return os;
 }
 
-template <class IStream, class T, class U> IStream &operator>>(IStream &is, std::pair<T, U> &p) {
+template <class IStream, class T, class U, is_istream_t<IStream> * = nullptr>
+IStream &operator>>(IStream &is, std::pair<T, U> &p) {
     is >> p.first >> p.second;
     return is;
 }
 
-template <class OStream, class T> OStream &operator<<(OStream &os, const std::vector<T> &v) {
+template <class OStream, class T, is_ostream_t<OStream> * = nullptr>
+OStream &operator<<(OStream &os, const std::vector<T> &v) {
     for (int i = 0; i < (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size() ? "" : " "); }
     return os;
 }
 
-template <class IStream, class T> IStream &operator>>(IStream &is, std::vector<T> &v) {
+template <class IStream, class T, is_istream_t<IStream> * = nullptr>
+IStream &operator>>(IStream &is, std::vector<T> &v) {
     for (auto &x : v) is >> x;
     return is;
 }

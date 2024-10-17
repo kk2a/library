@@ -7,6 +7,8 @@
 #include <utility>
 #include <vector>
 
+#include "../type_traits/type_traits.hpp"
+
 namespace kk2 {
 
 namespace graph {
@@ -27,7 +29,8 @@ template <class T> struct _Edge {
 
     _Edge rev() const { return _Edge(from, cost, to, id); }
 
-    template <class OStream> friend OStream &operator<<(OStream &os, const _Edge &e) {
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    friend OStream &operator<<(OStream &os, const _Edge &e) {
         return os << e.from << " -> " << e.to << " : " << e.cost;
     }
 };
@@ -58,7 +61,7 @@ template <class T, bool is_directed> struct AdjacencyList : std::vector<_Edges<T
         for (auto &e : edges_) { _add_edge(e.from, e.to, e.cost, m++); }
     }
 
-    template <class IStream> AdjacencyList &input(IStream &is) {
+    template <class IStream, is_istream_t<IStream> * = nullptr> AdjacencyList &input(IStream &is) {
         for (int i = 0; i < m; i++) {
             int u, v;
             T w{};
@@ -127,7 +130,8 @@ template <class T, bool is_directed> struct AdjacencyMatrix : std::vector<_Edges
         for (auto &e : edges_) { _add_edge(e.from, e.to, e.cost, m++); }
     }
 
-    template <class IStream> AdjacencyMatrix &input(IStream &is) {
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    AdjacencyMatrix &input(IStream &is) {
         for (int i = 0; i < m; i++) {
             int u, v;
             T w{};
@@ -172,7 +176,7 @@ template <class T, bool is_directed> struct AdjacencyMatrix : std::vector<_Edges
     }
 };
 
-template <class T, class IStream>
+template <class T, class IStream, is_istream_t<IStream> * = nullptr>
 _Edges<T> &input(_Edges<T> &edges, bool is_one_indexed, IStream &is) {
     for (int i = 0; i < (int)edges.size(); i++) {
         int u, v;

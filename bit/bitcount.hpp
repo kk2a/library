@@ -8,7 +8,7 @@
 namespace kk2 {
 
 template <typename T> int ctz(T x) {
-    static_assert(is_integral_extended<T>::value);
+    static_assert(is_integral<T>::value);
     assert(x != T(0));
 
     if constexpr (sizeof(T) <= 4) {
@@ -23,7 +23,7 @@ template <typename T> int ctz(T x) {
 }
 
 template <typename T> int clz(T x) {
-    static_assert(is_integral_extended<T>::value);
+    static_assert(is_integral<T>::value);
     assert(x != T(0));
 
     if constexpr (sizeof(T) <= 4) {
@@ -37,7 +37,7 @@ template <typename T> int clz(T x) {
 }
 
 template <typename T> int popcount(T x) {
-    static_assert(is_integral_extended<T>::value);
+    static_assert(is_integral<T>::value);
 
     if constexpr (sizeof(T) <= 4) {
         return __builtin_popcount(x);

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 
+#include "../type_traits/type_traits.hpp"
 #include "../convolution/multi_convolution_truncated.hpp"
 #include "ntt_friendly.hpp"
 
@@ -31,24 +32,24 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         : base(base_),
           f(f_) {}
 
-    template <class OStream>
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
     friend OStream &operator<<(OStream &os, const MFPS &mfps_) {
         for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? "" : " ");
         return os;
     }
 
-    template <class OStream>
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
     void output(OStream &os) const {
         for (int i = 0; i < (int)f.size(); i++) os << f[i] << (i + 1 == (int)f.size() ? "\n" : " ");
     }
 
-    template <class IStream>
+    template <class IStream, is_istream_t<IStream> * = nullptr>
     MFPS &input(IStream &is) {
         for (auto &x : f) is >> x;
         return *this;
     }
 
-    template <class IStream>
+    template <class IStream, is_istream_t<IStream> * = nullptr>
     friend IStream &operator>>(IStream &is, MFPS &mfps_) {
         for (auto &x : mfps_.f) is >> x;
         return is;
@@ -69,15 +70,16 @@ template <typename mint> struct MultivariateFormalPowerSeries {
 
     mint &operator[](int i) { return f[i]; }
 
-    void display() const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    void display(OStream &os) const {
         for (int i = 0; i < (int)f.size(); i++) {
             int x = i;
-            std::cout << "f(";
+            os << "f(";
             for (int j = 0; j < (int)base.size(); j++) {
-                std::cout << x % base[j] << (j + 1 == (int)base.size() ? ") = " : ", ");
+                os << x % base[j] << (j + 1 == (int)base.size() ? ") = " : ", ");
                 x /= base[j];
             }
-            std::cout << f[i] << "\n";
+            os << f[i] << "\n";
         }
     }
 

@@ -7,37 +7,41 @@
 #include <utility>
 #include <vector>
 
+#include "../type_traits/type_traits.hpp"
+
 namespace kk2 {
 
 template <class mint> struct FormalPowerSeries : std::vector<mint> {
     using std::vector<mint>::vector;
     using FPS = FormalPowerSeries;
 
-    void display() const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr> void display(OStream &os) const {
         for (int i = 0; i < (int)this->size(); i++) {
-            std::cout << (*this)[i] << " \n"[i == (int)this->size() - 1];
+            os << (*this)[i] << " \n"[i == (int)this->size() - 1];
         }
     }
 
-    template <class OStream> void output(OStream &os) const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
         for (int i = 0; i < (int)this->size(); i++) {
-            os << (*this)[i] << (i + 1 == (int)this->size() ? "" : " ");
+            os << (*this)[i] << (i + 1 == (int)this->size() ? "\n" : " ");
         }
     }
 
-    template <class OStream> friend OStream &operator<<(OStream &os, const FPS &fps_) {
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    friend OStream &operator<<(OStream &os, const FPS &fps_) {
         for (int i = 0; i < (int)fps_.size(); i++) {
             os << fps_[i] << (i + 1 == (int)fps_.size() ? "" : " ");
         }
         return os;
     }
 
-    template <class IStream> FPS &input(IStream &is) {
+    template <class IStream, is_istream_t<IStream> * = nullptr> FPS &input(IStream &is) {
         for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];
         return *this;
     }
 
-    template <class IStream> friend IStream &operator>>(IStream &is, FPS &fps_) {
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    friend IStream &operator>>(IStream &is, FPS &fps_) {
         for (auto &x : fps_) is >> x;
         return is;
     }

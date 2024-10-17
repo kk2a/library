@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 
+#include "../type_traits/type_traits.hpp"
 #include "../data_structure/my_bitset.hpp"
 
 namespace kk2 {
@@ -56,7 +57,7 @@ struct MatrixF2 {
 
         operator DynamicBitSet() const { return bs[i]; }
 
-        template <class IStream>
+        template <class IStream, is_istream_t<IStream> * = nullptr>
         friend IStream &operator>>(IStream &is, Proxy p) {
             std::string s;
             is >> s;
@@ -64,7 +65,7 @@ struct MatrixF2 {
             return is;
         }
 
-        template <class OStream>
+        template <class OStream, is_ostream_t<OStream> * = nullptr>
         friend OStream &operator<<(OStream &os, Proxy p) {
             os << p.to_reversed_string();
             return os;
@@ -140,11 +141,7 @@ struct MatrixF2 {
         return Proxy(_mat, i);
     }
 
-    void display() const {
-        for (int i = 0; i < _h; i++) { std::cout << _mat[i].to_reversed_string() << "\n"; }
-    }
-
-    template <class IStream>
+    template <class IStream, is_istream_t<IStream> * = nullptr>
     mat &input(IStream &is) {
         for (int i = 0; i < _h; i++) {
             std::string s;
@@ -154,7 +151,7 @@ struct MatrixF2 {
         return *this;
     }
 
-    template <class OStream>
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
     void output(OStream &os) const {
         for (int i = 0; i < _h; i++) {
             os << _mat[i].to_reversed_string() << "\n";

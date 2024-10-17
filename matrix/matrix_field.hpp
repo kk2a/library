@@ -8,6 +8,8 @@
 #include <string>
 #include <vector>
 
+#include "../type_traits/type_traits.hpp"
+
 namespace kk2 {
 
 template <class Field> struct MatrixField {
@@ -51,13 +53,7 @@ template <class Field> struct MatrixField {
         return _mat[i];
     }
 
-    void display() const {
-        for (int i = 0; i < _h; i++) {
-            for (int j = 0; j < _w; j++) std::cout << _mat[i][j] << " \n"[j == _w - 1];
-        }
-    }
-
-    template <class IStream>
+    template <class IStream, is_istream_t<IStream> * = nullptr>
     mat &input(IStream &is) {
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) { is >> _mat[i][j]; }
@@ -65,7 +61,7 @@ template <class Field> struct MatrixField {
         return *this;
     }
 
-    template <class OStream>
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
     void output(OStream &os) const {
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) os << _mat[i][j] << " \n"[j == _w - 1];

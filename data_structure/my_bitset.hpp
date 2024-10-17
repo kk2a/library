@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "../bit/bitcount.hpp"
+#include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
@@ -37,13 +38,6 @@ struct DynamicBitSet {
     DynamicBitSet(const std::string &s) : n(s.size()) {
         block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         set(s);
-    }
-
-    template <class IStream> friend IStream &operator>>(IStream &is, T &bs) {
-        std::string s;
-        is >> s;
-        bs.set_reversed(s);
-        return is;
     }
 
     int size() const { return n; }
@@ -75,8 +69,9 @@ struct DynamicBitSet {
     T &inplace_combine_bottom(const T &rhs) {
         block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         if (!(rhs.n & BLOCK_MASK)) {
+            auto tmp(block.begin(), block.begin() + n);
             std::copy(
-                std::begin(block), std::end(block), std::begin(block) + (rhs.n >> BLOCK_SIZE_LOG));
+                std::begin(tmp), std::begin(tmp), std::begin(block) + (rhs.n >> BLOCK_SIZE_LOG));
             std::copy(std::begin(rhs.block), std::end(rhs.block), std::begin(block));
             n += rhs.n;
             return *this;
@@ -123,7 +118,7 @@ struct DynamicBitSet {
         }
     }
 
-    class BitReference {
+    struct BitReference {
         std::vector<UInt> &block;
         int idx;
 
@@ -132,7 +127,8 @@ struct DynamicBitSet {
 
         operator bool() const { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }
 
-        friend std::istream &operator>>(std::istream &is, BitReference a) {
+        template <class IStream, is_istream_t<IStream> * = nullptr>
+        friend IStream &operator>>(IStream &is, BitReference a) {
             bool c;
             is >> c;
             a = c;
@@ -350,8 +346,17 @@ struct DynamicBitSet {
         return res;
     }
 
-    template <class OStream> friend OStream &operator<<(OStream &os, const T &bs) {
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    friend OStream &operator<<(OStream &os, const T &bs) {
         return os << bs.to_string();
+    }
+
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    friend IStream &operator>>(IStream &is, T &bs) {
+        std::string s;
+        is >> s;
+        bs.set_reversed(s);
+        return is;
     }
 };
 

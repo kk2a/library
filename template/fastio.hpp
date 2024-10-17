@@ -17,7 +17,7 @@ namespace fastio {
 #define INPUT_FILE "in.txt"
 #define OUTPUT_FILE "out.txt"
 
-struct Scanner {
+struct Scanner : internal::istream_tag {
   private:
     static constexpr size_t INPUT_BUF = 1 << 17;
     size_t pos = 0, end = 0;
@@ -46,8 +46,7 @@ struct Scanner {
         while (isspace(now())) ++pos;
     }
 
-    template <class T, std::enable_if_t<is_unsigned_extended<T>::value> * = nullptr>
-    T next_unsigned_integral() {
+    template <class T, is_unsigned_t<T> * = nullptr> T next_unsigned_integral() {
         skip_space();
         T res{};
         while (isdigit(now())) {
@@ -57,8 +56,7 @@ struct Scanner {
         return res;
     }
 
-    template <class T, std::enable_if_t<is_signed_extended<T>::value> * = nullptr>
-    T next_signed_integral() {
+    template <class T, is_signed_t<T> * = nullptr> T next_signed_integral() {
         skip_space();
         if (now() == '-') {
             ++pos;
@@ -85,14 +83,12 @@ struct Scanner {
         return res;
     }
 
-    template <class T, std::enable_if_t<is_unsigned_extended<T>::value> * = nullptr>
-    Scanner &operator>>(T &x) {
+    template <class T, is_unsigned_t<T> * = nullptr> Scanner &operator>>(T &x) {
         x = next_unsigned_integral<T>();
         return *this;
     }
 
-    template <class T, std::enable_if_t<is_signed_extended<T>::value> * = nullptr>
-    Scanner &operator>>(T &x) {
+    template <class T, is_signed_t<T> * = nullptr> Scanner &operator>>(T &x) {
         x = next_signed_integral<T>();
         return *this;
     }
@@ -110,7 +106,7 @@ struct Scanner {
 
 struct endl_struct_t {};
 
-struct Printer {
+struct Printer : internal::ostream_tag {
   private:
     static char helper[10000][5];
     static char leading_zero[10000][5];
@@ -207,7 +203,7 @@ struct Printer {
             div_mod<uint64_t>(y, x, 10000ull);
             put_u32(y);
             put_cstr(leading_zero[x]);
-        } else put_cstr(helper[x]); 
+        } else put_cstr(helper[x]);
     }
 
     void put_i64(int64_t x) {
@@ -248,16 +244,14 @@ struct Printer {
         } else put_u128(x);
     }
 
-    template <class T, std::enable_if_t<is_unsigned_extended<T>::value> * = nullptr>
-    Printer &operator<<(T x) {
+    template <class T, is_unsigned_t<T> * = nullptr> Printer &operator<<(T x) {
         if constexpr (sizeof(T) <= 4) put_u32(x);
         else if constexpr (sizeof(T) <= 8) put_u64(x);
         else put_u128(x);
         return *this;
     }
 
-    template <class T, std::enable_if_t<is_signed_extended<T>::value> * = nullptr>
-    Printer &operator<<(T x) {
+    template <class T, is_signed_t<T> * = nullptr> Printer &operator<<(T x) {
         if constexpr (sizeof(T) <= 4) put_i32(x);
         else if constexpr (sizeof(T) <= 8) put_i64(x);
         else put_i128(x);
@@ -297,7 +291,7 @@ char Printer::leading_zero[10000][5];
 #if defined(INTERACTIVE) || defined(USE_STDIO)
 auto &kin = std::cin;
 auto &kout = std::cout;
-auto& (*kendl)(std::ostream&) = std::endl<char, std::char_traits<char>>;
+auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
 #elif defined(KK2)
 fastio::Scanner kin(INPUT_FILE);
 fastio::Printer kout(OUTPUT_FILE);
