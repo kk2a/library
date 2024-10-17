@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/utility/sumseg.hpp
     title: segment_tree/utility/sumseg.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -35,8 +35,6 @@ data:
     \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
@@ -58,13 +56,13 @@ data:
   - math/group/sum.hpp
   - segment_tree/seg.hpp
   - template/template.hpp
-  - template/fastio.hpp
   - type_traits/type_traits.hpp
+  - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 02:51:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-17 14:04:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
 layout: document

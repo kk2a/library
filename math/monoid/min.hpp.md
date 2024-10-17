@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
   - icon: ':warning:'
@@ -21,12 +21,12 @@ data:
     path: segment_tree/utility/updatemin.hpp
     title: segment_tree/utility/updatemin.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/monoid/min.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -86,7 +86,7 @@ data:
   - segment_tree/utility/minseg2d.hpp
   - segment_tree/utility/minseg.hpp
   timestamp: '2024-10-13 03:33:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp
 documentation_of: math/monoid/min.hpp

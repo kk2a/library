@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -75,7 +75,7 @@ data:
   path: convolution/multi_convolution_truncated.hpp
   requiredBy:
   - fps/multivariate_fps.hpp
-  timestamp: '2024-10-15 17:47:45+09:00'
+  timestamp: '2024-10-17 14:04:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp

@@ -4,16 +4,16 @@ data:
   - icon: ':x:'
     path: convolution/subset.hpp
     title: convolution/subset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_subset.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 02:51:45+09:00'
+  timestamp: '2024-10-17 14:04:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_subset.test.cpp

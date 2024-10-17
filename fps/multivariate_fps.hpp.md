@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':x:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -44,45 +44,44 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef FPS_MULTIVARIATE_FPS_HPP\n#define FPS_MULTIVARIATE_FPS_HPP 1\n\n\
     #include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <vector>\n\
-    \n#include \"../convolution/multi_convolution_truncated.hpp\"\n#include \"ntt_friendly.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <typename mint> struct MultivariateFormalPowerSeries\
-    \ {\n    using mfps = MultivariateFormalPowerSeries;\n    using fps = FormalPowerSeries<mint>;\n\
-    \    using value_type = mint;\n\n    std::vector<int> base;\n    fps f;\n\n  \
-    \  MultivariateFormalPowerSeries() = default;\n\n    MultivariateFormalPowerSeries(const\
-    \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for (int\
-    \ x : base) n *= x;\n        f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const\
-    \ std::vector<int> &base_, const fps &f_)\n        : base(base_),\n          f(f_)\
-    \ {}\n\n    template <class OStream>\n    friend OStream &operator<<(OStream &os,\
-    \ const MFPS &mfps_) {\n        for (int i = 0; i < (int)mfps_.f.size(); i++)\
-    \ os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n       \
-    \ return os;\n    }\n\n    template <class OStream>\n    void output(OStream &os)\
-    \ const {\n        for (int i = 0; i < (int)f.size(); i++) os << f[i] << (i +\
-    \ 1 == (int)f.size() ? \"\\n\" : \" \");\n    }\n\n    template <class IStream>\n\
+    \n#include \"../type_traits/type_traits.hpp\"\n#include \"../convolution/multi_convolution_truncated.hpp\"\
+    \n#include \"ntt_friendly.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename mint>\
+    \ struct MultivariateFormalPowerSeries {\n    using mfps = MultivariateFormalPowerSeries;\n\
+    \    using fps = FormalPowerSeries<mint>;\n    using value_type = mint;\n\n  \
+    \  std::vector<int> base;\n    fps f;\n\n    MultivariateFormalPowerSeries() =\
+    \ default;\n\n    MultivariateFormalPowerSeries(const std::vector<int> &base_)\
+    \ : base(base_) {\n        int n = 1;\n        for (int x : base) n *= x;\n  \
+    \      f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const std::vector<int>\
+    \ &base_, const fps &f_)\n        : base(base_),\n          f(f_) {}\n\n    template\
+    \ <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
+    \ &os, const MFPS &mfps_) {\n        for (int i = 0; i < (int)mfps_.f.size();\
+    \ i++) os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n  \
+    \      return os;\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
+    \ * = nullptr>\n    void output(OStream &os) const {\n        for (int i = 0;\
+    \ i < (int)f.size(); i++) os << f[i] << (i + 1 == (int)f.size() ? \"\\n\" : \"\
+    \ \");\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
     \    MFPS &input(IStream &is) {\n        for (auto &x : f) is >> x;\n        return\
-    \ *this;\n    }\n\n    template <class IStream>\n    friend IStream &operator>>(IStream\
-    \ &is, MFPS &mfps_) {\n        for (auto &x : mfps_.f) is >> x;\n        return\
-    \ is;\n    }\n\n    template <typename T, typename... Ts> int _id(int x, T y,\
-    \ Ts... ys) {\n        assert(x < (int)base.size() && (int)y < base[x]);\n   \
-    \     if constexpr (sizeof...(Ts) == 0) return y;\n        else return y + base[x]\
-    \ * _id(x + 1, ys...);\n    }\n\n    template <typename... Args> int id(Args...\
-    \ args) {\n        static_assert(sizeof...(Args) > 0);\n        return _id(0,\
-    \ args...);\n    }\n\n    template <typename... Args> mint &operator()(Args...\
-    \ args) { return f[id(args...)]; }\n\n    mint &operator[](int i) { return f[i];\
-    \ }\n\n    void display() const {\n        for (int i = 0; i < (int)f.size();\
-    \ i++) {\n            int x = i;\n            std::cout << \"f(\";\n         \
-    \   for (int j = 0; j < (int)base.size(); j++) {\n                std::cout <<\
-    \ x % base[j] << (j + 1 == (int)base.size() ? \") = \" : \", \");\n          \
-    \      x /= base[j];\n            }\n            std::cout << f[i] << \"\\n\"\
-    ;\n        }\n    }\n\n    mfps &operator+=(const mfps &rhs) {\n        assert(base\
+    \ *this;\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
+    \    friend IStream &operator>>(IStream &is, MFPS &mfps_) {\n        for (auto\
+    \ &x : mfps_.f) is >> x;\n        return is;\n    }\n\n    template <typename\
+    \ T, typename... Ts> int _id(int x, T y, Ts... ys) {\n        assert(x < (int)base.size()\
+    \ && (int)y < base[x]);\n        if constexpr (sizeof...(Ts) == 0) return y;\n\
+    \        else return y + base[x] * _id(x + 1, ys...);\n    }\n\n    template <typename...\
+    \ Args> int id(Args... args) {\n        static_assert(sizeof...(Args) > 0);\n\
+    \        return _id(0, args...);\n    }\n\n    template <typename... Args> mint\
+    \ &operator()(Args... args) { return f[id(args...)]; }\n\n    mint &operator[](int\
+    \ i) { return f[i]; }\n\n    template <class OStream, is_ostream_t<OStream> *\
+    \ = nullptr>\n    void display(OStream &os) const {\n        for (int i = 0; i\
+    \ < (int)f.size(); i++) {\n            int x = i;\n            os << \"f(\";\n\
+    \            for (int j = 0; j < (int)base.size(); j++) {\n                os\
+    \ << x % base[j] << (j + 1 == (int)base.size() ? \") = \" : \", \");\n       \
+    \         x /= base[j];\n            }\n            os << f[i] << \"\\n\";\n \
+    \       }\n    }\n\n    mfps &operator+=(const mfps &rhs) {\n        assert(base\
     \ == rhs.base && f.size() == rhs.f.size());\n        for (int i = 0; i < (int)f.size();\
     \ i++) f[i] += rhs.f[i];\n        return *this;\n    }\n\n    mfps &operator-=(const\
     \ mfps &rhs) {\n        assert(base == rhs.base && f.size() == rhs.f.size());\n\
@@ -166,19 +165,19 @@ data:
     \ res;\n    }\n};\n\ntemplate <typename mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv\
     \ = {0, 1};\n\n} // namespace kk2\n\n#endif // FPS_MULTIVARIATE_FPS_HPP\n"
   dependsOn:
+  - type_traits/type_traits.hpp
   - convolution/multi_convolution_truncated.hpp
   - convolution/convolution.hpp
   - convolution/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
   - fps/ntt_friendly.hpp
   - convolution/convolution.hpp
   - fps/fps.hpp
   isVerificationFile: false
   path: fps/multivariate_fps.hpp
   requiredBy: []
-  timestamp: '2024-10-15 17:47:45+09:00'
+  timestamp: '2024-10-17 14:04:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/multivariate_fps.hpp

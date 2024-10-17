@@ -4,6 +4,9 @@ data:
   - icon: ':x:'
     path: geometry/point.hpp
     title: geometry/point.hpp
+  - icon: ':x:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -43,10 +46,11 @@ data:
     \ b); });\n    }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_ARGUMENT_SORT_HPP\n"
   dependsOn:
   - geometry/point.hpp
+  - type_traits/type_traits.hpp
   isVerificationFile: false
   path: geometry/argument_sort.hpp
   requiredBy: []
-  timestamp: '2024-10-14 05:57:06+09:00'
+  timestamp: '2024-10-17 14:04:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/arg_sort.test.cpp

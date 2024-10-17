@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: data_structure/convex_hull_trick_add_monotone.hpp
   requiredBy: []
-  timestamp: '2024-10-15 17:47:45+09:00'
+  timestamp: '2024-10-17 14:04:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/convex_hull_trick_add_monotone.hpp

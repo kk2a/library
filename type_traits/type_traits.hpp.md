@@ -5,10 +5,10 @@ data:
   - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':x:'
@@ -23,6 +23,9 @@ data:
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
+  - icon: ':x:'
+    path: fps/fps.hpp
+    title: fps/fps.hpp
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
@@ -32,15 +35,27 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
     path: fps/taylor_shift.hpp
     title: fps/taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
+  - icon: ':x:'
+    path: geometry/argument_sort.hpp
+    title: geometry/argument_sort.hpp
+  - icon: ':x:'
+    path: geometry/point.hpp
+    title: geometry/point.hpp
+  - icon: ':x:'
+    path: geometry/static_convex_hull.hpp
+    title: geometry/static_convex_hull.hpp
+  - icon: ':x:'
+    path: graph/graph.hpp
+    title: graph/graph.hpp
   - icon: ':x:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
@@ -59,38 +74,50 @@ data:
   - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
+  - icon: ':warning:'
+    path: matrix/basis.hpp
+    title: matrix/basis.hpp
+  - icon: ':warning:'
+    path: matrix/frobenius_form.hpp
+    title: matrix/frobenius_form.hpp
   - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
+  - icon: ':x:'
+    path: matrix/matrix_field.hpp
+    title: matrix/matrix_field.hpp
   - icon: ':warning:'
     path: modint/modint.hpp
     title: modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':x:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':warning:'
+    path: random/graph.hpp
+    title: random/graph.hpp
+  - icon: ':warning:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_0560.test.cpp
     title: verify/aoj/aoj_0560.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_0560_2.test.cpp
     title: verify/aoj/aoj_0560_2.test.cpp
   - icon: ':x:'
@@ -102,10 +129,10 @@ data:
   - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
   - icon: ':x:'
@@ -123,46 +150,46 @@ data:
   - icon: ':x:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':x:'
@@ -254,7 +281,7 @@ data:
     title: verify/yuki/yuki_0430_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -267,42 +294,61 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef TYPE_TRAITS_HPP\n#define TYPE_TRAITS_HPP 1\n\n#pragma once // oj-verify\n\
-    \n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128\
-    \ = typename std::conditional<std::is_same<T, __int128_t>::value\n           \
-    \                                            or std::is_same<T, __int128>::value,\n\
-    \                                                   std::true_type,\n        \
-    \                                           std::false_type>::type;\n\ntemplate\
-    \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-    \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
-    \ __int128>::value,\n                              std::true_type,\n         \
-    \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
-    \ is_integral_extended =\n    typename std::conditional<std::is_integral<T>::value\
-    \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
+    \n#include <istream>\n#include <ostream>\n#include <type_traits>\n\nnamespace\
+    \ kk2 {\n\ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value\n                                                       or\
+    \ std::is_same<T, __int128>::value,\n                                        \
+    \           std::true_type,\n                                                \
+    \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+    \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n     \
+    \                             or std::is_same<T, unsigned __int128>::value,\n\
     \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed_extended =\n\
-    \    typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-    \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_extended\
-    \ =\n    typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-    \                              std::true_type,\n                             \
-    \ std::false_type>::type;\n\ntemplate <typename T>\nusing make_unsigned_int128\
-    \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-    \ unsigned __int128>;\n\ntemplate <typename T>\nusing to_unsigned =\n    typename\
-    \ std::conditional<is_signed_int128<T>::value,\n                             \
-    \ make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-    \                                                        std::make_unsigned<T>,\n\
-    \                                                        std::common_type<T>>::type>::type;\n\
-    \ntemplate <typename T>\nusing is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T>\
+    \ std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n    typename\
+    \ std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+    \                                  or is_unsigned_int128<T>::value,\n        \
+    \                      std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+    \ or is_signed_int128<T>::value,\n                                           \
+    \ std::true_type,\n                                            std::false_type>::type;\n\
+    \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+    \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\ntemplate <typename T>\n\
+    using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T, __int128_t>::value,\
+    \ __uint128_t, unsigned __int128>;\n\ntemplate <typename T>\nusing to_unsigned\
+    \ =\n    typename std::conditional<is_signed_int128<T>::value,\n             \
+    \                 make_unsigned_int128<T>,\n                              typename\
+    \ std::conditional<std::is_signed<T>::value,\n                               \
+    \                         std::make_unsigned<T>,\n                           \
+    \                             std::common_type<T>>::type>::type;\n\ntemplate <typename\
+    \ T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\ntemplate\
+    \ <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\ntemplate\
+    \ <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+    \n\ntemplate <typename T>\nusing is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T>\
     \ && std::is_function_v<std::remove_pointer_t<T>>,\n                         \
     \     std::true_type,\n                              std::false_type>::type;\n\
     \ntemplate <typename T, std::enable_if_t<is_function_pointer<T>::value> * = nullptr>\n\
     struct is_two_args_function_pointer : std::false_type {};\n\ntemplate <typename\
-    \ R, typename T1, typename T2>\nstruct is_two_args_function_pointer<R(*)(T1, T2)>\
-    \ : std::true_type {};\n\n} // namespace kk2\n\n#endif // TYPE_TRAITS_HPP\n"
+    \ R, typename T1, typename T2>\nstruct is_two_args_function_pointer<R (*)(T1,\
+    \ T2)> : std::true_type {};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t\
+    \ = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\nnamespace internal\
+    \ {\n\nstruct istream_tag {};\n\nstruct ostream_tag {};\n\n} // namespace internal\n\
+    \ntemplate <typename T> using is_standard_istream = std::is_same<T, std::istream>;\n\
+    template <typename T> using is_standard_ostream = std::is_same<T, std::ostream>;\n\
+    template <typename T> using is_user_defined_istream = std::is_base_of<internal::istream_tag,\
+    \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<internal::ostream_tag,\
+    \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    std::conditional<is_standard_istream<T>::value\
+    \ || is_user_defined_istream<T>::value,\n                     std::true_type,\n\
+    \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
+    \ is_ostream =\n    std::conditional<is_standard_ostream<T>::value || is_user_defined_ostream<T>::value,\n\
+    \                     std::true_type,\n                     std::false_type>::type;\n\
+    \ntemplate <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
+    template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+    \n\n} // namespace kk2\n\n#endif // TYPE_TRAITS_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: type_traits/type_traits.hpp
   requiredBy:
+  - random/graph.hpp
   - modint/mont_arb.hpp
   - modint/mont.hpp
   - modint/modint.hpp
@@ -310,6 +356,9 @@ data:
   - math/is_prime.hpp
   - math/prime_factorize.hpp
   - math/pow.hpp
+  - matrix/frobenius_form.hpp
+  - matrix/basis.hpp
+  - matrix/matrix_field.hpp
   - matrix/matrix_F2.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
   - data_structure/my_bitset.hpp
@@ -319,20 +368,25 @@ data:
   - convolution/multi_convolution_truncated.hpp
   - template/template.hpp
   - template/fastio.hpp
+  - geometry/static_convex_hull.hpp
+  - geometry/argument_sort.hpp
+  - geometry/point.hpp
   - string/rolling_hash.hpp
   - math_mod/comb_large.hpp
   - math_mod/primitive_root.hpp
   - math_mod/mod_sqrt.hpp
   - math_mod/comb.hpp
   - math_mod/pow_mod.hpp
+  - graph/graph.hpp
   - functional/reverse_args.hpp
   - fps/multivariate_fps.hpp
   - fps/fps_sqrt.hpp
   - fps/ntt_friendly.hpp
   - fps/taylor_shift.hpp
+  - fps/fps.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-15 17:47:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-10-17 14:04:11+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp

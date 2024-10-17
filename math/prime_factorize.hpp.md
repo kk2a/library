@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   - icon: ':x:'
@@ -16,7 +16,7 @@ data:
   - icon: ':x:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -93,7 +93,7 @@ data:
   isVerificationFile: false
   path: math/prime_factorize.hpp
   requiredBy: []
-  timestamp: '2024-10-15 17:47:45+09:00'
+  timestamp: '2024-10-17 14:04:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp

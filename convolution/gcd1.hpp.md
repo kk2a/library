@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/gcd1.hpp\"\n\n\n\n#include <cassert>\n\n#line\
@@ -93,7 +93,7 @@ data:
   path: convolution/gcd1.hpp
   requiredBy: []
   timestamp: '2024-10-06 18:26:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_gcd.test.cpp
 documentation_of: convolution/gcd1.hpp

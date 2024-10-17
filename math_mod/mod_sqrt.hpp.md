@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -53,7 +53,7 @@ data:
   path: math_mod/mod_sqrt.hpp
   requiredBy:
   - fps/fps_sqrt.hpp
-  timestamp: '2024-10-15 17:47:45+09:00'
+  timestamp: '2024-10-17 14:04:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/sqrt_mod.test.cpp

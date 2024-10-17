@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/homomorphism/affine.hpp
     title: math/homomorphism/affine.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -70,8 +70,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 02:51:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-17 14:04:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
 layout: document

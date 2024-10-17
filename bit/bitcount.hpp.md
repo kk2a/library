@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -42,18 +42,18 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef BIT_BITCOUNT_HPP\n#define BIT_BITCOUNT_HPP 1\n\n#include <cassert>\n\
     \n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename\
-    \ T> int ctz(T x) {\n    static_assert(is_integral_extended<T>::value);\n    assert(x\
-    \ != T(0));\n\n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n\
+    \ T> int ctz(T x) {\n    static_assert(is_integral<T>::value);\n    assert(x !=\
+    \ T(0));\n\n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n\
     \    } else if constexpr (sizeof(T) <= 8) {\n        return __builtin_ctzll(x);\n\
     \    } else {\n        if (x & 0xffffffffffffffff)\n            return __builtin_ctzll((unsigned\
     \ long long)(x & 0xffffffffffffffff));\n        return 64 + __builtin_ctzll((unsigned\
     \ long long)(x >> 64));\n    }\n}\n\ntemplate <typename T> int clz(T x) {\n  \
-    \  static_assert(is_integral_extended<T>::value);\n    assert(x != T(0));\n\n\
-    \    if constexpr (sizeof(T) <= 4) {\n        return __builtin_clz(x);\n    }\
-    \ else if constexpr (sizeof(T) <= 8) {\n        return __builtin_clzll(x);\n \
-    \   } else {\n        if (x >> 64) return __builtin_clzll((unsigned long long)(x\
-    \ >> 64));\n        return 64 + __builtin_clzll((unsigned long long)(x & 0xffffffffffffffff));\n\
-    \    }\n}\n\ntemplate <typename T> int popcount(T x) {\n    static_assert(is_integral_extended<T>::value);\n\
+    \  static_assert(is_integral<T>::value);\n    assert(x != T(0));\n\n    if constexpr\
+    \ (sizeof(T) <= 4) {\n        return __builtin_clz(x);\n    } else if constexpr\
+    \ (sizeof(T) <= 8) {\n        return __builtin_clzll(x);\n    } else {\n     \
+    \   if (x >> 64) return __builtin_clzll((unsigned long long)(x >> 64));\n    \
+    \    return 64 + __builtin_clzll((unsigned long long)(x & 0xffffffffffffffff));\n\
+    \    }\n}\n\ntemplate <typename T> int popcount(T x) {\n    static_assert(is_integral<T>::value);\n\
     \n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_popcount(x);\n\
     \    } else if constexpr (sizeof(T) <= 8) {\n        return __builtin_popcountll(x);\n\
     \    } else {\n        return __builtin_popcountll((unsigned long long)(x >> 64))\n\
@@ -66,7 +66,7 @@ data:
   requiredBy:
   - matrix/matrix_F2.hpp
   - data_structure/my_bitset.hpp
-  timestamp: '2024-10-15 17:47:45+09:00'
+  timestamp: '2024-10-17 14:04:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
