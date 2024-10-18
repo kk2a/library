@@ -1,22 +1,17 @@
 #ifndef MATH_EULER_PHI_HPP
 #define MATH_EULER_PHI_HPP 1
 
+#include <cassert>
+
+#include "../type_traits/type_traits.hpp"
+#include "prime_factorize.hpp"
+
 namespace kk2 {
 
-long long euler_phi(long long a) {
-    long long res = a, now = a;
-    for (long long i = 2; i * i <= a; i++) {
-        if (now % i == 0) {
-            res /= i;
-            res *= i - 1;
-            while (now % i == 0) now /= i;
-        }
-    }
-    if (now > 1) {
-        res /= now;
-        res *= now - 1;
-    }
-    return res;
+template <class T, is_integral_t<T> * = nullptr> T euler_phi(T n) {
+    assert(n > 0);
+    for (auto [p, k] : factorize(static_cast<long long>(n))) n -= n / p;
+    return n;
 }
 
 } // namespace kk2

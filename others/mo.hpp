@@ -39,7 +39,7 @@ struct Mo {
                    const EL &erase_left,
                    const ER &erase_right,
                    const F &f) {
-        assert(queries.size() == q);
+        assert((int)queries.size() == q);
         std::vector<int> block_id(n);
         for (int i = 0, cnt = 0, b = 0; i < n; i++) {
             block_id[i] = b;

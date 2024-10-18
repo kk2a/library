@@ -70,7 +70,7 @@ std::vector<i64> inner_factorize(i64 n) {
     } else {
         exit(1);
     }
-    if (p == n) return {i64(p)};
+    if (i64(p) == n) return {i64(p)};
     auto l = inner_factorize(p);
     auto r = inner_factorize(n / p);
     std::copy(r.begin(), r.end(), std::back_inserter(l));

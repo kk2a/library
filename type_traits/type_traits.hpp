@@ -87,13 +87,13 @@ template <typename T> using is_user_defined_ostream = std::is_base_of<internal::
 
 template <typename T>
 using is_istream =
-    std::conditional<is_standard_istream<T>::value || is_user_defined_istream<T>::value,
+    typename std::conditional<is_standard_istream<T>::value || is_user_defined_istream<T>::value,
                      std::true_type,
                      std::false_type>::type;
 
 template <typename T>
 using is_ostream =
-    std::conditional<is_standard_ostream<T>::value || is_user_defined_ostream<T>::value,
+    typename std::conditional<is_standard_ostream<T>::value || is_user_defined_ostream<T>::value,
                      std::true_type,
                      std::false_type>::type;
 

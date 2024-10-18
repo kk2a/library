@@ -40,7 +40,7 @@ struct SuffixArray {
         init();
     }
 
-    std::vector<int> GetSA() const { return _sa; }
+    std::vector<int> get_sa() const { return _sa; }
 
     bool op(int i, const std::string &t) const {
         int off = _sa[i];

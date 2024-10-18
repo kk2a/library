@@ -135,7 +135,7 @@ struct RollingHash {
 
   private:
     constexpr static long long quo(long long a, int i) {
-        return pow_mod<long long>(a, modp[i] - 2, modp[i]);
+        return pow_mod<long long, long long, long long>(a, modp[i] - 2, modp[i]);
     }
 };
 
