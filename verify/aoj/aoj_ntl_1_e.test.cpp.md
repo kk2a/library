@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data_structure/binary_indexed_tree.hpp
-    title: data_structure/binary_indexed_tree.hpp
+    path: math/inv_gcd.hpp
+    title: math/inv_gcd.hpp
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
@@ -20,9 +20,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E
     links:
-    - https://judge.yosupo.jp/problem/point_add_range_sum
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -36,30 +36,31 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
-    \n#include \"../../data_structure/binary_indexed_tree.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n  \
-    \  kk2::BinaryIndexedTree<i64> bit(n);\n    rep (i, n) {\n        i64 a;\n   \
-    \     kin >> a;\n        bit.add(i, a);\n    }\n\n    rep (q) {\n        int t;\n\
-    \        kin >> t;\n        if (t == 0) {\n            int p, x;\n           \
-    \ kin >> p >> x;\n            bit.add(p, x);\n        }\n        if (t == 1) {\n\
-    \            int l, r;\n            kin >> l >> r;\n            kout << bit.sum(l,\
-    \ r) << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\
+    \ \n\n#include \"../../math/inv_gcd.hpp\"\n#include \"../../template/template.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n  \
+    \  auto [g, x1] = kk2::inv_gcd(a, b);\n    a /= g, b /= g;\n    i64 y1 = (1ll\
+    \ - x1 * a) / b;\n    i64 sum1 = x1 + abs(y1);\n    i64 y2 = y1 % a;\n    if (y2\
+    \ < 0) y2 += a;\n    i64 x2 = (1ll - y2 * b) / a;\n    i64 sum2 = abs(x2) + y2;\n\
+    \    if (sum2 > sum1) kout << x1 << \" \" << y1 << kendl;\n    else if (sum2 <\
+    \ sum1) kout << x2 << \" \" << y2 << kendl;\n    else {\n        if (x1 <= y1)\
+    \ kout << x1 << \" \" << y1 << kendl;\n        else kout << x2 << \" \" << y2\
+    \ << kendl;\n    }\n\n    return 0;\n}\n"
   dependsOn:
-  - data_structure/binary_indexed_tree.hpp
+  - math/inv_gcd.hpp
   - template/template.hpp
   - type_traits/type_traits.hpp
   - template/fastio.hpp
   isVerificationFile: true
-  path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+  path: verify/aoj/aoj_ntl_1_e.test.cpp
   requiredBy: []
   timestamp: '2024-10-18 23:21:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+documentation_of: verify/aoj/aoj_ntl_1_e.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-- /verify/verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp.html
-title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+- /verify/verify/aoj/aoj_ntl_1_e.test.cpp
+- /verify/verify/aoj/aoj_ntl_1_e.test.cpp.html
+title: verify/aoj/aoj_ntl_1_e.test.cpp
 ---

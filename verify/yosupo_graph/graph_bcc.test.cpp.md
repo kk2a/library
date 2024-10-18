@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bcc.hpp
     title: graph/bcc.hpp
   - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
@@ -59,8 +59,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_bcc.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 14:18:33+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-18 23:21:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_bcc.test.cpp
 layout: document

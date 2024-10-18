@@ -186,7 +186,7 @@ data:
   requiredBy:
   - matrix/frobenius_form.hpp
   - matrix/basis.hpp
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-18 23:21:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_inv.test.cpp

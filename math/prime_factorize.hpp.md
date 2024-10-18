@@ -1,32 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/euler_phi.hpp
+    title: math/euler_phi.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_ntl_1_d.test.cpp
+    title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -66,7 +72,7 @@ data:
     \ {};\n    if (n < 0) n = -n;\n    u64 p;\n    if (n <= (1ll << 30)) {\n     \
     \   p = pollard_rho<mint32, unsigned int>(n);\n    } else if (n <= (1ll << 62))\
     \ {\n        p = pollard_rho<mint64, unsigned long long>(n);\n    } else {\n \
-    \       exit(1);\n    }\n    if (p == n) return {i64(p)};\n    auto l = inner_factorize(p);\n\
+    \       exit(1);\n    }\n    if (i64(p) == n) return {i64(p)};\n    auto l = inner_factorize(p);\n\
     \    auto r = inner_factorize(n / p);\n    std::copy(r.begin(), r.end(), std::back_inserter(l));\n\
     \    return l;\n}\n\nstd::vector<std::pair<i64, int>> factorize(i64 n) {\n   \
     \ auto tmp = inner_factorize(n);\n    std::sort(tmp.begin(), tmp.end());\n   \
@@ -92,11 +98,13 @@ data:
   - math/is_prime.hpp
   isVerificationFile: false
   path: math/prime_factorize.hpp
-  requiredBy: []
-  timestamp: '2024-10-17 14:18:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  requiredBy:
+  - math/euler_phi.hpp
+  timestamp: '2024-10-18 23:21:40+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/prime_factorize.hpp
 layout: document
 redirect_from:

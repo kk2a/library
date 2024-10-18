@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
+    title: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -59,7 +62,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: others/coordinate_compression.hpp
-  requiredBy: []
+  requiredBy:
+  - verify/yosupo_ds/ds_static_range_inversions.tet.cpp
   timestamp: '2024-09-29 19:28:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

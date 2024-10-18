@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_string/string_suffix_array.test.cpp
+    title: verify/yosupo_string/string_suffix_array.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/suffix_array.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -22,7 +25,7 @@ data:
     \ std::end(idx), [&](int l, int r) { return s_[l] < s_[r]; });\n        _upper\
     \ = 0;\n        for (int i = 0; i < _n; ++i) {\n            if (i && s_[idx[i\
     \ - 1]] != s_[idx[i]]) _upper++;\n            _s[idx[i]] = _upper;\n        }\n\
-    \        init();\n    }\n\n    std::vector<int> GetSA() const { return _sa; }\n\
+    \        init();\n    }\n\n    std::vector<int> get_sa() const { return _sa; }\n\
     \n    bool op(int i, const std::string &t) const {\n        int off = _sa[i];\n\
     \        int m = std::min(_n - off, (int)t.size());\n        for (int j = 0; j\
     \ < m; ++j) {\n            if (_s[off + j] != t[j]) return _s[off + j] < t[j];\n\
@@ -116,7 +119,7 @@ data:
     \ std::end(idx), [&](int l, int r) { return s_[l] < s_[r]; });\n        _upper\
     \ = 0;\n        for (int i = 0; i < _n; ++i) {\n            if (i && s_[idx[i\
     \ - 1]] != s_[idx[i]]) _upper++;\n            _s[idx[i]] = _upper;\n        }\n\
-    \        init();\n    }\n\n    std::vector<int> GetSA() const { return _sa; }\n\
+    \        init();\n    }\n\n    std::vector<int> get_sa() const { return _sa; }\n\
     \n    bool op(int i, const std::string &t) const {\n        int off = _sa[i];\n\
     \        int m = std::min(_n - off, (int)t.size());\n        for (int j = 0; j\
     \ < m; ++j) {\n            if (_s[off + j] != t[j]) return _s[off + j] < t[j];\n\
@@ -200,9 +203,10 @@ data:
   isVerificationFile: false
   path: string/suffix_array.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-10-18 23:21:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_string/string_suffix_array.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:

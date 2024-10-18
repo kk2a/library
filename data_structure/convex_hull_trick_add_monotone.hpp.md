@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: data_structure/convex_hull_trick_add_monotone.hpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-18 23:21:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/convex_hull_trick_add_monotone.hpp

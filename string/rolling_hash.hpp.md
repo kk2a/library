@@ -8,10 +8,13 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_alds1_14_b.test.cpp
+    title: verify/aoj/aoj_alds1_14_b.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -84,19 +87,21 @@ data:
     \ (lhs.table[i].pw != rhs.table[i].pw) return false;\n        }\n        return\
     \ true;\n    }\n\n    friend bool operator!=(const RollingHash &lhs, const RollingHash\
     \ &rhs) { return !(lhs == rhs); }\n\n  private:\n    constexpr static long long\
-    \ quo(long long a, int i) {\n        return pow_mod<long long>(a, modp[i] - 2,\
-    \ modp[i]);\n    }\n};\n\nint RollingHash::base[5] = {3, 3, 3, 3, 3};\nint RollingHash::basei[5]\
-    \ = {332748118, 333333336, 666666673, 666666681, 666666689};\n\n\nusing Roliha\
-    \ = RollingHash;\n\n} // namespace kk2\n\n\n#endif // ROLLING_HASH_HPP\n"
+    \ quo(long long a, int i) {\n        return pow_mod<long long, long long, long\
+    \ long>(a, modp[i] - 2, modp[i]);\n    }\n};\n\nint RollingHash::base[5] = {3,\
+    \ 3, 3, 3, 3};\nint RollingHash::basei[5] = {332748118, 333333336, 666666673,\
+    \ 666666681, 666666689};\n\n\nusing Roliha = RollingHash;\n\n} // namespace kk2\n\
+    \n\n#endif // ROLLING_HASH_HPP\n"
   dependsOn:
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2024-10-17 14:04:11+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-10-18 23:21:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/aoj/aoj_alds1_14_b.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 redirect_from:

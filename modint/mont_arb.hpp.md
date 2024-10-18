@@ -8,16 +8,22 @@ data:
   - icon: ':warning:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: math/euler_phi.hpp
+    title: math/euler_phi.hpp
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_ntl_1_d.test.cpp
+    title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
@@ -29,7 +35,7 @@ data:
     title: verify/yosupo_math/sqrt_mod.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -112,14 +118,16 @@ data:
   requiredBy:
   - math/is_prime.hpp
   - math/prime_factorize.hpp
+  - math/euler_phi.hpp
   - math_mod/mod_sqrt.hpp
   - fps/fps_sqrt.hpp
-  timestamp: '2024-10-17 14:18:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-10-18 23:21:40+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/sqrt_mod.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: modint/mont_arb.hpp
 layout: document
 redirect_from:

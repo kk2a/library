@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy: []
-  timestamp: '2024-10-17 14:18:33+09:00'
+  timestamp: '2024-10-18 23:21:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_arb.hpp

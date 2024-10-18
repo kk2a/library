@@ -4,17 +4,23 @@ data:
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: math/euler_phi.hpp
+    title: math/euler_phi.hpp
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_ntl_1_d.test.cpp
+    title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
@@ -23,7 +29,7 @@ data:
     title: verify/yosupo_math/primality_test.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -75,11 +81,13 @@ data:
   path: math/is_prime.hpp
   requiredBy:
   - math/prime_factorize.hpp
-  timestamp: '2024-10-17 14:18:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  - math/euler_phi.hpp
+  timestamp: '2024-10-18 23:21:40+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/is_prime.hpp
 layout: document
 redirect_from:

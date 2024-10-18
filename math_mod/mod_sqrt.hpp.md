@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'
@@ -53,7 +53,7 @@ data:
   path: math_mod/mod_sqrt.hpp
   requiredBy:
   - fps/fps_sqrt.hpp
-  timestamp: '2024-10-17 14:18:33+09:00'
+  timestamp: '2024-10-18 23:21:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/sqrt_mod.test.cpp

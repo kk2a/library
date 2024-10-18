@@ -4,6 +4,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: data_structure/binary_indexed_tree.hpp
     title: data_structure/binary_indexed_tree.hpp
+  - icon: ':warning:'
+    path: others/coordinate_compression.hpp
+    title: others/coordinate_compression.hpp
+  - icon: ':warning:'
+    path: others/mo.hpp
+    title: others/mo.hpp
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
@@ -17,12 +23,10 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
-    - https://judge.yosupo.jp/problem/point_add_range_sum
+    - https://judge.yosupo.jp/problem/static_range_inversions_query
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -36,30 +40,39 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
-    \n#include \"../../data_structure/binary_indexed_tree.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n  \
-    \  kk2::BinaryIndexedTree<i64> bit(n);\n    rep (i, n) {\n        i64 a;\n   \
-    \     kin >> a;\n        bit.add(i, a);\n    }\n\n    rep (q) {\n        int t;\n\
-    \        kin >> t;\n        if (t == 0) {\n            int p, x;\n           \
-    \ kin >> p >> x;\n            bit.add(p, x);\n        }\n        if (t == 1) {\n\
-    \            int l, r;\n            kin >> l >> r;\n            kout << bit.sum(l,\
-    \ r) << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
+    \ \n\n#include \"../../others/coordinate_compression.hpp\"\n#include \"../../data_structure/binary_indexed_tree.hpp\"\
+    \n#include \"../../others/mo.hpp\"\n#include \"../../template/template.hpp\"\n\
+    using namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n    vc<int>\
+    \ a(n);\n    kin >> a;\n    vc<pair<int, int>> queries(q);\n    cin >> queries;\n\
+    \n    kk2::CC cc(a);\n    vc<int> b = cc(a);\n    kk2::BinaryIndexedTree<int>\
+    \ bit(cc.size());\n    kk2::Mo mo(n, queries);\n\n    vc<i64> res(q);\n    i64\
+    \ now = 0;\n    auto insert_left = [&](int i) {\n        bit.add(b[i], 1);\n \
+    \       now += bit.sum(0, b[i]);\n    };\n    auto insert_right = [&](int i) {\n\
+    \        bit.add(b[i], 1);\n        now += bit.sum(b[i] + 1, cc.size());\n   \
+    \ };\n    auto erase_left = [&](int i) {\n        now -= bit.sum(0, b[i]);\n \
+    \       bit.add(b[i], -1);\n    };\n    auto erase_right = [&](int i) {\n    \
+    \    now -= bit.sum(b[i] + 1, cc.size());\n        bit.add(b[i], -1);\n    };\n\
+    \    auto f = [&](int i) { res[i] = now; };\n\n    mo.calculate(insert_left, insert_right,\
+    \ erase_left, erase_right, f);\n    for (auto x : res) kout << x << \"\\n\";\n\
+    \n    return 0;\n}\n"
   dependsOn:
+  - others/coordinate_compression.hpp
   - data_structure/binary_indexed_tree.hpp
+  - others/mo.hpp
   - template/template.hpp
   - type_traits/type_traits.hpp
   - template/fastio.hpp
-  isVerificationFile: true
-  path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+  isVerificationFile: false
+  path: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
   requiredBy: []
   timestamp: '2024-10-18 23:21:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+documentation_of: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-- /verify/verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp.html
-title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+- /library/verify/yosupo_ds/ds_static_range_inversions.tet.cpp
+- /library/verify/yosupo_ds/ds_static_range_inversions.tet.cpp.html
+title: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
 ---

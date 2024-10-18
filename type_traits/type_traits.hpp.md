@@ -23,7 +23,7 @@ data:
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':warning:'
@@ -35,7 +35,7 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
@@ -44,25 +44,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/argument_sort.hpp
     title: geometry/argument_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/point.hpp
     title: geometry/point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/static_convex_hull.hpp
     title: geometry/static_convex_hull.hpp
   - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: math/euler_phi.hpp
+    title: math/euler_phi.hpp
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':warning:'
     path: math/pow.hpp
     title: math/pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':x:'
@@ -98,13 +101,13 @@ data:
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':question:'
@@ -113,7 +116,13 @@ data:
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
+  - icon: ':warning:'
+    path: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
+    title: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_0233.test.cpp
+    title: verify/aoj/aoj_0233.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560.test.cpp
     title: verify/aoj/aoj_0560.test.cpp
@@ -121,8 +130,17 @@ data:
     path: verify/aoj/aoj_0560_2.test.cpp
     title: verify/aoj/aoj_0560_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_alds1_14_b.test.cpp
+    title: verify/aoj/aoj_alds1_14_b.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_ntl_1_d.test.cpp
+    title: verify/aoj/aoj_ntl_1_d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_ntl_1_e.test.cpp
+    title: verify/aoj/aoj_ntl_1_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
@@ -168,49 +186,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
   - icon: ':x:'
@@ -274,6 +292,9 @@ data:
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_string/string_suffix_array.test.cpp
+    title: verify/yosupo_string/string_suffix_array.test.cpp
+  - icon: ':x:'
     path: verify/yuki/yuki_0430.test.cpp
     title: verify/yuki/yuki_0430.test.cpp
   - icon: ':x:'
@@ -336,19 +357,21 @@ data:
     template <typename T> using is_standard_ostream = std::is_same<T, std::ostream>;\n\
     template <typename T> using is_user_defined_istream = std::is_base_of<internal::istream_tag,\
     \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<internal::ostream_tag,\
-    \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    std::conditional<is_standard_istream<T>::value\
+    \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
     \ || is_user_defined_istream<T>::value,\n                     std::true_type,\n\
     \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
-    \ is_ostream =\n    std::conditional<is_standard_ostream<T>::value || is_user_defined_ostream<T>::value,\n\
-    \                     std::true_type,\n                     std::false_type>::type;\n\
-    \ntemplate <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
-    template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-    \n\n} // namespace kk2\n\n#endif // TYPE_TRAITS_HPP\n"
+    \ is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value ||\
+    \ is_user_defined_ostream<T>::value,\n                     std::true_type,\n \
+    \                    std::false_type>::type;\n\ntemplate <typename T> using is_istream_t\
+    \ = std::enable_if_t<is_istream<T>::value>;\ntemplate <typename T> using is_ostream_t\
+    \ = std::enable_if_t<is_ostream<T>::value>;\n\n\n} // namespace kk2\n\n#endif\
+    \ // TYPE_TRAITS_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: type_traits/type_traits.hpp
   requiredBy:
   - random/graph.hpp
+  - verify/yosupo_ds/ds_static_range_inversions.tet.cpp
   - modint/mont_arb.hpp
   - modint/mont.hpp
   - modint/modint.hpp
@@ -356,6 +379,7 @@ data:
   - math/is_prime.hpp
   - math/prime_factorize.hpp
   - math/pow.hpp
+  - math/euler_phi.hpp
   - matrix/frobenius_form.hpp
   - matrix/basis.hpp
   - matrix/matrix_field.hpp
@@ -385,7 +409,7 @@ data:
   - fps/taylor_shift.hpp
   - fps/fps.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-17 14:04:11+09:00'
+  timestamp: '2024-10-18 23:21:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
@@ -416,7 +440,11 @@ data:
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/aoj/aoj_0233.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/aoj/aoj_0560.test.cpp
+  - verify/aoj/aoj_ntl_1_e.test.cpp
   - verify/aoj/aoj_0560_2.test.cpp
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
@@ -429,6 +457,7 @@ data:
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - verify/yosupo_string/string_suffix_array.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'
@@ -55,7 +55,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-10-17 14:18:33+09:00'
+  timestamp: '2024-10-18 23:21:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/sqrt_mod.test.cpp
