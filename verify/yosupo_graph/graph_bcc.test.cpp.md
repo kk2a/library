@@ -45,8 +45,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
     \n\n#include \"../../graph/bcc.hpp\"\n#include \"../../graph/graph.hpp\"\n#include\
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ n, m;\n    kin >> n >> m;\n    kk2::AdjList g(n, m, false);\n    g.input(kin);\n\
-    \    kk2::BCC<kk2::AdjList> bcc(g);\n    auto res = bcc.get_bcc_vertices();\n\n\
+    \ n, m;\n    kin >> n >> m;\n    kk2::AdjList g(n, m);\n    g.input(kin);\n  \
+    \  kk2::BCC<kk2::AdjList> bcc(g);\n    auto res = bcc.get_bcc_vertices();\n\n\
     \    kout << res.size() << \"\\n\";\n    for (auto &v : res) { kout << v.size()\
     \ << \" \" << v << \"\\n\"; }\n\n    return 0;\n}\n"
   dependsOn:
@@ -59,7 +59,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_bcc.test.cpp
   requiredBy: []
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_bcc.test.cpp

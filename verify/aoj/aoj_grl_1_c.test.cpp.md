@@ -42,13 +42,13 @@ data:
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\
     \ \n\n#include \"../../graph/graph.hpp\"\n#include \"../../graph/warshall_floyd.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::DWAdjMat<int> g(n, m, false);\n\
-    \    g.input(kin);\n    auto dist = kk2::WarshallFroyd(g);\n    rep (i, n) {\n\
-    \        if (dist[i][i].len < 0) {\n            kout << \"NEGATIVE CYCLE\" <<\
-    \ kendl;\n            return 0;\n        }\n    }\n\n    rep (i, n) {\n      \
-    \  rep (j, n) {\n            if (dist[i][j].is_valid) kout << dist[i][j].len;\n\
-    \            else kout << \"INF\";\n            kout << \" \\n\"[j == n - 1];\n\
-    \        }\n    }\n\n    return 0;\n}\n"
+    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::DWAdjMat<int> g(n, m);\n    g.input(kin);\n\
+    \    auto dist = kk2::WarshallFroyd(g);\n    rep (i, n) {\n        if (dist[i][i].len\
+    \ < 0) {\n            kout << \"NEGATIVE CYCLE\" << kendl;\n            return\
+    \ 0;\n        }\n    }\n\n    rep (i, n) {\n        rep (j, n) {\n           \
+    \ if (dist[i][j].is_valid) kout << dist[i][j].len;\n            else kout << \"\
+    INF\";\n            kout << \" \\n\"[j == n - 1];\n        }\n    }\n\n    return\
+    \ 0;\n}\n"
   dependsOn:
   - graph/graph.hpp
   - type_traits/type_traits.hpp
@@ -58,7 +58,7 @@ data:
   isVerificationFile: true
   path: verify/aoj/aoj_grl_1_c.test.cpp
   requiredBy: []
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_grl_1_c.test.cpp

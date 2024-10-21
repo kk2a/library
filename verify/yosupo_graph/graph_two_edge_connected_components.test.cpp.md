@@ -45,10 +45,10 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
     \n\n#include \"../../graph/graph.hpp\"\n#include \"../../graph/two_edge_connected_components.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::AdjList g(n, m, false);\n   \
-    \ g.input(kin);\n    kk2::TwoEdgeConnectedComponents<kk2::AdjList> tecc(g);\n\
-    \    kout << tecc.size() << \"\\n\";\n    for (auto &v : tecc.group) kout << v.size()\
-    \ << \" \" << v << \"\\n\";\n\n    return 0;\n}\n"
+    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::AdjList g(n, m);\n    g.input(kin);\n\
+    \    kk2::TwoEdgeConnectedComponents<kk2::AdjList> tecc(g);\n    kout << tecc.size()\
+    \ << \"\\n\";\n    for (auto &v : tecc.group) kout << v.size() << \" \" << v <<\
+    \ \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - graph/graph.hpp
   - type_traits/type_traits.hpp
@@ -59,7 +59,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp

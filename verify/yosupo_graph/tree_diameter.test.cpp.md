@@ -42,7 +42,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#include\
     \ \"../../graph/graph.hpp\"\n#include \"../../graph/tree/diameter.hpp\"\n#include\
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ n;\n    kin >> n;\n    kk2::WAdjList<i64> g(n, n - 1, false);\n    g.input(kin);\n\
+    \ n;\n    kin >> n;\n    kk2::WAdjList<i64> g(n, n - 1);\n    g.input(kin);\n\
     \    auto [d, path] = kk2::weighted_tree_diameter(g);\n    kout << d << \" \"\
     \ << path.size() << kendl;\n    kout << path << kendl;\n\n    return 0;\n}\n"
   dependsOn:
@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_diameter.test.cpp

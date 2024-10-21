@@ -18,9 +18,9 @@ data:
     \n#line 1 \"graph/lowlink.hpp\"\n\n\n\n#include <algorithm>\n#line 7 \"graph/lowlink.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class G> struct LowLink {\n    int n, m;\n  \
     \  const G &g;\n    std::vector<int> ord, low;\n    std::vector<bool> root, used;\n\
-    \n    LowLink(const G &g_)\n        : n(g_.n),\n          m(g_.m),\n         \
-    \ g(g_),\n          ord(n, -1),\n          low(n, -1),\n          root(n, false),\n\
-    \          used(m, false) {\n        init();\n    }\n\n    std::vector<typename\
+    \n    LowLink(const G &g_)\n        : n(g_.num_vertices()),\n          m(g_.num_edges()),\n\
+    \          g(g_),\n          ord(n, -1),\n          low(n, -1),\n          root(n,\
+    \ false),\n          used(m, false) {\n        init();\n    }\n\n    std::vector<typename\
     \ G::edge_type> get_bridges() {\n        std::vector<bool> used(n);\n        std::vector<typename\
     \ G::edge_type> res;\n        auto dfs = [&](auto self, int now) -> void {\n \
     \           used[now] = true;\n            for (auto &&e : g[now]) {\n       \
@@ -109,7 +109,7 @@ data:
   isVerificationFile: false
   path: graph/bcc.hpp
   requiredBy: []
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_bcc.test.cpp

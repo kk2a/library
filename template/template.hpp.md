@@ -276,7 +276,7 @@ data:
   path: template/template.hpp
   requiredBy:
   - verify/yosupo_ds/ds_static_range_inversions.tet.cpp
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp

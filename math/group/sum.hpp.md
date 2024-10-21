@@ -31,7 +31,7 @@ data:
     links: []
   bundledCode: "#line 1 \"math/group/sum.hpp\"\n\n\n\n#include <iostream>\n#include\
     \ <vector>\n\nnamespace kk2 {\n\nnamespace group {\n\ntemplate <class S> struct\
-    \ Sum {\n    S a;\n    int size;\n\n    constexpr Sum() : a(S()), size(0) {}\n\
+    \ Sum {\n    S a;\n    int size;\n\n    constexpr Sum() : a(S{}), size(0) {}\n\
     \n    constexpr Sum(S a, S size = 1) : a(a), size(size) {}\n\n    operator S()\
     \ const { return a; }\n\n    template <class OStream>\n    friend OStream &operator<<(OStream\
     \ &os, const Sum &sum) {\n        os << sum.a;\n        return os;\n    }\n\n\
@@ -54,7 +54,7 @@ data:
     \ GetVecSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef MATH_GROUP_SUM_HPP\n#define MATH_GROUP_SUM_HPP 1\n\n#include <iostream>\n\
     #include <vector>\n\nnamespace kk2 {\n\nnamespace group {\n\ntemplate <class S>\
-    \ struct Sum {\n    S a;\n    int size;\n\n    constexpr Sum() : a(S()), size(0)\
+    \ struct Sum {\n    S a;\n    int size;\n\n    constexpr Sum() : a(S{}), size(0)\
     \ {}\n\n    constexpr Sum(S a, S size = 1) : a(a), size(size) {}\n\n    operator\
     \ S() const { return a; }\n\n    template <class OStream>\n    friend OStream\
     \ &operator<<(OStream &os, const Sum &sum) {\n        os << sum.a;\n        return\
@@ -84,7 +84,7 @@ data:
   - segment_tree/utility/sumseg2d.hpp
   - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/updatesum.hpp
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

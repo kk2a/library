@@ -40,11 +40,10 @@ data:
     \ for (int &idx : nodes[now].accept) f(idx);\n            const int d = c - margin;\n\
     \            now = nodes[now].nxt[d];\n            if (now == -1) return;\n  \
     \      }\n        for (int idx : nodes[now].accept) f(idx);\n    }\n\n    int\
-    \ count() const { return (int)nodes[0].exist; }\n\n    int size() const { return\
-    \ (int)nodes.size(); }\n\n    // return the number of strings which have the prefix\n\
-    \    // corresponding to the node_id\n    int size(int node_idx) const {\n   \
-    \     return (int)nodes[node_idx].accept.size() + nodes[node_idx].exist;\n   \
-    \ }\n};\n\n} // namespace kk2\n\n\n"
+    \ count() const { return nodes[0].exist; }\n\n    int size() const { return (int)nodes.size();\
+    \ }\n\n    // return the number of strings which have the prefix\n    // corresponding\
+    \ to the node_id\n    int size(int node_idx) const {\n        return (int)nodes[node_idx].accept.size()\
+    \ + nodes[node_idx].exist;\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef DATA_STRUCTURE_TRIE_HPP\n#define DATA_STRUCTURE_TRIE_HPP 1\n\n#include\
     \ <cassert>\n#include <cstring>\n#include <functional>\n#include <string>\n#include\
     \ <vector>\n\nnamespace kk2 {\n\ntemplate <int char_size> struct TrieNode {\n\
@@ -68,17 +67,17 @@ data:
     \        for (char c : str) {\n            for (int &idx : nodes[now].accept)\
     \ f(idx);\n            const int d = c - margin;\n            now = nodes[now].nxt[d];\n\
     \            if (now == -1) return;\n        }\n        for (int idx : nodes[now].accept)\
-    \ f(idx);\n    }\n\n    int count() const { return (int)nodes[0].exist; }\n\n\
-    \    int size() const { return (int)nodes.size(); }\n\n    // return the number\
-    \ of strings which have the prefix\n    // corresponding to the node_id\n    int\
-    \ size(int node_idx) const {\n        return (int)nodes[node_idx].accept.size()\
-    \ + nodes[node_idx].exist;\n    }\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_TRIE_HPP\n"
+    \ f(idx);\n    }\n\n    int count() const { return nodes[0].exist; }\n\n    int\
+    \ size() const { return (int)nodes.size(); }\n\n    // return the number of strings\
+    \ which have the prefix\n    // corresponding to the node_id\n    int size(int\
+    \ node_idx) const {\n        return (int)nodes[node_idx].accept.size() + nodes[node_idx].exist;\n\
+    \    }\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_TRIE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/trie.hpp
   requiredBy:
   - string/aho_corasick.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_0430.test.cpp

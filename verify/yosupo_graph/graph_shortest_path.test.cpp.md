@@ -42,7 +42,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include\
     \ \"../../graph/graph.hpp\"\n#include \"../../graph/shortest_path.hpp\"\n#include\
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ n, m, s, t;\n    kin >> n >> m >> s >> t;\n    kk2::DWAdjList<i64> g(n, m, false);\n\
+    \ n, m, s, t;\n    kin >> n >> m >> s >> t;\n    kk2::DWAdjList<i64> g(n, m);\n\
     \    g.input(kin);\n    auto [dist, prev] = kk2::ShortestPath(g, s);\n\n    if\
     \ (prev[t].to == -1) {\n        kout << -1 << \"\\n\";\n        return 0;\n  \
     \  }\n\n    std::vector<int> path;\n    for (int now = t; now != -1; now = prev[now].to)\
@@ -58,7 +58,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_shortest_path.test.cpp

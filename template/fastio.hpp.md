@@ -218,15 +218,15 @@ data:
     #include <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <iostream>\n\
     #include <string>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace\
     \ kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\n#define OUTPUT_FILE\
-    \ \"out.txt\"\n\nstruct Scanner : internal::istream_tag {\n  private:\n    static\
-    \ constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos = 0, end = 0;\n    static\
-    \ char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n    Scanner() : fp(stdin)\
-    \ {}\n\n    Scanner(const char *file) : fp(fopen(file, \"r\")) {}\n\n    ~Scanner()\
-    \ {\n        if (fp != stdin) fclose(fp);\n    }\n\n    char now() {\n       \
-    \ if (pos == end) {\n            while (!(end = fread(buf, 1, INPUT_BUF, fp)))\
-    \ {}\n            if (end != INPUT_BUF) buf[end] = '\\0';\n            pos = 0;\n\
-    \        }\n        return buf[pos];\n    }\n\n    void skip_space() {\n     \
-    \   while (isspace(now())) ++pos;\n    }\n\n    template <class T, is_unsigned_t<T>\
+    \ \"out.txt\"\n\nstruct Scanner : type_traits::istream_tag {\n  private:\n   \
+    \ static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos = 0, end = 0;\n\
+    \    static char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n    Scanner() :\
+    \ fp(stdin) {}\n\n    Scanner(const char *file) : fp(fopen(file, \"r\")) {}\n\n\
+    \    ~Scanner() {\n        if (fp != stdin) fclose(fp);\n    }\n\n    char now()\
+    \ {\n        if (pos == end) {\n            while (!(end = fread(buf, 1, INPUT_BUF,\
+    \ fp))) {}\n            if (end != INPUT_BUF) buf[end] = '\\0';\n            pos\
+    \ = 0;\n        }\n        return buf[pos];\n    }\n\n    void skip_space() {\n\
+    \        while (isspace(now())) ++pos;\n    }\n\n    template <class T, is_unsigned_t<T>\
     \ * = nullptr> T next_unsigned_integral() {\n        skip_space();\n        T\
     \ res{};\n        while (isdigit(now())) {\n            res = res * 10 + (now()\
     \ - '0');\n            ++pos;\n        }\n        return res;\n    }\n\n    template\
@@ -245,7 +245,7 @@ data:
     \  return *this;\n    }\n\n    Scanner &operator>>(char &x) {\n        x = next_char();\n\
     \        return *this;\n    }\n\n    Scanner &operator>>(std::string &x) {\n \
     \       x = next_string();\n        return *this;\n    }\n};\n\nstruct endl_struct_t\
-    \ {};\n\nstruct Printer : internal::ostream_tag {\n  private:\n    static char\
+    \ {};\n\nstruct Printer : type_traits::ostream_tag {\n  private:\n    static char\
     \ helper[10000][5];\n    static char leading_zero[10000][5];\n    constexpr static\
     \ size_t OUTPUT_BUF = 1 << 17;\n    static char buf[OUTPUT_BUF];\n    size_t pos\
     \ = 0;\n    FILE *fp;\n\n    template <class T> static constexpr void div_mod(T\
@@ -325,7 +325,7 @@ data:
   requiredBy:
   - verify/yosupo_ds/ds_static_range_inversions.tet.cpp
   - template/template.hpp
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp

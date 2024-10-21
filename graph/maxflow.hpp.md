@@ -17,16 +17,16 @@ data:
     \ m(g.num_edges()) { init(); }\n\n    void init() {\n        revi.resize(m <<\
     \ 1, -1);\n        std::vector<int> count(n, 0);\n        for (int i = 0; i <\
     \ m; i++) {\n            auto e = g.edges[i];\n            revi[i] = (int)g[e.to].size();\n\
-    \            revi[m + i] = count[e.from]++;\n            g.add_edge_naive(e.to,\
-    \ e.from, 0);\n        }\n    }\n\n    Cap flow(int s, int t) { return flow(s,\
-    \ t, std::numeric_limits<Cap>::max()); }\n\n    Cap flow(int s, int t, Cap flow_limit)\
-    \ {\n        assert(0 <= s && s < n);\n        assert(0 <= t && t < n);\n    \
-    \    assert(s != t);\n\n        std::vector<int> level(n), iter(n);\n        std::queue<int>\
-    \ que;\n\n        auto bfs = [&]() {\n            std::fill(std::begin(level),\
-    \ std::end(level), -1);\n            level[s] = 0;\n            que = std::queue<int>();\n\
-    \            que.push(s);\n            while (!que.empty()) {\n              \
-    \  int v = que.front();\n                que.pop();\n                for (auto\
-    \ &e : g[v]) {\n                    if (e.cost == 0 || level[e.to] >= 0) continue;\n\
+    \            revi[m + i] = count[e.from]++;\n            g.add_edge(e.to, e.from,\
+    \ 0);\n        }\n    }\n\n    Cap flow(int s, int t) { return flow(s, t, std::numeric_limits<Cap>::max());\
+    \ }\n\n    Cap flow(int s, int t, Cap flow_limit) {\n        assert(0 <= s &&\
+    \ s < n);\n        assert(0 <= t && t < n);\n        assert(s != t);\n\n     \
+    \   std::vector<int> level(n), iter(n);\n        std::queue<int> que;\n\n    \
+    \    auto bfs = [&]() {\n            std::fill(std::begin(level), std::end(level),\
+    \ -1);\n            level[s] = 0;\n            que = std::queue<int>();\n    \
+    \        que.push(s);\n            while (!que.empty()) {\n                int\
+    \ v = que.front();\n                que.pop();\n                for (auto &e :\
+    \ g[v]) {\n                    if (e.cost == 0 || level[e.to] >= 0) continue;\n\
     \                    level[e.to] = level[v] + 1;\n                    if (e.to\
     \ == t) return;\n                    que.push(e.to);\n                }\n    \
     \        }\n        };\n        auto dfs = [&](auto self, int v, Cap up) {\n \
@@ -63,16 +63,16 @@ data:
     \ m(g.num_edges()) { init(); }\n\n    void init() {\n        revi.resize(m <<\
     \ 1, -1);\n        std::vector<int> count(n, 0);\n        for (int i = 0; i <\
     \ m; i++) {\n            auto e = g.edges[i];\n            revi[i] = (int)g[e.to].size();\n\
-    \            revi[m + i] = count[e.from]++;\n            g.add_edge_naive(e.to,\
-    \ e.from, 0);\n        }\n    }\n\n    Cap flow(int s, int t) { return flow(s,\
-    \ t, std::numeric_limits<Cap>::max()); }\n\n    Cap flow(int s, int t, Cap flow_limit)\
-    \ {\n        assert(0 <= s && s < n);\n        assert(0 <= t && t < n);\n    \
-    \    assert(s != t);\n\n        std::vector<int> level(n), iter(n);\n        std::queue<int>\
-    \ que;\n\n        auto bfs = [&]() {\n            std::fill(std::begin(level),\
-    \ std::end(level), -1);\n            level[s] = 0;\n            que = std::queue<int>();\n\
-    \            que.push(s);\n            while (!que.empty()) {\n              \
-    \  int v = que.front();\n                que.pop();\n                for (auto\
-    \ &e : g[v]) {\n                    if (e.cost == 0 || level[e.to] >= 0) continue;\n\
+    \            revi[m + i] = count[e.from]++;\n            g.add_edge(e.to, e.from,\
+    \ 0);\n        }\n    }\n\n    Cap flow(int s, int t) { return flow(s, t, std::numeric_limits<Cap>::max());\
+    \ }\n\n    Cap flow(int s, int t, Cap flow_limit) {\n        assert(0 <= s &&\
+    \ s < n);\n        assert(0 <= t && t < n);\n        assert(s != t);\n\n     \
+    \   std::vector<int> level(n), iter(n);\n        std::queue<int> que;\n\n    \
+    \    auto bfs = [&]() {\n            std::fill(std::begin(level), std::end(level),\
+    \ -1);\n            level[s] = 0;\n            que = std::queue<int>();\n    \
+    \        que.push(s);\n            while (!que.empty()) {\n                int\
+    \ v = que.front();\n                que.pop();\n                for (auto &e :\
+    \ g[v]) {\n                    if (e.cost == 0 || level[e.to] >= 0) continue;\n\
     \                    level[e.to] = level[v] + 1;\n                    if (e.to\
     \ == t) return;\n                    que.push(e.to);\n                }\n    \
     \        }\n        };\n        auto dfs = [&](auto self, int v, Cap up) {\n \
@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: graph/maxflow.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/maxflow.hpp

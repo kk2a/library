@@ -42,8 +42,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\" \n\n#include \"../../graph/graph.hpp\"\
     \n#include \"../../graph/tree/heavy_light_decomposition.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n  \
-    \  kk2::AdjList g(n, false);\n    rep (i, n - 1) {\n        int p;\n        kin\
-    \ >> p;\n        g.add_edge(i + 1, p);\n    }\n    kk2::HeavyLightDecomposition<kk2::AdjList>\
+    \  kk2::AdjList g(n);\n    rep (i, n - 1) {\n        int p;\n        kin >> p;\n\
+    \        g.add_edge(i + 1, p);\n    }\n    kk2::HeavyLightDecomposition<kk2::AdjList>\
     \ hld(g);\n    rep (q) {\n        int u, v;\n        kin >> u >> v;\n        kout\
     \ << hld.lca(u, v) << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
@@ -55,7 +55,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/tree_lca.test.cpp
   requiredBy: []
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_lca.test.cpp

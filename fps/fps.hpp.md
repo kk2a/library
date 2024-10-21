@@ -229,7 +229,7 @@ data:
   - fps/multivariate_fps.hpp
   - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp

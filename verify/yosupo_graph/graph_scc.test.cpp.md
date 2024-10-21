@@ -45,8 +45,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\n\n#include \"../../graph/graph.hpp\"\
     \n#include \"../../graph/scc.hpp\"\n#include \"../../graph/topological_sort.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::DAdjList g(n, m, false);\n  \
-    \  g.input(kin);\n    kk2::SCC<kk2::DAdjList> scc(g);\n    auto perm = kk2::topological_sort(scc.dag);\n\
+    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::DAdjList g(n, m);\n    g.input(kin);\n\
+    \    kk2::SCC<kk2::DAdjList> scc(g);\n    auto perm = kk2::topological_sort(scc.dag);\n\
     \    kout << scc.size() << \"\\n\";\n    for (auto &v : perm) { kout << scc.same_scc(v).size()\
     \ << \" \" << scc.same_scc(v) << \"\\n\"; }\n\n    return 0;\n}\n"
   dependsOn:
@@ -59,7 +59,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_scc.test.cpp
   requiredBy: []
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_scc.test.cpp

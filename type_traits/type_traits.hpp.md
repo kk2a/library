@@ -351,21 +351,21 @@ data:
     struct is_two_args_function_pointer : std::false_type {};\n\ntemplate <typename\
     \ R, typename T1, typename T2>\nstruct is_two_args_function_pointer<R (*)(T1,\
     \ T2)> : std::true_type {};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t\
-    \ = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\nnamespace internal\
-    \ {\n\nstruct istream_tag {};\n\nstruct ostream_tag {};\n\n} // namespace internal\n\
+    \ = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\nnamespace type_traits\
+    \ {\n\nstruct istream_tag {};\n\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
     \ntemplate <typename T> using is_standard_istream = std::is_same<T, std::istream>;\n\
     template <typename T> using is_standard_ostream = std::is_same<T, std::ostream>;\n\
-    template <typename T> using is_user_defined_istream = std::is_base_of<internal::istream_tag,\
-    \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<internal::ostream_tag,\
+    template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+    \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
     \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-    \ || is_user_defined_istream<T>::value,\n                     std::true_type,\n\
-    \                     std::false_type>::type;\n\ntemplate <typename T>\nusing\
-    \ is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value ||\
-    \ is_user_defined_ostream<T>::value,\n                     std::true_type,\n \
-    \                    std::false_type>::type;\n\ntemplate <typename T> using is_istream_t\
-    \ = std::enable_if_t<is_istream<T>::value>;\ntemplate <typename T> using is_ostream_t\
-    \ = std::enable_if_t<is_ostream<T>::value>;\n\n\n} // namespace kk2\n\n#endif\
-    \ // TYPE_TRAITS_HPP\n"
+    \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\ntemplate <typename T>\n\
+    using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+    \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\ntemplate <typename T>\
+    \ using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate <typename\
+    \ T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\n\n} // namespace\
+    \ kk2\n\n#endif // TYPE_TRAITS_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: type_traits/type_traits.hpp
@@ -409,7 +409,7 @@ data:
   - fps/taylor_shift.hpp
   - fps/fps.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp

@@ -42,11 +42,10 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection_undirected\"\
     \ \n\n#include \"../../graph/graph.hpp\"\n#include \"../../graph/cycle_detection.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::AdjList g(n, m, false);\n   \
-    \ g.input(kin);\n    if (const auto res = kk2::cycle_detection(g); res) {\n  \
-    \      kout << res->size() << '\\n';\n        kout << res->vertices << '\\n';\n\
-    \        kout << res->edges << '\\n';\n    } else kout << -1 << '\\n';\n\n   \
-    \ return 0;\n}\n"
+    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::AdjList g(n, m);\n    g.input(kin);\n\
+    \    if (const auto res = kk2::cycle_detection(g); res) {\n        kout << res->size()\
+    \ << '\\n';\n        kout << res->vertices << '\\n';\n        kout << res->edges\
+    \ << '\\n';\n    } else kout << -1 << '\\n';\n\n    return 0;\n}\n"
   dependsOn:
   - graph/graph.hpp
   - type_traits/type_traits.hpp
@@ -56,7 +55,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2024-10-18 23:21:40+09:00'
+  timestamp: '2024-10-22 04:14:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_cycle_detection.test.cpp
