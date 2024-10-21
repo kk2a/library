@@ -17,7 +17,7 @@ namespace fastio {
 #define INPUT_FILE "in.txt"
 #define OUTPUT_FILE "out.txt"
 
-struct Scanner : internal::istream_tag {
+struct Scanner : type_traits::istream_tag {
   private:
     static constexpr size_t INPUT_BUF = 1 << 17;
     size_t pos = 0, end = 0;
@@ -106,7 +106,7 @@ struct Scanner : internal::istream_tag {
 
 struct endl_struct_t {};
 
-struct Printer : internal::ostream_tag {
+struct Printer : type_traits::ostream_tag {
   private:
     static char helper[10000][5];
     static char leading_zero[10000][5];

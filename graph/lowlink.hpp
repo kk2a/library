@@ -14,8 +14,8 @@ template <class G> struct LowLink {
     std::vector<bool> root, used;
 
     LowLink(const G &g_)
-        : n(g_.n),
-          m(g_.m),
+        : n(g_.num_vertices()),
+          m(g_.num_edges()),
           g(g_),
           ord(n, -1),
           low(n, -1),

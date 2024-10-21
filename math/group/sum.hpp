@@ -12,7 +12,7 @@ template <class S> struct Sum {
     S a;
     int size;
 
-    constexpr Sum() : a(S()), size(0) {}
+    constexpr Sum() : a(S{}), size(0) {}
 
     constexpr Sum(S a, S size = 1) : a(a), size(size) {}
 

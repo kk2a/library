@@ -9,7 +9,7 @@ using namespace std;
 int main() {
     int n, m;
     kin >> n >> m;
-    kk2::DAdjList g(n, m, false);
+    kk2::DAdjList g(n, m);
     g.input(kin);
     kk2::SCC<kk2::DAdjList> scc(g);
     auto perm = kk2::topological_sort(scc.dag);

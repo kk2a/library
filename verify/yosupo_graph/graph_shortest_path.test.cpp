@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int n, m, s, t;
     kin >> n >> m >> s >> t;
-    kk2::DWAdjList<i64> g(n, m, false);
+    kk2::DWAdjList<i64> g(n, m);
     g.input(kin);
     auto [dist, prev] = kk2::ShortestPath(g, s);
 

@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int n, q;
     kin >> n >> q;
-    kk2::AdjList g(n, false);
+    kk2::AdjList g(n);
     rep (i, n - 1) {
         int p;
         kin >> p;

@@ -29,7 +29,7 @@ template <class WG> struct MaxFlow {
             auto e = g.edges[i];
             revi[i] = (int)g[e.to].size();
             revi[m + i] = count[e.from]++;
-            g.add_edge_naive(e.to, e.from, 0);
+            g.add_edge(e.to, e.from, 0);
         }
     }
 

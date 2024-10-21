@@ -42,7 +42,7 @@ template <class G> struct TwoEdgeConnectedComponents : LowLink<G> {
             e.from = comp[e.from];
             e.to = comp[e.to];
         }
-        forest = G(k, bridges, this->g.oneindexed);
+        forest = G(k, bridges);
     }
 };
 

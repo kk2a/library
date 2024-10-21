@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int n, m;
     kin >> n >> m;
-    kk2::AdjList g(n, m, false);
+    kk2::AdjList g(n, m);
     g.input(kin);
     kk2::BCC<kk2::AdjList> bcc(g);
     auto res = bcc.get_bcc_vertices();

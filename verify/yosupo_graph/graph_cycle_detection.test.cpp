@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int n, m;
     kin >> n >> m;
-    kk2::AdjList g(n, m, false);
+    kk2::AdjList g(n, m);
     g.input(kin);
     if (const auto res = kk2::cycle_detection(g); res) {
         kout << res->size() << '\n';

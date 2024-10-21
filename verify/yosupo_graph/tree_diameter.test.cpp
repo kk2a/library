@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int n;
     kin >> n;
-    kk2::WAdjList<i64> g(n, n - 1, false);
+    kk2::WAdjList<i64> g(n, n - 1);
     g.input(kin);
     auto [d, path] = kk2::weighted_tree_diameter(g);
     kout << d << " " << path.size() << kendl;

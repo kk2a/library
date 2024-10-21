@@ -65,7 +65,7 @@ template <int char_size, int margin> struct Trie {
         for (int idx : nodes[now].accept) f(idx);
     }
 
-    int count() const { return (int)nodes[0].exist; }
+    int count() const { return nodes[0].exist; }
 
     int size() const { return (int)nodes.size(); }
 

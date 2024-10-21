@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int n, m;
     kin >> n >> m;
-    kk2::DWAdjMat<int> g(n, m, false);
+    kk2::DWAdjMat<int> g(n, m);
     g.input(kin);
     auto dist = kk2::WarshallFroyd(g);
     rep (i, n) {
