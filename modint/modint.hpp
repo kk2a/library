@@ -32,8 +32,6 @@ template <int p> struct ModInt {
         return x;
     }
 
-    operator int() const { return _v; }
-
     constexpr ModInt() : _v(0) {}
 
     template <class T, is_integral_t<T> * = nullptr> constexpr ModInt(T v) {
@@ -129,43 +127,11 @@ template <int p> struct ModInt {
 
     friend mint operator+(const mint &lhs, const mint &rhs) { return mint(lhs) += rhs; }
 
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator+(const mint &lhs, T rhs) {
-        return mint(lhs) += mint(rhs);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator+(T lhs, const mint &rhs) {
-        return mint(lhs) += rhs;
-    }
-
     friend mint operator-(const mint &lhs, const mint &rhs) { return mint(lhs) -= rhs; }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator-(const mint &lhs, T rhs) {
-        return mint(lhs) -= mint(rhs);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator-(T lhs, const mint &rhs) {
-        return mint(lhs) -= rhs;
-    }
 
     friend mint operator*(const mint &lhs, const mint &rhs) { return mint(lhs) *= rhs; }
 
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator*(const mint &lhs, T rhs) {
-        return mint(lhs) *= mint(rhs);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator*(T lhs, const mint &rhs) {
-        return mint(lhs) *= rhs;
-    }
-
     friend mint operator/(const mint &lhs, const mint &rhs) { return mint(lhs) /= rhs; }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator/(const mint &lhs, T rhs) {
-        return mint(lhs) /= mint(rhs);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator/(T lhs, const mint &rhs) {
-        return mint(lhs) /= rhs;
-    }
 
     friend bool operator==(const mint &lhs, const mint &rhs) { return lhs._v == rhs._v; }
 

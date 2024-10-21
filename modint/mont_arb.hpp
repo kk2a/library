@@ -32,8 +32,6 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
     UInt _v;
 
-    operator Int() const { return val(); }
-
     ArbitraryLazyMontgomeryModIntBase() : _v(0) {}
 
     template <class T, is_integral_t<T> * = nullptr>
@@ -65,43 +63,11 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
     friend mint operator+(const mint &a, const mint &b) { return mint(a) += b; }
 
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator+(const mint &a, T b) {
-        return mint(a) += mint(b);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator+(T a, const mint &b) {
-        return mint(a) += b;
-    }
-
     friend mint operator-(const mint &a, const mint &b) { return mint(a) -= b; }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator-(const mint &a, T b) {
-        return mint(a) -= mint(b);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator-(T a, const mint &b) {
-        return mint(a) -= b;
-    }
 
     friend mint operator*(const mint &a, const mint &b) { return mint(a) *= b; }
 
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator*(const mint &a, T b) {
-        return mint(a) *= mint(b);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator*(T a, const mint &b) {
-        return mint(a) *= b;
-    }
-
     friend mint operator/(const mint &a, const mint &b) { return mint(a) /= b; }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator/(const mint &a, T b) {
-        return mint(a) /= mint(b);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr> friend mint operator/(T a, const mint &b) {
-        return mint(a) /= b;
-    }
 
     bool operator==(const mint &b) const {
         return (_v >= mod ? _v - mod : _v) == (b._v >= mod ? b._v - mod : b._v);

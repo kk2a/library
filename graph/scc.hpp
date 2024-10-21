@@ -15,7 +15,7 @@ template <class G> struct SCC {
     std::vector<bool> used;
     std::vector<std::vector<int>> blng, dag;
 
-    SCC(const G &g_) : n(g_.n), m(g_.m), g(g_) { init(); }
+    SCC(const G &g_) : n(g_.num_vertices()), m(g_.num_edges()), g(g_) { init(); }
 
     int operator[](int k) const { return scc_id[k]; }
 

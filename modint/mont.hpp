@@ -31,8 +31,6 @@ template <int p> struct LazyMontgomeryModInt {
 
     u32 _v;
 
-    operator int() const { return val(); }
-
     constexpr LazyMontgomeryModInt() : _v(0) {}
 
     template <typename T, is_integral_t<T> * = nullptr>
@@ -88,51 +86,11 @@ template <int p> struct LazyMontgomeryModInt {
 
     friend constexpr mint operator+(const mint &a, const mint &b) { return mint(a) += b; }
 
-    template <class T, is_integral_t<T> * = nullptr>
-    friend constexpr mint operator+(const mint &a, T b) {
-        return mint(a) += mint(b);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr>
-    friend constexpr mint operator+(T a, const mint &b) {
-        return mint(a) += b;
-    }
-
     friend constexpr mint operator-(const mint &a, const mint &b) { return mint(a) -= b; }
-
-    template <class T, is_integral_t<T> * = nullptr>
-    friend constexpr mint operator-(const mint &a, T b) {
-        return mint(a) -= mint(b);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr>
-    friend constexpr mint operator-(T a, const mint &b) {
-        return mint(a) -= b;
-    }
 
     friend constexpr mint operator*(const mint &a, const mint &b) { return mint(a) *= b; }
 
-    template <class T, is_integral_t<T> * = nullptr>
-    friend constexpr mint operator*(const mint &a, T b) {
-        return mint(a) *= mint(b);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr>
-    friend constexpr mint operator*(T a, const mint &b) {
-        return mint(a) *= b;
-    }
-
     friend constexpr mint operator/(const mint &a, const mint &b) { return mint(a) /= b; }
-
-    template <class T, is_integral_t<T> * = nullptr>
-    friend constexpr mint operator/(const mint &a, T b) {
-        return mint(a) /= mint(b);
-    }
-
-    template <class T, is_integral_t<T> * = nullptr>
-    friend constexpr mint operator/(T a, const mint &b) {
-        return mint(a) /= b;
-    }
 
     template <class T> constexpr mint pow(T n) const {
         mint ret(1), mul(*this);
