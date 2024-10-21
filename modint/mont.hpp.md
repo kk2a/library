@@ -5,7 +5,7 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
   - icon: ':warning:'
@@ -15,10 +15,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,10 +60,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':x:'
@@ -110,53 +110,37 @@ data:
     \    }\n\n    static constexpr u32 r = get_r();\n    static constexpr u32 n2 =\
     \ -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\");\n    static_assert(p\
     \ < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"\
-    invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    operator int() const { return val();\
-    \ }\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n\n    template <typename\
-    \ T, is_integral_t<T> * = nullptr>\n    constexpr LazyMontgomeryModInt(T b) :\
-    \ _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
-    \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n\n    constexpr mint\
-    \ &operator++() { return *this += 1; }\n\n    constexpr mint &operator--() { return\
-    \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret = *this;\n\
-    \        *this += 1;\n        return ret;\n    }\n\n    constexpr mint operator--(int)\
-    \ {\n        mint ret = *this;\n        *this -= 1;\n        return ret;\n   \
-    \ }\n\n    constexpr mint &operator+=(const mint &b) {\n        if (i32(_v +=\
-    \ b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
-    \ mint &operator-=(const mint &b) {\n        if (i32(_v -= b._v) < 0) _v += 2\
-    \ * p;\n        return *this;\n    }\n\n    constexpr mint &operator*=(const mint\
-    \ &b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n    }\n\n\
-    \    constexpr mint &operator/=(const mint &b) {\n        *this *= b.inv();\n\
-    \        return *this;\n    }\n\n    constexpr mint operator-() const { return\
-    \ mint() - mint(*this); }\n\n    constexpr bool operator==(const mint &b) const\
-    \ {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);\n\
-    \    }\n\n    constexpr bool operator!=(const mint &b) const {\n        return\
-    \ (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n    }\n\n    friend\
-    \ constexpr mint operator+(const mint &a, const mint &b) { return mint(a) += b;\
-    \ }\n\n    template <class T, is_integral_t<T> * = nullptr>\n    friend constexpr\
-    \ mint operator+(const mint &a, T b) {\n        return mint(a) += mint(b);\n \
-    \   }\n\n    template <class T, is_integral_t<T> * = nullptr>\n    friend constexpr\
-    \ mint operator+(T a, const mint &b) {\n        return mint(a) += b;\n    }\n\n\
-    \    friend constexpr mint operator-(const mint &a, const mint &b) { return mint(a)\
-    \ -= b; }\n\n    template <class T, is_integral_t<T> * = nullptr>\n    friend\
-    \ constexpr mint operator-(const mint &a, T b) {\n        return mint(a) -= mint(b);\n\
-    \    }\n\n    template <class T, is_integral_t<T> * = nullptr>\n    friend constexpr\
-    \ mint operator-(T a, const mint &b) {\n        return mint(a) -= b;\n    }\n\n\
-    \    friend constexpr mint operator*(const mint &a, const mint &b) { return mint(a)\
-    \ *= b; }\n\n    template <class T, is_integral_t<T> * = nullptr>\n    friend\
-    \ constexpr mint operator*(const mint &a, T b) {\n        return mint(a) *= mint(b);\n\
-    \    }\n\n    template <class T, is_integral_t<T> * = nullptr>\n    friend constexpr\
-    \ mint operator*(T a, const mint &b) {\n        return mint(a) *= b;\n    }\n\n\
-    \    friend constexpr mint operator/(const mint &a, const mint &b) { return mint(a)\
-    \ /= b; }\n\n    template <class T, is_integral_t<T> * = nullptr>\n    friend\
-    \ constexpr mint operator/(const mint &a, T b) {\n        return mint(a) /= mint(b);\n\
-    \    }\n\n    template <class T, is_integral_t<T> * = nullptr>\n    friend constexpr\
-    \ mint operator/(T a, const mint &b) {\n        return mint(a) /= b;\n    }\n\n\
-    \    template <class T> constexpr mint pow(T n) const {\n        mint ret(1),\
-    \ mul(*this);\n        while (n > 0) {\n            if (n & 1) ret *= mul;\n \
-    \           mul *= mul;\n            n >>= 1;\n        }\n        return ret;\n\
-    \    }\n\n    constexpr mint inv() const { return pow(p - 2); }\n\n    template\
-    \ <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
-    \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-    \ <class IStream, is_istream_t<IStream> * = nullptr> friend IStream &operator>>(IStream\
+    invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
+    \ : _v(0) {}\n\n    template <typename T, is_integral_t<T> * = nullptr>\n    constexpr\
+    \ LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static\
+    \ constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b) * u32(-r)) * p)\
+    \ >> 32; }\n\n    constexpr mint &operator++() { return *this += 1; }\n\n    constexpr\
+    \ mint &operator--() { return *this -= 1; }\n\n    constexpr mint operator++(int)\
+    \ {\n        mint ret = *this;\n        *this += 1;\n        return ret;\n   \
+    \ }\n\n    constexpr mint operator--(int) {\n        mint ret = *this;\n     \
+    \   *this -= 1;\n        return ret;\n    }\n\n    constexpr mint &operator+=(const\
+    \ mint &b) {\n        if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return\
+    \ *this;\n    }\n\n    constexpr mint &operator-=(const mint &b) {\n        if\
+    \ (i32(_v -= b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
+    \ mint &operator*=(const mint &b) {\n        _v = reduce(u64(_v) * b._v);\n  \
+    \      return *this;\n    }\n\n    constexpr mint &operator/=(const mint &b) {\n\
+    \        *this *= b.inv();\n        return *this;\n    }\n\n    constexpr mint\
+    \ operator-() const { return mint() - mint(*this); }\n\n    constexpr bool operator==(const\
+    \ mint &b) const {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v\
+    \ - p : b._v);\n    }\n\n    constexpr bool operator!=(const mint &b) const {\n\
+    \        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n  \
+    \  }\n\n    friend constexpr mint operator+(const mint &a, const mint &b) { return\
+    \ mint(a) += b; }\n\n    friend constexpr mint operator-(const mint &a, const\
+    \ mint &b) { return mint(a) -= b; }\n\n    friend constexpr mint operator*(const\
+    \ mint &a, const mint &b) { return mint(a) *= b; }\n\n    friend constexpr mint\
+    \ operator/(const mint &a, const mint &b) { return mint(a) /= b; }\n\n    template\
+    \ <class T> constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
+    \ constexpr mint inv() const { return pow(p - 2); }\n\n    template <class OStream,\
+    \ is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream &os,\
+    \ const mint &x) {\n        return os << x.val();\n    }\n\n    template <class\
+    \ IStream, is_istream_t<IStream> * = nullptr> friend IStream &operator>>(IStream\
     \ &is, mint &x) {\n        i64 t;\n        is >> t;\n        x = mint(t);\n  \
     \      return (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret\
     \ = reduce(_v);\n        return ret >= p ? ret - p : ret;\n    }\n\n    static\
@@ -170,7 +154,7 @@ data:
   requiredBy:
   - convolution/convolution_arb.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-10-22 04:14:31+09:00'
+  timestamp: '2024-10-22 04:59:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp

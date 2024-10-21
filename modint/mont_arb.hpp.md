@@ -59,9 +59,8 @@ data:
     \        while (mod * ret != 1) ret *= UInt(2) - mod * ret;\n        return ret;\n\
     \    }\n\n    static void setmod(UInt m) {\n        assert(m < (UInt(1u) << (bit_length\
     \ - 2)));\n        assert((m & 1) == 1);\n        mod = m, n2 = -ULong(m) % m,\
-    \ r = get_r();\n    }\n\n    UInt _v;\n\n    operator Int() const { return val();\
-    \ }\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template <class\
-    \ T, is_integral_t<T> * = nullptr>\n    ArbitraryLazyMontgomeryModIntBase(const\
+    \ r = get_r();\n    }\n\n    UInt _v;\n\n    ArbitraryLazyMontgomeryModIntBase()\
+    \ : _v(0) {}\n\n    template <class T, is_integral_t<T> * = nullptr>\n    ArbitraryLazyMontgomeryModIntBase(const\
     \ T &b) : _v(reduce(ULong(b % mod + mod) * n2)) {}\n\n    static UInt reduce(const\
     \ ULong &b) {\n        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n\
     \    }\n\n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v -\
@@ -70,30 +69,16 @@ data:
     \ *this;\n    }\n\n    mint &operator*=(const mint &b) {\n        _v = reduce(ULong(_v)\
     \ * b._v);\n        return *this;\n    }\n\n    mint &operator/=(const mint &b)\
     \ {\n        *this *= b.inv();\n        return *this;\n    }\n\n    friend mint\
-    \ operator+(const mint &a, const mint &b) { return mint(a) += b; }\n\n    template\
-    \ <class T, is_integral_t<T> * = nullptr> friend mint operator+(const mint &a,\
-    \ T b) {\n        return mint(a) += mint(b);\n    }\n\n    template <class T,\
-    \ is_integral_t<T> * = nullptr> friend mint operator+(T a, const mint &b) {\n\
-    \        return mint(a) += b;\n    }\n\n    friend mint operator-(const mint &a,\
-    \ const mint &b) { return mint(a) -= b; }\n\n    template <class T, is_integral_t<T>\
-    \ * = nullptr> friend mint operator-(const mint &a, T b) {\n        return mint(a)\
-    \ -= mint(b);\n    }\n\n    template <class T, is_integral_t<T> * = nullptr> friend\
-    \ mint operator-(T a, const mint &b) {\n        return mint(a) -= b;\n    }\n\n\
-    \    friend mint operator*(const mint &a, const mint &b) { return mint(a) *= b;\
-    \ }\n\n    template <class T, is_integral_t<T> * = nullptr> friend mint operator*(const\
-    \ mint &a, T b) {\n        return mint(a) *= mint(b);\n    }\n\n    template <class\
-    \ T, is_integral_t<T> * = nullptr> friend mint operator*(T a, const mint &b) {\n\
-    \        return mint(a) *= b;\n    }\n\n    friend mint operator/(const mint &a,\
-    \ const mint &b) { return mint(a) /= b; }\n\n    template <class T, is_integral_t<T>\
-    \ * = nullptr> friend mint operator/(const mint &a, T b) {\n        return mint(a)\
-    \ /= mint(b);\n    }\n\n    template <class T, is_integral_t<T> * = nullptr> friend\
-    \ mint operator/(T a, const mint &b) {\n        return mint(a) /= b;\n    }\n\n\
-    \    bool operator==(const mint &b) const {\n        return (_v >= mod ? _v -\
-    \ mod : _v) == (b._v >= mod ? b._v - mod : b._v);\n    }\n\n    bool operator!=(const\
-    \ mint &b) const {\n        return (_v >= mod ? _v - mod : _v) != (b._v >= mod\
-    \ ? b._v - mod : b._v);\n    }\n\n    mint operator-() const { return mint(0)\
-    \ - mint(*this); }\n\n    mint operator+() const { return mint(*this); }\n\n \
-    \   template <class T> mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
+    \ operator+(const mint &a, const mint &b) { return mint(a) += b; }\n\n    friend\
+    \ mint operator-(const mint &a, const mint &b) { return mint(a) -= b; }\n\n  \
+    \  friend mint operator*(const mint &a, const mint &b) { return mint(a) *= b;\
+    \ }\n\n    friend mint operator/(const mint &a, const mint &b) { return mint(a)\
+    \ /= b; }\n\n    bool operator==(const mint &b) const {\n        return (_v >=\
+    \ mod ? _v - mod : _v) == (b._v >= mod ? b._v - mod : b._v);\n    }\n\n    bool\
+    \ operator!=(const mint &b) const {\n        return (_v >= mod ? _v - mod : _v)\
+    \ != (b._v >= mod ? b._v - mod : b._v);\n    }\n\n    mint operator-() const {\
+    \ return mint(0) - mint(*this); }\n\n    mint operator+() const { return mint(*this);\
+    \ }\n\n    template <class T> mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
     \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
     \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
     \ mint inv() const {\n        Int s = getmod(), t = val(), m0 = 0, m1 = 1;\n \
@@ -121,7 +106,7 @@ data:
   - math/euler_phi.hpp
   - math_mod/mod_sqrt.hpp
   - fps/fps_sqrt.hpp
-  timestamp: '2024-10-22 04:14:31+09:00'
+  timestamp: '2024-10-22 04:59:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/sqrt_mod.test.cpp

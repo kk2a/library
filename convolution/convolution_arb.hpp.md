@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
   - icon: ':question:'
@@ -30,12 +30,12 @@ data:
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -54,7 +54,7 @@ data:
   code: "#ifndef CONVO_ARB_HPP\n#define CONVO_ARB_HPP 1\n\n#include <vector>\n\n#include\
     \ \"../math_mod/garner.hpp\"\n#include \"../modint/mont.hpp\"\n#include \"convolution.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-    FPS convolution_arb(FPS &a, const FPS &b, mint mod) {\n    int n = int(a.size()),\
+    FPS convolution_arb(FPS &a, const FPS &b, long long mod) {\n    int n = int(a.size()),\
     \ m = int(b.size());\n    if (!n || !m) return {};\n    static constexpr long\
     \ long MOD1 = 754974721; // 2^24\n    static constexpr long long MOD2 = 167772161;\
     \ // 2^25\n    static constexpr long long MOD3 = 469762049; // 2^26\n    using\
@@ -66,10 +66,10 @@ data:
     \ std::vector<mint2>(b0.begin(), b0.end());\n    convolution(a2, b2);\n    auto\
     \ a3 = std::vector<mint3>(a0.begin(), a0.end());\n    auto b3 = std::vector<mint3>(b0.begin(),\
     \ b0.end());\n    convolution(a3, b3);\n    static const std::vector<long long>\
-    \ ps = {MOD1, MOD2, MOD3, (long long)mod};\n    a.resize(n + m - 1);\n    for\
-    \ (int i = 0; i < n + m - 1; i++) {\n        a[i] = mint(garner({a1[i].val(),\
-    \ a2[i].val(), a3[i].val()}, ps));\n    }\n    return a;\n}\n\n} // namespace\
-    \ kk2\n\n#endif // CONVO_ARB_HPP\n"
+    \ ps = {MOD1, MOD2, MOD3, mod};\n    a.resize(n + m - 1);\n    for (int i = 0;\
+    \ i < n + m - 1; i++) {\n        a[i] = mint(garner({a1[i].val(), a2[i].val(),\
+    \ a3[i].val()}, ps));\n    }\n    return a;\n}\n\n} // namespace kk2\n\n#endif\
+    \ // CONVO_ARB_HPP\n"
   dependsOn:
   - math_mod/garner.hpp
   - math_mod/inv.hpp
@@ -83,8 +83,8 @@ data:
   path: convolution/convolution_arb.hpp
   requiredBy:
   - fps/fps_arb.hpp
-  timestamp: '2024-10-22 04:14:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-22 04:59:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
 documentation_of: convolution/convolution_arb.hpp

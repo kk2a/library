@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/inv.hpp\"\n\n\n\n#include <algorithm>\n\nnamespace\
@@ -41,7 +41,7 @@ data:
   - math_mod/garner.hpp
   - fps/fps_arb.hpp
   timestamp: '2024-10-16 14:12:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
 documentation_of: math_mod/inv.hpp

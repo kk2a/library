@@ -82,7 +82,7 @@ data:
   requiredBy:
   - math/prime_factorize.hpp
   - math/euler_phi.hpp
-  timestamp: '2024-10-22 04:14:31+09:00'
+  timestamp: '2024-10-22 04:59:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/primality_test.test.cpp

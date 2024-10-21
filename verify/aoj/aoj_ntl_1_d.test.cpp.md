@@ -72,7 +72,7 @@ data:
   isVerificationFile: true
   path: verify/aoj/aoj_ntl_1_d.test.cpp
   requiredBy: []
-  timestamp: '2024-10-22 04:14:31+09:00'
+  timestamp: '2024-10-22 04:59:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_ntl_1_d.test.cpp
