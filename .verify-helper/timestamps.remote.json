@@ -21,6 +21,7 @@
 "verify/yosupo_ds/ds_potentialized_unionfind.test.cpp": "2024-10-22 04:59:27 +0900",
 "verify/yosupo_ds/ds_range_affine_range_sum.test.cpp": "2024-10-22 04:59:27 +0900",
 "verify/yosupo_ds/ds_range_set_range_composite.test.cpp": "2024-10-22 04:59:27 +0900",
+"verify/yosupo_ds/ds_static_range_inversions.test.cpp": "2024-10-22 22:30:54 +0900",
 "verify/yosupo_ds/ds_static_range_sum.test.cpp": "2024-10-22 04:14:31 +0900",
 "verify/yosupo_ds/ds_static_rmq.test.cpp": "2024-10-22 04:14:31 +0900",
 "verify/yosupo_ds/ds_static_rmq_2.test.cpp": "2024-10-22 04:14:31 +0900",
