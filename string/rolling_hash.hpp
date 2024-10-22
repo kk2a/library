@@ -31,7 +31,7 @@ struct RollingHash {
         }
     }
 
-    RollingHash(const int &v) {
+    RollingHash(int v) {
         for (int i = 0; i < b; ++i) {
             table[i].h = v % modp[i];
             table[i].pw = base[i];
@@ -39,7 +39,7 @@ struct RollingHash {
         }
     }
 
-    RollingHash(const char &c) {
+    RollingHash(char c) {
         for (int i = 0; i < b; ++i) {
             table[i].h = c;
             table[i].pw = base[i];
@@ -83,7 +83,7 @@ struct RollingHash {
         }
     }
 
-    RollingHash &push_front(const RollingHash &otherHash) {
+    RollingHash &insert_front(const RollingHash &otherHash) {
         for (int i = 0; i < b; ++i) {
             table[i].h = (otherHash.table[i].h + table[i].h * otherHash.table[i].pw) % modp[i];
             table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];
@@ -92,7 +92,7 @@ struct RollingHash {
         return *this;
     }
 
-    RollingHash &push_back(const RollingHash &otherHash) {
+    RollingHash &insert_back(const RollingHash &otherHash) {
         for (int i = 0; i < b; ++i) {
             table[i].h = (table[i].h + otherHash.table[i].h * table[i].pw) % modp[i];
             table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];
@@ -101,7 +101,7 @@ struct RollingHash {
         return *this;
     }
 
-    RollingHash &pop_front(const RollingHash &otherHash) {
+    RollingHash &erase_front(const RollingHash &otherHash) {
         for (int i = 0; i < b; ++i) {
             table[i].h = (table[i].h - otherHash.table[i].h) * otherHash.table[i].pwi % modp[i];
             if (table[i].h < 0) table[i].h += modp[i];
@@ -111,7 +111,7 @@ struct RollingHash {
         return *this;
     }
 
-    RollingHash &pop_back(const RollingHash &otherHash) {
+    RollingHash &erase_back(const RollingHash &otherHash) {
         for (int i = 0; i < b; ++i) {
             long long minus =
                 otherHash.table[i].h * table[i].pw % modp[i] * otherHash.table[i].pwi % modp[i];

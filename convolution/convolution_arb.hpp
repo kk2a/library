@@ -20,7 +20,9 @@ FPS convolution_arb(FPS &a, const FPS &b, long long mod) {
     using mint2 = LazyMontgomeryModInt<MOD2>;
     using mint3 = LazyMontgomeryModInt<MOD3>;
 
-    std::vector<long long> a0(a.begin(), a.end()), b0(b.begin(), b.end());
+    std::vector<long long> a0(n), b0(m);
+    for (int i = 0; i < n; i++) a0[i] = a[i].val();
+    for (int i = 0; i < m; i++) b0[i] = b[i].val();
     auto a1 = std::vector<mint1>(a0.begin(), a0.end());
     auto b1 = std::vector<mint1>(b0.begin(), b0.end());
     convolution(a1, b1);

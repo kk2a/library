@@ -5,16 +5,16 @@
 using namespace std;
 
 int main() {
-    kk2::Roliha::setbase();
+    // kk2::Roliha::setbase();
     string t, p;
     kin >> t >> p;
     if (t.size() < p.size()) return 0;
     kk2::Roliha rt, rp(p);
-    rt.push_back(kk2::Roliha(t.substr(0, p.size() - 1)));
+    rt.insert_back(kk2::Roliha(t.substr(0, p.size() - 1)));
     for (int i = p.size() - 1; i < (int)t.size(); ++i) {
-        rt.push_back(kk2::Roliha(t[i]));
+        rt.insert_back(kk2::Roliha(t[i]));
         if (rt == rp) kout << i + 1 - int(p.size()) << "\n";
-        rt.pop_front(kk2::Roliha(t[i - p.size() + 1]));
+        rt.erase_front(kk2::Roliha(t[i - p.size() + 1]));
     }
 
     return 0;
