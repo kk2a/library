@@ -55,7 +55,7 @@ template <class mint> struct Comb {
     }
 
     template <class T> static mint multinomial(const std::vector<T> &r) {
-        static_assert(is_integral_extended<T>::value, "T must be integral");
+        static_assert(is_integral<T>::value, "T must be integral");
         int n = 0;
         for (auto &x : r) {
             if (x < 0) return 0;

@@ -35,7 +35,7 @@ template <class mint> struct CombLarge {
     }
 
     template <class T> static mint multinomial(std::vector<T> r) {
-        static_assert(is_integral_extended<T>::value, "T must be integral");
+        static_assert(is_integral<T>::value, "T must be integral");
         long long n = 0;
         for (auto &x : r) {
             assert(x >= 0);
