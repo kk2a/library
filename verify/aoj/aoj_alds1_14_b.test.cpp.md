@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
@@ -43,7 +43,7 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
     \ \n\n#include \"../../string/rolling_hash.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    // kk2::Roliha::setbase();\n    string\
+    \nusing namespace std;\n\nint main() {\n    kk2::Roliha::setbase();\n    string\
     \ t, p;\n    kin >> t >> p;\n    if (t.size() < p.size()) return 0;\n    kk2::Roliha\
     \ rt, rp(p);\n    rt.insert_back(kk2::Roliha(t.substr(0, p.size() - 1)));\n  \
     \  for (int i = p.size() - 1; i < (int)t.size(); ++i) {\n        rt.insert_back(kk2::Roliha(t[i]));\n\
@@ -58,8 +58,8 @@ data:
   isVerificationFile: true
   path: verify/aoj/aoj_alds1_14_b.test.cpp
   requiredBy: []
-  timestamp: '2024-10-22 18:00:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-22 18:55:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_alds1_14_b.test.cpp
 layout: document

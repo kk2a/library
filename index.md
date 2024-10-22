@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: bit
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: bit/bitcount.hpp
       title: bit/bitcount.hpp
   - name: convolution
@@ -61,7 +61,7 @@ data:
     - icon: ':warning:'
       path: data_structure/hash_map.hpp
       title: data_structure/hash_map.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
     - icon: ':warning:'
@@ -305,7 +305,7 @@ data:
     - icon: ':warning:'
       path: matrix/frobenius_form.hpp
       title: matrix/frobenius_form.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: matrix/matrix_F2.hpp
       title: matrix/matrix_F2.hpp
     - icon: ':question:'
@@ -422,7 +422,7 @@ data:
     - icon: ':x:'
       path: string/aho_corasick.hpp
       title: string/aho_corasick.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: string/rolling_hash.hpp
     - icon: ':x:'
@@ -469,7 +469,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_0560_2.test.cpp
       title: verify/aoj/aoj_0560_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_alds1_14_b.test.cpp
       title: verify/aoj/aoj_alds1_14_b.test.cpp
     - icon: ':heavy_check_mark:'
@@ -595,16 +595,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_det.test.cpp
       title: verify/yosupo_linalg/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_det_f2.test.cpp
       title: verify/yosupo_linalg/matrix_det_f2.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv.test.cpp
       title: verify/yosupo_linalg/matrix_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
       title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_pow.test.cpp
       title: verify/yosupo_linalg/matrix_pow.test.cpp
     - icon: ':x:'
