@@ -12,7 +12,7 @@ int main() {
     vc<int> a(n);
     kin >> a;
     vc<pair<int, int>> queries(q);
-    cin >> queries;
+    kin >> queries;
 
     kk2::CC cc(a);
     vc<int> b = cc(a);
