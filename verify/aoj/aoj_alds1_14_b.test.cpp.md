@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
@@ -43,11 +43,11 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
     \ \n\n#include \"../../string/rolling_hash.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    kk2::Roliha::setbase();\n    string\
+    \nusing namespace std;\n\nint main() {\n    // kk2::Roliha::setbase();\n    string\
     \ t, p;\n    kin >> t >> p;\n    if (t.size() < p.size()) return 0;\n    kk2::Roliha\
-    \ rt, rp(p);\n    rt.push_back(kk2::Roliha(t.substr(0, p.size() - 1)));\n    for\
-    \ (int i = p.size() - 1; i < (int)t.size(); ++i) {\n        rt.push_back(kk2::Roliha(t[i]));\n\
-    \        if (rt == rp) kout << i + 1 - int(p.size()) << \"\\n\";\n        rt.pop_front(kk2::Roliha(t[i\
+    \ rt, rp(p);\n    rt.insert_back(kk2::Roliha(t.substr(0, p.size() - 1)));\n  \
+    \  for (int i = p.size() - 1; i < (int)t.size(); ++i) {\n        rt.insert_back(kk2::Roliha(t[i]));\n\
+    \        if (rt == rp) kout << i + 1 - int(p.size()) << \"\\n\";\n        rt.erase_front(kk2::Roliha(t[i\
     \ - p.size() + 1]));\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - string/rolling_hash.hpp
@@ -58,8 +58,8 @@ data:
   isVerificationFile: true
   path: verify/aoj/aoj_alds1_14_b.test.cpp
   requiredBy: []
-  timestamp: '2024-10-22 04:14:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-22 18:00:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/aoj/aoj_alds1_14_b.test.cpp
 layout: document

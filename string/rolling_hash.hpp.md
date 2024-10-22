@@ -9,12 +9,12 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -39,57 +39,57 @@ data:
     \ 1000000009, 1000000021, 1000000033};\n    static int base[b], basei[b];\n\n\
     \    static void setbase() {\n        std::mt19937_64 rng(time(0));\n        for\
     \ (int i = 0; i < b; ++i) {\n            base[i] = rng() % modp[i];\n        \
-    \    basei[i] = quo(base[i], i);\n        }\n    }\n\n    RollingHash(const int\
-    \ &v) {\n        for (int i = 0; i < b; ++i) {\n            table[i].h = v % modp[i];\n\
+    \    basei[i] = quo(base[i], i);\n        }\n    }\n\n    RollingHash(int v) {\n\
+    \        for (int i = 0; i < b; ++i) {\n            table[i].h = v % modp[i];\n\
     \            table[i].pw = base[i];\n            table[i].pwi = basei[i];\n  \
-    \      }\n    }\n\n    RollingHash(const char &c) {\n        for (int i = 0; i\
-    \ < b; ++i) {\n            table[i].h = c;\n            table[i].pw = base[i];\n\
-    \            table[i].pwi = basei[i];\n        }\n    }\n\n    template <class\
-    \ T> RollingHash(const std::vector<T> &v) {\n        int n = v.size();\n     \
-    \   for (int i = 0; i < b; ++i) {\n            table[i].h = 0;\n            table[i].pw\
-    \ = 1;\n            table[i].pwi = 1;\n            for (int j = n - 1; j >= 0;\
-    \ --j) {\n                table[i].h = (table[i].h * base[i] + v[j] % modp[i])\
-    \ % modp[i];\n                table[i].pw = table[i].pw * base[i] % modp[i];\n\
+    \      }\n    }\n\n    RollingHash(char c) {\n        for (int i = 0; i < b; ++i)\
+    \ {\n            table[i].h = c;\n            table[i].pw = base[i];\n       \
+    \     table[i].pwi = basei[i];\n        }\n    }\n\n    template <class T> RollingHash(const\
+    \ std::vector<T> &v) {\n        int n = v.size();\n        for (int i = 0; i <\
+    \ b; ++i) {\n            table[i].h = 0;\n            table[i].pw = 1;\n     \
+    \       table[i].pwi = 1;\n            for (int j = n - 1; j >= 0; --j) {\n  \
+    \              table[i].h = (table[i].h * base[i] + v[j] % modp[i]) % modp[i];\n\
+    \                table[i].pw = table[i].pw * base[i] % modp[i];\n            \
+    \    table[i].pwi = table[i].pwi * basei[i] % modp[i];\n            }\n      \
+    \  }\n    }\n\n    RollingHash(const std::string &s) {\n        int n = s.size();\n\
+    \        for (int i = 0; i < b; ++i) {\n            table[i].h = 0;\n        \
+    \    table[i].pw = 1;\n            table[i].pwi = 1;\n            for (int j =\
+    \ n - 1; j >= 0; --j) {\n                table[i].h = (table[i].h * base[i] +\
+    \ s[j]) % modp[i];\n                table[i].pw = table[i].pw * base[i] % modp[i];\n\
     \                table[i].pwi = table[i].pwi * basei[i] % modp[i];\n         \
-    \   }\n        }\n    }\n\n    RollingHash(const std::string &s) {\n        int\
-    \ n = s.size();\n        for (int i = 0; i < b; ++i) {\n            table[i].h\
-    \ = 0;\n            table[i].pw = 1;\n            table[i].pwi = 1;\n        \
-    \    for (int j = n - 1; j >= 0; --j) {\n                table[i].h = (table[i].h\
-    \ * base[i] + s[j]) % modp[i];\n                table[i].pw = table[i].pw * base[i]\
-    \ % modp[i];\n                table[i].pwi = table[i].pwi * basei[i] % modp[i];\n\
-    \            }\n        }\n    }\n\n    RollingHash() {\n        for (int i =\
-    \ 0; i < b; ++i) {\n            table[i].h = 0;\n            table[i].pw = 1;\n\
-    \            table[i].pwi = 1;\n        }\n    }\n\n    RollingHash &push_front(const\
+    \   }\n        }\n    }\n\n    RollingHash() {\n        for (int i = 0; i < b;\
+    \ ++i) {\n            table[i].h = 0;\n            table[i].pw = 1;\n        \
+    \    table[i].pwi = 1;\n        }\n    }\n\n    RollingHash &insert_front(const\
     \ RollingHash &otherHash) {\n        for (int i = 0; i < b; ++i) {\n         \
     \   table[i].h = (otherHash.table[i].h + table[i].h * otherHash.table[i].pw) %\
     \ modp[i];\n            table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];\n\
     \            table[i].pwi = table[i].pwi * otherHash.table[i].pwi % modp[i];\n\
-    \        }\n        return *this;\n    }\n\n    RollingHash &push_back(const RollingHash\
-    \ &otherHash) {\n        for (int i = 0; i < b; ++i) {\n            table[i].h\
-    \ = (table[i].h + otherHash.table[i].h * table[i].pw) % modp[i];\n           \
-    \ table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];\n            table[i].pwi\
-    \ = table[i].pwi * otherHash.table[i].pwi % modp[i];\n        }\n        return\
-    \ *this;\n    }\n\n    RollingHash &pop_front(const RollingHash &otherHash) {\n\
-    \        for (int i = 0; i < b; ++i) {\n            table[i].h = (table[i].h -\
-    \ otherHash.table[i].h) * otherHash.table[i].pwi % modp[i];\n            if (table[i].h\
-    \ < 0) table[i].h += modp[i];\n            table[i].pw = table[i].pw * otherHash.table[i].pwi\
-    \ % modp[i];\n            table[i].pwi = table[i].pwi * otherHash.table[i].pw\
-    \ % modp[i];\n        }\n        return *this;\n    }\n\n    RollingHash &pop_back(const\
+    \        }\n        return *this;\n    }\n\n    RollingHash &insert_back(const\
     \ RollingHash &otherHash) {\n        for (int i = 0; i < b; ++i) {\n         \
-    \   long long minus =\n                otherHash.table[i].h * table[i].pw % modp[i]\
-    \ * otherHash.table[i].pwi % modp[i];\n            table[i].h = (table[i].h -\
-    \ minus) % modp[i];\n            if (table[i].h < 0) table[i].h += modp[i];\n\
-    \            table[i].pw = table[i].pw * otherHash.table[i].pwi % modp[i];\n \
-    \           table[i].pwi = table[i].pwi * otherHash.table[i].pw % modp[i];\n \
-    \       }\n        return *this;\n    }\n\n    friend bool operator==(const RollingHash\
-    \ &lhs, const RollingHash &rhs) {\n        for (int i = 0; i < b; ++i) {\n   \
-    \         if (lhs.table[i].h != rhs.table[i].h) return false;\n            if\
-    \ (lhs.table[i].pw != rhs.table[i].pw) return false;\n        }\n        return\
-    \ true;\n    }\n\n    friend bool operator!=(const RollingHash &lhs, const RollingHash\
-    \ &rhs) { return !(lhs == rhs); }\n\n  private:\n    constexpr static long long\
-    \ quo(long long a, int i) {\n        return pow_mod<long long, long long, long\
-    \ long>(a, modp[i] - 2, modp[i]);\n    }\n};\n\nint RollingHash::base[5] = {3,\
-    \ 3, 3, 3, 3};\nint RollingHash::basei[5] = {332748118, 333333336, 666666673,\
+    \   table[i].h = (table[i].h + otherHash.table[i].h * table[i].pw) % modp[i];\n\
+    \            table[i].pw = table[i].pw * otherHash.table[i].pw % modp[i];\n  \
+    \          table[i].pwi = table[i].pwi * otherHash.table[i].pwi % modp[i];\n \
+    \       }\n        return *this;\n    }\n\n    RollingHash &erase_front(const\
+    \ RollingHash &otherHash) {\n        for (int i = 0; i < b; ++i) {\n         \
+    \   table[i].h = (table[i].h - otherHash.table[i].h) * otherHash.table[i].pwi\
+    \ % modp[i];\n            if (table[i].h < 0) table[i].h += modp[i];\n       \
+    \     table[i].pw = table[i].pw * otherHash.table[i].pwi % modp[i];\n        \
+    \    table[i].pwi = table[i].pwi * otherHash.table[i].pw % modp[i];\n        }\n\
+    \        return *this;\n    }\n\n    RollingHash &erase_back(const RollingHash\
+    \ &otherHash) {\n        for (int i = 0; i < b; ++i) {\n            long long\
+    \ minus =\n                otherHash.table[i].h * table[i].pw % modp[i] * otherHash.table[i].pwi\
+    \ % modp[i];\n            table[i].h = (table[i].h - minus) % modp[i];\n     \
+    \       if (table[i].h < 0) table[i].h += modp[i];\n            table[i].pw =\
+    \ table[i].pw * otherHash.table[i].pwi % modp[i];\n            table[i].pwi =\
+    \ table[i].pwi * otherHash.table[i].pw % modp[i];\n        }\n        return *this;\n\
+    \    }\n\n    friend bool operator==(const RollingHash &lhs, const RollingHash\
+    \ &rhs) {\n        for (int i = 0; i < b; ++i) {\n            if (lhs.table[i].h\
+    \ != rhs.table[i].h) return false;\n            if (lhs.table[i].pw != rhs.table[i].pw)\
+    \ return false;\n        }\n        return true;\n    }\n\n    friend bool operator!=(const\
+    \ RollingHash &lhs, const RollingHash &rhs) { return !(lhs == rhs); }\n\n  private:\n\
+    \    constexpr static long long quo(long long a, int i) {\n        return pow_mod<long\
+    \ long, long long, long long>(a, modp[i] - 2, modp[i]);\n    }\n};\n\nint RollingHash::base[5]\
+    \ = {3, 3, 3, 3, 3};\nint RollingHash::basei[5] = {332748118, 333333336, 666666673,\
     \ 666666681, 666666689};\n\n\nusing Roliha = RollingHash;\n\n} // namespace kk2\n\
     \n\n#endif // ROLLING_HASH_HPP\n"
   dependsOn:
@@ -98,8 +98,8 @@ data:
   isVerificationFile: false
   path: string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2024-10-22 04:14:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-22 18:00:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/aoj/aoj_alds1_14_b.test.cpp
 documentation_of: string/rolling_hash.hpp
