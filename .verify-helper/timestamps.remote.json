@@ -50,6 +50,7 @@
 "verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp": "2024-10-22 18:55:23 +0900",
 "verify/yosupo_math/factrize.test.cpp": "2024-10-22 04:59:27 +0900",
 "verify/yosupo_math/kth_root_int.test.cpp": "2024-10-22 04:14:31 +0900",
+"verify/yosupo_math/many_factrials.test.cpp": "2024-10-22 22:13:07 +0900",
 "verify/yosupo_math/primality_test.test.cpp": "2024-10-22 04:59:27 +0900",
 "verify/yosupo_math/sqrt_mod.test.cpp": "2024-10-22 04:59:27 +0900",
 "verify/yosupo_math/sum_of_floor_linear.test.cpp": "2024-10-22 04:14:31 +0900",
