@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
-    title: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
+    title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"others/mo.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
@@ -80,11 +80,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: others/mo.hpp
-  requiredBy:
-  - verify/yosupo_ds/ds_static_range_inversions.tet.cpp
+  requiredBy: []
   timestamp: '2024-10-18 23:21:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_ds/ds_static_range_inversions.test.cpp
 documentation_of: others/mo.hpp
 layout: document
 redirect_from:

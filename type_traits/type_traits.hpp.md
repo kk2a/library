@@ -110,15 +110,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':warning:'
-    path: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
-    title: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0233.test.cpp
@@ -186,6 +183,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
+    title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
@@ -300,9 +300,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_0430_2.test.cpp
     title: verify/yuki/yuki_0430_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -371,7 +371,6 @@ data:
   path: type_traits/type_traits.hpp
   requiredBy:
   - random/graph.hpp
-  - verify/yosupo_ds/ds_static_range_inversions.tet.cpp
   - modint/mont_arb.hpp
   - modint/mont.hpp
   - modint/modint.hpp
@@ -410,7 +409,7 @@ data:
   - fps/fps.hpp
   - fps/fps_arb.hpp
   timestamp: '2024-10-22 04:14:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp
@@ -455,6 +454,7 @@ data:
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  - verify/yosupo_ds/ds_static_range_inversions.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - verify/yosupo_string/string_suffix_array.test.cpp

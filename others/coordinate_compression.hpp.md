@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
-    title: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
+    title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"others/coordinate_compression.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -62,11 +62,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: others/coordinate_compression.hpp
-  requiredBy:
-  - verify/yosupo_ds/ds_static_range_inversions.tet.cpp
+  requiredBy: []
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_ds/ds_static_range_inversions.test.cpp
 documentation_of: others/coordinate_compression.hpp
 layout: document
 redirect_from:

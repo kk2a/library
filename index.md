@@ -49,7 +49,7 @@ data:
       title: convolution/zeta_mobius_transfrom.hpp
   - name: data_structure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
     - icon: ':warning:'
@@ -324,10 +324,10 @@ data:
       title: modint/mont_arb.hpp
   - name: others
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: others/coordinate_compression.hpp
       title: others/coordinate_compression.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: others/mo.hpp
       title: others/mo.hpp
     - icon: ':warning:'
@@ -430,15 +430,15 @@ data:
       title: string/suffix_array.hpp
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/fastio.hpp
       title: template/fastio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   - name: unionfind
@@ -452,11 +452,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: unionfind/unionfind.hpp
       title: unionfind/unionfind.hpp
-  - name: verify/yosupo_ds
-    pages:
-    - icon: ':warning:'
-      path: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
-      title: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
   verificationCategories:
   - name: verify/aoj
     pages:
@@ -530,6 +525,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
+      title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_range_sum.test.cpp
       title: verify/yosupo_ds/ds_static_range_sum.test.cpp

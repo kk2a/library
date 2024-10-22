@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
-    title: verify/yosupo_ds/ds_static_range_inversions.tet.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
+    title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/binary_indexed_tree.hpp\"\n\n\n\n#include\
@@ -39,12 +39,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data_structure/binary_indexed_tree.hpp
-  requiredBy:
-  - verify/yosupo_ds/ds_static_range_inversions.tet.cpp
+  requiredBy: []
   timestamp: '2024-09-10 08:16:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+  - verify/yosupo_ds/ds_static_range_inversions.test.cpp
 documentation_of: data_structure/binary_indexed_tree.hpp
 layout: document
 redirect_from:
