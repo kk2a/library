@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/binary_indexed_tree.hpp
     title: data_structure/binary_indexed_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: others/coordinate_compression.hpp
     title: others/coordinate_compression.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: others/mo.hpp
     title: others/mo.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -46,7 +46,7 @@ data:
     \ \n\n#include \"../../others/coordinate_compression.hpp\"\n#include \"../../data_structure/binary_indexed_tree.hpp\"\
     \n#include \"../../others/mo.hpp\"\n#include \"../../template/template.hpp\"\n\
     using namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n    vc<int>\
-    \ a(n);\n    kin >> a;\n    vc<pair<int, int>> queries(q);\n    cin >> queries;\n\
+    \ a(n);\n    kin >> a;\n    vc<pair<int, int>> queries(q);\n    kin >> queries;\n\
     \n    kk2::CC cc(a);\n    vc<int> b = cc(a);\n    kk2::BinaryIndexedTree<int>\
     \ bit(cc.size());\n    kk2::Mo mo(n, queries);\n\n    vc<i64> res(q);\n    i64\
     \ now = 0;\n    auto insert_left = [&](int i) {\n        bit.add(b[i], 1);\n \
@@ -68,8 +68,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
   requiredBy: []
-  timestamp: '2024-10-22 22:19:34+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-22 22:30:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_range_inversions.test.cpp
 layout: document
