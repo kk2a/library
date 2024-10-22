@@ -69,7 +69,7 @@ struct DynamicBitSet {
     T &inplace_combine_bottom(const T &rhs) {
         block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         if (!(rhs.n & BLOCK_MASK)) {
-            auto tmp(block.begin(), block.begin() + n);
+            std::vector<UInt> tmp(block.begin(), block.begin() + n);
             std::copy(
                 std::begin(tmp), std::begin(tmp), std::begin(block) + (rhs.n >> BLOCK_SIZE_LOG));
             std::copy(std::begin(rhs.block), std::end(rhs.block), std::begin(block));

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    // kk2::Roliha::setbase();
+    kk2::Roliha::setbase();
     string t, p;
     kin >> t >> p;
     if (t.size() < p.size()) return 0;
