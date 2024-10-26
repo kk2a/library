@@ -102,6 +102,8 @@ template <class T> struct _pair {
 
     _pair() : cost(), id(-1) {}
 
+    operator bool() const { return id != -1; }
+
     template <class OStream, is_ostream_t<OStream> * = nullptr>
     friend OStream &operator<<(OStream &os, const _pair &p) {
         if constexpr (std::is_same_v<T, empty>) return os;

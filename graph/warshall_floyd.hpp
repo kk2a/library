@@ -21,8 +21,22 @@ std::vector<std::vector<edge<T>>> WarshallFroyd(const WG &g) {
     std::vector<std::vector<edge<T>>> res(n, std::vector<edge<T>>(n, {0, false}));
     for (int i = 0; i < n; ++i) res[i][i] = {0, true};
     for (auto &&e : g.edges) {
-        res[e.from][e.to] = {e.cost, true};
-        if constexpr (!WG::directed()) res[e.to][e.from] = {e.cost, true};
+        {
+            auto &[len, valid] = res[e.from][e.to];
+            if (valid) len = std::min(len, e.cost);
+            else {
+                len = e.cost;
+                valid = true;
+            }
+        }
+        if constexpr (!WG::directed()) {
+            auto &[len, valid] = res[e.to][e.from];
+            if (valid) len = std::min(len, e.cost);
+            else {
+                len = e.cost;
+                valid = true;
+            }
+        }
     }
 
     for (int k = 0; k < n; ++k) {

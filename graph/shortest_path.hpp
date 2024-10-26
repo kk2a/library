@@ -18,8 +18,6 @@ template <class T>
 struct Result {
     std::vector<T> dist;
     std::vector<edge> prev;
-    Result(std::vector<T> dist_, std::vector<edge> prev_)
-        : dist(dist_), prev(prev_) {}
 };
 
 template <class WG, class T = typename WG::value_type> 
