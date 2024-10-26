@@ -226,6 +226,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/euler_phi.hpp
       title: math/euler_phi.hpp
+    - icon: ':warning:'
+      path: math/factrial.hpp
+      title: math/factrial.hpp
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.hpp
       title: math/floor_sum.hpp

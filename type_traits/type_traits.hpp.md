@@ -62,9 +62,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':warning:'
-    path: math/pow.hpp
-    title: math/pow.hpp
   - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
@@ -377,7 +374,6 @@ data:
   - bit/bitcount.hpp
   - math/is_prime.hpp
   - math/prime_factorize.hpp
-  - math/pow.hpp
   - math/euler_phi.hpp
   - matrix/frobenius_form.hpp
   - matrix/basis.hpp
