@@ -23,6 +23,13 @@ template <class S> struct MaxMinSum {
           size(1),
           is_unit(is_unit_) {}
 
+    constexpr MaxMinSum(S sum_, S max_, S min_, int size_)
+        : sum(sum_),
+          max(max_),
+          min(min_),
+          size(size_),
+          is_unit(is_unit_) {}
+
     template <class OStream>
     friend OStream &operator<<(OStream &os, const MaxMinSum &maxminSum) {
         os << maxminSum.sum << " " << maxminSum.max << " " << maxminSum.min;
