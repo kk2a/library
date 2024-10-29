@@ -30,26 +30,28 @@ data:
     \n    constexpr MaxMinSum() : sum(0), max(0), min(0), size(0), is_unit(true) {}\n\
     \n    constexpr MaxMinSum(S a, bool is_unit_ = false)\n        : sum(a),\n   \
     \       max(a),\n          min(a),\n          size(1),\n          is_unit(is_unit_)\
-    \ {}\n\n    template <class OStream>\n    friend OStream &operator<<(OStream &os,\
-    \ const MaxMinSum &maxminSum) {\n        os << maxminSum.sum << \" \" << maxminSum.max\
-    \ << \" \" << maxminSum.min;\n        return os;\n    }\n\n    template <class\
-    \ IStream>\n    friend IStream &operator>>(IStream &is, MaxMinSum &maxminSum)\
-    \ {\n        S a;\n        is >> a;\n        maxminSum.sum = maxminSum.max = maxminSum.min\
-    \ = a;\n        maxminSum.size = 1;\n        return is;\n    }\n\n    constexpr\
-    \ MaxMinSum &operator=(const S &rhs) {\n        sum = max = min = rhs;\n     \
-    \   size = 1;\n        is_unit = false;\n        return *this;\n    }\n\n    constexpr\
-    \ MaxMinSum &add(const S &rhs) {\n        if (is_unit) return *this;\n       \
-    \ sum += rhs * size;\n        max += rhs;\n        min += rhs;\n        return\
-    \ *this;\n    }\n\n    constexpr MaxMinSum &update(const S &rhs) {\n        sum\
-    \ = rhs * size;\n        max = min = rhs;\n        is_unit = false;\n        return\
-    \ *this;\n    }\n};\n\ntemplate <class S> constexpr MaxMinSum<S> MaxMinSumOp(MaxMinSum<S>\
-    \ l, MaxMinSum<S> r) {\n    if (l.is_unit) return r;\n    if (r.is_unit) return\
-    \ l;\n    l.sum += r.sum;\n    l.size += r.size;\n    l.max = std::max(l.max,\
-    \ r.max);\n    l.min = std::min(l.min, r.min);\n    return l;\n}\n\ntemplate <class\
-    \ S> MaxMinSum<S> MaxMinSumUnit() {\n    constexpr static MaxMinSum<S> e = MaxMinSum<S>();\n\
-    \    return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
-    std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n, Args... args) {\n   \
-    \ return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
+    \ {}\n\n    constexpr MaxMinSum(S sum_, S max_, S min_, int size_)\n        :\
+    \ sum(sum_),\n          max(max_),\n          min(min_),\n          size(size_),\n\
+    \          is_unit(is_unit_) {}\n\n    template <class OStream>\n    friend OStream\
+    \ &operator<<(OStream &os, const MaxMinSum &maxminSum) {\n        os << maxminSum.sum\
+    \ << \" \" << maxminSum.max << \" \" << maxminSum.min;\n        return os;\n \
+    \   }\n\n    template <class IStream>\n    friend IStream &operator>>(IStream\
+    \ &is, MaxMinSum &maxminSum) {\n        S a;\n        is >> a;\n        maxminSum.sum\
+    \ = maxminSum.max = maxminSum.min = a;\n        maxminSum.size = 1;\n        return\
+    \ is;\n    }\n\n    constexpr MaxMinSum &operator=(const S &rhs) {\n        sum\
+    \ = max = min = rhs;\n        size = 1;\n        is_unit = false;\n        return\
+    \ *this;\n    }\n\n    constexpr MaxMinSum &add(const S &rhs) {\n        if (is_unit)\
+    \ return *this;\n        sum += rhs * size;\n        max += rhs;\n        min\
+    \ += rhs;\n        return *this;\n    }\n\n    constexpr MaxMinSum &update(const\
+    \ S &rhs) {\n        sum = rhs * size;\n        max = min = rhs;\n        is_unit\
+    \ = false;\n        return *this;\n    }\n};\n\ntemplate <class S> constexpr MaxMinSum<S>\
+    \ MaxMinSumOp(MaxMinSum<S> l, MaxMinSum<S> r) {\n    if (l.is_unit) return r;\n\
+    \    if (r.is_unit) return l;\n    l.sum += r.sum;\n    l.size += r.size;\n  \
+    \  l.max = std::max(l.max, r.max);\n    l.min = std::min(l.min, r.min);\n    return\
+    \ l;\n}\n\ntemplate <class S> MaxMinSum<S> MaxMinSumUnit() {\n    constexpr static\
+    \ MaxMinSum<S> e = MaxMinSum<S>();\n    return e;\n}\n\n} // namespace monoid\n\
+    \ntemplate <class S, class... Args>\nstd::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int\
+    \ n, Args... args) {\n    return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
     }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::MaxMinSum<S>>>\n\
     GetVecMaxMinSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::MaxMinSum<S>>>(h,\
     \ GetVecMaxMinSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
@@ -149,7 +151,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/add_max_min_sum.hpp
   requiredBy: []
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-29 13:49:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/add_max_min_sum.hpp

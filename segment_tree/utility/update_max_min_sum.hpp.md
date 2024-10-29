@@ -36,10 +36,12 @@ data:
     \ MaxMinSum() : sum(0), max(0), min(0), size(0), is_unit(true) {}\n\n    constexpr\
     \ MaxMinSum(S a, bool is_unit_ = false)\n        : sum(a),\n          max(a),\n\
     \          min(a),\n          size(1),\n          is_unit(is_unit_) {}\n\n   \
-    \ template <class OStream>\n    friend OStream &operator<<(OStream &os, const\
-    \ MaxMinSum &maxminSum) {\n        os << maxminSum.sum << \" \" << maxminSum.max\
-    \ << \" \" << maxminSum.min;\n        return os;\n    }\n\n    template <class\
-    \ IStream>\n    friend IStream &operator>>(IStream &is, MaxMinSum &maxminSum)\
+    \ constexpr MaxMinSum(S sum_, S max_, S min_, int size_)\n        : sum(sum_),\n\
+    \          max(max_),\n          min(min_),\n          size(size_),\n        \
+    \  is_unit(is_unit_) {}\n\n    template <class OStream>\n    friend OStream &operator<<(OStream\
+    \ &os, const MaxMinSum &maxminSum) {\n        os << maxminSum.sum << \" \" <<\
+    \ maxminSum.max << \" \" << maxminSum.min;\n        return os;\n    }\n\n    template\
+    \ <class IStream>\n    friend IStream &operator>>(IStream &is, MaxMinSum &maxminSum)\
     \ {\n        S a;\n        is >> a;\n        maxminSum.sum = maxminSum.max = maxminSum.min\
     \ = a;\n        maxminSum.size = 1;\n        return is;\n    }\n\n    constexpr\
     \ MaxMinSum &operator=(const S &rhs) {\n        sum = max = min = rhs;\n     \
@@ -157,7 +159,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/update_max_min_sum.hpp
   requiredBy: []
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2024-10-29 13:49:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/update_max_min_sum.hpp
