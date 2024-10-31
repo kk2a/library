@@ -38,6 +38,7 @@ template <int char_size, int margin> struct Trie {
         assert(!str.empty());
         const int id = nodes[root].exist;
         auto rec = [&](auto self, int now, int idx) -> void {
+            // 現在地はprefix[0:idx]
             if (idx == (int)str.size()) {
                 update_direct(now, id);
                 return;
