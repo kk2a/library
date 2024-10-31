@@ -47,6 +47,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/argument_sort.hpp
     title: geometry/argument_sort.hpp
+  - icon: ':warning:'
+    path: geometry/cross_point_line_line.hpp
+    title: geometry/cross_point_line_line.hpp
+  - icon: ':warning:'
+    path: geometry/line.hpp
+    title: geometry/line.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/point.hpp
     title: geometry/point.hpp
@@ -65,6 +71,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
+  - icon: ':warning:'
+    path: math/rational.hpp
+    title: math/rational.hpp
   - icon: ':heavy_check_mark:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
@@ -374,6 +383,7 @@ data:
   - bit/bitcount.hpp
   - math/is_prime.hpp
   - math/prime_factorize.hpp
+  - math/rational.hpp
   - math/euler_phi.hpp
   - matrix/frobenius_form.hpp
   - matrix/basis.hpp
@@ -389,7 +399,9 @@ data:
   - template/fastio.hpp
   - geometry/static_convex_hull.hpp
   - geometry/argument_sort.hpp
+  - geometry/line.hpp
   - geometry/point.hpp
+  - geometry/cross_point_line_line.hpp
   - string/rolling_hash.hpp
   - math_mod/comb_large.hpp
   - math_mod/primitive_root.hpp

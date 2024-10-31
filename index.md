@@ -157,6 +157,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/argument_sort.hpp
       title: geometry/argument_sort.hpp
+    - icon: ':warning:'
+      path: geometry/cross_point_line_line.hpp
+      title: geometry/cross_point_line_line.hpp
+    - icon: ':warning:'
+      path: geometry/line.hpp
+      title: geometry/line.hpp
     - icon: ':heavy_check_mark:'
       path: geometry/point.hpp
       title: geometry/point.hpp
@@ -250,6 +256,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime_factorize.hpp
       title: math/prime_factorize.hpp
+    - icon: ':warning:'
+      path: math/rational.hpp
+      title: math/rational.hpp
   - name: math/group
     pages:
     - icon: ':heavy_check_mark:'

@@ -1,31 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data_structure/trie.hpp
-    title: data_structure/trie.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/aho_corasick.hpp
-    title: string/aho_corasick.hpp
-  - icon: ':heavy_check_mark:'
-    path: template/fastio.hpp
-    title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
-    path: template/template.hpp
-    title: template/template.hpp
+  - icon: ':warning:'
+    path: geometry/line.hpp
+    title: geometry/line.hpp
+  - icon: ':warning:'
+    path: math/rational.hpp
+    title: math/rational.hpp
   - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/430
-    links:
-    - https://yukicoder.me/problems/no/430
+    links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -39,29 +30,27 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/430\" \n\n#include \"\
-    ../../string/aho_corasick.hpp\"\n#include \"../../template/template.hpp\"\nusing\
-    \ namespace std;\n\nint main() {\n    string s;\n    kin >> s;\n    int m;\n \
-    \   kin >> m;\n    vc<string> c(m);\n    kin >> c;\n\n    kk2::AhoCorasick<26,\
-    \ 'A'> ac;\n    for (auto &x : c) ac.add(x);\n    ac.build();\n    auto each =\
-    \ ac.each_match(s);\n    i64 res = accumulate(all(each), 0LL);\n    kout << res\
-    \ << kendl;\n\n    return 0;\n}\n"
+  code: "#ifndef GEOMETRY_CROSS_POINT_LINE_LINE_HPP\n#define GEOMETRY_CROSS_POINT_LINE_LINE_HPP\
+    \ 1\n\n#include <optional>\n\n#include \"line.hpp\"\n#include \"../math/rational.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <typename T>\nstd::optional<Point<Rational<T>>>\
+    \ cross_point(const Line<T> &l, const Line<T> &m) {\n    // Cramer's rule\n  \
+    \  T det = l.a * m.b - l.b * m.a;\n    if (det == 0) return std::nullopt;\n  \
+    \  T x = l.b * m.c - l.c * m.b;\n    T y = l.c * m.a - l.a * m.c;\n    return\
+    \ Point<T>(Rational<T>(x, det), Rational<T>(y, det));\n}\n\n}\n\n#endif // GEOMETRY_CROSS_POINT_LINE_LINE_HPP\n"
   dependsOn:
-  - string/aho_corasick.hpp
-  - data_structure/trie.hpp
-  - template/template.hpp
+  - geometry/line.hpp
   - type_traits/type_traits.hpp
-  - template/fastio.hpp
-  isVerificationFile: true
-  path: verify/yuki/yuki_0430_2.test.cpp
+  - math/rational.hpp
+  isVerificationFile: false
+  path: geometry/cross_point_line_line.hpp
   requiredBy: []
   timestamp: '2024-10-31 13:33:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: verify/yuki/yuki_0430_2.test.cpp
+documentation_of: geometry/cross_point_line_line.hpp
 layout: document
 redirect_from:
-- /verify/verify/yuki/yuki_0430_2.test.cpp
-- /verify/verify/yuki/yuki_0430_2.test.cpp.html
-title: verify/yuki/yuki_0430_2.test.cpp
+- /library/geometry/cross_point_line_line.hpp
+- /library/geometry/cross_point_line_line.hpp.html
+title: geometry/cross_point_line_line.hpp
 ---
