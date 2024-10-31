@@ -36,8 +36,8 @@ template <class T> struct ArgumentSort {
             ps.begin(), ps.end(), [this](auto &&a, auto &&b) -> bool { return this->cmp(a, b); });
     }
 
-    template <class ForwardIt>
-    ForwardIt min_up_argument(ForwardIt first, ForwardIt last, const point &p) {
+    template <class Iterator>
+    Iterator min_up_argument(Iterator first, Iterator last, const point &p) {
         return std::lower_bound(
             first, last, p, [this](auto &&a, auto &&b) -> bool { return this->cmp(a, b); });
     }

@@ -9,14 +9,16 @@
 
 namespace kk2 {
 
-template <typename T> struct ConvexHull {
+template <typename T> struct StaticConvexHull {
     using point = Point<T>;
     std::vector<point> ps, hull;
+    // 各頂点に対して，hullのindexを格納
+    // -1なら凸包に含まれない
     std::vector<int> idx;
 
-    ConvexHull() = default;
+    StaticConvexHull() = default;
 
-    ConvexHull(const std::vector<point> &ps) : ps(ps) {}
+    StaticConvexHull(const std::vector<point> &ps) : ps(ps) {}
 
     void add_point(T x, T y) { ps.emplace_back(x, y); }
 

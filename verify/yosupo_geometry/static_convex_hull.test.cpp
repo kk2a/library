@@ -13,7 +13,7 @@ int main() {
         kin >> n;
         vc<kk2::Point<i64>> p(n);
         kin >> p;
-        kk2::ConvexHull ch(p);
+        kk2::StaticConvexHull ch(p);
         ch.build();
         auto hull = ch.hull;
         kout << ch.hull.size() << "\n";
