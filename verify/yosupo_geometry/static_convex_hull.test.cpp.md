@@ -41,7 +41,7 @@ data:
     \n#include \"../../geometry/point.hpp\"\n#include \"../../geometry/static_convex_hull.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
     \ {\n    int t;\n    kin >> t;\n    rep (t) {\n        int n;\n        kin >>\
-    \ n;\n        vc<kk2::Point<i64>> p(n);\n        kin >> p;\n        kk2::ConvexHull\
+    \ n;\n        vc<kk2::Point<i64>> p(n);\n        kin >> p;\n        kk2::StaticConvexHull\
     \ ch(p);\n        ch.build();\n        auto hull = ch.hull;\n        kout << ch.hull.size()\
     \ << \"\\n\";\n        for (auto &q : ch.hull) kout << q << \"\\n\";\n    }\n\n\
     \    return 0;\n}\n"
@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_geometry/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2024-10-22 04:14:31+09:00'
+  timestamp: '2024-10-31 14:06:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/static_convex_hull.test.cpp

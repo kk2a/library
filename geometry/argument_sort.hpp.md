@@ -40,8 +40,8 @@ data:
     \ : cr == 0 ? norm(a, O) < norm(b, O) : cr > 0;\n    }\n\n  public:\n    void\
     \ argument_sort(std::vector<point> &ps) {\n        std::sort(\n            ps.begin(),\
     \ ps.end(), [this](auto &&a, auto &&b) -> bool { return this->cmp(a, b); });\n\
-    \    }\n\n    template <class ForwardIt>\n    ForwardIt min_up_argument(ForwardIt\
-    \ first, ForwardIt last, const point &p) {\n        return std::lower_bound(\n\
+    \    }\n\n    template <class Iterator>\n    Iterator min_up_argument(Iterator\
+    \ first, Iterator last, const point &p) {\n        return std::lower_bound(\n\
     \            first, last, p, [this](auto &&a, auto &&b) -> bool { return this->cmp(a,\
     \ b); });\n    }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_ARGUMENT_SORT_HPP\n"
   dependsOn:
@@ -50,7 +50,7 @@ data:
   isVerificationFile: false
   path: geometry/argument_sort.hpp
   requiredBy: []
-  timestamp: '2024-10-22 04:14:31+09:00'
+  timestamp: '2024-10-31 14:06:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_geometry/arg_sort.test.cpp
