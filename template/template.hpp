@@ -76,7 +76,7 @@ template <class T, class... Sizes> auto make_vector(int first, Sizes... sizes) {
     if constexpr (sizeof...(sizes) == 0) {
         return std::vector<T>(first);
     } else {
-        return std::vector<decltype(make_vector(sizes...))>(first, make_vector(sizes...));
+        return std::vector<decltype(make_vector<T>(sizes...))>(first, make_vector<T>(sizes...));
     }
 }
 
