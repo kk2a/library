@@ -10,16 +10,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -63,7 +63,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_lcm.test.cpp
   requiredBy: []
-  timestamp: '2024-10-22 04:59:27+09:00'
+  timestamp: '2024-11-05 16:16:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_lcm.test.cpp
