@@ -49,7 +49,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/kth_root_int.test.cpp
   requiredBy: []
-  timestamp: '2024-11-05 16:16:14+09:00'
+  timestamp: '2024-11-14 17:24:08+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/kth_root_int.test.cpp

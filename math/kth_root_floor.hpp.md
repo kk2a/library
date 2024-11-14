@@ -22,7 +22,7 @@ data:
     template <class return_type = uint64_t, class T, class U> return_type kth_root_floor(T\
     \ a, U k) {\n    return (return_type)kth_root_floor_inner((uint64_t)a, (int)k);\n\
     }\n\nuint64_t kth_root_ceil_inner(uint64_t a, int k) {\n    if (a <= 1 || k ==\
-    \ 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t x)\
+    \ 1) return a;\n    if (64 <= k) return 2;\n    auto check = [&](__uint128_t x)\
     \ {\n        __uint128_t p = 1, q = x;\n        for (int b = k; b; b >>= 1, q\
     \ *= q) {\n            if (b & 1) p *= q;\n        }\n        return p == a;\n\
     \    };\n    uint64_t x = kth_root_floor_inner(a, k);\n    return check(x) ? x\
@@ -40,7 +40,7 @@ data:
     \ {1/k})\ntemplate <class return_type = uint64_t, class T, class U> return_type\
     \ kth_root_floor(T a, U k) {\n    return (return_type)kth_root_floor_inner((uint64_t)a,\
     \ (int)k);\n}\n\nuint64_t kth_root_ceil_inner(uint64_t a, int k) {\n    if (a\
-    \ <= 1 || k == 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](__uint128_t\
+    \ <= 1 || k == 1) return a;\n    if (64 <= k) return 2;\n    auto check = [&](__uint128_t\
     \ x) {\n        __uint128_t p = 1, q = x;\n        for (int b = k; b; b >>= 1,\
     \ q *= q) {\n            if (b & 1) p *= q;\n        }\n        return p == a;\n\
     \    };\n    uint64_t x = kth_root_floor_inner(a, k);\n    return check(x) ? x\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: false
   path: math/kth_root_floor.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-11-14 17:24:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/kth_root_int.test.cpp
