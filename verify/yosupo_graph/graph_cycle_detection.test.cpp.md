@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':question:'
