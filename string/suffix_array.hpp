@@ -12,7 +12,7 @@ namespace kk2 {
 struct SuffixArray {
     SuffixArray() = default;
 
-    SuffixArray(const std::string &s_) : _n((int)s_.size()), _s((int)s_.size()) {
+    SuffixArray(const std::string &s_) : _n(s_.size()), _s((int)s_.size()) {
         for (int i = 0; i < _n; ++i) _s[i] = s_[i];
         _upper = 255;
         init();
@@ -21,8 +21,8 @@ struct SuffixArray {
     // all elements of s_ must be in [0, upper]
     SuffixArray(const std::vector<int> &s_, int upper_)
         : _n((int)s_.size()),
-          _s(s_),
-          _upper(upper_) {
+          _upper(upper_),
+          _s(s_) {
         init();
     }
 
@@ -40,7 +40,14 @@ struct SuffixArray {
         init();
     }
 
-    std::vector<int> get_sa() const { return _sa; }
+    const std::vector<int> &get_sa() const { return _sa; }
+    const std::vector<int> &get_s() const { return _s; }
+
+    int operator[](int i) const { return _sa[i]; }
+
+    int size() const { return _n; }
+
+    int upper() const { return _upper; }
 
     bool op(int i, const std::string &t) const {
         int off = _sa[i];
@@ -101,7 +108,7 @@ struct SuffixArray {
         return sa;
     }
 
-    std::vector<int> sa_doubling(const std::vector<int> &s, int upper) {
+    std::vector<int> sa_doubling(const std::vector<int> &s) {
         int n = (int)s.size();
         std::vector<int> sa(n), cpy = s, tmp(n);
         std::iota(std::begin(sa), std::end(sa), 0);
@@ -132,7 +139,7 @@ struct SuffixArray {
             else return {1, 0};
         }
         if (n < THRESHOLD_NAIVE) return sa_naive(s);
-        if (n < THRESHOLD_DOUBLING) return sa_doubling(s, upper);
+        if (n < THRESHOLD_DOUBLING) return sa_doubling(s);
 
         std::vector<int> sa(n);
         std::vector<bool> ls(n);
@@ -220,6 +227,29 @@ struct SuffixArray {
     }
 
     void init() { _sa = sa_is(_s, _upper); }
+};
+
+struct LCPArray {
+    const SuffixArray &sa;
+    std::vector<int> lcp, rank;
+    // lcp[i] = lcp(s[sa[i]:], s[sa[i + 1]:])
+
+    LCPArray(const SuffixArray &sa_) : sa(sa_) {
+        lcp.resize(sa.size());
+        rank.resize(sa.size());
+        for (int i = 0; i < sa.size(); ++i) rank[sa[i]] = i;
+        const std::vector<int> &s = sa.get_s();
+        lcp[sa.size() - 1] = 0;
+        for (int i = 0, l = 0; i < sa.size(); ++i) {
+            if (l > 0) l--;
+            if (rank[i] == sa.size() - 1) continue;
+            int j = sa[rank[i] + 1];
+            for (; i + l < sa.size() && j + l < sa.size(); ++l) {
+                if (s[i + l] != s[j + l]) break;
+            }
+            lcp[rank[i]] = l;
+        }
+    }
 };
 
 } // namespace kk2
