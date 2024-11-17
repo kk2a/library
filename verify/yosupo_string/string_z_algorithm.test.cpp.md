@@ -2,23 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/is_prime.hpp
-    title: math/is_prime.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/prime_factorize.hpp
-    title: math/prime_factorize.hpp
-  - icon: ':heavy_check_mark:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
-    path: modint/mont_arb.hpp
-    title: modint/mont_arb.hpp
-  - icon: ':heavy_check_mark:'
-    path: random/gen.hpp
-    title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
-    path: random/seed.hpp
-    title: random/seed.hpp
+    path: string/z_algorithm.hpp
+    title: string/z_algorithm.hpp
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
@@ -35,9 +20,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/factorize
+    PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
     links:
-    - https://judge.yosupo.jp/problem/factorize
+    - https://judge.yosupo.jp/problem/zalgorithm
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -48,38 +33,28 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
-    \ \"../../math/prime_factorize.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep (q)\
-    \ {\n        i64 a;\n        kin >> a;\n        int cnt = 0;\n        auto f =\
-    \ kk2::factorize(a);\n        for (auto [p, e] : f) cnt += e;\n        kout <<\
-    \ cnt << ' ';\n        for (auto [p, e] : f)\n            rep (e) kout << p <<\
-    \ ' ';\n        kout << '\\n';\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\" \n\n#include\
+    \ \"../../string/z_algorithm.hpp\"\n#include \"../../template/template.hpp\"\n\
+    using namespace std;\n\nint main() {\n    string s;\n    kin >> s;\n    kout <<\
+    \ kk2::z_algorithm(s) << kendl;\n\n    return 0;\n}\n"
   dependsOn:
-  - math/prime_factorize.hpp
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
-  - modint/mont_arb.hpp
-  - random/gen.hpp
-  - random/seed.hpp
-  - math/is_prime.hpp
+  - string/z_algorithm.hpp
   - template/template.hpp
+  - type_traits/type_traits.hpp
   - template/fastio.hpp
   isVerificationFile: true
-  path: verify/yosupo_math/factrize.test.cpp
+  path: verify/yosupo_string/string_z_algorithm.test.cpp
   requiredBy: []
-  timestamp: '2024-11-05 16:16:14+09:00'
+  timestamp: '2024-11-17 15:11:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_math/factrize.test.cpp
+documentation_of: verify/yosupo_string/string_z_algorithm.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_math/factrize.test.cpp
-- /verify/verify/yosupo_math/factrize.test.cpp.html
-title: verify/yosupo_math/factrize.test.cpp
+- /verify/verify/yosupo_string/string_z_algorithm.test.cpp
+- /verify/verify/yosupo_string/string_z_algorithm.test.cpp.html
+title: verify/yosupo_string/string_z_algorithm.test.cpp
 ---
