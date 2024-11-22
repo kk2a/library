@@ -60,5 +60,6 @@
 "verify/yosupo_string/string_number_of_substrings.test.cpp": "2024-11-17 15:12:03 +0900",
 "verify/yosupo_string/string_suffix_array.test.cpp": "2024-11-17 14:51:28 +0900",
 "verify/yosupo_string/string_z_algorithm.test.cpp": "2024-11-17 15:11:45 +0900",
-"verify/yuki/yuki_0430.test.cpp": "2024-11-05 16:16:14 +0900"
+"verify/yuki/yuki_0430.test.cpp": "2024-11-05 16:16:14 +0900",
+"verify/yuki/yuki_0430_2.test.cpp": "2024-11-05 16:16:14 +0900"
 }
