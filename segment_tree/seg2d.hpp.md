@@ -42,7 +42,7 @@ data:
     \ void emplace_set(int i, int j, Args... args) { set(i, j, S(args...)); }\n\n\
     \    S get(int i, int j) {\n        assert(0 <= i && i < _h);\n        assert(0\
     \ <= j && j < _w);\n        return d[i + size_h][j + size_w];\n    }\n\n    S\
-    \ prod(int i1, int i2, int j1, int j2) {\n        assert(0 <= i1 && i1 <= i2 &&\
+    \ prod(int i1, int j1, int i2, int j2) {\n        assert(0 <= i1 && i1 <= i2 &&\
     \ i2 <= _h);\n        assert(0 <= j1 && j1 <= j2 && j2 <= _w);\n        if (i1\
     \ == i2 || j1 == j2) return e();\n        i1 += size_h;\n        i2 += size_h;\n\
     \        j1 += size_w;\n        j2 += size_w;\n\n        S res = e();\n      \
@@ -81,7 +81,7 @@ data:
     \ void emplace_set(int i, int j, Args... args) { set(i, j, S(args...)); }\n\n\
     \    S get(int i, int j) {\n        assert(0 <= i && i < _h);\n        assert(0\
     \ <= j && j < _w);\n        return d[i + size_h][j + size_w];\n    }\n\n    S\
-    \ prod(int i1, int i2, int j1, int j2) {\n        assert(0 <= i1 && i1 <= i2 &&\
+    \ prod(int i1, int j1, int i2, int j2) {\n        assert(0 <= i1 && i1 <= i2 &&\
     \ i2 <= _h);\n        assert(0 <= j1 && j1 <= j2 && j2 <= _w);\n        if (i1\
     \ == i2 || j1 == j2) return e();\n        i1 += size_h;\n        i2 += size_h;\n\
     \        j1 += size_w;\n        j2 += size_w;\n\n        S res = e();\n      \
@@ -102,7 +102,7 @@ data:
   - segment_tree/utility/sumseg2d.hpp
   - segment_tree/utility/minseg2d.hpp
   - segment_tree/utility/maxseg2d.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-11-22 18:09:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/seg2d.hpp

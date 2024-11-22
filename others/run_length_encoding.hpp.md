@@ -13,12 +13,12 @@ data:
     \ <class T> struct result {\n    T value;\n    int length;\n};\n\ntemplate <class\
     \ T> std::vector<result<T>> RunLengthEncoding(const std::vector<T> &v) {\n   \
     \ std::vector<result<T>> res;\n    for (int i = 0; i < (int)v.size(); ++i) {\n\
-    \        if (res.empty() || res.back().value != v[i]) {\n            res.push_back({v[i],\
-    \ 1});\n        } else {\n            res.back().length++;\n        }\n    }\n\
+    \        if (res.empty() || res.back().value != v[i]) {\n            res.emplace_back(v[i],\
+    \ 1);\n        } else {\n            res.back().length++;\n        }\n    }\n\
     \    return res;\n}\n\nstd::vector<result<char>> RunLengthEncoding(const std::string\
     \ &s) {\n    std::vector<result<char>> res;\n    for (int i = 0; i < (int)s.size();\
     \ ++i) {\n        if (res.empty() || res.back().value != s[i]) {\n           \
-    \ res.push_back({s[i], 1});\n        } else {\n            res.back().length++;\n\
+    \ res.emplace_back(s[i], 1);\n        } else {\n            res.back().length++;\n\
     \        }\n    }\n    return res;\n}\n\n} // namespace run_length_encoding\n\n\
     using run_length_encoding::RunLengthEncoding;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef OTHERS_RUN_LENGTH_ENCODING_HPP\n#define OTHERS_RUN_LENGTH_ENCODING_HPP\
@@ -27,11 +27,11 @@ data:
     \ntemplate <class T> std::vector<result<T>> RunLengthEncoding(const std::vector<T>\
     \ &v) {\n    std::vector<result<T>> res;\n    for (int i = 0; i < (int)v.size();\
     \ ++i) {\n        if (res.empty() || res.back().value != v[i]) {\n           \
-    \ res.push_back({v[i], 1});\n        } else {\n            res.back().length++;\n\
+    \ res.emplace_back(v[i], 1);\n        } else {\n            res.back().length++;\n\
     \        }\n    }\n    return res;\n}\n\nstd::vector<result<char>> RunLengthEncoding(const\
     \ std::string &s) {\n    std::vector<result<char>> res;\n    for (int i = 0; i\
     \ < (int)s.size(); ++i) {\n        if (res.empty() || res.back().value != s[i])\
-    \ {\n            res.push_back({s[i], 1});\n        } else {\n            res.back().length++;\n\
+    \ {\n            res.emplace_back(s[i], 1);\n        } else {\n            res.back().length++;\n\
     \        }\n    }\n    return res;\n}\n\n} // namespace run_length_encoding\n\n\
     using run_length_encoding::RunLengthEncoding;\n\n} // namespace kk2\n\n#endif\
     \ // OTHERS_RUN_LENGTH_ENCODING_HPP\n"
@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: others/run_length_encoding.hpp
   requiredBy: []
-  timestamp: '2024-11-17 12:08:16+09:00'
+  timestamp: '2024-11-22 18:09:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: others/run_length_encoding.hpp

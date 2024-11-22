@@ -82,7 +82,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
   - name: fps
@@ -434,7 +434,7 @@ data:
       title: segment_tree/utility/updatesum.hpp
   - name: string
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/aho_corasick.hpp
       title: string/aho_corasick.hpp
     - icon: ':heavy_check_mark:'
@@ -448,15 +448,15 @@ data:
       title: string/z_algorithm.hpp
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/fastio.hpp
       title: template/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   - name: unionfind
@@ -679,7 +679,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yuki/yuki_0430.test.cpp
       title: verify/yuki/yuki_0430.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yuki/yuki_0430_2.test.cpp
       title: verify/yuki/yuki_0430_2.test.cpp
 layout: toppage
