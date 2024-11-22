@@ -17,7 +17,7 @@ template <class T> std::vector<result<T>> RunLengthEncoding(const std::vector<T>
     std::vector<result<T>> res;
     for (int i = 0; i < (int)v.size(); ++i) {
         if (res.empty() || res.back().value != v[i]) {
-            res.push_back({v[i], 1});
+            res.emplace_back(v[i], 1);
         } else {
             res.back().length++;
         }
@@ -29,7 +29,7 @@ std::vector<result<char>> RunLengthEncoding(const std::string &s) {
     std::vector<result<char>> res;
     for (int i = 0; i < (int)s.size(); ++i) {
         if (res.empty() || res.back().value != s[i]) {
-            res.push_back({s[i], 1});
+            res.emplace_back(s[i], 1);
         } else {
             res.back().length++;
         }
