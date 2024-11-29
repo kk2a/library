@@ -8,28 +8,17 @@ namespace kk2 {
 
 namespace run_length_encoding {
 
-template <class T> struct result {
+template <class T> struct rle_element {
     T value;
     int length;
 };
 
-template <class T> std::vector<result<T>> RunLengthEncoding(const std::vector<T> &v) {
-    std::vector<result<T>> res;
+template <typename C, typename T = typename C::value_type>
+std::vector<rle_element<T>> RunLengthEncoding(const C &v) {
+    std::vector<rle_element<T>> res;
     for (int i = 0; i < (int)v.size(); ++i) {
         if (res.empty() || res.back().value != v[i]) {
             res.emplace_back(v[i], 1);
-        } else {
-            res.back().length++;
-        }
-    }
-    return res;
-}
-
-std::vector<result<char>> RunLengthEncoding(const std::string &s) {
-    std::vector<result<char>> res;
-    for (int i = 0; i < (int)s.size(); ++i) {
-        if (res.empty() || res.back().value != s[i]) {
-            res.emplace_back(s[i], 1);
         } else {
             res.back().length++;
         }
