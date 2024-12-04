@@ -5,21 +5,20 @@
 
 namespace kk2 {
 
-// require:
-// A is an abelian group
-// A must have operator+ and operator-
-// A() must return unit element
-template <class A> struct PotentializedUnionfind {
+template <class A, bool right=true> struct PotentializedUnionFind {
   private:
     std::vector<int> d;
-    std::vector<A> diff_weight;
+    std::vector<A> par_diff;
 
   public:
-    PotentializedUnionfind(int n = 0) : d(n, -1), diff_weight(n, A()) {}
+    PotentializedUnionFind(int n, A e_ = A()) : d(n, -1), par_diff(n, e_) {}
 
     // x -> y : w
+    // right: a[y]a[x]^-1 = w
+    // !right: a[x]^-1a[y] = w
     bool unite(int x, int y, A w) {
-        w = w + weight(x) - weight(y);
+        if constexpr (right) w = -potential(y) + w + potential(x);
+        else w = potential(x) + w - potential(y);
         x = find(x);
         y = find(y);
         if (x == y) return false;
@@ -29,14 +28,15 @@ template <class A> struct PotentializedUnionfind {
         }
         d[x] += d[y];
         d[y] = x;
-        diff_weight[y] = w;
+        par_diff[y] = w;
         return true;
     }
 
     int find(int x) {
         if (d[x] < 0) return x;
         int r = find(d[x]);
-        diff_weight[x] = diff_weight[x] + diff_weight[d[x]];
+        if constexpr (right) par_diff[x] = par_diff[x] + par_diff[d[x]];
+        else par_diff[x] = par_diff[d[x]] + par_diff[x];
         return d[x] = r;
     }
 
@@ -44,14 +44,17 @@ template <class A> struct PotentializedUnionfind {
 
     int size(int x) { return -d[find(x)]; }
 
-    // root -> x
-    A weight(int x) {
+    // root_x -> x
+    A potential(int x) {
         find(x);
-        return diff_weight[x];
+        return par_diff[x];
     }
 
-    // a -> b
-    A diff(int a, int b) { return -weight(a) + weight(b); }
+    // x -> y
+    A diff(int x, int y) {
+        if constexpr (right) return potential(y) - potential(x);
+        else return -potential(x) + potential(y);
+    }
 };
 
 template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyAbelianGroup {

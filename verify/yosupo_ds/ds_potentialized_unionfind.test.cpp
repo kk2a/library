@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int n, q;
     kin >> n >> q;
-    kk2::PotentializedUnionfind<kk2::mont998> puf(n);
+    kk2::PotentializedUnionFind<kk2::mont998> puf(n);
 
     rep (q) {
         int t;
@@ -17,18 +17,18 @@ int main() {
             int u, v;
             kk2::mont998 w;
             kin >> u >> v >> w;
-            if (puf.same(u, v)) {
-                kout << (puf.diff(u, v) == w) << "\n";
+            if (puf.same(v, u)) {
+                kout << (puf.diff(v, u) == w) << "\n";
             } else {
                 kout << "1\n";
-                puf.unite(u, v, w);
+                puf.unite(v, u, w);
             }
         }
         if (t == 1) {
             int u, v;
             kin >> u >> v;
-            if (puf.same(u, v)) {
-                kout << puf.diff(u, v) << "\n";
+            if (puf.same(v, u)) {
+                kout << puf.diff(v, u) << "\n";
             } else kout << "-1\n";
         }
     }
