@@ -42,14 +42,14 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
     \n\n#include \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\
     \n#include \"../../unionfind/potentialized.hpp\"\nusing namespace std;\n\nint\
-    \ main() {\n    int n, q;\n    kin >> n >> q;\n    kk2::PotentializedUnionfind<kk2::mont998>\
+    \ main() {\n    int n, q;\n    kin >> n >> q;\n    kk2::PotentializedUnionFind<kk2::mont998>\
     \ puf(n);\n\n    rep (q) {\n        int t;\n        kin >> t;\n        if (t ==\
     \ 0) {\n            int u, v;\n            kk2::mont998 w;\n            kin >>\
-    \ u >> v >> w;\n            if (puf.same(u, v)) {\n                kout << (puf.diff(u,\
-    \ v) == w) << \"\\n\";\n            } else {\n                kout << \"1\\n\"\
-    ;\n                puf.unite(u, v, w);\n            }\n        }\n        if (t\
-    \ == 1) {\n            int u, v;\n            kin >> u >> v;\n            if (puf.same(u,\
-    \ v)) {\n                kout << puf.diff(u, v) << \"\\n\";\n            } else\
+    \ u >> v >> w;\n            if (puf.same(v, u)) {\n                kout << (puf.diff(v,\
+    \ u) == w) << \"\\n\";\n            } else {\n                kout << \"1\\n\"\
+    ;\n                puf.unite(v, u, w);\n            }\n        }\n        if (t\
+    \ == 1) {\n            int u, v;\n            kin >> u >> v;\n            if (puf.same(v,\
+    \ u)) {\n                kout << puf.diff(v, u) << \"\\n\";\n            } else\
     \ kout << \"-1\\n\";\n        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - modint/mont.hpp
@@ -60,7 +60,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-11-05 16:16:14+09:00'
+  timestamp: '2024-12-04 15:58:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp

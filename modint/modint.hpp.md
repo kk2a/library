@@ -5,10 +5,13 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+    title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -77,8 +80,9 @@ data:
   path: modint/modint.hpp
   requiredBy: []
   timestamp: '2024-10-22 04:59:27+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
 documentation_of: modint/modint.hpp
 layout: document
 redirect_from:

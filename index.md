@@ -325,7 +325,7 @@ data:
       title: matrix/matrix_field.hpp
   - name: modint
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: modint/modint.hpp
       title: modint/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -534,6 +534,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+      title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
       title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp

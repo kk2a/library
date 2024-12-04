@@ -67,6 +67,9 @@ data:
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+    title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -329,6 +332,7 @@ data:
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp
+  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - verify/yosupo_string/string_number_of_substrings.test.cpp
   - verify/yosupo_string/string_suffix_array.test.cpp
