@@ -80,8 +80,16 @@ struct ostream_tag {};
 
 } // namespace type_traits
 
-template <typename T> using is_standard_istream = std::is_same<T, std::istream>;
-template <typename T> using is_standard_ostream = std::is_same<T, std::ostream>;
+template <typename T>
+using is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value
+                                                          || std::is_same<T, std::ifstream>::value,
+                                                      std::true_type,
+                                                      std::false_type>::type;
+template <typename T>
+using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value
+                                                          || std::is_same<T, std::ofstream>::value,
+                                                      std::true_type,
+                                                      std::false_type>::type;
 template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;
 template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;
 
