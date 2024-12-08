@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -45,7 +45,7 @@ data:
   path: geometry/line.hpp
   requiredBy:
   - geometry/cross_point_line_line.hpp
-  timestamp: '2024-10-31 13:33:57+09:00'
+  timestamp: '2024-12-08 12:34:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/line.hpp

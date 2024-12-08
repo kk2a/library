@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/modint.hpp
     title: modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   requiredBy: []
-  timestamp: '2024-12-04 15:58:56+09:00'
+  timestamp: '2024-12-08 12:34:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp

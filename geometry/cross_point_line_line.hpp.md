@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: math/rational.hpp
     title: math/rational.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -44,7 +44,7 @@ data:
   isVerificationFile: false
   path: geometry/cross_point_line_line.hpp
   requiredBy: []
-  timestamp: '2024-10-31 13:33:57+09:00'
+  timestamp: '2024-12-08 12:34:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/cross_point_line_line.hpp
