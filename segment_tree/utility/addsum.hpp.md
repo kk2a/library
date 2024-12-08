@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: math/homomorphism/add.hpp
     title: math/homomorphism/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []

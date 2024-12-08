@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   - icon: ':heavy_check_mark:'

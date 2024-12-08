@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/disjoint_sparse_table.hpp\"\n\n\n\n#include\
@@ -55,7 +55,7 @@ data:
   path: data_structure/disjoint_sparse_table.hpp
   requiredBy: []
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
 documentation_of: data_structure/disjoint_sparse_table.hpp

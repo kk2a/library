@@ -59,7 +59,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_scc.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 12:34:44+09:00'
+  timestamp: '2024-12-08 17:10:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_scc.test.cpp
