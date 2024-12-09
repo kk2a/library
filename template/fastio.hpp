@@ -289,9 +289,15 @@ char Printer::leading_zero[10000][5];
 } // namespace fastio
 
 #if defined(INTERACTIVE) || defined(USE_STDIO)
+#ifdef KK2
+std::ifstream kin(INPUT_FILE);
+std::ofstream kout(OUTPUT_FILE);
+auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
+#else
 auto &kin = std::cin;
 auto &kout = std::cout;
 auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
+#endif
 #elif defined(KK2)
 fastio::Scanner kin(INPUT_FILE);
 fastio::Printer kout(OUTPUT_FILE);
