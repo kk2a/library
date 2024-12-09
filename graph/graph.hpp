@@ -49,6 +49,7 @@ template <class T, bool is_directed> struct AdjacencyList : std::vector<_Edges<T
 
     AdjacencyList(int n_) : std::vector<_Edges<T>>(n_) {}
 
+    // input を使うことが前提
     AdjacencyList(int n_, int m_) : std::vector<_Edges<T>>(n_), edges(m_) {}
 
     AdjacencyList(int n_, const _Edges<T> &edges_) : std::vector<_Edges<T>>(n_), edges(edges_) {
@@ -122,6 +123,7 @@ template <class T, bool is_directed> struct AdjacencyMatrix : std::vector<_pairs
 
     AdjacencyMatrix(int n_) : std::vector<_pairs<T>>(n_, _pairs<T>(n_)) {}
 
+    // input を使うことが前提
     AdjacencyMatrix(int n_, int m_) : std::vector<_pairs<T>>(n_, _pairs<T>(n_)), edges(m_) {}
 
     AdjacencyMatrix(int n_, const _Edges<T> &edges_)
@@ -180,7 +182,7 @@ G reverse(const G &g) {
 }
 
 template <class T, class IStream, is_istream_t<IStream> * = nullptr>
-_Edges<T> &input(_Edges<T> &edges, bool is_one_indexed, IStream &is) {
+_Edges<T> &input(_Edges<T> &edges, IStream &is, bool is_one_indexed) {
     for (int i = 0; i < (int)edges.size(); i++) {
         int u, v;
         T w{};
