@@ -68,37 +68,38 @@ data:
     \ntemplate <class T, bool is_directed> struct AdjacencyList : std::vector<_Edges<T>>\
     \ {\n    using value_type = T;\n    using edge_type = _Edge<T>;\n\n    constexpr\
     \ static bool directed() { return is_directed; }\n\n    AdjacencyList() = default;\n\
-    \n    AdjacencyList(int n_) : std::vector<_Edges<T>>(n_) {}\n\n    AdjacencyList(int\
-    \ n_, int m_) : std::vector<_Edges<T>>(n_), edges(m_) {}\n\n    AdjacencyList(int\
-    \ n_, const _Edges<T> &edges_) : std::vector<_Edges<T>>(n_), edges(edges_) {\n\
-    \        for (auto &&e : edges) {\n            (*this)[e.from].emplace_back(e);\n\
-    \            if constexpr (!is_directed) (*this)[e.to].emplace_back(e);\n    \
-    \    }\n    }\n\n    _Edges<T> edges;\n\n    int num_vertices() const { return\
-    \ (int)this->size(); }\n\n    int num_edges() const { return (int)edges.size();\
-    \ }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n    AdjacencyList\
-    \ &input(IStream &is, bool oneindexed = false) {\n        for (int i = 0; i <\
-    \ num_edges(); i++) {\n            int u, v;\n            T w{};\n           \
-    \ is >> u >> v;\n            if constexpr (!std::is_same_v<T, empty>) is >> w;\n\
-    \            if (oneindexed) --u, --v;\n            _add_edge<true>(u, v, w, i);\n\
-    \        }\n        return *this;\n    }\n\n    void edge_clear() {\n        for\
-    \ (auto &v : *this) v.clear();\n        edges.clear();\n    }\n\n    void add_edge(int\
-    \ from, int to, T cost = T{}) { _add_edge<false>(from, to, cost, num_edges());\
-    \ }\n\n  private:\n    template <bool update = false>\n    void _add_edge(int\
-    \ from, int to, T cost, int id) {\n        (*this)[from].emplace_back(to, cost,\
-    \ from, id);\n        if constexpr (!is_directed) (*this)[to].emplace_back(from,\
-    \ cost, to, id);\n        if constexpr (update) edges[id] = _Edge<T>(to, cost,\
-    \ from, id);\n        else edges.emplace_back(to, cost, from, id);\n    }\n};\n\
-    \ntemplate <class T> struct _pair {\n    T cost;\n    int id;\n\n    _pair(T cost_,\
-    \ int id_) : cost(cost_), id(id_) {}\n\n    _pair() : cost(), id(-1) {}\n\n  \
-    \  operator bool() const { return id != -1; }\n\n    template <class OStream,\
-    \ is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream &os,\
-    \ const _pair &p) {\n        if constexpr (std::is_same_v<T, empty>) return os;\n\
-    \        else return os << p.cost;\n    }\n};\ntemplate <class T> using _pairs\
-    \ = std::vector<_pair<T>>;\n\ntemplate <class T, bool is_directed> struct AdjacencyMatrix\
-    \ : std::vector<_pairs<T>> {\n    using value_type = T;\n    using edge_type =\
-    \ _pair<T>;\n\n    constexpr static bool directed() { return is_directed; }\n\n\
-    \    AdjacencyMatrix() = default;\n\n    AdjacencyMatrix(int n_) : std::vector<_pairs<T>>(n_,\
-    \ _pairs<T>(n_)) {}\n\n    AdjacencyMatrix(int n_, int m_) : std::vector<_pairs<T>>(n_,\
+    \n    AdjacencyList(int n_) : std::vector<_Edges<T>>(n_) {}\n\n    // input \u3092\
+    \u4F7F\u3046\u3053\u3068\u304C\u524D\u63D0\n    AdjacencyList(int n_, int m_)\
+    \ : std::vector<_Edges<T>>(n_), edges(m_) {}\n\n    AdjacencyList(int n_, const\
+    \ _Edges<T> &edges_) : std::vector<_Edges<T>>(n_), edges(edges_) {\n        for\
+    \ (auto &&e : edges) {\n            (*this)[e.from].emplace_back(e);\n       \
+    \     if constexpr (!is_directed) (*this)[e.to].emplace_back(e);\n        }\n\
+    \    }\n\n    _Edges<T> edges;\n\n    int num_vertices() const { return (int)this->size();\
+    \ }\n\n    int num_edges() const { return (int)edges.size(); }\n\n    template\
+    \ <class IStream, is_istream_t<IStream> * = nullptr>\n    AdjacencyList &input(IStream\
+    \ &is, bool oneindexed = false) {\n        for (int i = 0; i < num_edges(); i++)\
+    \ {\n            int u, v;\n            T w{};\n            is >> u >> v;\n  \
+    \          if constexpr (!std::is_same_v<T, empty>) is >> w;\n            if (oneindexed)\
+    \ --u, --v;\n            _add_edge<true>(u, v, w, i);\n        }\n        return\
+    \ *this;\n    }\n\n    void edge_clear() {\n        for (auto &v : *this) v.clear();\n\
+    \        edges.clear();\n    }\n\n    void add_edge(int from, int to, T cost =\
+    \ T{}) { _add_edge<false>(from, to, cost, num_edges()); }\n\n  private:\n    template\
+    \ <bool update = false>\n    void _add_edge(int from, int to, T cost, int id)\
+    \ {\n        (*this)[from].emplace_back(to, cost, from, id);\n        if constexpr\
+    \ (!is_directed) (*this)[to].emplace_back(from, cost, to, id);\n        if constexpr\
+    \ (update) edges[id] = _Edge<T>(to, cost, from, id);\n        else edges.emplace_back(to,\
+    \ cost, from, id);\n    }\n};\n\ntemplate <class T> struct _pair {\n    T cost;\n\
+    \    int id;\n\n    _pair(T cost_, int id_) : cost(cost_), id(id_) {}\n\n    _pair()\
+    \ : cost(), id(-1) {}\n\n    operator bool() const { return id != -1; }\n\n  \
+    \  template <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream\
+    \ &operator<<(OStream &os, const _pair &p) {\n        if constexpr (std::is_same_v<T,\
+    \ empty>) return os;\n        else return os << p.cost;\n    }\n};\ntemplate <class\
+    \ T> using _pairs = std::vector<_pair<T>>;\n\ntemplate <class T, bool is_directed>\
+    \ struct AdjacencyMatrix : std::vector<_pairs<T>> {\n    using value_type = T;\n\
+    \    using edge_type = _pair<T>;\n\n    constexpr static bool directed() { return\
+    \ is_directed; }\n\n    AdjacencyMatrix() = default;\n\n    AdjacencyMatrix(int\
+    \ n_) : std::vector<_pairs<T>>(n_, _pairs<T>(n_)) {}\n\n    // input \u3092\u4F7F\
+    \u3046\u3053\u3068\u304C\u524D\u63D0\n    AdjacencyMatrix(int n_, int m_) : std::vector<_pairs<T>>(n_,\
     \ _pairs<T>(n_)), edges(m_) {}\n\n    AdjacencyMatrix(int n_, const _Edges<T>\
     \ &edges_)\n        : std::vector<_pairs<T>>(n_, _pairs<T>(n_)),\n          edges(edges_)\
     \ {\n        for (auto &&e : edges) {\n            (*this)[e.from][e.to] = _pair<T>(e.cost,\
@@ -123,7 +124,7 @@ data:
     \ G>\nG reverse(const G &g) {\n    G res(g.num_vertices());\n    for (auto &&e\
     \ : g.edges) res.add_edge(e.to, e.from, e.cost);\n    return res;\n}\n\ntemplate\
     \ <class T, class IStream, is_istream_t<IStream> * = nullptr>\n_Edges<T> &input(_Edges<T>\
-    \ &edges, bool is_one_indexed, IStream &is) {\n    for (int i = 0; i < (int)edges.size();\
+    \ &edges, IStream &is, bool is_one_indexed) {\n    for (int i = 0; i < (int)edges.size();\
     \ i++) {\n        int u, v;\n        T w{};\n        is >> u >> v;\n        if\
     \ (is_one_indexed) --u, --v;\n        if constexpr (!std::is_same_v<T, empty>)\
     \ is >> w;\n        edges[i] = _Edge<T>(v, w, u, i);\n    }\n    return edges;\n\
@@ -143,7 +144,7 @@ data:
   path: graph/graph.hpp
   requiredBy:
   - random/graph.hpp
-  timestamp: '2024-12-08 12:34:44+09:00'
+  timestamp: '2024-12-09 19:28:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp

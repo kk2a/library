@@ -1,29 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/binary_indexed_tree.hpp
     title: data_structure/binary_indexed_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: others/coordinate_compression.hpp
     title: others/coordinate_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: others/mo.hpp
     title: others/mo.hpp
+  - icon: ':question:'
+    path: template/constant.hpp
+    title: template/constant.hpp
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
   - icon: ':question:'
+    path: template/function_util.hpp
+    title: template/function_util.hpp
+  - icon: ':question:'
+    path: template/io_util.hpp
+    title: template/io_util.hpp
+  - icon: ':question:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
+  - icon: ':question:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -35,6 +50,8 @@ data:
     \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
@@ -63,13 +80,18 @@ data:
   - data_structure/binary_indexed_tree.hpp
   - others/mo.hpp
   - template/template.hpp
-  - type_traits/type_traits.hpp
   - template/fastio.hpp
+  - type_traits/type_traits.hpp
+  - template/type_alias.hpp
+  - template/constant.hpp
+  - template/function_util.hpp
+  - template/macros.hpp
+  - template/io_util.hpp
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 12:34:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-09 19:28:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_range_inversions.test.cpp
 layout: document

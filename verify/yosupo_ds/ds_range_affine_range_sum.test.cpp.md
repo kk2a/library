@@ -10,18 +10,33 @@ data:
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   - icon: ':heavy_check_mark:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
   - icon: ':question:'
+    path: template/constant.hpp
+    title: template/constant.hpp
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
   - icon: ':question:'
+    path: template/function_util.hpp
+    title: template/function_util.hpp
+  - icon: ':question:'
+    path: template/io_util.hpp
+    title: template/io_util.hpp
+  - icon: ':question:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
+  - icon: ':question:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
@@ -67,10 +82,15 @@ data:
   - segment_tree/lazy.hpp
   - template/template.hpp
   - template/fastio.hpp
+  - template/type_alias.hpp
+  - template/constant.hpp
+  - template/function_util.hpp
+  - template/macros.hpp
+  - template/io_util.hpp
   isVerificationFile: true
   path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 12:34:44+09:00'
+  timestamp: '2024-12-09 19:28:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

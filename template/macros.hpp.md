@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':question:'
     path: template/template.hpp
@@ -184,12 +181,6 @@ data:
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
   - icon: ':x:'
-    path: verify/yosupo_others/many_a_plus_b.test.cpp
-    title: verify/yosupo_others/many_a_plus_b.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-    title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - icon: ':x:'
@@ -212,127 +203,72 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef TEMPLATE_FASTIO_HPP\n#define TEMPLATE_FASTIO_HPP 1\n\n#include <cctype>\n\
-    #include <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <iostream>\n\
-    #include <string>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace\
-    \ kk2 {\n\nnamespace fastio {\n\n#define INPUT_FILE \"in.txt\"\n#define OUTPUT_FILE\
-    \ \"out.txt\"\n\nstruct Scanner : type_traits::istream_tag {\n  private:\n   \
-    \ static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos = 0, end = 0;\n\
-    \    static char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n    Scanner() :\
-    \ fp(stdin) {}\n\n    Scanner(const char *file) : fp(fopen(file, \"r\")) {}\n\n\
-    \    ~Scanner() {\n        if (fp != stdin) fclose(fp);\n    }\n\n    char now()\
-    \ {\n        if (pos == end) {\n            while (!(end = fread(buf, 1, INPUT_BUF,\
-    \ fp))) {}\n            if (end != INPUT_BUF) buf[end] = '\\0';\n            pos\
-    \ = 0;\n        }\n        return buf[pos];\n    }\n\n    void skip_space() {\n\
-    \        while (isspace(now())) ++pos;\n    }\n\n    template <class T, is_unsigned_t<T>\
-    \ * = nullptr> T next_unsigned_integral() {\n        skip_space();\n        T\
-    \ res{};\n        while (isdigit(now())) {\n            res = res * 10 + (now()\
-    \ - '0');\n            ++pos;\n        }\n        return res;\n    }\n\n    template\
-    \ <class T, is_signed_t<T> * = nullptr> T next_signed_integral() {\n        skip_space();\n\
-    \        if (now() == '-') {\n            ++pos;\n            return T(-next_unsigned_integral<typename\
-    \ to_unsigned<T>::type>());\n        } else return (T)next_unsigned_integral<typename\
-    \ to_unsigned<T>::type>();\n    }\n\n    char next_char() {\n        skip_space();\n\
-    \        auto res = now();\n        ++pos;\n        return res;\n    }\n\n   \
-    \ std::string next_string() {\n        skip_space();\n        std::string res;\n\
-    \        while (true) {\n            char c = now();\n            if (isspace(c)\
-    \ or c == '\\0') break;\n            res.push_back(now());\n            ++pos;\n\
-    \        }\n        return res;\n    }\n\n    template <class T, is_unsigned_t<T>\
-    \ * = nullptr> Scanner &operator>>(T &x) {\n        x = next_unsigned_integral<T>();\n\
-    \        return *this;\n    }\n\n    template <class T, is_signed_t<T> * = nullptr>\
-    \ Scanner &operator>>(T &x) {\n        x = next_signed_integral<T>();\n      \
-    \  return *this;\n    }\n\n    Scanner &operator>>(char &x) {\n        x = next_char();\n\
-    \        return *this;\n    }\n\n    Scanner &operator>>(std::string &x) {\n \
-    \       x = next_string();\n        return *this;\n    }\n};\n\nstruct endl_struct_t\
-    \ {};\n\nstruct Printer : type_traits::ostream_tag {\n  private:\n    static char\
-    \ helper[10000][5];\n    static char leading_zero[10000][5];\n    constexpr static\
-    \ size_t OUTPUT_BUF = 1 << 17;\n    static char buf[OUTPUT_BUF];\n    size_t pos\
-    \ = 0;\n    FILE *fp;\n\n    template <class T> static constexpr void div_mod(T\
-    \ &a, T &b, T mod) {\n        a = b / mod;\n        b -= a * mod;\n    }\n\n \
-    \   static void init() {\n        buf[0] = '\\0';\n        for (size_t i = 0;\
-    \ i < 10000; ++i) {\n            leading_zero[i][0] = i / 1000 + '0';\n      \
-    \      leading_zero[i][1] = i / 100 % 10 + '0';\n            leading_zero[i][2]\
-    \ = i / 10 % 10 + '0';\n            leading_zero[i][3] = i % 10 + '0';\n     \
-    \       leading_zero[i][4] = '\\0';\n\n            size_t j = 0;\n           \
-    \ if (i >= 1000) helper[i][j++] = i / 1000 + '0';\n            if (i >= 100) helper[i][j++]\
-    \ = i / 100 % 10 + '0';\n            if (i >= 10) helper[i][j++] = i / 10 % 10\
-    \ + '0';\n            helper[i][j++] = i % 10 + '0';\n            helper[i][j]\
-    \ = '\\0';\n        }\n    }\n\n  public:\n    Printer() : fp(stdout) { init();\
-    \ }\n\n    Printer(const char *file) : fp(fopen(file, \"w\")) { init(); }\n\n\
-    \    ~Printer() {\n        write();\n        if (fp != stdout) fclose(fp);\n \
-    \   }\n\n    void write() {\n        fwrite(buf, 1, pos, fp);\n        pos = 0;\n\
-    \    }\n\n    void flush() {\n        write();\n        fflush(fp);\n    }\n\n\
-    \    void put_char(char c) {\n        if (pos == OUTPUT_BUF) write();\n      \
-    \  buf[pos++] = c;\n    }\n\n    void put_cstr(const char *s) {\n        while\
-    \ (*s) put_char(*(s++));\n    }\n\n    void put_u32(uint32_t x) {\n        uint32_t\
-    \ y;\n        if (x >= 100000000) { // 10^8\n            div_mod<uint32_t>(y,\
-    \ x, 100000000);\n            put_cstr(helper[y]);\n            div_mod<uint32_t>(y,\
-    \ x, 10000);\n            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= 10000) { // 10^4\n            div_mod<uint32_t>(y, x,\
-    \ 10000);\n            put_cstr(helper[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else put_cstr(helper[x]);\n    }\n\n    void put_i32(int32_t x) {\n\
-    \        if (x < 0) {\n            put_char('-');\n            put_u32(-x);\n\
-    \        } else put_u32(x);\n    }\n\n    void put_u64(uint64_t x) {\n       \
-    \ uint64_t y;\n        if (x >= 1000000000000ull) { // 10^12\n            div_mod<uint64_t>(y,\
-    \ x, 1000000000000ull);\n            put_u32(y);\n            div_mod<uint64_t>(y,\
-    \ x, 100000000ull);\n            put_cstr(leading_zero[y]);\n            div_mod<uint64_t>(y,\
-    \ x, 10000ull);\n            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
-    \        } else if (x >= 10000ull) { // 10^4\n            div_mod<uint64_t>(y,\
-    \ x, 10000ull);\n            put_u32(y);\n            put_cstr(leading_zero[x]);\n\
-    \        } else put_cstr(helper[x]);\n    }\n\n    void put_i64(int64_t x) {\n\
-    \        if (x < 0) {\n            put_char('-');\n            put_u64(-x);\n\
-    \        } else put_u64(x);\n    }\n\n    void put_u128(__uint128_t x) {\n   \
-    \     constexpr static __uint128_t pow10_10 = 10000000000ull;\n        constexpr\
-    \ static __uint128_t pow10_20 = pow10_10 * pow10_10;\n\n        __uint128_t y;\n\
-    \        if (x >= pow10_20) { // 10^20\n            div_mod<__uint128_t>(y, x,\
-    \ pow10_20);\n            put_u64(uint64_t(y));\n            div_mod<__uint128_t>(y,\
-    \ x, __uint128_t(10000000000000000ull));\n            put_cstr(leading_zero[y]);\n\
-    \            div_mod<__uint128_t>(y, x, __uint128_t(1000000000000ull));\n    \
-    \        put_cstr(leading_zero[y]);\n            div_mod<__uint128_t>(y, x, __uint128_t(100000000ull));\n\
-    \            put_cstr(leading_zero[y]);\n            div_mod<__uint128_t>(y, x,\
-    \ __uint128_t(10000ull));\n            put_cstr(leading_zero[y]);\n          \
-    \  put_cstr(leading_zero[x]);\n        } else if (x >= __uint128_t(10000)) { //\
-    \ 10^4\n            div_mod<__uint128_t>(y, x, __uint128_t(10000));\n        \
-    \    put_u64(uint64_t(y));\n            put_cstr(leading_zero[x]);\n        }\
-    \ else put_cstr(helper[x]);\n    }\n\n    void put_i128(__int128_t x) {\n    \
-    \    if (x < 0) {\n            put_char('-');\n            put_u128(-x);\n   \
-    \     } else put_u128(x);\n    }\n\n    template <class T, is_unsigned_t<T> *\
-    \ = nullptr> Printer &operator<<(T x) {\n        if constexpr (sizeof(T) <= 4)\
-    \ put_u32(x);\n        else if constexpr (sizeof(T) <= 8) put_u64(x);\n      \
-    \  else put_u128(x);\n        return *this;\n    }\n\n    template <class T, is_signed_t<T>\
-    \ * = nullptr> Printer &operator<<(T x) {\n        if constexpr (sizeof(T) <=\
-    \ 4) put_i32(x);\n        else if constexpr (sizeof(T) <= 8) put_i64(x);\n   \
-    \     else put_i128(x);\n        return *this;\n    }\n\n    Printer &operator<<(char\
-    \ x) {\n        put_char(x);\n        return *this;\n    }\n\n    Printer &operator<<(const\
-    \ std::string &x) {\n        for (char c : x) put_char(c);\n        return *this;\n\
-    \    }\n\n    Printer &operator<<(const char *x) {\n        put_cstr(x);\n   \
-    \     return *this;\n    }\n\n    // std::cout << std::endl; \u306F\u95A2\u6570\
-    \u30DD\u30A4\u30F3\u30BF\u3092\u6E21\u3057\u3066\u3044\u308B\u3089\u3057\u3044\
-    \n    Printer &operator<<(endl_struct_t) {\n        put_char('\\n');\n       \
-    \ flush();\n        return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\n\
-    char Printer::buf[Printer::OUTPUT_BUF];\nchar Printer::helper[10000][5];\nchar\
-    \ Printer::leading_zero[10000][5];\n\n} // namespace fastio\n\n#if defined(INTERACTIVE)\
-    \ || defined(USE_STDIO)\n#ifdef KK2\nstd::ifstream kin(INPUT_FILE);\nstd::ofstream\
-    \ kout(OUTPUT_FILE);\nauto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n\
-    #else\nauto &kin = std::cin;\nauto &kout = std::cout;\nauto (*kendl)(std::ostream\
-    \ &) = std::endl<char, std::char_traits<char>>;\n#endif\n#elif defined(KK2)\n\
-    fastio::Scanner kin(INPUT_FILE);\nfastio::Printer kout(OUTPUT_FILE);\nfastio::endl_struct_t\
-    \ kendl;\n#else\nfastio::Scanner kin;\nfastio::Printer kout;\nfastio::endl_struct_t\
-    \ kendl;\n#endif\n\n} // namespace kk2\n\n#endif // TEMPLATE_FASTIO_HPP\n"
-  dependsOn:
-  - type_traits/type_traits.hpp
+  bundledCode: '#line 1 "template/macros.hpp"
+
+
+
+
+    #define rep1(a) for (long long _ = 0; _ < (long long)(a); ++_)
+
+    #define rep2(i, a) for (long long i = 0; i < (long long)(a); ++i)
+
+    #define rep3(i, a, b) for (long long i = (a); i < (long long)(b); ++i)
+
+    #define repi2(i, a) for (long long i = (a) - 1; i >= 0; --i)
+
+    #define repi3(i, a, b) for (long long i = (a) - 1; i >= (long long)(b); --i)
+
+    #define overload3(a, b, c, d, ...) d
+
+    #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)
+
+    #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)
+
+
+    #define fi first
+
+    #define se second
+
+    #define all(p) p.begin(), p.end()
+
+
+
+    '
+  code: '#ifndef TEMPLATE_MACROS_HPP
+
+    #define TEMPLATE_MACROS_HPP 1
+
+
+    #define rep1(a) for (long long _ = 0; _ < (long long)(a); ++_)
+
+    #define rep2(i, a) for (long long i = 0; i < (long long)(a); ++i)
+
+    #define rep3(i, a, b) for (long long i = (a); i < (long long)(b); ++i)
+
+    #define repi2(i, a) for (long long i = (a) - 1; i >= 0; --i)
+
+    #define repi3(i, a, b) for (long long i = (a) - 1; i >= (long long)(b); --i)
+
+    #define overload3(a, b, c, d, ...) d
+
+    #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)
+
+    #define repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)
+
+
+    #define fi first
+
+    #define se second
+
+    #define all(p) p.begin(), p.end()
+
+
+    #endif // TEMPLATE_MACROS_HPP
+
+    '
+  dependsOn: []
   isVerificationFile: false
-  path: template/fastio.hpp
+  path: template/macros.hpp
   requiredBy:
   - template/template.hpp
   timestamp: '2024-12-09 19:28:50+09:00'
@@ -401,13 +337,11 @@ data:
   - verify/yosupo_graph/graph_scc.test.cpp
   - verify/yosupo_graph/graph_shortest_path.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-  - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - verify/yosupo_others/many_a_plus_b.test.cpp
-  - verify/yosupo_others/many_a_plus_b.test.cpp
-documentation_of: template/fastio.hpp
+documentation_of: template/macros.hpp
 layout: document
 redirect_from:
-- /library/template/fastio.hpp
-- /library/template/fastio.hpp.html
-title: template/fastio.hpp
+- /library/template/macros.hpp
+- /library/template/macros.hpp.html
+title: template/macros.hpp
 ---

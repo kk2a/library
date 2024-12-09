@@ -1,26 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/argument_sort.hpp
     title: geometry/argument_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/point.hpp
     title: geometry/point.hpp
+  - icon: ':question:'
+    path: template/constant.hpp
+    title: template/constant.hpp
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
   - icon: ':question:'
+    path: template/function_util.hpp
+    title: template/function_util.hpp
+  - icon: ':question:'
+    path: template/io_util.hpp
+    title: template/io_util.hpp
+  - icon: ':question:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
+  - icon: ':question:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
@@ -49,11 +64,16 @@ data:
   - geometry/argument_sort.hpp
   - template/template.hpp
   - template/fastio.hpp
+  - template/type_alias.hpp
+  - template/constant.hpp
+  - template/function_util.hpp
+  - template/macros.hpp
+  - template/io_util.hpp
   isVerificationFile: true
   path: verify/yosupo_geometry/arg_sort.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 12:34:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-09 19:28:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/arg_sort.test.cpp
 layout: document

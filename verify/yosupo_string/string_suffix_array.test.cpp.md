@@ -5,11 +5,26 @@ data:
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':question:'
+    path: template/constant.hpp
+    title: template/constant.hpp
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
   - icon: ':question:'
+    path: template/function_util.hpp
+    title: template/function_util.hpp
+  - icon: ':question:'
+    path: template/io_util.hpp
+    title: template/io_util.hpp
+  - icon: ':question:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
+  - icon: ':question:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
@@ -33,6 +48,8 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
@@ -43,12 +60,17 @@ data:
   dependsOn:
   - string/suffix_array.hpp
   - template/template.hpp
-  - type_traits/type_traits.hpp
   - template/fastio.hpp
+  - type_traits/type_traits.hpp
+  - template/type_alias.hpp
+  - template/constant.hpp
+  - template/function_util.hpp
+  - template/macros.hpp
+  - template/io_util.hpp
   isVerificationFile: true
   path: verify/yosupo_string/string_suffix_array.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 12:34:44+09:00'
+  timestamp: '2024-12-09 19:28:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_suffix_array.test.cpp

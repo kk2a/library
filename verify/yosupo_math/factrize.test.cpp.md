@@ -20,11 +20,26 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
+    path: template/constant.hpp
+    title: template/constant.hpp
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
   - icon: ':question:'
+    path: template/function_util.hpp
+    title: template/function_util.hpp
+  - icon: ':question:'
+    path: template/io_util.hpp
+    title: template/io_util.hpp
+  - icon: ':question:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
+  - icon: ':question:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
@@ -70,10 +85,15 @@ data:
   - math/is_prime.hpp
   - template/template.hpp
   - template/fastio.hpp
+  - template/type_alias.hpp
+  - template/constant.hpp
+  - template/function_util.hpp
+  - template/macros.hpp
+  - template/io_util.hpp
   isVerificationFile: true
   path: verify/yosupo_math/factrize.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 12:34:44+09:00'
+  timestamp: '2024-12-09 19:28:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/factrize.test.cpp
