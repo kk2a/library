@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: math/homomorphism/update.hpp
     title: math/homomorphism/update.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []
