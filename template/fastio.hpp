@@ -14,8 +14,12 @@ namespace kk2 {
 
 namespace fastio {
 
+#ifndef INPUT_FILE
 #define INPUT_FILE "in.txt"
+#endif
+#ifndef OUTPUT_FILE
 #define OUTPUT_FILE "out.txt"
+#endif
 
 struct Scanner : type_traits::istream_tag {
   private:

@@ -1,24 +1,21 @@
-#ifndef TEMPLATE
-#define TEMPLATE 1
+#ifndef TEMPLATE_PROCON_HPP
+#define TEMPLATE_PROCON_HPP 1
 
-// #pragma GCC optimize("O3,unroll-loops")
-
-// #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
 #include <bitset>
 #include <cassert>
-#include <chrono>
-#include <cmath>
+// #include <chrono>
+// #include <cmath>
 #include <deque>
+#include <fstream>
 #include <functional>
+#include <iostream>
 #include <iterator>
-#include <limits>
 #include <map>
 #include <numeric>
 #include <optional>
 #include <queue>
-#include <random>
 #include <set>
 #include <stack>
 #include <string>
@@ -27,16 +24,28 @@
 #include <utility>
 #include <vector>
 
-#include "fastio.hpp"
 #include "type_alias.hpp"
 #include "constant.hpp"
 #include "function_util.hpp"
 #include "macros.hpp"
 #include "io_util.hpp"
 
-using kk2::kendl;
-using kk2::kin;
-using kk2::kout;
+#ifndef INPUT_FILE
+#define INPUT_FILE "in.txt"
+#endif
+#ifndef OUTPUT_FILE
+#define OUTPUT_FILE "out.txt"
+#endif
+
+#ifdef KK2
+std::ifstream kin(INPUT_FILE);
+std::ofstream kout(OUTPUT_FILE);
+auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
+#else
+auto &kin = std::cin;
+auto &kout = std::cout;
+auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
+#endif
 
 void Yes(bool b = 1) {
     kout << (b ? "Yes\n" : "No\n");
@@ -62,4 +71,4 @@ void no(bool b = 1) {
     kout << (b ? "no\n" : "yes\n");
 }
 
-#endif // TEMPLATE
+#endif // TEMPLATE_PROCON_HPP

@@ -5,7 +5,6 @@
 
 #include <algorithm>
 #include <cmath>
-#include <iostream>
 
 #include "../type_traits/type_traits.hpp"
 

@@ -1,6 +1,9 @@
 #ifndef TEMPLATE_FUNCTIONAL_UTIL_HPP
 #define TEMPLATE_FUNCTIONAL_UTIL_HPP 1
 
+#include <algorithm>
+#include <vector>
+
 namespace kk2 {
 
 template <class T, class... Sizes> auto make_vector(int first, Sizes... sizes) {
