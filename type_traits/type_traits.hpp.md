@@ -23,7 +23,7 @@ data:
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':warning:'
@@ -35,16 +35,16 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':warning:'
     path: fps/taylor_shift.hpp
     title: fps/taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/argument_sort.hpp
     title: geometry/argument_sort.hpp
   - icon: ':warning:'
@@ -53,10 +53,10 @@ data:
   - icon: ':warning:'
     path: geometry/line.hpp
     title: geometry/line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/point.hpp
     title: geometry/point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/static_convex_hull.hpp
     title: geometry/static_convex_hull.hpp
   - icon: ':question:'
@@ -101,7 +101,7 @@ data:
   - icon: ':x:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'
@@ -125,6 +125,9 @@ data:
   - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
+  - icon: ':warning:'
+    path: template/procon.hpp
+    title: template/procon.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -178,57 +181,63 @@ data:
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
+    title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_set_xor_min.test.cpp
+    title: verify/yosupo_ds/ds_set_xor_min.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
   - icon: ':x:'
@@ -420,6 +429,7 @@ data:
   - template/template.hpp
   - template/debug.hpp
   - template/io_util.hpp
+  - template/procon.hpp
   - template/fastio.hpp
   - geometry/static_convex_hull.hpp
   - geometry/argument_sort.hpp
@@ -486,10 +496,12 @@ data:
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - verify/yosupo_ds/ds_set_xor_min.test.cpp
   - verify/yosupo_string/string_number_of_substrings.test.cpp
   - verify/yosupo_string/string_suffix_array.test.cpp
   - verify/yosupo_string/string_z_algorithm.test.cpp

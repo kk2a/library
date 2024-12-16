@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: template/procon.hpp
+    title: template/procon.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -55,57 +58,63 @@ data:
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
+    title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_set_xor_min.test.cpp
+    title: verify/yosupo_ds/ds_set_xor_min.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
   - icon: ':x:'
@@ -203,21 +212,23 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"template/function_util.hpp\"\n\n\n\nnamespace kk2 {\n\n\
-    template <class T, class... Sizes> auto make_vector(int first, Sizes... sizes)\
-    \ {\n    if constexpr (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n\
-    \    } else {\n        return std::vector<decltype(make_vector<T>(sizes...))>(first,\
-    \ make_vector<T>(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
-    \ &v, const U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate\
-    \ <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x)\
-    \ {\n    for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate\
-    \ <class T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b\
-    \ ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const\
-    \ S &b) {\n    return (a > b ? a = b, 1 : 0);\n}\n\n\n"
+  bundledCode: "#line 1 \"template/function_util.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <vector>\n\nnamespace kk2 {\n\ntemplate <class T, class... Sizes> auto\
+    \ make_vector(int first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes)\
+    \ == 0) {\n        return std::vector<T>(first);\n    } else {\n        return\
+    \ std::vector<decltype(make_vector<T>(sizes...))>(first, make_vector<T>(sizes...));\n\
+    \    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T> &v, const\
+    \ U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate <class\
+    \ T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x) {\n  \
+    \  for (auto &u : v) fill_all(u, x);\n}\n\n} // namespace kk2\n\ntemplate <class\
+    \ T, class S> inline bool chmax(T &a, const S &b) {\n    return (a < b ? a = b,\
+    \ 1 : 0);\n}\n\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
+    \ {\n    return (a > b ? a = b, 1 : 0);\n}\n\n\n"
   code: "#ifndef TEMPLATE_FUNCTIONAL_UTIL_HPP\n#define TEMPLATE_FUNCTIONAL_UTIL_HPP\
-    \ 1\n\nnamespace kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int\
-    \ first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n     \
-    \   return std::vector<T>(first);\n    } else {\n        return std::vector<decltype(make_vector<T>(sizes...))>(first,\
+    \ 1\n\n#include <algorithm>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
+    \ <class T, class... Sizes> auto make_vector(int first, Sizes... sizes) {\n  \
+    \  if constexpr (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n\
+    \    } else {\n        return std::vector<decltype(make_vector<T>(sizes...))>(first,\
     \ make_vector<T>(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
     \ &v, const U &x) {\n    std::fill(std::begin(v), std::end(v), T(x));\n}\n\ntemplate\
     \ <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x)\
@@ -230,7 +241,8 @@ data:
   path: template/function_util.hpp
   requiredBy:
   - template/template.hpp
-  timestamp: '2024-12-09 19:28:50+09:00'
+  - template/procon.hpp
+  timestamp: '2024-12-15 15:04:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
@@ -276,10 +288,12 @@ data:
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - verify/yosupo_ds/ds_set_xor_min.test.cpp
   - verify/yosupo_string/string_number_of_substrings.test.cpp
   - verify/yosupo_string/string_suffix_array.test.cpp
   - verify/yosupo_string/string_z_algorithm.test.cpp

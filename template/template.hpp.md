@@ -73,57 +73,63 @@ data:
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
+    title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_set_xor_min.test.cpp
+    title: verify/yosupo_ds/ds_set_xor_min.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
   - icon: ':x:'
@@ -237,21 +243,19 @@ data:
   code: "#ifndef TEMPLATE\n#define TEMPLATE 1\n\n// #pragma GCC optimize(\"O3,unroll-loops\"\
     )\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <chrono>\n#include <cmath>\n#include\
-    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
-    \ <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n#include\
+    \ <deque>\n#include <functional>\n#include <iterator>\n#include <limits>\n#include\
     \ <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n#include <random>\n\
-    #include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n#include\
-    \ <tuple>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n#include \"fastio.hpp\"\n#include \"\
-    type_alias.hpp\"\n#include \"constant.hpp\"\n#include \"function_util.hpp\"\n\
-    #include \"macros.hpp\"\n#include \"io_util.hpp\"\n\nusing kk2::kendl;\nusing\
-    \ kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\\
-    n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"\
-    Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\\
-    n\");\n}\n\nvoid NO(bool b = 1) {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n\
-    }\n\nvoid yes(bool b = 1) {\n    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\n\
-    void no(bool b = 1) {\n    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#endif\
-    \ // TEMPLATE\n"
+    #include <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n\
+    #include <unordered_set>\n#include <utility>\n#include <vector>\n\n#include \"\
+    fastio.hpp\"\n#include \"type_alias.hpp\"\n#include \"constant.hpp\"\n#include\
+    \ \"function_util.hpp\"\n#include \"macros.hpp\"\n#include \"io_util.hpp\"\n\n\
+    using kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) {\n\
+    \    kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    kout\
+    \ << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    kout << (b\
+    \ ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    kout << (b ? \"\
+    NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    kout << (b ? \"yes\\\
+    n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout << (b ? \"no\\n\" : \"\
+    yes\\n\");\n}\n\n#endif // TEMPLATE\n"
   dependsOn:
   - template/fastio.hpp
   - type_traits/type_traits.hpp
@@ -263,7 +267,7 @@ data:
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2024-12-09 19:28:50+09:00'
+  timestamp: '2024-12-15 15:04:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
@@ -309,10 +313,12 @@ data:
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - verify/yosupo_ds/ds_set_xor_min.test.cpp
   - verify/yosupo_string/string_number_of_substrings.test.cpp
   - verify/yosupo_string/string_suffix_array.test.cpp
   - verify/yosupo_string/string_z_algorithm.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   _extendedRequiredBy:
@@ -12,12 +12,12 @@ data:
     path: graph/tree/euler_tour.hpp
     title: graph/tree/euler_tour.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/static_rmq.hpp\"\n\n\n\n#line 1 \"math/monoid/min.hpp\"\
@@ -110,7 +110,7 @@ data:
   requiredBy:
   - graph/tree/euler_tour.hpp
   timestamp: '2024-10-13 03:33:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp
 documentation_of: data_structure/static_rmq.hpp

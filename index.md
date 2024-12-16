@@ -49,13 +49,16 @@ data:
       title: convolution/zeta_mobius_transfrom.hpp
   - name: data_structure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
+    - icon: ':question:'
+      path: data_structure/binary_trie.hpp
+      title: data_structure/binary_trie.hpp
     - icon: ':warning:'
       path: data_structure/convex_hull_trick_add_monotone.hpp
       title: data_structure/convex_hull_trick_add_monotone.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/disjoint_sparse_table.hpp
       title: data_structure/disjoint_sparse_table.hpp
     - icon: ':warning:'
@@ -67,7 +70,7 @@ data:
     - icon: ':warning:'
       path: data_structure/my_bitset_old.hpp
       title: data_structure/my_bitset_old.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/prefix_sum.hpp
       title: data_structure/prefix_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -76,10 +79,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/prefix_sum_arbitrary.hpp
       title: data_structure/prefix_sum_arbitrary.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/sparse_table.hpp
       title: data_structure/sparse_table.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
     - icon: ':x:'
@@ -102,7 +105,7 @@ data:
     - icon: ':warning:'
       path: fps/find_root.hpp
       title: fps/find_root.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: fps/fps.hpp
       title: fps/fps.hpp
     - icon: ':warning:'
@@ -123,7 +126,7 @@ data:
     - icon: ':warning:'
       path: fps/multivariate_fps.hpp
       title: fps/multivariate_fps.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: fps/ntt_friendly.hpp
       title: fps/ntt_friendly.hpp
     - icon: ':warning:'
@@ -149,12 +152,12 @@ data:
       title: fps/to_newton_basis.hpp
   - name: functional
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: functional/reverse_args.hpp
       title: functional/reverse_args.hpp
   - name: geometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geometry/argument_sort.hpp
       title: geometry/argument_sort.hpp
     - icon: ':warning:'
@@ -163,10 +166,10 @@ data:
     - icon: ':warning:'
       path: geometry/line.hpp
       title: geometry/line.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geometry/point.hpp
       title: geometry/point.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geometry/static_convex_hull.hpp
       title: geometry/static_convex_hull.hpp
   - name: graph
@@ -261,7 +264,7 @@ data:
       title: math/rational.hpp
   - name: math/group
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/group/sum.hpp
       title: math/group/sum.hpp
   - name: math/homomorphism
@@ -269,7 +272,7 @@ data:
     - icon: ':warning:'
       path: math/homomorphism/add.hpp
       title: math/homomorphism/add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/homomorphism/affine.hpp
       title: math/homomorphism/affine.hpp
     - icon: ':warning:'
@@ -283,7 +286,7 @@ data:
     - icon: ':warning:'
       path: math/monoid/max_min_sum.hpp
       title: math/monoid/max_min_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/monoid/min.hpp
       title: math/monoid/min.hpp
   - name: math_mod
@@ -325,7 +328,7 @@ data:
       title: matrix/matrix_field.hpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: modint/modint.hpp
       title: modint/modint.hpp
     - icon: ':question:'
@@ -336,10 +339,10 @@ data:
       title: modint/mont_arb.hpp
   - name: others
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: others/coordinate_compression.hpp
       title: others/coordinate_compression.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: others/mo.hpp
       title: others/mo.hpp
     - icon: ':warning:'
@@ -373,10 +376,10 @@ data:
     - icon: ':warning:'
       path: segment_tree/dynamic_seg.hpp
       title: segment_tree/dynamic_seg.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp
     - icon: ':warning:'
@@ -396,7 +399,7 @@ data:
     - icon: ':warning:'
       path: segment_tree/utility/addsum.hpp
       title: segment_tree/utility/addsum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: segment_tree/utility/affinesum.hpp
       title: segment_tree/utility/affinesum.hpp
     - icon: ':warning:'
@@ -466,6 +469,9 @@ data:
     - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
+    - icon: ':warning:'
+      path: template/procon.hpp
+      title: template/procon.hpp
     - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
@@ -479,13 +485,13 @@ data:
       title: type_traits/type_traits.hpp
   - name: unionfind
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unionfind/potentialized.hpp
       title: unionfind/potentialized.hpp
     - icon: ':warning:'
       path: unionfind/rollback.hpp
       title: unionfind/rollback.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unionfind/unionfind.hpp
       title: unionfind/unionfind.hpp
   verificationCategories:
@@ -544,61 +550,67 @@ data:
   - name: verify/yosupo_ds
     pages:
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
+      title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
       title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
       title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
       title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
       title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
       title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: verify/yosupo_ds/ds_set_xor_min.test.cpp
+      title: verify/yosupo_ds/ds_set_xor_min.test.cpp
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
       title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_static_range_sum.test.cpp
       title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_static_rmq.test.cpp
       title: verify/yosupo_ds/ds_static_rmq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
       title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_unionfind.test.cpp
       title: verify/yosupo_ds/ds_unionfind.test.cpp
   - name: verify/yosupo_fps
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_exp.test.cpp
       title: verify/yosupo_fps/fps_exp.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
   - name: verify/yosupo_geometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_geometry/arg_sort.test.cpp
       title: verify/yosupo_geometry/arg_sort.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_geometry/static_convex_hull.test.cpp
       title: verify/yosupo_geometry/static_convex_hull.test.cpp
   - name: verify/yosupo_graph
