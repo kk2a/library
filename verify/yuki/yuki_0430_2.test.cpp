@@ -12,7 +12,7 @@ int main() {
     vc<string> c(m);
     kin >> c;
 
-    kk2::AhoCorasick<26, 'A'> ac;
+    kk2::AhoCorasick<26, 'A'> ac(100000);
     for (auto &x : c) ac.add(x);
     ac.build();
     auto each = ac.each_match(s);
