@@ -88,6 +88,9 @@ data:
     - icon: ':x:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
+    - icon: ':warning:'
+      path: data_structure/w_ary_tree.hpp
+      title: data_structure/w_ary_tree.hpp
   - name: fps
     pages:
     - icon: ':warning:'

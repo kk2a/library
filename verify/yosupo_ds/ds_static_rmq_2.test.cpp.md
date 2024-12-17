@@ -73,7 +73,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
   requiredBy: []
-  timestamp: '2024-12-17 15:24:03+09:00'
+  timestamp: '2024-12-17 23:15:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq_2.test.cpp
