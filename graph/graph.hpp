@@ -182,7 +182,7 @@ G reverse(const G &g) {
 }
 
 template <class T, class IStream, is_istream_t<IStream> * = nullptr>
-_Edges<T> &input(_Edges<T> &edges, IStream &is, bool is_one_indexed) {
+_Edges<T> &input(IStream &is, _Edges<T>& edges, bool is_one_indexed) {
     for (int i = 0; i < (int)edges.size(); i++) {
         int u, v;
         T w{};
