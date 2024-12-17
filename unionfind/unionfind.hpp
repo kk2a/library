@@ -1,6 +1,7 @@
 #ifndef UNIONFIND_HPP
 #define UNIONFIND_HPP 1
 
+#include <utility>
 #include <vector>
 
 namespace kk2 {
