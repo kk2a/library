@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'

@@ -33,10 +33,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,37 +45,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_subset.test.cpp
     title: verify/yosupo_convolution/convolution_subset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
   - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - icon: ':x:'
@@ -84,7 +84,7 @@ data:
   - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_set_xor_min.test.cpp
     title: verify/yosupo_ds/ds_set_xor_min.test.cpp
   - icon: ':x:'
@@ -99,19 +99,19 @@ data:
   - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':x:'
@@ -228,23 +228,33 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef TEMPLATE_IO_UTIL_HPP\n#define TEMPLATE_IO_UTIL_HPP 1\n\n#include\
     \ <array>\n#include <utility>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
-    \n\ntemplate <class IStream, class T, class U, kk2::is_istream_t<IStream> * =\
-    \ nullptr>\nIStream &operator>>(IStream &is, std::pair<T, U> &p) {\n    is >>\
-    \ p.first >> p.second;\n    return is;\n}\n\ntemplate <class OStream, class T,\
-    \ class U, kk2::is_ostream_t<OStream> * = nullptr>\nOStream &operator<<(OStream\
-    \ &os, const std::pair<T, U> &p) {\n    os << p.first << ' ' << p.second;\n  \
-    \  return os;\n}\n\ntemplate <class IStream, class T, kk2::is_istream_t<IStream>\
-    \ * = nullptr>\nIStream &operator>>(IStream &is, std::vector<T> &v) {\n    for\
-    \ (auto &x : v) is >> x;\n    return is;\n}\n\ntemplate <class OStream, class\
-    \ T, kk2::is_ostream_t<OStream> * = nullptr>\nOStream &operator<<(OStream &os,\
-    \ const std::vector<T> &v) {\n    for (int i = 0; i < (int)v.size(); i++) { os\
-    \ << v[i] << (i + 1 == (int)v.size() ? \"\" : \" \"); }\n    return os;\n}\n\n\
-    template <class IStream, class T, size_t F, kk2::is_istream_t<IStream> * = nullptr>\n\
-    IStream &operator>>(IStream &is, std::array<T, F> &a) {\n    for (auto &x : a)\
-    \ is >> x;\n    return is;\n}\n\ntemplate <class OStream, class T, size_t F, kk2::is_ostream_t<OStream>\
-    \ * = nullptr>\nOStream &operator<<(OStream &os, const std::array<T, F> &a) {\n\
-    \    for (int i = 0; i < (int)F; i++) { os << a[i] << (i + 1 == (int)F ? \"\"\
-    \ : \" \"); }\n    return os;\n}\n\n#endif // TEMPLATE_IO_UTIL_HPP\n"
+    \n\ntemplate <class IStream, class T, class U, kk2::is_istream_t<IStream> *>\n\
+    IStream &operator>>(IStream &is, std::pair<T, U> &p);\n\ntemplate <class OStream,\
+    \ class T, class U, kk2::is_ostream_t<OStream> *>\nOStream &operator<<(OStream\
+    \ &os, const std::pair<T, U> &p);\n\ntemplate <class IStream, class T, kk2::is_istream_t<IStream>\
+    \ *>\nIStream &operator>>(IStream &is, std::vector<T> &v);\n\ntemplate <class\
+    \ OStream, class T, kk2::is_ostream_t<OStream> *>\nOStream &operator<<(OStream\
+    \ &os, const std::vector<T> &v);\n\ntemplate <class IStream, class T, size_t F,\
+    \ kk2::is_istream_t<IStream> *>\nIStream &operator>>(IStream &is, std::array<T,\
+    \ F> &a);\n\ntemplate <class OStream, class T, size_t F, kk2::is_ostream_t<OStream>\
+    \ *>\nOStream &operator<<(OStream &os, const std::array<T, F> &a);\n\ntemplate\
+    \ <class IStream, class T, class U, kk2::is_istream_t<IStream> * = nullptr>\n\
+    IStream &operator>>(IStream &is, std::pair<T, U> &p) {\n    is >> p.first >> p.second;\n\
+    \    return is;\n}\n\ntemplate <class OStream, class T, class U, kk2::is_ostream_t<OStream>\
+    \ * = nullptr>\nOStream &operator<<(OStream &os, const std::pair<T, U> &p) {\n\
+    \    os << p.first << ' ' << p.second;\n    return os;\n}\n\ntemplate <class IStream,\
+    \ class T, kk2::is_istream_t<IStream> * = nullptr>\nIStream &operator>>(IStream\
+    \ &is, std::vector<T> &v) {\n    for (T &x : v) is >> x;\n    return is;\n}\n\n\
+    template <class OStream, class T, kk2::is_ostream_t<OStream> * = nullptr>\nOStream\
+    \ &operator<<(OStream &os, const std::vector<T> &v) {\n    for (int i = 0; i <\
+    \ (int)v.size(); i++) { os << v[i] << (i + 1 == (int)v.size() ? \"\" : \" \");\
+    \ }\n    return os;\n}\n\ntemplate <class IStream, class T, size_t F, kk2::is_istream_t<IStream>\
+    \ * = nullptr>\nIStream &operator>>(IStream &is, std::array<T, F> &a) {\n    for\
+    \ (auto &x : a) is >> x;\n    return is;\n}\n\ntemplate <class OStream, class\
+    \ T, size_t F, kk2::is_ostream_t<OStream> * = nullptr>\nOStream &operator<<(OStream\
+    \ &os, const std::array<T, F> &a) {\n    for (int i = 0; i < (int)F; i++) { os\
+    \ << a[i] << (i + 1 == (int)F ? \"\" : \" \"); }\n    return os;\n}\n\n#endif\
+    \ // TEMPLATE_IO_UTIL_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -252,7 +262,7 @@ data:
   requiredBy:
   - template/template.hpp
   - template/procon.hpp
-  timestamp: '2024-12-09 19:28:50+09:00'
+  timestamp: '2024-12-17 15:24:03+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp

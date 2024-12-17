@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':x:'
@@ -108,7 +108,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/many_factrials.test.cpp
   requiredBy: []
-  timestamp: '2024-12-15 15:04:17+09:00'
+  timestamp: '2024-12-17 15:24:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/many_factrials.test.cpp

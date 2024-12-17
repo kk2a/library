@@ -123,8 +123,8 @@ data:
     \     else edges.emplace_back(to, cost, from, id);\n    }\n};\n\ntemplate <class\
     \ G>\nG reverse(const G &g) {\n    G res(g.num_vertices());\n    for (auto &&e\
     \ : g.edges) res.add_edge(e.to, e.from, e.cost);\n    return res;\n}\n\ntemplate\
-    \ <class T, class IStream, is_istream_t<IStream> * = nullptr>\n_Edges<T> &input(_Edges<T>\
-    \ &edges, IStream &is, bool is_one_indexed) {\n    for (int i = 0; i < (int)edges.size();\
+    \ <class T, class IStream, is_istream_t<IStream> * = nullptr>\n_Edges<T> &input(IStream\
+    \ &is, _Edges<T>& edges, bool is_one_indexed) {\n    for (int i = 0; i < (int)edges.size();\
     \ i++) {\n        int u, v;\n        T w{};\n        is >> u >> v;\n        if\
     \ (is_one_indexed) --u, --v;\n        if constexpr (!std::is_same_v<T, empty>)\
     \ is >> w;\n        edges[i] = _Edge<T>(v, w, u, i);\n    }\n    return edges;\n\
@@ -144,7 +144,7 @@ data:
   path: graph/graph.hpp
   requiredBy:
   - random/graph.hpp
-  timestamp: '2024-12-09 19:28:23+09:00'
+  timestamp: '2024-12-17 15:23:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp

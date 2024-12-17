@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data_structure/binary_indexed_tree.hpp
     title: data_structure/binary_indexed_tree.hpp
   - icon: ':x:'
@@ -90,7 +90,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
   requiredBy: []
-  timestamp: '2024-12-15 15:04:17+09:00'
+  timestamp: '2024-12-17 15:24:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_range_inversions.test.cpp

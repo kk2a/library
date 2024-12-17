@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: random/graph.hpp
   requiredBy: []
-  timestamp: '2024-12-09 19:28:23+09:00'
+  timestamp: '2024-12-17 15:23:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/graph.hpp

@@ -50,8 +50,10 @@ data:
     \n\n#ifndef INPUT_FILE\n#define INPUT_FILE \"in.txt\"\n#endif\n#ifndef OUTPUT_FILE\n\
     #define OUTPUT_FILE \"out.txt\"\n#endif\n\n#ifdef KK2\nstd::ifstream kin(INPUT_FILE);\n\
     std::ofstream kout(OUTPUT_FILE);\nauto (*kendl)(std::ostream &) = std::endl<char,\
-    \ std::char_traits<char>>;\n#else\nauto &kin = std::cin;\nauto &kout = std::cout;\n\
-    auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n#endif\n\
+    \ std::char_traits<char>>;\n#else\nstruct FastIOSetUp {\n    FastIOSetUp() {\n\
+    \        std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);  \n\
+    \    }\n} fast_io_set_up;\nauto &kin = std::cin;\nauto &kout = std::cout;\nauto\
+    \ (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n#endif\n\
     \nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid\
     \ No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool\
     \ b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1)\
@@ -68,7 +70,7 @@ data:
   isVerificationFile: false
   path: template/procon.hpp
   requiredBy: []
-  timestamp: '2024-12-15 15:04:17+09:00'
+  timestamp: '2024-12-17 15:24:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/procon.hpp

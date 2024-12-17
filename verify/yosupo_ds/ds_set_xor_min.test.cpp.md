@@ -30,9 +30,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -74,8 +74,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2024-12-16 22:37:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-12-17 15:24:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_set_xor_min.test.cpp
 layout: document

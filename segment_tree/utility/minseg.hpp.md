@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
   _extendedRequiredBy: []
