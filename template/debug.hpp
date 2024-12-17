@@ -21,6 +21,70 @@ namespace debug {
 
 #ifdef KK2
 
+template <class OStream, is_ostream_t<OStream> *> void output(OStream &os);
+
+template <class OStream, class T, is_ostream_t<OStream> *> void output(OStream &os, const T &t);
+
+template <class OStream, class T, is_ostream_t<OStream> *>
+void output(OStream &os, const std::vector<T> &v);
+
+template <class OStream, class T, size_t F, is_ostream_t<OStream> *>
+void output(OStream &os, const std::array<T, F> &a);
+
+template <class OStream, class T, class U, is_ostream_t<OStream> *>
+void output(OStream &os, const std::pair<T, U> &p);
+
+template <class OStream, class T, is_ostream_t<OStream> *>
+void output(OStream &os, const std::queue<T> &q);
+
+template <class OStream, class T, class Container, class Compare, is_ostream_t<OStream> *>
+void output(OStream &os, const std::priority_queue<T, Container, Compare> &q);
+
+template <class OStream, class T, is_ostream_t<OStream> *>
+void output(OStream &os, const std::deque<T> &d);
+
+template <class OStream, class T, is_ostream_t<OStream> *>
+void output(OStream &os, const std::stack<T> &s);
+
+template <class OStream, class Key, class Compare, class Allocator, is_ostream_t<OStream> *>
+void output(OStream &os, const std::set<Key, Compare, Allocator> &s);
+
+template <class OStream, class Key, class Compare, class Allocator, is_ostream_t<OStream> *>
+void output(OStream &os, const std::multiset<Key, Compare, Allocator> &s);
+
+template <class OStream,
+          class Key,
+          class Hash,
+          class KeyEqual,
+          class Allocator,
+          is_ostream_t<OStream> *>
+void output(OStream &os, const std::unordered_set<Key, Hash, KeyEqual, Allocator> &s);
+
+template <class OStream,
+          class Key,
+          class Hash,
+          class KeyEqual,
+          class Allocator,
+          is_ostream_t<OStream> *>
+void output(OStream &os, const std::unordered_multiset<Key, Hash, KeyEqual, Allocator> &s);
+
+template <class OStream,
+          class Key,
+          class T,
+          class Compare,
+          class Allocator,
+          is_ostream_t<OStream> *>
+void output(OStream &os, const std::map<Key, T, Compare, Allocator> &m);
+
+template <class OStream,
+          class Key,
+          class T,
+          class Hash,
+          class KeyEqual,
+          class Allocator,
+          is_ostream_t<OStream> *>
+void output(OStream &os, const std::unordered_map<Key, T, Hash, KeyEqual, Allocator> &m);
+
 template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) {
 }
 
@@ -48,7 +112,7 @@ void output(OStream &os, const std::array<T, F> &a) {
     }
     os << "]";
 }
-    
+
 template <class OStream, class T, class U, is_ostream_t<OStream> * = nullptr>
 void output(OStream &os, const std::pair<T, U> &p) {
     os << "(";
