@@ -42,6 +42,12 @@ std::ifstream kin(INPUT_FILE);
 std::ofstream kout(OUTPUT_FILE);
 auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
 #else
+struct FastIOSetUp {
+    FastIOSetUp() {
+        std::ios::sync_with_stdio(false);
+        std::cin.tie(nullptr);  
+    }
+} fast_io_set_up;
 auto &kin = std::cin;
 auto &kout = std::cout;
 auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
