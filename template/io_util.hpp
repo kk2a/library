@@ -7,23 +7,23 @@
 
 #include "../type_traits/type_traits.hpp"
 
-template <class IStream, class T, class U, kk2::is_istream_t<IStream> *>
-IStream &operator>>(IStream &is, std::pair<T, U> &p);
+// template <class IStream, class T, class U, kk2::is_istream_t<IStream> *>
+// IStream &operator>>(IStream &is, std::pair<T, U> &p);
 
-template <class OStream, class T, class U, kk2::is_ostream_t<OStream> *>
-OStream &operator<<(OStream &os, const std::pair<T, U> &p);
+// template <class OStream, class T, class U, kk2::is_ostream_t<OStream> *>
+// OStream &operator<<(OStream &os, const std::pair<T, U> &p);
 
-template <class IStream, class T, kk2::is_istream_t<IStream> *>
-IStream &operator>>(IStream &is, std::vector<T> &v);
+// template <class IStream, class T, kk2::is_istream_t<IStream> *>
+// IStream &operator>>(IStream &is, std::vector<T> &v);
 
-template <class OStream, class T, kk2::is_ostream_t<OStream> *>
-OStream &operator<<(OStream &os, const std::vector<T> &v);
+// template <class OStream, class T, kk2::is_ostream_t<OStream> *>
+// OStream &operator<<(OStream &os, const std::vector<T> &v);
 
-template <class IStream, class T, size_t F, kk2::is_istream_t<IStream> *>
-IStream &operator>>(IStream &is, std::array<T, F> &a);
+// template <class IStream, class T, size_t F, kk2::is_istream_t<IStream> *>
+// IStream &operator>>(IStream &is, std::array<T, F> &a);
 
-template <class OStream, class T, size_t F, kk2::is_ostream_t<OStream> *>
-OStream &operator<<(OStream &os, const std::array<T, F> &a);
+// template <class OStream, class T, size_t F, kk2::is_ostream_t<OStream> *>
+// OStream &operator<<(OStream &os, const std::array<T, F> &a);
 
 template <class IStream, class T, class U, kk2::is_istream_t<IStream> * = nullptr>
 IStream &operator>>(IStream &is, std::pair<T, U> &p) {
