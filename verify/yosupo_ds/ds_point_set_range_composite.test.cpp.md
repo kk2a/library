@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
   - icon: ':question:'
@@ -90,7 +90,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-12-18 11:39:16+09:00'
+  timestamp: '2024-12-18 13:24:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite.test.cpp

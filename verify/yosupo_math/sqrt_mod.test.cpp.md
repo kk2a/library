@@ -75,7 +75,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-12-18 11:39:16+09:00'
+  timestamp: '2024-12-18 13:24:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/sqrt_mod.test.cpp
