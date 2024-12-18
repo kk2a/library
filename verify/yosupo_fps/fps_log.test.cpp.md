@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'
@@ -48,9 +48,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
@@ -96,8 +96,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log.test.cpp
   requiredBy: []
-  timestamp: '2024-12-17 23:15:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-18 11:39:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log.test.cpp
 layout: document

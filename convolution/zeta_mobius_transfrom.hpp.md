@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/bitand1.hpp
     title: convolution/bitand1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/bitor1.hpp
     title: convolution/bitor1.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/zeta_mobius_transfrom.hpp\"\n\n\n\n#include\
@@ -61,7 +61,7 @@ data:
   - convolution/bitor1.hpp
   - convolution/bitand1.hpp
   timestamp: '2024-10-01 04:14:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_or.test.cpp

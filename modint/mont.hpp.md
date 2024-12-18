@@ -5,20 +5,20 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
   - icon: ':warning:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,25 +27,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_subset.test.cpp
     title: verify/yosupo_convolution/convolution_subset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - icon: ':x:'
@@ -54,16 +54,16 @@ data:
   - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':x:'

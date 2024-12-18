@@ -88,7 +88,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-12-17 23:15:55+09:00'
+  timestamp: '2024-12-18 11:39:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_set_range_composite.test.cpp

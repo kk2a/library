@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution
@@ -93,8 +93,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   requiredBy: []
-  timestamp: '2024-12-17 23:15:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-12-18 11:39:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
 layout: document
