@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/utility/sumseg.hpp
     title: segment_tree/utility/sumseg.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -83,8 +83,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-12-18 13:24:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-12-18 14:57:37+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
 layout: document

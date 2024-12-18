@@ -127,19 +127,20 @@ data:
     \ os << \", \";\n    }\n    os << \"}\";\n}\n\ntemplate <class OStream, class\
     \ T, class... Args, is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os,\
     \ const T &t, const Args &...args) {\n    output(os, t);\n    os << ' ';\n   \
-    \ output(os, args...);\n}\n\ntemplate <class OStream, class... Args, is_ostream_t<OStream>\
-    \ * = nullptr>\nvoid outputln(OStream &os, const Args &...args) {\n    output(os,\
-    \ args...);\n    os << '\\n';\n}\n\n#else\ntemplate <class OStream, class... Args,\
-    \ is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os, const Args &...args)\
-    \ {\n}\n\ntemplate <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>\n\
-    void outputln(OStream &os, const Args &...args) {\n}\n\n#endif // KK2\n\n} //\
-    \ namespace debug\n\n} // namespace kk2\n\n#endif // TEMPLATE_DEBUG_HPP\n"
+    \ output(os, args...);\n}\n\ntemplate <class OStream, class T, class... Args,\
+    \ is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &os, const Args &...args)\
+    \ {\n    output(os, args...);\n    os << '\\n';\n    // os.flush();\n}\n\n#else\n\
+    template <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>\nvoid\
+    \ output(OStream &os, const Args &...args) {\n}\n\ntemplate <class OStream, class...\
+    \ Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &os, const Args\
+    \ &...args) {\n}\n\n#endif // KK2\n\n} // namespace debug\n\n} // namespace kk2\n\
+    \n#endif // TEMPLATE_DEBUG_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: template/debug.hpp
   requiredBy: []
-  timestamp: '2024-12-17 15:24:03+09:00'
+  timestamp: '2024-12-18 14:57:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp

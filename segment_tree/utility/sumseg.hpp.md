@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/utility/sumseg.hpp\"\n\n\n\n#line 1 \"math/group/sum.hpp\"\
@@ -117,7 +117,7 @@ data:
   path: segment_tree/utility/sumseg.hpp
   requiredBy: []
   timestamp: '2024-10-22 04:14:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
 documentation_of: segment_tree/utility/sumseg.hpp
