@@ -274,10 +274,11 @@ void output(OStream &os, const T &t, const Args &...args) {
     output(os, args...);
 }
 
-template <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>
+template <class OStream, class T, class... Args, is_ostream_t<OStream> * = nullptr>
 void outputln(OStream &os, const Args &...args) {
     output(os, args...);
     os << '\n';
+    // os.flush();
 }
 
 #else

@@ -66,15 +66,39 @@ struct write {
 
 } // namespace impl
 
-template <class IStream, class T, kk2::is_istream_t<IStream> * = nullptr>
-IStream &operator>>(IStream &is, T &x) {
-    impl::read::all_read(is, x);
+template <class IStream, class T, class U, kk2::is_istream_t<IStream> * = nullptr>
+IStream &operator>>(IStream &is, std::pair<T, U> &p) {
+    impl::read::all_read(is, p);
     return is;
 }
 
+template <class IStream, class T, kk2::is_istream_t<IStream> * = nullptr>
+IStream &operator>>(IStream &is, std::vector<T> &v) {
+    impl::read::all_read(is, v);
+    return is;
+}
+
+template <class IStream, class T, size_t F, kk2::is_istream_t<IStream> * = nullptr>
+IStream &operator>>(IStream &is, std::array<T, F> &a) {
+    impl::read::all_read(is, a);
+    return is;
+}
+
+template <class OStream, class T, class U, kk2::is_ostream_t<OStream> * = nullptr>
+OStream &operator<<(OStream &os, const std::pair<T, U> &p) {
+    impl::write::all_write(os, p);
+    return os;
+}
+
 template <class OStream, class T, kk2::is_ostream_t<OStream> * = nullptr>
-OStream &operator<<(OStream &os, const T &x) {
-    impl::write::all_write(os, x);
+OStream &operator<<(OStream &os, const std::vector<T> &v) {
+    impl::write::all_write(os, v);
+    return os;
+}
+
+template <class OStream, class T, size_t F, kk2::is_ostream_t<OStream> * = nullptr>
+OStream &operator<<(OStream &os, const std::array<T, F> &a) {
+    impl::write::all_write(os, a);
     return os;
 }
 
