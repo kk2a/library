@@ -61,86 +61,90 @@ data:
     void output(OStream &os, const T &t) {\n    os << t;\n}\n\ntemplate <class OStream,\
     \ class T, is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os, const\
     \ std::vector<T> &v) {\n    os << \"[\";\n    for (int i = 0; i < (int)v.size();\
-    \ i++) {\n        os << v[i];\n        if (i + 1 != (int)v.size()) os << \", \"\
-    ;\n    }\n    os << \"]\";\n}\n\ntemplate <class OStream, class T, size_t F, is_ostream_t<OStream>\
-    \ * = nullptr>\nvoid output(OStream &os, const std::array<T, F> &a) {\n    os\
-    \ << \"[\";\n    for (int i = 0; i < (int)F; i++) {\n        os << a[i];\n   \
-    \     if (i + 1 != (int)F) os << \", \";\n    }\n    os << \"]\";\n}\n\ntemplate\
-    \ <class OStream, class T, class U, is_ostream_t<OStream> * = nullptr>\nvoid output(OStream\
-    \ &os, const std::pair<T, U> &p) {\n    os << \"(\";\n    os << p.first << \"\
-    , \" << p.second;\n    os << \")\";\n}\n\ntemplate <class OStream, class T, is_ostream_t<OStream>\
+    \ i++) {\n        output(os, v[i]);\n        if (i + 1 != (int)v.size()) os <<\
+    \ \", \";\n    }\n    os << \"]\";\n}\n\ntemplate <class OStream, class T, size_t\
+    \ F, is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os, const std::array<T,\
+    \ F> &a) {\n    os << \"[\";\n    for (int i = 0; i < (int)F; i++) {\n       \
+    \ output(os, a[i]);\n        if (i + 1 != (int)F) os << \", \";\n    }\n    os\
+    \ << \"]\";\n}\n\ntemplate <class OStream, class T, class U, is_ostream_t<OStream>\
+    \ * = nullptr>\nvoid output(OStream &os, const std::pair<T, U> &p) {\n    os <<\
+    \ \"(\";\n    output(os, p.first);\n    os << \", \";\n    output(os, p.second);\n\
+    \    os << \")\";\n}\n\ntemplate <class OStream, class T, is_ostream_t<OStream>\
     \ * = nullptr>\nvoid output(OStream &os, const std::queue<T> &q) {\n    os <<\
-    \ \"[\";\n    std::queue<T> tmp = q;\n    while (!tmp.empty()) {\n        os <<\
-    \ tmp.front();\n        tmp.pop();\n        if (!tmp.empty()) os << \", \";\n\
+    \ \"[\";\n    std::queue<T> tmp = q;\n    while (!tmp.empty()) {\n        output(os,\
+    \ tmp.front());\n        tmp.pop();\n        if (!tmp.empty()) os << \", \";\n\
     \    }\n    os << \"]\";\n}\n\ntemplate <class OStream, class T, class Container,\
     \ class Compare, is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os,\
     \ const std::priority_queue<T, Container, Compare> &q) {\n    os << \"[\";\n \
     \   std::priority_queue<T, Container, Compare> tmp = q;\n    while (!tmp.empty())\
-    \ {\n        os << tmp.top();\n        tmp.pop();\n        if (!tmp.empty()) os\
-    \ << \", \";\n    }\n    os << \"]\";\n}\n\ntemplate <class OStream, class T,\
-    \ is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os, const std::deque<T>\
+    \ {\n        output(os, tmp.top());\n        tmp.pop();\n        if (!tmp.empty())\
+    \ os << \", \";\n    }\n    os << \"]\";\n}\n\ntemplate <class OStream, class\
+    \ T, is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os, const std::deque<T>\
     \ &d) {\n    os << \"[\";\n    std::deque<T> tmp = d;\n    while (!tmp.empty())\
-    \ {\n        os << tmp.front();\n        tmp.pop_front();\n        if (!tmp.empty())\
+    \ {\n        output(os, tmp.front());\n        tmp.pop_front();\n        if (!tmp.empty())\
     \ os << \", \";\n    }\n    os << \"]\";\n}\n\ntemplate <class OStream, class\
     \ T, is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os, const std::stack<T>\
     \ &s) {\n    os << \"[\";\n    std::stack<T> tmp = s;\n    std::vector<T> v;\n\
     \    while (!tmp.empty()) {\n        v.push_back(tmp.top());\n        tmp.pop();\n\
-    \    }\n    for (int i = (int)v.size() - 1; i >= 0; i--) {\n        os << v[i];\n\
-    \        if (i != 0) os << \", \";\n    }\n    os << \"]\";\n}\n\ntemplate <class\
-    \ OStream,\n          class Key,\n          class Compare,\n          class Allocator,\n\
-    \          is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os, const\
-    \ std::set<Key, Compare, Allocator> &s) {\n    os << \"{\";\n    std::set<Key,\
+    \    }\n    for (int i = (int)v.size() - 1; i >= 0; i--) {\n        output(os,\
+    \ v[i]);\n        if (i != 0) os << \", \";\n    }\n    os << \"]\";\n}\n\ntemplate\
+    \ <class OStream,\n          class Key,\n          class Compare,\n          class\
+    \ Allocator,\n          is_ostream_t<OStream> * = nullptr>\nvoid output(OStream\
+    \ &os, const std::set<Key, Compare, Allocator> &s) {\n    os << \"{\";\n    std::set<Key,\
     \ Compare, Allocator> tmp = s;\n    for (auto it = tmp.begin(); it != tmp.end();\
-    \ ++it) {\n        os << *it;\n        if (std::next(it) != tmp.end()) os << \"\
-    , \";\n    }\n    os << \"}\";\n}\n\ntemplate <class OStream,\n          class\
-    \ Key,\n          class Compare,\n          class Allocator,\n          is_ostream_t<OStream>\
-    \ * = nullptr>\nvoid output(OStream &os, const std::multiset<Key, Compare, Allocator>\
-    \ &s) {\n    os << \"{\";\n    std::multiset<Key, Compare, Allocator> tmp = s;\n\
-    \    for (auto it = tmp.begin(); it != tmp.end(); ++it) {\n        os << *it;\n\
-    \        if (std::next(it) != tmp.end()) os << \", \";\n    }\n    os << \"}\"\
-    ;\n}\n\ntemplate <class OStream,\n          class Key,\n          class Hash,\n\
-    \          class KeyEqual,\n          class Allocator,\n          is_ostream_t<OStream>\
-    \ * = nullptr>\nvoid output(OStream &os, const std::unordered_set<Key, Hash, KeyEqual,\
-    \ Allocator> &s) {\n    os << \"{\";\n    std::unordered_set<Key, Hash, KeyEqual,\
+    \ ++it) {\n        output(os, *it);\n        if (std::next(it) != tmp.end()) os\
+    \ << \", \";\n    }\n    os << \"}\";\n}\n\ntemplate <class OStream,\n       \
+    \   class Key,\n          class Compare,\n          class Allocator,\n       \
+    \   is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os, const std::multiset<Key,\
+    \ Compare, Allocator> &s) {\n    os << \"{\";\n    std::multiset<Key, Compare,\
     \ Allocator> tmp = s;\n    for (auto it = tmp.begin(); it != tmp.end(); ++it)\
-    \ {\n        os << *it;\n        if (std::next(it) != tmp.end()) os << \", \"\
-    ;\n    }\n    os << \"}\";\n}\n\ntemplate <class OStream,\n          class Key,\n\
-    \          class Hash,\n          class KeyEqual,\n          class Allocator,\n\
+    \ {\n        output(os, *it);\n        if (std::next(it) != tmp.end()) os << \"\
+    , \";\n    }\n    os << \"}\";\n}\n\ntemplate <class OStream,\n          class\
+    \ Key,\n          class Hash,\n          class KeyEqual,\n          class Allocator,\n\
     \          is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os, const\
-    \ std::unordered_multiset<Key, Hash, KeyEqual, Allocator> &s) {\n    os << \"\
-    {\";\n    std::unordered_multiset<Key, Hash, KeyEqual, Allocator> tmp = s;\n \
-    \   for (auto it = tmp.begin(); it != tmp.end(); ++it) {\n        os << *it;\n\
-    \        if (std::next(it) != tmp.end()) os << \", \";\n    }\n    os << \"}\"\
-    ;\n}\n\ntemplate <class OStream,\n          class Key,\n          class T,\n \
-    \         class Compare,\n          class Allocator,\n          is_ostream_t<OStream>\
-    \ * = nullptr>\nvoid output(OStream &os, const std::map<Key, T, Compare, Allocator>\
-    \ &m) {\n    os << \"{\";\n    std::map<Key, T, Compare, Allocator> tmp = m;\n\
-    \    for (auto it = tmp.begin(); it != tmp.end(); ++it) {\n        os << it->first\
-    \ << \": \" << it->second;\n        if (std::next(it) != tmp.end()) os << \",\
-    \ \";\n    }\n    os << \"}\";\n}\n\ntemplate <class OStream,\n          class\
-    \ Key,\n          class T,\n          class Hash,\n          class KeyEqual,\n\
-    \          class Allocator,\n          is_ostream_t<OStream> * = nullptr>\nvoid\
-    \ output(OStream &os, const std::unordered_map<Key, T, Hash, KeyEqual, Allocator>\
+    \ std::unordered_set<Key, Hash, KeyEqual, Allocator> &s) {\n    os << \"{\";\n\
+    \    std::unordered_set<Key, Hash, KeyEqual, Allocator> tmp = s;\n    for (auto\
+    \ it = tmp.begin(); it != tmp.end(); ++it) {\n        output(os, *it);\n     \
+    \   if (std::next(it) != tmp.end()) os << \", \";\n    }\n    os << \"}\";\n}\n\
+    \ntemplate <class OStream,\n          class Key,\n          class Hash,\n    \
+    \      class KeyEqual,\n          class Allocator,\n          is_ostream_t<OStream>\
+    \ * = nullptr>\nvoid output(OStream &os, const std::unordered_multiset<Key, Hash,\
+    \ KeyEqual, Allocator> &s) {\n    os << \"{\";\n    std::unordered_multiset<Key,\
+    \ Hash, KeyEqual, Allocator> tmp = s;\n    for (auto it = tmp.begin(); it != tmp.end();\
+    \ ++it) {\n        output(os, *it);\n        if (std::next(it) != tmp.end()) os\
+    \ << \", \";\n    }\n    os << \"}\";\n}\n\ntemplate <class OStream,\n       \
+    \   class Key,\n          class T,\n          class Compare,\n          class\
+    \ Allocator,\n          is_ostream_t<OStream> * = nullptr>\nvoid output(OStream\
+    \ &os, const std::map<Key, T, Compare, Allocator> &m) {\n    os << \"{\";\n  \
+    \  std::map<Key, T, Compare, Allocator> tmp = m;\n    for (auto it = tmp.begin();\
+    \ it != tmp.end(); ++it) {\n        output(os, it->first);\n        os << \":\
+    \ \";\n        output(os, it->second);\n        if (std::next(it) != tmp.end())\
+    \ os << \", \";\n    }\n    os << \"}\";\n}\n\ntemplate <class OStream,\n    \
+    \      class Key,\n          class T,\n          class Hash,\n          class\
+    \ KeyEqual,\n          class Allocator,\n          is_ostream_t<OStream> * = nullptr>\n\
+    void output(OStream &os, const std::unordered_map<Key, T, Hash, KeyEqual, Allocator>\
     \ &m) {\n    os << \"{\";\n    std::unordered_map<Key, T, Hash, KeyEqual, Allocator>\
     \ tmp = m;\n    for (auto it = tmp.begin(); it != tmp.end(); ++it) {\n       \
-    \ os << it->first << \": \" << it->second;\n        if (std::next(it) != tmp.end())\
-    \ os << \", \";\n    }\n    os << \"}\";\n}\n\ntemplate <class OStream, class\
-    \ T, class... Args, is_ostream_t<OStream> * = nullptr>\nvoid output(OStream &os,\
-    \ const T &t, const Args &...args) {\n    output(os, t);\n    os << ' ';\n   \
-    \ output(os, args...);\n}\n\ntemplate <class OStream, class T, class... Args,\
-    \ is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &os, const Args &...args)\
-    \ {\n    output(os, args...);\n    os << '\\n';\n    // os.flush();\n}\n\n#else\n\
-    template <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>\nvoid\
-    \ output(OStream &os, const Args &...args) {\n}\n\ntemplate <class OStream, class...\
-    \ Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &os, const Args\
-    \ &...args) {\n}\n\n#endif // KK2\n\n} // namespace debug\n\n} // namespace kk2\n\
-    \n#endif // TEMPLATE_DEBUG_HPP\n"
+    \ output(os, it->first);\n        os << \": \";\n        output(os, it->second);\n\
+    \        if (std::next(it) != tmp.end()) os << \", \";\n    }\n    os << \"}\"\
+    ;\n}\n\ntemplate <class OStream, class T, class... Args, is_ostream_t<OStream>\
+    \ * = nullptr>\nvoid output(OStream &os, const T &t, const Args &...args) {\n\
+    \    output(os, t);\n    os << ' ';\n    output(os, args...);\n}\n\ntemplate <class\
+    \ OStream, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &os) {\n\
+    \    os << '\\n';\n    // os.flush();\n}\n\ntemplate <class OStream, class T,\
+    \ class... Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &os,\
+    \ const T& t, const Args &...args) {\n    output(os, t, args...);\n    os << '\\\
+    n';\n    os.flush();\n}\n\n#else\ntemplate <class OStream, class... Args, is_ostream_t<OStream>\
+    \ * = nullptr>\nvoid output(OStream &os, const Args &...args) {\n}\n\ntemplate\
+    \ <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream\
+    \ &os, const Args &...args) {\n}\n\n#endif // KK2\n\n} // namespace debug\n\n\
+    } // namespace kk2\n\n#endif // TEMPLATE_DEBUG_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: template/debug.hpp
   requiredBy: []
-  timestamp: '2024-12-18 14:57:37+09:00'
+  timestamp: '2024-12-19 13:46:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp

@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-    title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: template/procon.hpp
+    title: template/procon.hpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -25,23 +25,28 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef FUNCTIONAL_REV_HPP\n#define FUNCTIONAL_REV_HPP 1\n\n#include \"../type_traits/type_traits.hpp\"\
-    \n\nnamespace kk2 {\n\n// reverse_args<f>(y, x) = f(x, y)\ntemplate <auto f, is_two_args_function_pointer_t<decltype(f)>\
-    \ * = nullptr>\nauto reverse_args(auto x, auto y) {\n    return f(y, x);\n}\n\n\
-    } // namespace kk2\n\n#endif // FUNCTIONAL_REV_HPP\n"
+  code: "#ifndef TEMPLATE_SIMPLEIO_HPP\n#define TEMPLATE_SIMPLEIO_HPP 1\n\n#include\
+    \ <fstream>\n#include <string>\n\n#include \"../type_traits/type_traits.hpp\"\n\
+    \nnamespace kk2 {\n\nstruct SimplePrinter : type_traits::ostream_tag {\n  private:\n\
+    \    std::ofstream out;\n\n  public:\n    SimplePrinter(const char *s) : out(s)\
+    \ {}\n\n    template <class T> SimplePrinter &operator<<(const T &x) {\n     \
+    \   out << x;\n        return *this;\n    }\n\n    SimplePrinter &operator<<(std::ostream\
+    \ &(*f)(std::ostream &)) {\n        out << f;\n        return *this;\n    }\n\n\
+    \    void flush() { out << std::flush; }\n};\n\n} // namespace kk2\n\n#endif //\
+    \ TEMPLATE_SIMPLEIO_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
-  path: functional/reverse_args.hpp
-  requiredBy: []
-  timestamp: '2024-12-08 12:34:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-documentation_of: functional/reverse_args.hpp
+  path: template/simpleio.hpp
+  requiredBy:
+  - template/procon.hpp
+  timestamp: '2024-12-19 13:46:35+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: template/simpleio.hpp
 layout: document
 redirect_from:
-- /library/functional/reverse_args.hpp
-- /library/functional/reverse_args.hpp.html
-title: functional/reverse_args.hpp
+- /library/template/simpleio.hpp
+- /library/template/simpleio.hpp.html
+title: template/simpleio.hpp
 ---

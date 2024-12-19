@@ -9,9 +9,15 @@ data:
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   - icon: ':x:'
+    path: data_structure/w_ary_tree.hpp
+    title: data_structure/w_ary_tree.hpp
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
+    title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
@@ -65,6 +71,7 @@ data:
   path: bit/bitcount.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
+  - data_structure/w_ary_tree.hpp
   - data_structure/my_bitset.hpp
   timestamp: '2024-12-08 12:34:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
@@ -73,6 +80,7 @@ data:
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp
+  - verify/yosupo_ds/ds_predecessor_problem.test.cpp
 documentation_of: bit/bitcount.hpp
 layout: document
 redirect_from:

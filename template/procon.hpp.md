@@ -13,6 +13,9 @@ data:
   - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
+  - icon: ':warning:'
+    path: template/simpleio.hpp
+    title: template/simpleio.hpp
   - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
@@ -45,32 +48,33 @@ data:
     #include <iostream>\n#include <iterator>\n#include <map>\n#include <numeric>\n\
     #include <optional>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
     \ <string>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n#include \"type_alias.hpp\"\n#include \"constant.hpp\"\n\
-    #include \"function_util.hpp\"\n#include \"macros.hpp\"\n#include \"io_util.hpp\"\
-    \n\n#ifndef INPUT_FILE\n#define INPUT_FILE \"in.txt\"\n#endif\n#ifndef OUTPUT_FILE\n\
-    #define OUTPUT_FILE \"out.txt\"\n#endif\n\n#ifdef KK2\nstd::ifstream kin(INPUT_FILE);\n\
-    std::ofstream kout(OUTPUT_FILE);\nauto (*kendl)(std::ostream &) = std::endl<char,\
-    \ std::char_traits<char>>;\n#else\nstruct FastIOSetUp {\n    FastIOSetUp() {\n\
-    \        std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);  \n\
-    \    }\n} fast_io_set_up;\nauto &kin = std::cin;\nauto &kout = std::cout;\nauto\
-    \ (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n#endif\n\
-    \nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid\
-    \ No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool\
-    \ b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1)\
-    \ {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n\
-    \    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout\
-    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#endif // TEMPLATE_PROCON_HPP\n"
+    #include <vector>\n\n#include \"simpleio.hpp\"\n#include \"type_alias.hpp\"\n\
+    #include \"constant.hpp\"\n#include \"function_util.hpp\"\n#include \"macros.hpp\"\
+    \n#include \"io_util.hpp\"\n\n#ifndef INPUT_FILE\n#define INPUT_FILE \"in.txt\"\
+    \n#endif\n#ifndef OUTPUT_FILE\n#define OUTPUT_FILE \"out.txt\"\n#endif\n\n#ifdef\
+    \ KK2\nstd::ifstream kin(INPUT_FILE);\nkk2::SimplePrinter kout(OUTPUT_FILE); \
+    \  \nauto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n\
+    #else\nstruct FastIOSetUp {\n    FastIOSetUp() {\n        std::ios::sync_with_stdio(false);\n\
+    \        std::cin.tie(nullptr);  \n    }\n} fast_io_set_up;\nauto &kin = std::cin;\n\
+    auto &kout = std::cout;\nauto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n\
+    #endif\n\nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\n\" : \"No\\n\");\n\
+    }\n\nvoid No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid\
+    \ YES(bool b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool\
+    \ b = 1) {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b =\
+    \ 1) {\n    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n\
+    \    kout << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#endif // TEMPLATE_PROCON_HPP\n"
   dependsOn:
+  - template/simpleio.hpp
+  - type_traits/type_traits.hpp
   - template/type_alias.hpp
   - template/constant.hpp
   - template/function_util.hpp
   - template/macros.hpp
   - template/io_util.hpp
-  - type_traits/type_traits.hpp
   isVerificationFile: false
   path: template/procon.hpp
   requiredBy: []
-  timestamp: '2024-12-18 14:57:37+09:00'
+  timestamp: '2024-12-19 13:46:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/procon.hpp
