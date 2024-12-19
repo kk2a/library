@@ -2,7 +2,6 @@
 #define TEMPLATE_SIMPLEIO_HPP 1
 
 #include <fstream>
-#include <string>
 
 #include "../type_traits/type_traits.hpp"
 
