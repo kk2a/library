@@ -97,7 +97,7 @@ template <class OStream, class T, is_ostream_t<OStream> * = nullptr>
 void output(OStream &os, const std::vector<T> &v) {
     os << "[";
     for (int i = 0; i < (int)v.size(); i++) {
-        os << v[i];
+        output(os, v[i]);
         if (i + 1 != (int)v.size()) os << ", ";
     }
     os << "]";
@@ -107,7 +107,7 @@ template <class OStream, class T, size_t F, is_ostream_t<OStream> * = nullptr>
 void output(OStream &os, const std::array<T, F> &a) {
     os << "[";
     for (int i = 0; i < (int)F; i++) {
-        os << a[i];
+        output(os, a[i]);
         if (i + 1 != (int)F) os << ", ";
     }
     os << "]";
@@ -116,7 +116,9 @@ void output(OStream &os, const std::array<T, F> &a) {
 template <class OStream, class T, class U, is_ostream_t<OStream> * = nullptr>
 void output(OStream &os, const std::pair<T, U> &p) {
     os << "(";
-    os << p.first << ", " << p.second;
+    output(os, p.first);
+    os << ", ";
+    output(os, p.second);
     os << ")";
 }
 
@@ -125,7 +127,7 @@ void output(OStream &os, const std::queue<T> &q) {
     os << "[";
     std::queue<T> tmp = q;
     while (!tmp.empty()) {
-        os << tmp.front();
+        output(os, tmp.front());
         tmp.pop();
         if (!tmp.empty()) os << ", ";
     }
@@ -137,7 +139,7 @@ void output(OStream &os, const std::priority_queue<T, Container, Compare> &q) {
     os << "[";
     std::priority_queue<T, Container, Compare> tmp = q;
     while (!tmp.empty()) {
-        os << tmp.top();
+        output(os, tmp.top());
         tmp.pop();
         if (!tmp.empty()) os << ", ";
     }
@@ -149,7 +151,7 @@ void output(OStream &os, const std::deque<T> &d) {
     os << "[";
     std::deque<T> tmp = d;
     while (!tmp.empty()) {
-        os << tmp.front();
+        output(os, tmp.front());
         tmp.pop_front();
         if (!tmp.empty()) os << ", ";
     }
@@ -166,7 +168,7 @@ void output(OStream &os, const std::stack<T> &s) {
         tmp.pop();
     }
     for (int i = (int)v.size() - 1; i >= 0; i--) {
-        os << v[i];
+        output(os, v[i]);
         if (i != 0) os << ", ";
     }
     os << "]";
@@ -181,7 +183,7 @@ void output(OStream &os, const std::set<Key, Compare, Allocator> &s) {
     os << "{";
     std::set<Key, Compare, Allocator> tmp = s;
     for (auto it = tmp.begin(); it != tmp.end(); ++it) {
-        os << *it;
+        output(os, *it);
         if (std::next(it) != tmp.end()) os << ", ";
     }
     os << "}";
@@ -196,7 +198,7 @@ void output(OStream &os, const std::multiset<Key, Compare, Allocator> &s) {
     os << "{";
     std::multiset<Key, Compare, Allocator> tmp = s;
     for (auto it = tmp.begin(); it != tmp.end(); ++it) {
-        os << *it;
+        output(os, *it);
         if (std::next(it) != tmp.end()) os << ", ";
     }
     os << "}";
@@ -212,7 +214,7 @@ void output(OStream &os, const std::unordered_set<Key, Hash, KeyEqual, Allocator
     os << "{";
     std::unordered_set<Key, Hash, KeyEqual, Allocator> tmp = s;
     for (auto it = tmp.begin(); it != tmp.end(); ++it) {
-        os << *it;
+        output(os, *it);
         if (std::next(it) != tmp.end()) os << ", ";
     }
     os << "}";
@@ -228,7 +230,7 @@ void output(OStream &os, const std::unordered_multiset<Key, Hash, KeyEqual, Allo
     os << "{";
     std::unordered_multiset<Key, Hash, KeyEqual, Allocator> tmp = s;
     for (auto it = tmp.begin(); it != tmp.end(); ++it) {
-        os << *it;
+        output(os, *it);
         if (std::next(it) != tmp.end()) os << ", ";
     }
     os << "}";
@@ -244,7 +246,9 @@ void output(OStream &os, const std::map<Key, T, Compare, Allocator> &m) {
     os << "{";
     std::map<Key, T, Compare, Allocator> tmp = m;
     for (auto it = tmp.begin(); it != tmp.end(); ++it) {
-        os << it->first << ": " << it->second;
+        output(os, it->first);
+        os << ": ";
+        output(os, it->second);
         if (std::next(it) != tmp.end()) os << ", ";
     }
     os << "}";
@@ -261,7 +265,9 @@ void output(OStream &os, const std::unordered_map<Key, T, Hash, KeyEqual, Alloca
     os << "{";
     std::unordered_map<Key, T, Hash, KeyEqual, Allocator> tmp = m;
     for (auto it = tmp.begin(); it != tmp.end(); ++it) {
-        os << it->first << ": " << it->second;
+        output(os, it->first);
+        os << ": ";
+        output(os, it->second);
         if (std::next(it) != tmp.end()) os << ", ";
     }
     os << "}";
@@ -274,9 +280,15 @@ void output(OStream &os, const T &t, const Args &...args) {
     output(os, args...);
 }
 
+template <class OStream, is_ostream_t<OStream> * = nullptr>
+void outputln(OStream &os) {
+    os << '\n';
+    // os.flush();
+}
+
 template <class OStream, class T, class... Args, is_ostream_t<OStream> * = nullptr>
-void outputln(OStream &os, const Args &...args) {
-    output(os, args...);
+void outputln(OStream &os, const T& t, const Args &...args) {
+    output(os, t, args...);
     os << '\n';
     // os.flush();
 }
