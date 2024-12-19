@@ -290,7 +290,7 @@ template <class OStream, class T, class... Args, is_ostream_t<OStream> * = nullp
 void outputln(OStream &os, const T& t, const Args &...args) {
     output(os, t, args...);
     os << '\n';
-    // os.flush();
+    os.flush();
 }
 
 #else

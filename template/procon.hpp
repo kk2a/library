@@ -24,6 +24,7 @@
 #include <utility>
 #include <vector>
 
+#include "simpleio.hpp"
 #include "type_alias.hpp"
 #include "constant.hpp"
 #include "function_util.hpp"
@@ -39,7 +40,7 @@
 
 #ifdef KK2
 std::ifstream kin(INPUT_FILE);
-std::ofstream kout(OUTPUT_FILE);
+kk2::SimplePrinter kout(OUTPUT_FILE);   
 auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
 #else
 struct FastIOSetUp {
