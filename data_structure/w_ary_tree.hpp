@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <optional>
 #include <vector>
 
 #include "../bit/bitcount.hpp"
