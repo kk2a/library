@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':heavy_check_mark:'
@@ -60,16 +60,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':x:'

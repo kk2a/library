@@ -42,20 +42,21 @@ data:
   code: "#ifndef TEMPLATE_PROCON_HPP\n#define TEMPLATE_PROCON_HPP 1\n\n#include <algorithm>\n\
     #include <array>\n#include <bitset>\n#include <cassert>\n// #include <chrono>\n\
     // #include <cmath>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
-    #include <iostream>\n#include <iterator>\n#include <map>\n#include <numeric>\n\
-    #include <optional>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
-    \ <string>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n#include \"type_alias.hpp\"\n#include \"constant.hpp\"\n\
-    #include \"function_util.hpp\"\n#include \"macros.hpp\"\n#include \"io_util.hpp\"\
-    \n\nstruct FastIOSetUp {\n    FastIOSetUp() {\n        std::ios::sync_with_stdio(false);\n\
-    \        std::cin.tie(nullptr);  \n    }\n} fast_io_set_up;\nauto &kin = std::cin;\n\
-    auto &kout = std::cout;\nauto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n\
-    \nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid\
-    \ No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool\
-    \ b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1)\
-    \ {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n\
-    \    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout\
-    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#endif // TEMPLATE_PROCON_HPP\n"
+    #include <iostream>\n#include <iomanip>\n#include <iterator>\n#include <map>\n\
+    #include <numeric>\n#include <optional>\n#include <queue>\n#include <set>\n#include\
+    \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\n#include \"type_alias.hpp\"\n#include\
+    \ \"constant.hpp\"\n#include \"function_util.hpp\"\n#include \"macros.hpp\"\n\
+    #include \"io_util.hpp\"\n\nstruct FastIOSetUp {\n    FastIOSetUp() {\n      \
+    \  std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);  \n    }\n\
+    } fast_io_set_up;\nauto &kin = std::cin;\nauto &kout = std::cout;\nauto (*kendl)(std::ostream\
+    \ &) = std::endl<char, std::char_traits<char>>;\n\nvoid Yes(bool b = 1) {\n  \
+    \  kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    kout\
+    \ << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    kout << (b\
+    \ ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    kout << (b ? \"\
+    NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    kout << (b ? \"yes\\\
+    n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout << (b ? \"no\\n\" : \"\
+    yes\\n\");\n}\n\n#endif // TEMPLATE_PROCON_HPP\n"
   dependsOn:
   - template/type_alias.hpp
   - template/constant.hpp
@@ -66,7 +67,7 @@ data:
   isVerificationFile: false
   path: template/procon.hpp
   requiredBy: []
-  timestamp: '2024-12-21 14:08:20+09:00'
+  timestamp: '2024-12-21 23:53:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/procon.hpp

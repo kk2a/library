@@ -68,16 +68,16 @@ data:
     \ is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream &os,\
     \ const RationalBase &rhs) {\n        return os << rhs.a << \" / \" << rhs.b;\
     \   \n    }\n};\n\n} // namespace rational\n\ntemplate <typename T>\nusing Rational\
-    \ = rational::RationalBase<T, T>;\ntemplate <>\nusing Rational<int> = rational::RationalBase<int,\
-    \ long long>;\ntemplate <>\nusing Rational<long long> = rational::RationalBase<long\
-    \ long, __int128>;\n\n} // namespace kk2\n\n#endif // MATH_RATIONAL_HPP\n"
+    \ = rational::RationalBase<T, T>;\nusing RationalInt = rational::RationalBase<int,\
+    \ long long>;\nusing RationalI64 = rational::RationalBase<long long, __int128>;\n\
+    \n} // namespace kk2\n\n#endif // MATH_RATIONAL_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: math/rational.hpp
   requiredBy:
   - geometry/cross_point_line_line.hpp
-  timestamp: '2024-12-08 12:34:44+09:00'
+  timestamp: '2024-12-21 23:53:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/rational.hpp
