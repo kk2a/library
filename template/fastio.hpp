@@ -289,7 +289,7 @@ char Printer::leading_zero[10000][5];
 auto &kin = std::cin;
 auto &kout = std::cout;
 auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
-#elif defined(KK2)
+#else
 fastio::Scanner kin;
 fastio::Printer kout;
 fastio::endl_struct_t kendl;
