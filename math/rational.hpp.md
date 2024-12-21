@@ -33,15 +33,17 @@ data:
     \    assert(b);\n        if (b < 0) a = -a, b = -b;\n        T g = std::gcd(a,\
     \ b);\n        a /= g, b /= g;\n    }\n\n    static RationalBase raw(T a_, T b_)\
     \ {\n        T res;\n        res.a = a_, res.b = b_;\n        return res;\n  \
-    \  }\n\n    operator bool() const { return a; }\n\n    friend RationalBase operator+(const\
-    \ RationalBase &lhs, const RationalBase &rhs) {\n        if (lhs.b == rhs.b) return\
-    \ RationalBase(lhs.a + rhs.a, lhs.b);\n        return RationalBase(lhs.a * rhs.b\
-    \ + rhs.a * lhs.b, lhs.b * rhs.b);\n    }\n\n    friend RationalBase operator-(const\
-    \ RationalBase &lhs, const RationalBase &rhs) {\n        if (lhs.b == rhs.b) return\
-    \ RationalBase(lhs.a - rhs.a, lhs.b);\n        return RationalBase(lhs.a * rhs.b\
-    \ - rhs.a * lhs.b, lhs.b * rhs.b);\n    }\n\n    friend RationalBase operator*(const\
-    \ RationalBase &lhs, const RationalBase &rhs) {\n        return RationalBase(lhs.a\
-    \ * rhs.a, lhs.b * rhs.b);\n    }\n\n    friend RationalBase operator/(const RationalBase\
+    \  }\n\n    operator bool() const { return a; }\n\n    double to_double() const\
+    \ { return (double)a / b; }\n\n    long double to_ldouble() const { return (long\
+    \ double)a / b; }\n\n    friend RationalBase operator+(const RationalBase &lhs,\
+    \ const RationalBase &rhs) {\n        if (lhs.b == rhs.b) return RationalBase(lhs.a\
+    \ + rhs.a, lhs.b);\n        return RationalBase(lhs.a * rhs.b + rhs.a * lhs.b,\
+    \ lhs.b * rhs.b);\n    }\n\n    friend RationalBase operator-(const RationalBase\
+    \ &lhs, const RationalBase &rhs) {\n        if (lhs.b == rhs.b) return RationalBase(lhs.a\
+    \ - rhs.a, lhs.b);\n        return RationalBase(lhs.a * rhs.b - rhs.a * lhs.b,\
+    \ lhs.b * rhs.b);\n    }\n\n    friend RationalBase operator*(const RationalBase\
+    \ &lhs, const RationalBase &rhs) {\n        return RationalBase(lhs.a * rhs.a,\
+    \ lhs.b * rhs.b);\n    }\n\n    friend RationalBase operator/(const RationalBase\
     \ &lhs, const RationalBase &rhs) {\n        return RationalBase(lhs.a * rhs.b,\
     \ lhs.b * rhs.a);\n    }\n\n    RationalBase &operator+=(const RationalBase &rhs)\
     \ { return (*this) = (*this) + rhs; }\n\n    RationalBase &operator-=(const RationalBase\
@@ -66,8 +68,8 @@ data:
     \ friend bool operator>=(const RationalBase &lhs, const RationalBase &rhs) {\n\
     \        return lhs == rhs or lhs > rhs;\n    }\n\n    template <class OStream,\
     \ is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream &os,\
-    \ const RationalBase &rhs) {\n        return os << rhs.a << \" / \" << rhs.b;\
-    \   \n    }\n};\n\n} // namespace rational\n\ntemplate <typename T>\nusing Rational\
+    \ const RationalBase &rhs) {\n        return os << rhs.a << \" / \" << rhs.b;\n\
+    \    }\n};\n\n} // namespace rational\n\ntemplate <typename T> using Rational\
     \ = rational::RationalBase<T, T>;\nusing RationalInt = rational::RationalBase<int,\
     \ long long>;\nusing RationalI64 = rational::RationalBase<long long, __int128>;\n\
     \n} // namespace kk2\n\n#endif // MATH_RATIONAL_HPP\n"
@@ -77,7 +79,7 @@ data:
   path: math/rational.hpp
   requiredBy:
   - geometry/cross_point_line_line.hpp
-  timestamp: '2024-12-21 23:53:47+09:00'
+  timestamp: '2024-12-22 00:42:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/rational.hpp

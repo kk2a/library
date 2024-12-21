@@ -67,7 +67,7 @@ data:
     - icon: ':warning:'
       path: data_structure/interval_heap.hpp
       title: data_structure/interval_heap.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
     - icon: ':warning:'
@@ -163,7 +163,7 @@ data:
       title: functional/reverse_args.hpp
   - name: geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/argument_sort.hpp
       title: geometry/argument_sort.hpp
     - icon: ':warning:'
@@ -172,39 +172,39 @@ data:
     - icon: ':warning:'
       path: geometry/line.hpp
       title: geometry/line.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/point.hpp
       title: geometry/point.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/static_convex_hull.hpp
       title: geometry/static_convex_hull.hpp
   - name: graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bcc.hpp
       title: graph/bcc.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/cycle_detection.hpp
       title: graph/cycle_detection.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/graph.hpp
       title: graph/graph.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.hpp
       title: graph/lowlink.hpp
     - icon: ':warning:'
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/scc.hpp
       title: graph/scc.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path.hpp
       title: graph/shortest_path.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.hpp
       title: graph/two_edge_connected_components.hpp
     - icon: ':heavy_check_mark:'
@@ -221,13 +221,13 @@ data:
     - icon: ':warning:'
       path: graph/tree/centroid_decomposition.hpp
       title: graph/tree/centroid_decomposition.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/diameter.hpp
       title: graph/tree/diameter.hpp
     - icon: ':warning:'
       path: graph/tree/euler_tour.hpp
       title: graph/tree/euler_tour.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: graph/tree/heavy_light_decomposition.hpp
   - name: math
@@ -326,10 +326,10 @@ data:
     - icon: ':warning:'
       path: matrix/frobenius_form.hpp
       title: matrix/frobenius_form.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: matrix/matrix_F2.hpp
       title: matrix/matrix_F2.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: matrix/matrix_field.hpp
       title: matrix/matrix_field.hpp
   - name: modint
@@ -622,53 +622,53 @@ data:
       title: verify/yosupo_fps/fps_pow.test.cpp
   - name: verify/yosupo_geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_geometry/arg_sort.test.cpp
       title: verify/yosupo_geometry/arg_sort.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_geometry/static_convex_hull.test.cpp
       title: verify/yosupo_geometry/static_convex_hull.test.cpp
   - name: verify/yosupo_graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_bcc.test.cpp
       title: verify/yosupo_graph/graph_bcc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_cycle_detection.test.cpp
       title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
       title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_scc.test.cpp
       title: verify/yosupo_graph/graph_scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_shortest_path.test.cpp
       title: verify/yosupo_graph/graph_shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
       title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_diameter.test.cpp
       title: verify/yosupo_graph/tree_diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_lca.test.cpp
       title: verify/yosupo_graph/tree_lca.test.cpp
   - name: verify/yosupo_linalg
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_det.test.cpp
       title: verify/yosupo_linalg/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_det_f2.test.cpp
       title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv.test.cpp
       title: verify/yosupo_linalg/matrix_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
       title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_pow.test.cpp
       title: verify/yosupo_linalg/matrix_pow.test.cpp
     - icon: ':x:'
