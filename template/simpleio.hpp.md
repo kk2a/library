@@ -1,13 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: template/procon.hpp
-    title: template/procon.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -37,8 +34,7 @@ data:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: template/simpleio.hpp
-  requiredBy:
-  - template/procon.hpp
+  requiredBy: []
   timestamp: '2024-12-19 14:17:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

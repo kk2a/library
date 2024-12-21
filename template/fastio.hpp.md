@@ -1,162 +1,162 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_0233.test.cpp
     title: verify/aoj/aoj_0233.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_0560.test.cpp
     title: verify/aoj/aoj_0560.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_0560_2.test.cpp
     title: verify/aoj/aoj_0560_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_subset.test.cpp
     title: verify/yosupo_convolution/convolution_subset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_set_xor_min.test.cpp
     title: verify/yosupo_ds/ds_set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
   - icon: ':x:'
@@ -218,7 +218,7 @@ data:
     title: verify/yuki/yuki_0430_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -235,33 +235,32 @@ data:
   code: "#ifndef TEMPLATE_FASTIO_HPP\n#define TEMPLATE_FASTIO_HPP 1\n\n#include <cctype>\n\
     #include <cstdint>\n#include <cstdio>\n#include <fstream>\n#include <iostream>\n\
     #include <string>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace\
-    \ kk2 {\n\nnamespace fastio {\n\n#ifndef INPUT_FILE\n#define INPUT_FILE \"in.txt\"\
-    \n#endif\n#ifndef OUTPUT_FILE\n#define OUTPUT_FILE \"out.txt\"\n#endif\n\nstruct\
-    \ Scanner : type_traits::istream_tag {\n  private:\n    static constexpr size_t\
-    \ INPUT_BUF = 1 << 17;\n    size_t pos = 0, end = 0;\n    static char buf[INPUT_BUF];\n\
-    \    FILE *fp;\n\n  public:\n    Scanner() : fp(stdin) {}\n\n    Scanner(const\
-    \ char *file) : fp(fopen(file, \"r\")) {}\n\n    ~Scanner() {\n        if (fp\
-    \ != stdin) fclose(fp);\n    }\n\n    char now() {\n        if (pos == end) {\n\
-    \            while (!(end = fread(buf, 1, INPUT_BUF, fp))) {}\n            if\
-    \ (end != INPUT_BUF) buf[end] = '\\0';\n            pos = 0;\n        }\n    \
-    \    return buf[pos];\n    }\n\n    void skip_space() {\n        while (isspace(now()))\
-    \ ++pos;\n    }\n\n    template <class T, is_unsigned_t<T> * = nullptr> T next_unsigned_integral()\
-    \ {\n        skip_space();\n        T res{};\n        while (isdigit(now())) {\n\
-    \            res = res * 10 + (now() - '0');\n            ++pos;\n        }\n\
-    \        return res;\n    }\n\n    template <class T, is_signed_t<T> * = nullptr>\
-    \ T next_signed_integral() {\n        skip_space();\n        if (now() == '-')\
-    \ {\n            ++pos;\n            return T(-next_unsigned_integral<typename\
-    \ to_unsigned<T>::type>());\n        } else return (T)next_unsigned_integral<typename\
-    \ to_unsigned<T>::type>();\n    }\n\n    char next_char() {\n        skip_space();\n\
-    \        auto res = now();\n        ++pos;\n        return res;\n    }\n\n   \
-    \ std::string next_string() {\n        skip_space();\n        std::string res;\n\
-    \        while (true) {\n            char c = now();\n            if (isspace(c)\
-    \ or c == '\\0') break;\n            res.push_back(now());\n            ++pos;\n\
-    \        }\n        return res;\n    }\n\n    template <class T, is_unsigned_t<T>\
-    \ * = nullptr> Scanner &operator>>(T &x) {\n        x = next_unsigned_integral<T>();\n\
-    \        return *this;\n    }\n\n    template <class T, is_signed_t<T> * = nullptr>\
-    \ Scanner &operator>>(T &x) {\n        x = next_signed_integral<T>();\n      \
-    \  return *this;\n    }\n\n    Scanner &operator>>(char &x) {\n        x = next_char();\n\
+    \ kk2 {\n\nnamespace fastio {\n\nstruct Scanner : type_traits::istream_tag {\n\
+    \  private:\n    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos\
+    \ = 0, end = 0;\n    static char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n\
+    \    Scanner() : fp(stdin) {}\n\n    Scanner(const char *file) : fp(fopen(file,\
+    \ \"r\")) {}\n\n    ~Scanner() {\n        if (fp != stdin) fclose(fp);\n    }\n\
+    \n    char now() {\n        if (pos == end) {\n            while (!(end = fread(buf,\
+    \ 1, INPUT_BUF, fp))) {}\n            if (end != INPUT_BUF) buf[end] = '\\0';\n\
+    \            pos = 0;\n        }\n        return buf[pos];\n    }\n\n    void\
+    \ skip_space() {\n        while (isspace(now())) ++pos;\n    }\n\n    template\
+    \ <class T, is_unsigned_t<T> * = nullptr> T next_unsigned_integral() {\n     \
+    \   skip_space();\n        T res{};\n        while (isdigit(now())) {\n      \
+    \      res = res * 10 + (now() - '0');\n            ++pos;\n        }\n      \
+    \  return res;\n    }\n\n    template <class T, is_signed_t<T> * = nullptr> T\
+    \ next_signed_integral() {\n        skip_space();\n        if (now() == '-') {\n\
+    \            ++pos;\n            return T(-next_unsigned_integral<typename to_unsigned<T>::type>());\n\
+    \        } else return (T)next_unsigned_integral<typename to_unsigned<T>::type>();\n\
+    \    }\n\n    char next_char() {\n        skip_space();\n        auto res = now();\n\
+    \        ++pos;\n        return res;\n    }\n\n    std::string next_string() {\n\
+    \        skip_space();\n        std::string res;\n        while (true) {\n   \
+    \         char c = now();\n            if (isspace(c) or c == '\\0') break;\n\
+    \            res.push_back(now());\n            ++pos;\n        }\n        return\
+    \ res;\n    }\n\n    template <class T, is_unsigned_t<T> * = nullptr> Scanner\
+    \ &operator>>(T &x) {\n        x = next_unsigned_integral<T>();\n        return\
+    \ *this;\n    }\n\n    template <class T, is_signed_t<T> * = nullptr> Scanner\
+    \ &operator>>(T &x) {\n        x = next_signed_integral<T>();\n        return\
+    \ *this;\n    }\n\n    Scanner &operator>>(char &x) {\n        x = next_char();\n\
     \        return *this;\n    }\n\n    Scanner &operator>>(std::string &x) {\n \
     \       x = next_string();\n        return *this;\n    }\n};\n\nstruct endl_struct_t\
     \ {};\n\nstruct Printer : type_traits::ostream_tag {\n  private:\n    static char\
@@ -332,21 +331,18 @@ data:
     \ flush();\n        return *this;\n    }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\n\
     char Printer::buf[Printer::OUTPUT_BUF];\nchar Printer::helper[10000][5];\nchar\
     \ Printer::leading_zero[10000][5];\n\n} // namespace fastio\n\n#if defined(INTERACTIVE)\
-    \ || defined(USE_STDIO)\n#ifdef KK2\nstd::ifstream kin(INPUT_FILE);\nstd::ofstream\
-    \ kout(OUTPUT_FILE);\nauto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n\
-    #else\nauto &kin = std::cin;\nauto &kout = std::cout;\nauto (*kendl)(std::ostream\
-    \ &) = std::endl<char, std::char_traits<char>>;\n#endif\n#elif defined(KK2)\n\
-    fastio::Scanner kin(INPUT_FILE);\nfastio::Printer kout(OUTPUT_FILE);\nfastio::endl_struct_t\
-    \ kendl;\n#else\nfastio::Scanner kin;\nfastio::Printer kout;\nfastio::endl_struct_t\
-    \ kendl;\n#endif\n\n} // namespace kk2\n\n#endif // TEMPLATE_FASTIO_HPP\n"
+    \ || defined(USE_STDIO)\nauto &kin = std::cin;\nauto &kout = std::cout;\nauto\
+    \ (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n#elif defined(KK2)\n\
+    fastio::Scanner kin;\nfastio::Printer kout;\nfastio::endl_struct_t kendl;\n#endif\n\
+    \n} // namespace kk2\n\n#endif // TEMPLATE_FASTIO_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: template/fastio.hpp
   requiredBy:
   - template/template.hpp
-  timestamp: '2024-12-15 15:04:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-12-21 14:08:20+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp
