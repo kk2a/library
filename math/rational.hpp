@@ -111,10 +111,8 @@ template <typename T, typename Compare> struct RationalBase {
 
 template <typename T>
 using Rational = rational::RationalBase<T, T>;
-template <>
-using Rational<int> = rational::RationalBase<int, long long>;
-template <>
-using Rational<long long> = rational::RationalBase<long long, __int128>;
+using RationalInt = rational::RationalBase<int, long long>;
+using RationalI64 = rational::RationalBase<long long, __int128>;
 
 } // namespace kk2
 
