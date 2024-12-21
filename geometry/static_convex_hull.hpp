@@ -43,15 +43,18 @@ template <typename T> struct StaticConvexHull {
 
         for (int i = 0; i < _n; i++) {
             if (same[i]) continue;
+            // 傾きが減少
             while (size(up) >= 2
-                   && cross(up[size(up) - 1].first - up[size(up) - 2].first,
-                            tmp[i].first - up[size(up) - 1].first)
+                   && cross(up[size(up) - 2].first - up[size(up) - 1].first,
+                            up[size(up) - 1].first - tmp[i].first)
                           >= 0) {
                 up.pop_back();
             }
+
+            // 傾きが増加
             while (size(dw) >= 2
-                   && cross(dw[size(dw) - 1].first - dw[size(dw) - 2].first,
-                            tmp[i].first - dw[size(dw) - 1].first)
+                   && cross(dw[size(dw) - 2].first - dw[size(dw) - 1].first,
+                            dw[size(dw) - 1].first - tmp[i].first)
                           <= 0) {
                 dw.pop_back();
             }
