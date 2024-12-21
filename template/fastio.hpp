@@ -14,13 +14,6 @@ namespace kk2 {
 
 namespace fastio {
 
-#ifndef INPUT_FILE
-#define INPUT_FILE "in.txt"
-#endif
-#ifndef OUTPUT_FILE
-#define OUTPUT_FILE "out.txt"
-#endif
-
 struct Scanner : type_traits::istream_tag {
   private:
     static constexpr size_t INPUT_BUF = 1 << 17;
@@ -293,20 +286,10 @@ char Printer::leading_zero[10000][5];
 } // namespace fastio
 
 #if defined(INTERACTIVE) || defined(USE_STDIO)
-#ifdef KK2
-std::ifstream kin(INPUT_FILE);
-std::ofstream kout(OUTPUT_FILE);
-auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
-#else
 auto &kin = std::cin;
 auto &kout = std::cout;
 auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
-#endif
 #elif defined(KK2)
-fastio::Scanner kin(INPUT_FILE);
-fastio::Printer kout(OUTPUT_FILE);
-fastio::endl_struct_t kendl;
-#else
 fastio::Scanner kin;
 fastio::Printer kout;
 fastio::endl_struct_t kendl;

@@ -24,25 +24,12 @@
 #include <utility>
 #include <vector>
 
-#include "simpleio.hpp"
 #include "type_alias.hpp"
 #include "constant.hpp"
 #include "function_util.hpp"
 #include "macros.hpp"
 #include "io_util.hpp"
 
-#ifndef INPUT_FILE
-#define INPUT_FILE "in.txt"
-#endif
-#ifndef OUTPUT_FILE
-#define OUTPUT_FILE "out.txt"
-#endif
-
-#ifdef KK2
-std::ifstream kin(INPUT_FILE);
-kk2::SimplePrinter kout(OUTPUT_FILE);   
-auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
-#else
 struct FastIOSetUp {
     FastIOSetUp() {
         std::ios::sync_with_stdio(false);
@@ -52,7 +39,6 @@ struct FastIOSetUp {
 auto &kin = std::cin;
 auto &kout = std::cout;
 auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;
-#endif
 
 void Yes(bool b = 1) {
     kout << (b ? "Yes\n" : "No\n");
