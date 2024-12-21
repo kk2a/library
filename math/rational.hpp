@@ -33,6 +33,10 @@ template <typename T, typename Compare> struct RationalBase {
 
     operator bool() const { return a; }
 
+    double to_double() const { return (double)a / b; }
+
+    long double to_ldouble() const { return (long double)a / b; }
+
     friend RationalBase operator+(const RationalBase &lhs, const RationalBase &rhs) {
         if (lhs.b == rhs.b) return RationalBase(lhs.a + rhs.a, lhs.b);
         return RationalBase(lhs.a * rhs.b + rhs.a * lhs.b, lhs.b * rhs.b);
@@ -103,14 +107,13 @@ template <typename T, typename Compare> struct RationalBase {
 
     template <class OStream, is_ostream_t<OStream> * = nullptr>
     friend OStream &operator<<(OStream &os, const RationalBase &rhs) {
-        return os << rhs.a << " / " << rhs.b;   
+        return os << rhs.a << " / " << rhs.b;
     }
 };
 
 } // namespace rational
 
-template <typename T>
-using Rational = rational::RationalBase<T, T>;
+template <typename T> using Rational = rational::RationalBase<T, T>;
 using RationalInt = rational::RationalBase<int, long long>;
 using RationalI64 = rational::RationalBase<long long, __int128>;
 
