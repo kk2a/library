@@ -128,23 +128,28 @@ data:
     \ i++) {\n        int u, v;\n        T w{};\n        is >> u >> v;\n        if\
     \ (is_one_indexed) --u, --v;\n        if constexpr (!std::is_same_v<T, empty>)\
     \ is >> w;\n        edges[i] = _Edge<T>(v, w, u, i);\n    }\n    return edges;\n\
-    }\n\n} // namespace graph\n\ntemplate <typename T> using WAdjList = graph::AdjacencyList<T,\
-    \ false>;\ntemplate <typename T> using DWAdjList = graph::AdjacencyList<T, true>;\n\
-    using AdjList = graph::AdjacencyList<graph::empty, false>;\nusing DAdjList = graph::AdjacencyList<graph::empty,\
+    }\n\ntemplate <class T, std::enable_if_t<std::is_same_v<T, empty>> * = nullptr>\n\
+    void add_edge(_Edges<T> &edges, int from, int to) {\n    edges.emplace_back(to,\
+    \ empty{}, from, (int)edges.size());\n}\n\ntemplate <class T, std::enable_if_t<!std::is_same_v<T,\
+    \ empty>> * = nullptr>\nvoid add_edge(_Edges<T> &edges, int from, int to, T cost)\
+    \ {\n    edges.emplace_back(to, cost, from, (int)edges.size());\n}\n\n} // namespace\
+    \ graph\n\ntemplate <typename T> using WAdjList = graph::AdjacencyList<T, false>;\n\
+    template <typename T> using DWAdjList = graph::AdjacencyList<T, true>;\nusing\
+    \ AdjList = graph::AdjacencyList<graph::empty, false>;\nusing DAdjList = graph::AdjacencyList<graph::empty,\
     \ true>;\n\ntemplate <typename T> using WAdjMat = graph::AdjacencyMatrix<T, false>;\n\
     template <typename T> using DWAdjMat = graph::AdjacencyMatrix<T, true>;\nusing\
     \ AdjMat = graph::AdjacencyMatrix<graph::empty, false>;\nusing DAdjMat = graph::AdjacencyMatrix<graph::empty,\
     \ true>;\n\ntemplate <typename T> using WEdge = graph::_Edge<T>;\ntemplate <typename\
     \ T> using WEdges = graph::_Edges<T>;\nusing Edge = graph::_Edge<graph::empty>;\n\
     using Edges = graph::_Edges<graph::empty>;\nusing graph::input;\nusing graph::reverse;\n\
-    \n} // namespace kk2\n\n#endif // GRAPH_GRAPH_TEMPLATE_HPP\n"
+    using graph::add_edge;\n\n} // namespace kk2\n\n#endif // GRAPH_GRAPH_TEMPLATE_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: graph/graph.hpp
   requiredBy:
   - random/graph.hpp
-  timestamp: '2024-12-17 15:23:23+09:00'
+  timestamp: '2024-12-23 13:48:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp
