@@ -194,6 +194,16 @@ _Edges<T> &input(IStream &is, _Edges<T>& edges, bool is_one_indexed) {
     return edges;
 }
 
+template <class T, std::enable_if_t<std::is_same_v<T, empty>> * = nullptr>
+void add_edge(_Edges<T> &edges, int from, int to) {
+    edges.emplace_back(to, empty{}, from, (int)edges.size());
+}
+
+template <class T, std::enable_if_t<!std::is_same_v<T, empty>> * = nullptr>
+void add_edge(_Edges<T> &edges, int from, int to, T cost) {
+    edges.emplace_back(to, cost, from, (int)edges.size());
+}
+
 } // namespace graph
 
 template <typename T> using WAdjList = graph::AdjacencyList<T, false>;
@@ -212,6 +222,7 @@ using Edge = graph::_Edge<graph::empty>;
 using Edges = graph::_Edges<graph::empty>;
 using graph::input;
 using graph::reverse;
+using graph::add_edge;
 
 } // namespace kk2
 
