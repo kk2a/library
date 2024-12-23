@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "../type_traits/type_traits.hpp"
+
 namespace kk2 {
 
 namespace run_length_encoding {
@@ -11,6 +13,11 @@ namespace run_length_encoding {
 template <class T> struct rle_element {
     T value;
     int length;
+
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    friend OStream &operator<<(OStream &os, const rle_element &rle) {
+        return os << "(value: " << rle.value << ", length: " << rle.length << ")";
+    }
 };
 
 template <typename C, typename T = typename C::value_type>

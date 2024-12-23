@@ -295,11 +295,11 @@ void outputln(OStream &os, const T& t, const Args &...args) {
 
 #else
 template <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>
-void output(OStream &os, const Args &...args) {
+void output(OStream &, const Args &...) {
 }
 
 template <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>
-void outputln(OStream &os, const Args &...args) {
+void outputln(OStream &, const Args &...) {
 }
 
 #endif // KK2
