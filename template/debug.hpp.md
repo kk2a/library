@@ -135,16 +135,16 @@ data:
     \ class... Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &os,\
     \ const T& t, const Args &...args) {\n    output(os, t, args...);\n    os << '\\\
     n';\n    os.flush();\n}\n\n#else\ntemplate <class OStream, class... Args, is_ostream_t<OStream>\
-    \ * = nullptr>\nvoid output(OStream &os, const Args &...args) {\n}\n\ntemplate\
-    \ <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream\
-    \ &os, const Args &...args) {\n}\n\n#endif // KK2\n\n} // namespace debug\n\n\
-    } // namespace kk2\n\n#endif // TEMPLATE_DEBUG_HPP\n"
+    \ * = nullptr>\nvoid output(OStream &, const Args &...) {\n}\n\ntemplate <class\
+    \ OStream, class... Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream\
+    \ &, const Args &...) {\n}\n\n#endif // KK2\n\n} // namespace debug\n\n} // namespace\
+    \ kk2\n\n#endif // TEMPLATE_DEBUG_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: template/debug.hpp
   requiredBy: []
-  timestamp: '2024-12-19 13:46:35+09:00'
+  timestamp: '2024-12-23 10:38:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp

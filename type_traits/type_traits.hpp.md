@@ -114,6 +114,9 @@ data:
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':warning:'
+    path: others/run_length_encoding.hpp
+    title: others/run_length_encoding.hpp
+  - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
   - icon: ':heavy_check_mark:'
@@ -442,6 +445,7 @@ data:
   - template/io_util.hpp
   - template/procon.hpp
   - template/fastio.hpp
+  - others/run_length_encoding.hpp
   - geometry/static_convex_hull.hpp
   - geometry/argument_sort.hpp
   - geometry/line.hpp
