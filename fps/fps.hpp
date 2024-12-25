@@ -138,7 +138,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
         return ret;
     }
 
-    FPS inplace_rev() {
+    FPS &inplace_rev() {
         std::reverse(this->begin(), this->end());
         return *this;
     }
@@ -149,7 +149,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
         return ret;
     }
 
-    FPS inplace_dot(const FPS &r) {
+    FPS &inplace_dot(const FPS &r) {
         this->resize(std::min(this->size(), r.size()));
         for (int i = 0; i < (int)this->size(); i++) (*this)[i] *= r[i];
         return *this;
@@ -161,7 +161,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
         return ret;
     }
 
-    FPS inplace_pre(int n) {
+    FPS &inplace_pre(int n) {
         this->resize(n);
         return *this;
     }
@@ -185,7 +185,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
         return ret;
     }
 
-    FPS inplace_diff() {
+    FPS &inplace_diff() {
         if (this->empty()) return {};
         this->erase(this->begin());
         for (int i = 1; i <= (int)this->size(); i++) (*this)[i - 1] *= mint(i);
@@ -207,7 +207,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
         return ret;
     }
 
-    FPS inplace_int() {
+    FPS &inplace_int() {
         static std::vector<mint> inv{0, 1};
         const int n = this->size();
         auto mod = mint::getmod();
@@ -403,7 +403,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
         return g;
     }
 
-    FPS inplace_imos(int n) {
+    FPS &inplace_imos(int n) {
         inplace_pre(n);
         for (int i = 0; i < n - 1; i++) { (*this)[i + 1] += (*this)[i]; }
         return *this;
@@ -414,7 +414,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
         return ret.inplace_imos(n);
     }
 
-    FPS inplace_iimos(int n) {
+    FPS &inplace_iimos(int n) {
         inplace_pre(n);
         for (int i = 0; i < n - 1; i++) { (*this)[i + 1] -= (*this)[i]; }
         return *this;

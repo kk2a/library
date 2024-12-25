@@ -11,7 +11,7 @@ template <class FPS, class mint = typename FPS::value_type> FPS TaylorShift(cons
     FPS f(f_);
     int n = f.size();
     for (int i = 0; i < n; i++) f[i] *= Comb<mint>::fact(i);
-    std::reverse(std::begin(f), std::end(f));
+    f.inplace_rev();
     FPS g(n, mint(1));
     for (int i = 1; i < n; i++) g[i] = g[i - 1] * a * Comb<mint>::inv(i);
     f = (f * g).pre(n).rev();

@@ -22,14 +22,14 @@ std::vector<mint> SamplePointShift(std::vector<mint> &y, mint t, int m = -1) {
         return ret;
     }
     if (tval + m > mint::getmod()) {
-        auto pref = SamplePointShift<FPS>(y, mint(t), mint::getmod() - tval);
-        auto suf = SamplePointShift<FPS>(y, mint(0), m - (int)pref.size());
+        auto pref = SamplePointShift<FPS>(y, t, mint::getmod() - tval);
+        auto suf = SamplePointShift<FPS>(y, mint(0), m + tval - (int)mint::getmod());
         std::copy(std::begin(suf), std::end(suf), std::back_inserter(pref));
         return pref;
     }
 
     std::vector<mint> inv(k + 1, 1);
-    FPS d(k + 1);
+    FPS d(k + 1);   
     for (int i = 2; i <= k; i++) inv[k] *= i;
     inv[k] = inv[k].inv();
     for (int i = k; i >= 1; i--) inv[i - 1] = inv[i] * i;
