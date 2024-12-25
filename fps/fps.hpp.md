@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -11,14 +11,14 @@ data:
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':heavy_check_mark:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -102,23 +102,23 @@ data:
     \       return ret;\n    }\n\n    FPS shrink() {\n        while (this->size()\
     \ && this->back() == mint(0)) this->pop_back();\n        return *this;\n    }\n\
     \n    FPS rev() const {\n        FPS ret(*this);\n        std::reverse(ret.begin(),\
-    \ ret.end());\n        return ret;\n    }\n\n    FPS inplace_rev() {\n       \
-    \ std::reverse(this->begin(), this->end());\n        return *this;\n    }\n\n\
+    \ ret.end());\n        return ret;\n    }\n\n    FPS &inplace_rev() {\n      \
+    \  std::reverse(this->begin(), this->end());\n        return *this;\n    }\n\n\
     \    FPS dot(const FPS &r) const {\n        FPS ret(std::min(this->size(), r.size()));\n\
     \        for (int i = 0; i < (int)ret.size(); i++) ret[i] = (*this)[i] * r[i];\n\
-    \        return ret;\n    }\n\n    FPS inplace_dot(const FPS &r) {\n        this->resize(std::min(this->size(),\
+    \        return ret;\n    }\n\n    FPS &inplace_dot(const FPS &r) {\n        this->resize(std::min(this->size(),\
     \ r.size()));\n        for (int i = 0; i < (int)this->size(); i++) (*this)[i]\
     \ *= r[i];\n        return *this;\n    }\n\n    FPS pre(int n) const {\n     \
     \   FPS ret(this->begin(), this->begin() + std::min((int)this->size(), n));\n\
     \        if ((int)ret.size() < n) ret.resize(n, mint(0));\n        return ret;\n\
-    \    }\n\n    FPS inplace_pre(int n) {\n        this->resize(n);\n        return\
+    \    }\n\n    FPS &inplace_pre(int n) {\n        this->resize(n);\n        return\
     \ *this;\n    }\n\n    FPS operator>>(int n) const {\n        if (n >= (int)this->size())\
     \ return {};\n        FPS ret(this->begin() + n, this->end());\n        return\
     \ ret;\n    }\n\n    FPS operator<<(int n) const {\n        FPS ret(*this);\n\
     \        ret.insert(ret.begin(), n, mint(0));\n        return ret;\n    }\n\n\
     \    FPS diff() const {\n        const int n = (int)this->size();\n        FPS\
     \ ret(std::max(0, n - 1));\n        for (int i = 1; i < n; i++) { ret[i - 1] =\
-    \ (*this)[i] * mint(i); }\n        return ret;\n    }\n\n    FPS inplace_diff()\
+    \ (*this)[i] * mint(i); }\n        return ret;\n    }\n\n    FPS &inplace_diff()\
     \ {\n        if (this->empty()) return {};\n        this->erase(this->begin());\n\
     \        for (int i = 1; i <= (int)this->size(); i++) (*this)[i - 1] *= mint(i);\n\
     \        return *this;\n    }\n\n    FPS integral() const {\n        const int\
@@ -127,7 +127,7 @@ data:
     \      for (int i = 2; i <= n; i++) {\n            // p = q * i + r\n        \
     \    // - q / r = 1 / i (mod p)\n            ret[i] = (-ret[mod % i]) * (mod /\
     \ i);\n        }\n        for (int i = 0; i < n; i++) { ret[i + 1] *= (*this)[i];\
-    \ }\n        return ret;\n    }\n\n    FPS inplace_int() {\n        static std::vector<mint>\
+    \ }\n        return ret;\n    }\n\n    FPS &inplace_int() {\n        static std::vector<mint>\
     \ inv{0, 1};\n        const int n = this->size();\n        auto mod = mint::getmod();\n\
     \        while ((int)inv.size() <= n) {\n            // p = q * i + r\n      \
     \      // - q / r = 1 / i (mod p)\n            int i = inv.size();\n         \
@@ -209,10 +209,10 @@ data:
     \ fip1] : fs) {\n                int i = ip1 - 1;\n                if (k < i)\
     \ break;\n                g[k + 1] += g[k - i] * fip1 * (i + 1);\n           \
     \ }\n            g[k + 1] *= inv[k + 1];\n        }\n\n        return g;\n   \
-    \ }\n\n    FPS inplace_imos(int n) {\n        inplace_pre(n);\n        for (int\
+    \ }\n\n    FPS &inplace_imos(int n) {\n        inplace_pre(n);\n        for (int\
     \ i = 0; i < n - 1; i++) { (*this)[i + 1] += (*this)[i]; }\n        return *this;\n\
     \    }\n\n    FPS imos(int n) const {\n        FPS ret(*this);\n        return\
-    \ ret.inplace_imos(n);\n    }\n\n    FPS inplace_iimos(int n) {\n        inplace_pre(n);\n\
+    \ ret.inplace_imos(n);\n    }\n\n    FPS &inplace_iimos(int n) {\n        inplace_pre(n);\n\
     \        for (int i = 0; i < n - 1; i++) { (*this)[i + 1] -= (*this)[i]; }\n \
     \       return *this;\n    }\n\n    FPS iimos(int n) const {\n        FPS ret(*this);\n\
     \        return ret.inplace_iimos(n);\n    }\n\n    FPS &operator*=(const FPS\
@@ -229,8 +229,8 @@ data:
   - fps/multivariate_fps.hpp
   - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-12-08 12:34:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-25 14:58:23+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp

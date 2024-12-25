@@ -17,10 +17,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/bitxor1.hpp
       title: convolution/bitxor1.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convolution/butterfly.hpp
       title: convolution/butterfly.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convolution/convolution.hpp
       title: convolution/convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -111,7 +111,7 @@ data:
     - icon: ':warning:'
       path: fps/find_root.hpp
       title: fps/find_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: fps/fps.hpp
       title: fps/fps.hpp
     - icon: ':warning:'
@@ -132,7 +132,7 @@ data:
     - icon: ':warning:'
       path: fps/multivariate_fps.hpp
       title: fps/multivariate_fps.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: fps/ntt_friendly.hpp
       title: fps/ntt_friendly.hpp
     - icon: ':warning:'
@@ -312,10 +312,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math_mod/pow_mod.hpp
       title: math_mod/pow_mod.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math_mod/primitive_root.hpp
       title: math_mod/primitive_root.hpp
   - name: matrix
@@ -337,7 +337,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint/modint.hpp
       title: modint/modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/mont.hpp
       title: modint/mont.hpp
     - icon: ':heavy_check_mark:'
@@ -457,22 +457,22 @@ data:
       title: string/z_algorithm.hpp
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/constant.hpp
       title: template/constant.hpp
     - icon: ':warning:'
       path: template/debug.hpp
       title: template/debug.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/fastio.hpp
       title: template/fastio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/function_util.hpp
       title: template/function_util.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/io_util.hpp
       title: template/io_util.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
     - icon: ':warning:'
@@ -481,15 +481,15 @@ data:
     - icon: ':warning:'
       path: template/simpleio.hpp
       title: template/simpleio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_alias.hpp
       title: template/type_alias.hpp
   - name: type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   - name: unionfind
@@ -608,7 +608,7 @@ data:
       title: verify/yosupo_ds/ds_unionfind.test.cpp
   - name: verify/yosupo_fps
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_exp.test.cpp
       title: verify/yosupo_fps/fps_exp.test.cpp
     - icon: ':heavy_check_mark:'
@@ -617,7 +617,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
   - name: verify/yosupo_geometry

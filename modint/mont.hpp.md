@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -84,9 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -155,7 +155,7 @@ data:
   - convolution/convolution_arb.hpp
   - fps/fps_arb.hpp
   timestamp: '2024-12-08 12:34:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp

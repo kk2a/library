@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/butterfly.hpp
     title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':heavy_check_mark:'
@@ -22,37 +22,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -108,7 +108,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/many_factrials.test.cpp
   requiredBy: []
-  timestamp: '2024-12-21 14:55:32+09:00'
+  timestamp: '2024-12-25 14:58:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/many_factrials.test.cpp
