@@ -186,7 +186,7 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
     }
 
     FPS &inplace_diff() {
-        if (this->empty()) return {};
+        if (this->empty()) return *this = FPS();
         this->erase(this->begin());
         for (int i = 1; i <= (int)this->size(); i++) (*this)[i - 1] *= mint(i);
         return *this;
