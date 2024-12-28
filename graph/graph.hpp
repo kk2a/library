@@ -43,7 +43,10 @@ template <class T, bool is_directed> struct AdjacencyList : std::vector<_Edges<T
     using value_type = T;
     using edge_type = _Edge<T>;
 
-    constexpr static bool directed() { return is_directed; }
+    using directed = std::integral_constant<bool, is_directed>;
+    using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
+    using adjacency_list = std::integral_constant<bool, true>;
+    using adjacency_matrix = std::integral_constant<bool, false>;
 
     AdjacencyList() = default;
 
@@ -55,7 +58,7 @@ template <class T, bool is_directed> struct AdjacencyList : std::vector<_Edges<T
     AdjacencyList(int n_, const _Edges<T> &edges_) : std::vector<_Edges<T>>(n_), edges(edges_) {
         for (auto &&e : edges) {
             (*this)[e.from].emplace_back(e);
-            if constexpr (!is_directed) (*this)[e.to].emplace_back(e);
+            if constexpr (!is_directed) (*this)[e.to].emplace_back(e.rev());
         }
     }
 
@@ -117,7 +120,10 @@ template <class T, bool is_directed> struct AdjacencyMatrix : std::vector<_pairs
     using value_type = T;
     using edge_type = _pair<T>;
 
-    constexpr static bool directed() { return is_directed; }
+    using directed = std::integral_constant<bool, is_directed>;
+    using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
+    using adjacency_list = std::integral_constant<bool, false>;
+    using adjacency_matrix = std::integral_constant<bool, true>;
 
     AdjacencyMatrix() = default;
 

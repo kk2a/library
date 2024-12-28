@@ -1,6 +1,7 @@
 #ifndef GRAPH_SCC_HPP
 #define GRAPH_SCC_HPP 1
 
+#include <cassert>
 #include <algorithm>
 #include <functional>
 #include <vector>
@@ -8,6 +9,7 @@
 namespace kk2 {
 
 template <class G> struct SCC {
+    static_assert(G::directed::value, "SCC requires directed graph");
     int n;
     const G &g;
     std::vector<std::vector<int>> revg;

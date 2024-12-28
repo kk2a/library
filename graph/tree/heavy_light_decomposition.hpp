@@ -1,6 +1,7 @@
 #ifndef GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
 #define GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP 1
 
+#include <cassert>
 #include <functional>
 #include <utility>
 #include <vector>
@@ -8,6 +9,8 @@
 namespace kk2 {
 
 template <typename G> struct HeavyLightDecomposition {
+    static_assert(!G::directed::value, "HeavyLightDecomposition requires undirected graph");
+
     G &g;
     int root, id;
     std::vector<int> sz, in, out, head, par, dep, edge_idx;

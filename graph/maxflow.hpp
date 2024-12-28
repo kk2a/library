@@ -12,11 +12,12 @@
 namespace kk2 {
 
 template <class WG> struct MaxFlow {
-    static_assert(WG::directed(), "Directed graph required.");
-
+    static_assert(WG::directed::value, "MaxFlow requires directed graph");
+    static_assert(WG::weighted::value, "MaxFlow requires weighted graph");
+    
     using Cap = typename WG::value_type;
 
-    const WG &g;
+    WG g;
     int n, m;
     std::vector<int> revi;
 

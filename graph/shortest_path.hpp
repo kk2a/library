@@ -21,10 +21,11 @@ struct Result {
 };
 
 template <class WG, class T = typename WG::value_type> 
-Result<T> ShortestPath(const WG &g, int start) {
+Result<T> ShortestPath(const WG &g, int start, T inf = std::numeric_limits<T>::max()) {
+    static_assert(WG::weighted::value, "ShortestPath requires weighted graph");
     T alt;
     int n = g.size();
-    std::vector<T> dist(n, std::numeric_limits<T>::max());
+    std::vector<T> dist(n, inf);
     std::vector<edge> prev(n, {-1, -1});
 
     std::priority_queue<std::pair<T, int>,

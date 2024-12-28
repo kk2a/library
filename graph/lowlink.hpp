@@ -1,13 +1,17 @@
 #ifndef GRAPH_LOWLINK_HPP
 #define GRAPH_LOWLINK_HPP 1
 
+#include <cassert>
 #include <algorithm>
 #include <functional>
 #include <vector>
+#include <type_traits>
 
 namespace kk2 {
 
 template <class G> struct LowLink {
+    static_assert(!G::directed::value, "LowLink requires undirected graph");
+
     int n, m;
     const G &g;
     std::vector<int> ord, low;
@@ -25,12 +29,12 @@ template <class G> struct LowLink {
     }
 
     std::vector<typename G::edge_type> get_bridges() {
-        std::vector<bool> used(n);
+        std::vector<bool> used_v(n);
         std::vector<typename G::edge_type> res;
         auto dfs = [&](auto self, int now) -> void {
-            used[now] = true;
+            used_v[now] = true;
             for (auto &&e : g[now]) {
-                if (used[e.to]) continue;
+                if (used_v[e.to]) continue;
                 if (ord[now] < low[e.to]) res.emplace_back(e);
                 self(self, e.to);
             }

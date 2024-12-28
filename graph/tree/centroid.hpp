@@ -9,6 +9,8 @@
 namespace kk2 {
 
 template <class G> int centroid(const G &g) {
+    static_assert(!G::directed::value, "Centroid requires undirected graph");
+
     int n = g.size();
     std::vector<int> sz(n, 0);
     auto dfs = [&](auto &&self, int u, int p = -1) -> int {

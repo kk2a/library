@@ -2,6 +2,7 @@
 #define GRAPH_TREE_EULER_TOUR_HPP 1
 
 #include <algorithm>
+#include <cassert>
 #include <functional>
 #include <utility>
 #include <vector>
@@ -11,6 +12,8 @@
 namespace kk2 {
 
 template <typename G> struct EulerTour {
+    static_assert(!G::directed::value, "EulerTour requires undirected graph");
+
     const G &g;
     int root, id;
     std::vector<int> in, out, par;

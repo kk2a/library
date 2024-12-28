@@ -13,6 +13,7 @@ template <class G> struct BCC : LowLink<G> {
 
     std::vector<std::vector<int>> bc_e;
     std::vector<int> bc_id;
+    G forest;
 
   private:
     // v is a child of u in DFS tree
@@ -77,6 +78,10 @@ template <class G> struct BCC : LowLink<G> {
                 res[k].emplace_back(i);
             }
         return res;
+    }
+
+    G block_cut_tree() {
+
     }
 };
 

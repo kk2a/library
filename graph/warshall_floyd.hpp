@@ -17,6 +17,9 @@ template <typename T> struct edge {
 
 template <typename WG, typename T = typename WG::value_type>
 std::vector<std::vector<edge<T>>> WarshallFroyd(const WG &g) {
+    static_assert(WG::weighted::value, "WarshallFroyd requires weighted graph");
+    static_assert(WG::adjacency_matrix::value, "WarshallFroyd requires adjacency matrix");
+
     int n = g.size();
     std::vector<std::vector<edge<T>>> res(n, std::vector<edge<T>>(n, {0, false}));
     for (int i = 0; i < n; ++i) res[i][i] = {0, true};

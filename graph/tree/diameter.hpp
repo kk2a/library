@@ -3,12 +3,21 @@
 
 #include <algorithm>
 #include <functional>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
 namespace kk2 {
 
-template <class G> std::pair<int, std::vector<int>> tree_diameter(const G &g) {
+namespace tree_diameter_impl {
+
+template <class G> struct result {
+    std::conditional_t<G::weighted::value, typename G::value_type, int> diameter;
+    std::vector<int> path;
+};
+
+template <class G, std::enable_if_t<!G::weighted::value> * = nullptr>
+result<G> tree_diameter(const G &g) {
     std::vector<int> dist(g.size(), -1), par(g.size(), -1);
     auto dfs = [&](auto self, int now) -> void {
         for (auto &e : g[now]) {
@@ -27,11 +36,12 @@ template <class G> std::pair<int, std::vector<int>> tree_diameter(const G &g) {
     int v = std::max_element(std::begin(dist), std::end(dist)) - std::begin(dist);
     std::vector<int> path;
     for (int now = v; now != -1; now = par[now]) { path.emplace_back(now); }
-    return std::make_pair(dist[v], path);
+    return {dist[v], path};
 }
 
-template <class WG, typename T = typename WG::value_type>
-std::pair<T, std::vector<int>> weighted_tree_diameter(const WG &g) {
+template <class G, std::enable_if_t<G::weighted::value> * = nullptr>
+result<G> tree_diameter(const G &g) {
+    using T = typename G::value_type;
     std::vector<T> dist(g.size(), -1);
     std::vector<int> par(g.size(), -1);
 
@@ -52,8 +62,12 @@ std::pair<T, std::vector<int>> weighted_tree_diameter(const WG &g) {
     int v = std::max_element(std::begin(dist), std::end(dist)) - std::begin(dist);
     std::vector<int> path;
     for (int now = v; now != -1; now = par[now]) { path.emplace_back(now); }
-    return std::make_pair(dist[v], path);
+    return {dist[v], path};
 }
+
+} // namespace tree_diameter_impl
+
+using tree_diameter_impl::tree_diameter;
 
 } // namespace kk2
 

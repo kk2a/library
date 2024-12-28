@@ -1,11 +1,14 @@
 #ifndef GRAPH_TREE_CENTROID_DECOMPOSITION_HPP
 #define GRAPH_TREE_CENTROID_DECOMPOSITION_HPP 1
 
+#include <cassert>
 #include <vector>
 
 namespace kk2 {
 
 template <class G> struct CentroidDecomposition {
+    static_assert(!G::directed::value, "CentroidDecomposition requires undirected graph");
+
     const G &g;
     std::vector<int> parent;
     std::vector<int> subsize;

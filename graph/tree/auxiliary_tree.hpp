@@ -2,6 +2,7 @@
 #define GRAPH_TREE_AUXILIARY_TREE_HPP 1
 
 #include <algorithm>
+#include <cassert>
 #include <functional>
 #include <stack>
 #include <utility>
@@ -12,6 +13,8 @@
 namespace kk2 {
 
 template <typename G> struct AuxiliaryTree {
+    static_assert(!G::directed::value, "AuxiliaryTree requires undirected graph");
+
     G g;
     HeavyLightDecomposition<G> hld;
 
