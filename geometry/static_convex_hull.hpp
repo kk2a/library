@@ -12,9 +12,8 @@ namespace kk2 {
 template <typename T> struct StaticConvexHull {
     using point = Point<T>;
     std::vector<point> ps, hull;
-    // 各頂点に対して，hullのindexを格納
-    // -1なら凸包に含まれない
-    std::vector<int> idx;
+    std::vector<point> up, dw;
+    std::vector<int> idx_hull, idx_up, idx_dw;
 
     StaticConvexHull() = default;
 
@@ -27,56 +26,61 @@ template <typename T> struct StaticConvexHull {
     void build() {
         int _n = size(ps);
         if (_n == 0) return;
-        if (_n == 1) {
-            hull = ps;
-            idx = {0};
-            return;
-        }
 
-        idx.resize(_n, -1);
+        idx_hull.resize(_n, -1);
+        idx_up.resize(_n, -1);
+        idx_dw.resize(_n, -1);
+
         std::vector<std::pair<point, int>> tmp(_n);
         for (int i = 0; i < _n; i++) tmp[i] = {ps[i], i};
         std::sort(tmp.begin(), tmp.end());
         std::vector<bool> same(_n);
         for (int i = 1; i < _n; i++) same[i] = tmp[i - 1].first == tmp[i].first;
-        std::vector<std::pair<point, int>> up, dw;
+        std::vector<std::pair<point, int>> up_, dw_;
 
         for (int i = 0; i < _n; i++) {
             if (same[i]) continue;
             // 傾きが減少
-            while (size(up) >= 2
-                   && cross(up[size(up) - 2].first - up[size(up) - 1].first,
-                            up[size(up) - 1].first - tmp[i].first)
+            while (size(up_) >= 2
+                   && cross(up_[size(up_) - 1].first - up_[size(up_) - 2].first,
+                            tmp[i].first - up_[size(up_) - 1].first)
                           >= 0) {
-                up.pop_back();
+                up_.pop_back();
             }
 
             // 傾きが増加
-            while (size(dw) >= 2
-                   && cross(dw[size(dw) - 2].first - dw[size(dw) - 1].first,
-                            dw[size(dw) - 1].first - tmp[i].first)
+            while (size(dw_) >= 2
+                   && cross(dw_[size(dw_) - 1].first - dw_[size(dw_) - 2].first,
+                            tmp[i].first - dw_[size(dw_) - 1].first)
                           <= 0) {
-                dw.pop_back();
+                dw_.pop_back();
             }
-            up.emplace_back(tmp[i]);
-            dw.emplace_back(tmp[i]);
+            up_.emplace_back(tmp[i]);
+            dw_.emplace_back(tmp[i]);
         }
 
-        if (int(size(up)) == 1) {
-            hull = {up[0].first};
-            idx[up[0].second] = 0;
+        if (int(size(up_)) == 1) {
+            hull = up = dw = {up_[0].first};
+            idx_hull[up_[0].second] = idx_up[up_[0].second] = idx_dw[up_[0].second] = 0;
             return;
         }
 
-        hull.resize(size(up) + size(dw) - 2);
+        hull.resize(size(up_) + size(dw_) - 2);
+        up.resize(size(up_));
+        dw.resize(size(dw_));
 
-        for (int i = 0; i < (int)size(dw); i++) {
-            hull[i] = dw[i].first;
-            idx[dw[i].second] = i;
+        for (int i = 0; i < (int)size(dw_); i++) {
+            hull[i] = dw[i] = dw_[i].first;
+            idx_hull[dw_[i].second] = idx_dw[dw_[i].second] = i;
         }
-        for (int i = size(up) - 2; i > 0; i--) {
-            hull[size(up) + size(dw) - 2 - i] = up[i].first;
-            idx[up[i].second] = size(up) + size(dw) - 2 - i;
+        up.back() = up_.back().first;
+        idx_up[up_.back().second] = up_.size() - 1;
+        up[0] = up_[0].first;
+        idx_up[up_[0].second] = 0;
+        for (int i = size(up_) - 2; i; i--) {
+            hull[size(up_) + size(dw_) - 2 - i] = up[i] = up_[i].first;
+            idx_hull[up_[i].second] = size(up_) + size(dw_) - 2 - i;
+            idx_up[up_[i].second] = i;
         }
     }
 };
