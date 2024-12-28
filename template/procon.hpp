@@ -65,4 +65,54 @@ void no(bool b = 1) {
     kout << (b ? "no\n" : "yes\n");
 }
 
+std::istream &operator>>(std::istream &is, u128 &x) {
+    std::string s;
+    is >> s;
+    x = 0;
+    for (char c : s) {
+        assert('0' <= c && c <= '9');
+        x = x * 10 + c - '0';
+    }
+    return is;
+}
+
+std::istream &operator>>(std::istream &is, i128 &x) {
+    std::string s;
+    is >> s;
+    bool neg = s[0] == '-';
+    x = 0;
+    for (int i = neg; i < (int)s.size(); i++) {
+        assert('0' <= s[i] && s[i] <= '9');
+        x = x * 10 + s[i] - '0';
+    }
+    if (neg) x = -x;
+    return is;
+}
+
+std::ostream &operator<<(std::ostream &os, u128 x) {
+    if (x == 0) return os << '0';
+    std::string s;
+    while (x) {
+        s.push_back('0' + x % 10);
+        x /= 10;
+    }
+    std::reverse(s.begin(), s.end());
+    return os << s;
+}
+
+std::ostream &operator<<(std::ostream &os, i128 x) {
+    if (x == 0) return os << '0';
+    if (x < 0) {
+        os << '-';
+        x = -x;
+    }
+    std::string s;
+    while (x) {
+        s.push_back('0' + x % 10);
+        x /= 10;
+    }
+    std::reverse(s.begin(), s.end());
+    return os << s;
+}
+
 #endif // TEMPLATE_PROCON_HPP
