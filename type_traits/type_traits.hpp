@@ -72,6 +72,7 @@ struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {};
 template <typename T>
 using is_two_args_function_pointer_t = std::enable_if_t<is_two_args_function_pointer<T>::value>;
 
+
 namespace type_traits {
 
 struct istream_tag {};
