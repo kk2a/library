@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: graph/bcc.hpp
     title: graph/bcc.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':x:'

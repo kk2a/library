@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
@@ -78,8 +78,8 @@ data:
   isVerificationFile: true
   path: verify/aoj/aoj_grl_1_c.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-12-28 14:03:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_grl_1_c.test.cpp
 layout: document

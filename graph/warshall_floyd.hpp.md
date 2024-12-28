@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/warshall_floyd.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -23,17 +23,18 @@ data:
     \ {\n        {\n            auto &[len, valid] = res[e.from][e.to];\n        \
     \    if (valid) len = std::min(len, e.cost);\n            else {\n           \
     \     len = e.cost;\n                valid = true;\n            }\n        }\n\
-    \        if constexpr (!WG::directed()) {\n            auto &[len, valid] = res[e.to][e.from];\n\
-    \            if (valid) len = std::min(len, e.cost);\n            else {\n   \
-    \             len = e.cost;\n                valid = true;\n            }\n  \
-    \      }\n    }\n\n    for (int k = 0; k < n; ++k) {\n        for (int i = 0;\
-    \ i < n; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if\
-    \ (!res[i][k].is_valid or !res[k][j].is_valid) continue;\n                if (res[i][j].is_valid)\n\
-    \                    res[i][j].len = std::min(res[i][j].len, res[i][k].len + res[k][j].len);\n\
-    \                else {\n                    res[i][j].len = res[i][k].len + res[k][j].len;\n\
-    \                    res[i][j].is_valid = true;\n                }\n         \
-    \   }\n        }\n    }\n\n    return res;\n}\n\n} // namespace shortest_path\n\
-    \nusing shortest_path::WarshallFroyd;\n\n} // namespace kk2\n\n\n"
+    \        if constexpr (!WG::directed::value) {\n            auto &[len, valid]\
+    \ = res[e.to][e.from];\n            if (valid) len = std::min(len, e.cost);\n\
+    \            else {\n                len = e.cost;\n                valid = true;\n\
+    \            }\n        }\n    }\n\n    for (int k = 0; k < n; ++k) {\n      \
+    \  for (int i = 0; i < n; ++i) {\n            for (int j = 0; j < n; ++j) {\n\
+    \                if (!res[i][k].is_valid or !res[k][j].is_valid) continue;\n \
+    \               if (res[i][j].is_valid)\n                    res[i][j].len = std::min(res[i][j].len,\
+    \ res[i][k].len + res[k][j].len);\n                else {\n                  \
+    \  res[i][j].len = res[i][k].len + res[k][j].len;\n                    res[i][j].is_valid\
+    \ = true;\n                }\n            }\n        }\n    }\n\n    return res;\n\
+    }\n\n} // namespace shortest_path\n\nusing shortest_path::WarshallFroyd;\n\n}\
+    \ // namespace kk2\n\n\n"
   code: "#ifndef GRAPH_WARSHALL_FLOYD_HPP\n#define GRAPH_WARSHALL_FLOYD_HPP 1\n\n\
     #include <algorithm>\n#include <cassert>\n#include <limits>\n#include <vector>\n\
     \nnamespace kk2 {\n\nnamespace shortest_path {\n\ntemplate <typename T> struct\
@@ -46,7 +47,7 @@ data:
     \ res[i][i] = {0, true};\n    for (auto &&e : g.edges) {\n        {\n        \
     \    auto &[len, valid] = res[e.from][e.to];\n            if (valid) len = std::min(len,\
     \ e.cost);\n            else {\n                len = e.cost;\n              \
-    \  valid = true;\n            }\n        }\n        if constexpr (!WG::directed())\
+    \  valid = true;\n            }\n        }\n        if constexpr (!WG::directed::value)\
     \ {\n            auto &[len, valid] = res[e.to][e.from];\n            if (valid)\
     \ len = std::min(len, e.cost);\n            else {\n                len = e.cost;\n\
     \                valid = true;\n            }\n        }\n    }\n\n    for (int\
@@ -62,8 +63,8 @@ data:
   isVerificationFile: false
   path: graph/warshall_floyd.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:03:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-12-28 14:03:39+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp
 documentation_of: graph/warshall_floyd.hpp

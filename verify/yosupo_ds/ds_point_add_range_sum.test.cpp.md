@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
   - icon: ':heavy_check_mark:'

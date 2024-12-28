@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
   - icon: ':x:'
-    path: graph/shortest_path.hpp
-    title: graph/shortest_path.hpp
+    path: geometry/point.hpp
+    title: geometry/point.hpp
+  - icon: ':x:'
+    path: geometry/static_convex_hull.hpp
+    title: geometry/static_convex_hull.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -38,9 +38,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/shortest_path
+    PROBLEM: https://judge.yosupo.jp/problem/static_convex_hull
     links:
-    - https://judge.yosupo.jp/problem/shortest_path
+    - https://judge.yosupo.jp/problem/static_convex_hull
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -49,25 +49,22 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include\
-    \ \"../../graph/graph.hpp\"\n#include \"../../graph/shortest_path.hpp\"\n#include\
-    \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ n, m, s, t;\n    kin >> n >> m >> s >> t;\n    kk2::DWAdjList<i64> g(n, m);\n\
-    \    g.input(kin);\n    auto [dist, prev] = kk2::ShortestPath(g, s);\n\n    if\
-    \ (prev[t].to == -1) {\n        kout << -1 << \"\\n\";\n        return 0;\n  \
-    \  }\n\n    std::vector<int> path;\n    for (int now = t; now != -1; now = prev[now].to)\
-    \ path.emplace_back(now);\n\n    kout << dist[t] << \" \" << path.size() - 1 <<\
-    \ \"\\n\";\n    for (int i = path.size() - 1; i; --i) kout << path[i] << \" \"\
-    \ << path[i - 1] << \"\\n\";\n\n    return 0;\n}\n"
+    \ geometry/point.hpp: line 4: #pragma once found in a non-first line\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\" \n\
+    \n#include \"../../geometry/point.hpp\"\n#include \"../../geometry/static_convex_hull.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int t;\n    kin >> t;\n    rep (t) {\n        int n;\n        kin >>\
+    \ n;\n        vc<kk2::Point<i64>> p(n);\n        kin >> p;\n        kk2::StaticConvexHull\
+    \ ch(p);\n        ch.build();\n\n        kout << ch.hull.size() << \"\\n\";\n\
+    \        vc<kk2::Point<i64>> res(ch.hull.size());\n        rep (i, n) {\n    \
+    \        if (ch.idx_hull[i] != -1) res[ch.idx_hull[i]] = p[i];\n        }\n  \
+    \      for (auto &q : res) kout << q << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
-  - graph/graph.hpp
+  - geometry/point.hpp
   - type_traits/type_traits.hpp
-  - graph/shortest_path.hpp
+  - geometry/static_convex_hull.hpp
   - template/template.hpp
   - template/fastio.hpp
   - template/type_alias.hpp
@@ -76,15 +73,15 @@ data:
   - template/macros.hpp
   - template/io_util.hpp
   isVerificationFile: true
-  path: verify/yosupo_graph/graph_shortest_path.test.cpp
+  path: verify/yosupo_geometry/static_convex_hull_2.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2024-12-28 14:03:39+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_graph/graph_shortest_path.test.cpp
+documentation_of: verify/yosupo_geometry/static_convex_hull_2.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_graph/graph_shortest_path.test.cpp
-- /verify/verify/yosupo_graph/graph_shortest_path.test.cpp.html
-title: verify/yosupo_graph/graph_shortest_path.test.cpp
+- /verify/verify/yosupo_geometry/static_convex_hull_2.test.cpp
+- /verify/verify/yosupo_geometry/static_convex_hull_2.test.cpp.html
+title: verify/yosupo_geometry/static_convex_hull_2.test.cpp
 ---

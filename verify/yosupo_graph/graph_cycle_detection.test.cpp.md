@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':question:'

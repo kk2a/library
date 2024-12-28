@@ -18,6 +18,15 @@ data:
   - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/static_convex_hull_1.test.cpp
+    title: verify/yosupo_geometry/static_convex_hull_1.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/static_convex_hull_2.test.cpp
+    title: verify/yosupo_geometry/static_convex_hull_2.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/static_convex_hull_3.test.cpp
+    title: verify/yosupo_geometry/static_convex_hull_3.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -108,8 +117,11 @@ data:
   timestamp: '2024-12-28 13:04:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/yosupo_geometry/static_convex_hull_1.test.cpp
   - verify/yosupo_geometry/arg_sort.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_2.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
 documentation_of: geometry/point.hpp
 layout: document
 redirect_from:

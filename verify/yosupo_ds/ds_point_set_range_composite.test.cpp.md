@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/homomorphism/affine.hpp
     title: math/homomorphism/affine.hpp
   - icon: ':question:'

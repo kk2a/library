@@ -12,6 +12,15 @@ data:
   - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/static_convex_hull_1.test.cpp
+    title: verify/yosupo_geometry/static_convex_hull_1.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/static_convex_hull_2.test.cpp
+    title: verify/yosupo_geometry/static_convex_hull_2.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_geometry/static_convex_hull_3.test.cpp
+    title: verify/yosupo_geometry/static_convex_hull_3.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -31,46 +40,52 @@ data:
   code: "#ifndef GEOMETRY_CONVEX_HULL_HPP\n#define GEOMETRY_CONVEX_HULL_HPP 1\n\n\
     #include <algorithm>\n#include <utility>\n#include <vector>\n\n#include \"point.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename T> struct StaticConvexHull {\n    using\
-    \ point = Point<T>;\n    std::vector<point> ps, hull;\n    // \u5404\u9802\u70B9\
-    \u306B\u5BFE\u3057\u3066\uFF0Chull\u306Eindex\u3092\u683C\u7D0D\n    // -1\u306A\
-    \u3089\u51F8\u5305\u306B\u542B\u307E\u308C\u306A\u3044\n    std::vector<int> idx;\n\
-    \n    StaticConvexHull() = default;\n\n    StaticConvexHull(const std::vector<point>\
-    \ &ps) : ps(ps) {}\n\n    void add_point(T x, T y) { ps.emplace_back(x, y); }\n\
-    \n    void add_point(const point &p) { ps.push_back(p); }\n\n    void build()\
-    \ {\n        int _n = size(ps);\n        if (_n == 0) return;\n        if (_n\
-    \ == 1) {\n            hull = ps;\n            idx = {0};\n            return;\n\
-    \        }\n\n        idx.resize(_n, -1);\n        std::vector<std::pair<point,\
+    \ point = Point<T>;\n    std::vector<point> ps, hull;\n    std::vector<point>\
+    \ up, dw;\n    std::vector<int> idx_hull, idx_up, idx_dw;\n\n    StaticConvexHull()\
+    \ = default;\n\n    StaticConvexHull(const std::vector<point> &ps) : ps(ps) {}\n\
+    \n    void add_point(T x, T y) { ps.emplace_back(x, y); }\n\n    void add_point(const\
+    \ point &p) { ps.push_back(p); }\n\n    void build() {\n        int _n = size(ps);\n\
+    \        if (_n == 0) return;\n\n        idx_hull.resize(_n, -1);\n        idx_up.resize(_n,\
+    \ -1);\n        idx_dw.resize(_n, -1);\n\n        std::vector<std::pair<point,\
     \ int>> tmp(_n);\n        for (int i = 0; i < _n; i++) tmp[i] = {ps[i], i};\n\
     \        std::sort(tmp.begin(), tmp.end());\n        std::vector<bool> same(_n);\n\
     \        for (int i = 1; i < _n; i++) same[i] = tmp[i - 1].first == tmp[i].first;\n\
-    \        std::vector<std::pair<point, int>> up, dw;\n\n        for (int i = 0;\
-    \ i < _n; i++) {\n            if (same[i]) continue;\n            // \u50BE\u304D\
-    \u304C\u6E1B\u5C11\n            while (size(up) >= 2\n                   && cross(up[size(up)\
-    \ - 2].first - up[size(up) - 1].first,\n                            up[size(up)\
-    \ - 1].first - tmp[i].first)\n                          >= 0) {\n            \
-    \    up.pop_back();\n            }\n\n            // \u50BE\u304D\u304C\u5897\u52A0\
-    \n            while (size(dw) >= 2\n                   && cross(dw[size(dw) -\
-    \ 2].first - dw[size(dw) - 1].first,\n                            dw[size(dw)\
-    \ - 1].first - tmp[i].first)\n                          <= 0) {\n            \
-    \    dw.pop_back();\n            }\n            up.emplace_back(tmp[i]);\n   \
-    \         dw.emplace_back(tmp[i]);\n        }\n\n        if (int(size(up)) ==\
-    \ 1) {\n            hull = {up[0].first};\n            idx[up[0].second] = 0;\n\
-    \            return;\n        }\n\n        hull.resize(size(up) + size(dw) - 2);\n\
-    \n        for (int i = 0; i < (int)size(dw); i++) {\n            hull[i] = dw[i].first;\n\
-    \            idx[dw[i].second] = i;\n        }\n        for (int i = size(up)\
-    \ - 2; i > 0; i--) {\n            hull[size(up) + size(dw) - 2 - i] = up[i].first;\n\
-    \            idx[up[i].second] = size(up) + size(dw) - 2 - i;\n        }\n   \
-    \ }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_CONVEX_HULL_HPP\n"
+    \        std::vector<std::pair<point, int>> up_, dw_;\n\n        for (int i =\
+    \ 0; i < _n; i++) {\n            if (same[i]) continue;\n            // \u50BE\
+    \u304D\u304C\u6E1B\u5C11\n            while (size(up_) >= 2\n                \
+    \   && cross(up_[size(up_) - 1].first - up_[size(up_) - 2].first,\n          \
+    \                  tmp[i].first - up_[size(up_) - 1].first)\n                \
+    \          >= 0) {\n                up_.pop_back();\n            }\n\n       \
+    \     // \u50BE\u304D\u304C\u5897\u52A0\n            while (size(dw_) >= 2\n \
+    \                  && cross(dw_[size(dw_) - 1].first - dw_[size(dw_) - 2].first,\n\
+    \                            tmp[i].first - dw_[size(dw_) - 1].first)\n      \
+    \                    <= 0) {\n                dw_.pop_back();\n            }\n\
+    \            up_.emplace_back(tmp[i]);\n            dw_.emplace_back(tmp[i]);\n\
+    \        }\n\n        if (int(size(up_)) == 1) {\n            hull = up = dw =\
+    \ {up_[0].first};\n            idx_hull[up_[0].second] = idx_up[up_[0].second]\
+    \ = idx_dw[up_[0].second] = 0;\n            return;\n        }\n\n        hull.resize(size(up_)\
+    \ + size(dw_) - 2);\n        up.resize(size(up_));\n        dw.resize(size(dw_));\n\
+    \n        for (int i = 0; i < (int)size(dw_); i++) {\n            hull[i] = dw[i]\
+    \ = dw_[i].first;\n            idx_hull[dw_[i].second] = idx_dw[dw_[i].second]\
+    \ = i;\n        }\n        up.back() = up_.back().first;\n        idx_up[up_.back().second]\
+    \ = up_.size() - 1;\n        up[0] = up_[0].first;\n        idx_up[up_[0].second]\
+    \ = 0;\n        for (int i = size(up_) - 2; i; i--) {\n            hull[size(up_)\
+    \ + size(dw_) - 2 - i] = up[i] = up_[i].first;\n            idx_hull[up_[i].second]\
+    \ = size(up_) + size(dw_) - 2 - i;\n            idx_up[up_[i].second] = i;\n \
+    \       }\n    }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_CONVEX_HULL_HPP\n"
   dependsOn:
   - geometry/point.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: geometry/static_convex_hull.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2024-12-28 14:03:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/yosupo_geometry/static_convex_hull_1.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_2.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
 documentation_of: geometry/static_convex_hull.hpp
 layout: document
 redirect_from:
