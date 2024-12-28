@@ -30,9 +30,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
@@ -69,8 +69,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_others/many_a_plus_b.test.cpp
   requiredBy: []
-  timestamp: '2024-12-21 14:55:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-28 13:04:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b.test.cpp
 layout: document

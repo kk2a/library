@@ -44,7 +44,7 @@ data:
   isVerificationFile: false
   path: geometry/cross_point_line_line.hpp
   requiredBy: []
-  timestamp: '2024-12-22 00:42:38+09:00'
+  timestamp: '2024-12-28 13:04:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/cross_point_line_line.hpp

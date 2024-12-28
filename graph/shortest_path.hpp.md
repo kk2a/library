@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/shortest_path.hpp\"\n\n\n\n#include <limits>\n#include\
@@ -16,8 +16,9 @@ data:
     \ shortest_path {\n\nstruct edge {\n    int to, id;\n};\n\ntemplate <class T>\n\
     struct Result {\n    std::vector<T> dist;\n    std::vector<edge> prev;\n};\n\n\
     template <class WG, class T = typename WG::value_type> \nResult<T> ShortestPath(const\
-    \ WG &g, int start) {\n    T alt;\n    int n = g.size();\n    std::vector<T> dist(n,\
-    \ std::numeric_limits<T>::max());\n    std::vector<edge> prev(n, {-1, -1});\n\n\
+    \ WG &g, int start, T inf = std::numeric_limits<T>::max()) {\n    static_assert(WG::weighted::value,\
+    \ \"ShortestPath requires weighted graph\");\n    T alt;\n    int n = g.size();\n\
+    \    std::vector<T> dist(n, inf);\n    std::vector<edge> prev(n, {-1, -1});\n\n\
     \    std::priority_queue<std::pair<T, int>,\n                        std::vector<std::pair<T,\
     \ int>>,\n                        std::greater<std::pair<T, int>>>\n        pq;\n\
     \    dist[start] = 0;\n    pq.push({T(), start});\n\n    while (!pq.empty()) {\n\
@@ -33,8 +34,9 @@ data:
     namespace shortest_path {\n\nstruct edge {\n    int to, id;\n};\n\ntemplate <class\
     \ T>\nstruct Result {\n    std::vector<T> dist;\n    std::vector<edge> prev;\n\
     };\n\ntemplate <class WG, class T = typename WG::value_type> \nResult<T> ShortestPath(const\
-    \ WG &g, int start) {\n    T alt;\n    int n = g.size();\n    std::vector<T> dist(n,\
-    \ std::numeric_limits<T>::max());\n    std::vector<edge> prev(n, {-1, -1});\n\n\
+    \ WG &g, int start, T inf = std::numeric_limits<T>::max()) {\n    static_assert(WG::weighted::value,\
+    \ \"ShortestPath requires weighted graph\");\n    T alt;\n    int n = g.size();\n\
+    \    std::vector<T> dist(n, inf);\n    std::vector<edge> prev(n, {-1, -1});\n\n\
     \    std::priority_queue<std::pair<T, int>,\n                        std::vector<std::pair<T,\
     \ int>>,\n                        std::greater<std::pair<T, int>>>\n        pq;\n\
     \    dist[start] = 0;\n    pq.push({T(), start});\n\n    while (!pq.empty()) {\n\
@@ -49,8 +51,8 @@ data:
   isVerificationFile: false
   path: graph/shortest_path.hpp
   requiredBy: []
-  timestamp: '2024-10-26 15:17:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-28 13:03:48+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_shortest_path.test.cpp
 documentation_of: graph/shortest_path.hpp

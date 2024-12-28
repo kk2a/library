@@ -9,11 +9,12 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree/centroid_decomposition.hpp\"\n\n\n\n#include\
-    \ <vector>\n\nnamespace kk2 {\n\ntemplate <class G> struct CentroidDecomposition\
-    \ {\n    const G &g;\n    std::vector<int> parent;\n    std::vector<int> subsize;\n\
-    \    std::vector<bool> used;\n    std::vector<std::vector<int>> children;\n  \
-    \  int root;\n\n    CentroidDecomposition(const G &g_, bool isbuild = true)\n\
-    \        : g(g_),\n          parent(g.size(), -1),\n          subsize(g.size(),\
+    \ <cassert>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class G> struct\
+    \ CentroidDecomposition {\n    static_assert(!G::directed::value, \"CentroidDecomposition\
+    \ requires undirected graph\");\n\n    const G &g;\n    std::vector<int> parent;\n\
+    \    std::vector<int> subsize;\n    std::vector<bool> used;\n    std::vector<std::vector<int>>\
+    \ children;\n    int root;\n\n    CentroidDecomposition(const G &g_, bool isbuild\
+    \ = true)\n        : g(g_),\n          parent(g.size(), -1),\n          subsize(g.size(),\
     \ 0),\n          used(g.size(), false),\n          children(g.size()) {\n    \
     \    if (isbuild) build();\n    }\n\n    void build() { root = build_dfs(0); }\n\
     \n    int get_size(int now, int par) {\n        subsize[now] = 1;\n        for\
@@ -30,11 +31,12 @@ data:
     \ = centroid;\n            }\n        }\n        used[centroid] = false;\n   \
     \     return centroid;\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\n#define GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\
-    \ 1\n\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class G> struct CentroidDecomposition\
-    \ {\n    const G &g;\n    std::vector<int> parent;\n    std::vector<int> subsize;\n\
-    \    std::vector<bool> used;\n    std::vector<std::vector<int>> children;\n  \
-    \  int root;\n\n    CentroidDecomposition(const G &g_, bool isbuild = true)\n\
-    \        : g(g_),\n          parent(g.size(), -1),\n          subsize(g.size(),\
+    \ 1\n\n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class\
+    \ G> struct CentroidDecomposition {\n    static_assert(!G::directed::value, \"\
+    CentroidDecomposition requires undirected graph\");\n\n    const G &g;\n    std::vector<int>\
+    \ parent;\n    std::vector<int> subsize;\n    std::vector<bool> used;\n    std::vector<std::vector<int>>\
+    \ children;\n    int root;\n\n    CentroidDecomposition(const G &g_, bool isbuild\
+    \ = true)\n        : g(g_),\n          parent(g.size(), -1),\n          subsize(g.size(),\
     \ 0),\n          used(g.size(), false),\n          children(g.size()) {\n    \
     \    if (isbuild) build();\n    }\n\n    void build() { root = build_dfs(0); }\n\
     \n    int get_size(int now, int par) {\n        subsize[now] = 1;\n        for\
@@ -54,7 +56,7 @@ data:
   isVerificationFile: false
   path: graph/tree/centroid_decomposition.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-12-28 13:03:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/centroid_decomposition.hpp

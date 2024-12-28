@@ -56,7 +56,21 @@ data:
     \ ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    kout << (b ? \"\
     NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    kout << (b ? \"yes\\\
     n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout << (b ? \"no\\n\" : \"\
-    yes\\n\");\n}\n\n#endif // TEMPLATE_PROCON_HPP\n"
+    yes\\n\");\n}\n\nstd::istream &operator>>(std::istream &is, u128 &x) {\n    std::string\
+    \ s;\n    is >> s;\n    x = 0;\n    for (char c : s) {\n        assert('0' <=\
+    \ c && c <= '9');\n        x = x * 10 + c - '0';\n    }\n    return is;\n}\n\n\
+    std::istream &operator>>(std::istream &is, i128 &x) {\n    std::string s;\n  \
+    \  is >> s;\n    bool neg = s[0] == '-';\n    x = 0;\n    for (int i = neg; i\
+    \ < (int)s.size(); i++) {\n        assert('0' <= s[i] && s[i] <= '9');\n     \
+    \   x = x * 10 + s[i] - '0';\n    }\n    if (neg) x = -x;\n    return is;\n}\n\
+    \nstd::ostream &operator<<(std::ostream &os, u128 x) {\n    if (x == 0) return\
+    \ os << '0';\n    std::string s;\n    while (x) {\n        s.push_back('0' + x\
+    \ % 10);\n        x /= 10;\n    }\n    std::reverse(s.begin(), s.end());\n   \
+    \ return os << s;\n}\n\nstd::ostream &operator<<(std::ostream &os, i128 x) {\n\
+    \    if (x == 0) return os << '0';\n    if (x < 0) {\n        os << '-';\n   \
+    \     x = -x;\n    }\n    std::string s;\n    while (x) {\n        s.push_back('0'\
+    \ + x % 10);\n        x /= 10;\n    }\n    std::reverse(s.begin(), s.end());\n\
+    \    return os << s;\n}\n\n#endif // TEMPLATE_PROCON_HPP\n"
   dependsOn:
   - template/type_alias.hpp
   - template/constant.hpp
@@ -67,7 +81,7 @@ data:
   isVerificationFile: false
   path: template/procon.hpp
   requiredBy: []
-  timestamp: '2024-12-21 23:53:25+09:00'
+  timestamp: '2024-12-28 13:04:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/procon.hpp

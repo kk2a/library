@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/binary_indexed_tree.hpp
     title: data_structure/binary_indexed_tree.hpp
   - icon: ':question:'
@@ -75,7 +75,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
   requiredBy: []
-  timestamp: '2024-12-21 14:55:32+09:00'
+  timestamp: '2024-12-28 13:04:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp

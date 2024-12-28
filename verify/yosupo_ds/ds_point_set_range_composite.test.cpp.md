@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/homomorphism/affine.hpp
     title: math/homomorphism/affine.hpp
   - icon: ':question:'
@@ -90,7 +90,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-12-21 14:55:32+09:00'
+  timestamp: '2024-12-28 13:04:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite.test.cpp

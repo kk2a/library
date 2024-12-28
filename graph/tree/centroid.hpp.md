@@ -10,7 +10,8 @@ data:
     links: []
   bundledCode: "#line 1 \"graph/tree/centroid.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <functional>\n#include <numeric>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
-    \ <class G> int centroid(const G &g) {\n    int n = g.size();\n    std::vector<int>\
+    \ <class G> int centroid(const G &g) {\n    static_assert(!G::directed::value,\
+    \ \"Centroid requires undirected graph\");\n\n    int n = g.size();\n    std::vector<int>\
     \ sz(n, 0);\n    auto dfs = [&](auto &&self, int u, int p = -1) -> int {\n   \
     \     sz[u] = 1;\n        for (int v : g[u])\n            if (v != p) { sz[u]\
     \ += self(self, v, u); }\n        return sz[u];\n    };\n    dfs(dfs, 0);\n\n\
@@ -34,7 +35,8 @@ data:
     \    };\n    return find(find, 0);\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef CENTROID_HPP\n#define CENTROID_HPP 1\n\n#include <cassert>\n#include\
     \ <functional>\n#include <numeric>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
-    \ <class G> int centroid(const G &g) {\n    int n = g.size();\n    std::vector<int>\
+    \ <class G> int centroid(const G &g) {\n    static_assert(!G::directed::value,\
+    \ \"Centroid requires undirected graph\");\n\n    int n = g.size();\n    std::vector<int>\
     \ sz(n, 0);\n    auto dfs = [&](auto &&self, int u, int p = -1) -> int {\n   \
     \     sz[u] = 1;\n        for (int v : g[u])\n            if (v != p) { sz[u]\
     \ += self(self, v, u); }\n        return sz[u];\n    };\n    dfs(dfs, 0);\n\n\
@@ -60,7 +62,7 @@ data:
   isVerificationFile: false
   path: graph/tree/centroid.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2024-12-28 13:03:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/centroid.hpp
