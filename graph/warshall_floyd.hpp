@@ -32,7 +32,7 @@ std::vector<std::vector<edge<T>>> WarshallFroyd(const WG &g) {
                 valid = true;
             }
         }
-        if constexpr (!WG::directed()) {
+        if constexpr (!WG::directed::value) {
             auto &[len, valid] = res[e.to][e.from];
             if (valid) len = std::min(len, e.cost);
             else {
