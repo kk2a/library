@@ -15,7 +15,8 @@ template <class G> struct LowLink {
     int n, m;
     const G &g;
     std::vector<int> ord, low;
-    std::vector<bool> root, used;
+    std::vector<bool> root, used_on_dfs_tree;
+    std::vector<int> bridges, articulations;
 
     LowLink(const G &g_)
         : n(g_.num_vertices()),
@@ -24,7 +25,7 @@ template <class G> struct LowLink {
           ord(n, -1),
           low(n, -1),
           root(n, false),
-          used(m, false) {
+          used_on_dfs_tree(m, false) {
         init();
     }
 
@@ -53,7 +54,7 @@ template <class G> struct LowLink {
             for (auto &e : g[u]) {
                 if (e.id == ei) continue;
                 if (ord[e.to] == -1) {
-                    used[e.id] = true;
+                    used_on_dfs_tree[e.id] = true;
                     low[u] = std::min(low[u], self(self, e.to, e.id));
                 }
                 // back edge

@@ -13,7 +13,6 @@ template <class G> struct BCC : LowLink<G> {
 
     std::vector<std::vector<int>> bc_e;
     std::vector<int> bc_id;
-    G forest;
 
   private:
     // v is a child of u in DFS tree
@@ -27,7 +26,7 @@ template <class G> struct BCC : LowLink<G> {
         auto dfs = [&](auto self, int u, int k = -1, int ei = -1) -> void {
             for (auto &e : this->g[u]) {
                 if (e.id == ei) continue;
-                if (this->used[e.id]) {
+                if (this->used_on_dfs_tree[e.id]) {
                     int nk = k;
                     if (this->low[e.to] >= this->ord[u]) nk = bc_e.size(), bc_e.emplace_back();
                     add(e.id, nk);
