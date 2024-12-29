@@ -33,7 +33,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
           f(f_) {}
 
     template <class OStream, is_ostream_t<OStream> * = nullptr>
-    friend OStream &operator<<(OStream &os, const MFPS &mfps_) {
+    friend OStream &operator<<(OStream &os, const mfps &mfps_) {
         for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? "" : " ");
         return os;
     }
@@ -44,13 +44,13 @@ template <typename mint> struct MultivariateFormalPowerSeries {
     }
 
     template <class IStream, is_istream_t<IStream> * = nullptr>
-    MFPS &input(IStream &is) {
+    mfps &input(IStream &is) {
         for (auto &x : f) is >> x;
         return *this;
     }
 
     template <class IStream, is_istream_t<IStream> * = nullptr>
-    friend IStream &operator>>(IStream &is, MFPS &mfps_) {
+    friend IStream &operator>>(IStream &is, mfps &mfps_) {
         for (auto &x : mfps_.f) is >> x;
         return is;
     }
