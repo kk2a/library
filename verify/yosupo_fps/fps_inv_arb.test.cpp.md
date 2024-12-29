@@ -14,6 +14,9 @@ data:
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':question:'
+    path: fps/fps_arb.hpp
+    title: fps/fps_arb.hpp
+  - icon: ':question:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
   - icon: ':question:'
@@ -29,27 +32,42 @@ data:
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'
+    path: modint/mont.hpp
+    title: modint/mont.hpp
+  - icon: ':question:'
+    path: template/constant.hpp
+    title: template/constant.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
+    path: template/function_util.hpp
+    title: template/function_util.hpp
+  - icon: ':question:'
+    path: template/io_util.hpp
+    title: template/io_util.hpp
+  - icon: ':question:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':question:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':question:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/fps_exp_arb.test.cpp
-    title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_inv_arb.test.cpp
-    title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_log_arb.test.cpp
-    title: verify/yosupo_fps/fps_log_arb.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_pow_arb.test.cpp
-    title: verify/yosupo_fps/fps_pow_arb.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
+    links:
+    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -61,30 +79,17 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef FPS_ARB_HPP\n#define FPS_ARB_HPP 1\n\n#include \"../convolution/convolution_arb.hpp\"\
-    \n#include \"fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> void FormalPowerSeries<mint>::but()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint> void FormalPowerSeries<mint>::ibut()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint> void FormalPowerSeries<mint>::db()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint> int FormalPowerSeries<mint>::but_pr()\
-    \ {\n    return 0;\n}\n\ntemplate <class mint>\nFormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(const\
-    \ FormalPowerSeries<mint> &r) {\n    if (this->empty() || r.empty()) {\n     \
-    \   this->clear();\n        return *this;\n    }\n    convolution_arb(*this, r,\
-    \ mint::getmod());\n    return *this;\n}\n\ntemplate <class mint> FormalPowerSeries<mint>\
-    \ FormalPowerSeries<mint>::inv(int deg) const {\n    assert((*this)[0] != mint(0));\n\
-    \    if (deg == -1) deg = this->size();\n    FormalPowerSeries<mint> res{(*this)[0].inv()};\n\
-    \    for (int i = 1; i < deg; i <<= 1) {\n        res = (res * mint(2) - this->pre(i\
-    \ << 1) * res * res).pre(i << 1);\n    }\n    return res.pre(deg);\n}\n\ntemplate\
-    \ <class mint> FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int deg) const\
-    \ {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg == -1) deg\
-    \ = this->size();\n    FormalPowerSeries<mint> ret{mint(1)};\n    for (int i =\
-    \ 1; i < deg; i <<= 1) {\n        ret = (ret * (pre(i << 1) + mint{1} - ret.log(i\
-    \ << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n}\n\n} // namespace kk2\n\
-    \n#endif // FPS_ARB_HPP\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
+    \n\n#include \"../../fps/fps_arb.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
+    \ \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS = kk2::FormalPowerSeries<kk2::mont998>;\n\
+    \nint main() {\n    int n;\n    kin >> n;\n    FPS f(n);\n    f.input(kin).inv().output(kout);\n\
+    \n    return 0;\n}\n"
   dependsOn:
+  - fps/fps_arb.hpp
   - convolution/convolution_arb.hpp
   - math_mod/garner.hpp
   - math_mod/inv.hpp
@@ -95,20 +100,24 @@ data:
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - fps/fps.hpp
-  isVerificationFile: false
-  path: fps/fps_arb.hpp
+  - modint/mont.hpp
+  - template/template.hpp
+  - template/fastio.hpp
+  - template/type_alias.hpp
+  - template/constant.hpp
+  - template/function_util.hpp
+  - template/macros.hpp
+  - template/io_util.hpp
+  isVerificationFile: true
+  path: verify/yosupo_fps/fps_inv_arb.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - verify/yosupo_fps/fps_pow_arb.test.cpp
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
-  - verify/yosupo_fps/fps_log_arb.test.cpp
-documentation_of: fps/fps_arb.hpp
+  timestamp: '2024-12-30 00:24:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: verify/yosupo_fps/fps_inv_arb.test.cpp
 layout: document
 redirect_from:
-- /library/fps/fps_arb.hpp
-- /library/fps/fps_arb.hpp.html
-title: fps/fps_arb.hpp
+- /verify/verify/yosupo_fps/fps_inv_arb.test.cpp
+- /verify/verify/yosupo_fps/fps_inv_arb.test.cpp.html
+title: verify/yosupo_fps/fps_inv_arb.test.cpp
 ---

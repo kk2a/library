@@ -1,23 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_exp_arb.test.cpp
+    title: verify/yosupo_fps/fps_exp_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_inv_arb.test.cpp
+    title: verify/yosupo_fps/fps_inv_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_log_arb.test.cpp
+    title: verify/yosupo_fps/fps_log_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_pow_arb.test.cpp
+    title: verify/yosupo_fps/fps_pow_arb.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/garner.hpp\"\n\n\n\n#include <vector>\n\n#line\
@@ -53,9 +65,13 @@ data:
   - convolution/convolution_arb.hpp
   - fps/fps_arb.hpp
   timestamp: '2024-10-16 14:12:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_fps/fps_pow_arb.test.cpp
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/fps_log_arb.test.cpp
 documentation_of: math_mod/garner.hpp
 layout: document
 redirect_from:

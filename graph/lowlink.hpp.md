@@ -24,10 +24,11 @@ data:
     \ <algorithm>\n#include <functional>\n#include <vector>\n#include <type_traits>\n\
     \nnamespace kk2 {\n\ntemplate <class G> struct LowLink {\n    static_assert(!G::directed::value,\
     \ \"LowLink requires undirected graph\");\n\n    int n, m;\n    const G &g;\n\
-    \    std::vector<int> ord, low;\n    std::vector<bool> root, used;\n\n    LowLink(const\
-    \ G &g_)\n        : n(g_.num_vertices()),\n          m(g_.num_edges()),\n    \
-    \      g(g_),\n          ord(n, -1),\n          low(n, -1),\n          root(n,\
-    \ false),\n          used(m, false) {\n        init();\n    }\n\n    std::vector<typename\
+    \    std::vector<int> ord, low;\n    std::vector<bool> root, used_on_dfs_tree;\n\
+    \    std::vector<int> bridges, articulations;\n\n    LowLink(const G &g_)\n  \
+    \      : n(g_.num_vertices()),\n          m(g_.num_edges()),\n          g(g_),\n\
+    \          ord(n, -1),\n          low(n, -1),\n          root(n, false),\n   \
+    \       used_on_dfs_tree(m, false) {\n        init();\n    }\n\n    std::vector<typename\
     \ G::edge_type> get_bridges() {\n        std::vector<bool> used_v(n);\n      \
     \  std::vector<typename G::edge_type> res;\n        auto dfs = [&](auto self,\
     \ int now) -> void {\n            used_v[now] = true;\n            for (auto &&e\
@@ -38,22 +39,23 @@ data:
     \    void init() {\n        int k = 0;\n        auto dfs = [&](auto self, int\
     \ u, int ei = -1) -> int {\n            low[u] = ord[u] = k++;\n            for\
     \ (auto &e : g[u]) {\n                if (e.id == ei) continue;\n            \
-    \    if (ord[e.to] == -1) {\n                    used[e.id] = true;\n        \
-    \            low[u] = std::min(low[u], self(self, e.to, e.id));\n            \
-    \    }\n                // back edge\n                else if (ord[e.to] < ord[u])\
-    \ {\n                    low[u] = std::min(low[u], ord[e.to]);\n             \
-    \   }\n            }\n            return low[u];\n        };\n        for (int\
-    \ u = 0; u < n; u++)\n            if (ord[u] == -1) {\n                dfs(dfs,\
-    \ u);\n                root[u] = true;\n            }\n    }\n};\n\n} // namespace\
-    \ kk2\n\n\n"
+    \    if (ord[e.to] == -1) {\n                    used_on_dfs_tree[e.id] = true;\n\
+    \                    low[u] = std::min(low[u], self(self, e.to, e.id));\n    \
+    \            }\n                // back edge\n                else if (ord[e.to]\
+    \ < ord[u]) {\n                    low[u] = std::min(low[u], ord[e.to]);\n   \
+    \             }\n            }\n            return low[u];\n        };\n     \
+    \   for (int u = 0; u < n; u++)\n            if (ord[u] == -1) {\n           \
+    \     dfs(dfs, u);\n                root[u] = true;\n            }\n    }\n};\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef GRAPH_LOWLINK_HPP\n#define GRAPH_LOWLINK_HPP 1\n\n#include <cassert>\n\
     #include <algorithm>\n#include <functional>\n#include <vector>\n#include <type_traits>\n\
     \nnamespace kk2 {\n\ntemplate <class G> struct LowLink {\n    static_assert(!G::directed::value,\
     \ \"LowLink requires undirected graph\");\n\n    int n, m;\n    const G &g;\n\
-    \    std::vector<int> ord, low;\n    std::vector<bool> root, used;\n\n    LowLink(const\
-    \ G &g_)\n        : n(g_.num_vertices()),\n          m(g_.num_edges()),\n    \
-    \      g(g_),\n          ord(n, -1),\n          low(n, -1),\n          root(n,\
-    \ false),\n          used(m, false) {\n        init();\n    }\n\n    std::vector<typename\
+    \    std::vector<int> ord, low;\n    std::vector<bool> root, used_on_dfs_tree;\n\
+    \    std::vector<int> bridges, articulations;\n\n    LowLink(const G &g_)\n  \
+    \      : n(g_.num_vertices()),\n          m(g_.num_edges()),\n          g(g_),\n\
+    \          ord(n, -1),\n          low(n, -1),\n          root(n, false),\n   \
+    \       used_on_dfs_tree(m, false) {\n        init();\n    }\n\n    std::vector<typename\
     \ G::edge_type> get_bridges() {\n        std::vector<bool> used_v(n);\n      \
     \  std::vector<typename G::edge_type> res;\n        auto dfs = [&](auto self,\
     \ int now) -> void {\n            used_v[now] = true;\n            for (auto &&e\
@@ -64,21 +66,21 @@ data:
     \    void init() {\n        int k = 0;\n        auto dfs = [&](auto self, int\
     \ u, int ei = -1) -> int {\n            low[u] = ord[u] = k++;\n            for\
     \ (auto &e : g[u]) {\n                if (e.id == ei) continue;\n            \
-    \    if (ord[e.to] == -1) {\n                    used[e.id] = true;\n        \
-    \            low[u] = std::min(low[u], self(self, e.to, e.id));\n            \
-    \    }\n                // back edge\n                else if (ord[e.to] < ord[u])\
-    \ {\n                    low[u] = std::min(low[u], ord[e.to]);\n             \
-    \   }\n            }\n            return low[u];\n        };\n        for (int\
-    \ u = 0; u < n; u++)\n            if (ord[u] == -1) {\n                dfs(dfs,\
-    \ u);\n                root[u] = true;\n            }\n    }\n};\n\n} // namespace\
-    \ kk2\n\n#endif // GRAPH_LOWLINK_HPP\n"
+    \    if (ord[e.to] == -1) {\n                    used_on_dfs_tree[e.id] = true;\n\
+    \                    low[u] = std::min(low[u], self(self, e.to, e.id));\n    \
+    \            }\n                // back edge\n                else if (ord[e.to]\
+    \ < ord[u]) {\n                    low[u] = std::min(low[u], ord[e.to]);\n   \
+    \             }\n            }\n            return low[u];\n        };\n     \
+    \   for (int u = 0; u < n; u++)\n            if (ord[u] == -1) {\n           \
+    \     dfs(dfs, u);\n                root[u] = true;\n            }\n    }\n};\n\
+    \n} // namespace kk2\n\n#endif // GRAPH_LOWLINK_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/lowlink.hpp
   requiredBy:
   - graph/bcc.hpp
   - graph/two_edge_connected_components.hpp
-  timestamp: '2024-12-28 13:03:48+09:00'
+  timestamp: '2024-12-29 21:11:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp

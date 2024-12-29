@@ -2,14 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
-  - icon: ':x:'
-    path: graph/lowlink.hpp
-    title: graph/lowlink.hpp
-  - icon: ':x:'
-    path: graph/two_edge_connected_components.hpp
-    title: graph/two_edge_connected_components.hpp
+    path: convolution/butterfly.hpp
+    title: convolution/butterfly.hpp
+  - icon: ':question:'
+    path: convolution/convolution.hpp
+    title: convolution/convolution.hpp
+  - icon: ':question:'
+    path: fps/fps.hpp
+    title: fps/fps.hpp
+  - icon: ':question:'
+    path: fps/ntt_friendly.hpp
+    title: fps/ntt_friendly.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/primitive_root.hpp
+    title: math_mod/primitive_root.hpp
+  - icon: ':question:'
+    path: modint/mont.hpp
+    title: modint/mont.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -41,9 +53,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
+    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
     links:
-    - https://judge.yosupo.jp/problem/two_edge_connected_components
+    - https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -54,21 +66,27 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
-    \n\n#include \"../../graph/graph.hpp\"\n#include \"../../graph/two_edge_connected_components.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::AdjList g(n, m);\n    g.input(kin);\n\
-    \    kk2::TwoEdgeConnectedComponents<kk2::AdjList> tecc(g);\n    kout << tecc.size()\
-    \ << \"\\n\";\n    for (auto &v : tecc.group) kout << v.size() << \" \" << v <<\
-    \ \"\\n\";\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
+    \ \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
+    \ = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n, k;\n   \
+    \ kin >> n >> k;\n    FPS f(n);\n    rep (k) {\n        int i;\n        kk2::mont998\
+    \ a;\n        kin >> i >> a;\n        f[i] = a;\n    }\n    f.sparse_inv().output(kout);\n\
+    \n    return 0;\n}\n"
   dependsOn:
-  - graph/graph.hpp
+  - fps/ntt_friendly.hpp
+  - convolution/convolution.hpp
+  - convolution/butterfly.hpp
+  - math_mod/primitive_root.hpp
+  - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
-  - graph/two_edge_connected_components.hpp
-  - graph/lowlink.hpp
+  - fps/fps.hpp
+  - modint/mont.hpp
   - template/template.hpp
   - template/fastio.hpp
   - template/type_alias.hpp
@@ -77,15 +95,15 @@ data:
   - template/macros.hpp
   - template/io_util.hpp
   isVerificationFile: true
-  path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  path: verify/yosupo_fps/fps_sparse_inv.test.cpp
   requiredBy: []
-  timestamp: '2024-12-29 21:11:21+09:00'
+  timestamp: '2024-12-30 00:24:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+documentation_of: verify/yosupo_fps/fps_sparse_inv.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-- /verify/verify/yosupo_graph/graph_two_edge_connected_components.test.cpp.html
-title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+- /verify/verify/yosupo_fps/fps_sparse_inv.test.cpp
+- /verify/verify/yosupo_fps/fps_sparse_inv.test.cpp.html
+title: verify/yosupo_fps/fps_sparse_inv.test.cpp
 ---

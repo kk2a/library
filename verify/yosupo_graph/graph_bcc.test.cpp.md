@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_bcc.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2024-12-29 21:11:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_bcc.test.cpp

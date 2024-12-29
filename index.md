@@ -23,7 +23,7 @@ data:
     - icon: ':question:'
       path: convolution/convolution.hpp
       title: convolution/convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convolution/convolution_arb.hpp
       title: convolution/convolution_arb.hpp
     - icon: ':heavy_check_mark:'
@@ -102,10 +102,10 @@ data:
     - icon: ':warning:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/composition.hpp
       title: fps/composition.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
     - icon: ':warning:'
@@ -114,10 +114,10 @@ data:
     - icon: ':question:'
       path: fps/fps.hpp
       title: fps/fps.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/fps_sqrt.hpp
       title: fps/fps_sqrt.hpp
     - icon: ':warning:'
@@ -141,7 +141,7 @@ data:
     - icon: ':warning:'
       path: fps/poly_interpolation.hpp
       title: fps/poly_interpolation.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/power_projection.hpp
       title: fps/power_projection.hpp
     - icon: ':warning:'
@@ -303,10 +303,10 @@ data:
     - icon: ':x:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math_mod/garner.hpp
       title: math_mod/garner.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math_mod/inv.hpp
       title: math_mod/inv.hpp
     - icon: ':x:'
@@ -609,17 +609,53 @@ data:
   - name: verify/yosupo_fps
     pages:
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_fps/fps_composition.test.cpp
+      title: verify/yosupo_fps/fps_composition.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_fps/fps_composition_inv.test.cpp
+      title: verify/yosupo_fps/fps_composition_inv.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp.test.cpp
       title: verify/yosupo_fps/fps_exp.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_fps/fps_exp_arb.test.cpp
+      title: verify/yosupo_fps/fps_exp_arb.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_fps/fps_inv_arb.test.cpp
+      title: verify/yosupo_fps/fps_inv_arb.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_fps/fps_log_arb.test.cpp
+      title: verify/yosupo_fps/fps_log_arb.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_fps/fps_pow_arb.test.cpp
+      title: verify/yosupo_fps/fps_pow_arb.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_fps/fps_sparse_exp.test.cpp
+      title: verify/yosupo_fps/fps_sparse_exp.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_fps/fps_sparse_inv.test.cpp
+      title: verify/yosupo_fps/fps_sparse_inv.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_fps/fps_sparse_log.test.cpp
+      title: verify/yosupo_fps/fps_sparse_log.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_fps/fps_sparse_pow.test.cpp
+      title: verify/yosupo_fps/fps_sparse_pow.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+      title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_fps/fps_sqrt.test.cpp
+      title: verify/yosupo_fps/fps_sqrt.test.cpp
   - name: verify/yosupo_geometry
     pages:
     - icon: ':x:'

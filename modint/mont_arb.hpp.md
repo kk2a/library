@@ -5,7 +5,7 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -24,6 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+    title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sqrt.test.cpp
+    title: verify/yosupo_fps/fps_sqrt.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
@@ -113,6 +119,8 @@ data:
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
 documentation_of: modint/mont_arb.hpp
 layout: document
 redirect_from:

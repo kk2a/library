@@ -5,10 +5,10 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   _extendedVerifiedWith:
@@ -55,17 +55,65 @@ data:
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_composition.test.cpp
+    title: verify/yosupo_fps/fps_composition.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_composition_inv.test.cpp
+    title: verify/yosupo_fps/fps_composition_inv.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_exp_arb.test.cpp
+    title: verify/yosupo_fps/fps_exp_arb.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_exp_arb.test.cpp
+    title: verify/yosupo_fps/fps_exp_arb.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_inv_arb.test.cpp
+    title: verify/yosupo_fps/fps_inv_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_inv_arb.test.cpp
+    title: verify/yosupo_fps/fps_inv_arb.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_log_arb.test.cpp
+    title: verify/yosupo_fps/fps_log_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_log_arb.test.cpp
+    title: verify/yosupo_fps/fps_log_arb.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_pow_arb.test.cpp
+    title: verify/yosupo_fps/fps_pow_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_pow_arb.test.cpp
+    title: verify/yosupo_fps/fps_pow_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sparse_exp.test.cpp
+    title: verify/yosupo_fps/fps_sparse_exp.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sparse_inv.test.cpp
+    title: verify/yosupo_fps/fps_sparse_inv.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sparse_log.test.cpp
+    title: verify/yosupo_fps/fps_sparse_log.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sparse_pow.test.cpp
+    title: verify/yosupo_fps/fps_sparse_pow.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+    title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sqrt.test.cpp
+    title: verify/yosupo_fps/fps_sqrt.test.cpp
   - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
@@ -177,10 +225,26 @@ data:
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+  - verify/yosupo_fps/fps_pow_arb.test.cpp
+  - verify/yosupo_fps/fps_pow_arb.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_fps/fps_sparse_pow.test.cpp
+  - verify/yosupo_fps/fps_sparse_log.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
+  - verify/yosupo_fps/fps_sparse_inv.test.cpp
+  - verify/yosupo_fps/fps_composition.test.cpp
+  - verify/yosupo_fps/fps_composition_inv.test.cpp
+  - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
+  - verify/yosupo_fps/fps_sparse_exp.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/fps_log_arb.test.cpp
+  - verify/yosupo_fps/fps_log_arb.test.cpp
 documentation_of: modint/mont.hpp
 layout: document
 redirect_from:

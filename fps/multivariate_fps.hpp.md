@@ -59,15 +59,15 @@ data:
     \      f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const std::vector<int>\
     \ &base_, const fps &f_)\n        : base(base_),\n          f(f_) {}\n\n    template\
     \ <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
-    \ &os, const MFPS &mfps_) {\n        for (int i = 0; i < (int)mfps_.f.size();\
+    \ &os, const mfps &mfps_) {\n        for (int i = 0; i < (int)mfps_.f.size();\
     \ i++) os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n  \
     \      return os;\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
     \ * = nullptr>\n    void output(OStream &os) const {\n        for (int i = 0;\
     \ i < (int)f.size(); i++) os << f[i] << (i + 1 == (int)f.size() ? \"\\n\" : \"\
     \ \");\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
-    \    MFPS &input(IStream &is) {\n        for (auto &x : f) is >> x;\n        return\
+    \    mfps &input(IStream &is) {\n        for (auto &x : f) is >> x;\n        return\
     \ *this;\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
-    \    friend IStream &operator>>(IStream &is, MFPS &mfps_) {\n        for (auto\
+    \    friend IStream &operator>>(IStream &is, mfps &mfps_) {\n        for (auto\
     \ &x : mfps_.f) is >> x;\n        return is;\n    }\n\n    template <typename\
     \ T, typename... Ts> int _id(int x, T y, Ts... ys) {\n        assert(x < (int)base.size()\
     \ && (int)y < base[x]);\n        if constexpr (sizeof...(Ts) == 0) return y;\n\
@@ -177,7 +177,7 @@ data:
   isVerificationFile: false
   path: fps/multivariate_fps.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2024-12-30 00:24:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/multivariate_fps.hpp

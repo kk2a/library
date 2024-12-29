@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/compositional_inv.hpp
     title: fps/compositional_inv.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_composition_inv.test.cpp
+    title: verify/yosupo_fps/fps_composition_inv.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/power_projection.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -122,8 +125,9 @@ data:
   requiredBy:
   - fps/compositional_inv.hpp
   timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_fps/fps_composition_inv.test.cpp
 documentation_of: fps/power_projection.hpp
 layout: document
 redirect_from:
