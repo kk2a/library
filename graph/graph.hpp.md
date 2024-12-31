@@ -36,6 +36,9 @@ data:
   - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki_1326.test.cpp
+    title: verify/yuki/yuki_1326.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -158,6 +161,7 @@ data:
   timestamp: '2024-12-28 13:04:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yuki/yuki_1326.test.cpp
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
   - verify/yosupo_graph/graph_cycle_detection.test.cpp

@@ -93,7 +93,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/factrize.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-01 03:50:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/factrize.test.cpp

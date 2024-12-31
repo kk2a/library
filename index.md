@@ -215,6 +215,9 @@ data:
     - icon: ':warning:'
       path: graph/tree/auxiliary_tree.hpp
       title: graph/tree/auxiliary_tree.hpp
+    - icon: ':x:'
+      path: graph/tree/block_cut_tree.hpp
+      title: graph/tree/block_cut_tree.hpp
     - icon: ':warning:'
       path: graph/tree/centroid.hpp
       title: graph/tree/centroid.hpp
@@ -623,13 +626,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv_arb.test.cpp
       title: verify/yosupo_fps/fps_inv_arb.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log_arb.test.cpp
       title: verify/yosupo_fps/fps_log_arb.test.cpp
     - icon: ':heavy_check_mark:'
@@ -775,6 +778,9 @@ data:
     - icon: ':x:'
       path: verify/yuki/yuki_0430_2.test.cpp
       title: verify/yuki/yuki_0430_2.test.cpp
+    - icon: ':x:'
+      path: verify/yuki/yuki_1326.test.cpp
+      title: verify/yuki/yuki_1326.test.cpp
 layout: toppage
 ---
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kk2a/library?style=flat-square)

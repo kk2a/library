@@ -9,6 +9,9 @@ data:
   - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki_1326.test.cpp
+    title: verify/yuki/yuki_1326.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -120,6 +123,7 @@ data:
   timestamp: '2024-12-28 13:03:48+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/yuki/yuki_1326.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
 documentation_of: graph/tree/heavy_light_decomposition.hpp
 layout: document

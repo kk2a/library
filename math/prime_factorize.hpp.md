@@ -68,27 +68,27 @@ data:
     \      g = std::gcd((x - ys).val(), n);\n            } while (g == 1);\n     \
     \   if (g != n) return g;\n    }\n    exit(1);\n}\n\nstd::vector<i64> inner_factorize(i64\
     \ n) {\n    using mint32 = ArbitraryLazyMontgomeryModInt<54355165>;\n    using\
-    \ mint64 = ArbitraryLazyMontgomeryModInt64bit<54355165>;\n    if (n == 1) return\
-    \ {};\n    if (n < 0) n = -n;\n    u64 p;\n    if (n <= (1ll << 30)) {\n     \
-    \   p = pollard_rho<mint32, unsigned int>(n);\n    } else if (n <= (1ll << 62))\
-    \ {\n        p = pollard_rho<mint64, unsigned long long>(n);\n    } else {\n \
-    \       exit(1);\n    }\n    if (i64(p) == n) return {i64(p)};\n    auto l = inner_factorize(p);\n\
-    \    auto r = inner_factorize(n / p);\n    std::copy(r.begin(), r.end(), std::back_inserter(l));\n\
-    \    return l;\n}\n\nstd::vector<std::pair<i64, int>> factorize(i64 n) {\n   \
-    \ auto tmp = inner_factorize(n);\n    std::sort(tmp.begin(), tmp.end());\n   \
-    \ std::vector<std::pair<i64, int>> res;\n    for (int i = 0; i < (int)tmp.size();\
-    \ i++) {\n        if (i == 0 or res.back().first != tmp[i]) {\n            res.emplace_back(tmp[i],\
-    \ 1);\n        } else {\n            res.back().second++;\n        }\n    }\n\
-    \    return res;\n}\n\nstd::map<i64, int> factorize_map(i64 n) {\n    auto tmp\
-    \ = inner_factorize(n);\n    std::map<i64, int> res;\n    for (auto x : tmp) res[x]++;\n\
-    \    return res;\n}\n\nstd::vector<i64> divisors(i64 n) {\n    if (n == 0) return\
-    \ {};\n\n    auto f = factorize(n);\n    std::vector<i64> res = {1};\n    for\
-    \ (auto [p, k] : f) {\n        int sz = res.size();\n        i64 x = 1;\n    \
-    \    for (int i = 0; i < k; i++) {\n            x *= p;\n            for (int\
-    \ j = 0; j < sz; j++) { res.emplace_back(res[j] * x); }\n        }\n    }\n  \
-    \  std::sort(res.begin(), res.end());\n    return res;\n}\n\n} // namespace number_theory\n\
-    \nusing number_theory::divisors;\nusing number_theory::factorize;\nusing number_theory::factorize_map;\n\
-    \n} // namespace kk2\n\n\n#endif // MATH_PRIME_FACTRIZATION_HPP\n"
+    \ mint64 = ArbitraryLazyMontgomeryModInt64bit<54355165>;\n    assert(n);\n   \
+    \ if (n < 0) n = -n;\n    if (n == 1) return {};\n    u64 p;\n    if (n <= (1ll\
+    \ << 30)) {\n        p = pollard_rho<mint32, unsigned int>(n);\n    } else if\
+    \ (n <= (1ll << 62)) {\n        p = pollard_rho<mint64, unsigned long long>(n);\n\
+    \    } else {\n        exit(1);\n    }\n    if (i64(p) == n) return {i64(p)};\n\
+    \    auto l = inner_factorize(p);\n    auto r = inner_factorize(n / p);\n    std::copy(r.begin(),\
+    \ r.end(), std::back_inserter(l));\n    return l;\n}\n\nstd::vector<std::pair<i64,\
+    \ int>> factorize(i64 n) {\n    auto tmp = inner_factorize(n);\n    std::sort(tmp.begin(),\
+    \ tmp.end());\n    std::vector<std::pair<i64, int>> res;\n    for (int i = 0;\
+    \ i < (int)tmp.size(); i++) {\n        if (i == 0 or res.back().first != tmp[i])\
+    \ {\n            res.emplace_back(tmp[i], 1);\n        } else {\n            res.back().second++;\n\
+    \        }\n    }\n    return res;\n}\n\nstd::map<i64, int> factorize_map(i64\
+    \ n) {\n    auto tmp = inner_factorize(n);\n    std::map<i64, int> res;\n    for\
+    \ (auto x : tmp) res[x]++;\n    return res;\n}\n\nstd::vector<i64> divisors(i64\
+    \ n) {\n    if (n == 0) return {};\n\n    auto f = factorize(n);\n    std::vector<i64>\
+    \ res = {1};\n    for (auto [p, k] : f) {\n        int sz = res.size();\n    \
+    \    i64 x = 1;\n        for (int i = 0; i < k; i++) {\n            x *= p;\n\
+    \            for (int j = 0; j < sz; j++) { res.emplace_back(res[j] * x); }\n\
+    \        }\n    }\n    std::sort(res.begin(), res.end());\n    return res;\n}\n\
+    \n} // namespace number_theory\n\nusing number_theory::divisors;\nusing number_theory::factorize;\n\
+    using number_theory::factorize_map;\n\n} // namespace kk2\n\n\n#endif // MATH_PRIME_FACTRIZATION_HPP\n"
   dependsOn:
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
@@ -100,7 +100,7 @@ data:
   path: math/prime_factorize.hpp
   requiredBy:
   - math/euler_phi.hpp
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-01 03:50:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
