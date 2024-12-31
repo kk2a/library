@@ -60,8 +60,9 @@ template <class mint, class T> T pollard_rho(T n) {
 std::vector<i64> inner_factorize(i64 n) {
     using mint32 = ArbitraryLazyMontgomeryModInt<54355165>;
     using mint64 = ArbitraryLazyMontgomeryModInt64bit<54355165>;
-    if (n == 1) return {};
+    assert(n);
     if (n < 0) n = -n;
+    if (n == 1) return {};
     u64 p;
     if (n <= (1ll << 30)) {
         p = pollard_rho<mint32, unsigned int>(n);

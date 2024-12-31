@@ -11,24 +11,22 @@ namespace kk2 {
 template <class G> struct BCC : LowLink<G> {
     BCC(const G &g_) : LowLink<G>(g_) { init_bcc(); }
 
-    std::vector<std::vector<int>> bc_e;
-    std::vector<int> bc_id;
+    std::vector<std::vector<int>> group_e;
+    std::vector<int> comp_e;
 
   private:
-    // v is a child of u in DFS tree
-    // u is an articulation point <=> (u is root and deg(u) >= 2) or ord[u] <= low[v]
     void init_bcc() {
-        bc_id = std::vector<int>(this->m, -1);
+        comp_e = std::vector<int>(this->m, -1);
         auto add = [&](int ei, int k) {
-            bc_e[k].emplace_back(ei);
-            bc_id[ei] = k;
+            group_e[k].emplace_back(ei);
+            comp_e[ei] = k;
         };
         auto dfs = [&](auto self, int u, int k = -1, int ei = -1) -> void {
             for (auto &e : this->g[u]) {
                 if (e.id == ei) continue;
                 if (this->used_on_dfs_tree[e.id]) {
                     int nk = k;
-                    if (this->low[e.to] >= this->ord[u]) nk = bc_e.size(), bc_e.emplace_back();
+                    if (this->low[e.to] >= this->ord[u]) nk = group_e.size(), group_e.emplace_back();
                     add(e.id, nk);
                     self(self, e.to, nk, e.id);
                 }
@@ -46,8 +44,8 @@ template <class G> struct BCC : LowLink<G> {
     std::vector<std::vector<int>> get_bcc_vertices() {
         std::vector<bool> buf1(this->n), buf2(this->n);
         std::vector<std::vector<int>> res;
-        res.reserve(bc_e.size());
-        for (auto &bc : bc_e) {
+        res.reserve(group_e.size());
+        for (auto &bc : group_e) {
             if (bc.empty()) continue;
             int k = (int)res.size();
             res.emplace_back();
@@ -77,10 +75,6 @@ template <class G> struct BCC : LowLink<G> {
                 res[k].emplace_back(i);
             }
         return res;
-    }
-
-    G block_cut_tree() {
-
     }
 };
 
