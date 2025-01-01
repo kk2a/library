@@ -43,6 +43,7 @@
 "verify/yosupo_fps/fps_sparse_inv.test.cpp": "2024-12-30 00:24:43 +0900",
 "verify/yosupo_fps/fps_sparse_log.test.cpp": "2024-12-30 00:24:43 +0900",
 "verify/yosupo_fps/fps_sparse_pow.test.cpp": "2024-12-30 00:24:43 +0900",
+"verify/yosupo_fps/fps_sprase_sqrt.test.cpp": "2025-01-01 16:36:23 +0900",
 "verify/yosupo_fps/fps_sqrt.test.cpp": "2024-12-30 00:24:43 +0900",
 "verify/yosupo_geometry/arg_sort.test.cpp": "2024-12-28 13:04:26 +0900",
 "verify/yosupo_geometry/static_convex_hull.test.cpp": "2024-12-28 14:03:25 +0900",
@@ -59,5 +60,7 @@
 "verify/yosupo_graph/tree_lca.test.cpp": "2024-12-28 13:04:26 +0900",
 "verify/yosupo_linalg/matrix_det.test.cpp": "2024-12-28 13:04:26 +0900",
 "verify/yosupo_linalg/matrix_det_f2.test.cpp": "2024-12-28 13:04:26 +0900",
-"verify/yosupo_linalg/matrix_inv.test.cpp": "2024-12-28 13:04:26 +0900"
+"verify/yosupo_linalg/matrix_inv.test.cpp": "2024-12-28 13:04:26 +0900",
+"verify/yosupo_linalg/matrix_inv_f2.test.cpp": "2024-12-28 13:04:26 +0900",
+"verify/yosupo_linalg/matrix_pow.test.cpp": "2024-12-28 13:04:26 +0900"
 }
