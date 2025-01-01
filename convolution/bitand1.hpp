@@ -15,10 +15,10 @@ FPS convolution_and(FPS &a, const FPS &b) {
     assert((n & -n) == n);
     FPS c(b.begin(), b.end());
 
-    SuperSetZetaTransform(a);
-    SuperSetZetaTransform(c);
+    superset_zeta_transform(a);
+    superset_zeta_transform(c);
     for (int i = 0; i < n; i++) a[i] *= c[i];
-    InverseSuperSetZetaTransform(a);
+    inverse_superset_zeta_transform(a);
 
     return a;
 }

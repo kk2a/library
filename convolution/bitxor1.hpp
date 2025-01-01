@@ -15,10 +15,10 @@ FPS convolution_xor(FPS &a, const FPS &b) {
     assert((n & -n) == n);
     FPS c(b.begin(), b.end());
 
-    WalshHadamardTransform(a);
-    WalshHadamardTransform(c);
+    walsh_hadamard_transform(a);
+    walsh_hadamard_transform(c);
     for (int i = 0; i < n; i++) a[i] *= c[i];
-    InverseWalshHadamardTransform(a);
+    inverse_walsh_hadamard_transform(a);
 
     return a;
 }

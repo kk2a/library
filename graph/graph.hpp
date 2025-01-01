@@ -13,9 +13,10 @@ namespace kk2 {
 
 namespace graph {
 
-template <class T, bool is_directed> struct AdjacencyList : std::vector<_Edges<T>> {
+template <class T, bool is_directed> struct AdjacencyList {
     using value_type = T;
     using edge_type = _Edge<T>;
+    using edge_container = _Edges<T>;
 
     using directed = std::integral_constant<bool, is_directed>;
     using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
@@ -25,23 +26,32 @@ template <class T, bool is_directed> struct AdjacencyList : std::vector<_Edges<T
 
     AdjacencyList() = default;
 
-    AdjacencyList(int n_) : std::vector<_Edges<T>>(n_) {}
+    AdjacencyList(int n_) : data(n_) {}
 
     // input を使うことが前提
-    AdjacencyList(int n_, int m_) : std::vector<_Edges<T>>(n_), edges(m_) {}
+    AdjacencyList(int n_, int m_) : data(n_), edges(m_) {}
 
-    AdjacencyList(int n_, const _Edges<T> &edges_) : std::vector<_Edges<T>>(n_), edges(edges_) {
+    AdjacencyList(int n_, const _Edges<T> &edges_) : data(n_), edges(edges_) {
         for (auto &&e : edges) {
-            (*this)[e.from].emplace_back(e);
-            if constexpr (!is_directed) (*this)[e.to].emplace_back(e.rev());
+            data[e.from].emplace_back(e);
+            if constexpr (!is_directed) {
+                if (e.from != e.to) data[e.to].emplace_back(e.rev());
+            }
         }
     }
 
+    std::vector<_Edges<T>> data;
     _Edges<T> edges;
 
-    int num_vertices() const { return (int)this->size(); }
+    int num_vertices() const { return (int)data.size(); }
+
+    int size() const { return (int)data.size(); }
 
     int num_edges() const { return (int)edges.size(); }
+
+    _Edges<T> &operator[](int k) { return data[k]; }
+
+    const _Edges<T> &operator[](int k) const { return data[k]; }
 
     template <class IStream, is_istream_t<IStream> * = nullptr>
     AdjacencyList &input(IStream &is, bool oneindexed = false) {
@@ -57,28 +67,36 @@ template <class T, bool is_directed> struct AdjacencyList : std::vector<_Edges<T
     }
 
     void edge_clear() {
-        for (auto &v : *this) v.clear();
+        for (auto &v : data) v.clear();
         edges.clear();
     }
 
     void add_edge(int from, int to, T cost = T{}) { _add_edge<false>(from, to, cost, num_edges()); }
 
-    void add_vertex(int n = 1) { this->insert(this->end(), n, _Edges<T>()); }
+    void add_vertex(int n = 1) { data.insert(data.end(), n, _Edges<T>()); }
 
   private:
     template <bool update = false> void _add_edge(int from, int to, T cost, int id) {
-        (*this)[from].emplace_back(to, cost, from, id);
+        data[from].emplace_back(to, cost, from, id);
         if constexpr (!is_directed) {
-            if (from != to) (*this)[to].emplace_back(from, cost, to, id);
+            if (from != to) data[to].emplace_back(from, cost, to, id);
         }
         if constexpr (update) edges[id] = _Edge<T>(to, cost, from, id);
         else edges.emplace_back(to, cost, from, id);
     }
+
+  public:
+    AdjacencyList reverse() const {
+        AdjacencyList res(num_vertices(), num_edges());
+        for (auto &&e : edges) { res._add_edge<true>(e.to, e.from, e.cost, e.id); }
+        return res;
+    }
 };
 
-template <class T, bool is_directed> struct AdjacencyMatrix : std::vector<_pairs<T>> {
+template <class T, bool is_directed> struct AdjacencyMatrix {
     using value_type = T;
     using edge_type = _pair<T>;
+    using edge_container = _Edges<T>;
 
     using directed = std::integral_constant<bool, is_directed>;
     using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
@@ -88,19 +106,30 @@ template <class T, bool is_directed> struct AdjacencyMatrix : std::vector<_pairs
 
     AdjacencyMatrix() = default;
 
-    AdjacencyMatrix(int n_) : std::vector<_pairs<T>>(n_, _pairs<T>(n_)) {}
+    AdjacencyMatrix(int n_) : data(n_, _pairs<T>(n_)) {}
 
     // input を使うことが前提
-    AdjacencyMatrix(int n_, int m_) : std::vector<_pairs<T>>(n_, _pairs<T>(n_)), edges(m_) {}
+    AdjacencyMatrix(int n_, int m_) : data(n_, _pairs<T>(n_)), edges(m_) {}
 
-    AdjacencyMatrix(int n_, const _Edges<T> &edges_)
-        : std::vector<_pairs<T>>(n_, _pairs<T>(n_)),
-          edges(edges_) {
+    AdjacencyMatrix(int n_, const _Edges<T> &edges_) : data(n_, _pairs<T>(n_)), edges(edges_) {
         for (auto &&e : edges) {
-            (*this)[e.from][e.to] = _pair<T>(e.cost, e.id);
-            if constexpr (!is_directed) (*this)[e.to][e.from] = _pair<T>(e.cost, e.id);
+            data[e.from][e.to] = _pair<T>(e.cost, e.id);
+            if constexpr (!is_directed) data[e.to][e.from] = _pair<T>(e.cost, e.id);
         }
     }
+
+    std::vector<_pairs<T>> data;
+    _Edges<T> edges;
+
+    int num_vertices() const { return (int)data.size(); }
+
+    int size() const { return (int)data.size(); }
+
+    int num_edges() const { return (int)edges.size(); }
+
+    _pairs<T> &operator[](int k) { return data[k]; }
+
+    const _pairs<T> &operator[](int k) const { return data[k]; }
 
     template <class IStream, is_istream_t<IStream> * = nullptr>
     AdjacencyMatrix &input(IStream &is, bool oneindexed = false) {
@@ -115,16 +144,10 @@ template <class T, bool is_directed> struct AdjacencyMatrix : std::vector<_pairs
         return *this;
     }
 
-    _Edges<T> edges;
-
-    int num_vertices() const { return (int)this->size(); }
-
-    int num_edges() const { return (int)edges.size(); }
-
     void edge_clear() {
         for (auto &&e : edges) {
-            (*this)[e.from][e.to] = _pair<T>(e.cost, e.id);
-            if constexpr (!is_directed) (*this)[e.to][e.from] = _pair<T>(e.cost, e.id);
+            data[e.from][e.to] = _pair<T>();
+            if constexpr (!is_directed) data[e.to][e.from] = _pair<T>();
         }
         edges.clear();
     }
@@ -132,23 +155,28 @@ template <class T, bool is_directed> struct AdjacencyMatrix : std::vector<_pairs
     void add_edge(int from, int to, T cost = T{}) { _add_edge<false>(from, to, cost, num_edges()); }
 
     void add_vertex(int n = 1) {
-        this->insert(this->end(), n, _pairs<T>());
-        for (int i = 0; i < n; i++) (*this)[i].insert((*this)[i].end(), n, _pair<T>());
+        data.insert(data.end(), n, _pairs<T>());
+        for (int i = 0; i < n; i++) data[i].insert(data[i].end(), n, _pair<T>());
     }
 
   private:
     template <bool update = false> void _add_edge(int from, int to, T cost, int id) {
-        (*this)[from][to] = _pair<T>(cost, id);
-        if constexpr (!is_directed) (*this)[to][from] = _pair<T>(cost, id);
+        data[from][to] = _pair<T>(cost, id);
+        if constexpr (!is_directed) data[to][from] = _pair<T>(cost, id);
         if constexpr (update) edges[id] = _Edge<T>(to, cost, from, id);
         else edges.emplace_back(to, cost, from, id);
+    }
+
+  public:
+    AdjacencyMatrix reverse() const {
+        AdjacencyMatrix res(num_vertices(), num_edges());
+        for (auto &&e : edges) res._add_edge<true>(e.to, e.from, e.cost, e.id);
+        return res;
     }
 };
 
 template <class G> G reverse(const G &g) {
-    G res(g.num_vertices());
-    for (auto &&e : g.edges) res.add_edge(e.to, e.from, e.cost);
-    return res;
+    return g.reverse();
 }
 
 } // namespace graph

@@ -131,10 +131,6 @@ struct w_ary_tree {
     }
 
   private:
-    static int msb(Uint x) { return x ? W - clz(x) - 1 : -1; }
-
-    static int lsb(Uint x) { return x ? ctz(x) : -1; }
-
     static Uint up_mask(Uint x, int i) { return x & (((Uint(1) << i) - 1) | (Uint(1) << i)); }
 
     static Uint dw_mask(Uint x, int i) { return x & ~((Uint(1) << i) - 1); }

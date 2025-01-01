@@ -16,10 +16,10 @@ FPS convolution_gcd(FPS &a, const FPS &b) {
     n--;
     FPS c(b.begin(), b.end());
 
-    MultipleTransform(a);
-    MultipleTransform(c);
+    multiple_transform(a);
+    multiple_transform(c);
     for (int i = 1; i <= n; i++) a[i] *= c[i];
-    InverseMultipleTransform(a);
+    inverse_multiple_transform(a);
 
     return a;
 }

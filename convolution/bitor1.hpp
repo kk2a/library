@@ -15,10 +15,10 @@ FPS convolution_or(FPS &a, const FPS &b) {
     assert((n & -n) == n); // n is a power of 2
     FPS c(b.begin(), b.end());
 
-    SubsetZetaTransform(a);
-    SubsetZetaTransform(c);
+    subset_zeta_transform(a);
+    subset_zeta_transform(c);
     for (int i = 0; i < n; i++) a[i] *= c[i];
-    InverseSubsetZetaTransform(a);
+    inverse_subset_zeta_transform(a);
 
     return a;
 }

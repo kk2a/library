@@ -5,7 +5,7 @@
 
 namespace kk2 {
 
-template <class FPS> void MultipleTransform(FPS &a) {
+template <class FPS> void multiple_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     n--;
@@ -16,7 +16,7 @@ template <class FPS> void MultipleTransform(FPS &a) {
     }
 }
 
-template <class FPS> void InverseMultipleTransform(FPS &a) {
+template <class FPS> void inverse_multiple_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     n--;
@@ -27,7 +27,7 @@ template <class FPS> void InverseMultipleTransform(FPS &a) {
     }
 }
 
-template <class FPS> void DivisorTransform(FPS &a) {
+template <class FPS> void divisor_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     n--;
@@ -38,7 +38,7 @@ template <class FPS> void DivisorTransform(FPS &a) {
     }
 }
 
-template <class FPS> void InverseDivisorTransform(FPS &a) {
+template <class FPS> void inverse_divisor_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     n--;

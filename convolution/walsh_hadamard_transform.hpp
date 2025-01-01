@@ -5,7 +5,7 @@
 
 namespace kk2 {
 
-template <class FPS> void WalshHadamardTransform(FPS &a) {
+template <class FPS> void walsh_hadamard_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     assert((n & -n) == n);
@@ -19,7 +19,7 @@ template <class FPS> void WalshHadamardTransform(FPS &a) {
     }
 }
 
-template <class FPS> void InverseWalshHadamardTransform(FPS &a) {
+template <class FPS> void inverse_walsh_hadamard_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     assert((n & -n) == n);

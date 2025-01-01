@@ -33,11 +33,12 @@ template <class G> struct TwoEdgeConnectedComponents : LowLink<G> {
         group.resize(k);
         for (int i = 0; i < this->n; i++) { group[comp[i]].emplace_back(i); }
 
-        std::vector<typename G::edge_type> tmp(this->bridges.size());
+        G::edge_container tmp(this->bridges.size());
         for (int i = 0; i < (int)this->bridges.size(); i++) {
             tmp[i] = this->g.edges[this->bridges[i]];
             tmp[i].from = comp[tmp[i].from];
             tmp[i].to = comp[tmp[i].to];
+            tmp[i].id = i;
         }
         forest = G(k, tmp);
     }

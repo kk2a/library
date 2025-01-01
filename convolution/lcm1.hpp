@@ -17,10 +17,10 @@ FPS convolution_lcm(FPS &a, const FPS &b) {
     FPS c(b.begin(), b.end());
     Erato::set_upper(n);
 
-    DivisorTransform(a);
-    DivisorTransform(c);
+    divisor_transform(a);
+    divisor_transform(c);
     for (int i = 1; i <= n; i++) a[i] *= c[i];
-    InverseDivisorTransform(a);
+    inverse_divisor_transform(a);
 
     return a;
 }

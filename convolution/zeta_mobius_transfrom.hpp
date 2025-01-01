@@ -5,7 +5,7 @@
 
 namespace kk2 {
 
-template <class FPS> void SuperSetZetaTransform(FPS &a) {
+template <class FPS> void superset_zeta_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     assert((n & -n) == n);
@@ -16,7 +16,7 @@ template <class FPS> void SuperSetZetaTransform(FPS &a) {
     }
 }
 
-template <class FPS> void InverseSuperSetZetaTransform(FPS &a) {
+template <class FPS> void inverse_superset_zeta_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     assert((n & -n) == n);
@@ -27,7 +27,7 @@ template <class FPS> void InverseSuperSetZetaTransform(FPS &a) {
     }
 }
 
-template <class FPS> void SubsetZetaTransform(FPS &a) {
+template <class FPS> void subset_zeta_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     assert((n & -n) == n);
@@ -38,7 +38,7 @@ template <class FPS> void SubsetZetaTransform(FPS &a) {
     }
 }
 
-template <class FPS> void InverseSubsetZetaTransform(FPS &a) {
+template <class FPS> void inverse_subset_zeta_transform(FPS &a) {
     int n = int(a.size());
     if (!n) return;
     assert((n & -n) == n);
