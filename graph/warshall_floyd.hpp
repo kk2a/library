@@ -8,7 +8,7 @@
 
 namespace kk2 {
 
-namespace shortest_path {
+namespace shortest_path_impl {
 
 template <typename T> struct edge {
     T len;
@@ -16,9 +16,9 @@ template <typename T> struct edge {
 };
 
 template <typename WG, typename T = typename WG::value_type>
-std::vector<std::vector<edge<T>>> WarshallFroyd(const WG &g) {
-    static_assert(WG::weighted::value, "WarshallFroyd requires weighted graph");
-    static_assert(WG::adjacency_matrix::value, "WarshallFroyd requires adjacency matrix");
+std::vector<std::vector<edge<T>>> warshall_froyd(const WG &g) {
+    static_assert(WG::weighted::value, "warshall_froyd requires weighted graph");
+    static_assert(WG::adjacency_matrix::value, "warshall_froyd requires adjacency matrix");
 
     int n = g.size();
     std::vector<std::vector<edge<T>>> res(n, std::vector<edge<T>>(n, {0, false}));
@@ -59,9 +59,9 @@ std::vector<std::vector<edge<T>>> WarshallFroyd(const WG &g) {
     return res;
 }
 
-} // namespace shortest_path
+} // namespace shortest_path_impl
 
-using shortest_path::WarshallFroyd;
+using shortest_path_impl::warshall_froyd;
 
 } // namespace kk2
 

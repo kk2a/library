@@ -10,7 +10,7 @@ int main() {
     kin >> n >> m;
     kk2::DWAdjMat<int> g(n, m);
     g.input(kin);
-    auto dist = kk2::WarshallFroyd(g);
+    auto dist = kk2::warshall_froyd(g);
     rep (i, n) {
         if (dist[i][i].len < 0) {
             kout << "NEGATIVE CYCLE" << kendl;

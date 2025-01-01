@@ -8,7 +8,7 @@
 
 namespace kk2 {
 
-namespace shortest_path {
+namespace shortest_path_impl {
 
 struct edge {
     int to, id;
@@ -21,8 +21,8 @@ struct Result {
 };
 
 template <class WG, class T = typename WG::value_type> 
-Result<T> ShortestPath(const WG &g, int start, T inf = std::numeric_limits<T>::max()) {
-    static_assert(WG::weighted::value, "ShortestPath requires weighted graph");
+Result<T> shortest_path(const WG &g, int start, T inf = std::numeric_limits<T>::max()) {
+    static_assert(WG::weighted::value, "shortest_path requires weighted graph");
     T alt;
     int n = g.size();
     std::vector<T> dist(n, inf);
@@ -52,9 +52,9 @@ Result<T> ShortestPath(const WG &g, int start, T inf = std::numeric_limits<T>::m
     return {dist, prev};
 }
 
-} // namespace shortest_path
+} // namespace shortest_path_impl
 
-using shortest_path::ShortestPath;
+using shortest_path_impl::shortest_path;
 
 } // namespace kk2
 

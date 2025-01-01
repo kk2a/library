@@ -10,7 +10,7 @@ int main() {
     kin >> n >> m >> s >> t;
     kk2::DWAdjList<i64> g(n, m);
     g.input(kin);
-    auto [dist, prev] = kk2::ShortestPath(g, s);
+    auto [dist, prev] = kk2::shortest_path(g, s);
 
     if (prev[t].to == -1) {
         kout << -1 << "\n";

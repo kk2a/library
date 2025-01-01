@@ -43,6 +43,8 @@ template <class G> struct BlockCutTree : BCC<G> {
                 }
             }
         }
+
+        if constexpr (G::static_graph::value) forest.build();
     }
 };
 

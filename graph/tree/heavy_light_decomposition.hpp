@@ -15,6 +15,7 @@ template <typename G> struct HeavyLightDecomposition {
     int root, id;
     std::vector<int> sz, in, out, head, par, dep, edge_idx;
 
+    // e.idはedgesのindexでないといけない
     HeavyLightDecomposition(G &g_, int root_ = 0)
         : g(g_),
           root(root_),
