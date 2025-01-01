@@ -18,7 +18,7 @@ int main() {
         kin >> i >> a;
         f[i] = a;
     }
-    FPS res = f.sparse_sqrt();
+    FPS res = kk2::sparse_sqrt(f);
     if (res.empty()) kout << -1 << "\n";
     else res.output(kout);
 
