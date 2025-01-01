@@ -187,6 +187,9 @@ data:
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_lca_static.test.cpp
+    title: verify/yosupo_graph/tree_lca_static.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -201,22 +204,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
   - icon: ':x:'
@@ -374,6 +377,7 @@ data:
   - verify/yosupo_graph/tree_diameter.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/tree_lca_static.test.cpp
   - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
   - verify/yosupo_graph/graph_scc.test.cpp
   - verify/yosupo_graph/graph_shortest_path.test.cpp

@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: graph/edge.hpp
+    title: graph/edge.hpp
   - icon: ':heavy_check_mark:'
-    path: bit/bitcount.hpp
-    title: bit/bitcount.hpp
-  - icon: ':heavy_check_mark:'
-    path: data_structure/my_bitset.hpp
-    title: data_structure/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
-    path: matrix/matrix_F2.hpp
-    title: matrix/matrix_F2.hpp
+    path: graph/static_graph.hpp
+    title: graph/static_graph.hpp
+  - icon: ':question:'
+    path: graph/tree/heavy_light_decomposition.hpp
+    title: graph/tree/heavy_light_decomposition.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -41,9 +41,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_det_mod_2
+    PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
-    - https://judge.yosupo.jp/problem/matrix_det_mod_2
+    - https://judge.yosupo.jp/problem/lca
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -57,15 +57,18 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det_mod_2\"\n\n\
-    #include \"../../matrix/matrix_F2.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    kk2::MatrixF2\
-    \ a(n, n);\n    kout << a.input(kin).det() << \"\\n\";\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\" \n\n#include \"../../graph/static_graph.hpp\"\
+    \n#include \"../../graph/tree/heavy_light_decomposition.hpp\"\n#include \"../../template/template.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n  \
+    \  kk2::SAdjList g(n);\n    rep (i, n - 1) {\n        int p;\n        kin >> p;\n\
+    \        g.add_edge(i + 1, p);\n    }\n    g.build();\n    kk2::HeavyLightDecomposition<kk2::SAdjList>\
+    \ hld(g);\n    rep (q) {\n        int u, v;\n        kin >> u >> v;\n        kout\
+    \ << hld.lca(u, v) << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
-  - matrix/matrix_F2.hpp
+  - graph/static_graph.hpp
   - type_traits/type_traits.hpp
-  - data_structure/my_bitset.hpp
-  - bit/bitcount.hpp
+  - graph/edge.hpp
+  - graph/tree/heavy_light_decomposition.hpp
   - template/template.hpp
   - template/fastio.hpp
   - template/type_alias.hpp
@@ -74,15 +77,15 @@ data:
   - template/macros.hpp
   - template/io_util.hpp
   isVerificationFile: true
-  path: verify/yosupo_linalg/matrix_det_f2.test.cpp
+  path: verify/yosupo_graph/tree_lca_static.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-01 22:04:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_linalg/matrix_det_f2.test.cpp
+documentation_of: verify/yosupo_graph/tree_lca_static.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_linalg/matrix_det_f2.test.cpp
-- /verify/verify/yosupo_linalg/matrix_det_f2.test.cpp.html
-title: verify/yosupo_linalg/matrix_det_f2.test.cpp
+- /verify/verify/yosupo_graph/tree_lca_static.test.cpp
+- /verify/verify/yosupo_graph/tree_lca_static.test.cpp.html
+title: verify/yosupo_graph/tree_lca_static.test.cpp
 ---

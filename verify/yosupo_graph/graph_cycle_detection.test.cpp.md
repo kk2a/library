@@ -5,6 +5,9 @@ data:
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
   - icon: ':question:'
+    path: graph/edge.hpp
+    title: graph/edge.hpp
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':question:'
@@ -64,6 +67,7 @@ data:
   dependsOn:
   - graph/graph.hpp
   - type_traits/type_traits.hpp
+  - graph/edge.hpp
   - graph/cycle_detection.hpp
   - template/template.hpp
   - template/fastio.hpp
@@ -75,7 +79,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-01 22:04:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_cycle_detection.test.cpp

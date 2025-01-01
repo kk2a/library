@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: graph/edge.hpp
+    title: graph/edge.hpp
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':heavy_check_mark:'
@@ -58,7 +61,7 @@ data:
     \ \"../../graph/graph.hpp\"\n#include \"../../graph/shortest_path.hpp\"\n#include\
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
     \ n, m, s, t;\n    kin >> n >> m >> s >> t;\n    kk2::DWAdjList<i64> g(n, m);\n\
-    \    g.input(kin);\n    auto [dist, prev] = kk2::ShortestPath(g, s);\n\n    if\
+    \    g.input(kin);\n    auto [dist, prev] = kk2::shortest_path(g, s);\n\n    if\
     \ (prev[t].to == -1) {\n        kout << -1 << \"\\n\";\n        return 0;\n  \
     \  }\n\n    std::vector<int> path;\n    for (int now = t; now != -1; now = prev[now].to)\
     \ path.emplace_back(now);\n\n    kout << dist[t] << \" \" << path.size() - 1 <<\
@@ -67,6 +70,7 @@ data:
   dependsOn:
   - graph/graph.hpp
   - type_traits/type_traits.hpp
+  - graph/edge.hpp
   - graph/shortest_path.hpp
   - template/template.hpp
   - template/fastio.hpp
@@ -78,7 +82,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-01 22:04:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_shortest_path.test.cpp

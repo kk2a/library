@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_lca_static.test.cpp
+    title: verify/yosupo_graph/tree_lca_static.test.cpp
   - icon: ':x:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
@@ -22,7 +25,8 @@ data:
     namespace kk2 {\n\ntemplate <typename G> struct HeavyLightDecomposition {\n  \
     \  static_assert(!G::directed::value, \"HeavyLightDecomposition requires undirected\
     \ graph\");\n\n    G &g;\n    int root, id;\n    std::vector<int> sz, in, out,\
-    \ head, par, dep, edge_idx;\n\n    HeavyLightDecomposition(G &g_, int root_ =\
+    \ head, par, dep, edge_idx;\n\n    // e.id\u306Fedges\u306Eindex\u3067\u306A\u3044\
+    \u3068\u3044\u3051\u306A\u3044\n    HeavyLightDecomposition(G &g_, int root_ =\
     \ 0)\n        : g(g_),\n          root(root_),\n          id(0),\n          sz(g.size(),\
     \ 0),\n          in(g.size(), -1),\n          out(g.size(), -1),\n          head(g.size(),\
     \ root),\n          par(g.size(), root),\n          dep(g.size(), 0),\n      \
@@ -71,9 +75,10 @@ data:
     \ <vector>\n\nnamespace kk2 {\n\ntemplate <typename G> struct HeavyLightDecomposition\
     \ {\n    static_assert(!G::directed::value, \"HeavyLightDecomposition requires\
     \ undirected graph\");\n\n    G &g;\n    int root, id;\n    std::vector<int> sz,\
-    \ in, out, head, par, dep, edge_idx;\n\n    HeavyLightDecomposition(G &g_, int\
-    \ root_ = 0)\n        : g(g_),\n          root(root_),\n          id(0),\n   \
-    \       sz(g.size(), 0),\n          in(g.size(), -1),\n          out(g.size(),\
+    \ in, out, head, par, dep, edge_idx;\n\n    // e.id\u306Fedges\u306Eindex\u3067\
+    \u306A\u3044\u3068\u3044\u3051\u306A\u3044\n    HeavyLightDecomposition(G &g_,\
+    \ int root_ = 0)\n        : g(g_),\n          root(root_),\n          id(0),\n\
+    \          sz(g.size(), 0),\n          in(g.size(), -1),\n          out(g.size(),\
     \ -1),\n          head(g.size(), root),\n          par(g.size(), root),\n    \
     \      dep(g.size(), 0),\n          edge_idx(g.size() - 1, -1) {\n        init();\n\
     \    }\n\n    int get_edge_idx(int i) const { return edge_idx[i]; }\n\n    std::pair<int,\
@@ -120,11 +125,12 @@ data:
   path: graph/tree/heavy_light_decomposition.hpp
   requiredBy:
   - graph/tree/auxiliary_tree.hpp
-  timestamp: '2024-12-28 13:03:48+09:00'
+  timestamp: '2025-01-01 22:04:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/tree_lca_static.test.cpp
 documentation_of: graph/tree/heavy_light_decomposition.hpp
 layout: document
 redirect_from:

@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -101,7 +101,7 @@ data:
   requiredBy:
   - math/euler_phi.hpp
   timestamp: '2025-01-01 03:50:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp

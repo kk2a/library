@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: graph/edge.hpp
+    title: graph/edge.hpp
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':heavy_check_mark:'
@@ -67,6 +70,7 @@ data:
   dependsOn:
   - graph/graph.hpp
   - type_traits/type_traits.hpp
+  - graph/edge.hpp
   - graph/scc.hpp
   - graph/topological_sort.hpp
   - template/template.hpp
@@ -79,7 +83,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_scc.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-01 22:04:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_scc.test.cpp

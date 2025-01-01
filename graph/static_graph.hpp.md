@@ -1,0 +1,101 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: graph/edge.hpp
+    title: graph/edge.hpp
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_lca_static.test.cpp
+    title: verify/yosupo_graph/tree_lca_static.test.cpp
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    links: []
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+  code: "#ifndef GRAPH_STATIC_GRAPH_HPP\n#define GRAPH_STATIC_GRAPH_HPP 1\n\n#include\
+    \ <type_traits>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
+    \n#include \"edge.hpp\"\n\nnamespace kk2 {\n\nnamespace graph {\n\ntemplate <class\
+    \ T, bool is_directed> struct StaticAdjacencyList {\n    using value_type = T;\n\
+    \    using edge_type = _Edge<T>;\n\n    using directed = std::integral_constant<bool,\
+    \ is_directed>;\n    using weighted = std::integral_constant<bool, !std::is_same_v<T,\
+    \ empty>>;\n    using adjacency_list = std::integral_constant<bool, true>;\n \
+    \   using adjacency_matrix = std::integral_constant<bool, false>;\n    using static_graph\
+    \ = std::integral_constant<bool, true>;\n\n    template <class It> struct Es {\n\
+    \        It b, e;\n\n        It begin() const { return b; }\n\n        It end()\
+    \ const { return e; }\n\n        int size() const { return int(e - b); }\n\n \
+    \       auto &&operator[](int k) const { return b[k]; }\n    };\n\n    StaticAdjacencyList()\
+    \ = default;\n\n    StaticAdjacencyList(int n_) : head(n_) {}\n\n    StaticAdjacencyList(int\
+    \ n_, int m_) : head(n_), edges(m_) {}\n\n    StaticAdjacencyList(int n_, const\
+    \ _Edges<T> &edges_) : head(n_), edges(edges_) {\n        for (auto &&e : edges)\
+    \ {\n            head[e.from]++;\n            if constexpr (!is_directed) {\n\
+    \                if (e.from != e.to) head[e.to]++;\n            }\n        }\n\
+    \        build();\n    }\n\n    std::vector<int> head;\n    _Edges<T> edges, data;\n\
+    \    bool is_built = false;\n\n    template <class IStream, is_istream_t<IStream>\
+    \ * = nullptr>\n    StaticAdjacencyList &input(IStream &is, bool oneindexed =\
+    \ false) {\n        for (int i = 0; i < num_edges(); i++) {\n            int u,\
+    \ v;\n            T w{};\n            is >> u >> v;\n            if constexpr\
+    \ (!std::is_same_v<T, empty>) is >> w;\n            if (oneindexed) --u, --v;\n\
+    \            _add_edge<true>(u, v, w, i);\n        }\n\n        build();\n   \
+    \     return *this;\n    }\n\n    void add_edge(int from, int to, T cost = T{})\
+    \ { _add_edge<false>(from, to, cost, num_edges()); }\n\n    void add_vertex(int\
+    \ n = 1) { head.insert(head.end(), n, 0); }\n\n    int num_vertices() const {\
+    \ return (int)head.size(); }\n\n    int size() const { return (int)head.size();\
+    \ }\n\n    int num_edges() const { return (int)edges.size(); }\n\n    void build()\
+    \ {\n        is_built = true;\n        for (int i = 1; i < (int)head.size(); ++i)\
+    \ head[i] += head[i - 1];\n        data.resize(head.back());\n        for (auto\
+    \ &&e : edges) {\n            data[--head[e.from]] = e;\n            if constexpr\
+    \ (!is_directed) {\n                if (e.from != e.to) data[--head[e.to]] = e.rev();\n\
+    \            }\n        }\n    }\n\n    Es<typename _Edges<T>::iterator> operator[](int\
+    \ k) {\n        if (!is_built) build();\n        if (k == (int)head.size() - 1)\n\
+    \            return Es<typename _Edges<T>::iterator>{data.begin() + head[k], data.end()};\n\
+    \        return Es<typename _Edges<T>::iterator>{data.begin() + head[k], data.begin()\
+    \ + head[k + 1]};\n    }\n\n    const Es<typename _Edges<T>::const_iterator> operator[](int\
+    \ k) const {\n        if (k == (int)head.size() - 1)\n            return Es<typename\
+    \ _Edges<T>::const_iterator>{data.begin() + head[k], data.end()};\n        return\
+    \ Es<typename _Edges<T>::const_iterator>{data.begin() + head[k], data.begin()\
+    \ + head[k + 1]};\n    }\n\n  private:\n    template <bool update = false> void\
+    \ _add_edge(int from, int to, T cost, int id) {\n        if constexpr (update)\
+    \ edges[id] = _Edge<T>(to, cost, from, id);\n        else edges.emplace_back(to,\
+    \ cost, from, id);\n        head[from]++;\n        if constexpr (!is_directed)\
+    \ {\n            if (from != to) head[to]++;\n        }\n    }\n};\n\ntemplate\
+    \ <class G, std::enable_if_t<G::static_graph::value> * = nullptr> G reverse(const\
+    \ G &g) {\n    G res(g.num_vertices());\n    for (auto &&e : g.edges) res.add_edge(e.to,\
+    \ e.from, e.cost);\n    res.build();\n    return res;\n}\n\n} // namespace graph\n\
+    \ntemplate <typename T> using SWAdjList = graph::StaticAdjacencyList<T, false>;\n\
+    template <typename T> using SDWAdjList = graph::StaticAdjacencyList<T, true>;\n\
+    using SAdjList = graph::StaticAdjacencyList<graph::empty, false>;\nusing SDAdjList\
+    \ = graph::StaticAdjacencyList<graph::empty, true>;\n\nusing graph::reverse;\n\
+    \n} // namespace kk2\n\n#endif // GRAPH_STATIC_GRAPH_HPP\n"
+  dependsOn:
+  - type_traits/type_traits.hpp
+  - graph/edge.hpp
+  isVerificationFile: false
+  path: graph/static_graph.hpp
+  requiredBy: []
+  timestamp: '2025-01-01 22:04:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_graph/tree_lca_static.test.cpp
+documentation_of: graph/static_graph.hpp
+layout: document
+redirect_from:
+- /library/graph/static_graph.hpp
+- /library/graph/static_graph.hpp.html
+title: graph/static_graph.hpp
+---

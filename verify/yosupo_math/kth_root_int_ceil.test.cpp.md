@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/kth_root_floor.hpp
     title: math/kth_root_floor.hpp
   - icon: ':x:'

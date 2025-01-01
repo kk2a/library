@@ -2,12 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: graph/edge.hpp
+    title: graph/edge.hpp
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
@@ -55,12 +58,13 @@ data:
   dependsOn:
   - graph/graph.hpp
   - type_traits/type_traits.hpp
+  - graph/edge.hpp
   - random/gen.hpp
   - random/seed.hpp
   isVerificationFile: false
   path: random/graph.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-01 22:04:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/graph.hpp

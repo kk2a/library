@@ -92,7 +92,8 @@ data:
     \    if (comp_v[v] == -1) comp_v[v] = i;\n                else if (buf[comp_v[v]\
     \ - off] != i) {\n                    forest.add_edge(i, comp_v[v]);\n       \
     \             buf[comp_v[v] - off] = i;\n                }\n            }\n  \
-    \      }\n    }\n};\n\n} // namespace kk2\n\n\n"
+    \      }\n\n        if constexpr (G::static_graph::value) forest.build();\n  \
+    \  }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef GRAPH_TREE_BLOCK_CUT_TREE_HPP\n#define GRAPH_TREE_BLOCK_CUT_TREE_HPP\
     \ 1\n\n#include <vector>\n\n#include \"../bcc.hpp\"\n\nnamespace kk2 {\n\ntemplate\
     \ <class G> struct BlockCutTree : BCC<G> {\n    std::vector<int> comp_v;\n   \
@@ -110,14 +111,15 @@ data:
     \                if (comp_v[v] == -1) comp_v[v] = i;\n                else if\
     \ (buf[comp_v[v] - off] != i) {\n                    forest.add_edge(i, comp_v[v]);\n\
     \                    buf[comp_v[v] - off] = i;\n                }\n          \
-    \  }\n        }\n    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_TREE_BLOCK_CUT_TREE_HPP\n"
+    \  }\n        }\n\n        if constexpr (G::static_graph::value) forest.build();\n\
+    \    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_TREE_BLOCK_CUT_TREE_HPP\n"
   dependsOn:
   - graph/bcc.hpp
   - graph/lowlink.hpp
   isVerificationFile: false
   path: graph/tree/block_cut_tree.hpp
   requiredBy: []
-  timestamp: '2025-01-01 03:50:53+09:00'
+  timestamp: '2025-01-01 22:04:22+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp

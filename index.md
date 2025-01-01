@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: bit
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/bitcount.hpp
       title: bit/bitcount.hpp
   - name: convolution
@@ -67,7 +67,7 @@ data:
     - icon: ':warning:'
       path: data_structure/interval_heap.hpp
       title: data_structure/interval_heap.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
     - icon: ':warning:'
@@ -187,6 +187,9 @@ data:
       path: graph/cycle_detection.hpp
       title: graph/cycle_detection.hpp
     - icon: ':question:'
+      path: graph/edge.hpp
+      title: graph/edge.hpp
+    - icon: ':question:'
       path: graph/graph.hpp
       title: graph/graph.hpp
     - icon: ':question:'
@@ -201,6 +204,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path.hpp
       title: graph/shortest_path.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/static_graph.hpp
+      title: graph/static_graph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
@@ -259,13 +265,13 @@ data:
     - icon: ':question:'
       path: math/is_prime.hpp
       title: math/is_prime.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/kth_root_floor.hpp
       title: math/kth_root_floor.hpp
     - icon: ':x:'
       path: math/pow.hpp
       title: math/pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/prime_factorize.hpp
       title: math/prime_factorize.hpp
     - icon: ':warning:'
@@ -329,10 +335,10 @@ data:
     - icon: ':warning:'
       path: matrix/frobenius_form.hpp
       title: matrix/frobenius_form.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: matrix/matrix_F2.hpp
       title: matrix/matrix_F2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: matrix/matrix_field.hpp
       title: matrix/matrix_field.hpp
   - name: modint
@@ -362,13 +368,13 @@ data:
       title: others/run_length_encoding.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/gen.hpp
       title: random/gen.hpp
     - icon: ':warning:'
       path: random/graph.hpp
       title: random/graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/seed.hpp
       title: random/seed.hpp
   - name: segment_tree
@@ -699,6 +705,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_lca.test.cpp
       title: verify/yosupo_graph/tree_lca.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_graph/tree_lca_static.test.cpp
+      title: verify/yosupo_graph/tree_lca_static.test.cpp
   - name: verify/yosupo_linalg
     pages:
     - icon: ':heavy_check_mark:'
@@ -716,24 +725,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_pow.test.cpp
       title: verify/yosupo_linalg/matrix_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_product.test.cpp
       title: verify/yosupo_linalg/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_product_f2.test.cpp
       title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
       title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
       title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - name: verify/yosupo_math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/factrize.test.cpp
       title: verify/yosupo_math/factrize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/kth_root_int.test.cpp
       title: verify/yosupo_math/kth_root_int.test.cpp
     - icon: ':x:'
