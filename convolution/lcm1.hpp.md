@@ -57,42 +57,43 @@ data:
     \ < p.second; ++j) {\n                    v *= p.first;\n                    res.push_back(res[i]\
     \ * v);\n                }\n            }\n        }\n        return res;\n  \
     \  }\n};\n\n} // namespace kk2\n\n\n#line 5 \"convolution/divisor_multiple_transform.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class FPS> void MultipleTransform(FPS &a) {\n\
+    \n\nnamespace kk2 {\n\ntemplate <class FPS> void multiple_transform(FPS &a) {\n\
     \    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = n / p; i; i--) a[i] += a[i * p];\n    }\n}\n\ntemplate <class\
-    \ FPS> void InverseMultipleTransform(FPS &a) {\n    int n = int(a.size());\n \
-    \   if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p\
-    \ : Erato::primes()) {\n        if (p > n) break;\n        for (int i = 1; i <=\
-    \ n / p; i++) a[i] -= a[i * p];\n    }\n}\n\ntemplate <class FPS> void DivisorTransform(FPS\
+    \ FPS> void inverse_multiple_transform(FPS &a) {\n    int n = int(a.size());\n\
+    \    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto\
+    \ p : Erato::primes()) {\n        if (p > n) break;\n        for (int i = 1; i\
+    \ <= n / p; i++) a[i] -= a[i * p];\n    }\n}\n\ntemplate <class FPS> void divisor_transform(FPS\
     \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = 1; i <= n / p; i++) a[i * p] += a[i];\n    }\n}\n\ntemplate <class\
-    \ FPS> void InverseDivisorTransform(FPS &a) {\n    int n = int(a.size());\n  \
-    \  if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p\
-    \ : Erato::primes()) {\n        if (p > n) break;\n        for (int i = n / p;\
-    \ i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace kk2\n\n\n#line 7 \"\
-    convolution/lcm1.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\ntemplate <class FPS>\n\
-    FPS convolution_lcm(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
+    \ FPS> void inverse_divisor_transform(FPS &a) {\n    int n = int(a.size());\n\
+    \    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto\
+    \ p : Erato::primes()) {\n        if (p > n) break;\n        for (int i = n /\
+    \ p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace kk2\n\n\n#line\
+    \ 7 \"convolution/lcm1.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\ntemplate <class\
+    \ FPS>\nFPS convolution_lcm(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
     \    int n = int(size(a)); // = int(size(b))\n    if (!n) return {};\n    n--;\n\
-    \    FPS c(b.begin(), b.end());\n    Erato::set_upper(n);\n\n    DivisorTransform(a);\n\
-    \    DivisorTransform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n  \
-    \  InverseDivisorTransform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\n\n"
+    \    FPS c(b.begin(), b.end());\n    Erato::set_upper(n);\n\n    divisor_transform(a);\n\
+    \    divisor_transform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n \
+    \   inverse_divisor_transform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\n\
+    \n"
   code: "#ifndef CONVOLUTION_LCM\n#define CONVOLUTION_LCM 1\n\n#include <cassert>\n\
     \n#include \"divisor_multiple_transform.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\n\
     template <class FPS>\nFPS convolution_lcm(FPS &a, const FPS &b) {\n    assert(size(a)\
     \ == size(b));\n    int n = int(size(a)); // = int(size(b))\n    if (!n) return\
     \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n    Erato::set_upper(n);\n\n\
-    \    DivisorTransform(a);\n    DivisorTransform(c);\n    for (int i = 1; i <=\
-    \ n; i++) a[i] *= c[i];\n    InverseDivisorTransform(a);\n\n    return a;\n}\n\
-    \n} // namespace kk2\n\n#endif // CONVOLUTION_LCM\n"
+    \    divisor_transform(a);\n    divisor_transform(c);\n    for (int i = 1; i <=\
+    \ n; i++) a[i] *= c[i];\n    inverse_divisor_transform(a);\n\n    return a;\n\
+    }\n\n} // namespace kk2\n\n#endif // CONVOLUTION_LCM\n"
   dependsOn:
   - convolution/divisor_multiple_transform.hpp
   - math/Eratosthenes.hpp
   isVerificationFile: false
   path: convolution/lcm1.hpp
   requiredBy: []
-  timestamp: '2024-10-06 18:26:21+09:00'
+  timestamp: '2025-01-02 03:12:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp

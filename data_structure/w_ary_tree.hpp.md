@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -83,19 +83,18 @@ data:
     \                ++dep;\n                x = (x / W) * W + next;\n           \
     \     break;\n            }\n            if (dep == 0) return std::nullopt;\n\
     \        }\n\n\n        for (; dep < (int)d.size(); x = x * W + lsb(d[dep][x]),\
-    \ ++dep) {}\n        return x;\n    }\n\n  private:\n    static int msb(Uint x)\
-    \ { return x ? W - clz(x) - 1 : -1; }\n\n    static int lsb(Uint x) { return x\
-    \ ? ctz(x) : -1; }\n\n    static Uint up_mask(Uint x, int i) { return x & (((Uint(1)\
-    \ << i) - 1) | (Uint(1) << i)); }\n\n    static Uint dw_mask(Uint x, int i) {\
-    \ return x & ~((Uint(1) << i) - 1); }\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_W_ARY_TREE_HPP"
+    \ ++dep) {}\n        return x;\n    }\n\n  private:\n    static Uint up_mask(Uint\
+    \ x, int i) { return x & (((Uint(1) << i) - 1) | (Uint(1) << i)); }\n\n    static\
+    \ Uint dw_mask(Uint x, int i) { return x & ~((Uint(1) << i) - 1); }\n};\n\n} //\
+    \ namespace kk2\n\n#endif // DATA_STRUCTURE_W_ARY_TREE_HPP"
   dependsOn:
   - bit/bitcount.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: data_structure/w_ary_tree.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-02 03:12:44+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
 documentation_of: data_structure/w_ary_tree.hpp

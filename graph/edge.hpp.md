@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/static_graph.hpp
     title: graph/static_graph.hpp
   - icon: ':warning:'
@@ -27,13 +27,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
+    title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca_static.test.cpp
     title: verify/yosupo_graph/tree_lca_static.test.cpp
   - icon: ':x:'
@@ -113,6 +116,7 @@ data:
   - verify/yosupo_graph/tree_lca.test.cpp
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/tree_diameter.test.cpp
+  - verify/yosupo_graph/graph_matching_bipartite.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp
   - verify/yosupo_graph/tree_lca_static.test.cpp

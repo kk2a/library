@@ -63,34 +63,34 @@ data:
     \ < p.second; ++j) {\n                    v *= p.first;\n                    res.push_back(res[i]\
     \ * v);\n                }\n            }\n        }\n        return res;\n  \
     \  }\n};\n\n} // namespace kk2\n\n\n#line 5 \"convolution/divisor_multiple_transform.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class FPS> void MultipleTransform(FPS &a) {\n\
+    \n\nnamespace kk2 {\n\ntemplate <class FPS> void multiple_transform(FPS &a) {\n\
     \    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = n / p; i; i--) a[i] += a[i * p];\n    }\n}\n\ntemplate <class\
-    \ FPS> void InverseMultipleTransform(FPS &a) {\n    int n = int(a.size());\n \
-    \   if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p\
-    \ : Erato::primes()) {\n        if (p > n) break;\n        for (int i = 1; i <=\
-    \ n / p; i++) a[i] -= a[i * p];\n    }\n}\n\ntemplate <class FPS> void DivisorTransform(FPS\
+    \ FPS> void inverse_multiple_transform(FPS &a) {\n    int n = int(a.size());\n\
+    \    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto\
+    \ p : Erato::primes()) {\n        if (p > n) break;\n        for (int i = 1; i\
+    \ <= n / p; i++) a[i] -= a[i * p];\n    }\n}\n\ntemplate <class FPS> void divisor_transform(FPS\
     \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = 1; i <= n / p; i++) a[i * p] += a[i];\n    }\n}\n\ntemplate <class\
-    \ FPS> void InverseDivisorTransform(FPS &a) {\n    int n = int(a.size());\n  \
-    \  if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p\
-    \ : Erato::primes()) {\n        if (p > n) break;\n        for (int i = n / p;\
-    \ i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace kk2\n\n\n"
+    \ FPS> void inverse_divisor_transform(FPS &a) {\n    int n = int(a.size());\n\
+    \    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto\
+    \ p : Erato::primes()) {\n        if (p > n) break;\n        for (int i = n /\
+    \ p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\n#define CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\
     \ 1\n\n#include \"../math/Eratosthenes.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ FPS> void MultipleTransform(FPS &a) {\n    int n = int(a.size());\n    if (!n)\
+    \ FPS> void multiple_transform(FPS &a) {\n    int n = int(a.size());\n    if (!n)\
     \ return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p : Erato::primes())\
     \ {\n        if (p > n) break;\n        for (int i = n / p; i; i--) a[i] += a[i\
-    \ * p];\n    }\n}\n\ntemplate <class FPS> void InverseMultipleTransform(FPS &a)\
-    \ {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
+    \ * p];\n    }\n}\n\ntemplate <class FPS> void inverse_multiple_transform(FPS\
+    \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = 1; i <= n / p; i++) a[i] -= a[i * p];\n    }\n}\n\ntemplate <class\
-    \ FPS> void DivisorTransform(FPS &a) {\n    int n = int(a.size());\n    if (!n)\
+    \ FPS> void divisor_transform(FPS &a) {\n    int n = int(a.size());\n    if (!n)\
     \ return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p : Erato::primes())\
     \ {\n        if (p > n) break;\n        for (int i = 1; i <= n / p; i++) a[i *\
-    \ p] += a[i];\n    }\n}\n\ntemplate <class FPS> void InverseDivisorTransform(FPS\
+    \ p] += a[i];\n    }\n}\n\ntemplate <class FPS> void inverse_divisor_transform(FPS\
     \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = n / p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace\
@@ -102,7 +102,7 @@ data:
   requiredBy:
   - convolution/gcd1.hpp
   - convolution/lcm1.hpp
-  timestamp: '2024-10-06 18:26:21+09:00'
+  timestamp: '2025-01-02 03:12:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp

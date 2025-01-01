@@ -6,12 +6,12 @@ data:
     title: graph/lowlink.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/two_edge_connected_components.hpp\"\n\n\n\n#include\
@@ -54,11 +54,11 @@ data:
     \ e.to, now, e.id);\n        };\n        for (int i = 0; i < this->n; i++) \n\
     \            if (this->root[i]) dfs(dfs, i, -1, -1);\n\n        group.resize(k);\n\
     \        for (int i = 0; i < this->n; i++) { group[comp[i]].emplace_back(i); }\n\
-    \n        std::vector<typename G::edge_type> tmp(this->bridges.size());\n    \
-    \    for (int i = 0; i < (int)this->bridges.size(); i++) {\n            tmp[i]\
-    \ = this->g.edges[this->bridges[i]];\n            tmp[i].from = comp[tmp[i].from];\n\
-    \            tmp[i].to = comp[tmp[i].to];\n        }\n        forest = G(k, tmp);\n\
-    \    }\n};\n\n} // namespace kk2\n\n\n"
+    \n        G::edge_container tmp(this->bridges.size());\n        for (int i = 0;\
+    \ i < (int)this->bridges.size(); i++) {\n            tmp[i] = this->g.edges[this->bridges[i]];\n\
+    \            tmp[i].from = comp[tmp[i].from];\n            tmp[i].to = comp[tmp[i].to];\n\
+    \            tmp[i].id = i;\n        }\n        forest = G(k, tmp);\n    }\n};\n\
+    \n} // namespace kk2\n\n\n"
   code: "#ifndef GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\n#define GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\
     \ 1\n\n#include <vector>\n\n#include \"lowlink.hpp\"\n\nnamespace kk2 {\n\ntemplate\
     \ <class G> struct TwoEdgeConnectedComponents : LowLink<G> {\n    TwoEdgeConnectedComponents(const\
@@ -72,18 +72,18 @@ data:
     \ e.to, now, e.id);\n        };\n        for (int i = 0; i < this->n; i++) \n\
     \            if (this->root[i]) dfs(dfs, i, -1, -1);\n\n        group.resize(k);\n\
     \        for (int i = 0; i < this->n; i++) { group[comp[i]].emplace_back(i); }\n\
-    \n        std::vector<typename G::edge_type> tmp(this->bridges.size());\n    \
-    \    for (int i = 0; i < (int)this->bridges.size(); i++) {\n            tmp[i]\
-    \ = this->g.edges[this->bridges[i]];\n            tmp[i].from = comp[tmp[i].from];\n\
-    \            tmp[i].to = comp[tmp[i].to];\n        }\n        forest = G(k, tmp);\n\
-    \    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\n"
+    \n        G::edge_container tmp(this->bridges.size());\n        for (int i = 0;\
+    \ i < (int)this->bridges.size(); i++) {\n            tmp[i] = this->g.edges[this->bridges[i]];\n\
+    \            tmp[i].from = comp[tmp[i].from];\n            tmp[i].to = comp[tmp[i].to];\n\
+    \            tmp[i].id = i;\n        }\n        forest = G(k, tmp);\n    }\n};\n\
+    \n} // namespace kk2\n\n#endif // GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\n"
   dependsOn:
   - graph/lowlink.hpp
   isVerificationFile: false
   path: graph/two_edge_connected_components.hpp
   requiredBy: []
-  timestamp: '2025-01-01 03:50:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-02 03:12:44+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
 documentation_of: graph/two_edge_connected_components.hpp
