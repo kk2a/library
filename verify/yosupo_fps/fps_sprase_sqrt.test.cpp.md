@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
   - icon: ':question:'
@@ -57,9 +57,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series_sparse
@@ -86,8 +86,8 @@ data:
     \nusing namespace std;\n\nusing FPS = kk2::FormalPowerSeries<kk2::mont998>;\n\n\
     int main() {\n    int n, k;\n    kin >> n >> k;\n    FPS f(n);\n    rep (k) {\n\
     \        int i;\n        kk2::mont998 a;\n        kin >> i >> a;\n        f[i]\
-    \ = a;\n    }\n    FPS res = f.sparse_sqrt();\n    if (res.empty()) kout << -1\
-    \ << \"\\n\";\n    else res.output(kout);\n\n    return 0;\n}\n"
+    \ = a;\n    }\n    FPS res = kk2::sparse_sqrt(f);\n    if (res.empty()) kout <<\
+    \ -1 << \"\\n\";\n    else res.output(kout);\n\n    return 0;\n}\n"
   dependsOn:
   - fps/ntt_friendly.hpp
   - convolution/convolution.hpp
@@ -110,8 +110,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   requiredBy: []
-  timestamp: '2024-12-30 00:24:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-01 16:36:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
 layout: document
