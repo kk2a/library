@@ -10,8 +10,7 @@ template <class S, class T, class U> constexpr S pow(T x, U n) {
     S r = 1, y = x;
     while (n) {
         if (n & 1) r *= y;
-        y *= y;
-        n >>= 1;
+        if (n >>= 1) y *= y;
     }
     return r;
 }

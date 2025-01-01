@@ -11,14 +11,21 @@ namespace kk2 {
 uint64_t kth_root_floor_inner(uint64_t a, int k) {
     if (a <= 1 || k == 1) return a;
     if (64 <= k) return 1;
-    auto check = [&](__uint128_t x) {
-        __uint128_t p = 1, q = x;
-        for (int b = k; b; b >>= 1, q *= q) {
-            if (b & 1) p *= q;
+    auto check = [&](uint64_t x) {
+        uint64_t p = 1, q = x;
+        for (int b = k; b;) {
+            if (b & 1) {
+                if (a / p < q) return false;
+                p *= q;
+            }
+            if (b >>= 1) {
+                if (a / q < q) return false;
+                q *= q;
+            }
         }
         return p <= a;
     };
-    uint64_t x = powl(a, (long double)1.0 / k);
+    uint64_t x = std::pow(a, 1.0 / k);
     while (!check(x)) --x;
     while (check(x + 1)) ++x;
     return x;
@@ -32,10 +39,11 @@ template <class return_type = uint64_t, class T, class U> return_type kth_root_f
 uint64_t kth_root_ceil_inner(uint64_t a, int k) {
     if (a <= 1 || k == 1) return a;
     if (64 <= k) return 2;
-    auto check = [&](__uint128_t x) {
-        __uint128_t p = 1, q = x;
-        for (int b = k; b; b >>= 1, q *= q) {
+    auto check = [&](uint64_t x) {
+        uint64_t p = 1, q = x;
+        for (int b = k; b;) {
             if (b & 1) p *= q;
+            if (b >>= 1) q *= q;
         }
         return p == a;
     };
