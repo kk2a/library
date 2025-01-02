@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'

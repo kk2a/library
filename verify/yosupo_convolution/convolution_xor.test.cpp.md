@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/walsh_hadamard_transform.hpp
     title: convolution/walsh_hadamard_transform.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':question:'

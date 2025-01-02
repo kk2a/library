@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
   - icon: ':x:'
@@ -83,7 +83,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2025-01-02 03:12:44+09:00'
+  timestamp: '2025-01-02 20:45:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp

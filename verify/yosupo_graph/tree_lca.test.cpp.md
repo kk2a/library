@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -79,8 +79,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/tree_lca.test.cpp
   requiredBy: []
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-01-02 20:45:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_lca.test.cpp
 layout: document

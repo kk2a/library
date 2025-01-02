@@ -5,23 +5,23 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/static_graph.hpp
     title: graph/static_graph.hpp
   - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,22 +30,22 @@ data:
   - icon: ':x:'
     path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
   - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/tree_lca_static.test.cpp
     title: verify/yosupo_graph/tree_lca_static.test.cpp
   - icon: ':x:'
@@ -78,28 +78,34 @@ data:
     \ * = nullptr>\n    friend OStream &operator<<(OStream &os, const _Edge &e) {\n\
     \        if constexpr (std::is_same_v<T, empty>) return os << e.from << \" ->\
     \ \" << e.to;\n        else return os << e.from << \" -> \" << e.to << \" : \"\
-    \ << e.cost;\n    }\n};\ntemplate <class T> using _Edges = std::vector<_Edge<T>>;\n\
-    \ntemplate <class T> struct _pair {\n    T cost;\n    int id;\n\n    _pair(T cost_,\
-    \ int id_) : cost(cost_), id(id_) {}\n\n    _pair() : cost(), id(-1) {}\n\n  \
-    \  operator bool() const { return id != -1; }\n\n    template <class OStream,\
-    \ is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream &os,\
-    \ const _pair &p) {\n        if constexpr (std::is_same_v<T, empty>) return os;\n\
-    \        else return os << p.cost;\n    }\n};\ntemplate <class T> using _pairs\
-    \ = std::vector<_pair<T>>;\n\ntemplate <class T, class IStream, is_istream_t<IStream>\
-    \ * = nullptr>\n_Edges<T> &input(IStream &is, _Edges<T> &edges, bool is_one_indexed\
-    \ = false) {\n    for (int i = 0; i < (int)edges.size(); i++) {\n        int u,\
-    \ v;\n        T w{};\n        is >> u >> v;\n        if (is_one_indexed) --u,\
-    \ --v;\n        if constexpr (!std::is_same_v<T, empty>) is >> w;\n        edges[i]\
-    \ = _Edge<T>(v, w, u, i);\n    }\n    return edges;\n}\n\ntemplate <class T, std::enable_if_t<std::is_same_v<T,\
-    \ empty>> * = nullptr>\nvoid add_edge(_Edges<T> &edges, int from, int to) {\n\
-    \    edges.emplace_back(to, empty{}, from, (int)edges.size());\n}\n\ntemplate\
-    \ <class T, std::enable_if_t<!std::is_same_v<T, empty>> * = nullptr>\nvoid add_edge(_Edges<T>\
-    \ &edges, int from, int to, T cost) {\n    edges.emplace_back(to, cost, from,\
-    \ (int)edges.size());\n}\n\n} // namespace graph\n\ntemplate <typename T> using\
-    \ WEdge = graph::_Edge<T>;\ntemplate <typename T> using WEdges = graph::_Edges<T>;\n\
-    using Edge = graph::_Edge<graph::empty>;\nusing Edges = graph::_Edges<graph::empty>;\n\
-    using graph::add_edge;\nusing graph::input;\n\n\n} // namespace kk2\n\n#endif\
-    \ // GRAPH_EDGE_HPP\n"
+    \ << e.cost;\n    }\n};\n\ntemplate <class T> struct _Edges : public std::vector<_Edge<T>>\
+    \ {\n    using std::vector<_Edge<T>>::vector;\n\n    template <class IStream,\
+    \ is_istream_t<IStream> * = nullptr>\n    _Edges &input(IStream &is, bool is_one_indexed\
+    \ = false) {\n        for (int i = 0; i < (int)this->size(); i++) {\n        \
+    \    int u, v;\n            T w{};\n            is >> u >> v;\n            if\
+    \ (is_one_indexed) --u, --v;\n            if constexpr (!std::is_same_v<T, empty>)\
+    \ is >> w;\n            (*this)[i] = _Edge<T>(v, w, u, i);\n        }\n      \
+    \  return *this;\n    }\n\n    template <class IStream, is_istream_t<IStream>\
+    \ * = nullptr>\n    friend _Edges &input(_Edges &edges, IStream &is, bool is_one_indexed\
+    \ = false) {\n        return edges.input(is, is_one_indexed);\n    }\n\n    template\
+    \ <class OStream, is_ostream_t<OStream> * = nullptr>\n    void debug_output(OStream\
+    \ &os) const {\n        os << '[';\n        for (int i = 0; i < (int)this->size();\
+    \ i++) {\n            if (i) os << \", \";\n            os << (*this)[i];\n  \
+    \      }\n        os << ']';\n    }\n\n    _Edges &add_edge(int from, int to,\
+    \ T cost = T{}) {\n        this->emplace_back(to, cost, from, this->size());\n\
+    \        return *this;\n    }\n\n    friend _Edges &add_edge(_Edges &edges, int\
+    \ from, int to, T cost = T{}) {\n        edges.emplace_back(to, cost, from, edges.size());\n\
+    \        return edges;\n    }\n};\n\ntemplate <class T> struct _pair {\n    T\
+    \ cost;\n    int id;\n\n    _pair(T cost_, int id_) : cost(cost_), id(id_) {}\n\
+    \n    _pair() : cost(), id(-1) {}\n\n    operator bool() const { return id !=\
+    \ -1; }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\n \
+    \   friend OStream &operator<<(OStream &os, const _pair &p) {\n        if constexpr\
+    \ (std::is_same_v<T, empty>) return os;\n        else return os << p.cost;\n \
+    \   }\n};\ntemplate <class T> using _pairs = std::vector<_pair<T>>;\n\n} // namespace\
+    \ graph\n\ntemplate <typename T> using WEdge = graph::_Edge<T>;\ntemplate <typename\
+    \ T> using WEdges = graph::_Edges<T>;\nusing Edge = graph::_Edge<graph::empty>;\n\
+    using Edges = graph::_Edges<graph::empty>;\n\n} // namespace kk2\n\n#endif //\
+    \ GRAPH_EDGE_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -108,7 +114,7 @@ data:
   - random/graph.hpp
   - graph/graph.hpp
   - graph/static_graph.hpp
-  timestamp: '2025-01-01 22:04:22+09:00'
+  timestamp: '2025-01-02 20:45:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp

@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
   - icon: ':question:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':question:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/static_graph.hpp
+    title: graph/static_graph.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -58,14 +58,14 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\" \n\n\
-    #include \"../../graph/graph.hpp\"\n#include \"../../graph/cycle_detection.hpp\"\
+    #include \"../../graph/static_graph.hpp\"\n#include \"../../graph/cycle_detection.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::DAdjList g(n, m);\n    g.input(kin);\n\
+    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::SDAdjList g(n, m);\n    g.input(kin);\n\
     \    if (const auto res = kk2::cycle_detection(g); res) {\n        kout << res->size()\
     \ << '\\n';\n        for (auto &&v : res->edges) kout << v << \"\\n\";\n    }\
     \ else kout << -1 << '\\n';\n\n    return 0;\n}\n"
   dependsOn:
-  - graph/graph.hpp
+  - graph/static_graph.hpp
   - type_traits/type_traits.hpp
   - graph/edge.hpp
   - graph/cycle_detection.hpp
@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
   requiredBy: []
-  timestamp: '2025-01-02 03:12:44+09:00'
+  timestamp: '2025-01-02 20:45:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/kth_root_floor.hpp
     title: math/kth_root_floor.hpp
   - icon: ':question:'
