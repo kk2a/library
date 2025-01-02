@@ -19,30 +19,35 @@ struct result {
 
 template <class G, std::enable_if_t<!G::directed::value> * = nullptr>
 std::optional<result> cycle_detection(const G &g) {
-    std::vector<int> edges(g.num_vertices());
-    std::vector<int> vertices(g.num_vertices());
-    std::vector<bool> used(g.num_vertices());
-    auto dfs = [&](auto self, int now, int ei, int idx) -> bool {
-        used[now] = true;
-        vertices[idx] = now;
+    std::vector<int> edges, vertices;
+    std::vector<int> buf(g.num_vertices(), -1);
+    auto dfs = [&](auto self, int now, int ei, int dep) -> int {
+        buf[now] = dep;
         for (auto &&e : g[now]) {
             if (e.id == ei) continue;
-            edges[idx] = e.id;
-            if (used[e.to]) {
-                int start = std::find(vertices.begin(), vertices.end(), e.to) - vertices.begin();
-                vertices = std::vector<int>(vertices.begin() + start, vertices.begin() + idx + 1);
-                edges = std::vector<int>(edges.begin() + start, edges.begin() + idx + 1);
-                return true;
+            if (buf[e.to] >= 0) {
+                edges.resize(dep - buf[e.to] + 1);
+                vertices.resize(dep - buf[e.to] + 1);
+                edges.back() = e.id;
+                vertices.back() = now;
+                return buf[e.to];
             }
 
-            if (self(self, e.to, e.id, idx + 1)) return true;
+            int r = self(self, e.to, e.id, dep + 1);
+            if (r >= 0) {
+                if (dep < r) return r;
+                edges[dep - r] = e.id;
+                vertices[dep - r] = now;
+                return r;
+            }
         }
-        return false;
+
+        return -1;
     };
 
     for (int i = 0; i < g.num_vertices(); ++i) {
-        if (used[i]) continue;
-        if (dfs(dfs, i, -1, 0)) return result{edges, vertices};
+        if (buf[i] != -1) continue;
+        if (dfs(dfs, i, -1, 0) >= 0) return result{edges, vertices};
     }
 
     return {};
@@ -50,33 +55,44 @@ std::optional<result> cycle_detection(const G &g) {
 
 template <class G, std::enable_if_t<G::directed::value> * = nullptr>
 std::optional<result> cycle_detection(const G &g) {
-    std::vector<int> edges(g.num_vertices());
-    std::vector<int> vertices(g.num_vertices());
-    // bad[i] が true なら i は閉路に含まれない
-    std::vector<bool> bad(g.num_vertices()), now_use(g.num_vertices());
+    std::vector<int> edges, vertices;
 
-    auto dfs = [&](auto self, int now, int idx) -> bool {
-        now_use[now] = true;
-        vertices[idx] = now;
+    // buf[i] = x
+    // x >= 0 : 今見られている頂点dfsの深さはx
+    // x = -1 : 未訪問
+    // x = -2 : 訪問済み．閉路に含まれない
+    std::vector<int> buf(g.num_vertices(), -1);
+
+    // 返り値 x
+    // x = -1 : 閉路なし
+    // x >= 0 : 閉路あり，かつ，その閉路の始点の深さ
+    auto dfs = [&](auto self, int now, int dep) -> int {
+        buf[now] = dep;
         for (auto &&e : g[now]) {
-            if (bad[e.to]) continue;
-            edges[idx] = e.id;
-            if (now_use[e.to]) {
-                int start = std::find(vertices.begin(), vertices.end(), e.to) - vertices.begin();
-                vertices = std::vector<int>(vertices.begin() + start, vertices.begin() + idx + 1);
-                edges = std::vector<int>(edges.begin() + start, edges.begin() + idx + 1);
-                return true;
+            if (buf[e.to] == -2) continue;
+            if (buf[e.to] >= 0) {
+                edges.resize(dep - buf[e.to] + 1);
+                vertices.resize(dep - buf[e.to] + 1);
+                edges.back() = e.id;
+                vertices.back() = now;
+                return buf[e.to];
             }
-            if (self(self, e.to, idx + 1)) return true;
+
+            int r = self(self, e.to, dep + 1);
+            if (r >= 0) {
+                if (dep < r) return r;
+                edges[dep - r] = e.id;
+                vertices[dep - r] = now;
+                return r;
+            }
         }
-        now_use[now] = false;
-        bad[now] = true;
-        return false;
+        buf[now] = -2;
+        return -1;
     };
 
     for (int i = 0; i < g.num_vertices(); ++i) {
-        if (bad[i]) continue;
-        if (dfs(dfs, i, 0)) return result{edges, vertices};
+        if (buf[i] == -2) continue;
+        if (dfs(dfs, i, 0) >= 0) return result{edges, vertices};
     }
 
     return {};

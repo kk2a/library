@@ -95,7 +95,7 @@ struct w_ary_tree {
         for (;; --dep, x /= W) {
             Uint mask = up_mask(d[dep][x / W], x % W);
             if (dep != (int)d.size() - 1) mask &= ~(Uint(1) << (x % W));
-            int next = msb(mask);
+            int next = _msb(mask);
             if (next != -1) {
                 ++dep;
                 x = (x / W) * W + next;
@@ -104,7 +104,7 @@ struct w_ary_tree {
             if (dep == 0) return std::nullopt;
         }
 
-        for (; dep < (int)d.size(); x = x * W + msb(d[dep][x]), ++dep) {}
+        for (; dep < (int)d.size(); x = x * W + _msb(d[dep][x]), ++dep) {}
         return x;
     }
 
@@ -116,7 +116,7 @@ struct w_ary_tree {
         for (;; --dep, x /= W) {
             Uint mask = dw_mask(d[dep][x / W], x % W);
             if (dep != (int)d.size() - 1) mask &= ~(Uint(1) << (x % W));
-            int next = lsb(mask);
+            int next = _lsb(mask);
             if (next != -1) {
                 ++dep;
                 x = (x / W) * W + next;
@@ -126,11 +126,15 @@ struct w_ary_tree {
         }
 
 
-        for (; dep < (int)d.size(); x = x * W + lsb(d[dep][x]), ++dep) {}
+        for (; dep < (int)d.size(); x = x * W + _lsb(d[dep][x]), ++dep) {}
         return x;
     }
 
   private:
+    static int _msb(Uint x) { return x ? msb<Uint>(x) : -1; }
+
+    static int _lsb(Uint x) { return x ? lsb<Uint>(x) : -1; }
+
     static Uint up_mask(Uint x, int i) { return x & (((Uint(1) << i) - 1) | (Uint(1) << i)); }
 
     static Uint dw_mask(Uint x, int i) { return x & ~((Uint(1) << i) - 1); }

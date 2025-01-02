@@ -100,7 +100,7 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
 
     using directed = std::integral_constant<bool, is_directed>;
     using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
-    using adjacency_list = std::fasle_type;
+    using adjacency_list = std::false_type;
     using adjacency_matrix = std::true_type;
     using static_graph = std::false_type;
 
