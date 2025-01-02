@@ -12,39 +12,36 @@ data:
     path: random/graph.hpp
     title: random/graph.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
   - icon: ':x:'
-    path: verify/yosupo_graph/graph_cycle_detection.test.cpp
-    title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - icon: ':x:'
     path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -97,7 +94,7 @@ data:
     \ is_directed> struct AdjacencyMatrix {\n    using value_type = T;\n    using\
     \ edge_type = _pair<T>;\n    using edge_container = _Edges<T>;\n\n    using directed\
     \ = std::integral_constant<bool, is_directed>;\n    using weighted = std::integral_constant<bool,\
-    \ !std::is_same_v<T, empty>>;\n    using adjacency_list = std::fasle_type;\n \
+    \ !std::is_same_v<T, empty>>;\n    using adjacency_list = std::false_type;\n \
     \   using adjacency_matrix = std::true_type;\n    using static_graph = std::false_type;\n\
     \n    AdjacencyMatrix() = default;\n\n    AdjacencyMatrix(int n_) : data(n_, _pairs<T>(n_))\
     \ {}\n\n    // input \u3092\u4F7F\u3046\u3053\u3068\u304C\u524D\u63D0\n    AdjacencyMatrix(int\
@@ -144,13 +141,12 @@ data:
   path: graph/graph.hpp
   requiredBy:
   - random/graph.hpp
-  timestamp: '2025-01-02 20:45:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-01-02 22:13:43+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
-  - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/tree_diameter.test.cpp
   - verify/yosupo_graph/graph_matching_bipartite.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp

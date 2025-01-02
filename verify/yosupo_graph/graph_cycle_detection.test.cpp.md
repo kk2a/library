@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
   - icon: ':question:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':x:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/static_graph.hpp
+    title: graph/static_graph.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -36,9 +36,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cycle_detection_undirected
@@ -58,14 +58,14 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection_undirected\"\
-    \ \n\n#include \"../../graph/graph.hpp\"\n#include \"../../graph/cycle_detection.hpp\"\
+    \ \n\n#include \"../../graph/static_graph.hpp\"\n#include \"../../graph/cycle_detection.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::AdjList g(n, m);\n    g.input(kin);\n\
+    \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::SAdjList g(n, m);\n    g.input(kin);\n\
     \    if (const auto res = kk2::cycle_detection(g); res) {\n        kout << res->size()\
     \ << '\\n';\n        kout << res->vertices << '\\n';\n        kout << res->edges\
     \ << '\\n';\n    } else kout << -1 << '\\n';\n\n    return 0;\n}\n"
   dependsOn:
-  - graph/graph.hpp
+  - graph/static_graph.hpp
   - type_traits/type_traits.hpp
   - graph/edge.hpp
   - graph/cycle_detection.hpp
@@ -79,8 +79,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2025-01-02 20:45:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-02 22:13:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_cycle_detection.test.cpp
 layout: document

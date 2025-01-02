@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: bit
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/bitcount.hpp
       title: bit/bitcount.hpp
   - name: convolution
@@ -88,10 +88,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/w_ary_tree.hpp
       title: data_structure/w_ary_tree.hpp
   - name: fps
@@ -180,40 +180,40 @@ data:
       title: geometry/static_convex_hull.hpp
   - name: graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bcc.hpp
       title: graph/bcc.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/cycle_detection.hpp
       title: graph/cycle_detection.hpp
     - icon: ':question:'
       path: graph/edge.hpp
       title: graph/edge.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/graph.hpp
       title: graph/graph.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.hpp
       title: graph/lowlink.hpp
     - icon: ':x:'
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/scc.hpp
       title: graph/scc.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path.hpp
       title: graph/shortest_path.hpp
     - icon: ':heavy_check_mark:'
       path: graph/static_graph.hpp
       title: graph/static_graph.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.hpp
       title: graph/two_edge_connected_components.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/warshall_floyd.hpp
       title: graph/warshall_floyd.hpp
   - name: graph/tree
@@ -221,7 +221,7 @@ data:
     - icon: ':warning:'
       path: graph/tree/auxiliary_tree.hpp
       title: graph/tree/auxiliary_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/block_cut_tree.hpp
       title: graph/tree/block_cut_tree.hpp
     - icon: ':warning:'
@@ -230,13 +230,13 @@ data:
     - icon: ':warning:'
       path: graph/tree/centroid_decomposition.hpp
       title: graph/tree/centroid_decomposition.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/diameter.hpp
       title: graph/tree/diameter.hpp
     - icon: ':warning:'
       path: graph/tree/euler_tour.hpp
       title: graph/tree/euler_tour.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: graph/tree/heavy_light_decomposition.hpp
   - name: math
@@ -253,7 +253,7 @@ data:
     - icon: ':warning:'
       path: math/factrial.hpp
       title: math/factrial.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/floor_sum.hpp
       title: math/floor_sum.hpp
     - icon: ':warning:'
@@ -262,7 +262,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/is_prime.hpp
       title: math/is_prime.hpp
     - icon: ':heavy_check_mark:'
@@ -318,10 +318,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math_mod/inv.hpp
       title: math_mod/inv.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/pow_mod.hpp
       title: math_mod/pow_mod.hpp
     - icon: ':heavy_check_mark:'
@@ -349,7 +349,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint/mont.hpp
       title: modint/mont.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/mont_arb.hpp
       title: modint/mont_arb.hpp
   - name: others
@@ -452,16 +452,16 @@ data:
       title: segment_tree/utility/updatesum.hpp
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/aho_corasick.hpp
       title: string/aho_corasick.hpp
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: string/rolling_hash.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/z_algorithm.hpp
       title: string/z_algorithm.hpp
   - name: template
@@ -536,7 +536,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_alds1_14_b.test.cpp
       title: verify/aoj/aoj_alds1_14_b.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_grl_1_c.test.cpp
       title: verify/aoj/aoj_grl_1_c.test.cpp
     - icon: ':heavy_check_mark:'
@@ -594,7 +594,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
       title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
       title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     - icon: ':heavy_check_mark:'
@@ -687,10 +687,10 @@ data:
       title: verify/yosupo_geometry/static_convex_hull_3.test.cpp
   - name: verify/yosupo_graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_bcc.test.cpp
       title: verify/yosupo_graph/graph_bcc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_cycle_detection.test.cpp
       title: verify/yosupo_graph/graph_cycle_detection.test.cpp
     - icon: ':heavy_check_mark:'
@@ -699,19 +699,19 @@ data:
     - icon: ':x:'
       path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
       title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_scc.test.cpp
       title: verify/yosupo_graph/graph_scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_shortest_path.test.cpp
       title: verify/yosupo_graph/graph_shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
       title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_diameter.test.cpp
       title: verify/yosupo_graph/tree_diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_lca.test.cpp
       title: verify/yosupo_graph/tree_lca.test.cpp
     - icon: ':heavy_check_mark:'
@@ -760,43 +760,43 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/many_factrials.test.cpp
       title: verify/yosupo_math/many_factrials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/primality_test.test.cpp
       title: verify/yosupo_math/primality_test.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/sqrt_mod.test.cpp
       title: verify/yosupo_math/sqrt_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/sum_of_floor_linear.test.cpp
       title: verify/yosupo_math/sum_of_floor_linear.test.cpp
   - name: verify/yosupo_others
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_others/many_a_plus_b.test.cpp
       title: verify/yosupo_others/many_a_plus_b.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
       title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - name: verify/yosupo_string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_string/string_number_of_substrings.test.cpp
       title: verify/yosupo_string/string_number_of_substrings.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_string/string_suffix_array.test.cpp
       title: verify/yosupo_string/string_suffix_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_string/string_z_algorithm.test.cpp
       title: verify/yosupo_string/string_z_algorithm.test.cpp
   - name: verify/yuki
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yuki/yuki_0430.test.cpp
       title: verify/yuki/yuki_0430.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yuki/yuki_0430_2.test.cpp
       title: verify/yuki/yuki_0430_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yuki/yuki_1326.test.cpp
       title: verify/yuki/yuki_1326.test.cpp
 layout: toppage

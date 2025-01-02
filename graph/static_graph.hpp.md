@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/graph_cycle_detection.test.cpp
+    title: verify/yosupo_graph/graph_cycle_detection.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,6 +99,7 @@ data:
   timestamp: '2025-01-02 20:45:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/tree_lca_static.test.cpp
   - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
 documentation_of: graph/static_graph.hpp

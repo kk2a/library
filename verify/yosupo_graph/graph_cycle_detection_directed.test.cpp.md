@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
   - icon: ':question:'
@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
   requiredBy: []
-  timestamp: '2025-01-02 20:45:27+09:00'
+  timestamp: '2025-01-02 22:13:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp

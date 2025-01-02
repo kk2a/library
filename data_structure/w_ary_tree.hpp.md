@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -70,31 +70,33 @@ data:
     \ return std::nullopt;\n        if (x >= _n) x = _n - 1;\n        int dep = (int)d.size()\
     \ - 1;\n        for (;; --dep, x /= W) {\n            Uint mask = up_mask(d[dep][x\
     \ / W], x % W);\n            if (dep != (int)d.size() - 1) mask &= ~(Uint(1) <<\
-    \ (x % W));\n            int next = msb(mask);\n            if (next != -1) {\n\
+    \ (x % W));\n            int next = _msb(mask);\n            if (next != -1) {\n\
     \                ++dep;\n                x = (x / W) * W + next;\n           \
     \     break;\n            }\n            if (dep == 0) return std::nullopt;\n\
-    \        }\n\n        for (; dep < (int)d.size(); x = x * W + msb(d[dep][x]),\
+    \        }\n\n        for (; dep < (int)d.size(); x = x * W + _msb(d[dep][x]),\
     \ ++dep) {}\n        return x;\n    }\n\n    // return min y s.t. count(y) ==\
     \ 1 && y >= x\n    std::optional<int> successor(int x) const {\n        if (x\
     \ >= _n) return std::nullopt;\n        if (x < 0) x = 0;\n        int dep = (int)d.size()\
     \ - 1;\n        for (;; --dep, x /= W) {\n            Uint mask = dw_mask(d[dep][x\
     \ / W], x % W);\n            if (dep != (int)d.size() - 1) mask &= ~(Uint(1) <<\
-    \ (x % W));\n            int next = lsb(mask);\n            if (next != -1) {\n\
+    \ (x % W));\n            int next = _lsb(mask);\n            if (next != -1) {\n\
     \                ++dep;\n                x = (x / W) * W + next;\n           \
     \     break;\n            }\n            if (dep == 0) return std::nullopt;\n\
-    \        }\n\n\n        for (; dep < (int)d.size(); x = x * W + lsb(d[dep][x]),\
-    \ ++dep) {}\n        return x;\n    }\n\n  private:\n    static Uint up_mask(Uint\
-    \ x, int i) { return x & (((Uint(1) << i) - 1) | (Uint(1) << i)); }\n\n    static\
-    \ Uint dw_mask(Uint x, int i) { return x & ~((Uint(1) << i) - 1); }\n};\n\n} //\
-    \ namespace kk2\n\n#endif // DATA_STRUCTURE_W_ARY_TREE_HPP"
+    \        }\n\n\n        for (; dep < (int)d.size(); x = x * W + _lsb(d[dep][x]),\
+    \ ++dep) {}\n        return x;\n    }\n\n  private:\n    static int _msb(Uint\
+    \ x) { return x ? msb<Uint>(x) : -1; }\n\n    static int _lsb(Uint x) { return\
+    \ x ? lsb<Uint>(x) : -1; }\n\n    static Uint up_mask(Uint x, int i) { return\
+    \ x & (((Uint(1) << i) - 1) | (Uint(1) << i)); }\n\n    static Uint dw_mask(Uint\
+    \ x, int i) { return x & ~((Uint(1) << i) - 1); }\n};\n\n} // namespace kk2\n\n\
+    #endif // DATA_STRUCTURE_W_ARY_TREE_HPP"
   dependsOn:
   - bit/bitcount.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: data_structure/w_ary_tree.hpp
   requiredBy: []
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-01-02 22:13:43+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
 documentation_of: data_structure/w_ary_tree.hpp
