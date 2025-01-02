@@ -34,7 +34,48 @@ template <class T> struct _Edge {
         else return os << e.from << " -> " << e.to << " : " << e.cost;
     }
 };
-template <class T> using _Edges = std::vector<_Edge<T>>;
+
+template <class T> struct _Edges : public std::vector<_Edge<T>> {
+    using std::vector<_Edge<T>>::vector;
+
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    _Edges &input(IStream &is, bool is_one_indexed = false) {
+        for (int i = 0; i < (int)this->size(); i++) {
+            int u, v;
+            T w{};
+            is >> u >> v;
+            if (is_one_indexed) --u, --v;
+            if constexpr (!std::is_same_v<T, empty>) is >> w;
+            (*this)[i] = _Edge<T>(v, w, u, i);
+        }
+        return *this;
+    }
+
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    friend _Edges &input(_Edges &edges, IStream &is, bool is_one_indexed = false) {
+        return edges.input(is, is_one_indexed);
+    }
+
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    void debug_output(OStream &os) const {
+        os << '[';
+        for (int i = 0; i < (int)this->size(); i++) {
+            if (i) os << ", ";
+            os << (*this)[i];
+        }
+        os << ']';
+    }
+
+    _Edges &add_edge(int from, int to, T cost = T{}) {
+        this->emplace_back(to, cost, from, this->size());
+        return *this;
+    }
+
+    friend _Edges &add_edge(_Edges &edges, int from, int to, T cost = T{}) {
+        edges.emplace_back(to, cost, from, edges.size());
+        return edges;
+    }
+};
 
 template <class T> struct _pair {
     T cost;
@@ -54,38 +95,12 @@ template <class T> struct _pair {
 };
 template <class T> using _pairs = std::vector<_pair<T>>;
 
-template <class T, class IStream, is_istream_t<IStream> * = nullptr>
-_Edges<T> &input(IStream &is, _Edges<T> &edges, bool is_one_indexed = false) {
-    for (int i = 0; i < (int)edges.size(); i++) {
-        int u, v;
-        T w{};
-        is >> u >> v;
-        if (is_one_indexed) --u, --v;
-        if constexpr (!std::is_same_v<T, empty>) is >> w;
-        edges[i] = _Edge<T>(v, w, u, i);
-    }
-    return edges;
-}
-
-template <class T, std::enable_if_t<std::is_same_v<T, empty>> * = nullptr>
-void add_edge(_Edges<T> &edges, int from, int to) {
-    edges.emplace_back(to, empty{}, from, (int)edges.size());
-}
-
-template <class T, std::enable_if_t<!std::is_same_v<T, empty>> * = nullptr>
-void add_edge(_Edges<T> &edges, int from, int to, T cost) {
-    edges.emplace_back(to, cost, from, (int)edges.size());
-}
-
 } // namespace graph
 
 template <typename T> using WEdge = graph::_Edge<T>;
 template <typename T> using WEdges = graph::_Edges<T>;
 using Edge = graph::_Edge<graph::empty>;
 using Edges = graph::_Edges<graph::empty>;
-using graph::add_edge;
-using graph::input;
-
 
 } // namespace kk2
 

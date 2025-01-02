@@ -20,20 +20,20 @@ template <class G> struct TwoEdgeConnectedComponents : LowLink<G> {
     void init_tecc() {
         comp.resize(this->n, -1);
         int k = 0;
-        auto dfs = [&](auto self, int now, int par, int ei) -> void {
+        auto dfs = [&](auto self, int now, int par) -> void {
             if (par != -1 && this->ord[par] >= this->low[now]) comp[now] = comp[par];
             else comp[now] = k++;
 
             for (auto &&e : this->g[now])
-                if (comp[e.to] == -1) self(self, e.to, now, e.id);
+                if (comp[e.to] == -1) self(self, e.to, now);
         };
         for (int i = 0; i < this->n; i++) 
-            if (this->root[i]) dfs(dfs, i, -1, -1);
+            if (this->root[i]) dfs(dfs, i, -1);
 
         group.resize(k);
         for (int i = 0; i < this->n; i++) { group[comp[i]].emplace_back(i); }
 
-        G::edge_container tmp(this->bridges.size());
+        typename G::edge_container tmp(this->bridges.size());
         for (int i = 0; i < (int)this->bridges.size(); i++) {
             tmp[i] = this->g.edges[this->bridges[i]];
             tmp[i].from = comp[tmp[i].from];

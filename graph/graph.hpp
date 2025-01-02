@@ -20,9 +20,9 @@ template <class T, bool is_directed> struct AdjacencyList {
 
     using directed = std::integral_constant<bool, is_directed>;
     using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
-    using adjacency_list = std::integral_constant<bool, true>;
-    using adjacency_matrix = std::integral_constant<bool, false>;
-    using static_graph = std::integral_constant<bool, false>;
+    using adjacency_list = std::true_type;
+    using adjacency_matrix = std::false_type;
+    using static_graph = std::false_type;
 
     AdjacencyList() = default;
 
@@ -43,11 +43,11 @@ template <class T, bool is_directed> struct AdjacencyList {
     std::vector<_Edges<T>> data;
     _Edges<T> edges;
 
-    int num_vertices() const { return (int)data.size(); }
+    int num_vertices() const { return data.size(); }
 
-    int size() const { return (int)data.size(); }
+    int size() const { return data.size(); }
 
-    int num_edges() const { return (int)edges.size(); }
+    int num_edges() const { return edges.size(); }
 
     _Edges<T> &operator[](int k) { return data[k]; }
 
@@ -100,9 +100,9 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
 
     using directed = std::integral_constant<bool, is_directed>;
     using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
-    using adjacency_list = std::integral_constant<bool, false>;
-    using adjacency_matrix = std::integral_constant<bool, true>;
-    using static_graph = std::integral_constant<bool, false>;
+    using adjacency_list = std::fasle_type;
+    using adjacency_matrix = std::true_type;
+    using static_graph = std::false_type;
 
     AdjacencyMatrix() = default;
 
@@ -121,11 +121,11 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
     std::vector<_pairs<T>> data;
     _Edges<T> edges;
 
-    int num_vertices() const { return (int)data.size(); }
+    int num_vertices() const { return data.size(); }
 
-    int size() const { return (int)data.size(); }
+    int size() const { return data.size(); }
 
-    int num_edges() const { return (int)edges.size(); }
+    int num_edges() const { return edges.size(); }
 
     _pairs<T> &operator[](int k) { return data[k]; }
 

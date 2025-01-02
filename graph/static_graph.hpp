@@ -1,6 +1,7 @@
 #ifndef GRAPH_STATIC_GRAPH_HPP
 #define GRAPH_STATIC_GRAPH_HPP 1
 
+#include <cassert>
 #include <type_traits>
 #include <vector>
 
@@ -18,9 +19,9 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
 
     using directed = std::integral_constant<bool, is_directed>;
     using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
-    using adjacency_list = std::integral_constant<bool, true>;
-    using adjacency_matrix = std::integral_constant<bool, false>;
-    using static_graph = std::integral_constant<bool, true>;
+    using adjacency_list = std::true_type;
+    using adjacency_matrix = std::false_type;
+    using static_graph = std::true_type;
 
     StaticAdjacencyList() = default;
 
@@ -42,11 +43,11 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
     _Edges<T> edges, data;
     bool is_built = false;
 
-    int num_vertices() const { return (int)head.size(); }
+    int num_vertices() const { return head.size(); }
 
-    int size() const { return (int)head.size(); }
+    int size() const { return head.size(); }
 
-    int num_edges() const { return (int)edges.size(); }
+    int num_edges() const { return edges.size(); }
 
     template <class It> struct Es {
         It b, e;

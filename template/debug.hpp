@@ -13,6 +13,7 @@
 #include <utility>
 #include <vector>
 
+#include "../type_traits/member.hpp"
 #include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
@@ -85,12 +86,16 @@ template <class OStream,
           is_ostream_t<OStream> *>
 void output(OStream &os, const std::unordered_map<Key, T, Hash, KeyEqual, Allocator> &m);
 
-template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) {
+template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &) {
 }
 
 template <class OStream, class T, is_ostream_t<OStream> * = nullptr>
 void output(OStream &os, const T &t) {
-    os << t;
+    if constexpr (has_member_func_debug_output<T, OStream &>::value) {
+        t.debug_output(os);
+    } else {
+        os << t;
+    }
 }
 
 template <class OStream, class T, is_ostream_t<OStream> * = nullptr>
@@ -280,14 +285,13 @@ void output(OStream &os, const T &t, const Args &...args) {
     output(os, args...);
 }
 
-template <class OStream, is_ostream_t<OStream> * = nullptr>
-void outputln(OStream &os) {
+template <class OStream, is_ostream_t<OStream> * = nullptr> void outputln(OStream &os) {
     os << '\n';
-    // os.flush();
+    os.flush();
 }
 
 template <class OStream, class T, class... Args, is_ostream_t<OStream> * = nullptr>
-void outputln(OStream &os, const T& t, const Args &...args) {
+void outputln(OStream &os, const T &t, const Args &...args) {
     output(os, t, args...);
     os << '\n';
     os.flush();

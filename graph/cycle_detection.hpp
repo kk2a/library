@@ -19,11 +19,9 @@ struct result {
 
 template <class G, std::enable_if_t<!G::directed::value> * = nullptr>
 std::optional<result> cycle_detection(const G &g) {
-    std::vector<int> edges;
-    std::vector<int> vertices;
+    std::vector<int> edges(g.num_vertices());
+    std::vector<int> vertices(g.num_vertices());
     std::vector<bool> used(g.num_vertices());
-    edges.resize(g.num_vertices());
-    vertices.resize(g.num_vertices());
     auto dfs = [&](auto self, int now, int ei, int idx) -> bool {
         used[now] = true;
         vertices[idx] = now;
@@ -52,12 +50,10 @@ std::optional<result> cycle_detection(const G &g) {
 
 template <class G, std::enable_if_t<G::directed::value> * = nullptr>
 std::optional<result> cycle_detection(const G &g) {
-    std::vector<int> edges;
-    std::vector<int> vertices;
+    std::vector<int> edges(g.num_vertices());
+    std::vector<int> vertices(g.num_vertices());
     // bad[i] が true なら i は閉路に含まれない
     std::vector<bool> bad(g.num_vertices()), now_use(g.num_vertices());
-    edges.resize(g.num_vertices());
-    vertices.resize(g.num_vertices());
 
     auto dfs = [&](auto self, int now, int idx) -> bool {
         now_use[now] = true;
