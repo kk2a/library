@@ -29,9 +29,10 @@ template <class T> struct _Edge {
     _Edge rev() const { return _Edge(from, cost, to, id); }
 
     template <class OStream, is_ostream_t<OStream> * = nullptr>
-    friend OStream &operator<<(OStream &os, const _Edge &e) {
-        if constexpr (std::is_same_v<T, empty>) return os << e.from << " -> " << e.to;
-        else return os << e.from << " -> " << e.to << " : " << e.cost;
+    void debug_output(OStream &os) const {
+        os << '(' << id << ", " << from << "->" << to;
+        if constexpr (!std::is_same_v<T, empty>) os << ":" << cost;
+        os << ')';
     }
 };
 
@@ -61,7 +62,7 @@ template <class T> struct _Edges : public std::vector<_Edge<T>> {
         os << '[';
         for (int i = 0; i < (int)this->size(); i++) {
             if (i) os << ", ";
-            os << (*this)[i];
+            (*this)[i].debug_output(os);
         }
         os << ']';
     }

@@ -97,7 +97,7 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
 
     void build() {
         is_built = true;
-        for (int i = 1; i < (int)head.size(); ++i) head[i] += head[i - 1];
+        for (unsigned int i = 1; i < head.size(); ++i) head[i] += head[i - 1];
         data.resize(head.back());
         for (auto &&e : edges) {
             data[--head[e.from]] = e;

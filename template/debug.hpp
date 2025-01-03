@@ -298,6 +298,7 @@ void outputln(OStream &os, const T &t, const Args &...args) {
 }
 
 #else
+
 template <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>
 void output(OStream &, const Args &...) {
 }

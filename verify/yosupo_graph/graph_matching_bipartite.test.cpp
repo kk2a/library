@@ -26,7 +26,7 @@ int main() {
     for (auto &&e : tmp) {
         if (count == 0) break;
         if (e.flow == 0) continue;
-        cout << e.from << " " << e.to - l << "\n";
+        kout << e.from << " " << e.to - l << "\n";
         count--;
     }
 

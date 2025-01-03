@@ -21,21 +21,32 @@ template <class WG> struct MaxFlow {
     int n, m;
     std::vector<int> revi;
 
-    MaxFlow(const WG &g_) : n(g.num_vertices()), m(g.num_edges()) { init(g_); }
-
-    void init(const WG &g_) {
-        revi.resize(m << 1, -1);
-        std::vector<int> count(n, 0);
+    MaxFlow(const WG &g_) : n(g_.num_vertices()), m(g_.num_edges()) {
         if constexpr (WG::static_graph::value) {
-
+            g = WG(n);
+            for (auto &&e : g_.edges) g.add_edge(e.from, e.to, e.cost);
+            for (auto &&e : g_.edges) g.add_edge(e.to, e.from, 0);
+            g.build();
         } else {
             g = g_;
-            for (int i = 0; i < m; i++) {
-                auto e = g.edges[i];
-                revi[i] = (int)g[e.to].size();
-                revi[m + i] = count[e.from]++;
-                g.add_edge(e.to, e.from, 0);
-            }
+            for (auto &&e : g_.edges) g.add_edge(e.to, e.from, 0);
+        }
+        revi.resize(2 * m);
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < (int)g[i].size(); ++j)
+                revi[g[i][j].id >= m ? g[i][j].id - m : g[i][j].id + m] = j;
+        }
+    }
+
+    template <class Edges_> MaxFlow(int n_, const Edges_ &edges) : n(n_), m(edges.size()) {
+        g = WG(n);
+        for (auto &&e : edges) g.add_edge(e.from, e.to, e.cost);
+        for (auto &&e : edges) g.add_edge(e.to, e.from, 0);
+        if constexpr (WG::static_graph::value) g.build();
+        revi.resize(2 * m);
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < (int)g[i].size(); ++j)
+                revi[g[i][j].id >= m ? g[i][j].id - m : g[i][j].id + m] = j;
         }
     }
 
