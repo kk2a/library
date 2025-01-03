@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: type_traits/member.hpp
     title: type_traits/member.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -139,7 +139,7 @@ data:
     \   os << '\\n';\n    os.flush();\n}\n\ntemplate <class OStream, class T, class...\
     \ Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &os, const T\
     \ &t, const Args &...args) {\n    output(os, t, args...);\n    os << '\\n';\n\
-    \    os.flush();\n}\n\n#else\ntemplate <class OStream, class... Args, is_ostream_t<OStream>\
+    \    os.flush();\n}\n\n#else\n\ntemplate <class OStream, class... Args, is_ostream_t<OStream>\
     \ * = nullptr>\nvoid output(OStream &, const Args &...) {\n}\n\ntemplate <class\
     \ OStream, class... Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream\
     \ &, const Args &...) {\n}\n\n#endif // KK2\n\n} // namespace debug\n\n} // namespace\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: template/debug.hpp
   requiredBy: []
-  timestamp: '2025-01-02 20:45:27+09:00'
+  timestamp: '2025-01-03 20:28:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp

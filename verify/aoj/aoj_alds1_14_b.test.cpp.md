@@ -2,33 +2,42 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
+    path: modint/modint_2_61m1.hpp
+    title: modint/modint_2_61m1.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/gen.hpp
+    title: random/gen.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/hash.hpp
+    title: random/hash.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/seed.hpp
+    title: random/seed.hpp
   - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -52,22 +61,23 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
     \ \n\n#include \"../../string/rolling_hash.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    kk2::Roliha::setbase();\n    string\
-    \ t, p;\n    kin >> t >> p;\n    if (t.size() < p.size()) return 0;\n    kk2::Roliha\
-    \ rt, rp(p);\n    rt.insert_back(kk2::Roliha(t.substr(0, p.size() - 1)));\n  \
-    \  for (int i = p.size() - 1; i < (int)t.size(); ++i) {\n        rt.insert_back(kk2::Roliha(t[i]));\n\
-    \        if (rt == rp) kout << i + 1 - int(p.size()) << \"\\n\";\n        rt.erase_front(kk2::Roliha(t[i\
-    \ - p.size() + 1]));\n    }\n\n    return 0;\n}\n"
+    \nusing namespace std;\n\nint main() {\n    string t, p;\n    kin >> t >> p;\n\
+    \    kk2::Roliha rt(t), rp(p);\n    for (size_t i = 0; i + p.size() <= t.size();\
+    \ ++i) {\n        if (rt.get(i, i + p.size()) == rp.get(0, p.size())) kout <<\
+    \ i << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - string/rolling_hash.hpp
-  - math_mod/pow_mod.hpp
+  - random/hash.hpp
+  - modint/modint_2_61m1.hpp
   - type_traits/type_traits.hpp
+  - random/gen.hpp
+  - random/seed.hpp
   - template/template.hpp
   - template/fastio.hpp
   - template/type_alias.hpp
@@ -78,7 +88,7 @@ data:
   isVerificationFile: true
   path: verify/aoj/aoj_alds1_14_b.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-03 20:28:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_alds1_14_b.test.cpp

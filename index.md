@@ -186,16 +186,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/cycle_detection.hpp
       title: graph/cycle_detection.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/edge.hpp
       title: graph/edge.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/graph.hpp
       title: graph/graph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.hpp
       title: graph/lowlink.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp
     - icon: ':heavy_check_mark:'
@@ -347,6 +347,9 @@ data:
       path: modint/modint.hpp
       title: modint/modint.hpp
     - icon: ':heavy_check_mark:'
+      path: modint/modint_2_61m1.hpp
+      title: modint/modint_2_61m1.hpp
+    - icon: ':heavy_check_mark:'
       path: modint/mont.hpp
       title: modint/mont.hpp
     - icon: ':heavy_check_mark:'
@@ -374,6 +377,9 @@ data:
     - icon: ':warning:'
       path: random/graph.hpp
       title: random/graph.hpp
+    - icon: ':heavy_check_mark:'
+      path: random/hash.hpp
+      title: random/hash.hpp
     - icon: ':heavy_check_mark:'
       path: random/seed.hpp
       title: random/seed.hpp
@@ -466,22 +472,22 @@ data:
       title: string/z_algorithm.hpp
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/constant.hpp
       title: template/constant.hpp
     - icon: ':warning:'
       path: template/debug.hpp
       title: template/debug.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/fastio.hpp
       title: template/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/function_util.hpp
       title: template/function_util.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/io_util.hpp
       title: template/io_util.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/macros.hpp
       title: template/macros.hpp
     - icon: ':warning:'
@@ -490,10 +496,10 @@ data:
     - icon: ':warning:'
       path: template/simpleio.hpp
       title: template/simpleio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/type_alias.hpp
       title: template/type_alias.hpp
   - name: type_traits
@@ -504,7 +510,7 @@ data:
     - icon: ':warning:'
       path: type_traits/operator.hpp
       title: type_traits/operator.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   - name: unionfind
@@ -696,7 +702,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
       title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
       title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     - icon: ':heavy_check_mark:'

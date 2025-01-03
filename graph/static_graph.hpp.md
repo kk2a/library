@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -72,7 +72,7 @@ data:
     \     return *this;\n    }\n\n    void add_edge(int from, int to, T cost = T{})\
     \ { _add_edge<false>(from, to, cost, num_edges()); }\n\n    void add_vertex(int\
     \ n = 1) { head.insert(head.end(), n, 0); }\n\n    void build() {\n        is_built\
-    \ = true;\n        for (int i = 1; i < (int)head.size(); ++i) head[i] += head[i\
+    \ = true;\n        for (unsigned int i = 1; i < head.size(); ++i) head[i] += head[i\
     \ - 1];\n        data.resize(head.back());\n        for (auto &&e : edges) {\n\
     \            data[--head[e.from]] = e;\n            if constexpr (!is_directed)\
     \ {\n                if (e.from != e.to) data[--head[e.to]] = e.rev();\n     \
@@ -96,7 +96,7 @@ data:
   isVerificationFile: false
   path: graph/static_graph.hpp
   requiredBy: []
-  timestamp: '2025-01-02 20:45:27+09:00'
+  timestamp: '2025-01-03 20:28:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp

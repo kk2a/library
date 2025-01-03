@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/maxflow.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -17,34 +17,42 @@ data:
     \ MaxFlow {\n    static_assert(WG::directed::value, \"MaxFlow requires directed\
     \ graph\");\n    static_assert(WG::weighted::value, \"MaxFlow requires weighted\
     \ graph\");\n\n    using Cap = typename WG::value_type;\n\n    WG g;\n    int\
-    \ n, m;\n    std::vector<int> revi;\n\n    MaxFlow(const WG &g_) : n(g.num_vertices()),\
-    \ m(g.num_edges()) { init(g_); }\n\n    void init(const WG &g_) {\n        revi.resize(m\
-    \ << 1, -1);\n        std::vector<int> count(n, 0);\n        if constexpr (WG::static_graph::value)\
-    \ {\n\n        } else {\n            g = g_;\n            for (int i = 0; i <\
-    \ m; i++) {\n                auto e = g.edges[i];\n                revi[i] = (int)g[e.to].size();\n\
-    \                revi[m + i] = count[e.from]++;\n                g.add_edge(e.to,\
-    \ e.from, 0);\n            }\n        }\n    }\n\n    Cap flow(int s, int t) {\
-    \ return flow(s, t, std::numeric_limits<Cap>::max()); }\n\n    Cap flow(int s,\
-    \ int t, Cap flow_limit) {\n        assert(0 <= s && s < n);\n        assert(0\
-    \ <= t && t < n);\n        assert(s != t);\n\n        std::vector<int> level(n),\
-    \ iter(n);\n        std::queue<int> que;\n\n        auto bfs = [&]() {\n     \
-    \       std::fill(std::begin(level), std::end(level), -1);\n            level[s]\
-    \ = 0;\n            que = std::queue<int>();\n            que.push(s);\n     \
-    \       while (!que.empty()) {\n                int v = que.front();\n       \
-    \         que.pop();\n                for (auto &e : g[v]) {\n               \
-    \     if (e.cost == 0 || level[e.to] >= 0) continue;\n                    level[e.to]\
-    \ = level[v] + 1;\n                    if (e.to == t) return;\n              \
-    \      que.push(e.to);\n                }\n            }\n        };\n       \
-    \ auto dfs = [&](auto self, int v, Cap up) {\n            if (v == s) return up;\n\
-    \            Cap res = 0;\n            for (int &i = iter[v]; i < (int)g[v].size();\
-    \ i++) {\n                auto &e = g[v][i];\n                if (level[v] <=\
-    \ level[e.to] || g[e.to][revi[e.id]].cost == 0) continue;\n                Cap\
-    \ d = self(self, e.to, std::min(up - res, g[e.to][revi[e.id]].cost));\n      \
-    \          if (d <= 0) continue;\n                g[v][i].cost += d;\n       \
-    \         g[e.to][revi[e.id]].cost -= d;\n                res += d;\n        \
-    \        if (res == up) break;\n            }\n            return res;\n     \
-    \   };\n\n        Cap flow = 0;\n        while (flow < flow_limit) {\n       \
-    \     bfs();\n            if (level[t] == -1) break;\n            std::fill(std::begin(iter),\
+    \ n, m;\n    std::vector<int> revi;\n\n    MaxFlow(const WG &g_) : n(g_.num_vertices()),\
+    \ m(g_.num_edges()) {\n        if constexpr (WG::static_graph::value) {\n    \
+    \        g = WG(n);\n            for (auto &&e : g_.edges) g.add_edge(e.from,\
+    \ e.to, e.cost);\n            for (auto &&e : g_.edges) g.add_edge(e.to, e.from,\
+    \ 0);\n            g.build();\n        } else {\n            g = g_;\n       \
+    \     for (auto &&e : g_.edges) g.add_edge(e.to, e.from, 0);\n        }\n    \
+    \    revi.resize(2 * m);\n        for (int i = 0; i < n; ++i) {\n            for\
+    \ (int j = 0; j < (int)g[i].size(); ++j)\n                revi[g[i][j].id >= m\
+    \ ? g[i][j].id - m : g[i][j].id + m] = j;\n        }\n    }\n\n    template <class\
+    \ Edges_> MaxFlow(int n_, const Edges_ &edges) : n(n_), m(edges.size()) {\n  \
+    \      g = WG(n);\n        for (auto &&e : edges) g.add_edge(e.from, e.to, e.cost);\n\
+    \        for (auto &&e : edges) g.add_edge(e.to, e.from, 0);\n        if constexpr\
+    \ (WG::static_graph::value) g.build();\n        revi.resize(2 * m);\n        for\
+    \ (int i = 0; i < n; ++i) {\n            for (int j = 0; j < (int)g[i].size();\
+    \ ++j)\n                revi[g[i][j].id >= m ? g[i][j].id - m : g[i][j].id + m]\
+    \ = j;\n        }\n    }\n\n    Cap flow(int s, int t) { return flow(s, t, std::numeric_limits<Cap>::max());\
+    \ }\n\n    Cap flow(int s, int t, Cap flow_limit) {\n        assert(0 <= s &&\
+    \ s < n);\n        assert(0 <= t && t < n);\n        assert(s != t);\n\n     \
+    \   std::vector<int> level(n), iter(n);\n        std::queue<int> que;\n\n    \
+    \    auto bfs = [&]() {\n            std::fill(std::begin(level), std::end(level),\
+    \ -1);\n            level[s] = 0;\n            que = std::queue<int>();\n    \
+    \        que.push(s);\n            while (!que.empty()) {\n                int\
+    \ v = que.front();\n                que.pop();\n                for (auto &e :\
+    \ g[v]) {\n                    if (e.cost == 0 || level[e.to] >= 0) continue;\n\
+    \                    level[e.to] = level[v] + 1;\n                    if (e.to\
+    \ == t) return;\n                    que.push(e.to);\n                }\n    \
+    \        }\n        };\n        auto dfs = [&](auto self, int v, Cap up) {\n \
+    \           if (v == s) return up;\n            Cap res = 0;\n            for\
+    \ (int &i = iter[v]; i < (int)g[v].size(); i++) {\n                auto &e = g[v][i];\n\
+    \                if (level[v] <= level[e.to] || g[e.to][revi[e.id]].cost == 0)\
+    \ continue;\n                Cap d = self(self, e.to, std::min(up - res, g[e.to][revi[e.id]].cost));\n\
+    \                if (d <= 0) continue;\n                g[v][i].cost += d;\n \
+    \               g[e.to][revi[e.id]].cost -= d;\n                res += d;\n  \
+    \              if (res == up) break;\n            }\n            return res;\n\
+    \        };\n\n        Cap flow = 0;\n        while (flow < flow_limit) {\n  \
+    \          bfs();\n            if (level[t] == -1) break;\n            std::fill(std::begin(iter),\
     \ std::end(iter), 0);\n            while (flow < flow_limit) {\n             \
     \   Cap f = dfs(dfs, t, flow_limit - flow);\n                if (!f) break;\n\
     \                flow += f;\n            }\n        }\n        return flow;\n\
@@ -66,34 +74,42 @@ data:
     \ struct MaxFlow {\n    static_assert(WG::directed::value, \"MaxFlow requires\
     \ directed graph\");\n    static_assert(WG::weighted::value, \"MaxFlow requires\
     \ weighted graph\");\n\n    using Cap = typename WG::value_type;\n\n    WG g;\n\
-    \    int n, m;\n    std::vector<int> revi;\n\n    MaxFlow(const WG &g_) : n(g.num_vertices()),\
-    \ m(g.num_edges()) { init(g_); }\n\n    void init(const WG &g_) {\n        revi.resize(m\
-    \ << 1, -1);\n        std::vector<int> count(n, 0);\n        if constexpr (WG::static_graph::value)\
-    \ {\n\n        } else {\n            g = g_;\n            for (int i = 0; i <\
-    \ m; i++) {\n                auto e = g.edges[i];\n                revi[i] = (int)g[e.to].size();\n\
-    \                revi[m + i] = count[e.from]++;\n                g.add_edge(e.to,\
-    \ e.from, 0);\n            }\n        }\n    }\n\n    Cap flow(int s, int t) {\
-    \ return flow(s, t, std::numeric_limits<Cap>::max()); }\n\n    Cap flow(int s,\
-    \ int t, Cap flow_limit) {\n        assert(0 <= s && s < n);\n        assert(0\
-    \ <= t && t < n);\n        assert(s != t);\n\n        std::vector<int> level(n),\
-    \ iter(n);\n        std::queue<int> que;\n\n        auto bfs = [&]() {\n     \
-    \       std::fill(std::begin(level), std::end(level), -1);\n            level[s]\
-    \ = 0;\n            que = std::queue<int>();\n            que.push(s);\n     \
-    \       while (!que.empty()) {\n                int v = que.front();\n       \
-    \         que.pop();\n                for (auto &e : g[v]) {\n               \
-    \     if (e.cost == 0 || level[e.to] >= 0) continue;\n                    level[e.to]\
-    \ = level[v] + 1;\n                    if (e.to == t) return;\n              \
-    \      que.push(e.to);\n                }\n            }\n        };\n       \
-    \ auto dfs = [&](auto self, int v, Cap up) {\n            if (v == s) return up;\n\
-    \            Cap res = 0;\n            for (int &i = iter[v]; i < (int)g[v].size();\
-    \ i++) {\n                auto &e = g[v][i];\n                if (level[v] <=\
-    \ level[e.to] || g[e.to][revi[e.id]].cost == 0) continue;\n                Cap\
-    \ d = self(self, e.to, std::min(up - res, g[e.to][revi[e.id]].cost));\n      \
-    \          if (d <= 0) continue;\n                g[v][i].cost += d;\n       \
-    \         g[e.to][revi[e.id]].cost -= d;\n                res += d;\n        \
-    \        if (res == up) break;\n            }\n            return res;\n     \
-    \   };\n\n        Cap flow = 0;\n        while (flow < flow_limit) {\n       \
-    \     bfs();\n            if (level[t] == -1) break;\n            std::fill(std::begin(iter),\
+    \    int n, m;\n    std::vector<int> revi;\n\n    MaxFlow(const WG &g_) : n(g_.num_vertices()),\
+    \ m(g_.num_edges()) {\n        if constexpr (WG::static_graph::value) {\n    \
+    \        g = WG(n);\n            for (auto &&e : g_.edges) g.add_edge(e.from,\
+    \ e.to, e.cost);\n            for (auto &&e : g_.edges) g.add_edge(e.to, e.from,\
+    \ 0);\n            g.build();\n        } else {\n            g = g_;\n       \
+    \     for (auto &&e : g_.edges) g.add_edge(e.to, e.from, 0);\n        }\n    \
+    \    revi.resize(2 * m);\n        for (int i = 0; i < n; ++i) {\n            for\
+    \ (int j = 0; j < (int)g[i].size(); ++j)\n                revi[g[i][j].id >= m\
+    \ ? g[i][j].id - m : g[i][j].id + m] = j;\n        }\n    }\n\n    template <class\
+    \ Edges_> MaxFlow(int n_, const Edges_ &edges) : n(n_), m(edges.size()) {\n  \
+    \      g = WG(n);\n        for (auto &&e : edges) g.add_edge(e.from, e.to, e.cost);\n\
+    \        for (auto &&e : edges) g.add_edge(e.to, e.from, 0);\n        if constexpr\
+    \ (WG::static_graph::value) g.build();\n        revi.resize(2 * m);\n        for\
+    \ (int i = 0; i < n; ++i) {\n            for (int j = 0; j < (int)g[i].size();\
+    \ ++j)\n                revi[g[i][j].id >= m ? g[i][j].id - m : g[i][j].id + m]\
+    \ = j;\n        }\n    }\n\n    Cap flow(int s, int t) { return flow(s, t, std::numeric_limits<Cap>::max());\
+    \ }\n\n    Cap flow(int s, int t, Cap flow_limit) {\n        assert(0 <= s &&\
+    \ s < n);\n        assert(0 <= t && t < n);\n        assert(s != t);\n\n     \
+    \   std::vector<int> level(n), iter(n);\n        std::queue<int> que;\n\n    \
+    \    auto bfs = [&]() {\n            std::fill(std::begin(level), std::end(level),\
+    \ -1);\n            level[s] = 0;\n            que = std::queue<int>();\n    \
+    \        que.push(s);\n            while (!que.empty()) {\n                int\
+    \ v = que.front();\n                que.pop();\n                for (auto &e :\
+    \ g[v]) {\n                    if (e.cost == 0 || level[e.to] >= 0) continue;\n\
+    \                    level[e.to] = level[v] + 1;\n                    if (e.to\
+    \ == t) return;\n                    que.push(e.to);\n                }\n    \
+    \        }\n        };\n        auto dfs = [&](auto self, int v, Cap up) {\n \
+    \           if (v == s) return up;\n            Cap res = 0;\n            for\
+    \ (int &i = iter[v]; i < (int)g[v].size(); i++) {\n                auto &e = g[v][i];\n\
+    \                if (level[v] <= level[e.to] || g[e.to][revi[e.id]].cost == 0)\
+    \ continue;\n                Cap d = self(self, e.to, std::min(up - res, g[e.to][revi[e.id]].cost));\n\
+    \                if (d <= 0) continue;\n                g[v][i].cost += d;\n \
+    \               g[e.to][revi[e.id]].cost -= d;\n                res += d;\n  \
+    \              if (res == up) break;\n            }\n            return res;\n\
+    \        };\n\n        Cap flow = 0;\n        while (flow < flow_limit) {\n  \
+    \          bfs();\n            if (level[t] == -1) break;\n            std::fill(std::begin(iter),\
     \ std::end(iter), 0);\n            while (flow < flow_limit) {\n             \
     \   Cap f = dfs(dfs, t, flow_limit - flow);\n                if (!f) break;\n\
     \                flow += f;\n            }\n        }\n        return flow;\n\
@@ -113,8 +129,8 @@ data:
   isVerificationFile: false
   path: graph/maxflow.hpp
   requiredBy: []
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-01-03 20:28:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/graph_matching_bipartite.test.cpp
 documentation_of: graph/maxflow.hpp

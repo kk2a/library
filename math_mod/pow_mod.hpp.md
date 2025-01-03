@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -41,13 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rolling_hash.hpp
-    title: string/rolling_hash.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aoj/aoj_alds1_14_b.test.cpp
-    title: verify/aoj/aoj_alds1_14_b.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
@@ -149,7 +143,6 @@ data:
   - convolution/butterfly.hpp
   - convolution/convolution_arb.hpp
   - convolution/multi_convolution_truncated.hpp
-  - string/rolling_hash.hpp
   - math_mod/comb_large.hpp
   - math_mod/primitive_root.hpp
   - fps/multivariate_fps.hpp
@@ -165,7 +158,6 @@ data:
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
-  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_sparse_pow.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp

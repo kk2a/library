@@ -62,10 +62,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/static_convex_hull.hpp
     title: geometry/static_convex_hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':heavy_check_mark:'
@@ -114,6 +114,9 @@ data:
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':heavy_check_mark:'
+    path: modint/modint_2_61m1.hpp
+    title: modint/modint_2_61m1.hpp
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':heavy_check_mark:'
@@ -126,15 +129,18 @@ data:
     path: random/graph.hpp
     title: random/graph.hpp
   - icon: ':heavy_check_mark:'
+    path: random/hash.hpp
+    title: random/hash.hpp
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':warning:'
     path: template/debug.hpp
     title: template/debug.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/io_util.hpp
     title: template/io_util.hpp
   - icon: ':warning:'
@@ -143,7 +149,7 @@ data:
   - icon: ':warning:'
     path: template/simpleio.hpp
     title: template/simpleio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -309,7 +315,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -402,9 +408,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -480,7 +486,9 @@ data:
   path: type_traits/type_traits.hpp
   requiredBy:
   - random/graph.hpp
+  - random/hash.hpp
   - modint/mont_arb.hpp
+  - modint/modint_2_61m1.hpp
   - modint/mont.hpp
   - modint/modint.hpp
   - bit/bitcount.hpp
@@ -528,7 +536,7 @@ data:
   - fps/fps.hpp
   - fps/fps_arb.hpp
   timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp

@@ -14,7 +14,16 @@ data:
   - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/hash.hpp
+    title: random/hash.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/rolling_hash.hpp
+    title: string/rolling_hash.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_alds1_14_b.test.cpp
+    title: verify/aoj/aoj_alds1_14_b.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
@@ -99,13 +108,16 @@ data:
   path: random/gen.hpp
   requiredBy:
   - random/graph.hpp
+  - random/hash.hpp
   - math/prime_factorize.hpp
   - math/euler_phi.hpp
+  - string/rolling_hash.hpp
   timestamp: '2024-10-06 23:46:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
 documentation_of: random/gen.hpp
 layout: document
 redirect_from:
