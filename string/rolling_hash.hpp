@@ -56,7 +56,6 @@ template <int NUM> struct RollingHash {
 
     static int
     strcmp(const RollingHash &lhs, int l1, int r1, const RollingHash &rhs, int l2, int r2) {
-        int len = std::min(r1 - l1, r2 - l2);
         int lcp_ = lcp(lhs, l1, r1, rhs, l2, r2);
         if (lcp_ == r1 - l1 and lcp_ == r2 - l2) return 0;
         else if (lcp_ == r1 - l1) return -1;
