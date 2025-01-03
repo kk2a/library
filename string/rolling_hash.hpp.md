@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_string/string_z_roliha.test.cpp
+    title: verify/yosupo_string/string_z_roliha.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -63,28 +66,27 @@ data:
     \ {\n                ok = mid;\n            } else {\n                ng = mid;\n\
     \            }\n        }\n        return ok;\n    }\n\n    static int\n    strcmp(const\
     \ RollingHash &lhs, int l1, int r1, const RollingHash &rhs, int l2, int r2) {\n\
-    \        int len = std::min(r1 - l1, r2 - l2);\n        int lcp_ = lcp(lhs, l1,\
-    \ r1, rhs, l2, r2);\n        if (lcp_ == r1 - l1 and lcp_ == r2 - l2) return 0;\n\
-    \        else if (lcp_ == r1 - l1) return -1;\n        else if (lcp_ == r2 - l2)\
-    \ return 1;\n        else {\n            auto c1 = lhs.get(l1 + lcp_, l1 + lcp_\
-    \ + 1)[0].val();\n            auto c2 = rhs.get(l2 + lcp_, l2 + lcp_ + 1)[0].val();\n\
-    \            return c1 < c2 ? -1 : 1;\n        }\n    }\n\n    static RollingHash\
-    \ merge(const RollingHash &lhs, const RollingHash &rhs) {\n        RollingHash\
-    \ res;\n        extend_base(lhs.prefix.size() + rhs.prefix.size());\n        res.prefix\
-    \ = lhs.prefix;\n        res.prefix.insert(res.prefix.end(), rhs.prefix.begin(),\
-    \ rhs.prefix.end());\n        for (size_t i = lhs.prefix.size(); i < res.prefix.size();\
-    \ ++i) {\n            res.prefix[i] =\n                res.prefix[i] * pw[lhs.prefix.size()]\
-    \ + res.prefix[lhs.prefix.size() - 1];\n        }\n        return res;\n    }\n\
-    \n  private:\n    static void extend_base(int m) {\n        if (pw.size() == 0u)\
-    \ {\n            pw.push_back(H(1));\n            pwi.push_back(H(1));\n     \
-    \       pw.push_back(H::get_base());\n            pwi.push_back(pw[1].inv());\n\
-    \        }\n\n        int n = pw.size();\n        if (n >= m) return;\n      \
-    \  pw.resize(m);\n        pwi.resize(m);\n        for (int i = n; i < m; ++i)\
-    \ {\n            pw[i] = pw[i - 1] * pw[1];\n            pwi[i] = pwi[i - 1] *\
-    \ pwi[1];\n        }\n    }\n};\n\ntemplate <int NUM> std::vector<typename RollingHash<NUM>::H>\
-    \ RollingHash<NUM>::pw;\ntemplate <int NUM> std::vector<typename RollingHash<NUM>::H>\
-    \ RollingHash<NUM>::pwi;\n\nusing Roliha = RollingHash<2>;\n\n} // namespace kk2\n\
-    \n\n#endif // ROLLING_HASH_HPP\n"
+    \        int lcp_ = lcp(lhs, l1, r1, rhs, l2, r2);\n        if (lcp_ == r1 - l1\
+    \ and lcp_ == r2 - l2) return 0;\n        else if (lcp_ == r1 - l1) return -1;\n\
+    \        else if (lcp_ == r2 - l2) return 1;\n        else {\n            auto\
+    \ c1 = lhs.get(l1 + lcp_, l1 + lcp_ + 1)[0].val();\n            auto c2 = rhs.get(l2\
+    \ + lcp_, l2 + lcp_ + 1)[0].val();\n            return c1 < c2 ? -1 : 1;\n   \
+    \     }\n    }\n\n    static RollingHash merge(const RollingHash &lhs, const RollingHash\
+    \ &rhs) {\n        RollingHash res;\n        extend_base(lhs.prefix.size() + rhs.prefix.size());\n\
+    \        res.prefix = lhs.prefix;\n        res.prefix.insert(res.prefix.end(),\
+    \ rhs.prefix.begin(), rhs.prefix.end());\n        for (size_t i = lhs.prefix.size();\
+    \ i < res.prefix.size(); ++i) {\n            res.prefix[i] =\n               \
+    \ res.prefix[i] * pw[lhs.prefix.size()] + res.prefix[lhs.prefix.size() - 1];\n\
+    \        }\n        return res;\n    }\n\n  private:\n    static void extend_base(int\
+    \ m) {\n        if (pw.size() == 0u) {\n            pw.push_back(H(1));\n    \
+    \        pwi.push_back(H(1));\n            pw.push_back(H::get_base());\n    \
+    \        pwi.push_back(pw[1].inv());\n        }\n\n        int n = pw.size();\n\
+    \        if (n >= m) return;\n        pw.resize(m);\n        pwi.resize(m);\n\
+    \        for (int i = n; i < m; ++i) {\n            pw[i] = pw[i - 1] * pw[1];\n\
+    \            pwi[i] = pwi[i - 1] * pwi[1];\n        }\n    }\n};\n\ntemplate <int\
+    \ NUM> std::vector<typename RollingHash<NUM>::H> RollingHash<NUM>::pw;\ntemplate\
+    \ <int NUM> std::vector<typename RollingHash<NUM>::H> RollingHash<NUM>::pwi;\n\
+    \nusing Roliha = RollingHash<2>;\n\n} // namespace kk2\n\n\n#endif // ROLLING_HASH_HPP\n"
   dependsOn:
   - random/hash.hpp
   - modint/modint_2_61m1.hpp
@@ -94,10 +96,11 @@ data:
   isVerificationFile: false
   path: string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2025-01-03 20:28:15+09:00'
+  timestamp: '2025-01-03 23:36:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/yosupo_string/string_z_roliha.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 redirect_from:

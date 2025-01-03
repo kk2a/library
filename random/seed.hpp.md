@@ -30,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_string/string_z_roliha.test.cpp
+    title: verify/yosupo_string/string_z_roliha.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -71,6 +74,7 @@ data:
   - verify/yosupo_math/factrize.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/yosupo_string/string_z_roliha.test.cpp
 documentation_of: random/seed.hpp
 layout: document
 redirect_from:

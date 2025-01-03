@@ -794,6 +794,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_string/string_z_algorithm.test.cpp
       title: verify/yosupo_string/string_z_algorithm.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_string/string_z_roliha.test.cpp
+      title: verify/yosupo_string/string_z_roliha.test.cpp
   - name: verify/yuki
     pages:
     - icon: ':heavy_check_mark:'

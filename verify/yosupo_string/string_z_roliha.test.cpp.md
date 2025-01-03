@@ -47,9 +47,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
+    PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
+    - https://judge.yosupo.jp/problem/zalgorithm
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -65,12 +65,11 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
-    \ \n\n#include \"../../string/rolling_hash.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    string t, p;\n    kin >> t >> p;\n\
-    \    kk2::Roliha rt(t), rp(p);\n    for (size_t i = 0; i + p.size() <= t.size();\
-    \ ++i) {\n        if (rt.get(i, i + p.size()) == rp.get(0, p.size())) kout <<\
-    \ i << \"\\n\";\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\" \n\n#include\
+    \ \"../../string/rolling_hash.hpp\"\n#include \"../../template/template.hpp\"\n\
+    using namespace std;\n\nint main() {\n    string s;\n    kin >> s;\n    kk2::Roliha\
+    \ rs(s);\n\n    int n = s.size();\n    vc<int> z(n);\n    rep (i, n) z[i] = kk2::Roliha::lcp(rs,\
+    \ 0, n, rs, i, n);\n    kout << z << kendl;\n\n    return 0;\n}\n"
   dependsOn:
   - string/rolling_hash.hpp
   - random/hash.hpp
@@ -86,15 +85,15 @@ data:
   - template/macros.hpp
   - template/io_util.hpp
   isVerificationFile: true
-  path: verify/aoj/aoj_alds1_14_b.test.cpp
+  path: verify/yosupo_string/string_z_roliha.test.cpp
   requiredBy: []
-  timestamp: '2025-01-03 23:36:38+09:00'
+  timestamp: '2025-01-03 23:36:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/aoj/aoj_alds1_14_b.test.cpp
+documentation_of: verify/yosupo_string/string_z_roliha.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/aoj/aoj_alds1_14_b.test.cpp
-- /verify/verify/aoj/aoj_alds1_14_b.test.cpp.html
-title: verify/aoj/aoj_alds1_14_b.test.cpp
+- /verify/verify/yosupo_string/string_z_roliha.test.cpp
+- /verify/verify/yosupo_string/string_z_roliha.test.cpp.html
+title: verify/yosupo_string/string_z_roliha.test.cpp
 ---
