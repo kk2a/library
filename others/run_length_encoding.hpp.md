@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -22,7 +22,7 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef OTHERS_RUN_LENGTH_ENCODING_HPP\n#define OTHERS_RUN_LENGTH_ENCODING_HPP\
+  code: "#ifndef KK2_OTHERS_RUN_LENGTH_ENCODING_HPP\n#define KK2_OTHERS_RUN_LENGTH_ENCODING_HPP\
     \ 1\n\n#include <string>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace run_length_encoding {\n\ntemplate <class T> struct\
     \ rle_element {\n    T value;\n    int length;\n\n    template <class OStream,\
@@ -35,13 +35,13 @@ data:
     \ res.emplace_back(v[i], 1);\n        } else {\n            res.back().length++;\n\
     \        }\n    }\n    return res;\n}\n\n} // namespace run_length_encoding\n\n\
     using run_length_encoding::RunLengthEncoding;\n\n} // namespace kk2\n\n#endif\
-    \ // OTHERS_RUN_LENGTH_ENCODING_HPP\n"
+    \ // KK2_OTHERS_RUN_LENGTH_ENCODING_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: others/run_length_encoding.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: others/run_length_encoding.hpp

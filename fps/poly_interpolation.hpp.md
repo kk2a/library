@@ -97,7 +97,7 @@ data:
     \ inva = a.inv();\n        for (int i = 0; i < n; i++) {\n            ret[i] *=\
     \ x;\n            x *= inva;\n        }\n    }\n    return ret;\n}\n\n} // namespace\
     \ kk2\n\n\n"
-  code: "#ifndef FPS_POLYNOMIAL_INTERPOLATION_HPP\n#define FPS_POLYNOMIAL_INTERPOLATION_HPP\
+  code: "#ifndef KK2_FPS_POLY_INTERPOLATION_HPP\n#define KK2_FPS_POLY_INTERPOLATION_HPP\
     \ 1\n\n#include <cassert>\n#include <functional>\n#include <vector>\n\n#include\
     \ \"chirp_Z.hpp\"\n#include \"multi_eval.hpp\"\n\nnamespace kk2 {\n\ntemplate\
     \ <class FPS, class mint = typename FPS::value_type>\nFPS PolyInterpolation(const\
@@ -133,14 +133,14 @@ data:
     \ ret = (prod * gq).pre(n).rev();\n    if (a != mint(1)) {\n        mint x = 1,\
     \ inva = a.inv();\n        for (int i = 0; i < n; i++) {\n            ret[i] *=\
     \ x;\n            x *= inva;\n        }\n    }\n    return ret;\n}\n\n} // namespace\
-    \ kk2\n\n#endif // FPS_POLYNOMIAL_INTERPOLATION_HPP\n"
+    \ kk2\n\n#endif // KK2_FPS_POLY_INTERPOLATION_HPP\n"
   dependsOn:
   - fps/chirp_Z.hpp
   - fps/multi_eval.hpp
   isVerificationFile: false
   path: fps/poly_interpolation.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/poly_interpolation.hpp

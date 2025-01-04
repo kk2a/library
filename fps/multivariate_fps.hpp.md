@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: convolution/butterfly.hpp
-    title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: math_mod/butterfly.hpp
+    title: math_mod/butterfly.hpp
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -47,9 +47,9 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef FPS_MULTIVARIATE_FPS_HPP\n#define FPS_MULTIVARIATE_FPS_HPP 1\n\n\
-    #include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <vector>\n\
-    \n#include \"../type_traits/type_traits.hpp\"\n#include \"../convolution/multi_convolution_truncated.hpp\"\
+  code: "#ifndef KK2_FPS_MULTIVARIATE_FPS_HPP\n#define KK2_FPS_MULTIVARIATE_FPS_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include\
+    \ <vector>\n\n#include \"../type_traits/type_traits.hpp\"\n#include \"../convolution/multi_convolution_truncated.hpp\"\
     \n#include \"ntt_friendly.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename mint>\
     \ struct MultivariateFormalPowerSeries {\n    using mfps = MultivariateFormalPowerSeries;\n\
     \    using fps = FormalPowerSeries<mint>;\n    using value_type = mint;\n\n  \
@@ -163,12 +163,12 @@ data:
     \ fps(n)), a(*this);\n        res.f[0] = 1;\n        while (e) {\n           \
     \ if (e & 1) res *= a;\n            if (e >>= 1) a *= a;\n        }\n        return\
     \ res;\n    }\n};\n\ntemplate <typename mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv\
-    \ = {0, 1};\n\n} // namespace kk2\n\n#endif // FPS_MULTIVARIATE_FPS_HPP\n"
+    \ = {0, 1};\n\n} // namespace kk2\n\n#endif // KK2_FPS_MULTIVARIATE_FPS_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   - convolution/multi_convolution_truncated.hpp
   - convolution/convolution.hpp
-  - convolution/butterfly.hpp
+  - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - fps/ntt_friendly.hpp
@@ -177,7 +177,7 @@ data:
   isVerificationFile: false
   path: fps/multivariate_fps.hpp
   requiredBy: []
-  timestamp: '2024-12-30 00:24:43+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/multivariate_fps.hpp

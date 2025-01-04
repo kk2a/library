@@ -22,7 +22,7 @@ data:
     \ *= b;\n            res -= quo(res) * g;\n            res.shrink();\n       \
     \ }\n        b *= b;\n        b -= quo(b) * g;\n        b.shrink();\n        k\
     \ >>= 1;\n    }\n    return res;\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef FPS_MOD_POW_HPP\n#define FPS_MOD_POW_HPP 1\n\n#include <cassert>\n\
+  code: "#ifndef KK2_FPS_MOD_POW_HPP\n#define KK2_FPS_MOD_POW_HPP 1\n\n#include <cassert>\n\
     #include <functional>\n\nnamespace kk2 {\n\n// return f ^ k mod g\ntemplate <class\
     \ FPS, class mint = typename FPS::value_type, class T>\nFPS mod_pow(T k, const\
     \ FPS &f, const FPS &g) {\n    // assert(!is_signed_v<T> || k >= 0);\n    assert(!g.empty());\n\
@@ -32,13 +32,13 @@ data:
     \    FPS res{1}, b(f);\n    while (k) {\n        if (k & 1) {\n            res\
     \ *= b;\n            res -= quo(res) * g;\n            res.shrink();\n       \
     \ }\n        b *= b;\n        b -= quo(b) * g;\n        b.shrink();\n        k\
-    \ >>= 1;\n    }\n    return res;\n}\n\n} // namespace kk2\n\n#endif // FPS_MOD_POW_HPP\n"
+    \ >>= 1;\n    }\n    return res;\n}\n\n} // namespace kk2\n\n#endif // KK2_FPS_MOD_POW_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/mod_pow.hpp
   requiredBy:
   - fps/find_root.hpp
-  timestamp: '2024-09-10 08:16:31+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/mod_pow.hpp

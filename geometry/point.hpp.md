@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/argument_sort.hpp
     title: geometry/argument_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/static_convex_hull.hpp
     title: geometry/static_convex_hull.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull_1.test.cpp
     title: verify/yosupo_geometry/static_convex_hull_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull_2.test.cpp
     title: verify/yosupo_geometry/static_convex_hull_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull_3.test.cpp
     title: verify/yosupo_geometry/static_convex_hull_3.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -41,8 +41,8 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ geometry/point.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef GEOMETRY_POINT_HPP\n#define GEOMETRY_POINT_HPP 1\n\n#pragma once\
-    \ // oj-verify\n\n#include <algorithm>\n#include <cmath>\n\n#include \"../type_traits/type_traits.hpp\"\
+  code: "#ifndef KK2_GEOMETRY_POINT_HPP\n#define KK2_GEOMETRY_POINT_HPP 1\n\n#pragma\
+    \ once // oj-verify\n\n#include <algorithm>\n#include <cmath>\n\n#include \"../type_traits/type_traits.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename T> struct Point {\n    static constexpr\
     \ long double PI = acos(-1.0);\n    T x, y;\n\n    Point(T x = 0, T y = 0) : x(x),\
     \ y(y) {}\n\n    bool operator<(const Point &p) const { return x != p.x ? x <\
@@ -106,7 +106,7 @@ data:
     \ const Point &p) {\n        return os << p.x << \" \" << p.y;\n    }\n\n    template\
     \ <class IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream\
     \ &is, Point &p) {\n        return is >> p.x >> p.y;\n    }\n};\n\n} // namespace\
-    \ kk2\n\n#endif // GEOMETRY_POINT_HPP\n"
+    \ kk2\n\n#endif // KK2_GEOMETRY_POINT_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -114,8 +114,8 @@ data:
   requiredBy:
   - geometry/static_convex_hull.hpp
   - geometry/argument_sort.hpp
-  timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp
   - verify/yosupo_geometry/arg_sort.test.cpp

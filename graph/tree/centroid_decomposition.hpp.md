@@ -30,7 +30,7 @@ data:
     \                children[centroid].emplace_back(nxt);\n                parent[nxt]\
     \ = centroid;\n            }\n        }\n        used[centroid] = false;\n   \
     \     return centroid;\n    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\n#define GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\
+  code: "#ifndef KK2_GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\n#define KK2_GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\
     \ 1\n\n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class\
     \ G> struct CentroidDecomposition {\n    static_assert(!G::directed::value, \"\
     CentroidDecomposition requires undirected graph\");\n\n    const G &g;\n    std::vector<int>\
@@ -51,12 +51,12 @@ data:
     \            int nxt = build_dfs(e.to);\n            if (centroid != nxt) {\n\
     \                children[centroid].emplace_back(nxt);\n                parent[nxt]\
     \ = centroid;\n            }\n        }\n        used[centroid] = false;\n   \
-    \     return centroid;\n    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\n"
+    \     return centroid;\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/tree/centroid_decomposition.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:03:48+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/centroid_decomposition.hpp

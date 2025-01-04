@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_set_xor_min.test.cpp
     title: verify/yosupo_ds/ds_set_xor_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/binary_trie.hpp\"\n\n\n\n#include <cassert>\n\
@@ -114,7 +114,7 @@ data:
     \ res |= (T(1) << i);\n                now = nodes[now].nxt[1];\n            }\n\
     \        }\n        return res;\n    }\n\n    int size() const { return nodes[root].count;\
     \ }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef DATA_STRUCTURE_BINARY_TRIE_HPP\n#define DATA_STRUCTURE_BINARY_TRIE_HPP\
+  code: "#ifndef KK2_DATA_STRUCTURE_BINARY_TRIE_HPP\n#define KK2_DATA_STRUCTURE_BINARY_TRIE_HPP\
     \ 1\n\n#include <cassert>\n#include <optional>\n#include <vector>\n\nnamespace\
     \ kk2 {\n\ntemplate <typename T> struct BinaryTrieNode {\n    int nxt[2];\n  \
     \  // \u30CE\u30FC\u30C9\u306B\u5BFE\u5FDC\u3059\u308Bprefix\u3092\u3082\u3064\
@@ -218,8 +218,8 @@ data:
   isVerificationFile: false
   path: data_structure/binary_trie.hpp
   requiredBy: []
-  timestamp: '2024-12-16 22:37:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   - verify/yosupo_ds/ds_set_xor_min.test.cpp

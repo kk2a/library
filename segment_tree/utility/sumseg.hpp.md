@@ -88,9 +88,9 @@ data:
     \ = op(d[2 * k], d[2 * k + 1]); }\n};\n\n} // namespace kk2\n\n\n#line 6 \"segment_tree/utility/sumseg.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class S> using SumSeg = SegTree<group::Sum<S>,\
     \ group::SumOp<S>, group::SumUnit<S>>;\n\n} // namespace kk2\n\n\n"
-  code: '#ifndef SEGMENT_TREE_UTILITY_SUMSEG_HPP
+  code: '#ifndef KK2_SEGMENT_TREE_UTILITY_SUMSEG_HPP
 
-    #define SEGMENT_TREE_UTILITY_SUMSEG_HPP 1
+    #define KK2_SEGMENT_TREE_UTILITY_SUMSEG_HPP 1
 
 
     #include "../../math/group/sum.hpp"
@@ -107,7 +107,7 @@ data:
     } // namespace kk2
 
 
-    #endif // SEGMENT_TREE_UTILITY_SUMSEG_HPP
+    #endif // KK2_SEGMENT_TREE_UTILITY_SUMSEG_HPP
 
     '
   dependsOn:
@@ -116,7 +116,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/sumseg.hpp
   requiredBy: []
-  timestamp: '2024-10-22 04:14:31+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp

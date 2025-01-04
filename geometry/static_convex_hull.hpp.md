@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/point.hpp
     title: geometry/point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull_1.test.cpp
     title: verify/yosupo_geometry/static_convex_hull_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull_2.test.cpp
     title: verify/yosupo_geometry/static_convex_hull_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull_3.test.cpp
     title: verify/yosupo_geometry/static_convex_hull_3.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -37,10 +37,10 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ geometry/point.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef GEOMETRY_CONVEX_HULL_HPP\n#define GEOMETRY_CONVEX_HULL_HPP 1\n\n\
-    #include <algorithm>\n#include <utility>\n#include <vector>\n\n#include \"point.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <typename T> struct StaticConvexHull {\n    using\
-    \ point = Point<T>;\n    std::vector<point> ps, hull;\n    std::vector<point>\
+  code: "#ifndef KK2_GEOMETRY_CONVEX_HULL_HPP\n#define KK2_GEOMETRY_CONVEX_HULL_HPP\
+    \ 1\n\n#include <algorithm>\n#include <utility>\n#include <vector>\n\n#include\
+    \ \"point.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename T> struct StaticConvexHull\
+    \ {\n    using point = Point<T>;\n    std::vector<point> ps, hull;\n    std::vector<point>\
     \ up, dw;\n    std::vector<int> idx_hull, idx_up, idx_dw;\n\n    StaticConvexHull()\
     \ = default;\n\n    StaticConvexHull(const std::vector<point> &ps) : ps(ps) {}\n\
     \n    void add_point(T x, T y) { ps.emplace_back(x, y); }\n\n    void add_point(const\
@@ -72,15 +72,15 @@ data:
     \ = 0;\n        for (int i = size(up_) - 2; i; i--) {\n            hull[size(up_)\
     \ + size(dw_) - 2 - i] = up[i] = up_[i].first;\n            idx_hull[up_[i].second]\
     \ = size(up_) + size(dw_) - 2 - i;\n            idx_up[up_[i].second] = i;\n \
-    \       }\n    }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_CONVEX_HULL_HPP\n"
+    \       }\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_GEOMETRY_CONVEX_HULL_HPP\n"
   dependsOn:
   - geometry/point.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: geometry/static_convex_hull.hpp
   requiredBy: []
-  timestamp: '2024-12-28 14:03:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp

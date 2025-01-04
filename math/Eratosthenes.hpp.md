@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: convolution/convolution_gcd.hpp
+    title: convolution/convolution_gcd.hpp
+  - icon: ':x:'
+    path: convolution/convolution_lcm.hpp
+    title: convolution/convolution_lcm.hpp
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':heavy_check_mark:'
-    path: convolution/gcd1.hpp
-    title: convolution/gcd1.hpp
-  - icon: ':heavy_check_mark:'
-    path: convolution/lcm1.hpp
-    title: convolution/lcm1.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/Eratosthenes.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -62,11 +62,11 @@ data:
     \ < p.second; ++j) {\n                    v *= p.first;\n                    res.push_back(res[i]\
     \ * v);\n                }\n            }\n        }\n        return res;\n  \
     \  }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef MATH_ERATOSTHENES\n#define MATH_ERATOSTHENES 1\n\n#include <algorithm>\n\
-    #include <cassert>\n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\
-    \nstruct Erato {\n    static inline std::vector<bool> _isprime{};\n    static\
-    \ inline std::vector<int> _minfactor{}, _mobius{}, _primes{};\n\n    Erato() =\
-    \ delete;\n\n    static void set_upper(int m) {\n        if ((int)_isprime.size()\
+  code: "#ifndef KK2_MATH_ERATOSTHENES_HPP\n#define KK2_MATH_ERATOSTHENES_HPP 1\n\n\
+    #include <algorithm>\n#include <cassert>\n#include <utility>\n#include <vector>\n\
+    \nnamespace kk2 {\n\nstruct Erato {\n    static inline std::vector<bool> _isprime{};\n\
+    \    static inline std::vector<int> _minfactor{}, _mobius{}, _primes{};\n\n  \
+    \  Erato() = delete;\n\n    static void set_upper(int m) {\n        if ((int)_isprime.size()\
     \ > m) return;\n        int start = std::max<int>(2, _isprime.size());\n\n   \
     \     _isprime.resize(m + 1, true);\n        _minfactor.resize(m + 1, -1);\n \
     \       _mobius.resize(m + 1, 1);\n        _isprime[1] = false;\n        _minfactor[1]\
@@ -100,16 +100,16 @@ data:
     \ i < s; ++i) {\n                int v = 1;\n                for (int j = 0; j\
     \ < p.second; ++j) {\n                    v *= p.first;\n                    res.push_back(res[i]\
     \ * v);\n                }\n            }\n        }\n        return res;\n  \
-    \  }\n};\n\n} // namespace kk2\n\n#endif // MATH_ERATOSTHENES\n"
+    \  }\n};\n\n} // namespace kk2\n\n#endif // KK2_MATH_ERATOSTHENES_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/Eratosthenes.hpp
   requiredBy:
-  - convolution/gcd1.hpp
   - convolution/divisor_multiple_transform.hpp
-  - convolution/lcm1.hpp
-  timestamp: '2024-10-06 18:26:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - convolution/convolution_lcm.hpp
+  - convolution/convolution_gcd.hpp
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp

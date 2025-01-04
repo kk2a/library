@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: convolution/bitor1.hpp
-    title: convolution/bitor1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: convolution/convolution_or.hpp
+    title: convolution/convolution_or.hpp
+  - icon: ':x:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -58,7 +58,7 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
-    \n\n#include \"../../convolution/bitor1.hpp\"\n#include \"../../modint/mont.hpp\"\
+    \n\n#include \"../../convolution/convolution_or.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
     \ {\n    int n;\n    kin >> n;\n    vc<kk2::mont998> a(1 << n), b(1 << n);\n \
     \   rep (i, 1 << n) kin >> a[~i & ((1 << n) - 1)];\n    rep (i, 1 << n) kin >>\
@@ -66,7 +66,7 @@ data:
     \ c(1 << n);\n    rep (i, 1 << n) c[~i & ((1 << n) - 1)] = a[i];\n    kout <<\
     \ c << kendl;\n\n    return 0;\n}\n"
   dependsOn:
-  - convolution/bitor1.hpp
+  - convolution/convolution_or.hpp
   - convolution/zeta_mobius_transfrom.hpp
   - modint/mont.hpp
   - type_traits/type_traits.hpp
@@ -80,8 +80,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_or.test.cpp
   requiredBy: []
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_or.test.cpp
 layout: document

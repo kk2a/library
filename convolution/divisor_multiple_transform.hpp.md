@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convolution/gcd1.hpp
-    title: convolution/gcd1.hpp
-  - icon: ':heavy_check_mark:'
-    path: convolution/lcm1.hpp
-    title: convolution/lcm1.hpp
+  - icon: ':x:'
+    path: convolution/convolution_gcd.hpp
+    title: convolution/convolution_gcd.hpp
+  - icon: ':x:'
+    path: convolution/convolution_lcm.hpp
+    title: convolution/convolution_lcm.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/divisor_multiple_transform.hpp\"\n\n\n\n#line\
@@ -78,7 +78,7 @@ data:
     \    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto\
     \ p : Erato::primes()) {\n        if (p > n) break;\n        for (int i = n /\
     \ p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\n#define CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\
+  code: "#ifndef KK2_CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\n#define KK2_CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\
     \ 1\n\n#include \"../math/Eratosthenes.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
     \ FPS> void multiple_transform(FPS &a) {\n    int n = int(a.size());\n    if (!n)\
     \ return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto p : Erato::primes())\
@@ -94,16 +94,16 @@ data:
     \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n\
     \    for (const auto p : Erato::primes()) {\n        if (p > n) break;\n     \
     \   for (int i = n / p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace\
-    \ kk2\n\n#endif // CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\n"
+    \ kk2\n\n#endif // KK2_CONVLUTION_DIVISOR_MULTIPLE_TRANSFORM_HPP\n"
   dependsOn:
   - math/Eratosthenes.hpp
   isVerificationFile: false
   path: convolution/divisor_multiple_transform.hpp
   requiredBy:
-  - convolution/gcd1.hpp
-  - convolution/lcm1.hpp
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - convolution/convolution_lcm.hpp
+  - convolution/convolution_gcd.hpp
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp

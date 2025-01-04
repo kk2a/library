@@ -82,27 +82,27 @@ data:
     \ p), 1};\n        FPS t = PolyGcd(mod_pow((p - 1) / 2, s, g) - FPS{1}, g);\n\
     \        fs.push_back(t);\n        if (g.size() != t.size()) fs.push_back(g /\
     \ t);\n    }\n    return res;\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef FIND_ROOT_HPP\n#define FIND_ROOT_HPP 1\n\n#include <ctime>\n#include\
-    \ <random>\n#include <vector>\n\n#include \"mod_pow.hpp\"\n#include \"poly_gcd.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\
-    \ std::vector<mint> find_root(FPS f) {\n    long long p = mint::getmod();\n  \
-    \  std::vector<mint> res;\n    if (p == 2) {\n        for (int i = 0; i < 2; i++)\
-    \ {\n            if (f.eval(mint(i)) == mint(0)) { res.push_back(mint(i)); }\n\
-    \        }\n        return res;\n    }\n\n    std::vector<FPS> fs;\n    fs.push_back(PolyGcd(mod_pow(p,\
-    \ FPS{0, 1}, f) - FPS{0, 1}, f));\n    std::mt19937_64 rng(time(0));\n    while\
-    \ (!fs.empty()) {\n        auto g = fs.back();\n        fs.pop_back();\n     \
-    \   if (g.size() == 2) res.push_back(-g[0]);\n        if (g.size() <= 2) continue;\n\
-    \        FPS s = FPS{(long long)(rng() % p), 1};\n        FPS t = PolyGcd(mod_pow((p\
-    \ - 1) / 2, s, g) - FPS{1}, g);\n        fs.push_back(t);\n        if (g.size()\
-    \ != t.size()) fs.push_back(g / t);\n    }\n    return res;\n}\n\n} // namespace\
-    \ kk2\n\n#endif // FIND_ROOT_HPP\n"
+  code: "#ifndef KK2_FPS_FIND_ROOT_HPP\n#define KK2_FPS_FIND_ROOT_HPP 1\n\n#include\
+    \ <ctime>\n#include <random>\n#include <vector>\n\n#include \"mod_pow.hpp\"\n\
+    #include \"poly_gcd.hpp\"\n\nnamespace kk2 {\n\ntemplate <class FPS, class mint\
+    \ = typename FPS::value_type> std::vector<mint> find_root(FPS f) {\n    long long\
+    \ p = mint::getmod();\n    std::vector<mint> res;\n    if (p == 2) {\n       \
+    \ for (int i = 0; i < 2; i++) {\n            if (f.eval(mint(i)) == mint(0)) {\
+    \ res.push_back(mint(i)); }\n        }\n        return res;\n    }\n\n    std::vector<FPS>\
+    \ fs;\n    fs.push_back(PolyGcd(mod_pow(p, FPS{0, 1}, f) - FPS{0, 1}, f));\n \
+    \   std::mt19937_64 rng(time(0));\n    while (!fs.empty()) {\n        auto g =\
+    \ fs.back();\n        fs.pop_back();\n        if (g.size() == 2) res.push_back(-g[0]);\n\
+    \        if (g.size() <= 2) continue;\n        FPS s = FPS{(long long)(rng() %\
+    \ p), 1};\n        FPS t = PolyGcd(mod_pow((p - 1) / 2, s, g) - FPS{1}, g);\n\
+    \        fs.push_back(t);\n        if (g.size() != t.size()) fs.push_back(g /\
+    \ t);\n    }\n    return res;\n}\n\n} // namespace kk2\n\n#endif // KK2_FPS_FIND_ROOT_HPP\n"
   dependsOn:
   - fps/mod_pow.hpp
   - fps/poly_gcd.hpp
   isVerificationFile: false
   path: fps/find_root.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/find_root.hpp

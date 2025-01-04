@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/trie.hpp
     title: data_structure/trie.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430.test.cpp
     title: verify/yuki/yuki_0430.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430_2.test.cpp
     title: verify/yuki/yuki_0430_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/aho_corasick.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -82,9 +82,9 @@ data:
     \        }\n        return res;\n    }\n\n    int move(int now, char c) { return\
     \ this->nodes[now].nxt[c - margin]; }\n\n    int count(int node) const { return\
     \ correct[node]; }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef STRING_AHO_CORASICK_HPP\n#define STRING_AHO_CORASICK_HPP 1\n\n#include\
-    \ <algorithm>\n#include <queue>\n#include <string>\n#include <type_traits>\n#include\
-    \ <unordered_map>\n#include <vector>\n\n#include \"../data_structure/trie.hpp\"\
+  code: "#ifndef KK2_STRING_AHO_CORASICK_HPP\n#define KK2_STRING_AHO_CORASICK_HPP\
+    \ 1\n\n#include <algorithm>\n#include <queue>\n#include <string>\n#include <type_traits>\n\
+    #include <unordered_map>\n#include <vector>\n\n#include \"../data_structure/trie.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <int char_size, int margin> struct AhoCorasick\
     \ : Trie<char_size + 1, margin> {\n    using Trie<char_size + 1, margin>::Trie;\n\
     \    using Trie<char_size + 1, margin>::count;\n\n    constexpr static int FAIL\
@@ -118,14 +118,14 @@ data:
     \      for (int idx : this->nodes[now].accept) { res[idx] += visit_cnt[now]; }\n\
     \        }\n        return res;\n    }\n\n    int move(int now, char c) { return\
     \ this->nodes[now].nxt[c - margin]; }\n\n    int count(int node) const { return\
-    \ correct[node]; }\n};\n\n} // namespace kk2\n\n#endif // STRING_AHO_CORASICK_HPP\n"
+    \ correct[node]; }\n};\n\n} // namespace kk2\n\n#endif // KK2_STRING_AHO_CORASICK_HPP\n"
   dependsOn:
   - data_structure/trie.hpp
   isVerificationFile: false
   path: string/aho_corasick.hpp
   requiredBy: []
-  timestamp: '2024-12-16 22:37:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_0430.test.cpp
   - verify/yuki/yuki_0430_2.test.cpp

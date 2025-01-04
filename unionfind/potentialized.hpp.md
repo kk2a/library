@@ -40,7 +40,7 @@ data:
     \ EasyAbelianGroup &rhs) const {\n        return EasyAbelianGroup(op(val, inv(rhs.val)));\n\
     \    }\n\n    EasyAbelianGroup operator-() const { return EasyAbelianGroup(inv(val));\
     \ }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef UNIONFIND_POTENTIALIZED_HPP\n#define UNIONFIND_POTENTIALIZED_HPP\
+  code: "#ifndef KK2_UNIONFIND_POTENTIALIZED_HPP\n#define KK2_UNIONFIND_POTENTIALIZED_HPP\
     \ 1\n\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class A, bool right=true>\
     \ struct PotentializedUnionFind {\n  private:\n    std::vector<int> d;\n    std::vector<A>\
     \ par_diff;\n\n  public:\n    PotentializedUnionFind(int n, A e_ = A()) : d(n,\
@@ -66,12 +66,12 @@ data:
     \    EasyAbelianGroup operator-(const EasyAbelianGroup &rhs) const {\n       \
     \ return EasyAbelianGroup(op(val, inv(rhs.val)));\n    }\n\n    EasyAbelianGroup\
     \ operator-() const { return EasyAbelianGroup(inv(val)); }\n};\n\n} // namespace\
-    \ kk2\n\n#endif // UNIONFIND_POTENTIALIZED_HPP\n"
+    \ kk2\n\n#endif // KK2_UNIONFIND_POTENTIALIZED_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: unionfind/potentialized.hpp
   requiredBy: []
-  timestamp: '2024-12-04 15:58:56+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp

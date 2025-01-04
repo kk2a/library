@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -30,7 +30,7 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef DATA_STRUCTURE_W_ARY_TREE_HPP\n#define DATA_STRUCTURE_W_ARY_TREE_HPP\
+  code: "#ifndef KK2_DATA_STRUCTURE_W_ARY_TREE_HPP\n#define KK2_DATA_STRUCTURE_W_ARY_TREE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <optional>\n#include\
     \ <vector>\n\n#include \"../bit/bitcount.hpp\"\n\nnamespace kk2 {\n\nstruct w_ary_tree\
     \ {\n    using Uint = unsigned long long;\n    constexpr static int W = 64;\n\
@@ -88,14 +88,14 @@ data:
     \ x ? lsb<Uint>(x) : -1; }\n\n    static Uint up_mask(Uint x, int i) { return\
     \ x & (((Uint(1) << i) - 1) | (Uint(1) << i)); }\n\n    static Uint dw_mask(Uint\
     \ x, int i) { return x & ~((Uint(1) << i) - 1); }\n};\n\n} // namespace kk2\n\n\
-    #endif // DATA_STRUCTURE_W_ARY_TREE_HPP"
+    #endif // KK2_DATA_STRUCTURE_W_ARY_TREE_HPP"
   dependsOn:
   - bit/bitcount.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: data_structure/w_ary_tree.hpp
   requiredBy: []
-  timestamp: '2025-01-02 22:13:43+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp

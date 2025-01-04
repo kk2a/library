@@ -1,74 +1,74 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
     path: fps/multivariate_fps.hpp
     title: fps/multivariate_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv_arb.test.cpp
     title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_exp.test.cpp
     title: verify/yosupo_fps/fps_sparse_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_inv.test.cpp
     title: verify/yosupo_fps/fps_sparse_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_log.test.cpp
     title: verify/yosupo_fps/fps_sparse_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_pow.test.cpp
     title: verify/yosupo_fps/fps_sparse_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -82,15 +82,15 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef FPS_HPP\n#define FPS_HPP 1\n\n#include <algorithm>\n#include <cassert>\n\
-    #include <iostream>\n#include <utility>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class mint> struct FormalPowerSeries : std::vector<mint>\
-    \ {\n    using std::vector<mint>::vector;\n    using FPS = FormalPowerSeries;\n\
-    \n    template <class OStream, is_ostream_t<OStream> * = nullptr> void display(OStream\
-    \ &os) const {\n        for (int i = 0; i < (int)this->size(); i++) {\n      \
-    \      os << (*this)[i] << \" \\n\"[i == (int)this->size() - 1];\n        }\n\
-    \    }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr> void\
-    \ output(OStream &os) const {\n        for (int i = 0; i < (int)this->size();\
+  code: "#ifndef KK2_FPS_FPS_HPP\n#define KK2_FPS_FPS_HPP 1\n\n#include <algorithm>\n\
+    #include <cassert>\n#include <iostream>\n#include <utility>\n#include <vector>\n\
+    \n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+    \ mint> struct FormalPowerSeries : std::vector<mint> {\n    using std::vector<mint>::vector;\n\
+    \    using FPS = FormalPowerSeries;\n\n    template <class OStream, is_ostream_t<OStream>\
+    \ * = nullptr> void display(OStream &os) const {\n        for (int i = 0; i <\
+    \ (int)this->size(); i++) {\n            os << (*this)[i] << \" \\n\"[i == (int)this->size()\
+    \ - 1];\n        }\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
+    \ * = nullptr> void output(OStream &os) const {\n        for (int i = 0; i < (int)this->size();\
     \ i++) {\n            os << (*this)[i] << (i + 1 == (int)this->size() ? \"\\n\"\
     \ : \" \");\n        }\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
     \ * = nullptr>\n    friend OStream &operator<<(OStream &os, const FPS &fps_) {\n\
@@ -252,7 +252,7 @@ data:
     \ &r);\n\n    FPS operator*(const FPS &r) const { return FPS(*this) *= r; }\n\n\
     \    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
     \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\n} //\
-    \ namespace kk2\n\n#endif // FPS_HPP\n"
+    \ namespace kk2\n\n#endif // KK2_FPS_FPS_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -262,8 +262,8 @@ data:
   - fps/multivariate_fps.hpp
   - fps/ntt_friendly.hpp
   - fps/fps_arb.hpp
-  timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp

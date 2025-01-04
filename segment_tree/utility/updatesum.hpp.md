@@ -132,7 +132,7 @@ data:
     \       homomorphism::UpdateMap<S, group::Sum<S>>,\n                         \
     \     homomorphism::UpdateComposition<S>,\n                              homomorphism::UpdateUnit<S>>;\n\
     \n} // namespace kk2\n\n\n"
-  code: "#ifndef SEGMENT_TREE_UTILITY_UPDATESUM_HPP\n#define SEGMENT_TREE_UTILITY_UPDATESUM_HPP\
+  code: "#ifndef KK2_SEGMENT_TREE_UTILITY_UPDATESUM_HPP\n#define KK2_SEGMENT_TREE_UTILITY_UPDATESUM_HPP\
     \ 1\n\n#include \"../../math/group/sum.hpp\"\n#include \"../../math/homomorphism/update.hpp\"\
     \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing UpdateSum\
     \ = LazySegTree<group::Sum<S>,\n                              group::SumOp<S>,\n\
@@ -140,7 +140,7 @@ data:
     \    homomorphism::Update<S>,\n                              homomorphism::UpdateMap<S,\
     \ group::Sum<S>>,\n                              homomorphism::UpdateComposition<S>,\n\
     \                              homomorphism::UpdateUnit<S>>;\n\n} // namespace\
-    \ kk2\n\n#endif // SEGMENT_TREE_UTILITY_UPDATESUM_HPP\n"
+    \ kk2\n\n#endif // KK2_SEGMENT_TREE_UTILITY_UPDATESUM_HPP\n"
   dependsOn:
   - math/group/sum.hpp
   - math/homomorphism/update.hpp
@@ -148,7 +148,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatesum.hpp
   requiredBy: []
-  timestamp: '2024-10-22 04:14:31+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatesum.hpp

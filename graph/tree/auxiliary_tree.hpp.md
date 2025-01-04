@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: graph/tree/heavy_light_decomposition.hpp
   _extendedRequiredBy: []
@@ -79,7 +79,7 @@ data:
     \            while (ps[st.top()] != l) st.pop();\n            aux[st.top()].emplace_back(i);\n\
     \            st.emplace(i);\n        }\n        return std::make_pair(aux, ps);\n\
     \    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef GRAPH_TREE_AUXILIARY_TREE_HPP\n#define GRAPH_TREE_AUXILIARY_TREE_HPP\
+  code: "#ifndef KK2_GRAPH_TREE_AUXILIARY_TREE_HPP\n#define KK2_GRAPH_TREE_AUXILIARY_TREE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
     \ <stack>\n#include <utility>\n#include <vector>\n\n#include \"heavy_light_decomposition.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename G> struct AuxiliaryTree {\n    static_assert(!G::directed::value,\
@@ -96,13 +96,13 @@ data:
     \ i < (int)ps.size(); i++) {\n            int l = hld.lca(ps[i], ps[st.top()]);\n\
     \            while (ps[st.top()] != l) st.pop();\n            aux[st.top()].emplace_back(i);\n\
     \            st.emplace(i);\n        }\n        return std::make_pair(aux, ps);\n\
-    \    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_TREE_AUXILIARY_TREE_HPP\n"
+    \    }\n};\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_AUXILIARY_TREE_HPP\n"
   dependsOn:
   - graph/tree/heavy_light_decomposition.hpp
   isVerificationFile: false
   path: graph/tree/auxiliary_tree.hpp
   requiredBy: []
-  timestamp: '2025-01-01 22:04:22+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/auxiliary_tree.hpp

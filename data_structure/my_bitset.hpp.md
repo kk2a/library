@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -42,7 +42,7 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef DATA_STRUCTURE_MY_BITSET_HPP\n#define DATA_STRUCTURE_MY_BITSET_HPP\
+  code: "#ifndef KK2_DATA_STRUCTURE_MY_BITSET_HPP\n#define KK2_DATA_STRUCTURE_MY_BITSET_HPP\
     \ 1\n\n#include <algorithm>\n#include <bitset>\n#include <cassert>\n#include <iostream>\n\
     #include <iterator>\n#include <string>\n#include <vector>\n\n#include \"../bit/bitcount.hpp\"\
     \n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\nstruct DynamicBitSet\
@@ -199,7 +199,7 @@ data:
     \ bs.to_string();\n    }\n\n    template <class IStream, is_istream_t<IStream>\
     \ * = nullptr>\n    friend IStream &operator>>(IStream &is, T &bs) {\n       \
     \ std::string s;\n        is >> s;\n        bs.set_reversed(s);\n        return\
-    \ is;\n    }\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_MY_BITSET_HPP\n"
+    \ is;\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_MY_BITSET_HPP\n"
   dependsOn:
   - bit/bitcount.hpp
   - type_traits/type_traits.hpp
@@ -207,8 +207,8 @@ data:
   path: data_structure/my_bitset.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp

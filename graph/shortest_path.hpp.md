@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/shortest_path.hpp\"\n\n\n\n#include <limits>\n#include\
@@ -29,12 +29,12 @@ data:
     \ = {edge.from, edge.id};\n            }\n        }\n    }\n\n    return {dist,\
     \ prev};\n}\n\n} // namespace shortest_path_impl\n\nusing shortest_path_impl::shortest_path;\n\
     \n} // namespace kk2\n\n\n"
-  code: "#ifndef GRAPH_DIJKSTRA_HPP\n#define GRAPH_DIJKSTRA_HPP 1\n\n#include <limits>\n\
-    #include <queue>\n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\n\
-    namespace shortest_path_impl {\n\nstruct edge {\n    int to, id;\n};\n\ntemplate\
-    \ <class T>\nstruct Result {\n    std::vector<T> dist;\n    std::vector<edge>\
-    \ prev;\n};\n\ntemplate <class WG, class T = typename WG::value_type> \nResult<T>\
-    \ shortest_path(const WG &g, int start, T inf = std::numeric_limits<T>::max())\
+  code: "#ifndef KK2_GRAPH_SHORTEST_PATH_HPP\n#define KK2_GRAPH_SHORTEST_PATH_HPP\
+    \ 1\n\n#include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\
+    \nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\nstruct edge {\n    int\
+    \ to, id;\n};\n\ntemplate <class T>\nstruct Result {\n    std::vector<T> dist;\n\
+    \    std::vector<edge> prev;\n};\n\ntemplate <class WG, class T = typename WG::value_type>\
+    \ \nResult<T> shortest_path(const WG &g, int start, T inf = std::numeric_limits<T>::max())\
     \ {\n    static_assert(WG::weighted::value, \"shortest_path requires weighted\
     \ graph\");\n    T alt;\n    int n = g.size();\n    std::vector<T> dist(n, inf);\n\
     \    std::vector<edge> prev(n, {-1, -1});\n\n    std::priority_queue<std::pair<T,\
@@ -47,13 +47,13 @@ data:
     \                dist[edge.to] = alt;\n                prev[edge.to] = {edge.from,\
     \ edge.id};\n            }\n        }\n    }\n\n    return {dist, prev};\n}\n\n\
     } // namespace shortest_path_impl\n\nusing shortest_path_impl::shortest_path;\n\
-    \n} // namespace kk2\n\n#endif // GRAPH_DIJKSTRA_HPP\n"
+    \n} // namespace kk2\n\n#endif // KK2_GRAPH_SHORTEST_PATH_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/shortest_path.hpp
   requiredBy: []
-  timestamp: '2025-01-01 22:04:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_shortest_path.test.cpp
 documentation_of: graph/shortest_path.hpp

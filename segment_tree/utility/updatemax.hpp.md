@@ -132,7 +132,7 @@ data:
     \          homomorphism::UpdateMap<S, monoid::Max<S>>,\n                     \
     \         homomorphism::UpdateComposition<S>,\n                              homomorphism::UpdateUnit<S>>;\n\
     \n} // namespace kk2\n\n\n"
-  code: "#ifndef SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\n#define SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\
+  code: "#ifndef KK2_SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\n#define KK2_SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\
     \ 1\n\n#include \"../../math/homomorphism/update.hpp\"\n#include \"../../math/monoid/max.hpp\"\
     \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing UpdateMax\
     \ = LazySegTree<monoid::Max<S>,\n                              monoid::MaxOp<S>,\n\
@@ -140,7 +140,7 @@ data:
     \     homomorphism::Update<S>,\n                              homomorphism::UpdateMap<S,\
     \ monoid::Max<S>>,\n                              homomorphism::UpdateComposition<S>,\n\
     \                              homomorphism::UpdateUnit<S>>;\n\n} // namespace\
-    \ kk2\n\n#endif // SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\n"
+    \ kk2\n\n#endif // KK2_SEGMENT_TREE_UTILITY_UPDATEMAX_HPP\n"
   dependsOn:
   - math/homomorphism/update.hpp
   - math/monoid/max.hpp
@@ -148,7 +148,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatemax.hpp
   requiredBy: []
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemax.hpp

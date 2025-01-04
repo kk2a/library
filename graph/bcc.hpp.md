@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/block_cut_tree.hpp
     title: graph/tree/block_cut_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/bcc.hpp\"\n\n\n\n#include <functional>\n#include <vector>\n\
@@ -78,7 +78,7 @@ data:
     \            if (!buf1[i]) {\n                int k = (int)res.size();\n     \
     \           res.emplace_back();\n                res[k].emplace_back(i);\n   \
     \         }\n        return res;\n    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef GRAPH_BCC_HPP\n#define GRAPH_BCC_HPP 1\n\n#include <functional>\n\
+  code: "#ifndef KK2_GRAPH_BCC_HPP\n#define KK2_GRAPH_BCC_HPP 1\n\n#include <functional>\n\
     #include <vector>\n\n#include \"lowlink.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
     \ G> struct BCC : LowLink<G> {\n    BCC(const G &g_) : LowLink<G>(g_) { init_bcc();\
     \ }\n\n    std::vector<std::vector<int>> group_e;\n    std::vector<int> comp_e;\n\
@@ -110,15 +110,15 @@ data:
     \            if (!buf1[i]) {\n                int k = (int)res.size();\n     \
     \           res.emplace_back();\n                res[k].emplace_back(i);\n   \
     \         }\n        return res;\n    }\n};\n\n} // namespace kk2\n\n#endif //\
-    \ GRAPH_BCC_HPP\n"
+    \ KK2_GRAPH_BCC_HPP\n"
   dependsOn:
   - graph/lowlink.hpp
   isVerificationFile: false
   path: graph/bcc.hpp
   requiredBy:
   - graph/tree/block_cut_tree.hpp
-  timestamp: '2025-01-01 03:50:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp

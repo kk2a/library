@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/prefix_sum.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -30,7 +30,7 @@ data:
     \ (ok - ng > 1) {\n            int mid = (ok + ng) >> 1;\n            if (acc[mid]\
     \ - acc[l] < x) ng = mid;\n            else ok = mid;\n        }\n        return\
     \ ok;\n    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef DATA_STRUCTURE_PREFIX_SUM_HPP\n#define DATA_STRUCTURE_PREFIX_SUM_HPP\
+  code: "#ifndef KK2_DATA_STRUCTURE_PREFIX_SUM_HPP\n#define KK2_DATA_STRUCTURE_PREFIX_SUM_HPP\
     \ 1\n\n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <vector>\n\
     \nnamespace kk2 {\n\ntemplate <class T> struct PrefixSum {\n    std::vector<T>\
     \ acc;\n    int n;\n\n    constexpr PrefixSum() = default;\n\n    constexpr PrefixSum(const\
@@ -48,13 +48,13 @@ data:
     \ T x) const {\n        assert(0 <= l && l <= n);\n        int ng = l - 1, ok\
     \ = n;\n        while (ok - ng > 1) {\n            int mid = (ok + ng) >> 1;\n\
     \            if (acc[mid] - acc[l] < x) ng = mid;\n            else ok = mid;\n\
-    \        }\n        return ok;\n    }\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_PREFIX_SUM_HPP\n"
+    \        }\n        return ok;\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_PREFIX_SUM_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/prefix_sum.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:18:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_range_sum.test.cpp
 documentation_of: data_structure/prefix_sum.hpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -15,33 +15,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -55,40 +55,40 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef GRAPH_GRAPH_TEMPLATE_HPP\n#define GRAPH_GRAPH_TEMPLATE_HPP 1\n\n\
-    #include <cassert>\n#include <type_traits>\n#include <utility>\n#include <vector>\n\
-    \n#include \"../type_traits/type_traits.hpp\"\n#include \"edge.hpp\"\n\nnamespace\
-    \ kk2 {\n\nnamespace graph {\n\ntemplate <class T, bool is_directed> struct AdjacencyList\
-    \ {\n    using value_type = T;\n    using edge_type = _Edge<T>;\n    using edge_container\
-    \ = _Edges<T>;\n\n    using directed = std::integral_constant<bool, is_directed>;\n\
-    \    using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;\n\
-    \    using adjacency_list = std::true_type;\n    using adjacency_matrix = std::false_type;\n\
-    \    using static_graph = std::false_type;\n\n    AdjacencyList() = default;\n\
-    \n    AdjacencyList(int n_) : data(n_) {}\n\n    // input \u3092\u4F7F\u3046\u3053\
-    \u3068\u304C\u524D\u63D0\n    AdjacencyList(int n_, int m_) : data(n_), edges(m_)\
-    \ {}\n\n    AdjacencyList(int n_, const _Edges<T> &edges_) : data(n_), edges(edges_)\
-    \ {\n        for (auto &&e : edges) {\n            data[e.from].emplace_back(e);\n\
-    \            if constexpr (!is_directed) {\n                if (e.from != e.to)\
-    \ data[e.to].emplace_back(e.rev());\n            }\n        }\n    }\n\n    std::vector<_Edges<T>>\
-    \ data;\n    _Edges<T> edges;\n\n    int num_vertices() const { return data.size();\
-    \ }\n\n    int size() const { return data.size(); }\n\n    int num_edges() const\
-    \ { return edges.size(); }\n\n    _Edges<T> &operator[](int k) { return data[k];\
-    \ }\n\n    const _Edges<T> &operator[](int k) const { return data[k]; }\n\n  \
-    \  template <class IStream, is_istream_t<IStream> * = nullptr>\n    AdjacencyList\
-    \ &input(IStream &is, bool oneindexed = false) {\n        for (int i = 0; i <\
-    \ num_edges(); i++) {\n            int u, v;\n            T w{};\n           \
-    \ is >> u >> v;\n            if constexpr (!std::is_same_v<T, empty>) is >> w;\n\
-    \            if (oneindexed) --u, --v;\n            _add_edge<true>(u, v, w, i);\n\
-    \        }\n        return *this;\n    }\n\n    void edge_clear() {\n        for\
-    \ (auto &v : data) v.clear();\n        edges.clear();\n    }\n\n    void add_edge(int\
-    \ from, int to, T cost = T{}) { _add_edge<false>(from, to, cost, num_edges());\
-    \ }\n\n    void add_vertex(int n = 1) { data.insert(data.end(), n, _Edges<T>());\
-    \ }\n\n  private:\n    template <bool update = false> void _add_edge(int from,\
-    \ int to, T cost, int id) {\n        data[from].emplace_back(to, cost, from, id);\n\
-    \        if constexpr (!is_directed) {\n            if (from != to) data[to].emplace_back(from,\
-    \ cost, to, id);\n        }\n        if constexpr (update) edges[id] = _Edge<T>(to,\
-    \ cost, from, id);\n        else edges.emplace_back(to, cost, from, id);\n   \
-    \ }\n\n  public:\n    AdjacencyList reverse() const {\n        AdjacencyList res(num_vertices(),\
+  code: "#ifndef KK2_GRAPH_GRAPH_HPP\n#define KK2_GRAPH_GRAPH_HPP 1\n\n#include <cassert>\n\
+    #include <type_traits>\n#include <utility>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
+    \n#include \"edge.hpp\"\n\nnamespace kk2 {\n\nnamespace graph {\n\ntemplate <class\
+    \ T, bool is_directed> struct AdjacencyList {\n    using value_type = T;\n   \
+    \ using edge_type = _Edge<T>;\n    using edge_container = _Edges<T>;\n\n    using\
+    \ directed = std::integral_constant<bool, is_directed>;\n    using weighted =\
+    \ std::integral_constant<bool, !std::is_same_v<T, empty>>;\n    using adjacency_list\
+    \ = std::true_type;\n    using adjacency_matrix = std::false_type;\n    using\
+    \ static_graph = std::false_type;\n\n    AdjacencyList() = default;\n\n    AdjacencyList(int\
+    \ n_) : data(n_) {}\n\n    // input \u3092\u4F7F\u3046\u3053\u3068\u304C\u524D\
+    \u63D0\n    AdjacencyList(int n_, int m_) : data(n_), edges(m_) {}\n\n    AdjacencyList(int\
+    \ n_, const _Edges<T> &edges_) : data(n_), edges(edges_) {\n        for (auto\
+    \ &&e : edges) {\n            data[e.from].emplace_back(e);\n            if constexpr\
+    \ (!is_directed) {\n                if (e.from != e.to) data[e.to].emplace_back(e.rev());\n\
+    \            }\n        }\n    }\n\n    std::vector<_Edges<T>> data;\n    _Edges<T>\
+    \ edges;\n\n    int num_vertices() const { return data.size(); }\n\n    int size()\
+    \ const { return data.size(); }\n\n    int num_edges() const { return edges.size();\
+    \ }\n\n    _Edges<T> &operator[](int k) { return data[k]; }\n\n    const _Edges<T>\
+    \ &operator[](int k) const { return data[k]; }\n\n    template <class IStream,\
+    \ is_istream_t<IStream> * = nullptr>\n    AdjacencyList &input(IStream &is, bool\
+    \ oneindexed = false) {\n        for (int i = 0; i < num_edges(); i++) {\n   \
+    \         int u, v;\n            T w{};\n            is >> u >> v;\n         \
+    \   if constexpr (!std::is_same_v<T, empty>) is >> w;\n            if (oneindexed)\
+    \ --u, --v;\n            _add_edge<true>(u, v, w, i);\n        }\n        return\
+    \ *this;\n    }\n\n    void edge_clear() {\n        for (auto &v : data) v.clear();\n\
+    \        edges.clear();\n    }\n\n    void add_edge(int from, int to, T cost =\
+    \ T{}) { _add_edge<false>(from, to, cost, num_edges()); }\n\n    void add_vertex(int\
+    \ n = 1) { data.insert(data.end(), n, _Edges<T>()); }\n\n  private:\n    template\
+    \ <bool update = false> void _add_edge(int from, int to, T cost, int id) {\n \
+    \       data[from].emplace_back(to, cost, from, id);\n        if constexpr (!is_directed)\
+    \ {\n            if (from != to) data[to].emplace_back(from, cost, to, id);\n\
+    \        }\n        if constexpr (update) edges[id] = _Edge<T>(to, cost, from,\
+    \ id);\n        else edges.emplace_back(to, cost, from, id);\n    }\n\n  public:\n\
+    \    AdjacencyList reverse() const {\n        AdjacencyList res(num_vertices(),\
     \ num_edges());\n        for (auto &&e : edges) { res._add_edge<true>(e.to, e.from,\
     \ e.cost, e.id); }\n        return res;\n    }\n};\n\ntemplate <class T, bool\
     \ is_directed> struct AdjacencyMatrix {\n    using value_type = T;\n    using\
@@ -133,7 +133,7 @@ data:
     \ <typename T> using WAdjMat = graph::AdjacencyMatrix<T, false>;\ntemplate <typename\
     \ T> using DWAdjMat = graph::AdjacencyMatrix<T, true>;\nusing AdjMat = graph::AdjacencyMatrix<graph::empty,\
     \ false>;\nusing DAdjMat = graph::AdjacencyMatrix<graph::empty, true>;\n\nusing\
-    \ graph::reverse;\n\n} // namespace kk2\n\n#endif // GRAPH_GRAPH_TEMPLATE_HPP\n"
+    \ graph::reverse;\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_GRAPH_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   - graph/edge.hpp
@@ -141,8 +141,8 @@ data:
   path: graph/graph.hpp
   requiredBy:
   - random/graph.hpp
-  timestamp: '2025-01-03 20:28:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp
   - verify/aoj/aoj_grl_1_c.test.cpp

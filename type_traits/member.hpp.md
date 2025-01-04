@@ -20,8 +20,8 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/member.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef TYPE_TRAITS_MEMBER_HPP\n#define TYPE_TRAITS_MEMBER_HPP 1\n\n#pragma\
-    \ once\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#define HAS_MEMBER_FUNC(member)\
+  code: "#ifndef KK2_TYPE_TRAITS_MEMBER_HPP\n#define KK2_TYPE_TRAITS_MEMBER_HPP 1\n\
+    \n#pragma once\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#define HAS_MEMBER_FUNC(member)\
     \                                                                    \\\n    template\
     \ <typename T, typename... Ts> struct has_member_func_##member##_impl {      \
     \           \\\n        template <typename U>                                \
@@ -55,13 +55,13 @@ data:
     \ <typename T>                                                               \
     \           \\\n    using not_has_member_var_##member##_t = std::enable_if_t<!has_member_var_##member<T>::value>;\n\
     \nHAS_MEMBER_FUNC(debug_output)\n\n\n#undef HAS_MEMBER_FUNC\n#undef HAS_MEMBER_VAR\n\
-    } // namespace kk2\n\n#endif // TYPE_TRAITS_MEMBER_HPP\n"
+    } // namespace kk2\n\n#endif // KK2_TYPE_TRAITS_MEMBER_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: type_traits/member.hpp
   requiredBy:
   - template/debug.hpp
-  timestamp: '2025-01-02 20:45:27+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: type_traits/member.hpp

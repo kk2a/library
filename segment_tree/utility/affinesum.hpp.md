@@ -141,7 +141,7 @@ data:
     \       homomorphism::AffineMap<S, group::Sum<S>>,\n                         \
     \     homomorphism::AffineComposition<S>,\n                              homomorphism::AffineUnit<S>>;\n\
     \n} // namespace kk2\n\n\n"
-  code: "#ifndef SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n#define SEGMENT_TREE_UTILITY_AFFINESUM_HPP\
+  code: "#ifndef KK2_SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n#define KK2_SEGMENT_TREE_UTILITY_AFFINESUM_HPP\
     \ 1\n\n#include \"../../math/group/sum.hpp\"\n#include \"../../math/homomorphism/affine.hpp\"\
     \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing AffineSum\
     \ = LazySegTree<group::Sum<S>,\n                              group::SumOp<S>,\n\
@@ -149,7 +149,7 @@ data:
     \    homomorphism::Affine<S>,\n                              homomorphism::AffineMap<S,\
     \ group::Sum<S>>,\n                              homomorphism::AffineComposition<S>,\n\
     \                              homomorphism::AffineUnit<S>>;\n\n} // namespace\
-    \ kk2\n\n#endif // SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n"
+    \ kk2\n\n#endif // KK2_SEGMENT_TREE_UTILITY_AFFINESUM_HPP\n"
   dependsOn:
   - math/group/sum.hpp
   - math/homomorphism/affine.hpp
@@ -157,7 +157,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/affinesum.hpp
   requiredBy: []
-  timestamp: '2024-10-22 04:14:31+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

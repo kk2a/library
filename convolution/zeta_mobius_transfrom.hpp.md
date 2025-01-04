@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convolution/bitand1.hpp
-    title: convolution/bitand1.hpp
-  - icon: ':heavy_check_mark:'
-    path: convolution/bitor1.hpp
-    title: convolution/bitor1.hpp
+  - icon: ':x:'
+    path: convolution/convolution_and.hpp
+    title: convolution/convolution_and.hpp
+  - icon: ':x:'
+    path: convolution/convolution_or.hpp
+    title: convolution/convolution_or.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/zeta_mobius_transfrom.hpp\"\n\n\n\n#include\
@@ -37,7 +37,7 @@ data:
     \ == n);\n    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n;\
     \ j++) {\n            if ((i & j) != 0) a[j] -= a[i ^ j];\n        }\n    }\n\
     }\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef CONVOLUTION_ZETA_MOBIUS_TRANSFORM_HPP\n#define CONVOLUTION_ZETA_MOBIUS_TRANSFORM_HPP\
+  code: "#ifndef KK2_CONVOLUTION_ZETA_MOBIUS_TRANSFORM_HPP\n#define KK2_CONVOLUTION_ZETA_MOBIUS_TRANSFORM_HPP\
     \ 1\n\n#include <cassert>\n\nnamespace kk2 {\n\ntemplate <class FPS> void superset_zeta_transform(FPS\
     \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    assert((n & -n)\
     \ == n);\n    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n;\
@@ -53,15 +53,15 @@ data:
     \ &a) {\n    int n = int(a.size());\n    if (!n) return;\n    assert((n & -n)\
     \ == n);\n    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n;\
     \ j++) {\n            if ((i & j) != 0) a[j] -= a[i ^ j];\n        }\n    }\n\
-    }\n\n} // namespace kk2\n\n#endif // CONVOLUTION_ZETA_MOBIUS_TRANSFORM_HPP\n"
+    }\n\n} // namespace kk2\n\n#endif // KK2_CONVOLUTION_ZETA_MOBIUS_TRANSFORM_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: convolution/zeta_mobius_transfrom.hpp
   requiredBy:
-  - convolution/bitor1.hpp
-  - convolution/bitand1.hpp
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - convolution/convolution_or.hpp
+  - convolution/convolution_and.hpp
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_or.test.cpp

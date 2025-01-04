@@ -39,7 +39,7 @@ data:
     \        }\n        return res;\n    }\n\n    constexpr T operator()(const std::vector<int>\
     \ &l, const std::vector<int> &r) const {\n        return sum(l, r);\n    }\n};\n\
     \n} // namespace kk2\n\n\n"
-  code: "#ifndef DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP\n#define DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP\
+  code: "#ifndef KK2_DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP\n#define KK2_DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP\
     \ 1\n\n#include <cassert>\n#include <iostream>\n#include <vector>\n\nnamespace\
     \ kk2 {\n\ntemplate <class T> struct PrefixSumArbitrary {\n  private:\n    std::vector<int>\
     \ base;\n    std::vector<T> acc;\n    int dim;\n\n    std::vector<int> inner_base;\n\
@@ -66,12 +66,12 @@ data:
     \ continue;\n            res += (__builtin_popcount(bit) & 1 ? -1 : 1) * acc[coord];\n\
     \        }\n        return res;\n    }\n\n    constexpr T operator()(const std::vector<int>\
     \ &l, const std::vector<int> &r) const {\n        return sum(l, r);\n    }\n};\n\
-    \n} // namespace kk2\n\n#endif // DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP\n"
+    \n} // namespace kk2\n\n#endif // KK2_DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/prefix_sum_arbitrary.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:18:08+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0560_2.test.cpp

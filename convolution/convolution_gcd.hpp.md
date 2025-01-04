@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"convolution/gcd1.hpp\"\n\n\n\n#include <cassert>\n\n#line\
-    \ 1 \"convolution/divisor_multiple_transform.hpp\"\n\n\n\n#line 1 \"math/Eratosthenes.hpp\"\
+  bundledCode: "#line 1 \"convolution/convolution_gcd.hpp\"\n\n\n\n#include <cassert>\n\
+    \n#line 1 \"convolution/divisor_multiple_transform.hpp\"\n\n\n\n#line 1 \"math/Eratosthenes.hpp\"\
     \n\n\n\n#include <algorithm>\n#line 6 \"math/Eratosthenes.hpp\"\n#include <utility>\n\
     #include <vector>\n\nnamespace kk2 {\n\nstruct Erato {\n    static inline std::vector<bool>\
     \ _isprime{};\n    static inline std::vector<int> _minfactor{}, _mobius{}, _primes{};\n\
@@ -72,34 +72,35 @@ data:
     \    if (!n) return;\n    n--;\n    Erato::set_upper(n);\n    for (const auto\
     \ p : Erato::primes()) {\n        if (p > n) break;\n        for (int i = n /\
     \ p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace kk2\n\n\n#line\
-    \ 7 \"convolution/gcd1.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\ntemplate <class\
-    \ FPS>\nFPS convolution_gcd(FPS &a, const FPS &b) {\n    assert(size(a) == size(b));\n\
-    \    int n = int(size(a)); // = int(size(b))\n    if (!n) return {};\n    n--;\n\
-    \    FPS c(b.begin(), b.end());\n\n    multiple_transform(a);\n    multiple_transform(c);\n\
-    \    for (int i = 1; i <= n; i++) a[i] *= c[i];\n    inverse_multiple_transform(a);\n\
-    \n    return a;\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef CONVOLUTION_GCD\n#define CONVOLUTION_GCD 1\n\n#include <cassert>\n\
-    \n#include \"divisor_multiple_transform.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\n\
-    template <class FPS>\nFPS convolution_gcd(FPS &a, const FPS &b) {\n    assert(size(a)\
+    \ 7 \"convolution/convolution_gcd.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\ntemplate\
+    \ <class FPS>\nFPS convolution_gcd(FPS &a, const FPS &b) {\n    assert(size(a)\
     \ == size(b));\n    int n = int(size(a)); // = int(size(b))\n    if (!n) return\
     \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n\n    multiple_transform(a);\n\
     \    multiple_transform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n\
     \    inverse_multiple_transform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\
-    \n#endif // CONVOLUTION_GCD\n"
+    \n\n"
+  code: "#ifndef KK2_CONVOLUTION_CONVOLUTION_GCD_HPP\n#define KK2_CONVOLUTION_CONVOLUTION_GCD_HPP\
+    \ 1\n\n#include <cassert>\n\n#include \"divisor_multiple_transform.hpp\"\n\nnamespace\
+    \ kk2 {\n\n// 1-indexed\ntemplate <class FPS>\nFPS convolution_gcd(FPS &a, const\
+    \ FPS &b) {\n    assert(size(a) == size(b));\n    int n = int(size(a)); // = int(size(b))\n\
+    \    if (!n) return {};\n    n--;\n    FPS c(b.begin(), b.end());\n\n    multiple_transform(a);\n\
+    \    multiple_transform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n\
+    \    inverse_multiple_transform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\
+    \n#endif // KK2_CONVOLUTION_CONVOLUTION_GCD_HPP\n"
   dependsOn:
   - convolution/divisor_multiple_transform.hpp
   - math/Eratosthenes.hpp
   isVerificationFile: false
-  path: convolution/gcd1.hpp
+  path: convolution/convolution_gcd.hpp
   requiredBy: []
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_gcd.test.cpp
-documentation_of: convolution/gcd1.hpp
+documentation_of: convolution/convolution_gcd.hpp
 layout: document
 redirect_from:
-- /library/convolution/gcd1.hpp
-- /library/convolution/gcd1.hpp.html
-title: convolution/gcd1.hpp
+- /library/convolution/convolution_gcd.hpp
+- /library/convolution/convolution_gcd.hpp.html
+title: convolution/convolution_gcd.hpp
 ---

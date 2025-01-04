@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   _extendedRequiredBy: []
@@ -109,10 +109,10 @@ data:
     \ i < (int)g.size(); i++) {\n            if (in[i] == -1) dfs(dfs, i, -1, 0);\n\
     \        }\n        rmq = StaticRMQ<std::pair<int, int>>(rmq_init);\n    }\n};\n\
     \n} // namespace kk2\n\n\n"
-  code: "#ifndef GRAPH_TREE_EULER_TOUR_HPP\n#define GRAPH_TREE_EULER_TOUR_HPP 1\n\n\
-    #include <algorithm>\n#include <cassert>\n#include <functional>\n#include <utility>\n\
-    #include <vector>\n\n#include \"../../data_structure/static_rmq.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <typename G> struct EulerTour {\n    static_assert(!G::directed::value,\
+  code: "#ifndef KK2_GRAPH_TREE_EULER_TOUR_HPP\n#define KK2_GRAPH_TREE_EULER_TOUR_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
+    \ <utility>\n#include <vector>\n\n#include \"../../data_structure/static_rmq.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <typename G> struct EulerTour {\n    static_assert(!G::directed::value,\
     \ \"EulerTour requires undirected graph\");\n\n    const G &g;\n    int root,\
     \ id;\n    std::vector<int> in, out, par;\n    std::vector<int> edge_in, edge_out;\n\
     \n    EulerTour(const G &g_, int root_ = 0)\n        : g(g_),\n          root(root_),\n\
@@ -142,7 +142,7 @@ data:
     \ 1, pre};\n        };\n        dfs(dfs, root, -1, 0);\n        for (int i = 0;\
     \ i < (int)g.size(); i++) {\n            if (in[i] == -1) dfs(dfs, i, -1, 0);\n\
     \        }\n        rmq = StaticRMQ<std::pair<int, int>>(rmq_init);\n    }\n};\n\
-    \n} // namespace kk2\n\n#endif // GRAPH_TREE_EULER_TOUR_HPP\n"
+    \n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_EULER_TOUR_HPP\n"
   dependsOn:
   - data_structure/static_rmq.hpp
   - math/monoid/min.hpp
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: graph/tree/euler_tour.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:03:48+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/euler_tour.hpp

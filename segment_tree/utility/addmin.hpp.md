@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/homomorphism/add.hpp
     title: math/homomorphism/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   - icon: ':heavy_check_mark:'
@@ -125,14 +125,14 @@ data:
     \                           homomorphism::AddMap<S, monoid::Min<S>>,\n       \
     \                    homomorphism::AddComposition<S>,\n                      \
     \     homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef SEGMENT_TREE_UTILITY_ADDMIN_HPP\n#define SEGMENT_TREE_UTILITY_ADDMIN_HPP\
+  code: "#ifndef KK2_SEGMENT_TREE_UTILITY_ADDMIN_HPP\n#define KK2_SEGMENT_TREE_UTILITY_ADDMIN_HPP\
     \ 1\n\n#include \"../../math/homomorphism/add.hpp\"\n#include \"../../math/monoid/min.hpp\"\
     \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddMin\
     \ = LazySegTree<monoid::Min<S>,\n                           monoid::MinOp<S>,\n\
     \                           monoid::MinUnit<S>,\n                           homomorphism::Add<S>,\n\
     \                           homomorphism::AddMap<S, monoid::Min<S>>,\n       \
     \                    homomorphism::AddComposition<S>,\n                      \
-    \     homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n#endif // SEGMENT_TREE_UTILITY_ADDMIN_HPP\n"
+    \     homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n#endif // KK2_SEGMENT_TREE_UTILITY_ADDMIN_HPP\n"
   dependsOn:
   - math/homomorphism/add.hpp
   - math/monoid/min.hpp
@@ -140,7 +140,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/addmin.hpp
   requiredBy: []
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmin.hpp

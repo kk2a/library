@@ -135,7 +135,7 @@ data:
     \                                 homomorphism::AddMap<S, monoid::MaxMinSum<S>>,\n\
     \                                 homomorphism::AddComposition<S>,\n         \
     \                        homomorphism::AddUnit<S>>;\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP\n#define SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP\
+  code: "#ifndef KK2_SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP\n#define KK2_SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP\
     \ 1\n\n#include \"../../math/homomorphism/add.hpp\"\n#include \"../../math/monoid/max_min_sum.hpp\"\
     \n#include \"../lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S>\nusing AddMaxMinSum\
     \ = LazySegTree<monoid::MaxMinSum<S>,\n                                 monoid::MaxMinSumOp<S>,\n\
@@ -143,7 +143,7 @@ data:
     \                 homomorphism::Add<S>,\n                                 homomorphism::AddMap<S,\
     \ monoid::MaxMinSum<S>>,\n                                 homomorphism::AddComposition<S>,\n\
     \                                 homomorphism::AddUnit<S>>;\n\n} // namespace\
-    \ kk2\n\n#endif // SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP\n"
+    \ kk2\n\n#endif // KK2_SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP\n"
   dependsOn:
   - math/homomorphism/add.hpp
   - math/monoid/max_min_sum.hpp
@@ -151,7 +151,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/add_max_min_sum.hpp
   requiredBy: []
-  timestamp: '2024-10-29 13:49:29+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/add_max_min_sum.hpp

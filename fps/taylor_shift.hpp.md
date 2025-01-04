@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -27,21 +27,21 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef FPS_TAYLOR_SHIFT_HPP\n#define FPS_TAYLOR_SHIFT_HPP 1\n\n#include\
-    \ <algorithm>\n\n#include \"../math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class FPS, class mint = typename FPS::value_type> FPS TaylorShift(const FPS\
-    \ &f_, mint a) {\n    FPS f(f_);\n    int n = f.size();\n    for (int i = 0; i\
-    \ < n; i++) f[i] *= Comb<mint>::fact(i);\n    f.inplace_rev();\n    FPS g(n, mint(1));\n\
-    \    for (int i = 1; i < n; i++) g[i] = g[i - 1] * a * Comb<mint>::inv(i);\n \
-    \   f = (f * g).pre(n).rev();\n    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::ifact(i);\n\
-    \    return f;\n}\n\n} // namespace kk2\n\n#endif // FPS_TAYLOR_SHIFT_HPP\n"
+  code: "#ifndef KK2_FPS_TAYLOR_SHIFT_HPP\n#define KK2_FPS_TAYLOR_SHIFT_HPP 1\n\n\
+    #include <algorithm>\n\n#include \"../math_mod/comb.hpp\"\n\nnamespace kk2 {\n\
+    \ntemplate <class FPS, class mint = typename FPS::value_type> FPS TaylorShift(const\
+    \ FPS &f_, mint a) {\n    FPS f(f_);\n    int n = f.size();\n    for (int i =\
+    \ 0; i < n; i++) f[i] *= Comb<mint>::fact(i);\n    f.inplace_rev();\n    FPS g(n,\
+    \ mint(1));\n    for (int i = 1; i < n; i++) g[i] = g[i - 1] * a * Comb<mint>::inv(i);\n\
+    \    f = (f * g).pre(n).rev();\n    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::ifact(i);\n\
+    \    return f;\n}\n\n} // namespace kk2\n\n#endif // KK2_FPS_TAYLOR_SHIFT_HPP\n"
   dependsOn:
   - math_mod/comb.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: fps/taylor_shift.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/taylor_shift.hpp

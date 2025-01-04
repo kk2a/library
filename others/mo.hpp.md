@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"others/mo.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
@@ -44,7 +44,7 @@ data:
     \ erase, erase, f);\n    }\n\n  private:\n    int n, q, word_size;\n    std::vector<int>\
     \ ord;\n    std::vector<std::pair<int, int>> queries;\n};\n\n} // namespace kk2\n\
     \n\n"
-  code: "#ifndef OTHERS_MO_HPP\n#define OTHERS_MO_HPP 1\n\n#include <algorithm>\n\
+  code: "#ifndef KK2_OTHERS_MO_HPP\n#define KK2_OTHERS_MO_HPP 1\n\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <functional>\n#include <numeric>\n\
     #include <vector>\n\nnamespace kk2 {\n\nstruct Mo {\n    Mo(int n_, int q_) :\
     \ n(n_), q(q_), ord(q) {\n        word_size = std::max<int>(1, n / std::max(1.0,\
@@ -76,13 +76,13 @@ data:
     \ I &insert, const E &erase, const F &f) {\n        calculate(insert, insert,\
     \ erase, erase, f);\n    }\n\n  private:\n    int n, q, word_size;\n    std::vector<int>\
     \ ord;\n    std::vector<std::pair<int, int>> queries;\n};\n\n} // namespace kk2\n\
-    \n#endif // OTHERS_MO_HPP\n"
+    \n#endif // KK2_OTHERS_MO_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: others/mo.hpp
   requiredBy: []
-  timestamp: '2024-10-18 23:21:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
 documentation_of: others/mo.hpp

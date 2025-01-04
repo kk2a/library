@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: convolution/butterfly.hpp
-    title: convolution/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: math_mod/butterfly.hpp
+    title: math_mod/butterfly.hpp
+  - icon: ':question:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv_arb.test.cpp
     title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -62,12 +62,13 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef FPS_ARB_HPP\n#define FPS_ARB_HPP 1\n\n#include \"../convolution/convolution_arb.hpp\"\
-    \n#include \"fps.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> void FormalPowerSeries<mint>::but()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint> void FormalPowerSeries<mint>::ibut()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint> void FormalPowerSeries<mint>::db()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint> int FormalPowerSeries<mint>::but_pr()\
-    \ {\n    return 0;\n}\n\ntemplate <class mint>\nFormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(const\
+  code: "#ifndef KK2_FPS_FPS_ARB_HPP\n#define KK2_FPS_FPS_ARB_HPP 1\n\n#include \"\
+    ../convolution/convolution_arb.hpp\"\n#include \"fps.hpp\"\n\nnamespace kk2 {\n\
+    \ntemplate <class mint> void FormalPowerSeries<mint>::but() {\n    exit(1);\n\
+    }\n\ntemplate <class mint> void FormalPowerSeries<mint>::ibut() {\n    exit(1);\n\
+    }\n\ntemplate <class mint> void FormalPowerSeries<mint>::db() {\n    exit(1);\n\
+    }\n\ntemplate <class mint> int FormalPowerSeries<mint>::but_pr() {\n    return\
+    \ 0;\n}\n\ntemplate <class mint>\nFormalPowerSeries<mint> &FormalPowerSeries<mint>::operator*=(const\
     \ FormalPowerSeries<mint> &r) {\n    if (this->empty() || r.empty()) {\n     \
     \   this->clear();\n        return *this;\n    }\n    convolution_arb(*this, r,\
     \ mint::getmod());\n    return *this;\n}\n\ntemplate <class mint> FormalPowerSeries<mint>\
@@ -80,7 +81,7 @@ data:
     \ = this->size();\n    FormalPowerSeries<mint> ret{mint(1)};\n    for (int i =\
     \ 1; i < deg; i <<= 1) {\n        ret = (ret * (pre(i << 1) + mint{1} - ret.log(i\
     \ << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n}\n\n} // namespace kk2\n\
-    \n#endif // FPS_ARB_HPP\n"
+    \n#endif // KK2_FPS_FPS_ARB_HPP\n"
   dependsOn:
   - convolution/convolution_arb.hpp
   - math_mod/garner.hpp
@@ -88,15 +89,15 @@ data:
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - convolution/convolution.hpp
-  - convolution/butterfly.hpp
+  - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - fps/fps.hpp
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp

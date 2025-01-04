@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
   - icon: ':warning:'
     path: graph/tree/euler_tour.hpp
     title: graph/tree/euler_tour.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/sparse_table.hpp\"\n\n\n\n#include <cassert>\n\
@@ -50,7 +50,7 @@ data:
     \   if (f(prod(mid, r))) right = mid;\n            else left = mid;\n        }\n\
     \        return right;\n    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>>\
     \ table;\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef DATA_STRUCTURE_SPARSE_TABLE_HPP\n#define DATA_STRUCTURE_SPARSE_TABLE_HPP\
+  code: "#ifndef KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP\n#define KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP\
     \ 1\n\n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\n// require:\
     \ op(x, x) = x for all x\ntemplate <class S, S (*op)(S, S), S (*e)()> struct SparseTable\
     \ {\n    SparseTable() = default;\n\n    SparseTable(const std::vector<S> &v)\
@@ -83,15 +83,15 @@ data:
     \ + right) >> 1;\n            if (f(prod(mid, r))) right = mid;\n            else\
     \ left = mid;\n        }\n        return right;\n    }\n\n  private:\n    int\
     \ _n, log;\n    std::vector<std::vector<S>> table;\n};\n\n} // namespace kk2\n\
-    \n#endif // DATA_STRUCTURE_SPARSE_TABLE_HPP\n"
+    \n#endif // KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/sparse_table.hpp
   requiredBy:
   - data_structure/static_rmq.hpp
   - graph/tree/euler_tour.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp
 documentation_of: data_structure/sparse_table.hpp

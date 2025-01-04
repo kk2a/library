@@ -1,47 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
     path: math/euler_phi.hpp
     title: math/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
+  - icon: ':x:'
+    path: math_mod/primitive_root_64bit.hpp
+    title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_math/primitive_root.test.cpp
+    title: verify/yosupo_math/primitive_root.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/sqrt_mod.test.cpp
     title: verify/yosupo_math/sqrt_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -55,8 +61,8 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef MODINT_MONT_ARB_HPP\n#define MODINT_MONT_ARB_HPP 1\n\n#include <cassert>\n\
-    #include <iostream>\n#include <utility>\n\n#include \"../type_traits/type_traits.hpp\"\
+  code: "#ifndef KK2_MODINT_MONT_ARB_HPP\n#define KK2_MODINT_MONT_ARB_HPP 1\n\n#include\
+    \ <cassert>\n#include <iostream>\n#include <utility>\n\n#include \"../type_traits/type_traits.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename Int, typename UInt, typename Long, typename\
     \ ULong, int id>\nstruct ArbitraryLazyMontgomeryModIntBase {\n    using mint =\
     \ ArbitraryLazyMontgomeryModIntBase;\n\n    inline static UInt mod;\n    inline\
@@ -101,7 +107,7 @@ data:
     \ =\n    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
     \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
     \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
-    \ __uint128_t, id>;\n\n} // namespace kk2\n\n#endif // MODINT_MONT_ARB_HPP\n"
+    \ __uint128_t, id>;\n\n} // namespace kk2\n\n#endif // KK2_MODINT_MONT_ARB_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -110,11 +116,13 @@ data:
   - math/is_prime.hpp
   - math/prime_factorize.hpp
   - math/euler_phi.hpp
+  - math_mod/primitive_root_64bit.hpp
   - math_mod/mod_sqrt.hpp
   - fps/fps_sqrt.hpp
-  timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/sqrt_mod.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp

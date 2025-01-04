@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -34,8 +34,8 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef MODINT_MODINT_2_61M1_HPP\n#define MODINT_MODINT_2_61M1_HPP 1\n\n\
-    #include <cassert>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace\
+  code: "#ifndef KK2_MODINT_MODINT_2_61M1_HPP\n#define KK2_MODINT_MODINT_2_61M1_HPP\
+    \ 1\n\n#include <cassert>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace\
     \ kk2 {\n\nstruct ModInt2_61m1 {\n    using mint = ModInt2_61m1;\n    using u64\
     \ = unsigned long long;\n\n    constexpr static u64 mod = (1ULL << 61) - 1;\n\n\
     \    constexpr static u64 getmod() { return mod; }\n\n    constexpr ModInt2_61m1()\
@@ -79,7 +79,7 @@ data:
     \ y) {\n        u64 xh = x >> 31, xl = x & mask31;\n        u64 yh = y >> 31,\
     \ yl = y & mask31;\n        u64 m = xh * yl + xl * yh;\n        u64 t = 2 * xh\
     \ * yh + xl * yl + (m >> 30) + ((m & mask30) << 31);\n        return chmod(t);\n\
-    \    }\n};\n\n} // namespace kk2\n\n#endif // MODINT_MODINT_2_61M1_HPP\n"
+    \    }\n};\n\n} // namespace kk2\n\n#endif // KK2_MODINT_MODINT_2_61M1_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -87,8 +87,8 @@ data:
   requiredBy:
   - random/hash.hpp
   - string/rolling_hash.hpp
-  timestamp: '2025-01-03 20:28:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp

@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_root_int_ceil.test.cpp
     title: verify/yosupo_math/kth_root_int_ceil.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/kth_root_floor.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -33,9 +33,9 @@ data:
     \ k);\n    return check(x) ? x : x + 1;\n}\n\n// return ceil(a ^ {1/k})\ntemplate\
     \ <class T, class U> uint64_t kth_root_ceil(T a, U k) {\n    return kth_root_ceil_inner((uint64_t)a,\
     \ (int)k);\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef MATH_KTH_ROOT_FLOOR_HPP\n#define MATH_KTH_ROOT_FLOOR_HPP 1\n\n#include\
-    \ <algorithm>\n#include <cmath>\n#include <cstdint>\n#include <functional>\n\n\
-    namespace kk2 {\n\nuint64_t kth_root_floor_inner(uint64_t a, int k) {\n    if\
+  code: "#ifndef KK2_MATH_KTH_ROOT_FLOOR_HPP\n#define KK2_MATH_KTH_ROOT_FLOOR_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cmath>\n#include <cstdint>\n#include <functional>\n\
+    \nnamespace kk2 {\n\nuint64_t kth_root_floor_inner(uint64_t a, int k) {\n    if\
     \ (a <= 1 || k == 1) return a;\n    if (64 <= k) return 1;\n    auto check = [&](uint64_t\
     \ x) {\n        uint64_t p = 1, q = x;\n        for (int b = k; b;) {\n      \
     \      if (b & 1) {\n                if (a / p < q) return false;\n          \
@@ -51,13 +51,13 @@ data:
     \ q *= q;\n        }\n        return p == a;\n    };\n    uint64_t x = kth_root_floor_inner(a,\
     \ k);\n    return check(x) ? x : x + 1;\n}\n\n// return ceil(a ^ {1/k})\ntemplate\
     \ <class T, class U> uint64_t kth_root_ceil(T a, U k) {\n    return kth_root_ceil_inner((uint64_t)a,\
-    \ (int)k);\n}\n\n} // namespace kk2\n\n#endif // MATH_KTH_ROOT_FLOOR_HPP\n"
+    \ (int)k);\n}\n\n} // namespace kk2\n\n#endif // KK2_MATH_KTH_ROOT_FLOOR_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/kth_root_floor.hpp
   requiredBy: []
-  timestamp: '2025-01-01 16:10:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/kth_root_int.test.cpp
   - verify/yosupo_math/kth_root_int_ceil.test.cpp

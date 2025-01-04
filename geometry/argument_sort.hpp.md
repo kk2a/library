@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/point.hpp
     title: geometry/point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -28,8 +28,8 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ geometry/point.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef GEOMETRY_ARGUMENT_SORT_HPP\n#define GEOMETRY_ARGUMENT_SORT_HPP 1\n\
-    \n#include <algorithm>\n#include <vector>\n\n#include \"point.hpp\"\n\nnamespace\
+  code: "#ifndef KK2_GEOMETRY_ARGUMENT_SORT_HPP\n#define KK2_GEOMETRY_ARGUMENT_SORT_HPP\
+    \ 1\n\n#include <algorithm>\n#include <vector>\n\n#include \"point.hpp\"\n\nnamespace\
     \ kk2 {\n\ntemplate <class T> struct ArgumentSort {\n    using point = Point<T>;\n\
     \    point O;\n\n    ArgumentSort(const point &O_ = point()) : O(O_) {}\n\n  private:\n\
     \    // p - O = (x, y)\n    // 1 : y < 0\n    // 2 : y >= 0 and x >= 0\n    //\
@@ -43,15 +43,15 @@ data:
     \    }\n\n    template <class Iterator>\n    Iterator min_up_argument(Iterator\
     \ first, Iterator last, const point &p) {\n        return std::lower_bound(\n\
     \            first, last, p, [this](auto &&a, auto &&b) -> bool { return this->cmp(a,\
-    \ b); });\n    }\n};\n\n} // namespace kk2\n\n#endif // GEOMETRY_ARGUMENT_SORT_HPP\n"
+    \ b); });\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_GEOMETRY_ARGUMENT_SORT_HPP\n"
   dependsOn:
   - geometry/point.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: geometry/argument_sort.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/arg_sort.test.cpp
 documentation_of: geometry/argument_sort.hpp

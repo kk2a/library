@@ -32,7 +32,7 @@ data:
     \ l, Update<S> r) {\n    if (l.id) return r;\n    return l;\n}\n\ntemplate <class\
     \ S> Update<S> UpdateUnit() {\n    constexpr static Update<S> e = Update<S>();\n\
     \    return e;\n}\n\n} // namespace homomorphism\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef MATH_HOMOMORPHISM_UPDATE_HPP\n#define MATH_HOMOMORPHISM_UPDATE_HPP\
+  code: "#ifndef KK2_MATH_HOMOMORPHISM_UPDATE_HPP\n#define KK2_MATH_HOMOMORPHISM_UPDATE_HPP\
     \ 1\n\n#include <iostream>\n\nnamespace kk2 {\n\nnamespace homomorphism {\n\n\
     template <class S> struct Update {\n    S a;\n    bool id;\n\n    constexpr Update()\
     \ : a(S()), id(true) {}\n\n    constexpr Update(S a_, bool id_ = false) : a(a_),\
@@ -44,7 +44,7 @@ data:
     \ Update<S> UpdateComposition(Update<S> l, Update<S> r) {\n    if (l.id) return\
     \ r;\n    return l;\n}\n\ntemplate <class S> Update<S> UpdateUnit() {\n    constexpr\
     \ static Update<S> e = Update<S>();\n    return e;\n}\n\n} // namespace homomorphism\n\
-    \n} // namespace kk2\n\n#endif // MATH_HOMOMORPHISM_UPDATE_HPP\n"
+    \n} // namespace kk2\n\n#endif // KK2_MATH_HOMOMORPHISM_UPDATE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/homomorphism/update.hpp
@@ -53,7 +53,7 @@ data:
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/update_max_min_sum.hpp
   - segment_tree/utility/updatesum.hpp
-  timestamp: '2024-10-13 03:33:25+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/homomorphism/update.hpp

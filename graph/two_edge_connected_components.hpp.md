@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/two_edge_connected_components.hpp\"\n\n\n\n#include\
@@ -59,7 +59,7 @@ data:
     \ = comp[tmp[i].from];\n            tmp[i].to = comp[tmp[i].to];\n           \
     \ tmp[i].id = i;\n        }\n        forest = G(k, tmp);\n    }\n};\n\n} // namespace\
     \ kk2\n\n\n"
-  code: "#ifndef GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\n#define GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\
+  code: "#ifndef KK2_GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\n#define KK2_GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\
     \ 1\n\n#include <vector>\n\n#include \"lowlink.hpp\"\n\nnamespace kk2 {\n\ntemplate\
     \ <class G> struct TwoEdgeConnectedComponents : LowLink<G> {\n    TwoEdgeConnectedComponents(const\
     \ G &g_) : LowLink<G>(g_) { init_tecc(); }\n\n    std::vector<int> comp;\n   \
@@ -76,14 +76,14 @@ data:
     \ i++) {\n            tmp[i] = this->g.edges[this->bridges[i]];\n            tmp[i].from\
     \ = comp[tmp[i].from];\n            tmp[i].to = comp[tmp[i].to];\n           \
     \ tmp[i].id = i;\n        }\n        forest = G(k, tmp);\n    }\n};\n\n} // namespace\
-    \ kk2\n\n#endif // GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\n"
+    \ kk2\n\n#endif // KK2_GRAPH_TWO_EDGE_CONNECTED_COMPONENTS_HPP\n"
   dependsOn:
   - graph/lowlink.hpp
   isVerificationFile: false
   path: graph/two_edge_connected_components.hpp
   requiredBy: []
-  timestamp: '2025-01-02 20:45:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
 documentation_of: graph/two_edge_connected_components.hpp

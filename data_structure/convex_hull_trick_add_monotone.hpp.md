@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -25,7 +25,7 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n#define DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\
+  code: "#ifndef KK2_DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n#define KK2_DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\
     \ 1\n\n#include <cmath>\n#include <deque>\n#include <iostream>\n#include <iterator>\n\
     #include <tuple>\n\n#include \"../math/frac_floor.hpp\"\n#include \"../type_traits/type_traits.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename T, bool isMin = true> struct CHTAddMonotone\
@@ -60,14 +60,14 @@ data:
     \ if (lines[mid].eval(x) >= lines[mid + 1].eval(x)) l = mid;\n            else\
     \ r = mid;\n        }\n        if constexpr (isMin) return lines[r].eval(x);\n\
     \        else return -lines[r].eval(x);\n    }\n};\n\n} // namespace kk2\n\n#endif\
-    \ // DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n"
+    \ // KK2_DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n"
   dependsOn:
   - math/frac_floor.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: data_structure/convex_hull_trick_add_monotone.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/convex_hull_trick_add_monotone.hpp

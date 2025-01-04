@@ -21,9 +21,9 @@ data:
 
 
     '
-  code: '#ifndef DATA_STRUCTURE_HASH_MAP_HPP
+  code: '#ifndef KK2_DATA_STRUCTURE_HASH_MAP_HPP
 
-    #define DATA_STRUCTURE_HASH_MAP_HPP 1
+    #define KK2_DATA_STRUCTURE_HASH_MAP_HPP 1
 
 
     namespace kk2 {
@@ -32,14 +32,14 @@ data:
     } // namespace kk2
 
 
-    #endif // DATA_STRUCTURE_HASH_MAP_HPP
+    #endif // KK2_DATA_STRUCTURE_HASH_MAP_HPP
 
     '
   dependsOn: []
   isVerificationFile: false
   path: data_structure/hash_map.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/hash_map.hpp

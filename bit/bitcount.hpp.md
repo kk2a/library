@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   - icon: ':heavy_check_mark:'
     path: data_structure/w_ary_tree.hpp
     title: data_structure/w_ary_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -46,29 +46,29 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef BIT_BITCOUNT_HPP\n#define BIT_BITCOUNT_HPP 1\n\n#include <cassert>\n\
-    \n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename\
-    \ T> int ctz(T x) {\n    static_assert(is_integral<T>::value);\n    assert(x !=\
-    \ T(0));\n\n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n\
-    \    } else if constexpr (sizeof(T) <= 8) {\n        return __builtin_ctzll(x);\n\
-    \    } else {\n        if (x & 0xffffffffffffffff)\n            return __builtin_ctzll((unsigned\
-    \ long long)(x & 0xffffffffffffffff));\n        return 64 + __builtin_ctzll((unsigned\
-    \ long long)(x >> 64));\n    }\n}\n\ntemplate <typename T> int lsb(T x) {\n  \
-    \  static_assert(is_integral<T>::value);\n    assert(x != T(0));\n\n    return\
-    \ ctz(x);\n}\n\ntemplate <typename T> int clz(T x) {\n    static_assert(is_integral<T>::value);\n\
+  code: "#ifndef KK2_BIT_BITCOUNT_HPP\n#define KK2_BIT_BITCOUNT_HPP 1\n\n#include\
+    \ <cassert>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\
+    \ntemplate <typename T> int ctz(T x) {\n    static_assert(is_integral<T>::value);\n\
     \    assert(x != T(0));\n\n    if constexpr (sizeof(T) <= 4) {\n        return\
-    \ __builtin_clz(x);\n    } else if constexpr (sizeof(T) <= 8) {\n        return\
-    \ __builtin_clzll(x);\n    } else {\n        if (x >> 64) return __builtin_clzll((unsigned\
-    \ long long)(x >> 64));\n        return 64 + __builtin_clzll((unsigned long long)(x\
-    \ & 0xffffffffffffffff));\n    }\n}\n\ntemplate <typename T> int msb(T x) {\n\
-    \    static_assert(is_integral<T>::value);\n    assert(x != T(0));\n\n    return\
-    \ sizeof(T) * 8 - 1 - clz(x);\n}\n\ntemplate <typename T> int popcount(T x) {\n\
-    \    static_assert(is_integral<T>::value);\n\n    if constexpr (sizeof(T) <= 4)\
-    \ {\n        return __builtin_popcount(x);\n    } else if constexpr (sizeof(T)\
-    \ <= 8) {\n        return __builtin_popcountll(x);\n    } else {\n        return\
-    \ __builtin_popcountll((unsigned long long)(x >> 64))\n               + __builtin_popcountll((unsigned\
-    \ long long)(x & 0xffffffffffffffff));\n    }\n}\n\n}; // namespace kk2\n\n#endif\
-    \ // BIT_BITCOUNT_HPP\n"
+    \ __builtin_ctz(x);\n    } else if constexpr (sizeof(T) <= 8) {\n        return\
+    \ __builtin_ctzll(x);\n    } else {\n        if (x & 0xffffffffffffffff)\n   \
+    \         return __builtin_ctzll((unsigned long long)(x & 0xffffffffffffffff));\n\
+    \        return 64 + __builtin_ctzll((unsigned long long)(x >> 64));\n    }\n\
+    }\n\ntemplate <typename T> int lsb(T x) {\n    static_assert(is_integral<T>::value);\n\
+    \    assert(x != T(0));\n\n    return ctz(x);\n}\n\ntemplate <typename T> int\
+    \ clz(T x) {\n    static_assert(is_integral<T>::value);\n    assert(x != T(0));\n\
+    \n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_clz(x);\n    }\
+    \ else if constexpr (sizeof(T) <= 8) {\n        return __builtin_clzll(x);\n \
+    \   } else {\n        if (x >> 64) return __builtin_clzll((unsigned long long)(x\
+    \ >> 64));\n        return 64 + __builtin_clzll((unsigned long long)(x & 0xffffffffffffffff));\n\
+    \    }\n}\n\ntemplate <typename T> int msb(T x) {\n    static_assert(is_integral<T>::value);\n\
+    \    assert(x != T(0));\n\n    return sizeof(T) * 8 - 1 - clz(x);\n}\n\ntemplate\
+    \ <typename T> int popcount(T x) {\n    static_assert(is_integral<T>::value);\n\
+    \n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_popcount(x);\n\
+    \    } else if constexpr (sizeof(T) <= 8) {\n        return __builtin_popcountll(x);\n\
+    \    } else {\n        return __builtin_popcountll((unsigned long long)(x >> 64))\n\
+    \               + __builtin_popcountll((unsigned long long)(x & 0xffffffffffffffff));\n\
+    \    }\n}\n\n}; // namespace kk2\n\n#endif // KK2_BIT_BITCOUNT_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -77,8 +77,8 @@ data:
   - matrix/matrix_F2.hpp
   - data_structure/w_ary_tree.hpp
   - data_structure/my_bitset.hpp
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp

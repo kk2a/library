@@ -18,9 +18,9 @@ data:
     struct SegTreeBeats {\n\n\n\n};\n\n} // namespace kk2\n\n\n#line 5 \"segment_tree/beats_utility.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace beats_utility {\n\n// hogehoge\n\n} // namespace\
     \ beats_utility\n\n} // namespace kk2\n\n\n"
-  code: '#ifndef SEGMENT_TREE_BEATS_UTILITY_HPP
+  code: '#ifndef KK2_SEGMENT_TREE_BEATS_UTILITY_HPP
 
-    #define SEGMENT_TREE_BEATS_UTILITY_HPP 1
+    #define KK2_SEGMENT_TREE_BEATS_UTILITY_HPP 1
 
 
     #include "beats.hpp"
@@ -41,7 +41,7 @@ data:
     } // namespace kk2
 
 
-    #endif // SEGMENT_TREE_BEATS_UTILITY_HPP
+    #endif // KK2_SEGMENT_TREE_BEATS_UTILITY_HPP
 
     '
   dependsOn:
@@ -49,7 +49,7 @@ data:
   isVerificationFile: false
   path: segment_tree/beats_utility.hpp
   requiredBy: []
-  timestamp: '2024-09-25 18:22:31+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/beats_utility.hpp

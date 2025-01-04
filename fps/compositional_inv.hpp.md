@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/power_projection.hpp
     title: fps/power_projection.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/compositional_inv.hpp\"\n\n\n\n#include <cassert>\n\n\
@@ -75,7 +75,7 @@ data:
     \ = 1; k <= n; k++) h[k] /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n \
     \   FPS g = (h.log() * mint(-n).inv()).exp();\n    g *= f[1].inv();\n    return\
     \ (g << 1).pre(deg);\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef FPS_COMPOSITION_INVERSION_HPP\n#define FPS_COMPOSITION_INVERSION_HPP\
+  code: "#ifndef KK2_FPS_COMPOSITIONAL_INV_HPP\n#define KK2_FPS_COMPOSITIONAL_INV_HPP\
     \ 1\n\n#include <cassert>\n\n#include \"power_projection.hpp\"\n\nnamespace kk2\
     \ {\n\n// calculate f ^ {-1} (X)  mod X ^ deg\ntemplate <class FPS, class mint\
     \ = typename FPS::value_type>\nFPS compositional_inv(const FPS &f, int deg = -1)\
@@ -84,14 +84,14 @@ data:
     \ n = deg - 1;\n    FPS h = power_projection(f) * n;\n\n    for (int k = 1; k\
     \ <= n; k++) h[k] /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n    FPS g\
     \ = (h.log() * mint(-n).inv()).exp();\n    g *= f[1].inv();\n    return (g <<\
-    \ 1).pre(deg);\n}\n\n} // namespace kk2\n\n#endif // FPS_COMPOSITION_INVERSION_HPP\n"
+    \ 1).pre(deg);\n}\n\n} // namespace kk2\n\n#endif // KK2_FPS_COMPOSITIONAL_INV_HPP\n"
   dependsOn:
   - fps/power_projection.hpp
   isVerificationFile: false
   path: fps/compositional_inv.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/fps_composition_inv.test.cpp
 documentation_of: fps/compositional_inv.hpp

@@ -77,9 +77,9 @@ data:
     \  }\n};\n\n} // namespace kk2\n\n\n#line 6 \"segment_tree/utility/maxseg2d.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class S> using MaxSeg2D = SegTree2D<monoid::Max<S>,\
     \ monoid::MaxOp<S>, monoid::MaxUnit<S>>;\n\n} // namespace kk2\n\n\n"
-  code: '#ifndef SEGMENT_TREE_UTILITY_MAXSEG2D_HPP
+  code: '#ifndef KK2_SEGMENT_TREE_UTILITY_MAXSEG2D_HPP
 
-    #define SEGMENT_TREE_UTILITY_MAXSEG2D_HPP 1
+    #define KK2_SEGMENT_TREE_UTILITY_MAXSEG2D_HPP 1
 
 
     #include "../../math/monoid/max.hpp"
@@ -97,7 +97,7 @@ data:
     } // namespace kk2
 
 
-    #endif // SEGMENT_TREE_UTILITY_MAXSEG2D_HPP
+    #endif // KK2_SEGMENT_TREE_UTILITY_MAXSEG2D_HPP
 
     '
   dependsOn:
@@ -106,7 +106,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/maxseg2d.hpp
   requiredBy: []
-  timestamp: '2024-11-22 18:09:17+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/maxseg2d.hpp

@@ -6,18 +6,18 @@ data:
     path: graph/tree/auxiliary_tree.hpp
     title: graph/tree/auxiliary_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca_static.test.cpp
     title: verify/yosupo_graph/tree_lca_static.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n\n#include\
@@ -70,7 +70,7 @@ data:
     \  if (head[u] == head[v]) return {std::make_pair(in[u] + 1, in[v])};\n      \
     \  auto res = descend(u, par[head[v]]);\n        res.emplace_back(in[head[v]],\
     \ in[v]);\n        return res;\n    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n#define GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\
+  code: "#ifndef KK2_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n#define KK2_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\
     \ 1\n\n#include <cassert>\n#include <functional>\n#include <utility>\n#include\
     \ <vector>\n\nnamespace kk2 {\n\ntemplate <typename G> struct HeavyLightDecomposition\
     \ {\n    static_assert(!G::directed::value, \"HeavyLightDecomposition requires\
@@ -119,14 +119,14 @@ data:
     \ v]\n    std::vector<std::pair<int, int>> descend(int u, int v) const {\n   \
     \     if (u == v) return {};\n        if (head[u] == head[v]) return {std::make_pair(in[u]\
     \ + 1, in[v])};\n        auto res = descend(u, par[head[v]]);\n        res.emplace_back(in[head[v]],\
-    \ in[v]);\n        return res;\n    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n"
+    \ in[v]);\n        return res;\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/tree/heavy_light_decomposition.hpp
   requiredBy:
   - graph/tree/auxiliary_tree.hpp
-  timestamp: '2025-01-01 22:04:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp

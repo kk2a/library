@@ -56,12 +56,12 @@ data:
     \ j2 >>= 1) {\n            if (j1 & 1) res = op(res, d[i][j1++]);\n          \
     \  if (j2 & 1) res = op(d[i][--j2], res);\n        }\n        return res;\n  \
     \  }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef SEGMENT_TREE_SEG_2D_HPP\n#define SEGMENT_TREE_SEG_2D_HPP 1\n\n#include\
-    \ <cassert>\n#include <vector>\n\nnamespace kk2 {\n\n// commutative monoid\ntemplate\
-    \ <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {\n    SegTree2D() = default;\n\
-    \n    SegTree2D(int h_, int w_) : _h(h_), _w(w_) {\n        size_h = size_w =\
-    \ 1;\n        while (size_h < _h) size_h <<= 1;\n        while (size_w < _w) size_w\
-    \ <<= 1;\n        d = std::vector<std::vector<S>>(size_h * 2, std::vector<S>(size_w\
+  code: "#ifndef KK2_SEGMENT_TREE_SEG2D_HPP\n#define KK2_SEGMENT_TREE_SEG2D_HPP 1\n\
+    \n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\n// commutative monoid\n\
+    template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {\n    SegTree2D()\
+    \ = default;\n\n    SegTree2D(int h_, int w_) : _h(h_), _w(w_) {\n        size_h\
+    \ = size_w = 1;\n        while (size_h < _h) size_h <<= 1;\n        while (size_w\
+    \ < _w) size_w <<= 1;\n        d = std::vector<std::vector<S>>(size_h * 2, std::vector<S>(size_w\
     \ * 2, e()));\n    }\n\n    template <class... Args>\n    SegTree2D(int h_, int\
     \ w_, Args... args)\n        : SegTree2D(std::vector<std::vector<S>>(h_, std::vector<S>(w_,\
     \ S(args...)))) {}\n\n    SegTree2D(const std::vector<std::vector<S>> &v) : _h(int(v.size())),\
@@ -94,7 +94,7 @@ data:
     \ i, int j1, int j2) {\n        S res = e();\n        for (; j1 < j2; j1 >>= 1,\
     \ j2 >>= 1) {\n            if (j1 & 1) res = op(res, d[i][j1++]);\n          \
     \  if (j2 & 1) res = op(d[i][--j2], res);\n        }\n        return res;\n  \
-    \  }\n};\n\n} // namespace kk2\n\n#endif // SEGMENT_TREE_SEG_2D_HPP\n"
+    \  }\n};\n\n} // namespace kk2\n\n#endif // KK2_SEGMENT_TREE_SEG2D_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: segment_tree/seg2d.hpp
@@ -102,7 +102,7 @@ data:
   - segment_tree/utility/sumseg2d.hpp
   - segment_tree/utility/minseg2d.hpp
   - segment_tree/utility/maxseg2d.hpp
-  timestamp: '2024-11-22 18:09:17+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/seg2d.hpp

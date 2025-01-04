@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/maxflow.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -68,15 +68,15 @@ data:
     \ std::vector<edge> get_edges() {\n        std::vector<edge> result(m);\n    \
     \    for (int i = 0; i < m; i++) { result[i] = get_edge(i); }\n        return\
     \ result;\n    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef GRAPH_MAXFLOW_HPP\n#define GRAPH_MAXFLOW_HPP 1\n\n#include <algorithm>\n\
-    #include <cassert>\n#include <functional>\n#include <limits>\n#include <numeric>\n\
-    #include <queue>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class WG>\
-    \ struct MaxFlow {\n    static_assert(WG::directed::value, \"MaxFlow requires\
-    \ directed graph\");\n    static_assert(WG::weighted::value, \"MaxFlow requires\
-    \ weighted graph\");\n\n    using Cap = typename WG::value_type;\n\n    WG g;\n\
-    \    int n, m;\n    std::vector<int> revi;\n\n    MaxFlow(const WG &g_) : n(g_.num_vertices()),\
-    \ m(g_.num_edges()) {\n        if constexpr (WG::static_graph::value) {\n    \
-    \        g = WG(n);\n            for (auto &&e : g_.edges) g.add_edge(e.from,\
+  code: "#ifndef KK2_GRAPH_MAXFLOW_HPP\n#define KK2_GRAPH_MAXFLOW_HPP 1\n\n#include\
+    \ <algorithm>\n#include <cassert>\n#include <functional>\n#include <limits>\n\
+    #include <numeric>\n#include <queue>\n#include <vector>\n\nnamespace kk2 {\n\n\
+    template <class WG> struct MaxFlow {\n    static_assert(WG::directed::value, \"\
+    MaxFlow requires directed graph\");\n    static_assert(WG::weighted::value, \"\
+    MaxFlow requires weighted graph\");\n\n    using Cap = typename WG::value_type;\n\
+    \n    WG g;\n    int n, m;\n    std::vector<int> revi;\n\n    MaxFlow(const WG\
+    \ &g_) : n(g_.num_vertices()), m(g_.num_edges()) {\n        if constexpr (WG::static_graph::value)\
+    \ {\n            g = WG(n);\n            for (auto &&e : g_.edges) g.add_edge(e.from,\
     \ e.to, e.cost);\n            for (auto &&e : g_.edges) g.add_edge(e.to, e.from,\
     \ 0);\n            g.build();\n        } else {\n            g = g_;\n       \
     \     for (auto &&e : g_.edges) g.add_edge(e.to, e.from, 0);\n        }\n    \
@@ -124,13 +124,13 @@ data:
     \ e.to, e.cost + g[e.to][revi[i]].cost, g[e.to][revi[i]].cost};\n    }\n\n   \
     \ std::vector<edge> get_edges() {\n        std::vector<edge> result(m);\n    \
     \    for (int i = 0; i < m; i++) { result[i] = get_edge(i); }\n        return\
-    \ result;\n    }\n};\n\n} // namespace kk2\n\n#endif // GRAPH_MAXFLOW_HPP\n"
+    \ result;\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_MAXFLOW_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/maxflow.hpp
   requiredBy: []
-  timestamp: '2025-01-03 20:28:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_matching_bipartite.test.cpp
 documentation_of: graph/maxflow.hpp

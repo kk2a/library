@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -39,17 +39,17 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef TEMPLATE_PROCON_HPP\n#define TEMPLATE_PROCON_HPP 1\n\n#include <algorithm>\n\
-    #include <array>\n#include <bitset>\n#include <cassert>\n// #include <chrono>\n\
-    // #include <cmath>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
-    #include <iostream>\n#include <iomanip>\n#include <iterator>\n#include <map>\n\
-    #include <numeric>\n#include <optional>\n#include <queue>\n#include <set>\n#include\
-    \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n#include \"type_alias.hpp\"\n#include\
-    \ \"constant.hpp\"\n#include \"function_util.hpp\"\n#include \"macros.hpp\"\n\
-    #include \"io_util.hpp\"\n\nstruct FastIOSetUp {\n    FastIOSetUp() {\n      \
-    \  std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);  \n    }\n\
-    } fast_io_set_up;\nauto &kin = std::cin;\nauto &kout = std::cout;\nauto (*kendl)(std::ostream\
+  code: "#ifndef KK2_TEMPLATE_PROCON_HPP\n#define KK2_TEMPLATE_PROCON_HPP 1\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n// #include\
+    \ <chrono>\n// #include <cmath>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <iostream>\n#include <iomanip>\n#include <iterator>\n\
+    #include <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n#include\
+    \ <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n#include\
+    \ <unordered_set>\n#include <utility>\n#include <vector>\n\n#include \"type_alias.hpp\"\
+    \n#include \"constant.hpp\"\n#include \"function_util.hpp\"\n#include \"macros.hpp\"\
+    \n#include \"io_util.hpp\"\n\nstruct FastIOSetUp {\n    FastIOSetUp() {\n    \
+    \    std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);  \n   \
+    \ }\n} fast_io_set_up;\nauto &kin = std::cin;\nauto &kout = std::cout;\nauto (*kendl)(std::ostream\
     \ &) = std::endl<char, std::char_traits<char>>;\n\nvoid Yes(bool b = 1) {\n  \
     \  kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n    kout\
     \ << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    kout << (b\
@@ -70,7 +70,7 @@ data:
     \    if (x == 0) return os << '0';\n    if (x < 0) {\n        os << '-';\n   \
     \     x = -x;\n    }\n    std::string s;\n    while (x) {\n        s.push_back('0'\
     \ + x % 10);\n        x /= 10;\n    }\n    std::reverse(s.begin(), s.end());\n\
-    \    return os << s;\n}\n\n#endif // TEMPLATE_PROCON_HPP\n"
+    \    return os << s;\n}\n\n#endif // KK2_TEMPLATE_PROCON_HPP\n"
   dependsOn:
   - template/type_alias.hpp
   - template/constant.hpp
@@ -81,7 +81,7 @@ data:
   isVerificationFile: false
   path: template/procon.hpp
   requiredBy: []
-  timestamp: '2024-12-28 13:04:26+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/procon.hpp

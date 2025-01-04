@@ -21,9 +21,9 @@ data:
 
 
     '
-  code: '#ifndef SEGMENT_TREE_DUAL_SEG_HPP
+  code: '#ifndef KK2_SEGMENT_TREE_DUAL_SEG_HPP
 
-    #define SEGMENT_TREE_DUAL_SEG_HPP 1
+    #define KK2_SEGMENT_TREE_DUAL_SEG_HPP 1
 
 
     namespace kk2 {
@@ -32,14 +32,14 @@ data:
     } // namespace kk2
 
 
-    #endif // SEGMENT_TREE_DUAL_SEG_HPP
+    #endif // KK2_SEGMENT_TREE_DUAL_SEG_HPP
 
     '
   dependsOn: []
   isVerificationFile: false
   path: segment_tree/dual_seg.hpp
   requiredBy: []
-  timestamp: '2024-08-27 00:19:53+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/dual_seg.hpp

@@ -22,8 +22,8 @@ data:
     \ {\n        while (int(size(hist)) > snaps.back()) {\n            auto [i, x]\
     \ = hist.back();\n            hist.pop_back();\n            d[i] = x;\n      \
     \  }\n        snaps.pop_back();\n    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef UNIONFIND_ROLLBACK_HPP\n#define UNIONFIND_ROLLBACK_HPP 1\n\n#include\
-    \ <utility>\n#include <vector>\n\nnamespace kk2 {\n\nstruct UnionFind_rollback\
+  code: "#ifndef KK2_UNIONFIND_ROLLBACK_HPP\n#define KK2_UNIONFIND_ROLLBACK_HPP 1\n\
+    \n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\nstruct UnionFind_rollback\
     \ {\n    std::vector<int> d;\n    std::vector<std::pair<int, int>> hist;\n   \
     \ std::vector<int> snaps;\n\n    UnionFind_rollback(int n = 0) : d(n, -1) {}\n\
     \n    bool same(int x, int y) { return find(x) == find(y); }\n\n    bool unite(int\
@@ -36,12 +36,12 @@ data:
     \ {\n        while (int(size(hist)) > snaps.back()) {\n            auto [i, x]\
     \ = hist.back();\n            hist.pop_back();\n            d[i] = x;\n      \
     \  }\n        snaps.pop_back();\n    }\n};\n\n} // namespace kk2\n\n#endif //\
-    \ UNIONFIND_ROLLBACK_HPP\n"
+    \ KK2_UNIONFIND_ROLLBACK_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: unionfind/rollback.hpp
   requiredBy: []
-  timestamp: '2024-10-11 22:57:20+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: unionfind/rollback.hpp

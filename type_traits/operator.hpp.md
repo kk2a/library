@@ -17,8 +17,8 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/operator.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef TYPE_TRAITS_OPERATOR_HPP\n#define TYPE_TRAITS_OPERATOR_HPP 1\n\n\
-    #pragma once\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#define HAS_BINARY_OP(op,\
+  code: "#ifndef KK2_TYPE_TRAITS_OPERATOR_HPP\n#define KK2_TYPE_TRAITS_OPERATOR_HPP\
+    \ 1\n\n#pragma once\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#define HAS_BINARY_OP(op,\
     \ op_name)                                                                 \\\n\
     \    template <typename LHS, typename RHS> struct has_binary_op_##op_name##_impl\
     \ {                  \\\n        template <typename LHS2, typename RHS2>     \
@@ -53,12 +53,12 @@ data:
     \ logical_or)\n\nHAS_BINARY_OP(==, equal_to)\nHAS_BINARY_OP(!=, not_equal_to)\n\
     HAS_BINARY_OP(<, less)\nHAS_BINARY_OP(>, greater)\nHAS_BINARY_OP(<=, less_equal)\n\
     HAS_BINARY_OP(>=, greater_equal)\n#undef HAS_BINARY_OP\n#undef HAS_UNARY_OP\n\
-    } // namespace kk2\n\n#endif // TYPE_TRAITS_OPERATOR_HPP\n"
+    } // namespace kk2\n\n#endif // KK2_TYPE_TRAITS_OPERATOR_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: type_traits/operator.hpp
   requiredBy: []
-  timestamp: '2025-01-02 20:45:27+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: type_traits/operator.hpp

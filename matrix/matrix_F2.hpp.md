@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -40,8 +40,8 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef MATRIX_MATRIX_F2_HPP\n#define MATRIX_MATRIX_F2_HPP 1\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <iostream>\n#include <optional>\n\
+  code: "#ifndef KK2_MATRIX_MATRIX_F2_HPP\n#define KK2_MATRIX_MATRIX_F2_HPP 1\n\n\
+    #include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <optional>\n\
     #include <string>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
     \n#include \"../data_structure/my_bitset.hpp\"\n\nnamespace kk2 {\n\nstruct MatrixF2\
     \ {\n    using mat = MatrixF2;\n    int _h, _w;\n    std::vector<DynamicBitSet>\
@@ -191,11 +191,11 @@ data:
     \ j = 0; j < _h; j++) {\n                if (j == i) continue;\n             \
     \   if (buf[j][i]) {\n                    buf[j] ^= buf[i];\n                \
     \    res[j] ^= res[i];\n                }\n            }\n        }\n        return\
-    \ mat(res);\n    }\n\n    mat transpose() {\n        mat res(_w, _h);\n      \
-    \  for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\
-    \ res[j][i] = _mat[i][j]; }\n        }\n        return res;\n    }\n\n    mat\
+    \ mat(res);\n    }\n\n    mat transpose() const {\n        mat res(_w, _h);\n\
+    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
+    \ { res[j][i] = _mat[i][j]; }\n        }\n        return res;\n    }\n\n    mat\
     \ &inplace_transpose() {\n        return *this = transpose();\n    }\n};\n\n}\
-    \ // namespace kk2\n\n#endif // MATRIX_MATRIX_F2_HPP\n"
+    \ // namespace kk2\n\n#endif // KK2_MATRIX_MATRIX_F2_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   - data_structure/my_bitset.hpp
@@ -203,8 +203,8 @@ data:
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2025-01-02 03:12:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp

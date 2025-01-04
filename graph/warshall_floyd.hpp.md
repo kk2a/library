@@ -35,8 +35,8 @@ data:
     \ = true;\n                }\n            }\n        }\n    }\n\n    return res;\n\
     }\n\n} // namespace shortest_path_impl\n\nusing shortest_path_impl::warshall_froyd;\n\
     \n} // namespace kk2\n\n\n"
-  code: "#ifndef GRAPH_WARSHALL_FLOYD_HPP\n#define GRAPH_WARSHALL_FLOYD_HPP 1\n\n\
-    #include <algorithm>\n#include <cassert>\n#include <limits>\n#include <vector>\n\
+  code: "#ifndef KK2_GRAPH_WARSHALL_FLOYD_HPP\n#define KK2_GRAPH_WARSHALL_FLOYD_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <vector>\n\
     \nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\ntemplate <typename T> struct\
     \ edge {\n    T len;\n    bool is_valid;\n};\n\ntemplate <typename WG, typename\
     \ T = typename WG::value_type>\nstd::vector<std::vector<edge<T>>> warshall_froyd(const\
@@ -59,12 +59,12 @@ data:
     \                res[i][j].is_valid = true;\n                }\n            }\n\
     \        }\n    }\n\n    return res;\n}\n\n} // namespace shortest_path_impl\n\
     \nusing shortest_path_impl::warshall_froyd;\n\n} // namespace kk2\n\n#endif //\
-    \ GRAPH_WARSHALL_FLOYD_HPP\n"
+    \ KK2_GRAPH_WARSHALL_FLOYD_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/warshall_floyd.hpp
   requiredBy: []
-  timestamp: '2025-01-01 22:04:22+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp

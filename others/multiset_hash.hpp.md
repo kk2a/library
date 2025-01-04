@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"others/multisethash.hpp\"\n\n\n\n#include <algorithm>\n\
+  bundledCode: "#line 1 \"others/multiset_hash.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <array>\n#include <ctime>\n#include <iostream>\n#include <random>\n#include\
     \ <unordered_map>\n\nnamespace kk2 {\n\ntemplate <typename T> struct MultiSetHash\
     \ {\n    constexpr static int b = 5;\n    constexpr static int modp[b] = {998244353,\
@@ -50,8 +50,8 @@ data:
     \ std::unordered_map<T, typename MultiSetHash<T>::Hashs> MultiSetHash<T>::base;\n\
     \ntemplate <typename T> std::mt19937_64 MultiSetHash<T>::rng(time(0));\n\n} //\
     \ namespace kk2\n\n\n"
-  code: "#ifndef OTHERS_MULTISET_HASH_HPP\n#define OTHERS_MULTISET_HASH_HPP 1\n\n\
-    #include <algorithm>\n#include <array>\n#include <ctime>\n#include <iostream>\n\
+  code: "#ifndef KK2_OTHERS_MULTISET_HASH_HPP\n#define KK2_OTHERS_MULTISET_HASH_HPP\
+    \ 1\n\n#include <algorithm>\n#include <array>\n#include <ctime>\n#include <iostream>\n\
     #include <random>\n#include <unordered_map>\n\nnamespace kk2 {\n\ntemplate <typename\
     \ T> struct MultiSetHash {\n    constexpr static int b = 5;\n    constexpr static\
     \ int modp[b] = {998244353, 1000000007, 1000000009, 1000000021, 1000000033};\n\
@@ -91,18 +91,18 @@ data:
     \        os << \"\\n\";\n        return os;\n    }\n};\n\ntemplate <typename T>\
     \ std::unordered_map<T, typename MultiSetHash<T>::Hashs> MultiSetHash<T>::base;\n\
     \ntemplate <typename T> std::mt19937_64 MultiSetHash<T>::rng(time(0));\n\n} //\
-    \ namespace kk2\n\n#endif // OTHERS_MULTISET_HASH_HPP\n"
+    \ namespace kk2\n\n#endif // KK2_OTHERS_MULTISET_HASH_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: others/multisethash.hpp
+  path: others/multiset_hash.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: others/multisethash.hpp
+documentation_of: others/multiset_hash.hpp
 layout: document
 redirect_from:
-- /library/others/multisethash.hpp
-- /library/others/multisethash.hpp.html
-title: others/multisethash.hpp
+- /library/others/multiset_hash.hpp
+- /library/others/multiset_hash.hpp.html
+title: others/multiset_hash.hpp
 ---

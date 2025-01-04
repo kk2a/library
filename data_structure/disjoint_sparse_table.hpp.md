@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/disjoint_sparse_table.hpp\"\n\n\n\n#include\
@@ -30,7 +30,7 @@ data:
     \        --r;\n        int pos = 31 ^ __builtin_clz(l ^ r);\n        return op(table[pos][l],\
     \ table[pos][r]);\n    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>>\
     \ table;\n    std::vector<int> lookup;\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n#define DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\
+  code: "#ifndef KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n#define KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\nnamespace\
     \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable\
     \ {\n    DisjointSparseTable() = default;\n\n    DisjointSparseTable(const std::vector<S>\
@@ -49,13 +49,13 @@ data:
     \        if (l + 1 == r) return table[0][l];\n        --r;\n        int pos =\
     \ 31 ^ __builtin_clz(l ^ r);\n        return op(table[pos][l], table[pos][r]);\n\
     \    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>> table;\n\
-    \    std::vector<int> lookup;\n};\n\n} // namespace kk2\n\n#endif // DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n"
+    \    std::vector<int> lookup;\n};\n\n} // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/disjoint_sparse_table.hpp
   requiredBy: []
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
 documentation_of: data_structure/disjoint_sparse_table.hpp

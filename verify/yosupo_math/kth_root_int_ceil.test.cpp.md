@@ -1,41 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/kth_root_floor.hpp
     title: math/kth_root_floor.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/pow.hpp
-    title: math/pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
@@ -57,15 +54,13 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\n\n\
-    #include \"../../math/kth_root_floor.hpp\"\n#include \"../../math/pow.hpp\"\n\
-    #include \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n\
-    \    int t;\n    kin >> t;\n    rep (t) {\n        u64 a, k;\n        kin >> a\
-    \ >> k;\n        u64 cl = kk2::kth_root_ceil(a, k), fr = kk2::kth_root_floor(a,\
-    \ k);\n        if (fr < cl) --cl;\n        kout << cl << \"\\n\";\n    }\n\n \
-    \   return 0;\n}\n"
+    #include \"../../math/kth_root_floor.hpp\"\n#include \"../../template/template.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t)\
+    \ {\n        u64 a, k;\n        kin >> a >> k;\n        u64 cl = kk2::kth_root_ceil(a,\
+    \ k), fr = kk2::kth_root_floor(a, k);\n        if (fr < cl) --cl;\n        kout\
+    \ << cl << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - math/kth_root_floor.hpp
-  - math/pow.hpp
   - template/template.hpp
   - template/fastio.hpp
   - type_traits/type_traits.hpp
@@ -77,8 +72,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/kth_root_int_ceil.test.cpp
   requiredBy: []
-  timestamp: '2025-01-01 16:10:59+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/kth_root_int_ceil.test.cpp
 layout: document

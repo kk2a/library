@@ -1,23 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/euler_phi.hpp
     title: math/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
+  - icon: ':x:'
+    path: math_mod/primitive_root_64bit.hpp
+    title: math_mod/primitive_root_64bit.hpp
+  - icon: ':x:'
+    path: math_mod/primitive_root_64bit.hpp
+    title: math_mod/primitive_root_64bit.hpp
   - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   _extendedVerifiedWith:
@@ -27,15 +33,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_math/primitive_root.test.cpp
+    title: verify/yosupo_math/primitive_root.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/primitive_root.test.cpp
+    title: verify/yosupo_math/primitive_root.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
@@ -76,7 +88,7 @@ data:
     \ - l);\n    std::iota(res.begin(), res.end(), T(l));\n    shuffle(res.begin(),\
     \ res.end());\n    res.resize(k);\n    return res;\n}\n\n} // namespace random\n\
     \n} // namespace kk2\n\n\n"
-  code: "#ifndef RANDOM_GEN_HPP\n#define RANDOM_GEN_HPP 1\n\n#include <algorithm>\n\
+  code: "#ifndef KK2_RANDOM_GEN_HPP\n#define KK2_RANDOM_GEN_HPP 1\n\n#include <algorithm>\n\
     #include <cassert>\n#include <numeric>\n#include <unordered_set>\n#include <vector>\n\
     \n#include \"seed.hpp\"\n\nnamespace kk2 {\n\nnamespace random {\n\nusing i64\
     \ = long long;\nusing u64 = unsigned long long;\n\nu64 xorshift128plus(u64 &x,\
@@ -104,7 +116,7 @@ data:
     \ < r and k <= r - l);\n    std::vector<T> res(r - l);\n    std::iota(res.begin(),\
     \ res.end(), T(l));\n    shuffle(res.begin(), res.end());\n    res.resize(k);\n\
     \    return res;\n}\n\n} // namespace random\n\n} // namespace kk2\n\n#endif //\
-    \ RANDOM_GEN_HPP\n"
+    \ KK2_RANDOM_GEN_HPP\n"
   dependsOn:
   - random/seed.hpp
   isVerificationFile: false
@@ -115,9 +127,13 @@ data:
   - math/prime_factorize.hpp
   - math/euler_phi.hpp
   - string/rolling_hash.hpp
-  timestamp: '2024-10-06 23:46:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - math_mod/primitive_root_64bit.hpp
+  - math_mod/primitive_root_64bit.hpp
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_math/primitive_root.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp

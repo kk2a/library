@@ -102,7 +102,7 @@ data:
     \      for (int i = 0; i < (n + 63) >> 6; i++) {\n            if (block[i]) return\
     \ true;\n        }\n        return false;\n    }\n};\n\n} // namespace kk2\n\n\
     \n"
-  code: "#ifndef DATA_STRUCTURE_MY_BITSET_OLD_HPP\n#define DATA_STRUCTURE_MY_BITSET_OLD_HPP\
+  code: "#ifndef KK2_DATA_STRUCTURE_MY_BITSET_OLD_HPP\n#define KK2_DATA_STRUCTURE_MY_BITSET_OLD_HPP\
     \ 1\n\nnamespace kk2 {\n\n// old version\nstruct DynamicBitSet {\n    using T\
     \ = DynamicBitSet;\n    using u64 = uint64_t;\n    int n;\n    vector<u64> block;\n\
     \n    DynamicBitSet(int n_ = 0, int x = 0) : n(n_) {\n        assert(x == 0 ||\
@@ -195,12 +195,12 @@ data:
     \      return os << bs.to_string();\n    }\n\n    operator bool() const {\n  \
     \      for (int i = 0; i < (n + 63) >> 6; i++) {\n            if (block[i]) return\
     \ true;\n        }\n        return false;\n    }\n};\n\n} // namespace kk2\n\n\
-    #endif // DATA_STRUCTURE_MY_BITSET_OLD_HPP\n"
+    #endif // KK2_DATA_STRUCTURE_MY_BITSET_OLD_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/my_bitset_old.hpp
   requiredBy: []
-  timestamp: '2024-10-05 17:33:01+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/my_bitset_old.hpp

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca_static.test.cpp
     title: verify/yosupo_graph/tree_lca_static.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -34,21 +34,21 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef GRAPH_STATIC_GRAPH_HPP\n#define GRAPH_STATIC_GRAPH_HPP 1\n\n#include\
-    \ <cassert>\n#include <type_traits>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
-    \n#include \"edge.hpp\"\n\nnamespace kk2 {\n\nnamespace graph {\n\ntemplate <class\
-    \ T, bool is_directed> struct StaticAdjacencyList {\n    using value_type = T;\n\
-    \    using edge_type = _Edge<T>;\n    using edge_container = _Edges<T>;\n\n  \
-    \  using directed = std::integral_constant<bool, is_directed>;\n    using weighted\
-    \ = std::integral_constant<bool, !std::is_same_v<T, empty>>;\n    using adjacency_list\
-    \ = std::true_type;\n    using adjacency_matrix = std::false_type;\n    using\
-    \ static_graph = std::true_type;\n\n    StaticAdjacencyList() = default;\n\n \
-    \   StaticAdjacencyList(int n_) : head(n_) {}\n\n    StaticAdjacencyList(int n_,\
-    \ int m_) : head(n_), edges(m_) {}\n\n    StaticAdjacencyList(int n_, const _Edges<T>\
-    \ &edges_) : head(n_), edges(edges_) {\n        for (auto &&e : edges) {\n   \
-    \         head[e.from]++;\n            if constexpr (!is_directed) {\n       \
-    \         if (e.from != e.to) head[e.to]++;\n            }\n        }\n      \
-    \  build();\n    }\n\n    std::vector<int> head;\n    _Edges<T> edges, data;\n\
+  code: "#ifndef KK2_GRAPH_STATIC_GRAPH_HPP\n#define KK2_GRAPH_STATIC_GRAPH_HPP 1\n\
+    \n#include <cassert>\n#include <type_traits>\n#include <vector>\n\n#include \"\
+    ../type_traits/type_traits.hpp\"\n#include \"edge.hpp\"\n\nnamespace kk2 {\n\n\
+    namespace graph {\n\ntemplate <class T, bool is_directed> struct StaticAdjacencyList\
+    \ {\n    using value_type = T;\n    using edge_type = _Edge<T>;\n    using edge_container\
+    \ = _Edges<T>;\n\n    using directed = std::integral_constant<bool, is_directed>;\n\
+    \    using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;\n\
+    \    using adjacency_list = std::true_type;\n    using adjacency_matrix = std::false_type;\n\
+    \    using static_graph = std::true_type;\n\n    StaticAdjacencyList() = default;\n\
+    \n    StaticAdjacencyList(int n_) : head(n_) {}\n\n    StaticAdjacencyList(int\
+    \ n_, int m_) : head(n_), edges(m_) {}\n\n    StaticAdjacencyList(int n_, const\
+    \ _Edges<T> &edges_) : head(n_), edges(edges_) {\n        for (auto &&e : edges)\
+    \ {\n            head[e.from]++;\n            if constexpr (!is_directed) {\n\
+    \                if (e.from != e.to) head[e.to]++;\n            }\n        }\n\
+    \        build();\n    }\n\n    std::vector<int> head;\n    _Edges<T> edges, data;\n\
     \    bool is_built = false;\n\n    int num_vertices() const { return head.size();\
     \ }\n\n    int size() const { return head.size(); }\n\n    int num_edges() const\
     \ { return edges.size(); }\n\n    template <class It> struct Es {\n        It\
@@ -89,15 +89,15 @@ data:
     \ T> using SWAdjList = graph::StaticAdjacencyList<T, false>;\ntemplate <typename\
     \ T> using SDWAdjList = graph::StaticAdjacencyList<T, true>;\nusing SAdjList =\
     \ graph::StaticAdjacencyList<graph::empty, false>;\nusing SDAdjList = graph::StaticAdjacencyList<graph::empty,\
-    \ true>;\n\nusing graph::reverse;\n\n} // namespace kk2\n\n#endif // GRAPH_STATIC_GRAPH_HPP\n"
+    \ true>;\n\nusing graph::reverse;\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_STATIC_GRAPH_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   - graph/edge.hpp
   isVerificationFile: false
   path: graph/static_graph.hpp
   requiredBy: []
-  timestamp: '2025-01-03 20:28:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/tree_lca_static.test.cpp

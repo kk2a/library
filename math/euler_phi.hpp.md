@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -43,12 +43,12 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef MATH_EULER_PHI_HPP\n#define MATH_EULER_PHI_HPP 1\n\n#include <cassert>\n\
-    \n#include \"../type_traits/type_traits.hpp\"\n#include \"prime_factorize.hpp\"\
+  code: "#ifndef KK2_MATH_EULER_PHI_HPP\n#define KK2_MATH_EULER_PHI_HPP 1\n\n#include\
+    \ <cassert>\n\n#include \"../type_traits/type_traits.hpp\"\n#include \"prime_factorize.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class T, is_integral_t<T> * = nullptr> T euler_phi(T\
     \ n) {\n    assert(n > 0);\n    for (auto [p, k] : factorize(static_cast<long\
     \ long>(n))) n -= n / p;\n    return n;\n}\n\n} // namespace kk2\n\n#endif //\
-    \ MATH_EULER_PHI_HPP\n"
+    \ KK2_MATH_EULER_PHI_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   - math/prime_factorize.hpp
@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: math/euler_phi.hpp
   requiredBy: []
-  timestamp: '2025-01-01 03:50:53+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_ntl_1_d.test.cpp

@@ -36,7 +36,7 @@ data:
     }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<homomorphism::Affine<S>>>\
     \ GetVecAffine2D(int h, int w, Args... args) {\n    return std::vector<std::vector<homomorphism::Affine<S>>>(h,\
     \ GetVecAffine<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef MATH_HOMOMORPHISM_AFFINE_HPP\n#define MATH_HOMOMORPHISM_AFFINE_HPP\
+  code: "#ifndef KK2_MATH_HOMOMORPHISM_AFFINE_HPP\n#define KK2_MATH_HOMOMORPHISM_AFFINE_HPP\
     \ 1\n\n#include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
     \ homomorphism {\n\ntemplate <class S> struct Affine {\n    S a, b; // x \\mapsto\
     \ ax + b\n    constexpr Affine() : a(1), b(0) {};\n\n    constexpr Affine(S a,\
@@ -54,13 +54,13 @@ data:
     \ n, Args... args) {\n    return std::vector<homomorphism::Affine<S>>(n, homomorphism::Affine<S>(args...));\n\
     }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<homomorphism::Affine<S>>>\
     \ GetVecAffine2D(int h, int w, Args... args) {\n    return std::vector<std::vector<homomorphism::Affine<S>>>(h,\
-    \ GetVecAffine<S>(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_HOMOMORPHISM_AFFINE_HPP\n"
+    \ GetVecAffine<S>(w, args...));\n}\n\n} // namespace kk2\n\n#endif // KK2_MATH_HOMOMORPHISM_AFFINE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/homomorphism/affine.hpp
   requiredBy:
   - segment_tree/utility/affinesum.hpp
-  timestamp: '2024-10-14 15:56:50+09:00'
+  timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

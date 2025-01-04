@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/sample_point_shift.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -37,7 +37,7 @@ data:
     \    for (int i = 0; i < m; i++) {\n        ret[i] = cur * dh[k + i];\n      \
     \  cur *= t + i + 1;\n        cur *= h[i];\n    }\n    return ret;\n}\n\n} //\
     \ namespace kk2\n\n\n"
-  code: "#ifndef FPS__SAMPLE_POINT_SHIFT_HPP\n#define FPS__SAMPLE_POINT_SHIFT_HPP\
+  code: "#ifndef KK2_FPS_SAMPLE_POINT_SHIFT_HPP\n#define KK2_FPS_SAMPLE_POINT_SHIFT_HPP\
     \ 1\n\n#include <algorithm>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
     \ <class FPS, class mint = typename FPS::value_type>\nstd::vector<mint> SamplePointShift(std::vector<mint>\
     \ &y, mint t, int m = -1) {\n    if (m == -1) m = y.size();\n    long long tval\
@@ -59,14 +59,14 @@ data:
     \ ret(m);\n    mint cur = t;\n    for (int i = 1; i <= k; i++) cur *= t - i;\n\
     \    for (int i = 0; i < m; i++) {\n        ret[i] = cur * dh[k + i];\n      \
     \  cur *= t + i + 1;\n        cur *= h[i];\n    }\n    return ret;\n}\n\n} //\
-    \ namespace kk2\n\n#endif // FPS__SAMPLE_POINT_SHIFT_HPP\n"
+    \ namespace kk2\n\n#endif // KK2_FPS_SAMPLE_POINT_SHIFT_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/sample_point_shift.hpp
   requiredBy:
   - math_mod/comb_large.hpp
-  timestamp: '2024-12-25 14:58:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
 documentation_of: fps/sample_point_shift.hpp

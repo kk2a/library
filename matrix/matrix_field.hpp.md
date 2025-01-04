@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -12,24 +12,24 @@ data:
     path: matrix/frobenius_form.hpp
     title: matrix/frobenius_form.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -43,9 +43,9 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef MATRIX_MATRIX_FIELD_HPP\n#define MATRIX_MATRIX_FIELD_HPP 1\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <iostream>\n#include <optional>\n\
-    #include <string>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
+  code: "#ifndef KK2_MATRIX_MATRIX_FIELD_HPP\n#define KK2_MATRIX_MATRIX_FIELD_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include\
+    \ <optional>\n#include <string>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class Field> struct MatrixField {\n    using\
     \ value_type = Field;\n    using mat = MatrixField;\n    int _h, _w;\n    std::vector<std::vector<Field>>\
     \ _mat;\n\n    MatrixField() : MatrixField(0) {}\n\n    MatrixField(int n) : MatrixField(n,\
@@ -178,7 +178,7 @@ data:
     \ { return mat(lhs) *= rhs; }\n\n    friend bool operator==(const mat &lhs, const\
     \ mat &rhs) { return lhs._mat == rhs._mat; }\n\n    friend bool operator!=(const\
     \ mat &lhs, const mat &rhs) { return lhs._mat != rhs._mat; }\n};\n\n} // namespace\
-    \ kk2\n\n#endif // MATRIX_MATRIX_FIELD_HPP\n"
+    \ kk2\n\n#endif // KK2_MATRIX_MATRIX_FIELD_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
@@ -186,8 +186,8 @@ data:
   requiredBy:
   - matrix/frobenius_form.hpp
   - matrix/basis.hpp
-  timestamp: '2024-12-28 13:04:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_inv.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp

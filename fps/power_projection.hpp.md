@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/compositional_inv.hpp
     title: fps/compositional_inv.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/power_projection.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -66,10 +66,10 @@ data:
     \    t.ibut();\n    t[0] -= 1;\n    if (f[0] == mint(0)) return s.rev().pre(m\
     \ + 1);\n    return (s.rev() * (t + (FPS{1} << k)).rev().inv(m + 1)).pre(m + 1);\n\
     }\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef POWER_PROJECTION_HPP\n#define POWER_PROJECTION_HPP 1\n\n#include\
-    \ <algorithm>\n#include <functional>\n#include <vector>\n\nnamespace kk2 {\n\n\
-    // n = \\deg f\n// [X ^ n] f(X) ^ i g(X)  enumerate for i = 0, ... , m\ntemplate\
-    \ <class FPS, class mint = typename FPS::value_type>\nFPS power_projection(const\
+  code: "#ifndef KK2_FPS_POWER_PROJECTION_HPP\n#define KK2_FPS_POWER_PROJECTION_HPP\
+    \ 1\n\n#include <algorithm>\n#include <functional>\n#include <vector>\n\nnamespace\
+    \ kk2 {\n\n// n = \\deg f\n// [X ^ n] f(X) ^ i g(X)  enumerate for i = 0, ...\
+    \ , m\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS power_projection(const\
     \ FPS &f, const FPS &g = {1}, int m = -1) {\n    if (f.empty() || g.empty()) return\
     \ {};\n    int n = int(size(f)) - 1, k = 1;\n    if (m == -1) m = n;\n    int\
     \ h = 1;\n    while (h < n + 1) h <<= 1;\n    FPS p((n + 1) * k), q((n + 1) *\
@@ -118,14 +118,14 @@ data:
     \ std::begin(p) + k);\n    FPS t(std::begin(q), std::begin(q) + k);\n    s.ibut();\n\
     \    t.ibut();\n    t[0] -= 1;\n    if (f[0] == mint(0)) return s.rev().pre(m\
     \ + 1);\n    return (s.rev() * (t + (FPS{1} << k)).rev().inv(m + 1)).pre(m + 1);\n\
-    }\n\n} // namespace kk2\n\n#endif // POWER_PROJECTION_HPP\n"
+    }\n\n} // namespace kk2\n\n#endif // KK2_FPS_POWER_PROJECTION_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: fps/power_projection.hpp
   requiredBy:
   - fps/compositional_inv.hpp
-  timestamp: '2024-09-29 19:28:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/fps_composition_inv.test.cpp
 documentation_of: fps/power_projection.hpp

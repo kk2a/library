@@ -1,38 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/euler_phi.hpp
     title: math/euler_phi.hpp
+  - icon: ':x:'
+    path: math_mod/primitive_root_64bit.hpp
+    title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: verify/yosupo_math/primitive_root.test.cpp
+    title: verify/yosupo_math/primitive_root.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -48,7 +54,7 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef MATH_PRIME_FACTRIZATION_HPP\n#define MATH_PRIME_FACTRIZATION_HPP\
+  code: "#ifndef KK2_MATH_PRIME_FACTORIZE_HPP\n#define KK2_MATH_PRIME_FACTORIZE_HPP\
     \ 1\n\n#include <algorithm>\n#include <map>\n#include <numeric>\n#include <utility>\n\
     #include <vector>\n\n#include \"../math_mod/pow_mod.hpp\"\n#include \"../modint/mont_arb.hpp\"\
     \n#include \"../random/gen.hpp\"\n#include \"is_prime.hpp\"\n\nnamespace kk2 {\n\
@@ -88,7 +94,7 @@ data:
     \            for (int j = 0; j < sz; j++) { res.emplace_back(res[j] * x); }\n\
     \        }\n    }\n    std::sort(res.begin(), res.end());\n    return res;\n}\n\
     \n} // namespace number_theory\n\nusing number_theory::divisors;\nusing number_theory::factorize;\n\
-    using number_theory::factorize_map;\n\n} // namespace kk2\n\n\n#endif // MATH_PRIME_FACTRIZATION_HPP\n"
+    using number_theory::factorize_map;\n\n} // namespace kk2\n\n\n#endif // KK2_MATH_PRIME_FACTORIZE_HPP\n"
   dependsOn:
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
@@ -100,9 +106,11 @@ data:
   path: math/prime_factorize.hpp
   requiredBy:
   - math/euler_phi.hpp
-  timestamp: '2025-01-01 03:50:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - math_mod/primitive_root_64bit.hpp
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/prime_factorize.hpp

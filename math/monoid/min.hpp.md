@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
   - icon: ':warning:'
@@ -21,12 +21,12 @@ data:
     path: segment_tree/utility/updatemin.hpp
     title: segment_tree/utility/updatemin.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/monoid/min.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -52,29 +52,29 @@ data:
     }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
     \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
     \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef MATH_MONOID_MIN_HPP\n#define MATH_MONOID_MIN_HPP 1\n\n#include <algorithm>\n\
-    #include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid\
-    \ {\n\ntemplate <class S> struct Min {\n    S a;\n    bool inf;\n\n    constexpr\
-    \ Min() : a(S()), inf(true) {}\n\n    constexpr Min(S a_, bool inf_ = false) :\
-    \ a(a_), inf(inf_) {}\n\n    operator S() const { return a; }\n\n    template\
-    \ <class OStream>\n    friend OStream &operator<<(OStream &os, const Min &min)\
-    \ {\n        if (min.inf) os << \"inf\";\n        else os << min.a;\n        return\
-    \ os;\n    }\n\n    template <class IStream>\n    friend IStream &operator>>(IStream\
-    \ &is, Min &min) {\n        is >> min.a;\n        min.inf = false;\n        return\
-    \ is;\n    }\n\n    constexpr Min &operator=(const S &rhs) {\n        a = rhs;\n\
-    \        inf = false;\n        return *this;\n    }\n\n    constexpr Min &add(const\
-    \ S &rhs) {\n        if (inf) return *this;\n        a += rhs;\n        return\
-    \ *this;\n    }\n\n    constexpr Min &update(const S &rhs) {\n        a = rhs;\n\
-    \        inf = false;\n        return *this;\n    }\n\n    constexpr bool is_inf()\
-    \ { return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
-    \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
-    \ r.a);\n    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr\
-    \ static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args>\nstd::vector<monoid::Min<S>> GetVecMin(int n, Args...\
-    \ args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
+  code: "#ifndef KK2_MATH_MONOID_MIN_HPP\n#define KK2_MATH_MONOID_MIN_HPP 1\n\n#include\
+    \ <algorithm>\n#include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
+    \ monoid {\n\ntemplate <class S> struct Min {\n    S a;\n    bool inf;\n\n   \
+    \ constexpr Min() : a(S()), inf(true) {}\n\n    constexpr Min(S a_, bool inf_\
+    \ = false) : a(a_), inf(inf_) {}\n\n    operator S() const { return a; }\n\n \
+    \   template <class OStream>\n    friend OStream &operator<<(OStream &os, const\
+    \ Min &min) {\n        if (min.inf) os << \"inf\";\n        else os << min.a;\n\
+    \        return os;\n    }\n\n    template <class IStream>\n    friend IStream\
+    \ &operator>>(IStream &is, Min &min) {\n        is >> min.a;\n        min.inf\
+    \ = false;\n        return is;\n    }\n\n    constexpr Min &operator=(const S\
+    \ &rhs) {\n        a = rhs;\n        inf = false;\n        return *this;\n   \
+    \ }\n\n    constexpr Min &add(const S &rhs) {\n        if (inf) return *this;\n\
+    \        a += rhs;\n        return *this;\n    }\n\n    constexpr Min &update(const\
+    \ S &rhs) {\n        a = rhs;\n        inf = false;\n        return *this;\n \
+    \   }\n\n    constexpr bool is_inf() { return inf; }\n};\n\ntemplate <class S>\
+    \ constexpr Min<S> MinOp(Min<S> l, Min<S> r) {\n    if (r.inf) return l;\n   \
+    \ if (l.inf) return r;\n    l.a = std::min(l.a, r.a);\n    return l;\n}\n\ntemplate\
+    \ <class S> Min<S> MinUnit() {\n    constexpr static Min<S> e = Min<S>();\n  \
+    \  return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
+    std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
+    \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
     \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
-    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MIN_HPP\n"
+    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_MIN_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: math/monoid/min.hpp
@@ -85,8 +85,8 @@ data:
   - segment_tree/utility/addmin.hpp
   - segment_tree/utility/minseg2d.hpp
   - segment_tree/utility/minseg.hpp
-  timestamp: '2024-10-13 03:33:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-05 04:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp
 documentation_of: math/monoid/min.hpp
