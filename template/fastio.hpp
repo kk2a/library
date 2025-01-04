@@ -32,7 +32,7 @@ struct Scanner : type_traits::istream_tag {
 
     char now() {
         if (pos == end) {
-            while (!(end = fread(buf, 1, INPUT_BUF, fp))) {}
+            end = fread(buf, 1, INPUT_BUF, fp);
             if (end != INPUT_BUF) buf[end] = '\0';
             pos = 0;
         }
