@@ -1,27 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':question:'
-    path: fps/fps.hpp
-    title: fps/fps.hpp
-  - icon: ':question:'
-    path: fps/ntt_friendly.hpp
-    title: fps/ntt_friendly.hpp
-  - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: modint/mont.hpp
-    title: modint/mont.hpp
+  - icon: ':x:'
+    path: others/longest_increasing_subsequence.hpp
+    title: others/longest_increasing_subsequence.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -53,9 +35,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
     links:
-    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
+    - https://judge.yosupo.jp/problem/longest_increasing_subsequence
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -67,42 +49,36 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
-    \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
-    \ = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n    kin\
-    \ >> n;\n    FPS f(n);\n    f.input(kin).inv().output(kout);\n\n    return 0;\n\
-    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
+    \ \n\n#include \"../../others/longest_increasing_subsequence.hpp\"\n#include \"\
+    ../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int n;\n\
+    \    kin >> n;\n    vc<int> a(n);\n    kin >> a;\n    auto res = kk2::longest_increasing_subsequence(a);\n\
+    \    kout << res.size() << \"\\n\";\n    kout << res << \"\\n\";\n\n    return\
+    \ 0;\n}\n"
   dependsOn:
-  - fps/ntt_friendly.hpp
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
-  - fps/fps.hpp
-  - modint/mont.hpp
+  - others/longest_increasing_subsequence.hpp
   - template/template.hpp
   - template/fastio.hpp
+  - type_traits/type_traits.hpp
   - template/type_alias.hpp
   - template/constant.hpp
   - template/function_util.hpp
   - template/macros.hpp
   - template/io_util.hpp
   isVerificationFile: true
-  path: verify/yosupo_fps/fps_inv.test.cpp
+  path: verify/yosupo_others/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2025-01-05 07:33:23+09:00'
+  timestamp: '2025-01-05 08:24:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_fps/fps_inv.test.cpp
+documentation_of: verify/yosupo_others/longest_increasing_subsequence.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_fps/fps_inv.test.cpp
-- /verify/verify/yosupo_fps/fps_inv.test.cpp.html
-title: verify/yosupo_fps/fps_inv.test.cpp
+- /verify/verify/yosupo_others/longest_increasing_subsequence.test.cpp
+- /verify/verify/yosupo_others/longest_increasing_subsequence.test.cpp.html
+title: verify/yosupo_others/longest_increasing_subsequence.test.cpp
 ---
