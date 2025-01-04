@@ -22,7 +22,7 @@ template <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const 
     for (auto &u : v) fill_all(u, x);
 }
 
-template <class C> int size(const C &c) {
+template <class C> int mysize(const C &c) {
     return c.size();
 }
 
