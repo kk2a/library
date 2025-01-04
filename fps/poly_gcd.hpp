@@ -7,7 +7,7 @@
 
 namespace kk2 {
 
-namespace poly_gcd {
+namespace poly_gcd_impl {
 
 template <class FPS> using Vec = std::array<FPS, 2>;
 
@@ -47,7 +47,7 @@ template <class FPS> Vec<FPS> operator*(const mat_poly<FPS> &a, const Vec<FPS> &
     return {x0, x1};
 };
 
-template <class FPS> void InnerNaiveGcd(mat_poly<FPS> &a, Vec<FPS> &b) {
+template <class FPS> void inner_naive_gcd(mat_poly<FPS> &a, Vec<FPS> &b) {
     FPS quo = b[0] / b[1];
     FPS rem = b[0] - quo * b[1];
     FPS x10 = a.a00 - quo * a.a10;
@@ -62,29 +62,29 @@ template <class FPS> void InnerNaiveGcd(mat_poly<FPS> &a, Vec<FPS> &b) {
     b = {b[1], rem};
 }
 
-template <class FPS> mat_poly<FPS> InnerHalfGcd(Vec<FPS> b) {
+template <class FPS> mat_poly<FPS> inner_half_gcd(Vec<FPS> b) {
     int n = (int)b[0].size(), m = (int)b[1].size();
     int k = (n + 1) >> 1;
     if (m <= k) return mat_poly<FPS>::identity();
-    mat_poly<FPS> m1 = InnerHalfGcd(Vec<FPS>{b[0] >> k, b[1] >> k});
+    mat_poly<FPS> m1 = inner_half_gcd(Vec<FPS>{b[0] >> k, b[1] >> k});
     b = m1 * b;
     if ((int)b[1].size() <= k) return m1;
-    InnerNaiveGcd(m1, b);
+    inner_naive_gcd(m1, b);
     if ((int)b[1].size() <= k) return m1;
     int l = (int)b[0].size() - 1;
     int j = 2 * k - l;
     b[0] = b[0] >> j;
     b[1] = b[1] >> j;
-    return InnerHalfGcd(b) * m1;
+    return inner_half_gcd(b) * m1;
 }
 
-template <class FPS> mat_poly<FPS> InnerPolyGcd(const FPS &a, const FPS &b) {
+template <class FPS> mat_poly<FPS> inner_poly_gcd(const FPS &a, const FPS &b) {
     Vec<FPS> c{a, b};
     c[0].shrink();
     c[1].shrink();
     int n = (int)c[0].size(), m = (int)c[1].size();
     if (n < m) {
-        mat_poly<FPS> ret = InnerPolyGcd(c[1], c[0]);
+        mat_poly<FPS> ret = inner_poly_gcd(c[1], c[0]);
         std::swap(ret.a00, ret.a01);
         std::swap(ret.a10, ret.a11);
         return ret;
@@ -92,18 +92,18 @@ template <class FPS> mat_poly<FPS> InnerPolyGcd(const FPS &a, const FPS &b) {
 
     mat_poly<FPS> res = mat_poly<FPS>::identity();
     while (1) {
-        mat_poly<FPS> m1 = InnerHalfGcd(c);
+        mat_poly<FPS> m1 = inner_half_gcd(c);
         c = m1 * c;
         if (c[1].empty()) return m1 * res;
-        InnerNaiveGcd(m1, c);
+        inner_naive_gcd(m1, c);
         if (c[1].empty()) return m1 * res;
         res = m1 * res;
     }
 }
 
-template <class FPS> FPS PolyGcd(FPS a, FPS b) {
+template <class FPS> FPS poly_gcd(FPS a, FPS b) {
     Vec<FPS> c{a, b};
-    mat_poly<FPS> m = InnerPolyGcd(a, b);
+    mat_poly<FPS> m = inner_poly_gcd(a, b);
     c = m * c;
     if (!c[0].empty()) {
         auto coeff = c[0].back().inv();
@@ -113,20 +113,20 @@ template <class FPS> FPS PolyGcd(FPS a, FPS b) {
 }
 
 // f ^ {-1} mod g
-template <class FPS> std::pair<bool, FPS> PolyInv(const FPS &f, const FPS &g) {
+template <class FPS> std::pair<bool, FPS> poly_inv(const FPS &f, const FPS &g) {
     Vec<FPS> c{f, g};
-    mat_poly<FPS> m = InnerPolyGcd(f, g);
+    mat_poly<FPS> m = inner_poly_gcd(f, g);
     FPS gcd_ = (m * c)[0];
     if (gcd_.size() != 1) return {0, FPS()};
     Vec<FPS> x{FPS{1}, g};
     return {1, ((m * x)[0] % g) * gcd_[0].inv()};
 }
 
-} // namespace poly_gcd
+} // namespace poly_gcd_impl
 
-using poly_gcd::PolyGcd;
-using poly_gcd::PolyInv;
+using poly_gcd_impl::poly_gcd;
+using poly_gcd_impl::poly_inv;
 
 } // namespace kk2
 
-#endif // poly_gcd.hpp
+#endif // KK2_FPS_POLY_GCD_HPP

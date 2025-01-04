@@ -6,7 +6,7 @@
 
 namespace kk2 {
 
-// return f(a w ^ 0), f(a w ^ 1), ..., f(a w ^ (n - 1))
+// return f(aw^0), f(aw^1), ..., f(aw^(n - 1))
 template <class FPS, class mint = typename FPS::value_type>
 std::vector<mint> ChirpZ(const FPS &f_, mint w, int n = -1, mint a = 1) {
     FPS f(f_.begin(), f_.end());

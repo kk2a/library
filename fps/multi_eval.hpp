@@ -15,7 +15,7 @@ template <class FPS, class mint = typename FPS::value_type> struct SubProductTre
 
     SubProductTree(const std::vector<mint> &v_) : _n(int(v_.size())), v(v_) {
         size = 1;
-        while (size < (unsigned int)(_n)) size <<= 1;
+        while (size < _n) size <<= 1;
         pr.resize(size << 1);
         l.resize(size << 1, _n);
         r.resize(size << 1, _n);
@@ -55,7 +55,7 @@ template <class FPS, class mint = typename FPS::value_type> struct SubProductTre
         auto rec = [&](auto self, FPS a, int idx) -> void {
             if (l[idx] == r[idx]) return;
             a %= pr[idx];
-            if ((int)a.size() <= 64) {
+            if (a.size() <= 64u) {
                 for (int i = l[idx]; i < r[idx]; i++) { ret.push_back(a.eval(v[i])); }
                 return;
             }
@@ -68,7 +68,7 @@ template <class FPS, class mint = typename FPS::value_type> struct SubProductTre
 };
 
 template <class FPS, class mint = typename FPS::value_type>
-std::vector<mint> MultiEval(std::vector<mint> v, const FPS &f) {
+std::vector<mint> MultiEval(const std::vector<mint> &v, const FPS &f) {
     SubProductTree<FPS> mpe(v, f);
     return mpe.query();
 }

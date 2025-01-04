@@ -1,5 +1,5 @@
-#ifndef KK2_FPS_LINEAR_RECURRENCE_HPP
-#define KK2_FPS_LINEAR_RECURRENCE_HPP 1
+#ifndef KK2_FPS_BOSTAN_MORI_HPP
+#define KK2_FPS_BOSTAN_MORI_HPP 1
 
 #include <cassert>
 
@@ -14,7 +14,7 @@ FPS linear_rec(const FPS &a, const FPS &c) {
 }
 
 template <class FPS, class mint = typename FPS::value_type>
-mint BostanMori(const FPS &p, const FPS &q, long long n) {
+mint bostan_mori(const FPS &p, const FPS &q, long long n) {
     assert(!p.empty() && !q.empty());
     if (n == 0) return p[0] / q[0];
 
@@ -28,9 +28,9 @@ mint BostanMori(const FPS &p, const FPS &q, long long n) {
     FPS pp(qsz - 1), qq(qsz);
     for (int i = 0; i < qsz - 1; i++) { pp[i] = (n & 1) ? p2[2 * i + 1] : p2[2 * i]; }
     for (int i = 0; i < qsz; i++) { qq[i] = q2[2 * i]; }
-    return BostanMori(pp, qq, n >> 1);
+    return bostan_mori(pp, qq, n >> 1);
 }
 
 } // namespace kk2
 
-#endif // KK2_FPS_LINEAR_RECURRENCE_HPP
+#endif // KK2_FPS_BOSTAN_MORI_HPP

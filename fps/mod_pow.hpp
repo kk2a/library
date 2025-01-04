@@ -2,7 +2,6 @@
 #define KK2_FPS_MOD_POW_HPP 1
 
 #include <cassert>
-#include <functional>
 
 namespace kk2 {
 

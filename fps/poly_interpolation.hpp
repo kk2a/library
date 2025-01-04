@@ -10,8 +10,9 @@
 
 namespace kk2 {
 
+// return FPS f s.t. f(x[i]) = y[i] for all i
 template <class FPS, class mint = typename FPS::value_type>
-FPS PolyInterpolation(const std::vector<mint> &x, const std::vector<mint> &y) {
+FPS poly_interpolation(const std::vector<mint> &x, const std::vector<mint> &y) {
     assert(x.size() == y.size());
     SubProductTree<FPS> mpe(x);
     FPS gp = mpe.pr[1].diff();
@@ -30,10 +31,12 @@ FPS PolyInterpolation(const std::vector<mint> &x, const std::vector<mint> &y) {
     return rec(rec, 1);
 }
 
-// reference:
-// https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan
+// return FPS f s.t. f(ar^i) = y[i] for all i
 template <class FPS, class mint = typename FPS::value_type>
-FPS PolyInterpolationGeo(const mint &a, const mint &r, const std::vector<mint> &y) {
+FPS poly_interpolation_geo(const mint &a, const mint &r, const std::vector<mint> &y) {
+    // reference:
+    // https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan
+
     if (y.empty()) return {};
     if (y.size() == 1) return FPS{y[0]};
     assert(a != mint(0) && r != mint(0) && r != mint(1));

@@ -1,5 +1,5 @@
-#ifndef KK2_FPS_TO_NEWTON_BASIS_HPP
-#define KK2_FPS_TO_NEWTON_BASIS_HPP 1
+#ifndef KK2_FPS_POLY_TO_NEWTON_BASIS_HPP
+#define KK2_FPS_POLY_TO_NEWTON_BASIS_HPP 1
 
 #include <cassert>
 #include <vector>
@@ -9,7 +9,7 @@ namespace kk2 {
 // return b s.t.
 // f(X) = \sum_{i = 0} ^ {n - 1} b_i \prod_{j = 0} ^ {i - 1} (X - p_j)
 template <class FPS, class mint = typename FPS::value_type>
-std::vector<mint> convert_to_newton_basis(const FPS &f, std::vector<mint> p) {
+std::vector<mint> convert_to_newton_basis(const FPS &f, const std::vector<mint> &p) {
     int n = (int)f.size();
     assert(n == (int)p.size());
 
@@ -39,4 +39,4 @@ std::vector<mint> convert_to_newton_basis(const FPS &f, std::vector<mint> p) {
 
 } // namespace kk2
 
-#endif // KK2_FPS_TO_NEWTON_BASIS_HPP
+#endif // KK2_FPS_POLY_TO_NEWTON_BASIS_HPP

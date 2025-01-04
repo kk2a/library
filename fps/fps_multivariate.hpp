@@ -1,5 +1,5 @@
-#ifndef KK2_FPS_MULTIVARIATE_FPS_HPP
-#define KK2_FPS_MULTIVARIATE_FPS_HPP 1
+#ifndef KK2_FPS_FPS_MULTIVARIATE_HPP
+#define KK2_FPS_FPS_MULTIVARIATE_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -283,4 +283,4 @@ template <typename mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::
 
 } // namespace kk2
 
-#endif // KK2_FPS_MULTIVARIATE_FPS_HPP
+#endif // KK2_FPS_FPS_MULTIVARIATE_HPP
