@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
   - icon: ':heavy_check_mark:'
@@ -83,7 +83,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-05 07:20:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_add_range_sum.test.cpp

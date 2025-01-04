@@ -1,41 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':x:'
-    path: fps/fps.hpp
-    title: fps/fps.hpp
-  - icon: ':x:'
-    path: fps/ntt_friendly.hpp
-    title: fps/ntt_friendly.hpp
-  - icon: ':x:'
-    path: fps/sample_point_shift.hpp
-    title: fps/sample_point_shift.hpp
-  - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':x:'
-    path: math_mod/comb.hpp
-    title: math_mod/comb.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/yosupo_math/many_factrials.test.cpp
-    title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -99,23 +69,13 @@ data:
     \            for (int i = mint::getmod() - 1; i > n; i++) { den *= i; }\n    \
     \        res /= den;\n        }\n        return res;\n    }\n};\n\n} // namespace\
     \ kk2\n\n#endif // KK2_MATH_MOD_COMB_LARGE_HPP\n"
-  dependsOn:
-  - fps/ntt_friendly.hpp
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
-  - fps/fps.hpp
-  - fps/sample_point_shift.hpp
-  - math_mod/comb.hpp
+  dependsOn: []
   isVerificationFile: false
   path: math_mod/comb_large.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/yosupo_math/many_factrials.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math_mod/comb_large.hpp
 layout: document
 redirect_from:

@@ -5,16 +5,13 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: fps/taylor_shift.hpp
-    title: fps/taylor_shift.hpp
   - icon: ':x:'
-    path: math_mod/comb_large.hpp
-    title: math_mod/comb_large.hpp
+    path: fps/poly_taylor_shift.hpp
+    title: fps/poly_taylor_shift.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: verify/yosupo_math/many_factrials.test.cpp
-    title: verify/yosupo_math/many_factrials.test.cpp
+    path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    title: verify/yosupo_fps/poly_taylor_shift.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -67,12 +64,11 @@ data:
   isVerificationFile: false
   path: math_mod/comb.hpp
   requiredBy:
-  - math_mod/comb_large.hpp
-  - fps/taylor_shift.hpp
+  - fps/poly_taylor_shift.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_fps/poly_taylor_shift.test.cpp
 documentation_of: math_mod/comb.hpp
 layout: document
 redirect_from:

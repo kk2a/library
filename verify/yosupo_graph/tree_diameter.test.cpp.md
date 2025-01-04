@@ -78,7 +78,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-05 07:20:05+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_diameter.test.cpp

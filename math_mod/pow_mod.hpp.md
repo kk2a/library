@@ -18,8 +18,8 @@ data:
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
-    path: fps/multivariate_fps.hpp
-    title: fps/multivariate_fps.hpp
+    path: fps/fps_multivariate.hpp
+    title: fps/fps_multivariate.hpp
   - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
@@ -35,9 +35,6 @@ data:
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':x:'
-    path: math_mod/comb_large.hpp
-    title: math_mod/comb_large.hpp
   - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
@@ -85,8 +82,17 @@ data:
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+    title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+    title: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
+    title: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
   - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_exp.test.cpp
     title: verify/yosupo_fps/fps_sparse_exp.test.cpp
@@ -106,11 +112,32 @@ data:
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_fps/poly_division.test.cpp
+    title: verify/yosupo_fps/poly_division.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_interpolation.test.cpp
+    title: verify/yosupo_fps/poly_interpolation.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+    title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_inv.test.cpp
+    title: verify/yosupo_fps/poly_inv.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_root_finding.test.cpp
+    title: verify/yosupo_fps/poly_root_finding.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+    title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    title: verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
+    title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/many_factrials.test.cpp
-    title: verify/yosupo_math/many_factrials.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
@@ -157,10 +184,9 @@ data:
   - math_mod/primitive_root_64bit.hpp
   - math_mod/primitive_root_64bit.hpp
   - math_mod/butterfly.hpp
-  - math_mod/comb_large.hpp
   - math_mod/primitive_root.hpp
-  - fps/multivariate_fps.hpp
   - fps/ntt_friendly.hpp
+  - fps/fps_multivariate.hpp
   - fps/fps_arb.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -172,19 +198,29 @@ data:
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp
-  - verify/yosupo_math/many_factrials.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
+  - verify/yosupo_fps/poly_root_finding.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_sparse_pow.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp
+  - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/poly_interpolation.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_sparse_inv.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_sparse_exp.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/poly_division.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp

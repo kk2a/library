@@ -18,8 +18,8 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: fps/multivariate_fps.hpp
-    title: fps/multivariate_fps.hpp
+    path: fps/fps_multivariate.hpp
+    title: fps/fps_multivariate.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
@@ -75,7 +75,7 @@ data:
   isVerificationFile: false
   path: convolution/multi_convolution_truncated.hpp
   requiredBy:
-  - fps/multivariate_fps.hpp
+  - fps/fps_multivariate.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

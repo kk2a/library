@@ -5,6 +5,9 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: fps/poly_find_root.hpp
+    title: fps/poly_find_root.hpp
   - icon: ':heavy_check_mark:'
     path: math/euler_phi.hpp
     title: math/euler_phi.hpp
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_root_finding.test.cpp
+    title: verify/yosupo_fps/poly_root_finding.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
@@ -129,6 +135,7 @@ data:
   - string/rolling_hash.hpp
   - math_mod/primitive_root_64bit.hpp
   - math_mod/primitive_root_64bit.hpp
+  - fps/poly_find_root.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -138,6 +145,7 @@ data:
   - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
+  - verify/yosupo_fps/poly_root_finding.test.cpp
 documentation_of: random/gen.hpp
 layout: document
 redirect_from:

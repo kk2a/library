@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
@@ -20,7 +20,7 @@ data:
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/w_ary_tree.hpp
     title: data_structure/w_ary_tree.hpp
   - icon: ':x:'
@@ -29,18 +29,18 @@ data:
   - icon: ':x:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
+  - icon: ':warning:'
+    path: fps/fps_multivariate.hpp
+    title: fps/fps_multivariate.hpp
   - icon: ':x:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
-  - icon: ':warning:'
-    path: fps/multivariate_fps.hpp
-    title: fps/multivariate_fps.hpp
   - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':warning:'
-    path: fps/taylor_shift.hpp
-    title: fps/taylor_shift.hpp
+  - icon: ':x:'
+    path: fps/poly_taylor_shift.hpp
+    title: fps/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
@@ -87,9 +87,6 @@ data:
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
   - icon: ':x:'
-    path: math_mod/comb_large.hpp
-    title: math_mod/comb_large.hpp
-  - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -113,7 +110,7 @@ data:
   - icon: ':x:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'
@@ -177,16 +174,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,13 +192,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_subset.test.cpp
     title: verify/yosupo_convolution/convolution_subset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
@@ -216,19 +213,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - icon: ':x:'
@@ -274,8 +271,17 @@ data:
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+    title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+    title: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
+    title: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
   - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_exp.test.cpp
     title: verify/yosupo_fps/fps_sparse_exp.test.cpp
@@ -294,6 +300,30 @@ data:
   - icon: ':x:'
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_division.test.cpp
+    title: verify/yosupo_fps/poly_division.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_interpolation.test.cpp
+    title: verify/yosupo_fps/poly_interpolation.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+    title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_inv.test.cpp
+    title: verify/yosupo_fps/poly_inv.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_root_finding.test.cpp
+    title: verify/yosupo_fps/poly_root_finding.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+    title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    title: verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
+    title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
@@ -375,9 +405,6 @@ data:
   - icon: ':x:'
     path: verify/yosupo_math/kth_root_int_ceil.test.cpp
     title: verify/yosupo_math/kth_root_int_ceil.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/many_factrials.test.cpp
-    title: verify/yosupo_math/many_factrials.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
@@ -530,7 +557,6 @@ data:
   - string/rolling_hash.hpp
   - math_mod/primitive_root_64bit.hpp
   - math_mod/butterfly.hpp
-  - math_mod/comb_large.hpp
   - math_mod/primitive_root.hpp
   - math_mod/mod_sqrt.hpp
   - math_mod/comb.hpp
@@ -539,11 +565,11 @@ data:
   - graph/static_graph.hpp
   - graph/edge.hpp
   - functional/reverse_args.hpp
-  - fps/multivariate_fps.hpp
   - fps/fps_sqrt.hpp
   - fps/ntt_friendly.hpp
-  - fps/taylor_shift.hpp
   - fps/fps.hpp
+  - fps/fps_multivariate.hpp
+  - fps/poly_taylor_shift.hpp
   - fps/fps_arb.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -563,7 +589,6 @@ data:
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/kth_root_int_ceil.test.cpp
   - verify/yosupo_math/factrize.test.cpp
-  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/sum_of_floor_linear.test.cpp
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp
   - verify/yosupo_geometry/arg_sort.test.cpp
@@ -608,17 +633,28 @@ data:
   - verify/yosupo_string/string_suffix_array.test.cpp
   - verify/yosupo_string/string_z_algorithm.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
+  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
+  - verify/yosupo_fps/poly_root_finding.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_sparse_pow.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp
+  - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/poly_interpolation.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_sparse_inv.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_sparse_exp.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/poly_division.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
