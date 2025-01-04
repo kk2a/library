@@ -60,13 +60,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   - icon: ':x:'
@@ -330,27 +330,26 @@ data:
     \ pos = 0, end = 0;\n    static char buf[INPUT_BUF];\n    FILE *fp;\n\n  public:\n\
     \    Scanner() : fp(stdin) {}\n\n    Scanner(const char *file) : fp(fopen(file,\
     \ \"r\")) {}\n\n    ~Scanner() {\n        if (fp != stdin) fclose(fp);\n    }\n\
-    \n    char now() {\n        if (pos == end) {\n            while (!(end = fread(buf,\
-    \ 1, INPUT_BUF, fp))) {}\n            if (end != INPUT_BUF) buf[end] = '\\0';\n\
-    \            pos = 0;\n        }\n        return buf[pos];\n    }\n\n    void\
-    \ skip_space() {\n        while (isspace(now())) ++pos;\n    }\n\n    template\
-    \ <class T, is_unsigned_t<T> * = nullptr> T next_unsigned_integral() {\n     \
-    \   skip_space();\n        T res{};\n        while (isdigit(now())) {\n      \
-    \      res = res * 10 + (now() - '0');\n            ++pos;\n        }\n      \
-    \  return res;\n    }\n\n    template <class T, is_signed_t<T> * = nullptr> T\
-    \ next_signed_integral() {\n        skip_space();\n        if (now() == '-') {\n\
-    \            ++pos;\n            return T(-next_unsigned_integral<typename to_unsigned<T>::type>());\n\
-    \        } else return (T)next_unsigned_integral<typename to_unsigned<T>::type>();\n\
-    \    }\n\n    char next_char() {\n        skip_space();\n        auto res = now();\n\
-    \        ++pos;\n        return res;\n    }\n\n    std::string next_string() {\n\
-    \        skip_space();\n        std::string res;\n        while (true) {\n   \
-    \         char c = now();\n            if (isspace(c) or c == '\\0') break;\n\
-    \            res.push_back(now());\n            ++pos;\n        }\n        return\
-    \ res;\n    }\n\n    template <class T, is_unsigned_t<T> * = nullptr> Scanner\
-    \ &operator>>(T &x) {\n        x = next_unsigned_integral<T>();\n        return\
-    \ *this;\n    }\n\n    template <class T, is_signed_t<T> * = nullptr> Scanner\
-    \ &operator>>(T &x) {\n        x = next_signed_integral<T>();\n        return\
-    \ *this;\n    }\n\n    Scanner &operator>>(char &x) {\n        x = next_char();\n\
+    \n    char now() {\n        if (pos == end) {\n            end = fread(buf, 1,\
+    \ INPUT_BUF, fp);\n            if (end != INPUT_BUF) buf[end] = '\\0';\n     \
+    \       pos = 0;\n        }\n        return buf[pos];\n    }\n\n    void skip_space()\
+    \ {\n        while (isspace(now())) ++pos;\n    }\n\n    template <class T, is_unsigned_t<T>\
+    \ * = nullptr> T next_unsigned_integral() {\n        skip_space();\n        T\
+    \ res{};\n        while (isdigit(now())) {\n            res = res * 10 + (now()\
+    \ - '0');\n            ++pos;\n        }\n        return res;\n    }\n\n    template\
+    \ <class T, is_signed_t<T> * = nullptr> T next_signed_integral() {\n        skip_space();\n\
+    \        if (now() == '-') {\n            ++pos;\n            return T(-next_unsigned_integral<typename\
+    \ to_unsigned<T>::type>());\n        } else return (T)next_unsigned_integral<typename\
+    \ to_unsigned<T>::type>();\n    }\n\n    char next_char() {\n        skip_space();\n\
+    \        auto res = now();\n        ++pos;\n        return res;\n    }\n\n   \
+    \ std::string next_string() {\n        skip_space();\n        std::string res;\n\
+    \        while (true) {\n            char c = now();\n            if (isspace(c)\
+    \ or c == '\\0') break;\n            res.push_back(now());\n            ++pos;\n\
+    \        }\n        return res;\n    }\n\n    template <class T, is_unsigned_t<T>\
+    \ * = nullptr> Scanner &operator>>(T &x) {\n        x = next_unsigned_integral<T>();\n\
+    \        return *this;\n    }\n\n    template <class T, is_signed_t<T> * = nullptr>\
+    \ Scanner &operator>>(T &x) {\n        x = next_signed_integral<T>();\n      \
+    \  return *this;\n    }\n\n    Scanner &operator>>(char &x) {\n        x = next_char();\n\
     \        return *this;\n    }\n\n    Scanner &operator>>(std::string &x) {\n \
     \       x = next_string();\n        return *this;\n    }\n};\n\nstruct endl_struct_t\
     \ {};\n\nstruct Printer : type_traits::ostream_tag {\n  private:\n    static char\
@@ -431,7 +430,7 @@ data:
   path: template/fastio.hpp
   requiredBy:
   - template/template.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-05 07:33:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp

@@ -46,7 +46,7 @@ data:
       title: convolution/zeta_mobius_transfrom.hpp
   - name: data_structure
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
     - icon: ':question:'
@@ -155,7 +155,7 @@ data:
       title: fps/product.hpp
   - name: functional
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: functional/reverse_args.hpp
       title: functional/reverse_args.hpp
   - name: geometry
@@ -276,7 +276,7 @@ data:
       title: math/rational.hpp
   - name: math/group
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/group/sum.hpp
       title: math/group/sum.hpp
   - name: math/homomorphism
@@ -284,7 +284,7 @@ data:
     - icon: ':warning:'
       path: math/homomorphism/add.hpp
       title: math/homomorphism/add.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/homomorphism/affine.hpp
       title: math/homomorphism/affine.hpp
     - icon: ':warning:'
@@ -403,7 +403,7 @@ data:
     - icon: ':x:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp
     - icon: ':warning:'
@@ -441,7 +441,7 @@ data:
     - icon: ':warning:'
       path: segment_tree/utility/minseg2d.hpp
       title: segment_tree/utility/minseg2d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: segment_tree/utility/sumseg.hpp
       title: segment_tree/utility/sumseg.hpp
     - icon: ':warning:'
@@ -588,13 +588,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
       title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
       title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
       title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     - icon: ':x:'

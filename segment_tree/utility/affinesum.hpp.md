@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/homomorphism/affine.hpp
     title: math/homomorphism/affine.hpp
   - icon: ':x:'

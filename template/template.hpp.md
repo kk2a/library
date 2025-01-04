@@ -75,13 +75,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   - icon: ':x:'
@@ -360,7 +360,7 @@ data:
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2025-01-05 07:20:05+09:00'
+  timestamp: '2025-01-05 07:33:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_and.test.cpp
