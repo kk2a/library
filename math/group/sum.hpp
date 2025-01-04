@@ -1,5 +1,5 @@
-#ifndef MATH_GROUP_SUM_HPP
-#define MATH_GROUP_SUM_HPP 1
+#ifndef KK2_MATH_GROUP_SUM_HPP
+#define KK2_MATH_GROUP_SUM_HPP 1
 
 #include <iostream>
 #include <vector>
@@ -84,4 +84,4 @@ std::vector<std::vector<group::Sum<S>>> GetVecSum2D(int h, int w, Args... args) 
 
 } // namespace kk2
 
-#endif // MATH_GROUP_SUM_HPP
+#endif // KK2_MATH_GROUP_SUM_HPP

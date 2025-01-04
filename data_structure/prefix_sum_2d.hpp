@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_PREFIX_SUM_2D_HPP
-#define DATA_STRUCTURE_PREFIX_SUM_2D_HPP 1
+#ifndef KK2_DATA_STRUCTURE_PREFIX_SUM_2D_HPP
+#define KK2_DATA_STRUCTURE_PREFIX_SUM_2D_HPP 1
 
 #include <cassert>
 #include <vector>
@@ -50,4 +50,4 @@ template <class T> struct PrefixSum2D {
 
 } // namespace kk2
 
-#endif // DATA_STRUCTURE_PREFIX_SUM_2D_HPP
+#endif // KK2_DATA_STRUCTURE_PREFIX_SUM_2D_HPP

@@ -1,5 +1,5 @@
-#ifndef MATH_MONOID_MIN_HPP
-#define MATH_MONOID_MIN_HPP 1
+#ifndef KK2_MATH_MONOID_MIN_HPP
+#define KK2_MATH_MONOID_MIN_HPP 1
 
 #include <algorithm>
 #include <iostream>
@@ -80,4 +80,4 @@ std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int h, int w, Args... args)
 
 } // namespace kk2
 
-#endif // MATH_MONOID_MIN_HPP
+#endif // KK2_MATH_MONOID_MIN_HPP

@@ -1,5 +1,5 @@
-#ifndef CONVOLUTION_LCM
-#define CONVOLUTION_LCM 1
+#ifndef KK2_CONVOLUTION_CONVOLUTION_LCM_HPP
+#define KK2_CONVOLUTION_CONVOLUTION_LCM_HPP 1
 
 #include <cassert>
 
@@ -27,4 +27,4 @@ FPS convolution_lcm(FPS &a, const FPS &b) {
 
 } // namespace kk2
 
-#endif // CONVOLUTION_LCM
+#endif // KK2_CONVOLUTION_CONVOLUTION_LCM_HPP

@@ -1,5 +1,5 @@
-#ifndef MODINT_HPP
-#define MODINT_HPP 1
+#ifndef KK2_MODINT_MODINT_HPP
+#define KK2_MODINT_MODINT_HPP 1
 
 #include <cassert>
 #include <iostream>
@@ -163,4 +163,4 @@ using mint107 = ModInt<1000000007>;
 
 } // namespace kk2
 
-#endif // MODINT_HPP
+#endif // KK2_MODINT_MODINT_HPP

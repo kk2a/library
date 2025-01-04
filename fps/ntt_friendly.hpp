@@ -1,5 +1,5 @@
-#ifndef FPS_NTT_FRIENDLY_HPP
-#define FPS_NTT_FRIENDLY_HPP 1
+#ifndef KK2_FPS_NTT_FRIENDLY_HPP
+#define KK2_FPS_NTT_FRIENDLY_HPP 1
 
 #include "../convolution/convolution.hpp"
 #include "fps.hpp"
@@ -113,4 +113,4 @@ template <class mint> FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int d
 
 } // namespace kk2
 
-#endif // FPS_NTT_FRIENDLY_HPP
+#endif // KK2_FPS_NTT_FRIENDLY_HPP

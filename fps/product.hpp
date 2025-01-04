@@ -1,5 +1,5 @@
-#ifndef FPS_PRODUCT_HPP
-#define FPS_PRODUCT_HPP 1
+#ifndef KK2_FPS_PRODUCT_HPP
+#define KK2_FPS_PRODUCT_HPP 1
 
 #include <vector>
 
@@ -20,4 +20,4 @@ FPS inner_all_prod(const std::vector<FPS> &a, int l, int r) {
 
 } // namespace kk2
 
-#endif // FPS_PRODUCT_HPP
+#endif // KK2_FPS_PRODUCT_HPP

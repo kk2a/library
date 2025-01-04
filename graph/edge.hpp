@@ -1,5 +1,5 @@
-#ifndef GRAPH_EDGE_HPP
-#define GRAPH_EDGE_HPP 1
+#ifndef KK2_GRAPH_EDGE_HPP
+#define KK2_GRAPH_EDGE_HPP 1
 
 #include <type_traits>
 #include <vector>
@@ -105,4 +105,4 @@ using Edges = graph::_Edges<graph::empty>;
 
 } // namespace kk2
 
-#endif // GRAPH_EDGE_HPP
+#endif // KK2_GRAPH_EDGE_HPP

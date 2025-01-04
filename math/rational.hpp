@@ -1,5 +1,5 @@
-#ifndef MATH_RATIONAL_HPP
-#define MATH_RATIONAL_HPP 1
+#ifndef KK2_MATH_RATIONAL_HPP
+#define KK2_MATH_RATIONAL_HPP 1
 
 #include <numeric>
 
@@ -119,4 +119,4 @@ using RationalI64 = rational::RationalBase<long long, __int128>;
 
 } // namespace kk2
 
-#endif // MATH_RATIONAL_HPP
+#endif // KK2_MATH_RATIONAL_HPP

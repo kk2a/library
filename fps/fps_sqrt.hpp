@@ -1,5 +1,5 @@
-#ifndef FPS_SQRT_HPP
-#define FPS_SQRT_HPP 1
+#ifndef KK2_FPS_FPS_SQRT_HPP
+#define KK2_FPS_FPS_SQRT_HPP 1
 
 #include <cassert>
 
@@ -61,4 +61,4 @@ FPS sparse_sqrt(const FPS &f, int deg = -1) {
 
 } // namespace kk2
 
-#endif // FPS_SQRT_HPP
+#endif // KK2_FPS_FPS_SQRT_HPP

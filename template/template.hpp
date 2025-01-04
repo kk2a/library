@@ -1,5 +1,5 @@
-#ifndef TEMPLATE
-#define TEMPLATE 1
+#ifndef KK2_TEMPLATE_TEMPLATE_HPP
+#define KK2_TEMPLATE_TEMPLATE_HPP 1
 
 // #pragma GCC optimize("O3,unroll-loops")
 
@@ -62,4 +62,4 @@ void no(bool b = 1) {
     kout << (b ? "no\n" : "yes\n");
 }
 
-#endif // TEMPLATE
+#endif // KK2_TEMPLATE_TEMPLATE_HPP

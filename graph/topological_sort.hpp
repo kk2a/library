@@ -1,5 +1,5 @@
-#ifndef TOPOLOGICAL_SORT_HPP
-#define TOPOLOGICAL_SORT_HPP 1
+#ifndef KK2_GRAPH_TOPOLOGICAL_SORT_HPP
+#define KK2_GRAPH_TOPOLOGICAL_SORT_HPP 1
 
 #include <queue>
 #include <vector>
@@ -29,4 +29,4 @@ template <class G> std::vector<int> topological_sort(const G &graph) {
 
 } // namespace kk2
 
-#endif // TOPOLOGICAL_SORT_HPP
+#endif // KK2_GRAPH_TOPOLOGICAL_SORT_HPP

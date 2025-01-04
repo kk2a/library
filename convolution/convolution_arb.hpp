@@ -1,5 +1,5 @@
-#ifndef CONVO_ARB_HPP
-#define CONVO_ARB_HPP 1
+#ifndef KK2_CONVOLUTION_CONVOLUTION_ARB_HPP
+#define KK2_CONVOLUTION_CONVOLUTION_ARB_HPP 1
 
 #include <vector>
 
@@ -42,4 +42,4 @@ FPS convolution_arb(FPS &a, const FPS &b, long long mod) {
 
 } // namespace kk2
 
-#endif // CONVO_ARB_HPP
+#endif // KK2_CONVOLUTION_CONVOLUTION_ARB_HPP

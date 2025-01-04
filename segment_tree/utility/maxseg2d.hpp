@@ -1,5 +1,5 @@
-#ifndef SEGMENT_TREE_UTILITY_MAXSEG2D_HPP
-#define SEGMENT_TREE_UTILITY_MAXSEG2D_HPP 1
+#ifndef KK2_SEGMENT_TREE_UTILITY_MAXSEG2D_HPP
+#define KK2_SEGMENT_TREE_UTILITY_MAXSEG2D_HPP 1
 
 #include "../../math/monoid/max.hpp"
 #include "../seg2d.hpp"
@@ -10,4 +10,4 @@ template <class S> using MaxSeg2D = SegTree2D<monoid::Max<S>, monoid::MaxOp<S>, 
 
 } // namespace kk2
 
-#endif // SEGMENT_TREE_UTILITY_MAXSEG2D_HPP
+#endif // KK2_SEGMENT_TREE_UTILITY_MAXSEG2D_HPP

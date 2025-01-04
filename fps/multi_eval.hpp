@@ -1,5 +1,5 @@
-#ifndef FPS_MULTI_EVAL_HPP
-#define FPS_MULTI_EVAL_HPP 1
+#ifndef KK2_FPS_MULTI_EVAL_HPP
+#define KK2_FPS_MULTI_EVAL_HPP 1
 
 #include <functional>
 #include <vector>
@@ -75,4 +75,4 @@ std::vector<mint> MultiEval(std::vector<mint> v, const FPS &f) {
 
 } // namespace kk2
 
-#endif // FPS_MULTI_EVAL_HPP
+#endif // KK2_FPS_MULTI_EVAL_HPP

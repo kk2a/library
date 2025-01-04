@@ -1,5 +1,5 @@
-#ifndef CONVOLUTION_AND
-#define CONVOLUTION_AND 1
+#ifndef KK2_CONVOLUTION_CONVOLUTION_AND_HPP
+#define KK2_CONVOLUTION_CONVOLUTION_AND_HPP 1
 
 #include <cassert>
 
@@ -25,4 +25,4 @@ FPS convolution_and(FPS &a, const FPS &b) {
 
 } // namespace kk2
 
-#endif // CONVOLUTION_AND
+#endif // KK2_CONVOLUTION_CONVOLUTION_AND_HPP

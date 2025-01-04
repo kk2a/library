@@ -1,5 +1,5 @@
-#ifndef MATRIX_BASIS_HPP
-#define MATRIX_BASIS_HPP 1
+#ifndef KK2_MATRIX_BASIS_HPP
+#define KK2_MATRIX_BASIS_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -148,4 +148,4 @@ using BasisMatrix = linear_algebra::Basis_base<Matrix, typename Matrix::value_ty
 
 } // namespace kk2
 
-#endif // MATRIX_BASIS_HPP
+#endif // KK2_MATRIX_BASIS_HPP

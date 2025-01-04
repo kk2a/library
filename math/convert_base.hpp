@@ -1,5 +1,5 @@
-#ifndef MATH_CONVERT_BASE_HPP
-#define MATH_CONVERT_BASE_HPP 1
+#ifndef KK2_MATH_CONVERT_BASE_HPP
+#define KK2_MATH_CONVERT_BASE_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -30,4 +30,4 @@ template <class T> T from_base(const std::vector<T> &v, T b) {
 
 } // namespace kk2
 
-#endif // MATH_CONVERT_BASE_HPP
+#endif // KK2_MATH_CONVERT_BASE_HPP

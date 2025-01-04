@@ -1,5 +1,5 @@
-#ifndef GRAPH_TREE_CENTROID_DECOMPOSITION_HPP
-#define GRAPH_TREE_CENTROID_DECOMPOSITION_HPP 1
+#ifndef KK2_GRAPH_TREE_CENTROID_DECOMPOSITION_HPP
+#define KK2_GRAPH_TREE_CENTROID_DECOMPOSITION_HPP 1
 
 #include <cassert>
 #include <vector>
@@ -62,4 +62,4 @@ template <class G> struct CentroidDecomposition {
 
 } // namespace kk2
 
-#endif // GRAPH_TREE_CENTROID_DECOMPOSITION_HPP
+#endif // KK2_GRAPH_TREE_CENTROID_DECOMPOSITION_HPP

@@ -1,5 +1,5 @@
-#ifndef STRING_SUFFIX_ARRAY_HPP
-#define STRING_SUFFIX_ARRAY_HPP 1
+#ifndef KK2_STRING_SUFFIX_ARRAY_HPP
+#define KK2_STRING_SUFFIX_ARRAY_HPP 1
 
 #include <algorithm>
 #include <functional>
@@ -254,4 +254,4 @@ struct LCPArray {
 
 } // namespace kk2
 
-#endif // STRING_SUFFIX_ARRAY_HPP
+#endif // KK2_STRING_SUFFIX_ARRAY_HPP

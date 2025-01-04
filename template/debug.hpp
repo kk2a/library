@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_DEBUG_HPP
-#define TEMPLATE_DEBUG_HPP 1
+#ifndef KK2_TEMPLATE_DEBUG_HPP
+#define KK2_TEMPLATE_DEBUG_HPP 1
 
 #include <array>
 #include <deque>
@@ -313,4 +313,4 @@ void outputln(OStream &, const Args &...) {
 
 } // namespace kk2
 
-#endif // TEMPLATE_DEBUG_HPP
+#endif // KK2_TEMPLATE_DEBUG_HPP

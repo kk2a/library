@@ -1,5 +1,5 @@
-#ifndef GRAPH_STATIC_GRAPH_HPP
-#define GRAPH_STATIC_GRAPH_HPP 1
+#ifndef KK2_GRAPH_STATIC_GRAPH_HPP
+#define KK2_GRAPH_STATIC_GRAPH_HPP 1
 
 #include <cassert>
 #include <type_traits>
@@ -141,4 +141,4 @@ using graph::reverse;
 
 } // namespace kk2
 
-#endif // GRAPH_STATIC_GRAPH_HPP
+#endif // KK2_GRAPH_STATIC_GRAPH_HPP

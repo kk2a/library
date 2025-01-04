@@ -1,5 +1,5 @@
-#ifndef MATH_HOMOMORPHISM_UPDATE_HPP
-#define MATH_HOMOMORPHISM_UPDATE_HPP 1
+#ifndef KK2_MATH_HOMOMORPHISM_UPDATE_HPP
+#define KK2_MATH_HOMOMORPHISM_UPDATE_HPP 1
 
 #include <iostream>
 
@@ -43,4 +43,4 @@ template <class S> Update<S> UpdateUnit() {
 
 } // namespace kk2
 
-#endif // MATH_HOMOMORPHISM_UPDATE_HPP
+#endif // KK2_MATH_HOMOMORPHISM_UPDATE_HPP

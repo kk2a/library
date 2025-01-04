@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_MACROS_HPP
-#define TEMPLATE_MACROS_HPP 1
+#ifndef KK2_TEMPLATE_MACROS_HPP
+#define KK2_TEMPLATE_MACROS_HPP 1
 
 #define rep1(a) for (long long _ = 0; _ < (long long)(a); ++_)
 #define rep2(i, a) for (long long i = 0; i < (long long)(a); ++i)
@@ -14,4 +14,4 @@
 #define se second
 #define all(p) p.begin(), p.end()
 
-#endif // TEMPLATE_MACROS_HPP
+#endif // KK2_TEMPLATE_MACROS_HPP

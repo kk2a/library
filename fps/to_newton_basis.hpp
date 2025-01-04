@@ -1,5 +1,5 @@
-#ifndef FPS_TO_NEWTON_BASIS_HPP
-#define FPS_TO_NEWTON_BASIS_HPP 1
+#ifndef KK2_FPS_TO_NEWTON_BASIS_HPP
+#define KK2_FPS_TO_NEWTON_BASIS_HPP 1
 
 #include <cassert>
 #include <vector>
@@ -39,4 +39,4 @@ std::vector<mint> convert_to_newton_basis(const FPS &f, std::vector<mint> p) {
 
 } // namespace kk2
 
-#endif // FPS_TO_NEWTON_BASIS_HPP
+#endif // KK2_FPS_TO_NEWTON_BASIS_HPP

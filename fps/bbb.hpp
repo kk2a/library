@@ -1,5 +1,5 @@
-#ifndef FPS_BBB_HPP
-#define FPS_BBB_HPP 1
+#ifndef KK2_FPS_BBB_HPP
+#define KK2_FPS_BBB_HPP 1
 
 #include <vector>
 
@@ -41,4 +41,4 @@ std::vector<mint> BBB1(const std::vector<mint> &a, const FPS &f) {
 
 } // namespace kk2
 
-#endif // FPS_BBB_HPP
+#endif // KK2_FPS_BBB_HPP

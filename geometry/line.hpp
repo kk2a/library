@@ -1,5 +1,5 @@
-#ifndef GEOMETRY_LINE_HPP
-#define GEOMETRY_LINE_HPP 1
+#ifndef KK2_GEOMETRY_LINE_HPP
+#define KK2_GEOMETRY_LINE_HPP 1
 
 #include <numeric>
 
@@ -41,4 +41,4 @@ using Line<long long> = geometry::line::LineBase<long long, __int128_t>;
 
 } // namespace kk2
 
-#endif // GEOMETRY_LINE_HPP
+#endif // KK2_GEOMETRY_LINE_HPP

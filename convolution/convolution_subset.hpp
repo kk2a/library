@@ -1,5 +1,5 @@
-#ifndef CONVOLUTION_SUBSET
-#define CONVOLUTION_SUBSET 1
+#ifndef KK2_CONVOLUTION_CONVOLUTION_SUBSET_HPP
+#define KK2_CONVOLUTION_CONVOLUTION_SUBSET_HPP 1
 
 #include <cassert>
 #include <functional>
@@ -57,4 +57,4 @@ FPS convolution_subset(FPS &a, const FPS &b) {
 
 } // namespace kk2
 
-#endif // CONVOLUTION_SUBSET
+#endif // KK2_CONVOLUTION_CONVOLUTION_SUBSET_HPP

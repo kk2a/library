@@ -1,5 +1,5 @@
-#ifndef MATRIX_FROBENIUS_FORM_HPP
-#define MATRIX_FROBENIUS_FORM_HPP 1
+#ifndef KK2_MATRIX_FROBENIUS_FORM_HPP
+#define KK2_MATRIX_FROBENIUS_FORM_HPP 1
 
 #include <vector>
 
@@ -37,4 +37,4 @@ struct FrobeniusForm_base {
 
 } // namespace kk2
 
-#endif // MATRIX_FROBENIUS_FORM_HPP
+#endif // KK2_MATRIX_FROBENIUS_FORM_HPP

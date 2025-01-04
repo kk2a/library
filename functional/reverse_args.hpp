@@ -1,5 +1,5 @@
-#ifndef FUNCTIONAL_REV_HPP
-#define FUNCTIONAL_REV_HPP 1
+#ifndef KK2_FUNCTIONAL_REVERSE_ARGS_HPP
+#define KK2_FUNCTIONAL_REVERSE_ARGS_HPP 1
 
 #include "../type_traits/type_traits.hpp"
 
@@ -13,4 +13,4 @@ auto reverse_args(auto x, auto y) {
 
 } // namespace kk2
 
-#endif // FUNCTIONAL_REV_HPP
+#endif // KK2_FUNCTIONAL_REVERSE_ARGS_HPP

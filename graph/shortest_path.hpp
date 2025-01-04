@@ -1,5 +1,5 @@
-#ifndef GRAPH_DIJKSTRA_HPP
-#define GRAPH_DIJKSTRA_HPP 1
+#ifndef KK2_GRAPH_SHORTEST_PATH_HPP
+#define KK2_GRAPH_SHORTEST_PATH_HPP 1
 
 #include <limits>
 #include <queue>
@@ -58,4 +58,4 @@ using shortest_path_impl::shortest_path;
 
 } // namespace kk2
 
-#endif // GRAPH_DIJKSTRA_HPP
+#endif // KK2_GRAPH_SHORTEST_PATH_HPP

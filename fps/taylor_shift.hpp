@@ -1,5 +1,5 @@
-#ifndef FPS_TAYLOR_SHIFT_HPP
-#define FPS_TAYLOR_SHIFT_HPP 1
+#ifndef KK2_FPS_TAYLOR_SHIFT_HPP
+#define KK2_FPS_TAYLOR_SHIFT_HPP 1
 
 #include <algorithm>
 
@@ -21,4 +21,4 @@ template <class FPS, class mint = typename FPS::value_type> FPS TaylorShift(cons
 
 } // namespace kk2
 
-#endif // FPS_TAYLOR_SHIFT_HPP
+#endif // KK2_FPS_TAYLOR_SHIFT_HPP

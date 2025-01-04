@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lcm_convolution"
 
-#include "../../convolution/lcm1.hpp"
+#include "../../convolution/convolution_lcm.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;

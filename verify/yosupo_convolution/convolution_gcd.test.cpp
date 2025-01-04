@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/gcd_convolution"
 
-#include "../../convolution/gcd1.hpp"
+#include "../../convolution/convolution_gcd.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;

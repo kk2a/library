@@ -1,5 +1,5 @@
-#ifndef FPS_CHIRP_Z_HPP
-#define FPS_CHIRP_Z_HPP 1
+#ifndef KK2_FPS_CHIRP_Z_HPP
+#define KK2_FPS_CHIRP_Z_HPP 1
 
 #include <algorithm>
 #include <vector>
@@ -46,4 +46,4 @@ std::vector<mint> ChirpZ(const FPS &f_, mint w, int n = -1, mint a = 1) {
 
 } // namespace kk2
 
-#endif // FPS_CHIRP_Z_HPP
+#endif // KK2_FPS_CHIRP_Z_HPP

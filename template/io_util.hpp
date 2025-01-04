@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_IO_UTIL_HPP
-#define TEMPLATE_IO_UTIL_HPP 1
+#ifndef KK2_TEMPLATE_IO_UTIL_HPP
+#define KK2_TEMPLATE_IO_UTIL_HPP 1
 
 #include <array>
 #include <utility>
@@ -102,4 +102,4 @@ OStream &operator<<(OStream &os, const std::array<T, F> &a) {
     return os;
 }
 
-#endif // TEMPLATE_IO_UTIL_HPP
+#endif // KK2_TEMPLATE_IO_UTIL_HPP

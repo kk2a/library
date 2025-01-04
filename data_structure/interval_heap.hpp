@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_INTERVAL_HEAP_HPP
-#define DATA_STRUCTURE_INTERVAL_HEAP_HPP 1
+#ifndef KK2_DATA_STRUCTURE_INTERVAL_HEAP_HPP
+#define KK2_DATA_STRUCTURE_INTERVAL_HEAP_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -29,4 +29,4 @@ struct IntervalHeap {
 
 } // namespace kk2
 
-#endif // DATA_STRUCTURE_INTERVAL_HEAP_HPP
+#endif // KK2_DATA_STRUCTURE_INTERVAL_HEAP_HPP

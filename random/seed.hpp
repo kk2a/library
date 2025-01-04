@@ -1,5 +1,5 @@
-#ifndef RANDOM_SEED_HPP
-#define RANDOM_SEED_HPP 1
+#ifndef KK2_RANDOM_SEED_HPP
+#define KK2_RANDOM_SEED_HPP 1
 
 #include <chrono>
 
@@ -36,4 +36,4 @@ u64 seed() {
 
 } // namespace kk2
 
-#endif // RANDOM_SEED_HPP
+#endif // KK2_RANDOM_SEED_HPP

@@ -1,5 +1,5 @@
-#ifndef UNIONFIND_ROLLBACK_HPP
-#define UNIONFIND_ROLLBACK_HPP 1
+#ifndef KK2_UNIONFIND_ROLLBACK_HPP
+#define KK2_UNIONFIND_ROLLBACK_HPP 1
 
 #include <utility>
 #include <vector>
@@ -47,4 +47,4 @@ struct UnionFind_rollback {
 
 } // namespace kk2
 
-#endif // UNIONFIND_ROLLBACK_HPP
+#endif // KK2_UNIONFIND_ROLLBACK_HPP

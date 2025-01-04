@@ -1,5 +1,5 @@
-#ifndef MATRIX_MATRIX_FIELD_HPP
-#define MATRIX_MATRIX_FIELD_HPP 1
+#ifndef KK2_MATRIX_MATRIX_FIELD_HPP
+#define KK2_MATRIX_MATRIX_FIELD_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -357,4 +357,4 @@ template <class Field> struct MatrixField {
 
 } // namespace kk2
 
-#endif // MATRIX_MATRIX_FIELD_HPP
+#endif // KK2_MATRIX_MATRIX_FIELD_HPP

@@ -1,5 +1,5 @@
-#ifndef MODINT_MONT_ARB_HPP
-#define MODINT_MONT_ARB_HPP 1
+#ifndef KK2_MODINT_MONT_ARB_HPP
+#define KK2_MODINT_MONT_ARB_HPP 1
 
 #include <cassert>
 #include <iostream>
@@ -133,4 +133,4 @@ using ArbitraryLazyMontgomeryModInt64bit =
 
 } // namespace kk2
 
-#endif // MODINT_MONT_ARB_HPP
+#endif // KK2_MODINT_MONT_ARB_HPP

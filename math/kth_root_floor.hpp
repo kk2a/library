@@ -1,5 +1,5 @@
-#ifndef MATH_KTH_ROOT_FLOOR_HPP
-#define MATH_KTH_ROOT_FLOOR_HPP 1
+#ifndef KK2_MATH_KTH_ROOT_FLOOR_HPP
+#define KK2_MATH_KTH_ROOT_FLOOR_HPP 1
 
 #include <algorithm>
 #include <cmath>
@@ -58,4 +58,4 @@ template <class T, class U> uint64_t kth_root_ceil(T a, U k) {
 
 } // namespace kk2
 
-#endif // MATH_KTH_ROOT_FLOOR_HPP
+#endif // KK2_MATH_KTH_ROOT_FLOOR_HPP

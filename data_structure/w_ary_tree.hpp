@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_W_ARY_TREE_HPP
-#define DATA_STRUCTURE_W_ARY_TREE_HPP 1
+#ifndef KK2_DATA_STRUCTURE_W_ARY_TREE_HPP
+#define KK2_DATA_STRUCTURE_W_ARY_TREE_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -142,4 +142,4 @@ struct w_ary_tree {
 
 } // namespace kk2
 
-#endif // DATA_STRUCTURE_W_ARY_TREE_HPP
+#endif // KK2_DATA_STRUCTURE_W_ARY_TREE_HPP

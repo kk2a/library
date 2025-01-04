@@ -1,5 +1,5 @@
-#ifndef ROLLING_HASH_HPP
-#define ROLLING_HASH_HPP 1
+#ifndef KK2_STRING_ROLLING_HASH_HPP
+#define KK2_STRING_ROLLING_HASH_HPP 1
 
 #include <cassert>
 #include <string>
@@ -107,4 +107,4 @@ using Roliha = RollingHash<2>;
 } // namespace kk2
 
 
-#endif // ROLLING_HASH_HPP
+#endif // KK2_STRING_ROLLING_HASH_HPP

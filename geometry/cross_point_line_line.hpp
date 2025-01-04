@@ -1,5 +1,5 @@
-#ifndef GEOMETRY_CROSS_POINT_LINE_LINE_HPP
-#define GEOMETRY_CROSS_POINT_LINE_LINE_HPP 1
+#ifndef KK2_GEOMETRY_CROSS_POINT_LINE_LINE_HPP
+#define KK2_GEOMETRY_CROSS_POINT_LINE_LINE_HPP 1
 
 #include <optional>
 
@@ -20,4 +20,4 @@ std::optional<Point<Rational<T>>> cross_point(const Line<T> &l, const Line<T> &m
 
 }
 
-#endif // GEOMETRY_CROSS_POINT_LINE_LINE_HPP
+#endif // KK2_GEOMETRY_CROSS_POINT_LINE_LINE_HPP

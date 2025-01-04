@@ -1,5 +1,5 @@
-#ifndef CONVOLUTION_GCD
-#define CONVOLUTION_GCD 1
+#ifndef KK2_CONVOLUTION_CONVOLUTION_GCD_HPP
+#define KK2_CONVOLUTION_CONVOLUTION_GCD_HPP 1
 
 #include <cassert>
 
@@ -26,4 +26,4 @@ FPS convolution_gcd(FPS &a, const FPS &b) {
 
 } // namespace kk2
 
-#endif // CONVOLUTION_GCD
+#endif // KK2_CONVOLUTION_CONVOLUTION_GCD_HPP

@@ -1,5 +1,5 @@
-#ifndef OTHERS_RUN_LENGTH_ENCODING_HPP
-#define OTHERS_RUN_LENGTH_ENCODING_HPP 1
+#ifndef KK2_OTHERS_RUN_LENGTH_ENCODING_HPP
+#define KK2_OTHERS_RUN_LENGTH_ENCODING_HPP 1
 
 #include <string>
 #include <vector>
@@ -39,4 +39,4 @@ using run_length_encoding::RunLengthEncoding;
 
 } // namespace kk2
 
-#endif // OTHERS_RUN_LENGTH_ENCODING_HPP
+#endif // KK2_OTHERS_RUN_LENGTH_ENCODING_HPP

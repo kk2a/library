@@ -1,5 +1,5 @@
-#ifndef MATRIX_MATRIX_F2_HPP
-#define MATRIX_MATRIX_F2_HPP 1
+#ifndef KK2_MATRIX_MATRIX_F2_HPP
+#define KK2_MATRIX_MATRIX_F2_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -431,7 +431,7 @@ struct MatrixF2 {
         return mat(res);
     }
 
-    mat transpose() {
+    mat transpose() const {
         mat res(_w, _h);
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) { res[j][i] = _mat[i][j]; }
@@ -446,4 +446,4 @@ struct MatrixF2 {
 
 } // namespace kk2
 
-#endif // MATRIX_MATRIX_F2_HPP
+#endif // KK2_MATRIX_MATRIX_F2_HPP

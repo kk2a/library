@@ -1,5 +1,5 @@
-#ifndef MATH_EULER_PHI_HPP
-#define MATH_EULER_PHI_HPP 1
+#ifndef KK2_MATH_EULER_PHI_HPP
+#define KK2_MATH_EULER_PHI_HPP 1
 
 #include <cassert>
 
@@ -16,4 +16,4 @@ template <class T, is_integral_t<T> * = nullptr> T euler_phi(T n) {
 
 } // namespace kk2
 
-#endif // MATH_EULER_PHI_HPP
+#endif // KK2_MATH_EULER_PHI_HPP

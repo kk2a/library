@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_SPARSE_TABLE_HPP
-#define DATA_STRUCTURE_SPARSE_TABLE_HPP 1
+#ifndef KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP
+#define KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP 1
 
 #include <cassert>
 #include <vector>
@@ -87,4 +87,4 @@ template <class S, S (*op)(S, S), S (*e)()> struct SparseTable {
 
 } // namespace kk2
 
-#endif // DATA_STRUCTURE_SPARSE_TABLE_HPP
+#endif // KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP

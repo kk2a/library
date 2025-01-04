@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_PROCON_HPP
-#define TEMPLATE_PROCON_HPP 1
+#ifndef KK2_TEMPLATE_PROCON_HPP
+#define KK2_TEMPLATE_PROCON_HPP 1
 
 #include <algorithm>
 #include <array>
@@ -115,4 +115,4 @@ std::ostream &operator<<(std::ostream &os, i128 x) {
     return os << s;
 }
 
-#endif // TEMPLATE_PROCON_HPP
+#endif // KK2_TEMPLATE_PROCON_HPP

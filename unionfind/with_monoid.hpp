@@ -1,5 +1,5 @@
-#ifndef UNION_FIND_WITH_MONOID_HPP
-#define UNION_FIND_WITH_MONOID_HPP 1
+#ifndef KK2_UNIONFIND_WITH_MONOID_HPP
+#define KK2_UNIONFIND_WITH_MONOID_HPP 1
 
 #include <utility>
 #include <vector>
@@ -45,4 +45,4 @@ template <class M, M (*op)(M, M), M (*e)()> struct UnionFindWithMonoid {
 
 }; // namespace kk2
 
-#endif // UNION_FIND_WITH_MONOID_HPP
+#endif // KK2_UNIONFIND_WITH_MONOID_HPP

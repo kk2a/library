@@ -1,5 +1,5 @@
-#ifndef MATH_INV_GCD_HPP
-#define MATH_INV_GCD_HPP 1
+#ifndef KK2_MATH_INV_GCD_HPP
+#define KK2_MATH_INV_GCD_HPP 1
 
 #include <algorithm>
 #include <utility>
@@ -24,4 +24,4 @@ std::pair<long long, long long> inv_gcd(long long a, long long b) {
 
 } // namespace kk2
 
-#endif // MATH_INV_GCD_HPP
+#endif // KK2_MATH_INV_GCD_HPP

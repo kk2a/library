@@ -1,5 +1,5 @@
-#ifndef MATH_FLOOR_SUM_HPP
-#define MATH_FLOOR_SUM_HPP 1
+#ifndef KK2_MATH_FLOOR_SUM_HPP
+#define KK2_MATH_FLOOR_SUM_HPP 1
 
 #include <algorithm>
 
@@ -26,4 +26,4 @@ template <class T> T sum_of_floor(T n, T m, T a, T b, T start) {
 
 } // namespace kk2
 
-#endif // MATH_FLOOR_SUM_HPP
+#endif // KK2_MATH_FLOOR_SUM_HPP

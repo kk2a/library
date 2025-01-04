@@ -1,5 +1,5 @@
-#ifndef TYPE_TRAITS_HPP
-#define TYPE_TRAITS_HPP 1
+#ifndef KK2_TYPE_TRAITS_TYPE_TRAITS_HPP
+#define KK2_TYPE_TRAITS_TYPE_TRAITS_HPP 1
 
 #pragma once // oj-verify
 
@@ -112,4 +112,4 @@ template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value
 
 } // namespace kk2
 
-#endif // TYPE_TRAITS_HPP
+#endif // KK2_TYPE_TRAITS_TYPE_TRAITS_HPP

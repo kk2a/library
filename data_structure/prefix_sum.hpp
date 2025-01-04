@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_PREFIX_SUM_HPP
-#define DATA_STRUCTURE_PREFIX_SUM_HPP 1
+#ifndef KK2_DATA_STRUCTURE_PREFIX_SUM_HPP
+#define KK2_DATA_STRUCTURE_PREFIX_SUM_HPP 1
 
 #include <algorithm>
 #include <array>
@@ -58,4 +58,4 @@ template <class T> struct PrefixSum {
 
 } // namespace kk2
 
-#endif // DATA_STRUCTURE_PREFIX_SUM_HPP
+#endif // KK2_DATA_STRUCTURE_PREFIX_SUM_HPP

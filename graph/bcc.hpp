@@ -1,5 +1,5 @@
-#ifndef GRAPH_BCC_HPP
-#define GRAPH_BCC_HPP 1
+#ifndef KK2_GRAPH_BCC_HPP
+#define KK2_GRAPH_BCC_HPP 1
 
 #include <functional>
 #include <vector>
@@ -80,4 +80,4 @@ template <class G> struct BCC : LowLink<G> {
 
 } // namespace kk2
 
-#endif // GRAPH_BCC_HPP
+#endif // KK2_GRAPH_BCC_HPP

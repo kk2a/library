@@ -1,5 +1,5 @@
-#ifndef GEOMETRY_POINT_HPP
-#define GEOMETRY_POINT_HPP 1
+#ifndef KK2_GEOMETRY_POINT_HPP
+#define KK2_GEOMETRY_POINT_HPP 1
 
 #pragma once // oj-verify
 
@@ -182,4 +182,4 @@ template <typename T> struct Point {
 
 } // namespace kk2
 
-#endif // GEOMETRY_POINT_HPP
+#endif // KK2_GEOMETRY_POINT_HPP

@@ -1,5 +1,5 @@
-#ifndef CENTROID_HPP
-#define CENTROID_HPP 1
+#ifndef KK2_GRAPH_TREE_CENTROID_HPP
+#define KK2_GRAPH_TREE_CENTROID_HPP 1
 
 #include <cassert>
 #include <functional>
@@ -64,4 +64,4 @@ template <class G> int centroid(const G &g, const std::vector<long long> &weight
 
 } // namespace kk2
 
-#endif // CENTROID_HPP
+#endif // KK2_GRAPH_TREE_CENTROID_HPP

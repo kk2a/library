@@ -1,5 +1,5 @@
-#ifndef UNIONFIND_POTENTIALIZED_HPP
-#define UNIONFIND_POTENTIALIZED_HPP 1
+#ifndef KK2_UNIONFIND_POTENTIALIZED_HPP
+#define KK2_UNIONFIND_POTENTIALIZED_HPP 1
 
 #include <vector>
 
@@ -77,4 +77,4 @@ template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyAbelianGroup
 
 } // namespace kk2
 
-#endif // UNIONFIND_POTENTIALIZED_HPP
+#endif // KK2_UNIONFIND_POTENTIALIZED_HPP

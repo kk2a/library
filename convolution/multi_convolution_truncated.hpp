@@ -1,5 +1,5 @@
-#ifndef CONVOLUTION_MULTI_ZERO
-#define CONVOLUTION_MULTI_ZERO 1
+#ifndef KK2_CONVOLUTION_MULTI_CONVOLUTION_TRUNCATED_HPP
+#define KK2_CONVOLUTION_MULTI_CONVOLUTION_TRUNCATED_HPP 1
 
 #include <vector>
 
@@ -46,4 +46,4 @@ FPS multi_convolution_truncated(FPS &a, const FPS &b, const std::vector<int> &ba
 
 } // namespace kk2
 
-#endif // CONVOLUTION_MULTI_ZERO
+#endif // KK2_CONVOLUTION_MULTI_CONVOLUTION_TRUNCATED_HPP

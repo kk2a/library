@@ -1,5 +1,5 @@
-#ifndef BIT_BITCOUNT_HPP
-#define BIT_BITCOUNT_HPP 1
+#ifndef KK2_BIT_BITCOUNT_HPP
+#define KK2_BIT_BITCOUNT_HPP 1
 
 #include <cassert>
 
@@ -65,4 +65,4 @@ template <typename T> int popcount(T x) {
 
 }; // namespace kk2
 
-#endif // BIT_BITCOUNT_HPP
+#endif // KK2_BIT_BITCOUNT_HPP

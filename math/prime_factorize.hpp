@@ -1,5 +1,5 @@
-#ifndef MATH_PRIME_FACTRIZATION_HPP
-#define MATH_PRIME_FACTRIZATION_HPP 1
+#ifndef KK2_MATH_PRIME_FACTORIZE_HPP
+#define KK2_MATH_PRIME_FACTORIZE_HPP 1
 
 #include <algorithm>
 #include <map>
@@ -125,4 +125,4 @@ using number_theory::factorize_map;
 } // namespace kk2
 
 
-#endif // MATH_PRIME_FACTRIZATION_HPP
+#endif // KK2_MATH_PRIME_FACTORIZE_HPP

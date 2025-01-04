@@ -1,5 +1,5 @@
-#ifndef LINEAR_RECURRENCE_HPP
-#define LINEAR_RECURRENCE_HPP 1
+#ifndef KK2_FPS_LINEAR_RECURRENCE_HPP
+#define KK2_FPS_LINEAR_RECURRENCE_HPP 1
 
 #include <cassert>
 
@@ -33,4 +33,4 @@ mint BostanMori(const FPS &p, const FPS &q, long long n) {
 
 } // namespace kk2
 
-#endif // LINEAR_RECURRENCE_HPP
+#endif // KK2_FPS_LINEAR_RECURRENCE_HPP

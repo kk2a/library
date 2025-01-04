@@ -1,5 +1,5 @@
-#ifndef OTHERS_MULTISET_HASH_HPP
-#define OTHERS_MULTISET_HASH_HPP 1
+#ifndef KK2_OTHERS_MULTISET_HASH_HPP
+#define KK2_OTHERS_MULTISET_HASH_HPP 1
 
 #include <algorithm>
 #include <array>
@@ -103,4 +103,4 @@ template <typename T> std::mt19937_64 MultiSetHash<T>::rng(time(0));
 
 } // namespace kk2
 
-#endif // OTHERS_MULTISET_HASH_HPP
+#endif // KK2_OTHERS_MULTISET_HASH_HPP

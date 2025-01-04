@@ -1,5 +1,5 @@
-#ifndef MOD_COMB_HPP
-#define MOD_COMB_HPP 1
+#ifndef KK2_MATH_MOD_COMB_HPP
+#define KK2_MATH_MOD_COMB_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -87,4 +87,4 @@ template <class mint> struct Comb {
 
 } // namespace kk2
 
-#endif // MOD_COMB_HPP
+#endif // KK2_MATH_MOD_COMB_HPP

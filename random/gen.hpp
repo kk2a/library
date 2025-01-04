@@ -1,5 +1,5 @@
-#ifndef RANDOM_GEN_HPP
-#define RANDOM_GEN_HPP 1
+#ifndef KK2_RANDOM_GEN_HPP
+#define KK2_RANDOM_GEN_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -100,4 +100,4 @@ template <class T> std::vector<T> choices(int l, int r, int k) {
 
 } // namespace kk2
 
-#endif // RANDOM_GEN_HPP
+#endif // KK2_RANDOM_GEN_HPP

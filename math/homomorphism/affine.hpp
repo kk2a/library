@@ -1,5 +1,5 @@
-#ifndef MATH_HOMOMORPHISM_AFFINE_HPP
-#define MATH_HOMOMORPHISM_AFFINE_HPP 1
+#ifndef KK2_MATH_HOMOMORPHISM_AFFINE_HPP
+#define KK2_MATH_HOMOMORPHISM_AFFINE_HPP 1
 
 #include <iostream>
 #include <vector>
@@ -56,4 +56,4 @@ std::vector<std::vector<homomorphism::Affine<S>>> GetVecAffine2D(int h, int w, A
 
 } // namespace kk2
 
-#endif // MATH_HOMOMORPHISM_AFFINE_HPP
+#endif // KK2_MATH_HOMOMORPHISM_AFFINE_HPP

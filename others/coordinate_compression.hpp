@@ -1,5 +1,5 @@
-#ifndef OTHERS_COORDINATE_COMPRESSION_HPP
-#define OTHERS_COORDINATE_COMPRESSION_HPP 1
+#ifndef KK2_OTHERS_COORDINATE_COMPRESSION_HPP
+#define KK2_OTHERS_COORDINATE_COMPRESSION_HPP 1
 
 #include <algorithm>
 #include <vector>
@@ -75,4 +75,4 @@ template <typename S = int> struct CC {
 
 } // namespace kk2
 
-#endif // OTHERS_COORDINATE_COMPRESSION_HPP
+#endif // KK2_OTHERS_COORDINATE_COMPRESSION_HPP

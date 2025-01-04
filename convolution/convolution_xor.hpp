@@ -1,5 +1,5 @@
-#ifndef CONVOLUTION_XOR
-#define CONVOLUTION_XOR 1
+#ifndef KK2_CONVOLUTION_CONVOLUTION_XOR_HPP
+#define KK2_CONVOLUTION_CONVOLUTION_XOR_HPP 1
 
 #include <cassert>
 
@@ -25,4 +25,4 @@ FPS convolution_xor(FPS &a, const FPS &b) {
 
 } // namespace kk2
 
-#endif // CONVOLUTION_XOR
+#endif // KK2_CONVOLUTION_CONVOLUTION_XOR_HPP

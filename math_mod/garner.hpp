@@ -1,5 +1,5 @@
-#ifndef MOD_GARNER_HPP
-#define MOD_GARNER_HPP 1
+#ifndef KK2_MATH_MOD_GARNER_HPP
+#define KK2_MATH_MOD_GARNER_HPP 1
 
 #include <vector>
 
@@ -24,4 +24,4 @@ long long garner(const std::vector<long long> &d, const std::vector<long long> &
 
 } // namespace kk2
 
-#endif // MOD_GARNER_HPP
+#endif // KK2_MATH_MOD_GARNER_HPP

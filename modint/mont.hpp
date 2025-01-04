@@ -1,5 +1,5 @@
-#ifndef MODINT_MONT_HPP
-#define MODINT_MONT_HPP 1
+#ifndef KK2_MODINT_MONT_HPP
+#define KK2_MODINT_MONT_HPP 1
 
 #include <cassert>
 #include <cstdint>
@@ -132,4 +132,4 @@ using mont107 = Mont<1000000007>;
 
 } // namespace kk2
 
-#endif // MODINT_MONT_HPP
+#endif // KK2_MODINT_MONT_HPP

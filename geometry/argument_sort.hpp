@@ -1,5 +1,5 @@
-#ifndef GEOMETRY_ARGUMENT_SORT_HPP
-#define GEOMETRY_ARGUMENT_SORT_HPP 1
+#ifndef KK2_GEOMETRY_ARGUMENT_SORT_HPP
+#define KK2_GEOMETRY_ARGUMENT_SORT_HPP 1
 
 #include <algorithm>
 #include <vector>
@@ -45,4 +45,4 @@ template <class T> struct ArgumentSort {
 
 } // namespace kk2
 
-#endif // GEOMETRY_ARGUMENT_SORT_HPP
+#endif // KK2_GEOMETRY_ARGUMENT_SORT_HPP

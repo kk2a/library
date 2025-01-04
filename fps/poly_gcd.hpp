@@ -1,5 +1,5 @@
-#ifndef POLY_GCD_HPP
-#define POLY_GCD_HPP 1
+#ifndef KK2_FPS_POLY_GCD_HPP
+#define KK2_FPS_POLY_GCD_HPP 1
 
 #include <algorithm>
 #include <array>

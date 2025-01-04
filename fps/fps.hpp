@@ -1,5 +1,5 @@
-#ifndef FPS_HPP
-#define FPS_HPP 1
+#ifndef KK2_FPS_FPS_HPP
+#define KK2_FPS_FPS_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -439,4 +439,4 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
 
 } // namespace kk2
 
-#endif // FPS_HPP
+#endif // KK2_FPS_FPS_HPP

@@ -1,5 +1,5 @@
-#ifndef GRAPH_TREE_EULER_TOUR_HPP
-#define GRAPH_TREE_EULER_TOUR_HPP 1
+#ifndef KK2_GRAPH_TREE_EULER_TOUR_HPP
+#define KK2_GRAPH_TREE_EULER_TOUR_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -86,4 +86,4 @@ template <typename G> struct EulerTour {
 
 } // namespace kk2
 
-#endif // GRAPH_TREE_EULER_TOUR_HPP
+#endif // KK2_GRAPH_TREE_EULER_TOUR_HPP

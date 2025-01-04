@@ -1,5 +1,5 @@
-#ifndef SEGMENT_TREE_BEATS_UTILITY_HPP
-#define SEGMENT_TREE_BEATS_UTILITY_HPP 1
+#ifndef KK2_SEGMENT_TREE_BEATS_UTILITY_HPP
+#define KK2_SEGMENT_TREE_BEATS_UTILITY_HPP 1
 
 #include "beats.hpp"
 
@@ -13,4 +13,4 @@ namespace beats_utility {
 
 } // namespace kk2
 
-#endif // SEGMENT_TREE_BEATS_UTILITY_HPP
+#endif // KK2_SEGMENT_TREE_BEATS_UTILITY_HPP

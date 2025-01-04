@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_CONSTANT_HPP
-#define TEMPLATE_CONSTANT_HPP 1
+#ifndef KK2_TEMPLATE_CONSTANT_HPP
+#define KK2_TEMPLATE_CONSTANT_HPP 1
 
 template <class T> constexpr T infty = 0;
 template <> constexpr int infty<int> = (1 << 30) - 123;
@@ -15,4 +15,4 @@ constexpr int mod = 998244353;
 constexpr int modu = 1e9 + 7;
 constexpr long double PI = 3.14159265358979323846;
 
-#endif // TEMPLATE_CONSTANT_HPP
+#endif // KK2_TEMPLATE_CONSTANT_HPP

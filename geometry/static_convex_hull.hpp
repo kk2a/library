@@ -1,5 +1,5 @@
-#ifndef GEOMETRY_CONVEX_HULL_HPP
-#define GEOMETRY_CONVEX_HULL_HPP 1
+#ifndef KK2_GEOMETRY_CONVEX_HULL_HPP
+#define KK2_GEOMETRY_CONVEX_HULL_HPP 1
 
 #include <algorithm>
 #include <utility>
@@ -87,4 +87,4 @@ template <typename T> struct StaticConvexHull {
 
 } // namespace kk2
 
-#endif // GEOMETRY_CONVEX_HULL_HPP
+#endif // KK2_GEOMETRY_CONVEX_HULL_HPP

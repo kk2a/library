@@ -1,5 +1,5 @@
-#ifndef DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP
-#define DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP 1
+#ifndef KK2_DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP
+#define KK2_DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP 1
 
 #include <cassert>
 #include <iostream>
@@ -75,4 +75,4 @@ template <class T> struct PrefixSumArbitrary {
 
 } // namespace kk2
 
-#endif // DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP
+#endif // KK2_DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP

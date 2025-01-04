@@ -1,5 +1,5 @@
-#ifndef MODINT_MODINT_2_61M1_HPP
-#define MODINT_MODINT_2_61M1_HPP 1
+#ifndef KK2_MODINT_MODINT_2_61M1_HPP
+#define KK2_MODINT_MODINT_2_61M1_HPP 1
 
 #include <cassert>
 
@@ -138,4 +138,4 @@ struct ModInt2_61m1 {
 
 } // namespace kk2
 
-#endif // MODINT_MODINT_2_61M1_HPP
+#endif // KK2_MODINT_MODINT_2_61M1_HPP

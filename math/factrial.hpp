@@ -1,5 +1,5 @@
-#ifndef MATH_FACTORIAL_HPP
-#define MATH_FACTORIAL_HPP 1
+#ifndef KK2_MATH_FACTORIAL_HPP
+#define KK2_MATH_FACTORIAL_HPP 1
 
 namespace kk2 {
 
@@ -12,4 +12,4 @@ template <class S, class T> constexpr S fact(T n) {
 
 } // namespace kk2
 
-#endif // MATH_FACTORIAL_HPP
+#endif // KK2_MATH_FACTORIAL_HPP

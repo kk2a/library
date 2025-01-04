@@ -1,9 +1,9 @@
-#ifndef BUTTERFLY_HPP
-#define BUTTERFLY_HPP 1
+#ifndef KK2_MATH_MOD_BUTTERFLY_HPP
+#define KK2_MATH_MOD_BUTTERFLY_HPP 1
 
 #include <algorithm>
 
-#include "../math_mod/primitive_root.hpp"
+#include "primitive_root.hpp"
 
 namespace kk2 {
 
@@ -176,4 +176,4 @@ template <class FPS, class mint = typename FPS::value_type> void doubling(FPS &a
 
 } // namespace kk2
 
-#endif // BUTTERFLY_HPP
+#endif // KK2_MATH_MOD_BUTTERFLY_HPP

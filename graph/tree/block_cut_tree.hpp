@@ -1,5 +1,5 @@
-#ifndef GRAPH_TREE_BLOCK_CUT_TREE_HPP
-#define GRAPH_TREE_BLOCK_CUT_TREE_HPP 1
+#ifndef KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP
+#define KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP 1
 
 #include <vector>
 
@@ -50,4 +50,4 @@ template <class G> struct BlockCutTree : BCC<G> {
 
 } // namespace kk2
 
-#endif // GRAPH_TREE_BLOCK_CUT_TREE_HPP
+#endif // KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP

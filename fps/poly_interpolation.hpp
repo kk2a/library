@@ -1,5 +1,5 @@
-#ifndef FPS_POLYNOMIAL_INTERPOLATION_HPP
-#define FPS_POLYNOMIAL_INTERPOLATION_HPP 1
+#ifndef KK2_FPS_POLY_INTERPOLATION_HPP
+#define KK2_FPS_POLY_INTERPOLATION_HPP 1
 
 #include <cassert>
 #include <functional>
@@ -94,4 +94,4 @@ FPS PolyInterpolationGeo(const mint &a, const mint &r, const std::vector<mint> &
 
 } // namespace kk2
 
-#endif // FPS_POLYNOMIAL_INTERPOLATION_HPP
+#endif // KK2_FPS_POLY_INTERPOLATION_HPP

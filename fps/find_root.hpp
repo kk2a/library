@@ -1,5 +1,5 @@
-#ifndef FIND_ROOT_HPP
-#define FIND_ROOT_HPP 1
+#ifndef KK2_FPS_FIND_ROOT_HPP
+#define KK2_FPS_FIND_ROOT_HPP 1
 
 #include <ctime>
 #include <random>
@@ -38,4 +38,4 @@ template <class FPS, class mint = typename FPS::value_type> std::vector<mint> fi
 
 } // namespace kk2
 
-#endif // FIND_ROOT_HPP
+#endif // KK2_FPS_FIND_ROOT_HPP

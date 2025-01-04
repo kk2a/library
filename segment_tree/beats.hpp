@@ -1,5 +1,5 @@
-#ifndef SEGMENT_TREE_BEATS_HPP
-#define SEGMENT_TREE_BEATS_HPP 1
+#ifndef KK2_SEGMENT_TREE_BEATS_HPP
+#define KK2_SEGMENT_TREE_BEATS_HPP 1
 
 
 
@@ -21,4 +21,4 @@ struct SegTreeBeats {
 
 } // namespace kk2
 
-#endif // SEGMENT_TREE_BEATS_HPP
+#endif // KK2_SEGMENT_TREE_BEATS_HPP

@@ -1,5 +1,5 @@
-#ifndef UNIONFIND_HPP
-#define UNIONFIND_HPP 1
+#ifndef KK2_UNIONFIND_UNIONFIND_HPP
+#define KK2_UNIONFIND_UNIONFIND_HPP 1
 
 #include <utility>
 #include <vector>
@@ -32,4 +32,4 @@ struct UnionFind {
 
 } // namespace kk2
 
-#endif // UNIONFIND_HPP
+#endif // KK2_UNIONFIND_UNIONFIND_HPP

@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_root_integer"
 
 #include "../../math/kth_root_floor.hpp"
-#include "../../math/pow.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 

@@ -1,5 +1,5 @@
-#ifndef GRAPH_LOWLINK_HPP
-#define GRAPH_LOWLINK_HPP 1
+#ifndef KK2_GRAPH_LOWLINK_HPP
+#define KK2_GRAPH_LOWLINK_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -70,4 +70,4 @@ template <class G> struct LowLink {
 
 } // namespace kk2
 
-#endif // GRAPH_LOWLINK_HPP
+#endif // KK2_GRAPH_LOWLINK_HPP

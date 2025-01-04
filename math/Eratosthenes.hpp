@@ -1,5 +1,5 @@
-#ifndef MATH_ERATOSTHENES
-#define MATH_ERATOSTHENES 1
+#ifndef KK2_MATH_ERATOSTHENES_HPP
+#define KK2_MATH_ERATOSTHENES_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -109,4 +109,4 @@ struct Erato {
 
 } // namespace kk2
 
-#endif // MATH_ERATOSTHENES
+#endif // KK2_MATH_ERATOSTHENES_HPP

@@ -1,5 +1,5 @@
-#ifndef MATH_POW_EXPR_HPP
-#define MATH_POW_EXPR_HPP 1
+#ifndef KK2_MATH_POW_HPP
+#define KK2_MATH_POW_HPP 1
 
 #include <cassert>
 
@@ -17,4 +17,4 @@ template <class S, class T, class U> constexpr S pow(T x, U n) {
 
 } // namespace kk2
 
-#endif // MATH_POW_EXPR_HPP
+#endif // KK2_MATH_POW_HPP

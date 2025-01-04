@@ -1,5 +1,5 @@
-#ifndef SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP
-#define SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP 1
+#ifndef KK2_SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP
+#define KK2_SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP 1
 
 #include "../../math/homomorphism/add.hpp"
 #include "../../math/monoid/max_min_sum.hpp"
@@ -18,4 +18,4 @@ using AddMaxMinSum = LazySegTree<monoid::MaxMinSum<S>,
 
 } // namespace kk2
 
-#endif // SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP
+#endif // KK2_SEGMENT_TREE_UTILITY_ADD_MAX_MIN_SUM_HPP

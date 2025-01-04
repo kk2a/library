@@ -1,10 +1,10 @@
-#ifndef CONVOLUTION_HPP
-#define CONVOLUTION_HPP 1
+#ifndef KK2_CONVOLUTION_CONVOLUTION_HPP
+#define KK2_CONVOLUTION_CONVOLUTION_HPP 1
 
 #include <algorithm>
 #include <vector>
 
-#include "butterfly.hpp"
+#include "../math_mod/butterfly.hpp"
 
 namespace kk2 {
 
@@ -40,4 +40,4 @@ template <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS 
 
 } // namespace kk2
 
-#endif // CONVOLUTION_HPP
+#endif // KK2_CONVOLUTION_CONVOLUTION_HPP

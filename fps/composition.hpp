@@ -1,5 +1,5 @@
-#ifndef FPS_COMPOSITION_HPP
-#define FPS_COMPOSITION_HPP 1
+#ifndef KK2_FPS_COMPOSITION_HPP
+#define KK2_FPS_COMPOSITION_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -72,4 +72,4 @@ FPS composition(const FPS &f_, const FPS &g_, int deg = -1) {
 
 } // namespace kk2
 
-#endif /* FPS_COMPOSITION_HPP */
+#endif /* KK2_FPS_COMPOSITION_HPP */

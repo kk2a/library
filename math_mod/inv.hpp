@@ -1,5 +1,5 @@
-#ifndef MOD_INV_HPP
-#define MOD_INV_HPP 1
+#ifndef KK2_MATH_MOD_INV_HPP
+#define KK2_MATH_MOD_INV_HPP 1
 
 #include <algorithm>
 
@@ -22,4 +22,4 @@ template <class T> constexpr T mod_inversion(T a, T modulo) {
 
 } // namespace kk2
 
-#endif // MOD_INV_HPP
+#endif // KK2_MATH_MOD_INV_HPP

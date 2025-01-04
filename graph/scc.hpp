@@ -1,5 +1,5 @@
-#ifndef GRAPH_SCC_HPP
-#define GRAPH_SCC_HPP 1
+#ifndef KK2_GRAPH_SCC_HPP
+#define KK2_GRAPH_SCC_HPP 1
 
 #include <cassert>
 #include <algorithm>
@@ -67,4 +67,4 @@ template <class G> struct SCC {
 
 } // namespace kk2
 
-#endif // GRAPH_SCC_HPP
+#endif // KK2_GRAPH_SCC_HPP

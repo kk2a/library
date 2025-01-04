@@ -1,5 +1,5 @@
-#ifndef FPS_MOD_POW_HPP
-#define FPS_MOD_POW_HPP 1
+#ifndef KK2_FPS_MOD_POW_HPP
+#define KK2_FPS_MOD_POW_HPP 1
 
 #include <cassert>
 #include <functional>
@@ -35,4 +35,4 @@ FPS mod_pow(T k, const FPS &f, const FPS &g) {
 
 } // namespace kk2
 
-#endif // FPS_MOD_POW_HPP
+#endif // KK2_FPS_MOD_POW_HPP

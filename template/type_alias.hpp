@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_TYPE_ALIAS_HPP
-#define TEMPLATE_TYPE_ALIAS_HPP 1
+#ifndef KK2_TEMPLATE_TYPE_ALIAS_HPP
+#define KK2_TEMPLATE_TYPE_ALIAS_HPP 1
 
 #include <utility>
 #include <vector>
@@ -25,4 +25,4 @@ template <class T> using vvvvc = std::vector<vvvc<T>>;
 template <class T> using pq = std::priority_queue<T>;
 template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
-#endif // TEMPLATE_TYPE_ALIAS_HPP
+#endif // KK2_TEMPLATE_TYPE_ALIAS_HPP

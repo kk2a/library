@@ -1,5 +1,5 @@
-#ifndef STRING_AHO_CORASICK_HPP
-#define STRING_AHO_CORASICK_HPP 1
+#ifndef KK2_STRING_AHO_CORASICK_HPP
+#define KK2_STRING_AHO_CORASICK_HPP 1
 
 #include <algorithm>
 #include <queue>
@@ -86,4 +86,4 @@ template <int char_size, int margin> struct AhoCorasick : Trie<char_size + 1, ma
 
 } // namespace kk2
 
-#endif // STRING_AHO_CORASICK_HPP
+#endif // KK2_STRING_AHO_CORASICK_HPP

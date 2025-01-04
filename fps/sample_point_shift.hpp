@@ -1,5 +1,5 @@
-#ifndef FPS__SAMPLE_POINT_SHIFT_HPP
-#define FPS__SAMPLE_POINT_SHIFT_HPP 1
+#ifndef KK2_FPS_SAMPLE_POINT_SHIFT_HPP
+#define KK2_FPS_SAMPLE_POINT_SHIFT_HPP 1
 
 #include <algorithm>
 #include <vector>
@@ -56,4 +56,4 @@ std::vector<mint> SamplePointShift(std::vector<mint> &y, mint t, int m = -1) {
 
 } // namespace kk2
 
-#endif // FPS__SAMPLE_POINT_SHIFT_HPP
+#endif // KK2_FPS_SAMPLE_POINT_SHIFT_HPP

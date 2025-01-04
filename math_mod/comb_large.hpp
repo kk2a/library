@@ -1,5 +1,5 @@
-#ifndef MOD_COMB_LARGE_HPP
-#define MOD_COMB_LARGE_HPP 1
+#ifndef KK2_MATH_MOD_COMB_LARGE_HPP
+#define KK2_MATH_MOD_COMB_LARGE_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -112,4 +112,4 @@ template <class mint> struct CombLarge {
 
 } // namespace kk2
 
-#endif // MOD_COMB_LARGE_HPP
+#endif // KK2_MATH_MOD_COMB_LARGE_HPP

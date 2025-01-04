@@ -1,5 +1,5 @@
-#ifndef MOD_PRIMITIVE_ROOT_EXPR_HPP
-#define MOD_PRIMITIVE_ROOT_EXPR_HPP 1
+#ifndef KK2_MATH_MOD_PRIMITIVE_ROOT_HPP
+#define KK2_MATH_MOD_PRIMITIVE_ROOT_HPP 1
 
 #include "pow_mod.hpp"
 
@@ -40,4 +40,4 @@ template <int m> static constexpr int primitive_root = primitive_root_constexpr(
 
 } // namespace kk2
 
-#endif // MOD_PRIMITIVE_ROOT_EXPR_HPP
+#endif // KK2_MATH_MOD_PRIMITIVE_ROOT_HPP

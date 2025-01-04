@@ -1,5 +1,5 @@
-#ifndef FPS_ARB_HPP
-#define FPS_ARB_HPP 1
+#ifndef KK2_FPS_FPS_ARB_HPP
+#define KK2_FPS_FPS_ARB_HPP 1
 
 #include "../convolution/convolution_arb.hpp"
 #include "fps.hpp"
@@ -54,4 +54,4 @@ template <class mint> FormalPowerSeries<mint> FormalPowerSeries<mint>::exp(int d
 
 } // namespace kk2
 
-#endif // FPS_ARB_HPP
+#endif // KK2_FPS_FPS_ARB_HPP

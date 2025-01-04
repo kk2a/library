@@ -1,5 +1,5 @@
-#ifndef TYPE_TRAITS_MEMBER_HPP
-#define TYPE_TRAITS_MEMBER_HPP 1
+#ifndef KK2_TYPE_TRAITS_MEMBER_HPP
+#define KK2_TYPE_TRAITS_MEMBER_HPP 1
 
 #pragma once
 
@@ -43,4 +43,4 @@ HAS_MEMBER_FUNC(debug_output)
 #undef HAS_MEMBER_VAR
 } // namespace kk2
 
-#endif // TYPE_TRAITS_MEMBER_HPP
+#endif // KK2_TYPE_TRAITS_MEMBER_HPP

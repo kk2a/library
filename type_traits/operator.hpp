@@ -1,5 +1,5 @@
-#ifndef TYPE_TRAITS_OPERATOR_HPP
-#define TYPE_TRAITS_OPERATOR_HPP 1
+#ifndef KK2_TYPE_TRAITS_OPERATOR_HPP
+#define KK2_TYPE_TRAITS_OPERATOR_HPP 1
 
 #pragma once
 
@@ -57,4 +57,4 @@ HAS_BINARY_OP(>=, greater_equal)
 #undef HAS_UNARY_OP
 } // namespace kk2
 
-#endif // TYPE_TRAITS_OPERATOR_HPP
+#endif // KK2_TYPE_TRAITS_OPERATOR_HPP

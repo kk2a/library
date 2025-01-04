@@ -1,5 +1,5 @@
-#ifndef SEGMENT_TREE_UTILITY_UPDATEMAX_HPP
-#define SEGMENT_TREE_UTILITY_UPDATEMAX_HPP 1
+#ifndef KK2_SEGMENT_TREE_UTILITY_UPDATEMAX_HPP
+#define KK2_SEGMENT_TREE_UTILITY_UPDATEMAX_HPP 1
 
 #include "../../math/homomorphism/update.hpp"
 #include "../../math/monoid/max.hpp"
@@ -18,4 +18,4 @@ using UpdateMax = LazySegTree<monoid::Max<S>,
 
 } // namespace kk2
 
-#endif // SEGMENT_TREE_UTILITY_UPDATEMAX_HPP
+#endif // KK2_SEGMENT_TREE_UTILITY_UPDATEMAX_HPP

@@ -1,5 +1,5 @@
-#ifndef OTHERS_MO_HPP
-#define OTHERS_MO_HPP 1
+#ifndef KK2_OTHERS_MO_HPP
+#define KK2_OTHERS_MO_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -79,4 +79,4 @@ struct Mo {
 
 } // namespace kk2
 
-#endif // OTHERS_MO_HPP
+#endif // KK2_OTHERS_MO_HPP

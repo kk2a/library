@@ -1,5 +1,5 @@
-#ifndef SEGMENT_TREE_SEG_2D_HPP
-#define SEGMENT_TREE_SEG_2D_HPP 1
+#ifndef KK2_SEGMENT_TREE_SEG2D_HPP
+#define KK2_SEGMENT_TREE_SEG2D_HPP 1
 
 #include <cassert>
 #include <vector>
@@ -94,4 +94,4 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
 
 } // namespace kk2
 
-#endif // SEGMENT_TREE_SEG_2D_HPP
+#endif // KK2_SEGMENT_TREE_SEG2D_HPP

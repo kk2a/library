@@ -1,5 +1,5 @@
-#ifndef MOD_SQRT_HPP
-#define MOD_SQRT_HPP 1
+#ifndef KK2_MATH_MOD_MOD_SQRT_HPP
+#define KK2_MATH_MOD_MOD_SQRT_HPP 1
 
 #include <cassert>
 
@@ -39,4 +39,4 @@ template <class T, class U> long long mod_sqrt(const T &a, const U &p) {
 
 } // namespace kk2
 
-#endif // MOD_SQRT_HPP
+#endif // KK2_MATH_MOD_MOD_SQRT_HPP

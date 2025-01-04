@@ -1,5 +1,5 @@
-#ifndef SEGMENT_TREE_UTILITY_AFFINESUM_HPP
-#define SEGMENT_TREE_UTILITY_AFFINESUM_HPP 1
+#ifndef KK2_SEGMENT_TREE_UTILITY_AFFINESUM_HPP
+#define KK2_SEGMENT_TREE_UTILITY_AFFINESUM_HPP 1
 
 #include "../../math/group/sum.hpp"
 #include "../../math/homomorphism/affine.hpp"
@@ -18,4 +18,4 @@ using AffineSum = LazySegTree<group::Sum<S>,
 
 } // namespace kk2
 
-#endif // SEGMENT_TREE_UTILITY_AFFINESUM_HPP
+#endif // KK2_SEGMENT_TREE_UTILITY_AFFINESUM_HPP

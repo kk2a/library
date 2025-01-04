@@ -1,5 +1,5 @@
-#ifndef STRING_Z_ALGORITHM_HPP
-#define STRING_Z_ALGORITHM_HPP 1
+#ifndef KK2_STRING_Z_ALGORITHM_HPP
+#define KK2_STRING_Z_ALGORITHM_HPP 1
 
 #include <string>
 #include <vector>
@@ -35,4 +35,4 @@ std::vector<int> z_algorithm(const std::string &s) {
 
 } // namespace kk2
 
-#endif // STRING_Z_ALGORITHM_HPP
+#endif // KK2_STRING_Z_ALGORITHM_HPP

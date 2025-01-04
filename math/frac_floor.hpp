@@ -1,5 +1,5 @@
-#ifndef MATH_FLOOR_CEIL_HPP
-#define MATH_FLOOR_CEIL_HPP 1
+#ifndef KK2_MATH_FRAC_FLOOR_HPP
+#define KK2_MATH_FRAC_FLOOR_HPP 1
 
 #include <cassert>
 
@@ -31,4 +31,4 @@ template <typename T, typename U> constexpr T fracceil(T a, U b) {
 
 } // namespace kk2
 
-#endif // MATH_FLOOR_CEIL_HPP
+#endif // KK2_MATH_FRAC_FLOOR_HPP

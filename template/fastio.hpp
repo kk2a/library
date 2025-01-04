@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_FASTIO_HPP
-#define TEMPLATE_FASTIO_HPP 1
+#ifndef KK2_TEMPLATE_FASTIO_HPP
+#define KK2_TEMPLATE_FASTIO_HPP 1
 
 #include <cctype>
 #include <cstdint>
@@ -297,4 +297,4 @@ fastio::endl_struct_t kendl;
 
 } // namespace kk2
 
-#endif // TEMPLATE_FASTIO_HPP
+#endif // KK2_TEMPLATE_FASTIO_HPP

@@ -1,5 +1,5 @@
-#ifndef MATH_MONOID_MAX_MIN_SUM_HPP
-#define MATH_MONOID_MAX_MIN_SUM_HPP 1
+#ifndef KK2_MATH_MONOID_MAX_MIN_SUM_HPP
+#define KK2_MATH_MONOID_MAX_MIN_SUM_HPP 1
 
 #include <algorithm>
 #include <iostream>
@@ -98,4 +98,4 @@ GetVecMaxMinSum2D(int h, int w, Args... args) {
 
 } // namespace kk2
 
-#endif // MATH_MONOID_MAX_MIN_SUM_HPP
+#endif // KK2_MATH_MONOID_MAX_MIN_SUM_HPP

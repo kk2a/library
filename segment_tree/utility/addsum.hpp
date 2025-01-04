@@ -1,5 +1,5 @@
-#ifndef SEGMENT_TREE_UTILITY_ADDSUM_HPP
-#define SEGMENT_TREE_UTILITY_ADDSUM_HPP 1
+#ifndef KK2_SEGMENT_TREE_UTILITY_ADDSUM_HPP
+#define KK2_SEGMENT_TREE_UTILITY_ADDSUM_HPP 1
 
 #include "../../math/group/sum.hpp"
 #include "../../math/homomorphism/add.hpp"
@@ -18,4 +18,4 @@ using AddSum = LazySegTree<group::Sum<S>,
 
 } // namespace kk2
 
-#endif // SEGMENT_TREE_UTILITY_ADDSUM_HPP
+#endif // KK2_SEGMENT_TREE_UTILITY_ADDSUM_HPP

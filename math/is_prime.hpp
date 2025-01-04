@@ -1,5 +1,5 @@
-#ifndef MATH_MILLER_RABIN_HPP
-#define MATH_MILLER_RABIN_HPP 1
+#ifndef KK2_MATH_IS_PRIME_HPP
+#define KK2_MATH_IS_PRIME_HPP 1
 
 #include <vector>
 
@@ -78,4 +78,4 @@ using number_theory::is_prime;
 
 }; // namespace kk2
 
-#endif // MATH_MILLER_RABIN_HPP
+#endif // KK2_MATH_IS_PRIME_HPP

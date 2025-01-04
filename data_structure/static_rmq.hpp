@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_STATIC_RMQ_HPP
-#define DATA_STRUCTURE_STATIC_RMQ_HPP 1
+#ifndef KK2_DATA_STRUCTURE_STATIC_RMQ_HPP
+#define KK2_DATA_STRUCTURE_STATIC_RMQ_HPP 1
 
 #include "../math/monoid/min.hpp"
 #include "sparse_table.hpp"
@@ -11,4 +11,4 @@ using StaticRMQ = SparseTable<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<
 
 } // namespace kk2
 
-#endif // DATA_STRUCTURE_STATIC_RMQ_HPP
+#endif // KK2_DATA_STRUCTURE_STATIC_RMQ_HPP

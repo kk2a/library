@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_SIMPLEIO_HPP
-#define TEMPLATE_SIMPLEIO_HPP 1
+#ifndef KK2_TEMPLATE_SIMPLEIO_HPP
+#define KK2_TEMPLATE_SIMPLEIO_HPP 1
 
 #include <fstream>
 
@@ -29,4 +29,4 @@ struct SimplePrinter : type_traits::ostream_tag {
 
 } // namespace kk2
 
-#endif // TEMPLATE_SIMPLEIO_HPP
+#endif // KK2_TEMPLATE_SIMPLEIO_HPP

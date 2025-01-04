@@ -1,5 +1,5 @@
-#ifndef RANDOM_HASH_HPP
-#define RANDOM_HASH_HPP 1
+#ifndef KK2_RANDOM_HASH_HPP
+#define KK2_RANDOM_HASH_HPP 1
 
 #include <algorithm>
 #include <array>
@@ -94,4 +94,4 @@ template <int NUM> struct Hash : std::array<ModInt2_61m1, NUM> {
 
 } // namespace kk2
 
-#endif // RANDOM_HASH_HPP
+#endif // KK2_RANDOM_HASH_HPP

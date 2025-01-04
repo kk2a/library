@@ -1,5 +1,5 @@
-#ifndef SEGMNET_TREE_UTILITY_MAX_MIN_SUM_HPP
-#define SEGMNET_TREE_UTILITY_MAX_MIN_SUM_HPP 1
+#ifndef KK2_SEGMENT_TREE_UTILITY_MAX_MIN_SUM_SEG_HPP
+#define KK2_SEGMENT_TREE_UTILITY_MAX_MIN_SUM_SEG_HPP 1
 
 #include "../../math/monoid/max_min_sum.hpp"
 #include "../seg.hpp"
@@ -12,4 +12,4 @@ using MaxMinSumSeg =
 
 } // namespace kk2
 
-#endif // SEGMNET_TREE_UTILITY_MAX_MIN_SUM_HPP
+#endif // KK2_SEGMENT_TREE_UTILITY_MAX_MIN_SUM_SEG_HPP

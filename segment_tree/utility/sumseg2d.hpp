@@ -1,5 +1,5 @@
-#ifndef SEGMENT_TREE_UTILITIY_SUMSEG2D_HPP
-#define SEGMENT_TREE_UTILITIY_SUMSEG2D_HPP 1
+#ifndef KK2_SEGMENT_TREE_UTILITIY_SUMSEG2D_HPP
+#define KK2_SEGMENT_TREE_UTILITIY_SUMSEG2D_HPP 1
 
 #include "../../math/group/sum.hpp"
 #include "../seg2d.hpp"
@@ -10,4 +10,4 @@ template <class S> using SumSeg2D = SegTree2D<group::Sum<S>, group::SumOp<S>, gr
 
 } // namespace kk2
 
-#endif // SEGMENT_TREE_UTILITIY_SUMSEG2D_HPP
+#endif // KK2_SEGMENT_TREE_UTILITIY_SUMSEG2D_HPP

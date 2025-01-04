@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP
-#define DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP 1
+#ifndef KK2_DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP
+#define KK2_DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP 1
 
 #include <cassert>
 #include <vector>
@@ -39,4 +39,4 @@ template <typename T> struct BinaryIndexedTree {
 
 } // namespace kk2
 
-#endif // #ifndef DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP
+#endif // #ifndef KK2_DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP

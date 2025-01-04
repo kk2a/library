@@ -1,5 +1,5 @@
-#ifndef FPS_COMPOSITION_INVERSION_HPP
-#define FPS_COMPOSITION_INVERSION_HPP 1
+#ifndef KK2_FPS_COMPOSITIONAL_INV_HPP
+#define KK2_FPS_COMPOSITIONAL_INV_HPP 1
 
 #include <cassert>
 
@@ -26,4 +26,4 @@ FPS compositional_inv(const FPS &f, int deg = -1) {
 
 } // namespace kk2
 
-#endif // FPS_COMPOSITION_INVERSION_HPP
+#endif // KK2_FPS_COMPOSITIONAL_INV_HPP

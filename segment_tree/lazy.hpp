@@ -1,5 +1,5 @@
-#ifndef LAZY_HPP
-#define LAZY_HPP 1
+#ifndef KK2_SEGMENT_TREE_LAZY_HPP
+#define KK2_SEGMENT_TREE_LAZY_HPP 1
 
 #include <cassert>
 #include <functional>
@@ -214,4 +214,4 @@ struct LazySegTree {
 
 } // namespace kk2
 
-#endif // LAZY_HPP
+#endif // KK2_SEGMENT_TREE_LAZY_HPP

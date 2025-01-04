@@ -1,5 +1,5 @@
-#ifndef MATH_MONOID_MAX_HPP
-#define MATH_MONOID_MAX_HPP 1
+#ifndef KK2_MATH_MONOID_MAX_HPP
+#define KK2_MATH_MONOID_MAX_HPP 1
 
 #include <algorithm>
 #include <iostream>

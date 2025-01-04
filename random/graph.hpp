@@ -1,5 +1,5 @@
-#ifndef RANDOM_GRAPH_HPP
-#define RANDOM_GRAPH_HPP 1
+#ifndef KK2_RANDOM_GRAPH_HPP
+#define KK2_RANDOM_GRAPH_HPP 1
 
 #include <type_traits>
 #include <vector>
@@ -49,4 +49,4 @@ adjlist<is_weighted, false, T> Tree(int n, T l = 0, T r = 1e9) {
 
 } // namespace kk2
 
-#endif // RANDOM_GRAPH_HPP
+#endif // KK2_RANDOM_GRAPH_HPP

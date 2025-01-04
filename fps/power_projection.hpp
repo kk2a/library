@@ -1,5 +1,5 @@
-#ifndef POWER_PROJECTION_HPP
-#define POWER_PROJECTION_HPP 1
+#ifndef KK2_FPS_POWER_PROJECTION_HPP
+#define KK2_FPS_POWER_PROJECTION_HPP 1
 
 #include <algorithm>
 #include <functional>
@@ -122,4 +122,4 @@ FPS power_projection(const FPS &f, const FPS &g = {1}, int m = -1) {
 
 } // namespace kk2
 
-#endif // POWER_PROJECTION_HPP
+#endif // KK2_FPS_POWER_PROJECTION_HPP

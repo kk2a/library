@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_FUNCTIONAL_UTIL_HPP
-#define TEMPLATE_FUNCTIONAL_UTIL_HPP 1
+#ifndef KK2_TEMPLATE_FUNCTION_UTIL_HPP
+#define KK2_TEMPLATE_FUNCTION_UTIL_HPP 1
 
 #include <algorithm>
 #include <vector>
@@ -22,6 +22,10 @@ template <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const 
     for (auto &u : v) fill_all(u, x);
 }
 
+template <class C> int size(const C &c) {
+    return c.size();
+}
+
 } // namespace kk2
 
 template <class T, class S> inline bool chmax(T &a, const S &b) {
@@ -32,4 +36,4 @@ template <class T, class S> inline bool chmin(T &a, const S &b) {
     return (a > b ? a = b, 1 : 0);
 }
 
-#endif // TEMPLATE_FUNCTIONAL_UTIL_HPP
+#endif // KK2_TEMPLATE_FUNCTION_UTIL_HPP

@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURE_TRIE_HPP
-#define DATA_STRUCTURE_TRIE_HPP 1
+#ifndef KK2_DATA_STRUCTURE_TRIE_HPP
+#define KK2_DATA_STRUCTURE_TRIE_HPP 1
 
 #include <cassert>
 #include <cstring>
@@ -83,4 +83,4 @@ template <int char_size, int margin> struct Trie {
 
 } // namespace kk2
 
-#endif // DATA_STRUCTURE_TRIE_HPP
+#endif // KK2_DATA_STRUCTURE_TRIE_HPP
