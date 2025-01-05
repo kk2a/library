@@ -5,14 +5,7 @@
 
 namespace kk2 {
 
-// a_{i + k} = \sum_{j = 0}^{k - 1} c_{j} a_{i + k - j - 1}
-// return P of P / Q = a_0 + a_1 x + a_2 x^2 + ...
-template <class FPS, class mint = typename FPS::value_type>
-FPS linear_rec(const FPS &a, const FPS &c) {
-    int k = int(a.size());
-    return (a * (-(c << 1) + mint(1))).pre(k);
-}
-
+// return [x^n] (p(x) / q(x))
 template <class FPS, class mint = typename FPS::value_type>
 mint bostan_mori(const FPS &p, const FPS &q, long long n) {
     assert(!p.empty() && !q.empty());
@@ -29,6 +22,15 @@ mint bostan_mori(const FPS &p, const FPS &q, long long n) {
     for (int i = 0; i < qsz - 1; i++) { pp[i] = (n & 1) ? p2[2 * i + 1] : p2[2 * i]; }
     for (int i = 0; i < qsz; i++) { qq[i] = q2[2 * i]; }
     return bostan_mori(pp, qq, n >> 1);
+}
+
+// a_i = c_i (i < d)
+// a_i = \sum_{j=0}^{d-1} c_ja_{i-j-1} (i >= d)
+// return a_k
+template <class FPS, class mint = typename FPS::value_type>
+mint kth_term_of_linearly_recurrent_sequence(const FPS &a, const FPS &c, long long k) {
+    if (k < (long long)a.size()) return a[k];
+    return bostan_mori((a * (-(c << 1) + mint(1))).pre(a.size()), -(c << 1) + mint(1), k);
 }
 
 } // namespace kk2
