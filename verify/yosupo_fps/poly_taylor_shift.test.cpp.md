@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_taylor_shift.hpp
     title: fps/poly_taylor_shift.hpp
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
   - icon: ':question:'
@@ -54,9 +54,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
@@ -106,7 +106,7 @@ data:
   path: verify/yosupo_fps/poly_taylor_shift.test.cpp
   requiredBy: []
   timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_taylor_shift.test.cpp
 layout: document

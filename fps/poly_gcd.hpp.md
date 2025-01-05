@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_find_root.hpp
     title: fps/poly_find_root.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_inv.test.cpp
     title: verify/yosupo_fps/poly_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/poly_gcd.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -115,7 +115,7 @@ data:
   requiredBy:
   - fps/poly_find_root.hpp
   timestamp: '2025-01-05 07:17:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp

@@ -48,9 +48,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
@@ -76,7 +76,7 @@ data:
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
     \ = kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n, m;\n   \
     \ kin >> n >> m;\n    FPS f(n), g(m);\n    kin >> f >> g;\n    FPS q = (f / g).shrink();\n\
-    \    FPS r = (f - q * g).shrink();\n\n    kout << g.size() << \" \" << r.size()\
+    \    FPS r = (f - q * g).shrink();\n\n    kout << q.size() << \" \" << r.size()\
     \ << kendl;\n    kout << q << kendl;\n    kout << r << kendl;\n\n    return 0;\n\
     }\n"
   dependsOn:
@@ -98,8 +98,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/poly_division.test.cpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-06 03:42:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_division.test.cpp
 layout: document

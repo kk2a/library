@@ -5,14 +5,14 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_taylor_shift.hpp
     title: fps/poly_taylor_shift.hpp
   - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     title: verify/yosupo_fps/poly_taylor_shift.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: verify/yosupo_math/many_factrials.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -73,7 +73,7 @@ data:
   - fps/poly_taylor_shift.hpp
   - math_mod/comb_large.hpp
   timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp

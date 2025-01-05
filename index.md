@@ -99,7 +99,7 @@ data:
     - icon: ':x:'
       path: fps/bostan_mori.hpp
       title: fps/bostan_mori.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
     - icon: ':heavy_check_mark:'
@@ -120,7 +120,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/fps_sqrt.hpp
       title: fps/fps_sqrt.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/mod_pow.hpp
       title: fps/mod_pow.hpp
     - icon: ':question:'
@@ -129,22 +129,22 @@ data:
     - icon: ':question:'
       path: fps/ntt_friendly.hpp
       title: fps/ntt_friendly.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_find_root.hpp
       title: fps/poly_find_root.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_gcd.hpp
       title: fps/poly_gcd.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_interpolation.hpp
       title: fps/poly_interpolation.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/poly_sample_point_shift.hpp
       title: fps/poly_sample_point_shift.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_taylor_shift.hpp
       title: fps/poly_taylor_shift.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_to_newton_basis.hpp
       title: fps/poly_to_newton_basis.hpp
     - icon: ':heavy_check_mark:'
@@ -306,7 +306,7 @@ data:
     - icon: ':question:'
       path: math_mod/butterfly.hpp
       title: math_mod/butterfly.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math_mod/comb.hpp
       title: math_mod/comb.hpp
     - icon: ':x:'
@@ -689,28 +689,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sqrt.test.cpp
       title: verify/yosupo_fps/fps_sqrt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_division.test.cpp
       title: verify/yosupo_fps/poly_division.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_interpolation.test.cpp
       title: verify/yosupo_fps/poly_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
       title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_inv.test.cpp
       title: verify/yosupo_fps/poly_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_root_finding.test.cpp
       title: verify/yosupo_fps/poly_root_finding.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
       title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
       title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
       title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - name: verify/yosupo_geometry

@@ -5,7 +5,7 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_find_root.hpp
     title: fps/poly_find_root.hpp
   - icon: ':heavy_check_mark:'
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
   - icon: ':x:'

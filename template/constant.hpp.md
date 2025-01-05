@@ -156,28 +156,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_division.test.cpp
     title: verify/yosupo_fps/poly_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_interpolation.test.cpp
     title: verify/yosupo_fps/poly_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
     title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_inv.test.cpp
     title: verify/yosupo_fps/poly_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - icon: ':x:'
