@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/scc.hpp\"\n\n\n\n#include <cassert>\n#include <algorithm>\n\
+  bundledCode: "#line 1 \"graph/scc.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
     #include <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class\
     \ G> struct SCC {\n    static_assert(G::directed::value, \"SCC requires directed\
     \ graph\");\n    int n;\n    const G &g;\n    std::vector<std::vector<int>> revg;\n\
@@ -35,8 +35,8 @@ data:
     \ &e : g[u]) {\n                int v = e.to;\n                if (scc_id[u] ==\
     \ scc_id[v]) continue;\n                dag[scc_id[u]].emplace_back(scc_id[v]);\n\
     \            }\n        }\n    }\n};\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef KK2_GRAPH_SCC_HPP\n#define KK2_GRAPH_SCC_HPP 1\n\n#include <cassert>\n\
-    #include <algorithm>\n#include <functional>\n#include <vector>\n\nnamespace kk2\
+  code: "#ifndef KK2_GRAPH_SCC_HPP\n#define KK2_GRAPH_SCC_HPP 1\n\n#include <algorithm>\n\
+    #include <cassert>\n#include <functional>\n#include <vector>\n\nnamespace kk2\
     \ {\n\ntemplate <class G> struct SCC {\n    static_assert(G::directed::value,\
     \ \"SCC requires directed graph\");\n    int n;\n    const G &g;\n    std::vector<std::vector<int>>\
     \ revg;\n    std::vector<int> ord, scc_id;\n    std::vector<bool> used;\n    std::vector<std::vector<int>>\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: false
   path: graph/scc.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_scc.test.cpp

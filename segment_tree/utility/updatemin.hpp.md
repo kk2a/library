@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: math/homomorphism/update.hpp
     title: math/homomorphism/update.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []
@@ -21,9 +21,9 @@ data:
     \n\n\n\n#include <iostream>\n\nnamespace kk2 {\n\nnamespace homomorphism {\n\n\
     template <class S> struct Update {\n    S a;\n    bool id;\n\n    constexpr Update()\
     \ : a(S()), id(true) {}\n\n    constexpr Update(S a_, bool id_ = false) : a(a_),\
-    \ id(id_) {}\n\n    operator S() const { return a; }\n\n    template <class OStream>\n\
-    \    friend OStream &operator<<(OStream &os, const Update &update) {\n       \
-    \ if (update.id) os << \"id\";\n        else os << update.a;\n        return os;\n\
+    \ id(id_) {}\n\n    operator S() const { return a; }\n\n    template <class OStream>\
+    \ friend OStream &operator<<(OStream &os, const Update &update) {\n        if\
+    \ (update.id) os << \"id\";\n        else os << update.a;\n        return os;\n\
     \    }\n};\n\ntemplate <class S, class T> constexpr T UpdateMap(Update<S> f, T\
     \ x) {\n    return f.id ? x : x.update(f.a);\n}\n\ntemplate <class S> constexpr\
     \ Update<S> UpdateComposition(Update<S> l, Update<S> r) {\n    if (l.id) return\
@@ -34,22 +34,22 @@ data:
     \ monoid {\n\ntemplate <class S> struct Min {\n    S a;\n    bool inf;\n\n   \
     \ constexpr Min() : a(S()), inf(true) {}\n\n    constexpr Min(S a_, bool inf_\
     \ = false) : a(a_), inf(inf_) {}\n\n    operator S() const { return a; }\n\n \
-    \   template <class OStream>\n    friend OStream &operator<<(OStream &os, const\
-    \ Min &min) {\n        if (min.inf) os << \"inf\";\n        else os << min.a;\n\
-    \        return os;\n    }\n\n    template <class IStream>\n    friend IStream\
-    \ &operator>>(IStream &is, Min &min) {\n        is >> min.a;\n        min.inf\
-    \ = false;\n        return is;\n    }\n\n    constexpr Min &operator=(const S\
-    \ &rhs) {\n        a = rhs;\n        inf = false;\n        return *this;\n   \
-    \ }\n\n    constexpr Min &add(const S &rhs) {\n        if (inf) return *this;\n\
-    \        a += rhs;\n        return *this;\n    }\n\n    constexpr Min &update(const\
-    \ S &rhs) {\n        a = rhs;\n        inf = false;\n        return *this;\n \
-    \   }\n\n    constexpr bool is_inf() { return inf; }\n};\n\ntemplate <class S>\
-    \ constexpr Min<S> MinOp(Min<S> l, Min<S> r) {\n    if (r.inf) return l;\n   \
-    \ if (l.inf) return r;\n    l.a = std::min(l.a, r.a);\n    return l;\n}\n\ntemplate\
-    \ <class S> Min<S> MinUnit() {\n    constexpr static Min<S> e = Min<S>();\n  \
-    \  return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
-    std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {\n    return std::vector<monoid::Min<S>>(n,\
-    \ monoid::Min<S>(args...));\n}\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
+    \   template <class OStream> friend OStream &operator<<(OStream &os, const Min\
+    \ &min) {\n        if (min.inf) os << \"inf\";\n        else os << min.a;\n  \
+    \      return os;\n    }\n\n    template <class IStream> friend IStream &operator>>(IStream\
+    \ &is, Min &min) {\n        is >> min.a;\n        min.inf = false;\n        return\
+    \ is;\n    }\n\n    constexpr Min &operator=(const S &rhs) {\n        a = rhs;\n\
+    \        inf = false;\n        return *this;\n    }\n\n    constexpr Min &add(const\
+    \ S &rhs) {\n        if (inf) return *this;\n        a += rhs;\n        return\
+    \ *this;\n    }\n\n    constexpr Min &update(const S &rhs) {\n        a = rhs;\n\
+    \        inf = false;\n        return *this;\n    }\n\n    constexpr bool is_inf()\
+    \ { return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
+    \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
+    \ r.a);\n    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr\
+    \ static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
+    \ <class S, class... Args> std::vector<monoid::Min<S>> GetVecMin(int n, Args...\
+    \ args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
     \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
     \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
     \n\n\n\n#include <cassert>\n#include <functional>\n#line 7 \"segment_tree/lazy.hpp\"\
@@ -148,7 +148,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatemin.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemin.hpp

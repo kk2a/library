@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/convolution_gcd.hpp\"\n\n\n\n#include <cassert>\n\
@@ -41,7 +41,7 @@ data:
     \   }\n\n    static int mobius(int n) {\n        assert(n < (int)_mobius.size()\
     \ && n != 0);\n        return _mobius[n];\n    }\n\n    static int minfactor(int\
     \ n) {\n        assert(n < (int)_minfactor.size() && n != 0);\n        return\
-    \ _minfactor[n];\n    }\n\n    static const std::vector<int>& primes() { return\
+    \ _minfactor[n];\n    }\n\n    static const std::vector<int> &primes() { return\
     \ _primes; }\n\n    static std::vector<std::pair<int, int>> factorize(int n) {\n\
     \        assert(n < (int)_isprime.size() && n != 0);\n        if (n == 1 || n\
     \ == -1) return {};\n        if (n < 0) n = -n;\n        std::vector<std::pair<int,\
@@ -73,7 +73,7 @@ data:
     \ p : Erato::primes()) {\n        if (p > n) break;\n        for (int i = n /\
     \ p; i > 0; i--) a[i * p] -= a[i];\n    }\n}\n\n} // namespace kk2\n\n\n#line\
     \ 7 \"convolution/convolution_gcd.hpp\"\n\nnamespace kk2 {\n\n// 1-indexed\ntemplate\
-    \ <class FPS>\nFPS convolution_gcd(FPS &a, const FPS &b) {\n    assert(size(a)\
+    \ <class FPS> FPS convolution_gcd(FPS &a, const FPS &b) {\n    assert(size(a)\
     \ == size(b));\n    int n = int(size(a)); // = int(size(b))\n    if (!n) return\
     \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n\n    multiple_transform(a);\n\
     \    multiple_transform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n\
@@ -81,7 +81,7 @@ data:
     \n\n"
   code: "#ifndef KK2_CONVOLUTION_CONVOLUTION_GCD_HPP\n#define KK2_CONVOLUTION_CONVOLUTION_GCD_HPP\
     \ 1\n\n#include <cassert>\n\n#include \"divisor_multiple_transform.hpp\"\n\nnamespace\
-    \ kk2 {\n\n// 1-indexed\ntemplate <class FPS>\nFPS convolution_gcd(FPS &a, const\
+    \ kk2 {\n\n// 1-indexed\ntemplate <class FPS> FPS convolution_gcd(FPS &a, const\
     \ FPS &b) {\n    assert(size(a) == size(b));\n    int n = int(size(a)); // = int(size(b))\n\
     \    if (!n) return {};\n    n--;\n    FPS c(b.begin(), b.end());\n\n    multiple_transform(a);\n\
     \    multiple_transform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n\
@@ -93,8 +93,8 @@ data:
   isVerificationFile: false
   path: convolution/convolution_gcd.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-06 05:33:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_gcd.test.cpp
 documentation_of: convolution/convolution_gcd.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: geometry/point.hpp
     title: geometry/point.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -52,12 +52,12 @@ data:
     \        for (int i = 1; i < _n; i++) same[i] = tmp[i - 1].first == tmp[i].first;\n\
     \        std::vector<std::pair<point, int>> up_, dw_;\n\n        for (int i =\
     \ 0; i < _n; i++) {\n            if (same[i]) continue;\n            // \u50BE\
-    \u304D\u304C\u6E1B\u5C11\n            while (size(up_) >= 2\n                \
-    \   && cross(up_[size(up_) - 1].first - up_[size(up_) - 2].first,\n          \
-    \                  tmp[i].first - up_[size(up_) - 1].first)\n                \
-    \          >= 0) {\n                up_.pop_back();\n            }\n\n       \
-    \     // \u50BE\u304D\u304C\u5897\u52A0\n            while (size(dw_) >= 2\n \
-    \                  && cross(dw_[size(dw_) - 1].first - dw_[size(dw_) - 2].first,\n\
+    \u304D\u304C\u6E1B\u5C11\n            while (size(up_) >= 2u\n               \
+    \    && cross(up_[size(up_) - 1].first - up_[size(up_) - 2].first,\n         \
+    \                   tmp[i].first - up_[size(up_) - 1].first)\n               \
+    \           >= 0) {\n                up_.pop_back();\n            }\n\n      \
+    \      // \u50BE\u304D\u304C\u5897\u52A0\n            while (size(dw_) >= 2u\n\
+    \                   && cross(dw_[size(dw_) - 1].first - dw_[size(dw_) - 2].first,\n\
     \                            tmp[i].first - dw_[size(dw_) - 1].first)\n      \
     \                    <= 0) {\n                dw_.pop_back();\n            }\n\
     \            up_.emplace_back(tmp[i]);\n            dw_.emplace_back(tmp[i]);\n\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: geometry/static_convex_hull.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-01-06 05:39:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp

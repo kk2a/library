@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -32,7 +32,7 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_FPS_POLY_TAYLOR_SHIFT_HPP\n#define KK2_FPS_POLY_TAYLOR_SHIFT_HPP\
     \ 1\n\n#include <algorithm>\n\n#include \"../math_mod/comb.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS taylor_shift(const\
+    \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS taylor_shift(const\
     \ FPS &f_, mint a) {\n    FPS f(f_);\n    int n = f.size();\n    Comb<mint>::extend(n);\n\
     \    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::fact(i);\n    f.inplace_rev();\n\
     \    FPS g(n, mint(1));\n    for (int i = 1; i < n; i++) g[i] = g[i - 1] * a *\
@@ -45,8 +45,8 @@ data:
   isVerificationFile: false
   path: fps/poly_taylor_shift.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-06 05:33:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
 documentation_of: fps/poly_taylor_shift.hpp

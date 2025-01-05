@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: verify/yosupo_string/string_z_roliha.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -49,8 +49,8 @@ data:
     ../random/hash.hpp\"\n\nnamespace kk2 {\n\ntemplate <int NUM> struct RollingHash\
     \ {\n    using H = random::Hash<NUM>;\n    static std::vector<H> pw, pwi;\n  \
     \  std::vector<H> prefix;\n\n    RollingHash() : prefix() {}\n\n    template <class\
-    \ T, is_integral_t<T> * = nullptr>\n    RollingHash(T v) : prefix({H(v)}) {}\n\
-    \n    RollingHash(const std::string &s) : prefix(s.size()) {\n        extend_base(s.size());\n\
+    \ T, is_integral_t<T> * = nullptr> RollingHash(T v) : prefix({H(v)}) {}\n\n  \
+    \  RollingHash(const std::string &s) : prefix(s.size()) {\n        extend_base(s.size());\n\
     \        prefix[0] = H(s[0]);\n        for (size_t i = 1; i < s.size(); ++i) {\
     \ prefix[i] = prefix[i - 1] + H(s[i]) * pw[i]; }\n    }\n\n    template <class\
     \ T, is_integral_t<T> * = nullptr>\n    RollingHash(const std::vector<T> &v) :\
@@ -97,8 +97,8 @@ data:
   isVerificationFile: false
   path: string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2025-01-06 05:33:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp

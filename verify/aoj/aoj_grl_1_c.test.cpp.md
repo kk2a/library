@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
@@ -73,17 +73,17 @@ data:
   - graph/edge.hpp
   - graph/warshall_floyd.hpp
   - template/template.hpp
-  - template/fastio.hpp
-  - template/type_alias.hpp
   - template/constant.hpp
+  - template/fastio.hpp
   - template/function_util.hpp
-  - template/macros.hpp
   - template/io_util.hpp
+  - template/macros.hpp
+  - template/type_alias.hpp
   isVerificationFile: true
   path: verify/aoj/aoj_grl_1_c.test.cpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-01-06 05:33:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/aoj/aoj_grl_1_c.test.cpp
 layout: document

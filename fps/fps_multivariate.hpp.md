@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -44,93 +44,98 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_FPS_FPS_MULTIVARIATE_HPP\n#define KK2_FPS_FPS_MULTIVARIATE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include\
-    \ <vector>\n\n#include \"../type_traits/type_traits.hpp\"\n#include \"../convolution/multi_convolution_truncated.hpp\"\
-    \n#include \"ntt_friendly.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename mint>\
-    \ struct MultivariateFormalPowerSeries {\n    using mfps = MultivariateFormalPowerSeries;\n\
-    \    using fps = FormalPowerSeries<mint>;\n    using value_type = mint;\n\n  \
-    \  std::vector<int> base;\n    fps f;\n\n    MultivariateFormalPowerSeries() =\
-    \ default;\n\n    MultivariateFormalPowerSeries(const std::vector<int> &base_)\
-    \ : base(base_) {\n        int n = 1;\n        for (int x : base) n *= x;\n  \
-    \      f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const std::vector<int>\
-    \ &base_, const fps &f_)\n        : base(base_),\n          f(f_) {}\n\n    template\
-    \ <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
-    \ &os, const mfps &mfps_) {\n        for (int i = 0; i < (int)mfps_.f.size();\
-    \ i++) os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? \"\" : \" \");\n  \
-    \      return os;\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
-    \ * = nullptr>\n    void output(OStream &os) const {\n        for (int i = 0;\
-    \ i < (int)f.size(); i++) os << f[i] << (i + 1 == (int)f.size() ? \"\\n\" : \"\
-    \ \");\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
-    \    mfps &input(IStream &is) {\n        for (auto &x : f) is >> x;\n        return\
-    \ *this;\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
-    \    friend IStream &operator>>(IStream &is, mfps &mfps_) {\n        for (auto\
-    \ &x : mfps_.f) is >> x;\n        return is;\n    }\n\n    template <typename\
-    \ T, typename... Ts> int _id(int x, T y, Ts... ys) {\n        assert(x < (int)base.size()\
-    \ && (int)y < base[x]);\n        if constexpr (sizeof...(Ts) == 0) return y;\n\
-    \        else return y + base[x] * _id(x + 1, ys...);\n    }\n\n    template <typename...\
-    \ Args> int id(Args... args) {\n        static_assert(sizeof...(Args) > 0);\n\
-    \        return _id(0, args...);\n    }\n\n    template <typename... Args> mint\
-    \ &operator()(Args... args) { return f[id(args...)]; }\n\n    mint &operator[](int\
-    \ i) { return f[i]; }\n\n    template <class OStream, is_ostream_t<OStream> *\
-    \ = nullptr>\n    void display(OStream &os) const {\n        for (int i = 0; i\
-    \ < (int)f.size(); i++) {\n            int x = i;\n            os << \"f(\";\n\
-    \            for (int j = 0; j < (int)base.size(); j++) {\n                os\
-    \ << x % base[j] << (j + 1 == (int)base.size() ? \") = \" : \", \");\n       \
-    \         x /= base[j];\n            }\n            os << f[i] << \"\\n\";\n \
-    \       }\n    }\n\n    mfps &operator+=(const mfps &rhs) {\n        assert(base\
-    \ == rhs.base && f.size() == rhs.f.size());\n        for (int i = 0; i < (int)f.size();\
-    \ i++) f[i] += rhs.f[i];\n        return *this;\n    }\n\n    mfps &operator-=(const\
+    \ <vector>\n\n#include \"../convolution/multi_convolution_truncated.hpp\"\n#include\
+    \ \"../type_traits/type_traits.hpp\"\n#include \"ntt_friendly.hpp\"\n\nnamespace\
+    \ kk2 {\n\ntemplate <typename mint> struct MultivariateFormalPowerSeries {\n \
+    \   using mfps = MultivariateFormalPowerSeries;\n    using fps = FormalPowerSeries<mint>;\n\
+    \    using value_type = mint;\n\n    std::vector<int> base;\n    fps f;\n\n  \
+    \  MultivariateFormalPowerSeries() = default;\n\n    MultivariateFormalPowerSeries(const\
+    \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for (int\
+    \ x : base) n *= x;\n        f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const\
+    \ std::vector<int> &base_, const fps &f_)\n        : base(base_),\n          f(f_)\
+    \ {}\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend\
+    \ OStream &operator<<(OStream &os, const mfps &mfps_) {\n        for (int i =\
+    \ 0; i < (int)mfps_.f.size(); i++)\n            os << mfps_.f[i] << (i + 1 ==\
+    \ (int)mfps_.f.size() ? \"\" : \" \");\n        return os;\n    }\n\n    template\
+    \ <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os)\
+    \ const {\n        for (int i = 0; i < (int)f.size(); i++) os << f[i] << (i +\
+    \ 1 == (int)f.size() ? \"\\n\" : \" \");\n    }\n\n    template <class IStream,\
+    \ is_istream_t<IStream> * = nullptr> mfps &input(IStream &is) {\n        for (auto\
+    \ &x : f) is >> x;\n        return *this;\n    }\n\n    template <class IStream,\
+    \ is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream &is,\
+    \ mfps &mfps_) {\n        for (auto &x : mfps_.f) is >> x;\n        return is;\n\
+    \    }\n\n    template <typename T, typename... Ts> int _id(int x, T y, Ts...\
+    \ ys) {\n        assert(x < (int)base.size() && (int)y < base[x]);\n        if\
+    \ constexpr (sizeof...(Ts) == 0) return y;\n        else return y + base[x] *\
+    \ _id(x + 1, ys...);\n    }\n\n    template <typename... Args> int id(Args...\
+    \ args) {\n        static_assert(sizeof...(Args) > 0);\n        return _id(0,\
+    \ args...);\n    }\n\n    template <typename... Args> mint &operator()(Args...\
+    \ args) { return f[id(args...)]; }\n\n    mint &operator[](int i) { return f[i];\
+    \ }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr> void display(OStream\
+    \ &os) const {\n        for (int i = 0; i < (int)f.size(); i++) {\n          \
+    \  int x = i;\n            os << \"f(\";\n            for (int j = 0; j < (int)base.size();\
+    \ j++) {\n                os << x % base[j] << (j + 1 == (int)base.size() ? \"\
+    ) = \" : \", \");\n                x /= base[j];\n            }\n            os\
+    \ << f[i] << \"\\n\";\n        }\n    }\n\n    mfps &operator+=(const mfps &rhs)\
+    \ {\n        assert(base == rhs.base && f.size() == rhs.f.size());\n        for\
+    \ (int i = 0; i < (int)f.size(); i++) f[i] += rhs.f[i];\n        return *this;\n\
+    \    }\n\n    mfps &operator-=(const mfps &rhs) {\n        assert(base == rhs.base\
+    \ && f.size() == rhs.f.size());\n        for (int i = 0; i < (int)f.size(); i++)\
+    \ f[i] -= rhs.f[i];\n        return *this;\n    }\n\n    mfps &operator*=(const\
     \ mfps &rhs) {\n        assert(base == rhs.base && f.size() == rhs.f.size());\n\
-    \        for (int i = 0; i < (int)f.size(); i++) f[i] -= rhs.f[i];\n        return\
-    \ *this;\n    }\n\n    mfps &operator*=(const mfps &rhs) {\n        assert(base\
-    \ == rhs.base && f.size() == rhs.f.size());\n        multi_convolution_truncated(f,\
-    \ rhs.f, base);\n        return *this;\n    }\n\n    mfps &operator+=(const mint\
-    \ &rhs) {\n        assert(!f.empty());\n        f[0] += rhs;\n        return *this;\n\
-    \    }\n\n    mfps &operator-=(const mint &rhs) {\n        assert(!f.empty());\n\
-    \        f[0] -= rhs;\n        return *this;\n    }\n\n    mfps &operator*=(const\
-    \ mint &rhs) {\n        for (auto &x : f) x *= rhs;\n        return *this;\n \
-    \   }\n\n    mfps &operator/=(const mint &rhs) {\n        for (auto &x : f) x\
-    \ /= rhs;\n        return *this;\n    }\n\n    mfps operator+(const mfps &rhs)\
-    \ const { return mfps(*this) += rhs; }\n\n    mfps operator-(const mfps &rhs)\
-    \ const { return mfps(*this) -= rhs; }\n\n    mfps operator*(const mfps &rhs)\
-    \ const { return mfps(*this) *= rhs; }\n\n    mfps operator+(const mint &rhs)\
-    \ const { return mfps(*this) += rhs; }\n\n    mfps operator-(const mint &rhs)\
-    \ const { return mfps(*this) -= rhs; }\n\n    mfps operator*(const mint &rhs)\
-    \ const { return mfps(*this) *= rhs; }\n\n    mfps operator/(const mint &rhs)\
-    \ const { return mfps(*this) /= rhs; }\n\n    mfps operator+() const { return\
-    \ mfps(*this); }\n\n    mfps operator-() const { return mfps(base, -f); }\n\n\
-    \    friend bool operator==(const mfps &lhs, const mfps &rhs) {\n        return\
-    \ lhs.f == rhs.f && lhs.base == rhs.base;\n    }\n\n    friend bool operator!=(const\
-    \ mfps &lhs, const mfps &rhs) { return !(lhs == rhs); }\n\n    mfps diff() const\
-    \ {\n        mfps ret(*this);\n        for (int i = 0; i < (int)ret.f.size();\
-    \ i++) ret.f[i] *= i;\n        return ret;\n    }\n\n    mfps &inplace_diff()\
-    \ {\n        for (int i = 0; i < (int)f.size(); i++) f[i] *= i;\n        return\
-    \ *this;\n    }\n\n    static std::vector<mint> _inv;\n\n    static void ensure_inv(int\
-    \ n) {\n        while ((int)_inv.size() <= n) {\n            int i = _inv.size();\n\
-    \            _inv.push_back((-_inv[mint::getmod() % i]) * (mint::getmod() / i));\n\
-    \        }\n    }\n\n    mfps integral() const {\n        ensure_inv(f.size());\n\
-    \        mfps ret(*this);\n        for (int i = 1; i < (int)ret.f.size(); i++)\
-    \ ret.f[i] *= _inv[i];\n        return ret;\n    }\n\n    mfps &inplace_int()\
-    \ {\n        ensure_inv(f.size());\n        for (int i = 1; i < (int)f.size();\
-    \ i++) f[i] *= _inv[i];\n        return *this;\n    }\n\n    mfps inv() const\
-    \ {\n        assert(!f.empty() && f[0] != mint(0));\n        if (base.empty())\
-    \ return mfps(base, fps{f[0].inv()});\n\n        int n = f.size(), k = base.size();\n\
-    \        int z = 1;\n        while (z < 2 * n - 1) z <<= 1;\n        std::vector<int>\
-    \ chi(z);\n        for (int i = 0; i < n; i++) {\n            int x = i;\n   \
-    \         for (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);\n        \
-    \    chi[i] %= k;\n        }\n        auto naive_and_dot = [&k](const std::vector<fps>\
-    \ &a,\n                                  const std::vector<fps> &b,\n        \
-    \                          std::vector<fps> &c) -> void {\n            std::vector<mint>\
-    \ tmp(k);\n            for (int ii = 0; ii < (int)a[0].size(); ii++) {\n     \
-    \           for (int i = 0; i < k; i++) {\n                    for (int j = 0;\
-    \ j < k; j++) {\n                        tmp[i + j - (i + j >= k ? k : 0)] +=\
-    \ a[i][ii] * b[j][ii];\n                    }\n                }\n           \
-    \     for (int i = 0; i < k; i++) c[i][ii] = tmp[i], tmp[i] = mint{0};\n     \
-    \       }\n        };\n\n        // reference:\n        // https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
+    \        multi_convolution_truncated(f, rhs.f, base);\n        return *this;\n\
+    \    }\n\n    mfps &operator+=(const mint &rhs) {\n        assert(!f.empty());\n\
+    \        f[0] += rhs;\n        return *this;\n    }\n\n    mfps &operator-=(const\
+    \ mint &rhs) {\n        assert(!f.empty());\n        f[0] -= rhs;\n        return\
+    \ *this;\n    }\n\n    mfps &operator*=(const mint &rhs) {\n        for (auto\
+    \ &x : f) x *= rhs;\n        return *this;\n    }\n\n    mfps &operator/=(const\
+    \ mint &rhs) {\n        for (auto &x : f) x /= rhs;\n        return *this;\n \
+    \   }\n\n    mfps operator+(const mfps &rhs) const { return mfps(*this) += rhs;\
+    \ }\n\n    mfps operator-(const mfps &rhs) const { return mfps(*this) -= rhs;\
+    \ }\n\n    mfps operator*(const mfps &rhs) const { return mfps(*this) *= rhs;\
+    \ }\n\n    mfps operator+(const mint &rhs) const { return mfps(*this) += rhs;\
+    \ }\n\n    mfps operator-(const mint &rhs) const { return mfps(*this) -= rhs;\
+    \ }\n\n    mfps operator*(const mint &rhs) const { return mfps(*this) *= rhs;\
+    \ }\n\n    mfps operator/(const mint &rhs) const { return mfps(*this) /= rhs;\
+    \ }\n\n    mfps operator+() const { return mfps(*this); }\n\n    mfps operator-()\
+    \ const { return mfps(base, -f); }\n\n    friend bool operator==(const mfps &lhs,\
+    \ const mfps &rhs) {\n        return lhs.f == rhs.f && lhs.base == rhs.base;\n\
+    \    }\n\n    friend bool operator!=(const mfps &lhs, const mfps &rhs) { return\
+    \ !(lhs == rhs); }\n\n    mfps diff() const {\n        mfps ret(*this);\n    \
+    \    for (int i = 0; i < (int)ret.f.size(); i++) ret.f[i] *= i;\n        return\
+    \ ret;\n    }\n\n    mfps &inplace_diff() {\n        for (int i = 0; i < (int)f.size();\
+    \ i++) f[i] *= i;\n        return *this;\n    }\n\n    static std::vector<mint>\
+    \ _inv;\n\n    static void ensure_inv(int n) {\n        while ((int)_inv.size()\
+    \ <= n) {\n            int i = _inv.size();\n            _inv.push_back((-_inv[mint::getmod()\
+    \ % i]) * (mint::getmod() / i));\n        }\n    }\n\n    mfps integral() const\
+    \ {\n        ensure_inv(f.size());\n        mfps ret(*this);\n        for (int\
+    \ i = 1; i < (int)ret.f.size(); i++) ret.f[i] *= _inv[i];\n        return ret;\n\
+    \    }\n\n    mfps &inplace_int() {\n        ensure_inv(f.size());\n        for\
+    \ (int i = 1; i < (int)f.size(); i++) f[i] *= _inv[i];\n        return *this;\n\
+    \    }\n\n    mfps inv() const {\n        assert(!f.empty() && f[0] != mint(0));\n\
+    \        if (base.empty()) return mfps(base, fps{f[0].inv()});\n\n        int\
+    \ n = f.size(), k = base.size();\n        int z = 1;\n        while (z < 2 * n\
+    \ - 1) z <<= 1;\n        std::vector<int> chi(z);\n        for (int i = 0; i <\
+    \ n; i++) {\n            int x = i;\n            for (int j = 0; j < k - 1; j++)\
+    \ chi[i] += (x /= base[j]);\n            chi[i] %= k;\n        }\n        auto\
+    \ naive_and_dot = [&k](const std::vector<fps> &a,\n                          \
+    \        const std::vector<fps> &b,\n                                  std::vector<fps>\
+    \ &c) -> void {\n            std::vector<mint> tmp(k);\n            for (int ii\
+    \ = 0; ii < (int)a[0].size(); ii++) {\n                for (int i = 0; i < k;\
+    \ i++) {\n                    for (int j = 0; j < k; j++) {\n                \
+    \        tmp[i + j - (i + j >= k ? k : 0)] += a[i][ii] * b[j][ii];\n         \
+    \           }\n                }\n                for (int i = 0; i < k; i++)\
+    \ c[i][ii] = tmp[i], tmp[i] = mint{0};\n            }\n        };\n\n        //\
+    \ reference:\n        // https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
     \        // Let g_k := f_k^{-1} mod x^k, \\deg g_k < k.\n        // Then we obtain\
     \ g_1, g_2, g_4, ... by using the following recurrence:\n        // - g_1 = (f_0)^{-1}\
     \ ...(1)\n        // - g_{2k} = 2g_k - g_k^2 f mod x^2k ...(2)\n        // - [x^{k\
@@ -165,19 +170,19 @@ data:
     \ res;\n    }\n};\n\ntemplate <typename mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv\
     \ = {0, 1};\n\n} // namespace kk2\n\n#endif // KK2_FPS_FPS_MULTIVARIATE_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
   - convolution/multi_convolution_truncated.hpp
   - convolution/convolution.hpp
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
+  - type_traits/type_traits.hpp
   - fps/ntt_friendly.hpp
   - convolution/convolution.hpp
   - fps/fps.hpp
   isVerificationFile: false
   path: fps/fps_multivariate.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_multivariate.hpp

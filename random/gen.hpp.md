@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/poly_find_root.hpp
     title: fps/poly_find_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/euler_phi.hpp
     title: math/euler_phi.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':x:'
@@ -23,20 +23,20 @@ data:
   - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: verify/yosupo_string/string_z_roliha.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
@@ -77,7 +77,7 @@ data:
     \ = seed();\n    if (first) {\n        warm_up(x, y);\n        first = false;\n\
     \    }\n    return xorshift128plus(x, y);\n}\n\n// [l, r)\ni64 rng(i64 l, i64\
     \ r) {\n    assert(l < r);\n    return l + rng() % (r - l);\n}\n\n// [l, r)\n\
-    template <class T>\nstd::vector<T> random_vector(int n, T l, T r) {\n    std::vector<T>\
+    template <class T> std::vector<T> random_vector(int n, T l, T r) {\n    std::vector<T>\
     \ res(n);\n    for (int i = 0; i < n; i++) res[i] = rng(l, r);\n    return res;\n\
     }\n\n// [l, r)\nstd::vector<i64> distinct_rng(i64 l, i64 r, i64 n) {\n    assert(l\
     \ < r and n <= r - l);\n    std::unordered_set<i64> st;\n    for (i64 i = n; i;\
@@ -105,7 +105,7 @@ data:
     \ = true;\n    static u64 x = seed(), y = seed();\n    if (first) {\n        warm_up(x,\
     \ y);\n        first = false;\n    }\n    return xorshift128plus(x, y);\n}\n\n\
     // [l, r)\ni64 rng(i64 l, i64 r) {\n    assert(l < r);\n    return l + rng() %\
-    \ (r - l);\n}\n\n// [l, r)\ntemplate <class T>\nstd::vector<T> random_vector(int\
+    \ (r - l);\n}\n\n// [l, r)\ntemplate <class T> std::vector<T> random_vector(int\
     \ n, T l, T r) {\n    std::vector<T> res(n);\n    for (int i = 0; i < n; i++)\
     \ res[i] = rng(l, r);\n    return res;\n}\n\n// [l, r)\nstd::vector<i64> distinct_rng(i64\
     \ l, i64 r, i64 n) {\n    assert(l < r and n <= r - l);\n    std::unordered_set<i64>\
@@ -136,8 +136,8 @@ data:
   - fps/poly_find_root.hpp
   - math_mod/primitive_root_64bit.hpp
   - math_mod/primitive_root_64bit.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2025-01-06 05:33:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp

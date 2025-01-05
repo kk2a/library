@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_gcd.hpp
     title: convolution/convolution_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_lcm.hpp
     title: convolution/convolution_lcm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/Eratosthenes.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -46,7 +46,7 @@ data:
     \   }\n\n    static int mobius(int n) {\n        assert(n < (int)_mobius.size()\
     \ && n != 0);\n        return _mobius[n];\n    }\n\n    static int minfactor(int\
     \ n) {\n        assert(n < (int)_minfactor.size() && n != 0);\n        return\
-    \ _minfactor[n];\n    }\n\n    static const std::vector<int>& primes() { return\
+    \ _minfactor[n];\n    }\n\n    static const std::vector<int> &primes() { return\
     \ _primes; }\n\n    static std::vector<std::pair<int, int>> factorize(int n) {\n\
     \        assert(n < (int)_isprime.size() && n != 0);\n        if (n == 1 || n\
     \ == -1) return {};\n        if (n < 0) n = -n;\n        std::vector<std::pair<int,\
@@ -85,7 +85,7 @@ data:
     \   }\n\n    static int mobius(int n) {\n        assert(n < (int)_mobius.size()\
     \ && n != 0);\n        return _mobius[n];\n    }\n\n    static int minfactor(int\
     \ n) {\n        assert(n < (int)_minfactor.size() && n != 0);\n        return\
-    \ _minfactor[n];\n    }\n\n    static const std::vector<int>& primes() { return\
+    \ _minfactor[n];\n    }\n\n    static const std::vector<int> &primes() { return\
     \ _primes; }\n\n    static std::vector<std::pair<int, int>> factorize(int n) {\n\
     \        assert(n < (int)_isprime.size() && n != 0);\n        if (n == 1 || n\
     \ == -1) return {};\n        if (n < 0) n = -n;\n        std::vector<std::pair<int,\
@@ -108,8 +108,8 @@ data:
   - convolution/convolution_gcd.hpp
   - convolution/divisor_multiple_transform.hpp
   - convolution/convolution_lcm.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-06 05:33:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp

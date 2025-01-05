@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: math/monoid/max_min_sum.hpp
     title: math/monoid/max_min_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []
@@ -22,7 +22,7 @@ data:
     \ {\n\nnamespace homomorphism {\n\ntemplate <class S> struct Update {\n    S a;\n\
     \    bool id;\n\n    constexpr Update() : a(S()), id(true) {}\n\n    constexpr\
     \ Update(S a_, bool id_ = false) : a(a_), id(id_) {}\n\n    operator S() const\
-    \ { return a; }\n\n    template <class OStream>\n    friend OStream &operator<<(OStream\
+    \ { return a; }\n\n    template <class OStream> friend OStream &operator<<(OStream\
     \ &os, const Update &update) {\n        if (update.id) os << \"id\";\n       \
     \ else os << update.a;\n        return os;\n    }\n};\n\ntemplate <class S, class\
     \ T> constexpr T UpdateMap(Update<S> f, T x) {\n    return f.id ? x : x.update(f.a);\n\
@@ -38,10 +38,10 @@ data:
     \          min(a),\n          size(1),\n          is_unit(is_unit_) {}\n\n   \
     \ constexpr MaxMinSum(S sum_, S max_, S min_, int size_)\n        : sum(sum_),\n\
     \          max(max_),\n          min(min_),\n          size(size_),\n        \
-    \  is_unit(is_unit_) {}\n\n    template <class OStream>\n    friend OStream &operator<<(OStream\
+    \  is_unit(is_unit_) {}\n\n    template <class OStream> friend OStream &operator<<(OStream\
     \ &os, const MaxMinSum &maxminSum) {\n        os << maxminSum.sum << \" \" <<\
     \ maxminSum.max << \" \" << maxminSum.min;\n        return os;\n    }\n\n    template\
-    \ <class IStream>\n    friend IStream &operator>>(IStream &is, MaxMinSum &maxminSum)\
+    \ <class IStream> friend IStream &operator>>(IStream &is, MaxMinSum &maxminSum)\
     \ {\n        S a;\n        is >> a;\n        maxminSum.sum = maxminSum.max = maxminSum.min\
     \ = a;\n        maxminSum.size = 1;\n        return is;\n    }\n\n    constexpr\
     \ MaxMinSum &operator=(const S &rhs) {\n        sum = max = min = rhs;\n     \
@@ -58,8 +58,8 @@ data:
     \    return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
     std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n, Args... args) {\n   \
     \ return std::vector<monoid::MaxMinSum<S>>(n, monoid::MaxMinSum<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::MaxMinSum<S>>>\n\
-    GetVecMaxMinSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::MaxMinSum<S>>>(h,\
+    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::MaxMinSum<S>>>\
+    \ GetVecMaxMinSum2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::MaxMinSum<S>>>(h,\
     \ GetVecMaxMinSum<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
     \n\n\n\n#include <cassert>\n#include <functional>\n#line 7 \"segment_tree/lazy.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class S,\n          S (*op)(S, S),\n        \
@@ -159,7 +159,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/update_max_min_sum.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/update_max_min_sum.hpp

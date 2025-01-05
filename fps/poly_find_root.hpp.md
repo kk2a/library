@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/mod_pow.hpp
     title: fps/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/poly_gcd.hpp
     title: fps/poly_gcd.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/poly_find_root.hpp\"\n\n\n\n#include <vector>\n\n#line\
@@ -45,7 +45,7 @@ data:
     \ = seed();\n    if (first) {\n        warm_up(x, y);\n        first = false;\n\
     \    }\n    return xorshift128plus(x, y);\n}\n\n// [l, r)\ni64 rng(i64 l, i64\
     \ r) {\n    assert(l < r);\n    return l + rng() % (r - l);\n}\n\n// [l, r)\n\
-    template <class T>\nstd::vector<T> random_vector(int n, T l, T r) {\n    std::vector<T>\
+    template <class T> std::vector<T> random_vector(int n, T l, T r) {\n    std::vector<T>\
     \ res(n);\n    for (int i = 0; i < n; i++) res[i] = rng(l, r);\n    return res;\n\
     }\n\n// [l, r)\nstd::vector<i64> distinct_rng(i64 l, i64 r, i64 n) {\n    assert(l\
     \ < r and n <= r - l);\n    std::unordered_set<i64> st;\n    for (i64 i = n; i;\
@@ -151,8 +151,8 @@ data:
   isVerificationFile: false
   path: fps/poly_find_root.hpp
   requiredBy: []
-  timestamp: '2025-01-05 07:17:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-06 05:33:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/poly_root_finding.test.cpp
 documentation_of: fps/poly_find_root.hpp

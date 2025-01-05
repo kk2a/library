@@ -51,7 +51,7 @@ data:
     \ -> void {\n            if (par != -1 && this->ord[par] >= this->low[now]) comp[now]\
     \ = comp[par];\n            else comp[now] = k++;\n\n            for (auto &&e\
     \ : this->g[now])\n                if (comp[e.to] == -1) self(self, e.to, now);\n\
-    \        };\n        for (int i = 0; i < this->n; i++) \n            if (this->root[i])\
+    \        };\n        for (int i = 0; i < this->n; i++)\n            if (this->root[i])\
     \ dfs(dfs, i, -1);\n\n        group.resize(k);\n        for (int i = 0; i < this->n;\
     \ i++) { group[comp[i]].emplace_back(i); }\n\n        typename G::edge_container\
     \ tmp(this->bridges.size());\n        for (int i = 0; i < (int)this->bridges.size();\
@@ -69,7 +69,7 @@ data:
     \ -> void {\n            if (par != -1 && this->ord[par] >= this->low[now]) comp[now]\
     \ = comp[par];\n            else comp[now] = k++;\n\n            for (auto &&e\
     \ : this->g[now])\n                if (comp[e.to] == -1) self(self, e.to, now);\n\
-    \        };\n        for (int i = 0; i < this->n; i++) \n            if (this->root[i])\
+    \        };\n        for (int i = 0; i < this->n; i++)\n            if (this->root[i])\
     \ dfs(dfs, i, -1);\n\n        group.resize(k);\n        for (int i = 0; i < this->n;\
     \ i++) { group[comp[i]].emplace_back(i); }\n\n        typename G::edge_container\
     \ tmp(this->bridges.size());\n        for (int i = 0; i < (int)this->bridges.size();\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: false
   path: graph/two_edge_connected_components.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp

@@ -54,23 +54,24 @@ data:
     \ k;\n        };\n        auto dfs = [&](auto self, int u, int k = -1, int ei\
     \ = -1) -> void {\n            for (auto &e : this->g[u]) {\n                if\
     \ (e.id == ei) continue;\n                if (this->used_on_dfs_tree[e.id]) {\n\
-    \                    int nk = k;\n                    if (this->low[e.to] >= this->ord[u])\
-    \ nk = group_e.size(), group_e.emplace_back();\n                    add(e.id,\
-    \ nk);\n                    self(self, e.to, nk, e.id);\n                }\n \
-    \               // back edge\n                else if (this->ord[e.to] < this->ord[u])\
-    \ {\n                    add(e.id, k);\n                }\n            }\n   \
-    \     };\n        for (int u = 0; u < this->n; u++)\n            if (this->root[u])\
-    \ { dfs(dfs, u); }\n    }\n\n  public:\n    std::vector<std::vector<int>> get_bcc_vertices()\
-    \ {\n        std::vector<bool> buf1(this->n), buf2(this->n);\n        std::vector<std::vector<int>>\
-    \ res;\n        res.reserve(group_e.size());\n        for (auto &bc : group_e)\
-    \ {\n            if (bc.empty()) continue;\n            int k = (int)res.size();\n\
-    \            res.emplace_back();\n            for (auto &ei : bc) {\n        \
-    \        auto e = this->g.edges[ei];\n                int fr = e.from, to = e.to;\n\
-    \                if (!buf2[fr]) {\n                    res[k].emplace_back(fr);\n\
-    \                    buf2[fr] = true;\n                }\n                if (!buf2[to])\
-    \ {\n                    res[k].emplace_back(to);\n                    buf2[to]\
-    \ = true;\n                }\n                buf1[fr] = buf1[to] = true;\n  \
-    \          }\n            for (auto &ei : bc) {\n                auto e = this->g.edges[ei];\n\
+    \                    int nk = k;\n                    if (this->low[e.to] >= this->ord[u])\n\
+    \                        nk = group_e.size(), group_e.emplace_back();\n      \
+    \              add(e.id, nk);\n                    self(self, e.to, nk, e.id);\n\
+    \                }\n                // back edge\n                else if (this->ord[e.to]\
+    \ < this->ord[u]) {\n                    add(e.id, k);\n                }\n  \
+    \          }\n        };\n        for (int u = 0; u < this->n; u++)\n        \
+    \    if (this->root[u]) { dfs(dfs, u); }\n    }\n\n  public:\n    std::vector<std::vector<int>>\
+    \ get_bcc_vertices() {\n        std::vector<bool> buf1(this->n), buf2(this->n);\n\
+    \        std::vector<std::vector<int>> res;\n        res.reserve(group_e.size());\n\
+    \        for (auto &bc : group_e) {\n            if (bc.empty()) continue;\n \
+    \           int k = (int)res.size();\n            res.emplace_back();\n      \
+    \      for (auto &ei : bc) {\n                auto e = this->g.edges[ei];\n  \
+    \              int fr = e.from, to = e.to;\n                if (!buf2[fr]) {\n\
+    \                    res[k].emplace_back(fr);\n                    buf2[fr] =\
+    \ true;\n                }\n                if (!buf2[to]) {\n               \
+    \     res[k].emplace_back(to);\n                    buf2[to] = true;\n       \
+    \         }\n                buf1[fr] = buf1[to] = true;\n            }\n    \
+    \        for (auto &ei : bc) {\n                auto e = this->g.edges[ei];\n\
     \                int fr = e.from, to = e.to;\n                buf2[fr] = buf2[to]\
     \ = false;\n            }\n        }\n        for (int i = 0; i < this->n; i++)\n\
     \            if (!buf1[i]) {\n                int k = (int)res.size();\n     \
@@ -119,7 +120,7 @@ data:
   isVerificationFile: false
   path: graph/tree/block_cut_tree.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []
@@ -28,11 +28,11 @@ data:
     \ {\n\nnamespace monoid {\n\ntemplate <class S> struct Max {\n    S a;\n    bool\
     \ minf;\n\n    constexpr Max() : a(S()), minf(true) {}\n\n    constexpr Max(S\
     \ a_, bool minf_ = false) : a(a_), minf(minf_) {}\n\n    operator S() const {\
-    \ return a; }\n\n    template <class OStream>\n    friend OStream &operator<<(OStream\
+    \ return a; }\n\n    template <class OStream> friend OStream &operator<<(OStream\
     \ &os, const Max &max) {\n        if (max.minf) os << \"minf\";\n        else\
-    \ os << max.a;\n        return os;\n    }\n\n    template <class IStream>\n  \
-    \  friend IStream &operator>>(IStream &is, Max &max) {\n        is >> max.a;\n\
-    \        max.minf = false;\n        return is;\n    }\n\n    constexpr Max &operator=(const\
+    \ os << max.a;\n        return os;\n    }\n\n    template <class IStream> friend\
+    \ IStream &operator>>(IStream &is, Max &max) {\n        is >> max.a;\n       \
+    \ max.minf = false;\n        return is;\n    }\n\n    constexpr Max &operator=(const\
     \ S &rhs) {\n        a = rhs;\n        minf = false;\n        return *this;\n\
     \    }\n\n    constexpr Max &add(const S &rhs) {\n        if (minf) return *this;\n\
     \        a += rhs;\n        return *this;\n    }\n\n    constexpr Max &update(const\
@@ -41,8 +41,8 @@ data:
     \ S> constexpr Max<S> MaxOp(Max<S> l, Max<S> r) {\n    if (r.minf) return l;\n\
     \    if (l.minf) return r;\n    l.a = std::max(l.a, r.a);\n    return l;\n}\n\n\
     template <class S> Max<S> MaxUnit() {\n    constexpr static Max<S> e = Max<S>();\n\
-    \    return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\n\
-    std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {\n    return std::vector<monoid::Max<S>>(n,\
+    \    return e;\n}\n\n} // namespace monoid\n\ntemplate <class S, class... Args>\
+    \ std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {\n    return std::vector<monoid::Max<S>>(n,\
     \ monoid::Max<S>(args...));\n}\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Max<S>>>\
     \ GetVecMax2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\
     \ GetVecMax<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\
@@ -140,7 +140,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/addmax.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/addmax.hpp

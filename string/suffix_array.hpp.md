@@ -29,7 +29,7 @@ data:
     \ = 0;\n        for (int i = 0; i < _n; ++i) {\n            if (i && s_[idx[i\
     \ - 1]] != s_[idx[i]]) _upper++;\n            _s[idx[i]] = _upper;\n        }\n\
     \        init();\n    }\n\n    const std::vector<int> &get_sa() const { return\
-    \ _sa; }\n    const std::vector<int> &get_s() const { return _s; }\n\n    int\
+    \ _sa; }\n\n    const std::vector<int> &get_s() const { return _s; }\n\n    int\
     \ operator[](int i) const { return _sa[i]; }\n\n    int size() const { return\
     \ _n; }\n\n    int upper() const { return _upper; }\n\n    bool op(int i, const\
     \ std::string &t) const {\n        int off = _sa[i];\n        int m = std::min(_n\
@@ -111,7 +111,7 @@ data:
     \ i++) { sorted_lms[i] = lms[rec_sa[i]]; }\n            induce(sorted_lms);\n\
     \        }\n        return sa;\n    }\n\n    void init() { _sa = sa_is(_s, _upper);\
     \ }\n};\n\nstruct LCPArray {\n    const SuffixArray &sa;\n    std::vector<int>\
-    \ lcp, rank;\n    // lcp[i] = lcp(s[sa[i]:], s[sa[i + 1]:])\n\n    LCPArray(const\
+    \ lcp, rank;\n\n    // lcp[i] = lcp(s[sa[i]:], s[sa[i + 1]:])\n\n    LCPArray(const\
     \ SuffixArray &sa_) : sa(sa_) {\n        lcp.resize(sa.size());\n        rank.resize(sa.size());\n\
     \        for (int i = 0; i < sa.size(); ++i) rank[sa[i]] = i;\n        const std::vector<int>\
     \ &s = sa.get_s();\n        lcp[sa.size() - 1] = 0;\n        for (int i = 0, l\
@@ -135,10 +135,10 @@ data:
     \ s_[l] < s_[r]; });\n        _upper = 0;\n        for (int i = 0; i < _n; ++i)\
     \ {\n            if (i && s_[idx[i - 1]] != s_[idx[i]]) _upper++;\n          \
     \  _s[idx[i]] = _upper;\n        }\n        init();\n    }\n\n    const std::vector<int>\
-    \ &get_sa() const { return _sa; }\n    const std::vector<int> &get_s() const {\
-    \ return _s; }\n\n    int operator[](int i) const { return _sa[i]; }\n\n    int\
-    \ size() const { return _n; }\n\n    int upper() const { return _upper; }\n\n\
-    \    bool op(int i, const std::string &t) const {\n        int off = _sa[i];\n\
+    \ &get_sa() const { return _sa; }\n\n    const std::vector<int> &get_s() const\
+    \ { return _s; }\n\n    int operator[](int i) const { return _sa[i]; }\n\n   \
+    \ int size() const { return _n; }\n\n    int upper() const { return _upper; }\n\
+    \n    bool op(int i, const std::string &t) const {\n        int off = _sa[i];\n\
     \        int m = std::min(_n - off, (int)t.size());\n        for (int j = 0; j\
     \ < m; ++j) {\n            if (_s[off + j] != t[j]) return _s[off + j] < t[j];\n\
     \        }\n        return _n - off < (int)t.size();\n    }\n\n    bool op(int\
@@ -217,7 +217,7 @@ data:
     \ i++) { sorted_lms[i] = lms[rec_sa[i]]; }\n            induce(sorted_lms);\n\
     \        }\n        return sa;\n    }\n\n    void init() { _sa = sa_is(_s, _upper);\
     \ }\n};\n\nstruct LCPArray {\n    const SuffixArray &sa;\n    std::vector<int>\
-    \ lcp, rank;\n    // lcp[i] = lcp(s[sa[i]:], s[sa[i + 1]:])\n\n    LCPArray(const\
+    \ lcp, rank;\n\n    // lcp[i] = lcp(s[sa[i]:], s[sa[i + 1]:])\n\n    LCPArray(const\
     \ SuffixArray &sa_) : sa(sa_) {\n        lcp.resize(sa.size());\n        rank.resize(sa.size());\n\
     \        for (int i = 0; i < sa.size(); ++i) rank[sa[i]] = i;\n        const std::vector<int>\
     \ &s = sa.get_s();\n        lcp[sa.size() - 1] = 0;\n        for (int i = 0, l\
@@ -230,7 +230,7 @@ data:
   isVerificationFile: false
   path: string/suffix_array.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_string/string_suffix_array.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -58,14 +58,14 @@ data:
     \ _w; }\n\n    Field &at(int i, int j) const {\n        assert(0 <= i && i < _h);\n\
     \        assert(0 <= j && j < _w);\n        return _mat[i][j];\n    }\n\n    std::vector<Field>\
     \ &operator[](int i) {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n\
-    \    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n  \
-    \  mat &input(IStream &is) {\n        for (int i = 0; i < _h; i++) {\n       \
-    \     for (int j = 0; j < _w; j++) { is >> _mat[i][j]; }\n        }\n        return\
-    \ *this;\n    }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\n\
-    \    void output(OStream &os) const {\n        for (int i = 0; i < _h; i++) {\n\
-    \            for (int j = 0; j < _w; j++) os << _mat[i][j] << \" \\n\"[j == _w\
-    \ - 1];\n        }\n    }\n\n    void set(int i, int j, Field x) {\n        assert(0\
-    \ <= i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n\
+    \    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr> mat\
+    \ &input(IStream &is) {\n        for (int i = 0; i < _h; i++) {\n            for\
+    \ (int j = 0; j < _w; j++) { is >> _mat[i][j]; }\n        }\n        return *this;\n\
+    \    }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr> void\
+    \ output(OStream &os) const {\n        for (int i = 0; i < _h; i++) {\n      \
+    \      for (int j = 0; j < _w; j++) os << _mat[i][j] << \" \\n\"[j == _w - 1];\n\
+    \        }\n    }\n\n    void set(int i, int j, Field x) {\n        assert(0 <=\
+    \ i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n\
     \    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
     \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
     \       for (int j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n     \
@@ -186,7 +186,7 @@ data:
   requiredBy:
   - matrix/basis.hpp
   - matrix/frobenius_form.hpp
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp

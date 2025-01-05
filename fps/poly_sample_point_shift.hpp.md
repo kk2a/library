@@ -6,7 +6,7 @@ data:
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: verify/yosupo_math/many_factrials.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/poly_sample_point_shift.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -31,7 +31,7 @@ data:
     \       auto suf = sample_point_shift<FPS>(y, mint(0), m + tval - (int)mint::getmod());\n\
     \        std::copy(std::begin(suf), std::end(suf), std::back_inserter(pref));\n\
     \        return pref;\n    }\n\n    std::vector<mint> inv(k + 1, 1);\n    FPS\
-    \ d(k + 1);   \n    for (int i = 2; i <= k; i++) inv[k] *= i;\n    inv[k] = inv[k].inv();\n\
+    \ d(k + 1);\n    for (int i = 2; i <= k; i++) inv[k] *= i;\n    inv[k] = inv[k].inv();\n\
     \    for (int i = k; i >= 1; i--) inv[i - 1] = inv[i] * i;\n    for (int i = 0;\
     \ i <= k; i++) {\n        d[i] = inv[i] * inv[k - i] * y[i];\n        if ((k -\
     \ i) & 1) d[i] = -d[i];\n    }\n\n    FPS h(m + k);\n    for (int i = 0; i < m\
@@ -54,7 +54,7 @@ data:
     \       auto suf = sample_point_shift<FPS>(y, mint(0), m + tval - (int)mint::getmod());\n\
     \        std::copy(std::begin(suf), std::end(suf), std::back_inserter(pref));\n\
     \        return pref;\n    }\n\n    std::vector<mint> inv(k + 1, 1);\n    FPS\
-    \ d(k + 1);   \n    for (int i = 2; i <= k; i++) inv[k] *= i;\n    inv[k] = inv[k].inv();\n\
+    \ d(k + 1);\n    for (int i = 2; i <= k; i++) inv[k] *= i;\n    inv[k] = inv[k].inv();\n\
     \    for (int i = k; i >= 1; i--) inv[i - 1] = inv[i] * i;\n    for (int i = 0;\
     \ i <= k; i++) {\n        d[i] = inv[i] * inv[k - i] * y[i];\n        if ((k -\
     \ i) & 1) d[i] = -d[i];\n    }\n\n    FPS h(m + k);\n    for (int i = 0; i < m\
@@ -68,8 +68,8 @@ data:
   path: fps/poly_sample_point_shift.hpp
   requiredBy:
   - math_mod/comb_large.hpp
-  timestamp: '2025-01-05 07:17:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2025-01-06 05:33:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp

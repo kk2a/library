@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -48,32 +48,34 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MOD_PRIMITIVE_ROOT_64BIT_HPP\n#define KK2_MATH_MOD_PRIMITIVE_ROOT_64BIT_HPP\
-    \ 1\n\n#include \"../random/gen.hpp\"\n#include \"pow_mod.hpp\"\n#include \"../math/prime_factorize.hpp\"\
-    \n\nnamespace kk2 {\n\nlong long primitive_root_64bit(long long p) {\n    if (p\
-    \ == 2) return 1;\n    if (p == 3) return 2;\n\n    auto f = factorize(p - 1);\n\
-    \    while (true) {\n        long long g = random::rng(2, p - 1);\n        bool\
-    \ ok = true;\n        for (auto &&[q, e] : f) {\n            if (pow_mod<__int128_t>(g,\
-    \ (p - 1) / q, p) == 1) {\n                ok = false;\n                break;\n\
-    \            }\n        }\n        if (ok) return g;\n    }\n}\n\n}\n\n#endif\
-    \ // KK2_MATH_MOD_PRIMITIVE_ROOT_64BIT_HPP\n"
+    \ 1\n\n#include \"../math/prime_factorize.hpp\"\n#include \"../random/gen.hpp\"\
+    \n#include \"pow_mod.hpp\"\n\nnamespace kk2 {\n\nlong long primitive_root_64bit(long\
+    \ long p) {\n    if (p == 2) return 1;\n    if (p == 3) return 2;\n\n    auto\
+    \ f = factorize(p - 1);\n    while (true) {\n        long long g = random::rng(2,\
+    \ p - 1);\n        bool ok = true;\n        for (auto &&[q, e] : f) {\n      \
+    \      if (pow_mod<__int128_t>(g, (p - 1) / q, p) == 1) {\n                ok\
+    \ = false;\n                break;\n            }\n        }\n        if (ok)\
+    \ return g;\n    }\n}\n\n} // namespace kk2\n\n#endif // KK2_MATH_MOD_PRIMITIVE_ROOT_64BIT_HPP\n"
   dependsOn:
-  - random/gen.hpp
-  - random/seed.hpp
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
   - math/prime_factorize.hpp
   - math_mod/pow_mod.hpp
+  - type_traits/type_traits.hpp
   - modint/mont_arb.hpp
   - random/gen.hpp
+  - random/seed.hpp
   - math/is_prime.hpp
+  - random/gen.hpp
+  - math_mod/pow_mod.hpp
   isVerificationFile: false
   path: math_mod/primitive_root_64bit.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/primitive_root.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -88,7 +88,7 @@ data:
   path: matrix/basis.hpp
   requiredBy:
   - matrix/frobenius_form.hpp
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/basis.hpp

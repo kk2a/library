@@ -27,8 +27,8 @@ data:
     \u70B9\u306Eid\u305F\u3061\n    std::vector<int> accept;\n\n    TrieNode() : passing(0)\
     \ { std::fill(nxt, nxt + char_size, -1); }\n};\n\ntemplate <int char_size, int\
     \ margin> struct Trie {\n    using Node = TrieNode<char_size>;\n\n    std::vector<Node>\
-    \ nodes;\n    constexpr static int root = 0;\n\n    Trie() {\n        nodes.emplace_back();\n\
-    \    }\n\n    Trie(int Num) {\n        nodes.reserve(Num);\n        nodes.emplace_back();\n\
+    \ nodes;\n    constexpr static int root = 0;\n\n    Trie() { nodes.emplace_back();\
+    \ }\n\n    Trie(int Num) {\n        nodes.reserve(Num);\n        nodes.emplace_back();\n\
     \    }\n\n    int push_node() {\n        nodes.emplace_back();\n        return\
     \ (int)nodes.size() - 1;\n    }\n\n    void update_direct(int node, int id) {\
     \ nodes[node].accept.push_back(id); }\n\n    void update_child(int node) { ++nodes[node].passing;\
@@ -124,7 +124,7 @@ data:
   isVerificationFile: false
   path: string/aho_corasick.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_0430.test.cpp

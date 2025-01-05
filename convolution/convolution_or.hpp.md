@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/convolution_or.hpp\"\n\n\n\n#include <cassert>\n\
@@ -32,16 +32,16 @@ data:
     \ (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; j++) {\n     \
     \       if ((i & j) != 0) a[j] -= a[i ^ j];\n        }\n    }\n}\n\n} // namespace\
     \ kk2\n\n\n#line 7 \"convolution/convolution_or.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class FPS>\nFPS convolution_or(FPS &a, const FPS &b) {\n    assert(size(a)\
-    \ == size(b));\n    int n = int(size(a)); // == int(size(b)\n    if (!n) return\
-    \ {};\n    assert((n & -n) == n); // n is a power of 2\n    FPS c(b.begin(), b.end());\n\
+    \ <class FPS> FPS convolution_or(FPS &a, const FPS &b) {\n    assert(size(a) ==\
+    \ size(b));\n    int n = int(size(a)); // == int(size(b)\n    if (!n) return {};\n\
+    \    assert((n & -n) == n); // n is a power of 2\n    FPS c(b.begin(), b.end());\n\
     \n    subset_zeta_transform(a);\n    subset_zeta_transform(c);\n    for (int i\
     \ = 0; i < n; i++) a[i] *= c[i];\n    inverse_subset_zeta_transform(a);\n\n  \
     \  return a;\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_CONVOLUTION_CONVOLUTION_OR_HPP\n#define KK2_CONVOLUTION_CONVOLUTION_OR_HPP\
     \ 1\n\n#include <cassert>\n\n#include \"zeta_mobius_transfrom.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class FPS>\nFPS convolution_or(FPS &a, const FPS &b) {\n\
-    \    assert(size(a) == size(b));\n    int n = int(size(a)); // == int(size(b)\n\
+    \ kk2 {\n\ntemplate <class FPS> FPS convolution_or(FPS &a, const FPS &b) {\n \
+    \   assert(size(a) == size(b));\n    int n = int(size(a)); // == int(size(b)\n\
     \    if (!n) return {};\n    assert((n & -n) == n); // n is a power of 2\n   \
     \ FPS c(b.begin(), b.end());\n\n    subset_zeta_transform(a);\n    subset_zeta_transform(c);\n\
     \    for (int i = 0; i < n; i++) a[i] *= c[i];\n    inverse_subset_zeta_transform(a);\n\
@@ -51,8 +51,8 @@ data:
   isVerificationFile: false
   path: convolution/convolution_or.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-06 05:33:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_or.test.cpp
 documentation_of: convolution/convolution_or.hpp

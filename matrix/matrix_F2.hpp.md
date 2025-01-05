@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -37,13 +37,17 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATRIX_MATRIX_F2_HPP\n#define KK2_MATRIX_MATRIX_F2_HPP 1\n\n\
     #include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <optional>\n\
-    #include <string>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
-    \n#include \"../data_structure/my_bitset.hpp\"\n\nnamespace kk2 {\n\nstruct MatrixF2\
+    #include <string>\n#include <vector>\n\n#include \"../data_structure/my_bitset.hpp\"\
+    \n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\nstruct MatrixF2\
     \ {\n    using mat = MatrixF2;\n    int _h, _w;\n    std::vector<DynamicBitSet>\
     \ _mat;\n\n    MatrixF2() : MatrixF2(0) {}\n\n    MatrixF2(int n) : MatrixF2(n,\
     \ n) {}\n\n    MatrixF2(int h, int w) {\n        if (h == 0) {\n            _h\
@@ -83,38 +87,38 @@ data:
     \            return *this;\n        }\n\n        Proxy &operator~() {\n      \
     \      bs[i].flip();\n            return *this;\n        }\n    };\n\n    Proxy\
     \ operator[](int i) {\n        assert(0 <= i && i < _h);\n        return Proxy(_mat,\
-    \ i);\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
-    \    mat &input(IStream &is) {\n        for (int i = 0; i < _h; i++) {\n     \
-    \       std::string s;\n            is >> s;\n            _mat[i].set_reversed(s);\n\
+    \ i);\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\
+    \ mat &input(IStream &is) {\n        for (int i = 0; i < _h; i++) {\n        \
+    \    std::string s;\n            is >> s;\n            _mat[i].set_reversed(s);\n\
     \        }\n        return *this;\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
-    \ * = nullptr>\n    void output(OStream &os) const {\n        for (int i = 0;\
-    \ i < _h; i++) {\n            os << _mat[i].to_reversed_string() << \"\\n\";\n\
-    \        }\n    }\n\n    void set(int i, int j, bool x) {\n        assert(0 <=\
-    \ i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i].set(j, x);\n\
-    \    }\n\n    void set(int i, const std::string &s) {\n        assert((int)s.size()\
-    \ == _w);\n        _mat[i].set(s);\n    }\n\n    void set_reversed(int i, const\
-    \ std::string &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set_reversed(s);\n\
-    \    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) { _mat[i]\
-    \ = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator-=(const\
+    \ * = nullptr> void output(OStream &os) const {\n        for (int i = 0; i < _h;\
+    \ i++) { os << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    void set(int\
+    \ i, int j, bool x) {\n        assert(0 <= i && i < _h);\n        assert(0 <=\
+    \ j && j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void set(int i, const\
+    \ std::string &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set(s);\n\
+    \    }\n\n    void set_reversed(int i, const std::string &s) {\n        assert((int)s.size()\
+    \ == _w);\n        _mat[i].set_reversed(s);\n    }\n\n    mat &operator+=(const\
     \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
     \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }\n \
-    \       return *this;\n    }\n\n    mat &operator^=(const mat &rhs) {\n      \
+    \       return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n      \
     \  assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
     \ 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n\
-    \    }\n\n    mat &operator|=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    \    }\n\n    mat &operator^=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
     \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) { _mat[i]\
-    \ = _mat[i] | rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator&=(const\
+    \ = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator|=(const\
     \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
-    \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }\n \
-    \       return *this;\n    }\n\n    mat &operator*=(const mat &rhs) {\n      \
-    \  assert(_w == rhs._h);\n        std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n\
-    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
-    \ {\n                if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                //\
-    \ cout << i << \" \" << j << \" \" << _mat[i][j] << \" check\" <<\n          \
-    \      // endl; rep (i, 2) { cout << res[i] << endl; }\n            }\n      \
-    \  }\n        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\
-    \n    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) +=\
+    \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] | rhs._mat[i]; }\n \
+    \       return *this;\n    }\n\n    mat &operator&=(const mat &rhs) {\n      \
+    \  assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
+    \ 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }\n        return *this;\n\
+    \    }\n\n    mat &operator*=(const mat &rhs) {\n        assert(_w == rhs._h);\n\
+    \        std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n        for\
+    \ (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\n   \
+    \             if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                // cout\
+    \ << i << \" \" << j << \" \" << _mat[i][j] << \" check\" <<\n               \
+    \ // endl; rep (i, 2) { cout << res[i] << endl; }\n            }\n        }\n\
+    \        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n \
+    \   friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) +=\
     \ rhs; }\n\n    friend mat operator-(const mat &lhs, const mat &rhs) { return\
     \ mat(lhs) -= rhs; }\n\n    friend mat operator^(const mat &lhs, const mat &rhs)\
     \ { return mat(lhs) ^= rhs; }\n\n    friend mat operator|(const mat &lhs, const\
@@ -194,16 +198,16 @@ data:
     \ mat(res);\n    }\n\n    mat transpose() const {\n        mat res(_w, _h);\n\
     \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
     \ { res[j][i] = _mat[i][j]; }\n        }\n        return res;\n    }\n\n    mat\
-    \ &inplace_transpose() {\n        return *this = transpose();\n    }\n};\n\n}\
-    \ // namespace kk2\n\n#endif // KK2_MATRIX_MATRIX_F2_HPP\n"
+    \ &inplace_transpose() { return *this = transpose(); }\n};\n\n} // namespace kk2\n\
+    \n#endif // KK2_MATRIX_MATRIX_F2_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
   - data_structure/my_bitset.hpp
   - bit/bitcount.hpp
+  - type_traits/type_traits.hpp
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp

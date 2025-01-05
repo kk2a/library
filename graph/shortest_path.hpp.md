@@ -14,8 +14,8 @@ data:
   bundledCode: "#line 1 \"graph/shortest_path.hpp\"\n\n\n\n#include <limits>\n#include\
     \ <queue>\n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
     \ shortest_path_impl {\n\nstruct edge {\n    int to, id;\n};\n\ntemplate <class\
-    \ T>\nstruct Result {\n    std::vector<T> dist;\n    std::vector<edge> prev;\n\
-    };\n\ntemplate <class WG, class T = typename WG::value_type> \nResult<T> shortest_path(const\
+    \ T> struct Result {\n    std::vector<T> dist;\n    std::vector<edge> prev;\n\
+    };\n\ntemplate <class WG, class T = typename WG::value_type>\nResult<T> shortest_path(const\
     \ WG &g, int start, T inf = std::numeric_limits<T>::max()) {\n    static_assert(WG::weighted::value,\
     \ \"shortest_path requires weighted graph\");\n    T alt;\n    int n = g.size();\n\
     \    std::vector<T> dist(n, inf);\n    std::vector<edge> prev(n, {-1, -1});\n\n\
@@ -32,9 +32,9 @@ data:
   code: "#ifndef KK2_GRAPH_SHORTEST_PATH_HPP\n#define KK2_GRAPH_SHORTEST_PATH_HPP\
     \ 1\n\n#include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\
     \nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\nstruct edge {\n    int\
-    \ to, id;\n};\n\ntemplate <class T>\nstruct Result {\n    std::vector<T> dist;\n\
-    \    std::vector<edge> prev;\n};\n\ntemplate <class WG, class T = typename WG::value_type>\
-    \ \nResult<T> shortest_path(const WG &g, int start, T inf = std::numeric_limits<T>::max())\
+    \ to, id;\n};\n\ntemplate <class T> struct Result {\n    std::vector<T> dist;\n\
+    \    std::vector<edge> prev;\n};\n\ntemplate <class WG, class T = typename WG::value_type>\n\
+    Result<T> shortest_path(const WG &g, int start, T inf = std::numeric_limits<T>::max())\
     \ {\n    static_assert(WG::weighted::value, \"shortest_path requires weighted\
     \ graph\");\n    T alt;\n    int n = g.size();\n    std::vector<T> dist(n, inf);\n\
     \    std::vector<edge> prev(n, {-1, -1});\n\n    std::priority_queue<std::pair<T,\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_shortest_path.test.cpp
