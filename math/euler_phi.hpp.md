@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -61,7 +61,7 @@ data:
   path: math/euler_phi.hpp
   requiredBy: []
   timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/euler_phi.hpp

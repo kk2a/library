@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: fps/poly_find_root.hpp
     title: fps/poly_find_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/euler_phi.hpp
     title: math/euler_phi.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':x:'
@@ -23,17 +23,17 @@ data:
   - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: verify/yosupo_string/string_z_roliha.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
@@ -137,7 +137,7 @@ data:
   - math_mod/primitive_root_64bit.hpp
   - math_mod/primitive_root_64bit.hpp
   timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp

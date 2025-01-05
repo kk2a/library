@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':x:'
@@ -15,7 +15,7 @@ data:
     path: random/graph.hpp
     title: random/graph.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: verify/yuki/yuki_1326.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -114,7 +114,7 @@ data:
   - graph/static_graph.hpp
   - graph/graph.hpp
   timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []

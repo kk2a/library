@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []

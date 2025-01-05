@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
   - icon: ':x:'
@@ -23,22 +23,22 @@ data:
   - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/euler_phi.hpp
     title: math/euler_phi.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
   - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
   - icon: ':x:'
@@ -48,16 +48,16 @@ data:
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - icon: ':x:'
@@ -161,7 +161,7 @@ data:
     title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -202,7 +202,7 @@ data:
   - math_mod/primitive_root.hpp
   - math_mod/butterfly.hpp
   timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp

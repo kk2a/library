@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
   - icon: ':x:'
@@ -16,16 +16,16 @@ data:
   - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []

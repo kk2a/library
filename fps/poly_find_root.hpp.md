@@ -7,10 +7,10 @@ data:
   - icon: ':x:'
     path: fps/poly_gcd.hpp
     title: fps/poly_gcd.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy: []

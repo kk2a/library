@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: type_traits/member.hpp
     title: type_traits/member.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []

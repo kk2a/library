@@ -1,81 +1,81 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0233.test.cpp
     title: verify/aoj/aoj_0233.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560.test.cpp
     title: verify/aoj/aoj_0560.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560_2.test.cpp
     title: verify/aoj/aoj_0560_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_subset.test.cpp
     title: verify/yosupo_convolution/convolution_subset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - icon: ':x:'
@@ -329,7 +329,7 @@ data:
     title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -363,17 +363,17 @@ data:
     \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#endif // KK2_TEMPLATE_TEMPLATE_HPP\n"
   dependsOn:
   - template/constant.hpp
+  - template/type_alias.hpp
   - template/fastio.hpp
   - type_traits/type_traits.hpp
   - template/function_util.hpp
   - template/io_util.hpp
   - template/macros.hpp
-  - template/type_alias.hpp
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-01-06 05:54:06+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp

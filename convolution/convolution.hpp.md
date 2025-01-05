@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
   - icon: ':x:'
@@ -36,13 +36,13 @@ data:
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - icon: ':x:'
@@ -134,7 +134,7 @@ data:
     title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -182,7 +182,7 @@ data:
   - fps/fps_multivariate.hpp
   - math_mod/comb_large.hpp
   timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
   - icon: ':x:'
     path: math/homomorphism/affine.hpp
     title: math/homomorphism/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':x:'
@@ -16,28 +16,28 @@ data:
   - icon: ':x:'
     path: segment_tree/utility/affinesum.hpp
     title: segment_tree/utility/affinesum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -82,15 +82,15 @@ data:
   - segment_tree/lazy.hpp
   - template/template.hpp
   - template/constant.hpp
+  - template/type_alias.hpp
   - template/fastio.hpp
   - template/function_util.hpp
   - template/io_util.hpp
   - template/macros.hpp
-  - template/type_alias.hpp
   isVerificationFile: true
   path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-01-06 05:54:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

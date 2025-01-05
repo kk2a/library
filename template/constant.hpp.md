@@ -1,66 +1,69 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: template/procon.hpp
     title: template/procon.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0233.test.cpp
     title: verify/aoj/aoj_0233.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560.test.cpp
     title: verify/aoj/aoj_0560.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560_2.test.cpp
     title: verify/aoj/aoj_0560_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_subset.test.cpp
     title: verify/yosupo_convolution/convolution_subset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - icon: ':x:'
@@ -314,12 +317,64 @@ data:
     title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 1 "template/constant.hpp"
 
 
+
+
+    #line 1 "template/type_alias.hpp"
+
+
+
+
+    #include <functional>
+
+    #include <queue>
+
+    #include <utility>
+
+    #include <vector>
+
+
+    using u32 = unsigned int;
+
+    using i64 = long long;
+
+    using u64 = unsigned long long;
+
+    using i128 = __int128_t;
+
+    using u128 = __uint128_t;
+
+
+    using pi = std::pair<int, int>;
+
+    using pl = std::pair<i64, i64>;
+
+    using pil = std::pair<int, i64>;
+
+    using pli = std::pair<i64, int>;
+
+
+    template <class T> using vc = std::vector<T>;
+
+    template <class T> using vvc = std::vector<vc<T>>;
+
+    template <class T> using vvvc = std::vector<vvc<T>>;
+
+    template <class T> using vvvvc = std::vector<vvvc<T>>;
+
+
+    template <class T> using pq = std::priority_queue<T>;
+
+    template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+
+
+
+    #line 5 "template/constant.hpp"
 
 
     template <class T> constexpr T infty = 0;
@@ -355,6 +410,9 @@ data:
     #define KK2_TEMPLATE_CONSTANT_HPP 1
 
 
+    #include "type_alias.hpp"
+
+
     template <class T> constexpr T infty = 0;
 
     template <> constexpr int infty<int> = (1 << 30) - 123;
@@ -382,14 +440,15 @@ data:
 
 
     #endif // KK2_TEMPLATE_CONSTANT_HPP'
-  dependsOn: []
+  dependsOn:
+  - template/type_alias.hpp
   isVerificationFile: false
   path: template/constant.hpp
   requiredBy:
   - template/template.hpp
   - template/procon.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-01-06 05:54:06+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp

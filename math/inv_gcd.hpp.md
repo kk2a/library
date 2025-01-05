@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/inv_gcd.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -32,7 +32,7 @@ data:
   path: math/inv_gcd.hpp
   requiredBy: []
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_ntl_1_e.test.cpp
 documentation_of: math/inv_gcd.hpp

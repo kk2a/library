@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560.test.cpp
     title: verify/aoj/aoj_0560.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/prefix_sum_2d.hpp\"\n\n\n\n#include <cassert>\n\
@@ -57,7 +57,7 @@ data:
   path: data_structure/prefix_sum_2d.hpp
   requiredBy: []
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0560.test.cpp
 documentation_of: data_structure/prefix_sum_2d.hpp
