@@ -9,6 +9,8 @@
 
 namespace kk2 {
 
+#ifndef _MSC_VER
+
 template <typename T>
 using is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value
                                                        or std::is_same<T, __int128>::value,
@@ -52,6 +54,15 @@ using to_unsigned =
                                                         std::make_unsigned<T>,
                                                         std::common_type<T>>::type>::type;
 
+#else
+
+template <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;
+template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;
+template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;
+template <typename T> using to_unsigned = std::make_unsigned<T>;
+
+#endif // _MSC_VER
+
 template <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;
 template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;
 template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;
@@ -71,7 +82,6 @@ struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {};
 
 template <typename T>
 using is_two_args_function_pointer_t = std::enable_if_t<is_two_args_function_pointer<T>::value>;
-
 
 namespace type_traits {
 
