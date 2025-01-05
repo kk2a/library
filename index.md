@@ -99,7 +99,7 @@ data:
     - icon: ':x:'
       path: fps/bostan_mori.hpp
       title: fps/bostan_mori.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
     - icon: ':heavy_check_mark:'
@@ -117,7 +117,7 @@ data:
     - icon: ':warning:'
       path: fps/fps_multivariate.hpp
       title: fps/fps_multivariate.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/fps_sqrt.hpp
       title: fps/fps_sqrt.hpp
     - icon: ':x:'
@@ -150,7 +150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/power_projection.hpp
       title: fps/power_projection.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/product.hpp
       title: fps/product.hpp
   - name: functional
@@ -318,7 +318,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math_mod/inv.hpp
       title: math_mod/inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
     - icon: ':question:'
@@ -662,31 +662,31 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
       title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
       title: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
       title: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sparse_exp.test.cpp
       title: verify/yosupo_fps/fps_sparse_exp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sparse_inv.test.cpp
       title: verify/yosupo_fps/fps_sparse_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sparse_log.test.cpp
       title: verify/yosupo_fps/fps_sparse_log.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sparse_pow.test.cpp
       title: verify/yosupo_fps/fps_sparse_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
       title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sqrt.test.cpp
       title: verify/yosupo_fps/fps_sqrt.test.cpp
     - icon: ':x:'

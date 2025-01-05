@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/chirp_Z.hpp
     title: fps/chirp_Z.hpp
   - icon: ':question:'
