@@ -93,8 +93,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/primitive_root.test.cpp
-  - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/factrize.test.cpp
+  - verify/yosupo_math/primality_test.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/is_prime.hpp
 layout: document

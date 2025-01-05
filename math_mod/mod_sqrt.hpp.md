@@ -63,8 +63,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/sqrt_mod.test.cpp
-  - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - verify/yosupo_fps/fps_sqrt.test.cpp
 documentation_of: math_mod/mod_sqrt.hpp
 layout: document
 redirect_from:

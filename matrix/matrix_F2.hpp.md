@@ -207,9 +207,9 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
 documentation_of: matrix/matrix_F2.hpp
 layout: document
 redirect_from:

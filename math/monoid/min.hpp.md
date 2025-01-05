@@ -80,11 +80,11 @@ data:
   path: math/monoid/min.hpp
   requiredBy:
   - data_structure/static_rmq.hpp
-  - graph/tree/euler_tour.hpp
-  - segment_tree/utility/updatemin.hpp
+  - segment_tree/utility/minseg.hpp
   - segment_tree/utility/addmin.hpp
   - segment_tree/utility/minseg2d.hpp
-  - segment_tree/utility/minseg.hpp
+  - segment_tree/utility/updatemin.hpp
+  - graph/tree/euler_tour.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

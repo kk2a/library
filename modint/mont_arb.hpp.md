@@ -113,22 +113,22 @@ data:
   isVerificationFile: false
   path: modint/mont_arb.hpp
   requiredBy:
-  - math/is_prime.hpp
   - math/prime_factorize.hpp
   - math/euler_phi.hpp
-  - math_mod/primitive_root_64bit.hpp
-  - math_mod/mod_sqrt.hpp
+  - math/is_prime.hpp
   - fps/fps_sqrt.hpp
+  - math_mod/mod_sqrt.hpp
+  - math_mod/primitive_root_64bit.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/sqrt_mod.test.cpp
-  - verify/yosupo_math/primality_test.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
-  - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: modint/mont_arb.hpp
 layout: document
 redirect_from:

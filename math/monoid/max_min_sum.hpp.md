@@ -85,9 +85,9 @@ data:
   isVerificationFile: false
   path: math/monoid/max_min_sum.hpp
   requiredBy:
+  - segment_tree/utility/add_max_min_sum.hpp
   - segment_tree/utility/max_min_sum_seg.hpp
   - segment_tree/utility/update_max_min_sum.hpp
-  - segment_tree/utility/add_max_min_sum.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

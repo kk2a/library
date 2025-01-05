@@ -86,8 +86,8 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
 documentation_of: random/hash.hpp
 layout: document
 redirect_from:

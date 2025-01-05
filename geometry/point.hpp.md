@@ -118,10 +118,10 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp
-  - verify/yosupo_geometry/arg_sort.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp
   - verify/yosupo_geometry/static_convex_hull_2.test.cpp
-  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
+  - verify/yosupo_geometry/arg_sort.test.cpp
 documentation_of: geometry/point.hpp
 layout: document
 redirect_from:

@@ -117,8 +117,8 @@ data:
   timestamp: '2025-01-05 07:17:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/poly_inv.test.cpp
+  - verify/yosupo_fps/poly_root_finding.test.cpp
 documentation_of: fps/poly_gcd.hpp
 layout: document
 redirect_from:

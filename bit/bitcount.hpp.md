@@ -74,17 +74,17 @@ data:
   isVerificationFile: false
   path: bit/bitcount.hpp
   requiredBy:
-  - matrix/matrix_F2.hpp
-  - data_structure/w_ary_tree.hpp
   - data_structure/my_bitset.hpp
+  - data_structure/w_ary_tree.hpp
+  - matrix/matrix_F2.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - verify/yosupo_ds/ds_predecessor_problem.test.cpp
 documentation_of: bit/bitcount.hpp
 layout: document
 redirect_from:
