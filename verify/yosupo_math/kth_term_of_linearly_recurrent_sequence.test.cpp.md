@@ -5,20 +5,14 @@ data:
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':x:'
-    path: fps/chirp_Z.hpp
-    title: fps/chirp_Z.hpp
+    path: fps/bostan_mori.hpp
+    title: fps/bostan_mori.hpp
   - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':question:'
-    path: fps/multi_eval.hpp
-    title: fps/multi_eval.hpp
-  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':x:'
-    path: fps/poly_interpolation.hpp
-    title: fps/poly_interpolation.hpp
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
@@ -62,9 +56,9 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/polynomial_interpolation_on_geometric_sequence
+    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
     links:
-    - https://judge.yosupo.jp/problem/polynomial_interpolation_on_geometric_sequence
+    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -80,13 +74,13 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation_on_geometric_sequence\"\
-    \ \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../fps/poly_interpolation.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \ \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../fps/bostan_mori.hpp\"\
     \n#include \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nusing FPS = kk2::FormalPowerSeries<kk2::mont998>;\n\n\
-    int main() {\n    int n;\n    kk2::mont998 a, r;\n    kin >> n >> a >> r;\n  \
-    \  vc<kk2::mont998> y(n);\n    kin >> y;\n    kout << kk2::poly_interpolation_geo<FPS>(a,\
-    \ r, y) << kendl;\n\n    return 0;\n}\n"
+    int main() {\n    int d;\n    i64 k;\n    kin >> d >> k;\n    FPS a(d), c(d);\n\
+    \    kin >> a >> c;\n    kout << kk2::kth_term_of_linearly_recurrent_sequence(a,\
+    \ c, k) << kendl;\n\n    return 0;\n}\n"
   dependsOn:
   - fps/ntt_friendly.hpp
   - convolution/convolution.hpp
@@ -95,9 +89,7 @@ data:
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
   - fps/fps.hpp
-  - fps/poly_interpolation.hpp
-  - fps/chirp_Z.hpp
-  - fps/multi_eval.hpp
+  - fps/bostan_mori.hpp
   - modint/mont.hpp
   - template/template.hpp
   - template/fastio.hpp
@@ -107,15 +99,15 @@ data:
   - template/macros.hpp
   - template/io_util.hpp
   isVerificationFile: true
-  path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2025-01-05 07:33:23+09:00'
+  timestamp: '2025-01-05 20:58:02+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+documentation_of: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-- /verify/verify/yosupo_fps/poly_interpolation_geometric.test.cpp.html
-title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+- /verify/verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+- /verify/verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp.html
+title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
 ---
