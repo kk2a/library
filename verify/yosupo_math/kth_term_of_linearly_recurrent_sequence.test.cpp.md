@@ -7,10 +7,10 @@ data:
   - icon: ':x:'
     path: fps/bostan_mori.hpp
     title: fps/bostan_mori.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'
