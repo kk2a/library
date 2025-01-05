@@ -59,7 +59,7 @@ data:
   path: math_mod/mod_sqrt.hpp
   requiredBy:
   - fps/fps_sqrt.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/sqrt_mod.test.cpp

@@ -96,7 +96,7 @@ data:
   isVerificationFile: false
   path: graph/static_graph.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp

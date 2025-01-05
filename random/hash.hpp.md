@@ -83,7 +83,7 @@ data:
   path: random/hash.hpp
   requiredBy:
   - string/rolling_hash.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_string/string_z_roliha.test.cpp

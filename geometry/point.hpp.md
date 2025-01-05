@@ -114,7 +114,7 @@ data:
   requiredBy:
   - geometry/static_convex_hull.hpp
   - geometry/argument_sort.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp

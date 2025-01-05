@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/binary_trie.hpp
     title: data_structure/binary_trie.hpp
   - icon: ':question:'
@@ -81,7 +81,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   requiredBy: []
-  timestamp: '2025-01-05 07:33:23+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp

@@ -45,7 +45,7 @@ data:
   path: geometry/line.hpp
   requiredBy:
   - geometry/cross_point_line_line.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/line.hpp

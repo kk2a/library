@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/bbb.hpp
     title: fps/bbb.hpp
   - icon: ':x:'
     path: fps/poly_interpolation.hpp
     title: fps/poly_interpolation.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - icon: ':x:'
@@ -18,9 +18,12 @@ data:
   - icon: ':x:'
     path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
     title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki_1510.test.cpp
+    title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/multi_eval.hpp\"\n\n\n\n#include <functional>\n#include\
@@ -85,11 +88,12 @@ data:
   - fps/bbb.hpp
   - fps/poly_interpolation.hpp
   timestamp: '2025-01-05 07:17:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/poly_interpolation.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - verify/yuki/yuki_1510.test.cpp
 documentation_of: fps/multi_eval.hpp
 layout: document
 redirect_from:

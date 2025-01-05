@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':question:'
@@ -97,7 +97,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_sparse_inv.test.cpp
   requiredBy: []
-  timestamp: '2025-01-05 07:33:23+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_sparse_inv.test.cpp

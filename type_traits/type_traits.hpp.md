@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
   - icon: ':heavy_check_mark:'
@@ -20,13 +20,13 @@ data:
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/w_ary_tree.hpp
     title: data_structure/w_ary_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -35,13 +35,13 @@ data:
   - icon: ':x:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':x:'
     path: fps/poly_taylor_shift.hpp
     title: fps/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
   - icon: ':x:'
@@ -113,7 +113,7 @@ data:
   - icon: ':x:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'
@@ -210,70 +210,70 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_set_xor_min.test.cpp
     title: verify/yosupo_ds/ds_set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv_arb.test.cpp
     title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - icon: ':x:'
@@ -456,6 +456,9 @@ data:
   - icon: ':x:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki_1510.test.cpp
+    title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -472,9 +475,9 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_TYPE_TRAITS_TYPE_TRAITS_HPP\n#define KK2_TYPE_TRAITS_TYPE_TRAITS_HPP\
     \ 1\n\n#pragma once // oj-verify\n\n#include <istream>\n#include <ostream>\n#include\
-    \ <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_signed_int128\
-    \ = typename std::conditional<std::is_same<T, __int128_t>::value\n           \
-    \                                            or std::is_same<T, __int128>::value,\n\
+    \ <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\n\
+    using is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+    \                                                       or std::is_same<T, __int128>::value,\n\
     \                                                   std::true_type,\n        \
     \                                           std::false_type>::type;\n\ntemplate\
     \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -496,10 +499,14 @@ data:
     \                 make_unsigned_int128<T>,\n                              typename\
     \ std::conditional<std::is_signed<T>::value,\n                               \
     \                         std::make_unsigned<T>,\n                           \
-    \                             std::common_type<T>>::type>::type;\n\ntemplate <typename\
-    \ T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\ntemplate\
-    \ <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\ntemplate\
-    \ <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+    \                             std::common_type<T>>::type>::type;\n\n#else\n\n\
+    template <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+    template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
+    template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
+    template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
+    \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
+    template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
+    template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
     \n\ntemplate <typename T>\nusing is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T>\
     \ && std::is_function_v<std::remove_pointer_t<T>>,\n                         \
     \     std::true_type,\n                              std::false_type>::type;\n\
@@ -507,7 +514,7 @@ data:
     struct is_two_args_function_pointer : std::false_type {};\n\ntemplate <typename\
     \ R, typename T1, typename T2>\nstruct is_two_args_function_pointer<R (*)(T1,\
     \ T2)> : std::true_type {};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t\
-    \ = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\n\nnamespace type_traits\
+    \ = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\nnamespace type_traits\
     \ {\n\nstruct istream_tag {};\n\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
     \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
     \ std::istream>::value\n                                                     \
@@ -584,7 +591,7 @@ data:
   - math_mod/pow_mod.hpp
   - math_mod/comb.hpp
   - math_mod/butterfly.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
@@ -684,6 +691,7 @@ data:
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/aoj/aoj_ntl_1_e.test.cpp
+  - verify/yuki/yuki_1510.test.cpp
   - verify/yuki/yuki_0430.test.cpp
   - verify/yuki/yuki_0430_2.test.cpp
   - verify/yuki/yuki_1326.test.cpp

@@ -141,7 +141,7 @@ data:
   path: graph/graph.hpp
   requiredBy:
   - random/graph.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_graph/graph_bcc.test.cpp

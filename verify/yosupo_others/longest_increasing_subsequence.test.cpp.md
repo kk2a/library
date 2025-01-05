@@ -72,7 +72,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_others/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2025-01-05 08:24:48+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_others/longest_increasing_subsequence.test.cpp

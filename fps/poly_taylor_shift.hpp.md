@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: fps/poly_taylor_shift.hpp
   requiredBy: []
-  timestamp: '2025-01-05 07:33:32+09:00'
+  timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
