@@ -31,5 +31,7 @@
 "verify/yosupo_ds/ds_static_rmq_2.test.cpp": "2025-01-06 00:03:54 +0900",
 "verify/yosupo_ds/ds_unionfind.test.cpp": "2025-01-06 00:03:54 +0900",
 "verify/yosupo_fps/fps_composition.test.cpp": "2025-01-06 00:03:54 +0900",
-"verify/yosupo_fps/fps_composition_inv.test.cpp": "2025-01-06 00:03:54 +0900"
+"verify/yosupo_fps/fps_composition_inv.test.cpp": "2025-01-06 00:03:54 +0900",
+"verify/yosupo_fps/fps_exp.test.cpp": "2025-01-06 00:03:54 +0900",
+"verify/yosupo_fps/fps_exp_arb.test.cpp": "2025-01-06 00:03:54 +0900"
 }
