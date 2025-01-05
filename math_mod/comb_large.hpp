@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "../fps/ntt_friendly.hpp"
-#include "../fps/sample_point_shift.hpp"
+#include "../fps/poly_sample_point_shift.hpp"
 #include "../type_traits/type_traits.hpp"
 #include "comb.hpp"
 
