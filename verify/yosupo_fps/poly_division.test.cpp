@@ -15,7 +15,7 @@ int main() {
     FPS q = (f / g).shrink();
     FPS r = (f - q * g).shrink();
 
-    kout << g.size() << " " << r.size() << kendl;
+    kout << q.size() << " " << r.size() << kendl;
     kout << q << kendl;
     kout << r << kendl;
 
