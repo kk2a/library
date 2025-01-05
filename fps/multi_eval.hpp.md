@@ -9,7 +9,7 @@ data:
     path: fps/poly_interpolation.hpp
     title: fps/poly_interpolation.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/multi_eval.hpp\"\n\n\n\n#include <functional>\n#include\
@@ -88,7 +88,7 @@ data:
   - fps/bbb.hpp
   - fps/poly_interpolation.hpp
   timestamp: '2025-01-05 07:17:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_fps/poly_interpolation.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
