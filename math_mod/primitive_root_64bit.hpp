@@ -1,9 +1,9 @@
 #ifndef KK2_MATH_MOD_PRIMITIVE_ROOT_64BIT_HPP
 #define KK2_MATH_MOD_PRIMITIVE_ROOT_64BIT_HPP 1
 
+#include "../math/prime_factorize.hpp"
 #include "../random/gen.hpp"
 #include "pow_mod.hpp"
-#include "../math/prime_factorize.hpp"
 
 namespace kk2 {
 
@@ -25,6 +25,6 @@ long long primitive_root_64bit(long long p) {
     }
 }
 
-}
+} // namespace kk2
 
 #endif // KK2_MATH_MOD_PRIMITIVE_ROOT_64BIT_HPP

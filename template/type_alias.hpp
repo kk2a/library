@@ -1,10 +1,10 @@
 #ifndef KK2_TEMPLATE_TYPE_ALIAS_HPP
 #define KK2_TEMPLATE_TYPE_ALIAS_HPP 1
 
+#include <functional>
+#include <queue>
 #include <utility>
 #include <vector>
-#include <queue>
-#include <functional>
 
 using u32 = unsigned int;
 using i64 = long long;

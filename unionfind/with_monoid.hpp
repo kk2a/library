@@ -4,7 +4,6 @@
 #include <utility>
 #include <vector>
 
-
 namespace kk2 {
 
 template <class M, M (*op)(M, M), M (*e)()> struct UnionFindWithMonoid {

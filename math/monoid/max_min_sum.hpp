@@ -30,14 +30,12 @@ template <class S> struct MaxMinSum {
           size(size_),
           is_unit(is_unit_) {}
 
-    template <class OStream>
-    friend OStream &operator<<(OStream &os, const MaxMinSum &maxminSum) {
+    template <class OStream> friend OStream &operator<<(OStream &os, const MaxMinSum &maxminSum) {
         os << maxminSum.sum << " " << maxminSum.max << " " << maxminSum.min;
         return os;
     }
 
-    template <class IStream>
-    friend IStream &operator>>(IStream &is, MaxMinSum &maxminSum) {
+    template <class IStream> friend IStream &operator>>(IStream &is, MaxMinSum &maxminSum) {
         S a;
         is >> a;
         maxminSum.sum = maxminSum.max = maxminSum.min = a;
@@ -91,8 +89,7 @@ std::vector<monoid::MaxMinSum<S>> GetVecMaxMinSum(int n, Args... args) {
 }
 
 template <class S, class... Args>
-std::vector<std::vector<monoid::MaxMinSum<S>>>
-GetVecMaxMinSum2D(int h, int w, Args... args) {
+std::vector<std::vector<monoid::MaxMinSum<S>>> GetVecMaxMinSum2D(int h, int w, Args... args) {
     return std::vector<std::vector<monoid::MaxMinSum<S>>>(h, GetVecMaxMinSum<S>(w, args...));
 }
 

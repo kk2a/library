@@ -25,9 +25,7 @@ template <int char_size, int margin> struct Trie {
     std::vector<Node> nodes;
     constexpr static int root = 0;
 
-    Trie() {
-        nodes.emplace_back();
-    }
+    Trie() { nodes.emplace_back(); }
 
     Trie(int Num) {
         nodes.reserve(Num);

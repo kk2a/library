@@ -1,8 +1,8 @@
 #ifndef KK2_GRAPH_SCC_HPP
 #define KK2_GRAPH_SCC_HPP 1
 
-#include <cassert>
 #include <algorithm>
+#include <cassert>
 #include <functional>
 #include <vector>
 

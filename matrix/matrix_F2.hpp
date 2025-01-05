@@ -8,8 +8,8 @@
 #include <string>
 #include <vector>
 
-#include "../type_traits/type_traits.hpp"
 #include "../data_structure/my_bitset.hpp"
+#include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
@@ -141,8 +141,7 @@ struct MatrixF2 {
         return Proxy(_mat, i);
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
-    mat &input(IStream &is) {
+    template <class IStream, is_istream_t<IStream> * = nullptr> mat &input(IStream &is) {
         for (int i = 0; i < _h; i++) {
             std::string s;
             is >> s;
@@ -151,11 +150,8 @@ struct MatrixF2 {
         return *this;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
-    void output(OStream &os) const {
-        for (int i = 0; i < _h; i++) {
-            os << _mat[i].to_reversed_string() << "\n";
-        }
+    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
+        for (int i = 0; i < _h; i++) { os << _mat[i].to_reversed_string() << "\n"; }
     }
 
     void set(int i, int j, bool x) {
@@ -439,9 +435,7 @@ struct MatrixF2 {
         return res;
     }
 
-    mat &inplace_transpose() {
-        return *this = transpose();
-    }
+    mat &inplace_transpose() { return *this = transpose(); }
 };
 
 } // namespace kk2

@@ -41,6 +41,7 @@ struct SuffixArray {
     }
 
     const std::vector<int> &get_sa() const { return _sa; }
+
     const std::vector<int> &get_s() const { return _s; }
 
     int operator[](int i) const { return _sa[i]; }
@@ -232,6 +233,7 @@ struct SuffixArray {
 struct LCPArray {
     const SuffixArray &sa;
     std::vector<int> lcp, rank;
+
     // lcp[i] = lcp(s[sa[i]:], s[sa[i + 1]:])
 
     LCPArray(const SuffixArray &sa_) : sa(sa_) {

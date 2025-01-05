@@ -16,8 +16,7 @@ template <int NUM> struct RollingHash {
 
     RollingHash() : prefix() {}
 
-    template <class T, is_integral_t<T> * = nullptr>
-    RollingHash(T v) : prefix({H(v)}) {}
+    template <class T, is_integral_t<T> * = nullptr> RollingHash(T v) : prefix({H(v)}) {}
 
     RollingHash(const std::string &s) : prefix(s.size()) {
         extend_base(s.size());

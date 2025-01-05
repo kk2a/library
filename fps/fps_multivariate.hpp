@@ -6,8 +6,8 @@
 #include <iostream>
 #include <vector>
 
-#include "../type_traits/type_traits.hpp"
 #include "../convolution/multi_convolution_truncated.hpp"
+#include "../type_traits/type_traits.hpp"
 #include "ntt_friendly.hpp"
 
 namespace kk2 {
@@ -34,17 +34,16 @@ template <typename mint> struct MultivariateFormalPowerSeries {
 
     template <class OStream, is_ostream_t<OStream> * = nullptr>
     friend OStream &operator<<(OStream &os, const mfps &mfps_) {
-        for (int i = 0; i < (int)mfps_.f.size(); i++) os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? "" : " ");
+        for (int i = 0; i < (int)mfps_.f.size(); i++)
+            os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? "" : " ");
         return os;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
-    void output(OStream &os) const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
         for (int i = 0; i < (int)f.size(); i++) os << f[i] << (i + 1 == (int)f.size() ? "\n" : " ");
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
-    mfps &input(IStream &is) {
+    template <class IStream, is_istream_t<IStream> * = nullptr> mfps &input(IStream &is) {
         for (auto &x : f) is >> x;
         return *this;
     }
@@ -70,8 +69,7 @@ template <typename mint> struct MultivariateFormalPowerSeries {
 
     mint &operator[](int i) { return f[i]; }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
-    void display(OStream &os) const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr> void display(OStream &os) const {
         for (int i = 0; i < (int)f.size(); i++) {
             int x = i;
             os << "f(";

@@ -27,12 +27,12 @@
 #include <utility>
 #include <vector>
 
-#include "fastio.hpp"
-#include "type_alias.hpp"
 #include "constant.hpp"
+#include "fastio.hpp"
 #include "function_util.hpp"
-#include "macros.hpp"
 #include "io_util.hpp"
+#include "macros.hpp"
+#include "type_alias.hpp"
 
 using kk2::kendl;
 using kk2::kin;

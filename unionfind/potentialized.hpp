@@ -5,7 +5,7 @@
 
 namespace kk2 {
 
-template <class A, bool right=true> struct PotentializedUnionFind {
+template <class A, bool right = true> struct PotentializedUnionFind {
   private:
     std::vector<int> d;
     std::vector<A> par_diff;

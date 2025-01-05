@@ -14,13 +14,12 @@ struct edge {
     int to, id;
 };
 
-template <class T>
-struct Result {
+template <class T> struct Result {
     std::vector<T> dist;
     std::vector<edge> prev;
 };
 
-template <class WG, class T = typename WG::value_type> 
+template <class WG, class T = typename WG::value_type>
 Result<T> shortest_path(const WG &g, int start, T inf = std::numeric_limits<T>::max()) {
     static_assert(WG::weighted::value, "shortest_path requires weighted graph");
     T alt;

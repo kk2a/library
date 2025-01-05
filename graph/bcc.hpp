@@ -26,7 +26,8 @@ template <class G> struct BCC : LowLink<G> {
                 if (e.id == ei) continue;
                 if (this->used_on_dfs_tree[e.id]) {
                     int nk = k;
-                    if (this->low[e.to] >= this->ord[u]) nk = group_e.size(), group_e.emplace_back();
+                    if (this->low[e.to] >= this->ord[u])
+                        nk = group_e.size(), group_e.emplace_back();
                     add(e.id, nk);
                     self(self, e.to, nk, e.id);
                 }

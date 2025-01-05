@@ -1,6 +1,7 @@
 #ifndef KK2_FPS_BBB_HPP
 #define KK2_FPS_BBB_HPP 1
 
+#include <utility>
 #include <vector>
 
 #include "multi_eval.hpp"
@@ -37,6 +38,14 @@ std::vector<mint> BBB1(const std::vector<mint> &a, const FPS &f) {
     std::vector<mint> ret = BBB(ima, f);
     for (int i = 0; i < n; i++) ret[i] *= -a[i] * prod;
     return ret;
+}
+
+// f(X) / \prod (X - a_i)^d_i =  \sum c_i,j / (X - a_i)^j
+// return {c_i,j}
+template <class FPS, class mint = typename FPS::value_type>
+std::vector<std::vector<mint>>
+BBB(const std::vector<mint> &a, const std::vector<mint> &d, const FPS &f) {
+    // hoge
 }
 
 } // namespace kk2

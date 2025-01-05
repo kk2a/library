@@ -19,15 +19,13 @@ template <class S> struct Max {
 
     operator S() const { return a; }
 
-    template <class OStream>
-    friend OStream &operator<<(OStream &os, const Max &max) {
+    template <class OStream> friend OStream &operator<<(OStream &os, const Max &max) {
         if (max.minf) os << "minf";
         else os << max.a;
         return os;
     }
 
-    template <class IStream>
-    friend IStream &operator>>(IStream &is, Max &max) {
+    template <class IStream> friend IStream &operator>>(IStream &is, Max &max) {
         is >> max.a;
         max.minf = false;
         return is;
@@ -68,8 +66,7 @@ template <class S> Max<S> MaxUnit() {
 
 } // namespace monoid
 
-template <class S, class... Args>
-std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
+template <class S, class... Args> std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
     return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));
 }
 

@@ -27,7 +27,7 @@ template <class G> struct TwoEdgeConnectedComponents : LowLink<G> {
             for (auto &&e : this->g[now])
                 if (comp[e.to] == -1) self(self, e.to, now);
         };
-        for (int i = 0; i < this->n; i++) 
+        for (int i = 0; i < this->n; i++)
             if (this->root[i]) dfs(dfs, i, -1);
 
         group.resize(k);

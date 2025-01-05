@@ -19,15 +19,13 @@ template <class S> struct Min {
 
     operator S() const { return a; }
 
-    template <class OStream>
-    friend OStream &operator<<(OStream &os, const Min &min) {
+    template <class OStream> friend OStream &operator<<(OStream &os, const Min &min) {
         if (min.inf) os << "inf";
         else os << min.a;
         return os;
     }
 
-    template <class IStream>
-    friend IStream &operator>>(IStream &is, Min &min) {
+    template <class IStream> friend IStream &operator>>(IStream &is, Min &min) {
         is >> min.a;
         min.inf = false;
         return is;
@@ -68,8 +66,7 @@ template <class S> Min<S> MinUnit() {
 
 } // namespace monoid
 
-template <class S, class... Args>
-std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
+template <class S, class... Args> std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
     return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));
 }
 

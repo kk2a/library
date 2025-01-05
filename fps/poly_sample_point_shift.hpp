@@ -29,7 +29,7 @@ std::vector<mint> sample_point_shift(std::vector<mint> &y, mint t, int m = -1) {
     }
 
     std::vector<mint> inv(k + 1, 1);
-    FPS d(k + 1);   
+    FPS d(k + 1);
     for (int i = 2; i <= k; i++) inv[k] *= i;
     inv[k] = inv[k].inv();
     for (int i = k; i >= 1; i--) inv[i - 1] = inv[i] * i;

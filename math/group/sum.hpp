@@ -18,14 +18,12 @@ template <class S> struct Sum {
 
     operator S() const { return a; }
 
-    template <class OStream>
-    friend OStream &operator<<(OStream &os, const Sum &sum) {
+    template <class OStream> friend OStream &operator<<(OStream &os, const Sum &sum) {
         os << sum.a;
         return os;
     }
 
-    template <class IStream>
-    friend IStream &operator>>(IStream &is, Sum &sum) {
+    template <class IStream> friend IStream &operator>>(IStream &is, Sum &sum) {
         is >> sum.a;
         sum.size = 1;
         return is;
@@ -72,8 +70,7 @@ template <class S> constexpr Sum<S> SumInv(Sum<S> x) {
 
 } // namespace group
 
-template <class S, class... Args>
-std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {
+template <class S, class... Args> std::vector<group::Sum<S>> GetVecSum(int n, Args... args) {
     return std::vector<group::Sum<S>>(n, group::Sum<S>(args...));
 }
 

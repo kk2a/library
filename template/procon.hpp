@@ -10,8 +10,8 @@
 #include <deque>
 #include <fstream>
 #include <functional>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <iterator>
 #include <map>
 #include <numeric>
@@ -25,18 +25,19 @@
 #include <utility>
 #include <vector>
 
-#include "type_alias.hpp"
 #include "constant.hpp"
 #include "function_util.hpp"
-#include "macros.hpp"
 #include "io_util.hpp"
+#include "macros.hpp"
+#include "type_alias.hpp"
 
 struct FastIOSetUp {
     FastIOSetUp() {
         std::ios::sync_with_stdio(false);
-        std::cin.tie(nullptr);  
+        std::cin.tie(nullptr);
     }
 } fast_io_set_up;
+
 auto &kin = std::cin;
 auto &kout = std::cout;
 auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;

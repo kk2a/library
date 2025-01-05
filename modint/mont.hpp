@@ -109,7 +109,8 @@ template <int p> struct LazyMontgomeryModInt {
         return os << x.val();
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr> friend IStream &operator>>(IStream &is, mint &x) {
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    friend IStream &operator>>(IStream &is, mint &x) {
         i64 t;
         is >> t;
         x = mint(t);

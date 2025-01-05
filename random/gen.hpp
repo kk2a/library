@@ -49,8 +49,7 @@ i64 rng(i64 l, i64 r) {
 }
 
 // [l, r)
-template <class T>
-std::vector<T> random_vector(int n, T l, T r) {
+template <class T> std::vector<T> random_vector(int n, T l, T r) {
     std::vector<T> res(n);
     for (int i = 0; i < n; i++) res[i] = rng(l, r);
     return res;

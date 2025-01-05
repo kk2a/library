@@ -66,7 +66,7 @@ struct Erato {
         return _minfactor[n];
     }
 
-    static const std::vector<int>& primes() { return _primes; }
+    static const std::vector<int> &primes() { return _primes; }
 
     static std::vector<std::pair<int, int>> factorize(int n) {
         assert(n < (int)_isprime.size() && n != 0);

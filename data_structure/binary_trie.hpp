@@ -128,7 +128,7 @@ template <typename T, int MAX_LOG> struct BinaryTrie {
     int count(T x) const {
         x ^= lazy;
         int now = root;
-        for (int i= MAX_LOG - 1; i >= 0; --i) {
+        for (int i = MAX_LOG - 1; i >= 0; --i) {
             const int d = (x >> i) & 1;
             if (nodes[now].nxt[d] == -1) return 0;
             now = nodes[now].nxt[d];
@@ -208,8 +208,7 @@ template <typename T, int MAX_LOG> struct BinaryTrie {
                 if (d == 1 and nodes[now].nxt[d] != -1) {
                     res |= (T(1) << i);
                     now = nodes[now].nxt[d];
-                }
-                else if (d == 1 and nodes[now].nxt[d] == -1) break;
+                } else if (d == 1 and nodes[now].nxt[d] == -1) break;
                 else if (d == 0 and nodes[now].nxt[d] != -1) now = nodes[now].nxt[d];
                 else {
                     assert(nodes[now].nxt[d ^ 1] != -1);
