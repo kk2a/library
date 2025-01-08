@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':x:'
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log_arb.test.cpp
   requiredBy: []
-  timestamp: '2025-01-06 05:54:06+09:00'
+  timestamp: '2025-01-09 05:34:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log_arb.test.cpp

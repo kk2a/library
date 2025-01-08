@@ -11,17 +11,17 @@ data:
   - icon: ':warning:'
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
   - icon: ':x:'
@@ -107,7 +107,7 @@ data:
     title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -126,10 +126,11 @@ data:
     \n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
     \ mint> struct FormalPowerSeries : std::vector<mint> {\n    using std::vector<mint>::vector;\n\
     \    using FPS = FormalPowerSeries;\n\n    template <class OStream, is_ostream_t<OStream>\
-    \ * = nullptr> void display(OStream &os) const {\n        for (int i = 0; i <\
-    \ (int)this->size(); i++) {\n            os << (*this)[i] << \" \\n\"[i == (int)this->size()\
-    \ - 1];\n        }\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
-    \ * = nullptr> void output(OStream &os) const {\n        for (int i = 0; i < (int)this->size();\
+    \ * = nullptr> void debug_output(OStream &os) const {\n        os << \"[\";\n\
+    \        for (int i = 0; i < (int)this->size(); i++) {\n            os << (*this)[i]\
+    \ << (i + 1 == (int)this->size() ? \"\" : \", \");\n        }\n        os << \"\
+    ]\";\n    }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\
+    \ void output(OStream &os) const {\n        for (int i = 0; i < (int)this->size();\
     \ i++) {\n            os << (*this)[i] << (i + 1 == (int)this->size() ? \"\\n\"\
     \ : \" \");\n        }\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
     \ * = nullptr>\n    friend OStream &operator<<(OStream &os, const FPS &fps_) {\n\
@@ -301,8 +302,8 @@ data:
   - fps/fps_arb.hpp
   - fps/fps_multivariate.hpp
   - math_mod/comb_large.hpp
-  timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-01-09 05:34:06+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
