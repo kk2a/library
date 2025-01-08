@@ -15,10 +15,12 @@ template <class mint> struct FormalPowerSeries : std::vector<mint> {
     using std::vector<mint>::vector;
     using FPS = FormalPowerSeries;
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr> void display(OStream &os) const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr> void debug_output(OStream &os) const {
+        os << "[";
         for (int i = 0; i < (int)this->size(); i++) {
-            os << (*this)[i] << " \n"[i == (int)this->size() - 1];
+            os << (*this)[i] << (i + 1 == (int)this->size() ? "" : ", ");
         }
+        os << "]";
     }
 
     template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
