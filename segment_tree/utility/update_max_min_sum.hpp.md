@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: math/monoid/max_min_sum.hpp
     title: math/monoid/max_min_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   _extendedRequiredBy: []

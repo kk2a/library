@@ -11,9 +11,6 @@ data:
     path: template/fastio.hpp
     title: template/fastio.hpp
   - icon: ':question:'
-    path: template/function_util.hpp
-    title: template/function_util.hpp
-  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
   - icon: ':question:'
@@ -64,14 +61,13 @@ data:
   - template/type_alias.hpp
   - template/fastio.hpp
   - type_traits/type_traits.hpp
-  - template/function_util.hpp
   - template/io_util.hpp
   - template/macros.hpp
   - template/fastio.hpp
   isVerificationFile: true
   path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   requiredBy: []
-  timestamp: '2025-01-06 05:54:06+09:00'
+  timestamp: '2025-01-16 14:05:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b_128bit.test.cpp

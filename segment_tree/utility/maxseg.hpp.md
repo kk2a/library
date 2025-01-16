@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
   _extendedRequiredBy: []

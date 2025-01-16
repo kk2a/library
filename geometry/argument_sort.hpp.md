@@ -31,26 +31,26 @@ data:
   code: "#ifndef KK2_GEOMETRY_ARGUMENT_SORT_HPP\n#define KK2_GEOMETRY_ARGUMENT_SORT_HPP\
     \ 1\n\n#include <algorithm>\n#include <vector>\n\n#include \"point.hpp\"\n\nnamespace\
     \ kk2 {\n\ntemplate <class T> struct ArgumentSort {\n    using point = Point<T>;\n\
-    \    point O;\n\n    ArgumentSort(const point &O_ = point()) : O(O_) {}\n\n  private:\n\
-    \    // p - O = (x, y)\n    // 1 : y < 0\n    // 2 : y >= 0 and x >= 0\n    //\
-    \ 3 : otherwise\n    int location(const point &p) {\n        point q = p - O;\n\
+    \    point O;\n\n    ArgumentSort(const point &O_ = point()) : O(O_) {}\n\n  \
+    \  // p - O = (x, y)\n    // 1 : y < 0\n    // 2 : y >= 0 and x >= 0\n    // 3\
+    \ : otherwise\n    int location(const point &p) {\n        point q = p - O;\n\
     \        return q.y < 0 ? 1 : q.x >= 0 ? 2 : 3;\n    }\n\n    bool cmp(const point\
     \ &a, const point &b) {\n        int loc_a = location(a), loc_b = location(b);\n\
     \        T cr = cross(a, b, O);\n        return loc_a != loc_b ? loc_a < loc_b\
-    \ : cr == 0 ? norm(a, O) < norm(b, O) : cr > 0;\n    }\n\n  public:\n    void\
-    \ argument_sort(std::vector<point> &ps) {\n        std::sort(\n            ps.begin(),\
-    \ ps.end(), [this](auto &&a, auto &&b) -> bool { return this->cmp(a, b); });\n\
-    \    }\n\n    template <class Iterator>\n    Iterator min_up_argument(Iterator\
-    \ first, Iterator last, const point &p) {\n        return std::lower_bound(\n\
-    \            first, last, p, [this](auto &&a, auto &&b) -> bool { return this->cmp(a,\
-    \ b); });\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_GEOMETRY_ARGUMENT_SORT_HPP\n"
+    \ : cr == 0 ? norm(a, O) < norm(b, O) : cr > 0;\n    }\n\n    void argument_sort(std::vector<point>\
+    \ &ps) {\n        std::sort(\n            ps.begin(), ps.end(), [this](auto &&a,\
+    \ auto &&b) -> bool { return this->cmp(a, b); });\n    }\n\n    template <class\
+    \ Iterator>\n    Iterator min_up_argument(Iterator first, Iterator last, const\
+    \ point &p) {\n        return std::lower_bound(\n            first, last, p, [this](auto\
+    \ &&a, auto &&b) -> bool { return this->cmp(a, b); });\n    }\n};\n\n} // namespace\
+    \ kk2\n\n#endif // KK2_GEOMETRY_ARGUMENT_SORT_HPP\n"
   dependsOn:
   - geometry/point.hpp
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: geometry/argument_sort.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-01-16 14:05:50+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/arg_sort.test.cpp

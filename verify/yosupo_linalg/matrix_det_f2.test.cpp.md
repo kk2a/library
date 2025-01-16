@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':x:'
@@ -16,9 +16,6 @@ data:
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
-    path: template/function_util.hpp
-    title: template/function_util.hpp
   - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
@@ -72,13 +69,12 @@ data:
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
-  - template/function_util.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_det_f2.test.cpp
   requiredBy: []
-  timestamp: '2025-01-06 05:54:06+09:00'
+  timestamp: '2025-01-16 14:05:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_det_f2.test.cpp

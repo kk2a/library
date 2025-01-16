@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: geometry/static_convex_hull.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:39:03+09:00'
+  timestamp: '2025-01-16 14:05:50+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp

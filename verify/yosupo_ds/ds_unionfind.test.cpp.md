@@ -8,9 +8,6 @@ data:
     path: template/fastio.hpp
     title: template/fastio.hpp
   - icon: ':question:'
-    path: template/function_util.hpp
-    title: template/function_util.hpp
-  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
   - icon: ':question:'
@@ -25,14 +22,14 @@ data:
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unionfind/unionfind.hpp
     title: unionfind/unionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -67,15 +64,14 @@ data:
   - template/type_alias.hpp
   - template/fastio.hpp
   - type_traits/type_traits.hpp
-  - template/function_util.hpp
   - template/io_util.hpp
   - template/macros.hpp
   - unionfind/unionfind.hpp
   isVerificationFile: true
   path: verify/yosupo_ds/ds_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2025-01-06 05:54:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-01-16 14:05:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_unionfind.test.cpp
 layout: document

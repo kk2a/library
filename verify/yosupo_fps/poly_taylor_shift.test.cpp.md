@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':x:'
@@ -34,9 +34,6 @@ data:
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
-    path: template/function_util.hpp
-    title: template/function_util.hpp
   - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
@@ -99,13 +96,12 @@ data:
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
-  - template/function_util.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
   path: verify/yosupo_fps/poly_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2025-01-09 05:34:06+09:00'
+  timestamp: '2025-01-16 14:05:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_taylor_shift.test.cpp

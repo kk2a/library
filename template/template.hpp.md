@@ -8,9 +8,6 @@ data:
     path: template/fastio.hpp
     title: template/fastio.hpp
   - icon: ':question:'
-    path: template/function_util.hpp
-    title: template/function_util.hpp
-  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
   - icon: ':question:'
@@ -81,46 +78,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_set_xor_min.test.cpp
     title: verify/yosupo_ds/ds_set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
   - icon: ':x:'
@@ -346,33 +343,34 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_TEMPLATE_TEMPLATE_HPP\n#define KK2_TEMPLATE_TEMPLATE_HPP 1\n\n\
-    // #pragma GCC optimize(\"O3,unroll-loops\")\n\n// #include <bits/stdc++.h>\n\
     #include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <chrono>\n#include <cmath>\n#include <deque>\n#include <functional>\n\
     #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
     \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include <stack>\n\
     #include <string>\n#include <unordered_map>\n#include <unordered_set>\n#include\
     \ <utility>\n#include <vector>\n\n#include \"constant.hpp\"\n#include \"fastio.hpp\"\
-    \n#include \"function_util.hpp\"\n#include \"io_util.hpp\"\n#include \"macros.hpp\"\
-    \n#include \"type_alias.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-    \nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid\
-    \ No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool\
-    \ b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1)\
-    \ {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n\
-    \    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout\
-    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\n#endif // KK2_TEMPLATE_TEMPLATE_HPP\n"
+    \n#include \"io_util.hpp\"\n#include \"macros.hpp\"\n#include \"type_alias.hpp\"\
+    \n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b =\
+    \ 1) {\n    kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid No(bool b = 1) {\n\
+    \    kout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool b = 1) {\n    kout\
+    \ << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1) {\n    kout << (b\
+    \ ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n    kout << (b ? \"\
+    yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout << (b ? \"no\\n\"\
+    \ : \"yes\\n\");\n}\n\ntemplate <class T, class S> inline bool chmax(T &a, const\
+    \ S &b) {\n    return (a < b ? a = b, 1 : 0);\n}\n\ntemplate <class T, class S>\
+    \ inline bool chmin(T &a, const S &b) {\n    return (a > b ? a = b, 1 : 0);\n\
+    }\n\n#endif // KK2_TEMPLATE_TEMPLATE_HPP\n"
   dependsOn:
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
   - type_traits/type_traits.hpp
-  - template/function_util.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: false
   path: template/template.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:54:06+09:00'
+  timestamp: '2025-01-16 14:05:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp

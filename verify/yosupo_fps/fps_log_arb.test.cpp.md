@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':x:'
@@ -40,9 +40,6 @@ data:
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
-    path: template/function_util.hpp
-    title: template/function_util.hpp
   - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
@@ -105,13 +102,12 @@ data:
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
-  - template/function_util.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log_arb.test.cpp
   requiredBy: []
-  timestamp: '2025-01-09 05:34:06+09:00'
+  timestamp: '2025-01-16 14:05:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log_arb.test.cpp

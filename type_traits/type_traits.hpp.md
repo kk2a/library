@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
@@ -20,10 +20,10 @@ data:
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/w_ary_tree.hpp
     title: data_structure/w_ary_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/fps.hpp
     title: fps/fps.hpp
   - icon: ':x:'
@@ -35,13 +35,13 @@ data:
   - icon: ':x:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
   - icon: ':x:'
     path: fps/poly_taylor_shift.hpp
     title: fps/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
   - icon: ':x:'
@@ -113,7 +113,7 @@ data:
   - icon: ':x:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'
@@ -213,46 +213,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_set_xor_min.test.cpp
     title: verify/yosupo_ds/ds_set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
   - icon: ':x:'

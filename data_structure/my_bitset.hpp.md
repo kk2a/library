@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
