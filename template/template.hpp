@@ -1,9 +1,6 @@
 #ifndef KK2_TEMPLATE_TEMPLATE_HPP
 #define KK2_TEMPLATE_TEMPLATE_HPP 1
 
-// #pragma GCC optimize("O3,unroll-loops")
-
-// #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -29,7 +26,6 @@
 
 #include "constant.hpp"
 #include "fastio.hpp"
-#include "function_util.hpp"
 #include "io_util.hpp"
 #include "macros.hpp"
 #include "type_alias.hpp"
@@ -60,6 +56,14 @@ void yes(bool b = 1) {
 
 void no(bool b = 1) {
     kout << (b ? "no\n" : "yes\n");
+}
+
+template <class T, class S> inline bool chmax(T &a, const S &b) {
+    return (a < b ? a = b, 1 : 0);
+}
+
+template <class T, class S> inline bool chmin(T &a, const S &b) {
+    return (a > b ? a = b, 1 : 0);
 }
 
 #endif // KK2_TEMPLATE_TEMPLATE_HPP

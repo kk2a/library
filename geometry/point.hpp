@@ -11,7 +11,7 @@
 namespace kk2 {
 
 template <typename T> struct Point {
-    static constexpr long double PI = acos(-1.0);
+    static long double PI;
     T x, y;
 
     Point(T x = 0, T y = 0) : x(x), y(y) {}
@@ -76,8 +76,9 @@ template <typename T> struct Point {
 
     long double argument() const { return atan2(y, x); }
 
+    // this -> p
     long double argument(const Point &p) const {
-        long double res = argument() - p.argument();
+        long double res = p.argument() - argument();
         if (res < -PI) res += 2 * PI;
         if (res > PI) res -= 2 * PI;
         return res;
@@ -179,6 +180,7 @@ template <typename T> struct Point {
         return is >> p.x >> p.y;
     }
 };
+template <typename T> long double Point<T>::PI = std::acos(-1.0);
 
 } // namespace kk2
 

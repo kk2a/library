@@ -5,8 +5,6 @@
 #include <array>
 #include <bitset>
 #include <cassert>
-// #include <chrono>
-// #include <cmath>
 #include <deque>
 #include <fstream>
 #include <functional>
@@ -64,6 +62,14 @@ void yes(bool b = 1) {
 
 void no(bool b = 1) {
     kout << (b ? "no\n" : "yes\n");
+}
+
+template <class T, class S> inline bool chmax(T &a, const S &b) {
+    return (a < b ? a = b, 1 : 0);
+}
+
+template <class T, class S> inline bool chmin(T &a, const S &b) {
+    return (a > b ? a = b, 1 : 0);
 }
 
 std::istream &operator>>(std::istream &is, u128 &x) {

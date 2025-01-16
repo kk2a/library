@@ -14,7 +14,6 @@ template <class T> struct ArgumentSort {
 
     ArgumentSort(const point &O_ = point()) : O(O_) {}
 
-  private:
     // p - O = (x, y)
     // 1 : y < 0
     // 2 : y >= 0 and x >= 0
@@ -30,7 +29,6 @@ template <class T> struct ArgumentSort {
         return loc_a != loc_b ? loc_a < loc_b : cr == 0 ? norm(a, O) < norm(b, O) : cr > 0;
     }
 
-  public:
     void argument_sort(std::vector<point> &ps) {
         std::sort(
             ps.begin(), ps.end(), [this](auto &&a, auto &&b) -> bool { return this->cmp(a, b); });
