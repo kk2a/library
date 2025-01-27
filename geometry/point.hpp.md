@@ -113,15 +113,15 @@ data:
   isVerificationFile: false
   path: geometry/point.hpp
   requiredBy:
-  - geometry/static_convex_hull.hpp
   - geometry/argument_sort.hpp
+  - geometry/static_convex_hull.hpp
   timestamp: '2025-01-16 14:05:50+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp
-  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp
   - verify/yosupo_geometry/static_convex_hull_2.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
   - verify/yosupo_geometry/arg_sort.test.cpp
 documentation_of: geometry/point.hpp
 layout: document

@@ -86,16 +86,16 @@ data:
   isVerificationFile: false
   path: math/is_prime.hpp
   requiredBy:
-  - math/prime_factorize.hpp
   - math/euler_phi.hpp
+  - math/prime_factorize.hpp
   - math_mod/primitive_root_64bit.hpp
   timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
-  - verify/yosupo_math/primality_test.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/is_prime.hpp
 layout: document
 redirect_from:

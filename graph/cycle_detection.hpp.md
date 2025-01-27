@@ -101,8 +101,8 @@ data:
   timestamp: '2025-01-02 22:13:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+  - verify/yosupo_graph/graph_cycle_detection.test.cpp
 documentation_of: graph/cycle_detection.hpp
 layout: document
 redirect_from:

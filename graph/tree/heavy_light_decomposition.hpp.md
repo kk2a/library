@@ -128,8 +128,8 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_graph/tree_lca.test.cpp
   - verify/yosupo_graph/tree_lca_static.test.cpp
+  - verify/yosupo_graph/tree_lca.test.cpp
   - verify/yuki/yuki_1326.test.cpp
 documentation_of: graph/tree/heavy_light_decomposition.hpp
 layout: document

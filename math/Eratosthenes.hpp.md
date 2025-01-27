@@ -105,9 +105,9 @@ data:
   isVerificationFile: false
   path: math/Eratosthenes.hpp
   requiredBy:
+  - convolution/convolution_lcm.hpp
   - convolution/convolution_gcd.hpp
   - convolution/divisor_multiple_transform.hpp
-  - convolution/convolution_lcm.hpp
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

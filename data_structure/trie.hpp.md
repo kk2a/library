@@ -85,8 +85,8 @@ data:
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yuki/yuki_0430.test.cpp
   - verify/yuki/yuki_0430_2.test.cpp
+  - verify/yuki/yuki_0430.test.cpp
 documentation_of: data_structure/trie.hpp
 layout: document
 redirect_from:

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
   - icon: ':warning:'
@@ -21,12 +21,12 @@ data:
     path: segment_tree/utility/updatemin.hpp
     title: segment_tree/utility/updatemin.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/monoid/min.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -79,14 +79,14 @@ data:
   isVerificationFile: false
   path: math/monoid/min.hpp
   requiredBy:
-  - data_structure/static_rmq.hpp
-  - segment_tree/utility/minseg.hpp
-  - segment_tree/utility/addmin.hpp
-  - segment_tree/utility/minseg2d.hpp
-  - segment_tree/utility/updatemin.hpp
   - graph/tree/euler_tour.hpp
+  - data_structure/static_rmq.hpp
+  - segment_tree/utility/addmin.hpp
+  - segment_tree/utility/minseg.hpp
+  - segment_tree/utility/updatemin.hpp
+  - segment_tree/utility/minseg2d.hpp
   timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp
 documentation_of: math/monoid/min.hpp

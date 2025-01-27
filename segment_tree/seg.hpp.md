@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/seg.hpp\"\n\n\n\n#include <cassert>\n#include\
@@ -124,12 +124,12 @@ data:
   isVerificationFile: false
   path: segment_tree/seg.hpp
   requiredBy:
-  - segment_tree/utility/minseg.hpp
-  - segment_tree/utility/sumseg.hpp
   - segment_tree/utility/maxseg.hpp
   - segment_tree/utility/max_min_sum_seg.hpp
+  - segment_tree/utility/minseg.hpp
+  - segment_tree/utility/sumseg.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp

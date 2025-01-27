@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/group/sum.hpp
     title: math/group/sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
   - icon: ':heavy_check_mark:'

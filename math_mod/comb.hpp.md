@@ -75,8 +75,8 @@ data:
   timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
 documentation_of: math_mod/comb.hpp
 layout: document
 redirect_from:

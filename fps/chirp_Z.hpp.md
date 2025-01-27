@@ -64,8 +64,8 @@ data:
   timestamp: '2025-01-05 07:17:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_fps/poly_interpolation.test.cpp
   - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - verify/yosupo_fps/poly_interpolation.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
 documentation_of: fps/chirp_Z.hpp
 layout: document

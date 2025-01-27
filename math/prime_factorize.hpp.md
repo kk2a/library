@@ -110,9 +110,9 @@ data:
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/prime_factorize.hpp
 layout: document
 redirect_from:
