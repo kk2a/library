@@ -8,7 +8,7 @@
 
 namespace kk2 {
 
-namespace run_length_encoding {
+namespace run_length_encoding_impl {
 
 template <class T> struct rle_element {
     T value;
@@ -21,7 +21,7 @@ template <class T> struct rle_element {
 };
 
 template <typename C, typename T = typename C::value_type>
-std::vector<rle_element<T>> RunLengthEncoding(const C &v) {
+std::vector<rle_element<T>> run_length_encoding(const C &v) {
     std::vector<rle_element<T>> res;
     for (int i = 0; i < (int)v.size(); ++i) {
         if (res.empty() || res.back().value != v[i]) {
@@ -33,9 +33,9 @@ std::vector<rle_element<T>> RunLengthEncoding(const C &v) {
     return res;
 }
 
-} // namespace run_length_encoding
+} // namespace run_length_encoding_impl
 
-using run_length_encoding::RunLengthEncoding;
+using run_length_encoding_impl::run_length_encoding;
 
 } // namespace kk2
 
