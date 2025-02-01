@@ -26,7 +26,7 @@ data:
   - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -255,10 +255,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':x:'
@@ -400,6 +400,9 @@ data:
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_math/enumerate_quotients.test.cpp
+    title: verify/yosupo_math/enumerate_quotients.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
   - icon: ':x:'
@@ -415,8 +418,14 @@ data:
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+    title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/prime_counting.test.cpp
+    title: verify/yosupo_math/prime_counting.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/primitive_root.test.cpp
     title: verify/yosupo_math/primitive_root.test.cpp
@@ -671,10 +680,13 @@ data:
   - verify/yosupo_convolution/convolution_and.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
+  - verify/yosupo_math/prime_counting.test.cpp
   - verify/yosupo_math/sqrt_mod.test.cpp
+  - verify/yosupo_math/enumerate_quotients.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
+  - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   - verify/yosupo_math/sum_of_floor_linear.test.cpp
   - verify/yosupo_math/kth_root_int.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp

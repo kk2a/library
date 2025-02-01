@@ -1,18 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: convolution/convolution_gcd.hpp
-    title: convolution/convolution_gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: convolution/divisor_multiple_transform.hpp
-    title: convolution/divisor_multiple_transform.hpp
-  - icon: ':question:'
-    path: math/Eratosthenes.hpp
-    title: math/Eratosthenes.hpp
-  - icon: ':question:'
-    path: modint/mont.hpp
-    title: modint/mont.hpp
+  - icon: ':x:'
+    path: math/enumerate_quotients.hpp
+    title: math/enumerate_quotients.hpp
+  - icon: ':x:'
+    path: math/frac_floor.hpp
+    title: math/frac_floor.hpp
+  - icon: ':x:'
+    path: math/sqrt_floor.hpp
+    title: math/sqrt_floor.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -36,14 +33,14 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
     links:
-    - https://judge.yosupo.jp/problem/gcd_convolution
+    - https://judge.yosupo.jp/problem/enumerate_quotients
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -54,38 +51,37 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n\n#include\
-    \ \"../../convolution/convolution_gcd.hpp\"\n#include \"../../modint/mont.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n;\n    kin >> n;\n    vc<kk2::mont998> a(n + 1), b(n + 1);\n   \
-    \ rep (i, n) kin >> a[i + 1];\n    rep (i, n) kin >> b[i + 1];\n    kk2::convolution_gcd(a,\
-    \ b);\n    rep (i, n) kout << a[i + 1] << \" \\n\"[i == n - 1];\n\n    return\
-    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\" \n\
+    \n#include \"../../math/enumerate_quotients.hpp\"\n#include \"../../template/template.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    i64 n;\n    kin >> n;\n    kk2::EnumerateQuotients<i64>\
+    \ res(n);\n    kout << res.size() << \"\\n\";\n    kout << res.get() << \"\\n\"\
+    ;\n\n    return 0;\n}\n"
   dependsOn:
-  - convolution/convolution_gcd.hpp
-  - convolution/divisor_multiple_transform.hpp
-  - math/Eratosthenes.hpp
-  - modint/mont.hpp
-  - type_traits/type_traits.hpp
+  - math/enumerate_quotients.hpp
+  - math/sqrt_floor.hpp
+  - math/frac_floor.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
+  - type_traits/type_traits.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
-  path: verify/yosupo_convolution/convolution_gcd.test.cpp
+  path: verify/yosupo_math/enumerate_quotients.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-01 17:57:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_convolution/convolution_gcd.test.cpp
+documentation_of: verify/yosupo_math/enumerate_quotients.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_convolution/convolution_gcd.test.cpp
-- /verify/verify/yosupo_convolution/convolution_gcd.test.cpp.html
-title: verify/yosupo_convolution/convolution_gcd.test.cpp
+- /verify/verify/yosupo_math/enumerate_quotients.test.cpp
+- /verify/verify/yosupo_math/enumerate_quotients.test.cpp.html
+title: verify/yosupo_math/enumerate_quotients.test.cpp
 ---

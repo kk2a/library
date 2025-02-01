@@ -111,7 +111,7 @@ data:
     - icon: ':question:'
       path: fps/fps.hpp
       title: fps/fps.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
     - icon: ':warning:'
@@ -238,12 +238,15 @@ data:
       title: graph/tree/heavy_light_decomposition.hpp
   - name: math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/Eratosthenes.hpp
       title: math/Eratosthenes.hpp
     - icon: ':heavy_check_mark:'
       path: math/convert_base.hpp
       title: math/convert_base.hpp
+    - icon: ':x:'
+      path: math/enumerate_quotients.hpp
+      title: math/enumerate_quotients.hpp
     - icon: ':heavy_check_mark:'
       path: math/euler_phi.hpp
       title: math/euler_phi.hpp
@@ -253,7 +256,7 @@ data:
     - icon: ':x:'
       path: math/floor_sum.hpp
       title: math/floor_sum.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/frac_floor.hpp
       title: math/frac_floor.hpp
     - icon: ':heavy_check_mark:'
@@ -268,12 +271,18 @@ data:
     - icon: ':warning:'
       path: math/pow.hpp
       title: math/pow.hpp
+    - icon: ':warning:'
+      path: math/prime_enumerate.hpp
+      title: math/prime_enumerate.hpp
     - icon: ':question:'
       path: math/prime_factorize.hpp
       title: math/prime_factorize.hpp
     - icon: ':warning:'
       path: math/rational.hpp
       title: math/rational.hpp
+    - icon: ':x:'
+      path: math/sqrt_floor.hpp
+      title: math/sqrt_floor.hpp
   - name: math/group
     pages:
     - icon: ':heavy_check_mark:'
@@ -301,6 +310,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/monoid/min.hpp
       title: math/monoid/min.hpp
+  - name: math/multiplicative_function
+    pages:
+    - icon: ':x:'
+      path: math/multiplicative_function/prefix_sum.hpp
+      title: math/multiplicative_function/prefix_sum.hpp
+    - icon: ':x:'
+      path: math/multiplicative_function/prime_counting.hpp
+      title: math/multiplicative_function/prime_counting.hpp
   - name: math_mod
     pages:
     - icon: ':question:'
@@ -641,10 +658,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_composition_inv.test.cpp
       title: verify/yosupo_fps/fps_composition_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp.test.cpp
       title: verify/yosupo_fps/fps_exp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
       title: verify/yosupo_fps/fps_exp_arb.test.cpp
     - icon: ':x:'
@@ -794,6 +811,9 @@ data:
   - name: verify/yosupo_math
     pages:
     - icon: ':x:'
+      path: verify/yosupo_math/enumerate_quotients.test.cpp
+      title: verify/yosupo_math/enumerate_quotients.test.cpp
+    - icon: ':x:'
       path: verify/yosupo_math/factrize.test.cpp
       title: verify/yosupo_math/factrize.test.cpp
     - icon: ':x:'
@@ -809,8 +829,14 @@ data:
       path: verify/yosupo_math/many_factrials.test.cpp
       title: verify/yosupo_math/many_factrials.test.cpp
     - icon: ':x:'
+      path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+      title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+    - icon: ':x:'
       path: verify/yosupo_math/primality_test.test.cpp
       title: verify/yosupo_math/primality_test.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_math/prime_counting.test.cpp
+      title: verify/yosupo_math/prime_counting.test.cpp
     - icon: ':x:'
       path: verify/yosupo_math/primitive_root.test.cpp
       title: verify/yosupo_math/primitive_root.test.cpp

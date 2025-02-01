@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
   - icon: ':question:'

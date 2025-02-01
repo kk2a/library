@@ -5,10 +5,31 @@ data:
   - icon: ':warning:'
     path: data_structure/convex_hull_trick_add_monotone.hpp
     title: data_structure/convex_hull_trick_add_monotone.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: math/enumerate_quotients.hpp
+    title: math/enumerate_quotients.hpp
+  - icon: ':x:'
+    path: math/multiplicative_function/prefix_sum.hpp
+    title: math/multiplicative_function/prefix_sum.hpp
+  - icon: ':x:'
+    path: math/multiplicative_function/prime_counting.hpp
+    title: math/multiplicative_function/prime_counting.hpp
+  - icon: ':x:'
+    path: math/sqrt_floor.hpp
+    title: math/sqrt_floor.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_math/enumerate_quotients.test.cpp
+    title: verify/yosupo_math/enumerate_quotients.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+    title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/prime_counting.test.cpp
+    title: verify/yosupo_math/prime_counting.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/frac_floor.hpp\"\n\n\n\n#include <cassert>\n\nnamespace\
@@ -37,10 +58,17 @@ data:
   isVerificationFile: false
   path: math/frac_floor.hpp
   requiredBy:
+  - math/enumerate_quotients.hpp
+  - math/multiplicative_function/prime_counting.hpp
+  - math/multiplicative_function/prefix_sum.hpp
+  - math/sqrt_floor.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_math/prime_counting.test.cpp
+  - verify/yosupo_math/enumerate_quotients.test.cpp
+  - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
 documentation_of: math/frac_floor.hpp
 layout: document
 redirect_from:

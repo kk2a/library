@@ -1,15 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: convolution/convolution_gcd.hpp
-    title: convolution/convolution_gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: convolution/divisor_multiple_transform.hpp
-    title: convolution/divisor_multiple_transform.hpp
   - icon: ':question:'
     path: math/Eratosthenes.hpp
     title: math/Eratosthenes.hpp
+  - icon: ':x:'
+    path: math/enumerate_quotients.hpp
+    title: math/enumerate_quotients.hpp
+  - icon: ':x:'
+    path: math/frac_floor.hpp
+    title: math/frac_floor.hpp
+  - icon: ':x:'
+    path: math/multiplicative_function/prefix_sum.hpp
+    title: math/multiplicative_function/prefix_sum.hpp
+  - icon: ':x:'
+    path: math/sqrt_floor.hpp
+    title: math/sqrt_floor.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -36,14 +42,14 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
+    PROBLEM: https://judge.yosupo.jp/problem/sum_of_multiplicative_function
     links:
-    - https://judge.yosupo.jp/problem/gcd_convolution
+    - https://judge.yosupo.jp/problem/sum_of_multiplicative_function
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -57,17 +63,27 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n\n#include\
-    \ \"../../convolution/convolution_gcd.hpp\"\n#include \"../../modint/mont.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n;\n    kin >> n;\n    vc<kk2::mont998> a(n + 1), b(n + 1);\n   \
-    \ rep (i, n) kin >> a[i + 1];\n    rep (i, n) kin >> b[i + 1];\n    kk2::convolution_gcd(a,\
-    \ b);\n    rep (i, n) kout << a[i + 1] << \" \\n\"[i == n - 1];\n\n    return\
-    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_multiplicative_function\"\
+    \ \n\n#include \"../../math/multiplicative_function/prefix_sum.hpp\"\n#include\
+    \ \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\nusing namespace\
+    \ std;\n\nusing mint = kk2::Mont<469762049>;\n\nint main() {\n    int t;\n   \
+    \ kin >> t;\n    rep (t) {\n        i64 n;\n        mint a, b;\n        kin >>\
+    \ n >> a >> b;\n        auto f = [&](i64 p, i64 e) -> mint { return a * e + b\
+    \ * p; };\n        auto g1 = [&](i64) -> mint { return 1; };\n        auto g2\
+    \ = [&](i64 p) -> mint { return p; };\n        kk2::PrefixSumOfMultiplicationFunction<mint>\
+    \ ps(n);\n        vc<mint> init1(ps.size()), init2(ps.size());\n        const\
+    \ mint inv2 = mint(2).inv();\n        rep (i, ps.size()) {\n            init1[i]\
+    \ = ps.eq[i] - 1;\n            init2[i] = mint(ps.eq[i]) * (ps.eq[i] + 1) * inv2\
+    \ - 1;\n        }\n        ps.LucyDP(g1, init1);\n        ps.LucyDP(g2, init2);\n\
+    \        rep (i, ps.size()) ps.prefix_sum_only_prime[i] = a * init1[i] + b * init2[i];\n\
+    \        ps.Min_25Sieve(f);\n        kout << ps.prefix_sum.back() << \"\\n\";\n\
+    \    }\n\n    return 0;\n}\n"
   dependsOn:
-  - convolution/convolution_gcd.hpp
-  - convolution/divisor_multiple_transform.hpp
+  - math/multiplicative_function/prefix_sum.hpp
   - math/Eratosthenes.hpp
+  - math/enumerate_quotients.hpp
+  - math/sqrt_floor.hpp
+  - math/frac_floor.hpp
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
@@ -77,15 +93,15 @@ data:
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
-  path: verify/yosupo_convolution/convolution_gcd.test.cpp
+  path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-01 17:57:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_convolution/convolution_gcd.test.cpp
+documentation_of: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_convolution/convolution_gcd.test.cpp
-- /verify/verify/yosupo_convolution/convolution_gcd.test.cpp.html
-title: verify/yosupo_convolution/convolution_gcd.test.cpp
+- /verify/verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+- /verify/verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp.html
+title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
 ---
