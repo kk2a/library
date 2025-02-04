@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cassert>
 #include <numeric>
+#include <random>
 #include <unordered_set>
 #include <vector>
 
@@ -16,34 +17,13 @@ namespace random {
 using i64 = long long;
 using u64 = unsigned long long;
 
-u64 xorshift128plus(u64 &x, u64 &y) {
-    u64 t = x;
-    t ^= t << 23;
-    t ^= t >> 17;
-    t ^= y ^ (y >> 26);
-    x = y;
-    y = t;
-    return x + y;
-}
-
-constexpr int iterations = 100;
-
-void warm_up(u64 &x, u64 &y) {
-    for (int i = 0; i < iterations; i++) xorshift128plus(x, y);
-}
-
-u64 rng() {
-    static bool first = true;
-    static u64 x = seed(), y = seed();
-    if (first) {
-        warm_up(x, y);
-        first = false;
-    }
-    return xorshift128plus(x, y);
+inline u64 rng() {
+    static std::mt19937_64 mt(kk2::random::seed());
+    return mt();
 }
 
 // [l, r)
-i64 rng(i64 l, i64 r) {
+inline i64 rng(i64 l, i64 r) {
     assert(l < r);
     return l + rng() % (r - l);
 }

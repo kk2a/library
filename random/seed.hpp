@@ -9,7 +9,7 @@ namespace random {
 
 using u64 = unsigned long long;
 
-u64 non_deterministic_seed() {
+inline u64 non_deterministic_seed() {
     u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(
                    std::chrono::high_resolution_clock::now().time_since_epoch())
                    .count();
@@ -20,12 +20,12 @@ u64 non_deterministic_seed() {
     return seed;
 }
 
-u64 deterministic_seed() {
+inline u64 deterministic_seed() {
     return 5801799128519729247ull;
 }
 
-u64 seed() {
-#if defined(KK2) && !defined(KK2_RANDOM_NON_DETERMINISTIC)
+inline u64 seed() {
+#if defined(KK2_RANDOM_DETERMINISTIC)
     return deterministic_seed();
 #else
     return non_deterministic_seed();
