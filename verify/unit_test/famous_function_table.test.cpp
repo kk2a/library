@@ -1,4 +1,4 @@
-#define PROBLEM "https://https://judge.yosupo.jp/problem/aplusb" 
+#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
 
 #include "../../math/multiplicative_function/famous_function_table.hpp"
 #include "../../math/multiplicative_function/mobius.hpp"
