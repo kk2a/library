@@ -11,13 +11,13 @@ data:
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/multiplicative_function/euler_phi.hpp
     title: math/multiplicative_function/euler_phi.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/multiplicative_function/mobius.hpp
     title: math/multiplicative_function/mobius.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
   - icon: ':question:'
@@ -31,11 +31,17 @@ data:
     title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: verify/unit_test/famous_function_table.test.cpp
+    title: verify/unit_test/famous_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/isprime_table_extend.test.cpp
     title: verify/unit_test/isprime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/prime_factorize_table.test.cpp
+    title: verify/unit_test/prime_factorize_table.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
@@ -139,7 +145,9 @@ data:
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: modint/mont_arb.hpp
 layout: document

@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/lpf_table.hpp
     title: math/lpf_table.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/prime_factorize_table.test.cpp
+    title: verify/unit_test/prime_factorize_table.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/prime_factorize_table.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -50,8 +53,9 @@ data:
     \    }\n        }\n    }\n\n    static const std::vector<std::pair<int, int>>\
     \ &factorize(int n) {\n        assert(n > 0);\n        if ((int)_factorize.size()\
     \ <= n) set_upper(n);\n        return _factorize[n];\n    }\n\n    static std::vector<int>\
-    \ divisors(int n) {\n        std::vector<int> res = {1};\n        for (const auto\
-    \ [p, k] : factorize(n)) {\n            int sz = res.size();\n            for\
+    \ divisors(int n) {\n        assert(n > 0);\n        if ((int)_factorize.size()\
+    \ <= n) set_upper(n);\n        std::vector<int> res = {1};\n        for (auto\
+    \ [p, k] : _factorize[n]) {\n            int sz = res.size();\n            for\
     \ (int i = 0; i < sz; ++i) {\n                int mul = 1;\n                for\
     \ (int j = 0; j < k; ++j) {\n                    mul *= p;\n                 \
     \   res.push_back(res[i] * mul);\n                }\n            }\n        }\n\
@@ -73,8 +77,9 @@ data:
     \    }\n        }\n    }\n\n    static const std::vector<std::pair<int, int>>\
     \ &factorize(int n) {\n        assert(n > 0);\n        if ((int)_factorize.size()\
     \ <= n) set_upper(n);\n        return _factorize[n];\n    }\n\n    static std::vector<int>\
-    \ divisors(int n) {\n        std::vector<int> res = {1};\n        for (const auto\
-    \ [p, k] : factorize(n)) {\n            int sz = res.size();\n            for\
+    \ divisors(int n) {\n        assert(n > 0);\n        if ((int)_factorize.size()\
+    \ <= n) set_upper(n);\n        std::vector<int> res = {1};\n        for (auto\
+    \ [p, k] : _factorize[n]) {\n            int sz = res.size();\n            for\
     \ (int i = 0; i < sz; ++i) {\n                int mul = 1;\n                for\
     \ (int j = 0; j < k; ++j) {\n                    mul *= p;\n                 \
     \   res.push_back(res[i] * mul);\n                }\n            }\n        }\n\
@@ -85,9 +90,10 @@ data:
   isVerificationFile: false
   path: math/prime_factorize_table.hpp
   requiredBy: []
-  timestamp: '2025-02-08 18:14:03+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-02-08 19:46:37+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/unit_test/prime_factorize_table.test.cpp
 documentation_of: math/prime_factorize_table.hpp
 layout: document
 redirect_from:

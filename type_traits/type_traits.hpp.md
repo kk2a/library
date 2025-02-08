@@ -71,13 +71,13 @@ data:
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/multiplicative_function/euler_phi.hpp
     title: math/multiplicative_function/euler_phi.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/multiplicative_function/mobius.hpp
     title: math/multiplicative_function/mobius.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
   - icon: ':question:'
@@ -187,11 +187,20 @@ data:
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
   - icon: ':x:'
+    path: verify/unit_test/famous_function_table.test.cpp
+    title: verify/unit_test/famous_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/isprime_table_extend.test.cpp
     title: verify/unit_test/isprime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
+  - icon: ':x:'
+    path: verify/unit_test/multiplicative_function_table.test.cpp
+    title: verify/unit_test/multiplicative_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/prime_factorize_table.test.cpp
+    title: verify/unit_test/prime_factorize_table.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
@@ -321,22 +330,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_division.test.cpp
     title: verify/yosupo_fps/poly_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_interpolation.test.cpp
     title: verify/yosupo_fps/poly_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
     title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_inv.test.cpp
     title: verify/yosupo_fps/poly_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - icon: ':x:'
@@ -744,7 +753,10 @@ data:
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/unit_test/multiplicative_function_table.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: type_traits/type_traits.hpp

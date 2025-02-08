@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/pow.hpp
     title: math/pow.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/unit_test/multiplicative_function_table.test.cpp
+    title: verify/unit_test/multiplicative_function_table.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/multiplicative_function/famous_function.hpp\"\n\n\n\
@@ -17,26 +20,29 @@ data:
     \    S r = 1, y = x;\n    while (n) {\n        if (n & 1) r *= y;\n        if\
     \ (n >>= 1) y *= y;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line\
     \ 5 \"math/multiplicative_function/famous_function.hpp\"\n\nnamespace kk2 {\n\n\
-    long long mobius(long long p, long long e) {\n    return e == 1 ? -1 : 0;\n}\n\
-    \nlong long sigma0(long long p, long long e) {\n    return e + 1;\n}\n\nlong long\
-    \ sigma1(long long p, long long e) {\n    return (pow<long long>(p, e + 1) - 1)\
-    \ / (p - 1);\n}\n\nlong long euler_phi(long long p, long long e) {\n    return\
-    \ pow(p, e) - pow(p, e - 1);\n}\n\n} // namespace kk2\n\n\n"
+    namespace mf {\n\nlong long mobius(long long, long long e) {\n    return e ==\
+    \ 1 ? -1 : 0;\n}\n\nlong long sigma0(long long, long long e) {\n    return e +\
+    \ 1;\n}\n\nlong long sigma1(long long p, long long e) {\n    long long p_e = pow<long\
+    \ long>(p, e);\n    return p_e + (p_e - 1) / (p - 1);\n}\n\nlong long euler_phi(long\
+    \ long p, long long e) {\n    long long p_e = pow<long long>(p, e);\n    return\
+    \ p_e - p_e / p;\n}\n\n} // namespace mf\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_HPP\n#define KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_HPP\
-    \ 1\n\n#include \"../pow.hpp\"\n\nnamespace kk2 {\n\nlong long mobius(long long\
-    \ p, long long e) {\n    return e == 1 ? -1 : 0;\n}\n\nlong long sigma0(long long\
-    \ p, long long e) {\n    return e + 1;\n}\n\nlong long sigma1(long long p, long\
-    \ long e) {\n    return (pow<long long>(p, e + 1) - 1) / (p - 1);\n}\n\nlong long\
-    \ euler_phi(long long p, long long e) {\n    return pow(p, e) - pow(p, e - 1);\n\
-    }\n\n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_HPP\n"
+    \ 1\n\n#include \"../pow.hpp\"\n\nnamespace kk2 {\n\nnamespace mf {\n\nlong long\
+    \ mobius(long long, long long e) {\n    return e == 1 ? -1 : 0;\n}\n\nlong long\
+    \ sigma0(long long, long long e) {\n    return e + 1;\n}\n\nlong long sigma1(long\
+    \ long p, long long e) {\n    long long p_e = pow<long long>(p, e);\n    return\
+    \ p_e + (p_e - 1) / (p - 1);\n}\n\nlong long euler_phi(long long p, long long\
+    \ e) {\n    long long p_e = pow<long long>(p, e);\n    return p_e - p_e / p;\n\
+    }\n\n} // namespace mf\n\n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_HPP\n"
   dependsOn:
   - math/pow.hpp
   isVerificationFile: false
   path: math/multiplicative_function/famous_function.hpp
   requiredBy: []
-  timestamp: '2025-02-08 18:14:03+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-02-08 19:46:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/unit_test/multiplicative_function_table.test.cpp
 documentation_of: math/multiplicative_function/famous_function.hpp
 layout: document
 redirect_from:

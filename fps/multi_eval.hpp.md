@@ -5,17 +5,17 @@ data:
   - icon: ':x:'
     path: fps/bbb.hpp
     title: fps/bbb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_interpolation.hpp
     title: fps/poly_interpolation.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_interpolation.test.cpp
     title: verify/yosupo_fps/poly_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
     title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - icon: ':x:'

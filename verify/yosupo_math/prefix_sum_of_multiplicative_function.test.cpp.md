@@ -70,7 +70,7 @@ data:
     \ kin >> t;\n    rep (t) {\n        i64 n;\n        mint a, b;\n        kin >>\
     \ n >> a >> b;\n        auto f = [&](i64 p, i64 e) -> mint { return a * e + b\
     \ * p; };\n        auto g1 = [&](i64) -> mint { return 1; };\n        auto g2\
-    \ = [&](i64 p) -> mint { return p; };\n        kk2::PrefixSumOfMultiplicationFunction<mint>\
+    \ = [&](i64 p) -> mint { return p; };\n        kk2::PrefixSumOfMultiplicativeFunction<mint>\
     \ ps(n);\n        vc<mint> init1(ps.size()), init2(ps.size());\n        const\
     \ mint inv2 = mint(2).inv();\n        rep (i, ps.size()) {\n            init1[i]\
     \ = ps.eq[i] - 1;\n            init2[i] = mint(ps.eq[i]) * (ps.eq[i] + 1) * inv2\
@@ -95,7 +95,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 14:53:47+09:00'
+  timestamp: '2025-02-08 19:46:37+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp

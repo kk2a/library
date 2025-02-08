@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/lpf_table.hpp
     title: math/lpf_table.hpp
   - icon: ':question:'
@@ -93,9 +93,8 @@ data:
     \ {\n    int a, b;\n    kin >> a >> b;\n    kout << a + b << kendl;\n\n    int\
     \ iter = 1000;\n    rep (iter) {\n        int n = kk2::random::rng(2, 10000000);\n\
     \        assert((int)kk2::LPFTable::primes(n).size() == kk2::prime_counting(n));\n\
-    \    }\n\n    rep (iter) {\n        int n = kk2::random::rng(2, 10000000);\n \
-    \       assert(kk2::LPFTable::lpf(n) == kk2::factorize(n)[0].first);\n    }\n\n\
-    \    return 0;\n}\n"
+    \        assert(kk2::LPFTable::lpf(n) == kk2::factorize(n)[0].first);\n    }\n\
+    \n    return 0;\n}\n"
   dependsOn:
   - math/lpf_table.hpp
   - math/multiplicative_function/prime_counting.hpp
@@ -120,7 +119,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/lpf_table_extend.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 15:18:40+09:00'
+  timestamp: '2025-02-08 19:46:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/lpf_table_extend.test.cpp

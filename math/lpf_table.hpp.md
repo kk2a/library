@@ -2,22 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/multiplicative_function/arbitrary_table.hpp
     title: math/multiplicative_function/arbitrary_table.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/multiplicative_function/famous_function_table.hpp
     title: math/multiplicative_function/famous_function_table.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize_table.hpp
     title: math/prime_factorize_table.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/unit_test/famous_function_table.test.cpp
+    title: verify/unit_test/famous_function_table.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: verify/unit_test/multiplicative_function_table.test.cpp
+    title: verify/unit_test/multiplicative_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/prime_factorize_table.test.cpp
+    title: verify/unit_test/prime_factorize_table.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/lpf_table.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -76,9 +85,12 @@ data:
   - math/multiplicative_function/arbitrary_table.hpp
   - math/multiplicative_function/famous_function_table.hpp
   timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/unit_test/multiplicative_function_table.test.cpp
 documentation_of: math/lpf_table.hpp
 layout: document
 redirect_from:

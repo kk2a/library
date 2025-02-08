@@ -1,17 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/lpf_table.hpp
     title: math/lpf_table.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/pow.hpp
     title: math/pow.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/unit_test/famous_function_table.test.cpp
+    title: verify/unit_test/famous_function_table.test.cpp
+  - icon: ':x:'
+    path: verify/unit_test/multiplicative_function_table.test.cpp
+    title: verify/unit_test/multiplicative_function_table.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/multiplicative_function/famous_function_table.hpp\"\
@@ -56,7 +62,7 @@ data:
     \                _mobius[n] = -1;\n                _sigma0[n] = 2;\n         \
     \       _sigma1[n] = p + 1;\n                _euler_phi[n] = p - 1;\n        \
     \    } else {\n                if (n / p % p == 0) _v_lpf[n] = _v_lpf[n / p] +\
-    \ 1;\n                else _v_lpf[n] = 1;\n\n                int p_pw = pow(p,\
+    \ 1;\n                else _v_lpf[n] = 1;\n\n                int p_pw = pow<int>(p,\
     \ _v_lpf[n]);\n                int q = n / p_pw;\n                if (q == 1)\
     \ {\n                    _mobius[n] = 0;\n                    _sigma0[n] = _v_lpf[n]\
     \ + 1;\n                    _sigma1[n] = _sigma1[n / p] + p_pw;\n            \
@@ -70,7 +76,7 @@ data:
     \ assert(n > 0);\n        if ((int)_sigma0.size() <= n) set_upper(n);\n      \
     \  return _sigma0[n];\n    }\n\n    static long long sigma1(int n) {\n       \
     \ assert(n > 0);\n        if ((int)_sigma1.size() <= n) set_upper(n);\n      \
-    \  return _sigma1[n];\n    }\n\n    static int phi(int n) {\n        assert(n\
+    \  return _sigma1[n];\n    }\n\n    static int euler_phi(int n) {\n        assert(n\
     \ > 0);\n        if ((int)_euler_phi.size() <= n) set_upper(n);\n        return\
     \ _euler_phi[n];\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_TABLE_HPP\n#define\
@@ -89,9 +95,9 @@ data:
     \             _sigma0[n] = 2;\n                _sigma1[n] = p + 1;\n         \
     \       _euler_phi[n] = p - 1;\n            } else {\n                if (n /\
     \ p % p == 0) _v_lpf[n] = _v_lpf[n / p] + 1;\n                else _v_lpf[n] =\
-    \ 1;\n\n                int p_pw = pow(p, _v_lpf[n]);\n                int q =\
-    \ n / p_pw;\n                if (q == 1) {\n                    _mobius[n] = 0;\n\
-    \                    _sigma0[n] = _v_lpf[n] + 1;\n                    _sigma1[n]\
+    \ 1;\n\n                int p_pw = pow<int>(p, _v_lpf[n]);\n                int\
+    \ q = n / p_pw;\n                if (q == 1) {\n                    _mobius[n]\
+    \ = 0;\n                    _sigma0[n] = _v_lpf[n] + 1;\n                    _sigma1[n]\
     \ = _sigma1[n / p] + p_pw;\n                    _euler_phi[n] = p_pw - p_pw /\
     \ p;\n                } else {\n                    _mobius[n] = _mobius[q] *\
     \ _mobius[p_pw];\n                    _sigma0[n] = _sigma0[q] * _sigma0[p_pw];\n\
@@ -103,18 +109,20 @@ data:
     \        if ((int)_sigma0.size() <= n) set_upper(n);\n        return _sigma0[n];\n\
     \    }\n\n    static long long sigma1(int n) {\n        assert(n > 0);\n     \
     \   if ((int)_sigma1.size() <= n) set_upper(n);\n        return _sigma1[n];\n\
-    \    }\n\n    static int phi(int n) {\n        assert(n > 0);\n        if ((int)_euler_phi.size()\
-    \ <= n) set_upper(n);\n        return _euler_phi[n];\n    }\n};\n\n} // namespace\
-    \ kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_TABLE_HPP\n"
+    \    }\n\n    static int euler_phi(int n) {\n        assert(n > 0);\n        if\
+    \ ((int)_euler_phi.size() <= n) set_upper(n);\n        return _euler_phi[n];\n\
+    \    }\n};\n\n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_TABLE_HPP\n"
   dependsOn:
   - math/lpf_table.hpp
   - math/pow.hpp
   isVerificationFile: false
   path: math/multiplicative_function/famous_function_table.hpp
   requiredBy: []
-  timestamp: '2025-02-08 18:14:03+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-02-08 19:46:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/unit_test/famous_function_table.test.cpp
+  - verify/unit_test/multiplicative_function_table.test.cpp
 documentation_of: math/multiplicative_function/famous_function_table.hpp
 layout: document
 redirect_from:

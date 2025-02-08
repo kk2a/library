@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/isprime_table.hpp
     title: math/isprime_table.hpp
   - icon: ':question:'
@@ -57,9 +57,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -86,8 +86,7 @@ data:
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
     \ a, b;\n    kin >> a >> b;\n    kout << a + b << kendl;\n\n    int iter = 1000;\n\
     \    rep (iter) {\n        int n = kk2::random::rng(2, 10000000);\n        assert((int)kk2::IsPrimeTable::primes(n).size()\
-    \ == kk2::prime_counting(n));\n    }\n\n    rep (iter) {\n        int n = kk2::random::rng(2,\
-    \ 10000000);\n        assert(kk2::is_prime(n) == kk2::IsPrimeTable::isprime(n));\n\
+    \ == kk2::prime_counting(n));\n        assert(kk2::is_prime(n) == kk2::IsPrimeTable::isprime(n));\n\
     \    }\n\n    return 0;\n}\n"
   dependsOn:
   - math/isprime_table.hpp
@@ -111,8 +110,8 @@ data:
   isVerificationFile: true
   path: verify/unit_test/isprime_table_extend.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 18:14:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-08 19:46:37+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/isprime_table_extend.test.cpp
 layout: document

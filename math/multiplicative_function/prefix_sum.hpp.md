@@ -92,9 +92,9 @@ data:
     \ res[i]; }\n\n    int idx(T x) const {\n        if (x <= sqrt_n) return x - 1;\n\
     \        return size() - n / x;\n    }\n};\n\n} // namespace kk2\n\n\n#line 9\
     \ \"math/multiplicative_function/prefix_sum.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class T>\nstruct PrefixSumOfMultiplicationFunction {\n    long long n;\n  \
+    \ <class T>\nstruct PrefixSumOfMultiplicativeFunction {\n    long long n;\n  \
     \  EnumerateQuotients<long long> eq;\n    std::vector<T> prefix_sum_only_prime;\n\
-    \    std::vector<T> prefix_sum;\n\n    PrefixSumOfMultiplicationFunction(long\
+    \    std::vector<T> prefix_sum;\n\n    PrefixSumOfMultiplicativeFunction(long\
     \ long n)\n        : n(n),\n          eq(n),\n          prefix_sum_only_prime(eq.size()),\n\
     \          prefix_sum(eq.size()) {}\n\n    int size() const { return eq.size();\
     \ }\n\n    template <T (*f)(long long)>\n    void LucyDP(std::vector<T> &dp, T\
@@ -127,9 +127,9 @@ data:
   code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_PREFIX_SUM_HPP\n#define KK2_MATH_MULTIPLICATIVE_FUNCTION_PREFIX_SUM_HPP\
     \ 1\n\n#include <algorithm>\n#include <vector>\n\n#include \"../prime_table.hpp\"\
     \n#include \"../enumerate_quotients.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ T>\nstruct PrefixSumOfMultiplicationFunction {\n    long long n;\n    EnumerateQuotients<long\
+    \ T>\nstruct PrefixSumOfMultiplicativeFunction {\n    long long n;\n    EnumerateQuotients<long\
     \ long> eq;\n    std::vector<T> prefix_sum_only_prime;\n    std::vector<T> prefix_sum;\n\
-    \n    PrefixSumOfMultiplicationFunction(long long n)\n        : n(n),\n      \
+    \n    PrefixSumOfMultiplicativeFunction(long long n)\n        : n(n),\n      \
     \    eq(n),\n          prefix_sum_only_prime(eq.size()),\n          prefix_sum(eq.size())\
     \ {}\n\n    int size() const { return eq.size(); }\n\n    template <T (*f)(long\
     \ long)>\n    void LucyDP(std::vector<T> &dp, T a) {\n        LucyDP([](long long\
@@ -167,7 +167,7 @@ data:
   isVerificationFile: false
   path: math/multiplicative_function/prefix_sum.hpp
   requiredBy: []
-  timestamp: '2025-02-08 14:53:47+09:00'
+  timestamp: '2025-02-08 19:46:37+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
