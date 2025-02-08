@@ -1,38 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convolution/convolution_gcd.hpp
-    title: convolution/convolution_gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: convolution/convolution_lcm.hpp
-    title: convolution/convolution_lcm.hpp
-  - icon: ':heavy_check_mark:'
-    path: convolution/divisor_multiple_transform.hpp
-    title: convolution/divisor_multiple_transform.hpp
-  - icon: ':x:'
-    path: math/multiplicative_function/prefix_sum.hpp
-    title: math/multiplicative_function/prefix_sum.hpp
-  - icon: ':x:'
-    path: math/multiplicative_function/prime_counting.hpp
-    title: math/multiplicative_function/prime_counting.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_convolution/convolution_gcd.test.cpp
-    title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_convolution/convolution_lcm.test.cpp
-    title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
-    title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/prime_counting.test.cpp
-    title: verify/yosupo_math/prime_counting.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/Eratosthenes.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -43,7 +16,7 @@ data:
     \        int start = std::max<int>(2, _isprime.size());\n\n        _isprime.resize(m\
     \ + 1, true);\n        _minfactor.resize(m + 1, -1);\n        _mobius.resize(m\
     \ + 1, 1);\n        _isprime[1] = false;\n        _minfactor[1] = 1;\n\n     \
-    \   for (const int &p : _primes) {\n            for (int q = p * ((start + p -\
+    \   for (const int p : _primes) {\n            for (int q = p * ((start + p -\
     \ 1) / p); q <= m; q += p) {\n                _isprime[q] = false;\n\n       \
     \         if (_minfactor[q] == -1) _minfactor[q] = p;\n                if ((q\
     \ / p) % p == 0) _mobius[q] = 0;\n                else _mobius[q] = -_mobius[q];\n\
@@ -82,7 +55,7 @@ data:
     \ > m) return;\n        int start = std::max<int>(2, _isprime.size());\n\n   \
     \     _isprime.resize(m + 1, true);\n        _minfactor.resize(m + 1, -1);\n \
     \       _mobius.resize(m + 1, 1);\n        _isprime[1] = false;\n        _minfactor[1]\
-    \ = 1;\n\n        for (const int &p : _primes) {\n            for (int q = p *\
+    \ = 1;\n\n        for (const int p : _primes) {\n            for (int q = p *\
     \ ((start + p - 1) / p); q <= m; q += p) {\n                _isprime[q] = false;\n\
     \n                if (_minfactor[q] == -1) _minfactor[q] = p;\n              \
     \  if ((q / p) % p == 0) _mobius[q] = 0;\n                else _mobius[q] = -_mobius[q];\n\
@@ -116,19 +89,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/Eratosthenes.hpp
-  requiredBy:
-  - math/multiplicative_function/prime_counting.hpp
-  - math/multiplicative_function/prefix_sum.hpp
-  - convolution/convolution_lcm.hpp
-  - convolution/convolution_gcd.hpp
-  - convolution/divisor_multiple_transform.hpp
-  timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - verify/yosupo_convolution/convolution_lcm.test.cpp
-  - verify/yosupo_convolution/convolution_gcd.test.cpp
-  - verify/yosupo_math/prime_counting.test.cpp
-  - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+  requiredBy: []
+  timestamp: '2025-02-08 14:53:47+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math/Eratosthenes.hpp
 layout: document
 redirect_from:

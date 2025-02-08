@@ -2,20 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: modint/modint_2_61m1.hpp
-    title: modint/modint_2_61m1.hpp
+    path: math/frac_floor.hpp
+    title: math/frac_floor.hpp
   - icon: ':question:'
-    path: random/gen.hpp
-    title: random/gen.hpp
+    path: math/frac_floor.hpp
+    title: math/frac_floor.hpp
   - icon: ':question:'
-    path: random/hash.hpp
-    title: random/hash.hpp
+    path: math/prime_table.hpp
+    title: math/prime_table.hpp
   - icon: ':question:'
-    path: random/seed.hpp
-    title: random/seed.hpp
-  - icon: ':question:'
-    path: string/rolling_hash.hpp
-    title: string/rolling_hash.hpp
+    path: math/sqrt_floor.hpp
+    title: math/sqrt_floor.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -39,14 +36,14 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_primes
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
+    - https://judge.yosupo.jp/problem/enumerate_primes
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -58,39 +55,40 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
-    \ \n\n#include \"../../string/rolling_hash.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    string t, p;\n    kin >> t >> p;\n\
-    \    kk2::Roliha rt(t), rp(p);\n    for (size_t i = 0; i + p.size() <= t.size();\
-    \ ++i) {\n        if (rt.get(i, i + p.size()) == rp.get(0, p.size())) kout <<\
-    \ i << \"\\n\";\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\" \n\n\
+    #include \"../../math/prime_table.hpp\"\n#include \"../../math/frac_floor.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int n, a, b;\n    kin >> n >> a >> b;\n\n    auto primes = kk2::PrimeTable::primes(n);\n\
+    \    int pi_n = (int)primes.size();\n    int m = kk2::fracceil(pi_n - b, a);\n\
+    \    kout << pi_n << \" \" << m << kendl;\n    for (int i = 0; i < m; i++) {\n\
+    \        if (i) kout << \" \";\n        kout << primes[i * a + b];\n    }\n  \
+    \  kout << kendl;\n\n    return 0;\n}\n"
   dependsOn:
-  - string/rolling_hash.hpp
-  - random/hash.hpp
-  - modint/modint_2_61m1.hpp
-  - type_traits/type_traits.hpp
-  - random/gen.hpp
-  - random/seed.hpp
+  - math/prime_table.hpp
+  - math/sqrt_floor.hpp
+  - math/frac_floor.hpp
+  - math/frac_floor.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
+  - type_traits/type_traits.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
-  path: verify/aoj/aoj_alds1_14_b.test.cpp
+  path: verify/yosupo_math/enumerate_primes.test.cpp
   requiredBy: []
-  timestamp: '2025-02-04 23:50:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-08 14:53:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/aoj/aoj_alds1_14_b.test.cpp
+documentation_of: verify/yosupo_math/enumerate_primes.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/aoj/aoj_alds1_14_b.test.cpp
-- /verify/verify/aoj/aoj_alds1_14_b.test.cpp.html
-title: verify/aoj/aoj_alds1_14_b.test.cpp
+- /verify/verify/yosupo_math/enumerate_primes.test.cpp
+- /verify/verify/yosupo_math/enumerate_primes.test.cpp.html
+title: verify/yosupo_math/enumerate_primes.test.cpp
 ---

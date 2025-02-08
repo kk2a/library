@@ -25,6 +25,9 @@ data:
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
+    path: verify/unit_test/lpf_table_extend.test.cpp
+    title: verify/unit_test/lpf_table_extend.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
   - icon: ':x:'
@@ -96,6 +99,7 @@ data:
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
 documentation_of: math/is_prime.hpp
 layout: document
 redirect_from:

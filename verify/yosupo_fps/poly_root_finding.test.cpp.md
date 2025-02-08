@@ -113,7 +113,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/poly_root_finding.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-02-04 23:50:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_root_finding.test.cpp

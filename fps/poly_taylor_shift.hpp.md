@@ -33,7 +33,7 @@ data:
   code: "#ifndef KK2_FPS_POLY_TAYLOR_SHIFT_HPP\n#define KK2_FPS_POLY_TAYLOR_SHIFT_HPP\
     \ 1\n\n#include <algorithm>\n\n#include \"../math_mod/comb.hpp\"\n\nnamespace\
     \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS taylor_shift(const\
-    \ FPS &f_, mint a) {\n    FPS f(f_);\n    int n = f.size();\n    Comb<mint>::extend(n);\n\
+    \ FPS &f_, mint a) {\n    FPS f(f_);\n    int n = f.size();\n    Comb<mint>::set_upper(n);\n\
     \    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::fact(i);\n    f.inplace_rev();\n\
     \    FPS g(n, mint(1));\n    for (int i = 1; i < n; i++) g[i] = g[i - 1] * a *\
     \ Comb<mint>::inv(i);\n    f = (f * g).pre(n).rev();\n    for (int i = 0; i <\
@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: fps/poly_taylor_shift.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-02-08 14:53:47+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/poly_taylor_shift.test.cpp

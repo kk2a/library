@@ -20,7 +20,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_gcd.hpp
       title: convolution/convolution_gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convolution/convolution_lcm.hpp
       title: convolution/convolution_lcm.hpp
     - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_xor.hpp
       title: convolution/convolution_xor.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convolution/divisor_multiple_transform.hpp
       title: convolution/divisor_multiple_transform.hpp
     - icon: ':heavy_check_mark:'
@@ -238,7 +238,7 @@ data:
       title: graph/tree/heavy_light_decomposition.hpp
   - name: math
     pages:
-    - icon: ':question:'
+    - icon: ':warning:'
       path: math/Eratosthenes.hpp
       title: math/Eratosthenes.hpp
     - icon: ':heavy_check_mark:'
@@ -256,7 +256,7 @@ data:
     - icon: ':x:'
       path: math/floor_sum.hpp
       title: math/floor_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/frac_floor.hpp
       title: math/frac_floor.hpp
     - icon: ':heavy_check_mark:'
@@ -265,22 +265,28 @@ data:
     - icon: ':question:'
       path: math/is_prime.hpp
       title: math/is_prime.hpp
+    - icon: ':warning:'
+      path: math/isprime_table.hpp
+      title: math/isprime_table.hpp
     - icon: ':x:'
       path: math/kth_root_floor.hpp
       title: math/kth_root_floor.hpp
+    - icon: ':x:'
+      path: math/lpf_table.hpp
+      title: math/lpf_table.hpp
     - icon: ':warning:'
       path: math/pow.hpp
       title: math/pow.hpp
-    - icon: ':warning:'
-      path: math/prime_enumerate.hpp
-      title: math/prime_enumerate.hpp
     - icon: ':question:'
       path: math/prime_factorize.hpp
       title: math/prime_factorize.hpp
+    - icon: ':question:'
+      path: math/prime_table.hpp
+      title: math/prime_table.hpp
     - icon: ':warning:'
       path: math/rational.hpp
       title: math/rational.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/sqrt_floor.hpp
       title: math/sqrt_floor.hpp
   - name: math/group
@@ -320,6 +326,12 @@ data:
       title: math/multiplicative_function/prime_counting.hpp
   - name: math_mod
     pages:
+    - icon: ':x:'
+      path: math_mod/bell_number.hpp
+      title: math_mod/bell_number.hpp
+    - icon: ':warning:'
+      path: math_mod/bernoulli_number.hpp
+      title: math_mod/bernoulli_number.hpp
     - icon: ':question:'
       path: math_mod/butterfly.hpp
       title: math_mod/butterfly.hpp
@@ -347,6 +359,9 @@ data:
     - icon: ':x:'
       path: math_mod/primitive_root_64bit.hpp
       title: math_mod/primitive_root_64bit.hpp
+    - icon: ':x:'
+      path: math_mod/stirling_number.hpp
+      title: math_mod/stirling_number.hpp
   - name: matrix
     pages:
     - icon: ':warning:'
@@ -363,7 +378,7 @@ data:
       title: matrix/matrix_field.hpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/modint.hpp
       title: modint/modint.hpp
     - icon: ':question:'
@@ -574,6 +589,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_ntl_1_e.test.cpp
       title: verify/aoj/aoj_ntl_1_e.test.cpp
+  - name: verify/unit_test
+    pages:
+    - icon: ':x:'
+      path: verify/unit_test/isprime_table_extend.test.cpp
+      title: verify/unit_test/isprime_table_extend.test.cpp
+    - icon: ':x:'
+      path: verify/unit_test/lpf_table_extend.test.cpp
+      title: verify/unit_test/lpf_table_extend.test.cpp
+    - icon: ':x:'
+      path: verify/unit_test/prime_table_extend.test.cpp
+      title: verify/unit_test/prime_table_extend.test.cpp
   - name: verify/yosupo_convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -585,7 +611,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_gcd.test.cpp
       title: verify/yosupo_convolution/convolution_gcd.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_convolution/convolution_lcm.test.cpp
       title: verify/yosupo_convolution/convolution_lcm.test.cpp
     - icon: ':heavy_check_mark:'
@@ -664,13 +690,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
       title: verify/yosupo_fps/fps_exp_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv_arb.test.cpp
       title: verify/yosupo_fps/fps_inv_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
     - icon: ':x:'
@@ -811,8 +837,20 @@ data:
   - name: verify/yosupo_math
     pages:
     - icon: ':x:'
+      path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+      title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_math/enumerate_bell_number.test.cpp
+      title: verify/yosupo_math/enumerate_bell_number.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_math/enumerate_primes.test.cpp
+      title: verify/yosupo_math/enumerate_primes.test.cpp
+    - icon: ':x:'
       path: verify/yosupo_math/enumerate_quotients.test.cpp
       title: verify/yosupo_math/enumerate_quotients.test.cpp
+    - icon: ':x:'
+      path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+      title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
     - icon: ':x:'
       path: verify/yosupo_math/factrize.test.cpp
       title: verify/yosupo_math/factrize.test.cpp

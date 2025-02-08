@@ -31,6 +31,9 @@ data:
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
+    path: verify/unit_test/lpf_table_extend.test.cpp
+    title: verify/unit_test/lpf_table_extend.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
   - icon: ':x:'
@@ -107,12 +110,13 @@ data:
   requiredBy:
   - math/euler_phi.hpp
   - math_mod/primitive_root_64bit.hpp
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-02-04 23:50:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
 documentation_of: math/prime_factorize.hpp
 layout: document
 redirect_from:

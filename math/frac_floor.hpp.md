@@ -2,6 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: convolution/convolution_gcd.hpp
+    title: convolution/convolution_gcd.hpp
+  - icon: ':x:'
+    path: convolution/convolution_lcm.hpp
+    title: convolution/convolution_lcm.hpp
+  - icon: ':question:'
+    path: convolution/divisor_multiple_transform.hpp
+    title: convolution/divisor_multiple_transform.hpp
   - icon: ':warning:'
     path: data_structure/convex_hull_trick_add_monotone.hpp
     title: data_structure/convex_hull_trick_add_monotone.hpp
@@ -14,10 +23,31 @@ data:
   - icon: ':x:'
     path: math/multiplicative_function/prime_counting.hpp
     title: math/multiplicative_function/prime_counting.hpp
-  - icon: ':x:'
+  - icon: ':question:'
+    path: math/prime_table.hpp
+    title: math/prime_table.hpp
+  - icon: ':question:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/unit_test/lpf_table_extend.test.cpp
+    title: verify/unit_test/lpf_table_extend.test.cpp
+  - icon: ':x:'
+    path: verify/unit_test/prime_table_extend.test.cpp
+    title: verify/unit_test/prime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_convolution/convolution_gcd.test.cpp
+    title: verify/yosupo_convolution/convolution_gcd.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_convolution/convolution_lcm.test.cpp
+    title: verify/yosupo_convolution/convolution_lcm.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/enumerate_primes.test.cpp
+    title: verify/yosupo_math/enumerate_primes.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/enumerate_primes.test.cpp
+    title: verify/yosupo_math/enumerate_primes.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/enumerate_quotients.test.cpp
     title: verify/yosupo_math/enumerate_quotients.test.cpp
@@ -29,7 +59,7 @@ data:
     title: verify/yosupo_math/prime_counting.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/frac_floor.hpp\"\n\n\n\n#include <cassert>\n\nnamespace\
@@ -62,13 +92,23 @@ data:
   - math/multiplicative_function/prime_counting.hpp
   - math/multiplicative_function/prefix_sum.hpp
   - math/sqrt_floor.hpp
+  - math/prime_table.hpp
+  - convolution/convolution_lcm.hpp
+  - convolution/convolution_gcd.hpp
+  - convolution/divisor_multiple_transform.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_convolution/convolution_lcm.test.cpp
+  - verify/yosupo_convolution/convolution_gcd.test.cpp
   - verify/yosupo_math/prime_counting.test.cpp
   - verify/yosupo_math/enumerate_quotients.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+  - verify/yosupo_math/enumerate_primes.test.cpp
+  - verify/yosupo_math/enumerate_primes.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/prime_table_extend.test.cpp
 documentation_of: math/frac_floor.hpp
 layout: document
 redirect_from:

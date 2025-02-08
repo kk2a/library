@@ -4,12 +4,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/convolution_gcd.hpp
     title: convolution/convolution_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
   - icon: ':question:'
-    path: math/Eratosthenes.hpp
-    title: math/Eratosthenes.hpp
+    path: math/frac_floor.hpp
+    title: math/frac_floor.hpp
+  - icon: ':question:'
+    path: math/prime_table.hpp
+    title: math/prime_table.hpp
+  - icon: ':question:'
+    path: math/sqrt_floor.hpp
+    title: math/sqrt_floor.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -67,7 +73,9 @@ data:
   dependsOn:
   - convolution/convolution_gcd.hpp
   - convolution/divisor_multiple_transform.hpp
-  - math/Eratosthenes.hpp
+  - math/prime_table.hpp
+  - math/sqrt_floor.hpp
+  - math/frac_floor.hpp
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
@@ -79,7 +87,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_gcd.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-02-08 14:53:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_gcd.test.cpp

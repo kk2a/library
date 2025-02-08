@@ -30,13 +30,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv_arb.test.cpp
     title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
   - icon: ':x:'
@@ -96,6 +96,12 @@ data:
   - icon: ':x:'
     path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/enumerate_bell_number.test.cpp
+    title: verify/yosupo_math/enumerate_bell_number.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+    title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -333,6 +339,8 @@ data:
   - verify/yosupo_fps/fps_sparse_log.test.cpp
   - verify/yuki/yuki_1510.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_math/enumerate_bell_number.test.cpp
+  - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: fps/fps.hpp
 layout: document

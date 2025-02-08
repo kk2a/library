@@ -34,6 +34,12 @@ data:
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
+    path: verify/unit_test/lpf_table_extend.test.cpp
+    title: verify/unit_test/lpf_table_extend.test.cpp
+  - icon: ':x:'
+    path: verify/unit_test/prime_table_extend.test.cpp
+    title: verify/unit_test/prime_table_extend.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
   - icon: ':x:'
@@ -51,25 +57,25 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\nnamespace\
-    \ kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\nu64 non_deterministic_seed()\
-    \ {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n  \
-    \                 std::chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n   \
-    \ seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return\
-    \ seed;\n}\n\nu64 deterministic_seed() {\n    return 5801799128519729247ull;\n\
-    }\n\nu64 seed() {\n#if defined(KK2) && !defined(KK2_RANDOM_NON_DETERMINISTIC)\n\
-    \    return deterministic_seed();\n#else\n    return non_deterministic_seed();\n\
-    #endif\n}\n\n} // namespace random\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef KK2_RANDOM_SEED_HPP\n#define KK2_RANDOM_SEED_HPP 1\n\n#include <chrono>\n\
-    \nnamespace kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\n\
-    u64 non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
+    \ kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\ninline u64\
+    \ non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
     \                   std::chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n   \
     \ seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return\
-    \ seed;\n}\n\nu64 deterministic_seed() {\n    return 5801799128519729247ull;\n\
-    }\n\nu64 seed() {\n#if defined(KK2) && !defined(KK2_RANDOM_NON_DETERMINISTIC)\n\
-    \    return deterministic_seed();\n#else\n    return non_deterministic_seed();\n\
-    #endif\n}\n\n} // namespace random\n\n} // namespace kk2\n\n#endif // KK2_RANDOM_SEED_HPP\n"
+    \ seed;\n}\n\ninline u64 deterministic_seed() {\n    return 5801799128519729247ull;\n\
+    }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return deterministic_seed();\n\
+    #else\n    return non_deterministic_seed();\n#endif\n}\n\n} // namespace random\n\
+    \n} // namespace kk2\n\n\n"
+  code: "#ifndef KK2_RANDOM_SEED_HPP\n#define KK2_RANDOM_SEED_HPP 1\n\n#include <chrono>\n\
+    \nnamespace kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\n\
+    inline u64 non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
+    \                   std::chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n   \
+    \ seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return\
+    \ seed;\n}\n\ninline u64 deterministic_seed() {\n    return 5801799128519729247ull;\n\
+    }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return deterministic_seed();\n\
+    #else\n    return non_deterministic_seed();\n#endif\n}\n\n} // namespace random\n\
+    \n} // namespace kk2\n\n#endif // KK2_RANDOM_SEED_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: random/seed.hpp
@@ -82,7 +88,7 @@ data:
   - random/graph.hpp
   - random/hash.hpp
   - string/rolling_hash.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-02-04 23:50:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/aoj/aoj_alds1_14_b.test.cpp
@@ -91,6 +97,8 @@ data:
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/prime_table_extend.test.cpp
 documentation_of: random/seed.hpp
 layout: document
 redirect_from:

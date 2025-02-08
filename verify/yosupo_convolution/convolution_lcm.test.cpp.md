@@ -1,15 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_lcm.hpp
     title: convolution/convolution_lcm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
   - icon: ':question:'
-    path: math/Eratosthenes.hpp
-    title: math/Eratosthenes.hpp
+    path: math/frac_floor.hpp
+    title: math/frac_floor.hpp
+  - icon: ':question:'
+    path: math/prime_table.hpp
+    title: math/prime_table.hpp
+  - icon: ':question:'
+    path: math/sqrt_floor.hpp
+    title: math/sqrt_floor.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -36,9 +42,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
@@ -67,7 +73,9 @@ data:
   dependsOn:
   - convolution/convolution_lcm.hpp
   - convolution/divisor_multiple_transform.hpp
-  - math/Eratosthenes.hpp
+  - math/prime_table.hpp
+  - math/sqrt_floor.hpp
+  - math/frac_floor.hpp
   - modint/mont.hpp
   - type_traits/type_traits.hpp
   - template/template.hpp
@@ -79,8 +87,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_lcm.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-08 14:53:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_lcm.test.cpp
 layout: document

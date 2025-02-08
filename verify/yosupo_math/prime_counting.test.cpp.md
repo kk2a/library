@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: math/Eratosthenes.hpp
-    title: math/Eratosthenes.hpp
   - icon: ':x:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
   - icon: ':x:'
     path: math/multiplicative_function/prime_counting.hpp
     title: math/multiplicative_function/prime_counting.hpp
-  - icon: ':x:'
+  - icon: ':question:'
+    path: math/prime_table.hpp
+    title: math/prime_table.hpp
+  - icon: ':question:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   - icon: ':question:'
@@ -69,10 +69,10 @@ data:
     }\n"
   dependsOn:
   - math/multiplicative_function/prime_counting.hpp
-  - math/Eratosthenes.hpp
   - math/enumerate_quotients.hpp
   - math/sqrt_floor.hpp
   - math/frac_floor.hpp
+  - math/prime_table.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
@@ -83,7 +83,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/prime_counting.test.cpp
   requiredBy: []
-  timestamp: '2025-02-01 17:57:24+09:00'
+  timestamp: '2025-02-08 14:53:47+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/prime_counting.test.cpp
