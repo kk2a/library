@@ -17,7 +17,7 @@ int main() {
         auto f = [&](i64 p, i64 e) -> mint { return a * e + b * p; };
         auto g1 = [&](i64) -> mint { return 1; };
         auto g2 = [&](i64 p) -> mint { return p; };
-        kk2::PrefixSumOfMultiplicationFunction<mint> ps(n);
+        kk2::PrefixSumOfMultiplicativeFunction<mint> ps(n);
         vc<mint> init1(ps.size()), init2(ps.size());
         const mint inv2 = mint(2).inv();
         rep (i, ps.size()) {

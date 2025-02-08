@@ -42,7 +42,7 @@ struct FamousFunctionTable {
                 if (n / p % p == 0) _v_lpf[n] = _v_lpf[n / p] + 1;
                 else _v_lpf[n] = 1;
 
-                int p_pw = pow(p, _v_lpf[n]);
+                int p_pw = pow<int>(p, _v_lpf[n]);
                 int q = n / p_pw;
                 if (q == 1) {
                     _mobius[n] = 0;
@@ -77,7 +77,7 @@ struct FamousFunctionTable {
         return _sigma1[n];
     }
 
-    static int phi(int n) {
+    static int euler_phi(int n) {
         assert(n > 0);
         if ((int)_euler_phi.size() <= n) set_upper(n);
         return _euler_phi[n];

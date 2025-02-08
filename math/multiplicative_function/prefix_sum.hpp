@@ -10,13 +10,13 @@
 namespace kk2 {
 
 template <class T>
-struct PrefixSumOfMultiplicationFunction {
+struct PrefixSumOfMultiplicativeFunction {
     long long n;
     EnumerateQuotients<long long> eq;
     std::vector<T> prefix_sum_only_prime;
     std::vector<T> prefix_sum;
 
-    PrefixSumOfMultiplicationFunction(long long n)
+    PrefixSumOfMultiplicativeFunction(long long n)
         : n(n),
           eq(n),
           prefix_sum_only_prime(eq.size()),

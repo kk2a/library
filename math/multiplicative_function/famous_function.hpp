@@ -5,21 +5,27 @@
 
 namespace kk2 {
 
-long long mobius(long long p, long long e) {
+namespace mf {
+
+long long mobius(long long, long long e) {
     return e == 1 ? -1 : 0;
 }
 
-long long sigma0(long long p, long long e) {
+long long sigma0(long long, long long e) {
     return e + 1;
 }
 
 long long sigma1(long long p, long long e) {
-    return (pow<long long>(p, e + 1) - 1) / (p - 1);
+    long long p_e = pow<long long>(p, e);
+    return p_e + (p_e - 1) / (p - 1);
 }
 
 long long euler_phi(long long p, long long e) {
-    return pow(p, e) - pow(p, e - 1);
+    long long p_e = pow<long long>(p, e);
+    return p_e - p_e / p;
 }
+
+} // namespace mf
 
 } // namespace kk2
 

@@ -16,10 +16,6 @@ int main() {
     rep (iter) {
         int n = kk2::random::rng(2, 10000000);
         assert((int)kk2::IsPrimeTable::primes(n).size() == kk2::prime_counting(n));
-    }
-
-    rep (iter) {
-        int n = kk2::random::rng(2, 10000000);
         assert(kk2::is_prime(n) == kk2::IsPrimeTable::isprime(n));
     }
 

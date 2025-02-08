@@ -46,8 +46,10 @@ struct FactorizeTable {
     }
 
     static std::vector<int> divisors(int n) {
+        assert(n > 0);
+        if ((int)_factorize.size() <= n) set_upper(n);
         std::vector<int> res = {1};
-        for (const auto [p, k] : factorize(n)) {
+        for (auto [p, k] : _factorize[n]) {
             int sz = res.size();
             for (int i = 0; i < sz; ++i) {
                 int mul = 1;
