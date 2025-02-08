@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   - icon: ':question:'
@@ -12,10 +12,10 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -87,38 +87,38 @@ data:
     \            return *this;\n        }\n\n        Proxy &operator~() {\n      \
     \      bs[i].flip();\n            return *this;\n        }\n    };\n\n    Proxy\
     \ operator[](int i) {\n        assert(0 <= i && i < _h);\n        return Proxy(_mat,\
-    \ i);\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\
-    \ mat &input(IStream &is) {\n        for (int i = 0; i < _h; i++) {\n        \
-    \    std::string s;\n            is >> s;\n            _mat[i].set_reversed(s);\n\
+    \ i);\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
+    \    mat &input(IStream &is) {\n        for (int i = 0; i < _h; i++) {\n     \
+    \       std::string s;\n            is >> s;\n            _mat[i].set_reversed(s);\n\
     \        }\n        return *this;\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
-    \ * = nullptr> void output(OStream &os) const {\n        for (int i = 0; i < _h;\
-    \ i++) { os << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    void set(int\
-    \ i, int j, bool x) {\n        assert(0 <= i && i < _h);\n        assert(0 <=\
-    \ j && j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void set(int i, const\
-    \ std::string &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set(s);\n\
-    \    }\n\n    void set_reversed(int i, const std::string &s) {\n        assert((int)s.size()\
-    \ == _w);\n        _mat[i].set_reversed(s);\n    }\n\n    mat &operator+=(const\
+    \ * = nullptr>\n    void output(OStream &os) const {\n        for (int i = 0;\
+    \ i < _h; i++) { os << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n \
+    \   void set(int i, int j, bool x) {\n        assert(0 <= i && i < _h);\n    \
+    \    assert(0 <= j && j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void\
+    \ set(int i, const std::string &s) {\n        assert((int)s.size() == _w);\n \
+    \       _mat[i].set(s);\n    }\n\n    void set_reversed(int i, const std::string\
+    \ &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set_reversed(s);\n\
+    \    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) { _mat[i]\
+    \ = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator-=(const\
     \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
     \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }\n \
-    \       return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n      \
+    \       return *this;\n    }\n\n    mat &operator^=(const mat &rhs) {\n      \
     \  assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
     \ 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n\
-    \    }\n\n    mat &operator^=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
+    \    }\n\n    mat &operator|=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
     \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) { _mat[i]\
-    \ = _mat[i] ^ rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator|=(const\
+    \ = _mat[i] | rhs._mat[i]; }\n        return *this;\n    }\n\n    mat &operator&=(const\
     \ mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n\
-    \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] | rhs._mat[i]; }\n \
-    \       return *this;\n    }\n\n    mat &operator&=(const mat &rhs) {\n      \
-    \  assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int i =\
-    \ 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }\n        return *this;\n\
-    \    }\n\n    mat &operator*=(const mat &rhs) {\n        assert(_w == rhs._h);\n\
-    \        std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n        for\
-    \ (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\n   \
-    \             if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                // cout\
-    \ << i << \" \" << j << \" \" << _mat[i][j] << \" check\" <<\n               \
-    \ // endl; rep (i, 2) { cout << res[i] << endl; }\n            }\n        }\n\
-    \        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\n \
-    \   friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) +=\
+    \        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }\n \
+    \       return *this;\n    }\n\n    mat &operator*=(const mat &rhs) {\n      \
+    \  assert(_w == rhs._h);\n        std::vector<DynamicBitSet> res(_h, DynamicBitSet(rhs._w));\n\
+    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
+    \ {\n                if (_mat[i][j]) res[i] ^= rhs._mat[j];\n                //\
+    \ cout << i << \" \" << j << \" \" << _mat[i][j] << \" check\" <<\n          \
+    \      // endl; rep (i, 2) { cout << res[i] << endl; }\n            }\n      \
+    \  }\n        _w = rhs._w;\n        _mat = res;\n        return *this;\n    }\n\
+    \n    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) +=\
     \ rhs; }\n\n    friend mat operator-(const mat &lhs, const mat &rhs) { return\
     \ mat(lhs) -= rhs; }\n\n    friend mat operator^(const mat &lhs, const mat &rhs)\
     \ { return mat(lhs) ^= rhs; }\n\n    friend mat operator|(const mat &lhs, const\
@@ -195,9 +195,9 @@ data:
     \ j = 0; j < _h; j++) {\n                if (j == i) continue;\n             \
     \   if (buf[j][i]) {\n                    buf[j] ^= buf[i];\n                \
     \    res[j] ^= res[i];\n                }\n            }\n        }\n        return\
-    \ mat(res);\n    }\n\n    mat transpose() const {\n        mat res(_w, _h);\n\
-    \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
-    \ { res[j][i] = _mat[i][j]; }\n        }\n        return res;\n    }\n\n    mat\
+    \ mat(res);\n    }\n\n    mat transpose() {\n        mat res(_w, _h);\n      \
+    \  for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) {\
+    \ res[j][i] = _mat[i][j]; }\n        }\n        return res;\n    }\n\n    mat\
     \ &inplace_transpose() { return *this = transpose(); }\n};\n\n} // namespace kk2\n\
     \n#endif // KK2_MATRIX_MATRIX_F2_HPP\n"
   dependsOn:
@@ -207,8 +207,8 @@ data:
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-02-09 00:35:11+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp

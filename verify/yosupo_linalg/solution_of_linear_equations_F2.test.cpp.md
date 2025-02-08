@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
   - icon: ':question:'
@@ -77,7 +77,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-02-09 00:35:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
