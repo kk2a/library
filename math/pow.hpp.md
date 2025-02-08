@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/arbitrary_table.hpp
     title: math/multiplicative_function/arbitrary_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/famous_function.hpp
     title: math/multiplicative_function/famous_function.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/famous_function_table.hpp
     title: math/multiplicative_function/famous_function_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/famous_function_table.test.cpp
     title: verify/unit_test/famous_function_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/pow.hpp\"\n\n\n\n#include <cassert>\n\nnamespace kk2\
@@ -45,7 +45,7 @@ data:
   - math/multiplicative_function/famous_function.hpp
   - math/multiplicative_function/famous_function_table.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/multiplicative_function_table.test.cpp

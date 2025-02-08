@@ -20,20 +20,23 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/euler_phi.hpp
     title: math/multiplicative_function/euler_phi.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/mobius.hpp
     title: math/multiplicative_function/mobius.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
   - icon: ':x:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_ntl_1_d.test.cpp
+    title: verify/aoj/aoj_ntl_1_d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/famous_function_table.test.cpp
     title: verify/unit_test/famous_function_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -124,6 +127,7 @@ data:
   timestamp: '2025-02-04 23:50:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
   - verify/unit_test/famous_function_table.test.cpp

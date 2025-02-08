@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/lpf_table.hpp
     title: math/lpf_table.hpp
   - icon: ':question:'

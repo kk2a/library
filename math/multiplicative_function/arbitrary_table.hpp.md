@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/lpf_table.hpp
     title: math/lpf_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/pow.hpp
     title: math/pow.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/multiplicative_function/arbitrary_table.hpp\"\n\n\n\
@@ -90,7 +90,7 @@ data:
   path: math/multiplicative_function/arbitrary_table.hpp
   requiredBy: []
   timestamp: '2025-02-08 19:46:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/multiplicative_function_table.test.cpp
 documentation_of: math/multiplicative_function/arbitrary_table.hpp

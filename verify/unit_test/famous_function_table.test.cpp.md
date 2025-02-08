@@ -4,22 +4,22 @@ data:
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/lpf_table.hpp
     title: math/lpf_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/euler_phi.hpp
     title: math/multiplicative_function/euler_phi.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/famous_function_table.hpp
     title: math/multiplicative_function/famous_function_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/mobius.hpp
     title: math/multiplicative_function/mobius.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/pow.hpp
     title: math/pow.hpp
   - icon: ':question:'
@@ -63,14 +63,14 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://https://judge.yosupo.jp/problem/aplusb
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://https://judge.yosupo.jp/problem/aplusb
+    - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -84,17 +84,17 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://https://judge.yosupo.jp/problem/aplusb\" \n\n#include\
-    \ \"../../math/multiplicative_function/famous_function_table.hpp\"\n#include \"\
-    ../../math/multiplicative_function/mobius.hpp\"\n#include \"../../math/multiplicative_function/sigma.hpp\"\
-    \n#include \"../../math/multiplicative_function/euler_phi.hpp\"\n#include \"../../random/gen.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int a, b;\n    kin >> a >> b;\n    kout << a + b << kendl;\n\n    int\
-    \ iter = 1000;\n    rep (iter) {\n        int n = kk2::random::rng(2, 1000000);\n\
-    \        assert(kk2::FamousFunctionTable::euler_phi(n) == kk2::euler_phi(n));\n\
-    \        assert(kk2::FamousFunctionTable::mobius(n) == kk2::mobius(n));\n    \
-    \    assert(kk2::FamousFunctionTable::sigma0(n) == kk2::sigma0(n));\n        assert(kk2::FamousFunctionTable::sigma1(n)\
-    \ == kk2::sigma1(n));\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" \n\n#include \"\
+    ../../math/multiplicative_function/famous_function_table.hpp\"\n#include \"../../math/multiplicative_function/mobius.hpp\"\
+    \n#include \"../../math/multiplicative_function/sigma.hpp\"\n#include \"../../math/multiplicative_function/euler_phi.hpp\"\
+    \n#include \"../../random/gen.hpp\"\n#include \"../../template/template.hpp\"\n\
+    using namespace std;\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n    kout\
+    \ << a + b << kendl;\n\n    int iter = 1000;\n    rep (iter) {\n        int n\
+    \ = kk2::random::rng(2, 1000000);\n        assert(kk2::FamousFunctionTable::euler_phi(n)\
+    \ == kk2::euler_phi(n));\n        assert(kk2::FamousFunctionTable::mobius(n) ==\
+    \ kk2::mobius(n));\n        assert(kk2::FamousFunctionTable::sigma0(n) == kk2::sigma0(n));\n\
+    \        assert(kk2::FamousFunctionTable::sigma1(n) == kk2::sigma1(n));\n    }\n\
+    \n    return 0;\n}\n"
   dependsOn:
   - math/multiplicative_function/famous_function_table.hpp
   - math/lpf_table.hpp
@@ -119,8 +119,8 @@ data:
   isVerificationFile: true
   path: verify/unit_test/famous_function_table.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 19:46:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-08 20:19:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/famous_function_table.test.cpp
 layout: document
