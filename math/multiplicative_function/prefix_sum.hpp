@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <vector>
 
-#include "../Eratosthenes.hpp"
+#include "../prime_table.hpp"
 #include "../enumerate_quotients.hpp"
 
 namespace kk2 {
@@ -33,8 +33,8 @@ struct PrefixSumOfMultiplicationFunction {
     template <class F>
     void LucyDP(const F &f, std::vector<T> &dp) {
         assert((int)dp.size() == eq.size());
-        Erato::set_upper(eq.sqrt_n);
-        for (const long long p : Erato::primes()) {
+        PrimeTable::set_upper(eq.sqrt_n);
+        for (const long long p : PrimeTable::primes()) {
             if (p > eq.sqrt_n) break;
             T fp = f(p);
             for (int i = eq.size() - 1;; --i) {
@@ -52,9 +52,9 @@ struct PrefixSumOfMultiplicationFunction {
     // f is multiplicative function
     template <class F>
     void Min_25Sieve(const F &f) {
-        Erato::set_upper(eq.sqrt_n);
+        PrimeTable::set_upper(eq.sqrt_n);
         std::copy(prefix_sum_only_prime.begin(), prefix_sum_only_prime.end(), prefix_sum.begin());
-        const auto &primes = Erato::primes();
+        const auto &primes = PrimeTable::primes();
         std::vector<T> tmp(eq.size());
         for (int i = std::upper_bound(primes.begin(), primes.end(), eq.sqrt_n) - primes.begin() - 1;
              i >= 0;

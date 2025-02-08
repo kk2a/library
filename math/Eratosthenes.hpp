@@ -24,7 +24,7 @@ struct Erato {
         _isprime[1] = false;
         _minfactor[1] = 1;
 
-        for (const int &p : _primes) {
+        for (const int p : _primes) {
             for (int q = p * ((start + p - 1) / p); q <= m; q += p) {
                 _isprime[q] = false;
 

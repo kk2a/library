@@ -14,7 +14,7 @@ template <class mint> struct Comb {
 
     Comb() = delete;
 
-    static void extend(int m = -1) {
+    static void set_upper(int m = -1) {
         int n = (int)_fact.size();
         if (m == -1) m = n << 1;
         if (n > m) return;
@@ -33,19 +33,19 @@ template <class mint> struct Comb {
 
     static mint fact(int n) {
         if (n < 0) return 0;
-        if ((int)_fact.size() <= n) extend(n);
+        if ((int)_fact.size() <= n) set_upper(n);
         return _fact[n];
     }
 
     static mint ifact(int n) {
         if (n < 0) return 0;
-        if ((int)_ifact.size() <= n) extend(n);
+        if ((int)_ifact.size() <= n) set_upper(n);
         return _ifact[n];
     }
 
     static mint inv(int n) {
         if (n < 0) return -inv(-n);
-        if ((int)_inv.size() <= n) extend(n);
+        if ((int)_inv.size() <= n) set_upper(n);
         return _inv[n];
     }
 

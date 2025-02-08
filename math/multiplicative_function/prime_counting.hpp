@@ -3,17 +3,17 @@
 
 #include <vector>
 
-#include "../Eratosthenes.hpp"
 #include "../enumerate_quotients.hpp"
+#include "../prime_table.hpp"
 
 namespace kk2 {
 
 long long prime_counting(long long n) {
-    kk2::EnumerateQuotients<long long> eq(n);
-    kk2::Erato::set_upper(eq.sqrt_n);
+    EnumerateQuotients<long long> eq(n);
+    PrimeTable::set_upper(eq.sqrt_n);
     std::vector<long long> dp(eq.size());
     for (int i = 0; i < eq.size(); ++i) dp[i] = eq[i] - 1;
-    for (const long long p : kk2::Erato::primes()) {
+    for (const long long p : PrimeTable::primes()) {
         for (int i = eq.size() - 1;; --i) {
             if (eq[i] < p * p) break;
             dp[i] -= dp[eq.idx(eq[i] / p)] - dp[p - 2];

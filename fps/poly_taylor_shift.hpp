@@ -11,7 +11,7 @@ template <class FPS, class mint = typename FPS::value_type>
 FPS taylor_shift(const FPS &f_, mint a) {
     FPS f(f_);
     int n = f.size();
-    Comb<mint>::extend(n);
+    Comb<mint>::set_upper(n);
     for (int i = 0; i < n; i++) f[i] *= Comb<mint>::fact(i);
     f.inplace_rev();
     FPS g(n, mint(1));
