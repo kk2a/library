@@ -23,12 +23,18 @@ data:
   - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/euler_phi.hpp
-    title: math/euler_phi.hpp
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/euler_phi.hpp
+    title: math/multiplicative_function/euler_phi.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/mobius.hpp
+    title: math/multiplicative_function/mobius.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/sigma.hpp
+    title: math/multiplicative_function/sigma.hpp
   - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
@@ -48,9 +54,6 @@ data:
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aoj/aoj_ntl_1_d.test.cpp
-    title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
     path: verify/unit_test/isprime_table_extend.test.cpp
     title: verify/unit_test/isprime_table_extend.test.cpp
@@ -93,31 +96,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
     title: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sparse_exp.test.cpp
     title: verify/yosupo_fps/fps_sparse_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sparse_inv.test.cpp
     title: verify/yosupo_fps/fps_sparse_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sparse_log.test.cpp
     title: verify/yosupo_fps/fps_sparse_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sparse_pow.test.cpp
     title: verify/yosupo_fps/fps_sparse_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
   - icon: ':x:'
@@ -199,7 +202,9 @@ data:
   isVerificationFile: false
   path: math_mod/pow_mod.hpp
   requiredBy:
-  - math/euler_phi.hpp
+  - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/mobius.hpp
+  - math/multiplicative_function/euler_phi.hpp
   - math/is_prime.hpp
   - math/prime_factorize.hpp
   - fps/fps_arb.hpp
@@ -216,7 +221,6 @@ data:
   timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
   - verify/yosupo_fps/fps_sparse_pow.test.cpp

@@ -1,7 +1,16 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/multiplicative_function/famous_function.hpp
+    title: math/multiplicative_function/famous_function.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/famous_function_table.hpp
+    title: math/multiplicative_function/famous_function_table.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/sigma.hpp
+    title: math/multiplicative_function/sigma.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -21,7 +30,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/pow.hpp
-  requiredBy: []
+  requiredBy:
+  - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/famous_function.hpp
+  - math/multiplicative_function/famous_function_table.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

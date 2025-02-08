@@ -2,42 +2,36 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: math_mod/mod_sqrt.hpp
-    title: math_mod/mod_sqrt.hpp
+    path: math/is_prime.hpp
+    title: math/is_prime.hpp
+  - icon: ':warning:'
+    path: math/pow.hpp
+    title: math/pow.hpp
+  - icon: ':question:'
+    path: math/prime_factorize.hpp
+    title: math/prime_factorize.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
   - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'
-    path: template/constant.hpp
-    title: template/constant.hpp
+    path: random/gen.hpp
+    title: random/gen.hpp
   - icon: ':question:'
-    path: template/fastio.hpp
-    title: template/fastio.hpp
-  - icon: ':question:'
-    path: template/io_util.hpp
-    title: template/io_util.hpp
-  - icon: ':question:'
-    path: template/macros.hpp
-    title: template/macros.hpp
-  - icon: ':question:'
-    path: template/template.hpp
-    title: template/template.hpp
-  - icon: ':question:'
-    path: template/type_alias.hpp
-    title: template/type_alias.hpp
+    path: random/seed.hpp
+    title: random/seed.hpp
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
-  _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sqrt_mod
-    links:
-    - https://judge.yosupo.jp/problem/sqrt_mod
+    links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -53,31 +47,33 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\" \n\n#include\
-    \ \"../../math_mod/mod_sqrt.hpp\"\n#include \"../../template/template.hpp\"\n\
-    using namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t) {\n\
-    \        int y, p;\n        kin >> y >> p;\n        kout << kk2::mod_sqrt(y, p)\
-    \ << \"\\n\";\n    }\n\n    return 0;\n}\n"
+  code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_SIGMA_HPP\n#define KK2_MATH_MULTIPLICATIVE_FUNCTION_SIGMA_HPP\
+    \ 1\n\n#include <cassert>\n\n#include \"../pow.hpp\"\n#include \"../prime_factorize.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class T, is_integral_t<T> * = nullptr>\nT sigma0(T\
+    \ n) {\n    assert(n > 0);\n    T res = 0;\n    for (auto [p, k] : factorize(static_cast<long\
+    \ long>(n))) res *= k + 1;\n    return res;\n}\n\ntemplate <class T, is_integral_t<T>\
+    \ * = nullptr>\nT sigma1(T n) {\n    assert(n > 0);\n    T res = 1;\n    for (auto\
+    \ [p, k] : factorize(static_cast<long long>(n))) res *= (pow(p, k + 1) - 1) /\
+    \ (p - 1);\n    return res;\n}\n\n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_SIGMA_HPP\n"
   dependsOn:
-  - math_mod/mod_sqrt.hpp
-  - modint/mont_arb.hpp
+  - math/pow.hpp
+  - math/prime_factorize.hpp
+  - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
-  - template/template.hpp
-  - template/constant.hpp
-  - template/type_alias.hpp
-  - template/fastio.hpp
-  - template/io_util.hpp
-  - template/macros.hpp
-  isVerificationFile: true
-  path: verify/yosupo_math/sqrt_mod.test.cpp
+  - modint/mont_arb.hpp
+  - random/gen.hpp
+  - random/seed.hpp
+  - math/is_prime.hpp
+  isVerificationFile: false
+  path: math/multiplicative_function/sigma.hpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-08 18:14:03+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: verify/yosupo_math/sqrt_mod.test.cpp
+documentation_of: math/multiplicative_function/sigma.hpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_math/sqrt_mod.test.cpp
-- /verify/verify/yosupo_math/sqrt_mod.test.cpp.html
-title: verify/yosupo_math/sqrt_mod.test.cpp
+- /library/math/multiplicative_function/sigma.hpp
+- /library/math/multiplicative_function/sigma.hpp.html
+title: math/multiplicative_function/sigma.hpp
 ---

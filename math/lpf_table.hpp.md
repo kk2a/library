@@ -1,7 +1,16 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/multiplicative_function/arbitrary_table.hpp
+    title: math/multiplicative_function/arbitrary_table.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/famous_function_table.hpp
+    title: math/multiplicative_function/famous_function_table.hpp
+  - icon: ':warning:'
+    path: math/prime_factorize_table.hpp
+    title: math/prime_factorize_table.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
@@ -62,7 +71,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/lpf_table.hpp
-  requiredBy: []
+  requiredBy:
+  - math/prime_factorize_table.hpp
+  - math/multiplicative_function/arbitrary_table.hpp
+  - math/multiplicative_function/famous_function_table.hpp
   timestamp: '2025-02-08 14:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

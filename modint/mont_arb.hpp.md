@@ -5,38 +5,41 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/euler_phi.hpp
-    title: math/euler_phi.hpp
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/euler_phi.hpp
+    title: math/multiplicative_function/euler_phi.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/mobius.hpp
+    title: math/multiplicative_function/mobius.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/sigma.hpp
+    title: math/multiplicative_function/sigma.hpp
   - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
   - icon: ':x:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aoj/aoj_ntl_1_d.test.cpp
-    title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
     path: verify/unit_test/isprime_table_extend.test.cpp
     title: verify/unit_test/isprime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
   - icon: ':x:'
@@ -119,7 +122,9 @@ data:
   isVerificationFile: false
   path: modint/mont_arb.hpp
   requiredBy:
-  - math/euler_phi.hpp
+  - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/mobius.hpp
+  - math/multiplicative_function/euler_phi.hpp
   - math/is_prime.hpp
   - math/prime_factorize.hpp
   - fps/fps_sqrt.hpp
@@ -128,7 +133,6 @@ data:
   timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_math/sqrt_mod.test.cpp

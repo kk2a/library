@@ -87,7 +87,7 @@ data:
     \ a, b;\n    kin >> a >> b;\n    kout << a + b << kendl;\n\n    int iter = 1000;\n\
     \    rep (iter) {\n        int n = kk2::random::rng(2, 10000000);\n        assert((int)kk2::IsPrimeTable::primes(n).size()\
     \ == kk2::prime_counting(n));\n    }\n\n    rep (iter) {\n        int n = kk2::random::rng(2,\
-    \ 10000000);\n        assert(kk2::isprime(n) == kk2::IsPrimeTable::isprime(n));\n\
+    \ 10000000);\n        assert(kk2::is_prime(n) == kk2::IsPrimeTable::isprime(n));\n\
     \    }\n\n    return 0;\n}\n"
   dependsOn:
   - math/isprime_table.hpp
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/isprime_table_extend.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 15:18:40+09:00'
+  timestamp: '2025-02-08 18:14:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/unit_test/isprime_table_extend.test.cpp

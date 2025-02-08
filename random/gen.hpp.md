@@ -8,9 +8,15 @@ data:
   - icon: ':x:'
     path: fps/poly_find_root.hpp
     title: fps/poly_find_root.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/euler_phi.hpp
-    title: math/euler_phi.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/euler_phi.hpp
+    title: math/multiplicative_function/euler_phi.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/mobius.hpp
+    title: math/multiplicative_function/mobius.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/sigma.hpp
+    title: math/multiplicative_function/sigma.hpp
   - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
@@ -33,9 +39,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aoj/aoj_ntl_1_d.test.cpp
-    title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
     path: verify/unit_test/isprime_table_extend.test.cpp
     title: verify/unit_test/isprime_table_extend.test.cpp
@@ -130,7 +133,9 @@ data:
   isVerificationFile: false
   path: random/gen.hpp
   requiredBy:
-  - math/euler_phi.hpp
+  - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/mobius.hpp
+  - math/multiplicative_function/euler_phi.hpp
   - math/prime_factorize.hpp
   - fps/poly_find_root.hpp
   - math_mod/primitive_root_64bit.hpp
@@ -142,7 +147,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/aoj/aoj_alds1_14_b.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
