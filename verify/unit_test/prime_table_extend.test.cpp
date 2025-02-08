@@ -9,7 +9,7 @@ using namespace std;
 int main() {
     int a, b;
     kin >> a >> b;
-    kout << a << " " << b << kendl;
+    kout << a + b << kendl;
 
     int iter = 1000;
     rep (iter) {

@@ -14,7 +14,6 @@ template <class FPS> FPS convolution_lcm(FPS &a, const FPS &b) {
     if (!n) return {};
     n--;
     FPS c(b.begin(), b.end());
-    Erato::set_upper(n);
 
     divisor_transform(a);
     divisor_transform(c);
