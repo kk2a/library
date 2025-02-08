@@ -141,7 +141,8 @@ struct MatrixF2 {
         return Proxy(_mat, i);
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr> mat &input(IStream &is) {
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    mat &input(IStream &is) {
         for (int i = 0; i < _h; i++) {
             std::string s;
             is >> s;
@@ -150,7 +151,8 @@ struct MatrixF2 {
         return *this;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    void output(OStream &os) const {
         for (int i = 0; i < _h; i++) { os << _mat[i].to_reversed_string() << "\n"; }
     }
 
@@ -427,7 +429,7 @@ struct MatrixF2 {
         return mat(res);
     }
 
-    mat transpose() const {
+    mat transpose() {
         mat res(_w, _h);
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) { res[j][i] = _mat[i][j]; }
