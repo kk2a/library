@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/product.hpp
     title: fps/product.hpp
   - icon: ':question:'

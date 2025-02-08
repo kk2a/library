@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: bit
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/bitcount.hpp
       title: bit/bitcount.hpp
   - name: convolution
@@ -64,7 +64,7 @@ data:
     - icon: ':warning:'
       path: data_structure/interval_heap.hpp
       title: data_structure/interval_heap.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
     - icon: ':warning:'
@@ -96,7 +96,7 @@ data:
     - icon: ':x:'
       path: fps/bbb.hpp
       title: fps/bbb.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/bostan_mori.hpp
       title: fps/bostan_mori.hpp
     - icon: ':heavy_check_mark:'
@@ -150,7 +150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/power_projection.hpp
       title: fps/power_projection.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/product.hpp
       title: fps/product.hpp
   - name: functional
@@ -238,9 +238,6 @@ data:
       title: graph/tree/heavy_light_decomposition.hpp
   - name: math
     pages:
-    - icon: ':warning:'
-      path: math/Eratosthenes.hpp
-      title: math/Eratosthenes.hpp
     - icon: ':heavy_check_mark:'
       path: math/convert_base.hpp
       title: math/convert_base.hpp
@@ -265,7 +262,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/isprime_table.hpp
       title: math/isprime_table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/kth_root_floor.hpp
       title: math/kth_root_floor.hpp
     - icon: ':heavy_check_mark:'
@@ -344,7 +341,7 @@ data:
       title: math/multiplicative_function/sigma.hpp
   - name: math_mod
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/bell_number.hpp
       title: math_mod/bell_number.hpp
     - icon: ':warning:'
@@ -377,7 +374,7 @@ data:
     - icon: ':x:'
       path: math_mod/primitive_root_64bit.hpp
       title: math_mod/primitive_root_64bit.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/stirling_number.hpp
       title: math_mod/stirling_number.hpp
   - name: matrix
@@ -388,15 +385,15 @@ data:
     - icon: ':warning:'
       path: matrix/frobenius_form.hpp
       title: matrix/frobenius_form.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: matrix/matrix_F2.hpp
       title: matrix/matrix_F2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: matrix/matrix_field.hpp
       title: matrix/matrix_field.hpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/modint.hpp
       title: modint/modint.hpp
     - icon: ':question:'
@@ -849,45 +846,45 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_pow.test.cpp
       title: verify/yosupo_linalg/matrix_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_product.test.cpp
       title: verify/yosupo_linalg/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_product_f2.test.cpp
       title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
       title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
       title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
   - name: verify/yosupo_math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
       title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/enumerate_bell_number.test.cpp
       title: verify/yosupo_math/enumerate_bell_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/enumerate_primes.test.cpp
       title: verify/yosupo_math/enumerate_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/enumerate_quotients.test.cpp
       title: verify/yosupo_math/enumerate_quotients.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
       title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/factrize.test.cpp
       title: verify/yosupo_math/factrize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/kth_root_int.test.cpp
       title: verify/yosupo_math/kth_root_int.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/kth_root_int_ceil.test.cpp
       title: verify/yosupo_math/kth_root_int_ceil.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     - icon: ':x:'
