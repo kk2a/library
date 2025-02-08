@@ -8,13 +8,13 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
   - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -52,6 +52,9 @@ data:
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
+    path: verify/unit_test/isprime_table_extend.test.cpp
+    title: verify/unit_test/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
@@ -84,10 +87,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - icon: ':x:'
@@ -253,6 +256,7 @@ data:
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - verify/yosupo_math/factrize.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: math_mod/pow_mod.hpp
 layout: document
 redirect_from:

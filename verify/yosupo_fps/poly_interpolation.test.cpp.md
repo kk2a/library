@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/multi_eval.hpp
     title: fps/multi_eval.hpp
   - icon: ':question:'

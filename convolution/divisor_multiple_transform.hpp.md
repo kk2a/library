@@ -14,19 +14,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/convolution_gcd.hpp
     title: convolution/convolution_gcd.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution_lcm.hpp
     title: convolution/convolution_lcm.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/divisor_multiple_transform.hpp\"\n\n\n\n#line\
@@ -129,7 +129,7 @@ data:
   - convolution/convolution_lcm.hpp
   - convolution/convolution_gcd.hpp
   timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp

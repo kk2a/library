@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/unit_test/isprime_table_extend.test.cpp
+    title: verify/unit_test/isprime_table_extend.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/isprime_table.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -60,8 +63,9 @@ data:
   path: math/isprime_table.hpp
   requiredBy: []
   timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: math/isprime_table.hpp
 layout: document
 redirect_from:

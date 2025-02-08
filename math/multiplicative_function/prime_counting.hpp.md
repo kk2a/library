@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
   - icon: ':question:'
@@ -16,9 +16,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: verify/unit_test/isprime_table_extend.test.cpp
+    title: verify/unit_test/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':x:'
@@ -26,7 +29,7 @@ data:
     title: verify/yosupo_math/prime_counting.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/multiplicative_function/prime_counting.hpp\"\n\n\n\n\
@@ -122,11 +125,12 @@ data:
   path: math/multiplicative_function/prime_counting.hpp
   requiredBy: []
   timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/prime_counting.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: math/multiplicative_function/prime_counting.hpp
 layout: document
 redirect_from:

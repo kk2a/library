@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   - icon: ':question:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -184,9 +184,12 @@ data:
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
   - icon: ':x:'
+    path: verify/unit_test/isprime_table_extend.test.cpp
+    title: verify/unit_test/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,7 +201,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -282,10 +285,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - icon: ':x:'
@@ -739,6 +742,7 @@ data:
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: type_traits/type_traits.hpp
 layout: document
 redirect_from:

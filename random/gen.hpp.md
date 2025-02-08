@@ -37,12 +37,15 @@ data:
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
   - icon: ':x:'
+    path: verify/unit_test/isprime_table_extend.test.cpp
+    title: verify/unit_test/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':x:'
@@ -148,6 +151,7 @@ data:
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: random/gen.hpp
 layout: document
 redirect_from:

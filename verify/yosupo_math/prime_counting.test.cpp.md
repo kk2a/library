@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
   - icon: ':question:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/multiplicative_function/prime_counting.hpp
     title: math/multiplicative_function/prime_counting.hpp
   - icon: ':question:'

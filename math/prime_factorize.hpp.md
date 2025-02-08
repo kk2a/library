@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
   - icon: ':x:'

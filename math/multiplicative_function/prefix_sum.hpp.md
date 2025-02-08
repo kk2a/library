@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
   - icon: ':question:'

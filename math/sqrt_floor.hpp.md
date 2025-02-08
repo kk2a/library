@@ -8,19 +8,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/convolution_gcd.hpp
     title: convolution/convolution_gcd.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution_lcm.hpp
     title: convolution/convolution_lcm.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
   - icon: ':x:'
     path: math/multiplicative_function/prefix_sum.hpp
     title: math/multiplicative_function/prefix_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/multiplicative_function/prime_counting.hpp
     title: math/multiplicative_function/prime_counting.hpp
   - icon: ':question:'
@@ -28,18 +28,21 @@ data:
     title: math/prime_table.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: verify/unit_test/isprime_table_extend.test.cpp
+    title: verify/unit_test/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
   - icon: ':x:'
@@ -111,6 +114,7 @@ data:
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: math/sqrt_floor.hpp
 layout: document
 redirect_from:

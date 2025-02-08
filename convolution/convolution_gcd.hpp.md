@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
   - icon: ':question:'

@@ -14,13 +14,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_and.hpp
       title: convolution/convolution_and.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/convolution_arb.hpp
       title: convolution/convolution_arb.hpp
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_gcd.hpp
       title: convolution/convolution_gcd.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/convolution_lcm.hpp
       title: convolution/convolution_lcm.hpp
     - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_xor.hpp
       title: convolution/convolution_xor.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/divisor_multiple_transform.hpp
       title: convolution/divisor_multiple_transform.hpp
     - icon: ':heavy_check_mark:'
@@ -111,7 +111,7 @@ data:
     - icon: ':question:'
       path: fps/fps.hpp
       title: fps/fps.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
     - icon: ':warning:'
@@ -123,7 +123,7 @@ data:
     - icon: ':x:'
       path: fps/mod_pow.hpp
       title: fps/mod_pow.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/multi_eval.hpp
       title: fps/multi_eval.hpp
     - icon: ':question:'
@@ -244,7 +244,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/convert_base.hpp
       title: math/convert_base.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/enumerate_quotients.hpp
       title: math/enumerate_quotients.hpp
     - icon: ':heavy_check_mark:'
@@ -265,13 +265,13 @@ data:
     - icon: ':question:'
       path: math/is_prime.hpp
       title: math/is_prime.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/isprime_table.hpp
       title: math/isprime_table.hpp
     - icon: ':x:'
       path: math/kth_root_floor.hpp
       title: math/kth_root_floor.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/lpf_table.hpp
       title: math/lpf_table.hpp
     - icon: ':warning:'
@@ -321,7 +321,7 @@ data:
     - icon: ':x:'
       path: math/multiplicative_function/prefix_sum.hpp
       title: math/multiplicative_function/prefix_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/multiplicative_function/prime_counting.hpp
       title: math/multiplicative_function/prime_counting.hpp
   - name: math_mod
@@ -341,10 +341,10 @@ data:
     - icon: ':x:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/garner.hpp
       title: math_mod/garner.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/inv.hpp
       title: math_mod/inv.hpp
     - icon: ':x:'
@@ -594,10 +594,10 @@ data:
     - icon: ':x:'
       path: verify/unit_test/isprime_table_extend.test.cpp
       title: verify/unit_test/isprime_table_extend.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/lpf_table_extend.test.cpp
       title: verify/unit_test/lpf_table_extend.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/prime_table_extend.test.cpp
       title: verify/unit_test/prime_table_extend.test.cpp
   - name: verify/yosupo_convolution
@@ -611,7 +611,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_gcd.test.cpp
       title: verify/yosupo_convolution/convolution_gcd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_lcm.test.cpp
       title: verify/yosupo_convolution/convolution_lcm.test.cpp
     - icon: ':heavy_check_mark:'
@@ -699,10 +699,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log_arb.test.cpp
       title: verify/yosupo_fps/fps_log_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
       title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
     - icon: ':x:'

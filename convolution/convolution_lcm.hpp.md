@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: math/sqrt_floor.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/convolution_lcm.hpp\"\n\n\n\n#include <cassert>\n\
@@ -99,18 +99,18 @@ data:
     \ kk2\n\n\n#line 7 \"convolution/convolution_lcm.hpp\"\n\nnamespace kk2 {\n\n\
     // 1-indexed\ntemplate <class FPS> FPS convolution_lcm(FPS &a, const FPS &b) {\n\
     \    assert(size(a) == size(b));\n    int n = int(size(a)); // = int(size(b))\n\
-    \    if (!n) return {};\n    n--;\n    FPS c(b.begin(), b.end());\n    Erato::set_upper(n);\n\
-    \n    divisor_transform(a);\n    divisor_transform(c);\n    for (int i = 1; i\
-    \ <= n; i++) a[i] *= c[i];\n    inverse_divisor_transform(a);\n\n    return a;\n\
-    }\n\n} // namespace kk2\n\n\n"
+    \    if (!n) return {};\n    n--;\n    FPS c(b.begin(), b.end());\n\n    divisor_transform(a);\n\
+    \    divisor_transform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n \
+    \   inverse_divisor_transform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\n\
+    \n"
   code: "#ifndef KK2_CONVOLUTION_CONVOLUTION_LCM_HPP\n#define KK2_CONVOLUTION_CONVOLUTION_LCM_HPP\
     \ 1\n\n#include <cassert>\n\n#include \"divisor_multiple_transform.hpp\"\n\nnamespace\
     \ kk2 {\n\n// 1-indexed\ntemplate <class FPS> FPS convolution_lcm(FPS &a, const\
     \ FPS &b) {\n    assert(size(a) == size(b));\n    int n = int(size(a)); // = int(size(b))\n\
-    \    if (!n) return {};\n    n--;\n    FPS c(b.begin(), b.end());\n    Erato::set_upper(n);\n\
-    \n    divisor_transform(a);\n    divisor_transform(c);\n    for (int i = 1; i\
-    \ <= n; i++) a[i] *= c[i];\n    inverse_divisor_transform(a);\n\n    return a;\n\
-    }\n\n} // namespace kk2\n\n#endif // KK2_CONVOLUTION_CONVOLUTION_LCM_HPP\n"
+    \    if (!n) return {};\n    n--;\n    FPS c(b.begin(), b.end());\n\n    divisor_transform(a);\n\
+    \    divisor_transform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n \
+    \   inverse_divisor_transform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\n\
+    #endif // KK2_CONVOLUTION_CONVOLUTION_LCM_HPP\n"
   dependsOn:
   - convolution/divisor_multiple_transform.hpp
   - math/prime_table.hpp
@@ -119,8 +119,8 @@ data:
   isVerificationFile: false
   path: convolution/convolution_lcm.hpp
   requiredBy: []
-  timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-02-08 15:18:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
 documentation_of: convolution/convolution_lcm.hpp

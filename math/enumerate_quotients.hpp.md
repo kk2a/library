@@ -11,14 +11,17 @@ data:
   - icon: ':x:'
     path: math/multiplicative_function/prefix_sum.hpp
     title: math/multiplicative_function/prefix_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/multiplicative_function/prime_counting.hpp
     title: math/multiplicative_function/prime_counting.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: verify/unit_test/isprime_table_extend.test.cpp
+    title: verify/unit_test/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':x:'
@@ -32,7 +35,7 @@ data:
     title: verify/yosupo_math/prime_counting.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/enumerate_quotients.hpp\"\n\n\n\n#include <numeric>\n\
@@ -84,13 +87,14 @@ data:
   - math/multiplicative_function/prime_counting.hpp
   - math/multiplicative_function/prefix_sum.hpp
   timestamp: '2025-02-01 17:57:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/prime_counting.test.cpp
   - verify/yosupo_math/enumerate_quotients.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: math/enumerate_quotients.hpp
 layout: document
 redirect_from:

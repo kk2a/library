@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
   - icon: ':question:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/multiplicative_function/prime_counting.hpp
     title: math/multiplicative_function/prime_counting.hpp
   - icon: ':question:'
@@ -51,9 +51,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -78,8 +78,8 @@ data:
     ../../math/prime_table.hpp\"\n#include \"../../math/multiplicative_function/prime_counting.hpp\"\
     \n#include \"../../random/gen.hpp\"\n#include \"../../template/template.hpp\"\n\
     using namespace std;\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n    kout\
-    \ << a << \" \" << b << kendl;\n\n    int iter = 1000;\n    rep (iter) {\n   \
-    \     int n = kk2::random::rng(2, 10000000);\n        assert((int)kk2::PrimeTable::primes(n).size()\
+    \ << a + b << kendl;\n\n    int iter = 1000;\n    rep (iter) {\n        int n\
+    \ = kk2::random::rng(2, 10000000);\n        assert((int)kk2::PrimeTable::primes(n).size()\
     \ == kk2::prime_counting(n));\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - math/prime_table.hpp
@@ -101,8 +101,8 @@ data:
   isVerificationFile: true
   path: verify/unit_test/prime_table_extend.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-08 15:18:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/prime_table_extend.test.cpp
 layout: document
