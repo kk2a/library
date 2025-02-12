@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps.hpp
     title: fps/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/ntt_friendly.hpp
     title: fps/ntt_friendly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_sample_point_shift.hpp
     title: fps/poly_sample_point_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -77,14 +77,14 @@ data:
     \ 1, r);\n    }\n\n  private:\n    static inline std::vector<mint> _block_fact{};\n\
     \n    static void _build() {\n        if (_block_fact.size()) return;\n      \
     \  std::vector<mint> f{1};\n        f.reserve(BLOCK_SIZE);\n        for (int i\
-    \ = 0; i < LOG_BLOCK_SIZE; i++) {\n            std::vector<mint> g = SamplePointShift<FPS>(f,\
+    \ = 0; i < LOG_BLOCK_SIZE; i++) {\n            std::vector<mint> g = sample_point_shift<FPS>(f,\
     \ mint(1 << i), 3 << i);\n            const auto get = [&](int j) {\n        \
     \        return j < (1 << i) ? f[j] : g[j - (1 << i)];\n            };\n     \
     \       f.resize(2 << i);\n            for (int j = 0; j < 2 << i; j++) {\n  \
     \              f[j] = get(2 * j) * get(2 * j + 1) * ((2 * j + 1) << i);\n    \
     \        }\n        }\n\n        if (BLOCK_NUM > BLOCK_SIZE) {\n            std::vector<mint>\
-    \ g =\n                SamplePointShift<FPS>(f, mint(BLOCK_SIZE), BLOCK_NUM -\
-    \ BLOCK_SIZE);\n            std::move(std::begin(g), std::end(g), std::back_inserter(f));\n\
+    \ g =\n                sample_point_shift<FPS>(f, mint(BLOCK_SIZE), BLOCK_NUM\
+    \ - BLOCK_SIZE);\n            std::move(std::begin(g), std::end(g), std::back_inserter(f));\n\
     \        } else f.resize(BLOCK_NUM);\n        for (int i = 0; i < BLOCK_NUM; i++)\
     \ { f[i] *= mint(i + 1) * BLOCK_SIZE; }\n        // f[i] = prod_{j = 1} ^ (BLOCK_SIZE)\
     \ (i * BLOCK_SIZE + j)\n\n        f.insert(std::begin(f), 1);\n        for (int\
@@ -112,8 +112,8 @@ data:
   isVerificationFile: false
   path: math_mod/comb_large.hpp
   requiredBy: []
-  timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-02-12 19:52:01+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
 documentation_of: math_mod/comb_large.hpp

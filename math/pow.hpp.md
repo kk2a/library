@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/arbitrary_table.hpp
     title: math/multiplicative_function/arbitrary_table.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/counting_square_free.hpp
+    title: math/multiplicative_function/counting_square_free.hpp
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/famous_function.hpp
     title: math/multiplicative_function/famous_function.hpp
@@ -42,6 +45,7 @@ data:
   requiredBy:
   - math/multiplicative_function/sigma.hpp
   - math/multiplicative_function/arbitrary_table.hpp
+  - math/multiplicative_function/counting_square_free.hpp
   - math/multiplicative_function/famous_function.hpp
   - math/multiplicative_function/famous_function_table.hpp
   timestamp: '2025-01-05 04:43:56+09:00'

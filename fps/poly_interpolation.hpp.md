@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/chirp_Z.hpp
     title: fps/chirp_Z.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/multi_eval.hpp
     title: fps/multi_eval.hpp
   _extendedRequiredBy: []

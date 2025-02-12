@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
+  - icon: ':warning:'
+    path: math/multiplicative_function/counting_square_free.hpp
+    title: math/multiplicative_function/counting_square_free.hpp
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/prefix_sum.hpp
     title: math/multiplicative_function/prefix_sum.hpp
@@ -97,6 +100,7 @@ data:
   requiredBy:
   - math/enumerate_quotients.hpp
   - math/multiplicative_function/prime_counting.hpp
+  - math/multiplicative_function/counting_square_free.hpp
   - math/multiplicative_function/prefix_sum.hpp
   - math/prime_table.hpp
   - convolution/convolution_lcm.hpp

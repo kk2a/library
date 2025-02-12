@@ -8,6 +8,9 @@ data:
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/multiplicative_function/counting_square_free.hpp
+    title: math/multiplicative_function/counting_square_free.hpp
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/prefix_sum.hpp
     title: math/multiplicative_function/prefix_sum.hpp
@@ -85,6 +88,7 @@ data:
   path: math/enumerate_quotients.hpp
   requiredBy:
   - math/multiplicative_function/prime_counting.hpp
+  - math/multiplicative_function/counting_square_free.hpp
   - math/multiplicative_function/prefix_sum.hpp
   timestamp: '2025-02-01 17:57:24+09:00'
   verificationStatus: LIBRARY_ALL_AC

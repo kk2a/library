@@ -7,7 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/pow.hpp
     title: math/pow.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/multiplicative_function/counting_square_free.hpp
+    title: math/multiplicative_function/counting_square_free.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/famous_function_table.test.cpp
@@ -117,7 +120,8 @@ data:
   - math/pow.hpp
   isVerificationFile: false
   path: math/multiplicative_function/famous_function_table.hpp
-  requiredBy: []
+  requiredBy:
+  - math/multiplicative_function/counting_square_free.hpp
   timestamp: '2025-02-08 19:46:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

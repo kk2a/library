@@ -8,7 +8,7 @@ data:
       title: bit/bitcount.hpp
   - name: convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/convolution.hpp
       title: convolution/convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -93,7 +93,7 @@ data:
       title: data_structure/w_ary_tree.hpp
   - name: fps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/bbb.hpp
       title: fps/bbb.hpp
     - icon: ':heavy_check_mark:'
@@ -108,7 +108,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/fps.hpp
       title: fps/fps.hpp
     - icon: ':heavy_check_mark:'
@@ -123,10 +123,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/mod_pow.hpp
       title: fps/mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/multi_eval.hpp
       title: fps/multi_eval.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/ntt_friendly.hpp
       title: fps/ntt_friendly.hpp
     - icon: ':heavy_check_mark:'
@@ -138,7 +138,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/poly_interpolation.hpp
       title: fps/poly_interpolation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_sample_point_shift.hpp
       title: fps/poly_sample_point_shift.hpp
     - icon: ':heavy_check_mark:'
@@ -324,6 +324,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/multiplicative_function/arbitrary_table.hpp
       title: math/multiplicative_function/arbitrary_table.hpp
+    - icon: ':warning:'
+      path: math/multiplicative_function/counting_square_free.hpp
+      title: math/multiplicative_function/counting_square_free.hpp
     - icon: ':heavy_check_mark:'
       path: math/multiplicative_function/euler_phi.hpp
       title: math/multiplicative_function/euler_phi.hpp
@@ -353,13 +356,13 @@ data:
     - icon: ':warning:'
       path: math_mod/bernoulli_number.hpp
       title: math_mod/bernoulli_number.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/butterfly.hpp
       title: math_mod/butterfly.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/comb.hpp
       title: math_mod/comb.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
     - icon: ':heavy_check_mark:'
@@ -374,10 +377,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/pow_mod.hpp
       title: math_mod/pow_mod.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/primitive_root.hpp
       title: math_mod/primitive_root.hpp
     - icon: ':heavy_check_mark:'
@@ -408,7 +411,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint/modint_2_61m1.hpp
       title: modint/modint_2_61m1.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/mont.hpp
       title: modint/mont.hpp
     - icon: ':heavy_check_mark:'
@@ -534,22 +537,22 @@ data:
       title: string/z_algorithm.hpp
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/constant.hpp
       title: template/constant.hpp
     - icon: ':warning:'
       path: template/debug.hpp
       title: template/debug.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/fastio.hpp
       title: template/fastio.hpp
     - icon: ':warning:'
       path: template/function_util.hpp
       title: template/function_util.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/io_util.hpp
       title: template/io_util.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/macros.hpp
       title: template/macros.hpp
     - icon: ':warning:'
@@ -558,10 +561,10 @@ data:
     - icon: ':warning:'
       path: template/simpleio.hpp
       title: template/simpleio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/type_alias.hpp
       title: template/type_alias.hpp
   - name: type_traits
@@ -572,7 +575,7 @@ data:
     - icon: ':warning:'
       path: type_traits/operator.hpp
       title: type_traits/operator.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   - name: unionfind
@@ -896,7 +899,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_math/many_factrials.test.cpp
       title: verify/yosupo_math/many_factrials.test.cpp
     - icon: ':heavy_check_mark:'
@@ -953,7 +956,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yuki/yuki_1326.test.cpp
       title: verify/yuki/yuki_1326.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yuki/yuki_1510.test.cpp
       title: verify/yuki/yuki_1510.test.cpp
 layout: toppage
