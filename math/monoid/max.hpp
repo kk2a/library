@@ -49,7 +49,7 @@ template <class S> struct Max {
         return *this;
     }
 
-    constexpr bool is_minf() { return minf; }
+    constexpr bool is_unit() { return minf; }
 };
 
 template <class S> constexpr Max<S> MaxOp(Max<S> l, Max<S> r) {

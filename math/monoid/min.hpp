@@ -49,7 +49,7 @@ template <class S> struct Min {
         return *this;
     }
 
-    constexpr bool is_inf() { return inf; }
+    constexpr bool is_unit() { return inf; }
 };
 
 template <class S> constexpr Min<S> MinOp(Min<S> l, Min<S> r) {

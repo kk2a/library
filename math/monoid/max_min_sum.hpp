@@ -64,6 +64,8 @@ template <class S> struct MaxMinSum {
         is_unit = false;
         return *this;
     }
+
+    constexpr bool is_unit() { return is_unit; }
 };
 
 template <class S> constexpr MaxMinSum<S> MaxMinSumOp(MaxMinSum<S> l, MaxMinSum<S> r) {
