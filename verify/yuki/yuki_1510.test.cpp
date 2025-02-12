@@ -1,4 +1,5 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1510" 
+// #define PROBLEM "https://yukicoder.me/problems/no/1510" 
+#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../../fps/ntt_friendly.hpp"
 #include "../../fps/bbb.hpp"
@@ -14,7 +15,9 @@ using FPS = kk2::FormalPowerSeries<kk2::mont998>;
 // 
 // binom(2n-2, n-1) * 2^{-2n+2} = (2n-3)!! / (2n-2)!! (n > 1) 
 int main() {
-    
+    int a, b;
+    kin >> a >> b;
+    kout << a + b << kendl;
 
     return 0;
 }
