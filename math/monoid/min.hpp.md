@@ -42,7 +42,7 @@ data:
     \     return *this;\n    }\n\n    constexpr Min &add(const S &rhs) {\n       \
     \ if (inf) return *this;\n        a += rhs;\n        return *this;\n    }\n\n\
     \    constexpr Min &update(const S &rhs) {\n        a = rhs;\n        inf = false;\n\
-    \        return *this;\n    }\n\n    constexpr bool is_inf() { return inf; }\n\
+    \        return *this;\n    }\n\n    constexpr bool is_unit() { return inf; }\n\
     };\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S> r) {\n    if\
     \ (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a, r.a);\n\
     \    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr static\
@@ -65,7 +65,7 @@ data:
     \        inf = false;\n        return *this;\n    }\n\n    constexpr Min &add(const\
     \ S &rhs) {\n        if (inf) return *this;\n        a += rhs;\n        return\
     \ *this;\n    }\n\n    constexpr Min &update(const S &rhs) {\n        a = rhs;\n\
-    \        inf = false;\n        return *this;\n    }\n\n    constexpr bool is_inf()\
+    \        inf = false;\n        return *this;\n    }\n\n    constexpr bool is_unit()\
     \ { return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
     \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
     \ r.a);\n    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr\
@@ -85,7 +85,7 @@ data:
   - segment_tree/utility/minseg.hpp
   - segment_tree/utility/updatemin.hpp
   - segment_tree/utility/minseg2d.hpp
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-02-12 19:35:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp

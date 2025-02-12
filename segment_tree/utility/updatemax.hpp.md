@@ -42,7 +42,7 @@ data:
     \        minf = false;\n        return *this;\n    }\n\n    constexpr Max &add(const\
     \ S &rhs) {\n        if (minf) return *this;\n        a += rhs;\n        return\
     \ *this;\n    }\n\n    constexpr Max &update(const S &rhs) {\n        a = rhs;\n\
-    \        minf = false;\n        return *this;\n    }\n\n    constexpr bool is_minf()\
+    \        minf = false;\n        return *this;\n    }\n\n    constexpr bool is_unit()\
     \ { return minf; }\n};\n\ntemplate <class S> constexpr Max<S> MaxOp(Max<S> l,\
     \ Max<S> r) {\n    if (r.minf) return l;\n    if (l.minf) return r;\n    l.a =\
     \ std::max(l.a, r.a);\n    return l;\n}\n\ntemplate <class S> Max<S> MaxUnit()\
@@ -148,7 +148,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/updatemax.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-02-12 19:35:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/updatemax.hpp

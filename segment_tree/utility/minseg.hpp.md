@@ -27,7 +27,7 @@ data:
     \        inf = false;\n        return *this;\n    }\n\n    constexpr Min &add(const\
     \ S &rhs) {\n        if (inf) return *this;\n        a += rhs;\n        return\
     \ *this;\n    }\n\n    constexpr Min &update(const S &rhs) {\n        a = rhs;\n\
-    \        inf = false;\n        return *this;\n    }\n\n    constexpr bool is_inf()\
+    \        inf = false;\n        return *this;\n    }\n\n    constexpr bool is_unit()\
     \ { return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
     \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
     \ r.a);\n    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr\
@@ -113,7 +113,7 @@ data:
   isVerificationFile: false
   path: segment_tree/utility/minseg.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-02-12 19:35:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/utility/minseg.hpp
