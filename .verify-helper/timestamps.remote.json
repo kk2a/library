@@ -95,6 +95,7 @@
 "verify/yosupo_math/kth_root_int.test.cpp": "2025-01-16 14:05:50 +0900",
 "verify/yosupo_math/kth_root_int_ceil.test.cpp": "2025-01-16 14:05:50 +0900",
 "verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp": "2025-01-16 14:05:50 +0900",
+"verify/yosupo_math/many_factrials.test.cpp": "2025-02-12 19:52:01 +0900",
 "verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp": "2025-02-08 19:46:37 +0900",
 "verify/yosupo_math/primality_test.test.cpp": "2025-01-16 14:05:50 +0900",
 "verify/yosupo_math/prime_counting.test.cpp": "2025-02-08 14:53:47 +0900",
@@ -110,5 +111,6 @@
 "verify/yosupo_string/string_z_roliha.test.cpp": "2025-02-04 23:50:25 +0900",
 "verify/yuki/yuki_0430.test.cpp": "2025-01-16 14:05:50 +0900",
 "verify/yuki/yuki_0430_2.test.cpp": "2025-01-16 14:05:50 +0900",
-"verify/yuki/yuki_1326.test.cpp": "2025-01-16 14:05:50 +0900"
+"verify/yuki/yuki_1326.test.cpp": "2025-01-16 14:05:50 +0900",
+"verify/yuki/yuki_1510.test.cpp": "2025-02-12 19:52:01 +0900"
 }
