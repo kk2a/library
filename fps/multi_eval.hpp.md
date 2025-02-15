@@ -85,15 +85,15 @@ data:
   isVerificationFile: false
   path: fps/multi_eval.hpp
   requiredBy:
-  - fps/poly_interpolation.hpp
   - fps/bbb.hpp
+  - fps/poly_interpolation.hpp
   timestamp: '2025-01-05 07:17:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - verify/yosupo_fps/poly_interpolation.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - verify/yuki/yuki_1510.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+  - verify/yosupo_fps/poly_interpolation.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
 documentation_of: fps/multi_eval.hpp
 layout: document
 redirect_from:

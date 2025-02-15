@@ -66,8 +66,8 @@ data:
   timestamp: '2025-02-08 18:14:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/multiplicative_function/euler_phi.hpp
 layout: document
 redirect_from:

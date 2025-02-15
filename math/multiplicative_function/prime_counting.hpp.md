@@ -128,9 +128,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/prime_counting.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
 documentation_of: math/multiplicative_function/prime_counting.hpp
 layout: document
 redirect_from:

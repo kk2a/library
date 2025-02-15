@@ -131,9 +131,9 @@ data:
   isVerificationFile: false
   path: modint/mont_arb.hpp
   requiredBy:
+  - math/multiplicative_function/euler_phi.hpp
   - math/multiplicative_function/sigma.hpp
   - math/multiplicative_function/mobius.hpp
-  - math/multiplicative_function/euler_phi.hpp
   - math/is_prime.hpp
   - math/prime_factorize.hpp
   - fps/fps_sqrt.hpp
@@ -142,17 +142,17 @@ data:
   timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_math/factrize.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
+  - verify/yosupo_math/sqrt_mod.test.cpp
+  - verify/yosupo_math/primality_test.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   - verify/yosupo_fps/fps_sqrt.test.cpp
-  - verify/yosupo_math/sqrt_mod.test.cpp
-  - verify/yosupo_math/primality_test.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
-  - verify/yosupo_math/factrize.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: modint/mont_arb.hpp
 layout: document
 redirect_from:

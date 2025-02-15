@@ -63,8 +63,8 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_convolution/convolution_or.test.cpp
   - verify/yosupo_convolution/convolution_and.test.cpp
+  - verify/yosupo_convolution/convolution_or.test.cpp
 documentation_of: convolution/zeta_mobius_transfrom.hpp
 layout: document
 redirect_from:

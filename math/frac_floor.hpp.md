@@ -94,15 +94,15 @@ data:
   isVerificationFile: false
   path: math/frac_floor.hpp
   requiredBy:
-  - math/enumerate_quotients.hpp
-  - math/multiplicative_function/prime_counting.hpp
+  - convolution/convolution_gcd.hpp
+  - convolution/divisor_multiple_transform.hpp
+  - convolution/convolution_lcm.hpp
   - math/multiplicative_function/counting_square_free.hpp
+  - math/multiplicative_function/prime_counting.hpp
   - math/multiplicative_function/prefix_sum.hpp
   - math/sqrt_floor.hpp
   - math/prime_table.hpp
-  - convolution/convolution_lcm.hpp
-  - convolution/convolution_gcd.hpp
-  - convolution/divisor_multiple_transform.hpp
+  - math/enumerate_quotients.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -111,12 +111,12 @@ data:
   - verify/yosupo_convolution/convolution_gcd.test.cpp
   - verify/yosupo_math/prime_counting.test.cpp
   - verify/yosupo_math/enumerate_quotients.test.cpp
+  - verify/yosupo_math/enumerate_primes.test.cpp
+  - verify/yosupo_math/enumerate_primes.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
-  - verify/yosupo_math/enumerate_primes.test.cpp
-  - verify/yosupo_math/enumerate_primes.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
 documentation_of: math/frac_floor.hpp
 layout: document
 redirect_from:

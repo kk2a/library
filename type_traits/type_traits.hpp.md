@@ -66,6 +66,9 @@ data:
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/shortest_path/warshall_floyd.hpp
+    title: graph/shortest_path/warshall_floyd.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/static_graph.hpp
     title: graph/static_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -180,6 +183,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_grl_1_b.test.cpp
+    title: verify/aoj/aoj_grl_1_b.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
@@ -591,178 +597,180 @@ data:
   isVerificationFile: false
   path: type_traits/type_traits.hpp
   requiredBy:
-  - matrix/basis.hpp
-  - matrix/matrix_F2.hpp
-  - matrix/matrix_field.hpp
-  - matrix/frobenius_form.hpp
-  - math/multiplicative_function/sigma.hpp
-  - math/multiplicative_function/mobius.hpp
-  - math/multiplicative_function/euler_phi.hpp
-  - math/rational.hpp
-  - math/is_prime.hpp
-  - math/prime_factorize.hpp
-  - template/procon.hpp
-  - template/io_util.hpp
-  - template/debug.hpp
+  - convolution/convolution.hpp
+  - convolution/multi_convolution_truncated.hpp
+  - convolution/convolution_arb.hpp
   - template/template.hpp
   - template/simpleio.hpp
   - template/fastio.hpp
-  - modint/mont.hpp
-  - modint/modint_2_61m1.hpp
-  - modint/mont_arb.hpp
+  - template/procon.hpp
+  - template/debug.hpp
+  - template/io_util.hpp
   - modint/modint.hpp
-  - geometry/argument_sort.hpp
-  - geometry/line.hpp
-  - geometry/point.hpp
+  - modint/mont.hpp
+  - modint/mont_arb.hpp
+  - modint/modint_2_61m1.hpp
+  - matrix/frobenius_form.hpp
+  - matrix/matrix_F2.hpp
+  - matrix/matrix_field.hpp
+  - matrix/basis.hpp
+  - string/rolling_hash.hpp
+  - bit/bitcount.hpp
+  - math/multiplicative_function/euler_phi.hpp
+  - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/mobius.hpp
+  - math/is_prime.hpp
+  - math/prime_factorize.hpp
+  - math/rational.hpp
   - geometry/static_convex_hull.hpp
   - geometry/cross_point_line_line.hpp
-  - fps/fps_arb.hpp
-  - fps/ntt_friendly.hpp
+  - geometry/argument_sort.hpp
+  - geometry/point.hpp
+  - geometry/line.hpp
+  - fps/fps.hpp
   - fps/fps_multivariate.hpp
   - fps/poly_taylor_shift.hpp
+  - fps/ntt_friendly.hpp
+  - fps/fps_arb.hpp
   - fps/fps_sqrt.hpp
-  - fps/fps.hpp
   - others/run_length_encoding.hpp
-  - graph/static_graph.hpp
   - graph/edge.hpp
+  - graph/static_graph.hpp
+  - graph/shortest_path/warshall_floyd.hpp
   - graph/graph.hpp
-  - convolution/convolution_arb.hpp
-  - convolution/convolution.hpp
-  - convolution/multi_convolution_truncated.hpp
+  - data_structure/convex_hull_trick_add_monotone.hpp
   - data_structure/my_bitset.hpp
   - data_structure/w_ary_tree.hpp
-  - data_structure/convex_hull_trick_add_monotone.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/bernoulli_number.hpp
-  - math_mod/comb.hpp
-  - math_mod/mod_sqrt.hpp
-  - math_mod/bell_number.hpp
-  - math_mod/pow_mod.hpp
   - math_mod/comb_large.hpp
-  - math_mod/primitive_root_64bit.hpp
+  - math_mod/bernoulli_number.hpp
+  - math_mod/primitive_root.hpp
   - math_mod/butterfly.hpp
-  - random/graph.hpp
-  - random/hash.hpp
-  - bit/bitcount.hpp
-  - string/rolling_hash.hpp
+  - math_mod/pow_mod.hpp
+  - math_mod/bell_number.hpp
+  - math_mod/mod_sqrt.hpp
+  - math_mod/primitive_root_64bit.hpp
+  - math_mod/comb.hpp
   - functional/reverse_args.hpp
+  - random/hash.hpp
+  - random/graph.hpp
   timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aoj/aoj_0560_2.test.cpp
-  - verify/aoj/aoj_alds1_14_b.test.cpp
-  - verify/aoj/aoj_ntl_1_e.test.cpp
-  - verify/aoj/aoj_grl_1_c.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
-  - verify/aoj/aoj_0560.test.cpp
-  - verify/aoj/aoj_0233.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - verify/yosupo_fps/fps_log_arb.test.cpp
-  - verify/yosupo_fps/fps_sparse_pow.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
-  - verify/yosupo_fps/poly_inv.test.cpp
-  - verify/yosupo_fps/fps_sparse_exp.test.cpp
-  - verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - verify/yosupo_fps/poly_interpolation.test.cpp
-  - verify/yosupo_fps/poly_division.test.cpp
-  - verify/yosupo_fps/fps_pow.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
-  - verify/yosupo_fps/poly_root_finding.test.cpp
-  - verify/yosupo_fps/fps_inv.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - verify/yosupo_fps/fps_sparse_inv.test.cpp
-  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
-  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-  - verify/yosupo_fps/fps_composition.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - verify/yosupo_fps/fps_log.test.cpp
-  - verify/yosupo_fps/fps_composition_inv.test.cpp
-  - verify/yosupo_fps/fps_sqrt.test.cpp
-  - verify/yosupo_fps/fps_sparse_log.test.cpp
-  - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-  - verify/yosupo_others/longest_increasing_subsequence.test.cpp
-  - verify/yosupo_others/many_a_plus_b.test.cpp
-  - verify/yosupo_linalg/matrix_inv.test.cpp
-  - verify/yosupo_linalg/matrix_det.test.cpp
-  - verify/yosupo_linalg/matrix_pow.test.cpp
-  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - verify/yosupo_convolution/convolution_lcm.test.cpp
+  - verify/yosupo_convolution/convolution_and.test.cpp
+  - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_xor.test.cpp
+  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
+  - verify/yosupo_convolution/convolution_or.test.cpp
+  - verify/yosupo_convolution/convolution_subset.test.cpp
+  - verify/yosupo_math/factrize.test.cpp
+  - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - verify/yosupo_math/prime_counting.test.cpp
+  - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+  - verify/yosupo_math/sum_of_floor_linear.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
+  - verify/yosupo_math/sqrt_mod.test.cpp
+  - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - verify/yosupo_math/kth_root_int.test.cpp
+  - verify/yosupo_math/kth_root_int_ceil.test.cpp
+  - verify/yosupo_math/enumerate_quotients.test.cpp
+  - verify/yosupo_math/enumerate_bell_number.test.cpp
+  - verify/yosupo_math/enumerate_primes.test.cpp
+  - verify/yosupo_math/primality_test.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - verify/yosupo_linalg/matrix_pow.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - verify/yosupo_linalg/matrix_inv.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - verify/yosupo_geometry/static_convex_hull_1.test.cpp
-  - verify/yosupo_geometry/static_convex_hull.test.cpp
-  - verify/yosupo_geometry/static_convex_hull_2.test.cpp
-  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
-  - verify/yosupo_geometry/arg_sort.test.cpp
-  - verify/yosupo_graph/tree_diameter.test.cpp
-  - verify/yosupo_graph/graph_shortest_path.test.cpp
-  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - verify/yosupo_graph/graph_bcc.test.cpp
   - verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - verify/yosupo_graph/graph_scc.test.cpp
+  - verify/yosupo_graph/graph_bcc.test.cpp
   - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+  - verify/yosupo_graph/graph_scc.test.cpp
   - verify/yosupo_graph/tree_lca_static.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - verify/yuki/yuki_1510.test.cpp
-  - verify/yuki/yuki_1326.test.cpp
-  - verify/yuki/yuki_0430_2.test.cpp
-  - verify/yuki/yuki_0430.test.cpp
-  - verify/yosupo_string/string_suffix_array.test.cpp
-  - verify/yosupo_string/string_number_of_substrings.test.cpp
-  - verify/yosupo_string/string_z_roliha.test.cpp
-  - verify/yosupo_string/string_z_algorithm.test.cpp
-  - verify/yosupo_convolution/convolution_xor.test.cpp
-  - verify/yosupo_convolution/convolution_or.test.cpp
-  - verify/yosupo_convolution/convolution_lcm.test.cpp
-  - verify/yosupo_convolution/convolution_subset.test.cpp
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_convolution/convolution_gcd.test.cpp
-  - verify/yosupo_convolution/convolution_and.test.cpp
-  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - verify/yosupo_math/prime_counting.test.cpp
-  - verify/yosupo_math/sqrt_mod.test.cpp
-  - verify/yosupo_math/enumerate_quotients.test.cpp
-  - verify/yosupo_math/many_factrials.test.cpp
-  - verify/yosupo_math/enumerate_bell_number.test.cpp
-  - verify/yosupo_math/primality_test.test.cpp
-  - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
-  - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
-  - verify/yosupo_math/sum_of_floor_linear.test.cpp
-  - verify/yosupo_math/kth_root_int.test.cpp
-  - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - verify/yosupo_math/enumerate_primes.test.cpp
-  - verify/yosupo_math/factrize.test.cpp
-  - verify/yosupo_math/kth_root_int_ceil.test.cpp
-  - verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-  - verify/yosupo_ds/ds_unionfind.test.cpp
-  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - verify/yosupo_ds/ds_static_rmq.test.cpp
-  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - verify/yosupo_ds/ds_set_xor_min.test.cpp
-  - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+  - verify/yosupo_graph/graph_shortest_path.test.cpp
+  - verify/yosupo_graph/tree_diameter.test.cpp
+  - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/multiplicative_function_table.test.cpp
-  - verify/unit_test/prime_table_extend.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/aoj/aoj_grl_1_c.test.cpp
+  - verify/aoj/aoj_ntl_1_e.test.cpp
+  - verify/aoj/aoj_0233.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/aoj/aoj_0560.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/aoj/aoj_grl_1_b.test.cpp
+  - verify/aoj/aoj_0560_2.test.cpp
+  - verify/yuki/yuki_0430_2.test.cpp
+  - verify/yuki/yuki_1510.test.cpp
+  - verify/yuki/yuki_0430.test.cpp
+  - verify/yuki/yuki_1326.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_1.test.cpp
+  - verify/yosupo_geometry/arg_sort.test.cpp
+  - verify/yosupo_geometry/static_convex_hull.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_2.test.cpp
+  - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+  - verify/yosupo_others/many_a_plus_b.test.cpp
+  - verify/yosupo_others/longest_increasing_subsequence.test.cpp
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
+  - verify/yosupo_fps/fps_log.test.cpp
+  - verify/yosupo_fps/poly_division.test.cpp
+  - verify/yosupo_fps/fps_log_arb.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+  - verify/yosupo_fps/fps_sparse_inv.test.cpp
+  - verify/yosupo_fps/fps_composition.test.cpp
+  - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/poly_root_finding.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - verify/yosupo_fps/poly_interpolation.test.cpp
+  - verify/yosupo_fps/fps_pow.test.cpp
+  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
+  - verify/yosupo_fps/poly_inv.test.cpp
+  - verify/yosupo_fps/fps_composition_inv.test.cpp
+  - verify/yosupo_fps/fps_sparse_pow.test.cpp
+  - verify/yosupo_fps/fps_sparse_log.test.cpp
+  - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - verify/yosupo_fps/fps_sparse_exp.test.cpp
+  - verify/yosupo_string/string_z_algorithm.test.cpp
+  - verify/yosupo_string/string_number_of_substrings.test.cpp
+  - verify/yosupo_string/string_suffix_array.test.cpp
+  - verify/yosupo_string/string_z_roliha.test.cpp
+  - verify/yosupo_ds/ds_set_xor_min.test.cpp
+  - verify/yosupo_ds/ds_static_range_inversions.test.cpp
+  - verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - verify/yosupo_ds/ds_unionfind.test.cpp
+  - verify/yosupo_ds/ds_static_rmq.test.cpp
+  - verify/yosupo_ds/ds_predecessor_problem.test.cpp
+  - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+  - verify/yosupo_ds/ds_static_range_sum.test.cpp
+  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+  - verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
 documentation_of: type_traits/type_traits.hpp
 layout: document
 redirect_from:

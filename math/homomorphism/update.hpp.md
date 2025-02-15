@@ -50,9 +50,9 @@ data:
   path: math/homomorphism/update.hpp
   requiredBy:
   - segment_tree/utility/updatesum.hpp
-  - segment_tree/utility/updatemax.hpp
-  - segment_tree/utility/update_max_min_sum.hpp
   - segment_tree/utility/updatemin.hpp
+  - segment_tree/utility/update_max_min_sum.hpp
+  - segment_tree/utility/updatemax.hpp
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

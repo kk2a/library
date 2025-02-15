@@ -184,16 +184,16 @@ data:
   isVerificationFile: false
   path: matrix/matrix_field.hpp
   requiredBy:
-  - matrix/basis.hpp
   - matrix/frobenius_form.hpp
+  - matrix/basis.hpp
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_linalg/matrix_inv.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
+  - verify/yosupo_linalg/matrix_product.test.cpp
   - verify/yosupo_linalg/matrix_pow.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - verify/yosupo_linalg/matrix_product.test.cpp
+  - verify/yosupo_linalg/matrix_inv.test.cpp
 documentation_of: matrix/matrix_field.hpp
 layout: document
 redirect_from:

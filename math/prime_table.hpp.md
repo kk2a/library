@@ -157,23 +157,23 @@ data:
   isVerificationFile: false
   path: math/prime_table.hpp
   requiredBy:
-  - math/multiplicative_function/prime_counting.hpp
-  - math/multiplicative_function/prefix_sum.hpp
-  - convolution/convolution_lcm.hpp
   - convolution/convolution_gcd.hpp
   - convolution/divisor_multiple_transform.hpp
+  - convolution/convolution_lcm.hpp
+  - math/multiplicative_function/prime_counting.hpp
+  - math/multiplicative_function/prefix_sum.hpp
   timestamp: '2025-02-08 14:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
   - verify/yosupo_math/prime_counting.test.cpp
-  - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   - verify/yosupo_math/enumerate_primes.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
 documentation_of: math/prime_table.hpp
 layout: document
 redirect_from:

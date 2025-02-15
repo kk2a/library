@@ -115,12 +115,14 @@ data:
     \ > 0);\n        if ((int)_euler_phi.size() <= n) set_upper(n);\n        return\
     \ _euler_phi[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 7 \"math/multiplicative_function/counting_square_free.hpp\"\
     \n\nnamespace kk2 {\n\nlong long counting_square_free(long long n) {\n    long\
-    \ long D = std::pow(n, 0.4);\n    \n}\n\n}\n\n\n\n"
+    \ long I = std::pow(n, 0.2);\n    long long D = kk2::sqrt_floor(n / I);\n}\n\n\
+    }\n\n\n\n"
   code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP\n#define\
     \ KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP 1\n\n#include <cmath>\n\
     #include \"../enumerate_quotients.hpp\"\n#include \"famous_function_table.hpp\"\
     \n\nnamespace kk2 {\n\nlong long counting_square_free(long long n) {\n    long\
-    \ long D = std::pow(n, 0.4);\n    \n}\n\n}\n\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP\n"
+    \ long I = std::pow(n, 0.2);\n    long long D = kk2::sqrt_floor(n / I);\n}\n\n\
+    }\n\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP\n"
   dependsOn:
   - math/enumerate_quotients.hpp
   - math/sqrt_floor.hpp
@@ -131,7 +133,7 @@ data:
   isVerificationFile: false
   path: math/multiplicative_function/counting_square_free.hpp
   requiredBy: []
-  timestamp: '2025-02-12 19:52:01+09:00'
+  timestamp: '2025-02-15 18:31:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multiplicative_function/counting_square_free.hpp

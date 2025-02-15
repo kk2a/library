@@ -99,9 +99,9 @@ data:
   timestamp: '2025-01-09 05:34:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
 documentation_of: fps/fps_arb.hpp
 layout: document
 redirect_from:

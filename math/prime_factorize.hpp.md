@@ -120,19 +120,19 @@ data:
   isVerificationFile: false
   path: math/prime_factorize.hpp
   requiredBy:
+  - math/multiplicative_function/euler_phi.hpp
   - math/multiplicative_function/sigma.hpp
   - math/multiplicative_function/mobius.hpp
-  - math/multiplicative_function/euler_phi.hpp
   - math_mod/primitive_root_64bit.hpp
   timestamp: '2025-02-04 23:50:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aoj/aoj_ntl_1_d.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/factrize.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/prime_factorize.hpp
 layout: document
 redirect_from:

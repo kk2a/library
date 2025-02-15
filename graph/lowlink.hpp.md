@@ -91,8 +91,8 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - verify/yuki/yuki_1326.test.cpp
 documentation_of: graph/lowlink.hpp
 layout: document

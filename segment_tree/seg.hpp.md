@@ -124,15 +124,15 @@ data:
   isVerificationFile: false
   path: segment_tree/seg.hpp
   requiredBy:
+  - segment_tree/utility/sumseg.hpp
+  - segment_tree/utility/minseg.hpp
   - segment_tree/utility/maxseg.hpp
   - segment_tree/utility/max_min_sum_seg.hpp
-  - segment_tree/utility/minseg.hpp
-  - segment_tree/utility/sumseg.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
 documentation_of: segment_tree/seg.hpp
 layout: document
 redirect_from:

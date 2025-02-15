@@ -87,8 +87,8 @@ data:
   isVerificationFile: false
   path: math/enumerate_quotients.hpp
   requiredBy:
-  - math/multiplicative_function/prime_counting.hpp
   - math/multiplicative_function/counting_square_free.hpp
+  - math/multiplicative_function/prime_counting.hpp
   - math/multiplicative_function/prefix_sum.hpp
   timestamp: '2025-02-01 17:57:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -96,9 +96,9 @@ data:
   - verify/yosupo_math/prime_counting.test.cpp
   - verify/yosupo_math/enumerate_quotients.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
 documentation_of: math/enumerate_quotients.hpp
 layout: document
 redirect_from:

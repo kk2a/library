@@ -43,8 +43,8 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
+  - verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
 documentation_of: data_structure/binary_indexed_tree.hpp
 layout: document
 redirect_from:

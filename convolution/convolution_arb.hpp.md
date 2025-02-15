@@ -96,10 +96,10 @@ data:
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
 documentation_of: convolution/convolution_arb.hpp
 layout: document
 redirect_from:

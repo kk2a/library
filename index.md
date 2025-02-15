@@ -199,9 +199,6 @@ data:
       path: graph/scc.hpp
       title: graph/scc.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/shortest_path.hpp
-      title: graph/shortest_path.hpp
-    - icon: ':heavy_check_mark:'
       path: graph/static_graph.hpp
       title: graph/static_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -210,9 +207,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.hpp
       title: graph/two_edge_connected_components.hpp
+  - name: graph/shortest_path
+    pages:
     - icon: ':heavy_check_mark:'
-      path: graph/warshall_floyd.hpp
-      title: graph/warshall_floyd.hpp
+      path: graph/shortest_path/bellman_ford.hpp
+      title: graph/shortest_path/bellman_ford.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/shortest_path/dijkstra.hpp
+      title: graph/shortest_path/dijkstra.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/shortest_path/warshall_floyd.hpp
+      title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree
     pages:
     - icon: ':warning:'
@@ -607,6 +612,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_alds1_14_b.test.cpp
       title: verify/aoj/aoj_alds1_14_b.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aoj/aoj_grl_1_b.test.cpp
+      title: verify/aoj/aoj_grl_1_b.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_grl_1_c.test.cpp
       title: verify/aoj/aoj_grl_1_c.test.cpp

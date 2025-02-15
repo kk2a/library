@@ -39,8 +39,8 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
 documentation_of: fps/product.hpp
 layout: document
 redirect_from:

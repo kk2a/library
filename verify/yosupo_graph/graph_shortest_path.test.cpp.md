@@ -8,8 +8,8 @@ data:
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/shortest_path.hpp
-    title: graph/shortest_path.hpp
+    path: graph/shortest_path/dijkstra.hpp
+    title: graph/shortest_path/dijkstra.hpp
   - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -55,12 +55,12 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include\
-    \ \"../../graph/graph.hpp\"\n#include \"../../graph/shortest_path.hpp\"\n#include\
-    \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ n, m, s, t;\n    kin >> n >> m >> s >> t;\n    kk2::DWAdjList<i64> g(n, m);\n\
-    \    g.input(kin);\n    auto [dist, prev] = kk2::shortest_path(g, s);\n\n    if\
-    \ (prev[t].to == -1) {\n        kout << -1 << \"\\n\";\n        return 0;\n  \
-    \  }\n\n    std::vector<int> path;\n    for (int now = t; now != -1; now = prev[now].to)\
+    \ \"../../graph/graph.hpp\"\n#include \"../../graph/shortest_path/dijkstra.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int n, m, s, t;\n    kin >> n >> m >> s >> t;\n    kk2::DWAdjList<i64>\
+    \ g(n, m);\n    g.input(kin);\n    auto [dist, prev] = kk2::dijkstra(g, s);\n\n\
+    \    if (prev[t].to == -1) {\n        kout << -1 << \"\\n\";\n        return 0;\n\
+    \    }\n\n    std::vector<int> path;\n    for (int now = t; now != -1; now = prev[now].to)\
     \ path.emplace_back(now);\n\n    kout << dist[t] << \" \" << path.size() - 1 <<\
     \ \"\\n\";\n    for (int i = path.size() - 1; i; --i) kout << path[i] << \" \"\
     \ << path[i - 1] << \"\\n\";\n\n    return 0;\n}\n"
@@ -68,7 +68,7 @@ data:
   - graph/graph.hpp
   - type_traits/type_traits.hpp
   - graph/edge.hpp
-  - graph/shortest_path.hpp
+  - graph/shortest_path/dijkstra.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
@@ -78,7 +78,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_graph/graph_shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-02-15 18:31:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_shortest_path.test.cpp

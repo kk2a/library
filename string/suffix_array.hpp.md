@@ -233,8 +233,8 @@ data:
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_string/string_suffix_array.test.cpp
   - verify/yosupo_string/string_number_of_substrings.test.cpp
+  - verify/yosupo_string/string_suffix_array.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:
