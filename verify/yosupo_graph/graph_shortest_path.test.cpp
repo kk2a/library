@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 
 #include "../../graph/graph.hpp"
-#include "../../graph/shortest_path.hpp"
+#include "../../graph/shortest_path/dijkstra.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
@@ -10,7 +10,7 @@ int main() {
     kin >> n >> m >> s >> t;
     kk2::DWAdjList<i64> g(n, m);
     g.input(kin);
-    auto [dist, prev] = kk2::shortest_path(g, s);
+    auto [dist, prev] = kk2::dijkstra(g, s);
 
     if (prev[t].to == -1) {
         kout << -1 << "\n";

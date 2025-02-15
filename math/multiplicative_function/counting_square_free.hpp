@@ -8,8 +8,8 @@
 namespace kk2 {
 
 long long counting_square_free(long long n) {
-    long long D = std::pow(n, 0.4);
-    
+    long long I = std::pow(n, 0.2);
+    long long D = kk2::sqrt_floor(n / I);
 }
 
 }
