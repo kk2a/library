@@ -226,6 +226,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/block_cut_tree.hpp
       title: graph/tree/block_cut_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/tree/cartesian_tree.hpp
+      title: graph/tree/cartesian_tree.hpp
     - icon: ':warning:'
       path: graph/tree/centroid.hpp
       title: graph/tree/centroid.hpp
@@ -840,6 +843,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
       title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_graph/tree_cartesian.test.cpp
+      title: verify/yosupo_graph/tree_cartesian.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_diameter.test.cpp
       title: verify/yosupo_graph/tree_diameter.test.cpp
