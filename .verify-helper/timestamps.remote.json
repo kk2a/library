@@ -11,6 +11,7 @@
 "verify/unit_test/isprime_table_extend.test.cpp": "2025-02-08 19:46:37 +0900",
 "verify/unit_test/lpf_table_extend.test.cpp": "2025-02-08 19:46:37 +0900",
 "verify/unit_test/multiplicative_function_table.test.cpp": "2025-02-08 20:19:16 +0900",
+"verify/unit_test/partial_persitent_unionfind.test.cpp": "2025-02-23 19:24:12 +0900",
 "verify/unit_test/prime_factorize_table.test.cpp": "2025-02-08 19:46:37 +0900",
 "verify/unit_test/prime_table_extend.test.cpp": "2025-02-08 15:18:40 +0900",
 "verify/yosupo_convolution/convolution_and.test.cpp": "2025-01-16 14:05:50 +0900",
