@@ -75,6 +75,7 @@
 "verify/yosupo_graph/graph_scc.test.cpp": "2025-01-16 14:05:50 +0900",
 "verify/yosupo_graph/graph_shortest_path.test.cpp": "2025-02-15 18:31:33 +0900",
 "verify/yosupo_graph/graph_two_edge_connected_components.test.cpp": "2025-01-16 14:05:50 +0900",
+"verify/yosupo_graph/tree_cartesian.test.cpp": "2025-02-22 17:38:31 +0900",
 "verify/yosupo_graph/tree_diameter.test.cpp": "2025-01-16 14:05:50 +0900",
 "verify/yosupo_graph/tree_lca.test.cpp": "2025-01-16 14:05:50 +0900",
 "verify/yosupo_graph/tree_lca_static.test.cpp": "2025-01-16 14:05:50 +0900",
