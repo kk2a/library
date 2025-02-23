@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/partial_persitent_unionfind.test.cpp
+    title: verify/unit_test/partial_persitent_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
   _isVerificationFailed: false
@@ -36,6 +39,7 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/partial_persitent_unionfind.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
 documentation_of: unionfind/unionfind.hpp
 layout: document

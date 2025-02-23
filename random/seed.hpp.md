@@ -52,6 +52,9 @@ data:
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/partial_persitent_unionfind.test.cpp
+    title: verify/unit_test/partial_persitent_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_factorize_table.test.cpp
     title: verify/unit_test/prime_factorize_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -113,6 +116,7 @@ data:
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
+  - verify/unit_test/partial_persitent_unionfind.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp

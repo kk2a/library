@@ -46,6 +46,9 @@ data:
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/partial_persitent_unionfind.test.cpp
+    title: verify/unit_test/partial_persitent_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_factorize_table.test.cpp
     title: verify/unit_test/prime_factorize_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -479,6 +482,7 @@ data:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/graph_shortest_path.test.cpp
   - verify/yosupo_graph/tree_diameter.test.cpp
+  - verify/unit_test/partial_persitent_unionfind.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp

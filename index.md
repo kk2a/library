@@ -79,6 +79,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/prefix_sum_arbitrary.hpp
       title: data_structure/prefix_sum_arbitrary.hpp
+    - icon: ':warning:'
+      path: data_structure/slope_trick.hpp
+      title: data_structure/slope_trick.hpp
     - icon: ':heavy_check_mark:'
       path: data_structure/sparse_table.hpp
       title: data_structure/sparse_table.hpp
@@ -589,6 +592,9 @@ data:
   - name: unionfind
     pages:
     - icon: ':heavy_check_mark:'
+      path: unionfind/partial_persistent.hpp
+      title: unionfind/partial_persistent.hpp
+    - icon: ':heavy_check_mark:'
       path: unionfind/potentialized.hpp
       title: unionfind/potentialized.hpp
     - icon: ':warning:'
@@ -641,6 +647,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/multiplicative_function_table.test.cpp
       title: verify/unit_test/multiplicative_function_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/unit_test/partial_persitent_unionfind.test.cpp
+      title: verify/unit_test/partial_persitent_unionfind.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/prime_factorize_table.test.cpp
       title: verify/unit_test/prime_factorize_table.test.cpp
