@@ -6,6 +6,7 @@
 #include <type_traits>
 
 namespace kk2 {
+// BEGIN_PRESERVE_NEWLINES
 
 #define HAS_MEMBER_FUNC(member)                                                                    \
     template <typename T, typename... Ts> struct has_member_func_##member##_impl {                 \
@@ -38,6 +39,7 @@ namespace kk2 {
 
 HAS_MEMBER_FUNC(debug_output)
 
+// END_PRESERVE_NEWLINES
 
 #undef HAS_MEMBER_FUNC
 #undef HAS_MEMBER_VAR
