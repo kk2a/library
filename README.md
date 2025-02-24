@@ -6,6 +6,9 @@
 
 
 ### expand_user_file.py
+<!-- 強調 -->
+**このファイルはもう使っていません．今は，[cpp-bundle](https://github.com/kk2a/cpp-bundle)を使っています．**
+
 #include <kk2/hoge>, #include "hoge.hpp"をすべて展開したものをクリップボードに保存します．その場で展開されるようにしているので，展開前の行の位置関係は保持されます．
 
 以下のようにして使います．
