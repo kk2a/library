@@ -7,14 +7,25 @@
 
 namespace kk2 {
 
-template <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable {
+template <class S, S (*op)(S, S), S (*e)()>
+struct DisjointSparseTable {
     DisjointSparseTable() = default;
+
+    DisjointSparseTable(int n) : _n(n) {
+        log = 0;
+        while ((1 << log) < _n) log++;
+        table.assign(log + 1, std::vector<S>(_n));
+    }
 
     DisjointSparseTable(const std::vector<S> &v) : _n(int(v.size())) {
         log = 0;
         while ((1 << log) < _n) log++;
         table.assign(log + 1, std::vector<S>(_n));
         for (int i = 0; i < _n; ++i) table[0][i] = v[i];
+        build();
+    }
+
+    void build() {
         for (int i = 1; i <= log; ++i) {
             int shift = 1 << i;
             for (int left = 0; left < _n; left += shift << 1) {
@@ -27,6 +38,16 @@ template <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable {
                 for (int j = cent + 1; j < right; ++j) { table[i][j] = op(table[i][j - 1], v[j]); }
             }
         }
+    }
+
+    void init_set(int p, S x) {
+        assert(0 <= p && p < _n);
+        table[0][p] = x;
+    }
+
+    template <class... Args>
+    void emplace_init_set(int p, Args... args) {
+        init_set(p, S(args...));
     }
 
     S prod(int l, int r) const {

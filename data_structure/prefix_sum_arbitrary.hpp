@@ -7,21 +7,41 @@
 
 namespace kk2 {
 
-template <class T> struct PrefixSumArbitrary {
+template <class T>
+struct PrefixSumArbitrary {
   private:
     std::vector<int> base;
-    std::vector<T> acc;
     int dim;
+    std::vector<T> acc;
 
     std::vector<int> inner_base;
     int n;
 
-    constexpr void build() {
+  public:
+    constexpr PrefixSumArbitrary() = default;
+
+    constexpr PrefixSumArbitrary(const std::vector<int> &base_)
+        : base(base_),
+          dim(int(base_.size())) {
         inner_base.resize(dim + 1, 1);
         for (int i = 1; i < dim + 1; ++i) { inner_base[i] = inner_base[i - 1] * base[i - 1]; }
         n = 1;
         for (int x : base) n *= x;
+        acc.resize(n, T{});
+    }
 
+    constexpr PrefixSumArbitrary(const std::vector<int> &base_, const std::vector<T> &a)
+        : base(base_),
+          dim(int(base_.size())),
+          acc(a) {
+        inner_base.resize(dim + 1, 1);
+        for (int i = 1; i < dim + 1; ++i) { inner_base[i] = inner_base[i - 1] * base[i - 1]; }
+        n = 1;
+        for (int x : base) n *= x;
+        build();
+    }
+
+    constexpr void build() {
         for (int i = 0; i < dim; ++i) {
             for (int coord = 0; coord < n; ++coord) {
                 if (coord / inner_base[i + 1] == (coord + inner_base[i]) / inner_base[i + 1]) {
@@ -31,14 +51,14 @@ template <class T> struct PrefixSumArbitrary {
         }
     }
 
-  public:
-    constexpr PrefixSumArbitrary() = default;
-
-    constexpr PrefixSumArbitrary(const std::vector<int> &base_, const std::vector<T> &a)
-        : base(base_),
-          acc(a),
-          dim(int(base_.size())) {
-        build();
+    constexpr void init_set(const std::vector<int> &p, T x) {
+        assert(int(p.size()) == dim);
+        int coord = 0;
+        for (int i = 0; i < dim; ++i) {
+            assert(0 <= p[i] and p[i] < base[i]);
+            coord += p[i] * inner_base[i];
+        }
+        acc[coord] = x;
     }
 
     constexpr T sum(const std::vector<int> &l, const std::vector<int> &r) const {

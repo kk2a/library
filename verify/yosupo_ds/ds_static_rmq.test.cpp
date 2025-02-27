@@ -7,9 +7,13 @@ using namespace std;
 int main() {
     int n, q;
     kin >> n >> q;
-    auto a = kk2::GetVecMin<int>(n);
-    kin >> a;
-    kk2::StaticRMQ<int> rmq(a);
+    kk2::StaticRMQ<int> rmq(n);
+    rep (i, n) {
+        int a;
+        kin >> a;
+        rmq.emplace_init_set(i, a);
+    }
+    rmq.build();
 
     rep (q) {
         int l, r;

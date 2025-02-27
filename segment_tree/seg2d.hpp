@@ -29,6 +29,10 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) { d[i + size_h][j + size_w] = v[i][j]; }
         }
+        build();
+    }
+
+    void build() {
         for (int j = size_w; j < size_w * 2; j++) {
             for (int i = size_h - 1; i; i--) updatei(i, j);
         }
@@ -36,6 +40,14 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
             for (int j = size_w - 1; j; j--) updatej(i, j);
         }
     }
+
+    void init_set(int i, int j, const S &x) {
+        assert(0 <= i && i < _h);
+        assert(0 <= j && j < _w);
+        d[i + size_h][j + size_w] = x;
+    }
+
+    template <class... Args> void emplace_init_set(int i, int j, Args... args) { init_set(i, j, S(args...)); }
 
     void set(int i, int j, const S &x) {
         assert(0 <= i && i < _h);

@@ -8,14 +8,26 @@
 
 namespace kk2 {
 
-template <class T> struct PrefixSum {
+template <class T>
+struct PrefixSum {
     std::vector<T> acc;
     int n;
 
     constexpr PrefixSum() = default;
 
+    constexpr PrefixSum(int n_) : acc(n_ + 1), n(n_) {}
+
     constexpr PrefixSum(const std::vector<T> &a) : acc(a.size() + 1), n((int)a.size()) {
         for (int i = 0; i < n; ++i) { acc[i + 1] = acc[i] + a[i]; }
+    }
+
+    constexpr void build() {
+        for (int i = 0; i < n; ++i) { acc[i + 1] += acc[i]; }
+    }
+
+    constexpr void init_set(int p, T x) {
+        assert(0 <= p && p < n);
+        acc[p + 1] = x;
     }
 
     constexpr T sum(int l, int r) const {

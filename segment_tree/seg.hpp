@@ -7,11 +7,17 @@
 
 namespace kk2 {
 
-template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
+template <class S, S (*op)(S, S), S (*e)()>
+struct SegTree {
   public:
     SegTree() : SegTree(0) {}
 
-    SegTree(int n) : SegTree(std::vector<S>(n, e())) {}
+    SegTree(int n) : _n(n) {
+        log = 0;
+        while ((1U << log) < (unsigned int)(_n)) log++;
+        size = 1 << log;
+        d = std::vector<S>(2 * size, e());
+    }
 
     template <class... Args>
     SegTree(int n, Args... args) : SegTree(std::vector<S>(n, S(args...))){};
@@ -22,7 +28,21 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
         size = 1 << log;
         d = std::vector<S>(2 * size, e());
         for (int i = 0; i < _n; i++) d[size + i] = v[i];
+        build();
+    }
+
+    void build() {
         for (int i = size - 1; i >= 1; i--) { update(i); }
+    }
+
+    void init_set(int p, S x) {
+        assert(0 <= p && p < _n);
+        d[p + size] = x;
+    }
+
+    template <class... Args>
+    void emplace_init_set(int p, Args... args) {
+        init_set(p, S(args...));
     }
 
     using Monoid = S;
@@ -38,7 +58,10 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
         for (int i = 1; i <= log; i++) update(p >> i);
     }
 
-    template <class... Args> void emplace_set(int p, Args... args) { set(p, S(args...)); }
+    template <class... Args>
+    void emplace_set(int p, Args... args) {
+        set(p, S(args...));
+    }
 
     S get(int p) {
         assert(0 <= p && p < _n);
@@ -65,11 +88,13 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
     // return r s.t.
     // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true
     // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false
-    template <bool (*f)(S)> int max_right(int l) {
+    template <bool (*f)(S)>
+    int max_right(int l) {
         return max_right(l, [](S x) { return f(x); });
     }
 
-    template <class F> int max_right(int l, F f) {
+    template <class F>
+    int max_right(int l, F f) {
         assert(0 <= l && l <= _n);
         assert(f(e()));
         if (l == _n) return _n;
@@ -96,11 +121,13 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree {
     // return l s.t.
     // l = r or f(op(a[l], a[l], ..., a[r-1]))   == true
     // l = 0 or f(op(a[l-1], a[l], ..., a[r-1])) == false
-    template <bool (*f)(S)> int min_left(int r) {
+    template <bool (*f)(S)>
+    int min_left(int r) {
         return min_left(r, [](S x) { return f(x); });
     }
 
-    template <class F> int min_left(int r, F f) {
+    template <class F>
+    int min_left(int r, F f) {
         assert(0 <= r && r <= _n);
         assert(f(e()));
         if (r == 0) return 0;
