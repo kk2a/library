@@ -55,7 +55,7 @@ data:
     - icon: ':warning:'
       path: data_structure/convex_hull_trick_add_monotone.hpp
       title: data_structure/convex_hull_trick_add_monotone.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/disjoint_sparse_table.hpp
       title: data_structure/disjoint_sparse_table.hpp
     - icon: ':warning:'
@@ -73,7 +73,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/prefix_sum.hpp
       title: data_structure/prefix_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/prefix_sum_2d.hpp
       title: data_structure/prefix_sum_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -548,22 +548,22 @@ data:
       title: string/z_algorithm.hpp
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/constant.hpp
       title: template/constant.hpp
     - icon: ':warning:'
       path: template/debug.hpp
       title: template/debug.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/fastio.hpp
       title: template/fastio.hpp
     - icon: ':warning:'
       path: template/function_util.hpp
       title: template/function_util.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/io_util.hpp
       title: template/io_util.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
     - icon: ':warning:'
@@ -572,10 +572,10 @@ data:
     - icon: ':warning:'
       path: template/simpleio.hpp
       title: template/simpleio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_alias.hpp
       title: template/type_alias.hpp
   - name: type_traits
@@ -586,7 +586,7 @@ data:
     - icon: ':warning:'
       path: type_traits/operator.hpp
       title: type_traits/operator.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: type_traits/type_traits.hpp
       title: type_traits/type_traits.hpp
   - name: unionfind
@@ -612,7 +612,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_0233.test.cpp
       title: verify/aoj/aoj_0233.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/aoj/aoj_0560.test.cpp
       title: verify/aoj/aoj_0560.test.cpp
     - icon: ':heavy_check_mark:'
@@ -726,7 +726,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_rmq.test.cpp
       title: verify/yosupo_ds/ds_static_rmq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
       title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     - icon: ':heavy_check_mark:'

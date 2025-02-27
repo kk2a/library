@@ -30,17 +30,21 @@ data:
     \ < _h) size_h <<= 1;\n        while (size_w < _w) size_w <<= 1;\n        d =\
     \ std::vector<std::vector<S>>(size_h * 2, std::vector<S>(size_w * 2, e()));\n\
     \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
-    \ { d[i + size_h][j + size_w] = v[i][j]; }\n        }\n        for (int j = size_w;\
-    \ j < size_w * 2; j++) {\n            for (int i = size_h - 1; i; i--) updatei(i,\
-    \ j);\n        }\n        for (int i = 1; i < size_h * 2; i++) {\n           \
-    \ for (int j = size_w - 1; j; j--) updatej(i, j);\n        }\n    }\n\n    void\
-    \ set(int i, int j, const S &x) {\n        assert(0 <= i && i < _h);\n       \
-    \ assert(0 <= j && j < _w);\n        i += size_h;\n        j += size_w;\n    \
-    \    d[i][j] = x;\n        for (int ii = i >> 1; ii; ii >>= 1) updatei(ii, j);\n\
-    \        for (int ii = i; ii; ii >>= 1) {\n            for (int jj = j >> 1; jj;\
-    \ jj >>= 1) updatej(ii, jj);\n        }\n    }\n\n    template <class... Args>\
-    \ void emplace_set(int i, int j, Args... args) { set(i, j, S(args...)); }\n\n\
-    \    S get(int i, int j) {\n        assert(0 <= i && i < _h);\n        assert(0\
+    \ { d[i + size_h][j + size_w] = v[i][j]; }\n        }\n        build();\n    }\n\
+    \n    void build() {\n        for (int j = size_w; j < size_w * 2; j++) {\n  \
+    \          for (int i = size_h - 1; i; i--) updatei(i, j);\n        }\n      \
+    \  for (int i = 1; i < size_h * 2; i++) {\n            for (int j = size_w - 1;\
+    \ j; j--) updatej(i, j);\n        }\n    }\n\n    void init_set(int i, int j,\
+    \ const S &x) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j\
+    \ < _w);\n        d[i + size_h][j + size_w] = x;\n    }\n\n    template <class...\
+    \ Args> void emplace_init_set(int i, int j, Args... args) { init_set(i, j, S(args...));\
+    \ }\n\n    void set(int i, int j, const S &x) {\n        assert(0 <= i && i <\
+    \ _h);\n        assert(0 <= j && j < _w);\n        i += size_h;\n        j +=\
+    \ size_w;\n        d[i][j] = x;\n        for (int ii = i >> 1; ii; ii >>= 1) updatei(ii,\
+    \ j);\n        for (int ii = i; ii; ii >>= 1) {\n            for (int jj = j >>\
+    \ 1; jj; jj >>= 1) updatej(ii, jj);\n        }\n    }\n\n    template <class...\
+    \ Args> void emplace_set(int i, int j, Args... args) { set(i, j, S(args...));\
+    \ }\n\n    S get(int i, int j) {\n        assert(0 <= i && i < _h);\n        assert(0\
     \ <= j && j < _w);\n        return d[i + size_h][j + size_w];\n    }\n\n    S\
     \ prod(int i1, int j1, int i2, int j2) {\n        assert(0 <= i1 && i1 <= i2 &&\
     \ i2 <= _h);\n        assert(0 <= j1 && j1 <= j2 && j2 <= _w);\n        if (i1\
@@ -69,17 +73,21 @@ data:
     \ < _h) size_h <<= 1;\n        while (size_w < _w) size_w <<= 1;\n        d =\
     \ std::vector<std::vector<S>>(size_h * 2, std::vector<S>(size_w * 2, e()));\n\
     \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++)\
-    \ { d[i + size_h][j + size_w] = v[i][j]; }\n        }\n        for (int j = size_w;\
-    \ j < size_w * 2; j++) {\n            for (int i = size_h - 1; i; i--) updatei(i,\
-    \ j);\n        }\n        for (int i = 1; i < size_h * 2; i++) {\n           \
-    \ for (int j = size_w - 1; j; j--) updatej(i, j);\n        }\n    }\n\n    void\
-    \ set(int i, int j, const S &x) {\n        assert(0 <= i && i < _h);\n       \
-    \ assert(0 <= j && j < _w);\n        i += size_h;\n        j += size_w;\n    \
-    \    d[i][j] = x;\n        for (int ii = i >> 1; ii; ii >>= 1) updatei(ii, j);\n\
-    \        for (int ii = i; ii; ii >>= 1) {\n            for (int jj = j >> 1; jj;\
-    \ jj >>= 1) updatej(ii, jj);\n        }\n    }\n\n    template <class... Args>\
-    \ void emplace_set(int i, int j, Args... args) { set(i, j, S(args...)); }\n\n\
-    \    S get(int i, int j) {\n        assert(0 <= i && i < _h);\n        assert(0\
+    \ { d[i + size_h][j + size_w] = v[i][j]; }\n        }\n        build();\n    }\n\
+    \n    void build() {\n        for (int j = size_w; j < size_w * 2; j++) {\n  \
+    \          for (int i = size_h - 1; i; i--) updatei(i, j);\n        }\n      \
+    \  for (int i = 1; i < size_h * 2; i++) {\n            for (int j = size_w - 1;\
+    \ j; j--) updatej(i, j);\n        }\n    }\n\n    void init_set(int i, int j,\
+    \ const S &x) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j\
+    \ < _w);\n        d[i + size_h][j + size_w] = x;\n    }\n\n    template <class...\
+    \ Args> void emplace_init_set(int i, int j, Args... args) { init_set(i, j, S(args...));\
+    \ }\n\n    void set(int i, int j, const S &x) {\n        assert(0 <= i && i <\
+    \ _h);\n        assert(0 <= j && j < _w);\n        i += size_h;\n        j +=\
+    \ size_w;\n        d[i][j] = x;\n        for (int ii = i >> 1; ii; ii >>= 1) updatei(ii,\
+    \ j);\n        for (int ii = i; ii; ii >>= 1) {\n            for (int jj = j >>\
+    \ 1; jj; jj >>= 1) updatej(ii, jj);\n        }\n    }\n\n    template <class...\
+    \ Args> void emplace_set(int i, int j, Args... args) { set(i, j, S(args...));\
+    \ }\n\n    S get(int i, int j) {\n        assert(0 <= i && i < _h);\n        assert(0\
     \ <= j && j < _w);\n        return d[i + size_h][j + size_w];\n    }\n\n    S\
     \ prod(int i1, int j1, int i2, int j2) {\n        assert(0 <= i1 && i1 <= i2 &&\
     \ i2 <= _h);\n        assert(0 <= j1 && j1 <= j2 && j2 <= _w);\n        if (i1\
@@ -99,10 +107,10 @@ data:
   isVerificationFile: false
   path: segment_tree/seg2d.hpp
   requiredBy:
+  - segment_tree/utility/sumseg2d.hpp
   - segment_tree/utility/maxseg2d.hpp
   - segment_tree/utility/minseg2d.hpp
-  - segment_tree/utility/sumseg2d.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-02-27 22:28:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/seg2d.hpp

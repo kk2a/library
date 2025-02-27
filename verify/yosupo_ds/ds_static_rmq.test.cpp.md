@@ -10,25 +10,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -59,8 +59,9 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include\
     \ \"../../data_structure/static_rmq.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n  \
-    \  auto a = kk2::GetVecMin<int>(n);\n    kin >> a;\n    kk2::StaticRMQ<int> rmq(a);\n\
-    \n    rep (q) {\n        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l,\
+    \  kk2::StaticRMQ<int> rmq(n);\n    rep (i, n) {\n        int a;\n        kin\
+    \ >> a;\n        rmq.emplace_init_set(i, a);\n    }\n    rmq.build();\n\n    rep\
+    \ (q) {\n        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l,\
     \ r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - data_structure/static_rmq.hpp
@@ -76,7 +77,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_rmq.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 19:35:30+09:00'
+  timestamp: '2025-02-27 22:28:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq.test.cpp

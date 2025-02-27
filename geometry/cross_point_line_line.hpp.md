@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: math/rational.hpp
     title: math/rational.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []

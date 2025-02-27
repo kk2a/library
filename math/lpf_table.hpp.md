@@ -84,17 +84,17 @@ data:
   isVerificationFile: false
   path: math/lpf_table.hpp
   requiredBy:
-  - math/multiplicative_function/counting_square_free.hpp
-  - math/multiplicative_function/famous_function_table.hpp
   - math/multiplicative_function/arbitrary_table.hpp
+  - math/multiplicative_function/famous_function_table.hpp
+  - math/multiplicative_function/counting_square_free.hpp
   - math/prime_factorize_table.hpp
   timestamp: '2025-02-08 14:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/multiplicative_function_table.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/multiplicative_function_table.test.cpp
 documentation_of: math/lpf_table.hpp
 layout: document
 redirect_from:

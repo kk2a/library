@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -118,11 +118,11 @@ data:
   timestamp: '2025-01-16 14:05:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
-  - verify/yosupo_geometry/static_convex_hull_1.test.cpp
   - verify/yosupo_geometry/arg_sort.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp
   - verify/yosupo_geometry/static_convex_hull_2.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_1.test.cpp
+  - verify/yosupo_geometry/static_convex_hull_3.test.cpp
 documentation_of: geometry/point.hpp
 layout: document
 redirect_from:

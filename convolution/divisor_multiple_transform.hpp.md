@@ -131,8 +131,8 @@ data:
   timestamp: '2025-02-08 14:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_lcm.test.cpp
 documentation_of: convolution/divisor_multiple_transform.hpp
 layout: document
 redirect_from:

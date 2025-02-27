@@ -47,8 +47,8 @@ data:
   path: math_mod/inv.hpp
   requiredBy:
   - convolution/convolution_arb.hpp
-  - fps/fps_arb.hpp
   - math_mod/garner.hpp
+  - fps/fps_arb.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

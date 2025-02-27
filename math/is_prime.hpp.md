@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -104,22 +104,22 @@ data:
   isVerificationFile: false
   path: math/is_prime.hpp
   requiredBy:
-  - math/multiplicative_function/euler_phi.hpp
-  - math/multiplicative_function/sigma.hpp
   - math/multiplicative_function/mobius.hpp
+  - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/euler_phi.hpp
   - math/prime_factorize.hpp
   - math_mod/primitive_root_64bit.hpp
   timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: math/is_prime.hpp
 layout: document
 redirect_from:

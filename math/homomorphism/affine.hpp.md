@@ -63,8 +63,8 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
 documentation_of: math/homomorphism/affine.hpp
 layout: document
 redirect_from:

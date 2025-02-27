@@ -221,8 +221,8 @@ data:
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_set_xor_min.test.cpp
   - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
+  - verify/yosupo_ds/ds_set_xor_min.test.cpp
 documentation_of: data_structure/binary_trie.hpp
 layout: document
 redirect_from:

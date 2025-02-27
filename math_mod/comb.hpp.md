@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -82,16 +82,16 @@ data:
   isVerificationFile: false
   path: math_mod/comb.hpp
   requiredBy:
-  - fps/poly_taylor_shift.hpp
   - math_mod/comb_large.hpp
-  - math_mod/bernoulli_number.hpp
   - math_mod/bell_number.hpp
+  - math_mod/bernoulli_number.hpp
+  - fps/poly_taylor_shift.hpp
   timestamp: '2025-02-08 14:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
 documentation_of: math_mod/comb.hpp
 layout: document

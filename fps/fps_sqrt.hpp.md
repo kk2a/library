@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -76,8 +76,8 @@ data:
   timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
 documentation_of: fps/fps_sqrt.hpp
 layout: document
 redirect_from:

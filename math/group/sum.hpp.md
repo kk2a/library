@@ -79,16 +79,16 @@ data:
   isVerificationFile: false
   path: math/group/sum.hpp
   requiredBy:
-  - segment_tree/utility/updatesum.hpp
-  - segment_tree/utility/addsum.hpp
-  - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/sumseg.hpp
+  - segment_tree/utility/affinesum.hpp
   - segment_tree/utility/sumseg2d.hpp
+  - segment_tree/utility/addsum.hpp
+  - segment_tree/utility/updatesum.hpp
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
 documentation_of: math/group/sum.hpp
 layout: document
 redirect_from:

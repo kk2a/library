@@ -127,8 +127,8 @@ data:
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yuki/yuki_0430_2.test.cpp
   - verify/yuki/yuki_0430.test.cpp
+  - verify/yuki/yuki_0430_2.test.cpp
 documentation_of: string/aho_corasick.hpp
 layout: document
 redirect_from:

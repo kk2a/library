@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -86,8 +86,8 @@ data:
   timestamp: '2025-02-04 23:50:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
 documentation_of: random/hash.hpp
 layout: document
 redirect_from:

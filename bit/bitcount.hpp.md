@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -75,8 +75,8 @@ data:
   path: bit/bitcount.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
-  - data_structure/my_bitset.hpp
   - data_structure/w_ary_tree.hpp
+  - data_structure/my_bitset.hpp
   timestamp: '2025-01-06 00:03:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
