@@ -10,11 +10,11 @@
 namespace kk2 {
 
 struct PartialPersistentUnionFind {
-    struct par_time {
-        int par, time;
-        par_time() = default;
+    struct d_time {
+        int d, time;
+        d_time() = default;
 
-        par_time(int par_, int time_) : par(par_), time(time_) {}
+        d_time(int d_, int time_) : d(d_), time(time_) {}
     };
 
     struct size_time {
@@ -27,15 +27,15 @@ struct PartialPersistentUnionFind {
     };
 
     int last_time;
-    std::vector<par_time> par;
+    std::vector<d_time> d;
     std::vector<std::vector<size_time>> size_hist;
 
     PartialPersistentUnionFind(int n)
         : last_time(std::numeric_limits<int>::min()),
-          par(n),
+          d(n),
           size_hist(n) {
         for (int i = 0; i < n; ++i) {
-            par[i] = par_time(-1, std::numeric_limits<int>::max());
+            d[i] = d_time(-1, std::numeric_limits<int>::max());
             size_hist[i].emplace_back(1, last_time);
         }
     }
@@ -47,8 +47,9 @@ struct PartialPersistentUnionFind {
         last_time = time;
         x = find(x, time), y = find(y, time);
         if (x == y) return false;
-        if (size_hist[x].back().size < size_hist[y].back().size) std::swap(x, y);
-        par[y] = par_time(x, time);
+        if (d[x].d > d[y].d) std::swap(x, y);
+        d[x].d += d[y].d;
+        d[y] = d_time(x, time);
         if (size_hist[x].back().time < time)
             size_hist[x].emplace_back(size_hist[x].back().size, time);
         size_hist[x].back().size += size_hist[y].back().size;
@@ -56,7 +57,7 @@ struct PartialPersistentUnionFind {
     }
 
     int find(int x, int time) {
-        while (par[x].time <= time) x = par[x].par;
+        while (d[x].time <= time) x = d[x].d;
         return x;
     }
 

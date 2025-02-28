@@ -30,12 +30,12 @@ struct DisjointSparseTable {
             int shift = 1 << i;
             for (int left = 0; left < _n; left += shift << 1) {
                 int cent = std::min(left + shift, _n);
-                table[i][cent - 1] = v[cent - 1];
-                for (int j = cent - 2; j >= left; --j) { table[i][j] = op(v[j], table[i][j + 1]); }
+                table[i][cent - 1] = table[0][cent - 1];
+                for (int j = cent - 2; j >= left; --j) { table[i][j] = op(table[0][j], table[i][j + 1]); }
                 if (cent == _n) break;
-                table[i][cent] = v[cent];
+                table[i][cent] = table[0][cent];
                 int right = std::min(cent + shift, _n);
-                for (int j = cent + 1; j < right; ++j) { table[i][j] = op(table[i][j - 1], v[j]); }
+                for (int j = cent + 1; j < right; ++j) { table[i][j] = op(table[i][j - 1], table[0][j]); }
             }
         }
     }

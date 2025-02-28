@@ -6,12 +6,12 @@
 
 namespace kk2 {
 
-struct UnionFind_rollback {
+struct RollbackableUnionFind {
     std::vector<int> d;
     std::vector<std::pair<int, int>> hist;
     std::vector<int> snaps;
 
-    UnionFind_rollback(int n = 0) : d(n, -1) {}
+    RollbackableUnionFind(int n = 0) : d(n, -1) {}
 
     bool same(int x, int y) { return find(x) == find(y); }
 
