@@ -90,7 +90,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/partial_persitent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2025-02-23 19:24:12+09:00'
+  timestamp: '2025-02-28 14:51:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/partial_persitent_unionfind.test.cpp

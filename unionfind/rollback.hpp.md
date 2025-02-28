@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data_structure/offline_dynamic_connectivity.hpp
+    title: data_structure/offline_dynamic_connectivity.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -9,9 +12,9 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"unionfind/rollback.hpp\"\n\n\n\n#include <utility>\n#include\
-    \ <vector>\n\nnamespace kk2 {\n\nstruct UnionFind_rollback {\n    std::vector<int>\
+    \ <vector>\n\nnamespace kk2 {\n\nstruct RollbackableUnionFind {\n    std::vector<int>\
     \ d;\n    std::vector<std::pair<int, int>> hist;\n    std::vector<int> snaps;\n\
-    \n    UnionFind_rollback(int n = 0) : d(n, -1) {}\n\n    bool same(int x, int\
+    \n    RollbackableUnionFind(int n = 0) : d(n, -1) {}\n\n    bool same(int x, int\
     \ y) { return find(x) == find(y); }\n\n    bool unite(int x, int y) {\n      \
     \  x = find(x), y = find(y);\n        if (x == y) return false;\n        if (d[x]\
     \ > d[y]) std::swap(x, y);\n        hist.emplace_back(x, d[x]);\n        d[x]\
@@ -23,9 +26,9 @@ data:
     \ = hist.back();\n            hist.pop_back();\n            d[i] = x;\n      \
     \  }\n        snaps.pop_back();\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_UNIONFIND_ROLLBACK_HPP\n#define KK2_UNIONFIND_ROLLBACK_HPP 1\n\
-    \n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\nstruct UnionFind_rollback\
+    \n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\nstruct RollbackableUnionFind\
     \ {\n    std::vector<int> d;\n    std::vector<std::pair<int, int>> hist;\n   \
-    \ std::vector<int> snaps;\n\n    UnionFind_rollback(int n = 0) : d(n, -1) {}\n\
+    \ std::vector<int> snaps;\n\n    RollbackableUnionFind(int n = 0) : d(n, -1) {}\n\
     \n    bool same(int x, int y) { return find(x) == find(y); }\n\n    bool unite(int\
     \ x, int y) {\n        x = find(x), y = find(y);\n        if (x == y) return false;\n\
     \        if (d[x] > d[y]) std::swap(x, y);\n        hist.emplace_back(x, d[x]);\n\
@@ -40,8 +43,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: unionfind/rollback.hpp
-  requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  requiredBy:
+  - data_structure/offline_dynamic_connectivity.hpp
+  timestamp: '2025-02-28 14:51:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: unionfind/rollback.hpp

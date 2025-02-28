@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/disjoint_sparse_table.hpp\"\n\n\n\n#include\
@@ -22,20 +22,20 @@ data:
     \ = v[i];\n        build();\n    }\n\n    void build() {\n        for (int i =\
     \ 1; i <= log; ++i) {\n            int shift = 1 << i;\n            for (int left\
     \ = 0; left < _n; left += shift << 1) {\n                int cent = std::min(left\
-    \ + shift, _n);\n                table[i][cent - 1] = v[cent - 1];\n         \
-    \       for (int j = cent - 2; j >= left; --j) { table[i][j] = op(v[j], table[i][j\
-    \ + 1]); }\n                if (cent == _n) break;\n                table[i][cent]\
-    \ = v[cent];\n                int right = std::min(cent + shift, _n);\n      \
-    \          for (int j = cent + 1; j < right; ++j) { table[i][j] = op(table[i][j\
-    \ - 1], v[j]); }\n            }\n        }\n    }\n\n    void init_set(int p,\
-    \ S x) {\n        assert(0 <= p && p < _n);\n        table[0][p] = x;\n    }\n\
-    \n    template <class... Args>\n    void emplace_init_set(int p, Args... args)\
-    \ {\n        init_set(p, S(args...));\n    }\n\n    S prod(int l, int r) const\
-    \ {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return\
-    \ e();\n        if (l + 1 == r) return table[0][l];\n        --r;\n        int\
-    \ pos = 31 ^ __builtin_clz(l ^ r);\n        return op(table[pos][l], table[pos][r]);\n\
-    \    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>> table;\n\
-    \    std::vector<int> lookup;\n};\n\n} // namespace kk2\n\n\n"
+    \ + shift, _n);\n                table[i][cent - 1] = table[0][cent - 1];\n  \
+    \              for (int j = cent - 2; j >= left; --j) { table[i][j] = op(table[0][j],\
+    \ table[i][j + 1]); }\n                if (cent == _n) break;\n              \
+    \  table[i][cent] = table[0][cent];\n                int right = std::min(cent\
+    \ + shift, _n);\n                for (int j = cent + 1; j < right; ++j) { table[i][j]\
+    \ = op(table[i][j - 1], table[0][j]); }\n            }\n        }\n    }\n\n \
+    \   void init_set(int p, S x) {\n        assert(0 <= p && p < _n);\n        table[0][p]\
+    \ = x;\n    }\n\n    template <class... Args>\n    void emplace_init_set(int p,\
+    \ Args... args) {\n        init_set(p, S(args...));\n    }\n\n    S prod(int l,\
+    \ int r) const {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l\
+    \ == r) return e();\n        if (l + 1 == r) return table[0][l];\n        --r;\n\
+    \        int pos = 31 ^ __builtin_clz(l ^ r);\n        return op(table[pos][l],\
+    \ table[pos][r]);\n    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>>\
+    \ table;\n    std::vector<int> lookup;\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n#define KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\nnamespace\
     \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()>\nstruct DisjointSparseTable\
@@ -48,26 +48,26 @@ data:
     \ build() {\n        for (int i = 1; i <= log; ++i) {\n            int shift =\
     \ 1 << i;\n            for (int left = 0; left < _n; left += shift << 1) {\n \
     \               int cent = std::min(left + shift, _n);\n                table[i][cent\
-    \ - 1] = v[cent - 1];\n                for (int j = cent - 2; j >= left; --j)\
-    \ { table[i][j] = op(v[j], table[i][j + 1]); }\n                if (cent == _n)\
-    \ break;\n                table[i][cent] = v[cent];\n                int right\
-    \ = std::min(cent + shift, _n);\n                for (int j = cent + 1; j < right;\
-    \ ++j) { table[i][j] = op(table[i][j - 1], v[j]); }\n            }\n        }\n\
-    \    }\n\n    void init_set(int p, S x) {\n        assert(0 <= p && p < _n);\n\
-    \        table[0][p] = x;\n    }\n\n    template <class... Args>\n    void emplace_init_set(int\
-    \ p, Args... args) {\n        init_set(p, S(args...));\n    }\n\n    S prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= _n);\n        if\
-    \ (l == r) return e();\n        if (l + 1 == r) return table[0][l];\n        --r;\n\
-    \        int pos = 31 ^ __builtin_clz(l ^ r);\n        return op(table[pos][l],\
-    \ table[pos][r]);\n    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>>\
-    \ table;\n    std::vector<int> lookup;\n};\n\n} // namespace kk2\n\n#endif //\
-    \ KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n"
+    \ - 1] = table[0][cent - 1];\n                for (int j = cent - 2; j >= left;\
+    \ --j) { table[i][j] = op(table[0][j], table[i][j + 1]); }\n                if\
+    \ (cent == _n) break;\n                table[i][cent] = table[0][cent];\n    \
+    \            int right = std::min(cent + shift, _n);\n                for (int\
+    \ j = cent + 1; j < right; ++j) { table[i][j] = op(table[i][j - 1], table[0][j]);\
+    \ }\n            }\n        }\n    }\n\n    void init_set(int p, S x) {\n    \
+    \    assert(0 <= p && p < _n);\n        table[0][p] = x;\n    }\n\n    template\
+    \ <class... Args>\n    void emplace_init_set(int p, Args... args) {\n        init_set(p,\
+    \ S(args...));\n    }\n\n    S prod(int l, int r) const {\n        assert(0 <=\
+    \ l && l <= r && r <= _n);\n        if (l == r) return e();\n        if (l + 1\
+    \ == r) return table[0][l];\n        --r;\n        int pos = 31 ^ __builtin_clz(l\
+    \ ^ r);\n        return op(table[pos][l], table[pos][r]);\n    }\n\n  private:\n\
+    \    int _n, log;\n    std::vector<std::vector<S>> table;\n    std::vector<int>\
+    \ lookup;\n};\n\n} // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/disjoint_sparse_table.hpp
   requiredBy: []
-  timestamp: '2025-02-27 22:28:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-02-28 14:51:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
 documentation_of: data_structure/disjoint_sparse_table.hpp
