@@ -22,6 +22,7 @@ template <class T> struct PrefixSum2D {
             for (int j = 0; j < w; ++j) {
                 acc[i + 1][j + 1] = a[i][j];
             }
+        } 
         build();
     }
 
