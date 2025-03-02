@@ -2,32 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
+    path: modint/modint.hpp
+    title: modint/modint.hpp
   - icon: ':question:'
-    path: fps/fps_ntt_friendly.hpp
-    title: fps/fps_ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/fps_sqrt.hpp
-    title: fps/fps_sqrt.hpp
+    path: random/gen.hpp
+    title: random/gen.hpp
   - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':heavy_check_mark:'
-    path: math_mod/mod_sqrt.hpp
-    title: math_mod/mod_sqrt.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: modint/mont.hpp
-    title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
-    path: modint/mont_arb.hpp
-    title: modint/mont_arb.hpp
+    path: random/seed.hpp
+    title: random/seed.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -51,14 +33,14 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series_sparse
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/sqrt_of_formal_power_series_sparse
+    - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -69,30 +51,23 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series_sparse\"\
-    \ \n\n#include \"../../fps/fps_ntt_friendly.hpp\"\n#include \"../../fps/fps_sqrt.hpp\"\
-    \n#include \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
-    \ {\n    int n, k;\n    kin >> n >> k;\n    FPS f(n);\n    rep (k) {\n       \
-    \ int i;\n        kk2::mont998 a;\n        kin >> i >> a;\n        f[i] = a;\n\
-    \    }\n    FPS res = kk2::sparse_sqrt(f);\n    if (res.empty()) kout << -1 <<\
-    \ \"\\n\";\n    else res.output(kout);\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" \n\n#include \"\
+    ../../modint/modint.hpp\"\n#include \"../../random/gen.hpp\"\n#include \"../../template/template.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n  \
+    \  kout << a + b << kendl;\n\n    kk2::Comb<kk2::mint107>::set_upper(1e7);\n \
+    \   int up = 2000001, lw = 1e7;\n    int t = 2;\n    rep (t) {\n        int n\
+    \ = kk2::random::rng(up, lw);\n        auto a = kk2::Comb<kk2::mint107>::fact(n);\n\
+    \        auto b = kk2::CombLarge<kk2::mint107>::fact(n);\n        // \u58CA\u308C\
+    \u3066\u3044\u308B\u306E\u3067\u5E38\u306Bfalse\u3092\u8FD4\u3059\n        //\
+    \ assert(a == b);\n    }\n\n    return 0;\n}\n"
   dependsOn:
-  - fps/fps_ntt_friendly.hpp
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
+  - modint/modint.hpp
   - type_traits/type_traits.hpp
-  - fps/fps_sqrt.hpp
-  - math_mod/mod_sqrt.hpp
-  - modint/mont_arb.hpp
-  - modint/mont.hpp
+  - random/gen.hpp
+  - random/seed.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
@@ -100,15 +75,15 @@ data:
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
-  path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  path: verify/unit_test/large_fact_arb_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-03-02 17:07:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-02 20:42:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+documentation_of: verify/unit_test/large_fact_arb_mod.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-- /verify/verify/yosupo_fps/fps_sprase_sqrt.test.cpp.html
-title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+- /verify/verify/unit_test/large_fact_arb_mod.test.cpp
+- /verify/verify/unit_test/large_fact_arb_mod.test.cpp.html
+title: verify/unit_test/large_fact_arb_mod.test.cpp
 ---

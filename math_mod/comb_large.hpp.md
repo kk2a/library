@@ -59,19 +59,20 @@ data:
     \ = 1 << LOG_BLOCK_SIZE;\n    static constexpr int BLOCK_NUM = mint::getmod()\
     \ >> LOG_BLOCK_SIZE;\n\n    static inline int threshold = 2000000;\n\n    CombLarge()\
     \ = delete;\n\n    static mint fact(int n) { return n <= threshold ? Comb<mint>::fact(n)\
-    \ : _large_fact(n); }\n\n    static mint inv_fact(int n) {\n        return n <=\
-    \ threshold ? Comb<mint>::ifact(n) : _large_fact(n).inv();\n    }\n\n    static\
-    \ mint binom(int n, int r) {\n        if (r < 0 || r > n) return mint(0);\n  \
-    \      return fact(n) * inv_fact(r) * inv_fact(n - r);\n    }\n\n    template\
+    \ : _large_fact(n); }\n\n    static mint ifact(int n) {\n        return n <= threshold\
+    \ ? Comb<mint>::ifact(n) : _large_fact(n).inv();\n    }\n\n    static mint inv(int\
+    \ n) {\n        return n <= threshold ? Comb<mint>::inv(n) : mint(n).inv();\n\
+    \    }\n\n    static mint binom(int n, int r) {\n        if (r < 0 || r > n) return\
+    \ mint(0);\n        return fact(n) * ifact(r) * ifact(n - r);\n    }\n\n    template\
     \ <class T> static mint multinomial(std::vector<T> r) {\n        static_assert(is_integral<T>::value,\
     \ \"T must be integral\");\n        long long n = 0;\n        for (auto &x : r)\
     \ {\n            assert(x >= 0);\n            n += x;\n        }\n        if (n\
     \ >= mint::getmod()) return 0;\n        mint res = fact(n);\n        for (auto\
-    \ &x : r) res *= inv_fact(x);\n        return res;\n    }\n\n    static mint permu(int\
+    \ &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint permu(int\
     \ n, int r) {\n        if (r < 0 || r > n) return mint(0);\n        return fact(n)\
-    \ * inv_fact(n - r);\n    }\n\n    static mint homo(int n, int r) {\n        if\
-    \ (n < 0 || r < 0) return mint(0);\n        return r == 0 ? 1 : binom(n + r -\
-    \ 1, r);\n    }\n\n  private:\n    static inline std::vector<mint> _block_fact{};\n\
+    \ * ifact(n - r);\n    }\n\n    static mint homo(int n, int r) {\n        if (n\
+    \ < 0 || r < 0) return mint(0);\n        return r == 0 ? 1 : binom(n + r - 1,\
+    \ r);\n    }\n\n  private:\n    static inline std::vector<mint> _block_fact{};\n\
     \n    static void _build() {\n        if (_block_fact.size()) return;\n      \
     \  std::vector<mint> f{1};\n        f.reserve(BLOCK_SIZE);\n        for (int i\
     \ = 0; i < LOG_BLOCK_SIZE; i++) {\n            std::vector<mint> g = sample_point_shift<FPS>(f,\
@@ -108,7 +109,7 @@ data:
   isVerificationFile: false
   path: math_mod/comb_large.hpp
   requiredBy: []
-  timestamp: '2025-03-02 17:07:41+09:00'
+  timestamp: '2025-03-02 20:42:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
