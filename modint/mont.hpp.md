@@ -88,6 +88,9 @@ data:
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+    title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
   - icon: ':heavy_check_mark:'
@@ -117,16 +120,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_division.test.cpp
     title: verify/yosupo_fps/poly_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/poly_interpolation.test.cpp
+    title: verify/yosupo_fps/poly_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+    title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_inv.test.cpp
     title: verify/yosupo_fps/poly_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     title: verify/yosupo_fps/poly_taylor_shift.test.cpp
   - icon: ':x:'
@@ -162,6 +171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
     title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+  - icon: ':x:'
+    path: verify/yuki/yuki_1510.test.cpp
+    title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -259,6 +271,7 @@ data:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_subset.test.cpp
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
+  - verify/yuki/yuki_1510.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
@@ -270,8 +283,11 @@ data:
   - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp
   - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/fps_sparse_pow.test.cpp
+  - verify/yosupo_fps/poly_interpolation.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_sparse_inv.test.cpp

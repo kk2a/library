@@ -2,11 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/large_fact_arb_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - icon: ':x:'
@@ -14,7 +17,7 @@ data:
     title: verify/yosupo_math/many_factrials.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/poly_sample_point_shift.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -69,9 +72,10 @@ data:
   requiredBy:
   - math_mod/comb_large.hpp
   timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
 documentation_of: fps/poly_sample_point_shift.hpp
 layout: document

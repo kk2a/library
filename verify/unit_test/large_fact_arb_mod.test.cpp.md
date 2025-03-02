@@ -2,12 +2,39 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: convolution/convolution.hpp
+    title: convolution/convolution.hpp
+  - icon: ':question:'
+    path: fps/fps_ntt_friendly.hpp
+    title: fps/fps_ntt_friendly.hpp
+  - icon: ':question:'
+    path: fps/poly_sample_point_shift.hpp
+    title: fps/poly_sample_point_shift.hpp
+  - icon: ':question:'
+    path: math_mod/butterfly.hpp
+    title: math_mod/butterfly.hpp
+  - icon: ':question:'
+    path: math_mod/comb.hpp
+    title: math_mod/comb.hpp
+  - icon: ':question:'
+    path: math_mod/comb.hpp
+    title: math_mod/comb.hpp
+  - icon: ':question:'
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/primitive_root.hpp
+    title: math_mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
     path: modint/modint.hpp
     title: modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
@@ -33,9 +60,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -55,10 +82,11 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" \n\n#include \"\
-    ../../modint/modint.hpp\"\n#include \"../../random/gen.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n  \
-    \  kout << a + b << kendl;\n\n    kk2::Comb<kk2::mint107>::set_upper(1e7);\n \
-    \   int up = 2000001, lw = 1e7;\n    int t = 2;\n    rep (t) {\n        int n\
+    ../../modint/modint.hpp\"\n#include \"../../math_mod/comb_large.hpp\"\n#include\
+    \ \"../../math_mod/comb.hpp\"\n#include \"../../random/gen.hpp\"\n#include \"\
+    ../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int a,\
+    \ b;\n    kin >> a >> b;\n    kout << a + b << kendl;\n\n    kk2::Comb<kk2::mint107>::set_upper(1e7);\n\
+    \    int up = 2000001, lw = 1e7;\n    int t = 2;\n    rep (t) {\n        int n\
     \ = kk2::random::rng(up, lw);\n        auto a = kk2::Comb<kk2::mint107>::fact(n);\n\
     \        auto b = kk2::CombLarge<kk2::mint107>::fact(n);\n        // \u58CA\u308C\
     \u3066\u3044\u308B\u306E\u3067\u5E38\u306Bfalse\u3092\u8FD4\u3059\n        //\
@@ -66,6 +94,15 @@ data:
   dependsOn:
   - modint/modint.hpp
   - type_traits/type_traits.hpp
+  - math_mod/comb_large.hpp
+  - fps/fps_ntt_friendly.hpp
+  - convolution/convolution.hpp
+  - math_mod/butterfly.hpp
+  - math_mod/primitive_root.hpp
+  - math_mod/pow_mod.hpp
+  - fps/poly_sample_point_shift.hpp
+  - math_mod/comb.hpp
+  - math_mod/comb.hpp
   - random/gen.hpp
   - random/seed.hpp
   - template/template.hpp
@@ -77,8 +114,8 @@ data:
   isVerificationFile: true
   path: verify/unit_test/large_fact_arb_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-03-02 20:42:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-03-02 21:18:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/large_fact_arb_mod.test.cpp
 layout: document

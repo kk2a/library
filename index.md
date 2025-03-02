@@ -99,7 +99,7 @@ data:
       title: data_structure/w_ary_tree.hpp
   - name: fps
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/bbb.hpp
       title: fps/bbb.hpp
     - icon: ':x:'
@@ -126,25 +126,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/fps_sqrt.hpp
       title: fps/fps_sqrt.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/mod_pow.hpp
       title: fps/mod_pow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_find_root.hpp
       title: fps/poly_find_root.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_gcd.hpp
       title: fps/poly_gcd.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_interpolation.hpp
       title: fps/poly_interpolation.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: fps/poly_multi_eval.hpp
       title: fps/poly_multi_eval.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/poly_sample_point_shift.hpp
       title: fps/poly_sample_point_shift.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_taylor_shift.hpp
       title: fps/poly_taylor_shift.hpp
     - icon: ':x:'
@@ -376,7 +376,7 @@ data:
     - icon: ':question:'
       path: math_mod/comb.hpp
       title: math_mod/comb.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
     - icon: ':heavy_check_mark:'
@@ -419,7 +419,7 @@ data:
       title: matrix/matrix_field.hpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/modint.hpp
       title: modint/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -450,7 +450,7 @@ data:
       title: others/run_length_encoding.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/gen.hpp
       title: random/gen.hpp
     - icon: ':warning:'
@@ -459,7 +459,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/hash.hpp
       title: random/hash.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/seed.hpp
       title: random/seed.hpp
   - name: segment_tree
@@ -644,7 +644,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/isprime_table_extend.test.cpp
       title: verify/unit_test/isprime_table_extend.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/large_fact_arb_mod.test.cpp
       title: verify/unit_test/large_fact_arb_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -767,7 +767,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log_arb.test.cpp
       title: verify/yosupo_fps/fps_log_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
       title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
@@ -800,22 +800,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_division.test.cpp
       title: verify/yosupo_fps/poly_division.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_interpolation.test.cpp
       title: verify/yosupo_fps/poly_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
       title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_inv.test.cpp
       title: verify/yosupo_fps/poly_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_root_finding.test.cpp
       title: verify/yosupo_fps/poly_root_finding.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
       title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
       title: verify/yosupo_fps/poly_taylor_shift.test.cpp
     - icon: ':x:'
