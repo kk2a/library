@@ -1,58 +1,58 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/fps.hpp
-    title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: type_traits/member.hpp
+    title: type_traits/member.hpp
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -75,28 +75,26 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
     \ \n\n#include \"../../fps/fps_arb.hpp\"\n#include \"../../modint/mont.hpp\"\n\
     #include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS =\
-    \ kk2::FormalPowerSeries<kk2::mont998>;\n\nint main() {\n    int n;\n    kin >>\
-    \ n;\n    FPS f(n);\n    f.input(kin).exp().output(kout);\n\n    return 0;\n}\n"
+    \ kk2::FPSArb<kk2::mont998>;\n\nint main() {\n    int n;\n    kin >> n;\n    FPS\
+    \ f(n);\n    f.input(kin).exp().output(kout);\n\n    return 0;\n}\n"
   dependsOn:
   - fps/fps_arb.hpp
+  - type_traits/type_traits.hpp
   - convolution/convolution_arb.hpp
   - math_mod/garner.hpp
   - math_mod/inv.hpp
   - modint/mont.hpp
-  - type_traits/type_traits.hpp
   - convolution/convolution.hpp
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
-  - fps/fps.hpp
+  - type_traits/member.hpp
   - modint/mont.hpp
   - template/template.hpp
   - template/constant.hpp
@@ -107,7 +105,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_exp_arb.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-03-02 17:07:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_exp_arb.test.cpp

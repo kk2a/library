@@ -1,41 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/fps.hpp
-    title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/ntt_friendly.hpp
-    title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: fps/fps_ntt_friendly.hpp
+    title: fps/fps_ntt_friendly.hpp
+  - icon: ':x:'
     path: fps/poly_sample_point_shift.hpp
     title: fps/poly_sample_point_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -55,9 +52,9 @@ data:
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MOD_COMB_LARGE_HPP\n#define KK2_MATH_MOD_COMB_LARGE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
-    \ <vector>\n\n#include \"../fps/ntt_friendly.hpp\"\n#include \"../fps/poly_sample_point_shift.hpp\"\
+    \ <vector>\n\n#include \"../fps/fps_ntt_friendly.hpp\"\n#include \"../fps/poly_sample_point_shift.hpp\"\
     \n#include \"../type_traits/type_traits.hpp\"\n#include \"comb.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class mint> struct CombLarge {\n    using FPS = FormalPowerSeries<mint>;\n\
+    \ kk2 {\n\ntemplate <class mint> struct CombLarge {\n    using FPS = FormalPowerSeriesNTTFriendly<mint>;\n\
     \    static constexpr int LOG_BLOCK_SIZE = 9;\n    static constexpr int BLOCK_SIZE\
     \ = 1 << LOG_BLOCK_SIZE;\n    static constexpr int BLOCK_NUM = mint::getmod()\
     \ >> LOG_BLOCK_SIZE;\n\n    static inline int threshold = 2000000;\n\n    CombLarge()\
@@ -100,20 +97,19 @@ data:
     \        res /= den;\n        }\n        return res;\n    }\n};\n\n} // namespace\
     \ kk2\n\n#endif // KK2_MATH_MOD_COMB_LARGE_HPP\n"
   dependsOn:
-  - fps/ntt_friendly.hpp
+  - fps/fps_ntt_friendly.hpp
   - convolution/convolution.hpp
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
-  - fps/fps.hpp
   - fps/poly_sample_point_shift.hpp
   - math_mod/comb.hpp
   isVerificationFile: false
   path: math_mod/comb_large.hpp
   requiredBy: []
-  timestamp: '2025-02-12 19:52:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-03-02 17:07:41+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
 documentation_of: math_mod/comb_large.hpp

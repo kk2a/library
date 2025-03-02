@@ -1,56 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/fps.hpp
-    title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/ntt_friendly.hpp
-    title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: fps/fps_ntt_friendly.hpp
+    title: fps/fps_ntt_friendly.hpp
+  - icon: ':x:'
     path: fps/poly_to_newton_basis.hpp
     title: fps/poly_to_newton_basis.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis
@@ -72,20 +69,19 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis\"\
-    \ \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../fps/poly_to_newton_basis.hpp\"\
+    \ \n\n#include \"../../fps/fps_ntt_friendly.hpp\"\n#include \"../../fps/poly_to_newton_basis.hpp\"\
     \n#include \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nusing FPS = kk2::FormalPowerSeries<kk2::mont998>;\n\n\
-    int main() {\n    int n;\n    kin >> n;\n    FPS f(n);\n    vc<kk2::mont998> p(n);\n\
-    \    kin >> f >> p;\n    kout << kk2::convert_to_newton_basis(f, p) << kendl;\n\
-    \n    return 0;\n}\n"
+    \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
+    \ {\n    int n;\n    kin >> n;\n    FPS f(n);\n    vc<kk2::mont998> p(n);\n  \
+    \  kin >> f >> p;\n    kout << kk2::convert_to_newton_basis(f, p) << kendl;\n\n\
+    \    return 0;\n}\n"
   dependsOn:
-  - fps/ntt_friendly.hpp
+  - fps/fps_ntt_friendly.hpp
   - convolution/convolution.hpp
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
-  - fps/fps.hpp
   - fps/poly_to_newton_basis.hpp
   - modint/mont.hpp
   - template/template.hpp
@@ -97,8 +93,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-02 17:07:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_to_newton_basis.test.cpp
 layout: document

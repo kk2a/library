@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:

@@ -1,62 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/fps.hpp
-    title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/ntt_friendly.hpp
-    title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: fps/fps_ntt_friendly.hpp
+    title: fps/fps_ntt_friendly.hpp
+  - icon: ':x:'
     path: fps/poly_sample_point_shift.hpp
     title: fps/poly_sample_point_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_factorials
@@ -85,13 +82,12 @@ data:
     \ 0;\n}\n"
   dependsOn:
   - math_mod/comb_large.hpp
-  - fps/ntt_friendly.hpp
+  - fps/fps_ntt_friendly.hpp
   - convolution/convolution.hpp
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
-  - fps/fps.hpp
   - fps/poly_sample_point_shift.hpp
   - math_mod/comb.hpp
   - modint/mont.hpp
@@ -104,8 +100,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/many_factrials.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 19:52:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-02 17:07:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/many_factrials.test.cpp
 layout: document

@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -138,70 +138,61 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv_arb.test.cpp
     title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-    title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
     title: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_pow.test.cpp
     title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
     title: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_exp.test.cpp
     title: verify/yosupo_fps/fps_sparse_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_inv.test.cpp
     title: verify/yosupo_fps/fps_sparse_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_log.test.cpp
     title: verify/yosupo_fps/fps_sparse_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sparse_pow.test.cpp
     title: verify/yosupo_fps/fps_sparse_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_division.test.cpp
     title: verify/yosupo_fps/poly_division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/poly_interpolation.test.cpp
-    title: verify/yosupo_fps/poly_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_inv.test.cpp
     title: verify/yosupo_fps/poly_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - icon: ':heavy_check_mark:'
@@ -282,7 +273,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_bell_number.test.cpp
     title: verify/yosupo_math/enumerate_bell_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -291,7 +282,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/enumerate_quotients.test.cpp
     title: verify/yosupo_math/enumerate_quotients.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
     title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -303,10 +294,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/kth_root_int_ceil.test.cpp
     title: verify/yosupo_math/kth_root_int_ceil.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -363,12 +354,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yuki/yuki_1510.test.cpp
-    title: verify/yuki/yuki_1510.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -491,7 +479,7 @@ data:
   requiredBy:
   - template/template.hpp
   timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
@@ -585,7 +573,6 @@ data:
   - verify/yuki/yuki_0430.test.cpp
   - verify/yuki/yuki_1326.test.cpp
   - verify/yuki/yuki_0430_2.test.cpp
-  - verify/yuki/yuki_1510.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
@@ -594,11 +581,8 @@ data:
   - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp
   - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/fps_sparse_pow.test.cpp
-  - verify/yosupo_fps/poly_interpolation.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_sparse_inv.test.cpp

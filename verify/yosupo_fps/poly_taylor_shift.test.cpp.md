@@ -1,59 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/fps.hpp
-    title: fps/fps.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/ntt_friendly.hpp
-    title: fps/ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: fps/fps_ntt_friendly.hpp
+    title: fps/fps_ntt_friendly.hpp
+  - icon: ':x:'
     path: fps/poly_taylor_shift.hpp
     title: fps/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
@@ -75,20 +72,18 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
-    \ \n\n#include \"../../fps/ntt_friendly.hpp\"\n#include \"../../fps/poly_taylor_shift.hpp\"\
+    \ \n\n#include \"../../fps/fps_ntt_friendly.hpp\"\n#include \"../../fps/poly_taylor_shift.hpp\"\
     \n#include \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nusing FPS = kk2::FormalPowerSeries<kk2::mont998>;\n\n\
-    int main() {\n    int n;\n    kk2::mont998 c;\n    kin >> n >> c;\n    FPS f(n);\n\
-    \    kin >> f;\n    kout << kk2::taylor_shift(f, c) << kendl;\n\n    return 0;\n\
-    }\n"
+    \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
+    \ {\n    int n;\n    kk2::mont998 c;\n    kin >> n >> c;\n    FPS f(n);\n    kin\
+    \ >> f;\n    kout << kk2::taylor_shift(f, c) << kendl;\n\n    return 0;\n}\n"
   dependsOn:
-  - fps/ntt_friendly.hpp
+  - fps/fps_ntt_friendly.hpp
   - convolution/convolution.hpp
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
-  - fps/fps.hpp
   - fps/poly_taylor_shift.hpp
   - math_mod/comb.hpp
   - modint/mont.hpp
@@ -101,8 +96,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/poly_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-02 17:07:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_taylor_shift.test.cpp
 layout: document

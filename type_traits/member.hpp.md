@@ -2,13 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':question:'
+    path: convolution/convolution_arb.hpp
+    title: convolution/convolution_arb.hpp
+  - icon: ':question:'
+    path: fps/fps_arb.hpp
+    title: fps/fps_arb.hpp
   - icon: ':warning:'
     path: template/debug.hpp
     title: template/debug.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+    title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_fps/fps_exp_arb.test.cpp
+    title: verify/yosupo_fps/fps_exp_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_inv_arb.test.cpp
+    title: verify/yosupo_fps/fps_inv_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_log_arb.test.cpp
+    title: verify/yosupo_fps/fps_log_arb.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -55,16 +73,23 @@ data:
     \ = std::enable_if_t<has_member_var_##member<T>::value>;       \\\n    template\
     \ <typename T>                                                               \
     \           \\\n    using not_has_member_var_##member##_t = std::enable_if_t<!has_member_var_##member<T>::value>;\n\
-    \nHAS_MEMBER_FUNC(debug_output)\n\n// END_PRESERVE_NEWLINES\n\n#undef HAS_MEMBER_FUNC\n\
-    #undef HAS_MEMBER_VAR\n} // namespace kk2\n\n#endif // KK2_TYPE_TRAITS_MEMBER_HPP\n"
+    \nHAS_MEMBER_FUNC(debug_output)\nHAS_MEMBER_FUNC(val)\n\n// END_PRESERVE_NEWLINES\n\
+    \n#undef HAS_MEMBER_FUNC\n#undef HAS_MEMBER_VAR\n} // namespace kk2\n\n#endif\
+    \ // KK2_TYPE_TRAITS_MEMBER_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: type_traits/member.hpp
   requiredBy:
+  - convolution/convolution_arb.hpp
   - template/debug.hpp
-  timestamp: '2025-02-24 23:54:08+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  - fps/fps_arb.hpp
+  timestamp: '2025-03-02 17:07:41+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
+  - verify/yosupo_fps/fps_log_arb.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
 documentation_of: type_traits/member.hpp
 layout: document
 redirect_from:

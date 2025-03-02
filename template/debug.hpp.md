@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':question:'
     path: type_traits/member.hpp
     title: type_traits/member.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -151,7 +151,7 @@ data:
   isVerificationFile: false
   path: template/debug.hpp
   requiredBy: []
-  timestamp: '2025-02-24 23:54:08+09:00'
+  timestamp: '2025-03-02 17:07:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp
