@@ -38,6 +38,7 @@ namespace kk2 {
     using not_has_member_var_##member##_t = std::enable_if_t<!has_member_var_##member<T>::value>;
 
 HAS_MEMBER_FUNC(debug_output)
+HAS_MEMBER_FUNC(val)
 
 // END_PRESERVE_NEWLINES
 

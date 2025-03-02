@@ -6,6 +6,7 @@
 #include "../math_mod/garner.hpp"
 #include "../modint/mont.hpp"
 #include "convolution.hpp"
+#include "../type_traits/member.hpp"
 
 namespace kk2 {
 
@@ -21,8 +22,13 @@ FPS convolution_arb(FPS &a, const FPS &b, long long mod) {
     using mint3 = LazyMontgomeryModInt<MOD3>;
 
     std::vector<long long> a0(n), b0(m);
-    for (int i = 0; i < n; i++) a0[i] = a[i].val();
-    for (int i = 0; i < m; i++) b0[i] = b[i].val();
+    if constexpr (has_member_func_val<mint>::value) {
+        for (int i = 0; i < n; i++) a0[i] = a[i].val();
+        for (int i = 0; i < m; i++) b0[i] = b[i].val();
+    } else {
+        for (int i = 0; i < n; i++) a0[i] = a[i];
+        for (int i = 0; i < m; i++) b0[i] = b[i];
+    }
     auto a1 = std::vector<mint1>(a0.begin(), a0.end());
     auto b1 = std::vector<mint1>(b0.begin(), b0.end());
     convolution(a1, b1);

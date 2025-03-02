@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse" 
 
-#include "../../fps/ntt_friendly.hpp"
+#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
-using FPS = kk2::FormalPowerSeries<kk2::mont998>;
+using FPS = kk2::FPSNTT<kk2::mont998>;
 
 int main() {
     int n, k;

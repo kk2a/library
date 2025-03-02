@@ -8,13 +8,13 @@
 
 #include "../convolution/multi_convolution_truncated.hpp"
 #include "../type_traits/type_traits.hpp"
-#include "ntt_friendly.hpp"
+#include "fps_ntt_friendly.hpp"
 
 namespace kk2 {
 
 template <typename mint> struct MultivariateFormalPowerSeries {
     using mfps = MultivariateFormalPowerSeries;
-    using fps = FormalPowerSeries<mint>;
+    using fps = FormalPowerSeriesNTTFriendly<mint>;
     using value_type = mint;
 
     std::vector<int> base;

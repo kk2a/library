@@ -1,13 +1,13 @@
 // #define PROBLEM "https://yukicoder.me/problems/no/1510" 
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../fps/ntt_friendly.hpp"
+#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../fps/bbb.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
-using FPS = kk2::FormalPowerSeries<kk2::mont998>;
+using FPS = kk2::FPSNTT<kk2::mont998>;
 
 
 // \int_{-infty}^{infty} (x^2 + A^2)^-n dx

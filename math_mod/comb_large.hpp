@@ -6,7 +6,7 @@
 #include <functional>
 #include <vector>
 
-#include "../fps/ntt_friendly.hpp"
+#include "../fps/fps_ntt_friendly.hpp"
 #include "../fps/poly_sample_point_shift.hpp"
 #include "../type_traits/type_traits.hpp"
 #include "comb.hpp"
@@ -14,7 +14,7 @@
 namespace kk2 {
 
 template <class mint> struct CombLarge {
-    using FPS = FormalPowerSeries<mint>;
+    using FPS = FormalPowerSeriesNTTFriendly<mint>;
     static constexpr int LOG_BLOCK_SIZE = 9;
     static constexpr int BLOCK_SIZE = 1 << LOG_BLOCK_SIZE;
     static constexpr int BLOCK_NUM = mint::getmod() >> LOG_BLOCK_SIZE;

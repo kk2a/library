@@ -5,7 +5,7 @@
 #include "../../template/template.hpp"
 using namespace std;
 
-using FPS = kk2::FormalPowerSeries<kk2::mont998>;
+using FPS = kk2::FPSArb<kk2::mont998>;
 
 int main() {
     int n;
