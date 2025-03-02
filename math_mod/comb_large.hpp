@@ -25,13 +25,17 @@ template <class mint> struct CombLarge {
 
     static mint fact(int n) { return n <= threshold ? Comb<mint>::fact(n) : _large_fact(n); }
 
-    static mint inv_fact(int n) {
+    static mint ifact(int n) {
         return n <= threshold ? Comb<mint>::ifact(n) : _large_fact(n).inv();
+    }
+
+    static mint inv(int n) {
+        return n <= threshold ? Comb<mint>::inv(n) : mint(n).inv();
     }
 
     static mint binom(int n, int r) {
         if (r < 0 || r > n) return mint(0);
-        return fact(n) * inv_fact(r) * inv_fact(n - r);
+        return fact(n) * ifact(r) * ifact(n - r);
     }
 
     template <class T> static mint multinomial(std::vector<T> r) {
@@ -43,13 +47,13 @@ template <class mint> struct CombLarge {
         }
         if (n >= mint::getmod()) return 0;
         mint res = fact(n);
-        for (auto &x : r) res *= inv_fact(x);
+        for (auto &x : r) res *= ifact(x);
         return res;
     }
 
     static mint permu(int n, int r) {
         if (r < 0 || r > n) return mint(0);
-        return fact(n) * inv_fact(n - r);
+        return fact(n) * ifact(n - r);
     }
 
     static mint homo(int n, int r) {
