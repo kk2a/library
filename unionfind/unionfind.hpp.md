@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/offline_dynamic_connectivity.test.cpp
+    title: verify/unit_test/offline_dynamic_connectivity.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/partial_persitent_unionfind.test.cpp
     title: verify/unit_test/partial_persitent_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -41,6 +44,7 @@ data:
   verifiedWith:
   - verify/yosupo_ds/ds_unionfind.test.cpp
   - verify/unit_test/partial_persitent_unionfind.test.cpp
+  - verify/unit_test/offline_dynamic_connectivity.test.cpp
 documentation_of: unionfind/unionfind.hpp
 layout: document
 redirect_from:

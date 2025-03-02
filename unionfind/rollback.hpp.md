@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/offline_dynamic_connectivity.hpp
     title: data_structure/offline_dynamic_connectivity.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/offline_dynamic_connectivity.test.cpp
+    title: verify/unit_test/offline_dynamic_connectivity.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"unionfind/rollback.hpp\"\n\n\n\n#include <utility>\n#include\
@@ -20,9 +23,9 @@ data:
     \ > d[y]) std::swap(x, y);\n        hist.emplace_back(x, d[x]);\n        d[x]\
     \ += d[y];\n        hist.emplace_back(y, d[y]);\n        d[y] = x;\n        return\
     \ true;\n    }\n\n    int find(int x) {\n        if (d[x] < 0) return x;\n   \
-    \     return find(d[x]);\n    }\n\n    int treesize(int x) { return -d[find(x)];\
-    \ }\n\n    void snapshot() { snaps.push_back(size(hist)); }\n\n    void rollback()\
-    \ {\n        while (int(size(hist)) > snaps.back()) {\n            auto [i, x]\
+    \     return find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)]; }\n\
+    \n    void snapshot() { snaps.push_back(hist.size()); }\n\n    void rollback()\
+    \ {\n        while (int(hist.size()) > snaps.back()) {\n            auto [i, x]\
     \ = hist.back();\n            hist.pop_back();\n            d[i] = x;\n      \
     \  }\n        snaps.pop_back();\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_UNIONFIND_ROLLBACK_HPP\n#define KK2_UNIONFIND_ROLLBACK_HPP 1\n\
@@ -34,9 +37,9 @@ data:
     \        if (d[x] > d[y]) std::swap(x, y);\n        hist.emplace_back(x, d[x]);\n\
     \        d[x] += d[y];\n        hist.emplace_back(y, d[y]);\n        d[y] = x;\n\
     \        return true;\n    }\n\n    int find(int x) {\n        if (d[x] < 0) return\
-    \ x;\n        return find(d[x]);\n    }\n\n    int treesize(int x) { return -d[find(x)];\
-    \ }\n\n    void snapshot() { snaps.push_back(size(hist)); }\n\n    void rollback()\
-    \ {\n        while (int(size(hist)) > snaps.back()) {\n            auto [i, x]\
+    \ x;\n        return find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)];\
+    \ }\n\n    void snapshot() { snaps.push_back(hist.size()); }\n\n    void rollback()\
+    \ {\n        while (int(hist.size()) > snaps.back()) {\n            auto [i, x]\
     \ = hist.back();\n            hist.pop_back();\n            d[i] = x;\n      \
     \  }\n        snaps.pop_back();\n    }\n};\n\n} // namespace kk2\n\n#endif //\
     \ KK2_UNIONFIND_ROLLBACK_HPP\n"
@@ -45,9 +48,10 @@ data:
   path: unionfind/rollback.hpp
   requiredBy:
   - data_structure/offline_dynamic_connectivity.hpp
-  timestamp: '2025-02-28 14:51:08+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-03-02 17:31:18+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/unit_test/offline_dynamic_connectivity.test.cpp
 documentation_of: unionfind/rollback.hpp
 layout: document
 redirect_from:

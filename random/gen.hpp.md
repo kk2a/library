@@ -61,6 +61,9 @@ data:
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/offline_dynamic_connectivity.test.cpp
+    title: verify/unit_test/offline_dynamic_connectivity.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/partial_persitent_unionfind.test.cpp
     title: verify/unit_test/partial_persitent_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -178,6 +181,7 @@ data:
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/partial_persitent_unionfind.test.cpp
+  - verify/unit_test/offline_dynamic_connectivity.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp

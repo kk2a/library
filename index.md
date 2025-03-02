@@ -14,7 +14,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_and.hpp
       title: convolution/convolution_and.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/convolution_arb.hpp
       title: convolution/convolution_arb.hpp
     - icon: ':heavy_check_mark:'
@@ -70,7 +70,7 @@ data:
     - icon: ':warning:'
       path: data_structure/my_bitset_old.hpp
       title: data_structure/my_bitset_old.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/offline_dynamic_connectivity.hpp
       title: data_structure/offline_dynamic_connectivity.hpp
     - icon: ':heavy_check_mark:'
@@ -114,7 +114,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
     - icon: ':warning:'
@@ -379,10 +379,10 @@ data:
     - icon: ':x:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/garner.hpp
       title: math_mod/garner.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/inv.hpp
       title: math_mod/inv.hpp
     - icon: ':warning:'
@@ -583,7 +583,7 @@ data:
       title: template/type_alias.hpp
   - name: type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: type_traits/member.hpp
       title: type_traits/member.hpp
     - icon: ':warning:'
@@ -600,7 +600,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: unionfind/potentialized.hpp
       title: unionfind/potentialized.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: unionfind/rollback.hpp
       title: unionfind/rollback.hpp
     - icon: ':heavy_check_mark:'
@@ -650,6 +650,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/multiplicative_function_table.test.cpp
       title: verify/unit_test/multiplicative_function_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/unit_test/offline_dynamic_connectivity.test.cpp
+      title: verify/unit_test/offline_dynamic_connectivity.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/partial_persitent_unionfind.test.cpp
       title: verify/unit_test/partial_persitent_unionfind.test.cpp
@@ -749,16 +752,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
       title: verify/yosupo_fps/fps_exp_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv_arb.test.cpp
       title: verify/yosupo_fps/fps_inv_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log_arb.test.cpp
       title: verify/yosupo_fps/fps_log_arb.test.cpp
     - icon: ':x:'
