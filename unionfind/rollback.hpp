@@ -31,12 +31,12 @@ struct RollbackableUnionFind {
         return find(d[x]);
     }
 
-    int treesize(int x) { return -d[find(x)]; }
+    int size(int x) { return -d[find(x)]; }
 
-    void snapshot() { snaps.push_back(size(hist)); }
+    void snapshot() { snaps.push_back(hist.size()); }
 
     void rollback() {
-        while (int(size(hist)) > snaps.back()) {
+        while (int(hist.size()) > snaps.back()) {
             auto [i, x] = hist.back();
             hist.pop_back();
             d[i] = x;
