@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "chirp_Z.hpp"
-#include "multi_eval.hpp"
+#include "poly_multi_eval.hpp"
 
 namespace kk2 {
 
