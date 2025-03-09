@@ -31,10 +31,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/modint.hpp
     title: modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
@@ -89,8 +89,8 @@ data:
     \    int up = 2000001, lw = 1e7;\n    int t = 2;\n    rep (t) {\n        int n\
     \ = kk2::random::rng(up, lw);\n        auto a = kk2::Comb<kk2::mint107>::fact(n);\n\
     \        auto b = kk2::CombLarge<kk2::mint107>::fact(n);\n        // \u58CA\u308C\
-    \u3066\u3044\u308B\u306E\u3067\u5E38\u306Bfalse\u3092\u8FD4\u3059\n        //\
-    \ assert(a == b);\n    }\n\n    return 0;\n}\n"
+    \u3066\u3044\u308B\u306E\u3067false\u3092\u8FD4\u3059\n        // assert(a ==\
+    \ b);\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - modint/modint.hpp
   - type_traits/type_traits.hpp
@@ -114,7 +114,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/large_fact_arb_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-03-02 21:18:36+09:00'
+  timestamp: '2025-03-09 17:35:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/large_fact_arb_mod.test.cpp

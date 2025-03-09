@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/wavelet_matrix.test.cpp
+    title: verify/unit_test/wavelet_matrix.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -52,6 +55,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/multiplicative_function_table.test.cpp
+  - verify/unit_test/wavelet_matrix.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
 documentation_of: math/pow.hpp
 layout: document

@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: bit
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: bit/bitcount.hpp
       title: bit/bitcount.hpp
   - name: convolution
@@ -14,7 +14,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_and.hpp
       title: convolution/convolution_and.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convolution/convolution_arb.hpp
       title: convolution/convolution_arb.hpp
     - icon: ':heavy_check_mark:'
@@ -52,6 +52,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/binary_trie.hpp
       title: data_structure/binary_trie.hpp
+    - icon: ':question:'
+      path: data_structure/bit_vector.hpp
+      title: data_structure/bit_vector.hpp
     - icon: ':warning:'
       path: data_structure/convex_hull_trick_add_monotone.hpp
       title: data_structure/convex_hull_trick_add_monotone.hpp
@@ -97,6 +100,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/w_ary_tree.hpp
       title: data_structure/w_ary_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: data_structure/wavelet_matrix.hpp
+      title: data_structure/wavelet_matrix.hpp
   - name: fps
     pages:
     - icon: ':x:'
@@ -114,7 +120,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
     - icon: ':warning:'
@@ -379,10 +385,10 @@ data:
     - icon: ':question:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math_mod/garner.hpp
       title: math_mod/garner.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math_mod/inv.hpp
       title: math_mod/inv.hpp
     - icon: ':warning:'
@@ -450,7 +456,7 @@ data:
       title: others/run_length_encoding.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/gen.hpp
       title: random/gen.hpp
     - icon: ':warning:'
@@ -459,7 +465,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/hash.hpp
       title: random/hash.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/seed.hpp
       title: random/seed.hpp
   - name: segment_tree
@@ -583,7 +589,7 @@ data:
       title: template/type_alias.hpp
   - name: type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: type_traits/member.hpp
       title: type_traits/member.hpp
     - icon: ':warning:'
@@ -638,6 +644,9 @@ data:
       title: verify/aoj/aoj_ntl_1_e.test.cpp
   - name: verify/unit_test
     pages:
+    - icon: ':x:'
+      path: verify/unit_test/bit_vector.test.cpp
+      title: verify/unit_test/bit_vector.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/famous_function_table.test.cpp
       title: verify/unit_test/famous_function_table.test.cpp
@@ -665,6 +674,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/prime_table_extend.test.cpp
       title: verify/unit_test/prime_table_extend.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/unit_test/wavelet_matrix.test.cpp
+      title: verify/unit_test/wavelet_matrix.test.cpp
   - name: verify/yosupo_convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -752,19 +764,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp.test.cpp
       title: verify/yosupo_fps/fps_exp.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
       title: verify/yosupo_fps/fps_exp_arb.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_inv_arb.test.cpp
       title: verify/yosupo_fps/fps_inv_arb.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_log_arb.test.cpp
       title: verify/yosupo_fps/fps_log_arb.test.cpp
     - icon: ':heavy_check_mark:'

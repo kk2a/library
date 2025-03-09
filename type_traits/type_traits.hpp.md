@@ -2,18 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
   - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
+  - icon: ':question:'
+    path: data_structure/bit_vector.hpp
+    title: data_structure/bit_vector.hpp
   - icon: ':warning:'
     path: data_structure/convex_hull_trick_add_monotone.hpp
     title: data_structure/convex_hull_trick_add_monotone.hpp
@@ -24,6 +27,9 @@ data:
     path: data_structure/w_ary_tree.hpp
     title: data_structure/w_ary_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: data_structure/wavelet_matrix.hpp
+    title: data_structure/wavelet_matrix.hpp
+  - icon: ':x:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -192,6 +198,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
+  - icon: ':x:'
+    path: verify/unit_test/bit_vector.test.cpp
+    title: verify/unit_test/bit_vector.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/famous_function_table.test.cpp
     title: verify/unit_test/famous_function_table.test.cpp
@@ -219,6 +228,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/wavelet_matrix.test.cpp
+    title: verify/unit_test/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
@@ -300,19 +312,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv_arb.test.cpp
     title: verify/yosupo_fps/fps_inv_arb.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
   - icon: ':heavy_check_mark:'
@@ -638,7 +650,9 @@ data:
   - graph/edge.hpp
   - graph/static_graph.hpp
   - data_structure/w_ary_tree.hpp
+  - data_structure/bit_vector.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
+  - data_structure/wavelet_matrix.hpp
   - data_structure/my_bitset.hpp
   - math_mod/comb_large.hpp
   - math_mod/bell_number.hpp
@@ -741,9 +755,11 @@ data:
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/multiplicative_function_table.test.cpp
+  - verify/unit_test/bit_vector.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/partial_persitent_unionfind.test.cpp
   - verify/unit_test/offline_dynamic_connectivity.test.cpp
+  - verify/unit_test/wavelet_matrix.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/large_fact_arb_mod.test.cpp

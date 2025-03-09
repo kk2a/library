@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
@@ -63,18 +63,19 @@ data:
     ../../unionfind/partial_persistent.hpp\"\n#include \"../../unionfind/unionfind.hpp\"\
     \n#include \"../../random/gen.hpp\"\n#include \"../../template/template.hpp\"\n\
     using namespace std;\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n    kout\
-    \ << a + b << kendl;\n\n    int n = 1e5;\n    kk2::PartialPersistentUnionFind\
-    \ ppu(n);\n    kk2::UnionFind uf(n);\n\n    int q = 1e4;\n    vc<int> ask_size(q);\n\
-    \    vc<pi> ask_same(q);\n    vc<int> res_size(q), res_same(q);\n    rep (t, q)\
-    \ {\n        int num = kk2::random::rng(1, 101);\n        rep (num) {\n      \
-    \      int a = kk2::random::rng(0, n);\n            int b = kk2::random::rng(0,\
-    \ n);\n            assert(ppu.unite(a, b, t) == uf.unite(a, b));\n        }\n\
-    \        ask_size[t] = kk2::random::rng(0, n);\n        res_size[t] = uf.size(ask_size[t]);\n\
-    \        ask_same[t] = {kk2::random::rng(0, n), kk2::random::rng(0, n)};\n   \
-    \     res_same[t] = uf.same(ask_same[t].first, ask_same[t].second);\n    }\n\n\
-    \    rep (t, q) {\n        assert(ppu.size(ask_size[t], t) == res_size[t]);\n\
-    \        assert(ppu.same(ask_same[t].first, ask_same[t].second, t) == res_same[t]);\n\
-    \    }\n\n    return 0;\n}\n"
+    \ << a + b << kendl;\n\n    rep (200) {\n        int n = kk2::random::rng(1, 1e4);\n\
+    \        kk2::PartialPersistentUnionFind ppu(n);\n        kk2::UnionFind uf(n);\n\
+    \    \n        int q = 1e3;\n        vc<int> ask_size(q);\n        vc<pi> ask_same(q);\n\
+    \        vc<int> res_size(q), res_same(q);\n        rep (t, q) {\n           \
+    \ int num = kk2::random::rng(1, 101);\n            rep (num) {\n             \
+    \   int a = kk2::random::rng(0, n);\n                int b = kk2::random::rng(0,\
+    \ n);\n                assert(ppu.unite(a, b, t) == uf.unite(a, b));\n       \
+    \     }\n            ask_size[t] = kk2::random::rng(0, n);\n            res_size[t]\
+    \ = uf.size(ask_size[t]);\n            ask_same[t] = {kk2::random::rng(0, n),\
+    \ kk2::random::rng(0, n)};\n            res_same[t] = uf.same(ask_same[t].first,\
+    \ ask_same[t].second);\n        }\n    \n        rep (t, q) {\n            assert(ppu.size(ask_size[t],\
+    \ t) == res_size[t]);\n            assert(ppu.same(ask_same[t].first, ask_same[t].second,\
+    \ t) == res_same[t]);\n        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - unionfind/partial_persistent.hpp
   - unionfind/unionfind.hpp
@@ -90,7 +91,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/partial_persitent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2025-02-28 14:51:08+09:00'
+  timestamp: '2025-03-09 17:35:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/partial_persitent_unionfind.test.cpp

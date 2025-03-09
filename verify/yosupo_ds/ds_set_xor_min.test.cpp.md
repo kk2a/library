@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-03-09 17:35:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_set_xor_min.test.cpp

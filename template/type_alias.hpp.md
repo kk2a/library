@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
+  - icon: ':x:'
+    path: verify/unit_test/bit_vector.test.cpp
+    title: verify/unit_test/bit_vector.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/famous_function_table.test.cpp
     title: verify/unit_test/famous_function_table.test.cpp
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/wavelet_matrix.test.cpp
+    title: verify/unit_test/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
@@ -144,19 +150,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv_arb.test.cpp
     title: verify/yosupo_fps/fps_inv_arb.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
   - icon: ':heavy_check_mark:'
@@ -562,9 +568,11 @@ data:
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/multiplicative_function_table.test.cpp
+  - verify/unit_test/bit_vector.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/partial_persitent_unionfind.test.cpp
   - verify/unit_test/offline_dynamic_connectivity.test.cpp
+  - verify/unit_test/wavelet_matrix.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/large_fact_arb_mod.test.cpp

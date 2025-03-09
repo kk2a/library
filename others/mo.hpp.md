@@ -14,13 +14,13 @@ data:
   bundledCode: "#line 1 \"others/mo.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
     #include <cmath>\n#include <functional>\n#include <numeric>\n#include <vector>\n\
     \nnamespace kk2 {\n\nstruct Mo {\n    Mo(int n_, int q_) : n(n_), q(q_), ord(q)\
-    \ {\n        word_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0\
+    \ {\n        block_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0\
     \ / 3.0)));\n        std::iota(ord.begin(), ord.end(), 0);\n        queries.reserve(q);\n\
     \    }\n\n    Mo(int n_, const std::vector<std::pair<int, int>> &queries_)\n \
     \       : n(n_),\n          q(queries_.size()),\n          ord(q),\n         \
-    \ queries(queries_) {\n        word_size = std::max<int>(1, n / std::max(1.0,\
+    \ queries(queries_) {\n        block_size = std::max<int>(1, n / std::max(1.0,\
     \ std::sqrt(q * 2.0 / 3.0)));\n        std::iota(ord.begin(), ord.end(), 0);\n\
-    \    }\n\n    void add_query(int l, int r) {\n        assert(0 <= l and l < r\
+    \    }\n\n    void add_query(int l, int r) {\n        assert(0 <= l and l <= r\
     \ and r <= n);\n        queries.emplace_back(l, r);\n    }\n\n    void add_query(const\
     \ std::pair<int, int> &p) { add_query(p.first, p.second); }\n\n    template <typename\
     \ IL, typename IR, typename EL, typename ER, typename F>\n    void calculate(const\
@@ -28,7 +28,7 @@ data:
     \      const EL &erase_left,\n                   const ER &erase_right,\n    \
     \               const F &f) {\n        assert((int)queries.size() == q);\n   \
     \     std::vector<int> block_id(n);\n        for (int i = 0, cnt = 0, b = 0; i\
-    \ < n; i++) {\n            block_id[i] = b;\n            if (++cnt == word_size)\
+    \ < n; i++) {\n            block_id[i] = b;\n            if (++cnt == block_size)\
     \ {\n                b++;\n                cnt = 0;\n            }\n        }\n\
     \        std::sort(ord.begin(), ord.end(), [&](int l, int r) {\n            int\
     \ l_b = block_id[queries[l].first];\n            int r_b = block_id[queries[r].first];\n\
@@ -41,27 +41,27 @@ data:
     \ > queries[i].second) erase_right(--nowr);\n            f(i);\n        }\n  \
     \  }\n\n    template <typename I, typename E, typename F>\n    void calculate(const\
     \ I &insert, const E &erase, const F &f) {\n        calculate(insert, insert,\
-    \ erase, erase, f);\n    }\n\n  private:\n    int n, q, word_size;\n    std::vector<int>\
+    \ erase, erase, f);\n    }\n\n  private:\n    int n, q, block_size;\n    std::vector<int>\
     \ ord;\n    std::vector<std::pair<int, int>> queries;\n};\n\n} // namespace kk2\n\
     \n\n"
   code: "#ifndef KK2_OTHERS_MO_HPP\n#define KK2_OTHERS_MO_HPP 1\n\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <functional>\n#include <numeric>\n\
     #include <vector>\n\nnamespace kk2 {\n\nstruct Mo {\n    Mo(int n_, int q_) :\
-    \ n(n_), q(q_), ord(q) {\n        word_size = std::max<int>(1, n / std::max(1.0,\
+    \ n(n_), q(q_), ord(q) {\n        block_size = std::max<int>(1, n / std::max(1.0,\
     \ std::sqrt(q * 2.0 / 3.0)));\n        std::iota(ord.begin(), ord.end(), 0);\n\
     \        queries.reserve(q);\n    }\n\n    Mo(int n_, const std::vector<std::pair<int,\
     \ int>> &queries_)\n        : n(n_),\n          q(queries_.size()),\n        \
-    \  ord(q),\n          queries(queries_) {\n        word_size = std::max<int>(1,\
+    \  ord(q),\n          queries(queries_) {\n        block_size = std::max<int>(1,\
     \ n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));\n        std::iota(ord.begin(),\
     \ ord.end(), 0);\n    }\n\n    void add_query(int l, int r) {\n        assert(0\
-    \ <= l and l < r and r <= n);\n        queries.emplace_back(l, r);\n    }\n\n\
+    \ <= l and l <= r and r <= n);\n        queries.emplace_back(l, r);\n    }\n\n\
     \    void add_query(const std::pair<int, int> &p) { add_query(p.first, p.second);\
     \ }\n\n    template <typename IL, typename IR, typename EL, typename ER, typename\
     \ F>\n    void calculate(const IL &insert_left,\n                   const IR &insert_right,\n\
     \                   const EL &erase_left,\n                   const ER &erase_right,\n\
     \                   const F &f) {\n        assert((int)queries.size() == q);\n\
     \        std::vector<int> block_id(n);\n        for (int i = 0, cnt = 0, b = 0;\
-    \ i < n; i++) {\n            block_id[i] = b;\n            if (++cnt == word_size)\
+    \ i < n; i++) {\n            block_id[i] = b;\n            if (++cnt == block_size)\
     \ {\n                b++;\n                cnt = 0;\n            }\n        }\n\
     \        std::sort(ord.begin(), ord.end(), [&](int l, int r) {\n            int\
     \ l_b = block_id[queries[l].first];\n            int r_b = block_id[queries[r].first];\n\
@@ -74,14 +74,14 @@ data:
     \ > queries[i].second) erase_right(--nowr);\n            f(i);\n        }\n  \
     \  }\n\n    template <typename I, typename E, typename F>\n    void calculate(const\
     \ I &insert, const E &erase, const F &f) {\n        calculate(insert, insert,\
-    \ erase, erase, f);\n    }\n\n  private:\n    int n, q, word_size;\n    std::vector<int>\
+    \ erase, erase, f);\n    }\n\n  private:\n    int n, q, block_size;\n    std::vector<int>\
     \ ord;\n    std::vector<std::pair<int, int>> queries;\n};\n\n} // namespace kk2\n\
     \n#endif // KK2_OTHERS_MO_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: others/mo.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-03-09 17:35:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp

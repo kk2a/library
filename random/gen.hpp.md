@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy:
@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
+  - icon: ':x:'
+    path: verify/unit_test/bit_vector.test.cpp
+    title: verify/unit_test/bit_vector.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/famous_function_table.test.cpp
     title: verify/unit_test/famous_function_table.test.cpp
@@ -79,6 +82,9 @@ data:
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/wavelet_matrix.test.cpp
+    title: verify/unit_test/wavelet_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,9 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
@@ -171,7 +177,7 @@ data:
   - math_mod/primitive_root_64bit.hpp
   - fps/poly_find_root.hpp
   timestamp: '2025-02-04 23:50:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
@@ -181,10 +187,12 @@ data:
   - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/multiplicative_function_table.test.cpp
+  - verify/unit_test/bit_vector.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/partial_persitent_unionfind.test.cpp
   - verify/unit_test/offline_dynamic_connectivity.test.cpp
+  - verify/unit_test/wavelet_matrix.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp

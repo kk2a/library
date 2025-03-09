@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/poly_gcd.hpp
     title: fps/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy: []
