@@ -102,24 +102,22 @@ template <typename T, int MAX_LOG> struct BinaryTrie {
     }
 
     int count_not_greater(T x) const {
-        x ^= lazy;
         int now = root, res = nodes[root].count;
         for (int i = MAX_LOG - 1; i >= 0; --i) {
-            const int d = (x >> i) & 1;
-            if (d == 0 and nodes[now].nxt[d ^ 1] != -1) res -= nodes[nodes[now].nxt[d ^ 1]].count;
-            now = nodes[now].nxt[d];
+            const int zero = (lazy >> i) & 1, d = (x >> i) & 1;
+            if (d == 0 and nodes[now].nxt[zero ^ 1] != -1) res -= nodes[nodes[now].nxt[zero ^ 1]].count;
+            now = nodes[now].nxt[d ^ zero];
             if (now == -1) break;
         }
         return res;
     }
 
     int count_not_less(T x) const {
-        x ^= lazy;
         int now = root, res = nodes[root].count;
         for (int i = MAX_LOG - 1; i >= 0; --i) {
-            const int d = (x >> i) & 1;
-            if (d == 1 and nodes[now].nxt[d ^ 1] != -1) res -= nodes[nodes[now].nxt[d ^ 1]].count;
-            now = nodes[now].nxt[d];
+            const int zero = (lazy >> i) & 1, d = (x >> i) & 1;
+            if (d == 1 and nodes[now].nxt[zero] != -1) res -= nodes[nodes[now].nxt[zero]].count;
+            now = nodes[now].nxt[d ^ zero];
             if (now == -1) break;
         }
         return res;
@@ -144,6 +142,7 @@ template <typename T, int MAX_LOG> struct BinaryTrie {
         bool same = true;
         int st[MAX_LOG];
         int i = MAX_LOG - 1;
+
         for (;; --i) {
             const int d = (x >> i) & 1;
             st[i] = now;

@@ -12,7 +12,7 @@ namespace kk2 {
 
 struct Mo {
     Mo(int n_, int q_) : n(n_), q(q_), ord(q) {
-        word_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
+        block_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
         std::iota(ord.begin(), ord.end(), 0);
         queries.reserve(q);
     }
@@ -22,12 +22,12 @@ struct Mo {
           q(queries_.size()),
           ord(q),
           queries(queries_) {
-        word_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
+        block_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));
         std::iota(ord.begin(), ord.end(), 0);
     }
 
     void add_query(int l, int r) {
-        assert(0 <= l and l < r and r <= n);
+        assert(0 <= l and l <= r and r <= n);
         queries.emplace_back(l, r);
     }
 
@@ -43,7 +43,7 @@ struct Mo {
         std::vector<int> block_id(n);
         for (int i = 0, cnt = 0, b = 0; i < n; i++) {
             block_id[i] = b;
-            if (++cnt == word_size) {
+            if (++cnt == block_size) {
                 b++;
                 cnt = 0;
             }
@@ -72,7 +72,7 @@ struct Mo {
     }
 
   private:
-    int n, q, word_size;
+    int n, q, block_size;
     std::vector<int> ord;
     std::vector<std::pair<int, int>> queries;
 };

@@ -19,7 +19,7 @@ int main() {
         int n = kk2::random::rng(up, lw);
         auto a = kk2::Comb<kk2::mint107>::fact(n);
         auto b = kk2::CombLarge<kk2::mint107>::fact(n);
-        // 壊れているので常にfalseを返す
+        // 壊れているのでfalseを返す
         // assert(a == b);
     }
 

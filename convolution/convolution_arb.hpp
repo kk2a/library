@@ -1,12 +1,13 @@
 #ifndef KK2_CONVOLUTION_CONVOLUTION_ARB_HPP
 #define KK2_CONVOLUTION_CONVOLUTION_ARB_HPP 1
 
+#include <algorithm>
 #include <vector>
 
 #include "../math_mod/garner.hpp"
 #include "../modint/mont.hpp"
-#include "convolution.hpp"
 #include "../type_traits/member.hpp"
+#include "convolution.hpp"
 
 namespace kk2 {
 
@@ -14,6 +15,24 @@ template <class FPS, class mint = typename FPS::value_type>
 FPS convolution_arb(FPS &a, const FPS &b, long long mod) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
+    if (std::min(n, m) <= 100) {
+        FPS res(n + m - 1);
+        if constexpr (has_member_func_val<mint>::value) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) { res[i + j] += a[i] * b[j]; }
+            }
+        } else {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    res[i + j] += __int128_t(a[i]) * b[j] % mod;
+                    if (res[i + j] >= mod) res[i + j] -= mod;
+                }
+            }
+        }
+        a = res;
+        return a;
+    }
+
     static constexpr long long MOD1 = 754974721; // 2^24
     static constexpr long long MOD2 = 167772161; // 2^25
     static constexpr long long MOD3 = 469762049; // 2^26

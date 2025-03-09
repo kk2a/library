@@ -24,7 +24,6 @@ mint bostan_mori(const FPS &p, const FPS &q, long long n) {
     return bostan_mori(pp, qq, n >> 1);
 }
 
-// a_i = c_i (i < d)
 // a_i = \sum_{j=0}^{d-1} c_ja_{i-j-1} (i >= d)
 // return a_k
 template <class FPS, class mint = typename FPS::value_type>
