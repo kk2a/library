@@ -1,6 +1,14 @@
 ---
 data:
   libraryCategories:
+  - name: bbst
+    pages:
+    - icon: ':warning:'
+      path: bbst/red_black_tree.hpp
+      title: bbst/red_black_tree.hpp
+    - icon: ':warning:'
+      path: bbst/splay_tree.hpp
+      title: bbst/splay_tree.hpp
   - name: bit
     pages:
     - icon: ':question:'
@@ -20,6 +28,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_gcd.hpp
       title: convolution/convolution_gcd.hpp
+    - icon: ':warning:'
+      path: convolution/convolution_int.hpp
+      title: convolution/convolution_int.hpp
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_lcm.hpp
       title: convolution/convolution_lcm.hpp
@@ -52,7 +63,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/binary_trie.hpp
       title: data_structure/binary_trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/bit_vector.hpp
       title: data_structure/bit_vector.hpp
     - icon: ':warning:'
@@ -111,13 +122,13 @@ data:
     - icon: ':x:'
       path: fps/bostan_mori.hpp
       title: fps/bostan_mori.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/composition.hpp
       title: fps/composition.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
     - icon: ':x:'
@@ -129,37 +140,40 @@ data:
     - icon: ':question:'
       path: fps/fps_ntt_friendly.hpp
       title: fps/fps_ntt_friendly.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
+      path: fps/fps_sparsity_detector.hpp
+      title: fps/fps_sparsity_detector.hpp
+    - icon: ':x:'
       path: fps/fps_sqrt.hpp
       title: fps/fps_sqrt.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/mod_pow.hpp
       title: fps/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/poly_find_root.hpp
       title: fps/poly_find_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/poly_gcd.hpp
       title: fps/poly_gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/poly_interpolation.hpp
       title: fps/poly_interpolation.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: fps/poly_multi_eval.hpp
       title: fps/poly_multi_eval.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: fps/poly_sample_point_shift.hpp
       title: fps/poly_sample_point_shift.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/poly_taylor_shift.hpp
       title: fps/poly_taylor_shift.hpp
     - icon: ':x:'
       path: fps/poly_to_newton_basis.hpp
       title: fps/poly_to_newton_basis.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: fps/power_projection.hpp
       title: fps/power_projection.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: fps/product.hpp
       title: fps/product.hpp
   - name: functional
@@ -382,7 +396,7 @@ data:
     - icon: ':question:'
       path: math_mod/comb.hpp
       title: math_mod/comb.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
     - icon: ':question:'
@@ -394,7 +408,7 @@ data:
     - icon: ':warning:'
       path: math_mod/log.hpp
       title: math_mod/log.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
     - icon: ':question:'
@@ -425,7 +439,7 @@ data:
       title: matrix/matrix_field.hpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/modint.hpp
       title: modint/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -434,7 +448,7 @@ data:
     - icon: ':question:'
       path: modint/mont.hpp
       title: modint/mont.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/mont_arb.hpp
       title: modint/mont_arb.hpp
   - name: others
@@ -589,7 +603,7 @@ data:
       title: template/type_alias.hpp
   - name: type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':warning:'
       path: type_traits/member.hpp
       title: type_traits/member.hpp
     - icon: ':warning:'
@@ -644,7 +658,7 @@ data:
       title: verify/aoj/aoj_ntl_1_e.test.cpp
   - name: verify/unit_test
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/bit_vector.test.cpp
       title: verify/unit_test/bit_vector.test.cpp
     - icon: ':heavy_check_mark:'
@@ -653,7 +667,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/isprime_table_extend.test.cpp
       title: verify/unit_test/isprime_table_extend.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/unit_test/large_fact_arb_mod.test.cpp
       title: verify/unit_test/large_fact_arb_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -755,10 +769,10 @@ data:
       title: verify/yosupo_ds/ds_unionfind.test.cpp
   - name: verify/yosupo_fps
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_composition.test.cpp
       title: verify/yosupo_fps/fps_composition.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_composition_inv.test.cpp
       title: verify/yosupo_fps/fps_composition_inv.test.cpp
     - icon: ':heavy_check_mark:'
@@ -773,61 +787,61 @@ data:
     - icon: ':x:'
       path: verify/yosupo_fps/fps_inv_arb.test.cpp
       title: verify/yosupo_fps/fps_inv_arb.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
     - icon: ':x:'
       path: verify/yosupo_fps/fps_log_arb.test.cpp
       title: verify/yosupo_fps/fps_log_arb.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
       title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
       title: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
       title: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_sparse_exp.test.cpp
       title: verify/yosupo_fps/fps_sparse_exp.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_sparse_inv.test.cpp
       title: verify/yosupo_fps/fps_sparse_inv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_sparse_log.test.cpp
       title: verify/yosupo_fps/fps_sparse_log.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_sparse_pow.test.cpp
       title: verify/yosupo_fps/fps_sparse_pow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
       title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_sqrt.test.cpp
       title: verify/yosupo_fps/fps_sqrt.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/poly_division.test.cpp
       title: verify/yosupo_fps/poly_division.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/poly_interpolation.test.cpp
       title: verify/yosupo_fps/poly_interpolation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
       title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/poly_inv.test.cpp
       title: verify/yosupo_fps/poly_inv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/poly_root_finding.test.cpp
       title: verify/yosupo_fps/poly_root_finding.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
       title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
       title: verify/yosupo_fps/poly_taylor_shift.test.cpp
     - icon: ':x:'

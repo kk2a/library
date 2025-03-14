@@ -2,8 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
+  - icon: ':question:'
+    path: fps/fps_sparsity_detector.hpp
+    title: fps/fps_sparsity_detector.hpp
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
@@ -74,6 +80,8 @@ data:
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
+  - fps/fps_sparsity_detector.hpp
+  - bit/bitcount.hpp
   - modint/mont.hpp
   - template/template.hpp
   - template/constant.hpp
@@ -84,7 +92,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-03-14 21:20:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp

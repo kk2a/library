@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/poly_multi_eval.hpp
     title: fps/poly_multi_eval.hpp
   _extendedRequiredBy: []

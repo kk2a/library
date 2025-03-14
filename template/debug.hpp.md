@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':warning:'
     path: type_traits/member.hpp
     title: type_traits/member.hpp
   - icon: ':question:'

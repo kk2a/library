@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':question:'
@@ -10,6 +13,9 @@ data:
   - icon: ':x:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
+  - icon: ':question:'
+    path: fps/fps_sparsity_detector.hpp
+    title: fps/fps_sparsity_detector.hpp
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
@@ -50,9 +56,6 @@ data:
     path: template/type_alias.hpp
     title: template/type_alias.hpp
   - icon: ':question:'
-    path: type_traits/member.hpp
-    title: type_traits/member.hpp
-  - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -75,6 +78,8 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
@@ -85,16 +90,17 @@ data:
     \n    return 0;\n}\n"
   dependsOn:
   - fps/fps_arb.hpp
-  - type_traits/type_traits.hpp
   - convolution/convolution_arb.hpp
   - math_mod/garner.hpp
   - math_mod/inv.hpp
   - modint/mont.hpp
-  - type_traits/member.hpp
+  - type_traits/type_traits.hpp
   - convolution/convolution.hpp
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
+  - fps/fps_sparsity_detector.hpp
+  - bit/bitcount.hpp
   - modint/mont.hpp
   - template/template.hpp
   - template/constant.hpp
@@ -105,7 +111,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log_arb.test.cpp
   requiredBy: []
-  timestamp: '2025-03-09 17:35:31+09:00'
+  timestamp: '2025-03-14 21:20:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log_arb.test.cpp

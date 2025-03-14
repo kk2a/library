@@ -5,6 +5,9 @@ data:
   - icon: ':question:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
+  - icon: ':warning:'
+    path: convolution/convolution_int.hpp
+    title: convolution/convolution_int.hpp
   - icon: ':x:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
@@ -46,6 +49,7 @@ data:
   isVerificationFile: false
   path: math_mod/inv.hpp
   requiredBy:
+  - convolution/convolution_int.hpp
   - convolution/convolution_arb.hpp
   - math_mod/garner.hpp
   - fps/fps_arb.hpp

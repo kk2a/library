@@ -2,11 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':question:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
+  - icon: ':question:'
+    path: fps/fps_sparsity_detector.hpp
+    title: fps/fps_sparsity_detector.hpp
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
@@ -42,9 +48,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
@@ -80,6 +86,8 @@ data:
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
+  - fps/fps_sparsity_detector.hpp
+  - bit/bitcount.hpp
   - modint/mont.hpp
   - template/template.hpp
   - template/constant.hpp
@@ -90,8 +98,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/poly_division.test.cpp
   requiredBy: []
-  timestamp: '2025-03-02 17:07:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-14 21:20:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_division.test.cpp
 layout: document

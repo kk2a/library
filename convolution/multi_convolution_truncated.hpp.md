@@ -2,8 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
+  - icon: ':question:'
+    path: fps/fps_sparsity_detector.hpp
+    title: fps/fps_sparsity_detector.hpp
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
@@ -72,11 +78,13 @@ data:
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
   - type_traits/type_traits.hpp
+  - fps/fps_sparsity_detector.hpp
+  - bit/bitcount.hpp
   isVerificationFile: false
   path: convolution/multi_convolution_truncated.hpp
   requiredBy:
   - fps/fps_multivariate.hpp
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-03-14 21:20:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp

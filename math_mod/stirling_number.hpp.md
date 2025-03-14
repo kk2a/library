@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: fps/product.hpp
     title: fps/product.hpp
   _extendedRequiredBy: []

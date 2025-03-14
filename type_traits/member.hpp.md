@@ -2,31 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
-    path: convolution/convolution_arb.hpp
-    title: convolution/convolution_arb.hpp
-  - icon: ':x:'
-    path: fps/fps_arb.hpp
-    title: fps/fps_arb.hpp
   - icon: ':warning:'
     path: template/debug.hpp
     title: template/debug.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-    title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_exp_arb.test.cpp
-    title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_inv_arb.test.cpp
-    title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_log_arb.test.cpp
-    title: verify/yosupo_fps/fps_log_arb.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -80,16 +62,10 @@ data:
   isVerificationFile: false
   path: type_traits/member.hpp
   requiredBy:
-  - convolution/convolution_arb.hpp
   - template/debug.hpp
-  - fps/fps_arb.hpp
   timestamp: '2025-03-02 17:07:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
-  - verify/yosupo_fps/fps_log_arb.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: type_traits/member.hpp
 layout: document
 redirect_from:
