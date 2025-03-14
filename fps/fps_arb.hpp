@@ -473,7 +473,7 @@ FormalPowerSeriesArbitrary<mint>::operator*=(const FormalPowerSeriesArbitrary<mi
         this->clear();
         return *this;
     }
-    convolution_arb(*this, r, mint::getmod());
+    convolution_arb(*this, r);
     return *this;
 }
 

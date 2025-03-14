@@ -20,7 +20,7 @@ template <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS 
         for (int i = 0; i < m; i++)
             if (b[i] != mint(0)) nzb[bi++] = i;
         nza.resize(ai), nzb.resize(bi);
-        std::vector<mint> res(n + m - 1);
+        FPS res(n + m - 1);
         for (int i : nza)
             for (int j : nzb) res[i + j] += a[i] * b[j];
         return a = res;
