@@ -125,10 +125,10 @@ data:
     - icon: ':x:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/composition.hpp
       title: fps/composition.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
     - icon: ':x:'
@@ -161,7 +161,7 @@ data:
     - icon: ':x:'
       path: fps/poly_multi_eval.hpp
       title: fps/poly_multi_eval.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/poly_sample_point_shift.hpp
       title: fps/poly_sample_point_shift.hpp
     - icon: ':x:'
@@ -170,7 +170,7 @@ data:
     - icon: ':x:'
       path: fps/poly_to_newton_basis.hpp
       title: fps/poly_to_newton_basis.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/power_projection.hpp
       title: fps/power_projection.hpp
     - icon: ':x:'
@@ -396,7 +396,7 @@ data:
     - icon: ':question:'
       path: math_mod/comb.hpp
       title: math_mod/comb.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
     - icon: ':question:'
@@ -439,7 +439,7 @@ data:
       title: matrix/matrix_field.hpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/modint.hpp
       title: modint/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -667,7 +667,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/isprime_table_extend.test.cpp
       title: verify/unit_test/isprime_table_extend.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/large_fact_arb_mod.test.cpp
       title: verify/unit_test/large_fact_arb_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -769,19 +769,19 @@ data:
       title: verify/yosupo_ds/ds_unionfind.test.cpp
   - name: verify/yosupo_fps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_composition.test.cpp
       title: verify/yosupo_fps/fps_composition.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_composition_inv.test.cpp
       title: verify/yosupo_fps/fps_composition_inv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_exp.test.cpp
       title: verify/yosupo_fps/fps_exp.test.cpp
     - icon: ':x:'
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
       title: verify/yosupo_fps/fps_exp_arb.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
     - icon: ':x:'

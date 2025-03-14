@@ -11,13 +11,27 @@ data:
   bundledCode: '#line 1 "bbst/red_black_tree.hpp"
 
 
+
+
+
+
+
     '
-  code: ''
+  code: '#ifndef KK2_BBST_RED_BLACK_TREE_HPP
+
+    #define KK2_BBST_RED_BLACK_TREE_HPP 1
+
+
+
+
+    #endif // KK2_BBST_RED_BLACK_TREE_HPP
+
+    '
   dependsOn: []
   isVerificationFile: false
   path: bbst/red_black_tree.hpp
   requiredBy: []
-  timestamp: '2025-03-14 21:20:43+09:00'
+  timestamp: '2025-03-14 21:44:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: bbst/red_black_tree.hpp

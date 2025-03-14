@@ -84,7 +84,7 @@ data:
   path: convolution/multi_convolution_truncated.hpp
   requiredBy:
   - fps/fps_multivariate.hpp
-  timestamp: '2025-03-14 21:20:29+09:00'
+  timestamp: '2025-03-14 21:44:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp

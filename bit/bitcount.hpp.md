@@ -41,7 +41,7 @@ data:
   - icon: ':question:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   - icon: ':heavy_check_mark:'
@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/bit_vector.test.cpp
     title: verify/unit_test/bit_vector.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,19 +69,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
   - icon: ':x:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
   - icon: ':x:'

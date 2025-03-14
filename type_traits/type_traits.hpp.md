@@ -110,7 +110,7 @@ data:
   - icon: ':question:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   - icon: ':question:'
@@ -137,7 +137,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -213,7 +213,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/isprime_table_extend.test.cpp
     title: verify/unit_test/isprime_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -309,19 +309,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
   - icon: ':x:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
   - icon: ':x:'

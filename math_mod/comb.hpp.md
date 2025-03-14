@@ -14,14 +14,14 @@ data:
   - icon: ':warning:'
     path: math_mod/bernoulli_number.hpp
     title: math_mod/bernoulli_number.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':x:'

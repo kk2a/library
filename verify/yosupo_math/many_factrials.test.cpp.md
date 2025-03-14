@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/poly_sample_point_shift.hpp
     title: fps/poly_sample_point_shift.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   - icon: ':question:'
@@ -108,7 +108,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/many_factrials.test.cpp
   requiredBy: []
-  timestamp: '2025-03-14 21:20:29+09:00'
+  timestamp: '2025-03-14 21:44:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/many_factrials.test.cpp

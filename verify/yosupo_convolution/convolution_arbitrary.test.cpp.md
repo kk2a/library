@@ -108,7 +108,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2025-03-14 21:20:29+09:00'
+  timestamp: '2025-03-14 21:44:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_arbitrary.test.cpp

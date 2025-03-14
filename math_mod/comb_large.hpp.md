@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/poly_sample_point_shift.hpp
     title: fps/poly_sample_point_shift.hpp
   - icon: ':question:'
@@ -33,7 +33,7 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: verify/yosupo_math/many_factrials.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -120,8 +120,8 @@ data:
   isVerificationFile: false
   path: math_mod/comb_large.hpp
   requiredBy: []
-  timestamp: '2025-03-14 21:20:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-03-14 21:44:33+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/unit_test/large_fact_arb_mod.test.cpp

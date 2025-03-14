@@ -41,11 +41,11 @@ data:
   - icon: ':question:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,19 +57,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
   - icon: ':x:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
   - icon: ':x:'
@@ -179,15 +179,15 @@ data:
     \ {\n        std::vector<int> nza(n), nzb(m);\n        int ai = 0, bi = 0;\n \
     \       for (int i = 0; i < n; i++)\n            if (a[i] != mint(0)) nza[ai++]\
     \ = i;\n        for (int i = 0; i < m; i++)\n            if (b[i] != mint(0))\
-    \ nzb[bi++] = i;\n        nza.resize(ai), nzb.resize(bi);\n        std::vector<mint>\
-    \ res(n + m - 1);\n        for (int i : nza)\n            for (int j : nzb) res[i\
-    \ + j] += a[i] * b[j];\n        return a = res;\n    }\n\n    int z = 1;\n   \
-    \ while (z < n + m - 1) z <<= 1;\n    if (a == b) {\n        a.resize(z);\n  \
-    \      butterfly(a);\n        for (int i = 0; i < z; i++) a[i] *= a[i];\n    }\
-    \ else {\n        a.resize(z);\n        butterfly(a);\n        FPS t(b.begin(),\
-    \ b.end());\n        t.resize(z);\n        butterfly(t);\n        for (int i =\
-    \ 0; i < z; i++) a[i] *= t[i];\n    }\n    butterfly_inv(a);\n    a.resize(n +\
-    \ m - 1);\n    return a;\n}\n\n} // namespace kk2\n\n#endif // KK2_CONVOLUTION_CONVOLUTION_HPP\n"
+    \ nzb[bi++] = i;\n        nza.resize(ai), nzb.resize(bi);\n        FPS res(n +\
+    \ m - 1);\n        for (int i : nza)\n            for (int j : nzb) res[i + j]\
+    \ += a[i] * b[j];\n        return a = res;\n    }\n\n    int z = 1;\n    while\
+    \ (z < n + m - 1) z <<= 1;\n    if (a == b) {\n        a.resize(z);\n        butterfly(a);\n\
+    \        for (int i = 0; i < z; i++) a[i] *= a[i];\n    } else {\n        a.resize(z);\n\
+    \        butterfly(a);\n        FPS t(b.begin(), b.end());\n        t.resize(z);\n\
+    \        butterfly(t);\n        for (int i = 0; i < z; i++) a[i] *= t[i];\n  \
+    \  }\n    butterfly_inv(a);\n    a.resize(n + m - 1);\n    return a;\n}\n\n} //\
+    \ namespace kk2\n\n#endif // KK2_CONVOLUTION_CONVOLUTION_HPP\n"
   dependsOn:
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
@@ -206,7 +206,7 @@ data:
   - fps/fps_multivariate.hpp
   - fps/fps_multivariate.hpp
   - fps/fps_arb.hpp
-  timestamp: '2025-03-14 21:20:29+09:00'
+  timestamp: '2025-03-14 21:44:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/enumerate_bell_number.test.cpp

@@ -60,10 +60,10 @@ data:
     \ {\n        std::vector<int> nza(n), nzb(m);\n        int ai = 0, bi = 0;\n \
     \       for (int i = 0; i < n; i++)\n            if (a[i] != mint(0)) nza[ai++]\
     \ = i;\n        for (int i = 0; i < m; i++)\n            if (b[i] != mint(0))\
-    \ nzb[bi++] = i;\n        nza.resize(ai), nzb.resize(bi);\n        std::vector<mint>\
-    \ res(n + m - 1);\n        for (int i : nza)\n            for (int j : nzb) res[i\
-    \ + j] += a[i] * b[j];\n        return a = res;\n    }\n\n    static constexpr\
-    \ long long MOD1 = 754974721; // 2^24\n    static constexpr long long MOD2 = 167772161;\
+    \ nzb[bi++] = i;\n        nza.resize(ai), nzb.resize(bi);\n        FPS res(n +\
+    \ m - 1);\n        for (int i : nza)\n            for (int j : nzb) res[i + j]\
+    \ += a[i] * b[j];\n        return a = res;\n    }\n\n    static constexpr long\
+    \ long MOD1 = 754974721; // 2^24\n    static constexpr long long MOD2 = 167772161;\
     \ // 2^25\n    static constexpr long long MOD3 = 469762049; // 2^26\n    using\
     \ mint1 = LazyMontgomeryModInt<MOD1>;\n    using mint2 = LazyMontgomeryModInt<MOD2>;\n\
     \    using mint3 = LazyMontgomeryModInt<MOD3>;\n\n    auto a1 = std::vector<mint1>(a.begin(),\
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: convolution/convolution_int.hpp
   requiredBy: []
-  timestamp: '2025-03-14 21:20:29+09:00'
+  timestamp: '2025-03-14 21:44:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/convolution_int.hpp

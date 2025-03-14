@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/poly_sample_point_shift.hpp
     title: fps/poly_sample_point_shift.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   - icon: ':question:'
@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'
@@ -66,9 +66,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -122,8 +122,8 @@ data:
   isVerificationFile: true
   path: verify/unit_test/large_fact_arb_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-03-14 21:20:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-03-14 21:44:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/large_fact_arb_mod.test.cpp
 layout: document

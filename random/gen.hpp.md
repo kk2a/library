@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/isprime_table_extend.test.cpp
     title: verify/unit_test/isprime_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'

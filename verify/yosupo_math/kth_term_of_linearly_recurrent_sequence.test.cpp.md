@@ -101,7 +101,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2025-03-14 21:20:29+09:00'
+  timestamp: '2025-03-14 21:44:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp

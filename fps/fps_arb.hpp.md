@@ -244,17 +244,17 @@ data:
     \ {\n    return 0;\n}\n\ntemplate <class mint>\nFormalPowerSeriesArbitrary<mint>\
     \ &\nFormalPowerSeriesArbitrary<mint>::operator*=(const FormalPowerSeriesArbitrary<mint>\
     \ &r) {\n    if (this->empty() || r.empty()) {\n        this->clear();\n     \
-    \   return *this;\n    }\n    convolution_arb(*this, r, mint::getmod());\n   \
-    \ return *this;\n}\n\ntemplate <class mint>\nFormalPowerSeriesArbitrary<mint>\
-    \ FormalPowerSeriesArbitrary<mint>::inv(int deg) const {\n    assert((*this)[0]\
-    \ != mint(0));\n    if (deg == -1) deg = this->size();\n    FormalPowerSeriesArbitrary<mint>\
-    \ res{(*this)[0].inv()};\n    for (int i = 1; i < deg; i <<= 1) {\n        res\
-    \ = (res * mint(2) - this->pre(i << 1) * res * res).pre(i << 1);\n    }\n    return\
-    \ res.pre(deg);\n}\n\ntemplate <class mint>\nFormalPowerSeriesArbitrary<mint>\
-    \ FormalPowerSeriesArbitrary<mint>::exp(int deg) const {\n    assert(this->empty()\
-    \ || (*this)[0] == mint(0));\n    if (deg == -1) deg = this->size();\n    FormalPowerSeriesArbitrary<mint>\
-    \ ret{mint(1)};\n    for (int i = 1; i < deg; i <<= 1) {\n        ret = (ret *\
-    \ (pre(i << 1) + mint{1} - ret.log(i << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n\
+    \   return *this;\n    }\n    convolution_arb(*this, r);\n    return *this;\n\
+    }\n\ntemplate <class mint>\nFormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrary<mint>::inv(int\
+    \ deg) const {\n    assert((*this)[0] != mint(0));\n    if (deg == -1) deg = this->size();\n\
+    \    FormalPowerSeriesArbitrary<mint> res{(*this)[0].inv()};\n    for (int i =\
+    \ 1; i < deg; i <<= 1) {\n        res = (res * mint(2) - this->pre(i << 1) * res\
+    \ * res).pre(i << 1);\n    }\n    return res.pre(deg);\n}\n\ntemplate <class mint>\n\
+    FormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrary<mint>::exp(int deg)\
+    \ const {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg ==\
+    \ -1) deg = this->size();\n    FormalPowerSeriesArbitrary<mint> ret{mint(1)};\n\
+    \    for (int i = 1; i < deg; i <<= 1) {\n        ret = (ret * (pre(i << 1) +\
+    \ mint{1} - ret.log(i << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n\
     }\n\ntemplate <class mint>\nusing FPSArb = FormalPowerSeriesArbitrary<mint>;\n\
     \n} // namespace kk2\n\n#endif // KK2_FPS_FPS_ARB_HPP\n"
   dependsOn:
@@ -272,7 +272,7 @@ data:
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy: []
-  timestamp: '2025-03-14 21:20:29+09:00'
+  timestamp: '2025-03-14 21:44:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_fps/fps_inv_arb.test.cpp
