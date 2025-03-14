@@ -5,20 +5,27 @@
 #include <vector>
 
 #include "../math_mod/butterfly.hpp"
+#include "../fps/fps_sparsity_detector.hpp"
 
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS &a, const FPS &b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
-    if (std::min(n, m) <= 60) {
-        FPS res(n + m - 1);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) { res[i + j] += a[i] * b[j]; }
-        }
-        a = res;
-        return a;
+    if (is_sparse_operation(FPSOperation::CONVOLUTION, 1, a, b)) {
+        std::vector<int> nza(n), nzb(m);
+        int ai = 0, bi = 0;
+        for (int i = 0; i < n; i++)
+            if (a[i] != mint(0)) nza[ai++] = i;
+        for (int i = 0; i < m; i++)
+            if (b[i] != mint(0)) nzb[bi++] = i;
+        nza.resize(ai), nzb.resize(bi);
+        std::vector<mint> res(n + m - 1);
+        for (int i : nza)
+            for (int j : nzb) res[i + j] += a[i] * b[j];
+        return a = res;
     }
+
     int z = 1;
     while (z < n + m - 1) z <<= 1;
     if (a == b) {

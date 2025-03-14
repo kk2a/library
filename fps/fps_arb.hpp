@@ -7,16 +7,18 @@
 #include <utility>
 #include <vector>
 
-#include "../type_traits/type_traits.hpp"
 #include "../convolution/convolution_arb.hpp"
+#include "../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
-template <class mint> struct FormalPowerSeriesArbitrary : std::vector<mint> {
+template <class mint>
+struct FormalPowerSeriesArbitrary : std::vector<mint> {
     using std::vector<mint>::vector;
     using FPS = FormalPowerSeriesArbitrary;
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr> void debug_output(OStream &os) const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    void debug_output(OStream &os) const {
         os << "[";
         for (int i = 0; i < (int)this->size(); i++) {
             os << (*this)[i] << (i + 1 == (int)this->size() ? "" : ", ");
@@ -24,7 +26,8 @@ template <class mint> struct FormalPowerSeriesArbitrary : std::vector<mint> {
         os << "]";
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    void output(OStream &os) const {
         for (int i = 0; i < (int)this->size(); i++) {
             os << (*this)[i] << (i + 1 == (int)this->size() ? "\n" : " ");
         }
@@ -38,7 +41,8 @@ template <class mint> struct FormalPowerSeriesArbitrary : std::vector<mint> {
         return os;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr> FPS &input(IStream &is) {
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    FPS &input(IStream &is) {
         for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];
         return *this;
     }
@@ -130,7 +134,7 @@ template <class mint> struct FormalPowerSeriesArbitrary : std::vector<mint> {
         return ret;
     }
 
-    FPS shrink() {
+    FPS &shrink() {
         while (this->size() && this->back() == mint(0)) this->pop_back();
         return *this;
     }
@@ -269,7 +273,8 @@ template <class mint> struct FormalPowerSeriesArbitrary : std::vector<mint> {
         return g;
     }
 
-    template <class T> FPS pow(T k, int deg = -1) const {
+    template <class T>
+    FPS pow(T k, int deg = -1) const {
         const int n = this->size();
         if (deg == -1) deg = n;
         if (k == 0) {
@@ -291,7 +296,8 @@ template <class mint> struct FormalPowerSeriesArbitrary : std::vector<mint> {
         return FPS(deg, mint(0));
     }
 
-    template <class T> FPS sparse_pow(T k, int deg = -1) const {
+    template <class T>
+    FPS sparse_pow(T k, int deg = -1) const {
         if (deg == -1) deg = this->size();
         if (k == 0) {
             FPS ret(deg);
@@ -440,24 +446,29 @@ template <class mint> struct FormalPowerSeriesArbitrary : std::vector<mint> {
     FPS exp(int deg = -1) const;
 };
 
-template <class mint> void FormalPowerSeriesArbitrary<mint>::but() {
+template <class mint>
+void FormalPowerSeriesArbitrary<mint>::but() {
     exit(1);
 }
 
-template <class mint> void FormalPowerSeriesArbitrary<mint>::ibut() {
+template <class mint>
+void FormalPowerSeriesArbitrary<mint>::ibut() {
     exit(1);
 }
 
-template <class mint> void FormalPowerSeriesArbitrary<mint>::db() {
+template <class mint>
+void FormalPowerSeriesArbitrary<mint>::db() {
     exit(1);
 }
 
-template <class mint> int FormalPowerSeriesArbitrary<mint>::but_pr() {
+template <class mint>
+int FormalPowerSeriesArbitrary<mint>::but_pr() {
     return 0;
 }
 
 template <class mint>
-FormalPowerSeriesArbitrary<mint> &FormalPowerSeriesArbitrary<mint>::operator*=(const FormalPowerSeriesArbitrary<mint> &r) {
+FormalPowerSeriesArbitrary<mint> &
+FormalPowerSeriesArbitrary<mint>::operator*=(const FormalPowerSeriesArbitrary<mint> &r) {
     if (this->empty() || r.empty()) {
         this->clear();
         return *this;
@@ -466,7 +477,8 @@ FormalPowerSeriesArbitrary<mint> &FormalPowerSeriesArbitrary<mint>::operator*=(c
     return *this;
 }
 
-template <class mint> FormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrary<mint>::inv(int deg) const {
+template <class mint>
+FormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrary<mint>::inv(int deg) const {
     assert((*this)[0] != mint(0));
     if (deg == -1) deg = this->size();
     FormalPowerSeriesArbitrary<mint> res{(*this)[0].inv()};
@@ -476,7 +488,8 @@ template <class mint> FormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrar
     return res.pre(deg);
 }
 
-template <class mint> FormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrary<mint>::exp(int deg) const {
+template <class mint>
+FormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrary<mint>::exp(int deg) const {
     assert(this->empty() || (*this)[0] == mint(0));
     if (deg == -1) deg = this->size();
     FormalPowerSeriesArbitrary<mint> ret{mint(1)};

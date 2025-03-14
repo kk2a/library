@@ -1,5 +1,5 @@
-#ifndef KK2_CONVOLUTION_CONVOLUTION_ARB_HPP
-#define KK2_CONVOLUTION_CONVOLUTION_ARB_HPP 1
+#ifndef KK2_CONVOLUTION_CONVOLUTION_INT_HPP
+#define KK2_CONVOLUTION_CONVOLUTION_INT_HPP 1
 
 #include <algorithm>
 #include <vector>
@@ -7,11 +7,12 @@
 #include "../math_mod/garner.hpp"
 #include "../modint/mont.hpp"
 #include "convolution.hpp"
+#include "../fps/fps_sparsity_detector.hpp"
 
 namespace kk2 {
 
-template <class FPS, class mint = typename FPS::value_type>
-FPS convolution_arb(FPS &a, const FPS &b) {
+template <class FPS>
+FPS convolution_int(FPS &a, const FPS &b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
     if (is_sparse_operation(FPSOperation::CONVOLUTION, 0, a, b)) {
@@ -35,26 +36,23 @@ FPS convolution_arb(FPS &a, const FPS &b) {
     using mint2 = LazyMontgomeryModInt<MOD2>;
     using mint3 = LazyMontgomeryModInt<MOD3>;
 
-    std::vector<long long> a0(n), b0(m);
-    for (int i = 0; i < n; i++) a0[i] = a[i].val();
-    for (int i = 0; i < m; i++) b0[i] = b[i].val();
-    auto a1 = std::vector<mint1>(a0.begin(), a0.end());
-    auto b1 = std::vector<mint1>(b0.begin(), b0.end());
+    auto a1 = std::vector<mint1>(a.begin(), a.end());
+    auto b1 = std::vector<mint1>(b.begin(), b.end());
     convolution(a1, b1);
-    auto a2 = std::vector<mint2>(a0.begin(), a0.end());
-    auto b2 = std::vector<mint2>(b0.begin(), b0.end());
+    auto a2 = std::vector<mint2>(a.begin(), a.end());
+    auto b2 = std::vector<mint2>(b.begin(), b.end());
     convolution(a2, b2);
-    auto a3 = std::vector<mint3>(a0.begin(), a0.end());
-    auto b3 = std::vector<mint3>(b0.begin(), b0.end());
+    auto a3 = std::vector<mint3>(a.begin(), a.end());
+    auto b3 = std::vector<mint3>(b.begin(), b.end());
     convolution(a3, b3);
-    const std::vector<long long> ps = {MOD1, MOD2, MOD3, mint::getmod()};
+    const std::vector<long long> ps = {MOD1, MOD2, MOD3, 1ll << 31};
     a.resize(n + m - 1);
     for (int i = 0; i < n + m - 1; i++) {
-        a[i] = mint(garner({a1[i].val(), a2[i].val(), a3[i].val()}, ps));
+        a[i] = garner({a1[i].val(), a2[i].val(), a3[i].val()}, ps);
     }
     return a;
 }
 
 } // namespace kk2
 
-#endif // KK2_CONVOLUTION_CONVOLUTION_ARB_HPP
+#endif // KK2_CONVOLUTION_CONVOLUTION_INT_HPP

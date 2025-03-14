@@ -134,7 +134,7 @@ struct FormalPowerSeriesNTTFriendly : std::vector<mint> {
         return ret;
     }
 
-    FPS shrink() {
+    FPS &shrink() {
         while (this->size() && this->back() == mint(0)) this->pop_back();
         return *this;
     }
