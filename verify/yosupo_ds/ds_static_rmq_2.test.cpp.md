@@ -5,6 +5,9 @@ data:
     path: data_structure/disjoint_sparse_table.hpp
     title: data_structure/disjoint_sparse_table.hpp
   - icon: ':question:'
+    path: math/monoid/min.hpp
+    title: math/monoid/min.hpp
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
   - icon: ':question:'
@@ -45,31 +48,30 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include\
-    \ \"../../data_structure/disjoint_sparse_table.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nusing S = int;\n\nS op(S a, S b) {\n    return min(a,\
-    \ b);\n}\n\nS e() {\n    return 1e9 + 1;\n}\n\nint main() {\n    int n, q;\n \
-    \   kin >> n >> q;\n    vc<int> a(n);\n    kin >> a;\n    kk2::DisjointSparseTable<S,\
-    \ op, e> dst(a);\n\n    rep (q) {\n        int l, r;\n        kin >> l >> r;\n\
-    \        kout << dst.prod(l, r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
+    \ \"../../data_structure/disjoint_sparse_table.hpp\"\n#include \"../../math/monoid/min.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    using M = kk2::monoid::Min<int>;\n    int n, q;\n    kin >> n >> q;\n\
+    \    vc<M> a(n);\n    kin >> a;\n    kk2::DisjointSparseTableS<M> dst(a);\n\n\
+    \    rep (q) {\n        int l, r;\n        kin >> l >> r;\n        kout << dst.prod(l,\
+    \ r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - data_structure/disjoint_sparse_table.hpp
+  - math/monoid/min.hpp
+  - type_traits/type_traits.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
-  - type_traits/type_traits.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
   requiredBy: []
-  timestamp: '2025-02-28 14:51:08+09:00'
+  timestamp: '2025-03-27 00:23:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq_2.test.cpp

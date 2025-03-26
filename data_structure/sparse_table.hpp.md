@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
   - icon: ':warning:'
     path: graph/tree/euler_tour.hpp
     title: graph/tree/euler_tour.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/sparse_table.hpp\"\n\n\n\n#include <cassert>\n\
@@ -25,37 +25,39 @@ data:
     \    }\n\n    SparseTable(const std::vector<S> &v) : _n(int(v.size())) {\n   \
     \     log = 0;\n        while ((1 << log) < _n) log++;\n        table.assign(log\
     \ + 1, std::vector<S>(_n));\n        for (int i = 0; i < _n; i++) table[0][i]\
-    \ = v[i];\n        build();\n    }\n\n    void build() {\n        for (int i =\
-    \ 1; i <= log; i++) {\n            for (int j = 0; j + (1 << i) <= _n; j++) {\n\
-    \                table[i][j] = op(table[i - 1][j], table[i - 1][j + (1 << (i -\
-    \ 1))]);\n            }\n        }\n    }\n\n    void init_set(int p, S x) {\n\
-    \        assert(0 <= p && p < _n);\n        table[0][p] = x;\n    }\n\n    template\
-    \ <class... Args>\n    void emplace_init_set(int p, Args... args) {\n        init_set(p,\
-    \ S(args...));\n    }\n\n    using Monoid = S;\n\n    static S Op(S l, S r) {\
-    \ return op(l, r); }\n\n    static S MonoidUnit() { return e(); }\n\n    S prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= _n);\n        if\
-    \ (l == r) return e();\n        int i = 31 ^ __builtin_clz(r - l);\n        return\
-    \ op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n    S get(int i) const {\n\
-    \        assert(0 <= i && i < _n);\n        return table[0][i];\n    }\n\n   \
-    \ // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true\n\
+    \ = v[i];\n        build();\n    }\n\n    void build() {\n        assert(!is_built);\n\
+    \        is_built = true;\n        for (int i = 1; i <= log; i++) {\n        \
+    \    for (int j = 0; j + (1 << i) <= _n; j++) {\n                table[i][j] =\
+    \ op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n    \
+    \    }\n    }\n\n    template <class... Args>\n    void init_set(int p, Args...\
+    \ args) {\n        assert(0 <= p && p < _n);\n        assert(!is_built);\n   \
+    \     table[0][p] = S(args...);\n    }\n\n    using Monoid = S;\n\n    static\
+    \ S Op(S l, S r) { return op(l, r); }\n\n    static S MonoidUnit() { return e();\
+    \ }\n\n    S prod(int l, int r) const {\n        assert(0 <= l && l <= r && r\
+    \ <= _n);\n        assert(is_built);\n        if (l == r) return e();\n      \
+    \  int i = 31 ^ __builtin_clz(r - l);\n        return op(table[i][l], table[i][r\
+    \ - (1 << i)]);\n    }\n\n    S get(int i) const {\n        assert(0 <= i && i\
+    \ < _n);\n        assert(is_built);\n        return table[0][i];\n    }\n\n  \
+    \  // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true\n\
     \    // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false\n    template <bool\
     \ (*f)(S)>\n    int max_right(int l) const {\n        return max_right(l, [](S\
     \ x) { return f(x); });\n    }\n\n    template <class F>\n    int max_right(int\
     \ l, F f) const {\n        assert(0 <= l && l <= _n);\n        assert(f(e()));\n\
-    \        if (l == _n) return _n;\n        int left = l - 1, right = _n;\n    \
-    \    while (right - left > 1) {\n            int mid = (left + right) >> 1;\n\
-    \            if (f(prod(l, mid))) left = mid;\n            else right = mid;\n\
-    \        }\n        return right;\n    }\n\n    // return l s.t.\n    // l = r\
-    \ or f(op(a[l], a[l+1], ..., a[r-1])) == false\n    // l = 0 or f(op(a[l], a[l+1],\
-    \ ..., a[r]))   == true\n    template <bool (*f)(S)>\n    int min_left(int r)\
-    \ const {\n        return min_left(r, [](S x) { return f(x); });\n    }\n\n  \
-    \  template <class F>\n    int min_left(int r, F f) const {\n        assert(0\
-    \ <= r && r <= _n);\n        assert(f(e()));\n        if (r == 0) return 0;\n\
-    \        int left = -1, right = r;\n        while (right - left > 1) {\n     \
-    \       int mid = (left + right) >> 1;\n            if (f(prod(mid, r))) right\
-    \ = mid;\n            else left = mid;\n        }\n        return right;\n   \
-    \ }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>> table;\n\
-    };\n\n} // namespace kk2\n\n\n"
+    \        assert(is_built);\n        if (l == _n) return _n;\n        int left\
+    \ = l - 1, right = _n;\n        while (right - left > 1) {\n            int mid\
+    \ = (left + right) >> 1;\n            if (f(prod(l, mid))) left = mid;\n     \
+    \       else right = mid;\n        }\n        return right;\n    }\n\n    // return\
+    \ l s.t.\n    // l = r or f(op(a[l], a[l+1], ..., a[r-1])) == false\n    // l\
+    \ = 0 or f(op(a[l], a[l+1], ..., a[r]))   == true\n    template <bool (*f)(S)>\n\
+    \    int min_left(int r) const {\n        return min_left(r, [](S x) { return\
+    \ f(x); });\n    }\n\n    template <class F>\n    int min_left(int r, F f) const\
+    \ {\n        assert(0 <= r && r <= _n);\n        assert(f(e()));\n        assert(is_built);\n\
+    \        if (r == 0) return 0;\n        int left = -1, right = r;\n        while\
+    \ (right - left > 1) {\n            int mid = (left + right) >> 1;\n         \
+    \   if (f(prod(mid, r))) right = mid;\n            else left = mid;\n        }\n\
+    \        return right;\n    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>>\
+    \ table;\n    bool is_built = false;\n};\n\ntemplate <class M>\nusing SparseTableS\
+    \ = SparseTable<M, M::op, M::unit>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP\n#define KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP\
     \ 1\n\n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\n// require:\
     \ op(x, x) = x for all x\ntemplate <class S, S (*op)(S, S), S (*e)()>\nstruct\
@@ -65,44 +67,47 @@ data:
     \ : _n(int(v.size())) {\n        log = 0;\n        while ((1 << log) < _n) log++;\n\
     \        table.assign(log + 1, std::vector<S>(_n));\n        for (int i = 0; i\
     \ < _n; i++) table[0][i] = v[i];\n        build();\n    }\n\n    void build()\
-    \ {\n        for (int i = 1; i <= log; i++) {\n            for (int j = 0; j +\
-    \ (1 << i) <= _n; j++) {\n                table[i][j] = op(table[i - 1][j], table[i\
-    \ - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    void init_set(int\
-    \ p, S x) {\n        assert(0 <= p && p < _n);\n        table[0][p] = x;\n   \
-    \ }\n\n    template <class... Args>\n    void emplace_init_set(int p, Args...\
-    \ args) {\n        init_set(p, S(args...));\n    }\n\n    using Monoid = S;\n\n\
-    \    static S Op(S l, S r) { return op(l, r); }\n\n    static S MonoidUnit() {\
-    \ return e(); }\n\n    S prod(int l, int r) const {\n        assert(0 <= l &&\
-    \ l <= r && r <= _n);\n        if (l == r) return e();\n        int i = 31 ^ __builtin_clz(r\
-    \ - l);\n        return op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n  \
-    \  S get(int i) const {\n        assert(0 <= i && i < _n);\n        return table[0][i];\n\
-    \    }\n\n    // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1]))\
-    \ == true\n    // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false\n    template\
-    \ <bool (*f)(S)>\n    int max_right(int l) const {\n        return max_right(l,\
-    \ [](S x) { return f(x); });\n    }\n\n    template <class F>\n    int max_right(int\
-    \ l, F f) const {\n        assert(0 <= l && l <= _n);\n        assert(f(e()));\n\
-    \        if (l == _n) return _n;\n        int left = l - 1, right = _n;\n    \
-    \    while (right - left > 1) {\n            int mid = (left + right) >> 1;\n\
-    \            if (f(prod(l, mid))) left = mid;\n            else right = mid;\n\
-    \        }\n        return right;\n    }\n\n    // return l s.t.\n    // l = r\
-    \ or f(op(a[l], a[l+1], ..., a[r-1])) == false\n    // l = 0 or f(op(a[l], a[l+1],\
-    \ ..., a[r]))   == true\n    template <bool (*f)(S)>\n    int min_left(int r)\
-    \ const {\n        return min_left(r, [](S x) { return f(x); });\n    }\n\n  \
-    \  template <class F>\n    int min_left(int r, F f) const {\n        assert(0\
-    \ <= r && r <= _n);\n        assert(f(e()));\n        if (r == 0) return 0;\n\
-    \        int left = -1, right = r;\n        while (right - left > 1) {\n     \
-    \       int mid = (left + right) >> 1;\n            if (f(prod(mid, r))) right\
-    \ = mid;\n            else left = mid;\n        }\n        return right;\n   \
-    \ }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>> table;\n\
-    };\n\n} // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP\n"
+    \ {\n        assert(!is_built);\n        is_built = true;\n        for (int i\
+    \ = 1; i <= log; i++) {\n            for (int j = 0; j + (1 << i) <= _n; j++)\
+    \ {\n                table[i][j] = op(table[i - 1][j], table[i - 1][j + (1 <<\
+    \ (i - 1))]);\n            }\n        }\n    }\n\n    template <class... Args>\n\
+    \    void init_set(int p, Args... args) {\n        assert(0 <= p && p < _n);\n\
+    \        assert(!is_built);\n        table[0][p] = S(args...);\n    }\n\n    using\
+    \ Monoid = S;\n\n    static S Op(S l, S r) { return op(l, r); }\n\n    static\
+    \ S MonoidUnit() { return e(); }\n\n    S prod(int l, int r) const {\n       \
+    \ assert(0 <= l && l <= r && r <= _n);\n        assert(is_built);\n        if\
+    \ (l == r) return e();\n        int i = 31 ^ __builtin_clz(r - l);\n        return\
+    \ op(table[i][l], table[i][r - (1 << i)]);\n    }\n\n    S get(int i) const {\n\
+    \        assert(0 <= i && i < _n);\n        assert(is_built);\n        return\
+    \ table[0][i];\n    }\n\n    // return r s.t.\n    // r = l or f(op(a[l], a[l+1],\
+    \ ..., a[r-1])) == true\n    // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false\n\
+    \    template <bool (*f)(S)>\n    int max_right(int l) const {\n        return\
+    \ max_right(l, [](S x) { return f(x); });\n    }\n\n    template <class F>\n \
+    \   int max_right(int l, F f) const {\n        assert(0 <= l && l <= _n);\n  \
+    \      assert(f(e()));\n        assert(is_built);\n        if (l == _n) return\
+    \ _n;\n        int left = l - 1, right = _n;\n        while (right - left > 1)\
+    \ {\n            int mid = (left + right) >> 1;\n            if (f(prod(l, mid)))\
+    \ left = mid;\n            else right = mid;\n        }\n        return right;\n\
+    \    }\n\n    // return l s.t.\n    // l = r or f(op(a[l], a[l+1], ..., a[r-1]))\
+    \ == false\n    // l = 0 or f(op(a[l], a[l+1], ..., a[r]))   == true\n    template\
+    \ <bool (*f)(S)>\n    int min_left(int r) const {\n        return min_left(r,\
+    \ [](S x) { return f(x); });\n    }\n\n    template <class F>\n    int min_left(int\
+    \ r, F f) const {\n        assert(0 <= r && r <= _n);\n        assert(f(e()));\n\
+    \        assert(is_built);\n        if (r == 0) return 0;\n        int left =\
+    \ -1, right = r;\n        while (right - left > 1) {\n            int mid = (left\
+    \ + right) >> 1;\n            if (f(prod(mid, r))) right = mid;\n            else\
+    \ left = mid;\n        }\n        return right;\n    }\n\n  private:\n    int\
+    \ _n, log;\n    std::vector<std::vector<S>> table;\n    bool is_built = false;\n\
+    };\n\ntemplate <class M>\nusing SparseTableS = SparseTable<M, M::op, M::unit>;\n\
+    \n} // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_SPARSE_TABLE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/sparse_table.hpp
   requiredBy:
   - graph/tree/euler_tour.hpp
   - data_structure/static_rmq.hpp
-  timestamp: '2025-02-27 22:28:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-03-27 00:23:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp
 documentation_of: data_structure/sparse_table.hpp

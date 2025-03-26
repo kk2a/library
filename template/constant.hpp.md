@@ -97,17 +97,20 @@ data:
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-    title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
+    title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
@@ -120,7 +123,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,10 +150,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':x:'
@@ -549,14 +552,15 @@ data:
   - verify/yosupo_graph/tree_cartesian.test.cpp
   - verify/yosupo_graph/graph_scc.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp

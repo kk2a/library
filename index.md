@@ -1,9 +1,17 @@
 ---
 data:
   libraryCategories:
+  - name: bbst/base
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: bbst/base/red_black_tree_base.hpp
+      title: bbst/base/red_black_tree_base.hpp
   - name: bbst
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: bbst/lazy_red_black_tree.hpp
+      title: bbst/lazy_red_black_tree.hpp
+    - icon: ':heavy_check_mark:'
       path: bbst/red_black_tree.hpp
       title: bbst/red_black_tree.hpp
     - icon: ':warning:'
@@ -87,6 +95,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/offline_dynamic_connectivity.hpp
       title: data_structure/offline_dynamic_connectivity.hpp
+    - icon: ':warning:'
+      path: data_structure/ordered_set.hpp
+      title: data_structure/ordered_set.hpp
     - icon: ':heavy_check_mark:'
       path: data_structure/prefix_sum.hpp
       title: data_structure/prefix_sum.hpp
@@ -99,10 +110,10 @@ data:
     - icon: ':warning:'
       path: data_structure/slope_trick.hpp
       title: data_structure/slope_trick.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/sparse_table.hpp
       title: data_structure/sparse_table.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
     - icon: ':heavy_check_mark:'
@@ -131,7 +142,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
     - icon: ':warning:'
@@ -270,6 +281,38 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: graph/tree/heavy_light_decomposition.hpp
+  - name: math/action
+    pages:
+    - icon: ':warning:'
+      path: math/action/add_max.hpp
+      title: math/action/add_max.hpp
+    - icon: ':warning:'
+      path: math/action/add_max_min_sumwithsize.hpp
+      title: math/action/add_max_min_sumwithsize.hpp
+    - icon: ':warning:'
+      path: math/action/add_min.hpp
+      title: math/action/add_min.hpp
+    - icon: ':warning:'
+      path: math/action/add_sumwithsize.hpp
+      title: math/action/add_sumwithsize.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/action/affine_sumwithsize.hpp
+      title: math/action/affine_sumwithsize.hpp
+    - icon: ':warning:'
+      path: math/action/update_affine.hpp
+      title: math/action/update_affine.hpp
+    - icon: ':warning:'
+      path: math/action/update_max.hpp
+      title: math/action/update_max.hpp
+    - icon: ':warning:'
+      path: math/action/update_max_min_sumwithsize.hpp
+      title: math/action/update_max_min_sumwithsize.hpp
+    - icon: ':warning:'
+      path: math/action/update_min.hpp
+      title: math/action/update_min.hpp
+    - icon: ':warning:'
+      path: math/action/update_sumwithsize.hpp
+      title: math/action/update_sumwithsize.hpp
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -322,37 +365,38 @@ data:
       title: math/sqrt_floor.hpp
   - name: math/group
     pages:
-    - icon: ':heavy_check_mark:'
-      path: math/group/sum.hpp
-      title: math/group/sum.hpp
-  - name: math/homomorphism
-    pages:
     - icon: ':warning:'
-      path: math/homomorphism/add.hpp
-      title: math/homomorphism/add.hpp
+      path: math/group/add.hpp
+      title: math/group/add.hpp
     - icon: ':heavy_check_mark:'
-      path: math/homomorphism/affine.hpp
-      title: math/homomorphism/affine.hpp
-    - icon: ':warning:'
-      path: math/homomorphism/update.hpp
-      title: math/homomorphism/update.hpp
+      path: math/group/sum_with_size.hpp
+      title: math/group/sum_with_size.hpp
   - name: math/monoid
     pages:
+    - icon: ':heavy_check_mark:'
+      path: math/monoid/affine.hpp
+      title: math/monoid/affine.hpp
     - icon: ':warning:'
       path: math/monoid/bsgs.hpp
       title: math/monoid/bsgs.hpp
     - icon: ':warning:'
+      path: math/monoid/from_semigroup_to_monoid.hpp
+      title: math/monoid/from_semigroup_to_monoid.hpp
+    - icon: ':warning:'
       path: math/monoid/max.hpp
       title: math/monoid/max.hpp
     - icon: ':warning:'
-      path: math/monoid/max_min_sum.hpp
-      title: math/monoid/max_min_sum.hpp
-    - icon: ':heavy_check_mark:'
+      path: math/monoid/max_min_sumwithsize.hpp
+      title: math/monoid/max_min_sumwithsize.hpp
+    - icon: ':question:'
       path: math/monoid/min.hpp
       title: math/monoid/min.hpp
     - icon: ':warning:'
       path: math/monoid/pow.hpp
       title: math/monoid/pow.hpp
+    - icon: ':warning:'
+      path: math/monoid/update.hpp
+      title: math/monoid/update.hpp
   - name: math/multiplicative_function
     pages:
     - icon: ':heavy_check_mark:'
@@ -468,6 +512,9 @@ data:
     - icon: ':warning:'
       path: others/run_length_encoding.hpp
       title: others/run_length_encoding.hpp
+    - icon: ':heavy_check_mark:'
+      path: others/vector_pool.hpp
+      title: others/vector_pool.hpp
   - name: random
     pages:
     - icon: ':question:'
@@ -496,7 +543,7 @@ data:
     - icon: ':warning:'
       path: segment_tree/dynamic_seg.hpp
       title: segment_tree/dynamic_seg.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
     - icon: ':heavy_check_mark:'
@@ -505,56 +552,6 @@ data:
     - icon: ':warning:'
       path: segment_tree/seg2d.hpp
       title: segment_tree/seg2d.hpp
-  - name: segment_tree/utility
-    pages:
-    - icon: ':warning:'
-      path: segment_tree/utility/add_max_min_sum.hpp
-      title: segment_tree/utility/add_max_min_sum.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/addmax.hpp
-      title: segment_tree/utility/addmax.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/addmin.hpp
-      title: segment_tree/utility/addmin.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/addsum.hpp
-      title: segment_tree/utility/addsum.hpp
-    - icon: ':heavy_check_mark:'
-      path: segment_tree/utility/affinesum.hpp
-      title: segment_tree/utility/affinesum.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/max_min_sum_seg.hpp
-      title: segment_tree/utility/max_min_sum_seg.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/maxseg.hpp
-      title: segment_tree/utility/maxseg.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/maxseg2d.hpp
-      title: segment_tree/utility/maxseg2d.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/minseg.hpp
-      title: segment_tree/utility/minseg.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/minseg2d.hpp
-      title: segment_tree/utility/minseg2d.hpp
-    - icon: ':heavy_check_mark:'
-      path: segment_tree/utility/sumseg.hpp
-      title: segment_tree/utility/sumseg.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/sumseg2d.hpp
-      title: segment_tree/utility/sumseg2d.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/update_max_min_sum.hpp
-      title: segment_tree/utility/update_max_min_sum.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/updatemax.hpp
-      title: segment_tree/utility/updatemax.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/updatemin.hpp
-      title: segment_tree/utility/updatemin.hpp
-    - icon: ':warning:'
-      path: segment_tree/utility/updatesum.hpp
-      title: segment_tree/utility/updatesum.hpp
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
@@ -723,17 +720,20 @@ data:
   - name: verify/yosupo_ds
     pages:
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+      title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
       title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-      title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
       title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
+      title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
       title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
@@ -746,7 +746,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
       title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -758,7 +758,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_range_sum.test.cpp
       title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_ds/ds_static_rmq.test.cpp
       title: verify/yosupo_ds/ds_static_rmq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -775,10 +775,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_composition_inv.test.cpp
       title: verify/yosupo_fps/fps_composition_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp.test.cpp
       title: verify/yosupo_fps/fps_exp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
       title: verify/yosupo_fps/fps_exp_arb.test.cpp
     - icon: ':x:'

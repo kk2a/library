@@ -2,20 +2,20 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/group/sum.hpp
-    title: math/group/sum.hpp
+    path: math/action/affine_sumwithsize.hpp
+    title: math/action/affine_sumwithsize.hpp
   - icon: ':heavy_check_mark:'
-    path: math/homomorphism/affine.hpp
-    title: math/homomorphism/affine.hpp
+    path: math/group/sum_with_size.hpp
+    title: math/group/sum_with_size.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/monoid/affine.hpp
+    title: math/monoid/affine.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
-  - icon: ':heavy_check_mark:'
-    path: segment_tree/utility/affinesum.hpp
-    title: segment_tree/utility/affinesum.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -61,21 +61,22 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n\n#include \"../../modint/mont.hpp\"\n#include \"../../segment_tree/utility/affinesum.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, q;\n    kin >> n >> q;\n    auto a = kk2::GetVecSum<kk2::mont998>(n);\n\
-    \    kin >> a;\n    kk2::AffineSum<kk2::mont998> seg(a);\n\n    rep (q) {\n  \
-    \      int t;\n        kin >> t;\n        if (t == 0) {\n            int l, r;\n\
-    \            kk2::mont998 b, c;\n            kin >> l >> r >> b >> c;\n      \
-    \      seg.emplace_apply_range(l, r, b, c);\n        }\n        if (t == 1) {\n\
-    \            int l, r;\n            kin >> l >> r;\n            kout << seg.prod(l,\
-    \ r).a << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
+    \n\n#include \"../../modint/mont.hpp\"\n#include \"../../math/action/affine_sumwithsize.hpp\"\
+    \n#include \"../../segment_tree/lazy.hpp\"\n#include \"../../template/template.hpp\"\
+    \nusing namespace std;\n\nint main() {\n    using A = kk2::action::AffineSumWithSize<kk2::mont998,\
+    \ kk2::mont998>;\n    int n, q;\n    kin >> n >> q;\n    vc<A::S> a(n);\n    kin\
+    \ >> a;\n    kk2::LazySegmentTreeS<A> seg(a);\n\n    rep (q) {\n        int t;\n\
+    \        kin >> t;\n        if (t == 0) {\n            int l, r;\n           \
+    \ kk2::mont998 b, c;\n            kin >> l >> r >> b >> c;\n            seg.apply_range(l,\
+    \ r, b, c);\n        }\n        if (t == 1) {\n            int l, r;\n       \
+    \     kin >> l >> r;\n            kout << seg.prod(l, r).a << \"\\n\";\n     \
+    \   }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - modint/mont.hpp
   - type_traits/type_traits.hpp
-  - segment_tree/utility/affinesum.hpp
-  - math/group/sum.hpp
-  - math/homomorphism/affine.hpp
+  - math/action/affine_sumwithsize.hpp
+  - math/group/sum_with_size.hpp
+  - math/monoid/affine.hpp
   - segment_tree/lazy.hpp
   - template/template.hpp
   - template/constant.hpp
@@ -86,7 +87,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-02-27 22:28:33+09:00'
+  timestamp: '2025-03-27 00:23:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

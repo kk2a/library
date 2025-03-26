@@ -1,88 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: graph/tree/euler_tour.hpp
     title: graph/tree/euler_tour.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"data_structure/static_rmq.hpp\"\n\n\n\n#line 1 \"math/monoid/min.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <iostream>\n#include <vector>\n\nnamespace\
-    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Min {\n    S a;\n \
-    \   bool inf;\n\n    constexpr Min() : a(S()), inf(true) {}\n\n    constexpr Min(S\
-    \ a_, bool inf_ = false) : a(a_), inf(inf_) {}\n\n    operator S() const { return\
-    \ a; }\n\n    template <class OStream> friend OStream &operator<<(OStream &os,\
-    \ const Min &min) {\n        if (min.inf) os << \"inf\";\n        else os << min.a;\n\
-    \        return os;\n    }\n\n    template <class IStream> friend IStream &operator>>(IStream\
-    \ &is, Min &min) {\n        is >> min.a;\n        min.inf = false;\n        return\
-    \ is;\n    }\n\n    constexpr Min &operator=(const S &rhs) {\n        a = rhs;\n\
-    \        inf = false;\n        return *this;\n    }\n\n    constexpr Min &add(const\
-    \ S &rhs) {\n        if (inf) return *this;\n        a += rhs;\n        return\
-    \ *this;\n    }\n\n    constexpr Min &update(const S &rhs) {\n        a = rhs;\n\
-    \        inf = false;\n        return *this;\n    }\n\n    constexpr bool is_unit()\
-    \ { return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
-    \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
-    \ r.a);\n    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr\
-    \ static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args> std::vector<monoid::Min<S>> GetVecMin(int n, Args...\
-    \ args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
-    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
-    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n#line 1 \"data_structure/sparse_table.hpp\"\
-    \n\n\n\n#include <cassert>\n#line 6 \"data_structure/sparse_table.hpp\"\n\nnamespace\
-    \ kk2 {\n\n// require: op(x, x) = x for all x\ntemplate <class S, S (*op)(S, S),\
-    \ S (*e)()>\nstruct SparseTable {\n    SparseTable() = default;\n\n    SparseTable(int\
-    \ n) : _n(n) {\n        log = 0;\n        while ((1 << log) < _n) log++;\n   \
-    \     table.assign(log + 1, std::vector<S>(_n));\n    }\n\n    SparseTable(const\
-    \ std::vector<S> &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1\
-    \ << log) < _n) log++;\n        table.assign(log + 1, std::vector<S>(_n));\n \
-    \       for (int i = 0; i < _n; i++) table[0][i] = v[i];\n        build();\n \
-    \   }\n\n    void build() {\n        for (int i = 1; i <= log; i++) {\n      \
-    \      for (int j = 0; j + (1 << i) <= _n; j++) {\n                table[i][j]\
-    \ = op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n  \
-    \      }\n    }\n\n    void init_set(int p, S x) {\n        assert(0 <= p && p\
-    \ < _n);\n        table[0][p] = x;\n    }\n\n    template <class... Args>\n  \
-    \  void emplace_init_set(int p, Args... args) {\n        init_set(p, S(args...));\n\
-    \    }\n\n    using Monoid = S;\n\n    static S Op(S l, S r) { return op(l, r);\
-    \ }\n\n    static S MonoidUnit() { return e(); }\n\n    S prod(int l, int r) const\
-    \ {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return\
-    \ e();\n        int i = 31 ^ __builtin_clz(r - l);\n        return op(table[i][l],\
-    \ table[i][r - (1 << i)]);\n    }\n\n    S get(int i) const {\n        assert(0\
-    \ <= i && i < _n);\n        return table[0][i];\n    }\n\n    // return r s.t.\n\
-    \    // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true\n    // r = n or f(op(a[l],\
-    \ a[l+1], ..., a[r]))   == false\n    template <bool (*f)(S)>\n    int max_right(int\
-    \ l) const {\n        return max_right(l, [](S x) { return f(x); });\n    }\n\n\
-    \    template <class F>\n    int max_right(int l, F f) const {\n        assert(0\
-    \ <= l && l <= _n);\n        assert(f(e()));\n        if (l == _n) return _n;\n\
-    \        int left = l - 1, right = _n;\n        while (right - left > 1) {\n \
-    \           int mid = (left + right) >> 1;\n            if (f(prod(l, mid))) left\
-    \ = mid;\n            else right = mid;\n        }\n        return right;\n  \
-    \  }\n\n    // return l s.t.\n    // l = r or f(op(a[l], a[l+1], ..., a[r-1]))\
-    \ == false\n    // l = 0 or f(op(a[l], a[l+1], ..., a[r]))   == true\n    template\
-    \ <bool (*f)(S)>\n    int min_left(int r) const {\n        return min_left(r,\
-    \ [](S x) { return f(x); });\n    }\n\n    template <class F>\n    int min_left(int\
-    \ r, F f) const {\n        assert(0 <= r && r <= _n);\n        assert(f(e()));\n\
-    \        if (r == 0) return 0;\n        int left = -1, right = r;\n        while\
-    \ (right - left > 1) {\n            int mid = (left + right) >> 1;\n         \
-    \   if (f(prod(mid, r))) right = mid;\n            else left = mid;\n        }\n\
-    \        return right;\n    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>>\
-    \ table;\n};\n\n} // namespace kk2\n\n\n#line 6 \"data_structure/static_rmq.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class S>\nusing StaticRMQ = SparseTable<monoid::Min<S>,\
-    \ monoid::MinOp<S>, monoid::MinUnit<S>>;\n\n} // namespace kk2\n\n\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: '#ifndef KK2_DATA_STRUCTURE_STATIC_RMQ_HPP
 
     #define KK2_DATA_STRUCTURE_STATIC_RMQ_HPP 1
@@ -98,7 +51,7 @@ data:
 
     template <class S>
 
-    using StaticRMQ = SparseTable<monoid::Min<S>, monoid::MinOp<S>, monoid::MinUnit<S>>;
+    using StaticRMQ = SparseTableS<monoid::Min<S>>;
 
 
     } // namespace kk2
@@ -109,13 +62,14 @@ data:
     '
   dependsOn:
   - math/monoid/min.hpp
+  - type_traits/type_traits.hpp
   - data_structure/sparse_table.hpp
   isVerificationFile: false
   path: data_structure/static_rmq.hpp
   requiredBy:
   - graph/tree/euler_tour.hpp
-  timestamp: '2025-02-27 22:28:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-03-27 00:23:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp
 documentation_of: data_structure/static_rmq.hpp

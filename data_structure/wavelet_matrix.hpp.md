@@ -79,15 +79,15 @@ data:
     \ >> i & 1) ? mat[i].rank1(l) + mat[i].zeros : mat[i].rank0(l);\n            r\
     \ = (upper >> i & 1) ? mat[i].rank1(r) + mat[i].zeros : mat[i].rank0(r);\n   \
     \         if (l == r) break;\n        }\n        return res;\n    }\n\n    int\
-    \ range_freq(int l, int r, T upper, T lower) {\n        assert(0 <= l && l <=\
+    \ range_freq(int l, int r, T lower, T upper) {\n        assert(0 <= l && l <=\
     \ r && r <= n);\n        assert(0 <= lower && lower <= upper);\n        return\
     \ range_freq(l, r, upper) - range_freq(l, r, lower);\n    }\n\n    T max_not_greater(int\
     \ l, int r, T b) {\n        assert(0 <= l && l <= r && r <= n);\n        int count\
     \ = range_freq(l, r, b + 1);\n        return count == 0 ? -1 : kth_smallest(l,\
     \ r, count - 1);\n    }\n\n    T min_not_less(int l, int r, T b) {\n        assert(0\
     \ <= l && l <= r && r <= n);\n        int count = range_freq(l, r, b);\n     \
-    \   return count == r - l ? -1 : kth_smallest(l, r, count);\n    }\n\n    \n};\n\
-    \n} // namespace kk2\n\n\n#endif // KK2_DATA_STRUCTURE_WAVELET_MATRIX_HPP\n"
+    \   return count == r - l ? -1 : kth_smallest(l, r, count);\n    }\n};\n\n} //\
+    \ namespace kk2\n\n\n#endif // KK2_DATA_STRUCTURE_WAVELET_MATRIX_HPP\n"
   dependsOn:
   - bit/bitcount.hpp
   - type_traits/type_traits.hpp
@@ -95,7 +95,7 @@ data:
   isVerificationFile: false
   path: data_structure/wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2025-03-09 17:35:31+09:00'
+  timestamp: '2025-03-27 00:23:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/wavelet_matrix.test.cpp

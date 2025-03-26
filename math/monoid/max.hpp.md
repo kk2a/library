@@ -1,80 +1,58 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: segment_tree/utility/addmax.hpp
-    title: segment_tree/utility/addmax.hpp
+    path: math/action/add_max.hpp
+    title: math/action/add_max.hpp
   - icon: ':warning:'
-    path: segment_tree/utility/maxseg.hpp
-    title: segment_tree/utility/maxseg.hpp
-  - icon: ':warning:'
-    path: segment_tree/utility/maxseg2d.hpp
-    title: segment_tree/utility/maxseg2d.hpp
-  - icon: ':warning:'
-    path: segment_tree/utility/updatemax.hpp
-    title: segment_tree/utility/updatemax.hpp
+    path: math/action/update_max.hpp
+    title: math/action/update_max.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/monoid/max.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate\
-    \ <class S> struct Max {\n    S a;\n    bool minf;\n\n    constexpr Max() : a(S()),\
-    \ minf(true) {}\n\n    constexpr Max(S a_, bool minf_ = false) : a(a_), minf(minf_)\
-    \ {}\n\n    operator S() const { return a; }\n\n    template <class OStream> friend\
-    \ OStream &operator<<(OStream &os, const Max &max) {\n        if (max.minf) os\
-    \ << \"minf\";\n        else os << max.a;\n        return os;\n    }\n\n    template\
-    \ <class IStream> friend IStream &operator>>(IStream &is, Max &max) {\n      \
-    \  is >> max.a;\n        max.minf = false;\n        return is;\n    }\n\n    constexpr\
-    \ Max &operator=(const S &rhs) {\n        a = rhs;\n        minf = false;\n  \
-    \      return *this;\n    }\n\n    constexpr Max &add(const S &rhs) {\n      \
-    \  if (minf) return *this;\n        a += rhs;\n        return *this;\n    }\n\n\
-    \    constexpr Max &update(const S &rhs) {\n        a = rhs;\n        minf = false;\n\
-    \        return *this;\n    }\n\n    constexpr bool is_unit() { return minf; }\n\
-    };\n\ntemplate <class S> constexpr Max<S> MaxOp(Max<S> l, Max<S> r) {\n    if\
-    \ (r.minf) return l;\n    if (l.minf) return r;\n    l.a = std::max(l.a, r.a);\n\
-    \    return l;\n}\n\ntemplate <class S> Max<S> MaxUnit() {\n    constexpr static\
-    \ Max<S> e = Max<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args> std::vector<monoid::Max<S>> GetVecMax(int n, Args...\
-    \ args) {\n    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Max<S>>>\
-    \ GetVecMax2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\
-    \ GetVecMax<S>(w, args...));\n}\n\n} // namespace kk2\n\n\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MONOID_MAX_HPP\n#define KK2_MATH_MONOID_MAX_HPP 1\n\n#include\
-    \ <algorithm>\n#include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
-    \ monoid {\n\ntemplate <class S> struct Max {\n    S a;\n    bool minf;\n\n  \
-    \  constexpr Max() : a(S()), minf(true) {}\n\n    constexpr Max(S a_, bool minf_\
-    \ = false) : a(a_), minf(minf_) {}\n\n    operator S() const { return a; }\n\n\
-    \    template <class OStream> friend OStream &operator<<(OStream &os, const Max\
-    \ &max) {\n        if (max.minf) os << \"minf\";\n        else os << max.a;\n\
-    \        return os;\n    }\n\n    template <class IStream> friend IStream &operator>>(IStream\
-    \ &is, Max &max) {\n        is >> max.a;\n        max.minf = false;\n        return\
-    \ is;\n    }\n\n    constexpr Max &operator=(const S &rhs) {\n        a = rhs;\n\
-    \        minf = false;\n        return *this;\n    }\n\n    constexpr Max &add(const\
-    \ S &rhs) {\n        if (minf) return *this;\n        a += rhs;\n        return\
-    \ *this;\n    }\n\n    constexpr Max &update(const S &rhs) {\n        a = rhs;\n\
-    \        minf = false;\n        return *this;\n    }\n\n    constexpr bool is_unit()\
-    \ { return minf; }\n};\n\ntemplate <class S> constexpr Max<S> MaxOp(Max<S> l,\
-    \ Max<S> r) {\n    if (r.minf) return l;\n    if (l.minf) return r;\n    l.a =\
-    \ std::max(l.a, r.a);\n    return l;\n}\n\ntemplate <class S> Max<S> MaxUnit()\
-    \ {\n    constexpr static Max<S> e = Max<S>();\n    return e;\n}\n\n} // namespace\
-    \ monoid\n\ntemplate <class S, class... Args> std::vector<monoid::Max<S>> GetVecMax(int\
-    \ n, Args... args) {\n    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Max<S>>>\
-    \ GetVecMax2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Max<S>>>(h,\
-    \ GetVecMax<S>(w, args...));\n}\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MAX_H\n"
-  dependsOn: []
+    \ <functional>\n\n#include \"../../type_traits/type_traits.hpp\"\n\nnamespace\
+    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S, class Compare = std::less<S>>\n\
+    struct Max {\n    static constexpr bool commutative = true;\n\n    S a;\n    bool\
+    \ is_unit;\n\n    Max() : a(S()), is_unit(true) {}\n\n    Max(S a_) : a(a_), is_unit(false)\
+    \ {}\n\n    operator S() const { return a; }\n\n    inline static Max op(Max l,\
+    \ Max r) {\n        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;\n  \
+    \      return Compare{}(l.a, r.a) ? r : l;\n    }\n\n    inline static Max unit()\
+    \ { return Max(); }\n\n    template <class OStream, is_ostream_t<OSrteam> * =\
+    \ nullptr>\n    friend OStream &operator<<(OStream &os, const Max &max) {\n  \
+    \      if (max.is_unit) os << \"-inf\";\n        else os << max.a;\n        return\
+    \ os;\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
+    \    friend IStream &operator>>(IStream &is, Max &max) {\n        is >> max.a;\n\
+    \        max.is_unit = false;\n        return is;\n    }\n\n    bool operator==(const\
+    \ Max &rhs) const {\n        return is_unit == rhs.is_unit and (is_unit or a ==\
+    \ rhs.a);\n    }\n\n    bool operator!=(const Max &rhs) const { return !(*this\
+    \ == rhs); }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MAX_H\n"
+  dependsOn:
+  - type_traits/type_traits.hpp
   isVerificationFile: false
   path: math/monoid/max.hpp
   requiredBy:
-  - segment_tree/utility/maxseg2d.hpp
-  - segment_tree/utility/addmax.hpp
-  - segment_tree/utility/maxseg.hpp
-  - segment_tree/utility/updatemax.hpp
-  timestamp: '2025-02-12 19:35:30+09:00'
+  - math/action/add_max.hpp
+  - math/action/update_max.hpp
+  timestamp: '2025-03-27 00:23:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/max.hpp

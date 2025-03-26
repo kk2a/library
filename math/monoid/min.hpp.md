@@ -1,93 +1,75 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
   - icon: ':warning:'
     path: graph/tree/euler_tour.hpp
     title: graph/tree/euler_tour.hpp
   - icon: ':warning:'
-    path: segment_tree/utility/addmin.hpp
-    title: segment_tree/utility/addmin.hpp
+    path: math/action/add_min.hpp
+    title: math/action/add_min.hpp
   - icon: ':warning:'
-    path: segment_tree/utility/minseg.hpp
-    title: segment_tree/utility/minseg.hpp
-  - icon: ':warning:'
-    path: segment_tree/utility/minseg2d.hpp
-    title: segment_tree/utility/minseg2d.hpp
-  - icon: ':warning:'
-    path: segment_tree/utility/updatemin.hpp
-    title: segment_tree/utility/updatemin.hpp
+    path: math/action/update_min.hpp
+    title: math/action/update_min.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
+    title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/monoid/min.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate\
-    \ <class S> struct Min {\n    S a;\n    bool inf;\n\n    constexpr Min() : a(S()),\
-    \ inf(true) {}\n\n    constexpr Min(S a_, bool inf_ = false) : a(a_), inf(inf_)\
-    \ {}\n\n    operator S() const { return a; }\n\n    template <class OStream> friend\
-    \ OStream &operator<<(OStream &os, const Min &min) {\n        if (min.inf) os\
-    \ << \"inf\";\n        else os << min.a;\n        return os;\n    }\n\n    template\
-    \ <class IStream> friend IStream &operator>>(IStream &is, Min &min) {\n      \
-    \  is >> min.a;\n        min.inf = false;\n        return is;\n    }\n\n    constexpr\
-    \ Min &operator=(const S &rhs) {\n        a = rhs;\n        inf = false;\n   \
-    \     return *this;\n    }\n\n    constexpr Min &add(const S &rhs) {\n       \
-    \ if (inf) return *this;\n        a += rhs;\n        return *this;\n    }\n\n\
-    \    constexpr Min &update(const S &rhs) {\n        a = rhs;\n        inf = false;\n\
-    \        return *this;\n    }\n\n    constexpr bool is_unit() { return inf; }\n\
-    };\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S> r) {\n    if\
-    \ (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a, r.a);\n\
-    \    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr static\
-    \ Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args> std::vector<monoid::Min<S>> GetVecMin(int n, Args...\
-    \ args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
-    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
-    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MONOID_MIN_HPP\n#define KK2_MATH_MONOID_MIN_HPP 1\n\n#include\
-    \ <algorithm>\n#include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace\
-    \ monoid {\n\ntemplate <class S> struct Min {\n    S a;\n    bool inf;\n\n   \
-    \ constexpr Min() : a(S()), inf(true) {}\n\n    constexpr Min(S a_, bool inf_\
-    \ = false) : a(a_), inf(inf_) {}\n\n    operator S() const { return a; }\n\n \
-    \   template <class OStream> friend OStream &operator<<(OStream &os, const Min\
-    \ &min) {\n        if (min.inf) os << \"inf\";\n        else os << min.a;\n  \
-    \      return os;\n    }\n\n    template <class IStream> friend IStream &operator>>(IStream\
-    \ &is, Min &min) {\n        is >> min.a;\n        min.inf = false;\n        return\
-    \ is;\n    }\n\n    constexpr Min &operator=(const S &rhs) {\n        a = rhs;\n\
-    \        inf = false;\n        return *this;\n    }\n\n    constexpr Min &add(const\
-    \ S &rhs) {\n        if (inf) return *this;\n        a += rhs;\n        return\
-    \ *this;\n    }\n\n    constexpr Min &update(const S &rhs) {\n        a = rhs;\n\
-    \        inf = false;\n        return *this;\n    }\n\n    constexpr bool is_unit()\
-    \ { return inf; }\n};\n\ntemplate <class S> constexpr Min<S> MinOp(Min<S> l, Min<S>\
-    \ r) {\n    if (r.inf) return l;\n    if (l.inf) return r;\n    l.a = std::min(l.a,\
-    \ r.a);\n    return l;\n}\n\ntemplate <class S> Min<S> MinUnit() {\n    constexpr\
-    \ static Min<S> e = Min<S>();\n    return e;\n}\n\n} // namespace monoid\n\ntemplate\
-    \ <class S, class... Args> std::vector<monoid::Min<S>> GetVecMin(int n, Args...\
-    \ args) {\n    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));\n\
-    }\n\ntemplate <class S, class... Args>\nstd::vector<std::vector<monoid::Min<S>>>\
-    \ GetVecMin2D(int h, int w, Args... args) {\n    return std::vector<std::vector<monoid::Min<S>>>(h,\
-    \ GetVecMin(w, args...));\n}\n\n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_MIN_HPP\n"
-  dependsOn: []
+    \ <functional>\n\n#include \"../../type_traits/type_traits.hpp\"\n\nnamespace\
+    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S, class Compare = std::less<S>>\n\
+    struct Min {\n    static constexpr bool commutative = true;\n    S a;\n    bool\
+    \ is_unit;\n\n    Min() : a(S()), is_unit(true) {}\n\n    Min(S a_) : a(a_), is_unit(false)\
+    \ {}\n\n    operator S() const { return a; }\n\n    inline static Min op(Min l,\
+    \ Min r) {\n        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;\n  \
+    \      return Compare{}(l.a, r.a) ? l : r;\n    }\n\n    inline static Min unit()\
+    \ { return Min(); }\n\n    template <class OStream, is_ostream_t<OStream> * =\
+    \ nullptr>\n    friend OStream &operator<<(OStream &os, const Min &min) {\n  \
+    \      if (min.is_unit) os << \"inf\";\n        else os << min.a;\n        return\
+    \ os;\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
+    \    friend IStream &operator>>(IStream &is, Min &min) {\n        is >> min.a;\n\
+    \        min.is_unit = false;\n        return is;\n    }\n\n    bool operator==(const\
+    \ Min &rhs) const {\n        return is_unit == rhs.is_unit and (is_unit or a ==\
+    \ rhs.a);\n    }\n\n    bool operator!=(const Min &rhs) const { return !(*this\
+    \ == rhs); }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_MIN_HPP\n"
+  dependsOn:
+  - type_traits/type_traits.hpp
   isVerificationFile: false
   path: math/monoid/min.hpp
   requiredBy:
+  - math/action/update_min.hpp
+  - math/action/add_min.hpp
   - graph/tree/euler_tour.hpp
   - data_structure/static_rmq.hpp
-  - segment_tree/utility/updatemin.hpp
-  - segment_tree/utility/minseg.hpp
-  - segment_tree/utility/minseg2d.hpp
-  - segment_tree/utility/addmin.hpp
-  timestamp: '2025-02-12 19:35:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-03-27 00:23:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_ds/ds_static_rmq_2.test.cpp
   - verify/yosupo_ds/ds_static_rmq.test.cpp
 documentation_of: math/monoid/min.hpp
 layout: document

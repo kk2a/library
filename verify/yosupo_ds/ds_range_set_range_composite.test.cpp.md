@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_set_range_composite
@@ -64,13 +64,14 @@ data:
     \ - 1).inv(), x.size};\n}\n\nF composition(F l, F r) {\n    if (l.id) return r;\n\
     \    return l;\n}\n\nF id() {\n    return F{S{1, 0, 0}, true};\n}\n\nint main()\
     \ {\n    int n, q;\n    kin >> n >> q;\n    vector<S> a(n);\n    kin >> a;\n\n\
-    \    kk2::LazySegTree<S, op, e, F, mapping, composition, id> seg(a);\n\n    rep\
-    \ (q) {\n        int t;\n        kin >> t;\n        if (t == 0) {\n          \
-    \  int l, r;\n            kk2::mont998 c, d;\n            kin >> l >> r >> c >>\
-    \ d;\n            seg.apply(l, r, F{S{c, d, 1}, false});\n        }\n        if\
-    \ (t == 1) {\n            int l, r;\n            kk2::mont998 x;\n           \
-    \ kin >> l >> r >> x;\n            auto f = seg.prod(l, r);\n            kout\
-    \ << f.a * x + f.b << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
+    \    kk2::LazySegmentTree<S, op, e, F, mapping, composition, id> seg(a);\n\n \
+    \   rep (q) {\n        int t;\n        kin >> t;\n        if (t == 0) {\n    \
+    \        int l, r;\n            kk2::mont998 c, d;\n            kin >> l >> r\
+    \ >> c >> d;\n            seg.apply(l, r, F{S{c, d, 1}, false});\n        }\n\
+    \        if (t == 1) {\n            int l, r;\n            kk2::mont998 x;\n \
+    \           kin >> l >> r >> x;\n            auto f = seg.prod(l, r);\n      \
+    \      kout << f.a * x + f.b << \"\\n\";\n        }\n    }\n\n    return 0;\n\
+    }\n"
   dependsOn:
   - modint/mont.hpp
   - type_traits/type_traits.hpp
@@ -84,8 +85,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2025-02-27 22:28:33+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-27 00:23:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
 layout: document

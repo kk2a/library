@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
+    title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -28,16 +31,17 @@ data:
   code: "#ifndef KK2_FUNCTIONAL_REVERSE_ARGS_HPP\n#define KK2_FUNCTIONAL_REVERSE_ARGS_HPP\
     \ 1\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\n// reverse_args<f>(y,\
     \ x) = f(x, y)\ntemplate <auto f, is_two_args_function_pointer_t<decltype(f)>\
-    \ * = nullptr>\nauto reverse_args(auto x, auto y) {\n    return f(y, x);\n}\n\n\
-    } // namespace kk2\n\n#endif // KK2_FUNCTIONAL_REVERSE_ARGS_HPP\n"
+    \ * = nullptr>\ninline auto reverse_args(auto x, auto y) {\n    return f(y, x);\n\
+    }\n\n} // namespace kk2\n\n#endif // KK2_FUNCTIONAL_REVERSE_ARGS_HPP\n"
   dependsOn:
   - type_traits/type_traits.hpp
   isVerificationFile: false
   path: functional/reverse_args.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-03-27 00:23:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
 documentation_of: functional/reverse_args.hpp
 layout: document

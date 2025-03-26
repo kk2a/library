@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: convolution/convolution_int.hpp
     title: convolution/convolution_int.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':question:'
@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':x:'

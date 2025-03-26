@@ -2,14 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/group/sum.hpp
-    title: math/group/sum.hpp
+    path: bbst/base/red_black_tree_base.hpp
+    title: bbst/base/red_black_tree_base.hpp
   - icon: ':heavy_check_mark:'
-    path: segment_tree/seg.hpp
-    title: segment_tree/seg.hpp
+    path: bbst/red_black_tree.hpp
+    title: bbst/red_black_tree.hpp
   - icon: ':heavy_check_mark:'
-    path: segment_tree/utility/sumseg.hpp
-    title: segment_tree/utility/sumseg.hpp
+    path: functional/reverse_args.hpp
+    title: functional/reverse_args.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/monoid/affine.hpp
+    title: math/monoid/affine.hpp
+  - icon: ':question:'
+    path: modint/mont.hpp
+    title: modint/mont.hpp
+  - icon: ':heavy_check_mark:'
+    path: others/vector_pool.hpp
+    title: others/vector_pool.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -38,9 +47,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
+    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
     links:
-    - https://judge.yosupo.jp/problem/point_add_range_sum
+    - https://judge.yosupo.jp/problem/point_set_range_composite
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -51,41 +60,46 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
-    \n#include \"../../segment_tree/utility/sumseg.hpp\"\n#include \"../../template/template.hpp\"\
-    \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n  \
-    \  auto a = kk2::GetVecSum<i64>(n);\n    kin >> a;\n    kk2::SumSeg<i64> seg(a);\n\
-    \n    rep (q) {\n        int t;\n        kin >> t;\n        if (t == 0) {\n  \
-    \          int p, x;\n            kin >> p >> x;\n            seg.emplace_set(p,\
-    \ seg.get(p).a + x);\n        }\n        if (t == 1) {\n            int l, r;\n\
-    \            kin >> l >> r;\n            kout << seg.prod(l, r).a << \"\\n\";\n\
-    \        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
+    \ \n\n#include \"../../bbst/red_black_tree.hpp\"\n#include \"../../functional/reverse_args.hpp\"\
+    \n#include \"../../math/monoid/affine.hpp\"\n#include \"../../modint/mont.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int n, q;\n    kin >> n >> q;\n    using M = kk2::monoid::Affine<kk2::mont998>;\n\
+    \    vc<M> a(n);\n    kin >> a;\n    kk2::RedBlackTree<M, kk2::reverse_args<M::op>,\
+    \ M::unit> rbt(2 * (n + q));\n    auto root = rbt.build(a);\n\n    rep (q) {\n\
+    \        int type;\n        kin >> type;\n        if (type == 0) {\n         \
+    \   int p;\n            kk2::mont998 c, d;\n            kin >> p >> c >> d;\n\
+    \            rbt.set(root, p, c, d);\n        }\n        if (type == 1) {\n  \
+    \          int l, r;\n            kk2::mont998 x;\n            kin >> l >> r >>\
+    \ x;\n            kout << rbt.prod(root, l, r).eval(x) << \"\\n\";\n        }\n\
+    \    }\n\n    return 0;\n}\n"
   dependsOn:
-  - segment_tree/utility/sumseg.hpp
-  - math/group/sum.hpp
-  - segment_tree/seg.hpp
+  - bbst/red_black_tree.hpp
+  - type_traits/type_traits.hpp
+  - bbst/base/red_black_tree_base.hpp
+  - others/vector_pool.hpp
+  - functional/reverse_args.hpp
+  - math/monoid/affine.hpp
+  - modint/mont.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
-  - type_traits/type_traits.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
-  path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+  path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   requiredBy: []
-  timestamp: '2025-02-27 22:28:33+09:00'
+  timestamp: '2025-03-27 00:23:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+documentation_of: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-- /verify/verify/yosupo_ds/ds_point_add_range_sum.test.cpp.html
-title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
+- /verify/verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
+- /verify/verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp.html
+title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
 ---

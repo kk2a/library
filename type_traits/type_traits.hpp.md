@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: bbst/lazy_red_black_tree.hpp
+    title: bbst/lazy_red_black_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: bbst/red_black_tree.hpp
+    title: bbst/red_black_tree.hpp
   - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
@@ -26,13 +32,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
+  - icon: ':x:'
+    path: data_structure/static_rmq.hpp
+    title: data_structure/static_rmq.hpp
   - icon: ':heavy_check_mark:'
     path: data_structure/w_ary_tree.hpp
     title: data_structure/w_ary_tree.hpp
   - icon: ':heavy_check_mark:'
     path: data_structure/wavelet_matrix.hpp
     title: data_structure/wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -80,9 +89,63 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/static_graph.hpp
     title: graph/static_graph.hpp
+  - icon: ':warning:'
+    path: graph/tree/euler_tour.hpp
+    title: graph/tree/euler_tour.hpp
+  - icon: ':warning:'
+    path: math/action/add_max.hpp
+    title: math/action/add_max.hpp
+  - icon: ':warning:'
+    path: math/action/add_max_min_sumwithsize.hpp
+    title: math/action/add_max_min_sumwithsize.hpp
+  - icon: ':warning:'
+    path: math/action/add_min.hpp
+    title: math/action/add_min.hpp
+  - icon: ':warning:'
+    path: math/action/add_sumwithsize.hpp
+    title: math/action/add_sumwithsize.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/action/affine_sumwithsize.hpp
+    title: math/action/affine_sumwithsize.hpp
+  - icon: ':warning:'
+    path: math/action/update_affine.hpp
+    title: math/action/update_affine.hpp
+  - icon: ':warning:'
+    path: math/action/update_max.hpp
+    title: math/action/update_max.hpp
+  - icon: ':warning:'
+    path: math/action/update_max_min_sumwithsize.hpp
+    title: math/action/update_max_min_sumwithsize.hpp
+  - icon: ':warning:'
+    path: math/action/update_min.hpp
+    title: math/action/update_min.hpp
+  - icon: ':warning:'
+    path: math/action/update_sumwithsize.hpp
+    title: math/action/update_sumwithsize.hpp
+  - icon: ':warning:'
+    path: math/group/add.hpp
+    title: math/group/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/group/sum_with_size.hpp
+    title: math/group/sum_with_size.hpp
   - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/monoid/affine.hpp
+    title: math/monoid/affine.hpp
+  - icon: ':warning:'
+    path: math/monoid/max.hpp
+    title: math/monoid/max.hpp
+  - icon: ':warning:'
+    path: math/monoid/max_min_sumwithsize.hpp
+    title: math/monoid/max_min_sumwithsize.hpp
+  - icon: ':question:'
+    path: math/monoid/min.hpp
+    title: math/monoid/min.hpp
+  - icon: ':warning:'
+    path: math/monoid/update.hpp
+    title: math/monoid/update.hpp
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/euler_phi.hpp
     title: math/multiplicative_function/euler_phi.hpp
@@ -265,17 +328,20 @@ data:
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+    title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
-    title: verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
+    title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
@@ -288,7 +354,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -300,7 +366,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -315,10 +381,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':x:'
@@ -628,6 +694,8 @@ data:
   - matrix/matrix_field.hpp
   - matrix/basis.hpp
   - matrix/frobenius_form.hpp
+  - bbst/red_black_tree.hpp
+  - bbst/lazy_red_black_tree.hpp
   - others/run_length_encoding.hpp
   - convolution/convolution_int.hpp
   - convolution/convolution_arb.hpp
@@ -638,7 +706,24 @@ data:
   - math/multiplicative_function/euler_phi.hpp
   - math/is_prime.hpp
   - math/rational.hpp
+  - math/monoid/affine.hpp
+  - math/monoid/max_min_sumwithsize.hpp
+  - math/monoid/max.hpp
+  - math/monoid/min.hpp
+  - math/monoid/update.hpp
   - math/prime_factorize.hpp
+  - math/group/sum_with_size.hpp
+  - math/group/add.hpp
+  - math/action/add_max_min_sumwithsize.hpp
+  - math/action/add_max.hpp
+  - math/action/update_sumwithsize.hpp
+  - math/action/update_max_min_sumwithsize.hpp
+  - math/action/update_min.hpp
+  - math/action/affine_sumwithsize.hpp
+  - math/action/add_min.hpp
+  - math/action/add_sumwithsize.hpp
+  - math/action/update_max.hpp
+  - math/action/update_affine.hpp
   - template/simpleio.hpp
   - template/debug.hpp
   - template/fastio.hpp
@@ -653,6 +738,7 @@ data:
   - modint/modint_2_61m1.hpp
   - modint/mont_arb.hpp
   - graph/graph.hpp
+  - graph/tree/euler_tour.hpp
   - graph/shortest_path/warshall_floyd.hpp
   - graph/edge.hpp
   - graph/static_graph.hpp
@@ -661,6 +747,7 @@ data:
   - data_structure/convex_hull_trick_add_monotone.hpp
   - data_structure/wavelet_matrix.hpp
   - data_structure/my_bitset.hpp
+  - data_structure/static_rmq.hpp
   - math_mod/comb_large.hpp
   - math_mod/bell_number.hpp
   - math_mod/pow_mod.hpp
@@ -725,14 +812,15 @@ data:
   - verify/yosupo_graph/tree_cartesian.test.cpp
   - verify/yosupo_graph/graph_scc.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - verify/yosupo_ds/ds_point_add_range_sum.test.cpp
   - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
   - verify/yosupo_ds/ds_static_range_sum.test.cpp

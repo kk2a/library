@@ -5,8 +5,8 @@ data:
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
   - icon: ':heavy_check_mark:'
-    path: math/homomorphism/affine.hpp
-    title: math/homomorphism/affine.hpp
+    path: math/monoid/affine.hpp
+    title: math/monoid/affine.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -58,23 +58,21 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n\n#include \"../../functional/reverse_args.hpp\"\n#include \"../../math/homomorphism/affine.hpp\"\
+    \n\n#include \"../../functional/reverse_args.hpp\"\n#include \"../../math/monoid/affine.hpp\"\
     \n#include \"../../modint/mont.hpp\"\n#include \"../../segment_tree/seg.hpp\"\n\
     #include \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n\
-    \    int n, q;\n    kin >> n >> q;\n    auto a = kk2::GetVecAffine<kk2::mont998>(n);\n\
-    \    kin >> a;\n    kk2::SegTree<kk2::homomorphism::Affine<kk2::mont998>,\n  \
-    \               kk2::reverse_args<kk2::homomorphism::AffineComposition<kk2::mont998>>,\n\
-    \                 kk2::homomorphism::AffineUnit<kk2::mont998>>\n        seg(a);\n\
-    \n    rep (q) {\n        int t;\n        kin >> t;\n        if (t == 0) {\n  \
-    \          int p;\n            kk2::mont998 c, d;\n            kin >> p >> c >>\
-    \ d;\n            seg.emplace_set(p, c, d);\n        }\n        if (t == 1) {\n\
-    \            int l, r;\n            kk2::mont998 x; \n            kin >> l >>\
-    \ r >> x;\n            kout << seg.prod(l, r).apply(x) << \"\\n\";\n        }\n\
-    \    }\n\n    return 0;\n}\n"
+    \    int n, q;\n    kin >> n >> q;\n    using M = kk2::monoid::Affine<kk2::mont998>;\n\
+    \    vc<M> a(n);\n    kin >> a;\n    kk2::SegmentTree<M, kk2::reverse_args<M::op>,\
+    \ M::unit> seg(a);\n\n    rep (q) {\n        int t;\n        kin >> t;\n     \
+    \   if (t == 0) {\n            int p;\n            kk2::mont998 c, d;\n      \
+    \      kin >> p >> c >> d;\n            seg.set(p, c, d);\n        }\n       \
+    \ if (t == 1) {\n            int l, r;\n            kk2::mont998 x; \n       \
+    \     kin >> l >> r >> x;\n            kout << seg.prod(l, r).eval(x) << \"\\\
+    n\";\n        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - functional/reverse_args.hpp
   - type_traits/type_traits.hpp
-  - math/homomorphism/affine.hpp
+  - math/monoid/affine.hpp
   - modint/mont.hpp
   - segment_tree/seg.hpp
   - template/template.hpp
@@ -86,7 +84,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2025-02-27 22:28:33+09:00'
+  timestamp: '2025-03-27 00:23:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
