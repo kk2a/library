@@ -1,25 +1,17 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
 #include "../../data_structure/disjoint_sparse_table.hpp"
+#include "../../math/monoid/min.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
-using S = int;
-
-S op(S a, S b) {
-    return min(a, b);
-}
-
-S e() {
-    return 1e9 + 1;
-}
-
 int main() {
+    using M = kk2::monoid::Min<int>;
     int n, q;
     kin >> n >> q;
-    vc<int> a(n);
+    vc<M> a(n);
     kin >> a;
-    kk2::DisjointSparseTable<S, op, e> dst(a);
+    kk2::DisjointSparseTableS<M> dst(a);
 
     rep (q) {
         int l, r;

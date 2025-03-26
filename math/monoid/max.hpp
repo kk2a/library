@@ -1,79 +1,56 @@
 #ifndef KK2_MATH_MONOID_MAX_HPP
 #define KK2_MATH_MONOID_MAX_HPP 1
 
-#include <algorithm>
-#include <iostream>
-#include <vector>
+#include <functional>
+
+#include "../../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
 namespace monoid {
 
-template <class S> struct Max {
+template <class S, class Compare = std::less<S>>
+struct Max {
+    static constexpr bool commutative = true;
+
     S a;
-    bool minf;
+    bool is_unit;
 
-    constexpr Max() : a(S()), minf(true) {}
+    Max() : a(S()), is_unit(true) {}
 
-    constexpr Max(S a_, bool minf_ = false) : a(a_), minf(minf_) {}
+    Max(S a_) : a(a_), is_unit(false) {}
 
     operator S() const { return a; }
 
-    template <class OStream> friend OStream &operator<<(OStream &os, const Max &max) {
-        if (max.minf) os << "minf";
+    inline static Max op(Max l, Max r) {
+        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;
+        return Compare{}(l.a, r.a) ? r : l;
+    }
+
+    inline static Max unit() { return Max(); }
+
+    template <class OStream, is_ostream_t<OSrteam> * = nullptr>
+    friend OStream &operator<<(OStream &os, const Max &max) {
+        if (max.is_unit) os << "-inf";
         else os << max.a;
         return os;
     }
 
-    template <class IStream> friend IStream &operator>>(IStream &is, Max &max) {
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    friend IStream &operator>>(IStream &is, Max &max) {
         is >> max.a;
-        max.minf = false;
+        max.is_unit = false;
         return is;
     }
 
-    constexpr Max &operator=(const S &rhs) {
-        a = rhs;
-        minf = false;
-        return *this;
+    bool operator==(const Max &rhs) const {
+        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);
     }
 
-    constexpr Max &add(const S &rhs) {
-        if (minf) return *this;
-        a += rhs;
-        return *this;
-    }
-
-    constexpr Max &update(const S &rhs) {
-        a = rhs;
-        minf = false;
-        return *this;
-    }
-
-    constexpr bool is_unit() { return minf; }
+    bool operator!=(const Max &rhs) const { return !(*this == rhs); }
 };
 
-template <class S> constexpr Max<S> MaxOp(Max<S> l, Max<S> r) {
-    if (r.minf) return l;
-    if (l.minf) return r;
-    l.a = std::max(l.a, r.a);
-    return l;
-}
-
-template <class S> Max<S> MaxUnit() {
-    constexpr static Max<S> e = Max<S>();
-    return e;
-}
-
 } // namespace monoid
-
-template <class S, class... Args> std::vector<monoid::Max<S>> GetVecMax(int n, Args... args) {
-    return std::vector<monoid::Max<S>>(n, monoid::Max<S>(args...));
-}
-
-template <class S, class... Args>
-std::vector<std::vector<monoid::Max<S>>> GetVecMax2D(int h, int w, Args... args) {
-    return std::vector<std::vector<monoid::Max<S>>>(h, GetVecMax<S>(w, args...));
-}
 
 } // namespace kk2
 

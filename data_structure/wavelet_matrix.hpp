@@ -121,7 +121,7 @@ struct WaveletMatrix {
         return res;
     }
 
-    int range_freq(int l, int r, T upper, T lower) {
+    int range_freq(int l, int r, T lower, T upper) {
         assert(0 <= l && l <= r && r <= n);
         assert(0 <= lower && lower <= upper);
         return range_freq(l, r, upper) - range_freq(l, r, lower);
@@ -138,8 +138,6 @@ struct WaveletMatrix {
         int count = range_freq(l, r, b);
         return count == r - l ? -1 : kth_smallest(l, r, count);
     }
-
-    
 };
 
 } // namespace kk2

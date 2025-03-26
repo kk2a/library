@@ -1,79 +1,55 @@
 #ifndef KK2_MATH_MONOID_MIN_HPP
 #define KK2_MATH_MONOID_MIN_HPP 1
 
-#include <algorithm>
-#include <iostream>
-#include <vector>
+#include <functional>
+
+#include "../../type_traits/type_traits.hpp"
 
 namespace kk2 {
 
 namespace monoid {
 
-template <class S> struct Min {
+template <class S, class Compare = std::less<S>>
+struct Min {
+    static constexpr bool commutative = true;
     S a;
-    bool inf;
+    bool is_unit;
 
-    constexpr Min() : a(S()), inf(true) {}
+    Min() : a(S()), is_unit(true) {}
 
-    constexpr Min(S a_, bool inf_ = false) : a(a_), inf(inf_) {}
+    Min(S a_) : a(a_), is_unit(false) {}
 
     operator S() const { return a; }
 
-    template <class OStream> friend OStream &operator<<(OStream &os, const Min &min) {
-        if (min.inf) os << "inf";
+    inline static Min op(Min l, Min r) {
+        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;
+        return Compare{}(l.a, r.a) ? l : r;
+    }
+
+    inline static Min unit() { return Min(); }
+
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    friend OStream &operator<<(OStream &os, const Min &min) {
+        if (min.is_unit) os << "inf";
         else os << min.a;
         return os;
     }
 
-    template <class IStream> friend IStream &operator>>(IStream &is, Min &min) {
+    template <class IStream, is_istream_t<IStream> * = nullptr>
+    friend IStream &operator>>(IStream &is, Min &min) {
         is >> min.a;
-        min.inf = false;
+        min.is_unit = false;
         return is;
     }
 
-    constexpr Min &operator=(const S &rhs) {
-        a = rhs;
-        inf = false;
-        return *this;
+    bool operator==(const Min &rhs) const {
+        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);
     }
 
-    constexpr Min &add(const S &rhs) {
-        if (inf) return *this;
-        a += rhs;
-        return *this;
-    }
-
-    constexpr Min &update(const S &rhs) {
-        a = rhs;
-        inf = false;
-        return *this;
-    }
-
-    constexpr bool is_unit() { return inf; }
+    bool operator!=(const Min &rhs) const { return !(*this == rhs); }
 };
 
-template <class S> constexpr Min<S> MinOp(Min<S> l, Min<S> r) {
-    if (r.inf) return l;
-    if (l.inf) return r;
-    l.a = std::min(l.a, r.a);
-    return l;
-}
-
-template <class S> Min<S> MinUnit() {
-    constexpr static Min<S> e = Min<S>();
-    return e;
-}
-
 } // namespace monoid
-
-template <class S, class... Args> std::vector<monoid::Min<S>> GetVecMin(int n, Args... args) {
-    return std::vector<monoid::Min<S>>(n, monoid::Min<S>(args...));
-}
-
-template <class S, class... Args>
-std::vector<std::vector<monoid::Min<S>>> GetVecMin2D(int h, int w, Args... args) {
-    return std::vector<std::vector<monoid::Min<S>>>(h, GetVecMin(w, args...));
-}
 
 } // namespace kk2
 

@@ -7,10 +7,11 @@
 namespace kk2 {
 
 // commutative monoid
-template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
-    SegTree2D() = default;
+template <class S, S (*op)(S, S), S (*e)()>
+struct SegmentTree2D {
+    SegmentTree2D() = default;
 
-    SegTree2D(int h_, int w_) : _h(h_), _w(w_) {
+    SegmentTree2D(int h_, int w_) : _h(h_), _w(w_) {
         size_h = size_w = 1;
         while (size_h < _h) size_h <<= 1;
         while (size_w < _w) size_w <<= 1;
@@ -18,10 +19,10 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
     }
 
     template <class... Args>
-    SegTree2D(int h_, int w_, Args... args)
-        : SegTree2D(std::vector<std::vector<S>>(h_, std::vector<S>(w_, S(args...)))) {}
+    SegmentTree2D(int h_, int w_, Args... args)
+        : SegmentTree2D(std::vector<std::vector<S>>(h_, std::vector<S>(w_, S(args...)))) {}
 
-    SegTree2D(const std::vector<std::vector<S>> &v) : _h(int(v.size())), _w(int(v[0].size())) {
+    SegmentTree2D(const std::vector<std::vector<S>> &v) : _h(int(v.size())), _w(int(v[0].size())) {
         size_h = size_w = 1;
         while (size_h < _h) size_h <<= 1;
         while (size_w < _w) size_w <<= 1;
@@ -33,6 +34,8 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
     }
 
     void build() {
+        assert(!is_built);
+        is_built = true;
         for (int j = size_w; j < size_w * 2; j++) {
             for (int i = size_h - 1; i; i--) updatei(i, j);
         }
@@ -41,37 +44,39 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
         }
     }
 
-    void init_set(int i, int j, const S &x) {
+    template <class... Args>
+    void init_set(int i, int j, Args... args) {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);
-        d[i + size_h][j + size_w] = x;
+        assert(!is_built);
+        d[i + size_h][j + size_w] = S(args...);
     }
 
-    template <class... Args> void emplace_init_set(int i, int j, Args... args) { init_set(i, j, S(args...)); }
-
-    void set(int i, int j, const S &x) {
+    template <class... Args>
+    void set(int i, int j, Args... args) {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);
+        assert(is_built);
         i += size_h;
         j += size_w;
-        d[i][j] = x;
+        d[i][j] = S(args...);
         for (int ii = i >> 1; ii; ii >>= 1) updatei(ii, j);
         for (int ii = i; ii; ii >>= 1) {
             for (int jj = j >> 1; jj; jj >>= 1) updatej(ii, jj);
         }
     }
 
-    template <class... Args> void emplace_set(int i, int j, Args... args) { set(i, j, S(args...)); }
-
     S get(int i, int j) {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);
+        assert(is_built);
         return d[i + size_h][j + size_w];
     }
 
     S prod(int i1, int j1, int i2, int j2) {
         assert(0 <= i1 && i1 <= i2 && i2 <= _h);
         assert(0 <= j1 && j1 <= j2 && j2 <= _w);
+        assert(is_built);
         if (i1 == i2 || j1 == j2) return e();
         i1 += size_h;
         i2 += size_h;
@@ -89,6 +94,7 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
   private:
     int _h, _w, size_h, size_w;
     std::vector<std::vector<S>> d;
+    bool is_built = false;
 
     void updatei(int i, int j) { d[i][j] = op(d[i * 2][j], d[i * 2 + 1][j]); }
 
@@ -103,6 +109,9 @@ template <class S, S (*op)(S, S), S (*e)()> struct SegTree2D {
         return res;
     }
 };
+
+template <class M>
+using SegmentTree2DS = SegmentTree2D<M, M::op, M::unit>;
 
 } // namespace kk2
 

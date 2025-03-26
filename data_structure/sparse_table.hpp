@@ -26,6 +26,8 @@ struct SparseTable {
     }
 
     void build() {
+        assert(!is_built);
+        is_built = true;
         for (int i = 1; i <= log; i++) {
             for (int j = 0; j + (1 << i) <= _n; j++) {
                 table[i][j] = op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
@@ -33,14 +35,11 @@ struct SparseTable {
         }
     }
 
-    void init_set(int p, S x) {
-        assert(0 <= p && p < _n);
-        table[0][p] = x;
-    }
-
     template <class... Args>
-    void emplace_init_set(int p, Args... args) {
-        init_set(p, S(args...));
+    void init_set(int p, Args... args) {
+        assert(0 <= p && p < _n);
+        assert(!is_built);
+        table[0][p] = S(args...);
     }
 
     using Monoid = S;
@@ -51,6 +50,7 @@ struct SparseTable {
 
     S prod(int l, int r) const {
         assert(0 <= l && l <= r && r <= _n);
+        assert(is_built);
         if (l == r) return e();
         int i = 31 ^ __builtin_clz(r - l);
         return op(table[i][l], table[i][r - (1 << i)]);
@@ -58,6 +58,7 @@ struct SparseTable {
 
     S get(int i) const {
         assert(0 <= i && i < _n);
+        assert(is_built);
         return table[0][i];
     }
 
@@ -73,6 +74,7 @@ struct SparseTable {
     int max_right(int l, F f) const {
         assert(0 <= l && l <= _n);
         assert(f(e()));
+        assert(is_built);
         if (l == _n) return _n;
         int left = l - 1, right = _n;
         while (right - left > 1) {
@@ -95,6 +97,7 @@ struct SparseTable {
     int min_left(int r, F f) const {
         assert(0 <= r && r <= _n);
         assert(f(e()));
+        assert(is_built);
         if (r == 0) return 0;
         int left = -1, right = r;
         while (right - left > 1) {
@@ -108,7 +111,11 @@ struct SparseTable {
   private:
     int _n, log;
     std::vector<std::vector<S>> table;
+    bool is_built = false;
 };
+
+template <class M>
+using SparseTableS = SparseTable<M, M::op, M::unit>;
 
 } // namespace kk2
 

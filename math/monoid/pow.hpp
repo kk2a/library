@@ -5,18 +5,17 @@ namespace kk2 {
 
 namespace monoid {
 
-template <class M, M (*op)(M, M), M (*e)()>
+template <class M>
 M pow(M a, long long n) {
-    M res = e();
+    M res = M::unit();
     while (n > 0) {
-        if (n & 1) res = op(res, a);
-        if (n >>= 1) a = op(a, a);
+        if (n & 1) res = M::op(res, a);
+        if (n >>= 1) a = M::op(a, a);
     }
     return res;
 }
 
 } // namespace monoid
-
 
 } // namespace kk2
 

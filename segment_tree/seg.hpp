@@ -8,11 +8,11 @@
 namespace kk2 {
 
 template <class S, S (*op)(S, S), S (*e)()>
-struct SegTree {
+struct SegmentTree {
   public:
-    SegTree() : SegTree(0) {}
+    SegmentTree() : SegmentTree(0) {}
 
-    SegTree(int n) : _n(n) {
+    SegmentTree(int n) : _n(n) {
         log = 0;
         while ((1U << log) < (unsigned int)(_n)) log++;
         size = 1 << log;
@@ -20,9 +20,9 @@ struct SegTree {
     }
 
     template <class... Args>
-    SegTree(int n, Args... args) : SegTree(std::vector<S>(n, S(args...))){};
+    SegmentTree(int n, Args... args) : SegmentTree(std::vector<S>(n, S(args...))){};
 
-    SegTree(const std::vector<S> &v) : _n(int(v.size())) {
+    SegmentTree(const std::vector<S> &v) : _n(int(v.size())) {
         log = 0;
         while ((1U << log) < (unsigned int)(_n)) log++;
         size = 1 << log;
@@ -32,17 +32,16 @@ struct SegTree {
     }
 
     void build() {
+        assert(!is_built);
+        is_built = true;
         for (int i = size - 1; i >= 1; i--) { update(i); }
     }
 
-    void init_set(int p, S x) {
-        assert(0 <= p && p < _n);
-        d[p + size] = x;
-    }
-
     template <class... Args>
-    void emplace_init_set(int p, Args... args) {
-        init_set(p, S(args...));
+    void init_set(int p, Args... args) {
+        assert(0 <= p && p < _n);
+        assert(!is_built);
+        d[p + size] = S(args...);
     }
 
     using Monoid = S;
@@ -51,25 +50,24 @@ struct SegTree {
 
     static S MonoidUnit() { return e(); }
 
-    void set(int p, S x) {
-        assert(0 <= p && p < _n);
-        p += size;
-        d[p] = x;
-        for (int i = 1; i <= log; i++) update(p >> i);
-    }
-
     template <class... Args>
-    void emplace_set(int p, Args... args) {
-        set(p, S(args...));
+    void set(int p, Args... args) {
+        assert(0 <= p && p < _n);
+        assert(is_built);
+        p += size;
+        d[p] = S(args...);
+        for (int i = 1; i <= log; i++) update(p >> i);
     }
 
     S get(int p) {
         assert(0 <= p && p < _n);
+        assert(is_built);
         return d[p + size];
     }
 
     S prod(int l, int r) {
         assert(0 <= l && l <= r && r <= _n);
+        assert(is_built);
         S sml = e(), smr = e();
         l += size;
         r += size;
@@ -83,7 +81,10 @@ struct SegTree {
         return op(sml, smr);
     }
 
-    S all_prod() { return d[1]; }
+    S all_prod() {
+        assert(is_built);
+        return d[1];
+    }
 
     // return r s.t.
     // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true
@@ -97,6 +98,7 @@ struct SegTree {
     int max_right(int l, F f) {
         assert(0 <= l && l <= _n);
         assert(f(e()));
+        assert(is_built);
         if (l == _n) return _n;
         l += size;
         S sm = e();
@@ -130,6 +132,7 @@ struct SegTree {
     int min_left(int r, F f) {
         assert(0 <= r && r <= _n);
         assert(f(e()));
+        assert(is_built);
         if (r == 0) return 0;
         r += size;
         S sm = e();
@@ -154,9 +157,13 @@ struct SegTree {
   private:
     int _n, size, log;
     std::vector<S> d;
+    bool is_built = false;
 
     void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }
 };
+
+template <class M>
+using SegmentTreeS = SegmentTree<M, M::op, M::unit>;
 
 } // namespace kk2
 

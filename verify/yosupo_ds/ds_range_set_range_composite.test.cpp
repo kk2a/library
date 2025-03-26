@@ -51,7 +51,7 @@ int main() {
     vector<S> a(n);
     kin >> a;
 
-    kk2::LazySegTree<S, op, e, F, mapping, composition, id> seg(a);
+    kk2::LazySegmentTree<S, op, e, F, mapping, composition, id> seg(a);
 
     rep (q) {
         int t;

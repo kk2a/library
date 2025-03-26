@@ -14,11 +14,11 @@ template <class S,
           S (*mapping)(F, S),
           F (*composition)(F, F),
           F (*id)()>
-struct LazySegTree {
+struct LazySegmentTree {
   public:
-    LazySegTree() : LazySegTree(0) {}
+    LazySegmentTree() : LazySegmentTree(0) {}
 
-    LazySegTree(int n) : _n(n) {
+    LazySegmentTree(int n) : _n(n) {
         log = 0;
         while ((1ll << log) < _n) log++;
         size = 1 << log;
@@ -27,9 +27,9 @@ struct LazySegTree {
     }
 
     template <class... Args>
-    LazySegTree(int n, Args... args) : LazySegTree(std::vector<S>(n, S(args...))) {}
+    LazySegmentTree(int n, Args... args) : LazySegmentTree(std::vector<S>(n, S(args...))) {}
 
-    LazySegTree(const std::vector<S> &v) : _n(int(v.size())) {
+    LazySegmentTree(const std::vector<S> &v) : _n(int(v.size())) {
         log = 0;
         while ((1ll << log) < _n) log++;
         size = 1 << log;
@@ -40,17 +40,16 @@ struct LazySegTree {
     }
 
     void build() {
+        assert(!is_built);
+        is_built = true;
         for (int i = size - 1; i >= 1; i--) { update(i); }
     }
 
-    void init_set(int p, S x) {
-        assert(0 <= p && p < _n);
-        d[p + size] = x;
-    }
-
     template <class... Args>
-    void emplace_init_set(int p, Args... args) {
-        init_set(p, S(args...));
+    void init_set(int p, Args... args) {
+        assert(0 <= p && p < _n);
+        assert(!is_built);
+        d[p + size] = S(args...);
     }
 
     using Monoid = S;
@@ -67,21 +66,19 @@ struct LazySegTree {
 
     static F HomUnit() { return id(); }
 
-    void set(int p, S x) {
+    template <class... Args>
+    void set(int p, Args... args) {
         assert(0 <= p && p < _n);
+        assert(is_built);
         p += size;
         for (int i = log; i >= 1; i--) push(p >> i);
-        d[p] = x;
+        d[p] = S(args...);
         for (int i = 1; i <= log; i++) update(p >> i);
-    }
-
-    template <class... Args>
-    void emplace_set(int p, Args... args) {
-        set(p, S(args...));
     }
 
     S get(int p) {
         assert(0 <= p && p < _n);
+        assert(is_built);
         p += size;
         for (int i = log; i >= 1; i--) push(p >> i);
         return d[p];
@@ -89,6 +86,7 @@ struct LazySegTree {
 
     S prod(int l, int r) {
         assert(0 <= l && l <= r && r <= _n);
+        assert(is_built);
         if (l == r) return e();
 
         l += size;
@@ -110,24 +108,27 @@ struct LazySegTree {
         return op(sml, smr);
     }
 
-    S all_prod() { return d[1]; }
+    S all_prod() {
+        assert(is_built);
+        return d[1];
+    }
 
-    void apply(int p, F f) {
+    template <class... Args>
+    void apply_point(int p, Args... args) {
         assert(0 <= p && p < _n);
+        assert(is_built);
         p += size;
         for (int i = log; i >= 1; i--) push(p >> i);
-        d[p] = mapping(f, d[p]);
+        d[p] = mapping(F(args...), d[p]);
         for (int i = 1; i <= log; i++) update(p >> i);
     }
 
     template <class... Args>
-    void emplace_apply_point(int p, Args... args) {
-        apply(p, F(args...));
-    }
-
-    void apply(int l, int r, F f) {
+    void apply_range(int l, int r, Args... args) {
         assert(0 <= l && l <= r && r <= _n);
+        assert(is_built);
         if (l == r) return;
+        F f = F(args...);
 
         l += size;
         r += size;
@@ -155,11 +156,6 @@ struct LazySegTree {
         }
     }
 
-    template <class... Args>
-    void emplace_apply_range(int l, int r, Args... args) {
-        apply(l, r, F(args...));
-    }
-
     template <bool (*g)(S)>
     int max_right(int l) {
         return max_right(l, [](S x) { return g(x); });
@@ -169,6 +165,7 @@ struct LazySegTree {
     int max_right(int l, G g) {
         assert(0 <= l && l <= _n);
         assert(g(e()));
+        assert(is_built);
         if (l == _n) return _n;
         l += size;
         for (int i = log; i >= 1; i--) push(l >> i);
@@ -201,6 +198,7 @@ struct LazySegTree {
     int min_left(int r, G g) {
         assert(0 <= r && r <= _n);
         assert(g(e()));
+        assert(is_built);
         if (r == 0) return 0;
         r += size;
         for (int i = log; i >= 1; i--) push((r - 1) >> i);
@@ -228,6 +226,7 @@ struct LazySegTree {
     int _n, size, log;
     std::vector<S> d;
     std::vector<F> lz;
+    bool is_built = false;
 
     void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }
 
@@ -242,6 +241,15 @@ struct LazySegTree {
         lz[k] = id();
     }
 };
+
+template <class A>
+using LazySegmentTreeS = LazySegmentTree<typename A::S,
+                                         A::S::op,
+                                         A::S::unit,
+                                         typename A::A,
+                                         A::act,
+                                         A::A::op,
+                                         A::A::unit>;
 
 } // namespace kk2
 
