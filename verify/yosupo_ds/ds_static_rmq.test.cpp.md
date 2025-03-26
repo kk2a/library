@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -60,9 +60,9 @@ data:
     \ \"../../data_structure/static_rmq.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n  \
     \  kk2::StaticRMQ<int> rmq(n);\n    rep (i, n) {\n        int a;\n        kin\
-    \ >> a;\n        rmq.emplace_init_set(i, a);\n    }\n    rmq.build();\n\n    rep\
-    \ (q) {\n        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l,\
-    \ r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
+    \ >> a;\n        rmq.init_set(i, a);\n    }\n    rmq.build();\n\n    rep (q) {\n\
+    \        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l, r) <<\
+    \ \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - data_structure/static_rmq.hpp
   - math/monoid/min.hpp
@@ -77,8 +77,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_static_rmq.test.cpp
   requiredBy: []
-  timestamp: '2025-03-27 00:23:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-03-27 00:49:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/group/add.hpp
     title: math/group/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   - icon: ':question:'

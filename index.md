@@ -30,7 +30,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_and.hpp
       title: convolution/convolution_and.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/convolution_arb.hpp
       title: convolution/convolution_arb.hpp
     - icon: ':heavy_check_mark:'
@@ -110,10 +110,10 @@ data:
     - icon: ':warning:'
       path: data_structure/slope_trick.hpp
       title: data_structure/slope_trick.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/sparse_table.hpp
       title: data_structure/sparse_table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
     - icon: ':heavy_check_mark:'
@@ -142,7 +142,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
     - icon: ':warning:'
@@ -388,7 +388,7 @@ data:
     - icon: ':warning:'
       path: math/monoid/max_min_sumwithsize.hpp
       title: math/monoid/max_min_sumwithsize.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/monoid/min.hpp
       title: math/monoid/min.hpp
     - icon: ':warning:'
@@ -443,10 +443,10 @@ data:
     - icon: ':question:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/garner.hpp
       title: math_mod/garner.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math_mod/inv.hpp
       title: math_mod/inv.hpp
     - icon: ':warning:'
@@ -543,7 +543,7 @@ data:
     - icon: ':warning:'
       path: segment_tree/dynamic_seg.hpp
       title: segment_tree/dynamic_seg.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
     - icon: ':heavy_check_mark:'
@@ -746,7 +746,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
       title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -758,7 +758,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_range_sum.test.cpp
       title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_rmq.test.cpp
       title: verify/yosupo_ds/ds_static_rmq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -781,16 +781,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
       title: verify/yosupo_fps/fps_exp_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv.test.cpp
       title: verify/yosupo_fps/fps_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_inv_arb.test.cpp
       title: verify/yosupo_fps/fps_inv_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log.test.cpp
       title: verify/yosupo_fps/fps_log.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_log_arb.test.cpp
       title: verify/yosupo_fps/fps_log_arb.test.cpp
     - icon: ':x:'
