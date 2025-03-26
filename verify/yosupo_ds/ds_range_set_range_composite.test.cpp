@@ -60,7 +60,7 @@ int main() {
             int l, r;
             kk2::mont998 c, d;
             kin >> l >> r >> c >> d;
-            seg.apply(l, r, F{S{c, d, 1}, false});
+            seg.apply_range(l, r, F{S{c, d, 1}, false});
         }
         if (t == 1) {
             int l, r;

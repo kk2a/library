@@ -11,7 +11,7 @@ int main() {
     rep (i, n) {
         int a;
         kin >> a;
-        rmq.emplace_init_set(i, a);
+        rmq.init_set(i, a);
     }
     rmq.build();
 

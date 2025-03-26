@@ -6,6 +6,7 @@
 #include <type_traits>
 
 namespace kk2 {
+// BEGIN_PRESERVE_NEWLINES
 
 #define HAS_BINARY_OP(op, op_name)                                                                 \
     template <typename LHS, typename RHS> struct has_binary_op_##op_name##_impl {                  \
@@ -53,6 +54,9 @@ HAS_BINARY_OP(<, less)
 HAS_BINARY_OP(>, greater)
 HAS_BINARY_OP(<=, less_equal)
 HAS_BINARY_OP(>=, greater_equal)
+
+// END_PRESERVE_NEWLINES
+
 #undef HAS_BINARY_OP
 #undef HAS_UNARY_OP
 } // namespace kk2
