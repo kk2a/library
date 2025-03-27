@@ -12,7 +12,7 @@
 namespace kk2 {
 
 template <typename G> struct EulerTour {
-    static_assert(!G::directed::value, "EulerTour requires undirected graph");
+    static_assert(!G::directed, "EulerTour requires undirected graph");
 
     const G &g;
     int root, id;
@@ -62,7 +62,7 @@ template <typename G> struct EulerTour {
     StaticRMQ<std::pair<int, int>> rmq;
 
     void init() {
-        auto rmq_init = GetVecMin<std::pair<int, int>>(2 * g.size());
+        std::vector<typename StaticRMQ<std::pair<int, int>>::Monoid> rmq_init(2 * g.size());
         auto dfs = [&](auto self, int now, int pre, int dep) -> void {
             in[now] = id;
             rmq_init[id++] = {dep, now};

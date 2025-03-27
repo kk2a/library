@@ -34,8 +34,8 @@ struct bf_result {
 
 template <class WG, class T = typename WG::value_type>
 bf_result<T> bellman_ford(const WG &g, int start) {
-    static_assert(WG::weighted::value, "bellman_ford requires weighted graph");
-    static_assert(WG::directed::value, "bellman_ford requires directed graph");
+    static_assert(WG::weighted, "bellman_ford requires weighted graph");
+    static_assert(WG::directed, "bellman_ford requires directed graph");
 
     std::vector<bf_len<T>> dist(g.num_vertices(), {0, true, false});
     std::vector<bf_edge<T>> prev(g.num_vertices(), {-1, -1});

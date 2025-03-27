@@ -9,7 +9,7 @@
 namespace kk2 {
 
 template <class G> int centroid(const G &g) {
-    static_assert(!G::directed::value, "Centroid requires undirected graph");
+    static_assert(!G::directed, "Centroid requires undirected graph");
 
     int n = g.size();
     std::vector<int> sz(n, 0);
@@ -36,6 +36,7 @@ template <class G> int centroid(const G &g) {
 }
 
 template <class G> int centroid(const G &g, const std::vector<long long> &weight) {
+    static_assert(!G::directed, "Centroid requires undirected graph");
     assert((int)g.size() == (int)weight.size());
     int n = g.size();
     std::vector<long long> sz(n, 0);

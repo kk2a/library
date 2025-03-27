@@ -12,8 +12,8 @@
 namespace kk2 {
 
 template <class WG> struct MaxFlow {
-    static_assert(WG::directed::value, "MaxFlow requires directed graph");
-    static_assert(WG::weighted::value, "MaxFlow requires weighted graph");
+    static_assert(WG::directed, "MaxFlow requires directed graph");
+    static_assert(WG::weighted, "MaxFlow requires weighted graph");
 
     using Cap = typename WG::value_type;
 
@@ -22,7 +22,7 @@ template <class WG> struct MaxFlow {
     std::vector<int> revi;
 
     MaxFlow(const WG &g_) : n(g_.num_vertices()), m(g_.num_edges()) {
-        if constexpr (WG::static_graph::value) {
+        if constexpr (WG::static_graph) {
             g = WG(n);
             for (auto &&e : g_.edges) g.add_edge(e.from, e.to, e.cost);
             for (auto &&e : g_.edges) g.add_edge(e.to, e.from, 0);
@@ -42,7 +42,7 @@ template <class WG> struct MaxFlow {
         g = WG(n);
         for (auto &&e : edges) g.add_edge(e.from, e.to, e.cost);
         for (auto &&e : edges) g.add_edge(e.to, e.from, 0);
-        if constexpr (WG::static_graph::value) g.build();
+        if constexpr (WG::static_graph) g.build();
         revi.resize(2 * m);
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < (int)g[i].size(); ++j)

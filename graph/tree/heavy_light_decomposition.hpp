@@ -9,7 +9,7 @@
 namespace kk2 {
 
 template <typename G> struct HeavyLightDecomposition {
-    static_assert(!G::directed::value, "HeavyLightDecomposition requires undirected graph");
+    static_assert(!G::directed, "HeavyLightDecomposition requires undirected graph");
 
     G &g;
     int root, id;

@@ -7,7 +7,7 @@
 
 namespace kk2 {
 
-template <class G, std::enable_if_t<!G::weighted::value> * = nullptr>
+template <class G, std::enable_if_t<!G::weighted> * = nullptr>
 void bfs(queue &q, std::vector<int> &dist, int init) {
     while (!q.empty()) {
         int now = q.front();
@@ -20,7 +20,7 @@ void bfs(queue &q, std::vector<int> &dist, int init) {
     }
 }
 
-template <class G, std::enable_if_t<G::weighted::value> * = nullptr>
+template <class G, std::enable_if_t<G::weighted> * = nullptr>
 void bfs(queue &q, std::vector<G::value_type> &dist, G::value_type init) {
     while (!q.empty()) {
         int now = q.front();

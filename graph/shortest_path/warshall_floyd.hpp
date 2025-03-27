@@ -12,7 +12,8 @@ namespace kk2 {
 
 namespace shortest_path_impl {
 
-template <typename T> struct wf_len {
+template <typename T>
+struct wf_len {
     T len;
     bool inf, minf;
 
@@ -26,7 +27,7 @@ template <typename T> struct wf_len {
 
 template <typename WG, typename T = typename WG::value_type>
 std::vector<std::vector<wf_len<T>>> warshall_froyd(const WG &g) {
-    static_assert(WG::weighted::value, "warshall_froyd requires weighted graph");
+    static_assert(WG::weighted, "warshall_froyd requires weighted graph");
 
     int n = g.size();
     std::vector<std::vector<wf_len<T>>> res(n, std::vector<wf_len<T>>(n, {0, true, false}));
@@ -39,7 +40,7 @@ std::vector<std::vector<wf_len<T>>> warshall_froyd(const WG &g) {
                 inf = false;
             }
         }
-        if constexpr (!WG::directed::value) {
+        if constexpr (!WG::directed) {
             auto &[len, inf, minf] = res[e.to][e.from];
             if (inf or len > e.cost) {
                 len = e.cost;

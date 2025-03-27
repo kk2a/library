@@ -18,11 +18,11 @@ template <class T, bool is_directed> struct AdjacencyList {
     using edge_type = _Edge<T>;
     using edge_container = _Edges<T>;
 
-    using directed = std::integral_constant<bool, is_directed>;
-    using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
-    using adjacency_list = std::true_type;
-    using adjacency_matrix = std::false_type;
-    using static_graph = std::false_type;
+    static constexpr bool directed = is_directed;
+    static constexpr bool weighted = !std::is_same_v<T, empty>;
+    static constexpr bool adjacency_list = true;
+    static constexpr bool adjacency_matrix = false;
+    static constexpr bool static_graph = false;
 
     AdjacencyList() = default;
 
@@ -43,11 +43,11 @@ template <class T, bool is_directed> struct AdjacencyList {
     std::vector<_Edges<T>> data;
     _Edges<T> edges;
 
-    int num_vertices() const { return data.size(); }
+    inline int num_vertices() const { return data.size(); }
 
-    int size() const { return data.size(); }
+    inline int size() const { return data.size(); }
 
-    int num_edges() const { return edges.size(); }
+    inline int num_edges() const { return edges.size(); }
 
     _Edges<T> &operator[](int k) { return data[k]; }
 
@@ -97,12 +97,12 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
     using value_type = T;
     using edge_type = _pair<T>;
     using edge_container = _Edges<T>;
-
-    using directed = std::integral_constant<bool, is_directed>;
-    using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
-    using adjacency_list = std::false_type;
-    using adjacency_matrix = std::true_type;
-    using static_graph = std::false_type;
+    
+    static constexpr bool directed = is_directed;
+    static constexpr bool weighted = !std::is_same_v<T, empty>;
+    static constexpr bool adjacency_list = false;
+    static constexpr bool adjacency_matrix = true;
+    static constexpr bool static_graph = false;
 
     AdjacencyMatrix() = default;
 
@@ -121,11 +121,11 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
     std::vector<_pairs<T>> data;
     _Edges<T> edges;
 
-    int num_vertices() const { return data.size(); }
+    inline int num_vertices() const { return data.size(); }
 
-    int size() const { return data.size(); }
+    inline int size() const { return data.size(); }
 
-    int num_edges() const { return edges.size(); }
+    inline int num_edges() const { return edges.size(); }
 
     _pairs<T> &operator[](int k) { return data[k]; }
 

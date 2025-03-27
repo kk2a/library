@@ -14,14 +14,15 @@ struct dij_edge {
     int to, id;
 };
 
-template <class T> struct dij_result {
+template <class T>
+struct dij_result {
     std::vector<T> dist;
     std::vector<dij_edge> prev;
 };
 
 template <class WG, class T = typename WG::value_type>
 dij_result<T> dijkstra(const WG &g, int start, T inf = std::numeric_limits<T>::max()) {
-    static_assert(WG::weighted::value, "dijkstra requires weighted graph");
+    static_assert(WG::weighted, "dijkstra requires weighted graph");
     T alt;
     int n = g.size();
     std::vector<T> dist(n, inf);

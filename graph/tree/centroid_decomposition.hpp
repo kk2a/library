@@ -7,7 +7,7 @@
 namespace kk2 {
 
 template <class G> struct CentroidDecomposition {
-    static_assert(!G::directed::value, "CentroidDecomposition requires undirected graph");
+    static_assert(!G::directed, "CentroidDecomposition requires undirected graph");
 
     const G &g;
     std::vector<int> parent;

@@ -17,7 +17,7 @@ struct result {
     int size() const { return edges.size(); }
 };
 
-template <class G, std::enable_if_t<!G::directed::value> * = nullptr>
+template <class G, std::enable_if_t<!G::directed> * = nullptr>
 std::optional<result> cycle_detection(const G &g) {
     std::vector<int> edges, vertices;
     std::vector<int> buf(g.num_vertices(), -1);
@@ -53,7 +53,7 @@ std::optional<result> cycle_detection(const G &g) {
     return {};
 }
 
-template <class G, std::enable_if_t<G::directed::value> * = nullptr>
+template <class G, std::enable_if_t<G::directed> * = nullptr>
 std::optional<result> cycle_detection(const G &g) {
     std::vector<int> edges, vertices;
 

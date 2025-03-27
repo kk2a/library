@@ -12,11 +12,11 @@ namespace kk2 {
 namespace tree_diameter_impl {
 
 template <class G> struct result {
-    std::conditional_t<G::weighted::value, typename G::value_type, int> diameter;
+    std::conditional_t<G::weighted, typename G::value_type, int> diameter;
     std::vector<int> path;
 };
 
-template <class G, std::enable_if_t<!G::weighted::value> * = nullptr>
+template <class G, std::enable_if_t<!G::weighted> * = nullptr>
 result<G> tree_diameter(const G &g) {
     std::vector<int> dist(g.size(), -1), par(g.size(), -1);
     auto dfs = [&](auto self, int now) -> void {
@@ -39,7 +39,7 @@ result<G> tree_diameter(const G &g) {
     return {dist[v], path};
 }
 
-template <class G, std::enable_if_t<G::weighted::value> * = nullptr>
+template <class G, std::enable_if_t<G::weighted> * = nullptr>
 result<G> tree_diameter(const G &g) {
     using T = typename G::value_type;
     std::vector<T> dist(g.size(), -1);

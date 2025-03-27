@@ -10,7 +10,7 @@
 namespace kk2 {
 
 template <class G> struct LowLink {
-    static_assert(!G::directed::value, "LowLink requires undirected graph");
+    static_assert(!G::directed, "LowLink requires undirected graph");
 
     int n, m;
     const G &g;

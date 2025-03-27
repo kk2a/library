@@ -17,11 +17,11 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
     using edge_type = _Edge<T>;
     using edge_container = _Edges<T>;
 
-    using directed = std::integral_constant<bool, is_directed>;
-    using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;
-    using adjacency_list = std::true_type;
-    using adjacency_matrix = std::false_type;
-    using static_graph = std::true_type;
+    static constexpr bool directed = is_directed;
+    static constexpr bool weighted = !std::is_same_v<T, empty>;
+    static constexpr bool adjacency_list = true;
+    static constexpr bool adjacency_matrix = false;
+    static constexpr bool static_graph = true;
 
     StaticAdjacencyList() = default;
 
@@ -126,7 +126,7 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
     }
 };
 
-template <class G, std::enable_if_t<G::static_graph::value> * = nullptr> G reverse(const G &g) {
+template <class G, std::enable_if_t<G::static_graph> * = nullptr> G reverse(const G &g) {
     return g.reverse();
 }
 
