@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   - icon: ':question:'
@@ -64,7 +64,7 @@ data:
   isVerificationFile: false
   path: random/graph.hpp
   requiredBy: []
-  timestamp: '2025-02-04 23:50:25+09:00'
+  timestamp: '2025-03-28 03:08:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/graph.hpp

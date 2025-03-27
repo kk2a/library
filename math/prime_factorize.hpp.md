@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':question:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
@@ -45,15 +45,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_factorize_table.test.cpp
     title: verify/unit_test/prime_factorize_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primitive_root.test.cpp
     title: verify/yosupo_math/primitive_root.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -125,7 +125,7 @@ data:
   - math/multiplicative_function/euler_phi.hpp
   - math_mod/primitive_root_64bit.hpp
   timestamp: '2025-02-04 23:50:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp

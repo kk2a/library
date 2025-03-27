@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_gcd.hpp
     title: convolution/convolution_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_lcm.hpp
     title: convolution/convolution_lcm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/multiplicative_function/prefix_sum.hpp
     title: math/multiplicative_function/prefix_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/multiplicative_function/prime_counting.hpp
     title: math/multiplicative_function/prime_counting.hpp
   _extendedVerifiedWith:
@@ -36,24 +36,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_primes.test.cpp
     title: verify/yosupo_math/enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
     title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/prime_counting.test.cpp
     title: verify/yosupo_math/prime_counting.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://37zigen.com/wheel-sieve/
@@ -163,7 +163,7 @@ data:
   - math/multiplicative_function/prime_counting.hpp
   - math/multiplicative_function/prefix_sum.hpp
   timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/prime_counting.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp

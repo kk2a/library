@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   - icon: ':question:'
@@ -38,7 +38,7 @@ data:
   code: "#ifndef KK2_GRAPH_TREE_EULER_TOUR_HPP\n#define KK2_GRAPH_TREE_EULER_TOUR_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
     \ <utility>\n#include <vector>\n\n#include \"../../data_structure/static_rmq.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <typename G> struct EulerTour {\n    static_assert(!G::directed::value,\
+    \n\nnamespace kk2 {\n\ntemplate <typename G> struct EulerTour {\n    static_assert(!G::directed,\
     \ \"EulerTour requires undirected graph\");\n\n    const G &g;\n    int root,\
     \ id;\n    std::vector<int> in, out, par;\n    std::vector<int> edge_in, edge_out;\n\
     \n    EulerTour(const G &g_, int root_ = 0)\n        : g(g_),\n          root(root_),\n\
@@ -58,17 +58,17 @@ data:
     \ + 1, in[v] + 1);\n    }\n\n    template <typename F> void subtree_query(int\
     \ u, bool is_node_query, const F &f) {\n        f(in[u] + (int)!is_node_query,\
     \ out[u]);\n    }\n\n  private:\n    StaticRMQ<std::pair<int, int>> rmq;\n\n \
-    \   void init() {\n        auto rmq_init = GetVecMin<std::pair<int, int>>(2 *\
-    \ g.size());\n        auto dfs = [&](auto self, int now, int pre, int dep) ->\
-    \ void {\n            in[now] = id;\n            rmq_init[id++] = {dep, now};\n\
-    \            for (auto &&e : g[now]) {\n                if ((int)e == pre) continue;\n\
-    \                par[(int)e] = now;\n                edge_in[e.id] = id;\n   \
-    \             self(self, e, now, dep + 1);\n                edge_out[e.id] = id++;\n\
-    \            }\n            out[now] = id;\n            rmq_init[id] = {dep -\
-    \ 1, pre};\n        };\n        dfs(dfs, root, -1, 0);\n        for (int i = 0;\
-    \ i < (int)g.size(); i++) {\n            if (in[i] == -1) dfs(dfs, i, -1, 0);\n\
-    \        }\n        rmq = StaticRMQ<std::pair<int, int>>(rmq_init);\n    }\n};\n\
-    \n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_EULER_TOUR_HPP\n"
+    \   void init() {\n        std::vector<typename StaticRMQ<std::pair<int, int>>::Monoid>\
+    \ rmq_init(2 * g.size());\n        auto dfs = [&](auto self, int now, int pre,\
+    \ int dep) -> void {\n            in[now] = id;\n            rmq_init[id++] =\
+    \ {dep, now};\n            for (auto &&e : g[now]) {\n                if ((int)e\
+    \ == pre) continue;\n                par[(int)e] = now;\n                edge_in[e.id]\
+    \ = id;\n                self(self, e, now, dep + 1);\n                edge_out[e.id]\
+    \ = id++;\n            }\n            out[now] = id;\n            rmq_init[id]\
+    \ = {dep - 1, pre};\n        };\n        dfs(dfs, root, -1, 0);\n        for (int\
+    \ i = 0; i < (int)g.size(); i++) {\n            if (in[i] == -1) dfs(dfs, i, -1,\
+    \ 0);\n        }\n        rmq = StaticRMQ<std::pair<int, int>>(rmq_init);\n  \
+    \  }\n};\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_EULER_TOUR_HPP\n"
   dependsOn:
   - data_structure/static_rmq.hpp
   - math/monoid/min.hpp
@@ -77,7 +77,7 @@ data:
   isVerificationFile: false
   path: graph/tree/euler_tour.hpp
   requiredBy: []
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-03-28 03:08:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/euler_tour.hpp

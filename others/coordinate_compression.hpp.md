@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"others/coordinate_compression.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -64,7 +64,7 @@ data:
   path: others/coordinate_compression.hpp
   requiredBy: []
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
 documentation_of: others/coordinate_compression.hpp

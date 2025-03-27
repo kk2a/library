@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_mod
@@ -71,8 +71,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-28 03:34:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/sqrt_mod.test.cpp
 layout: document

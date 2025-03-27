@@ -10,7 +10,7 @@ data:
     links: []
   bundledCode: "#line 1 \"graph/tree/centroid_decomposition.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class G> struct\
-    \ CentroidDecomposition {\n    static_assert(!G::directed::value, \"CentroidDecomposition\
+    \ CentroidDecomposition {\n    static_assert(!G::directed, \"CentroidDecomposition\
     \ requires undirected graph\");\n\n    const G &g;\n    std::vector<int> parent;\n\
     \    std::vector<int> subsize;\n    std::vector<bool> used;\n    std::vector<std::vector<int>>\
     \ children;\n    int root;\n\n    CentroidDecomposition(const G &g_, bool isbuild\
@@ -32,9 +32,9 @@ data:
     \     return centroid;\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\n#define KK2_GRAPH_TREE_CENTROID_DECOMPOSITION_HPP\
     \ 1\n\n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class\
-    \ G> struct CentroidDecomposition {\n    static_assert(!G::directed::value, \"\
-    CentroidDecomposition requires undirected graph\");\n\n    const G &g;\n    std::vector<int>\
-    \ parent;\n    std::vector<int> subsize;\n    std::vector<bool> used;\n    std::vector<std::vector<int>>\
+    \ G> struct CentroidDecomposition {\n    static_assert(!G::directed, \"CentroidDecomposition\
+    \ requires undirected graph\");\n\n    const G &g;\n    std::vector<int> parent;\n\
+    \    std::vector<int> subsize;\n    std::vector<bool> used;\n    std::vector<std::vector<int>>\
     \ children;\n    int root;\n\n    CentroidDecomposition(const G &g_, bool isbuild\
     \ = true)\n        : g(g_),\n          parent(g.size(), -1),\n          subsize(g.size(),\
     \ 0),\n          used(g.size(), false),\n          children(g.size()) {\n    \
@@ -56,7 +56,7 @@ data:
   isVerificationFile: false
   path: graph/tree/centroid_decomposition.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-03-28 03:08:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/centroid_decomposition.hpp

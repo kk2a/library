@@ -2,33 +2,33 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bcc.hpp
     title: graph/bcc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/block_cut_tree.hpp
     title: graph/tree/block_cut_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_connected_components.hpp
     title: graph/two_edge_connected_components.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/lowlink.hpp\"\n\n\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <functional>\n#include <type_traits>\n#include <vector>\n\
-    \nnamespace kk2 {\n\ntemplate <class G> struct LowLink {\n    static_assert(!G::directed::value,\
+    \nnamespace kk2 {\n\ntemplate <class G> struct LowLink {\n    static_assert(!G::directed,\
     \ \"LowLink requires undirected graph\");\n\n    int n, m;\n    const G &g;\n\
     \    std::vector<int> ord, low;\n    std::vector<bool> root, used_on_dfs_tree;\n\
     \    std::vector<int> bridges, articulations;\n\n    LowLink(const G &g_)\n  \
@@ -56,8 +56,8 @@ data:
   code: "#ifndef KK2_GRAPH_LOWLINK_HPP\n#define KK2_GRAPH_LOWLINK_HPP 1\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <functional>\n#include <type_traits>\n\
     #include <vector>\n\nnamespace kk2 {\n\ntemplate <class G> struct LowLink {\n\
-    \    static_assert(!G::directed::value, \"LowLink requires undirected graph\"\
-    );\n\n    int n, m;\n    const G &g;\n    std::vector<int> ord, low;\n    std::vector<bool>\
+    \    static_assert(!G::directed, \"LowLink requires undirected graph\");\n\n \
+    \   int n, m;\n    const G &g;\n    std::vector<int> ord, low;\n    std::vector<bool>\
     \ root, used_on_dfs_tree;\n    std::vector<int> bridges, articulations;\n\n  \
     \  LowLink(const G &g_)\n        : n(g_.num_vertices()),\n          m(g_.num_edges()),\n\
     \          g(g_),\n          ord(n, -1),\n          low(n, -1),\n          root(n,\
@@ -88,8 +88,8 @@ data:
   - graph/bcc.hpp
   - graph/tree/block_cut_tree.hpp
   - graph/two_edge_connected_components.hpp
-  timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-03-28 03:08:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_bcc.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp

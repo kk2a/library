@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/update.hpp
     title: math/monoid/update.hpp
   - icon: ':question:'
@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: math/action/update_max.hpp
   requiredBy: []
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-03-28 03:33:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/action/update_max.hpp

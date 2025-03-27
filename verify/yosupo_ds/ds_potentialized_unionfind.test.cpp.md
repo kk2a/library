@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unionfind/potentialized.hpp
     title: unionfind/potentialized.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential
@@ -76,8 +76,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-28 03:34:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
 layout: document

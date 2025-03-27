@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':heavy_check_mark:'
     path: math/lpf_table.hpp
     title: math/lpf_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':heavy_check_mark:'
@@ -104,7 +104,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/prime_factorize_table.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 19:46:37+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/prime_factorize_table.test.cpp

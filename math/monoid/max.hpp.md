@@ -11,10 +11,13 @@ data:
   - icon: ':warning:'
     path: math/action/update_max.hpp
     title: math/action/update_max.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/monoid.test.cpp
+    title: verify/unit_test/monoid.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -36,7 +39,7 @@ data:
     \ {}\n\n    operator S() const { return a; }\n\n    inline static Max op(Max l,\
     \ Max r) {\n        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;\n  \
     \      return Compare{}(l.a, r.a) ? r : l;\n    }\n\n    inline static Max unit()\
-    \ { return Max(); }\n\n    template <class OStream, is_ostream_t<OSrteam> * =\
+    \ { return Max(); }\n\n    template <class OStream, is_ostream_t<OStream> * =\
     \ nullptr>\n    friend OStream &operator<<(OStream &os, const Max &max) {\n  \
     \      if (max.is_unit) os << \"-inf\";\n        else os << max.a;\n        return\
     \ os;\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
@@ -52,9 +55,10 @@ data:
   requiredBy:
   - math/action/add_max.hpp
   - math/action/update_max.hpp
-  timestamp: '2025-03-27 00:23:00+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-03-28 03:33:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/unit_test/monoid.test.cpp
 documentation_of: math/monoid/max.hpp
 layout: document
 redirect_from:

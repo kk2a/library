@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/scc.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
     #include <functional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class\
-    \ G> struct SCC {\n    static_assert(G::directed::value, \"SCC requires directed\
-    \ graph\");\n    int n;\n    const G &g;\n    std::vector<std::vector<int>> revg;\n\
-    \    std::vector<int> ord, scc_id;\n    std::vector<bool> used;\n    std::vector<std::vector<int>>\
+    \ G> struct SCC {\n    static_assert(G::directed, \"SCC requires directed graph\"\
+    );\n    int n;\n    const G &g;\n    std::vector<std::vector<int>> revg;\n   \
+    \ std::vector<int> ord, scc_id;\n    std::vector<bool> used;\n    std::vector<std::vector<int>>\
     \ blng, dag;\n\n    SCC(const G &g_) : n(g_.num_vertices()), g(g_) { init(); }\n\
     \n    int operator[](int k) const { return scc_id[k]; }\n\n    const std::vector<int>\
     \ &same_scc(int u) const { return blng[u]; }\n\n    int size() const { return\
@@ -37,8 +37,8 @@ data:
     \            }\n        }\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_GRAPH_SCC_HPP\n#define KK2_GRAPH_SCC_HPP 1\n\n#include <algorithm>\n\
     #include <cassert>\n#include <functional>\n#include <vector>\n\nnamespace kk2\
-    \ {\n\ntemplate <class G> struct SCC {\n    static_assert(G::directed::value,\
-    \ \"SCC requires directed graph\");\n    int n;\n    const G &g;\n    std::vector<std::vector<int>>\
+    \ {\n\ntemplate <class G> struct SCC {\n    static_assert(G::directed, \"SCC requires\
+    \ directed graph\");\n    int n;\n    const G &g;\n    std::vector<std::vector<int>>\
     \ revg;\n    std::vector<int> ord, scc_id;\n    std::vector<bool> used;\n    std::vector<std::vector<int>>\
     \ blng, dag;\n\n    SCC(const G &g_) : n(g_.num_vertices()), g(g_) { init(); }\n\
     \n    int operator[](int k) const { return scc_id[k]; }\n\n    const std::vector<int>\
@@ -63,8 +63,8 @@ data:
   isVerificationFile: false
   path: graph/scc.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-03-28 03:08:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_scc.test.cpp
 documentation_of: graph/scc.hpp

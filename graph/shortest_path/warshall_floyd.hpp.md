@@ -28,18 +28,18 @@ data:
   code: "#ifndef KK2_GRAPH_WARSHALL_FLOYD_HPP\n#define KK2_GRAPH_WARSHALL_FLOYD_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <vector>\n\
     \n#include \"../../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-    \ shortest_path_impl {\n\ntemplate <typename T> struct wf_len {\n    T len;\n\
+    \ shortest_path_impl {\n\ntemplate <typename T>\nstruct wf_len {\n    T len;\n\
     \    bool inf, minf;\n\n    template <class OStream, is_ostream_t<OStream> * =\
     \ nullptr>\n    void debug_output(OStream &os) const {\n        if (minf) os <<\
     \ \"MINF\";\n        else if (inf) os << \"INF\";\n        else os << len;\n \
     \   }\n};\n\ntemplate <typename WG, typename T = typename WG::value_type>\nstd::vector<std::vector<wf_len<T>>>\
-    \ warshall_froyd(const WG &g) {\n    static_assert(WG::weighted::value, \"warshall_froyd\
+    \ warshall_froyd(const WG &g) {\n    static_assert(WG::weighted, \"warshall_froyd\
     \ requires weighted graph\");\n\n    int n = g.size();\n    std::vector<std::vector<wf_len<T>>>\
     \ res(n, std::vector<wf_len<T>>(n, {0, true, false}));\n    for (int i = 0; i\
     \ < n; ++i) res[i][i] = {0, false, false};\n    for (auto &&e : g.edges) {\n \
     \       {\n            auto &[len, inf, minf] = res[e.from][e.to];\n         \
     \   if (inf or len > e.cost) {\n                len = e.cost;\n              \
-    \  inf = false;\n            }\n        }\n        if constexpr (!WG::directed::value)\
+    \  inf = false;\n            }\n        }\n        if constexpr (!WG::directed)\
     \ {\n            auto &[len, inf, minf] = res[e.to][e.from];\n            if (inf\
     \ or len > e.cost) {\n                len = e.cost;\n                inf = false;\n\
     \            }\n        }\n    }\n\n    for (int k = 0; k < n; ++k) {\n      \
@@ -59,7 +59,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/warshall_floyd.hpp
   requiredBy: []
-  timestamp: '2025-02-15 18:31:33+09:00'
+  timestamp: '2025-03-28 03:08:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp

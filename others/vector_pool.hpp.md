@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bbst/base/red_black_tree_base.hpp
     title: bbst/base/red_black_tree_base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bbst/lazy_red_black_tree.hpp
     title: bbst/lazy_red_black_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bbst/red_black_tree.hpp
     title: bbst/red_black_tree.hpp
   - icon: ':warning:'
     path: data_structure/ordered_set.hpp
     title: data_structure/ordered_set.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"others/vector_pool.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
@@ -51,7 +51,7 @@ data:
   - bbst/base/red_black_tree_base.hpp
   - data_structure/ordered_set.hpp
   timestamp: '2025-03-27 00:23:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp

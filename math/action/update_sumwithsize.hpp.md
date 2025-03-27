@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/group/sum_with_size.hpp
     title: math/group/sum_with_size.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/update.hpp
     title: math/monoid/update.hpp
   - icon: ':question:'

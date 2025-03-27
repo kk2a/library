@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
   - icon: ':question:'

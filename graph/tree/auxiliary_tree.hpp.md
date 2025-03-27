@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: graph/tree/heavy_light_decomposition.hpp
   _extendedRequiredBy: []
@@ -15,7 +15,7 @@ data:
     #include <cassert>\n#include <functional>\n#include <stack>\n#include <utility>\n\
     #include <vector>\n\n#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n\
     \n#line 8 \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace kk2 {\n\n\
-    template <typename G> struct HeavyLightDecomposition {\n    static_assert(!G::directed::value,\
+    template <typename G> struct HeavyLightDecomposition {\n    static_assert(!G::directed,\
     \ \"HeavyLightDecomposition requires undirected graph\");\n\n    G &g;\n    int\
     \ root, id;\n    std::vector<int> sz, in, out, head, par, dep, edge_idx;\n\n \
     \   // e.id\u306Fedges\u306Eindex\u3067\u306A\u3044\u3068\u3044\u3051\u306A\u3044\
@@ -63,11 +63,11 @@ data:
     \  if (head[u] == head[v]) return {std::make_pair(in[u] + 1, in[v])};\n      \
     \  auto res = descend(u, par[head[v]]);\n        res.emplace_back(in[head[v]],\
     \ in[v]);\n        return res;\n    }\n};\n\n} // namespace kk2\n\n\n#line 12\
-    \ \"graph/tree/auxiliary_tree.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename G>\
-    \ struct AuxiliaryTree {\n    static_assert(!G::directed::value, \"AuxiliaryTree\
-    \ requires undirected graph\");\n\n    G g;\n    HeavyLightDecomposition<G> hld;\n\
-    \n    AuxiliaryTree(const G &g_, int root_ = 0) : g(g_), hld(g, root_) {}\n\n\
-    \    std::pair<std::vector<std::vector<int>>, std::vector<int>> get(std::vector<int>\
+    \ \"graph/tree/auxiliary_tree.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename G>\n\
+    struct AuxiliaryTree {\n    static_assert(!G::directed, \"AuxiliaryTree requires\
+    \ undirected graph\");\n\n    G g;\n    HeavyLightDecomposition<G> hld;\n\n  \
+    \  AuxiliaryTree(const G &g_, int root_ = 0) : g(g_), hld(g, root_) {}\n\n   \
+    \ std::pair<std::vector<std::vector<int>>, std::vector<int>> get(std::vector<int>\
     \ ps) {\n        if (ps.empty()) return {};\n        std::sort(\n            std::begin(ps),\
     \ std::end(ps), [&](int i, int j) { return hld.in[i] < hld.in[j]; });\n      \
     \  for (int i = 0, ps_size = ps.size(); i < ps_size - 1; i++) {\n            ps.push_back(hld.lca(ps[i],\
@@ -82,7 +82,7 @@ data:
   code: "#ifndef KK2_GRAPH_TREE_AUXILIARY_TREE_HPP\n#define KK2_GRAPH_TREE_AUXILIARY_TREE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
     \ <stack>\n#include <utility>\n#include <vector>\n\n#include \"heavy_light_decomposition.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <typename G> struct AuxiliaryTree {\n    static_assert(!G::directed::value,\
+    \n\nnamespace kk2 {\n\ntemplate <typename G>\nstruct AuxiliaryTree {\n    static_assert(!G::directed,\
     \ \"AuxiliaryTree requires undirected graph\");\n\n    G g;\n    HeavyLightDecomposition<G>\
     \ hld;\n\n    AuxiliaryTree(const G &g_, int root_ = 0) : g(g_), hld(g, root_)\
     \ {}\n\n    std::pair<std::vector<std::vector<int>>, std::vector<int>> get(std::vector<int>\
@@ -102,7 +102,7 @@ data:
   isVerificationFile: false
   path: graph/tree/auxiliary_tree.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-03-28 03:08:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/auxiliary_tree.hpp

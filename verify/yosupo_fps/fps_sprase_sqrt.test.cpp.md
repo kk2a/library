@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -110,7 +110,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   requiredBy: []
-  timestamp: '2025-03-14 21:44:33+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_sprase_sqrt.test.cpp

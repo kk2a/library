@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_table.hpp
     title: math/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/convolution_lcm.hpp\"\n\n\n\n#include <cassert>\n\
@@ -120,7 +120,7 @@ data:
   path: convolution/convolution_lcm.hpp
   requiredBy: []
   timestamp: '2025-02-08 15:18:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
 documentation_of: convolution/convolution_lcm.hpp

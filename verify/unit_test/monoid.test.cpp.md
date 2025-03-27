@@ -1,0 +1,103 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: math/monoid/affine.hpp
+    title: math/monoid/affine.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/monoid/max.hpp
+    title: math/monoid/max.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/monoid/max_min_sumwithsize.hpp
+    title: math/monoid/max_min_sumwithsize.hpp
+  - icon: ':question:'
+    path: math/monoid/min.hpp
+    title: math/monoid/min.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/monoid/update.hpp
+    title: math/monoid/update.hpp
+  - icon: ':question:'
+    path: random/gen.hpp
+    title: random/gen.hpp
+  - icon: ':question:'
+    path: random/seed.hpp
+    title: random/seed.hpp
+  - icon: ':question:'
+    path: template/constant.hpp
+    title: template/constant.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
+    path: template/io_util.hpp
+    title: template/io_util.hpp
+  - icon: ':question:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':question:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':question:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
+  - icon: ':question:'
+    path: type_traits/type_traits.hpp
+    title: type_traits/type_traits.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    links:
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" \n\n#include \"\
+    ../../math/monoid/affine.hpp\"\n#include \"../../math/monoid/max_min_sumwithsize.hpp\"\
+    \n#include \"../../math/monoid/max.hpp\"\n#include \"../../math/monoid/min.hpp\"\
+    \n#include \"../../math/monoid/update.hpp\"\n#include \"../../random/gen.hpp\"\
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nvoid test()\
+    \ {\n    \n}\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n    kout << a\
+    \ + b << kendl;\n\n    rep (10000) test();\n\n    return 0;\n}\n"
+  dependsOn:
+  - math/monoid/affine.hpp
+  - type_traits/type_traits.hpp
+  - math/monoid/max_min_sumwithsize.hpp
+  - math/monoid/max.hpp
+  - math/monoid/min.hpp
+  - math/monoid/update.hpp
+  - random/gen.hpp
+  - random/seed.hpp
+  - template/template.hpp
+  - template/constant.hpp
+  - template/type_alias.hpp
+  - template/fastio.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
+  isVerificationFile: true
+  path: verify/unit_test/monoid.test.cpp
+  requiredBy: []
+  timestamp: '2025-03-28 03:34:37+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/unit_test/monoid.test.cpp
+layout: document
+redirect_from:
+- /verify/verify/unit_test/monoid.test.cpp
+- /verify/verify/unit_test/monoid.test.cpp.html
+title: verify/unit_test/monoid.test.cpp
+---

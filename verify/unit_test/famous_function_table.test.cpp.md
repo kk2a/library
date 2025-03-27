@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':heavy_check_mark:'
@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/pow.hpp
     title: math/pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':question:'
@@ -119,7 +119,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/famous_function_table.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 20:19:16+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/famous_function_table.test.cpp

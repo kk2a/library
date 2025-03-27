@@ -83,7 +83,7 @@ data:
   isVerificationFile: false
   path: template/procon.hpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/procon.hpp

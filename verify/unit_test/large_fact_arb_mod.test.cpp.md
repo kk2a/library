@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'
@@ -122,7 +122,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/large_fact_arb_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-03-14 21:44:33+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/large_fact_arb_mod.test.cpp

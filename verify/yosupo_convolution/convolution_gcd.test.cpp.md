@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_gcd.hpp
     title: convolution/convolution_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_table.hpp
     title: math/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
@@ -87,8 +87,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_gcd.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-28 03:34:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_gcd.test.cpp
 layout: document

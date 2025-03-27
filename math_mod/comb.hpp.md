@@ -27,7 +27,7 @@ data:
   - icon: ':x:'
     path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'

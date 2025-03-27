@@ -99,7 +99,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/bit_vector.test.cpp
   requiredBy: []
-  timestamp: '2025-03-14 21:20:29+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/bit_vector.test.cpp

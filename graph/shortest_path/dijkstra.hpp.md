@@ -3,22 +3,22 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/shortest_path/dijkstra.hpp\"\n\n\n\n#include <limits>\n\
     #include <queue>\n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\n\
     namespace shortest_path_impl {\n\nstruct dij_edge {\n    int to, id;\n};\n\ntemplate\
-    \ <class T> struct dij_result {\n    std::vector<T> dist;\n    std::vector<dij_edge>\
+    \ <class T>\nstruct dij_result {\n    std::vector<T> dist;\n    std::vector<dij_edge>\
     \ prev;\n};\n\ntemplate <class WG, class T = typename WG::value_type>\ndij_result<T>\
     \ dijkstra(const WG &g, int start, T inf = std::numeric_limits<T>::max()) {\n\
-    \    static_assert(WG::weighted::value, \"dijkstra requires weighted graph\");\n\
-    \    T alt;\n    int n = g.size();\n    std::vector<T> dist(n, inf);\n    std::vector<dij_edge>\
+    \    static_assert(WG::weighted, \"dijkstra requires weighted graph\");\n    T\
+    \ alt;\n    int n = g.size();\n    std::vector<T> dist(n, inf);\n    std::vector<dij_edge>\
     \ prev(n, {-1, -1});\n\n    std::priority_queue<std::pair<T, int>,\n         \
     \               std::vector<std::pair<T, int>>,\n                        std::greater<std::pair<T,\
     \ int>>>\n        pq;\n    dist[start] = 0;\n    pq.push({T(), start});\n\n  \
@@ -33,11 +33,11 @@ data:
   code: "#ifndef KK2_GRAPH_SHORTEST_PATH_DIJKSTRA_HPP\n#define KK2_GRAPH_SHORTEST_PATH_DIJKSTRA_HPP\
     \ 1\n\n#include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\
     \nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\nstruct dij_edge {\n   \
-    \ int to, id;\n};\n\ntemplate <class T> struct dij_result {\n    std::vector<T>\
+    \ int to, id;\n};\n\ntemplate <class T>\nstruct dij_result {\n    std::vector<T>\
     \ dist;\n    std::vector<dij_edge> prev;\n};\n\ntemplate <class WG, class T =\
     \ typename WG::value_type>\ndij_result<T> dijkstra(const WG &g, int start, T inf\
-    \ = std::numeric_limits<T>::max()) {\n    static_assert(WG::weighted::value, \"\
-    dijkstra requires weighted graph\");\n    T alt;\n    int n = g.size();\n    std::vector<T>\
+    \ = std::numeric_limits<T>::max()) {\n    static_assert(WG::weighted, \"dijkstra\
+    \ requires weighted graph\");\n    T alt;\n    int n = g.size();\n    std::vector<T>\
     \ dist(n, inf);\n    std::vector<dij_edge> prev(n, {-1, -1});\n\n    std::priority_queue<std::pair<T,\
     \ int>,\n                        std::vector<std::pair<T, int>>,\n           \
     \             std::greater<std::pair<T, int>>>\n        pq;\n    dist[start] =\
@@ -53,8 +53,8 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/dijkstra.hpp
   requiredBy: []
-  timestamp: '2025-02-15 18:31:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-03-28 03:08:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_shortest_path.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp

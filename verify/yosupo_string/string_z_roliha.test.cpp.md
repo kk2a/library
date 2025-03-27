@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
   - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash.hpp
     title: random/hash.hpp
   - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -83,8 +83,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_string/string_z_roliha.test.cpp
   requiredBy: []
-  timestamp: '2025-02-04 23:50:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-28 03:34:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_z_roliha.test.cpp
 layout: document

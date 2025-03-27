@@ -20,10 +20,13 @@ data:
   - icon: ':warning:'
     path: math/action/update_sumwithsize.hpp
     title: math/action/update_sumwithsize.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/monoid.test.cpp
+    title: verify/unit_test/monoid.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -64,8 +67,9 @@ data:
   - math/action/update_max.hpp
   - math/action/update_affine.hpp
   timestamp: '2025-03-27 00:23:00+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/unit_test/monoid.test.cpp
 documentation_of: math/monoid/update.hpp
 layout: document
 redirect_from:

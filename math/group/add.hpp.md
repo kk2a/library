@@ -37,7 +37,7 @@ data:
   code: "#ifndef KK2_MATH_GROUP_PLUS_HPP\n#define KK2_MATH_GROUP_PLUS_HPP 1\n\n#include\
     \ \"../../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\nnamespace group\
     \ {\n\ntemplate <class S>\nstruct Add {\n    static constexpr bool commutative\
-    \ = true;\n    using M = Add;\n    S a;\n\n    Plus() : a(S()) {}\n\n    Plus(S\
+    \ = true;\n    using M = Add;\n    S a;\n\n    Add() : a(S()) {}\n\n    Add(S\
     \ a_) : a(a_) {}\n\n    operator S() const { return a; }\n\n    inline static\
     \ M op(M l, M r) { return M(l.a + r.a); }\n\n    inline static M inv(M x) { return\
     \ M(-x.a); }\n\n    inline static M unit() { return M(); }\n\n    template <class\
@@ -57,7 +57,7 @@ data:
   - math/action/add_max.hpp
   - math/action/add_min.hpp
   - math/action/add_sumwithsize.hpp
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-03-28 03:33:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/group/add.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.hpp
     title: graph/edge.hpp
   - icon: ':question:'
@@ -9,18 +9,18 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca_static.test.cpp
     title: verify/yosupo_graph/tree_lca_static.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -39,11 +39,11 @@ data:
     ../type_traits/type_traits.hpp\"\n#include \"edge.hpp\"\n\nnamespace kk2 {\n\n\
     namespace graph {\n\ntemplate <class T, bool is_directed> struct StaticAdjacencyList\
     \ {\n    using value_type = T;\n    using edge_type = _Edge<T>;\n    using edge_container\
-    \ = _Edges<T>;\n\n    using directed = std::integral_constant<bool, is_directed>;\n\
-    \    using weighted = std::integral_constant<bool, !std::is_same_v<T, empty>>;\n\
-    \    using adjacency_list = std::true_type;\n    using adjacency_matrix = std::false_type;\n\
-    \    using static_graph = std::true_type;\n\n    StaticAdjacencyList() = default;\n\
-    \n    StaticAdjacencyList(int n_) : head(n_) {}\n\n    StaticAdjacencyList(int\
+    \ = _Edges<T>;\n\n    static constexpr bool directed = is_directed;\n    static\
+    \ constexpr bool weighted = !std::is_same_v<T, empty>;\n    static constexpr bool\
+    \ adjacency_list = true;\n    static constexpr bool adjacency_matrix = false;\n\
+    \    static constexpr bool static_graph = true;\n\n    StaticAdjacencyList() =\
+    \ default;\n\n    StaticAdjacencyList(int n_) : head(n_) {}\n\n    StaticAdjacencyList(int\
     \ n_, int m_) : head(n_), edges(m_) {}\n\n    StaticAdjacencyList(int n_, const\
     \ _Edges<T> &edges_) : head(n_), edges(edges_) {\n        for (auto &&e : edges)\
     \ {\n            head[e.from]++;\n            if constexpr (!is_directed) {\n\
@@ -84,8 +84,8 @@ data:
     \    StaticAdjacencyList reverse() const {\n        StaticAdjacencyList res(num_vertices(),\
     \ num_edges());\n        for (auto &&e : edges) { res._add_edge<true>(e.to, e.from,\
     \ e.cost, e.id); }\n        res.build();\n        return res;\n    }\n};\n\ntemplate\
-    \ <class G, std::enable_if_t<G::static_graph::value> * = nullptr> G reverse(const\
-    \ G &g) {\n    return g.reverse();\n}\n\n} // namespace graph\n\ntemplate <typename\
+    \ <class G, std::enable_if_t<G::static_graph> * = nullptr> G reverse(const G &g)\
+    \ {\n    return g.reverse();\n}\n\n} // namespace graph\n\ntemplate <typename\
     \ T> using SWAdjList = graph::StaticAdjacencyList<T, false>;\ntemplate <typename\
     \ T> using SDWAdjList = graph::StaticAdjacencyList<T, true>;\nusing SAdjList =\
     \ graph::StaticAdjacencyList<graph::empty, false>;\nusing SDAdjList = graph::StaticAdjacencyList<graph::empty,\
@@ -96,8 +96,8 @@ data:
   isVerificationFile: false
   path: graph/static_graph.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-03-28 03:08:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
   - verify/yosupo_graph/tree_lca_static.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/affine.hpp
     title: math/monoid/affine.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/seg.hpp
     title: segment_tree/seg.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -84,8 +84,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2025-03-27 00:23:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-03-28 03:34:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
 layout: document

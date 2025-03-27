@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/update.hpp
     title: math/monoid/update.hpp
   - icon: ':question:'

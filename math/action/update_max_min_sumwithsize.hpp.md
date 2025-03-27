@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/max_min_sumwithsize.hpp
     title: math/monoid/max_min_sumwithsize.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/update.hpp
     title: math/monoid/update.hpp
   - icon: ':question:'

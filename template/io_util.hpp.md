@@ -52,6 +52,9 @@ data:
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/monoid.test.cpp
+    title: verify/unit_test/monoid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,97 +78,97 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_subset.test.cpp
     title: verify/yosupo_convolution/convolution_subset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_xor.test.cpp
     title: verify/yosupo_convolution/convolution_xor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
     title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_set_xor_min.test.cpp
     title: verify/yosupo_ds/ds_set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv.test.cpp
     title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_inv_arb.test.cpp
     title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log.test.cpp
     title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/fps_log_arb.test.cpp
     title: verify/yosupo_fps/fps_log_arb.test.cpp
   - icon: ':x:'
@@ -222,103 +225,103 @@ data:
   - icon: ':x:'
     path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/arg_sort.test.cpp
     title: verify/yosupo_geometry/arg_sort.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull.test.cpp
     title: verify/yosupo_geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull_1.test.cpp
     title: verify/yosupo_geometry/static_convex_hull_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull_2.test.cpp
     title: verify/yosupo_geometry/static_convex_hull_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_geometry/static_convex_hull_3.test.cpp
     title: verify/yosupo_geometry/static_convex_hull_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_cartesian.test.cpp
     title: verify/yosupo_graph/tree_cartesian.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca_static.test.cpp
     title: verify/yosupo_graph/tree_lca_static.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/enumerate_bell_number.test.cpp
     title: verify/yosupo_math/enumerate_bell_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_primes.test.cpp
     title: verify/yosupo_math/enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_quotients.test.cpp
     title: verify/yosupo_math/enumerate_quotients.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
     title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_root_int_ceil.test.cpp
     title: verify/yosupo_math/kth_root_int_ceil.test.cpp
   - icon: ':x:'
@@ -327,52 +330,52 @@ data:
   - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
     title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/prime_counting.test.cpp
     title: verify/yosupo_math/prime_counting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primitive_root.test.cpp
     title: verify/yosupo_math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/sqrt_mod.test.cpp
     title: verify/yosupo_math/sqrt_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/sum_of_floor_linear.test.cpp
     title: verify/yosupo_math/sum_of_floor_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/longest_increasing_subsequence.test.cpp
     title: verify/yosupo_others/longest_increasing_subsequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_string/string_number_of_substrings.test.cpp
     title: verify/yosupo_string/string_number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_string/string_suffix_array.test.cpp
     title: verify/yosupo_string/string_suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_string/string_z_algorithm.test.cpp
     title: verify/yosupo_string/string_z_algorithm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430.test.cpp
     title: verify/yuki/yuki_0430.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430_2.test.cpp
     title: verify/yuki/yuki_0430_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
   - icon: ':x:'
@@ -398,30 +401,32 @@ data:
     #include <array>\n#include <utility>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
     \n\n// \u306A\u3093\u304Boj verify\u306F\u30D7\u30ED\u30C8\u30BF\u30A4\u30D7\u5BA3\
     \u8A00\u304C\u843D\u3061\u308B\n\nnamespace impl {\n\nstruct read {\n    template\
-    \ <class IStream, class T> static void all_read(IStream &is, T &x) { is >> x;\
-    \ }\n\n    template <class IStream, class T, class U>\n    static void all_read(IStream\
-    \ &is, std::pair<T, U> &p) {\n        all_read(is, p.first);\n        all_read(is,\
-    \ p.second);\n    }\n\n    template <class IStream, class T> static void all_read(IStream\
-    \ &is, std::vector<T> &v) {\n        for (T &x : v) all_read(is, x);\n    }\n\n\
-    \    template <class IStream, class T, size_t F>\n    static void all_read(IStream\
-    \ &is, std::array<T, F> &a) {\n        for (T &x : a) all_read(is, x);\n    }\n\
-    };\n\nstruct write {\n    template <class OStream, class T> static void all_write(OStream\
-    \ &os, const T &x) { os << x; }\n\n    template <class OStream, class T, class\
-    \ U>\n    static void all_write(OStream &os, const std::pair<T, U> &p) {\n   \
-    \     all_write(os, p.first);\n        all_write(os, ' ');\n        all_write(os,\
-    \ p.second);\n    }\n\n    template <class OStream, class T> static void all_write(OStream\
-    \ &os, const std::vector<T> &v) {\n        for (int i = 0; i < (int)v.size();\
-    \ ++i) {\n            if (i) all_write(os, ' ');\n            all_write(os, v[i]);\n\
-    \        }\n    }\n\n    template <class OStream, class T, size_t F>\n    static\
-    \ void all_write(OStream &os, const std::array<T, F> &a) {\n        for (int i\
-    \ = 0; i < (int)F; ++i) {\n            if (i) all_write(os, ' ');\n          \
-    \  all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\ntemplate\
-    \ <class IStream, class T, class U, kk2::is_istream_t<IStream> * = nullptr>\n\
-    IStream &operator>>(IStream &is, std::pair<T, U> &p) {\n    impl::read::all_read(is,\
-    \ p);\n    return is;\n}\n\ntemplate <class IStream, class T, kk2::is_istream_t<IStream>\
-    \ * = nullptr>\nIStream &operator>>(IStream &is, std::vector<T> &v) {\n    impl::read::all_read(is,\
-    \ v);\n    return is;\n}\n\ntemplate <class IStream, class T, size_t F, kk2::is_istream_t<IStream>\
-    \ * = nullptr>\nIStream &operator>>(IStream &is, std::array<T, F> &a) {\n    impl::read::all_read(is,\
+    \ <class IStream, class T>\n    inline static void all_read(IStream &is, T &x)\
+    \ {\n        is >> x;\n    }\n\n    template <class IStream, class T, class U>\n\
+    \    inline static void all_read(IStream &is, std::pair<T, U> &p) {\n        all_read(is,\
+    \ p.first);\n        all_read(is, p.second);\n    }\n\n    template <class IStream,\
+    \ class T>\n    inline static void all_read(IStream &is, std::vector<T> &v) {\n\
+    \        for (T &x : v) all_read(is, x);\n    }\n\n    template <class IStream,\
+    \ class T, size_t F>\n    inline static void all_read(IStream &is, std::array<T,\
+    \ F> &a) {\n        for (T &x : a) all_read(is, x);\n    }\n};\n\nstruct write\
+    \ {\n    template <class OStream, class T>\n    inline static void all_write(OStream\
+    \ &os, const T &x) {\n        os << x;\n    }\n\n    template <class OStream,\
+    \ class T, class U>\n    inline static void all_write(OStream &os, const std::pair<T,\
+    \ U> &p) {\n        all_write(os, p.first);\n        all_write(os, ' ');\n   \
+    \     all_write(os, p.second);\n    }\n\n    template <class OStream, class T>\n\
+    \    inline static void all_write(OStream &os, const std::vector<T> &v) {\n  \
+    \      for (int i = 0; i < (int)v.size(); ++i) {\n            if (i) all_write(os,\
+    \ ' ');\n            all_write(os, v[i]);\n        }\n    }\n\n    template <class\
+    \ OStream, class T, size_t F>\n    inline static void all_write(OStream &os, const\
+    \ std::array<T, F> &a) {\n        for (int i = 0; i < (int)F; ++i) {\n       \
+    \     if (i) all_write(os, ' ');\n            all_write(os, a[i]);\n        }\n\
+    \    }\n};\n\n} // namespace impl\n\ntemplate <class IStream, class T, class U,\
+    \ kk2::is_istream_t<IStream> * = nullptr>\nIStream &operator>>(IStream &is, std::pair<T,\
+    \ U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n}\n\ntemplate <class\
+    \ IStream, class T, kk2::is_istream_t<IStream> * = nullptr>\nIStream &operator>>(IStream\
+    \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
+    }\n\ntemplate <class IStream, class T, size_t F, kk2::is_istream_t<IStream> *\
+    \ = nullptr>\nIStream &operator>>(IStream &is, std::array<T, F> &a) {\n    impl::read::all_read(is,\
     \ a);\n    return is;\n}\n\ntemplate <class OStream, class T, class U, kk2::is_ostream_t<OStream>\
     \ * = nullptr>\nOStream &operator<<(OStream &os, const std::pair<T, U> &p) {\n\
     \    impl::write::all_write(os, p);\n    return os;\n}\n\ntemplate <class OStream,\
@@ -437,7 +442,7 @@ data:
   requiredBy:
   - template/procon.hpp
   - template/template.hpp
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
@@ -517,6 +522,7 @@ data:
   - verify/yosupo_convolution/convolution_subset.test.cpp
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/monoid.test.cpp
   - verify/unit_test/multiplicative_function_table.test.cpp
   - verify/unit_test/bit_vector.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp

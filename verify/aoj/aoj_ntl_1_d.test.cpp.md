@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/euler_phi.hpp
     title: math/multiplicative_function/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':question:'
@@ -89,7 +89,7 @@ data:
   isVerificationFile: true
   path: verify/aoj/aoj_ntl_1_d.test.cpp
   requiredBy: []
-  timestamp: '2025-02-08 20:19:16+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_ntl_1_d.test.cpp

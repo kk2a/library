@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/convolution_and.hpp
     title: convolution/convolution_and.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
   - icon: ':question:'
@@ -74,7 +74,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_and.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_and.test.cpp

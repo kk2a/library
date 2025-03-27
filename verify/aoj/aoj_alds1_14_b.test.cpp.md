@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
   - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash.hpp
     title: random/hash.hpp
   - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':question:'
@@ -84,7 +84,7 @@ data:
   isVerificationFile: true
   path: verify/aoj/aoj_alds1_14_b.test.cpp
   requiredBy: []
-  timestamp: '2025-02-04 23:50:25+09:00'
+  timestamp: '2025-03-28 03:34:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_alds1_14_b.test.cpp

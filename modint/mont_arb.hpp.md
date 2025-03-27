@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':heavy_check_mark:'
@@ -20,13 +20,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
@@ -51,16 +51,16 @@ data:
   - icon: ':x:'
     path: verify/yosupo_fps/fps_sqrt.test.cpp
     title: verify/yosupo_fps/fps_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/primitive_root.test.cpp
     title: verify/yosupo_math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/sqrt_mod.test.cpp
     title: verify/yosupo_math/sqrt_mod.test.cpp
   _isVerificationFailed: true
