@@ -13,9 +13,9 @@ struct Add {
     using M = Add;
     S a;
 
-    Plus() : a(S()) {}
+    Add() : a(S()) {}
 
-    Plus(S a_) : a(a_) {}
+    Add(S a_) : a(a_) {}
 
     operator S() const { return a; }
 

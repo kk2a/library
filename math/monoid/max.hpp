@@ -29,7 +29,7 @@ struct Max {
 
     inline static Max unit() { return Max(); }
 
-    template <class OStream, is_ostream_t<OSrteam> * = nullptr>
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
     friend OStream &operator<<(OStream &os, const Max &max) {
         if (max.is_unit) os << "-inf";
         else os << max.a;
