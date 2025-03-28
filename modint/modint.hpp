@@ -36,7 +36,7 @@ template <int p> struct ModInt {
 
     template <class T, is_integral_t<T> * = nullptr> constexpr ModInt(T v) {
         if constexpr (is_signed<T>::value) {
-            v %= getmod();
+            v = v % (long long)(getmod());
             if (v < 0) v += getmod();
             _v = v;
         } else if constexpr (is_unsigned<T>::value) {
