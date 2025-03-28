@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/group/sum_with_size.hpp
     title: math/group/sum_with_size.hpp
   - icon: ':question:'
@@ -12,7 +12,7 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -50,7 +50,7 @@ data:
   path: math/action/affine_sumwithsize.hpp
   requiredBy: []
   timestamp: '2025-03-27 00:23:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

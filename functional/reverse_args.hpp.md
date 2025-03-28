@@ -6,15 +6,15 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -39,7 +39,7 @@ data:
   path: functional/reverse_args.hpp
   requiredBy: []
   timestamp: '2025-03-27 00:23:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp

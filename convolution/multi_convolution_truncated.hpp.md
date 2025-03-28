@@ -27,12 +27,12 @@ data:
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
     title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
@@ -85,7 +85,7 @@ data:
   requiredBy:
   - fps/fps_multivariate.hpp
   timestamp: '2025-03-14 21:44:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
 documentation_of: convolution/multi_convolution_truncated.hpp

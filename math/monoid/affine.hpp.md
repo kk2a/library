@@ -5,7 +5,7 @@ data:
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/action/affine_sumwithsize.hpp
     title: math/action/affine_sumwithsize.hpp
   - icon: ':warning:'
@@ -15,13 +15,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - icon: ':x:'

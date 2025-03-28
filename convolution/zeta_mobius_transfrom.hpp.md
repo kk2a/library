@@ -5,19 +5,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/convolution_and.hpp
     title: convolution/convolution_and.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution_or.hpp
     title: convolution/convolution_or.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_or.test.cpp
     title: verify/yosupo_convolution/convolution_or.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/zeta_mobius_transfrom.hpp\"\n\n\n\n#include\
@@ -61,7 +61,7 @@ data:
   - convolution/convolution_or.hpp
   - convolution/convolution_and.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_or.test.cpp
   - verify/yosupo_convolution/convolution_and.test.cpp

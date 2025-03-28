@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution_or.hpp
     title: convolution/convolution_or.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -77,7 +77,7 @@ data:
   path: verify/yosupo_convolution/convolution_or.test.cpp
   requiredBy: []
   timestamp: '2025-03-28 03:34:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_or.test.cpp
 layout: document

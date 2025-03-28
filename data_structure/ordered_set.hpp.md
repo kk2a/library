@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bbst/base/red_black_tree_base.hpp
     title: bbst/base/red_black_tree_base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   _extendedRequiredBy: []

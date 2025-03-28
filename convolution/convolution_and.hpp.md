@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/zeta_mobius_transfrom.hpp
     title: convolution/zeta_mobius_transfrom.hpp
   _extendedRequiredBy: []

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/action/affine_sumwithsize.hpp
     title: math/action/affine_sumwithsize.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/group/sum_with_size.hpp
     title: math/group/sum_with_size.hpp
   - icon: ':question:'

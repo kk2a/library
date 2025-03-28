@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data_structure/binary_trie.hpp
     title: data_structure/binary_trie.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/ordered_set
@@ -78,7 +78,7 @@ data:
   path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   requiredBy: []
   timestamp: '2025-03-28 03:34:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
 layout: document

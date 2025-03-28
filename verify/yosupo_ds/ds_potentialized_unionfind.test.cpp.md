@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: type_traits/type_traits.hpp
     title: type_traits/type_traits.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: unionfind/potentialized.hpp
     title: unionfind/potentialized.hpp
   _extendedRequiredBy: []
