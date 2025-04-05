@@ -1,5 +1,5 @@
-#ifndef KK2_TYPE_TRAITS_FUNCTOINAL_HPP
-#define KK2_TYPE_TRAITS_FUNCTOINAL_HPP 1
+#ifndef KK2_TYPE_TRAITS_FUNCTIONAL_HPP
+#define KK2_TYPE_TRAITS_FUNCTIONAL_HPP 1
 
 #pragma once // oj-verify
 
@@ -23,4 +23,4 @@ template <typename T> using is_two_args_function_pointer_t =
 
 } // namespace kk2
 
-#endif // KK2_TYPE_TRAITS_FUNCTOINAL_HPP
+#endif // KK2_TYPE_TRAITS_FUNCTIONAL_HPP
