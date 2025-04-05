@@ -7,8 +7,7 @@ namespace kk2 {
 
 namespace group {
 
-template <class S>
-struct Add {
+template <class S> struct Add {
     static constexpr bool commutative = true;
     using M = Add;
     S a;

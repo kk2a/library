@@ -24,8 +24,8 @@ template <int NUM> struct RollingHash {
         for (size_t i = 1; i < s.size(); ++i) { prefix[i] = prefix[i - 1] + H(s[i]) * pw[i]; }
     }
 
-    template <class T, is_integral_t<T> * = nullptr>
-    RollingHash(const std::vector<T> &v) : prefix(v.size()) {
+    template <class T, is_integral_t<T> * = nullptr> RollingHash(const std::vector<T> &v)
+        : prefix(v.size()) {
         extend_base(v.size());
         prefix[0] = H(v[0]);
         for (size_t i = 1; i < v.size(); ++i) { prefix[i] = prefix[i - 1] + H(v[i]) * pw[i]; }

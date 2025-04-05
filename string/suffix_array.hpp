@@ -26,9 +26,9 @@ struct SuffixArray {
         init();
     }
 
-    template <class T>
-    SuffixArray(const std::vector<T> &s_) : _n((int)s_.size()),
-                                            _s((int)s_.size()) {
+    template <class T> SuffixArray(const std::vector<T> &s_)
+        : _n((int)s_.size()),
+          _s((int)s_.size()) {
         std::vector<int> idx(_n);
         std::iota(std::begin(idx), std::end(idx), 0);
         std::sort(std::begin(idx), std::end(idx), [&](int l, int r) { return s_[l] < s_[r]; });

@@ -7,8 +7,7 @@ namespace kk2 {
 
 namespace monoid {
 
-template <class S>
-struct Affine {
+template <class S> struct Affine {
     static constexpr bool commutative = false;
 
     S a, b; // x \mapsto ax + b

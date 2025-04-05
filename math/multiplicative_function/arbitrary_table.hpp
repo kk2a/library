@@ -9,8 +9,7 @@
 
 namespace kk2 {
 
-template <class T, T (*f)(long long, long long)>
-struct MultiplicativeFunctionTable {
+template <class T, T (*f)(long long, long long)> struct MultiplicativeFunctionTable {
   private:
     static inline std::vector<int> _v_lpf{0, 0};
     static inline std::vector<T> _table{0, 1};

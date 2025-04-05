@@ -75,7 +75,6 @@ template <int p> struct LazyMontgomeryModInt {
         return *this;
     }
 
-    constexpr mint operator-() const { return mint() - mint(*this); }
 
     constexpr bool operator==(const mint &b) const {
         return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v - p : b._v);
@@ -85,12 +84,11 @@ template <int p> struct LazyMontgomeryModInt {
         return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);
     }
 
+    constexpr mint operator-() const { return mint() - mint(*this); }
+    constexpr mint operator+() const { return mint(*this); }
     friend constexpr mint operator+(const mint &a, const mint &b) { return mint(a) += b; }
-
     friend constexpr mint operator-(const mint &a, const mint &b) { return mint(a) -= b; }
-
     friend constexpr mint operator*(const mint &a, const mint &b) { return mint(a) *= b; }
-
     friend constexpr mint operator/(const mint &a, const mint &b) { return mint(a) /= b; }
 
     template <class T> constexpr mint pow(T n) const {
@@ -127,7 +125,6 @@ template <int p> struct LazyMontgomeryModInt {
 };
 
 template <int p> using Mont = LazyMontgomeryModInt<p>;
-
 
 using mont998 = Mont<998244353>;
 using mont107 = Mont<1000000007>;

@@ -3,8 +3,8 @@
 
 #include <optional>
 
-#include "line.hpp"
 #include "../math/rational.hpp"
+#include "line.hpp"
 
 namespace kk2 {
 
@@ -18,6 +18,6 @@ std::optional<Point<Rational<T>>> cross_point(const Line<T> &l, const Line<T> &m
     return Point<T>(Rational<T>(x, det), Rational<T>(y, det));
 }
 
-}
+} // namespace kk2
 
 #endif // KK2_GEOMETRY_CROSS_POINT_LINE_LINE_HPP

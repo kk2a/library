@@ -8,8 +8,7 @@
 
 namespace kk2 {
 
-template <class T>
-struct PrefixSum {
+template <class T> struct PrefixSum {
     std::vector<T> acc;
     int n;
 

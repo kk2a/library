@@ -3,15 +3,13 @@
 
 namespace kk2 {
 
-template <class T, class U>
-int max_division_times(T a, U b) {
+template <class T, class U> int max_division_times(T a, U b) {
     int res = 0;
     while (a % b == 0) a /= b, res++;
     return res;
 }
 
-template <class T, class U>
-int divide_max_times(T &a, U b) {
+template <class T, class U> int divide_max_times(T &a, U b) {
     int res = 0;
     while (a % b == 0) a /= b, res++;
     return res;

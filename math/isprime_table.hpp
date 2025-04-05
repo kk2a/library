@@ -38,8 +38,7 @@ struct IsPrimeTable {
 
     static const std::vector<int> &primes() { return _primes; }
 
-    template <typename It>
-    struct PrimeIt {
+    template <typename It> struct PrimeIt {
         It bg, ed;
 
         PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}

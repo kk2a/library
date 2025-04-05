@@ -14,8 +14,7 @@ struct dij_edge {
     int to, id;
 };
 
-template <class T>
-struct dij_result {
+template <class T> struct dij_result {
     std::vector<T> dist;
     std::vector<dij_edge> prev;
 };

@@ -29,9 +29,7 @@ template <class mint> struct CombLarge {
         return n <= threshold ? Comb<mint>::ifact(n) : _large_fact(n).inv();
     }
 
-    static mint inv(int n) {
-        return n <= threshold ? Comb<mint>::inv(n) : mint(n).inv();
-    }
+    static mint inv(int n) { return n <= threshold ? Comb<mint>::inv(n) : mint(n).inv(); }
 
     static mint binom(int n, int r) {
         if (r < 0 || r > n) return mint(0);

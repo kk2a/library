@@ -98,8 +98,7 @@ struct LazyRedBlackTree
     using base::split3;
     using typename base::NodePtr;
 
-    template <class... Args>
-    void apply(NodePtr &t, int l, int r, Args... args) {
+    template <class... Args> void apply(NodePtr &t, int l, int r, Args... args) {
         assert(0 <= l and l <= r and r <= size(t));
         auto [t1, t2, t3] = split3(t, l, r);
         all_apply(t2, F(args...));
@@ -137,14 +136,13 @@ struct LazyRedBlackTree
     }
 };
 
-template <class A>
-using LazyRedBlackTreeS = LazyRedBlackTree<typename A::S,
-                                           A::S::op,
-                                           A::S::unit,
-                                           typename A::A,
-                                           A::act,
-                                           A::A::op,
-                                           A::A::unit>;
+template <class A> using LazyRedBlackTreeS = LazyRedBlackTree<typename A::S,
+                                                              A::S::op,
+                                                              A::S::unit,
+                                                              typename A::A,
+                                                              A::act,
+                                                              A::A::op,
+                                                              A::A::unit>;
 
 } // namespace rbtree
 

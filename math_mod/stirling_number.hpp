@@ -10,9 +10,7 @@ namespace kk2 {
 template <class FPS, class mint = typename FPS::value_type>
 std::vector<mint> enumerate_stirling_number_of_the_first_kind(int n) {
     std::vector<FPS> a(n);
-    for (int i = 0; i < n; ++i) {
-        a[i] = FPS{-i, 1};
-    }
+    for (int i = 0; i < n; ++i) { a[i] = FPS{-i, 1}; }
     return all_prod(a);
 }
 

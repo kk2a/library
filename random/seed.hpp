@@ -20,9 +20,7 @@ inline u64 non_deterministic_seed() {
     return seed;
 }
 
-inline u64 deterministic_seed() {
-    return 5801799128519729247ull;
-}
+inline u64 deterministic_seed() { return 5801799128519729247ull; }
 
 inline u64 seed() {
 #if defined(KK2_RANDOM_DETERMINISTIC)

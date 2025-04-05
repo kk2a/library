@@ -17,14 +17,14 @@ struct DynamicBitSet {
         if (n) block.back() >>= ((u64)block.size() << 6) - n;
         // fit the last block
     }
-    DynamicBitSet(const string& s) : n(s.size()) {
+    DynamicBitSet(const string &s) : n(s.size()) {
         block.resize((n + 63) >> 6);
         set(s);
     }
 
     int size() const { return n; }
 
-    T& inplace_combine_bottom(const T& rhs) {
+    T &inplace_combine_bottom(const T &rhs) {
         block.resize((n + rhs.n + 63) >> 6);
         if (!(n & 63)) {
             copy(begin(rhs.block), end(rhs.block), begin(block) + (n >> 6));
@@ -44,11 +44,9 @@ struct DynamicBitSet {
         return *this;
     }
 
-    T combine_bottom(const T& rhs) const {
-        return T(*this).inplace_combine_bottom(rhs);
-    }
+    T combine_bottom(const T &rhs) const { return T(*this).inplace_combine_bottom(rhs); }
 
-    T& inplace_combine_top(const T& rhs) {
+    T &inplace_combine_top(const T &rhs) {
         block.resize((n + rhs.n + 63) >> 6);
         if (!(rhs.n & 63)) {
             copy(begin(block), end(block), begin(block) + (rhs.n >> 6));
@@ -71,9 +69,7 @@ struct DynamicBitSet {
         return *this;
     }
 
-    T combine_top(const T& rhs) const {
-        return T(*this).inplace_combine_top(rhs);
-    }
+    T combine_top(const T &rhs) const { return T(*this).inplace_combine_top(rhs); }
 
     void set(int i, int x) {
         assert(0 <= i && i < n);
@@ -81,7 +77,7 @@ struct DynamicBitSet {
         else block[i >> 6] &= ~(1ULL << (i & 63));
     }
 
-    void set(const string& s) {
+    void set(const string &s) {
         assert((int)s.size() == n);
         for (int i = 0; i < (n + 63) >> 6; i++) {
             string tmp = s.substr(i << 6, min(64, n - i));
@@ -91,61 +87,60 @@ struct DynamicBitSet {
     }
 
     class Proxy {
-        vector<u64>& bs;
+        vector<u64> &bs;
         int i;
+
       public:
-        Proxy(vector<u64>& bs_, int i_) : bs(bs_), i(i_) {}
+        Proxy(vector<u64> &bs_, int i_) : bs(bs_), i(i_) {}
         operator bool() const { return (bs[i >> 6] >> (i & 63)) & 1; }
-        Proxy& operator=(bool x) {
+        Proxy &operator=(bool x) {
             if (x) bs[i >> 6] |= 1ULL << (i & 63);
             else bs[i >> 6] &= ~(1ULL << (i & 63));
             return *this;
         }
-        Proxy& operator=(const Proxy& x) {
+        Proxy &operator=(const Proxy &x) {
             if (x) bs[i >> 6] |= 1ULL << (i & 63);
             else bs[i >> 6] &= ~(1ULL << (i & 63));
             return *this;
         }
 
-        Proxy& operator&=(bool x) {
+        Proxy &operator&=(bool x) {
             if (!x) bs[i >> 6] &= ~(1ULL << (i & 63));
             return *this;
         }
-        Proxy& operator&=(const Proxy& x) {
+        Proxy &operator&=(const Proxy &x) {
             bs[i >> 6] &= x.bs[x.i >> 6] >> (x.i & 63);
             return *this;
         }
 
-        Proxy& operator|=(bool x) {
+        Proxy &operator|=(bool x) {
             if (x) bs[i >> 6] |= 1ULL << (i & 63);
             return *this;
         }
-        Proxy& operator|=(const Proxy& x) {
+        Proxy &operator|=(const Proxy &x) {
             bs[i >> 6] |= x.bs[x.i >> 6] >> (x.i & 63);
             return *this;
         }
 
-        Proxy& operator^=(bool x) {
+        Proxy &operator^=(bool x) {
             if (x) bs[i >> 6] ^= 1ULL << (i & 63);
             return *this;
         }
-        Proxy& operator^=(const Proxy& x) {
+        Proxy &operator^=(const Proxy &x) {
             bs[i >> 6] ^= x.bs[x.i >> 6] >> (x.i & 63);
             return *this;
         }
 
-        Proxy& flip() {
+        Proxy &flip() {
             bs[i >> 6] ^= 1ULL << (i & 63);
             return *this;
         }
-        Proxy& operator~() {
+        Proxy &operator~() {
             bs[i >> 6] ^= 1ULL << (i & 63);
             return *this;
         }
 
-        bool val() {
-            return (bs[i >> 6] >> (i & 63)) & 1;
-        }
+        bool val() { return (bs[i >> 6] >> (i & 63)) & 1; }
     };
 
     Proxy operator[](int i) {
@@ -158,7 +153,7 @@ struct DynamicBitSet {
         return (block[i >> 6] >> (i & 63)) & 1;
     }
 
-    T& operator=(const string& s) {
+    T &operator=(const string &s) {
         assert((int)s.size() == n);
         set(s);
         return *this;
@@ -166,7 +161,7 @@ struct DynamicBitSet {
 
     void flip() {
         u64 mask = (1ULL << (n & 63)) - 1;
-        for (u64& x : block) x = ~x;
+        for (u64 &x : block) x = ~x;
         block.back() &= mask;
     }
 
@@ -175,46 +170,40 @@ struct DynamicBitSet {
         block[i >> 6] ^= 1ULL << (i & 63);
     }
 
-    T& operator~() {
+    T &operator~() {
         flip();
         return *this;
     }
 
-    T& operator&=(const T& rhs) {
+    T &operator&=(const T &rhs) {
         assert(n == rhs.n);
-        for (int i = 0; i < (n + 63) >> 6; i++) {
-            block[i] &= rhs.block[i];
-        }
+        for (int i = 0; i < (n + 63) >> 6; i++) { block[i] &= rhs.block[i]; }
         return *this;
     }
 
-    T& operator|=(const T& rhs) {
+    T &operator|=(const T &rhs) {
         assert(n == rhs.n);
-        for (int i = 0; i < (n + 63) >> 6; i++) {
-            block[i] |= rhs.block[i];
-        }
+        for (int i = 0; i < (n + 63) >> 6; i++) { block[i] |= rhs.block[i]; }
         return *this;
     }
 
-    T& operator^=(const T& rhs) {
+    T &operator^=(const T &rhs) {
         assert(n == rhs.n);
-        for (int i = 0; i < (n + 63) >> 6; i++) {
-            block[i] ^= rhs.block[i];
-        }
+        for (int i = 0; i < (n + 63) >> 6; i++) { block[i] ^= rhs.block[i]; }
         return *this;
     }
 
-    friend T operator&(const T& lhs, const T& rhs) { return T(lhs) &= rhs; }
-    friend T operator|(const T& lhs, const T& rhs) { return T(lhs) |= rhs; }
-    friend T operator^(const T& lhs, const T& rhs) { return T(lhs) ^= rhs; }
-    friend bool operator==(const T& lhs, const T& rhs) {
+    friend T operator&(const T &lhs, const T &rhs) { return T(lhs) &= rhs; }
+    friend T operator|(const T &lhs, const T &rhs) { return T(lhs) |= rhs; }
+    friend T operator^(const T &lhs, const T &rhs) { return T(lhs) ^= rhs; }
+    friend bool operator==(const T &lhs, const T &rhs) {
         assert(lhs.n == rhs.n);
         for (int i = 0; i < (lhs.n + 63) >> 6; i++) {
             if (lhs.block[i] != rhs.block[i]) return false;
         }
         return true;
     }
-    friend bool operator!=(const T& lhs, const T& rhs) { return !(T(lhs) == rhs); }
+    friend bool operator!=(const T &lhs, const T &rhs) { return !(T(lhs) == rhs); }
 
     string to_string() const {
         string s;
@@ -233,9 +222,7 @@ struct DynamicBitSet {
         return s;
     }
 
-    friend ostream& operator<<(ostream& os, const T& bs) {
-        return os << bs.to_string();
-    }
+    friend ostream &operator<<(ostream &os, const T &bs) { return os << bs.to_string(); }
 
     operator bool() const {
         for (int i = 0; i < (n + 63) >> 6; i++) {

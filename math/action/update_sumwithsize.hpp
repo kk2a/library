@@ -8,8 +8,7 @@ namespace kk2 {
 
 namespace action {
 
-template <class T, class U>
-struct UpdateSumWithSize {
+template <class T, class U> struct UpdateSumWithSize {
     using A = monoid::Update<T>;
     using S = group::SumWithSize<T, U>;
 

@@ -8,8 +8,7 @@
 
 namespace kk2 {
 
-template <class T, is_integral_t<T> * = nullptr>
-T euler_phi(T n) {
+template <class T, is_integral_t<T> * = nullptr> T euler_phi(T n) {
     assert(n > 0);
     for (auto [p, k] : factorize(static_cast<long long>(n))) n -= n / p;
     return n;

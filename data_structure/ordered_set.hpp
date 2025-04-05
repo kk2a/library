@@ -11,8 +11,7 @@ namespace kk2 {
 
 namespace rbtree {
 
-template <typename T, typename Compare>
-struct SetNode {
+template <typename T, typename Compare> struct SetNode {
     using NodePtr = typename rbtree::RedBlackTreeBase<SetNode>::NodePtr;
     NodePtr left, right;
     int rank, count;
@@ -55,8 +54,7 @@ struct SetNode {
     static Action ActionUnit() { return 0; }
 };
 
-template <typename T, typename Compare>
-struct SetBase : RedBlackTreeBase<SetNode<T, Compare>> {
+template <typename T, typename Compare> struct SetBase : RedBlackTreeBase<SetNode<T, Compare>> {
     using base = RedBlackTreeBase<SetNode<T, Compare>>;
     using base::MonoidOp;
     using base::RedBlackTreeBase;
@@ -74,8 +72,7 @@ struct SetBase : RedBlackTreeBase<SetNode<T, Compare>> {
     NodePtr push(NodePtr t) override { return t; }
 };
 
-template <typename T, typename Compare = std::less<T>>
-struct Set {
+template <typename T, typename Compare = std::less<T>> struct Set {
     using NodePtr = typename SetBase<T, Compare>::NodePtr;
     using Monoid = typename SetNode<T, Compare>::Monoid;
 

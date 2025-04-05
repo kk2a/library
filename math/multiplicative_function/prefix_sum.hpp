@@ -4,13 +4,12 @@
 #include <algorithm>
 #include <vector>
 
-#include "../prime_table.hpp"
 #include "../enumerate_quotients.hpp"
+#include "../prime_table.hpp"
 
 namespace kk2 {
 
-template <class T>
-struct PrefixSumOfMultiplicativeFunction {
+template <class T> struct PrefixSumOfMultiplicativeFunction {
     long long n;
     EnumerateQuotients<long long> eq;
     std::vector<T> prefix_sum_only_prime;
@@ -24,14 +23,12 @@ struct PrefixSumOfMultiplicativeFunction {
 
     int size() const { return eq.size(); }
 
-    template <T (*f)(long long)>
-    void LucyDP(std::vector<T> &dp, T a) {
+    template <T (*f)(long long)> void LucyDP(std::vector<T> &dp, T a) {
         LucyDP([](long long x) { return f(x); }, dp);
     }
 
     // f is completely multiplicative function
-    template <class F>
-    void LucyDP(const F &f, std::vector<T> &dp) {
+    template <class F> void LucyDP(const F &f, std::vector<T> &dp) {
         assert((int)dp.size() == eq.size());
         PrimeTable::set_upper(eq.sqrt_n);
         for (const long long p : PrimeTable::primes()) {
@@ -44,14 +41,12 @@ struct PrefixSumOfMultiplicativeFunction {
         }
     }
 
-    template <T (*f)(long long, long long)>
-    void Min_25Sieve() {
+    template <T (*f)(long long, long long)> void Min_25Sieve() {
         Min_25Sieve([](long long x, long long y) { return f(x, y); });
     }
 
     // f is multiplicative function
-    template <class F>
-    void Min_25Sieve(const F &f) {
+    template <class F> void Min_25Sieve(const F &f) {
         PrimeTable::set_upper(eq.sqrt_n);
         std::copy(prefix_sum_only_prime.begin(), prefix_sum_only_prime.end(), prefix_sum.begin());
         const auto &primes = PrimeTable::primes();

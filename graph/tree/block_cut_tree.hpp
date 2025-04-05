@@ -7,8 +7,7 @@
 
 namespace kk2 {
 
-template <class G>
-struct BlockCutTree : BCC<G> {
+template <class G> struct BlockCutTree : BCC<G> {
     std::vector<int> comp_v;
     std::vector<std::vector<int>> group_v;
     G forest;

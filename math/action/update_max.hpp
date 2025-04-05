@@ -8,8 +8,7 @@ namespace kk2 {
 
 namespace action {
 
-template <class T, class Compare = std::less<T>>
-struct UpdateMax {
+template <class T, class Compare = std::less<T>> struct UpdateMax {
     using A = monoid::Update<T>;
     using S = monoid::Max<T, Compare>;
 

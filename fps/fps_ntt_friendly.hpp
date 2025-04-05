@@ -12,8 +12,7 @@
 
 namespace kk2 {
 
-template <class mint>
-struct FormalPowerSeriesNTTFriendly : std::vector<mint> {
+template <class mint> struct FormalPowerSeriesNTTFriendly : std::vector<mint> {
     using std::vector<mint>::vector;
     using FPS = FormalPowerSeriesNTTFriendly;
 
@@ -26,8 +25,7 @@ struct FormalPowerSeriesNTTFriendly : std::vector<mint> {
         os << "]";
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
-    void output(OStream &os) const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
         for (int i = 0; i < (int)this->size(); i++) {
             os << (*this)[i] << (i + 1 == (int)this->size() ? "\n" : " ");
         }
@@ -41,8 +39,7 @@ struct FormalPowerSeriesNTTFriendly : std::vector<mint> {
         return os;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
-    FPS &input(IStream &is) {
+    template <class IStream, is_istream_t<IStream> * = nullptr> FPS &input(IStream &is) {
         for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];
         return *this;
     }
@@ -273,8 +270,7 @@ struct FormalPowerSeriesNTTFriendly : std::vector<mint> {
         return g;
     }
 
-    template <class T>
-    FPS pow(T k, int deg = -1) const {
+    template <class T> FPS pow(T k, int deg = -1) const {
         const int n = this->size();
         if (deg == -1) deg = n;
         if (k == 0) {
@@ -296,8 +292,7 @@ struct FormalPowerSeriesNTTFriendly : std::vector<mint> {
         return FPS(deg, mint(0));
     }
 
-    template <class T>
-    FPS sparse_pow(T k, int deg = -1) const {
+    template <class T> FPS sparse_pow(T k, int deg = -1) const {
         if (deg == -1) deg = this->size();
         if (k == 0) {
             FPS ret(deg);
@@ -446,8 +441,7 @@ struct FormalPowerSeriesNTTFriendly : std::vector<mint> {
     FPS exp(int deg = -1) const;
 };
 
-template <class mint>
-FormalPowerSeriesNTTFriendly<mint> &
+template <class mint> FormalPowerSeriesNTTFriendly<mint> &
 FormalPowerSeriesNTTFriendly<mint>::operator*=(const FormalPowerSeriesNTTFriendly<mint> &r) {
     if (this->empty() || r.empty()) {
         this->clear();
@@ -457,23 +451,13 @@ FormalPowerSeriesNTTFriendly<mint>::operator*=(const FormalPowerSeriesNTTFriendl
     return *this;
 }
 
-template <class mint>
-void FormalPowerSeriesNTTFriendly<mint>::but() {
-    butterfly(*this);
-}
+template <class mint> void FormalPowerSeriesNTTFriendly<mint>::but() { butterfly(*this); }
 
-template <class mint>
-void FormalPowerSeriesNTTFriendly<mint>::ibut() {
-    butterfly_inv(*this);
-}
+template <class mint> void FormalPowerSeriesNTTFriendly<mint>::ibut() { butterfly_inv(*this); }
 
-template <class mint>
-void FormalPowerSeriesNTTFriendly<mint>::db() {
-    doubling(*this);
-}
+template <class mint> void FormalPowerSeriesNTTFriendly<mint>::db() { doubling(*this); }
 
-template <class mint>
-int FormalPowerSeriesNTTFriendly<mint>::but_pr() {
+template <class mint> int FormalPowerSeriesNTTFriendly<mint>::but_pr() {
     return primitive_root<mint::getmod()>;
 }
 
@@ -559,8 +543,7 @@ FormalPowerSeriesNTTFriendly<mint> FormalPowerSeriesNTTFriendly<mint>::exp(int d
     return FormalPowerSeriesNTTFriendly<mint>(std::begin(b), std::begin(b) + deg);
 }
 
-template <class mint>
-using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;
+template <class mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;
 
 } // namespace kk2
 

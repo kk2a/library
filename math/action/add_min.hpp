@@ -8,8 +8,7 @@ namespace kk2 {
 
 namespace action {
 
-template <class T, class Compare = std::less<T>>
-struct AddMin {
+template <class T, class Compare = std::less<T>> struct AddMin {
     using A = group::Add<T>;
     using S = monoid::Min<T, Compare>;
 

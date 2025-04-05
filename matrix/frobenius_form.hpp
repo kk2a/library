@@ -9,8 +9,7 @@ namespace kk2 {
 
 namespace linear_algebra {
 
-template <class Matrix, class Poly, class Field>
-struct FrobeniusForm_base {
+template <class Matrix, class Poly, class Field> struct FrobeniusForm_base {
     Matrix mat;
     std::vector<int> deg;
     std::vector<Poly> poly;
@@ -33,7 +32,7 @@ struct FrobeniusForm_base {
     }
 };
 
-}
+} // namespace linear_algebra
 
 } // namespace kk2
 

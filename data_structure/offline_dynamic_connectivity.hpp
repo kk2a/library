@@ -103,8 +103,7 @@ struct OfflineDynamicConnectivity {
         if (pret != -1) apply(pret, q, pree);
     }
 
-    template <class Query>
-    void run(const Query &query) {
+    template <class Query> void run(const Query &query) {
         auto dfs = [&](auto self, int now) -> void {
             if (now - sz >= q) return;
             uf.snapshot();

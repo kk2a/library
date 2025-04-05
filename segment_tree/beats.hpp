@@ -2,7 +2,6 @@
 #define KK2_SEGMENT_TREE_BEATS_HPP 1
 
 
-
 namespace kk2 {
 
 template <class S,
@@ -13,11 +12,7 @@ template <class S,
           F (*composition)(F, F),
           F (*id)(),
           bool (*fail)(S)>
-struct SegTreeBeats {
-
-
-
-};
+struct SegTreeBeats {};
 
 } // namespace kk2
 

@@ -4,15 +4,14 @@
 #include <algorithm>
 #include <vector>
 
+#include "../fps/fps_sparsity_detector.hpp"
 #include "../math_mod/garner.hpp"
 #include "../modint/mont.hpp"
 #include "convolution.hpp"
-#include "../fps/fps_sparsity_detector.hpp"
 
 namespace kk2 {
 
-template <class FPS>
-FPS convolution_int(FPS &a, const FPS &b) {
+template <class FPS> FPS convolution_int(FPS &a, const FPS &b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
     if (is_sparse_operation(FPSOperation::CONVOLUTION, 0, a, b)) {

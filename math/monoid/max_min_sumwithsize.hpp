@@ -9,8 +9,7 @@ namespace kk2 {
 
 namespace monoid {
 
-template <class S, class T, class Compare = std::less<S>>
-struct MaxMinSumWithSize {
+template <class S, class T, class Compare = std::less<S>> struct MaxMinSumWithSize {
     static constexpr bool commutative = true;
     using M = MaxMinSumWithSize;
 

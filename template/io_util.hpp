@@ -12,10 +12,7 @@
 namespace impl {
 
 struct read {
-    template <class IStream, class T>
-    inline static void all_read(IStream &is, T &x) {
-        is >> x;
-    }
+    template <class IStream, class T> inline static void all_read(IStream &is, T &x) { is >> x; }
 
     template <class IStream, class T, class U>
     inline static void all_read(IStream &is, std::pair<T, U> &p) {
@@ -23,8 +20,7 @@ struct read {
         all_read(is, p.second);
     }
 
-    template <class IStream, class T>
-    inline static void all_read(IStream &is, std::vector<T> &v) {
+    template <class IStream, class T> inline static void all_read(IStream &is, std::vector<T> &v) {
         for (T &x : v) all_read(is, x);
     }
 
@@ -35,8 +31,7 @@ struct read {
 };
 
 struct write {
-    template <class OStream, class T>
-    inline static void all_write(OStream &os, const T &x) {
+    template <class OStream, class T> inline static void all_write(OStream &os, const T &x) {
         os << x;
     }
 

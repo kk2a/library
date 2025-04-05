@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <vector>
 
-#include "../math_mod/butterfly.hpp"
 #include "../fps/fps_sparsity_detector.hpp"
+#include "../math_mod/butterfly.hpp"
 
 namespace kk2 {
 

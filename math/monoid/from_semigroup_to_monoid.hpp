@@ -5,8 +5,7 @@ namespace kk2 {
 
 namespace monoid {
 
-template <class SM>
-struct FromSemigroupToMonoid {
+template <class SM> struct FromSemigroupToMonoid {
     using M = FromSemigroupToMonoid;
 
     SM a;
@@ -14,9 +13,7 @@ struct FromSemigroupToMonoid {
 
     FromSemigroupToMonoid() : is_unit(true) {}
 
-    template <class... Args>
-    FromSemigroupToMonoid(Args... args) : a(args...),
-                                          is_unit(false) {}
+    template <class... Args> FromSemigroupToMonoid(Args... args) : a(args...), is_unit(false) {}
 
     inline static M op(M l, M r) {
         if (l.is_unit or r.is_unit) return l.is_unit ? r : l;

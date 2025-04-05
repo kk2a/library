@@ -7,8 +7,7 @@
 
 namespace kk2 {
 
-template <class S, S (*op)(S, S), S (*e)()>
-struct SegmentTree {
+template <class S, S (*op)(S, S), S (*e)()> struct SegmentTree {
   public:
     SegmentTree() : SegmentTree(0) {}
 
@@ -19,8 +18,8 @@ struct SegmentTree {
         d = std::vector<S>(2 * size, e());
     }
 
-    template <class... Args>
-    SegmentTree(int n, Args... args) : SegmentTree(std::vector<S>(n, S(args...))){};
+    template <class... Args> SegmentTree(int n, Args... args)
+        : SegmentTree(std::vector<S>(n, S(args...))){};
 
     SegmentTree(const std::vector<S> &v) : _n(int(v.size())) {
         log = 0;
@@ -37,8 +36,7 @@ struct SegmentTree {
         for (int i = size - 1; i >= 1; i--) { update(i); }
     }
 
-    template <class... Args>
-    void init_set(int p, Args... args) {
+    template <class... Args> void init_set(int p, Args... args) {
         assert(0 <= p && p < _n);
         assert(!is_built);
         d[p + size] = S(args...);
@@ -50,8 +48,7 @@ struct SegmentTree {
 
     static S MonoidUnit() { return e(); }
 
-    template <class... Args>
-    void set(int p, Args... args) {
+    template <class... Args> void set(int p, Args... args) {
         assert(0 <= p && p < _n);
         assert(is_built);
         p += size;
@@ -89,13 +86,11 @@ struct SegmentTree {
     // return r s.t.
     // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true
     // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false
-    template <bool (*f)(S)>
-    int max_right(int l) {
+    template <bool (*f)(S)> int max_right(int l) {
         return max_right(l, [](S x) { return f(x); });
     }
 
-    template <class F>
-    int max_right(int l, F f) {
+    template <class F> int max_right(int l, F f) {
         assert(0 <= l && l <= _n);
         assert(f(e()));
         assert(is_built);
@@ -123,13 +118,11 @@ struct SegmentTree {
     // return l s.t.
     // l = r or f(op(a[l], a[l], ..., a[r-1]))   == true
     // l = 0 or f(op(a[l-1], a[l], ..., a[r-1])) == false
-    template <bool (*f)(S)>
-    int min_left(int r) {
+    template <bool (*f)(S)> int min_left(int r) {
         return min_left(r, [](S x) { return f(x); });
     }
 
-    template <class F>
-    int min_left(int r, F f) {
+    template <class F> int min_left(int r, F f) {
         assert(0 <= r && r <= _n);
         assert(f(e()));
         assert(is_built);
@@ -162,8 +155,7 @@ struct SegmentTree {
     void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }
 };
 
-template <class M>
-using SegmentTreeS = SegmentTree<M, M::op, M::unit>;
+template <class M> using SegmentTreeS = SegmentTree<M, M::op, M::unit>;
 
 } // namespace kk2
 

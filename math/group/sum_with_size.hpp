@@ -7,8 +7,7 @@ namespace kk2 {
 
 namespace group {
 
-template <class S, class T = S>
-struct SumWithSize {
+template <class S, class T = S> struct SumWithSize {
     static constexpr bool commutative = true;
     using M = SumWithSize;
 

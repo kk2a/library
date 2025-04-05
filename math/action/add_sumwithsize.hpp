@@ -8,8 +8,7 @@ namespace kk2 {
 
 namespace action {
 
-template <class T, class U>
-struct AddSumWithSize {
+template <class T, class U> struct AddSumWithSize {
     using A = group::Add<T>;
     using S = group::SumWithSize<T, U>;
 

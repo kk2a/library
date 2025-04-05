@@ -8,13 +8,11 @@ namespace kk2 {
 
 namespace shortest_path_impl {
 
-template <class T>
-struct bf_edge {
+template <class T> struct bf_edge {
     int to, id;
 };
 
-template <class T>
-struct bf_len {
+template <class T> struct bf_len {
     T len;
     bool inf, minf;
 
@@ -26,8 +24,7 @@ struct bf_len {
     }
 };
 
-template <class T>
-struct bf_result {
+template <class T> struct bf_result {
     std::vector<bf_len<T>> dist;
     std::vector<bf_edge<T>> prev;
 };

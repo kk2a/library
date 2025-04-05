@@ -5,8 +5,7 @@
 
 namespace kk2 {
 
-template <typename T>
-struct VectorPool {
+template <typename T> struct VectorPool {
     std::vector<T> pool;
     std::vector<T *> ptrs;
     int pos = 0;
@@ -20,7 +19,7 @@ struct VectorPool {
     inline void free(T *ptr) { ptrs[--pos] = ptr; }
 
     void clear() {
-        for (size_t i = 0; i < pool.size(); i++) ptrs[i] = &pool[i]; 
+        for (size_t i = 0; i < pool.size(); i++) ptrs[i] = &pool[i];
         pos = 0;
     }
 

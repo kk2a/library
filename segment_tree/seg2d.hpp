@@ -7,8 +7,7 @@
 namespace kk2 {
 
 // commutative monoid
-template <class S, S (*op)(S, S), S (*e)()>
-struct SegmentTree2D {
+template <class S, S (*op)(S, S), S (*e)()> struct SegmentTree2D {
     SegmentTree2D() = default;
 
     SegmentTree2D(int h_, int w_) : _h(h_), _w(w_) {
@@ -18,8 +17,7 @@ struct SegmentTree2D {
         d = std::vector<std::vector<S>>(size_h * 2, std::vector<S>(size_w * 2, e()));
     }
 
-    template <class... Args>
-    SegmentTree2D(int h_, int w_, Args... args)
+    template <class... Args> SegmentTree2D(int h_, int w_, Args... args)
         : SegmentTree2D(std::vector<std::vector<S>>(h_, std::vector<S>(w_, S(args...)))) {}
 
     SegmentTree2D(const std::vector<std::vector<S>> &v) : _h(int(v.size())), _w(int(v[0].size())) {
@@ -44,16 +42,14 @@ struct SegmentTree2D {
         }
     }
 
-    template <class... Args>
-    void init_set(int i, int j, Args... args) {
+    template <class... Args> void init_set(int i, int j, Args... args) {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);
         assert(!is_built);
         d[i + size_h][j + size_w] = S(args...);
     }
 
-    template <class... Args>
-    void set(int i, int j, Args... args) {
+    template <class... Args> void set(int i, int j, Args... args) {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);
         assert(is_built);
@@ -110,8 +106,7 @@ struct SegmentTree2D {
     }
 };
 
-template <class M>
-using SegmentTree2DS = SegmentTree2D<M, M::op, M::unit>;
+template <class M> using SegmentTree2DS = SegmentTree2D<M, M::op, M::unit>;
 
 } // namespace kk2
 

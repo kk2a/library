@@ -94,10 +94,14 @@ template <int p> struct ModInt {
     }
 
     mint &operator/=(const mint &rhs) { return *this = *this * rhs.inv(); }
-
     mint operator+() const { return *this; }
-
     mint operator-() const { return mint() - *this; }
+    friend mint operator+(const mint &lhs, const mint &rhs) { return mint(lhs) += rhs; }
+    friend mint operator-(const mint &lhs, const mint &rhs) { return mint(lhs) -= rhs; }
+    friend mint operator*(const mint &lhs, const mint &rhs) { return mint(lhs) *= rhs; }
+    friend mint operator/(const mint &lhs, const mint &rhs) { return mint(lhs) /= rhs; }
+    friend bool operator==(const mint &lhs, const mint &rhs) { return lhs._v == rhs._v; }
+    friend bool operator!=(const mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }
 
     mint pow(long long n) const {
         assert(0 <= n);
@@ -127,18 +131,6 @@ template <int p> struct ModInt {
         return m0;
     }
 
-    friend mint operator+(const mint &lhs, const mint &rhs) { return mint(lhs) += rhs; }
-
-    friend mint operator-(const mint &lhs, const mint &rhs) { return mint(lhs) -= rhs; }
-
-    friend mint operator*(const mint &lhs, const mint &rhs) { return mint(lhs) *= rhs; }
-
-    friend mint operator/(const mint &lhs, const mint &rhs) { return mint(lhs) /= rhs; }
-
-    friend bool operator==(const mint &lhs, const mint &rhs) { return lhs._v == rhs._v; }
-
-    friend bool operator!=(const mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }
-
     template <class OStream, is_ostream_t<OStream> * = nullptr>
     friend OStream &operator<<(OStream &os, const mint &mint_) {
         os << mint_._v;
@@ -158,7 +150,6 @@ template <int p> struct ModInt {
 };
 
 template <int p> int ModInt<p>::Mod = 998244353;
-
 
 using mint998 = ModInt<998244353>;
 using mint107 = ModInt<1000000007>;

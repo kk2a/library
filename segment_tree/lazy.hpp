@@ -26,8 +26,8 @@ struct LazySegmentTree {
         lz = std::vector<F>(size, id());
     }
 
-    template <class... Args>
-    LazySegmentTree(int n, Args... args) : LazySegmentTree(std::vector<S>(n, S(args...))) {}
+    template <class... Args> LazySegmentTree(int n, Args... args)
+        : LazySegmentTree(std::vector<S>(n, S(args...))) {}
 
     LazySegmentTree(const std::vector<S> &v) : _n(int(v.size())) {
         log = 0;
@@ -45,8 +45,7 @@ struct LazySegmentTree {
         for (int i = size - 1; i >= 1; i--) { update(i); }
     }
 
-    template <class... Args>
-    void init_set(int p, Args... args) {
+    template <class... Args> void init_set(int p, Args... args) {
         assert(0 <= p && p < _n);
         assert(!is_built);
         d[p + size] = S(args...);
@@ -66,8 +65,7 @@ struct LazySegmentTree {
 
     static F HomUnit() { return id(); }
 
-    template <class... Args>
-    void set(int p, Args... args) {
+    template <class... Args> void set(int p, Args... args) {
         assert(0 <= p && p < _n);
         assert(is_built);
         p += size;
@@ -113,8 +111,7 @@ struct LazySegmentTree {
         return d[1];
     }
 
-    template <class... Args>
-    void apply_point(int p, Args... args) {
+    template <class... Args> void apply_point(int p, Args... args) {
         assert(0 <= p && p < _n);
         assert(is_built);
         p += size;
@@ -123,8 +120,7 @@ struct LazySegmentTree {
         for (int i = 1; i <= log; i++) update(p >> i);
     }
 
-    template <class... Args>
-    void apply_range(int l, int r, Args... args) {
+    template <class... Args> void apply_range(int l, int r, Args... args) {
         assert(0 <= l && l <= r && r <= _n);
         assert(is_built);
         if (l == r) return;
@@ -156,13 +152,11 @@ struct LazySegmentTree {
         }
     }
 
-    template <bool (*g)(S)>
-    int max_right(int l) {
+    template <bool (*g)(S)> int max_right(int l) {
         return max_right(l, [](S x) { return g(x); });
     }
 
-    template <class G>
-    int max_right(int l, G g) {
+    template <class G> int max_right(int l, G g) {
         assert(0 <= l && l <= _n);
         assert(g(e()));
         assert(is_built);
@@ -189,13 +183,11 @@ struct LazySegmentTree {
         return _n;
     }
 
-    template <bool (*g)(S)>
-    int min_left(int r) {
+    template <bool (*g)(S)> int min_left(int r) {
         return min_left(r, [](S x) { return g(x); });
     }
 
-    template <class G>
-    int min_left(int r, G g) {
+    template <class G> int min_left(int r, G g) {
         assert(0 <= r && r <= _n);
         assert(g(e()));
         assert(is_built);
@@ -242,14 +234,13 @@ struct LazySegmentTree {
     }
 };
 
-template <class A>
-using LazySegmentTreeS = LazySegmentTree<typename A::S,
-                                         A::S::op,
-                                         A::S::unit,
-                                         typename A::A,
-                                         A::act,
-                                         A::A::op,
-                                         A::A::unit>;
+template <class A> using LazySegmentTreeS = LazySegmentTree<typename A::S,
+                                                            A::S::op,
+                                                            A::S::unit,
+                                                            typename A::A,
+                                                            A::act,
+                                                            A::A::op,
+                                                            A::A::unit>;
 
 } // namespace kk2
 

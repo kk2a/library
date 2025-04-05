@@ -9,8 +9,7 @@ namespace kk2 {
 
 namespace monoid {
 
-template <class S, class Compare = std::less<S>>
-struct Max {
+template <class S, class Compare = std::less<S>> struct Max {
     static constexpr bool commutative = true;
 
     S a;

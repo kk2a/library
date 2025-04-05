@@ -6,8 +6,7 @@
 
 namespace kk2 {
 
-template <class T>
-std::pair<int, std::vector<int>> cartesian_tree(const std::vector<T> &a) {
+template <class T> std::pair<int, std::vector<int>> cartesian_tree(const std::vector<T> &a) {
     int n = a.size();
     std::vector<int> par(n, -1);
     std::vector<int> stk;

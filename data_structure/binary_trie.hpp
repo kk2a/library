@@ -105,7 +105,8 @@ template <typename T, int MAX_LOG> struct BinaryTrie {
         int now = root, res = nodes[root].count;
         for (int i = MAX_LOG - 1; i >= 0; --i) {
             const int zero = (lazy >> i) & 1, d = (x >> i) & 1;
-            if (d == 0 and nodes[now].nxt[zero ^ 1] != -1) res -= nodes[nodes[now].nxt[zero ^ 1]].count;
+            if (d == 0 and nodes[now].nxt[zero ^ 1] != -1)
+                res -= nodes[nodes[now].nxt[zero ^ 1]].count;
             now = nodes[now].nxt[d ^ zero];
             if (now == -1) break;
         }

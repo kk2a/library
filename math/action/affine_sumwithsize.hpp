@@ -8,8 +8,7 @@ namespace kk2 {
 
 namespace action {
 
-template <class T, class U>
-struct AffineSumWithSize {
+template <class T, class U> struct AffineSumWithSize {
     using A = monoid::Affine<T>;
     using S = group::SumWithSize<T, U>;
 

@@ -19,10 +19,8 @@ template <class T> struct PrefixSum2D {
           h((int)a.size()),
           w((int)a[0].size()) {
         for (int i = 0; i < h; ++i) {
-            for (int j = 0; j < w; ++j) {
-                acc[i + 1][j + 1] = a[i][j];
-            }
-        } 
+            for (int j = 0; j < w; ++j) { acc[i + 1][j + 1] = a[i][j]; }
+        }
         build();
     }
 

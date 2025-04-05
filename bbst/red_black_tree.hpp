@@ -14,8 +14,7 @@ namespace kk2 {
 
 namespace rbtree {
 
-template <class S, S (*op)(S, S), S (*e)()>
-struct RedBlackTreeNode {
+template <class S, S (*op)(S, S), S (*e)()> struct RedBlackTreeNode {
     using NodePtr = typename RedBlackTreeBase<RedBlackTreeNode>::NodePtr;
     NodePtr left, right;
     int rank, count;
@@ -70,8 +69,8 @@ struct RedBlackTreeNode {
     static Action ActionUnit() { return 0; }
 };
 
-template <class S, S (*op)(S, S), S (*e)()>
-struct RedBlackTree : RedBlackTreeBase<RedBlackTreeNode<S, op, e>> {
+template <class S, S (*op)(S, S), S (*e)()> struct RedBlackTree
+    : RedBlackTreeBase<RedBlackTreeNode<S, op, e>> {
     using base = RedBlackTreeBase<RedBlackTreeNode<S, op, e>>;
     using base::RedBlackTreeBase;
     using base::size;
@@ -96,8 +95,7 @@ struct RedBlackTree : RedBlackTreeBase<RedBlackTreeNode<S, op, e>> {
     }
 };
 
-template <class M>
-using RedBlackTreeS = RedBlackTree<M, M::op, M::unit>;
+template <class M> using RedBlackTreeS = RedBlackTree<M, M::op, M::unit>;
 
 } // namespace rbtree
 

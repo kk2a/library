@@ -8,8 +8,7 @@
 namespace kk2 {
 
 // d.size() + 1 == p.size()
-template <class T>
-T garner(const std::vector<T> &d, const std::vector<T> &p) {
+template <class T> T garner(const std::vector<T> &d, const std::vector<T> &p) {
     int nm = d.size();
     std::vector<T> kp(nm + 1, 0), rmult(nm + 1, 1);
     for (int ii = 0; ii < nm; ii++) {

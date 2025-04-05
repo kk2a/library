@@ -7,8 +7,7 @@
 
 namespace kk2 {
 
-template <class S, S (*op)(S, S), S (*e)()>
-struct DisjointSparseTable {
+template <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable {
     DisjointSparseTable() = default;
 
     DisjointSparseTable(int n) : _n(n) {
@@ -46,8 +45,7 @@ struct DisjointSparseTable {
         }
     }
 
-    template <class... Args>
-    void init_set(int p, Args... args) {
+    template <class... Args> void init_set(int p, Args... args) {
         assert(0 <= p && p < _n);
         assert(!is_built);
         table[0][p] = S(args...);
@@ -70,8 +68,7 @@ struct DisjointSparseTable {
     bool is_built = false;
 };
 
-template <class M>
-using DisjointSparseTableS = DisjointSparseTable<M, M::op, M::unit>;
+template <class M> using DisjointSparseTableS = DisjointSparseTable<M, M::op, M::unit>;
 
 } // namespace kk2
 

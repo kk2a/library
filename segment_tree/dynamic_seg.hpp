@@ -3,9 +3,13 @@
 
 namespace kk2 {
 
-template <class S, S (*op)(S, S), S (*e)(),
-          class F, S (*mapping)(F, S),
-          F (*composition)(F, F), F (*id)()>
+template <class S,
+          S (*op)(S, S),
+          S (*e)(),
+          class F,
+          S (*mapping)(F, S),
+          F (*composition)(F, F),
+          F (*id)()>
 struct DynamicLazySegTree {
     using i64 = long long;
     struct Node {
@@ -16,7 +20,7 @@ struct DynamicLazySegTree {
         Node(i64 idx = -1) : l(nullptr), r(nullptr), sum(e()), laz(id()), idx(idx) {}
     };
 
-    Node* root;
+    Node *root;
     i64 Rmx;
     DynamicLazySegTree(i64 n_ = 0) {
         Rmx = 2;
@@ -26,7 +30,7 @@ struct DynamicLazySegTree {
 
     S get(i64 p) {
         i64 l = 0, r = Rmx;
-        Node* now = root;
+        Node *now = root;
         while (r - l > 1) {
             push(now);
             i64 m = (l + r) >> 1;
@@ -34,8 +38,7 @@ struct DynamicLazySegTree {
                 if (!now->l) return e();
                 now = now->l;
                 r = m;
-            }
-            else {
+            } else {
                 if (!now->r) return e();
                 now = now->r;
                 l = m;
@@ -44,23 +47,15 @@ struct DynamicLazySegTree {
         return now->sum;
     }
 
-    void set(i64 i, const T& x) {
-        _set(root, 0, Rmx, i, x);
-    }
-    void apply(i64 l, i64 r, const F& f) {
-        _apply(root, 0, Rmx, l, r, f);
-    }
-    S prod(i64 l, i64 r) {
-        return _prod(root, 0, Rmx, l, r);
-    }
-    void merge(DynamicLazySegTree& dst) {
-        root = _merge(root, dst.root);
-    }
+    void set(i64 i, const T &x) { _set(root, 0, Rmx, i, x); }
+    void apply(i64 l, i64 r, const F &f) { _apply(root, 0, Rmx, l, r, f); }
+    S prod(i64 l, i64 r) { return _prod(root, 0, Rmx, l, r); }
+    void merge(DynamicLazySegTree &dst) { root = _merge(root, dst.root); }
 
     template <bool (*g)(S)> i64 max_right(i64 l) {
         return max_right(l, [](S x) { return g(x); });
     }
-    template <class G> i64 max_right(i64 l, const G& g) {
+    template <class G> i64 max_right(i64 l, const G &g) {
         assert(0 <= l && l <= Rmx);
         assert(g(e()));
         return _max_right(root, l, g);
@@ -69,23 +64,23 @@ struct DynamicLazySegTree {
     template <bool (*g)(S)> i64 min_left(i64 r) {
         return min_left(r, [](S x) { return g(x); });
     }
-    template <class G> i64 min_left(i64 r, const G& g) {
+    template <class G> i64 min_left(i64 r, const G &g) {
         assert(0 <= r && r <= Rmx);
         assert(g(e()));
         return _min_left(root, r, g);
     }
 
   private:
-    DynamicLazySegTree(Node* root, i64 Rmx) : root(root), Rmx(Rmx) {}
-    Node* new_node(int idx) { return new Node(idx); }
-    void del_node(Node* node) { delete node; }
+    DynamicLazySegTree(Node *root, i64 Rmx) : root(root), Rmx(Rmx) {}
+    Node *new_node(int idx) { return new Node(idx); }
+    void del_node(Node *node) { delete node; }
 
-    void action(Node* now, const F& f) {
+    void action(Node *now, const F &f) {
         assert(now && f != id());
         now->sum = mapping(f, now->sum);
         now->laz = composition(f, now->laz);
     }
-    void push(Node* now) {
+    void push(Node *now) {
         assert(now);
         if (now->lazy == id()) return;
         if (!now->l) now->l = new_node(now.idx << 1 | 0);
@@ -94,15 +89,14 @@ struct DynamicLazySegTree {
         action(now->r, now->lazy);
         now->lazy = id();
     }
-    void update(Node* now) {
+    void update(Node *now) {
         assert(now->laz == id());
-        now->sum = op(now->l ? now->l->sum : e(),
-                      now->r ? now->r->sum : e());
+        now->sum = op(now->l ? now->l->sum : e(), now->r ? now->r->sum : e());
     }
 
-    void _set(Node* now, i64 l, i64 r, i64 i, const S& x) {
+    void _set(Node *now, i64 l, i64 r, i64 i, const S &x) {
         assert(l <= i && i < r && now);
-        if (l + 1  == r) {
+        if (l + 1 == r) {
             now->sum = x;
             return;
         }
@@ -111,15 +105,14 @@ struct DynamicLazySegTree {
         if (i < m) {
             if (!now->l) now->l = new_node(now.idx << 1 | 0);
             _set(now->l, l, m, i, x);
-        }
-        else {
+        } else {
             if (!now->r) now->r = new_node(now.idx << 1 | 1);
             _set(now->r, m, r, i, x);
         }
         update(now);
     }
 
-    void apply(Node* now, i64 l, i64 r, i64 a, i64 b, const F& f) {
+    void apply(Node *now, i64 l, i64 r, i64 a, i64 b, const F &f) {
         assert(a <= b && a < r && l < b && now);
         if (l == a && r == b) {
             action(now, f);
@@ -139,7 +132,7 @@ struct DynamicLazySegTree {
         update(now);
     }
 
-    S prod(Node* now, i64 l, i64 r, i64 a, i64 b) {
+    S prod(Node *now, i64 l, i64 r, i64 a, i64 b) {
         assert(a <= b && a < r && l < b && now);
         if (l == a && r == b) return now->sum;
         i64 m = (l + r) >> 1;
@@ -150,7 +143,7 @@ struct DynamicLazySegTree {
         return res;
     }
 
-    Node* _merge(Node* a, Node* b) {
+    Node *_merge(Node *a, Node *b) {
         if (!a) return b;
         if (!b) return a;
         assert(a->laz == id() && b->laz == id());
@@ -161,21 +154,16 @@ struct DynamicLazySegTree {
         return a;
     }
 
-    template <class G>
-    i64 _max_right(Node* now, i64 l, const G& g) {
-        
-    }
+    template <class G> i64 _max_right(Node *now, i64 l, const G &g) {}
 };
 
 namespace DynamicSegImpl {
 
-template <class S>
-S mapping(S l, bool) { return l; }
+template <class S> S mapping(S l, bool) { return l; }
 bool composition(bool, bool) { return false; }
 bool id() { return false; }
 
-template <class S, S (*op)(S, S), S (*e)()>
-using DynamicSegTree =
+template <class S, S (*op)(S, S), S (*e)()> using DynamicSegTree =
     DynamicLazySegTree<S, op, e, bool, mapping, composition, id>;
 
 } // namespace DynamicSegImpl

@@ -2,6 +2,7 @@
 #define KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP 1
 
 #include <cmath>
+
 #include "../enumerate_quotients.hpp"
 #include "famous_function_table.hpp"
 
@@ -12,7 +13,7 @@ long long counting_square_free(long long n) {
     long long D = kk2::sqrt_floor(n / I);
 }
 
-}
+} // namespace kk2
 
 
 #endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP

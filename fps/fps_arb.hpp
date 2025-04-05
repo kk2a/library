@@ -12,8 +12,7 @@
 
 namespace kk2 {
 
-template <class mint>
-struct FormalPowerSeriesArbitrary : std::vector<mint> {
+template <class mint> struct FormalPowerSeriesArbitrary : std::vector<mint> {
     using std::vector<mint>::vector;
     using FPS = FormalPowerSeriesArbitrary;
 
@@ -26,8 +25,7 @@ struct FormalPowerSeriesArbitrary : std::vector<mint> {
         os << "]";
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
-    void output(OStream &os) const {
+    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
         for (int i = 0; i < (int)this->size(); i++) {
             os << (*this)[i] << (i + 1 == (int)this->size() ? "\n" : " ");
         }
@@ -41,8 +39,7 @@ struct FormalPowerSeriesArbitrary : std::vector<mint> {
         return os;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
-    FPS &input(IStream &is) {
+    template <class IStream, is_istream_t<IStream> * = nullptr> FPS &input(IStream &is) {
         for (int i = 0; i < (int)this->size(); i++) is >> (*this)[i];
         return *this;
     }
@@ -273,8 +270,7 @@ struct FormalPowerSeriesArbitrary : std::vector<mint> {
         return g;
     }
 
-    template <class T>
-    FPS pow(T k, int deg = -1) const {
+    template <class T> FPS pow(T k, int deg = -1) const {
         const int n = this->size();
         if (deg == -1) deg = n;
         if (k == 0) {
@@ -296,8 +292,7 @@ struct FormalPowerSeriesArbitrary : std::vector<mint> {
         return FPS(deg, mint(0));
     }
 
-    template <class T>
-    FPS sparse_pow(T k, int deg = -1) const {
+    template <class T> FPS sparse_pow(T k, int deg = -1) const {
         if (deg == -1) deg = this->size();
         if (k == 0) {
             FPS ret(deg);
@@ -446,28 +441,15 @@ struct FormalPowerSeriesArbitrary : std::vector<mint> {
     FPS exp(int deg = -1) const;
 };
 
-template <class mint>
-void FormalPowerSeriesArbitrary<mint>::but() {
-    exit(1);
-}
+template <class mint> void FormalPowerSeriesArbitrary<mint>::but() { exit(1); }
 
-template <class mint>
-void FormalPowerSeriesArbitrary<mint>::ibut() {
-    exit(1);
-}
+template <class mint> void FormalPowerSeriesArbitrary<mint>::ibut() { exit(1); }
 
-template <class mint>
-void FormalPowerSeriesArbitrary<mint>::db() {
-    exit(1);
-}
+template <class mint> void FormalPowerSeriesArbitrary<mint>::db() { exit(1); }
 
-template <class mint>
-int FormalPowerSeriesArbitrary<mint>::but_pr() {
-    return 0;
-}
+template <class mint> int FormalPowerSeriesArbitrary<mint>::but_pr() { return 0; }
 
-template <class mint>
-FormalPowerSeriesArbitrary<mint> &
+template <class mint> FormalPowerSeriesArbitrary<mint> &
 FormalPowerSeriesArbitrary<mint>::operator*=(const FormalPowerSeriesArbitrary<mint> &r) {
     if (this->empty() || r.empty()) {
         this->clear();
@@ -499,8 +481,7 @@ FormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrary<mint>::exp(int deg) 
     return ret.pre(deg);
 }
 
-template <class mint>
-using FPSArb = FormalPowerSeriesArbitrary<mint>;
+template <class mint> using FPSArb = FormalPowerSeriesArbitrary<mint>;
 
 } // namespace kk2
 

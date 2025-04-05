@@ -62,12 +62,11 @@ struct ArbitraryLazyMontgomeryModIntBase {
         return *this;
     }
 
+    mint operator-() const { return mint(0) - mint(*this); }
+    mint operator+() const { return mint(*this); }
     friend mint operator+(const mint &a, const mint &b) { return mint(a) += b; }
-
     friend mint operator-(const mint &a, const mint &b) { return mint(a) -= b; }
-
     friend mint operator*(const mint &a, const mint &b) { return mint(a) *= b; }
-
     friend mint operator/(const mint &a, const mint &b) { return mint(a) /= b; }
 
     bool operator==(const mint &b) const {
@@ -77,10 +76,6 @@ struct ArbitraryLazyMontgomeryModIntBase {
     bool operator!=(const mint &b) const {
         return (_v >= mod ? _v - mod : _v) != (b._v >= mod ? b._v - mod : b._v);
     }
-
-    mint operator-() const { return mint(0) - mint(*this); }
-
-    mint operator+() const { return mint(*this); }
 
     template <class T> mint pow(T n) const {
         mint ret(1), mul(*this);

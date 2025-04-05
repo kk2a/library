@@ -8,8 +8,7 @@ namespace kk2 {
 
 namespace action {
 
-template <class T>
-struct UpdateAffine {
+template <class T> struct UpdateAffine {
     using A = monoid::Update<monoid::Affine<T>>;
     using S = monoid::Affine<T>;
 

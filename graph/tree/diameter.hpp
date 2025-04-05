@@ -16,8 +16,7 @@ template <class G> struct result {
     std::vector<int> path;
 };
 
-template <class G, std::enable_if_t<!G::weighted> * = nullptr>
-result<G> tree_diameter(const G &g) {
+template <class G, std::enable_if_t<!G::weighted> * = nullptr> result<G> tree_diameter(const G &g) {
     std::vector<int> dist(g.size(), -1), par(g.size(), -1);
     auto dfs = [&](auto self, int now) -> void {
         for (auto &e : g[now]) {
@@ -39,8 +38,7 @@ result<G> tree_diameter(const G &g) {
     return {dist[v], path};
 }
 
-template <class G, std::enable_if_t<G::weighted> * = nullptr>
-result<G> tree_diameter(const G &g) {
+template <class G, std::enable_if_t<G::weighted> * = nullptr> result<G> tree_diameter(const G &g) {
     using T = typename G::value_type;
     std::vector<T> dist(g.size(), -1);
     std::vector<int> par(g.size(), -1);

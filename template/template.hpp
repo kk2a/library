@@ -34,36 +34,13 @@ using kk2::kendl;
 using kk2::kin;
 using kk2::kout;
 
-void Yes(bool b = 1) {
-    kout << (b ? "Yes\n" : "No\n");
-}
-
-void No(bool b = 1) {
-    kout << (b ? "No\n" : "Yes\n");
-}
-
-void YES(bool b = 1) {
-    kout << (b ? "YES\n" : "NO\n");
-}
-
-void NO(bool b = 1) {
-    kout << (b ? "NO\n" : "YES\n");
-}
-
-void yes(bool b = 1) {
-    kout << (b ? "yes\n" : "no\n");
-}
-
-void no(bool b = 1) {
-    kout << (b ? "no\n" : "yes\n");
-}
-
-template <class T, class S> inline bool chmax(T &a, const S &b) {
-    return (a < b ? a = b, 1 : 0);
-}
-
-template <class T, class S> inline bool chmin(T &a, const S &b) {
-    return (a > b ? a = b, 1 : 0);
-}
+void Yes(bool b = 1) { kout << (b ? "Yes\n" : "No\n"); }
+void No(bool b = 1) { kout << (b ? "No\n" : "Yes\n"); }
+void YES(bool b = 1) { kout << (b ? "YES\n" : "NO\n"); }
+void NO(bool b = 1) { kout << (b ? "NO\n" : "YES\n"); }
+void yes(bool b = 1) { kout << (b ? "yes\n" : "no\n"); }
+void no(bool b = 1) { kout << (b ? "no\n" : "yes\n"); }
+template <class T, class S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }
+template <class T, class S> inline bool chmin(T &a, const S &b) { return (a > b ? a = b, 1 : 0); }
 
 #endif // KK2_TEMPLATE_TEMPLATE_HPP

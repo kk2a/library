@@ -8,7 +8,7 @@ namespace kk2 {
 
 // if there exists 0 <= l < n s.t. x^l = t, return min{0 <= l < n : x^l = t}
 // otherwise, return -1
-template <class mint, class HashSet=std::unordered_set<long long>>
+template <class mint, class HashSet = std::unordered_set<long long>>
 long long discrete_logarithm(mint x, mint t) {
     if (t == mint(1)) return 0;
     HashSet set;
@@ -34,6 +34,6 @@ long long discrete_logarithm(mint x, mint t) {
     return -1;
 }
 
-}
+} // namespace kk2
 
 #endif // KK2_MATH_MOD_LOG_HPP

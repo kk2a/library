@@ -19,8 +19,7 @@ namespace rbtree {
 // bool is_red;
 // Monoid val;
 
-template <typename Node>
-struct RedBlackTreeBase {
+template <typename Node> struct RedBlackTreeBase {
     VectorPool<Node> pool;
     using NodePtr = Node *;
     using Monoid = typename Node::Monoid;
@@ -39,8 +38,7 @@ struct RedBlackTreeBase {
 
     RedBlackTreeBase(int sz) : pool(sz) { pool.clear(); }
 
-    template <typename... Args>
-    NodePtr alloc(Args... args) {
+    template <typename... Args> NodePtr alloc(Args... args) {
         NodePtr t = &(*pool.alloc() = Node(args...));
         return update(t);
     }
@@ -104,8 +102,7 @@ struct RedBlackTreeBase {
         return {x, y1, z};
     }
 
-    template <typename... Args>
-    void insert(NodePtr &t, int k, Args... args) {
+    template <typename... Args> void insert(NodePtr &t, int k, Args... args) {
         assert(0 <= k and k <= size(t));
         auto [l, r] = split(t, k);
         t = merge(merge(l, alloc(Monoid(args...))), r);
@@ -119,8 +116,7 @@ struct RedBlackTreeBase {
         t = merge(l, rr);
     }
 
-    template <typename... Args>
-    void set(NodePtr t, int k, Args... args) {
+    template <typename... Args> void set(NodePtr t, int k, Args... args) {
         assert(0 <= k and k < size(t));
         NodePtr now = t;
         auto dfs = [&](auto self, NodePtr now, int k) -> void {
@@ -165,13 +161,11 @@ struct RedBlackTreeBase {
         t = merge(merge(t1, t2), t3);
     }
 
-    template <typename... Args>
-    void push_front(NodePtr &t, Args... args) {
+    template <typename... Args> void push_front(NodePtr &t, Args... args) {
         t = merge(alloc(Monoid(args...)), t);
     }
 
-    template <typename... Args>
-    void push_back(NodePtr &t, Args... args) {
+    template <typename... Args> void push_back(NodePtr &t, Args... args) {
         t = merge(t, alloc(Monoid(args...)));
     }
 
@@ -191,8 +185,7 @@ struct RedBlackTreeBase {
         NodePtr t;
     };
 
-    template <class G>
-    bb_result max_right(NodePtr &t, int l, const G &g) {
+    template <class G> bb_result max_right(NodePtr &t, int l, const G &g) {
         assert(0 <= l and l <= size(t));
         assert(g(MonoidUnit()));
         auto [t1, t2] = split(t, l);
@@ -224,8 +217,7 @@ struct RedBlackTreeBase {
         return {k, x, now};
     }
 
-    template <class G>
-    bb_result min_left(NodePtr &t, int r, const G &g) {
+    template <class G> bb_result min_left(NodePtr &t, int r, const G &g) {
         assert(0 <= r and r <= size(t));
         assert(g(MonoidUnit()));
         auto [t1, t2] = split(t, r);

@@ -30,12 +30,9 @@ template <typename T, typename U> struct LineBase {
 
 } // namespace geometry::line
 
-template <typename T>
-using Line = geometry::line::LineBase<T, T>;
-template <>
-using Line<int> = geometry::line::LineBase<int, long long>;
-template <>
-using Line<long long> = geometry::line::LineBase<long long, __int128_t>;
+template <typename T> using Line = geometry::line::LineBase<T, T>;
+template <> using Line<int> = geometry::line::LineBase<int, long long>;
+template <> using Line<long long> = geometry::line::LineBase<long long, __int128_t>;
 
 } // namespace kk2
 

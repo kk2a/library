@@ -7,13 +7,9 @@ namespace kk2 {
 
 namespace mf {
 
-long long mobius(long long, long long e) {
-    return e == 1 ? -1 : 0;
-}
+long long mobius(long long, long long e) { return e == 1 ? -1 : 0; }
 
-long long sigma0(long long, long long e) {
-    return e + 1;
-}
+long long sigma0(long long, long long e) { return e + 1; }
 
 long long sigma1(long long p, long long e) {
     long long p_e = pow<long long>(p, e);

@@ -42,8 +42,7 @@ std::vector<mint> BBB1(const std::vector<mint> &a, const FPS &f) {
 
 // f(X) / \prod (X - a_i)^d_i =  \sum c_i,j / (X - a_i)^j
 // return {c_i,j}
-template <class FPS, class mint = typename FPS::value_type>
-std::vector<std::vector<mint>>
+template <class FPS, class mint = typename FPS::value_type> std::vector<std::vector<mint>>
 BBB(const std::vector<mint> &a, const std::vector<mint> &d, const FPS &f) {
     // hoge
 }

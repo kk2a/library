@@ -7,8 +7,7 @@
 namespace kk2 {
 
 // require: op(x, x) = x for all x
-template <class S, S (*op)(S, S), S (*e)()>
-struct SparseTable {
+template <class S, S (*op)(S, S), S (*e)()> struct SparseTable {
     SparseTable() = default;
 
     SparseTable(int n) : _n(n) {
@@ -35,8 +34,7 @@ struct SparseTable {
         }
     }
 
-    template <class... Args>
-    void init_set(int p, Args... args) {
+    template <class... Args> void init_set(int p, Args... args) {
         assert(0 <= p && p < _n);
         assert(!is_built);
         table[0][p] = S(args...);
@@ -65,13 +63,11 @@ struct SparseTable {
     // return r s.t.
     // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true
     // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false
-    template <bool (*f)(S)>
-    int max_right(int l) const {
+    template <bool (*f)(S)> int max_right(int l) const {
         return max_right(l, [](S x) { return f(x); });
     }
 
-    template <class F>
-    int max_right(int l, F f) const {
+    template <class F> int max_right(int l, F f) const {
         assert(0 <= l && l <= _n);
         assert(f(e()));
         assert(is_built);
@@ -88,13 +84,11 @@ struct SparseTable {
     // return l s.t.
     // l = r or f(op(a[l], a[l+1], ..., a[r-1])) == false
     // l = 0 or f(op(a[l], a[l+1], ..., a[r]))   == true
-    template <bool (*f)(S)>
-    int min_left(int r) const {
+    template <bool (*f)(S)> int min_left(int r) const {
         return min_left(r, [](S x) { return f(x); });
     }
 
-    template <class F>
-    int min_left(int r, F f) const {
+    template <class F> int min_left(int r, F f) const {
         assert(0 <= r && r <= _n);
         assert(f(e()));
         assert(is_built);
@@ -114,8 +108,7 @@ struct SparseTable {
     bool is_built = false;
 };
 
-template <class M>
-using SparseTableS = SparseTable<M, M::op, M::unit>;
+template <class M> using SparseTableS = SparseTable<M, M::op, M::unit>;
 
 } // namespace kk2
 

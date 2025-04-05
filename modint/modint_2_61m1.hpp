@@ -11,9 +11,7 @@ namespace kk2 {
 struct ModInt2_61m1 {
     using mint = ModInt2_61m1;
     using u64 = unsigned long long;
-
     constexpr static u64 mod = (1ULL << 61) - 1;
-
     constexpr static u64 getmod() { return mod; }
 
     constexpr ModInt2_61m1() : _v(0) {}
@@ -71,21 +69,13 @@ struct ModInt2_61m1 {
     }
 
     constexpr mint &operator/=(const mint &x) { return *this *= x.inv(); }
-
     constexpr mint operator+() const { return *this; }
-
     constexpr mint operator-() const { return mint() - *this; }
-
     constexpr bool operator==(const mint &x) const { return _v == x._v; }
-
     constexpr bool operator!=(const mint &x) const { return _v != x._v; }
-
     friend constexpr mint operator+(const mint &x, const mint &y) { return mint(x) += y; }
-
     friend constexpr mint operator-(const mint &x, const mint &y) { return mint(x) -= y; }
-
     friend constexpr mint operator*(const mint &x, const mint &y) { return mint(x) *= y; }
-
     friend constexpr mint operator/(const mint &x, const mint &y) { return mint(x) /= y; }
 
     template <class T, is_integral_t<T> * = nullptr> constexpr mint pow(T n) const {

@@ -9,8 +9,7 @@
 
 namespace kk2 {
 
-template <typename T>
-struct WaveletMatrix {
+template <typename T> struct WaveletMatrix {
     int n, lg;
     std::vector<T> a;
     std::vector<BitVector> mat;

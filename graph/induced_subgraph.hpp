@@ -6,8 +6,7 @@
 
 namespace kk2 {
 
-template <class G>
-G induced_subgraph(const G &g, const std::vector<int> &vs) {
+template <class G> G induced_subgraph(const G &g, const std::vector<int> &vs) {
     G res(g.num_vertices());
 
     std::vector<bool> used(g.num_vertices(), false);

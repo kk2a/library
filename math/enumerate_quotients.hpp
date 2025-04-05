@@ -8,8 +8,7 @@
 
 namespace kk2 {
 
-template <class T>
-struct EnumerateQuotients {
+template <class T> struct EnumerateQuotients {
     T n;
     int sqrt_n;
     std::vector<T> res;

@@ -7,8 +7,7 @@
 
 namespace kk2 {
 
-template <class T, class U = T>
-struct SlopeTrick {
+template <class T, class U = T> struct SlopeTrick {
   private:
     struct P {
         T pos;

@@ -12,8 +12,7 @@ namespace kk2 {
 
 namespace shortest_path_impl {
 
-template <typename T>
-struct wf_len {
+template <typename T> struct wf_len {
     T len;
     bool inf, minf;
 

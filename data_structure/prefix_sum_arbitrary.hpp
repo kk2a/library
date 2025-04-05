@@ -7,8 +7,7 @@
 
 namespace kk2 {
 
-template <class T>
-struct PrefixSumArbitrary {
+template <class T> struct PrefixSumArbitrary {
   private:
     std::vector<int> base;
     int dim;

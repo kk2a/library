@@ -8,16 +8,14 @@
 
 namespace kk2 {
 
-template <class T, is_integral_t<T> * = nullptr>
-T sigma0(T n) {
+template <class T, is_integral_t<T> * = nullptr> T sigma0(T n) {
     assert(n > 0);
     T res = 1;
     for (auto [p, k] : factorize(static_cast<long long>(n))) res *= k + 1;
     return res;
 }
 
-template <class T, is_integral_t<T> * = nullptr>
-T sigma1(T n) {
+template <class T, is_integral_t<T> * = nullptr> T sigma1(T n) {
     assert(n > 0);
     T res = 1;
     for (auto [p, k] : factorize(static_cast<long long>(n))) {

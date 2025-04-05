@@ -7,8 +7,7 @@ namespace kk2 {
 
 namespace monoid {
 
-template <class S>
-struct Update {
+template <class S> struct Update {
     static constexpr bool commutative = true;
     S a;
     bool is_unit;

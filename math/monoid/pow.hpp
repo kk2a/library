@@ -5,8 +5,7 @@ namespace kk2 {
 
 namespace monoid {
 
-template <class M>
-M pow(M a, long long n) {
+template <class M> M pow(M a, long long n) {
     M res = M::unit();
     while (n > 0) {
         if (n & 1) res = M::op(res, a);

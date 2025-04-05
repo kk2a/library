@@ -6,7 +6,7 @@ AlignArrayOfStructures: Left
 AlignOperands: Align
 AlignTrailingComments: Always
 AllowShortBlocksOnASingleLine: Always
-AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortFunctionsOnASingleLine: All
 AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 AllowShortLambdasOnASingleLine: Inline
 AllowShortLoopsOnASingleLine: true
@@ -18,7 +18,7 @@ BreakBeforeTernaryOperators: false
 BreakConstructorInitializers: BeforeColon
 BreakInheritanceList: BeforeColon
 BreakStringLiterals: true
-BreakTemplateDeclarations: Yes
+BreakTemplateDeclarations: No
 ColumnLimit: 100
 ContinuationIndentWidth: 4
 EmptyLineAfterAccessModifier: Never
@@ -33,13 +33,13 @@ IncludeCategories:
       Priority: 1
       SortPriority: 0
 IndentWidth: 4
-InsertNewilneAtEOF: true
+InsertNewlineAtEOF: true
 MaxEmptyLinesToKeep: 2
 NamespaceIndentation: None
 PackConstructorInitializers: CurrentLine
 PointerAlignment: Right
 ReferenceAlignment: Right
-SeparateDefinitionBlocks: Always
+SeparateDefinitionBlocks: Leave
 ShortNamespaceLines: 0
 TabWidth: 4
 UseTab: Never

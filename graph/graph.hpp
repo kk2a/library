@@ -97,7 +97,7 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
     using value_type = T;
     using edge_type = _pair<T>;
     using edge_container = _Edges<T>;
-    
+
     static constexpr bool directed = is_directed;
     static constexpr bool weighted = !std::is_same_v<T, empty>;
     static constexpr bool adjacency_list = false;
@@ -175,9 +175,7 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
     }
 };
 
-template <class G> G reverse(const G &g) {
-    return g.reverse();
-}
+template <class G> G reverse(const G &g) { return g.reverse(); }
 
 } // namespace graph
 
