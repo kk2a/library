@@ -1,7 +1,7 @@
 #ifndef KK2_FUNCTIONAL_REVERSE_ARGS_HPP
 #define KK2_FUNCTIONAL_REVERSE_ARGS_HPP 1
 
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/functional.hpp"
 
 namespace kk2 {
 

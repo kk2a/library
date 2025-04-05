@@ -1,7 +1,7 @@
 #ifndef KK2_MATH_GROUP_PLUS_HPP
 #define KK2_MATH_GROUP_PLUS_HPP 1
 
-#include "../../type_traits/type_traits.hpp"
+#include "../../type_traits/io.hpp"
 
 namespace kk2 {
 

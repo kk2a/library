@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "../convolution/multi_convolution_truncated.hpp"
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/io.hpp"
 #include "fps_ntt_friendly.hpp"
 
 namespace kk2 {

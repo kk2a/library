@@ -8,7 +8,7 @@
 #include <vector>
 
 #include "../convolution/convolution.hpp"
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/io.hpp"
 
 namespace kk2 {
 

@@ -5,7 +5,8 @@
 #include <iostream>
 #include <utility>
 
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/integral.hpp"
+#include "../type_traits/io.hpp"
 
 namespace kk2 {
 
@@ -34,8 +35,8 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
     ArbitraryLazyMontgomeryModIntBase() : _v(0) {}
 
-    template <class T, is_integral_t<T> * = nullptr>
-    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b % mod + mod) * n2)) {}
+    template <class T, is_integral_t<T> * = nullptr> ArbitraryLazyMontgomeryModIntBase(const T &b)
+        : _v(reduce(ULong(b % mod + mod) * n2)) {}
 
     static UInt reduce(const ULong &b) {
         return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;
@@ -83,6 +84,7 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
     template <class T> mint pow(T n) const {
         mint ret(1), mul(*this);
+        n %= (Long)getmod() - 1;
         while (n > 0) {
             if (n & 1) ret *= mul;
             mul *= mul;
@@ -123,12 +125,10 @@ struct ArbitraryLazyMontgomeryModIntBase {
     static UInt getmod() { return mod; }
 };
 
-template <int id>
-using ArbitraryLazyMontgomeryModInt =
+template <int id> using ArbitraryLazyMontgomeryModInt =
     ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned long long, id>;
 
-template <int id>
-using ArbitraryLazyMontgomeryModInt64bit =
+template <int id> using ArbitraryLazyMontgomeryModInt64bit =
     ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t, __uint128_t, id>;
 
 } // namespace kk2

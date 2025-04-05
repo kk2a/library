@@ -3,8 +3,6 @@
 
 #include <numeric>
 
-#include "../type_traits/type_traits.hpp"
-
 namespace kk2 {
 
 namespace geometry::line {

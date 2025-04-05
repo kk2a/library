@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/io.hpp"
 
 namespace kk2 {
 
@@ -29,7 +29,7 @@ template <class Field> struct MatrixField {
         } else {
             _h = h;
             _w = w;
-            _mat.resize(h, std::vector<Field>(w, Field()));
+            _mat.resize(h, std::vector<Field>(w));
         }
     }
 
@@ -37,6 +37,12 @@ template <class Field> struct MatrixField {
         : _h(mat_.size()),
           _w(mat_[0].size()),
           _mat(mat_) {}
+
+    static mat unit(int n) {
+        mat res(n, n);
+        for (int i = 0; i < n; i++) res[i][i] = Field(1);
+        return res;
+    }
 
     int get_h() const { return _h; }
 
@@ -230,13 +236,13 @@ template <class Field> struct MatrixField {
 
     template <class T> mat pow(T n) const {
         assert(_h == _w);
+        assert(n >= 0);
         mat mul(_mat);
         mat res(_h);
         for (int i = 0; i < _h; i++) res._mat[i][i] = 1;
         while (n) {
             if (n & 1) res *= mul;
-            mul *= mul;
-            n >>= 1;
+            if (n >>= 1) mul *= mul;
         }
         return res;
     }

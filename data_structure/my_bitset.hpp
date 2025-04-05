@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "../bit/bitcount.hpp"
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/io.hpp"
 
 namespace kk2 {
 

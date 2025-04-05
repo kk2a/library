@@ -11,7 +11,7 @@ namespace kk2 {
 struct PrimeTable {
   private:
     static inline int _n = 30;
-    static inline std::vector<int> _primes{2, 3, 5, 7, 11, 13, 17, 23, 29};
+    static inline std::vector<int> _primes{2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
 
   public:
     PrimeTable() = delete;

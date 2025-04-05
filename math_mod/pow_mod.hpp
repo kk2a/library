@@ -15,8 +15,7 @@ template <class S, class T, class U> constexpr S pow_mod(T x, U n, T m) {
     if (y < 0) y += _m;
     while (n) {
         if (n & 1) r = (r * y) % _m;
-        y = (y * y) % _m;
-        n >>= 1;
+        if (n >>= 1) y = (y * y) % _m;
     }
     return r;
 }

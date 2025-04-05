@@ -15,13 +15,11 @@ namespace kk2 {
         template <typename U> static std::false_type check(...);                                   \
         using type = decltype(check<T>(nullptr));                                                  \
     };                                                                                             \
-    template <typename T, typename... Ts>                                                          \
-    struct has_member_func_##member : has_member_func_##member##_impl<T, Ts...>::type {};          \
-    template <typename T, typename... Ts>                                                          \
-    using has_member_func_##member##_t =                                                           \
+    template <typename T, typename... Ts> struct has_member_func_##member                          \
+        : has_member_func_##member##_impl<T, Ts...>::type {};                                      \
+    template <typename T, typename... Ts> using has_member_func_##member##_t =                     \
         std::enable_if_t<has_member_func_##member<T, Ts...>::value>;                               \
-    template <typename T, typename... Ts>                                                          \
-    using not_has_member_func_##member##_t =                                                       \
+    template <typename T, typename... Ts> using not_has_member_func_##member##_t =                 \
         std::enable_if_t<!has_member_func_##member<T, Ts...>::value>;
 
 #define HAS_MEMBER_VAR(member)                                                                     \
@@ -30,12 +28,12 @@ namespace kk2 {
         template <typename U> static std::false_type check(...);                                   \
         using type = decltype(check<T>(nullptr));                                                  \
     };                                                                                             \
-    template <typename T>                                                                          \
-    struct has_member_var_##member : has_member_var_##member##_impl<T>::type {};                   \
-    template <typename T>                                                                          \
-    using has_member_var_##member##_t = std::enable_if_t<has_member_var_##member<T>::value>;       \
-    template <typename T>                                                                          \
-    using not_has_member_var_##member##_t = std::enable_if_t<!has_member_var_##member<T>::value>;
+    template <typename T> struct has_member_var_##member                                           \
+        : has_member_var_##member##_impl<T>::type {};                                              \
+    template <typename T> using has_member_var_##member##_t =                                      \
+        std::enable_if_t<has_member_var_##member<T>::value>;                                       \
+    template <typename T> using not_has_member_var_##member##_t =                                  \
+        std::enable_if_t<!has_member_var_##member<T>::value>;
 
 HAS_MEMBER_FUNC(debug_output)
 HAS_MEMBER_FUNC(val)

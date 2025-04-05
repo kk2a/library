@@ -6,7 +6,8 @@
 #include <iostream>
 #include <type_traits>
 
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/integral.hpp"
+#include "../type_traits/io.hpp"
 
 namespace kk2 {
 
@@ -33,8 +34,8 @@ template <int p> struct LazyMontgomeryModInt {
 
     constexpr LazyMontgomeryModInt() : _v(0) {}
 
-    template <typename T, is_integral_t<T> * = nullptr>
-    constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p) * n2)) {}
+    template <typename T, is_integral_t<T> * = nullptr> constexpr LazyMontgomeryModInt(T b)
+        : _v(reduce(u64(b % p + p) * n2)) {}
 
     static constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }
 

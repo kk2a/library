@@ -6,7 +6,8 @@
 #include <type_traits>
 #include <utility>
 
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/integral.hpp"
+#include "../type_traits/io.hpp"
 
 namespace kk2 {
 
@@ -101,6 +102,7 @@ template <int p> struct ModInt {
     mint pow(long long n) const {
         assert(0 <= n);
         mint x = *this, r = 1;
+        n %= (long long)getmod() - 1;
         while (n) {
             if (n & 1) r *= x;
             x *= x;

@@ -15,10 +15,9 @@ namespace kk2 {
         template <typename, typename> static std::false_type check(...);                           \
         using type = decltype(check<LHS, RHS>(nullptr));                                           \
     };                                                                                             \
-    template <typename LHS, typename RHS = LHS>                                                    \
-    struct has_binary_op_##op_name : has_binary_op_##op_name##_impl<LHS, RHS>::type {};            \
-    template <typename LHS, typename RHS = LHS>                                                    \
-    using has_binary_op_##op_name##_t =                                                            \
+    template <typename LHS, typename RHS = LHS> struct has_binary_op_##op_name                     \
+        : has_binary_op_##op_name##_impl<LHS, RHS>::type {};                                       \
+    template <typename LHS, typename RHS = LHS> using has_binary_op_##op_name##_t =                \
         std::enable_if_t<has_binary_op_##op_name<LHS, RHS>::value>;
 
 #define HAS_UNARY_OP(op, op_name)                                                                  \
@@ -27,10 +26,10 @@ namespace kk2 {
         template <typename U> static std::false_type check(...);                                   \
         using type = decltype(check<T>(nullptr));                                                  \
     };                                                                                             \
-    template <typename T>                                                                          \
-    struct has_unary_op_##op_name : has_unary_op_##op_name##_impl<T>::type {};                     \
-    template <typename T>                                                                          \
-    using has_unary_op_##op_name##_t = std::enable_if_t<has_unary_op_##op_name<T>::value>;
+    template <typename T> struct has_unary_op_##op_name : has_unary_op_##op_name##_impl<T>::type { \
+    };                                                                                             \
+    template <typename T> using has_unary_op_##op_name##_t =                                       \
+        std::enable_if_t<has_unary_op_##op_name<T>::value>;
 
 HAS_UNARY_OP(-, negation)
 HAS_BINARY_OP(+, plus)

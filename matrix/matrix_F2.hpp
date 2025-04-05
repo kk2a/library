@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "../data_structure/my_bitset.hpp"
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/io.hpp"
 
 namespace kk2 {
 
@@ -37,6 +37,12 @@ struct MatrixF2 {
         : _h(mat_.size()),
           _w(mat_[0].size()),
           _mat(mat_) {}
+
+    static mat unit(int n) {
+        mat res(n, n);
+        for (int i = 0; i < n; i++) res[i][i] = 1;
+        return res;
+    }
 
     int get_h() const { return _h; }
 
