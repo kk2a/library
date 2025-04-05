@@ -3,7 +3,7 @@
 
 #include <cassert>
 
-#include "../../type_traits/type_traits.hpp"
+#include "../../type_traits/integral.hpp"
 #include "../prime_factorize.hpp"
 
 namespace kk2 {

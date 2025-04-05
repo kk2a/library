@@ -3,8 +3,6 @@
 
 #include <cassert>
 
-#include "../type_traits/type_traits.hpp"
-
 namespace kk2 {
 
 template <class S, class T, class U> constexpr S pow_mod(T x, U n, T m) {

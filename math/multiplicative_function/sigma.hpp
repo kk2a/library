@@ -3,6 +3,7 @@
 
 #include <cassert>
 
+#include "../../type_traits/integral.hpp"
 #include "../pow.hpp"
 #include "../prime_factorize.hpp"
 
