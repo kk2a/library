@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,9 +21,9 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_OTHERS_RUN_LENGTH_ENCODING_HPP\n#define KK2_OTHERS_RUN_LENGTH_ENCODING_HPP\
-    \ 1\n\n#include <string>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
+    \ 1\n\n#include <string>\n#include <vector>\n\n#include \"../type_traits/io.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace run_length_encoding_impl {\n\ntemplate <class\
     \ T> struct rle_element {\n    T value;\n    int length;\n\n    template <class\
     \ OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
@@ -37,11 +37,11 @@ data:
     \nusing run_length_encoding_impl::run_length_encoding;\n\n} // namespace kk2\n\
     \n#endif // KK2_OTHERS_RUN_LENGTH_ENCODING_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: others/run_length_encoding.hpp
   requiredBy: []
-  timestamp: '2025-01-27 23:23:52+09:00'
+  timestamp: '2025-04-05 10:48:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: others/run_length_encoding.hpp

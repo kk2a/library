@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: fps/mod_pow.hpp
     title: fps/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: fps/poly_gcd.hpp
     title: fps/poly_gcd.hpp
   - icon: ':question:'
@@ -14,13 +14,10 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_root_finding.test.cpp
-    title: verify/yosupo_fps/poly_root_finding.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/poly_find_root.hpp\"\n\n\n\n#include <vector>\n\n#line\
@@ -32,14 +29,14 @@ data:
     \                 std::chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n   \
     \ seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return\
-    \ seed;\n}\n\ninline u64 deterministic_seed() {\n    return 5801799128519729247ull;\n\
-    }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return deterministic_seed();\n\
-    #else\n    return non_deterministic_seed();\n#endif\n}\n\n} // namespace random\n\
-    \n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-    \ random {\n\nusing i64 = long long;\nusing u64 = unsigned long long;\n\ninline\
-    \ u64 rng() {\n    static std::mt19937_64 mt(kk2::random::seed());\n    return\
-    \ mt();\n}\n\n// [l, r)\ninline i64 rng(i64 l, i64 r) {\n    assert(l < r);\n\
-    \    return l + rng() % (r - l);\n}\n\n// [l, r)\ntemplate <class T> std::vector<T>\
+    \ seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
+    \ }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return\
+    \ deterministic_seed();\n#else\n    return non_deterministic_seed();\n#endif\n\
+    }\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\
+    \n\nnamespace kk2 {\n\nnamespace random {\n\nusing i64 = long long;\nusing u64\
+    \ = unsigned long long;\n\ninline u64 rng() {\n    static std::mt19937_64 mt(kk2::random::seed());\n\
+    \    return mt();\n}\n\n// [l, r)\ninline i64 rng(i64 l, i64 r) {\n    assert(l\
+    \ < r);\n    return l + rng() % (r - l);\n}\n\n// [l, r)\ntemplate <class T> std::vector<T>\
     \ random_vector(int n, T l, T r) {\n    std::vector<T> res(n);\n    for (int i\
     \ = 0; i < n; i++) res[i] = rng(l, r);\n    return res;\n}\n\n// [l, r)\nstd::vector<i64>\
     \ distinct_rng(i64 l, i64 r, i64 n) {\n    assert(l < r and n <= r - l);\n   \
@@ -145,10 +142,9 @@ data:
   isVerificationFile: false
   path: fps/poly_find_root.hpp
   requiredBy: []
-  timestamp: '2025-02-04 23:50:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/yosupo_fps/poly_root_finding.test.cpp
+  timestamp: '2025-04-05 12:46:42+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: fps/poly_find_root.hpp
 layout: document
 redirect_from:

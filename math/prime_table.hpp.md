@@ -25,12 +25,6 @@ data:
     title: math/multiplicative_function/prime_counting.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/unit_test/isprime_table_extend.test.cpp
-    title: verify/unit_test/isprime_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/lpf_table_extend.test.cpp
-    title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +72,7 @@ data:
     \ x)) ++x;\n    while (x - 1 >= kk2::fracceil(n, x - 1)) --x;\n    return x;\n\
     }\n\n} // namespace kk2\n\n\n#line 8 \"math/prime_table.hpp\"\n\nnamespace kk2\
     \ {\n\nstruct PrimeTable {\n  private:\n    static inline int _n = 30;\n    static\
-    \ inline std::vector<int> _primes{2, 3, 5, 7, 11, 13, 17, 23, 29};\n\n  public:\n\
+    \ inline std::vector<int> _primes{2, 3, 5, 7, 11, 13, 17, 19, 23, 29};\n\n  public:\n\
     \    PrimeTable() = delete;\n\n    // wheel sieve\n    // reference: https://37zigen.com/wheel-sieve/\n\
     \    static void set_upper(int m, int reserve_size = 26355867) {\n        if (m\
     \ <= _n) return;\n        _n = std::max(m, 2 * _n);\n        int sqrt_n = sqrt_floor(_n);\n\
@@ -105,10 +99,10 @@ data:
     \          _primes.end(),\n                       _primes2.begin(),\n        \
     \               _primes2.end(),\n                       std::back_inserter(tmp));\n\
     \        _primes = std::move(tmp);\n    }\n\n    static const std::vector<int>\
-    \ &primes() { return _primes; }\n\n    template <typename It>\n    struct PrimeIt\
-    \ {\n        It bg, ed;\n\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_)\
-    \ {}\n\n        It begin() const { return bg; }\n\n        It end() const { return\
-    \ ed; }\n\n        int size() const { return ed - bg; }\n\n        int operator[](int\
+    \ &primes() { return _primes; }\n\n    template <typename It> struct PrimeIt {\n\
+    \        It bg, ed;\n\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n\
+    \n        It begin() const { return bg; }\n\n        It end() const { return ed;\
+    \ }\n\n        int size() const { return ed - bg; }\n\n        int operator[](int\
     \ i) const { return bg[i]; }\n\n        std::vector<int> to_vec() const { return\
     \ std::vector<int>(bg, ed); }\n    };\n\n    static auto primes(int n) {\n   \
     \     if (n >= _n) set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
@@ -116,8 +110,8 @@ data:
   code: "#ifndef KK2_MATH_PRIME_TABLE_HPP\n#define KK2_MATH_PRIME_TABLE_HPP 1\n\n\
     #include <algorithm>\n#include <vector>\n\n#include \"sqrt_floor.hpp\"\n\nnamespace\
     \ kk2 {\n\nstruct PrimeTable {\n  private:\n    static inline int _n = 30;\n \
-    \   static inline std::vector<int> _primes{2, 3, 5, 7, 11, 13, 17, 23, 29};\n\n\
-    \  public:\n    PrimeTable() = delete;\n\n    // wheel sieve\n    // reference:\
+    \   static inline std::vector<int> _primes{2, 3, 5, 7, 11, 13, 17, 19, 23, 29};\n\
+    \n  public:\n    PrimeTable() = delete;\n\n    // wheel sieve\n    // reference:\
     \ https://37zigen.com/wheel-sieve/\n    static void set_upper(int m, int reserve_size\
     \ = 26355867) {\n        if (m <= _n) return;\n        _n = std::max(m, 2 * _n);\n\
     \        int sqrt_n = sqrt_floor(_n);\n        int w = 1;\n        std::vector<bool>\
@@ -143,10 +137,10 @@ data:
     \                       _primes.end(),\n                       _primes2.begin(),\n\
     \                       _primes2.end(),\n                       std::back_inserter(tmp));\n\
     \        _primes = std::move(tmp);\n    }\n\n    static const std::vector<int>\
-    \ &primes() { return _primes; }\n\n    template <typename It>\n    struct PrimeIt\
-    \ {\n        It bg, ed;\n\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_)\
-    \ {}\n\n        It begin() const { return bg; }\n\n        It end() const { return\
-    \ ed; }\n\n        int size() const { return ed - bg; }\n\n        int operator[](int\
+    \ &primes() { return _primes; }\n\n    template <typename It> struct PrimeIt {\n\
+    \        It bg, ed;\n\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n\
+    \n        It begin() const { return bg; }\n\n        It end() const { return ed;\
+    \ }\n\n        int size() const { return ed - bg; }\n\n        int operator[](int\
     \ i) const { return bg[i]; }\n\n        std::vector<int> to_vec() const { return\
     \ std::vector<int>(bg, ed); }\n    };\n\n    static auto primes(int n) {\n   \
     \     if (n >= _n) set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
@@ -162,7 +156,7 @@ data:
   - convolution/convolution_lcm.hpp
   - math/multiplicative_function/prime_counting.hpp
   - math/multiplicative_function/prefix_sum.hpp
-  timestamp: '2025-02-08 14:53:47+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/prime_counting.test.cpp
@@ -172,8 +166,6 @@ data:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: math/prime_table.hpp
 layout: document
 redirect_from:

@@ -17,8 +17,8 @@ data:
     path: template/type_alias.hpp
     title: template/type_alias.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -38,7 +38,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_TEMPLATE_PROCON_HPP\n#define KK2_TEMPLATE_PROCON_HPP 1\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <deque>\n#include <fstream>\n#include <functional>\n#include <iomanip>\n#include\
@@ -50,27 +50,26 @@ data:
     \ FastIOSetUp {\n    FastIOSetUp() {\n        std::ios::sync_with_stdio(false);\n\
     \        std::cin.tie(nullptr);\n    }\n} fast_io_set_up;\n\nauto &kin = std::cin;\n\
     auto &kout = std::cout;\nauto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n\
-    \nvoid Yes(bool b = 1) {\n    kout << (b ? \"Yes\\n\" : \"No\\n\");\n}\n\nvoid\
-    \ No(bool b = 1) {\n    kout << (b ? \"No\\n\" : \"Yes\\n\");\n}\n\nvoid YES(bool\
-    \ b = 1) {\n    kout << (b ? \"YES\\n\" : \"NO\\n\");\n}\n\nvoid NO(bool b = 1)\
-    \ {\n    kout << (b ? \"NO\\n\" : \"YES\\n\");\n}\n\nvoid yes(bool b = 1) {\n\
-    \    kout << (b ? \"yes\\n\" : \"no\\n\");\n}\n\nvoid no(bool b = 1) {\n    kout\
-    \ << (b ? \"no\\n\" : \"yes\\n\");\n}\n\ntemplate <class T, class S> inline bool\
-    \ chmax(T &a, const S &b) {\n    return (a < b ? a = b, 1 : 0);\n}\n\ntemplate\
-    \ <class T, class S> inline bool chmin(T &a, const S &b) {\n    return (a > b\
-    \ ? a = b, 1 : 0);\n}\n\nstd::istream &operator>>(std::istream &is, u128 &x) {\n\
-    \    std::string s;\n    is >> s;\n    x = 0;\n    for (char c : s) {\n      \
-    \  assert('0' <= c && c <= '9');\n        x = x * 10 + c - '0';\n    }\n    return\
-    \ is;\n}\n\nstd::istream &operator>>(std::istream &is, i128 &x) {\n    std::string\
-    \ s;\n    is >> s;\n    bool neg = s[0] == '-';\n    x = 0;\n    for (int i =\
-    \ neg; i < (int)s.size(); i++) {\n        assert('0' <= s[i] && s[i] <= '9');\n\
-    \        x = x * 10 + s[i] - '0';\n    }\n    if (neg) x = -x;\n    return is;\n\
-    }\n\nstd::ostream &operator<<(std::ostream &os, u128 x) {\n    if (x == 0) return\
-    \ os << '0';\n    std::string s;\n    while (x) {\n        s.push_back('0' + x\
-    \ % 10);\n        x /= 10;\n    }\n    std::reverse(s.begin(), s.end());\n   \
-    \ return os << s;\n}\n\nstd::ostream &operator<<(std::ostream &os, i128 x) {\n\
-    \    if (x == 0) return os << '0';\n    if (x < 0) {\n        os << '-';\n   \
-    \     x = -x;\n    }\n    std::string s;\n    while (x) {\n        s.push_back('0'\
+    \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
+    \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
+    \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\\
+    n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\\
+    n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate\
+    \ <class T, class S> inline bool chmax(T &a, const S &b) { return (a < b ? a =\
+    \ b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a, const S &b)\
+    \ { return (a > b ? a = b, 1 : 0); }\n\nstd::istream &operator>>(std::istream\
+    \ &is, u128 &x) {\n    std::string s;\n    is >> s;\n    x = 0;\n    for (char\
+    \ c : s) {\n        assert('0' <= c && c <= '9');\n        x = x * 10 + c - '0';\n\
+    \    }\n    return is;\n}\n\nstd::istream &operator>>(std::istream &is, i128 &x)\
+    \ {\n    std::string s;\n    is >> s;\n    bool neg = s[0] == '-';\n    x = 0;\n\
+    \    for (int i = neg; i < (int)s.size(); i++) {\n        assert('0' <= s[i] &&\
+    \ s[i] <= '9');\n        x = x * 10 + s[i] - '0';\n    }\n    if (neg) x = -x;\n\
+    \    return is;\n}\n\nstd::ostream &operator<<(std::ostream &os, u128 x) {\n \
+    \   if (x == 0) return os << '0';\n    std::string s;\n    while (x) {\n     \
+    \   s.push_back('0' + x % 10);\n        x /= 10;\n    }\n    std::reverse(s.begin(),\
+    \ s.end());\n    return os << s;\n}\n\nstd::ostream &operator<<(std::ostream &os,\
+    \ i128 x) {\n    if (x == 0) return os << '0';\n    if (x < 0) {\n        os <<\
+    \ '-';\n        x = -x;\n    }\n    std::string s;\n    while (x) {\n        s.push_back('0'\
     \ + x % 10);\n        x /= 10;\n    }\n    std::reverse(s.begin(), s.end());\n\
     \    return os << s;\n}\n\n#endif // KK2_TEMPLATE_PROCON_HPP\n"
   dependsOn:
@@ -78,12 +77,12 @@ data:
   - template/type_alias.hpp
   - template/function_util.hpp
   - template/io_util.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   - template/macros.hpp
   isVerificationFile: false
   path: template/procon.hpp
   requiredBy: []
-  timestamp: '2025-03-28 03:34:37+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/procon.hpp

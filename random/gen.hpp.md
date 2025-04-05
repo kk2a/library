@@ -5,27 +5,9 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: fps/poly_find_root.hpp
     title: fps/poly_find_root.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/multiplicative_function/euler_phi.hpp
-    title: math/multiplicative_function/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/multiplicative_function/mobius.hpp
-    title: math/multiplicative_function/mobius.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/multiplicative_function/sigma.hpp
-    title: math/multiplicative_function/sigma.hpp
-  - icon: ':question:'
-    path: math/prime_factorize.hpp
-    title: math/prime_factorize.hpp
-  - icon: ':x:'
-    path: math_mod/primitive_root_64bit.hpp
-    title: math_mod/primitive_root_64bit.hpp
-  - icon: ':x:'
-    path: math_mod/primitive_root_64bit.hpp
-    title: math_mod/primitive_root_64bit.hpp
   - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
@@ -40,29 +22,8 @@ data:
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/aoj/aoj_ntl_1_d.test.cpp
-    title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/unit_test/bit_vector.test.cpp
     title: verify/unit_test/bit_vector.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/famous_function_table.test.cpp
-    title: verify/unit_test/famous_function_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/famous_function_table.test.cpp
-    title: verify/unit_test/famous_function_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/isprime_table_extend.test.cpp
-    title: verify/unit_test/isprime_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/large_fact_arb_mod.test.cpp
-    title: verify/unit_test/large_fact_arb_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/lpf_table_extend.test.cpp
-    title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/lpf_table_extend.test.cpp
-    title: verify/unit_test/lpf_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
@@ -76,29 +37,11 @@ data:
     path: verify/unit_test/partial_persitent_unionfind.test.cpp
     title: verify/unit_test/partial_persitent_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/unit_test/prime_factorize_table.test.cpp
-    title: verify/unit_test/prime_factorize_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/prime_factorize_table.test.cpp
-    title: verify/unit_test/prime_factorize_table.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/wavelet_matrix.test.cpp
     title: verify/unit_test/wavelet_matrix.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_root_finding.test.cpp
-    title: verify/yosupo_fps/poly_root_finding.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/factrize.test.cpp
-    title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/primitive_root.test.cpp
-    title: verify/yosupo_math/primitive_root.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/primitive_root.test.cpp
-    title: verify/yosupo_math/primitive_root.test.cpp
   - icon: ':x:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
@@ -115,14 +58,14 @@ data:
     \                 std::chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n   \
     \ seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return\
-    \ seed;\n}\n\ninline u64 deterministic_seed() {\n    return 5801799128519729247ull;\n\
-    }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return deterministic_seed();\n\
-    #else\n    return non_deterministic_seed();\n#endif\n}\n\n} // namespace random\n\
-    \n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-    \ random {\n\nusing i64 = long long;\nusing u64 = unsigned long long;\n\ninline\
-    \ u64 rng() {\n    static std::mt19937_64 mt(kk2::random::seed());\n    return\
-    \ mt();\n}\n\n// [l, r)\ninline i64 rng(i64 l, i64 r) {\n    assert(l < r);\n\
-    \    return l + rng() % (r - l);\n}\n\n// [l, r)\ntemplate <class T> std::vector<T>\
+    \ seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
+    \ }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return\
+    \ deterministic_seed();\n#else\n    return non_deterministic_seed();\n#endif\n\
+    }\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\
+    \n\nnamespace kk2 {\n\nnamespace random {\n\nusing i64 = long long;\nusing u64\
+    \ = unsigned long long;\n\ninline u64 rng() {\n    static std::mt19937_64 mt(kk2::random::seed());\n\
+    \    return mt();\n}\n\n// [l, r)\ninline i64 rng(i64 l, i64 r) {\n    assert(l\
+    \ < r);\n    return l + rng() % (r - l);\n}\n\n// [l, r)\ntemplate <class T> std::vector<T>\
     \ random_vector(int n, T l, T r) {\n    std::vector<T> res(n);\n    for (int i\
     \ = 0; i < n; i++) res[i] = rng(l, r);\n    return res;\n}\n\n// [l, r)\nstd::vector<i64>\
     \ distinct_rng(i64 l, i64 r, i64 n) {\n    assert(l < r and n <= r - l);\n   \
@@ -169,41 +112,22 @@ data:
   isVerificationFile: false
   path: random/gen.hpp
   requiredBy:
-  - math/multiplicative_function/mobius.hpp
-  - math/multiplicative_function/sigma.hpp
-  - math/multiplicative_function/euler_phi.hpp
-  - math/prime_factorize.hpp
   - string/rolling_hash.hpp
   - random/graph.hpp
   - random/hash.hpp
-  - math_mod/primitive_root_64bit.hpp
-  - math_mod/primitive_root_64bit.hpp
   - fps/poly_find_root.hpp
-  timestamp: '2025-02-04 23:50:25+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/factrize.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/monoid.test.cpp
   - verify/unit_test/multiplicative_function_table.test.cpp
   - verify/unit_test/bit_vector.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/partial_persitent_unionfind.test.cpp
   - verify/unit_test/offline_dynamic_connectivity.test.cpp
   - verify/unit_test/wavelet_matrix.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
-  - verify/yosupo_fps/poly_root_finding.test.cpp
 documentation_of: random/gen.hpp
 layout: document
 redirect_from:

@@ -1,23 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  - icon: ':question:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-    title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_sqrt.test.cpp
-    title: verify/yosupo_fps/fps_sqrt.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/sqrt_mod.test.cpp
     title: verify/yosupo_math/sqrt_mod.test.cpp
@@ -38,7 +35,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MOD_MOD_SQRT_HPP\n#define KK2_MATH_MOD_MOD_SQRT_HPP 1\n\n\
     #include <cassert>\n\n#include \"../modint/mont_arb.hpp\"\n\nnamespace kk2 {\n\
     \ntemplate <class T, class U> long long mod_sqrt(const T &a, const U &p) {\n \
@@ -54,17 +51,16 @@ data:
     \ kk2\n\n#endif // KK2_MATH_MOD_MOD_SQRT_HPP\n"
   dependsOn:
   - modint/mont_arb.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: math_mod/mod_sqrt.hpp
   requiredBy:
   - fps/fps_sqrt.hpp
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/sqrt_mod.test.cpp
-  - verify/yosupo_fps/fps_sqrt.test.cpp
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
 documentation_of: math_mod/mod_sqrt.hpp
 layout: document
 redirect_from:

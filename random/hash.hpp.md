@@ -11,8 +11,11 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  - icon: ':question:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':question:'
     path: string/rolling_hash.hpp
@@ -41,7 +44,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_RANDOM_HASH_HPP\n#define KK2_RANDOM_HASH_HPP 1\n\n#include <algorithm>\n\
     #include <array>\n#include <cassert>\n\n#include \"../modint/modint_2_61m1.hpp\"\
     \n#include \"gen.hpp\"\n\nnamespace kk2 {\n\nnamespace random {\n\ntemplate <int\
@@ -76,14 +79,15 @@ data:
     \n#endif // KK2_RANDOM_HASH_HPP\n"
   dependsOn:
   - modint/modint_2_61m1.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   - random/gen.hpp
   - random/seed.hpp
   isVerificationFile: false
   path: random/hash.hpp
   requiredBy:
   - string/rolling_hash.hpp
-  timestamp: '2025-02-04 23:50:25+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_string/string_z_roliha.test.cpp

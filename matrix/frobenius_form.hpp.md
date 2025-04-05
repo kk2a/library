@@ -8,8 +8,8 @@ data:
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -31,26 +31,26 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATRIX_FROBENIUS_FORM_HPP\n#define KK2_MATRIX_FROBENIUS_FORM_HPP\
     \ 1\n\n#include <vector>\n\n#include \"basis.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-    \ linear_algebra {\n\ntemplate <class Matrix, class Poly, class Field>\nstruct\
+    \ linear_algebra {\n\ntemplate <class Matrix, class Poly, class Field> struct\
     \ FrobeniusForm_base {\n    Matrix mat;\n    std::vector<int> deg;\n    std::vector<Poly>\
     \ poly;\n\n    // mat = P_inv frobenius P\n    // P_inv = P^{-1}\n    Matrix frobenius,\
     \ P, P_inv;\n\n    FrobeniusForm_base(const Matrix &mat_) : mat(mat_) {\n    \
     \    int n = mat.get_h();\n        assert(n == mat.get_w());\n        frobenius\
     \ = P = Matrix(n, n);\n        build();\n    }\n\n    void build() {\n       \
     \ int n = mat.get_h();\n        Basis_base<Matrix, Field> basis;\n        // \u4E71\
-    \u629E\u3067\u9811\u5F35\u308B\n    }\n};\n\n}\n\n} // namespace kk2\n\n#endif\
-    \ // KK2_MATRIX_FROBENIUS_FORM_HPP\n"
+    \u629E\u3067\u9811\u5F35\u308B\n    }\n};\n\n} // namespace linear_algebra\n\n\
+    } // namespace kk2\n\n#endif // KK2_MATRIX_FROBENIUS_FORM_HPP\n"
   dependsOn:
   - matrix/basis.hpp
   - matrix/matrix_field.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: matrix/frobenius_form.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/frobenius_form.hpp

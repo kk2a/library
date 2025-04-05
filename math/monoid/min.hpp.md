@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: data_structure/static_rmq.hpp
@@ -42,12 +42,12 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MONOID_MIN_HPP\n#define KK2_MATH_MONOID_MIN_HPP 1\n\n#include\
-    \ <functional>\n\n#include \"../../type_traits/type_traits.hpp\"\n\nnamespace\
-    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S, class Compare = std::less<S>>\n\
-    struct Min {\n    static constexpr bool commutative = true;\n    S a;\n    bool\
-    \ is_unit;\n\n    Min() : a(S()), is_unit(true) {}\n\n    Min(S a_) : a(a_), is_unit(false)\
+    \ <functional>\n\n#include \"../../type_traits/io.hpp\"\n\nnamespace kk2 {\n\n\
+    namespace monoid {\n\ntemplate <class S, class Compare = std::less<S>> struct\
+    \ Min {\n    static constexpr bool commutative = true;\n    S a;\n    bool is_unit;\n\
+    \n    Min() : a(S()), is_unit(true) {}\n\n    Min(S a_) : a(a_), is_unit(false)\
     \ {}\n\n    operator S() const { return a; }\n\n    inline static Min op(Min l,\
     \ Min r) {\n        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;\n  \
     \      return Compare{}(l.a, r.a) ? l : r;\n    }\n\n    inline static Min unit()\
@@ -61,7 +61,7 @@ data:
     \ rhs.a);\n    }\n\n    bool operator!=(const Min &rhs) const { return !(*this\
     \ == rhs); }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_MIN_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: math/monoid/min.hpp
   requiredBy:
@@ -69,7 +69,7 @@ data:
   - math/action/add_min.hpp
   - graph/tree/euler_tour.hpp
   - data_structure/static_rmq.hpp
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp

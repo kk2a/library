@@ -31,10 +31,10 @@ data:
     \ {\n                if (p * i > m) break;\n                if (_lpf[i] < p) break;\n\
     \                _lpf[p * i] = p;\n            }\n        }\n    }\n\n    static\
     \ const std::vector<int> &primes() { return _primes; }\n\n    template <typename\
-    \ It>\n    struct PrimeIt {\n        It bg, ed;\n\n        PrimeIt(It bg_, It\
-    \ ed_) : bg(bg_), ed(ed_) {}\n\n        It begin() const { return bg; }\n\n  \
-    \      It end() const { return ed; }\n\n        int size() const { return ed -\
-    \ bg; }\n\n        int operator[](int i) const { return bg[i]; }\n\n        std::vector<int>\
+    \ It> struct PrimeIt {\n        It bg, ed;\n\n        PrimeIt(It bg_, It ed_)\
+    \ : bg(bg_), ed(ed_) {}\n\n        It begin() const { return bg; }\n\n       \
+    \ It end() const { return ed; }\n\n        int size() const { return ed - bg;\
+    \ }\n\n        int operator[](int i) const { return bg[i]; }\n\n        std::vector<int>\
     \ to_vec() const { return std::vector<int>(bg, ed); }\n    };\n\n    static auto\
     \ primes(int n) {\n        if (n >= (int)_lpf.size()) set_upper(n);\n        return\
     \ PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(), n));\n\
@@ -47,7 +47,7 @@ data:
     \    assert(n >= 0);\n    S r = 1, y = x;\n    while (n) {\n        if (n & 1)\
     \ r *= y;\n        if (n >>= 1) y *= y;\n    }\n    return r;\n}\n\n} // namespace\
     \ kk2\n\n\n#line 9 \"math/multiplicative_function/arbitrary_table.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class T, T (*f)(long long, long long)>\nstruct MultiplicativeFunctionTable\
+    \ kk2 {\n\ntemplate <class T, T (*f)(long long, long long)> struct MultiplicativeFunctionTable\
     \ {\n  private:\n    static inline std::vector<int> _v_lpf{0, 0};\n    static\
     \ inline std::vector<T> _table{0, 1};\n\n  public:\n    MultiplicativeFunctionTable()\
     \ = delete;\n\n    static void set_upper(int m) {\n        if ((int)_table.size()\
@@ -67,7 +67,7 @@ data:
   code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_ARBITRARY_TABLE_HPP\n#define KK2_MATH_MULTIPLICATIVE_FUNCTION_ARBITRARY_TABLE_HPP\
     \ 1\n\n#include <cassert>\n#include <vector>\n\n#include \"../lpf_table.hpp\"\n\
     #include \"../pow.hpp\"\n\nnamespace kk2 {\n\ntemplate <class T, T (*f)(long long,\
-    \ long long)>\nstruct MultiplicativeFunctionTable {\n  private:\n    static inline\
+    \ long long)> struct MultiplicativeFunctionTable {\n  private:\n    static inline\
     \ std::vector<int> _v_lpf{0, 0};\n    static inline std::vector<T> _table{0, 1};\n\
     \n  public:\n    MultiplicativeFunctionTable() = delete;\n\n    static void set_upper(int\
     \ m) {\n        if ((int)_table.size() > m) return;\n        int start = _table.size();\n\
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: math/multiplicative_function/arbitrary_table.hpp
   requiredBy: []
-  timestamp: '2025-02-08 19:46:37+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/multiplicative_function_table.test.cpp

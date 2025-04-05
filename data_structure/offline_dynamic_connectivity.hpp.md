@@ -62,14 +62,14 @@ data:
     \ != -1) {\n                apply(pret, t / 2, e);\n                pret = -1;\n\
     \            } else if (~t & 1 and pret == -1) {\n                pret = t / 2;\n\
     \            }\n        }\n        if (pret != -1) apply(pret, q, pree);\n   \
-    \ }\n\n    template <class Query>\n    void run(const Query &query) {\n      \
-    \  auto dfs = [&](auto self, int now) -> void {\n            if (now - sz >= q)\
-    \ return;\n            uf.snapshot();\n            for (int i = siz[now - 1];\
-    \ i < siz[now]; i++) uf.unite(seg[i].first, seg[i].second);\n            if (now\
-    \ >= sz) {\n                query(now - sz);\n            } else {\n         \
-    \       self(self, now * 2);\n                self(self, now * 2 + 1);\n     \
-    \       }\n            uf.rollback();\n        };\n        dfs(dfs, 1);\n    }\n\
-    };\n\n\n} // namespace kk2\n\n\n"
+    \ }\n\n    template <class Query> void run(const Query &query) {\n        auto\
+    \ dfs = [&](auto self, int now) -> void {\n            if (now - sz >= q) return;\n\
+    \            uf.snapshot();\n            for (int i = siz[now - 1]; i < siz[now];\
+    \ i++) uf.unite(seg[i].first, seg[i].second);\n            if (now >= sz) {\n\
+    \                query(now - sz);\n            } else {\n                self(self,\
+    \ now * 2);\n                self(self, now * 2 + 1);\n            }\n       \
+    \     uf.rollback();\n        };\n        dfs(dfs, 1);\n    }\n};\n\n\n} // namespace\
+    \ kk2\n\n\n"
   code: "#ifndef KK2_DATA_STRUCTURE_OFFLINE_DYNAMIC_CONNECTIVITY_HPP\n#define KK2_DATA_STRUCTURE_OFFLINE_DYNAMIC_CONNECTIVITY_HPP\
     \ 1\n\n#include <algorithm>\n#include <unordered_map>\n#include <utility>\n#include\
     \ <vector>\n\n#include \"../unionfind/rollback.hpp\"\n\nnamespace kk2 {\n\nstruct\
@@ -104,20 +104,20 @@ data:
     \ != -1) {\n                apply(pret, t / 2, e);\n                pret = -1;\n\
     \            } else if (~t & 1 and pret == -1) {\n                pret = t / 2;\n\
     \            }\n        }\n        if (pret != -1) apply(pret, q, pree);\n   \
-    \ }\n\n    template <class Query>\n    void run(const Query &query) {\n      \
-    \  auto dfs = [&](auto self, int now) -> void {\n            if (now - sz >= q)\
-    \ return;\n            uf.snapshot();\n            for (int i = siz[now - 1];\
-    \ i < siz[now]; i++) uf.unite(seg[i].first, seg[i].second);\n            if (now\
-    \ >= sz) {\n                query(now - sz);\n            } else {\n         \
-    \       self(self, now * 2);\n                self(self, now * 2 + 1);\n     \
-    \       }\n            uf.rollback();\n        };\n        dfs(dfs, 1);\n    }\n\
-    };\n\n\n} // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_OFFLINE_DYNAMIC_CONNECTIVITY_HPP\n"
+    \ }\n\n    template <class Query> void run(const Query &query) {\n        auto\
+    \ dfs = [&](auto self, int now) -> void {\n            if (now - sz >= q) return;\n\
+    \            uf.snapshot();\n            for (int i = siz[now - 1]; i < siz[now];\
+    \ i++) uf.unite(seg[i].first, seg[i].second);\n            if (now >= sz) {\n\
+    \                query(now - sz);\n            } else {\n                self(self,\
+    \ now * 2);\n                self(self, now * 2 + 1);\n            }\n       \
+    \     uf.rollback();\n        };\n        dfs(dfs, 1);\n    }\n};\n\n\n} // namespace\
+    \ kk2\n\n#endif // KK2_DATA_STRUCTURE_OFFLINE_DYNAMIC_CONNECTIVITY_HPP\n"
   dependsOn:
   - unionfind/rollback.hpp
   isVerificationFile: false
   path: data_structure/offline_dynamic_connectivity.hpp
   requiredBy: []
-  timestamp: '2025-03-02 17:31:18+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/offline_dynamic_connectivity.test.cpp

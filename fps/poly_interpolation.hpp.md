@@ -1,23 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: fps/chirp_Z.hpp
     title: fps/chirp_Z.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: fps/poly_multi_eval.hpp
     title: fps/poly_multi_eval.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_interpolation.test.cpp
-    title: verify/yosupo_fps/poly_interpolation.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://noshi91.github.io/algorithm-encyclopedia/polynomial-interpolation-geometric#fn:Bostan
@@ -149,10 +143,8 @@ data:
   path: fps/poly_interpolation.hpp
   requiredBy: []
   timestamp: '2025-03-02 21:17:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - verify/yosupo_fps/poly_interpolation.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: fps/poly_interpolation.hpp
 layout: document
 redirect_from:

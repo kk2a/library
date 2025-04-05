@@ -26,8 +26,11 @@ data:
     path: template/type_alias.hpp
     title: template/type_alias.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  - icon: ':question:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -57,18 +60,19 @@ data:
     \ \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - geometry/point.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   - geometry/argument_sort.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
+  - type_traits/integral.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
   path: verify/yosupo_geometry/arg_sort.test.cpp
   requiredBy: []
-  timestamp: '2025-03-28 03:34:37+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/arg_sort.test.cpp

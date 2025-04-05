@@ -1,56 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: bit/bitcount.hpp
-    title: bit/bitcount.hpp
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':question:'
-    path: fps/fps_sparsity_detector.hpp
-    title: fps/fps_sparsity_detector.hpp
-  - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':question:'
-    path: math_mod/garner.hpp
-    title: math_mod/garner.hpp
-  - icon: ':question:'
-    path: math_mod/inv.hpp
-    title: math_mod/inv.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: modint/mont.hpp
-    title: modint/mont.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: fps/fps_arb.hpp
-    title: fps/fps_arb.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-    title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_exp_arb.test.cpp
-    title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_inv_arb.test.cpp
-    title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_log_arb.test.cpp
-    title: verify/yosupo_fps/fps_log_arb.test.cpp
-  _isVerificationFailed: true
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -65,7 +20,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_CONVOLUTION_CONVOLUTION_ARB_HPP\n#define KK2_CONVOLUTION_CONVOLUTION_ARB_HPP\
     \ 1\n\n#include <algorithm>\n#include <vector>\n\n#include \"../math_mod/garner.hpp\"\
     \n#include \"../modint/mont.hpp\"\n#include \"convolution.hpp\"\n\nnamespace kk2\
@@ -93,28 +48,13 @@ data:
     \ i = 0; i < n + m - 1; i++) {\n        a[i] = mint(garner({a1[i].val(), a2[i].val(),\
     \ a3[i].val()}, ps));\n    }\n    return a;\n}\n\n} // namespace kk2\n\n#endif\
     \ // KK2_CONVOLUTION_CONVOLUTION_ARB_HPP\n"
-  dependsOn:
-  - math_mod/garner.hpp
-  - math_mod/inv.hpp
-  - modint/mont.hpp
-  - type_traits/type_traits.hpp
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - fps/fps_sparsity_detector.hpp
-  - bit/bitcount.hpp
+  dependsOn: []
   isVerificationFile: false
   path: convolution/convolution_arb.hpp
-  requiredBy:
-  - fps/fps_arb.hpp
-  timestamp: '2025-03-14 21:44:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
-  - verify/yosupo_fps/fps_log_arb.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: convolution/convolution_arb.hpp
 layout: document
 redirect_from:

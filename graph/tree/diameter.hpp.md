@@ -16,7 +16,7 @@ data:
     \nnamespace kk2 {\n\nnamespace tree_diameter_impl {\n\ntemplate <class G> struct\
     \ result {\n    std::conditional_t<G::weighted, typename G::value_type, int> diameter;\n\
     \    std::vector<int> path;\n};\n\ntemplate <class G, std::enable_if_t<!G::weighted>\
-    \ * = nullptr>\nresult<G> tree_diameter(const G &g) {\n    std::vector<int> dist(g.size(),\
+    \ * = nullptr> result<G> tree_diameter(const G &g) {\n    std::vector<int> dist(g.size(),\
     \ -1), par(g.size(), -1);\n    auto dfs = [&](auto self, int now) -> void {\n\
     \        for (auto &e : g[now]) {\n            if ((int)e == par[now]) continue;\n\
     \            par[(int)e] = now;\n            dist[(int)e] = dist[now] + 1;\n \
@@ -26,7 +26,7 @@ data:
     \ u);\n    int v = std::max_element(std::begin(dist), std::end(dist)) - std::begin(dist);\n\
     \    std::vector<int> path;\n    for (int now = v; now != -1; now = par[now])\
     \ { path.emplace_back(now); }\n    return {dist[v], path};\n}\n\ntemplate <class\
-    \ G, std::enable_if_t<G::weighted> * = nullptr>\nresult<G> tree_diameter(const\
+    \ G, std::enable_if_t<G::weighted> * = nullptr> result<G> tree_diameter(const\
     \ G &g) {\n    using T = typename G::value_type;\n    std::vector<T> dist(g.size(),\
     \ -1);\n    std::vector<int> par(g.size(), -1);\n\n    auto dfs = [&](auto self,\
     \ int now) -> void {\n        for (auto &e : g[now]) {\n            if ((int)e\
@@ -44,7 +44,7 @@ data:
     \ <utility>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace tree_diameter_impl\
     \ {\n\ntemplate <class G> struct result {\n    std::conditional_t<G::weighted,\
     \ typename G::value_type, int> diameter;\n    std::vector<int> path;\n};\n\ntemplate\
-    \ <class G, std::enable_if_t<!G::weighted> * = nullptr>\nresult<G> tree_diameter(const\
+    \ <class G, std::enable_if_t<!G::weighted> * = nullptr> result<G> tree_diameter(const\
     \ G &g) {\n    std::vector<int> dist(g.size(), -1), par(g.size(), -1);\n    auto\
     \ dfs = [&](auto self, int now) -> void {\n        for (auto &e : g[now]) {\n\
     \            if ((int)e == par[now]) continue;\n            par[(int)e] = now;\n\
@@ -55,7 +55,7 @@ data:
     \ std::end(dist)) - std::begin(dist);\n    std::vector<int> path;\n    for (int\
     \ now = v; now != -1; now = par[now]) { path.emplace_back(now); }\n    return\
     \ {dist[v], path};\n}\n\ntemplate <class G, std::enable_if_t<G::weighted> * =\
-    \ nullptr>\nresult<G> tree_diameter(const G &g) {\n    using T = typename G::value_type;\n\
+    \ nullptr> result<G> tree_diameter(const G &g) {\n    using T = typename G::value_type;\n\
     \    std::vector<T> dist(g.size(), -1);\n    std::vector<int> par(g.size(), -1);\n\
     \n    auto dfs = [&](auto self, int now) -> void {\n        for (auto &e : g[now])\
     \ {\n            if ((int)e == par[now]) continue;\n            par[(int)e] =\
@@ -72,7 +72,7 @@ data:
   isVerificationFile: false
   path: graph/tree/diameter.hpp
   requiredBy: []
-  timestamp: '2025-03-28 03:08:58+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/tree_diameter.test.cpp

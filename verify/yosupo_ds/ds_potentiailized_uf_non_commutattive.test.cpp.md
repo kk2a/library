@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'
@@ -23,16 +23,19 @@ data:
     path: template/type_alias.hpp
     title: template/type_alias.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
   - icon: ':question:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
+  - icon: ':x:'
     path: unionfind/potentialized.hpp
     title: unionfind/potentialized.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
@@ -50,7 +53,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\"\
     \ \n\n#include \"../../modint/modint.hpp\"\n#include \"../../unionfind/potentialized.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nstruct A {\n\
@@ -74,7 +77,8 @@ data:
     \ x.a11 << \"\\n\";\n            }\n        }\n    }\n    return 0;\n}\n"
   dependsOn:
   - modint/modint.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   - unionfind/potentialized.hpp
   - template/template.hpp
   - template/constant.hpp
@@ -85,8 +89,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   requiredBy: []
-  timestamp: '2025-03-28 10:46:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-05 12:46:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
 layout: document

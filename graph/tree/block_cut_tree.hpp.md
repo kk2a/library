@@ -77,8 +77,8 @@ data:
     \            if (!buf1[i]) {\n                int k = (int)res.size();\n     \
     \           res.emplace_back();\n                res[k].emplace_back(i);\n   \
     \         }\n        return res;\n    }\n};\n\n} // namespace kk2\n\n\n#line 7\
-    \ \"graph/tree/block_cut_tree.hpp\"\n\nnamespace kk2 {\n\ntemplate <class G>\n\
-    struct BlockCutTree : BCC<G> {\n    std::vector<int> comp_v;\n    std::vector<std::vector<int>>\
+    \ \"graph/tree/block_cut_tree.hpp\"\n\nnamespace kk2 {\n\ntemplate <class G> struct\
+    \ BlockCutTree : BCC<G> {\n    std::vector<int> comp_v;\n    std::vector<std::vector<int>>\
     \ group_v;\n    G forest;\n    int off;\n\n    BlockCutTree(const G &g_) : BCC<G>(g_)\
     \ { init_bct(); }\n\n    int size() const { return group_v.size(); }\n\n    bool\
     \ is_articulation(int v) const { return comp_v[v] >= off; }\n\n  private:\n  \
@@ -97,13 +97,13 @@ data:
     \n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP\n#define KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP\
     \ 1\n\n#include <vector>\n\n#include \"../bcc.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class G>\nstruct BlockCutTree : BCC<G> {\n    std::vector<int> comp_v;\n  \
-    \  std::vector<std::vector<int>> group_v;\n    G forest;\n    int off;\n\n   \
-    \ BlockCutTree(const G &g_) : BCC<G>(g_) { init_bct(); }\n\n    int size() const\
-    \ { return group_v.size(); }\n\n    bool is_articulation(int v) const { return\
-    \ comp_v[v] >= off; }\n\n  private:\n    void init_bct() {\n        comp_v.resize(this->n,\
-    \ -1);\n        auto bcc_v = this->get_bcc_vertices();\n        off = bcc_v.size();\n\
-    \        group_v.resize(bcc_v.size() + this->articulations.size());\n        forest\
+    \ <class G> struct BlockCutTree : BCC<G> {\n    std::vector<int> comp_v;\n   \
+    \ std::vector<std::vector<int>> group_v;\n    G forest;\n    int off;\n\n    BlockCutTree(const\
+    \ G &g_) : BCC<G>(g_) { init_bct(); }\n\n    int size() const { return group_v.size();\
+    \ }\n\n    bool is_articulation(int v) const { return comp_v[v] >= off; }\n\n\
+    \  private:\n    void init_bct() {\n        comp_v.resize(this->n, -1);\n    \
+    \    auto bcc_v = this->get_bcc_vertices();\n        off = bcc_v.size();\n   \
+    \     group_v.resize(bcc_v.size() + this->articulations.size());\n        forest\
     \ = G(group_v.size());\n        for (int i = 0; i < (int)this->articulations.size();\
     \ ++i) {\n            comp_v[this->articulations[i]] = i + off;\n            group_v[i\
     \ + off].emplace_back(this->articulations[i]);\n        }\n\n        std::vector<int>\
@@ -120,7 +120,7 @@ data:
   isVerificationFile: false
   path: graph/tree/block_cut_tree.hpp
   requiredBy: []
-  timestamp: '2025-03-28 03:08:58+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp

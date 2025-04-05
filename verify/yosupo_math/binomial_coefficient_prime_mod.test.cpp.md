@@ -1,43 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: math_mod/comb.hpp
-    title: math_mod/comb.hpp
-  - icon: ':question:'
-    path: modint/modint.hpp
-    title: modint/modint.hpp
-  - icon: ':question:'
-    path: template/constant.hpp
-    title: template/constant.hpp
-  - icon: ':question:'
-    path: template/fastio.hpp
-    title: template/fastio.hpp
-  - icon: ':question:'
-    path: template/io_util.hpp
-    title: template/io_util.hpp
-  - icon: ':question:'
-    path: template/macros.hpp
-    title: template/macros.hpp
-  - icon: ':question:'
-    path: template/template.hpp
-    title: template/template.hpp
-  - icon: ':question:'
-    path: template/type_alias.hpp
-    title: template/type_alias.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
-    links:
-    - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
+  attributes: {}
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -47,10 +16,11 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../type_traits/type_traits.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
     \ \n\n#include \"../../math_mod/comb.hpp\"\n#include \"../../modint/modint.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing mint\
@@ -58,20 +28,11 @@ data:
     \    kk2::Comb<mint>::set_upper(1e7);\n    rep (t) {\n        int n, k;\n    \
     \    kin >> n >> k;\n        kout << kk2::Comb<mint>::binom(n, k) << \"\\n\";\n\
     \    }\n\n    return 0;\n}\n"
-  dependsOn:
-  - math_mod/comb.hpp
-  - type_traits/type_traits.hpp
-  - modint/modint.hpp
-  - template/template.hpp
-  - template/constant.hpp
-  - template/type_alias.hpp
-  - template/fastio.hpp
-  - template/io_util.hpp
-  - template/macros.hpp
+  dependsOn: []
   isVerificationFile: true
   path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-03-28 10:46:22+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp

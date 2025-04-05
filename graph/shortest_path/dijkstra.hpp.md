@@ -14,7 +14,7 @@ data:
   bundledCode: "#line 1 \"graph/shortest_path/dijkstra.hpp\"\n\n\n\n#include <limits>\n\
     #include <queue>\n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\n\
     namespace shortest_path_impl {\n\nstruct dij_edge {\n    int to, id;\n};\n\ntemplate\
-    \ <class T>\nstruct dij_result {\n    std::vector<T> dist;\n    std::vector<dij_edge>\
+    \ <class T> struct dij_result {\n    std::vector<T> dist;\n    std::vector<dij_edge>\
     \ prev;\n};\n\ntemplate <class WG, class T = typename WG::value_type>\ndij_result<T>\
     \ dijkstra(const WG &g, int start, T inf = std::numeric_limits<T>::max()) {\n\
     \    static_assert(WG::weighted, \"dijkstra requires weighted graph\");\n    T\
@@ -33,7 +33,7 @@ data:
   code: "#ifndef KK2_GRAPH_SHORTEST_PATH_DIJKSTRA_HPP\n#define KK2_GRAPH_SHORTEST_PATH_DIJKSTRA_HPP\
     \ 1\n\n#include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\
     \nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\nstruct dij_edge {\n   \
-    \ int to, id;\n};\n\ntemplate <class T>\nstruct dij_result {\n    std::vector<T>\
+    \ int to, id;\n};\n\ntemplate <class T> struct dij_result {\n    std::vector<T>\
     \ dist;\n    std::vector<dij_edge> prev;\n};\n\ntemplate <class WG, class T =\
     \ typename WG::value_type>\ndij_result<T> dijkstra(const WG &g, int start, T inf\
     \ = std::numeric_limits<T>::max()) {\n    static_assert(WG::weighted, \"dijkstra\
@@ -53,7 +53,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/dijkstra.hpp
   requiredBy: []
-  timestamp: '2025-03-28 03:08:58+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/graph_shortest_path.test.cpp

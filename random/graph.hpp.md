@@ -14,8 +14,8 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -35,11 +35,11 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_RANDOM_GRAPH_HPP\n#define KK2_RANDOM_GRAPH_HPP 1\n\n#include\
     \ <type_traits>\n#include <vector>\n\n#include \"../graph/graph.hpp\"\n#include\
     \ \"gen.hpp\"\n\nnamespace kk2 {\n\nnamespace random {\n\ntemplate <bool is_weighted,\
-    \ bool is_directed, class T = int>\nusing adjlist = std::conditional<is_weighted,\
+    \ bool is_directed, class T = int> using adjlist =\n    std::conditional<is_weighted,\
     \ WAdjList<T, is_directed>, AdjList<is_directed>>;\n\ntemplate <bool is_weighted,\
     \ bool is_directed, class T = int>\nvoid add_edge(adjlist<is_weighted, is_directed,\
     \ T> &g, int from, int to, T l = 0, T r = 1e9) {\n    if constexpr (is_weighted)\
@@ -57,14 +57,14 @@ data:
     \n} // namespace kk2\n\n#endif // KK2_RANDOM_GRAPH_HPP\n"
   dependsOn:
   - graph/graph.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   - graph/edge.hpp
   - random/gen.hpp
   - random/seed.hpp
   isVerificationFile: false
   path: random/graph.hpp
   requiredBy: []
-  timestamp: '2025-03-28 03:08:58+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/graph.hpp

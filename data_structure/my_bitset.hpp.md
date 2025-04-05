@@ -5,8 +5,11 @@ data:
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  - icon: ':question:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: matrix/matrix_F2.hpp
@@ -41,11 +44,11 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_DATA_STRUCTURE_MY_BITSET_HPP\n#define KK2_DATA_STRUCTURE_MY_BITSET_HPP\
     \ 1\n\n#include <algorithm>\n#include <bitset>\n#include <cassert>\n#include <iostream>\n\
     #include <iterator>\n#include <string>\n#include <vector>\n\n#include \"../bit/bitcount.hpp\"\
-    \n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\nstruct DynamicBitSet\
+    \n#include \"../type_traits/io.hpp\"\n\nnamespace kk2 {\n\nstruct DynamicBitSet\
     \ {\n    using T = DynamicBitSet;\n    using UInt = __uint128_t;\n    constexpr\
     \ static int BLOCK_SIZE = sizeof(UInt) * 8;\n    constexpr static int BLOCK_SIZE_LOG\
     \ = __builtin_ctz(BLOCK_SIZE);\n    constexpr static int BLOCK_MASK = BLOCK_SIZE\
@@ -202,12 +205,13 @@ data:
     \ is;\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_MY_BITSET_HPP\n"
   dependsOn:
   - bit/bitcount.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: data_structure/my_bitset.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-04-05 10:48:22+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp

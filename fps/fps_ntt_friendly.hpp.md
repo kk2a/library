@@ -1,125 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: bit/bitcount.hpp
-    title: bit/bitcount.hpp
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':question:'
-    path: fps/fps_sparsity_detector.hpp
-    title: fps/fps_sparsity_detector.hpp
-  - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: fps/fps_multivariate.hpp
-    title: fps/fps_multivariate.hpp
-  - icon: ':question:'
-    path: math_mod/comb_large.hpp
-    title: math_mod/comb_large.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/large_fact_arb_mod.test.cpp
-    title: verify/unit_test/large_fact_arb_mod.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_composition.test.cpp
-    title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_composition_inv.test.cpp
-    title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_exp.test.cpp
-    title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_inv.test.cpp
-    title: verify/yosupo_fps/fps_inv.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_log.test.cpp
-    title: verify/yosupo_fps/fps_log.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-    title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-    title: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_pow.test.cpp
-    title: verify/yosupo_fps/fps_pow.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-    title: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_sparse_exp.test.cpp
-    title: verify/yosupo_fps/fps_sparse_exp.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_sparse_inv.test.cpp
-    title: verify/yosupo_fps/fps_sparse_inv.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_sparse_log.test.cpp
-    title: verify/yosupo_fps/fps_sparse_log.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_sparse_pow.test.cpp
-    title: verify/yosupo_fps/fps_sparse_pow.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-    title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_sqrt.test.cpp
-    title: verify/yosupo_fps/fps_sqrt.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_division.test.cpp
-    title: verify/yosupo_fps/poly_division.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_interpolation.test.cpp
-    title: verify/yosupo_fps/poly_interpolation.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_inv.test.cpp
-    title: verify/yosupo_fps/poly_inv.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_root_finding.test.cpp
-    title: verify/yosupo_fps/poly_root_finding.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-    title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_taylor_shift.test.cpp
-    title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
-    title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/enumerate_bell_number.test.cpp
-    title: verify/yosupo_math/enumerate_bell_number.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-    title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-    title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/many_factrials.test.cpp
-    title: verify/yosupo_math/many_factrials.test.cpp
-  - icon: ':x:'
-    path: verify/yuki/yuki_1510.test.cpp
-    title: verify/yuki/yuki_1510.test.cpp
-  _isVerificationFailed: true
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -133,28 +19,28 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 2 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_FPS_FPS_NTT_FRIENDLY_HPP\n#define KK2_FPS_FPS_NTT_FRIENDLY_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include\
     \ <utility>\n#include <vector>\n\n#include \"../convolution/convolution.hpp\"\n\
-    #include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-    \ mint>\nstruct FormalPowerSeriesNTTFriendly : std::vector<mint> {\n    using\
-    \ std::vector<mint>::vector;\n    using FPS = FormalPowerSeriesNTTFriendly;\n\n\
-    \    template <class OStream, is_ostream_t<OStream> * = nullptr>\n    void debug_output(OStream\
-    \ &os) const {\n        os << \"[\";\n        for (int i = 0; i < (int)this->size();\
-    \ i++) {\n            os << (*this)[i] << (i + 1 == (int)this->size() ? \"\" :\
-    \ \", \");\n        }\n        os << \"]\";\n    }\n\n    template <class OStream,\
-    \ is_ostream_t<OStream> * = nullptr>\n    void output(OStream &os) const {\n \
-    \       for (int i = 0; i < (int)this->size(); i++) {\n            os << (*this)[i]\
+    #include \"../type_traits/io.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\
+    \ struct FormalPowerSeriesNTTFriendly : std::vector<mint> {\n    using std::vector<mint>::vector;\n\
+    \    using FPS = FormalPowerSeriesNTTFriendly;\n\n    template <class OStream,\
+    \ is_ostream_t<OStream> * = nullptr>\n    void debug_output(OStream &os) const\
+    \ {\n        os << \"[\";\n        for (int i = 0; i < (int)this->size(); i++)\
+    \ {\n            os << (*this)[i] << (i + 1 == (int)this->size() ? \"\" : \",\
+    \ \");\n        }\n        os << \"]\";\n    }\n\n    template <class OStream,\
+    \ is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {\n      \
+    \  for (int i = 0; i < (int)this->size(); i++) {\n            os << (*this)[i]\
     \ << (i + 1 == (int)this->size() ? \"\\n\" : \" \");\n        }\n    }\n\n   \
     \ template <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream\
     \ &operator<<(OStream &os, const FPS &fps_) {\n        for (int i = 0; i < (int)fps_.size();\
     \ i++) {\n            os << fps_[i] << (i + 1 == (int)fps_.size() ? \"\" : \"\
     \ \");\n        }\n        return os;\n    }\n\n    template <class IStream, is_istream_t<IStream>\
-    \ * = nullptr>\n    FPS &input(IStream &is) {\n        for (int i = 0; i < (int)this->size();\
+    \ * = nullptr> FPS &input(IStream &is) {\n        for (int i = 0; i < (int)this->size();\
     \ i++) is >> (*this)[i];\n        return *this;\n    }\n\n    template <class\
     \ IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream\
     \ &is, FPS &fps_) {\n        for (auto &x : fps_) is >> x;\n        return is;\n\
@@ -240,8 +126,8 @@ data:
     \  if (k < j) break;\n                int i = k - j;\n                g[k + 1]\
     \ -= g[i + 1] * fj * (i + 1);\n            }\n            g[k + 1] *= inv[k +\
     \ 1];\n            if (k + 1 < int(this->size())) g[k + 1] += (*this)[k + 1];\n\
-    \        }\n\n        return g;\n    }\n\n    template <class T>\n    FPS pow(T\
-    \ k, int deg = -1) const {\n        const int n = this->size();\n        if (deg\
+    \        }\n\n        return g;\n    }\n\n    template <class T> FPS pow(T k,\
+    \ int deg = -1) const {\n        const int n = this->size();\n        if (deg\
     \ == -1) deg = n;\n        if (k == 0) {\n            FPS ret(deg);\n        \
     \    if (deg > 0) ret[0] = mint(1);\n            return ret;\n        }\n    \
     \    for (int i = 0; i < n; i++) {\n            if ((*this)[i] != mint(0)) {\n\
@@ -250,8 +136,8 @@ data:
     \                ret = (ret << (i * k)).pre(deg);\n                if ((int)ret.size()\
     \ < deg) ret.resize(deg, mint(0));\n                return ret;\n            }\n\
     \            if (__int128_t(i + 1) * k >= deg) return FPS(deg, mint(0));\n   \
-    \     }\n        return FPS(deg, mint(0));\n    }\n\n    template <class T>\n\
-    \    FPS sparse_pow(T k, int deg = -1) const {\n        if (deg == -1) deg = this->size();\n\
+    \     }\n        return FPS(deg, mint(0));\n    }\n\n    template <class T> FPS\
+    \ sparse_pow(T k, int deg = -1) const {\n        if (deg == -1) deg = this->size();\n\
     \        if (k == 0) {\n            FPS ret(deg);\n            if (deg > 0) ret[0]\
     \ = mint(1);\n            return ret;\n        }\n\n        int zero = 0;\n  \
     \      while (zero != int(this->size()) && (*this)[zero] == mint(0)) zero++;\n\
@@ -309,13 +195,13 @@ data:
     \ &r);\n\n    FPS operator*(const FPS &r) const { return FPS(*this) *= r; }\n\n\
     \    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
     \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\ntemplate\
-    \ <class mint>\nFormalPowerSeriesNTTFriendly<mint> &\nFormalPowerSeriesNTTFriendly<mint>::operator*=(const\
+    \ <class mint> FormalPowerSeriesNTTFriendly<mint> &\nFormalPowerSeriesNTTFriendly<mint>::operator*=(const\
     \ FormalPowerSeriesNTTFriendly<mint> &r) {\n    if (this->empty() || r.empty())\
     \ {\n        this->clear();\n        return *this;\n    }\n    convolution(*this,\
-    \ r);\n    return *this;\n}\n\ntemplate <class mint>\nvoid FormalPowerSeriesNTTFriendly<mint>::but()\
-    \ {\n    butterfly(*this);\n}\n\ntemplate <class mint>\nvoid FormalPowerSeriesNTTFriendly<mint>::ibut()\
-    \ {\n    butterfly_inv(*this);\n}\n\ntemplate <class mint>\nvoid FormalPowerSeriesNTTFriendly<mint>::db()\
-    \ {\n    doubling(*this);\n}\n\ntemplate <class mint>\nint FormalPowerSeriesNTTFriendly<mint>::but_pr()\
+    \ r);\n    return *this;\n}\n\ntemplate <class mint> void FormalPowerSeriesNTTFriendly<mint>::but()\
+    \ { butterfly(*this); }\n\ntemplate <class mint> void FormalPowerSeriesNTTFriendly<mint>::ibut()\
+    \ { butterfly_inv(*this); }\n\ntemplate <class mint> void FormalPowerSeriesNTTFriendly<mint>::db()\
+    \ { doubling(*this); }\n\ntemplate <class mint> int FormalPowerSeriesNTTFriendly<mint>::but_pr()\
     \ {\n    return primitive_root<mint::getmod()>;\n}\n\ntemplate <class mint>\n\
     FormalPowerSeriesNTTFriendly<mint> FormalPowerSeriesNTTFriendly<mint>::inv(int\
     \ deg) const {\n    assert((*this)[0] != mint(0));\n    if (deg == -1) deg = (int)this->size();\n\
@@ -351,53 +237,15 @@ data:
     \        std::fill(std::begin(x), std::begin(x) + m, mint(0));\n        x.but();\n\
     \        x.inplace_dot(y);\n        x.ibut();\n        b.insert(std::end(b), std::begin(x)\
     \ + m, std::end(x));\n    }\n    return FormalPowerSeriesNTTFriendly<mint>(std::begin(b),\
-    \ std::begin(b) + deg);\n}\n\ntemplate <class mint>\nusing FPSNTT = FormalPowerSeriesNTTFriendly<mint>;\n\
+    \ std::begin(b) + deg);\n}\n\ntemplate <class mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;\n\
     \n} // namespace kk2\n\n#endif // KK2_FPS_FPS_NTT_FRIENDLY_HPP\n"
-  dependsOn:
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
-  - fps/fps_sparsity_detector.hpp
-  - bit/bitcount.hpp
+  dependsOn: []
   isVerificationFile: false
   path: fps/fps_ntt_friendly.hpp
-  requiredBy:
-  - math_mod/comb_large.hpp
-  - fps/fps_multivariate.hpp
-  timestamp: '2025-03-14 21:44:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - verify/yosupo_math/enumerate_bell_number.test.cpp
-  - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - verify/yosupo_math/many_factrials.test.cpp
-  - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
-  - verify/yuki/yuki_1510.test.cpp
-  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
-  - verify/yosupo_fps/fps_pow.test.cpp
-  - verify/yosupo_fps/fps_sqrt.test.cpp
-  - verify/yosupo_fps/fps_sparse_log.test.cpp
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - verify/yosupo_fps/fps_sparse_pow.test.cpp
-  - verify/yosupo_fps/poly_interpolation.test.cpp
-  - verify/yosupo_fps/fps_composition_inv.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - verify/yosupo_fps/fps_composition.test.cpp
-  - verify/yosupo_fps/fps_inv.test.cpp
-  - verify/yosupo_fps/fps_sparse_inv.test.cpp
-  - verify/yosupo_fps/poly_division.test.cpp
-  - verify/yosupo_fps/fps_sparse_exp.test.cpp
-  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-  - verify/yosupo_fps/poly_inv.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-  - verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
-  - verify/yosupo_fps/poly_root_finding.test.cpp
-  - verify/yosupo_fps/fps_log.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: fps/fps_ntt_friendly.hpp
 layout: document
 redirect_from:

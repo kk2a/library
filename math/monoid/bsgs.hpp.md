@@ -13,7 +13,7 @@ data:
     links: []
   bundledCode: "#line 1 \"math/monoid/bsgs.hpp\"\n\n\n\n#include <cmath>\n#include\
     \ <unordered_set>\n\n#line 1 \"math/monoid/pow.hpp\"\n\n\n\nnamespace kk2 {\n\n\
-    namespace monoid {\n\ntemplate <class M>\nM pow(M a, long long n) {\n    M res\
+    namespace monoid {\n\ntemplate <class M> M pow(M a, long long n) {\n    M res\
     \ = M::unit();\n    while (n > 0) {\n        if (n & 1) res = M::op(res, a);\n\
     \        if (n >>= 1) a = M::op(a, a);\n    }\n    return res;\n}\n\n} // namespace\
     \ monoid\n\n} // namespace kk2\n\n\n#line 8 \"math/monoid/bsgs.hpp\"\n\nnamespace\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: math/monoid/bsgs.hpp
   requiredBy: []
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/bsgs.hpp

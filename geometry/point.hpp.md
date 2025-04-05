@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: geometry/argument_sort.hpp
@@ -42,7 +42,7 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ geometry/point.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_GEOMETRY_POINT_HPP\n#define KK2_GEOMETRY_POINT_HPP 1\n\n#pragma\
-    \ once // oj-verify\n\n#include <algorithm>\n#include <cmath>\n\n#include \"../type_traits/type_traits.hpp\"\
+    \ once // oj-verify\n\n#include <algorithm>\n#include <cmath>\n\n#include \"../type_traits/io.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename T> struct Point {\n    static long double\
     \ PI;\n    T x, y;\n\n    Point(T x = 0, T y = 0) : x(x), y(y) {}\n\n    bool\
     \ operator<(const Point &p) const { return x != p.x ? x < p.x : y < p.y; }\n\n\
@@ -109,13 +109,13 @@ data:
     \    return is >> p.x >> p.y;\n    }\n};\ntemplate <typename T> long double Point<T>::PI\
     \ = std::acos(-1.0);\n\n} // namespace kk2\n\n#endif // KK2_GEOMETRY_POINT_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: geometry/point.hpp
   requiredBy:
   - geometry/static_convex_hull.hpp
   - geometry/argument_sort.hpp
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-04-05 10:48:22+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/arg_sort.test.cpp

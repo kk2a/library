@@ -1,13 +1,58 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: template/type_alias.hpp
-    title: template/type_alias.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':question:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':heavy_check_mark:'
+    path: data_structure/bit_vector.hpp
+    title: data_structure/bit_vector.hpp
   - icon: ':warning:'
-    path: template/procon.hpp
-    title: template/procon.hpp
+    path: data_structure/convex_hull_trick_add_monotone.hpp
+    title: data_structure/convex_hull_trick_add_monotone.hpp
+  - icon: ':x:'
+    path: data_structure/my_bitset.hpp
+    title: data_structure/my_bitset.hpp
+  - icon: ':x:'
+    path: data_structure/w_ary_tree.hpp
+    title: data_structure/w_ary_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: data_structure/wavelet_matrix.hpp
+    title: data_structure/wavelet_matrix.hpp
+  - icon: ':warning:'
+    path: fps/fps_sparsity_detector.hpp
+    title: fps/fps_sparsity_detector.hpp
+  - icon: ':warning:'
+    path: fps/fps_sqrt.hpp
+    title: fps/fps_sqrt.hpp
+  - icon: ':x:'
+    path: math_mod/mod_sqrt.hpp
+    title: math_mod/mod_sqrt.hpp
+  - icon: ':x:'
+    path: matrix/matrix_F2.hpp
+    title: matrix/matrix_F2.hpp
+  - icon: ':x:'
+    path: modint/modint.hpp
+    title: modint/modint.hpp
+  - icon: ':question:'
+    path: modint/modint_2_61m1.hpp
+    title: modint/modint_2_61m1.hpp
+  - icon: ':question:'
+    path: modint/mont.hpp
+    title: modint/mont.hpp
+  - icon: ':x:'
+    path: modint/mont_arb.hpp
+    title: modint/mont_arb.hpp
+  - icon: ':question:'
+    path: random/hash.hpp
+    title: random/hash.hpp
+  - icon: ':question:'
+    path: string/rolling_hash.hpp
+    title: string/rolling_hash.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -248,135 +293,71 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: '#line 1 "template/constant.hpp"
-
-
-
-
-    #line 1 "template/type_alias.hpp"
-
-
-
-
-    #include <functional>
-
-    #include <queue>
-
-    #include <utility>
-
-    #include <vector>
-
-
-    using u32 = unsigned int;
-
-    using i64 = long long;
-
-    using u64 = unsigned long long;
-
-    using i128 = __int128_t;
-
-    using u128 = __uint128_t;
-
-
-    using pi = std::pair<int, int>;
-
-    using pl = std::pair<i64, i64>;
-
-    using pil = std::pair<int, i64>;
-
-    using pli = std::pair<i64, int>;
-
-
-    template <class T> using vc = std::vector<T>;
-
-    template <class T> using vvc = std::vector<vc<T>>;
-
-    template <class T> using vvvc = std::vector<vvc<T>>;
-
-    template <class T> using vvvvc = std::vector<vvvc<T>>;
-
-
-    template <class T> using pq = std::priority_queue<T>;
-
-    template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-
-
-
-    #line 5 "template/constant.hpp"
-
-
-    template <class T> constexpr T infty = 0;
-
-    template <> constexpr int infty<int> = (1 << 30) - 123;
-
-    template <> constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);
-
-    template <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);
-
-    template <> constexpr u32 infty<u32> = infty<int>;
-
-    template <> constexpr u64 infty<u64> = infty<i64>;
-
-    template <> constexpr u128 infty<u128> = infty<i128>;
-
-    template <> constexpr double infty<double> = infty<i64>;
-
-    template <> constexpr long double infty<long double> = infty<i64>;
-
-
-    constexpr int mod = 998244353;
-
-    constexpr int modu = 1e9 + 7;
-
-    constexpr long double PI = 3.14159265358979323846;
-
-
-
-    '
-  code: '#ifndef KK2_TEMPLATE_CONSTANT_HPP
-
-    #define KK2_TEMPLATE_CONSTANT_HPP 1
-
-
-    #include "type_alias.hpp"
-
-
-    template <class T> constexpr T infty = 0;
-
-    template <> constexpr int infty<int> = (1 << 30) - 123;
-
-    template <> constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);
-
-    template <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);
-
-    template <> constexpr u32 infty<u32> = infty<int>;
-
-    template <> constexpr u64 infty<u64> = infty<i64>;
-
-    template <> constexpr u128 infty<u128> = infty<i128>;
-
-    template <> constexpr double infty<double> = infty<i64>;
-
-    template <> constexpr long double infty<long double> = infty<i64>;
-
-
-    constexpr int mod = 998244353;
-
-    constexpr int modu = 1e9 + 7;
-
-    constexpr long double PI = 3.14159265358979323846;
-
-
-    #endif // KK2_TEMPLATE_CONSTANT_HPP
-
-    '
-  dependsOn:
-  - template/type_alias.hpp
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
+  code: "#ifndef KK2_TYPE_TRAITS_INTERGRAL_HPP\n#define KK2_TYPE_TRAITS_INTERGRAL_HPP\
+    \ 1\n\n#pragma once // oj-verify\n\n#include <type_traits>\n\nnamespace kk2 {\n\
+    \n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128 =\n    typename\
+    \ std::conditional<std::is_same<T, __int128_t>::value\n                      \
+    \            or std::is_same<T, __int128>::value,\n                          \
+    \    std::true_type,\n                              std::false_type>::type;\n\n\
+    template <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \ __uint128_t>::value\n                                  or std::is_same<T, unsigned\
+    \ __int128>::value,\n                              std::true_type,\n         \
+    \                     std::false_type>::type;\n\ntemplate <typename T> using is_integral\
+    \ =\n    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+    \                                  or is_unsigned_int128<T>::value,\n        \
+    \                      std::true_type,\n                              std::false_type>::type;\n\
+    \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
+    \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\ntemplate <typename T>\
+    \ using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+    \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+    \                              std::false_type>::type;\n\ntemplate <typename T>\
+    \ using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename T>\
+    \ using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+    \                              make_unsigned_int128<T>,\n                    \
+    \          typename std::conditional<std::is_signed<T>::value,\n             \
+    \                                           std::make_unsigned<T>,\n         \
+    \                                               std::common_type<T>>::type>::type;\n\
+    \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+    template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
+    template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
+    template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
+    \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
+    template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
+    template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+    \n} // namespace kk2\n\n#endif // KK2_TYPE_TRAITS_INTERGRAL_HPP\n"
+  dependsOn: []
   isVerificationFile: false
-  path: template/constant.hpp
+  path: type_traits/integral.hpp
   requiredBy:
-  - template/procon.hpp
+  - matrix/matrix_F2.hpp
+  - template/fastio.hpp
   - template/template.hpp
+  - string/rolling_hash.hpp
+  - random/hash.hpp
+  - modint/modint.hpp
+  - modint/mont.hpp
+  - modint/modint_2_61m1.hpp
+  - modint/mont_arb.hpp
+  - data_structure/w_ary_tree.hpp
+  - data_structure/bit_vector.hpp
+  - data_structure/convex_hull_trick_add_monotone.hpp
+  - data_structure/wavelet_matrix.hpp
+  - data_structure/my_bitset.hpp
+  - math_mod/mod_sqrt.hpp
+  - bit/bitcount.hpp
+  - fps/fps_sparsity_detector.hpp
+  - fps/fps_sqrt.hpp
   timestamp: '2025-04-05 10:48:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -457,10 +438,10 @@ data:
   - verify/yuki/yuki_0430.test.cpp
   - verify/yuki/yuki_1326.test.cpp
   - verify/yuki/yuki_0430_2.test.cpp
-documentation_of: template/constant.hpp
+documentation_of: type_traits/integral.hpp
 layout: document
 redirect_from:
-- /library/template/constant.hpp
-- /library/template/constant.hpp.html
-title: template/constant.hpp
+- /library/type_traits/integral.hpp
+- /library/type_traits/integral.hpp.html
+title: type_traits/integral.hpp
 ---

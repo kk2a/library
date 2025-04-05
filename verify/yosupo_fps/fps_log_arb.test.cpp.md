@@ -1,73 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: bit/bitcount.hpp
-    title: bit/bitcount.hpp
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':question:'
-    path: convolution/convolution_arb.hpp
-    title: convolution/convolution_arb.hpp
-  - icon: ':x:'
-    path: fps/fps_arb.hpp
-    title: fps/fps_arb.hpp
-  - icon: ':question:'
-    path: fps/fps_sparsity_detector.hpp
-    title: fps/fps_sparsity_detector.hpp
-  - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':question:'
-    path: math_mod/garner.hpp
-    title: math_mod/garner.hpp
-  - icon: ':question:'
-    path: math_mod/inv.hpp
-    title: math_mod/inv.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: modint/mont.hpp
-    title: modint/mont.hpp
-  - icon: ':question:'
-    path: modint/mont.hpp
-    title: modint/mont.hpp
-  - icon: ':question:'
-    path: template/constant.hpp
-    title: template/constant.hpp
-  - icon: ':question:'
-    path: template/fastio.hpp
-    title: template/fastio.hpp
-  - icon: ':question:'
-    path: template/io_util.hpp
-    title: template/io_util.hpp
-  - icon: ':question:'
-    path: template/macros.hpp
-    title: template/macros.hpp
-  - icon: ':question:'
-    path: template/template.hpp
-    title: template/template.hpp
-  - icon: ':question:'
-    path: template/type_alias.hpp
-    title: template/type_alias.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
-    links:
-    - https://judge.yosupo.jp/problem/log_of_formal_power_series
+  attributes: {}
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -82,36 +21,17 @@ data:
     \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
     \n\n#include \"../../fps/fps_arb.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
     \ \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS = kk2::FPSArb<kk2::mont998>;\n\
     \nint main() {\n    int n;\n    kin >> n;\n    FPS f(n);\n    f.input(kin).log().output(kout);\n\
     \n    return 0;\n}\n"
-  dependsOn:
-  - fps/fps_arb.hpp
-  - convolution/convolution_arb.hpp
-  - math_mod/garner.hpp
-  - math_mod/inv.hpp
-  - modint/mont.hpp
-  - type_traits/type_traits.hpp
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - fps/fps_sparsity_detector.hpp
-  - bit/bitcount.hpp
-  - modint/mont.hpp
-  - template/template.hpp
-  - template/constant.hpp
-  - template/type_alias.hpp
-  - template/fastio.hpp
-  - template/io_util.hpp
-  - template/macros.hpp
+  dependsOn: []
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log_arb.test.cpp
   requiredBy: []
-  timestamp: '2025-03-28 03:34:37+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log_arb.test.cpp

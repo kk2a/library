@@ -27,7 +27,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"math/multiplicative_function/counting_square_free.hpp\"\n\
-    \n\n\n#include <cmath>\n#line 1 \"math/enumerate_quotients.hpp\"\n\n\n\n#include\
+    \n\n\n#include <cmath>\n\n#line 1 \"math/enumerate_quotients.hpp\"\n\n\n\n#include\
     \ <numeric>\n#include <vector>\n\n#line 1 \"math/sqrt_floor.hpp\"\n\n\n\n#line\
     \ 5 \"math/sqrt_floor.hpp\"\n\n#line 1 \"math/frac_floor.hpp\"\n\n\n\n#include\
     \ <cassert>\n\nnamespace kk2 {\n\n// floor(x) = ceil(x) - 1 (for all x not in\
@@ -48,7 +48,7 @@ data:
     \    if (x == T(0)) ++x;\n    while (x < kk2::fracceil(n, x)) ++x;\n    while\
     \ (x - 1 >= kk2::fracceil(n, x - 1)) --x;\n    return x;\n}\n\n} // namespace\
     \ kk2\n\n\n#line 8 \"math/enumerate_quotients.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-    \ <class T>\nstruct EnumerateQuotients {\n    T n;\n    int sqrt_n;\n    std::vector<T>\
+    \ <class T> struct EnumerateQuotients {\n    T n;\n    int sqrt_n;\n    std::vector<T>\
     \ res;\n\n    EnumerateQuotients(T n) : n(n), sqrt_n(sqrt_floor(n)) {\n      \
     \  res.resize(sqrt_n + n / (sqrt_n + 1));\n        std::iota(res.begin(), res.begin()\
     \ + sqrt_n, 1);\n        for (T i = n / (sqrt_n + 1), j = sqrt_n; i; --i, ++j)\
@@ -69,10 +69,10 @@ data:
     \ {\n                if (p * i > m) break;\n                if (_lpf[i] < p) break;\n\
     \                _lpf[p * i] = p;\n            }\n        }\n    }\n\n    static\
     \ const std::vector<int> &primes() { return _primes; }\n\n    template <typename\
-    \ It>\n    struct PrimeIt {\n        It bg, ed;\n\n        PrimeIt(It bg_, It\
-    \ ed_) : bg(bg_), ed(ed_) {}\n\n        It begin() const { return bg; }\n\n  \
-    \      It end() const { return ed; }\n\n        int size() const { return ed -\
-    \ bg; }\n\n        int operator[](int i) const { return bg[i]; }\n\n        std::vector<int>\
+    \ It> struct PrimeIt {\n        It bg, ed;\n\n        PrimeIt(It bg_, It ed_)\
+    \ : bg(bg_), ed(ed_) {}\n\n        It begin() const { return bg; }\n\n       \
+    \ It end() const { return ed; }\n\n        int size() const { return ed - bg;\
+    \ }\n\n        int operator[](int i) const { return bg[i]; }\n\n        std::vector<int>\
     \ to_vec() const { return std::vector<int>(bg, ed); }\n    };\n\n    static auto\
     \ primes(int n) {\n        if (n >= (int)_lpf.size()) set_upper(n);\n        return\
     \ PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(), n));\n\
@@ -113,16 +113,16 @@ data:
     \ assert(n > 0);\n        if ((int)_sigma1.size() <= n) set_upper(n);\n      \
     \  return _sigma1[n];\n    }\n\n    static int euler_phi(int n) {\n        assert(n\
     \ > 0);\n        if ((int)_euler_phi.size() <= n) set_upper(n);\n        return\
-    \ _euler_phi[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 7 \"math/multiplicative_function/counting_square_free.hpp\"\
+    \ _euler_phi[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 8 \"math/multiplicative_function/counting_square_free.hpp\"\
     \n\nnamespace kk2 {\n\nlong long counting_square_free(long long n) {\n    long\
     \ long I = std::pow(n, 0.2);\n    long long D = kk2::sqrt_floor(n / I);\n}\n\n\
-    }\n\n\n\n"
+    } // namespace kk2\n\n\n\n"
   code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP\n#define\
     \ KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP 1\n\n#include <cmath>\n\
-    #include \"../enumerate_quotients.hpp\"\n#include \"famous_function_table.hpp\"\
+    \n#include \"../enumerate_quotients.hpp\"\n#include \"famous_function_table.hpp\"\
     \n\nnamespace kk2 {\n\nlong long counting_square_free(long long n) {\n    long\
     \ long I = std::pow(n, 0.2);\n    long long D = kk2::sqrt_floor(n / I);\n}\n\n\
-    }\n\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP\n"
+    } // namespace kk2\n\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP\n"
   dependsOn:
   - math/enumerate_quotients.hpp
   - math/sqrt_floor.hpp
@@ -133,7 +133,7 @@ data:
   isVerificationFile: false
   path: math/multiplicative_function/counting_square_free.hpp
   requiredBy: []
-  timestamp: '2025-02-15 18:31:33+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multiplicative_function/counting_square_free.hpp

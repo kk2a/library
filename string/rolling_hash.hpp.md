@@ -14,8 +14,11 @@ data:
     path: random/seed.hpp
     title: random/seed.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  - icon: ':question:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -43,7 +46,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_STRING_ROLLING_HASH_HPP\n#define KK2_STRING_ROLLING_HASH_HPP\
     \ 1\n\n#include <cassert>\n#include <string>\n#include <vector>\n\n#include \"\
     ../random/hash.hpp\"\n\nnamespace kk2 {\n\ntemplate <int NUM> struct RollingHash\
@@ -53,26 +56,26 @@ data:
     \  RollingHash(const std::string &s) : prefix(s.size()) {\n        extend_base(s.size());\n\
     \        prefix[0] = H(s[0]);\n        for (size_t i = 1; i < s.size(); ++i) {\
     \ prefix[i] = prefix[i - 1] + H(s[i]) * pw[i]; }\n    }\n\n    template <class\
-    \ T, is_integral_t<T> * = nullptr>\n    RollingHash(const std::vector<T> &v) :\
-    \ prefix(v.size()) {\n        extend_base(v.size());\n        prefix[0] = H(v[0]);\n\
-    \        for (size_t i = 1; i < v.size(); ++i) { prefix[i] = prefix[i - 1] + H(v[i])\
-    \ * pw[i]; }\n    }\n\n    // [l, r)\n    H get(int l, int r) const {\n      \
-    \  assert(0 <= l and l <= r and r <= (int)prefix.size());\n        if (l == r)\
-    \ return H(0);\n        if (l == 0) return prefix[r - 1];\n        return (prefix[r\
-    \ - 1] - prefix[l - 1]) * pwi[l];\n    }\n\n    static int lcp(const RollingHash\
-    \ &lhs, int l1, int r1, const RollingHash &rhs, int l2, int r2) {\n        int\
-    \ len = std::min(r1 - l1, r2 - l2);\n        int ok = 0, ng = len + 1;\n     \
-    \   while (ng - ok > 1) {\n            int mid = (ok + ng) / 2;\n            if\
-    \ (lhs.get(l1, l1 + mid) == rhs.get(l2, l2 + mid)) {\n                ok = mid;\n\
-    \            } else {\n                ng = mid;\n            }\n        }\n \
-    \       return ok;\n    }\n\n    static int\n    strcmp(const RollingHash &lhs,\
-    \ int l1, int r1, const RollingHash &rhs, int l2, int r2) {\n        int lcp_\
-    \ = lcp(lhs, l1, r1, rhs, l2, r2);\n        if (lcp_ == r1 - l1 and lcp_ == r2\
-    \ - l2) return 0;\n        else if (lcp_ == r1 - l1) return -1;\n        else\
-    \ if (lcp_ == r2 - l2) return 1;\n        else {\n            auto c1 = lhs.get(l1\
-    \ + lcp_, l1 + lcp_ + 1)[0].val();\n            auto c2 = rhs.get(l2 + lcp_, l2\
-    \ + lcp_ + 1)[0].val();\n            return c1 < c2 ? -1 : 1;\n        }\n   \
-    \ }\n\n    static RollingHash merge(const RollingHash &lhs, const RollingHash\
+    \ T, is_integral_t<T> * = nullptr> RollingHash(const std::vector<T> &v)\n    \
+    \    : prefix(v.size()) {\n        extend_base(v.size());\n        prefix[0] =\
+    \ H(v[0]);\n        for (size_t i = 1; i < v.size(); ++i) { prefix[i] = prefix[i\
+    \ - 1] + H(v[i]) * pw[i]; }\n    }\n\n    // [l, r)\n    H get(int l, int r) const\
+    \ {\n        assert(0 <= l and l <= r and r <= (int)prefix.size());\n        if\
+    \ (l == r) return H(0);\n        if (l == 0) return prefix[r - 1];\n        return\
+    \ (prefix[r - 1] - prefix[l - 1]) * pwi[l];\n    }\n\n    static int lcp(const\
+    \ RollingHash &lhs, int l1, int r1, const RollingHash &rhs, int l2, int r2) {\n\
+    \        int len = std::min(r1 - l1, r2 - l2);\n        int ok = 0, ng = len +\
+    \ 1;\n        while (ng - ok > 1) {\n            int mid = (ok + ng) / 2;\n  \
+    \          if (lhs.get(l1, l1 + mid) == rhs.get(l2, l2 + mid)) {\n           \
+    \     ok = mid;\n            } else {\n                ng = mid;\n           \
+    \ }\n        }\n        return ok;\n    }\n\n    static int\n    strcmp(const\
+    \ RollingHash &lhs, int l1, int r1, const RollingHash &rhs, int l2, int r2) {\n\
+    \        int lcp_ = lcp(lhs, l1, r1, rhs, l2, r2);\n        if (lcp_ == r1 - l1\
+    \ and lcp_ == r2 - l2) return 0;\n        else if (lcp_ == r1 - l1) return -1;\n\
+    \        else if (lcp_ == r2 - l2) return 1;\n        else {\n            auto\
+    \ c1 = lhs.get(l1 + lcp_, l1 + lcp_ + 1)[0].val();\n            auto c2 = rhs.get(l2\
+    \ + lcp_, l2 + lcp_ + 1)[0].val();\n            return c1 < c2 ? -1 : 1;\n   \
+    \     }\n    }\n\n    static RollingHash merge(const RollingHash &lhs, const RollingHash\
     \ &rhs) {\n        RollingHash res;\n        extend_base(lhs.prefix.size() + rhs.prefix.size());\n\
     \        res.prefix = lhs.prefix;\n        res.prefix.insert(res.prefix.end(),\
     \ rhs.prefix.begin(), rhs.prefix.end());\n        for (size_t i = lhs.prefix.size();\
@@ -91,13 +94,14 @@ data:
   dependsOn:
   - random/hash.hpp
   - modint/modint_2_61m1.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   - random/gen.hpp
   - random/seed.hpp
   isVerificationFile: false
   path: string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2025-02-04 23:50:25+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_string/string_z_roliha.test.cpp

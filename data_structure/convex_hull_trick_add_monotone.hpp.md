@@ -5,8 +5,8 @@ data:
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -24,10 +24,10 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n#define KK2_DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\
     \ 1\n\n#include <cmath>\n#include <deque>\n#include <iostream>\n#include <iterator>\n\
-    #include <tuple>\n\n#include \"../math/frac_floor.hpp\"\n#include \"../type_traits/type_traits.hpp\"\
+    #include <tuple>\n\n#include \"../math/frac_floor.hpp\"\n#include \"../type_traits/integral.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename T, bool isMin = true> struct CHTAddMonotone\
     \ {\n    struct Line {\n        // ax + b\n        T a, b;\n\n        Line(T a_,\
     \ T b_) : a(a_), b(b_) {}\n\n        T eval(T x) const { return a * x + b; }\n\
@@ -38,19 +38,19 @@ data:
     \ mid) {\n        auto [l1, l2, l3] = std::tie(*std::prev(mid), *mid, *std::next(mid));\n\
     \        if (l2.b == l1.b or l3.b == l2.b)\n            return sgn(l2.a - l1.a)\
     \ * sgn(l3.b - l2.b) >= sgn(l3.a - l2.a) * sgn(l2.b - l1.b);\n        if constexpr\
-    \ (is_integral_extended<T>::value) {\n            return kk2::fracfloor(l2.b -\
-    \ l1.b, l1.a - l2.a)\n                   >= kk2::fracfloor(l3.b - l2.b, l2.a -\
-    \ l3.a);\n        } else {\n            return (l2.b - l1.b) * sgn(l3.a - l2.a)\
-    \ / std::abs(l2.a - l1.a)\n                   >= (l3.b - l2.b) * sgn(l2.a - l1.a)\
-    \ / std::abs(l3.a - l2.a);\n        }\n    }\n\n    void add(T a, T b) {\n   \
-    \     if (!isMin) a = -a, b = -b;\n        Line l(a, b);\n        if (empty())\
-    \ {\n            lines.emplace_back(l);\n            return;\n        }\n    \
-    \    if (lines.front().a <= a) {\n            if (lines.front().a == a) {\n  \
-    \              if (lines.front().b <= b) return;\n                lines.pop_front();\n\
-    \            }\n            lines.emplace_front(l);\n            while ((int)lines.size()\
-    \ >= 3 and check(std::next(lines.begin()))) {\n                lines.erase(std::next(lines.begin()));\n\
-    \            }\n        } else if (lines.back().a >= a) {\n            if (lines.back().a\
-    \ == a) {\n                if (lines.back().b <= b) return;\n                lines.pop_back();\n\
+    \ (is_integral<T>::value) {\n            return kk2::fracfloor(l2.b - l1.b, l1.a\
+    \ - l2.a)\n                   >= kk2::fracfloor(l3.b - l2.b, l2.a - l3.a);\n \
+    \       } else {\n            return (l2.b - l1.b) * sgn(l3.a - l2.a) / std::abs(l2.a\
+    \ - l1.a)\n                   >= (l3.b - l2.b) * sgn(l2.a - l1.a) / std::abs(l3.a\
+    \ - l2.a);\n        }\n    }\n\n    void add(T a, T b) {\n        if (!isMin)\
+    \ a = -a, b = -b;\n        Line l(a, b);\n        if (empty()) {\n           \
+    \ lines.emplace_back(l);\n            return;\n        }\n        if (lines.front().a\
+    \ <= a) {\n            if (lines.front().a == a) {\n                if (lines.front().b\
+    \ <= b) return;\n                lines.pop_front();\n            }\n         \
+    \   lines.emplace_front(l);\n            while ((int)lines.size() >= 3 and check(std::next(lines.begin())))\
+    \ {\n                lines.erase(std::next(lines.begin()));\n            }\n \
+    \       } else if (lines.back().a >= a) {\n            if (lines.back().a == a)\
+    \ {\n                if (lines.back().b <= b) return;\n                lines.pop_back();\n\
     \            }\n            lines.emplace_back(l);\n            while ((int)lines.size()\
     \ >= 3 and check(std::prev(lines.end(), 2))) {\n                lines.erase(std::prev(lines.end(),\
     \ 2));\n            }\n        } else {\n            std::cerr << \"Invalid input\"\
@@ -63,11 +63,11 @@ data:
     \ // KK2_DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP\n"
   dependsOn:
   - math/frac_floor.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/integral.hpp
   isVerificationFile: false
   path: data_structure/convex_hull_trick_add_monotone.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-04-05 10:48:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/convex_hull_trick_add_monotone.hpp

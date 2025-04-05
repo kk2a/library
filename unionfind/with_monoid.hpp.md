@@ -34,12 +34,12 @@ data:
     \   }\n\n    M get(int x) { return _monoid[find(x)]; }\n\n    void set_to_root(int\
     \ x, M m) { _monoid[find(x)] = m; }\n\n    int size(int x) { return -d[find(x)];\
     \ }\n\n  private:\n    int _n;\n    std::vector<int> d;\n    std::vector<M> _monoid;\n\
-    };\n\n}; // namespace kk2\n\n#endif // KK2_UNIONFIND_WITH_MONOID_HPP"
+    };\n\n}; // namespace kk2\n\n#endif // KK2_UNIONFIND_WITH_MONOID_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: unionfind/with_monoid.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: unionfind/with_monoid.hpp

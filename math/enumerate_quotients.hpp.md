@@ -19,12 +19,6 @@ data:
     title: math/multiplicative_function/prime_counting.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/unit_test/isprime_table_extend.test.cpp
-    title: verify/unit_test/isprime_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/lpf_table_extend.test.cpp
-    title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':x:'
@@ -61,8 +55,8 @@ data:
     \   T x = std::sqrt(n);\n    if (x == T(0)) ++x;\n    while (x < kk2::fracceil(n,\
     \ x)) ++x;\n    while (x - 1 >= kk2::fracceil(n, x - 1)) --x;\n    return x;\n\
     }\n\n} // namespace kk2\n\n\n#line 8 \"math/enumerate_quotients.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <class T>\nstruct EnumerateQuotients {\n    T n;\n    int\
-    \ sqrt_n;\n    std::vector<T> res;\n\n    EnumerateQuotients(T n) : n(n), sqrt_n(sqrt_floor(n))\
+    \ kk2 {\n\ntemplate <class T> struct EnumerateQuotients {\n    T n;\n    int sqrt_n;\n\
+    \    std::vector<T> res;\n\n    EnumerateQuotients(T n) : n(n), sqrt_n(sqrt_floor(n))\
     \ {\n        res.resize(sqrt_n + n / (sqrt_n + 1));\n        std::iota(res.begin(),\
     \ res.begin() + sqrt_n, 1);\n        for (T i = n / (sqrt_n + 1), j = sqrt_n;\
     \ i; --i, ++j) res[j] = n / i;\n    }\n\n    const std::vector<T> &get() const\
@@ -72,7 +66,7 @@ data:
     };\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_MATH_ENUMERATE_QUOTIENTS_HPP\n#define KK2_MATH_ENUMERATE_QUOTIENTS_HPP\
     \ 1\n\n#include <numeric>\n#include <vector>\n\n#include \"sqrt_floor.hpp\"\n\n\
-    namespace kk2 {\n\ntemplate <class T>\nstruct EnumerateQuotients {\n    T n;\n\
+    namespace kk2 {\n\ntemplate <class T> struct EnumerateQuotients {\n    T n;\n\
     \    int sqrt_n;\n    std::vector<T> res;\n\n    EnumerateQuotients(T n) : n(n),\
     \ sqrt_n(sqrt_floor(n)) {\n        res.resize(sqrt_n + n / (sqrt_n + 1));\n  \
     \      std::iota(res.begin(), res.begin() + sqrt_n, 1);\n        for (T i = n\
@@ -90,15 +84,13 @@ data:
   - math/multiplicative_function/prime_counting.hpp
   - math/multiplicative_function/prefix_sum.hpp
   - math/multiplicative_function/counting_square_free.hpp
-  timestamp: '2025-02-01 17:57:24+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/prime_counting.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   - verify/yosupo_math/enumerate_quotients.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: math/enumerate_quotients.hpp
 layout: document
 redirect_from:

@@ -1,44 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bbst/lazy_red_black_tree.hpp
     title: bbst/lazy_red_black_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: bbst/red_black_tree.hpp
     title: bbst/red_black_tree.hpp
   - icon: ':warning:'
     path: data_structure/ordered_set.hpp
     title: data_structure/ordered_set.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-    title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/base/red_black_tree_base.hpp\"\n\n\n\n#include <cassert>\n\
     #include <memory>\n#include <string>\n#include <utility>\n#include <vector>\n\n\
     #line 1 \"others/vector_pool.hpp\"\n\n\n\n#line 5 \"others/vector_pool.hpp\"\n\
-    \nnamespace kk2 {\n\ntemplate <typename T>\nstruct VectorPool {\n    std::vector<T>\
+    \nnamespace kk2 {\n\ntemplate <typename T> struct VectorPool {\n    std::vector<T>\
     \ pool;\n    std::vector<T *> ptrs;\n    int pos = 0;\n\n    VectorPool() = default;\n\
     \n    VectorPool(int n) : pool(n), ptrs(n) {}\n\n    inline T *alloc() { return\
     \ ptrs[pos++]; }\n\n    inline void free(T *ptr) { ptrs[--pos] = ptr; }\n\n  \
     \  void clear() {\n        for (size_t i = 0; i < pool.size(); i++) ptrs[i] =\
-    \ &pool[i]; \n        pos = 0;\n    }\n\n    T &operator[](int i) { return pool[i];\
+    \ &pool[i];\n        pos = 0;\n    }\n\n    T &operator[](int i) { return pool[i];\
     \ }\n};\n\n} // namespace kk2\n\n\n#line 11 \"bbst/base/red_black_tree_base.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace rbtree {\n\n// base\u306B\u5FC5\u8981\u306A\u30E1\
     \u30F3\u30D0\n// NodePtr left, right;\n// int rank, count;\n// bool is_red;\n\
-    // Monoid val;\n\ntemplate <typename Node>\nstruct RedBlackTreeBase {\n    VectorPool<Node>\
+    // Monoid val;\n\ntemplate <typename Node> struct RedBlackTreeBase {\n    VectorPool<Node>\
     \ pool;\n    using NodePtr = Node *;\n    using Monoid = typename Node::Monoid;\n\
     \n    static auto MonoidOp(Monoid a, Monoid b) { return Node::MonoidOp(a, b);\
     \ }\n\n    static auto MonoidUnit() { return Node::MonoidUnit(); }\n\n    using\
@@ -46,7 +43,7 @@ data:
     \ return Node::Map(a, x); }\n\n    static auto ActionOp(Action a, Action b) {\
     \ return Node::ActionOp(a, b); }\n\n    static auto ActionUnit() { return Node::ActionUnit();\
     \ }\n\n    RedBlackTreeBase(int sz) : pool(sz) { pool.clear(); }\n\n    template\
-    \ <typename... Args>\n    NodePtr alloc(Args... args) {\n        NodePtr t = &(*pool.alloc()\
+    \ <typename... Args> NodePtr alloc(Args... args) {\n        NodePtr t = &(*pool.alloc()\
     \ = Node(args...));\n        return update(t);\n    }\n\n    NodePtr make_tree()\
     \ { return nullptr; }\n\n    void free(NodePtr t) { pool.free(t); }\n\n    void\
     \ clear(NodePtr t) {\n        if (!t) return;\n        clear(t->left);\n     \
@@ -70,50 +67,50 @@ data:
     \ // assert\u3057\u306A\u304F\u3066\u3082\u52D5\u304F\u3051\u3069\uFF0C\u5206\u304B\
     \u308A\u306B\u304F\u3044\n        assert(0 <= a and a <= b and b <= size(t));\n\
     \        auto [x, y] = split(t, a);\n        auto [y1, z] = split(y, b - a);\n\
-    \        return {x, y1, z};\n    }\n\n    template <typename... Args>\n    void\
-    \ insert(NodePtr &t, int k, Args... args) {\n        assert(0 <= k and k <= size(t));\n\
-    \        auto [l, r] = split(t, k);\n        t = merge(merge(l, alloc(Monoid(args...))),\
+    \        return {x, y1, z};\n    }\n\n    template <typename... Args> void insert(NodePtr\
+    \ &t, int k, Args... args) {\n        assert(0 <= k and k <= size(t));\n     \
+    \   auto [l, r] = split(t, k);\n        t = merge(merge(l, alloc(Monoid(args...))),\
     \ r);\n    }\n\n    void erase(NodePtr &t, int k) {\n        assert(0 <= k and\
     \ k < size(t));\n        auto [l, r] = split(t, k);\n        auto [ll, rr] = split(r,\
     \ 1);\n        free(ll);\n        t = merge(l, rr);\n    }\n\n    template <typename...\
-    \ Args>\n    void set(NodePtr t, int k, Args... args) {\n        assert(0 <= k\
-    \ and k < size(t));\n        NodePtr now = t;\n        auto dfs = [&](auto self,\
-    \ NodePtr now, int k) -> void {\n            if (!now->left) {\n             \
-    \   now->val = Monoid(args...);\n                return;\n            }\n    \
-    \        now = push(now);\n            if (size(now->left) > k) self(self, now->left,\
-    \ k);\n            else self(self, now->right, k - size(now->left));\n       \
-    \     now = update(now);\n        };\n        dfs(dfs, now, k);\n    }\n\n   \
-    \ Monoid get(NodePtr t, int k) {\n        assert(0 <= k and k < size(t));\n  \
-    \      NodePtr now = t;\n        while (now->left) {\n            now = push(now);\n\
-    \            if (size(now->left) > k) now = now->left;\n            else {\n \
-    \               k -= size(now->left);\n                now = now->right;\n   \
-    \         }\n        }\n        return now->val;\n    }\n\n    Monoid prod(NodePtr\
-    \ &t, int l, int r) {\n        assert(0 <= l and l <= r and r <= size(t));\n \
-    \       auto [t1, t2, t3] = split3(t, l, r);\n        Monoid res = (t2 ? t2->val\
-    \ : MonoidUnit());\n        t = merge(merge(t1, t2), t3);\n        return res;\n\
-    \    }\n\n    void reverse(NodePtr &t, int l, int r) {\n        assert(0 <= l\
-    \ and l <= r and r <= size(t));\n        auto [t1, t2, t3] = split3(t, l, r);\n\
-    \        if (t2) t2->is_rev ^= 1;\n        t = merge(merge(t1, t2), t3);\n   \
-    \ }\n\n    template <typename... Args>\n    void push_front(NodePtr &t, Args...\
-    \ args) {\n        t = merge(alloc(Monoid(args...)), t);\n    }\n\n    template\
-    \ <typename... Args>\n    void push_back(NodePtr &t, Args... args) {\n       \
-    \ t = merge(t, alloc(Monoid(args...)));\n    }\n\n    void pop_front(NodePtr &t)\
-    \ {\n        auto [l, r] = split(t, 1);\n        t = r;\n    }\n\n    void pop_back(NodePtr\
-    \ &t) {\n        auto [l, r] = split(t, size(t) - 1);\n        t = l;\n    }\n\
-    \n    struct bb_result {\n        int s;\n        Monoid prod;\n        NodePtr\
-    \ t;\n    };\n\n    template <class G>\n    bb_result max_right(NodePtr &t, int\
-    \ l, const G &g) {\n        assert(0 <= l and l <= size(t));\n        assert(g(MonoidUnit()));\n\
-    \        auto [t1, t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1,\
-    \ t2);\n            return {l, MonoidUnit(), nullptr};\n        }\n        if\
-    \ (g(t2->val)) {\n            t = merge(t1, t2);\n            return {l + size(t2),\
-    \ t2->val, nullptr};\n        }\n\n        int k = l;\n        Monoid x = MonoidUnit();\n\
+    \ Args> void set(NodePtr t, int k, Args... args) {\n        assert(0 <= k and\
+    \ k < size(t));\n        NodePtr now = t;\n        auto dfs = [&](auto self, NodePtr\
+    \ now, int k) -> void {\n            if (!now->left) {\n                now->val\
+    \ = Monoid(args...);\n                return;\n            }\n            now\
+    \ = push(now);\n            if (size(now->left) > k) self(self, now->left, k);\n\
+    \            else self(self, now->right, k - size(now->left));\n            now\
+    \ = update(now);\n        };\n        dfs(dfs, now, k);\n    }\n\n    Monoid get(NodePtr\
+    \ t, int k) {\n        assert(0 <= k and k < size(t));\n        NodePtr now =\
+    \ t;\n        while (now->left) {\n            now = push(now);\n            if\
+    \ (size(now->left) > k) now = now->left;\n            else {\n               \
+    \ k -= size(now->left);\n                now = now->right;\n            }\n  \
+    \      }\n        return now->val;\n    }\n\n    Monoid prod(NodePtr &t, int l,\
+    \ int r) {\n        assert(0 <= l and l <= r and r <= size(t));\n        auto\
+    \ [t1, t2, t3] = split3(t, l, r);\n        Monoid res = (t2 ? t2->val : MonoidUnit());\n\
+    \        t = merge(merge(t1, t2), t3);\n        return res;\n    }\n\n    void\
+    \ reverse(NodePtr &t, int l, int r) {\n        assert(0 <= l and l <= r and r\
+    \ <= size(t));\n        auto [t1, t2, t3] = split3(t, l, r);\n        if (t2)\
+    \ t2->is_rev ^= 1;\n        t = merge(merge(t1, t2), t3);\n    }\n\n    template\
+    \ <typename... Args> void push_front(NodePtr &t, Args... args) {\n        t =\
+    \ merge(alloc(Monoid(args...)), t);\n    }\n\n    template <typename... Args>\
+    \ void push_back(NodePtr &t, Args... args) {\n        t = merge(t, alloc(Monoid(args...)));\n\
+    \    }\n\n    void pop_front(NodePtr &t) {\n        auto [l, r] = split(t, 1);\n\
+    \        t = r;\n    }\n\n    void pop_back(NodePtr &t) {\n        auto [l, r]\
+    \ = split(t, size(t) - 1);\n        t = l;\n    }\n\n    struct bb_result {\n\
+    \        int s;\n        Monoid prod;\n        NodePtr t;\n    };\n\n    template\
+    \ <class G> bb_result max_right(NodePtr &t, int l, const G &g) {\n        assert(0\
+    \ <= l and l <= size(t));\n        assert(g(MonoidUnit()));\n        auto [t1,\
+    \ t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1, t2);\n   \
+    \         return {l, MonoidUnit(), nullptr};\n        }\n        if (g(t2->val))\
+    \ {\n            t = merge(t1, t2);\n            return {l + size(t2), t2->val,\
+    \ nullptr};\n        }\n\n        int k = l;\n        Monoid x = MonoidUnit();\n\
     \        NodePtr now = t2;\n\n        while (now->left) {\n            now = push(now);\n\
     \            Monoid y = MonoidOp(x, now->left->val);\n            if (g(y)) {\n\
     \                x = y;\n                k += size(now->left);\n             \
     \   now = now->right;\n            } else {\n                now = now->left;\n\
     \            }\n        }\n        t = merge(t1, t2);\n        return {k, x, now};\n\
-    \    }\n\n    template <class G>\n    bb_result min_left(NodePtr &t, int r, const\
-    \ G &g) {\n        assert(0 <= r and r <= size(t));\n        assert(g(MonoidUnit()));\n\
+    \    }\n\n    template <class G> bb_result min_left(NodePtr &t, int r, const G\
+    \ &g) {\n        assert(0 <= r and r <= size(t));\n        assert(g(MonoidUnit()));\n\
     \        auto [t1, t2] = split(t, r);\n        if (!t1) {\n            t = merge(t1,\
     \ t2);\n            return {r, MonoidUnit(), nullptr};\n        }\n        if\
     \ (g(t1->val)) {\n            t = merge(t1, t2);\n            return {0, t1->val,\
@@ -149,7 +146,7 @@ data:
     #include <vector>\n\n#include \"../../others/vector_pool.hpp\"\n\nnamespace kk2\
     \ {\n\nnamespace rbtree {\n\n// base\u306B\u5FC5\u8981\u306A\u30E1\u30F3\u30D0\
     \n// NodePtr left, right;\n// int rank, count;\n// bool is_red;\n// Monoid val;\n\
-    \ntemplate <typename Node>\nstruct RedBlackTreeBase {\n    VectorPool<Node> pool;\n\
+    \ntemplate <typename Node> struct RedBlackTreeBase {\n    VectorPool<Node> pool;\n\
     \    using NodePtr = Node *;\n    using Monoid = typename Node::Monoid;\n\n  \
     \  static auto MonoidOp(Monoid a, Monoid b) { return Node::MonoidOp(a, b); }\n\
     \n    static auto MonoidUnit() { return Node::MonoidUnit(); }\n\n    using Action\
@@ -157,7 +154,7 @@ data:
     \ Node::Map(a, x); }\n\n    static auto ActionOp(Action a, Action b) { return\
     \ Node::ActionOp(a, b); }\n\n    static auto ActionUnit() { return Node::ActionUnit();\
     \ }\n\n    RedBlackTreeBase(int sz) : pool(sz) { pool.clear(); }\n\n    template\
-    \ <typename... Args>\n    NodePtr alloc(Args... args) {\n        NodePtr t = &(*pool.alloc()\
+    \ <typename... Args> NodePtr alloc(Args... args) {\n        NodePtr t = &(*pool.alloc()\
     \ = Node(args...));\n        return update(t);\n    }\n\n    NodePtr make_tree()\
     \ { return nullptr; }\n\n    void free(NodePtr t) { pool.free(t); }\n\n    void\
     \ clear(NodePtr t) {\n        if (!t) return;\n        clear(t->left);\n     \
@@ -181,50 +178,50 @@ data:
     \ // assert\u3057\u306A\u304F\u3066\u3082\u52D5\u304F\u3051\u3069\uFF0C\u5206\u304B\
     \u308A\u306B\u304F\u3044\n        assert(0 <= a and a <= b and b <= size(t));\n\
     \        auto [x, y] = split(t, a);\n        auto [y1, z] = split(y, b - a);\n\
-    \        return {x, y1, z};\n    }\n\n    template <typename... Args>\n    void\
-    \ insert(NodePtr &t, int k, Args... args) {\n        assert(0 <= k and k <= size(t));\n\
-    \        auto [l, r] = split(t, k);\n        t = merge(merge(l, alloc(Monoid(args...))),\
+    \        return {x, y1, z};\n    }\n\n    template <typename... Args> void insert(NodePtr\
+    \ &t, int k, Args... args) {\n        assert(0 <= k and k <= size(t));\n     \
+    \   auto [l, r] = split(t, k);\n        t = merge(merge(l, alloc(Monoid(args...))),\
     \ r);\n    }\n\n    void erase(NodePtr &t, int k) {\n        assert(0 <= k and\
     \ k < size(t));\n        auto [l, r] = split(t, k);\n        auto [ll, rr] = split(r,\
     \ 1);\n        free(ll);\n        t = merge(l, rr);\n    }\n\n    template <typename...\
-    \ Args>\n    void set(NodePtr t, int k, Args... args) {\n        assert(0 <= k\
-    \ and k < size(t));\n        NodePtr now = t;\n        auto dfs = [&](auto self,\
-    \ NodePtr now, int k) -> void {\n            if (!now->left) {\n             \
-    \   now->val = Monoid(args...);\n                return;\n            }\n    \
-    \        now = push(now);\n            if (size(now->left) > k) self(self, now->left,\
-    \ k);\n            else self(self, now->right, k - size(now->left));\n       \
-    \     now = update(now);\n        };\n        dfs(dfs, now, k);\n    }\n\n   \
-    \ Monoid get(NodePtr t, int k) {\n        assert(0 <= k and k < size(t));\n  \
-    \      NodePtr now = t;\n        while (now->left) {\n            now = push(now);\n\
-    \            if (size(now->left) > k) now = now->left;\n            else {\n \
-    \               k -= size(now->left);\n                now = now->right;\n   \
-    \         }\n        }\n        return now->val;\n    }\n\n    Monoid prod(NodePtr\
-    \ &t, int l, int r) {\n        assert(0 <= l and l <= r and r <= size(t));\n \
-    \       auto [t1, t2, t3] = split3(t, l, r);\n        Monoid res = (t2 ? t2->val\
-    \ : MonoidUnit());\n        t = merge(merge(t1, t2), t3);\n        return res;\n\
-    \    }\n\n    void reverse(NodePtr &t, int l, int r) {\n        assert(0 <= l\
-    \ and l <= r and r <= size(t));\n        auto [t1, t2, t3] = split3(t, l, r);\n\
-    \        if (t2) t2->is_rev ^= 1;\n        t = merge(merge(t1, t2), t3);\n   \
-    \ }\n\n    template <typename... Args>\n    void push_front(NodePtr &t, Args...\
-    \ args) {\n        t = merge(alloc(Monoid(args...)), t);\n    }\n\n    template\
-    \ <typename... Args>\n    void push_back(NodePtr &t, Args... args) {\n       \
-    \ t = merge(t, alloc(Monoid(args...)));\n    }\n\n    void pop_front(NodePtr &t)\
-    \ {\n        auto [l, r] = split(t, 1);\n        t = r;\n    }\n\n    void pop_back(NodePtr\
-    \ &t) {\n        auto [l, r] = split(t, size(t) - 1);\n        t = l;\n    }\n\
-    \n    struct bb_result {\n        int s;\n        Monoid prod;\n        NodePtr\
-    \ t;\n    };\n\n    template <class G>\n    bb_result max_right(NodePtr &t, int\
-    \ l, const G &g) {\n        assert(0 <= l and l <= size(t));\n        assert(g(MonoidUnit()));\n\
-    \        auto [t1, t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1,\
-    \ t2);\n            return {l, MonoidUnit(), nullptr};\n        }\n        if\
-    \ (g(t2->val)) {\n            t = merge(t1, t2);\n            return {l + size(t2),\
-    \ t2->val, nullptr};\n        }\n\n        int k = l;\n        Monoid x = MonoidUnit();\n\
+    \ Args> void set(NodePtr t, int k, Args... args) {\n        assert(0 <= k and\
+    \ k < size(t));\n        NodePtr now = t;\n        auto dfs = [&](auto self, NodePtr\
+    \ now, int k) -> void {\n            if (!now->left) {\n                now->val\
+    \ = Monoid(args...);\n                return;\n            }\n            now\
+    \ = push(now);\n            if (size(now->left) > k) self(self, now->left, k);\n\
+    \            else self(self, now->right, k - size(now->left));\n            now\
+    \ = update(now);\n        };\n        dfs(dfs, now, k);\n    }\n\n    Monoid get(NodePtr\
+    \ t, int k) {\n        assert(0 <= k and k < size(t));\n        NodePtr now =\
+    \ t;\n        while (now->left) {\n            now = push(now);\n            if\
+    \ (size(now->left) > k) now = now->left;\n            else {\n               \
+    \ k -= size(now->left);\n                now = now->right;\n            }\n  \
+    \      }\n        return now->val;\n    }\n\n    Monoid prod(NodePtr &t, int l,\
+    \ int r) {\n        assert(0 <= l and l <= r and r <= size(t));\n        auto\
+    \ [t1, t2, t3] = split3(t, l, r);\n        Monoid res = (t2 ? t2->val : MonoidUnit());\n\
+    \        t = merge(merge(t1, t2), t3);\n        return res;\n    }\n\n    void\
+    \ reverse(NodePtr &t, int l, int r) {\n        assert(0 <= l and l <= r and r\
+    \ <= size(t));\n        auto [t1, t2, t3] = split3(t, l, r);\n        if (t2)\
+    \ t2->is_rev ^= 1;\n        t = merge(merge(t1, t2), t3);\n    }\n\n    template\
+    \ <typename... Args> void push_front(NodePtr &t, Args... args) {\n        t =\
+    \ merge(alloc(Monoid(args...)), t);\n    }\n\n    template <typename... Args>\
+    \ void push_back(NodePtr &t, Args... args) {\n        t = merge(t, alloc(Monoid(args...)));\n\
+    \    }\n\n    void pop_front(NodePtr &t) {\n        auto [l, r] = split(t, 1);\n\
+    \        t = r;\n    }\n\n    void pop_back(NodePtr &t) {\n        auto [l, r]\
+    \ = split(t, size(t) - 1);\n        t = l;\n    }\n\n    struct bb_result {\n\
+    \        int s;\n        Monoid prod;\n        NodePtr t;\n    };\n\n    template\
+    \ <class G> bb_result max_right(NodePtr &t, int l, const G &g) {\n        assert(0\
+    \ <= l and l <= size(t));\n        assert(g(MonoidUnit()));\n        auto [t1,\
+    \ t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1, t2);\n   \
+    \         return {l, MonoidUnit(), nullptr};\n        }\n        if (g(t2->val))\
+    \ {\n            t = merge(t1, t2);\n            return {l + size(t2), t2->val,\
+    \ nullptr};\n        }\n\n        int k = l;\n        Monoid x = MonoidUnit();\n\
     \        NodePtr now = t2;\n\n        while (now->left) {\n            now = push(now);\n\
     \            Monoid y = MonoidOp(x, now->left->val);\n            if (g(y)) {\n\
     \                x = y;\n                k += size(now->left);\n             \
     \   now = now->right;\n            } else {\n                now = now->left;\n\
     \            }\n        }\n        t = merge(t1, t2);\n        return {k, x, now};\n\
-    \    }\n\n    template <class G>\n    bb_result min_left(NodePtr &t, int r, const\
-    \ G &g) {\n        assert(0 <= r and r <= size(t));\n        assert(g(MonoidUnit()));\n\
+    \    }\n\n    template <class G> bb_result min_left(NodePtr &t, int r, const G\
+    \ &g) {\n        assert(0 <= r and r <= size(t));\n        assert(g(MonoidUnit()));\n\
     \        auto [t1, t2] = split(t, r);\n        if (!t1) {\n            t = merge(t1,\
     \ t2);\n            return {r, MonoidUnit(), nullptr};\n        }\n        if\
     \ (g(t1->val)) {\n            t = merge(t1, t2);\n            return {0, t1->val,\
@@ -263,11 +260,10 @@ data:
   - bbst/red_black_tree.hpp
   - bbst/lazy_red_black_tree.hpp
   - data_structure/ordered_set.hpp
-  timestamp: '2025-03-27 00:23:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-04-05 12:46:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
 documentation_of: bbst/base/red_black_tree_base.hpp
 layout: document
 redirect_from:

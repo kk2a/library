@@ -13,7 +13,7 @@ data:
     links: []
   bundledCode: "#line 1 \"data_structure/disjoint_sparse_table.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
-    \ <class S, S (*op)(S, S), S (*e)()>\nstruct DisjointSparseTable {\n    DisjointSparseTable()\
+    \ <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable {\n    DisjointSparseTable()\
     \ = default;\n\n    DisjointSparseTable(int n) : _n(n) {\n        log = 0;\n \
     \       while ((1 << log) < _n) log++;\n        table.assign(log + 1, std::vector<S>(_n));\n\
     \    }\n\n    DisjointSparseTable(const std::vector<S> &v) : _n(int(v.size()))\
@@ -30,18 +30,18 @@ data:
     \ std::min(cent + shift, _n);\n                for (int j = cent + 1; j < right;\
     \ ++j) {\n                    table[i][j] = op(table[i][j - 1], table[0][j]);\n\
     \                }\n            }\n        }\n    }\n\n    template <class...\
-    \ Args>\n    void init_set(int p, Args... args) {\n        assert(0 <= p && p\
-    \ < _n);\n        assert(!is_built);\n        table[0][p] = S(args...);\n    }\n\
-    \n    S prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= _n);\n\
-    \        assert(is_built);\n        if (l == r) return e();\n        if (l + 1\
+    \ Args> void init_set(int p, Args... args) {\n        assert(0 <= p && p < _n);\n\
+    \        assert(!is_built);\n        table[0][p] = S(args...);\n    }\n\n    S\
+    \ prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= _n);\n \
+    \       assert(is_built);\n        if (l == r) return e();\n        if (l + 1\
     \ == r) return table[0][l];\n        --r;\n        int pos = 31 ^ __builtin_clz(l\
     \ ^ r);\n        return op(table[pos][l], table[pos][r]);\n    }\n\n  private:\n\
     \    int _n, log;\n    std::vector<std::vector<S>> table;\n    std::vector<int>\
-    \ lookup;\n    bool is_built = false;\n};\n\ntemplate <class M>\nusing DisjointSparseTableS\
+    \ lookup;\n    bool is_built = false;\n};\n\ntemplate <class M> using DisjointSparseTableS\
     \ = DisjointSparseTable<M, M::op, M::unit>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n#define KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\nnamespace\
-    \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()>\nstruct DisjointSparseTable\
+    \ kk2 {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable\
     \ {\n    DisjointSparseTable() = default;\n\n    DisjointSparseTable(int n) :\
     \ _n(n) {\n        log = 0;\n        while ((1 << log) < _n) log++;\n        table.assign(log\
     \ + 1, std::vector<S>(_n));\n    }\n\n    DisjointSparseTable(const std::vector<S>\
@@ -58,21 +58,21 @@ data:
     \                int right = std::min(cent + shift, _n);\n                for\
     \ (int j = cent + 1; j < right; ++j) {\n                    table[i][j] = op(table[i][j\
     \ - 1], table[0][j]);\n                }\n            }\n        }\n    }\n\n\
-    \    template <class... Args>\n    void init_set(int p, Args... args) {\n    \
-    \    assert(0 <= p && p < _n);\n        assert(!is_built);\n        table[0][p]\
-    \ = S(args...);\n    }\n\n    S prod(int l, int r) const {\n        assert(0 <=\
-    \ l && l <= r && r <= _n);\n        assert(is_built);\n        if (l == r) return\
-    \ e();\n        if (l + 1 == r) return table[0][l];\n        --r;\n        int\
-    \ pos = 31 ^ __builtin_clz(l ^ r);\n        return op(table[pos][l], table[pos][r]);\n\
-    \    }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>> table;\n\
+    \    template <class... Args> void init_set(int p, Args... args) {\n        assert(0\
+    \ <= p && p < _n);\n        assert(!is_built);\n        table[0][p] = S(args...);\n\
+    \    }\n\n    S prod(int l, int r) const {\n        assert(0 <= l && l <= r &&\
+    \ r <= _n);\n        assert(is_built);\n        if (l == r) return e();\n    \
+    \    if (l + 1 == r) return table[0][l];\n        --r;\n        int pos = 31 ^\
+    \ __builtin_clz(l ^ r);\n        return op(table[pos][l], table[pos][r]);\n  \
+    \  }\n\n  private:\n    int _n, log;\n    std::vector<std::vector<S>> table;\n\
     \    std::vector<int> lookup;\n    bool is_built = false;\n};\n\ntemplate <class\
-    \ M>\nusing DisjointSparseTableS = DisjointSparseTable<M, M::op, M::unit>;\n\n\
+    \ M> using DisjointSparseTableS = DisjointSparseTable<M, M::op, M::unit>;\n\n\
     } // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/disjoint_sparse_table.hpp
   requiredBy: []
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp

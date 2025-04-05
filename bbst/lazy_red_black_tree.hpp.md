@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bbst/base/red_black_tree_base.hpp
     title: bbst/base/red_black_tree_base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -30,14 +30,14 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_BBST_LAZY_RED_BLACK_TREE_HPP\n#define KK2_BBST_LAZY_RED_BLACK_TREE_HPP\
     \ 1\n\n#include <cassert>\n#include <memory>\n#include <string>\n#include <utility>\n\
-    #include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\n#include \"\
-    base/red_black_tree_base.hpp\"\n\nnamespace kk2 {\n\nnamespace rbtree {\n\ntemplate\
-    \ <class S,\n          S (*op)(S, S),\n          S (*e)(),\n          class F,\n\
-    \          S (*mapping)(F, S),\n          F (*composition)(F, F),\n          F\
-    \ (*id)()>\nstruct LazyRedBlackTreeNode {\n    using NodePtr = typename RedBlackTreeBase<LazyRedBlackTreeNode>::NodePtr;\n\
+    #include <vector>\n\n#include \"../type_traits/io.hpp\"\n#include \"base/red_black_tree_base.hpp\"\
+    \n\nnamespace kk2 {\n\nnamespace rbtree {\n\ntemplate <class S,\n          S (*op)(S,\
+    \ S),\n          S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n\
+    \          F (*composition)(F, F),\n          F (*id)()>\nstruct LazyRedBlackTreeNode\
+    \ {\n    using NodePtr = typename RedBlackTreeBase<LazyRedBlackTreeNode>::NodePtr;\n\
     \    using Monoid = S;\n\n    static Monoid MonoidOp(Monoid a, Monoid b) { return\
     \ op(a, b); }\n\n    static Monoid MonoidUnit() { return e(); }\n\n    using Action\
     \ = F;\n\n    static Monoid Map(Action f, Monoid x) { return mapping(f, x); }\n\
@@ -68,8 +68,8 @@ data:
     \ op, e, F, mapping, composition, id>>;\n    using base::ActionOp;\n    using\
     \ base::Map;\n    using base::merge;\n    using base::RedBlackTreeBase;\n    using\
     \ base::size;\n    using base::split;\n    using base::split3;\n    using typename\
-    \ base::NodePtr;\n\n    template <class... Args>\n    void apply(NodePtr &t, int\
-    \ l, int r, Args... args) {\n        assert(0 <= l and l <= r and r <= size(t));\n\
+    \ base::NodePtr;\n\n    template <class... Args> void apply(NodePtr &t, int l,\
+    \ int r, Args... args) {\n        assert(0 <= l and l <= r and r <= size(t));\n\
     \        auto [t1, t2, t3] = split3(t, l, r);\n        all_apply(t2, F(args...));\n\
     \        t = merge(merge(t1, t2), t3);\n    }\n\n  protected:\n    NodePtr update(NodePtr\
     \ t) override {\n        t->count = size(t->left) + size(t->right) + (t->left\
@@ -83,22 +83,24 @@ data:
     \ ^= 1;\n            t->is_rev = false;\n        }\n\n        if (t->lazy != id())\
     \ {\n            all_apply(t->left, t->lazy);\n            all_apply(t->right,\
     \ t->lazy);\n            t->lazy = id();\n        }\n        return t;\n    }\n\
-    };\n\ntemplate <class A>\nusing LazyRedBlackTreeS = LazyRedBlackTree<typename\
-    \ A::S,\n                                           A::S::op,\n              \
-    \                             A::S::unit,\n                                  \
-    \         typename A::A,\n                                           A::act,\n\
-    \                                           A::A::op,\n                      \
-    \                     A::A::unit>;\n\n} // namespace rbtree\n\nusing rbtree::LazyRedBlackTree;\n\
-    using rbtree::LazyRedBlackTreeS;\n\n} // namespace kk2\n\n#endif // KK2_BBST_LAZY_RED_BLACK_TREE_HPP\n"
+    };\n\ntemplate <class A> using LazyRedBlackTreeS = LazyRedBlackTree<typename A::S,\n\
+    \                                                              A::S::op,\n   \
+    \                                                           A::S::unit,\n    \
+    \                                                          typename A::A,\n  \
+    \                                                            A::act,\n       \
+    \                                                       A::A::op,\n          \
+    \                                                    A::A::unit>;\n\n} // namespace\
+    \ rbtree\n\nusing rbtree::LazyRedBlackTree;\nusing rbtree::LazyRedBlackTreeS;\n\
+    \n} // namespace kk2\n\n#endif // KK2_BBST_LAZY_RED_BLACK_TREE_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   - bbst/base/red_black_tree_base.hpp
   - others/vector_pool.hpp
   isVerificationFile: false
   path: bbst/lazy_red_black_tree.hpp
   requiredBy: []
-  timestamp: '2025-03-27 00:23:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-04-05 12:46:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: bbst/lazy_red_black_tree.hpp

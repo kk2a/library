@@ -1,20 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: math_mod/comb.hpp
-    title: math_mod/comb.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/yosupo_fps/poly_taylor_shift.test.cpp
-    title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -26,10 +17,11 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../type_traits/type_traits.hpp:\
+    \ line -1: no such header\n"
   code: "#ifndef KK2_FPS_POLY_TAYLOR_SHIFT_HPP\n#define KK2_FPS_POLY_TAYLOR_SHIFT_HPP\
     \ 1\n\n#include <algorithm>\n\n#include \"../math_mod/comb.hpp\"\n\nnamespace\
     \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS taylor_shift(const\
@@ -39,16 +31,13 @@ data:
     \ Comb<mint>::inv(i);\n    f = (f * g).pre(n).rev();\n    for (int i = 0; i <\
     \ n; i++) f[i] *= Comb<mint>::ifact(i);\n    return f;\n}\n\n} // namespace kk2\n\
     \n#endif // KK2_FPS_POLY_TAYLOR_SHIFT_HPP\n"
-  dependsOn:
-  - math_mod/comb.hpp
-  - type_traits/type_traits.hpp
+  dependsOn: []
   isVerificationFile: false
   path: fps/poly_taylor_shift.hpp
   requiredBy: []
-  timestamp: '2025-02-08 14:53:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: fps/poly_taylor_shift.hpp
 layout: document
 redirect_from:

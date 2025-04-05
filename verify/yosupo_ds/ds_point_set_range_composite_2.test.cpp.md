@@ -1,55 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: bbst/base/red_black_tree_base.hpp
-    title: bbst/base/red_black_tree_base.hpp
-  - icon: ':heavy_check_mark:'
-    path: bbst/red_black_tree.hpp
-    title: bbst/red_black_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: functional/reverse_args.hpp
-    title: functional/reverse_args.hpp
-  - icon: ':question:'
-    path: math/monoid/affine.hpp
-    title: math/monoid/affine.hpp
-  - icon: ':question:'
-    path: modint/mont.hpp
-    title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
-    path: others/vector_pool.hpp
-    title: others/vector_pool.hpp
-  - icon: ':question:'
-    path: template/constant.hpp
-    title: template/constant.hpp
-  - icon: ':question:'
-    path: template/fastio.hpp
-    title: template/fastio.hpp
-  - icon: ':question:'
-    path: template/io_util.hpp
-    title: template/io_util.hpp
-  - icon: ':question:'
-    path: template/macros.hpp
-    title: template/macros.hpp
-  - icon: ':question:'
-    path: template/template.hpp
-    title: template/template.hpp
-  - icon: ':question:'
-    path: template/type_alias.hpp
-    title: template/type_alias.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
-    links:
-    - https://judge.yosupo.jp/problem/point_set_range_composite
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -62,7 +19,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \ \n\n#include \"../../bbst/red_black_tree.hpp\"\n#include \"../../functional/reverse_args.hpp\"\
     \n#include \"../../math/monoid/affine.hpp\"\n#include \"../../modint/mont.hpp\"\
@@ -76,25 +33,12 @@ data:
     \          int l, r;\n            kk2::mont998 x;\n            kin >> l >> r >>\
     \ x;\n            kout << rbt.prod(root, l, r).eval(x) << \"\\n\";\n        }\n\
     \    }\n\n    return 0;\n}\n"
-  dependsOn:
-  - bbst/red_black_tree.hpp
-  - type_traits/type_traits.hpp
-  - bbst/base/red_black_tree_base.hpp
-  - others/vector_pool.hpp
-  - functional/reverse_args.hpp
-  - math/monoid/affine.hpp
-  - modint/mont.hpp
-  - template/template.hpp
-  - template/constant.hpp
-  - template/type_alias.hpp
-  - template/fastio.hpp
-  - template/io_util.hpp
-  - template/macros.hpp
+  dependsOn: []
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   requiredBy: []
-  timestamp: '2025-03-28 03:34:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
 layout: document

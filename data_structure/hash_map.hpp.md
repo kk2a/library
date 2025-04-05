@@ -13,10 +13,7 @@ data:
 
 
 
-    namespace kk2 {
-
-
-    } // namespace kk2
+    namespace kk2 {} // namespace kk2
 
 
 
@@ -26,10 +23,7 @@ data:
     #define KK2_DATA_STRUCTURE_HASH_MAP_HPP 1
 
 
-    namespace kk2 {
-
-
-    } // namespace kk2
+    namespace kk2 {} // namespace kk2
 
 
     #endif // KK2_DATA_STRUCTURE_HASH_MAP_HPP
@@ -39,7 +33,7 @@ data:
   isVerificationFile: false
   path: data_structure/hash_map.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/hash_map.hpp

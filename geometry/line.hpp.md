@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
     path: geometry/cross_point_line_line.hpp
@@ -14,38 +11,39 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+  bundledCode: "#line 1 \"geometry/line.hpp\"\n\n\n\n#include <numeric>\n\nnamespace\
+    \ kk2 {\n\nnamespace geometry::line {\n\ntemplate <typename T, typename U> struct\
+    \ LineBase {\n    // ax + by + c = 0\n    T a, b, c;\n\n    LineBase() : a(0),\
+    \ b(0), c(0) {}\n\n    LineBase(T a_, T b_, T c_) : a(a_), b(b_), c(c_) {}\n\n\
+    \    friend bool operator==(const LineBase &l, const LineBase &m) {\n        return\
+    \ U(m.a) * l.b == U(l.a) * m.b and U(m.a) * l.c == U(l.a) * m.c;\n    }\n\n  \
+    \  friend bool operator!=(const LineBase &l, const LineBase &m) { return !(l ==\
+    \ m); }\n\n    bool operator<(const LineBase &m) {\n        if (a != m.a) return\
+    \ a < m.a;\n        if (b != m.b) return b < m.b;\n        return c < m.c;\n \
+    \   }\n};\n\n} // namespace geometry::line\n\ntemplate <typename T> using Line\
+    \ = geometry::line::LineBase<T, T>;\ntemplate <> using Line<int> = geometry::line::LineBase<int,\
+    \ long long>;\ntemplate <> using Line<long long> = geometry::line::LineBase<long\
+    \ long, __int128_t>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_GEOMETRY_LINE_HPP\n#define KK2_GEOMETRY_LINE_HPP 1\n\n#include\
-    \ <numeric>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\
-    \nnamespace geometry::line {\n\ntemplate <typename T, typename U> struct LineBase\
-    \ {\n    // ax + by + c = 0\n    T a, b, c;\n\n    LineBase() : a(0), b(0), c(0)\
-    \ {}\n\n    LineBase(T a_, T b_, T c_) : a(a_), b(b_), c(c_) {}\n\n    friend\
-    \ bool operator==(const LineBase &l, const LineBase &m) {\n        return U(m.a)\
-    \ * l.b == U(l.a) * m.b and U(m.a) * l.c == U(l.a) * m.c;\n    }\n\n    friend\
-    \ bool operator!=(const LineBase &l, const LineBase &m) { return !(l == m); }\n\
-    \n    bool operator<(const LineBase &m) {\n        if (a != m.a) return a < m.a;\n\
-    \        if (b != m.b) return b < m.b;\n        return c < m.c;\n    }\n};\n\n\
-    } // namespace geometry::line\n\ntemplate <typename T>\nusing Line = geometry::line::LineBase<T,\
-    \ T>;\ntemplate <>\nusing Line<int> = geometry::line::LineBase<int, long long>;\n\
-    template <>\nusing Line<long long> = geometry::line::LineBase<long long, __int128_t>;\n\
-    \n} // namespace kk2\n\n#endif // KK2_GEOMETRY_LINE_HPP\n"
-  dependsOn:
-  - type_traits/type_traits.hpp
+    \ <numeric>\n\nnamespace kk2 {\n\nnamespace geometry::line {\n\ntemplate <typename\
+    \ T, typename U> struct LineBase {\n    // ax + by + c = 0\n    T a, b, c;\n\n\
+    \    LineBase() : a(0), b(0), c(0) {}\n\n    LineBase(T a_, T b_, T c_) : a(a_),\
+    \ b(b_), c(c_) {}\n\n    friend bool operator==(const LineBase &l, const LineBase\
+    \ &m) {\n        return U(m.a) * l.b == U(l.a) * m.b and U(m.a) * l.c == U(l.a)\
+    \ * m.c;\n    }\n\n    friend bool operator!=(const LineBase &l, const LineBase\
+    \ &m) { return !(l == m); }\n\n    bool operator<(const LineBase &m) {\n     \
+    \   if (a != m.a) return a < m.a;\n        if (b != m.b) return b < m.b;\n   \
+    \     return c < m.c;\n    }\n};\n\n} // namespace geometry::line\n\ntemplate\
+    \ <typename T> using Line = geometry::line::LineBase<T, T>;\ntemplate <> using\
+    \ Line<int> = geometry::line::LineBase<int, long long>;\ntemplate <> using Line<long\
+    \ long> = geometry::line::LineBase<long long, __int128_t>;\n\n} // namespace kk2\n\
+    \n#endif // KK2_GEOMETRY_LINE_HPP\n"
+  dependsOn: []
   isVerificationFile: false
   path: geometry/line.hpp
   requiredBy:
   - geometry/cross_point_line_line.hpp
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/line.hpp

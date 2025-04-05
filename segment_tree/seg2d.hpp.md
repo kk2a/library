@@ -10,14 +10,14 @@ data:
     links: []
   bundledCode: "#line 1 \"segment_tree/seg2d.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <vector>\n\nnamespace kk2 {\n\n// commutative monoid\ntemplate <class S, S (*op)(S,\
-    \ S), S (*e)()>\nstruct SegmentTree2D {\n    SegmentTree2D() = default;\n\n  \
-    \  SegmentTree2D(int h_, int w_) : _h(h_), _w(w_) {\n        size_h = size_w =\
+    \ S), S (*e)()> struct SegmentTree2D {\n    SegmentTree2D() = default;\n\n   \
+    \ SegmentTree2D(int h_, int w_) : _h(h_), _w(w_) {\n        size_h = size_w =\
     \ 1;\n        while (size_h < _h) size_h <<= 1;\n        while (size_w < _w) size_w\
     \ <<= 1;\n        d = std::vector<std::vector<S>>(size_h * 2, std::vector<S>(size_w\
-    \ * 2, e()));\n    }\n\n    template <class... Args>\n    SegmentTree2D(int h_,\
-    \ int w_, Args... args)\n        : SegmentTree2D(std::vector<std::vector<S>>(h_,\
-    \ std::vector<S>(w_, S(args...)))) {}\n\n    SegmentTree2D(const std::vector<std::vector<S>>\
-    \ &v) : _h(int(v.size())), _w(int(v[0].size())) {\n        size_h = size_w = 1;\n\
+    \ * 2, e()));\n    }\n\n    template <class... Args> SegmentTree2D(int h_, int\
+    \ w_, Args... args)\n        : SegmentTree2D(std::vector<std::vector<S>>(h_, std::vector<S>(w_,\
+    \ S(args...)))) {}\n\n    SegmentTree2D(const std::vector<std::vector<S>> &v)\
+    \ : _h(int(v.size())), _w(int(v[0].size())) {\n        size_h = size_w = 1;\n\
     \        while (size_h < _h) size_h <<= 1;\n        while (size_w < _w) size_w\
     \ <<= 1;\n        d = std::vector<std::vector<S>>(size_h * 2, std::vector<S>(size_w\
     \ * 2, e()));\n        for (int i = 0; i < _h; i++) {\n            for (int j\
@@ -26,12 +26,12 @@ data:
     \   is_built = true;\n        for (int j = size_w; j < size_w * 2; j++) {\n  \
     \          for (int i = size_h - 1; i; i--) updatei(i, j);\n        }\n      \
     \  for (int i = 1; i < size_h * 2; i++) {\n            for (int j = size_w - 1;\
-    \ j; j--) updatej(i, j);\n        }\n    }\n\n    template <class... Args>\n \
-    \   void init_set(int i, int j, Args... args) {\n        assert(0 <= i && i <\
-    \ _h);\n        assert(0 <= j && j < _w);\n        assert(!is_built);\n      \
-    \  d[i + size_h][j + size_w] = S(args...);\n    }\n\n    template <class... Args>\n\
-    \    void set(int i, int j, Args... args) {\n        assert(0 <= i && i < _h);\n\
-    \        assert(0 <= j && j < _w);\n        assert(is_built);\n        i += size_h;\n\
+    \ j; j--) updatej(i, j);\n        }\n    }\n\n    template <class... Args> void\
+    \ init_set(int i, int j, Args... args) {\n        assert(0 <= i && i < _h);\n\
+    \        assert(0 <= j && j < _w);\n        assert(!is_built);\n        d[i +\
+    \ size_h][j + size_w] = S(args...);\n    }\n\n    template <class... Args> void\
+    \ set(int i, int j, Args... args) {\n        assert(0 <= i && i < _h);\n     \
+    \   assert(0 <= j && j < _w);\n        assert(is_built);\n        i += size_h;\n\
     \        j += size_w;\n        d[i][j] = S(args...);\n        for (int ii = i\
     \ >> 1; ii; ii >>= 1) updatei(ii, j);\n        for (int ii = i; ii; ii >>= 1)\
     \ {\n            for (int jj = j >> 1; jj; jj >>= 1) updatej(ii, jj);\n      \
@@ -51,16 +51,16 @@ data:
     \ 1]); }\n\n    S inner_prod(int i, int j1, int j2) {\n        S res = e();\n\
     \        for (; j1 < j2; j1 >>= 1, j2 >>= 1) {\n            if (j1 & 1) res =\
     \ op(res, d[i][j1++]);\n            if (j2 & 1) res = op(d[i][--j2], res);\n \
-    \       }\n        return res;\n    }\n};\n\ntemplate <class M>\nusing SegmentTree2DS\
+    \       }\n        return res;\n    }\n};\n\ntemplate <class M> using SegmentTree2DS\
     \ = SegmentTree2D<M, M::op, M::unit>;\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_SEGMENT_TREE_SEG2D_HPP\n#define KK2_SEGMENT_TREE_SEG2D_HPP 1\n\
     \n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\n// commutative monoid\n\
-    template <class S, S (*op)(S, S), S (*e)()>\nstruct SegmentTree2D {\n    SegmentTree2D()\
+    template <class S, S (*op)(S, S), S (*e)()> struct SegmentTree2D {\n    SegmentTree2D()\
     \ = default;\n\n    SegmentTree2D(int h_, int w_) : _h(h_), _w(w_) {\n       \
     \ size_h = size_w = 1;\n        while (size_h < _h) size_h <<= 1;\n        while\
     \ (size_w < _w) size_w <<= 1;\n        d = std::vector<std::vector<S>>(size_h\
-    \ * 2, std::vector<S>(size_w * 2, e()));\n    }\n\n    template <class... Args>\n\
-    \    SegmentTree2D(int h_, int w_, Args... args)\n        : SegmentTree2D(std::vector<std::vector<S>>(h_,\
+    \ * 2, std::vector<S>(size_w * 2, e()));\n    }\n\n    template <class... Args>\
+    \ SegmentTree2D(int h_, int w_, Args... args)\n        : SegmentTree2D(std::vector<std::vector<S>>(h_,\
     \ std::vector<S>(w_, S(args...)))) {}\n\n    SegmentTree2D(const std::vector<std::vector<S>>\
     \ &v) : _h(int(v.size())), _w(int(v[0].size())) {\n        size_h = size_w = 1;\n\
     \        while (size_h < _h) size_h <<= 1;\n        while (size_w < _w) size_w\
@@ -71,12 +71,12 @@ data:
     \   is_built = true;\n        for (int j = size_w; j < size_w * 2; j++) {\n  \
     \          for (int i = size_h - 1; i; i--) updatei(i, j);\n        }\n      \
     \  for (int i = 1; i < size_h * 2; i++) {\n            for (int j = size_w - 1;\
-    \ j; j--) updatej(i, j);\n        }\n    }\n\n    template <class... Args>\n \
-    \   void init_set(int i, int j, Args... args) {\n        assert(0 <= i && i <\
-    \ _h);\n        assert(0 <= j && j < _w);\n        assert(!is_built);\n      \
-    \  d[i + size_h][j + size_w] = S(args...);\n    }\n\n    template <class... Args>\n\
-    \    void set(int i, int j, Args... args) {\n        assert(0 <= i && i < _h);\n\
-    \        assert(0 <= j && j < _w);\n        assert(is_built);\n        i += size_h;\n\
+    \ j; j--) updatej(i, j);\n        }\n    }\n\n    template <class... Args> void\
+    \ init_set(int i, int j, Args... args) {\n        assert(0 <= i && i < _h);\n\
+    \        assert(0 <= j && j < _w);\n        assert(!is_built);\n        d[i +\
+    \ size_h][j + size_w] = S(args...);\n    }\n\n    template <class... Args> void\
+    \ set(int i, int j, Args... args) {\n        assert(0 <= i && i < _h);\n     \
+    \   assert(0 <= j && j < _w);\n        assert(is_built);\n        i += size_h;\n\
     \        j += size_w;\n        d[i][j] = S(args...);\n        for (int ii = i\
     \ >> 1; ii; ii >>= 1) updatei(ii, j);\n        for (int ii = i; ii; ii >>= 1)\
     \ {\n            for (int jj = j >> 1; jj; jj >>= 1) updatej(ii, jj);\n      \
@@ -96,13 +96,13 @@ data:
     \ 1]); }\n\n    S inner_prod(int i, int j1, int j2) {\n        S res = e();\n\
     \        for (; j1 < j2; j1 >>= 1, j2 >>= 1) {\n            if (j1 & 1) res =\
     \ op(res, d[i][j1++]);\n            if (j2 & 1) res = op(d[i][--j2], res);\n \
-    \       }\n        return res;\n    }\n};\n\ntemplate <class M>\nusing SegmentTree2DS\
+    \       }\n        return res;\n    }\n};\n\ntemplate <class M> using SegmentTree2DS\
     \ = SegmentTree2D<M, M::op, M::unit>;\n\n} // namespace kk2\n\n#endif // KK2_SEGMENT_TREE_SEG2D_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: segment_tree/seg2d.hpp
   requiredBy: []
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/seg2d.hpp

@@ -14,13 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/famous_function_table.hpp
     title: math/multiplicative_function/famous_function_table.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/multiplicative_function/sigma.hpp
-    title: math/multiplicative_function/sigma.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/famous_function_table.test.cpp
-    title: verify/unit_test/famous_function_table.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
@@ -48,7 +42,6 @@ data:
   requiredBy:
   - math/multiplicative_function/arbitrary_table.hpp
   - math/multiplicative_function/famous_function.hpp
-  - math/multiplicative_function/sigma.hpp
   - math/multiplicative_function/famous_function_table.hpp
   - math/multiplicative_function/counting_square_free.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
@@ -56,7 +49,6 @@ data:
   verifiedWith:
   - verify/unit_test/multiplicative_function_table.test.cpp
   - verify/unit_test/wavelet_matrix.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
 documentation_of: math/pow.hpp
 layout: document
 redirect_from:

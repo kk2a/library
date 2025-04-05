@@ -1,61 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: bit/bitcount.hpp
-    title: bit/bitcount.hpp
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':question:'
-    path: fps/fps_ntt_friendly.hpp
-    title: fps/fps_ntt_friendly.hpp
-  - icon: ':question:'
-    path: fps/fps_sparsity_detector.hpp
-    title: fps/fps_sparsity_detector.hpp
-  - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: modint/mont.hpp
-    title: modint/mont.hpp
-  - icon: ':question:'
-    path: template/constant.hpp
-    title: template/constant.hpp
-  - icon: ':question:'
-    path: template/fastio.hpp
-    title: template/fastio.hpp
-  - icon: ':question:'
-    path: template/io_util.hpp
-    title: template/io_util.hpp
-  - icon: ':question:'
-    path: template/macros.hpp
-    title: template/macros.hpp
-  - icon: ':question:'
-    path: template/template.hpp
-    title: template/template.hpp
-  - icon: ':question:'
-    path: template/type_alias.hpp
-    title: template/type_alias.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
-    links:
-    - https://judge.yosupo.jp/problem/division_of_polynomials
+  attributes: {}
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -67,10 +18,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  [Previous line repeated 2 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\
     \ \n\n#include \"../../fps/fps_ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
@@ -79,26 +30,11 @@ data:
     \    FPS r = (f - q * g).shrink();\n\n    kout << q.size() << \" \" << r.size()\
     \ << kendl;\n    kout << q << kendl;\n    kout << r << kendl;\n\n    return 0;\n\
     }\n"
-  dependsOn:
-  - fps/fps_ntt_friendly.hpp
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
-  - fps/fps_sparsity_detector.hpp
-  - bit/bitcount.hpp
-  - modint/mont.hpp
-  - template/template.hpp
-  - template/constant.hpp
-  - template/type_alias.hpp
-  - template/fastio.hpp
-  - template/io_util.hpp
-  - template/macros.hpp
+  dependsOn: []
   isVerificationFile: true
   path: verify/yosupo_fps/poly_division.test.cpp
   requiredBy: []
-  timestamp: '2025-03-28 03:34:37+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_division.test.cpp

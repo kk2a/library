@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: math/action/add_max.hpp
@@ -33,23 +33,22 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_GROUP_PLUS_HPP\n#define KK2_MATH_GROUP_PLUS_HPP 1\n\n#include\
-    \ \"../../type_traits/type_traits.hpp\"\n\nnamespace kk2 {\n\nnamespace group\
-    \ {\n\ntemplate <class S>\nstruct Add {\n    static constexpr bool commutative\
-    \ = true;\n    using M = Add;\n    S a;\n\n    Add() : a(S()) {}\n\n    Add(S\
-    \ a_) : a(a_) {}\n\n    operator S() const { return a; }\n\n    inline static\
-    \ M op(M l, M r) { return M(l.a + r.a); }\n\n    inline static M inv(M x) { return\
-    \ M(-x.a); }\n\n    inline static M unit() { return M(); }\n\n    template <class\
-    \ OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
-    \ &os, const M &x) {\n        return os << x.a;\n    }\n\n    template <class\
-    \ IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream\
-    \ &is, M &x) {\n        return is >> x.a;\n    }\n\n    bool operator==(const\
-    \ M &rhs) const { return a == rhs.a; }\n\n    bool operator!=(const M &rhs) const\
-    \ { return !(*this == rhs); }\n};\n\n} // namespace group\n\n} // namespace kk2\n\
-    \n#endif // KK2_MATH_GROUP_PLUS_HPP\n"
+    \ \"../../type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace group {\n\ntemplate\
+    \ <class S> struct Add {\n    static constexpr bool commutative = true;\n    using\
+    \ M = Add;\n    S a;\n\n    Add() : a(S()) {}\n\n    Add(S a_) : a(a_) {}\n\n\
+    \    operator S() const { return a; }\n\n    inline static M op(M l, M r) { return\
+    \ M(l.a + r.a); }\n\n    inline static M inv(M x) { return M(-x.a); }\n\n    inline\
+    \ static M unit() { return M(); }\n\n    template <class OStream, is_ostream_t<OStream>\
+    \ * = nullptr>\n    friend OStream &operator<<(OStream &os, const M &x) {\n  \
+    \      return os << x.a;\n    }\n\n    template <class IStream, is_istream_t<IStream>\
+    \ * = nullptr>\n    friend IStream &operator>>(IStream &is, M &x) {\n        return\
+    \ is >> x.a;\n    }\n\n    bool operator==(const M &rhs) const { return a == rhs.a;\
+    \ }\n\n    bool operator!=(const M &rhs) const { return !(*this == rhs); }\n};\n\
+    \n} // namespace group\n\n} // namespace kk2\n\n#endif // KK2_MATH_GROUP_PLUS_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: math/group/add.hpp
   requiredBy:
@@ -57,7 +56,7 @@ data:
   - math/action/add_max.hpp
   - math/action/add_min.hpp
   - math/action/add_sumwithsize.hpp
-  timestamp: '2025-03-28 03:33:59+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/group/add.hpp

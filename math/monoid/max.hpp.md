@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: math/action/add_max.hpp
@@ -30,12 +30,12 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MONOID_MAX_HPP\n#define KK2_MATH_MONOID_MAX_HPP 1\n\n#include\
-    \ <functional>\n\n#include \"../../type_traits/type_traits.hpp\"\n\nnamespace\
-    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S, class Compare = std::less<S>>\n\
-    struct Max {\n    static constexpr bool commutative = true;\n\n    S a;\n    bool\
-    \ is_unit;\n\n    Max() : a(S()), is_unit(true) {}\n\n    Max(S a_) : a(a_), is_unit(false)\
+    \ <functional>\n\n#include \"../../type_traits/io.hpp\"\n\nnamespace kk2 {\n\n\
+    namespace monoid {\n\ntemplate <class S, class Compare = std::less<S>> struct\
+    \ Max {\n    static constexpr bool commutative = true;\n\n    S a;\n    bool is_unit;\n\
+    \n    Max() : a(S()), is_unit(true) {}\n\n    Max(S a_) : a(a_), is_unit(false)\
     \ {}\n\n    operator S() const { return a; }\n\n    inline static Max op(Max l,\
     \ Max r) {\n        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;\n  \
     \      return Compare{}(l.a, r.a) ? r : l;\n    }\n\n    inline static Max unit()\
@@ -49,13 +49,13 @@ data:
     \ rhs.a);\n    }\n\n    bool operator!=(const Max &rhs) const { return !(*this\
     \ == rhs); }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n#endif // MATH_MONOID_MAX_H\n"
   dependsOn:
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: math/monoid/max.hpp
   requiredBy:
   - math/action/add_max.hpp
   - math/action/update_max.hpp
-  timestamp: '2025-03-28 03:33:59+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/monoid.test.cpp

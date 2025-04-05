@@ -10,9 +10,9 @@ data:
     links: []
   bundledCode: "#line 1 \"data_structure/slope_trick.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <queue>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class T, class\
-    \ U = T>\nstruct SlopeTrick {\n  private:\n    struct P {\n        T pos;\n  \
-    \      U count;\n\n        P(T pos, U count) : pos(pos), count(count) {}\n\n \
-    \       bool operator<(const P &p) const { return pos < p.pos; }\n\n        bool\
+    \ U = T> struct SlopeTrick {\n  private:\n    struct P {\n        T pos;\n   \
+    \     U count;\n\n        P(T pos, U count) : pos(pos), count(count) {}\n\n  \
+    \      bool operator<(const P &p) const { return pos < p.pos; }\n\n        bool\
     \ operator>(const P &p) const { return pos > p.pos; }\n    };\n\n    std::priority_queue<P>\
     \ left;\n    std::priority_queue<P, std::vector<P>, std::greater<P>> right;\n\
     \    T _shift_left, _shift_right, min_y;\n\n    void push_left(T pos, U count)\
@@ -55,8 +55,8 @@ data:
     };\n\n} // namespace kk2\n\n\n\n"
   code: "#ifndef KK2_DATA_STRUCTURE_SLOPE_TRICK_HPP\n#define KK2_DATA_STRUCTURE_SLOPE_TRICK_HPP\
     \ 1\n\n#include <algorithm>\n#include <queue>\n#include <vector>\n\nnamespace\
-    \ kk2 {\n\ntemplate <class T, class U = T>\nstruct SlopeTrick {\n  private:\n\
-    \    struct P {\n        T pos;\n        U count;\n\n        P(T pos, U count)\
+    \ kk2 {\n\ntemplate <class T, class U = T> struct SlopeTrick {\n  private:\n \
+    \   struct P {\n        T pos;\n        U count;\n\n        P(T pos, U count)\
     \ : pos(pos), count(count) {}\n\n        bool operator<(const P &p) const { return\
     \ pos < p.pos; }\n\n        bool operator>(const P &p) const { return pos > p.pos;\
     \ }\n    };\n\n    std::priority_queue<P> left;\n    std::priority_queue<P, std::vector<P>,\
@@ -103,7 +103,7 @@ data:
   isVerificationFile: false
   path: data_structure/slope_trick.hpp
   requiredBy: []
-  timestamp: '2025-02-23 19:24:12+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/slope_trick.hpp

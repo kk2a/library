@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: matrix/basis.hpp
@@ -42,38 +42,40 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATRIX_MATRIX_FIELD_HPP\n#define KK2_MATRIX_MATRIX_FIELD_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include\
-    \ <optional>\n#include <string>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
+    \ <optional>\n#include <string>\n#include <vector>\n\n#include \"../type_traits/io.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class Field> struct MatrixField {\n    using\
     \ value_type = Field;\n    using mat = MatrixField;\n    int _h, _w;\n    std::vector<std::vector<Field>>\
     \ _mat;\n\n    MatrixField() : MatrixField(0) {}\n\n    MatrixField(int n) : MatrixField(n,\
     \ n) {}\n\n    MatrixField(int h, int w) {\n        if (h == 0) {\n          \
     \  _h = 0;\n            _w = w;\n        } else {\n            _h = h;\n     \
-    \       _w = w;\n            _mat.resize(h, std::vector<Field>(w, Field()));\n\
-    \        }\n    }\n\n    MatrixField(const std::vector<std::vector<Field>> &mat_)\n\
-    \        : _h(mat_.size()),\n          _w(mat_[0].size()),\n          _mat(mat_)\
-    \ {}\n\n    int get_h() const { return _h; }\n\n    int get_w() const { return\
-    \ _w; }\n\n    Field &at(int i, int j) const {\n        assert(0 <= i && i < _h);\n\
-    \        assert(0 <= j && j < _w);\n        return _mat[i][j];\n    }\n\n    std::vector<Field>\
-    \ &operator[](int i) {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n\
-    \    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr> mat\
-    \ &input(IStream &is) {\n        for (int i = 0; i < _h; i++) {\n            for\
-    \ (int j = 0; j < _w; j++) { is >> _mat[i][j]; }\n        }\n        return *this;\n\
-    \    }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr> void\
-    \ output(OStream &os) const {\n        for (int i = 0; i < _h; i++) {\n      \
-    \      for (int j = 0; j < _w; j++) os << _mat[i][j] << \" \\n\"[j == _w - 1];\n\
-    \        }\n    }\n\n    void set(int i, int j, Field x) {\n        assert(0 <=\
-    \ i && i < _h);\n        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n\
-    \    }\n\n    mat &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n\
-    \        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++) {\n     \
-    \       for (int j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n     \
-    \   }\n        return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n\
-    \        assert(_h == rhs._h);\n        assert(_w == rhs._w);\n        for (int\
-    \ i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j]\
-    \ -= rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator*=(const\
-    \ mat &rhs) {\n        assert(_w == rhs._h);\n        std::vector<std::vector<Field>>\
+    \       _w = w;\n            _mat.resize(h, std::vector<Field>(w));\n        }\n\
+    \    }\n\n    MatrixField(const std::vector<std::vector<Field>> &mat_)\n     \
+    \   : _h(mat_.size()),\n          _w(mat_[0].size()),\n          _mat(mat_) {}\n\
+    \n    static mat unit(int n) {\n        mat res(n, n);\n        for (int i = 0;\
+    \ i < n; i++) res[i][i] = Field(1);\n        return res;\n    }\n\n    int get_h()\
+    \ const { return _h; }\n\n    int get_w() const { return _w; }\n\n    Field &at(int\
+    \ i, int j) const {\n        assert(0 <= i && i < _h);\n        assert(0 <= j\
+    \ && j < _w);\n        return _mat[i][j];\n    }\n\n    std::vector<Field> &operator[](int\
+    \ i) {\n        assert(0 <= i && i < _h);\n        return _mat[i];\n    }\n\n\
+    \    template <class IStream, is_istream_t<IStream> * = nullptr> mat &input(IStream\
+    \ &is) {\n        for (int i = 0; i < _h; i++) {\n            for (int j = 0;\
+    \ j < _w; j++) { is >> _mat[i][j]; }\n        }\n        return *this;\n    }\n\
+    \n    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream\
+    \ &os) const {\n        for (int i = 0; i < _h; i++) {\n            for (int j\
+    \ = 0; j < _w; j++) os << _mat[i][j] << \" \\n\"[j == _w - 1];\n        }\n  \
+    \  }\n\n    void set(int i, int j, Field x) {\n        assert(0 <= i && i < _h);\n\
+    \        assert(0 <= j && j < _w);\n        _mat[i][j] = x;\n    }\n\n    mat\
+    \ &operator+=(const mat &rhs) {\n        assert(_h == rhs._h);\n        assert(_w\
+    \ == rhs._w);\n        for (int i = 0; i < _h; i++) {\n            for (int j\
+    \ = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n        }\n        return\
+    \ *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n        assert(_h ==\
+    \ rhs._h);\n        assert(_w == rhs._w);\n        for (int i = 0; i < _h; i++)\
+    \ {\n            for (int j = 0; j < _w; j++) { _mat[i][j] -= rhs._mat[i][j];\
+    \ }\n        }\n        return *this;\n    }\n\n    mat &operator*=(const mat\
+    \ &rhs) {\n        assert(_w == rhs._h);\n        std::vector<std::vector<Field>>\
     \ res(_h, std::vector<Field>(rhs._w, Field()));\n        for (int i = 0; i < _h;\
     \ i++) {\n            for (int j = 0; j < rhs._w; j++) {\n                for\
     \ (int k = 0; k < _w; k++) { res[i][j] += _mat[i][k] * rhs._mat[k][j]; }\n   \
@@ -130,32 +132,32 @@ data:
     \    mat &shrink() {\n        while (_h and _mat.back() == std::vector<Field>(_w,\
     \ Field())) {\n            _mat.pop_back();\n            _h--;\n        }\n  \
     \      return *this;\n    }\n\n    template <class T> mat pow(T n) const {\n \
-    \       assert(_h == _w);\n        mat mul(_mat);\n        mat res(_h);\n    \
-    \    for (int i = 0; i < _h; i++) res._mat[i][i] = 1;\n        while (n) {\n \
-    \           if (n & 1) res *= mul;\n            mul *= mul;\n            n >>=\
-    \ 1;\n        }\n        return res;\n    }\n\n    mat solve(const mat &b) const\
-    \ {\n        assert(_h == b._h);\n        assert(b._w == 1);\n        mat ab =\
-    \ combine_right(b);\n        ab.sweep();\n        ab.shrink();\n\n        for\
-    \ (int i = 0; i < ab._h; ++i) {\n            for (int j = 0; j < ab._w; ++j) {\n\
-    \                if (ab[i][j] != Field(0)) {\n                    if (j == ab._w\
-    \ - 1) return mat();\n                    break;\n                }\n        \
-    \    }\n        }\n\n        mat res(1 + _w - ab._h, _w);\n        for (int i\
-    \ = 0; i < ab._h; ++i) {\n            for (int j = 0; j < ab._w; ++j) {\n    \
-    \            if (ab[i][j] != Field(0)) {\n                    res[0][j] = ab[i][ab._w\
-    \ - 1];\n                    break;\n                }\n            }\n      \
-    \  }\n\n        std::vector<int> step(ab._h);\n        std::vector<bool> is_step(ab._w\
-    \ - 1, false);\n        int nowj = 0;\n        for (int i = 0; i < ab._h; i++)\
-    \ {\n            while (ab[i][nowj] == Field(0)) nowj++;\n            is_step[nowj]\
-    \ = true;\n            step[i] = nowj;\n        }\n        int now = 1;\n    \
-    \    nowj = 0;\n        while (nowj < ab._w - 1) {\n            if (is_step[nowj])\
-    \ {\n                nowj++;\n                continue;\n            }\n     \
-    \       res[now][nowj] = 1;\n            for (int i = 0; i < ab._h; i++)\n   \
-    \             if (ab[i][nowj] != Field(0)) res[now][step[i]] = -ab[i][nowj];\n\
-    \            nowj++, now++;\n        }\n        return res;\n    }\n\n    mat\
-    \ &inplace_combine_top(const mat &rhs) {\n        assert(_w == rhs._w);\n    \
-    \    _mat.insert(_mat.begin(), rhs._mat.begin(), rhs._mat.end());\n        _h\
-    \ += rhs._h;\n        return *this;\n    }\n\n    mat combine_top(const mat &rhs)\
-    \ const { return mat(*this).inplace_combine_top(rhs); }\n\n    mat &inplace_combine_bottom(const\
+    \       assert(_h == _w);\n        assert(n >= 0);\n        mat mul(_mat);\n \
+    \       mat res(_h);\n        for (int i = 0; i < _h; i++) res._mat[i][i] = 1;\n\
+    \        while (n) {\n            if (n & 1) res *= mul;\n            if (n >>=\
+    \ 1) mul *= mul;\n        }\n        return res;\n    }\n\n    mat solve(const\
+    \ mat &b) const {\n        assert(_h == b._h);\n        assert(b._w == 1);\n \
+    \       mat ab = combine_right(b);\n        ab.sweep();\n        ab.shrink();\n\
+    \n        for (int i = 0; i < ab._h; ++i) {\n            for (int j = 0; j < ab._w;\
+    \ ++j) {\n                if (ab[i][j] != Field(0)) {\n                    if\
+    \ (j == ab._w - 1) return mat();\n                    break;\n               \
+    \ }\n            }\n        }\n\n        mat res(1 + _w - ab._h, _w);\n      \
+    \  for (int i = 0; i < ab._h; ++i) {\n            for (int j = 0; j < ab._w; ++j)\
+    \ {\n                if (ab[i][j] != Field(0)) {\n                    res[0][j]\
+    \ = ab[i][ab._w - 1];\n                    break;\n                }\n       \
+    \     }\n        }\n\n        std::vector<int> step(ab._h);\n        std::vector<bool>\
+    \ is_step(ab._w - 1, false);\n        int nowj = 0;\n        for (int i = 0; i\
+    \ < ab._h; i++) {\n            while (ab[i][nowj] == Field(0)) nowj++;\n     \
+    \       is_step[nowj] = true;\n            step[i] = nowj;\n        }\n      \
+    \  int now = 1;\n        nowj = 0;\n        while (nowj < ab._w - 1) {\n     \
+    \       if (is_step[nowj]) {\n                nowj++;\n                continue;\n\
+    \            }\n            res[now][nowj] = 1;\n            for (int i = 0; i\
+    \ < ab._h; i++)\n                if (ab[i][nowj] != Field(0)) res[now][step[i]]\
+    \ = -ab[i][nowj];\n            nowj++, now++;\n        }\n        return res;\n\
+    \    }\n\n    mat &inplace_combine_top(const mat &rhs) {\n        assert(_w ==\
+    \ rhs._w);\n        _mat.insert(_mat.begin(), rhs._mat.begin(), rhs._mat.end());\n\
+    \        _h += rhs._h;\n        return *this;\n    }\n\n    mat combine_top(const\
+    \ mat &rhs) const { return mat(*this).inplace_combine_top(rhs); }\n\n    mat &inplace_combine_bottom(const\
     \ mat &rhs) {\n        assert(_w == rhs._w);\n        _mat.insert(_mat.end(),\
     \ rhs._mat.begin(), rhs._mat.end());\n        _h += rhs._h;\n        return *this;\n\
     \    }\n\n    mat combine_bottom(const mat &rhs) const { return mat(*this).inplace_combine_bottom(rhs);\
@@ -180,13 +182,13 @@ data:
     \ mat &lhs, const mat &rhs) { return lhs._mat != rhs._mat; }\n};\n\n} // namespace\
     \ kk2\n\n#endif // KK2_MATRIX_MATRIX_FIELD_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: matrix/matrix_field.hpp
   requiredBy:
   - matrix/basis.hpp
   - matrix/frobenius_form.hpp
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-04-05 10:48:22+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_linalg/matrix_product.test.cpp

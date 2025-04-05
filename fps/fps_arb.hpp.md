@@ -1,53 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: bit/bitcount.hpp
-    title: bit/bitcount.hpp
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':question:'
-    path: convolution/convolution_arb.hpp
-    title: convolution/convolution_arb.hpp
-  - icon: ':question:'
-    path: fps/fps_sparsity_detector.hpp
-    title: fps/fps_sparsity_detector.hpp
-  - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':question:'
-    path: math_mod/garner.hpp
-    title: math_mod/garner.hpp
-  - icon: ':question:'
-    path: math_mod/inv.hpp
-    title: math_mod/inv.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: modint/mont.hpp
-    title: modint/mont.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_exp_arb.test.cpp
-    title: verify/yosupo_fps/fps_exp_arb.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_inv_arb.test.cpp
-    title: verify/yosupo_fps/fps_inv_arb.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_fps/fps_log_arb.test.cpp
-    title: verify/yosupo_fps/fps_log_arb.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -64,26 +22,26 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_FPS_FPS_ARB_HPP\n#define KK2_FPS_FPS_ARB_HPP 1\n\n#include <algorithm>\n\
     #include <cassert>\n#include <iostream>\n#include <utility>\n#include <vector>\n\
-    \n#include \"../convolution/convolution_arb.hpp\"\n#include \"../type_traits/type_traits.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <class mint>\nstruct FormalPowerSeriesArbitrary\
+    \n#include \"../convolution/convolution_arb.hpp\"\n#include \"../type_traits/io.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <class mint> struct FormalPowerSeriesArbitrary\
     \ : std::vector<mint> {\n    using std::vector<mint>::vector;\n    using FPS =\
     \ FormalPowerSeriesArbitrary;\n\n    template <class OStream, is_ostream_t<OStream>\
     \ * = nullptr>\n    void debug_output(OStream &os) const {\n        os << \"[\"\
     ;\n        for (int i = 0; i < (int)this->size(); i++) {\n            os << (*this)[i]\
     \ << (i + 1 == (int)this->size() ? \"\" : \", \");\n        }\n        os << \"\
-    ]\";\n    }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\n\
-    \    void output(OStream &os) const {\n        for (int i = 0; i < (int)this->size();\
+    ]\";\n    }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\
+    \ void output(OStream &os) const {\n        for (int i = 0; i < (int)this->size();\
     \ i++) {\n            os << (*this)[i] << (i + 1 == (int)this->size() ? \"\\n\"\
     \ : \" \");\n        }\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
     \ * = nullptr>\n    friend OStream &operator<<(OStream &os, const FPS &fps_) {\n\
     \        for (int i = 0; i < (int)fps_.size(); i++) {\n            os << fps_[i]\
     \ << (i + 1 == (int)fps_.size() ? \"\" : \" \");\n        }\n        return os;\n\
-    \    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n  \
-    \  FPS &input(IStream &is) {\n        for (int i = 0; i < (int)this->size(); i++)\
-    \ is >> (*this)[i];\n        return *this;\n    }\n\n    template <class IStream,\
+    \    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr> FPS\
+    \ &input(IStream &is) {\n        for (int i = 0; i < (int)this->size(); i++) is\
+    \ >> (*this)[i];\n        return *this;\n    }\n\n    template <class IStream,\
     \ is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream &is,\
     \ FPS &fps_) {\n        for (auto &x : fps_) is >> x;\n        return is;\n  \
     \  }\n\n    FPS &operator+=(const FPS &r) {\n        if (this->size() < r.size())\
@@ -168,8 +126,8 @@ data:
     \  if (k < j) break;\n                int i = k - j;\n                g[k + 1]\
     \ -= g[i + 1] * fj * (i + 1);\n            }\n            g[k + 1] *= inv[k +\
     \ 1];\n            if (k + 1 < int(this->size())) g[k + 1] += (*this)[k + 1];\n\
-    \        }\n\n        return g;\n    }\n\n    template <class T>\n    FPS pow(T\
-    \ k, int deg = -1) const {\n        const int n = this->size();\n        if (deg\
+    \        }\n\n        return g;\n    }\n\n    template <class T> FPS pow(T k,\
+    \ int deg = -1) const {\n        const int n = this->size();\n        if (deg\
     \ == -1) deg = n;\n        if (k == 0) {\n            FPS ret(deg);\n        \
     \    if (deg > 0) ret[0] = mint(1);\n            return ret;\n        }\n    \
     \    for (int i = 0; i < n; i++) {\n            if ((*this)[i] != mint(0)) {\n\
@@ -178,8 +136,8 @@ data:
     \                ret = (ret << (i * k)).pre(deg);\n                if ((int)ret.size()\
     \ < deg) ret.resize(deg, mint(0));\n                return ret;\n            }\n\
     \            if (__int128_t(i + 1) * k >= deg) return FPS(deg, mint(0));\n   \
-    \     }\n        return FPS(deg, mint(0));\n    }\n\n    template <class T>\n\
-    \    FPS sparse_pow(T k, int deg = -1) const {\n        if (deg == -1) deg = this->size();\n\
+    \     }\n        return FPS(deg, mint(0));\n    }\n\n    template <class T> FPS\
+    \ sparse_pow(T k, int deg = -1) const {\n        if (deg == -1) deg = this->size();\n\
     \        if (k == 0) {\n            FPS ret(deg);\n            if (deg > 0) ret[0]\
     \ = mint(1);\n            return ret;\n        }\n\n        int zero = 0;\n  \
     \      while (zero != int(this->size()) && (*this)[zero] == mint(0)) zero++;\n\
@@ -237,47 +195,32 @@ data:
     \ &r);\n\n    FPS operator*(const FPS &r) const { return FPS(*this) *= r; }\n\n\
     \    void but();\n    void ibut();\n    void db();\n    static int but_pr();\n\
     \    FPS inv(int deg = -1) const;\n    FPS exp(int deg = -1) const;\n};\n\ntemplate\
-    \ <class mint>\nvoid FormalPowerSeriesArbitrary<mint>::but() {\n    exit(1);\n\
-    }\n\ntemplate <class mint>\nvoid FormalPowerSeriesArbitrary<mint>::ibut() {\n\
-    \    exit(1);\n}\n\ntemplate <class mint>\nvoid FormalPowerSeriesArbitrary<mint>::db()\
-    \ {\n    exit(1);\n}\n\ntemplate <class mint>\nint FormalPowerSeriesArbitrary<mint>::but_pr()\
-    \ {\n    return 0;\n}\n\ntemplate <class mint>\nFormalPowerSeriesArbitrary<mint>\
-    \ &\nFormalPowerSeriesArbitrary<mint>::operator*=(const FormalPowerSeriesArbitrary<mint>\
-    \ &r) {\n    if (this->empty() || r.empty()) {\n        this->clear();\n     \
-    \   return *this;\n    }\n    convolution_arb(*this, r);\n    return *this;\n\
-    }\n\ntemplate <class mint>\nFormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrary<mint>::inv(int\
-    \ deg) const {\n    assert((*this)[0] != mint(0));\n    if (deg == -1) deg = this->size();\n\
-    \    FormalPowerSeriesArbitrary<mint> res{(*this)[0].inv()};\n    for (int i =\
-    \ 1; i < deg; i <<= 1) {\n        res = (res * mint(2) - this->pre(i << 1) * res\
-    \ * res).pre(i << 1);\n    }\n    return res.pre(deg);\n}\n\ntemplate <class mint>\n\
-    FormalPowerSeriesArbitrary<mint> FormalPowerSeriesArbitrary<mint>::exp(int deg)\
-    \ const {\n    assert(this->empty() || (*this)[0] == mint(0));\n    if (deg ==\
-    \ -1) deg = this->size();\n    FormalPowerSeriesArbitrary<mint> ret{mint(1)};\n\
-    \    for (int i = 1; i < deg; i <<= 1) {\n        ret = (ret * (pre(i << 1) +\
-    \ mint{1} - ret.log(i << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n\
-    }\n\ntemplate <class mint>\nusing FPSArb = FormalPowerSeriesArbitrary<mint>;\n\
-    \n} // namespace kk2\n\n#endif // KK2_FPS_FPS_ARB_HPP\n"
-  dependsOn:
-  - convolution/convolution_arb.hpp
-  - math_mod/garner.hpp
-  - math_mod/inv.hpp
-  - modint/mont.hpp
-  - type_traits/type_traits.hpp
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - fps/fps_sparsity_detector.hpp
-  - bit/bitcount.hpp
+    \ <class mint> void FormalPowerSeriesArbitrary<mint>::but() { exit(1); }\n\ntemplate\
+    \ <class mint> void FormalPowerSeriesArbitrary<mint>::ibut() { exit(1); }\n\n\
+    template <class mint> void FormalPowerSeriesArbitrary<mint>::db() { exit(1); }\n\
+    \ntemplate <class mint> int FormalPowerSeriesArbitrary<mint>::but_pr() { return\
+    \ 0; }\n\ntemplate <class mint> FormalPowerSeriesArbitrary<mint> &\nFormalPowerSeriesArbitrary<mint>::operator*=(const\
+    \ FormalPowerSeriesArbitrary<mint> &r) {\n    if (this->empty() || r.empty())\
+    \ {\n        this->clear();\n        return *this;\n    }\n    convolution_arb(*this,\
+    \ r);\n    return *this;\n}\n\ntemplate <class mint>\nFormalPowerSeriesArbitrary<mint>\
+    \ FormalPowerSeriesArbitrary<mint>::inv(int deg) const {\n    assert((*this)[0]\
+    \ != mint(0));\n    if (deg == -1) deg = this->size();\n    FormalPowerSeriesArbitrary<mint>\
+    \ res{(*this)[0].inv()};\n    for (int i = 1; i < deg; i <<= 1) {\n        res\
+    \ = (res * mint(2) - this->pre(i << 1) * res * res).pre(i << 1);\n    }\n    return\
+    \ res.pre(deg);\n}\n\ntemplate <class mint>\nFormalPowerSeriesArbitrary<mint>\
+    \ FormalPowerSeriesArbitrary<mint>::exp(int deg) const {\n    assert(this->empty()\
+    \ || (*this)[0] == mint(0));\n    if (deg == -1) deg = this->size();\n    FormalPowerSeriesArbitrary<mint>\
+    \ ret{mint(1)};\n    for (int i = 1; i < deg; i <<= 1) {\n        ret = (ret *\
+    \ (pre(i << 1) + mint{1} - ret.log(i << 1))).pre(i << 1);\n    }\n    return ret.pre(deg);\n\
+    }\n\ntemplate <class mint> using FPSArb = FormalPowerSeriesArbitrary<mint>;\n\n\
+    } // namespace kk2\n\n#endif // KK2_FPS_FPS_ARB_HPP\n"
+  dependsOn: []
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy: []
-  timestamp: '2025-03-14 21:44:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
-  - verify/yosupo_fps/fps_log_arb.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: fps/fps_arb.hpp
 layout: document
 redirect_from:

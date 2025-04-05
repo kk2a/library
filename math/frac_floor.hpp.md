@@ -34,12 +34,6 @@ data:
     title: math/sqrt_floor.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/unit_test/isprime_table_extend.test.cpp
-    title: verify/unit_test/isprime_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/lpf_table_extend.test.cpp
-    title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
@@ -115,8 +109,6 @@ data:
   - verify/yosupo_convolution/convolution_gcd.test.cpp
   - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
 documentation_of: math/frac_floor.hpp
 layout: document
 redirect_from:

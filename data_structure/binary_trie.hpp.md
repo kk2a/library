@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: verify/yosupo_ds/ds_set_xor_min.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/binary_trie.hpp\"\n\n\n\n#include <cassert>\n\
@@ -55,49 +55,49 @@ data:
     \ x) const {\n        int now = root, res = nodes[root].count;\n        for (int\
     \ i = MAX_LOG - 1; i >= 0; --i) {\n            const int zero = (lazy >> i) &\
     \ 1, d = (x >> i) & 1;\n            if (d == 0 and nodes[now].nxt[zero ^ 1] !=\
-    \ -1) res -= nodes[nodes[now].nxt[zero ^ 1]].count;\n            now = nodes[now].nxt[d\
-    \ ^ zero];\n            if (now == -1) break;\n        }\n        return res;\n\
-    \    }\n\n    int count_not_less(T x) const {\n        int now = root, res = nodes[root].count;\n\
-    \        for (int i = MAX_LOG - 1; i >= 0; --i) {\n            const int zero\
-    \ = (lazy >> i) & 1, d = (x >> i) & 1;\n            if (d == 1 and nodes[now].nxt[zero]\
-    \ != -1) res -= nodes[nodes[now].nxt[zero]].count;\n            now = nodes[now].nxt[d\
-    \ ^ zero];\n            if (now == -1) break;\n        }\n        return res;\n\
-    \    }\n\n    int count(T x) const {\n        x ^= lazy;\n        int now = root;\n\
-    \        for (int i = MAX_LOG - 1; i >= 0; --i) {\n            const int d = (x\
-    \ >> i) & 1;\n            if (nodes[now].nxt[d] == -1) return 0;\n           \
-    \ now = nodes[now].nxt[d];\n        }\n        return nodes[now].count;\n    }\n\
-    \n    std::optional<T> max_not_greater(T x) const {\n        if (size() == 0)\
-    \ return std::nullopt;\n        x ^= lazy;\n        int now = root;\n        T\
-    \ res = 0;\n        bool same = true;\n        int st[MAX_LOG];\n        int i\
-    \ = MAX_LOG - 1;\n\n        for (;; --i) {\n            const int d = (x >> i)\
-    \ & 1;\n            st[i] = now;\n            if (same) {\n                if\
-    \ (d == 0 and nodes[now].nxt[d] != -1) now = nodes[now].nxt[d];\n            \
-    \    else if (d == 0 and nodes[now].nxt[d] == -1) break;\n                else\
-    \ if (d == 1 and nodes[now].nxt[d] != -1) {\n                    res |= (T(1)\
+    \ -1)\n                res -= nodes[nodes[now].nxt[zero ^ 1]].count;\n       \
+    \     now = nodes[now].nxt[d ^ zero];\n            if (now == -1) break;\n   \
+    \     }\n        return res;\n    }\n\n    int count_not_less(T x) const {\n \
+    \       int now = root, res = nodes[root].count;\n        for (int i = MAX_LOG\
+    \ - 1; i >= 0; --i) {\n            const int zero = (lazy >> i) & 1, d = (x >>\
+    \ i) & 1;\n            if (d == 1 and nodes[now].nxt[zero] != -1) res -= nodes[nodes[now].nxt[zero]].count;\n\
+    \            now = nodes[now].nxt[d ^ zero];\n            if (now == -1) break;\n\
+    \        }\n        return res;\n    }\n\n    int count(T x) const {\n       \
+    \ x ^= lazy;\n        int now = root;\n        for (int i = MAX_LOG - 1; i >=\
+    \ 0; --i) {\n            const int d = (x >> i) & 1;\n            if (nodes[now].nxt[d]\
+    \ == -1) return 0;\n            now = nodes[now].nxt[d];\n        }\n        return\
+    \ nodes[now].count;\n    }\n\n    std::optional<T> max_not_greater(T x) const\
+    \ {\n        if (size() == 0) return std::nullopt;\n        x ^= lazy;\n     \
+    \   int now = root;\n        T res = 0;\n        bool same = true;\n        int\
+    \ st[MAX_LOG];\n        int i = MAX_LOG - 1;\n\n        for (;; --i) {\n     \
+    \       const int d = (x >> i) & 1;\n            st[i] = now;\n            if\
+    \ (same) {\n                if (d == 0 and nodes[now].nxt[d] != -1) now = nodes[now].nxt[d];\n\
+    \                else if (d == 0 and nodes[now].nxt[d] == -1) break;\n       \
+    \         else if (d == 1 and nodes[now].nxt[d] != -1) {\n                   \
+    \ res |= (T(1) << i);\n                    now = nodes[now].nxt[d];\n        \
+    \        } else {\n                    assert(nodes[now].nxt[d ^ 1] != -1);\n\
+    \                    now = nodes[now].nxt[d ^ 1];\n                    same =\
+    \ false;\n                }\n            } else {\n                if (nodes[now].nxt[1]\
+    \ != -1) {\n                    res |= (T(1) << i);\n                    now =\
+    \ nodes[now].nxt[1];\n                } else {\n                    now = nodes[now].nxt[0];\n\
+    \                }\n            }\n            if (i == 0) return res;\n     \
+    \   }\n\n        ++i;\n        for (;; ++i) {\n            if (i == MAX_LOG) return\
+    \ std::nullopt;\n            const int d = (x >> i) & 1;\n            res &= ~(T(1)\
+    \ << i);\n            now = st[i];\n            if (d == 1 and nodes[now].nxt[d\
+    \ ^ 1] != -1) {\n                now = nodes[now].nxt[d ^ 1];\n              \
+    \  break;\n            }\n        }\n\n        --i;\n        for (; i >= 0; --i)\
+    \ {\n            if (nodes[now].nxt[1] != -1) {\n                res |= (T(1)\
+    \ << i);\n                now = nodes[now].nxt[1];\n            } else {\n   \
+    \             now = nodes[now].nxt[0];\n            }\n        }\n        return\
+    \ res;\n    }\n\n    std::optional<T> min_not_less(T x) const {\n        if (size()\
+    \ == 0) return std::nullopt;\n        x ^= lazy;\n        int now = root;\n  \
+    \      T res = 0;\n        bool same = true;\n        int st[MAX_LOG];\n     \
+    \   int i = MAX_LOG - 1;\n        for (;; --i) {\n            const int d = (x\
+    \ >> i) & 1;\n            st[i] = now;\n            if (same) {\n            \
+    \    if (d == 1 and nodes[now].nxt[d] != -1) {\n                    res |= (T(1)\
     \ << i);\n                    now = nodes[now].nxt[d];\n                } else\
-    \ {\n                    assert(nodes[now].nxt[d ^ 1] != -1);\n              \
-    \      now = nodes[now].nxt[d ^ 1];\n                    same = false;\n     \
-    \           }\n            } else {\n                if (nodes[now].nxt[1] !=\
-    \ -1) {\n                    res |= (T(1) << i);\n                    now = nodes[now].nxt[1];\n\
-    \                } else {\n                    now = nodes[now].nxt[0];\n    \
-    \            }\n            }\n            if (i == 0) return res;\n        }\n\
-    \n        ++i;\n        for (;; ++i) {\n            if (i == MAX_LOG) return std::nullopt;\n\
-    \            const int d = (x >> i) & 1;\n            res &= ~(T(1) << i);\n \
-    \           now = st[i];\n            if (d == 1 and nodes[now].nxt[d ^ 1] !=\
-    \ -1) {\n                now = nodes[now].nxt[d ^ 1];\n                break;\n\
-    \            }\n        }\n\n        --i;\n        for (; i >= 0; --i) {\n   \
-    \         if (nodes[now].nxt[1] != -1) {\n                res |= (T(1) << i);\n\
-    \                now = nodes[now].nxt[1];\n            } else {\n            \
-    \    now = nodes[now].nxt[0];\n            }\n        }\n        return res;\n\
-    \    }\n\n    std::optional<T> min_not_less(T x) const {\n        if (size() ==\
-    \ 0) return std::nullopt;\n        x ^= lazy;\n        int now = root;\n     \
-    \   T res = 0;\n        bool same = true;\n        int st[MAX_LOG];\n        int\
-    \ i = MAX_LOG - 1;\n        for (;; --i) {\n            const int d = (x >> i)\
-    \ & 1;\n            st[i] = now;\n            if (same) {\n                if\
-    \ (d == 1 and nodes[now].nxt[d] != -1) {\n                    res |= (T(1) <<\
-    \ i);\n                    now = nodes[now].nxt[d];\n                } else if\
-    \ (d == 1 and nodes[now].nxt[d] == -1) break;\n                else if (d == 0\
-    \ and nodes[now].nxt[d] != -1) now = nodes[now].nxt[d];\n                else\
+    \ if (d == 1 and nodes[now].nxt[d] == -1) break;\n                else if (d ==\
+    \ 0 and nodes[now].nxt[d] != -1) now = nodes[now].nxt[d];\n                else\
     \ {\n                    assert(nodes[now].nxt[d ^ 1] != -1);\n              \
     \      res |= (T(1) << i);\n                    now = nodes[now].nxt[d ^ 1];\n\
     \                    same = false;\n                }\n            } else {\n\
@@ -156,49 +156,49 @@ data:
     \ x) const {\n        int now = root, res = nodes[root].count;\n        for (int\
     \ i = MAX_LOG - 1; i >= 0; --i) {\n            const int zero = (lazy >> i) &\
     \ 1, d = (x >> i) & 1;\n            if (d == 0 and nodes[now].nxt[zero ^ 1] !=\
-    \ -1) res -= nodes[nodes[now].nxt[zero ^ 1]].count;\n            now = nodes[now].nxt[d\
-    \ ^ zero];\n            if (now == -1) break;\n        }\n        return res;\n\
-    \    }\n\n    int count_not_less(T x) const {\n        int now = root, res = nodes[root].count;\n\
-    \        for (int i = MAX_LOG - 1; i >= 0; --i) {\n            const int zero\
-    \ = (lazy >> i) & 1, d = (x >> i) & 1;\n            if (d == 1 and nodes[now].nxt[zero]\
-    \ != -1) res -= nodes[nodes[now].nxt[zero]].count;\n            now = nodes[now].nxt[d\
-    \ ^ zero];\n            if (now == -1) break;\n        }\n        return res;\n\
-    \    }\n\n    int count(T x) const {\n        x ^= lazy;\n        int now = root;\n\
-    \        for (int i = MAX_LOG - 1; i >= 0; --i) {\n            const int d = (x\
-    \ >> i) & 1;\n            if (nodes[now].nxt[d] == -1) return 0;\n           \
-    \ now = nodes[now].nxt[d];\n        }\n        return nodes[now].count;\n    }\n\
-    \n    std::optional<T> max_not_greater(T x) const {\n        if (size() == 0)\
-    \ return std::nullopt;\n        x ^= lazy;\n        int now = root;\n        T\
-    \ res = 0;\n        bool same = true;\n        int st[MAX_LOG];\n        int i\
-    \ = MAX_LOG - 1;\n\n        for (;; --i) {\n            const int d = (x >> i)\
-    \ & 1;\n            st[i] = now;\n            if (same) {\n                if\
-    \ (d == 0 and nodes[now].nxt[d] != -1) now = nodes[now].nxt[d];\n            \
-    \    else if (d == 0 and nodes[now].nxt[d] == -1) break;\n                else\
-    \ if (d == 1 and nodes[now].nxt[d] != -1) {\n                    res |= (T(1)\
+    \ -1)\n                res -= nodes[nodes[now].nxt[zero ^ 1]].count;\n       \
+    \     now = nodes[now].nxt[d ^ zero];\n            if (now == -1) break;\n   \
+    \     }\n        return res;\n    }\n\n    int count_not_less(T x) const {\n \
+    \       int now = root, res = nodes[root].count;\n        for (int i = MAX_LOG\
+    \ - 1; i >= 0; --i) {\n            const int zero = (lazy >> i) & 1, d = (x >>\
+    \ i) & 1;\n            if (d == 1 and nodes[now].nxt[zero] != -1) res -= nodes[nodes[now].nxt[zero]].count;\n\
+    \            now = nodes[now].nxt[d ^ zero];\n            if (now == -1) break;\n\
+    \        }\n        return res;\n    }\n\n    int count(T x) const {\n       \
+    \ x ^= lazy;\n        int now = root;\n        for (int i = MAX_LOG - 1; i >=\
+    \ 0; --i) {\n            const int d = (x >> i) & 1;\n            if (nodes[now].nxt[d]\
+    \ == -1) return 0;\n            now = nodes[now].nxt[d];\n        }\n        return\
+    \ nodes[now].count;\n    }\n\n    std::optional<T> max_not_greater(T x) const\
+    \ {\n        if (size() == 0) return std::nullopt;\n        x ^= lazy;\n     \
+    \   int now = root;\n        T res = 0;\n        bool same = true;\n        int\
+    \ st[MAX_LOG];\n        int i = MAX_LOG - 1;\n\n        for (;; --i) {\n     \
+    \       const int d = (x >> i) & 1;\n            st[i] = now;\n            if\
+    \ (same) {\n                if (d == 0 and nodes[now].nxt[d] != -1) now = nodes[now].nxt[d];\n\
+    \                else if (d == 0 and nodes[now].nxt[d] == -1) break;\n       \
+    \         else if (d == 1 and nodes[now].nxt[d] != -1) {\n                   \
+    \ res |= (T(1) << i);\n                    now = nodes[now].nxt[d];\n        \
+    \        } else {\n                    assert(nodes[now].nxt[d ^ 1] != -1);\n\
+    \                    now = nodes[now].nxt[d ^ 1];\n                    same =\
+    \ false;\n                }\n            } else {\n                if (nodes[now].nxt[1]\
+    \ != -1) {\n                    res |= (T(1) << i);\n                    now =\
+    \ nodes[now].nxt[1];\n                } else {\n                    now = nodes[now].nxt[0];\n\
+    \                }\n            }\n            if (i == 0) return res;\n     \
+    \   }\n\n        ++i;\n        for (;; ++i) {\n            if (i == MAX_LOG) return\
+    \ std::nullopt;\n            const int d = (x >> i) & 1;\n            res &= ~(T(1)\
+    \ << i);\n            now = st[i];\n            if (d == 1 and nodes[now].nxt[d\
+    \ ^ 1] != -1) {\n                now = nodes[now].nxt[d ^ 1];\n              \
+    \  break;\n            }\n        }\n\n        --i;\n        for (; i >= 0; --i)\
+    \ {\n            if (nodes[now].nxt[1] != -1) {\n                res |= (T(1)\
+    \ << i);\n                now = nodes[now].nxt[1];\n            } else {\n   \
+    \             now = nodes[now].nxt[0];\n            }\n        }\n        return\
+    \ res;\n    }\n\n    std::optional<T> min_not_less(T x) const {\n        if (size()\
+    \ == 0) return std::nullopt;\n        x ^= lazy;\n        int now = root;\n  \
+    \      T res = 0;\n        bool same = true;\n        int st[MAX_LOG];\n     \
+    \   int i = MAX_LOG - 1;\n        for (;; --i) {\n            const int d = (x\
+    \ >> i) & 1;\n            st[i] = now;\n            if (same) {\n            \
+    \    if (d == 1 and nodes[now].nxt[d] != -1) {\n                    res |= (T(1)\
     \ << i);\n                    now = nodes[now].nxt[d];\n                } else\
-    \ {\n                    assert(nodes[now].nxt[d ^ 1] != -1);\n              \
-    \      now = nodes[now].nxt[d ^ 1];\n                    same = false;\n     \
-    \           }\n            } else {\n                if (nodes[now].nxt[1] !=\
-    \ -1) {\n                    res |= (T(1) << i);\n                    now = nodes[now].nxt[1];\n\
-    \                } else {\n                    now = nodes[now].nxt[0];\n    \
-    \            }\n            }\n            if (i == 0) return res;\n        }\n\
-    \n        ++i;\n        for (;; ++i) {\n            if (i == MAX_LOG) return std::nullopt;\n\
-    \            const int d = (x >> i) & 1;\n            res &= ~(T(1) << i);\n \
-    \           now = st[i];\n            if (d == 1 and nodes[now].nxt[d ^ 1] !=\
-    \ -1) {\n                now = nodes[now].nxt[d ^ 1];\n                break;\n\
-    \            }\n        }\n\n        --i;\n        for (; i >= 0; --i) {\n   \
-    \         if (nodes[now].nxt[1] != -1) {\n                res |= (T(1) << i);\n\
-    \                now = nodes[now].nxt[1];\n            } else {\n            \
-    \    now = nodes[now].nxt[0];\n            }\n        }\n        return res;\n\
-    \    }\n\n    std::optional<T> min_not_less(T x) const {\n        if (size() ==\
-    \ 0) return std::nullopt;\n        x ^= lazy;\n        int now = root;\n     \
-    \   T res = 0;\n        bool same = true;\n        int st[MAX_LOG];\n        int\
-    \ i = MAX_LOG - 1;\n        for (;; --i) {\n            const int d = (x >> i)\
-    \ & 1;\n            st[i] = now;\n            if (same) {\n                if\
-    \ (d == 1 and nodes[now].nxt[d] != -1) {\n                    res |= (T(1) <<\
-    \ i);\n                    now = nodes[now].nxt[d];\n                } else if\
-    \ (d == 1 and nodes[now].nxt[d] == -1) break;\n                else if (d == 0\
-    \ and nodes[now].nxt[d] != -1) now = nodes[now].nxt[d];\n                else\
+    \ if (d == 1 and nodes[now].nxt[d] == -1) break;\n                else if (d ==\
+    \ 0 and nodes[now].nxt[d] != -1) now = nodes[now].nxt[d];\n                else\
     \ {\n                    assert(nodes[now].nxt[d ^ 1] != -1);\n              \
     \      res |= (T(1) << i);\n                    now = nodes[now].nxt[d ^ 1];\n\
     \                    same = false;\n                }\n            } else {\n\
@@ -220,8 +220,8 @@ data:
   isVerificationFile: false
   path: data_structure/binary_trie.hpp
   requiredBy: []
-  timestamp: '2025-03-09 17:35:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2025-04-05 12:46:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   - verify/yosupo_ds/ds_set_xor_min.test.cpp

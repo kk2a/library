@@ -13,7 +13,7 @@ data:
     links: []
   bundledCode: "#line 1 \"data_structure/prefix_sum_arbitrary.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <iostream>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
-    \ <class T>\nstruct PrefixSumArbitrary {\n  private:\n    std::vector<int> base;\n\
+    \ <class T> struct PrefixSumArbitrary {\n  private:\n    std::vector<int> base;\n\
     \    int dim;\n    std::vector<T> acc;\n\n    std::vector<int> inner_base;\n \
     \   int n;\n\n  public:\n    constexpr PrefixSumArbitrary() = default;\n\n   \
     \ constexpr PrefixSumArbitrary(const std::vector<int> &base_)\n        : base(base_),\n\
@@ -49,7 +49,7 @@ data:
     \        return sum(l, r);\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP\n#define KK2_DARA_STRUCTURE_PREFIX_SUM_ARBITRARY_HPP\
     \ 1\n\n#include <cassert>\n#include <iostream>\n#include <vector>\n\nnamespace\
-    \ kk2 {\n\ntemplate <class T>\nstruct PrefixSumArbitrary {\n  private:\n    std::vector<int>\
+    \ kk2 {\n\ntemplate <class T> struct PrefixSumArbitrary {\n  private:\n    std::vector<int>\
     \ base;\n    int dim;\n    std::vector<T> acc;\n\n    std::vector<int> inner_base;\n\
     \    int n;\n\n  public:\n    constexpr PrefixSumArbitrary() = default;\n\n  \
     \  constexpr PrefixSumArbitrary(const std::vector<int> &base_)\n        : base(base_),\n\
@@ -87,7 +87,7 @@ data:
   isVerificationFile: false
   path: data_structure/prefix_sum_arbitrary.hpp
   requiredBy: []
-  timestamp: '2025-02-27 22:28:33+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0560_2.test.cpp

@@ -13,9 +13,6 @@ data:
     title: math/multiplicative_function/counting_square_free.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/unit_test/famous_function_table.test.cpp
-    title: verify/unit_test/famous_function_table.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
   _isVerificationFailed: false
@@ -37,10 +34,10 @@ data:
     \ {\n                if (p * i > m) break;\n                if (_lpf[i] < p) break;\n\
     \                _lpf[p * i] = p;\n            }\n        }\n    }\n\n    static\
     \ const std::vector<int> &primes() { return _primes; }\n\n    template <typename\
-    \ It>\n    struct PrimeIt {\n        It bg, ed;\n\n        PrimeIt(It bg_, It\
-    \ ed_) : bg(bg_), ed(ed_) {}\n\n        It begin() const { return bg; }\n\n  \
-    \      It end() const { return ed; }\n\n        int size() const { return ed -\
-    \ bg; }\n\n        int operator[](int i) const { return bg[i]; }\n\n        std::vector<int>\
+    \ It> struct PrimeIt {\n        It bg, ed;\n\n        PrimeIt(It bg_, It ed_)\
+    \ : bg(bg_), ed(ed_) {}\n\n        It begin() const { return bg; }\n\n       \
+    \ It end() const { return ed; }\n\n        int size() const { return ed - bg;\
+    \ }\n\n        int operator[](int i) const { return bg[i]; }\n\n        std::vector<int>\
     \ to_vec() const { return std::vector<int>(bg, ed); }\n    };\n\n    static auto\
     \ primes(int n) {\n        if (n >= (int)_lpf.size()) set_upper(n);\n        return\
     \ PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(), n));\n\
@@ -122,11 +119,10 @@ data:
   path: math/multiplicative_function/famous_function_table.hpp
   requiredBy:
   - math/multiplicative_function/counting_square_free.hpp
-  timestamp: '2025-02-08 19:46:37+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/multiplicative_function_table.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
 documentation_of: math/multiplicative_function/famous_function_table.hpp
 layout: document
 redirect_from:

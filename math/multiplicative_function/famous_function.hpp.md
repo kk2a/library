@@ -20,26 +20,26 @@ data:
     \    S r = 1, y = x;\n    while (n) {\n        if (n & 1) r *= y;\n        if\
     \ (n >>= 1) y *= y;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line\
     \ 5 \"math/multiplicative_function/famous_function.hpp\"\n\nnamespace kk2 {\n\n\
-    namespace mf {\n\nlong long mobius(long long, long long e) {\n    return e ==\
-    \ 1 ? -1 : 0;\n}\n\nlong long sigma0(long long, long long e) {\n    return e +\
-    \ 1;\n}\n\nlong long sigma1(long long p, long long e) {\n    long long p_e = pow<long\
-    \ long>(p, e);\n    return p_e + (p_e - 1) / (p - 1);\n}\n\nlong long euler_phi(long\
-    \ long p, long long e) {\n    long long p_e = pow<long long>(p, e);\n    return\
-    \ p_e - p_e / p;\n}\n\n} // namespace mf\n\n} // namespace kk2\n\n\n"
+    namespace mf {\n\nlong long mobius(long long, long long e) { return e == 1 ? -1\
+    \ : 0; }\n\nlong long sigma0(long long, long long e) { return e + 1; }\n\nlong\
+    \ long sigma1(long long p, long long e) {\n    long long p_e = pow<long long>(p,\
+    \ e);\n    return p_e + (p_e - 1) / (p - 1);\n}\n\nlong long euler_phi(long long\
+    \ p, long long e) {\n    long long p_e = pow<long long>(p, e);\n    return p_e\
+    \ - p_e / p;\n}\n\n} // namespace mf\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_HPP\n#define KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_HPP\
     \ 1\n\n#include \"../pow.hpp\"\n\nnamespace kk2 {\n\nnamespace mf {\n\nlong long\
-    \ mobius(long long, long long e) {\n    return e == 1 ? -1 : 0;\n}\n\nlong long\
-    \ sigma0(long long, long long e) {\n    return e + 1;\n}\n\nlong long sigma1(long\
-    \ long p, long long e) {\n    long long p_e = pow<long long>(p, e);\n    return\
-    \ p_e + (p_e - 1) / (p - 1);\n}\n\nlong long euler_phi(long long p, long long\
-    \ e) {\n    long long p_e = pow<long long>(p, e);\n    return p_e - p_e / p;\n\
-    }\n\n} // namespace mf\n\n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_HPP\n"
+    \ mobius(long long, long long e) { return e == 1 ? -1 : 0; }\n\nlong long sigma0(long\
+    \ long, long long e) { return e + 1; }\n\nlong long sigma1(long long p, long long\
+    \ e) {\n    long long p_e = pow<long long>(p, e);\n    return p_e + (p_e - 1)\
+    \ / (p - 1);\n}\n\nlong long euler_phi(long long p, long long e) {\n    long long\
+    \ p_e = pow<long long>(p, e);\n    return p_e - p_e / p;\n}\n\n} // namespace\
+    \ mf\n\n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_FAMOUS_FUNCTION_HPP\n"
   dependsOn:
   - math/pow.hpp
   isVerificationFile: false
   path: math/multiplicative_function/famous_function.hpp
   requiredBy: []
-  timestamp: '2025-02-08 19:46:37+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/multiplicative_function_table.test.cpp

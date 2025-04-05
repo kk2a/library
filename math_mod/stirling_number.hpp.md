@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: fps/product.hpp
     title: fps/product.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-    title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/stirling_number.hpp\"\n\n\n\n#include <vector>\n\
@@ -24,23 +21,22 @@ data:
     \ l, m) * inner_all_prod(a, m, r);\n}\n\n} // namespace kk2\n\n\n#line 7 \"math_mod/stirling_number.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
     std::vector<mint> enumerate_stirling_number_of_the_first_kind(int n) {\n    std::vector<FPS>\
-    \ a(n);\n    for (int i = 0; i < n; ++i) {\n        a[i] = FPS{-i, 1};\n    }\n\
-    \    return all_prod(a);\n}\n\n} // namespace kk2\n\n\n"
+    \ a(n);\n    for (int i = 0; i < n; ++i) { a[i] = FPS{-i, 1}; }\n    return all_prod(a);\n\
+    }\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_MATH_MOD_STIRLING_NUMBER_HPP\n#define KK2_MATH_MOD_STIRLING_NUMBER_HPP\
     \ 1\n\n#include <vector>\n\n#include \"../fps/product.hpp\"\n\nnamespace kk2 {\n\
     \ntemplate <class FPS, class mint = typename FPS::value_type>\nstd::vector<mint>\
     \ enumerate_stirling_number_of_the_first_kind(int n) {\n    std::vector<FPS> a(n);\n\
-    \    for (int i = 0; i < n; ++i) {\n        a[i] = FPS{-i, 1};\n    }\n    return\
-    \ all_prod(a);\n}\n\n} // namespace kk2\n\n#endif // KK2_MATH_MOD_STIRLING_NUMBER_HPP\n"
+    \    for (int i = 0; i < n; ++i) { a[i] = FPS{-i, 1}; }\n    return all_prod(a);\n\
+    }\n\n} // namespace kk2\n\n#endif // KK2_MATH_MOD_STIRLING_NUMBER_HPP\n"
   dependsOn:
   - fps/product.hpp
   isVerificationFile: false
   path: math_mod/stirling_number.hpp
   requiredBy: []
-  timestamp: '2025-02-08 14:55:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+  timestamp: '2025-04-05 12:46:42+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math_mod/stirling_number.hpp
 layout: document
 redirect_from:

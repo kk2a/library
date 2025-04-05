@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/flatten_indeices.hpp\"\n\n\n\n#include <vector>\n\n\
+  bundledCode: "#line 1 \"math/flatten_indices.hpp\"\n\n\n\n#include <vector>\n\n\
     namespace kk2 {\n\nstruct FlattenIndices {\n  private:\n    std::vector<int> _inner_dims;\n\
     \n  public:\n    FlattenIndices(const std::vector<int> &dims) {\n        _inner_dims.resize(dims.size()\
     \ + 1);\n        _inner_dims[0] = 1;\n        for (unsigned int i = 1; i <= dims.size();\
@@ -47,15 +47,15 @@ data:
     \ _inner_dims.back(); }\n};\n\n} // namespace kk2\n\n#endif // KK2_MATH_FLATTEN_INDICES_HPP\n"
   dependsOn: []
   isVerificationFile: false
-  path: math/flatten_indeices.hpp
+  path: math/flatten_indices.hpp
   requiredBy: []
-  timestamp: '2025-03-28 03:33:59+09:00'
+  timestamp: '2025-04-05 10:42:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: math/flatten_indeices.hpp
+documentation_of: math/flatten_indices.hpp
 layout: document
 redirect_from:
-- /library/math/flatten_indeices.hpp
-- /library/math/flatten_indeices.hpp.html
-title: math/flatten_indeices.hpp
+- /library/math/flatten_indices.hpp
+- /library/math/flatten_indices.hpp.html
+title: math/flatten_indices.hpp
 ---

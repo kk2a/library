@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':question:'
     path: graph/graph.hpp
@@ -69,19 +69,19 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_GRAPH_EDGE_HPP\n#define KK2_GRAPH_EDGE_HPP 1\n\n#include <type_traits>\n\
-    #include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace\
-    \ kk2 {\n\nnamespace graph {\n\nstruct empty {};\n\ntemplate <class T> struct\
-    \ _Edge {\n    int from, to, id;\n    T cost;\n\n    _Edge(int to_, T cost_, int\
-    \ from_ = -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n    \
-    \      id(id_),\n          cost(cost_) {}\n\n    _Edge() : from(-1), to(-1), id(-1),\
-    \ cost() {}\n\n    operator int() const { return to; }\n\n    _Edge rev() const\
-    \ { return _Edge(from, cost, to, id); }\n\n    template <class OStream, is_ostream_t<OStream>\
-    \ * = nullptr>\n    void debug_output(OStream &os) const {\n        os << '('\
-    \ << id << \", \" << from << \"->\" << to;\n        if constexpr (!std::is_same_v<T,\
-    \ empty>) os << \":\" << cost;\n        os << ')';\n    }\n};\n\ntemplate <class\
-    \ T> struct _Edges : public std::vector<_Edge<T>> {\n    using std::vector<_Edge<T>>::vector;\n\
+    #include <vector>\n\n#include \"../type_traits/io.hpp\"\n\nnamespace kk2 {\n\n\
+    namespace graph {\n\nstruct empty {};\n\ntemplate <class T> struct _Edge {\n \
+    \   int from, to, id;\n    T cost;\n\n    _Edge(int to_, T cost_, int from_ =\
+    \ -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n          id(id_),\n\
+    \          cost(cost_) {}\n\n    _Edge() : from(-1), to(-1), id(-1), cost() {}\n\
+    \n    operator int() const { return to; }\n\n    _Edge rev() const { return _Edge(from,\
+    \ cost, to, id); }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\n\
+    \    void debug_output(OStream &os) const {\n        os << '(' << id << \", \"\
+    \ << from << \"->\" << to;\n        if constexpr (!std::is_same_v<T, empty>) os\
+    \ << \":\" << cost;\n        os << ')';\n    }\n};\n\ntemplate <class T> struct\
+    \ _Edges : public std::vector<_Edge<T>> {\n    using std::vector<_Edge<T>>::vector;\n\
     \n    template <class IStream, is_istream_t<IStream> * = nullptr>\n    _Edges\
     \ &input(IStream &is, bool is_one_indexed = false) {\n        for (int i = 0;\
     \ i < (int)this->size(); i++) {\n            int u, v;\n            T w{};\n \
@@ -109,14 +109,14 @@ data:
     \ = graph::_Edges<T>;\nusing Edge = graph::_Edge<graph::empty>;\nusing Edges =\
     \ graph::_Edges<graph::empty>;\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_EDGE_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: graph/edge.hpp
   requiredBy:
   - random/graph.hpp
   - graph/graph.hpp
   - graph/static_graph.hpp
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-04-05 10:48:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp

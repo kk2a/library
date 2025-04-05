@@ -5,8 +5,8 @@ data:
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: matrix/frobenius_form.hpp
@@ -29,7 +29,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATRIX_BASIS_HPP\n#define KK2_MATRIX_BASIS_HPP 1\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <optional>\n#include <vector>\n\n\
     #include \"matrix_field.hpp\"\n\nnamespace kk2 {\n\nnamespace linear_algebra {\n\
@@ -79,16 +79,16 @@ data:
     \ }\n\n    void rollback() {\n        if (snaps.empty()) return;\n        auto\
     \ snap = snaps.back();\n        snaps.pop_back();\n        rank = snap.rank;\n\
     \        hist.resize(snap.hist_size);\n    }\n};\n\n} // namespace linear_algebra\n\
-    \ntemplate <class Matrix>\nusing BasisMatrix = linear_algebra::Basis_base<Matrix,\
+    \ntemplate <class Matrix> using BasisMatrix =\n    linear_algebra::Basis_base<Matrix,\
     \ typename Matrix::value_type>;\n\n} // namespace kk2\n\n#endif // KK2_MATRIX_BASIS_HPP\n"
   dependsOn:
   - matrix/matrix_field.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: matrix/basis.hpp
   requiredBy:
   - matrix/frobenius_form.hpp
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/basis.hpp

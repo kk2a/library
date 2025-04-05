@@ -1,47 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: bit/bitcount.hpp
-    title: bit/bitcount.hpp
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':question:'
-    path: fps/fps_ntt_friendly.hpp
-    title: fps/fps_ntt_friendly.hpp
-  - icon: ':question:'
-    path: fps/fps_sparsity_detector.hpp
-    title: fps/fps_sparsity_detector.hpp
-  - icon: ':question:'
-    path: fps/poly_sample_point_shift.hpp
-    title: fps/poly_sample_point_shift.hpp
-  - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':question:'
-    path: math_mod/comb.hpp
-    title: math_mod/comb.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/large_fact_arb_mod.test.cpp
-    title: verify/unit_test/large_fact_arb_mod.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/many_factrials.test.cpp
-    title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -55,10 +19,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  [Previous line repeated 2 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MOD_COMB_LARGE_HPP\n#define KK2_MATH_MOD_COMB_LARGE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
     \ <vector>\n\n#include \"../fps/fps_ntt_friendly.hpp\"\n#include \"../fps/poly_sample_point_shift.hpp\"\
@@ -70,10 +34,10 @@ data:
     \ = delete;\n\n    static mint fact(int n) { return n <= threshold ? Comb<mint>::fact(n)\
     \ : _large_fact(n); }\n\n    static mint ifact(int n) {\n        return n <= threshold\
     \ ? Comb<mint>::ifact(n) : _large_fact(n).inv();\n    }\n\n    static mint inv(int\
-    \ n) {\n        return n <= threshold ? Comb<mint>::inv(n) : mint(n).inv();\n\
-    \    }\n\n    static mint binom(int n, int r) {\n        if (r < 0 || r > n) return\
-    \ mint(0);\n        return fact(n) * ifact(r) * ifact(n - r);\n    }\n\n    template\
-    \ <class T> static mint multinomial(std::vector<T> r) {\n        static_assert(is_integral<T>::value,\
+    \ n) { return n <= threshold ? Comb<mint>::inv(n) : mint(n).inv(); }\n\n    static\
+    \ mint binom(int n, int r) {\n        if (r < 0 || r > n) return mint(0);\n  \
+    \      return fact(n) * ifact(r) * ifact(n - r);\n    }\n\n    template <class\
+    \ T> static mint multinomial(std::vector<T> r) {\n        static_assert(is_integral<T>::value,\
     \ \"T must be integral\");\n        long long n = 0;\n        for (auto &x : r)\
     \ {\n            assert(x >= 0);\n            n += x;\n        }\n        if (n\
     \ >= mint::getmod()) return 0;\n        mint res = fact(n);\n        for (auto\
@@ -106,25 +70,13 @@ data:
     \            for (int i = mint::getmod() - 1; i > n; i++) { den *= i; }\n    \
     \        res /= den;\n        }\n        return res;\n    }\n};\n\n} // namespace\
     \ kk2\n\n#endif // KK2_MATH_MOD_COMB_LARGE_HPP\n"
-  dependsOn:
-  - fps/fps_ntt_friendly.hpp
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
-  - fps/fps_sparsity_detector.hpp
-  - bit/bitcount.hpp
-  - fps/poly_sample_point_shift.hpp
-  - math_mod/comb.hpp
+  dependsOn: []
   isVerificationFile: false
   path: math_mod/comb_large.hpp
   requiredBy: []
-  timestamp: '2025-03-14 21:44:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - verify/yosupo_math/many_factrials.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math_mod/comb_large.hpp
 layout: document
 redirect_from:

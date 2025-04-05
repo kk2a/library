@@ -8,8 +8,8 @@ data:
     path: math/rational.hpp
     title: math/rational.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -29,22 +29,23 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_GEOMETRY_CROSS_POINT_LINE_LINE_HPP\n#define KK2_GEOMETRY_CROSS_POINT_LINE_LINE_HPP\
-    \ 1\n\n#include <optional>\n\n#include \"line.hpp\"\n#include \"../math/rational.hpp\"\
+    \ 1\n\n#include <optional>\n\n#include \"../math/rational.hpp\"\n#include \"line.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <typename T>\nstd::optional<Point<Rational<T>>>\
     \ cross_point(const Line<T> &l, const Line<T> &m) {\n    // Cramer's rule\n  \
     \  T det = l.a * m.b - l.b * m.a;\n    if (det == 0) return std::nullopt;\n  \
     \  T x = l.b * m.c - l.c * m.b;\n    T y = l.c * m.a - l.a * m.c;\n    return\
-    \ Point<T>(Rational<T>(x, det), Rational<T>(y, det));\n}\n\n}\n\n#endif // KK2_GEOMETRY_CROSS_POINT_LINE_LINE_HPP\n"
+    \ Point<T>(Rational<T>(x, det), Rational<T>(y, det));\n}\n\n} // namespace kk2\n\
+    \n#endif // KK2_GEOMETRY_CROSS_POINT_LINE_LINE_HPP\n"
   dependsOn:
-  - geometry/line.hpp
-  - type_traits/type_traits.hpp
   - math/rational.hpp
+  - type_traits/io.hpp
+  - geometry/line.hpp
   isVerificationFile: false
   path: geometry/cross_point_line_line.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/cross_point_line_line.hpp

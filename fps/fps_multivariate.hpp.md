@@ -1,36 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: bit/bitcount.hpp
-    title: bit/bitcount.hpp
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':question:'
-    path: convolution/convolution.hpp
-    title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: convolution/multi_convolution_truncated.hpp
-    title: convolution/multi_convolution_truncated.hpp
-  - icon: ':question:'
-    path: fps/fps_ntt_friendly.hpp
-    title: fps/fps_ntt_friendly.hpp
-  - icon: ':question:'
-    path: fps/fps_sparsity_detector.hpp
-    title: fps/fps_sparsity_detector.hpp
-  - icon: ':question:'
-    path: math_mod/butterfly.hpp
-    title: math_mod/butterfly.hpp
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: math_mod/primitive_root.hpp
-    title: math_mod/primitive_root.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -50,16 +20,16 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  [Previous line repeated 2 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_FPS_FPS_MULTIVARIATE_HPP\n#define KK2_FPS_FPS_MULTIVARIATE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include\
     \ <vector>\n\n#include \"../convolution/multi_convolution_truncated.hpp\"\n#include\
-    \ \"../type_traits/type_traits.hpp\"\n#include \"fps_ntt_friendly.hpp\"\n\nnamespace\
-    \ kk2 {\n\ntemplate <typename mint> struct MultivariateFormalPowerSeries {\n \
-    \   using mfps = MultivariateFormalPowerSeries;\n    using fps = FormalPowerSeriesNTTFriendly<mint>;\n\
+    \ \"../type_traits/io.hpp\"\n#include \"fps_ntt_friendly.hpp\"\n\nnamespace kk2\
+    \ {\n\ntemplate <typename mint> struct MultivariateFormalPowerSeries {\n    using\
+    \ mfps = MultivariateFormalPowerSeries;\n    using fps = FormalPowerSeriesNTTFriendly<mint>;\n\
     \    using value_type = mint;\n\n    std::vector<int> base;\n    fps f;\n\n  \
     \  MultivariateFormalPowerSeries() = default;\n\n    MultivariateFormalPowerSeries(const\
     \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for (int\
@@ -172,21 +142,11 @@ data:
     \ if (e & 1) res *= a;\n            if (e >>= 1) a *= a;\n        }\n        return\
     \ res;\n    }\n};\n\ntemplate <typename mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv\
     \ = {0, 1};\n\n} // namespace kk2\n\n#endif // KK2_FPS_FPS_MULTIVARIATE_HPP\n"
-  dependsOn:
-  - convolution/multi_convolution_truncated.hpp
-  - convolution/convolution.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/primitive_root.hpp
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
-  - fps/fps_sparsity_detector.hpp
-  - bit/bitcount.hpp
-  - fps/fps_ntt_friendly.hpp
-  - convolution/convolution.hpp
+  dependsOn: []
   isVerificationFile: false
   path: fps/fps_multivariate.hpp
   requiredBy: []
-  timestamp: '2025-03-14 21:44:33+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_multivariate.hpp

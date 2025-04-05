@@ -1,59 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: math_mod/pow_mod.hpp
-    title: math_mod/pow_mod.hpp
-  - icon: ':question:'
-    path: modint/mont_arb.hpp
-    title: modint/mont_arb.hpp
-  - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/multiplicative_function/euler_phi.hpp
-    title: math/multiplicative_function/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/multiplicative_function/mobius.hpp
-    title: math/multiplicative_function/mobius.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/multiplicative_function/sigma.hpp
-    title: math/multiplicative_function/sigma.hpp
-  - icon: ':question:'
-    path: math/prime_factorize.hpp
-    title: math/prime_factorize.hpp
-  - icon: ':x:'
-    path: math_mod/primitive_root_64bit.hpp
-    title: math_mod/primitive_root_64bit.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aoj/aoj_ntl_1_d.test.cpp
-    title: verify/aoj/aoj_ntl_1_d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/famous_function_table.test.cpp
-    title: verify/unit_test/famous_function_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/isprime_table_extend.test.cpp
-    title: verify/unit_test/isprime_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/lpf_table_extend.test.cpp
-    title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/prime_factorize_table.test.cpp
-    title: verify/unit_test/prime_factorize_table.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/factrize.test.cpp
-    title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/primality_test.test.cpp
-    title: verify/yosupo_math/primality_test.test.cpp
-  - icon: ':x:'
-    path: verify/yosupo_math/primitive_root.test.cpp
-    title: verify/yosupo_math/primitive_root.test.cpp
-  _isVerificationFailed: true
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -65,10 +17,11 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../type_traits/type_traits.hpp:\
+    \ line -1: no such header\n"
   code: "#ifndef KK2_MATH_IS_PRIME_HPP\n#define KK2_MATH_IS_PRIME_HPP 1\n\n#include\
     \ <vector>\n\n#include \"../math_mod/pow_mod.hpp\"\n#include \"../modint/mont_arb.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace number_theory {\n\ntemplate <class T, class U>\
@@ -97,29 +50,13 @@ data:
     \ 28178, 450775, 9780504, 1795265022});\n    } else {\n        return miller_rabin_u64(n);\n\
     \    }\n}\n\n}; // namespace number_theory\n\nusing number_theory::is_prime;\n\
     \n}; // namespace kk2\n\n#endif // KK2_MATH_IS_PRIME_HPP\n"
-  dependsOn:
-  - math_mod/pow_mod.hpp
-  - type_traits/type_traits.hpp
-  - modint/mont_arb.hpp
+  dependsOn: []
   isVerificationFile: false
   path: math/is_prime.hpp
-  requiredBy:
-  - math/multiplicative_function/mobius.hpp
-  - math/multiplicative_function/sigma.hpp
-  - math/multiplicative_function/euler_phi.hpp
-  - math/prime_factorize.hpp
-  - math_mod/primitive_root_64bit.hpp
-  timestamp: '2025-01-06 00:03:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - verify/yosupo_math/factrize.test.cpp
-  - verify/yosupo_math/primality_test.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math/is_prime.hpp
 layout: document
 redirect_from:

@@ -13,7 +13,7 @@ data:
     links: []
   bundledCode: "#line 1 \"data_structure/prefix_sum.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <array>\n#include <cassert>\n#include <vector>\n\nnamespace kk2 {\n\n\
-    template <class T>\nstruct PrefixSum {\n    std::vector<T> acc;\n    int n;\n\n\
+    template <class T> struct PrefixSum {\n    std::vector<T> acc;\n    int n;\n\n\
     \    constexpr PrefixSum() = default;\n\n    constexpr PrefixSum(int n_) : acc(n_\
     \ + 1), n(n_) {}\n\n    constexpr PrefixSum(const std::vector<T> &a) : acc(a.size()\
     \ + 1), n((int)a.size()) {\n        for (int i = 0; i < n; ++i) { acc[i + 1] =\
@@ -35,7 +35,7 @@ data:
     \        }\n        return ok;\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_DATA_STRUCTURE_PREFIX_SUM_HPP\n#define KK2_DATA_STRUCTURE_PREFIX_SUM_HPP\
     \ 1\n\n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <vector>\n\
-    \nnamespace kk2 {\n\ntemplate <class T>\nstruct PrefixSum {\n    std::vector<T>\
+    \nnamespace kk2 {\n\ntemplate <class T> struct PrefixSum {\n    std::vector<T>\
     \ acc;\n    int n;\n\n    constexpr PrefixSum() = default;\n\n    constexpr PrefixSum(int\
     \ n_) : acc(n_ + 1), n(n_) {}\n\n    constexpr PrefixSum(const std::vector<T>\
     \ &a) : acc(a.size() + 1), n((int)a.size()) {\n        for (int i = 0; i < n;\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: data_structure/prefix_sum.hpp
   requiredBy: []
-  timestamp: '2025-02-27 22:28:33+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_range_sum.test.cpp

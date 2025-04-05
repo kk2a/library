@@ -5,8 +5,8 @@ data:
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_DATA_STRUCTURE_W_ARY_TREE_HPP\n#define KK2_DATA_STRUCTURE_W_ARY_TREE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <optional>\n#include\
     \ <vector>\n\n#include \"../bit/bitcount.hpp\"\n\nnamespace kk2 {\n\nstruct w_ary_tree\
@@ -88,14 +88,14 @@ data:
     \ x ? lsb<Uint>(x) : -1; }\n\n    static Uint up_mask(Uint x, int i) { return\
     \ x & (((Uint(1) << i) - 1) | (Uint(1) << i)); }\n\n    static Uint dw_mask(Uint\
     \ x, int i) { return x & ~((Uint(1) << i) - 1); }\n};\n\n} // namespace kk2\n\n\
-    #endif // KK2_DATA_STRUCTURE_W_ARY_TREE_HPP"
+    #endif // KK2_DATA_STRUCTURE_W_ARY_TREE_HPP\n"
   dependsOn:
   - bit/bitcount.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/integral.hpp
   isVerificationFile: false
   path: data_structure/w_ary_tree.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp

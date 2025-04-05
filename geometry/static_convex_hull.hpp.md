@@ -5,8 +5,8 @@ data:
     path: geometry/point.hpp
     title: geometry/point.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -75,11 +75,11 @@ data:
     \       }\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_GEOMETRY_CONVEX_HULL_HPP\n"
   dependsOn:
   - geometry/point.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: geometry/static_convex_hull.hpp
   requiredBy: []
-  timestamp: '2025-01-16 14:05:50+09:00'
+  timestamp: '2025-04-05 10:48:22+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull.test.cpp

@@ -8,8 +8,8 @@ data:
     path: math/monoid/update.hpp
     title: math/monoid/update.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -29,22 +29,22 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_ACTION_UPDATE_MAX_MIN_SUMWITHSIZE_HPP\n#define KK2_MATH_ACTION_UPDATE_MAX_MIN_SUMWITHSIZE_HPP\
     \ 1\n\n#include \"../monoid/max_min_sumwithsize.hpp\"\n#include \"../monoid/update.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace action {\n\ntemplate <class T, class U, class\
-    \ Compare = std::less<T>>\nstruct UpdateMaxMinSumWithSize {\n    using A = monoid::Update<T>;\n\
+    \ Compare = std::less<T>> struct UpdateMaxMinSumWithSize {\n    using A = monoid::Update<T>;\n\
     \    using S = monoid::MaxMinSumWithSize<T, U, Compare>;\n\n    inline static\
     \ S act(A f, S x) { return f.is_unit ? x : S(f.a, f.a, f.a * x.size, x.size);\
     \ }\n};\n\n} // namespace action\n\n} // namespace kk2\n\n#endif // KK2_MATH_ACTION_UPDATE_MAX_MIN_SUMWITHSIZE_HPP\n"
   dependsOn:
   - math/monoid/max_min_sumwithsize.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   - math/monoid/update.hpp
   isVerificationFile: false
   path: math/action/update_max_min_sumwithsize.hpp
   requiredBy: []
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/action/update_max_min_sumwithsize.hpp

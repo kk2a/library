@@ -12,12 +12,12 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"math/monoid/pow.hpp\"\n\n\n\nnamespace kk2 {\n\nnamespace\
-    \ monoid {\n\ntemplate <class M>\nM pow(M a, long long n) {\n    M res = M::unit();\n\
+    \ monoid {\n\ntemplate <class M> M pow(M a, long long n) {\n    M res = M::unit();\n\
     \    while (n > 0) {\n        if (n & 1) res = M::op(res, a);\n        if (n >>=\
     \ 1) a = M::op(a, a);\n    }\n    return res;\n}\n\n} // namespace monoid\n\n\
     } // namespace kk2\n\n\n"
   code: "#ifndef KK2_MATH_MONOID_POW_HPP\n#define KK2_MATH_MONOID_POW_HPP 1\n\nnamespace\
-    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class M>\nM pow(M a, long long n) {\n\
+    \ kk2 {\n\nnamespace monoid {\n\ntemplate <class M> M pow(M a, long long n) {\n\
     \    M res = M::unit();\n    while (n > 0) {\n        if (n & 1) res = M::op(res,\
     \ a);\n        if (n >>= 1) a = M::op(a, a);\n    }\n    return res;\n}\n\n} //\
     \ namespace monoid\n\n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_POW_HPP\n"
@@ -26,7 +26,7 @@ data:
   path: math/monoid/pow.hpp
   requiredBy:
   - math/monoid/bsgs.hpp
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/pow.hpp

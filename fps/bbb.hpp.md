@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: fps/poly_multi_eval.hpp
     title: fps/poly_multi_eval.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verify/yuki/yuki_1510.test.cpp
-    title: verify/yuki/yuki_1510.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/bbb.hpp\"\n\n\n\n#include <utility>\n#include <vector>\n\
@@ -58,7 +55,7 @@ data:
     \ = a[i].inv();\n        prod *= -ima[i];\n    }\n    std::vector<mint> ret =\
     \ BBB(ima, f);\n    for (int i = 0; i < n; i++) ret[i] *= -a[i] * prod;\n    return\
     \ ret;\n}\n\n// f(X) / \\prod (X - a_i)^d_i =  \\sum c_i,j / (X - a_i)^j\n// return\
-    \ {c_i,j}\ntemplate <class FPS, class mint = typename FPS::value_type>\nstd::vector<std::vector<mint>>\n\
+    \ {c_i,j}\ntemplate <class FPS, class mint = typename FPS::value_type> std::vector<std::vector<mint>>\n\
     BBB(const std::vector<mint> &a, const std::vector<mint> &d, const FPS &f) {\n\
     \    // hoge\n}\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_FPS_BBB_HPP\n#define KK2_FPS_BBB_HPP 1\n\n#include <utility>\n\
@@ -78,7 +75,7 @@ data:
     \ = a[i].inv();\n        prod *= -ima[i];\n    }\n    std::vector<mint> ret =\
     \ BBB(ima, f);\n    for (int i = 0; i < n; i++) ret[i] *= -a[i] * prod;\n    return\
     \ ret;\n}\n\n// f(X) / \\prod (X - a_i)^d_i =  \\sum c_i,j / (X - a_i)^j\n// return\
-    \ {c_i,j}\ntemplate <class FPS, class mint = typename FPS::value_type>\nstd::vector<std::vector<mint>>\n\
+    \ {c_i,j}\ntemplate <class FPS, class mint = typename FPS::value_type> std::vector<std::vector<mint>>\n\
     BBB(const std::vector<mint> &a, const std::vector<mint> &d, const FPS &f) {\n\
     \    // hoge\n}\n\n} // namespace kk2\n\n#endif // KK2_FPS_BBB_HPP\n"
   dependsOn:
@@ -86,10 +83,9 @@ data:
   isVerificationFile: false
   path: fps/bbb.hpp
   requiredBy: []
-  timestamp: '2025-03-02 21:17:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verify/yuki/yuki_1510.test.cpp
+  timestamp: '2025-04-05 12:46:42+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: fps/bbb.hpp
 layout: document
 redirect_from:

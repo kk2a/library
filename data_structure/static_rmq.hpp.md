@@ -8,8 +8,8 @@ data:
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: graph/tree/euler_tour.hpp
@@ -35,7 +35,7 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: '#ifndef KK2_DATA_STRUCTURE_STATIC_RMQ_HPP
 
     #define KK2_DATA_STRUCTURE_STATIC_RMQ_HPP 1
@@ -49,9 +49,7 @@ data:
     namespace kk2 {
 
 
-    template <class S>
-
-    using StaticRMQ = SparseTableS<monoid::Min<S>>;
+    template <class S> using StaticRMQ = SparseTableS<monoid::Min<S>>;
 
 
     } // namespace kk2
@@ -62,13 +60,13 @@ data:
     '
   dependsOn:
   - math/monoid/min.hpp
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   - data_structure/sparse_table.hpp
   isVerificationFile: false
   path: data_structure/static_rmq.hpp
   requiredBy:
   - graph/tree/euler_tour.hpp
-  timestamp: '2025-03-27 00:23:00+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp

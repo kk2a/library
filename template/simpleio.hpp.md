@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: type_traits/type_traits.hpp
-    title: type_traits/type_traits.hpp
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,22 +21,21 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/type_traits.hpp: line 4: #pragma once found in a non-first line\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_TEMPLATE_SIMPLEIO_HPP\n#define KK2_TEMPLATE_SIMPLEIO_HPP 1\n\n\
-    #include <fstream>\n\n#include \"../type_traits/type_traits.hpp\"\n\nnamespace\
-    \ kk2 {\n\nstruct SimplePrinter : type_traits::ostream_tag {\n  private:\n   \
-    \ std::ofstream out;\n\n  public:\n    SimplePrinter(const char *s) : out(s) {}\n\
-    \n    template <class T> SimplePrinter &operator<<(const T &x) {\n        out\
-    \ << x;\n        return *this;\n    }\n\n    SimplePrinter &operator<<(std::ostream\
-    \ &(*f)(std::ostream &)) {\n        out << f;\n        return *this;\n    }\n\n\
-    \    void flush() { out << std::flush; }\n};\n\n} // namespace kk2\n\n#endif //\
-    \ KK2_TEMPLATE_SIMPLEIO_HPP\n"
+    #include <fstream>\n\n#include \"../type_traits/io.hpp\"\n\nnamespace kk2 {\n\n\
+    struct SimplePrinter : type_traits::ostream_tag {\n  private:\n    std::ofstream\
+    \ out;\n\n  public:\n    SimplePrinter(const char *s) : out(s) {}\n\n    template\
+    \ <class T> SimplePrinter &operator<<(const T &x) {\n        out << x;\n     \
+    \   return *this;\n    }\n\n    SimplePrinter &operator<<(std::ostream &(*f)(std::ostream\
+    \ &)) {\n        out << f;\n        return *this;\n    }\n\n    void flush() {\
+    \ out << std::flush; }\n};\n\n} // namespace kk2\n\n#endif // KK2_TEMPLATE_SIMPLEIO_HPP\n"
   dependsOn:
-  - type_traits/type_traits.hpp
+  - type_traits/io.hpp
   isVerificationFile: false
   path: template/simpleio.hpp
   requiredBy: []
-  timestamp: '2025-01-06 00:03:54+09:00'
+  timestamp: '2025-04-05 10:48:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/simpleio.hpp

@@ -13,11 +13,11 @@ data:
     links: []
   bundledCode: "#line 1 \"graph/shortest_path/bellman_ford.hpp\"\n\n\n\n#include <limits>\n\
     #include <vector>\n\nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\ntemplate\
-    \ <class T>\nstruct bf_edge {\n    int to, id;\n};\n\ntemplate <class T>\nstruct\
+    \ <class T> struct bf_edge {\n    int to, id;\n};\n\ntemplate <class T> struct\
     \ bf_len {\n    T len;\n    bool inf, minf;\n\n    template <class OStream, is_ostream_t<OStream>\
     \ * = nullptr>\n    void debug_output(OStream &os) const {\n        if (minf)\
     \ os << \"MINF\";\n        else if (inf) os << \"INF\";\n        else os << len;\n\
-    \    }\n};\n\ntemplate <class T>\nstruct bf_result {\n    std::vector<bf_len<T>>\
+    \    }\n};\n\ntemplate <class T> struct bf_result {\n    std::vector<bf_len<T>>\
     \ dist;\n    std::vector<bf_edge<T>> prev;\n};\n\ntemplate <class WG, class T\
     \ = typename WG::value_type>\nbf_result<T> bellman_ford(const WG &g, int start)\
     \ {\n    static_assert(WG::weighted, \"bellman_ford requires weighted graph\"\
@@ -41,13 +41,13 @@ data:
     \n} // namespace kk2\n\n\n\n"
   code: "#ifndef KK2_GRAPH_SHORTEST_PATH_BELLMAN_FORD_HPP\n#define KK2_GRAPH_SHORTEST_PATH_BELLMAN_FORD_HPP\
     \ 1\n\n#include <limits>\n#include <vector>\n\nnamespace kk2 {\n\nnamespace shortest_path_impl\
-    \ {\n\ntemplate <class T>\nstruct bf_edge {\n    int to, id;\n};\n\ntemplate <class\
-    \ T>\nstruct bf_len {\n    T len;\n    bool inf, minf;\n\n    template <class\
-    \ OStream, is_ostream_t<OStream> * = nullptr>\n    void debug_output(OStream &os)\
-    \ const {\n        if (minf) os << \"MINF\";\n        else if (inf) os << \"INF\"\
-    ;\n        else os << len;\n    }\n};\n\ntemplate <class T>\nstruct bf_result\
-    \ {\n    std::vector<bf_len<T>> dist;\n    std::vector<bf_edge<T>> prev;\n};\n\
-    \ntemplate <class WG, class T = typename WG::value_type>\nbf_result<T> bellman_ford(const\
+    \ {\n\ntemplate <class T> struct bf_edge {\n    int to, id;\n};\n\ntemplate <class\
+    \ T> struct bf_len {\n    T len;\n    bool inf, minf;\n\n    template <class OStream,\
+    \ is_ostream_t<OStream> * = nullptr>\n    void debug_output(OStream &os) const\
+    \ {\n        if (minf) os << \"MINF\";\n        else if (inf) os << \"INF\";\n\
+    \        else os << len;\n    }\n};\n\ntemplate <class T> struct bf_result {\n\
+    \    std::vector<bf_len<T>> dist;\n    std::vector<bf_edge<T>> prev;\n};\n\ntemplate\
+    \ <class WG, class T = typename WG::value_type>\nbf_result<T> bellman_ford(const\
     \ WG &g, int start) {\n    static_assert(WG::weighted, \"bellman_ford requires\
     \ weighted graph\");\n    static_assert(WG::directed, \"bellman_ford requires\
     \ directed graph\");\n\n    std::vector<bf_len<T>> dist(g.num_vertices(), {0,\
@@ -72,7 +72,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/bellman_ford.hpp
   requiredBy: []
-  timestamp: '2025-03-28 03:08:58+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_grl_1_b.test.cpp

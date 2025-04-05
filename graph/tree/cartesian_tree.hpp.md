@@ -12,7 +12,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree/cartesian_tree.hpp\"\n\n\n\n#include <utility>\n\
-    #include <vector>\n\nnamespace kk2 {\n\ntemplate <class T>\nstd::pair<int, std::vector<int>>\
+    #include <vector>\n\nnamespace kk2 {\n\ntemplate <class T> std::pair<int, std::vector<int>>\
     \ cartesian_tree(const std::vector<T> &a) {\n    int n = a.size();\n    std::vector<int>\
     \ par(n, -1);\n    std::vector<int> stk;\n    for (int i = 0; i < n; ++i) {\n\
     \        int last = -1;\n        while (!stk.empty() && a[stk.back()] > a[i])\
@@ -22,7 +22,7 @@ data:
     \ kk2\n\n\n"
   code: "#ifndef KK2_GRAPH_TREE_CARTESIAN_TREE_HPP\n#define KK2_GRAPH_TREE_CARTESIAN_TREE_HPP\
     \ 1\n\n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class\
-    \ T>\nstd::pair<int, std::vector<int>> cartesian_tree(const std::vector<T> &a)\
+    \ T> std::pair<int, std::vector<int>> cartesian_tree(const std::vector<T> &a)\
     \ {\n    int n = a.size();\n    std::vector<int> par(n, -1);\n    std::vector<int>\
     \ stk;\n    for (int i = 0; i < n; ++i) {\n        int last = -1;\n        while\
     \ (!stk.empty() && a[stk.back()] > a[i]) {\n            last = stk.back();\n \
@@ -33,7 +33,7 @@ data:
   isVerificationFile: false
   path: graph/tree/cartesian_tree.hpp
   requiredBy: []
-  timestamp: '2025-02-22 17:38:31+09:00'
+  timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_graph/tree_cartesian.test.cpp
