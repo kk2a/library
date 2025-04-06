@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_math/discrete_logarithm.test.cpp
+    title: verify/yosupo_math/discrete_logarithm.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/log.hpp\"\n\n\n\n#include <cmath>\n#include <unordered_set>\n\
@@ -40,8 +43,9 @@ data:
   path: math_mod/log.hpp
   requiredBy: []
   timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_math/discrete_logarithm.test.cpp
 documentation_of: math_mod/log.hpp
 layout: document
 redirect_from:

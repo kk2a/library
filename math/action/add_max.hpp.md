@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/group/add.hpp
     title: math/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
   - icon: ':question:'

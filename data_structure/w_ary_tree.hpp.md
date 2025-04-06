@@ -32,7 +32,7 @@ data:
     \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_DATA_STRUCTURE_W_ARY_TREE_HPP\n#define KK2_DATA_STRUCTURE_W_ARY_TREE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <optional>\n#include\
-    \ <vector>\n#include <string>\n\n#include \"../bit/bitcount.hpp\"\n\nnamespace\
+    \ <string>\n#include <vector>\n\n#include \"../bit/bitcount.hpp\"\n\nnamespace\
     \ kk2 {\n\nstruct w_ary_tree {\n    using Uint = unsigned long long;\n    constexpr\
     \ static int W = 64;\n    int _n;\n    std::vector<std::vector<Uint>> d;\n\n \
     \   w_ary_tree() : d(1) {}\n\n    w_ary_tree(const std::vector<bool> &a) : _n(a.size())\
@@ -95,7 +95,7 @@ data:
   isVerificationFile: false
   path: data_structure/w_ary_tree.hpp
   requiredBy: []
-  timestamp: '2025-04-06 13:24:45+09:00'
+  timestamp: '2025-04-06 14:26:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp

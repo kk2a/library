@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
   - icon: ':heavy_check_mark:'

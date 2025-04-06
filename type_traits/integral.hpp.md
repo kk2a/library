@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data_structure/wavelet_matrix.hpp
     title: data_structure/wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -252,10 +252,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':x:'
@@ -402,6 +402,9 @@ data:
   - icon: ':x:'
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/discrete_logarithm.test.cpp
+    title: verify/yosupo_math/discrete_logarithm.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/enumerate_bell_number.test.cpp
     title: verify/yosupo_math/enumerate_bell_number.test.cpp
@@ -594,6 +597,7 @@ data:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - verify/yosupo_math/discrete_logarithm.test.cpp
   - verify/yosupo_math/enumerate_quotients.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/enumerate_primes.test.cpp

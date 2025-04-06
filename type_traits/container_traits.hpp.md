@@ -2,16 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: template/procon.hpp
     title: template/procon.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+    title: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -59,8 +62,9 @@ data:
   - template/function_util.hpp
   - template/procon.hpp
   timestamp: '2025-04-06 12:55:44+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
 documentation_of: type_traits/container_traits.hpp
 layout: document
 redirect_from:

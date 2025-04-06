@@ -83,7 +83,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 13:24:45+09:00'
+  timestamp: '2025-04-06 14:26:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_predecessor_problem.test.cpp

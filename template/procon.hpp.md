@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: template/function_util.hpp
     title: template/function_util.hpp
   - icon: ':question:'
@@ -22,17 +22,20 @@ data:
   - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
   - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+    title: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -97,8 +100,9 @@ data:
   path: template/procon.hpp
   requiredBy: []
   timestamp: '2025-04-06 13:01:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
 documentation_of: template/procon.hpp
 layout: document
 redirect_from:

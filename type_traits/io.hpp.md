@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -104,13 +104,13 @@ data:
   - icon: ':warning:'
     path: math/monoid/from_semigroup_to_monoid.hpp
     title: math/monoid/from_semigroup_to_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
   - icon: ':heavy_check_mark:'
     path: math/monoid/max_min_sumwithsize.hpp
     title: math/monoid/max_min_sumwithsize.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   - icon: ':heavy_check_mark:'
@@ -182,13 +182,13 @@ data:
   - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: template/function_util.hpp
     title: template/function_util.hpp
   - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: template/procon.hpp
     title: template/procon.hpp
   - icon: ':warning:'
@@ -339,10 +339,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':x:'
@@ -490,6 +490,9 @@ data:
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_math/discrete_logarithm.test.cpp
+    title: verify/yosupo_math/discrete_logarithm.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_bell_number.test.cpp
     title: verify/yosupo_math/enumerate_bell_number.test.cpp
   - icon: ':x:'
@@ -543,6 +546,9 @@ data:
   - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+    title: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
   - icon: ':x:'
     path: verify/yosupo_string/string_number_of_substrings.test.cpp
     title: verify/yosupo_string/string_number_of_substrings.test.cpp
@@ -677,6 +683,7 @@ data:
   verifiedWith:
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - verify/yosupo_others/longest_increasing_subsequence.test.cpp
+  - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
   - verify/yosupo_others/many_a_plus_b.test.cpp
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
@@ -698,6 +705,7 @@ data:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - verify/yosupo_math/discrete_logarithm.test.cpp
   - verify/yosupo_math/enumerate_quotients.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/enumerate_primes.test.cpp

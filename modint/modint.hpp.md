@@ -18,6 +18,9 @@ data:
   - icon: ':x:'
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/discrete_logarithm.test.cpp
+    title: verify/yosupo_math/discrete_logarithm.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -70,31 +73,31 @@ data:
     \ mint &rhs) { return lhs._v == rhs._v; }\n    friend bool operator!=(const mint\
     \ &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\n    mint pow(long long\
     \ n) const {\n        assert(0 <= n);\n        mint x = *this, r = 1;\n      \
-    \  n %= (long long)getmod() - 1;\n        while (n) {\n            if (n & 1)\
-    \ r *= x;\n            x *= x;\n            n >>= 1;\n        }\n        return\
-    \ r;\n    }\n\n    mint inv() const {\n        long long s = getmod(), t = _v;\n\
-    \        long long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long\
-    \ u = s / t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n         \
-    \   std::swap(s, t);\n            std::swap(m0, m1);\n        }\n        if (m0\
-    \ < 0) m0 += getmod() / s;\n        return m0;\n    }\n\n    template <class OStream,\
-    \ is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream &os,\
-    \ const mint &mint_) {\n        os << mint_._v;\n        return os;\n    }\n\n\
-    \    template <class IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream\
-    \ &operator>>(IStream &is, mint &mint_) {\n        long long x;\n        is >>\
-    \ x;\n        mint_ = mint(x);\n        return is;\n    }\n\n  private:\n    unsigned\
-    \ int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod = 998244353;\n\nusing mint998\
-    \ = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\n} // namespace\
-    \ kk2\n\n#endif // KK2_MODINT_MODINT_HPP\n"
+    \  while (n) {\n            if (n & 1) r *= x;\n            x *= x;\n        \
+    \    n >>= 1;\n        }\n        return r;\n    }\n\n    mint inv() const {\n\
+    \        long long s = getmod(), t = _v;\n        long long m0 = 0, m1 = 1;\n\n\
+    \        while (t) {\n            long long u = s / t;\n            s -= t * u;\n\
+    \            m0 -= m1 * u;\n\n            std::swap(s, t);\n            std::swap(m0,\
+    \ m1);\n        }\n        if (m0 < 0) m0 += getmod() / s;\n        return m0;\n\
+    \    }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\n  \
+    \  friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
+    \ mint_._v;\n        return os;\n    }\n\n    template <class IStream, is_istream_t<IStream>\
+    \ * = nullptr>\n    friend IStream &operator>>(IStream &is, mint &mint_) {\n \
+    \       long long x;\n        is >> x;\n        mint_ = mint(x);\n        return\
+    \ is;\n    }\n\n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
+    \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
+    \n} // namespace kk2\n\n#endif // KK2_MODINT_MODINT_HPP\n"
   dependsOn:
   - type_traits/integral.hpp
   - type_traits/io.hpp
   isVerificationFile: false
   path: modint/modint.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-06 14:26:21+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - verify/yosupo_math/discrete_logarithm.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/unit_test/large_fact_arb_mod.test.cpp
 documentation_of: modint/modint.hpp

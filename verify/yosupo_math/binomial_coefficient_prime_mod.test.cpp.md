@@ -75,7 +75,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 00:09:45+09:00'
+  timestamp: '2025-04-06 14:26:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
