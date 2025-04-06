@@ -9,38 +9,37 @@ namespace monoid {
 
 template <class S> struct Update {
     static constexpr bool commutative = true;
+    using M = Update;
     S a;
     bool is_unit;
 
     Update() : is_unit(true) {}
-
     Update(S a_) : a(a_), is_unit(false) {}
-
     operator S() const { return a; }
+    inline static M op(M l, M r) { return l.is_unit ? r : l; }
+    inline static M unit() { return M(); }
 
-    inline static Update op(Update l, Update r) { return l.is_unit ? r : l; }
+    bool operator==(const M &rhs) const {
+        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);
+    }
 
-    inline static Update unit() { return Update(); }
+    bool operator!=(const M &rhs) const {
+        return is_unit != rhs.is_unit or (!is_unit and a != rhs.a);
+    }
 
     template <class OStream, is_ostream_t<OStream> * = nullptr>
-    friend OStream &operator<<(OStream &os, const Update &update) {
-        if (update.is_unit) os << "unit";
-        else os << update.a;
+    friend OStream &operator<<(OStream &os, const M &x) {
+        if (x.is_unit) os << "unit";
+        else os << x.a;
         return os;
     }
 
     template <class IStream, is_istream_t<IStream> * = nullptr>
-    friend IStream &operator>>(IStream &is, Update &update) {
-        is >> update.a;
-        update.is_unit = false;
+    friend IStream &operator>>(IStream &is, M &x) {
+        is >> x.a;
+        x.is_unit = false;
         return is;
     }
-
-    bool operator==(const Update &rhs) const {
-        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);
-    }
-
-    bool operator!=(const Update &rhs) const { return !(*this == rhs); }
 };
 
 } // namespace monoid

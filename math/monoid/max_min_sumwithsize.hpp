@@ -12,15 +12,12 @@ namespace monoid {
 template <class S, class T, class Compare = std::less<S>> struct MaxMinSumWithSize {
     static constexpr bool commutative = true;
     using M = MaxMinSumWithSize;
-
     S max, min, sum;
     T size;
     bool is_unit;
 
     MaxMinSumWithSize() : is_unit(true) {}
-
     MaxMinSumWithSize(S a) : max(a), min(a), sum(a), size(1), is_unit(false) {}
-
     MaxMinSumWithSize(S max_, S min_, S sum_, T size_)
         : max(max_),
           min(min_),
@@ -38,6 +35,18 @@ template <class S, class T, class Compare = std::less<S>> struct MaxMinSumWithSi
 
     inline static M unit() { return M(); }
 
+    bool operator==(const M &rhs) const {
+        return is_unit == rhs.is_unit
+               and (is_unit
+                    or (max == rhs.max and min == rhs.min and sum == rhs.sum and size == rhs.size));
+    }
+
+    bool operator!=(const M &rhs) const {
+        return is_unit != rhs.is_unit
+               or (!is_unit
+                   and (max != rhs.max or min != rhs.min or sum != rhs.sum or size != rhs.size));
+    }
+
     template <class OStream, is_ostream_t<OStream> * = nullptr>
     friend OStream &operator<<(OStream &os, const M &x) {
         if (x.is_unit) os << "(unit)";
@@ -54,14 +63,6 @@ template <class S, class T, class Compare = std::less<S>> struct MaxMinSumWithSi
         x = M(a);
         return is;
     }
-
-    bool operator==(const M &rhs) const {
-        return is_unit == rhs.is_unit
-               and (is_unit
-                    or (max == rhs.max and min == rhs.min and sum == rhs.sum and size == rhs.size));
-    }
-
-    bool operator!=(const M &rhs) const { return !(*this == rhs); }
 };
 
 } // namespace monoid
