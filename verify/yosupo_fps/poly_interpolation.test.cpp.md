@@ -19,7 +19,7 @@ data:
   - icon: ':x:'
     path: fps/poly_interpolation.hpp
     title: fps/poly_interpolation.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/poly_multi_eval.hpp
     title: fps/poly_multi_eval.hpp
   - icon: ':question:'
