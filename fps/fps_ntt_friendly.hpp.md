@@ -29,11 +29,17 @@ data:
   - icon: ':warning:'
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
+  - icon: ':question:'
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/large_fact_arb_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
   - icon: ':x:'
@@ -109,11 +115,14 @@ data:
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_math/many_factrials.test.cpp
+    title: verify/yosupo_math/many_factrials.test.cpp
+  - icon: ':x:'
     path: verify/yuki/yuki_1510.test.cpp
     title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -359,13 +368,16 @@ data:
   isVerificationFile: false
   path: fps/fps_ntt_friendly.hpp
   requiredBy:
+  - math_mod/comb_large.hpp
   - fps/fps_multivariate.hpp
   timestamp: '2025-04-06 00:09:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
   - verify/yuki/yuki_1510.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp

@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: fps/chirp_Z.hpp
     title: fps/chirp_Z.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
   - icon: ':question:'

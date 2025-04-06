@@ -9,12 +9,12 @@ data:
     title: type_traits/integral.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -32,11 +32,11 @@ data:
     \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_DATA_STRUCTURE_W_ARY_TREE_HPP\n#define KK2_DATA_STRUCTURE_W_ARY_TREE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <optional>\n#include\
-    \ <vector>\n\n#include \"../bit/bitcount.hpp\"\n\nnamespace kk2 {\n\nstruct w_ary_tree\
-    \ {\n    using Uint = unsigned long long;\n    constexpr static int W = 64;\n\
-    \    int _n;\n    std::vector<std::vector<Uint>> d;\n\n    w_ary_tree() : d(1)\
-    \ {}\n\n    w_ary_tree(const std::vector<bool> &a) : _n(a.size()) {\n        if\
-    \ (_n == 0) return;\n        if (_n == 1) {\n            d = {{Uint(a[0])}};\n\
+    \ <vector>\n#include <string>\n\n#include \"../bit/bitcount.hpp\"\n\nnamespace\
+    \ kk2 {\n\nstruct w_ary_tree {\n    using Uint = unsigned long long;\n    constexpr\
+    \ static int W = 64;\n    int _n;\n    std::vector<std::vector<Uint>> d;\n\n \
+    \   w_ary_tree() : d(1) {}\n\n    w_ary_tree(const std::vector<bool> &a) : _n(a.size())\
+    \ {\n        if (_n == 0) return;\n        if (_n == 1) {\n            d = {{Uint(a[0])}};\n\
     \            return;\n        }\n        for (int n = _n; n != 1; n = (n + W -\
     \ 1) / W) {\n            std::vector<Uint> v((n + W - 1) / W);\n            for\
     \ (int i = 0; i < (n + W - 1) / W; ++i) {\n                Uint x = 0;\n     \
@@ -95,8 +95,8 @@ data:
   isVerificationFile: false
   path: data_structure/w_ary_tree.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-04-06 13:24:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
 documentation_of: data_structure/w_ary_tree.hpp

@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/large_fact_arb_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - icon: ':x:'
@@ -93,6 +96,7 @@ data:
   verifiedWith:
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
 documentation_of: modint/modint.hpp
 layout: document
 redirect_from:

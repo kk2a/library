@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
   - icon: ':warning:'
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
   - icon: ':x:'
@@ -110,7 +110,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/monoid/max_min_sumwithsize.hpp
     title: math/monoid/max_min_sumwithsize.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
   - icon: ':heavy_check_mark:'
@@ -131,6 +131,9 @@ data:
   - icon: ':warning:'
     path: math/rational.hpp
     title: math/rational.hpp
+  - icon: ':question:'
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
   - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
@@ -229,6 +232,9 @@ data:
     path: verify/unit_test/isprime_table_extend.test.cpp
     title: verify/unit_test/isprime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/large_fact_arb_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
@@ -300,37 +306,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_set_xor_min.test.cpp
     title: verify/yosupo_ds/ds_set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_range_sum.test.cpp
     title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
     title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
   - icon: ':x:'
@@ -508,6 +514,9 @@ data:
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_math/many_factrials.test.cpp
+    title: verify/yosupo_math/many_factrials.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
     title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   - icon: ':x:'
@@ -652,6 +661,7 @@ data:
   - graph/static_graph.hpp
   - data_structure/my_bitset.hpp
   - data_structure/static_rmq.hpp
+  - math_mod/comb_large.hpp
   - math_mod/mod_sqrt.hpp
   - math_mod/primitive_root_64bit.hpp
   - geometry/static_convex_hull.hpp
@@ -685,6 +695,7 @@ data:
   - verify/yosupo_math/kth_root_int_ceil.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - verify/yosupo_math/enumerate_quotients.test.cpp
@@ -750,6 +761,7 @@ data:
   - verify/unit_test/wavelet_matrix.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
   - verify/yosupo_geometry/arg_sort.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp

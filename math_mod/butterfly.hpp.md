@@ -26,10 +26,16 @@ data:
   - icon: ':warning:'
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
+  - icon: ':question:'
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
@@ -39,10 +45,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
   - icon: ':x:'
@@ -126,6 +132,9 @@ data:
   - icon: ':x:'
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/many_factrials.test.cpp
+    title: verify/yosupo_math/many_factrials.test.cpp
   - icon: ':x:'
     path: verify/yuki/yuki_1510.test.cpp
     title: verify/yuki/yuki_1510.test.cpp
@@ -326,6 +335,7 @@ data:
   - convolution/convolution_arb.hpp
   - convolution/convolution.hpp
   - convolution/multi_convolution_truncated.hpp
+  - math_mod/comb_large.hpp
   - fps/fps_ntt_friendly.hpp
   - fps/fps_multivariate.hpp
   - fps/fps_arb.hpp
@@ -334,10 +344,12 @@ data:
   verifiedWith:
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
   - verify/yuki/yuki_1510.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp

@@ -23,7 +23,7 @@ data:
   - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/w_ary_tree.hpp
     title: data_structure/w_ary_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -35,12 +35,15 @@ data:
   - icon: ':warning:'
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
   - icon: ':question:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
+  - icon: ':question:'
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
   - icon: ':x:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
@@ -48,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/bit_vector.test.cpp
     title: verify/unit_test/bit_vector.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/wavelet_matrix.test.cpp
     title: verify/unit_test/wavelet_matrix.test.cpp
@@ -60,13 +66,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
   - icon: ':x:'
@@ -163,6 +169,9 @@ data:
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_math/many_factrials.test.cpp
+    title: verify/yosupo_math/many_factrials.test.cpp
+  - icon: ':x:'
     path: verify/yuki/yuki_1510.test.cpp
     title: verify/yuki/yuki_1510.test.cpp
   _isVerificationFailed: true
@@ -218,6 +227,7 @@ data:
   - data_structure/bit_vector.hpp
   - data_structure/wavelet_matrix.hpp
   - data_structure/my_bitset.hpp
+  - math_mod/comb_large.hpp
   - fps/fps_sparsity_detector.hpp
   - fps/fps_ntt_friendly.hpp
   - fps/fps_multivariate.hpp
@@ -231,6 +241,7 @@ data:
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
@@ -238,6 +249,7 @@ data:
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/unit_test/bit_vector.test.cpp
   - verify/unit_test/wavelet_matrix.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
   - verify/yuki/yuki_1510.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp

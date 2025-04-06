@@ -20,7 +20,7 @@ data:
   - icon: ':warning:'
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
   - icon: ':question:'
@@ -42,6 +42,9 @@ data:
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
   - icon: ':question:'
+    path: math_mod/comb_large.hpp
+    title: math_mod/comb_large.hpp
+  - icon: ':question:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
   - icon: ':x:'
@@ -61,6 +64,9 @@ data:
     path: verify/unit_test/isprime_table_extend.test.cpp
     title: verify/unit_test/isprime_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/large_fact_arb_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,10 +81,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition_inv.test.cpp
     title: verify/yosupo_fps/fps_composition_inv.test.cpp
   - icon: ':x:'
@@ -166,6 +172,9 @@ data:
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
+    path: verify/yosupo_math/many_factrials.test.cpp
+    title: verify/yosupo_math/many_factrials.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_math/primality_test.test.cpp
     title: verify/yosupo_math/primality_test.test.cpp
   - icon: ':x:'
@@ -207,6 +216,7 @@ data:
   - math/multiplicative_function/euler_phi.hpp
   - math/is_prime.hpp
   - math/prime_factorize.hpp
+  - math_mod/comb_large.hpp
   - math_mod/primitive_root.hpp
   - math_mod/butterfly.hpp
   - math_mod/primitive_root_64bit.hpp
@@ -220,6 +230,7 @@ data:
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
@@ -231,6 +242,7 @@ data:
   - verify/unit_test/prime_factorize_table.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
   - verify/yuki/yuki_1510.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp

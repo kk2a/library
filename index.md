@@ -65,10 +65,10 @@ data:
       title: convolution/zeta_mobius_transfrom.hpp
   - name: data_structure
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/binary_trie.hpp
       title: data_structure/binary_trie.hpp
     - icon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
     - icon: ':warning:'
       path: data_structure/convex_hull_trick_add_monotone.hpp
       title: data_structure/convex_hull_trick_add_monotone.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/disjoint_sparse_table.hpp
       title: data_structure/disjoint_sparse_table.hpp
     - icon: ':warning:'
@@ -98,7 +98,7 @@ data:
     - icon: ':warning:'
       path: data_structure/ordered_set.hpp
       title: data_structure/ordered_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/prefix_sum.hpp
       title: data_structure/prefix_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -110,16 +110,16 @@ data:
     - icon: ':warning:'
       path: data_structure/slope_trick.hpp
       title: data_structure/slope_trick.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/sparse_table.hpp
       title: data_structure/sparse_table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/static_rmq.hpp
       title: data_structure/static_rmq.hpp
     - icon: ':x:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/w_ary_tree.hpp
       title: data_structure/w_ary_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -136,10 +136,10 @@ data:
     - icon: ':x:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/composition.hpp
       title: fps/composition.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
     - icon: ':x:'
@@ -148,7 +148,7 @@ data:
     - icon: ':warning:'
       path: fps/fps_multivariate.hpp
       title: fps/fps_multivariate.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/fps_ntt_friendly.hpp
       title: fps/fps_ntt_friendly.hpp
     - icon: ':question:'
@@ -172,7 +172,7 @@ data:
     - icon: ':x:'
       path: fps/poly_multi_eval.hpp
       title: fps/poly_multi_eval.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/poly_sample_point_shift.hpp
       title: fps/poly_sample_point_shift.hpp
     - icon: ':x:'
@@ -181,7 +181,7 @@ data:
     - icon: ':x:'
       path: fps/poly_to_newton_basis.hpp
       title: fps/poly_to_newton_basis.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/power_projection.hpp
       title: fps/power_projection.hpp
     - icon: ':x:'
@@ -397,7 +397,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/monoid/max_min_sumwithsize.hpp
       title: math/monoid/max_min_sumwithsize.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/monoid/min.hpp
       title: math/monoid/min.hpp
     - icon: ':warning:'
@@ -446,10 +446,10 @@ data:
     - icon: ':question:'
       path: math_mod/butterfly.hpp
       title: math_mod/butterfly.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math_mod/comb.hpp
       title: math_mod/comb.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
     - icon: ':question:'
@@ -506,13 +506,13 @@ data:
       title: modint/mont_arb.hpp
   - name: others
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: others/coordinate_compression.hpp
       title: others/coordinate_compression.hpp
     - icon: ':x:'
       path: others/longest_increasing_subsequence.hpp
       title: others/longest_increasing_subsequence.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: others/mo.hpp
       title: others/mo.hpp
     - icon: ':warning:'
@@ -552,7 +552,7 @@ data:
     - icon: ':warning:'
       path: segment_tree/dynamic_seg.hpp
       title: segment_tree/dynamic_seg.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
     - icon: ':heavy_check_mark:'
@@ -638,7 +638,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: unionfind/rollback.hpp
       title: unionfind/rollback.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: unionfind/unionfind.hpp
       title: unionfind/unionfind.hpp
     - icon: ':warning:'
@@ -682,7 +682,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/isprime_table_extend.test.cpp
       title: verify/unit_test/isprime_table_extend.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/large_fact_arb_mod.test.cpp
       title: verify/unit_test/large_fact_arb_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -761,39 +761,39 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
       title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
       title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
       title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_set_xor_min.test.cpp
       title: verify/yosupo_ds/ds_set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
       title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_range_sum.test.cpp
       title: verify/yosupo_ds/ds_static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_rmq.test.cpp
       title: verify/yosupo_ds/ds_static_rmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_static_rmq_2.test.cpp
       title: verify/yosupo_ds/ds_static_rmq_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_unionfind.test.cpp
       title: verify/yosupo_ds/ds_unionfind.test.cpp
   - name: verify/yosupo_fps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_composition.test.cpp
       title: verify/yosupo_fps/fps_composition.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_composition_inv.test.cpp
       title: verify/yosupo_fps/fps_composition_inv.test.cpp
     - icon: ':x:'
