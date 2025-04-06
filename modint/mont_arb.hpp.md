@@ -8,19 +8,67 @@ data:
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
+  - icon: ':question:'
+    path: math/is_prime.hpp
+    title: math/is_prime.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/multiplicative_function/euler_phi.hpp
+    title: math/multiplicative_function/euler_phi.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/multiplicative_function/mobius.hpp
+    title: math/multiplicative_function/mobius.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/multiplicative_function/sigma.hpp
+    title: math/multiplicative_function/sigma.hpp
+  - icon: ':question:'
+    path: math/prime_factorize.hpp
+    title: math/prime_factorize.hpp
   - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
+  - icon: ':x:'
+    path: math_mod/primitive_root_64bit.hpp
+    title: math_mod/primitive_root_64bit.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_ntl_1_d.test.cpp
+    title: verify/aoj/aoj_ntl_1_d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/famous_function_table.test.cpp
+    title: verify/unit_test/famous_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/isprime_table_extend.test.cpp
+    title: verify/unit_test/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/lpf_table_extend.test.cpp
+    title: verify/unit_test/lpf_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/prime_factorize_table.test.cpp
+    title: verify/unit_test/prime_factorize_table.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+    title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_sqrt.test.cpp
+    title: verify/yosupo_fps/fps_sqrt.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/factrize.test.cpp
+    title: verify/yosupo_math/factrize.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/primality_test.test.cpp
+    title: verify/yosupo_math/primality_test.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/primitive_root.test.cpp
+    title: verify/yosupo_math/primitive_root.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/sqrt_mod.test.cpp
     title: verify/yosupo_math/sqrt_mod.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -88,12 +136,28 @@ data:
   isVerificationFile: false
   path: modint/mont_arb.hpp
   requiredBy:
+  - math/multiplicative_function/mobius.hpp
+  - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/euler_phi.hpp
+  - math/is_prime.hpp
+  - math/prime_factorize.hpp
   - math_mod/mod_sqrt.hpp
+  - math_mod/primitive_root_64bit.hpp
   - fps/fps_sqrt.hpp
   timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_math/factrize.test.cpp
+  - verify/yosupo_math/primality_test.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
   - verify/yosupo_math/sqrt_mod.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
 documentation_of: modint/mont_arb.hpp
 layout: document
 redirect_from:

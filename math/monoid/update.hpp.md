@@ -43,19 +43,19 @@ data:
   code: "#ifndef KK2_MATH_MONOID_UPDATE_HPP\n#define KK2_MATH_MONOID_UPDATE_HPP 1\n\
     \n#include \"../../type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid\
     \ {\n\ntemplate <class S> struct Update {\n    static constexpr bool commutative\
-    \ = true;\n    S a;\n    bool is_unit;\n\n    Update() : is_unit(true) {}\n\n\
-    \    Update(S a_) : a(a_), is_unit(false) {}\n\n    operator S() const { return\
-    \ a; }\n\n    inline static Update op(Update l, Update r) { return l.is_unit ?\
-    \ r : l; }\n\n    inline static Update unit() { return Update(); }\n\n    template\
+    \ = true;\n    using M = Update;\n    S a;\n    bool is_unit;\n\n    Update()\
+    \ : is_unit(true) {}\n    Update(S a_) : a(a_), is_unit(false) {}\n    operator\
+    \ S() const { return a; }\n    inline static M op(M l, M r) { return l.is_unit\
+    \ ? r : l; }\n    inline static M unit() { return M(); }\n\n    bool operator==(const\
+    \ M &rhs) const {\n        return is_unit == rhs.is_unit and (is_unit or a ==\
+    \ rhs.a);\n    }\n\n    bool operator!=(const M &rhs) const {\n        return\
+    \ is_unit != rhs.is_unit or (!is_unit and a != rhs.a);\n    }\n\n    template\
     \ <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
-    \ &os, const Update &update) {\n        if (update.is_unit) os << \"unit\";\n\
-    \        else os << update.a;\n        return os;\n    }\n\n    template <class\
-    \ IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream\
-    \ &is, Update &update) {\n        is >> update.a;\n        update.is_unit = false;\n\
-    \        return is;\n    }\n\n    bool operator==(const Update &rhs) const {\n\
-    \        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n    }\n\n\
-    \    bool operator!=(const Update &rhs) const { return !(*this == rhs); }\n};\n\
-    \n} // namespace monoid\n\n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_UPDATE_HPP\n"
+    \ &os, const M &x) {\n        if (x.is_unit) os << \"unit\";\n        else os\
+    \ << x.a;\n        return os;\n    }\n\n    template <class IStream, is_istream_t<IStream>\
+    \ * = nullptr>\n    friend IStream &operator>>(IStream &is, M &x) {\n        is\
+    \ >> x.a;\n        x.is_unit = false;\n        return is;\n    }\n};\n\n} // namespace\
+    \ monoid\n\n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_UPDATE_HPP\n"
   dependsOn:
   - type_traits/io.hpp
   isVerificationFile: false
@@ -66,7 +66,7 @@ data:
   - math/action/update_min.hpp
   - math/action/update_max.hpp
   - math/action/update_affine.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/monoid.test.cpp

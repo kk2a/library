@@ -8,22 +8,22 @@ data:
   - icon: ':warning:'
     path: math/action/add_sumwithsize.hpp
     title: math/action/add_sumwithsize.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/action/affine_sumwithsize.hpp
     title: math/action/affine_sumwithsize.hpp
   - icon: ':warning:'
     path: math/action/update_sumwithsize.hpp
     title: math/action/update_sumwithsize.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -40,19 +40,19 @@ data:
   code: "#ifndef KK2_MATH_GROUP_SUM_WITH_SIZE_HPP\n#define KK2_MATH_GROUP_SUM_WITH_SIZE_HPP\
     \ 1\n\n#include \"../../type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace group\
     \ {\n\ntemplate <class S, class T = S> struct SumWithSize {\n    static constexpr\
-    \ bool commutative = true;\n    using M = SumWithSize;\n\n    S a;\n    T size;\n\
-    \n    SumWithSize() : a(S{}), size(0) {}\n\n    SumWithSize(S a_, S size_ = T(1))\
-    \ : a(a_), size(size_) {}\n\n    operator S() const { return a; }\n\n    inline\
-    \ static M op(M l, M r) { return M(l.a + r.a, l.size + r.size); }\n\n    inline\
-    \ static M inv(M x) { return M(-x.a, -x.size); }\n\n    inline static M unit()\
-    \ { return M(); }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\n\
-    \    friend OStream &operator<<(OStream &os, const M &sum) {\n        os << sum.a;\n\
-    \        return os;\n    }\n\n    template <class IStream, is_istream_t<IStream>\
-    \ * = nullptr>\n    friend IStream &operator>>(IStream &is, M &sum) {\n      \
-    \  is >> sum.a;\n        sum.size = T(1);\n        return is;\n    }\n\n    bool\
-    \ operator==(const M &rhs) const { return a == rhs.a and size == rhs.size; }\n\
-    \n    bool operator!=(const M &rhs) const { return !(*this == rhs); }\n};\n\n\
-    } // namespace group\n\n} // namespace kk2\n\n#endif // KK2_MATH_GROUP_SUM_WITH_SIZE_HPP\n"
+    \ bool commutative = true;\n    using M = SumWithSize;\n    S a;\n    T size;\n\
+    \n    SumWithSize() : a(S()), size(0) {}\n    SumWithSize(S a_, S size_ = T(1))\
+    \ : a(a_), size(size_) {}\n    operator S() const { return a; }\n    inline static\
+    \ M op(M l, M r) { return M(l.a + r.a, l.size + r.size); }\n    inline static\
+    \ M inv(M x) { return M(-x.a, -x.size); }\n    inline static M unit() { return\
+    \ M(); }\n    bool operator==(const M &rhs) const { return a == rhs.a and size\
+    \ == rhs.size; }\n    bool operator!=(const M &rhs) const { return a != rhs.a\
+    \ or size != rhs.size; }\n\n    template <class OStream, is_ostream_t<OStream>\
+    \ * = nullptr>\n    friend OStream &operator<<(OStream &os, const M &x) {\n  \
+    \      return os << x.a << \" \" << x.size;\n    }\n\n    template <class IStream,\
+    \ is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream &is,\
+    \ M &x) {\n        is >> x.a;\n        x.size = T(1);\n        return is;\n  \
+    \  }\n};\n\n} // namespace group\n\n} // namespace kk2\n\n#endif // KK2_MATH_GROUP_SUM_WITH_SIZE_HPP\n"
   dependsOn:
   - type_traits/io.hpp
   isVerificationFile: false
@@ -61,8 +61,8 @@ data:
   - math/action/update_sumwithsize.hpp
   - math/action/affine_sumwithsize.hpp
   - math/action/add_sumwithsize.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-04-06 13:01:12+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

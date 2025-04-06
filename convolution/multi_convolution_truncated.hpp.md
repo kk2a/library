@@ -1,11 +1,38 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':question:'
+    path: convolution/convolution.hpp
+    title: convolution/convolution.hpp
+  - icon: ':question:'
+    path: fps/fps_sparsity_detector.hpp
+    title: fps/fps_sparsity_detector.hpp
+  - icon: ':question:'
+    path: math_mod/butterfly.hpp
+    title: math_mod/butterfly.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/primitive_root.hpp
+    title: math_mod/primitive_root.hpp
+  - icon: ':question:'
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: fps/fps_multivariate.hpp
+    title: fps/fps_multivariate.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+    title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
@@ -45,13 +72,22 @@ data:
     \ 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto &x\
     \ : f) butterfly_inv(x);\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i];\n\
     \    return a;\n}\n\n} // namespace kk2\n\n#endif // KK2_CONVOLUTION_MULTI_CONVOLUTION_TRUNCATED_HPP\n"
-  dependsOn: []
+  dependsOn:
+  - convolution/convolution.hpp
+  - fps/fps_sparsity_detector.hpp
+  - bit/bitcount.hpp
+  - type_traits/integral.hpp
+  - math_mod/butterfly.hpp
+  - math_mod/primitive_root.hpp
+  - math_mod/pow_mod.hpp
   isVerificationFile: false
   path: convolution/multi_convolution_truncated.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - fps/fps_multivariate.hpp
+  timestamp: '2025-04-06 00:09:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
 documentation_of: convolution/multi_convolution_truncated.hpp
 layout: document
 redirect_from:

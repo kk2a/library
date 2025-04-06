@@ -1,6 +1,39 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':question:'
+    path: convolution/convolution.hpp
+    title: convolution/convolution.hpp
+  - icon: ':question:'
+    path: convolution/convolution.hpp
+    title: convolution/convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: convolution/multi_convolution_truncated.hpp
+    title: convolution/multi_convolution_truncated.hpp
+  - icon: ':x:'
+    path: fps/fps_ntt_friendly.hpp
+    title: fps/fps_ntt_friendly.hpp
+  - icon: ':question:'
+    path: fps/fps_sparsity_detector.hpp
+    title: fps/fps_sparsity_detector.hpp
+  - icon: ':question:'
+    path: math_mod/butterfly.hpp
+    title: math_mod/butterfly.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/primitive_root.hpp
+    title: math_mod/primitive_root.hpp
+  - icon: ':question:'
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  - icon: ':question:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -142,11 +175,22 @@ data:
     \ if (e & 1) res *= a;\n            if (e >>= 1) a *= a;\n        }\n        return\
     \ res;\n    }\n};\n\ntemplate <typename mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv\
     \ = {0, 1};\n\n} // namespace kk2\n\n#endif // KK2_FPS_FPS_MULTIVARIATE_HPP\n"
-  dependsOn: []
+  dependsOn:
+  - convolution/multi_convolution_truncated.hpp
+  - convolution/convolution.hpp
+  - fps/fps_sparsity_detector.hpp
+  - bit/bitcount.hpp
+  - type_traits/integral.hpp
+  - math_mod/butterfly.hpp
+  - math_mod/primitive_root.hpp
+  - math_mod/pow_mod.hpp
+  - type_traits/io.hpp
+  - fps/fps_ntt_friendly.hpp
+  - convolution/convolution.hpp
   isVerificationFile: false
   path: fps/fps_multivariate.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2025-04-06 00:09:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_multivariate.hpp

@@ -1,12 +1,79 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':question:'
+    path: convolution/convolution.hpp
+    title: convolution/convolution.hpp
+  - icon: ':x:'
+    path: fps/fps_ntt_friendly.hpp
+    title: fps/fps_ntt_friendly.hpp
+  - icon: ':question:'
+    path: fps/fps_sparsity_detector.hpp
+    title: fps/fps_sparsity_detector.hpp
+  - icon: ':x:'
+    path: fps/mod_pow.hpp
+    title: fps/mod_pow.hpp
+  - icon: ':x:'
+    path: fps/poly_find_root.hpp
+    title: fps/poly_find_root.hpp
+  - icon: ':x:'
+    path: fps/poly_gcd.hpp
+    title: fps/poly_gcd.hpp
+  - icon: ':question:'
+    path: math_mod/butterfly.hpp
+    title: math_mod/butterfly.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/primitive_root.hpp
+    title: math_mod/primitive_root.hpp
+  - icon: ':question:'
+    path: modint/mont.hpp
+    title: modint/mont.hpp
+  - icon: ':question:'
+    path: random/gen.hpp
+    title: random/gen.hpp
+  - icon: ':question:'
+    path: random/seed.hpp
+    title: random/seed.hpp
+  - icon: ':question:'
+    path: template/constant.hpp
+    title: template/constant.hpp
+  - icon: ':question:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':question:'
+    path: template/io_util.hpp
+    title: template/io_util.hpp
+  - icon: ':question:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':question:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':question:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
+  - icon: ':question:'
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  - icon: ':question:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/polynomial_root_finding
+    links:
+    - https://judge.yosupo.jp/problem/polynomial_root_finding
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -29,11 +96,32 @@ data:
     \ {\n    int n;\n    kin >> n;\n    FPS f(n + 1);\n    kin >> f;\n    auto res\
     \ = kk2::find_root(f);\n    kout << res.size() << kendl;\n    kout << res << kendl;\n\
     \n    return 0;\n}\n"
-  dependsOn: []
+  dependsOn:
+  - fps/fps_ntt_friendly.hpp
+  - convolution/convolution.hpp
+  - fps/fps_sparsity_detector.hpp
+  - bit/bitcount.hpp
+  - type_traits/integral.hpp
+  - math_mod/butterfly.hpp
+  - math_mod/primitive_root.hpp
+  - math_mod/pow_mod.hpp
+  - type_traits/io.hpp
+  - fps/poly_find_root.hpp
+  - random/gen.hpp
+  - random/seed.hpp
+  - fps/mod_pow.hpp
+  - fps/poly_gcd.hpp
+  - modint/mont.hpp
+  - template/template.hpp
+  - template/constant.hpp
+  - template/type_alias.hpp
+  - template/fastio.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
   isVerificationFile: true
   path: verify/yosupo_fps/poly_root_finding.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2025-04-06 00:09:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_root_finding.test.cpp

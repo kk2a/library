@@ -3,15 +3,15 @@ data:
   libraryCategories:
   - name: bbst/base
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bbst/base/red_black_tree_base.hpp
       title: bbst/base/red_black_tree_base.hpp
   - name: bbst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bbst/lazy_red_black_tree.hpp
       title: bbst/lazy_red_black_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: bbst/red_black_tree.hpp
       title: bbst/red_black_tree.hpp
     - icon: ':warning:'
@@ -24,13 +24,13 @@ data:
       title: bit/bitcount.hpp
   - name: convolution
     pages:
-    - icon: ':warning:'
+    - icon: ':question:'
       path: convolution/convolution.hpp
       title: convolution/convolution.hpp
     - icon: ':heavy_check_mark:'
       path: convolution/convolution_and.hpp
       title: convolution/convolution_and.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: convolution/convolution_arb.hpp
       title: convolution/convolution_arb.hpp
     - icon: ':heavy_check_mark:'
@@ -54,7 +54,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/divisor_multiple_transform.hpp
       title: convolution/divisor_multiple_transform.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convolution/multi_convolution_truncated.hpp
       title: convolution/multi_convolution_truncated.hpp
     - icon: ':heavy_check_mark:'
@@ -65,10 +65,10 @@ data:
       title: convolution/zeta_mobius_transfrom.hpp
   - name: data_structure
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: data_structure/binary_trie.hpp
       title: data_structure/binary_trie.hpp
     - icon: ':heavy_check_mark:'
@@ -127,69 +127,69 @@ data:
       title: data_structure/wavelet_matrix.hpp
   - name: fps
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/bbb.hpp
       title: fps/bbb.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/bostan_mori.hpp
       title: fps/bostan_mori.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/composition.hpp
       title: fps/composition.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
     - icon: ':warning:'
       path: fps/fps_multivariate.hpp
       title: fps/fps_multivariate.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/fps_ntt_friendly.hpp
       title: fps/fps_ntt_friendly.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: fps/fps_sparsity_detector.hpp
       title: fps/fps_sparsity_detector.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/fps_sqrt.hpp
       title: fps/fps_sqrt.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/mod_pow.hpp
       title: fps/mod_pow.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/poly_find_root.hpp
       title: fps/poly_find_root.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/poly_gcd.hpp
       title: fps/poly_gcd.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/poly_interpolation.hpp
       title: fps/poly_interpolation.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/poly_multi_eval.hpp
       title: fps/poly_multi_eval.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/poly_sample_point_shift.hpp
       title: fps/poly_sample_point_shift.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/poly_taylor_shift.hpp
       title: fps/poly_taylor_shift.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/poly_to_newton_basis.hpp
       title: fps/poly_to_newton_basis.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/power_projection.hpp
       title: fps/power_projection.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: fps/product.hpp
       title: fps/product.hpp
   - name: functional
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: functional/reverse_args.hpp
       title: functional/reverse_args.hpp
   - name: geometry
@@ -298,7 +298,7 @@ data:
     - icon: ':warning:'
       path: math/action/add_sumwithsize.hpp
       title: math/action/add_sumwithsize.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/action/affine_sumwithsize.hpp
       title: math/action/affine_sumwithsize.hpp
     - icon: ':warning:'
@@ -339,10 +339,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/inv_gcd.hpp
       title: math/inv_gcd.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math/is_prime.hpp
       title: math/is_prime.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/isprime_table.hpp
       title: math/isprime_table.hpp
     - icon: ':x:'
@@ -357,10 +357,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/pow.hpp
       title: math/pow.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math/prime_factorize.hpp
       title: math/prime_factorize.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/prime_factorize_table.hpp
       title: math/prime_factorize_table.hpp
     - icon: ':question:'
@@ -377,12 +377,12 @@ data:
     - icon: ':warning:'
       path: math/group/add.hpp
       title: math/group/add.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/group/sum_with_size.hpp
       title: math/group/sum_with_size.hpp
   - name: math/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/monoid/affine.hpp
       title: math/monoid/affine.hpp
     - icon: ':warning:'
@@ -414,7 +414,7 @@ data:
     - icon: ':warning:'
       path: math/multiplicative_function/counting_square_free.hpp
       title: math/multiplicative_function/counting_square_free.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/multiplicative_function/euler_phi.hpp
       title: math/multiplicative_function/euler_phi.hpp
     - icon: ':heavy_check_mark:'
@@ -423,7 +423,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/multiplicative_function/famous_function_table.hpp
       title: math/multiplicative_function/famous_function_table.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/multiplicative_function/mobius.hpp
       title: math/multiplicative_function/mobius.hpp
     - icon: ':x:'
@@ -432,30 +432,30 @@ data:
     - icon: ':question:'
       path: math/multiplicative_function/prime_counting.hpp
       title: math/multiplicative_function/prime_counting.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/multiplicative_function/sigma.hpp
       title: math/multiplicative_function/sigma.hpp
   - name: math_mod
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math_mod/bell_number.hpp
       title: math_mod/bell_number.hpp
     - icon: ':warning:'
       path: math_mod/bernoulli_number.hpp
       title: math_mod/bernoulli_number.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math_mod/butterfly.hpp
       title: math_mod/butterfly.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math_mod/comb.hpp
       title: math_mod/comb.hpp
     - icon: ':warning:'
       path: math_mod/comb_large.hpp
       title: math_mod/comb_large.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math_mod/garner.hpp
       title: math_mod/garner.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math_mod/inv.hpp
       title: math_mod/inv.hpp
     - icon: ':warning:'
@@ -464,16 +464,16 @@ data:
     - icon: ':x:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math_mod/pow_mod.hpp
       title: math_mod/pow_mod.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math_mod/primitive_root.hpp
       title: math_mod/primitive_root.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math_mod/primitive_root_64bit.hpp
       title: math_mod/primitive_root_64bit.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math_mod/stirling_number.hpp
       title: math_mod/stirling_number.hpp
   - name: matrix
@@ -492,7 +492,7 @@ data:
       title: matrix/matrix_field.hpp
   - name: modint
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: modint/modint.hpp
       title: modint/modint.hpp
     - icon: ':question:'
@@ -501,7 +501,7 @@ data:
     - icon: ':question:'
       path: modint/mont.hpp
       title: modint/mont.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: modint/mont_arb.hpp
       title: modint/mont_arb.hpp
   - name: others
@@ -521,7 +521,7 @@ data:
     - icon: ':warning:'
       path: others/run_length_encoding.hpp
       title: others/run_length_encoding.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: others/vector_pool.hpp
       title: others/vector_pool.hpp
   - name: random
@@ -552,10 +552,10 @@ data:
     - icon: ':warning:'
       path: segment_tree/dynamic_seg.hpp
       title: segment_tree/dynamic_seg.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: segment_tree/lazy.hpp
       title: segment_tree/lazy.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/seg.hpp
       title: segment_tree/seg.hpp
     - icon: ':warning:'
@@ -610,8 +610,11 @@ data:
   - name: type_traits
     pages:
     - icon: ':warning:'
-      path: type_traits/functoinal.hpp
-      title: type_traits/functoinal.hpp
+      path: type_traits/container_traits.hpp
+      title: type_traits/container_traits.hpp
+    - icon: ':heavy_check_mark:'
+      path: type_traits/functional.hpp
+      title: type_traits/functional.hpp
     - icon: ':question:'
       path: type_traits/integral.hpp
       title: type_traits/integral.hpp
@@ -629,7 +632,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: unionfind/partial_persistent.hpp
       title: unionfind/partial_persistent.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: unionfind/potentialized.hpp
       title: unionfind/potentialized.hpp
     - icon: ':heavy_check_mark:'
@@ -662,7 +665,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_grl_1_c.test.cpp
       title: verify/aoj/aoj_grl_1_c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/aoj/aoj_ntl_1_d.test.cpp
       title: verify/aoj/aoj_ntl_1_d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -673,16 +676,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/bit_vector.test.cpp
       title: verify/unit_test/bit_vector.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/famous_function_table.test.cpp
       title: verify/unit_test/famous_function_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/isprime_table_extend.test.cpp
       title: verify/unit_test/isprime_table_extend.test.cpp
     - icon: ':x:'
       path: verify/unit_test/large_fact_arb_mod.test.cpp
       title: verify/unit_test/large_fact_arb_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/lpf_table_extend.test.cpp
       title: verify/unit_test/lpf_table_extend.test.cpp
     - icon: ':heavy_check_mark:'
@@ -697,7 +700,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/unit_test/partial_persitent_unionfind.test.cpp
       title: verify/unit_test/partial_persitent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/unit_test/prime_factorize_table.test.cpp
       title: verify/unit_test/prime_factorize_table.test.cpp
     - icon: ':heavy_check_mark:'
@@ -711,7 +714,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_and.test.cpp
       title: verify/yosupo_convolution/convolution_and.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
       title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     - icon: ':heavy_check_mark:'
@@ -720,10 +723,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_lcm.test.cpp
       title: verify/yosupo_convolution/convolution_lcm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
       title: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
       title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     - icon: ':heavy_check_mark:'
@@ -737,31 +740,31 @@ data:
       title: verify/yosupo_convolution/convolution_xor.test.cpp
   - name: verify/yosupo_ds
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
       title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
       title: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
       title: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
       title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
       title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
       title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
       title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     - icon: ':x:'
       path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
       title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
       title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     - icon: ':x:'

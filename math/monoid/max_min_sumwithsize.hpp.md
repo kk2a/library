@@ -35,27 +35,29 @@ data:
     \ 1\n\n#include <functional>\n\n#include \"../../type_traits/io.hpp\"\n\nnamespace\
     \ kk2 {\n\nnamespace monoid {\n\ntemplate <class S, class T, class Compare = std::less<S>>\
     \ struct MaxMinSumWithSize {\n    static constexpr bool commutative = true;\n\
-    \    using M = MaxMinSumWithSize;\n\n    S max, min, sum;\n    T size;\n    bool\
-    \ is_unit;\n\n    MaxMinSumWithSize() : is_unit(true) {}\n\n    MaxMinSumWithSize(S\
-    \ a) : max(a), min(a), sum(a), size(1), is_unit(false) {}\n\n    MaxMinSumWithSize(S\
+    \    using M = MaxMinSumWithSize;\n    S max, min, sum;\n    T size;\n    bool\
+    \ is_unit;\n\n    MaxMinSumWithSize() : is_unit(true) {}\n    MaxMinSumWithSize(S\
+    \ a) : max(a), min(a), sum(a), size(1), is_unit(false) {}\n    MaxMinSumWithSize(S\
     \ max_, S min_, S sum_, T size_)\n        : max(max_),\n          min(min_),\n\
     \          sum(sum_),\n          size(size_),\n          is_unit(false) {}\n\n\
     \    inline static M op(M l, M r) {\n        if (l.is_unit or r.is_unit) return\
     \ l.is_unit ? r : l;\n        return M(Compare{}(l.max, r.max) ? r.max : l.max,\n\
     \                 Compare{}(l.min, r.min) ? l.min : r.min,\n                 l.sum\
     \ + r.sum,\n                 l.size + r.size);\n    }\n\n    inline static M unit()\
-    \ { return M(); }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\n\
-    \    friend OStream &operator<<(OStream &os, const M &x) {\n        if (x.is_unit)\
-    \ os << \"(unit)\";\n        else\n            os << \"(max:\" << x.max << \"\
-    , min:\" << x.min << \", sum:\" << x.sum << \", size:\" << x.size\n          \
-    \     << \")\";\n        return os;\n    }\n\n    template <class IStream, is_istream_t<IStream>\
-    \ * = nullptr>\n    friend IStream &operator>>(IStream &is, M &x) {\n        S\
-    \ a;\n        is >> a;\n        x = M(a);\n        return is;\n    }\n\n    bool\
-    \ operator==(const M &rhs) const {\n        return is_unit == rhs.is_unit\n  \
-    \             and (is_unit\n                    or (max == rhs.max and min ==\
-    \ rhs.min and sum == rhs.sum and size == rhs.size));\n    }\n\n    bool operator!=(const\
-    \ M &rhs) const { return !(*this == rhs); }\n};\n\n} // namespace monoid\n\n}\
-    \ // namespace kk2\n\n#endif // KK2_MATH_MONOID_MAX_MIN_SUMWITHSUM_HPP\n"
+    \ { return M(); }\n\n    bool operator==(const M &rhs) const {\n        return\
+    \ is_unit == rhs.is_unit\n               and (is_unit\n                    or\
+    \ (max == rhs.max and min == rhs.min and sum == rhs.sum and size == rhs.size));\n\
+    \    }\n\n    bool operator!=(const M &rhs) const {\n        return is_unit !=\
+    \ rhs.is_unit\n               or (!is_unit\n                   and (max != rhs.max\
+    \ or min != rhs.min or sum != rhs.sum or size != rhs.size));\n    }\n\n    template\
+    \ <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
+    \ &os, const M &x) {\n        if (x.is_unit) os << \"(unit)\";\n        else\n\
+    \            os << \"(max:\" << x.max << \", min:\" << x.min << \", sum:\" <<\
+    \ x.sum << \", size:\" << x.size\n               << \")\";\n        return os;\n\
+    \    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n  \
+    \  friend IStream &operator>>(IStream &is, M &x) {\n        S a;\n        is >>\
+    \ a;\n        x = M(a);\n        return is;\n    }\n};\n\n} // namespace monoid\n\
+    \n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_MAX_MIN_SUMWITHSUM_HPP\n"
   dependsOn:
   - type_traits/io.hpp
   isVerificationFile: false
@@ -63,7 +65,7 @@ data:
   requiredBy:
   - math/action/add_max_min_sumwithsize.hpp
   - math/action/update_max_min_sumwithsize.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/monoid.test.cpp

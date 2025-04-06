@@ -17,6 +17,12 @@ data:
   - icon: ':warning:'
     path: math/action/update_min.hpp
     title: math/action/update_min.hpp
+  - icon: ':warning:'
+    path: template/function_util.hpp
+    title: template/function_util.hpp
+  - icon: ':warning:'
+    path: template/procon.hpp
+    title: template/procon.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/monoid.test.cpp
@@ -46,20 +52,21 @@ data:
   code: "#ifndef KK2_MATH_MONOID_MIN_HPP\n#define KK2_MATH_MONOID_MIN_HPP 1\n\n#include\
     \ <functional>\n\n#include \"../../type_traits/io.hpp\"\n\nnamespace kk2 {\n\n\
     namespace monoid {\n\ntemplate <class S, class Compare = std::less<S>> struct\
-    \ Min {\n    static constexpr bool commutative = true;\n    S a;\n    bool is_unit;\n\
-    \n    Min() : a(S()), is_unit(true) {}\n\n    Min(S a_) : a(a_), is_unit(false)\
-    \ {}\n\n    operator S() const { return a; }\n\n    inline static Min op(Min l,\
-    \ Min r) {\n        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;\n  \
-    \      return Compare{}(l.a, r.a) ? l : r;\n    }\n\n    inline static Min unit()\
-    \ { return Min(); }\n\n    template <class OStream, is_ostream_t<OStream> * =\
-    \ nullptr>\n    friend OStream &operator<<(OStream &os, const Min &min) {\n  \
-    \      if (min.is_unit) os << \"inf\";\n        else os << min.a;\n        return\
+    \ Min {\n    static constexpr bool commutative = true;\n    using M = Min;\n \
+    \   S a;\n    bool is_unit;\n\n    Min() : a(S()), is_unit(true) {}\n    Min(S\
+    \ a_) : a(a_), is_unit(false) {}\n    operator S() const { return a; }\n\n   \
+    \ inline static M op(M l, M r) {\n        if (l.is_unit or r.is_unit) return l.is_unit\
+    \ ? r : l;\n        return Compare{}(l.a, r.a) ? l : r;\n    }\n\n    inline static\
+    \ M unit() { return M(); }\n\n    bool operator==(const M &rhs) const {\n    \
+    \    return is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n    }\n\n   \
+    \ bool operator!=(const M &rhs) const {\n        return is_unit != rhs.is_unit\
+    \ or (!is_unit and a != rhs.a);\n    }\n\n    template <class OStream, is_ostream_t<OStream>\
+    \ * = nullptr>\n    friend OStream &operator<<(OStream &os, const M &x) {\n  \
+    \      if (x.is_unit) os << \"inf\";\n        else os << x.a;\n        return\
     \ os;\n    }\n\n    template <class IStream, is_istream_t<IStream> * = nullptr>\n\
-    \    friend IStream &operator>>(IStream &is, Min &min) {\n        is >> min.a;\n\
-    \        min.is_unit = false;\n        return is;\n    }\n\n    bool operator==(const\
-    \ Min &rhs) const {\n        return is_unit == rhs.is_unit and (is_unit or a ==\
-    \ rhs.a);\n    }\n\n    bool operator!=(const Min &rhs) const { return !(*this\
-    \ == rhs); }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_MIN_HPP\n"
+    \    friend IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n   \
+    \     x.is_unit = false;\n        return is;\n    }\n};\n\n} // namespace monoid\n\
+    \n} // namespace kk2\n\n#endif // KK2_MATH_MONOID_MIN_HPP\n"
   dependsOn:
   - type_traits/io.hpp
   isVerificationFile: false
@@ -67,9 +74,11 @@ data:
   requiredBy:
   - math/action/update_min.hpp
   - math/action/add_min.hpp
+  - template/function_util.hpp
+  - template/procon.hpp
   - graph/tree/euler_tour.hpp
   - data_structure/static_rmq.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp

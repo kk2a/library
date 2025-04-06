@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+    title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/poly_sample_point_shift.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -59,8 +62,9 @@ data:
   path: fps/poly_sample_point_shift.hpp
   requiredBy: []
   timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
 documentation_of: fps/poly_sample_point_shift.hpp
 layout: document
 redirect_from:

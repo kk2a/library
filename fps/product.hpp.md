@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math_mod/stirling_number.hpp
     title: math_mod/stirling_number.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
+    title: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+    title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/product.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
@@ -31,8 +37,10 @@ data:
   requiredBy:
   - math_mod/stirling_number.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
 documentation_of: fps/product.hpp
 layout: document
 redirect_from:

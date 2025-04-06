@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: math/action/add_max.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/action/add_max.hpp

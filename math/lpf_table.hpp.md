@@ -11,13 +11,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/famous_function_table.hpp
     title: math/multiplicative_function/famous_function_table.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize_table.hpp
     title: math/prime_factorize_table.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/famous_function_table.test.cpp
+    title: verify/unit_test/famous_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/lpf_table_extend.test.cpp
+    title: verify/unit_test/lpf_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/prime_factorize_table.test.cpp
+    title: verify/unit_test/prime_factorize_table.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -83,6 +92,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/multiplicative_function_table.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
 documentation_of: math/lpf_table.hpp
 layout: document
 redirect_from:

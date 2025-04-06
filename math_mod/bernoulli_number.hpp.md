@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':x:'
+    path: math_mod/comb.hpp
+    title: math_mod/comb.hpp
+  - icon: ':question:'
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -17,11 +23,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../type_traits/type_traits.hpp:\
-    \ line -1: no such header\n"
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MOD_BERNOULLI_NUMBER_HPP\n#define KK2_MATH_MOD_BERNOULLI_NUMBER_HPP\
     \ 1\n\n#include <vector>\n\n#include \"comb.hpp\"\n\nnamespace kk2 {\n\ntemplate\
     \ <class FPS, class mint = typename FPS::value_type>\nstd::vector<mint> enumerate_bernoulli_number(int\
@@ -30,11 +35,13 @@ data:
     \ 1);\n    std::vector<mint> res(n + 1);\n    for (int i = 0; i <= n; ++i) res[i]\
     \ = f[i] * kk2::Comb<mint>::fact(i);\n    return res;\n}\n\n} // namespace kk2\n\
     \n#endif // KK2_MATH_MOD_BERNOULLI_NUMBER_HPP\n"
-  dependsOn: []
+  dependsOn:
+  - math_mod/comb.hpp
+  - type_traits/integral.hpp
   isVerificationFile: false
   path: math_mod/bernoulli_number.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2025-04-06 00:09:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math_mod/bernoulli_number.hpp

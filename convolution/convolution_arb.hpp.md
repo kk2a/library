@@ -1,11 +1,59 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':question:'
+    path: convolution/convolution.hpp
+    title: convolution/convolution.hpp
+  - icon: ':question:'
+    path: fps/fps_sparsity_detector.hpp
+    title: fps/fps_sparsity_detector.hpp
+  - icon: ':question:'
+    path: math_mod/butterfly.hpp
+    title: math_mod/butterfly.hpp
+  - icon: ':question:'
+    path: math_mod/garner.hpp
+    title: math_mod/garner.hpp
+  - icon: ':question:'
+    path: math_mod/inv.hpp
+    title: math_mod/inv.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/primitive_root.hpp
+    title: math_mod/primitive_root.hpp
+  - icon: ':question:'
+    path: modint/mont.hpp
+    title: modint/mont.hpp
+  - icon: ':question:'
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  - icon: ':question:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: fps/fps_arb.hpp
+    title: fps/fps_arb.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+    title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_exp_arb.test.cpp
+    title: verify/yosupo_fps/fps_exp_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_inv_arb.test.cpp
+    title: verify/yosupo_fps/fps_inv_arb.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_fps/fps_log_arb.test.cpp
+    title: verify/yosupo_fps/fps_log_arb.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -48,13 +96,29 @@ data:
     \ i = 0; i < n + m - 1; i++) {\n        a[i] = mint(garner({a1[i].val(), a2[i].val(),\
     \ a3[i].val()}, ps));\n    }\n    return a;\n}\n\n} // namespace kk2\n\n#endif\
     \ // KK2_CONVOLUTION_CONVOLUTION_ARB_HPP\n"
-  dependsOn: []
+  dependsOn:
+  - math_mod/garner.hpp
+  - math_mod/inv.hpp
+  - modint/mont.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
+  - convolution/convolution.hpp
+  - fps/fps_sparsity_detector.hpp
+  - bit/bitcount.hpp
+  - math_mod/butterfly.hpp
+  - math_mod/primitive_root.hpp
+  - math_mod/pow_mod.hpp
   isVerificationFile: false
   path: convolution/convolution_arb.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - fps/fps_arb.hpp
+  timestamp: '2025-04-06 00:09:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
+  - verify/yosupo_fps/fps_log_arb.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
 documentation_of: convolution/convolution_arb.hpp
 layout: document
 redirect_from:

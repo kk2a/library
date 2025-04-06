@@ -34,19 +34,19 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#ifndef KK2_MATH_GROUP_PLUS_HPP\n#define KK2_MATH_GROUP_PLUS_HPP 1\n\n#include\
+  code: "#ifndef KK2_MATH_GROUP_ADD_HPP\n#define KK2_MATH_GROUP_ADD_HPP 1\n\n#include\
     \ \"../../type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace group {\n\ntemplate\
     \ <class S> struct Add {\n    static constexpr bool commutative = true;\n    using\
-    \ M = Add;\n    S a;\n\n    Add() : a(S()) {}\n\n    Add(S a_) : a(a_) {}\n\n\
-    \    operator S() const { return a; }\n\n    inline static M op(M l, M r) { return\
-    \ M(l.a + r.a); }\n\n    inline static M inv(M x) { return M(-x.a); }\n\n    inline\
-    \ static M unit() { return M(); }\n\n    template <class OStream, is_ostream_t<OStream>\
-    \ * = nullptr>\n    friend OStream &operator<<(OStream &os, const M &x) {\n  \
-    \      return os << x.a;\n    }\n\n    template <class IStream, is_istream_t<IStream>\
-    \ * = nullptr>\n    friend IStream &operator>>(IStream &is, M &x) {\n        return\
-    \ is >> x.a;\n    }\n\n    bool operator==(const M &rhs) const { return a == rhs.a;\
-    \ }\n\n    bool operator!=(const M &rhs) const { return !(*this == rhs); }\n};\n\
-    \n} // namespace group\n\n} // namespace kk2\n\n#endif // KK2_MATH_GROUP_PLUS_HPP\n"
+    \ M = Add;\n    S a;\n\n    Add() : a(S()) {}\n    Add(S a_) : a(a_) {}\n    operator\
+    \ S() const { return a; }\n    inline static M op(M l, M r) { return M(l.a + r.a);\
+    \ }\n    inline static M inv(M x) { return M(-x.a); }\n    inline static M unit()\
+    \ { return M(); }\n    bool operator==(const M &rhs) const { return a == rhs.a;\
+    \ }\n    bool operator!=(const M &rhs) const { return a != rhs.a; }\n\n    template\
+    \ <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
+    \ &os, const M &x) {\n        return os << x.a;\n    }\n\n    template <class\
+    \ IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream\
+    \ &is, M &x) {\n        return is >> x.a;\n    }\n};\n\n} // namespace group\n\
+    \n} // namespace kk2\n\n#endif // KK2_MATH_GROUP_ADD_HPP\n"
   dependsOn:
   - type_traits/io.hpp
   isVerificationFile: false
@@ -56,7 +56,7 @@ data:
   - math/action/add_max.hpp
   - math/action/add_min.hpp
   - math/action/add_sumwithsize.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/group/add.hpp

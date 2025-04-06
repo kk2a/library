@@ -13,6 +13,9 @@ data:
     title: math/multiplicative_function/counting_square_free.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/famous_function_table.test.cpp
+    title: verify/unit_test/famous_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/multiplicative_function_table.test.cpp
     title: verify/unit_test/multiplicative_function_table.test.cpp
   _isVerificationFailed: false
@@ -123,6 +126,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/multiplicative_function_table.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
 documentation_of: math/multiplicative_function/famous_function_table.hpp
 layout: document
 redirect_from:

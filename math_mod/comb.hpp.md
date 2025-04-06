@@ -1,11 +1,32 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: fps/poly_taylor_shift.hpp
+    title: fps/poly_taylor_shift.hpp
+  - icon: ':x:'
+    path: math_mod/bell_number.hpp
+    title: math_mod/bell_number.hpp
+  - icon: ':warning:'
+    path: math_mod/bernoulli_number.hpp
+    title: math_mod/bernoulli_number.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    title: verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+    title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_math/enumerate_bell_number.test.cpp
+    title: verify/yosupo_math/enumerate_bell_number.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -15,13 +36,12 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../type_traits/type_traits.hpp:\
-    \ line -1: no such header\n"
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#ifndef KK2_MATH_MOD_COMB_HPP\n#define KK2_MATH_MOD_COMB_HPP 1\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <vector>\n\n#include \"../type_traits/type_traits.hpp\"\
+    \ <algorithm>\n#include <cassert>\n#include <vector>\n\n#include \"../type_traits/integral.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class mint> struct Comb {\n    static inline\
     \ std::vector<mint> _fact{1}, _ifact{1}, _inv{1};\n\n    Comb() = delete;\n\n\
     \    static void set_upper(int m = -1) {\n        int n = (int)_fact.size();\n\
@@ -51,13 +71,20 @@ data:
     \        return fact(n) * ifact(n - k);\n    }\n\n    static mint homo(int n,\
     \ int k) {\n        if (n < 0 || k < 0) return 0;\n        return k == 0 ? 1 :\
     \ binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_MATH_MOD_COMB_HPP\n"
-  dependsOn: []
+  dependsOn:
+  - type_traits/integral.hpp
   isVerificationFile: false
   path: math_mod/comb.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - math_mod/bell_number.hpp
+  - math_mod/bernoulli_number.hpp
+  - fps/poly_taylor_shift.hpp
+  timestamp: '2025-04-06 00:09:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verify/yosupo_math/enumerate_bell_number.test.cpp
+  - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - verify/yosupo_fps/poly_taylor_shift.test.cpp
 documentation_of: math_mod/comb.hpp
 layout: document
 redirect_from:

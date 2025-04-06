@@ -66,7 +66,7 @@ data:
   path: data_structure/static_rmq.hpp
   requiredBy:
   - graph/tree/euler_tour.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp

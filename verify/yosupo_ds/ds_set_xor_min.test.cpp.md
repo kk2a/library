@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data_structure/binary_trie.hpp
     title: data_structure/binary_trie.hpp
   - icon: ':question:'

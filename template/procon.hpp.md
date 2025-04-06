@@ -1,6 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: math/monoid/max.hpp
+    title: math/monoid/max.hpp
+  - icon: ':question:'
+    path: math/monoid/min.hpp
+    title: math/monoid/min.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -16,6 +22,9 @@ data:
   - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
+  - icon: ':warning:'
+    path: type_traits/container_traits.hpp
+    title: type_traits/container_traits.hpp
   - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
@@ -32,6 +41,8 @@ data:
     \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
@@ -76,13 +87,16 @@ data:
   - template/constant.hpp
   - template/type_alias.hpp
   - template/function_util.hpp
-  - template/io_util.hpp
+  - math/monoid/max.hpp
   - type_traits/io.hpp
+  - math/monoid/min.hpp
+  - type_traits/container_traits.hpp
+  - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: false
   path: template/procon.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/procon.hpp
