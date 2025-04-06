@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <cassert>
 #include <optional>
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "../bit/bitcount.hpp"
 

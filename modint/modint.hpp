@@ -106,7 +106,6 @@ template <int p> struct ModInt {
     mint pow(long long n) const {
         assert(0 <= n);
         mint x = *this, r = 1;
-        n %= (long long)getmod() - 1;
         while (n) {
             if (n & 1) r *= x;
             x *= x;
