@@ -5,6 +5,7 @@
 #include <cassert>
 #include <optional>
 #include <vector>
+#include <string>
 
 #include "../bit/bitcount.hpp"
 

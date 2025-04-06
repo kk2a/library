@@ -8,7 +8,7 @@
 
 #include "../fps/fps_ntt_friendly.hpp"
 #include "../fps/poly_sample_point_shift.hpp"
-#include "../type_traits/type_traits.hpp"
+#include "../type_traits/integral.hpp"
 #include "comb.hpp"
 
 namespace kk2 {
