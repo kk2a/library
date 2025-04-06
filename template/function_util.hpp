@@ -4,6 +4,10 @@
 #include <algorithm>
 #include <vector>
 
+#include "../math/monoid/max.hpp"
+#include "../math/monoid/min.hpp"
+#include "../type_traits/container_traits.hpp"
+
 namespace kk2 {
 
 template <class T, class... Sizes> auto make_vector(int first, Sizes... sizes) {
@@ -15,43 +19,64 @@ template <class T, class... Sizes> auto make_vector(int first, Sizes... sizes) {
 }
 
 template <class T, class U> void fill_all(std::vector<T> &v, const U &x) {
-    std::fill(std::begin(v), std::end(v), T(x));
+    if constexpr (is_vector<T>::value) {
+        for (auto &u : v) fill_all(u, x);
+    } else {
+        std::fill(v.begin(), v.end(), T(x));
+    }
 }
 
-template <class T, class U> void fill_all(std::vector<std::vector<T>> &v, const U &x) {
-    for (auto &u : v) fill_all(u, x);
+template <class T, class U> int iota_all(std::vector<T> &v, U x, int offset = 0) {
+    if constexpr (is_vector<T>::value) {
+        for (auto &u : v) offset += iota_all(u, x + offset);
+    } else {
+        for (auto &u : v) u = x++, ++offset;
+    }
+    return offset;
 }
 
 template <class C> int mysize(const C &c) { return size(c); }
 
-// T: comutative monoid
-template <class T, class U> U all_sum(const std::vector<T> &v, U unit = U()) {
-    U res = unit;
-    for (const auto &x : v) res += x;
-    return res;
-}
-
-template <class T, class U> U all_sum(const std::vector<std::vector<T>> &v, U unit = U()) {
-    U res = unit;
-    for (const auto &u : v) res += all_sum(u, unit);
-    return res;
-}
 
 // T: commutative monoid, F: (U, T) -> U
-template <class T, class U, class F>
+template <class U, class T, class F>
 U all_monoid_prod(const std::vector<T> &v, U unit, const F &f) {
     U res = unit;
-    for (const auto &x : v) res = f(res, x);
+    if constexpr (is_vector<T>::value) {
+        for (const auto &x : v) res = f(res, all_monoid_prod(x, unit, f));
+    } else {
+        for (const auto &x : v) res = f(res, x);
+    }
     return res;
 }
 
-template <class T, class U, class F>
-U all_monoid_prod(const std::vector<std::vector<T>> &v, U unit, const F &f) {
-    U res = unit;
-    for (const auto &u : v) res = f(res, all_monoid_prod(u, unit, f));
-    return res;
+template <class U, class T> U all_sum(const std::vector<T> &v, U unit = U()) {
+    return all_monoid_prod<U, T>(v, unit, [](U a, U b) { return a + b; });
 }
-
+template <class U, class T> U all_prod(const std::vector<T> &v, U unit = U(1)) {
+    return all_monoid_prod<U, T>(v, unit, [](U a, U b) { return a * b; });
+}
+template <class U, class T> U all_xor(const std::vector<T> &v, U unit = U()) {
+    return all_monoid_prod<U, T>(v, unit, [](U a, U b) { return a ^ b; });
+}
+template <class U, class T> U all_and(const std::vector<T> &v, U unit = U(-1)) {
+    return all_monoid_prod<U, T>(v, unit, [](U a, U b) { return a & b; });
+}
+template <class U, class T> U all_or(const std::vector<T> &v, U unit = U()) {
+    return all_monoid_prod<U, T>(v, unit, [](U a, U b) { return a | b; });
+}
+template <class U, class T> U all_min(const std::vector<T> &v) {
+    return all_monoid_prod<monoid::Min<U>, T>(v, monoid::Min<U>::unit(), monoid::Min<U>::op);
+}
+template <class U, class T> U all_max(const std::vector<T> &v) {
+    return all_monoid_prod<monoid::Max<U>, T>(v, monoid::Max<U>::unit(), monoid::Max<U>::op);
+}
+template <class U, class T> U all_gcd(const std::vector<T> &v, U unit = U()) {
+    return all_monoid_prod<U, T>(v, unit, [](U a, U b) { return std::gcd(a, b); });
+}
+template <class U, class T> U all_lcm(const std::vector<T> &v, U unit = U(1)) {
+    return all_monoid_prod<U, T>(v, unit, [](U a, U b) { return std::lcm(a, b); });
+}
 
 } // namespace kk2
 
