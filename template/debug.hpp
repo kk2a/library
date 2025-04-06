@@ -293,6 +293,42 @@ void outputln(OStream &os, const T &t, const Args &...args) {
     os.flush();
 }
 
+std::vector<std::string> sep(const char *s, const char d) {
+    std::vector<std::string> res;
+    std::string now;
+    while (true) {
+        if (*s == '\0' or *s == d) {
+            res.emplace_back(now);
+            now.clear();
+            if (*s == '\0') break;
+        } else if (!isspace(*s)) {
+            now.push_back(*s);
+        }
+        s++;
+    }
+    return res;
+}
+
+#define MY_OSTREAM kout
+
+void show_vars(const std::vector<std::string> &, int) {}
+
+template <class T, class... Args>
+void show_vars(const std::vector<std::string> &name, int pos, const T &t, const Args &...args) {
+    assert(pos < (int)name.size());
+    output(MY_OSTREAM, name[pos++] + ":", t);
+    if (sizeof...(args) > 0) output(MY_OSTREAM, ", ");
+    show_vars(name, pos, args...);
+}
+
+#undef MY_OSTREAM
+
+#define kdebug(...)                                                                                \
+    kk2::debug::output(kout, "line:" + std::to_string(__LINE__));                                  \
+    kk2::debug::output(kout, ' ');                                                                 \
+    kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__, ','), 0, __VA_ARGS__);                     \
+    kk2::debug::outputln(kout);
+
 #else
 
 template <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>
@@ -300,6 +336,10 @@ void output(OStream &, const Args &...) {}
 
 template <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>
 void outputln(OStream &, const Args &...) {}
+
+template <class... Args> void fix_warn(const Args &...) {}
+
+#define kdebug(...) kk2::debug::fix_warn(__VA_ARGS__);
 
 #endif // KK2
 
