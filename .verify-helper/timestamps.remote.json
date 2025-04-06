@@ -52,5 +52,15 @@
 "verify/yosupo_fps/fps_inv_arb.test.cpp": "2025-04-06 00:09:45 +0900",
 "verify/yosupo_fps/fps_log.test.cpp": "2025-04-06 00:09:45 +0900",
 "verify/yosupo_fps/fps_log_arb.test.cpp": "2025-04-06 00:09:45 +0900",
-"verify/yosupo_fps/fps_multipoint_evaluation.test.cpp": "2025-04-06 00:09:45 +0900"
+"verify/yosupo_fps/fps_multipoint_evaluation.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/fps_pow.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/fps_sparse_exp.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/fps_sparse_inv.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/fps_sparse_log.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/fps_sparse_pow.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/fps_sprase_sqrt.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/fps_sqrt.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/poly_division.test.cpp": "2025-04-06 00:09:45 +0900"
 }
