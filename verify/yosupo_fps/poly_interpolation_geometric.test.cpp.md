@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/chirp_Z.hpp
     title: fps/chirp_Z.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_interpolation.hpp
     title: fps/poly_interpolation.hpp
   - icon: ':question:'
@@ -60,9 +60,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_interpolation_on_geometric_sequence
@@ -114,7 +114,7 @@ data:
   path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   requiredBy: []
   timestamp: '2025-04-06 00:09:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
 layout: document

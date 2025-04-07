@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
   - icon: ':question:'
     path: graph/edge.hpp
     title: graph/edge.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/static_graph.hpp
     title: graph/static_graph.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cycle_detection_undirected
@@ -80,7 +80,7 @@ data:
   path: verify/yosupo_graph/graph_cycle_detection.test.cpp
   requiredBy: []
   timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_cycle_detection.test.cpp
 layout: document

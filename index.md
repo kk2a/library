@@ -86,7 +86,7 @@ data:
     - icon: ':warning:'
       path: data_structure/interval_heap.hpp
       title: data_structure/interval_heap.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: data_structure/my_bitset.hpp
       title: data_structure/my_bitset.hpp
     - icon: ':warning:'
@@ -133,7 +133,7 @@ data:
     - icon: ':x:'
       path: fps/bostan_mori.hpp
       title: fps/bostan_mori.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/chirp_Z.hpp
       title: fps/chirp_Z.hpp
     - icon: ':heavy_check_mark:'
@@ -154,19 +154,19 @@ data:
     - icon: ':question:'
       path: fps/fps_sparsity_detector.hpp
       title: fps/fps_sparsity_detector.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/fps_sqrt.hpp
       title: fps/fps_sqrt.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/mod_pow.hpp
       title: fps/mod_pow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_find_root.hpp
       title: fps/poly_find_root.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_gcd.hpp
       title: fps/poly_gcd.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_interpolation.hpp
       title: fps/poly_interpolation.hpp
     - icon: ':question:'
@@ -175,16 +175,16 @@ data:
     - icon: ':question:'
       path: fps/poly_sample_point_shift.hpp
       title: fps/poly_sample_point_shift.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_taylor_shift.hpp
       title: fps/poly_taylor_shift.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/poly_to_newton_basis.hpp
       title: fps/poly_to_newton_basis.hpp
     - icon: ':heavy_check_mark:'
       path: fps/power_projection.hpp
       title: fps/power_projection.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/product.hpp
       title: fps/product.hpp
   - name: functional
@@ -194,7 +194,7 @@ data:
       title: functional/reverse_args.hpp
   - name: geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/argument_sort.hpp
       title: geometry/argument_sort.hpp
     - icon: ':warning:'
@@ -203,18 +203,18 @@ data:
     - icon: ':warning:'
       path: geometry/line.hpp
       title: geometry/line.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/point.hpp
       title: geometry/point.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/static_convex_hull.hpp
       title: geometry/static_convex_hull.hpp
   - name: graph
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/bcc.hpp
       title: graph/bcc.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/cycle_detection.hpp
       title: graph/cycle_detection.hpp
     - icon: ':question:'
@@ -226,22 +226,22 @@ data:
     - icon: ':warning:'
       path: graph/induced_subgraph.hpp
       title: graph/induced_subgraph.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/lowlink.hpp
       title: graph/lowlink.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/scc.hpp
       title: graph/scc.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/static_graph.hpp
       title: graph/static_graph.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.hpp
       title: graph/two_edge_connected_components.hpp
   - name: graph/shortest_path
@@ -252,7 +252,7 @@ data:
     - icon: ':warning:'
       path: graph/shortest_path/bfs.hpp
       title: graph/shortest_path/bfs.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
     - icon: ':heavy_check_mark:'
@@ -266,7 +266,7 @@ data:
     - icon: ':x:'
       path: graph/tree/block_cut_tree.hpp
       title: graph/tree/block_cut_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/cartesian_tree.hpp
       title: graph/tree/cartesian_tree.hpp
     - icon: ':warning:'
@@ -275,13 +275,13 @@ data:
     - icon: ':warning:'
       path: graph/tree/centroid_decomposition.hpp
       title: graph/tree/centroid_decomposition.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/diameter.hpp
       title: graph/tree/diameter.hpp
     - icon: ':warning:'
       path: graph/tree/euler_tour.hpp
       title: graph/tree/euler_tour.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: graph/tree/heavy_light_decomposition.hpp
   - name: math/action
@@ -461,7 +461,7 @@ data:
     - icon: ':x:'
       path: math_mod/log.hpp
       title: math_mod/log.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math_mod/mod_sqrt.hpp
       title: math_mod/mod_sqrt.hpp
     - icon: ':question:'
@@ -484,10 +484,10 @@ data:
     - icon: ':warning:'
       path: matrix/frobenius_form.hpp
       title: matrix/frobenius_form.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: matrix/matrix_F2.hpp
       title: matrix/matrix_F2.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: matrix/matrix_field.hpp
       title: matrix/matrix_field.hpp
   - name: modint
@@ -817,127 +817,127 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
       title: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
       title: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_pow.test.cpp
       title: verify/yosupo_fps/fps_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
       title: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sparse_exp.test.cpp
       title: verify/yosupo_fps/fps_sparse_exp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sparse_inv.test.cpp
       title: verify/yosupo_fps/fps_sparse_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sparse_log.test.cpp
       title: verify/yosupo_fps/fps_sparse_log.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sparse_pow.test.cpp
       title: verify/yosupo_fps/fps_sparse_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
       title: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_sqrt.test.cpp
       title: verify/yosupo_fps/fps_sqrt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_division.test.cpp
       title: verify/yosupo_fps/poly_division.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_interpolation.test.cpp
       title: verify/yosupo_fps/poly_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
       title: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_inv.test.cpp
       title: verify/yosupo_fps/poly_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_root_finding.test.cpp
       title: verify/yosupo_fps/poly_root_finding.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
       title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
       title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
       title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - name: verify/yosupo_geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_geometry/arg_sort.test.cpp
       title: verify/yosupo_geometry/arg_sort.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_geometry/static_convex_hull.test.cpp
       title: verify/yosupo_geometry/static_convex_hull.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_geometry/static_convex_hull_1.test.cpp
       title: verify/yosupo_geometry/static_convex_hull_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_geometry/static_convex_hull_2.test.cpp
       title: verify/yosupo_geometry/static_convex_hull_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_geometry/static_convex_hull_3.test.cpp
       title: verify/yosupo_geometry/static_convex_hull_3.test.cpp
   - name: verify/yosupo_graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_bcc.test.cpp
       title: verify/yosupo_graph/graph_bcc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_cycle_detection.test.cpp
       title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
       title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
       title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_scc.test.cpp
       title: verify/yosupo_graph/graph_scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_shortest_path.test.cpp
       title: verify/yosupo_graph/graph_shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
       title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_cartesian.test.cpp
       title: verify/yosupo_graph/tree_cartesian.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_diameter.test.cpp
       title: verify/yosupo_graph/tree_diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_lca.test.cpp
       title: verify/yosupo_graph/tree_lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_graph/tree_lca_static.test.cpp
       title: verify/yosupo_graph/tree_lca_static.test.cpp
   - name: verify/yosupo_linalg
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_det.test.cpp
       title: verify/yosupo_linalg/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_det_f2.test.cpp
       title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv.test.cpp
       title: verify/yosupo_linalg/matrix_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
       title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_pow.test.cpp
       title: verify/yosupo_linalg/matrix_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_linalg/matrix_product.test.cpp
       title: verify/yosupo_linalg/matrix_product.test.cpp
     - icon: ':x:'

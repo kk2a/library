@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - icon: ':x:'

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geometry/argument_sort.hpp
     title: geometry/argument_sort.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geometry/point.hpp
     title: geometry/point.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
@@ -73,7 +73,7 @@ data:
   path: verify/yosupo_geometry/arg_sort.test.cpp
   requiredBy: []
   timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/arg_sort.test.cpp
 layout: document

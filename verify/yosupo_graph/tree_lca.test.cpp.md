@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: graph/tree/heavy_light_decomposition.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -80,7 +80,7 @@ data:
   path: verify/yosupo_graph/tree_lca.test.cpp
   requiredBy: []
   timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_lca.test.cpp
 layout: document
