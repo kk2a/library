@@ -62,5 +62,13 @@
 "verify/yosupo_fps/fps_sparse_pow.test.cpp": "2025-04-06 00:09:45 +0900",
 "verify/yosupo_fps/fps_sprase_sqrt.test.cpp": "2025-04-06 00:09:45 +0900",
 "verify/yosupo_fps/fps_sqrt.test.cpp": "2025-04-06 00:09:45 +0900",
-"verify/yosupo_fps/poly_division.test.cpp": "2025-04-06 00:09:45 +0900"
+"verify/yosupo_fps/poly_division.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/poly_interpolation.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/poly_interpolation_geometric.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/poly_inv.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/poly_root_finding.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/poly_sample_point_shift.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/poly_taylor_shift.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_fps/poly_to_newton_basis.test.cpp": "2025-04-06 00:09:45 +0900",
+"verify/yosupo_geometry/arg_sort.test.cpp": "2025-04-05 12:46:42 +0900"
 }
