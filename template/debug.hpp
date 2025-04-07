@@ -309,25 +309,21 @@ std::vector<std::string> sep(const char *s, const char d) {
     return res;
 }
 
-#define MY_OSTREAM kout
-
 void show_vars(const std::vector<std::string> &, int) {}
 
 template <class T, class... Args>
 void show_vars(const std::vector<std::string> &name, int pos, const T &t, const Args &...args) {
     assert(pos < (int)name.size());
-    output(MY_OSTREAM, name[pos++] + ":", t);
-    if (sizeof...(args) > 0) output(MY_OSTREAM, ", ");
+    output(std::cerr, name[pos++] + ":", t);
+    if (sizeof...(args) > 0) output(std::cerr, ", ");
     show_vars(name, pos, args...);
 }
 
-#undef MY_OSTREAM
-
 #define kdebug(...)                                                                                \
-    kk2::debug::output(kout, "line:" + std::to_string(__LINE__));                                  \
-    kk2::debug::output(kout, ' ');                                                                 \
+    kk2::debug::output(std::cerr, "line:" + std::to_string(__LINE__));                             \
+    kk2::debug::output(std::cerr, ' ');                                                            \
     kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__, ','), 0, __VA_ARGS__);                     \
-    kk2::debug::outputln(kout);
+    kk2::debug::outputln(std::cerr);
 
 #else
 
