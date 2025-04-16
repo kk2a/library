@@ -17,7 +17,7 @@ template <typename T> struct WaveletMatrix {
 
     WaveletMatrix() = default;
 
-    WaveletMatrix(int n_) : n(n_) {}
+    WaveletMatrix(int n_) : n(n_), a(n_) {}
 
     WaveletMatrix(const std::vector<T> &a_) : n(a_.size()), a(a_) { build(); }
 
