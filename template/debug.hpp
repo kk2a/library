@@ -293,16 +293,22 @@ void outputln(OStream &os, const T &t, const Args &...args) {
     os.flush();
 }
 
-std::vector<std::string> sep(const char *s, const char d) {
+std::vector<std::string> sep(const char *s) {
     std::vector<std::string> res;
     std::string now;
+    int dep = 0;
     while (true) {
-        if (*s == '\0' or *s == d) {
+        if (*s == '\0') {
+            res.emplace_back(now);
+            break;
+        }
+        if (*s == '(' or *s == '[' or *s == '{') dep++;
+        if (*s == ')' or *s == ']' or *s == '}') dep--;
+        if (dep == 0 and *s == ',') {
             res.emplace_back(now);
             now.clear();
-            if (*s == '\0') break;
         } else if (!isspace(*s)) {
-            now.push_back(*s);
+            now += *s;
         }
         s++;
     }
@@ -322,7 +328,7 @@ void show_vars(const std::vector<std::string> &name, int pos, const T &t, const 
 #define kdebug(...)                                                                                \
     kk2::debug::output(std::cerr, "line:" + std::to_string(__LINE__));                             \
     kk2::debug::output(std::cerr, ' ');                                                            \
-    kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__, ','), 0, __VA_ARGS__);                     \
+    kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__), 0, __VA_ARGS__);                     \
     kk2::debug::outputln(std::cerr);
 
 #else
