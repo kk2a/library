@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/product.hpp
     title: fps/product.hpp
   - icon: ':question:'

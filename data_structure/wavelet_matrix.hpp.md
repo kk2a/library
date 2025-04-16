@@ -38,7 +38,7 @@ data:
     \n#include \"bit_vector.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename T> struct\
     \ WaveletMatrix {\n    int n, lg;\n    std::vector<T> a;\n    std::vector<BitVector>\
     \ mat;\n    bool built = false;\n\n    WaveletMatrix() = default;\n\n    WaveletMatrix(int\
-    \ n_) : n(n_) {}\n\n    WaveletMatrix(const std::vector<T> &a_) : n(a_.size()),\
+    \ n_) : n(n_), a(n_) {}\n\n    WaveletMatrix(const std::vector<T> &a_) : n(a_.size()),\
     \ a(a_) { build(); }\n\n    void build() {\n        built = true;\n        lg\
     \ = 0;\n        T mx = *std::max_element(a.begin(), a.end());\n        if (mx\
     \ <= 0) mx = 1;\n        lg = msb(mx) + 1;\n        mat.resize(lg, BitVector(n));\n\
@@ -95,7 +95,7 @@ data:
   isVerificationFile: false
   path: data_structure/wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-16 11:06:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/wavelet_matrix.test.cpp

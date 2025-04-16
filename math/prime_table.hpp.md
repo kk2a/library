@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/enumerate_primes.test.cpp
     title: verify/yosupo_math/enumerate_primes.test.cpp
   - icon: ':x:'

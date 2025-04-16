@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: convolution/convolution_int.hpp
     title: convolution/convolution_int.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
   - icon: ':heavy_check_mark:'
@@ -146,13 +146,13 @@ data:
   - icon: ':warning:'
     path: matrix/frobenius_form.hpp
     title: matrix/frobenius_form.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: matrix/matrix_F2.hpp
     title: matrix/matrix_F2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: matrix/matrix_field.hpp
     title: matrix/matrix_field.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'
@@ -477,43 +477,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_rank.test.cpp
+    title: verify/yosupo_linalg/matrix_rank.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_linalg/matrix_rank_F2.test.cpp
+    title: verify/yosupo_linalg/matrix_rank_F2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/discrete_logarithm.test.cpp
     title: verify/yosupo_math/discrete_logarithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/enumerate_bell_number.test.cpp
     title: verify/yosupo_math/enumerate_bell_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/enumerate_primes.test.cpp
     title: verify/yosupo_math/enumerate_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/enumerate_quotients.test.cpp
     title: verify/yosupo_math/enumerate_quotients.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
     title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/kth_root_int.test.cpp
     title: verify/yosupo_math/kth_root_int.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/kth_root_int_ceil.test.cpp
     title: verify/yosupo_math/kth_root_int_ceil.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
@@ -685,10 +691,12 @@ data:
   - verify/yosupo_others/longest_increasing_subsequence.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
   - verify/yosupo_others/many_a_plus_b.test.cpp
+  - verify/yosupo_linalg/matrix_rank_F2.test.cpp
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - verify/yosupo_linalg/matrix_rank.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
   - verify/yosupo_linalg/matrix_inv.test.cpp

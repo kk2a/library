@@ -144,11 +144,13 @@ data:
     \   os << '\\n';\n    os.flush();\n}\n\ntemplate <class OStream, class T, class...\
     \ Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &os, const T\
     \ &t, const Args &...args) {\n    output(os, t, args...);\n    os << '\\n';\n\
-    \    os.flush();\n}\n\nstd::vector<std::string> sep(const char *s, const char\
-    \ d) {\n    std::vector<std::string> res;\n    std::string now;\n    while (true)\
-    \ {\n        if (*s == '\\0' or *s == d) {\n            res.emplace_back(now);\n\
-    \            now.clear();\n            if (*s == '\\0') break;\n        } else\
-    \ if (!isspace(*s)) {\n            now.push_back(*s);\n        }\n        s++;\n\
+    \    os.flush();\n}\n\nstd::vector<std::string> sep(const char *s) {\n    std::vector<std::string>\
+    \ res;\n    std::string now;\n    int dep = 0;\n    while (true) {\n        if\
+    \ (*s == '\\0') {\n            res.emplace_back(now);\n            break;\n  \
+    \      }\n        if (*s == '(' or *s == '[' or *s == '{') dep++;\n        if\
+    \ (*s == ')' or *s == ']' or *s == '}') dep--;\n        if (dep == 0 and *s ==\
+    \ ',') {\n            res.emplace_back(now);\n            now.clear();\n     \
+    \   } else if (!isspace(*s)) {\n            now += *s;\n        }\n        s++;\n\
     \    }\n    return res;\n}\n\nvoid show_vars(const std::vector<std::string> &,\
     \ int) {}\n\ntemplate <class T, class... Args>\nvoid show_vars(const std::vector<std::string>\
     \ &name, int pos, const T &t, const Args &...args) {\n    assert(pos < (int)name.size());\n\
@@ -157,8 +159,8 @@ data:
     \ kdebug(...)                                                                \
     \                \\\n    kk2::debug::output(std::cerr, \"line:\" + std::to_string(__LINE__));\
     \                             \\\n    kk2::debug::output(std::cerr, ' ');    \
-    \                                                        \\\n    kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__,\
-    \ ','), 0, __VA_ARGS__);                     \\\n    kk2::debug::outputln(std::cerr);\n\
+    \                                                        \\\n    kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__),\
+    \ 0, __VA_ARGS__);                     \\\n    kk2::debug::outputln(std::cerr);\n\
     \n#else\n\ntemplate <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>\n\
     void output(OStream &, const Args &...) {}\n\ntemplate <class OStream, class...\
     \ Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &, const Args\
@@ -171,7 +173,7 @@ data:
   isVerificationFile: false
   path: template/debug.hpp
   requiredBy: []
-  timestamp: '2025-04-07 19:13:26+09:00'
+  timestamp: '2025-04-16 11:01:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp

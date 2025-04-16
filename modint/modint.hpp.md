@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/discrete_logarithm.test.cpp
     title: verify/yosupo_math/discrete_logarithm.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -94,7 +94,7 @@ data:
   path: modint/modint.hpp
   requiredBy: []
   timestamp: '2025-04-06 14:26:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - verify/yosupo_math/discrete_logarithm.test.cpp

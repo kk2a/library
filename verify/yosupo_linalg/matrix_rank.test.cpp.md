@@ -1,18 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: matrix/matrix_field.hpp
+    title: matrix/matrix_field.hpp
   - icon: ':question:'
-    path: math/frac_floor.hpp
-    title: math/frac_floor.hpp
-  - icon: ':question:'
-    path: math/frac_floor.hpp
-    title: math/frac_floor.hpp
-  - icon: ':question:'
-    path: math/prime_table.hpp
-    title: math/prime_table.hpp
-  - icon: ':question:'
-    path: math/sqrt_floor.hpp
-    title: math/sqrt_floor.hpp
+    path: modint/mont.hpp
+    title: modint/mont.hpp
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -44,9 +38,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/enumerate_primes
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_rank
     links:
-    - https://judge.yosupo.jp/problem/enumerate_primes
+    - https://judge.yosupo.jp/problem/matrix_rank
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -57,42 +51,38 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\" \n\n\
-    #include \"../../math/prime_table.hpp\"\n#include \"../../math/frac_floor.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, a, b;\n    kin >> n >> a >> b;\n\n    auto primes = kk2::PrimeTable::primes(n);\n\
-    \    int pi_n = (int)primes.size();\n    int m = kk2::fracceil(pi_n - b, a);\n\
-    \    kout << pi_n << \" \" << m << kendl;\n    for (int i = 0; i < m; i++) {\n\
-    \        if (i) kout << \" \";\n        kout << primes[i * a + b];\n    }\n  \
-    \  kout << kendl;\n\n    return 0;\n}\n"
+    \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank\" \n\n#include\
+    \ \"../../matrix/matrix_field.hpp\"\n#include \"../../modint/mont.hpp\"\n#include\
+    \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
+    \ n, m;\n    kin >> n >> m;\n    bool is_swap = false;\n    if (n > m) {\n   \
+    \     is_swap = true;\n        swap(n, m);\n    }\n    kk2::MatrixField<kk2::mont998>\
+    \ a(n, m);\n    if (is_swap) {\n        rep (j, m) rep (i, n) kin >> a[i][j];\n\
+    \    } else {\n        a.input(kin);\n    }\n    kout << a.rank() << kendl;\n\n\
+    \    return 0;\n}\n"
   dependsOn:
-  - math/prime_table.hpp
-  - math/sqrt_floor.hpp
-  - math/frac_floor.hpp
-  - math/frac_floor.hpp
+  - matrix/matrix_field.hpp
+  - type_traits/io.hpp
+  - modint/mont.hpp
+  - type_traits/integral.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
-  - type_traits/integral.hpp
-  - type_traits/io.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
-  path: verify/yosupo_math/enumerate_primes.test.cpp
+  path: verify/yosupo_linalg/matrix_rank.test.cpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-16 11:02:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_math/enumerate_primes.test.cpp
+documentation_of: verify/yosupo_linalg/matrix_rank.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_math/enumerate_primes.test.cpp
-- /verify/verify/yosupo_math/enumerate_primes.test.cpp.html
-title: verify/yosupo_math/enumerate_primes.test.cpp
+- /verify/verify/yosupo_linalg/matrix_rank.test.cpp
+- /verify/verify/yosupo_linalg/matrix_rank.test.cpp.html
+title: verify/yosupo_linalg/matrix_rank.test.cpp
 ---

@@ -90,7 +90,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
   - icon: ':x:'

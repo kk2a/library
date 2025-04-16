@@ -135,13 +135,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/enumerate_bell_number.test.cpp
     title: verify/yosupo_math/enumerate_bell_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
     title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
