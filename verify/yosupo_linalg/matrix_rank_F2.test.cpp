@@ -18,7 +18,7 @@ int main() {
         rep (j, m) {
             string s;
             kin >> s;
-            rep (i, n) a[i][j] = s[i] - '0';
+            rep (i, n) a[n - i - 1][j] = s[i] - '0';
         }
     } else {
         a.input(kin);

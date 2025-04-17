@@ -19,6 +19,7 @@ struct Scanner : type_traits::istream_tag {
   private:
     static constexpr size_t INPUT_BUF = 1 << 17;
     size_t pos = 0, end = 0;
+    bool is_eof = false;
     static char buf[INPUT_BUF];
     FILE *fp;
 
@@ -32,9 +33,11 @@ struct Scanner : type_traits::istream_tag {
     }
 
     char now() {
+        if (is_eof) return '\0';
         if (pos == end) {
             end = fread(buf, 1, INPUT_BUF, fp);
             if (end != INPUT_BUF) buf[end] = '\0';
+            if (end == 0) is_eof = true;
             pos = 0;
         }
         return buf[pos];
