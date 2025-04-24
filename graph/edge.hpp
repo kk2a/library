@@ -21,12 +21,9 @@ template <class T> struct _Edge {
           to(to_),
           id(id_),
           cost(cost_) {}
-
-    _Edge() : from(-1), to(-1), id(-1), cost() {}
-
+    _Edge() : from(-1), to(-1), id(-1) {}
     operator int() const { return to; }
-
-    _Edge rev() const { return _Edge(from, cost, to, id); }
+    inline _Edge rev() const { return _Edge(from, cost, to, id); }
 
     template <class OStream, is_ostream_t<OStream> * = nullptr>
     void debug_output(OStream &os) const {
@@ -83,11 +80,8 @@ template <class T> struct _pair {
     int id;
 
     _pair(T cost_, int id_) : cost(cost_), id(id_) {}
-
     _pair() : cost(), id(-1) {}
-
     operator bool() const { return id != -1; }
-
     template <class OStream, is_ostream_t<OStream> * = nullptr>
     friend OStream &operator<<(OStream &os, const _pair &p) {
         if constexpr (std::is_same_v<T, empty>) return os;
