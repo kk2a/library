@@ -92,15 +92,15 @@ data:
     \                       _primes2.begin(),\n                       _primes2.end(),\n\
     \                       std::back_inserter(tmp));\n        _primes = std::move(tmp);\n\
     \    }\n\n    static const std::vector<int> &primes() { return _primes; }\n\n\
-    \    template <typename It> struct PrimeIt {\n        It bg, ed;\n\n        PrimeIt(It\
-    \ bg_, It ed_) : bg(bg_), ed(ed_) {}\n\n        It begin() const { return bg;\
-    \ }\n\n        It end() const { return ed; }\n\n        int size() const { return\
-    \ ed - bg; }\n\n        int operator[](int i) const { return bg[i]; }\n\n    \
-    \    std::vector<int> to_vec() const { return std::vector<int>(bg, ed); }\n  \
-    \  };\n\n    static auto primes(int n) {\n        if (n >= _n) set_upper(n);\n\
-    \        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(),\
-    \ n));\n    }\n};\n\n} // namespace kk2\n\n\n#line 8 \"math/multiplicative_function/prime_counting.hpp\"\
-    \n\nnamespace kk2 {\n\nlong long prime_counting(long long n) {\n    EnumerateQuotients<long\
+    \    template <typename It> struct PrimeIt {\n        It bg, ed;\n        PrimeIt(It\
+    \ bg_, It ed_) : bg(bg_), ed(ed_) {}\n        It begin() const { return bg; }\n\
+    \        It end() const { return ed; }\n        int size() const { return ed -\
+    \ bg; }\n        int operator[](int i) const { return bg[i]; }\n        std::vector<int>\
+    \ to_vec() const { return std::vector<int>(bg, ed); }\n    };\n\n    static auto\
+    \ primes(int n) {\n        if (n >= _n) set_upper(n);\n        return PrimeIt(_primes.begin(),\
+    \ std::upper_bound(_primes.begin(), _primes.end(), n));\n    }\n};\n\n} // namespace\
+    \ kk2\n\n\n#line 8 \"math/multiplicative_function/prime_counting.hpp\"\n\nnamespace\
+    \ kk2 {\n\nlong long prime_counting(long long n) {\n    EnumerateQuotients<long\
     \ long> eq(n);\n    PrimeTable::set_upper(eq.sqrt_n);\n    std::vector<long long>\
     \ dp(eq.size());\n    for (int i = 0; i < eq.size(); ++i) dp[i] = eq[i] - 1;\n\
     \    for (const long long p : PrimeTable::primes()) {\n        for (int i = eq.size()\
@@ -124,13 +124,13 @@ data:
   isVerificationFile: false
   path: math/multiplicative_function/prime_counting.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-24 20:54:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/prime_counting.test.cpp
-  - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/prime_table_extend.test.cpp
 documentation_of: math/multiplicative_function/prime_counting.hpp
 layout: document
 redirect_from:

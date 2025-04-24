@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
   - icon: ':question:'
@@ -190,7 +190,7 @@ data:
   isVerificationFile: false
   path: fps/fps_multivariate.hpp
   requiredBy: []
-  timestamp: '2025-04-06 00:09:45+09:00'
+  timestamp: '2025-04-24 20:44:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/fps_multivariate.hpp

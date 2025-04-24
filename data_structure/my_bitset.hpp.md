@@ -11,28 +11,28 @@ data:
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
-    title: matrix/matrix_F2.hpp
+    title: "\u6383\u304D\u51FA\u3057"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_det_f2.test.cpp
     title: verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
     title: verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_product_f2.test.cpp
     title: verify/yosupo_linalg/matrix_product_f2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/matrix_rank_F2.test.cpp
     title: verify/yosupo_linalg/matrix_rank_F2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -59,14 +59,11 @@ data:
     \ block;\n\n    DynamicBitSet(int n_ = 0, bool x = 0) : n(n_) {\n        UInt\
     \ val = x ? -1 : 0;\n        block.assign((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG,\
     \ val);\n        if (n & BLOCK_MASK) block.back() >>= BLOCK_SIZE - (n & BLOCK_MASK);\n\
-    \        // fit the last block\n    }\n\n    // Note that the string needs to\
-    \ be reversed.\n    // For example, if the input is \"1010\",\n    // the character\
-    \ at index 0 in the string is '1',\n    // but in the bitset it will be considered\
-    \ as index 0.\n    DynamicBitSet(const std::string &s) : n(s.size()) {\n     \
-    \   block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        set(s);\n \
-    \   }\n\n    int size() const { return n; }\n\n    T &inplace_combine_top(const\
-    \ T &rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
-    \        if (!(n & BLOCK_MASK)) {\n            std::copy(std::begin(rhs.block),\n\
+    \        // fit the last block\n    }\n\n    DynamicBitSet(const std::string &s)\
+    \ : n(s.size()) {\n        block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
+    \        set(s);\n    }\n\n    inline int size() const { return n; }\n\n    T\
+    \ &inplace_combine_top(const T &rhs) {\n        block.resize((n + rhs.n + BLOCK_SIZE\
+    \ - 1) >> BLOCK_SIZE_LOG);\n        if (!(n & BLOCK_MASK)) {\n            std::copy(std::begin(rhs.block),\n\
     \                      std::end(rhs.block),\n                      std::begin(block)\
     \ + (n >> BLOCK_SIZE_LOG));\n            n += rhs.n;\n            return *this;\n\
     \        }\n        int start = BLOCK_SIZE - (n & BLOCK_MASK);\n        UInt start_mask\
@@ -214,13 +211,13 @@ data:
   path: data_structure/my_bitset.hpp
   requiredBy:
   - matrix/matrix_F2.hpp
-  timestamp: '2025-04-05 10:48:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-04-24 20:44:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_linalg/matrix_rank_F2.test.cpp
-  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
+  - verify/yosupo_linalg/matrix_rank_F2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
 documentation_of: data_structure/my_bitset.hpp
 layout: document

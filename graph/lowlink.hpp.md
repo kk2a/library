@@ -2,20 +2,20 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/bcc.hpp
     title: graph/bcc.hpp
   - icon: ':x:'
     path: graph/tree/block_cut_tree.hpp
     title: graph/tree/block_cut_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_connected_components.hpp
     title: graph/two_edge_connected_components.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: verify/yuki/yuki_1326.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/lowlink.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -85,15 +85,15 @@ data:
   isVerificationFile: false
   path: graph/lowlink.hpp
   requiredBy:
-  - graph/bcc.hpp
-  - graph/tree/block_cut_tree.hpp
   - graph/two_edge_connected_components.hpp
+  - graph/tree/block_cut_tree.hpp
+  - graph/bcc.hpp
   timestamp: '2025-03-28 03:08:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/yuki/yuki_1326.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - verify/yuki/yuki_1326.test.cpp
 documentation_of: graph/lowlink.hpp
 layout: document
 redirect_from:

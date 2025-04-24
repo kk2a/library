@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/kth_root_floor.hpp
     title: math/kth_root_floor.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
@@ -71,8 +71,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/kth_root_int.test.cpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-17 11:43:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/kth_root_int.test.cpp
 layout: document

@@ -124,7 +124,7 @@ data:
   isVerificationFile: false
   path: math_mod/comb_large.hpp
   requiredBy: []
-  timestamp: '2025-04-06 13:24:45+09:00'
+  timestamp: '2025-04-24 20:44:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp

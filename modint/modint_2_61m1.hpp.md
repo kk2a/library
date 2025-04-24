@@ -95,8 +95,8 @@ data:
   timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/yosupo_string/string_z_roliha.test.cpp
 documentation_of: modint/modint_2_61m1.hpp
 layout: document
 redirect_from:

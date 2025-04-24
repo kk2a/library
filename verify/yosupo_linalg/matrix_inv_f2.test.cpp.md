@@ -4,12 +4,12 @@ data:
   - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
-    title: matrix/matrix_F2.hpp
+    title: "\u6383\u304D\u51FA\u3057"
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -36,9 +36,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix_mod_2
@@ -79,8 +79,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_inv_f2.test.cpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-24 20:44:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_inv_f2.test.cpp
 layout: document

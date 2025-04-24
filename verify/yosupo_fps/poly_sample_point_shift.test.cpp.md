@@ -54,9 +54,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
@@ -105,8 +105,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 00:09:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-24 20:44:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_sample_point_shift.test.cpp
 layout: document

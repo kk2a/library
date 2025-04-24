@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_subset.hpp
     title: convolution/convolution_subset.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
@@ -74,8 +74,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_subset.test.cpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-17 11:43:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_subset.test.cpp
 layout: document

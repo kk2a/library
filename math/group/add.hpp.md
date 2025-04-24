@@ -52,9 +52,9 @@ data:
   isVerificationFile: false
   path: math/group/add.hpp
   requiredBy:
+  - math/action/add_min.hpp
   - math/action/add_max_min_sumwithsize.hpp
   - math/action/add_max.hpp
-  - math/action/add_min.hpp
   - math/action/add_sumwithsize.hpp
   timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS

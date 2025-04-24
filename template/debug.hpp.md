@@ -160,7 +160,7 @@ data:
     \                \\\n    kk2::debug::output(std::cerr, \"line:\" + std::to_string(__LINE__));\
     \                             \\\n    kk2::debug::output(std::cerr, ' ');    \
     \                                                        \\\n    kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__),\
-    \ 0, __VA_ARGS__);                     \\\n    kk2::debug::outputln(std::cerr);\n\
+    \ 0, __VA_ARGS__);                          \\\n    kk2::debug::outputln(std::cerr);\n\
     \n#else\n\ntemplate <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>\n\
     void output(OStream &, const Args &...) {}\n\ntemplate <class OStream, class...\
     \ Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &, const Args\
@@ -173,7 +173,7 @@ data:
   isVerificationFile: false
   path: template/debug.hpp
   requiredBy: []
-  timestamp: '2025-04-16 11:01:27+09:00'
+  timestamp: '2025-04-24 20:54:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp

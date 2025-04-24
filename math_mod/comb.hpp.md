@@ -5,10 +5,10 @@ data:
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/poly_taylor_shift.hpp
     title: fps/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math_mod/bell_number.hpp
     title: math_mod/bell_number.hpp
   - icon: ':warning:'
@@ -24,13 +24,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_bell_number.test.cpp
     title: verify/yosupo_math/enumerate_bell_number.test.cpp
   - icon: ':x:'
@@ -88,16 +88,16 @@ data:
   isVerificationFile: false
   path: math_mod/comb.hpp
   requiredBy:
-  - math_mod/comb_large.hpp
   - math_mod/bell_number.hpp
+  - math_mod/comb_large.hpp
   - math_mod/bernoulli_number.hpp
   - fps/poly_taylor_shift.hpp
   timestamp: '2025-04-06 00:09:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/unit_test/large_fact_arb_mod.test.cpp
   - verify/unit_test/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp

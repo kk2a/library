@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_field.hpp
-    title: matrix/matrix_field.hpp
+    title: "\u6383\u304D\u51FA\u3057"
   - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
@@ -16,6 +16,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u30D9\u30AF\u30C8\u30EB\u304C\u73FE\u5728\u306E\u57FA\u5E95\u3068\
+      \u7DDA\u5F62\u72EC\u7ACB\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B"
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
@@ -33,7 +35,7 @@ data:
   code: "#ifndef KK2_MATRIX_BASIS_HPP\n#define KK2_MATRIX_BASIS_HPP 1\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <optional>\n#include <vector>\n\n\
     #include \"matrix_field.hpp\"\n\nnamespace kk2 {\n\nnamespace linear_algebra {\n\
-    \ntemplate <class Matrix, class Field> struct Basis_base {\n    struct RowBasicTransform\
+    \ntemplate <class Matrix, class Field> struct BasisBase {\n    struct RowBasicTransform\
     \ {\n        int type;\n        int i, j;\n        Field t, t_inv;\n\n       \
     \ RowBasicTransform() = default;\n\n        // type = 0: row(i) <- row(i) * t\n\
     \        //           t_inv = 1 / t\n        // type = 1: row(j) <- row(j) + row(i)\
@@ -50,37 +52,45 @@ data:
     \        } else if (type == 2) {\n                std::swap(mat[i], mat[j]);\n\
     \            }\n        }\n    };\n\n    int h, rank;\n\n    struct SnapShot {\n\
     \        int rank, hist_size;\n    };\n\n    std::vector<RowBasicTransform> hist;\n\
-    \    std::vector<SnapShot> snaps;\n\n    BasisField() = default;\n\n    BasisField(int\
+    \    std::vector<SnapShot> snaps;\n\n    BasisBase() = default;\n\n    BasisBase(int\
     \ h_) : h(h_), rank(0) {}\n\n    Matrix &sweep(Matrix &vec) const {\n        for\
-    \ (auto &&t : hist) t.transform(vec);\n        return vec;\n    }\n\n    // vec\
-    \ is column vector\n    bool is_linearly_independent(const Matrix &vec) const\
-    \ {\n        assert(vec.get_h() == h);\n        assert(vec.get_w() == 1);\n  \
-    \      if (rank == h) return false;\n\n        Matrix tmp(vec);\n        sweep(tmp);\n\
-    \        for (int i = rank; i < h; ++i) {\n            if (tmp[i][0] != Field(0))\
-    \ return true;\n        }\n        return false;\n    }\n\n    // vec is column\
-    \ vector\n    // if vec is not linearly independent with current basis, return\
-    \ coordinate vector\n    // else return std::nullopt\n    std::optional<Matrix>\
-    \ add(const Matrix &vec) {\n        assert(vec.get_h() == h);\n        assert(vec.get_w()\
-    \ == 1);\n\n        Matrix tmp(vec);\n        sweep(tmp);\n\n        int pivot\
-    \ = -1;\n        for (int i = rank; i < h; ++i) {\n            if (tmp[i][0] !=\
-    \ Field(0)) {\n                pivot = i;\n                break;\n          \
-    \  }\n        }\n        if (pivot == -1) return tmp;\n\n        if (pivot !=\
-    \ rank) {\n            std::swap(tmp[pivot], tmp[rank]);\n            hist.emplace_back(2,\
-    \ rank, pivot, Field(1), Field(1));\n        }\n        if (tmp[rank][0] != Field(1))\
-    \ {\n            hist.emplace_back(0, rank, -1, tmp[rank][0].inv(), tmp[rank][0]);\n\
-    \            tmp[rank][0] = Field(1);\n        }\n        for (int i = 0; i <\
-    \ h; ++i) {\n            if (i == rank) continue;\n            Field t = -tmp[i][0];\n\
-    \            if (t == Field(0)) continue;\n            hist.emplace_back(1, rank,\
-    \ i, t, -t);\n        }\n        ++rank;\n        return {};\n    }\n\n    Matrix\
-    \ get_coordinate(const Matrix &vec) const {\n        assert(vec.get_h() == h);\n\
-    \        assert(vec.get_w() == 1);\n        Matrix tmp(vec);\n        sweep(tmp);\n\
-    \        for (int i = rank; i < h; ++i) assert(tmp[i][0] == Field(0));\n     \
-    \   return res;\n    }\n\n    void snapshot() { snaps.emplace_back(rank, (int)hist.size());\
-    \ }\n\n    void rollback() {\n        if (snaps.empty()) return;\n        auto\
-    \ snap = snaps.back();\n        snaps.pop_back();\n        rank = snap.rank;\n\
-    \        hist.resize(snap.hist_size);\n    }\n};\n\n} // namespace linear_algebra\n\
-    \ntemplate <class Matrix> using BasisMatrix =\n    linear_algebra::Basis_base<Matrix,\
-    \ typename Matrix::value_type>;\n\n} // namespace kk2\n\n#endif // KK2_MATRIX_BASIS_HPP\n"
+    \ (auto &&t : hist) t.transform(vec);\n        return vec;\n    }\n\n    /**\n\
+    \     * @brief \u30D9\u30AF\u30C8\u30EB\u304C\u73FE\u5728\u306E\u57FA\u5E95\u3068\
+    \u7DDA\u5F62\u72EC\u7ACB\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\
+    \n     * @param vec \u5217\u30D9\u30AF\u30C8\u30EB\n     * @return \u7DDA\u5F62\
+    \u72EC\u7ACB\u306A\u3089true\u3001\u305D\u3046\u3067\u306A\u3051\u308C\u3070false\n\
+    \     */\n    bool is_linearly_independent(const Matrix &vec) const {\n      \
+    \  assert(vec.get_h() == h);\n        assert(vec.get_w() == 1);\n        if (rank\
+    \ == h) return false;\n\n        Matrix tmp(vec);\n        sweep(tmp);\n     \
+    \   for (int i = rank; i < h; ++i) {\n            if (tmp[i][0] != Field(0)) return\
+    \ true;\n        }\n        return false;\n    }\n\n    /**\n     * @brief \u30D9\
+    \u30AF\u30C8\u30EB\u3092\u57FA\u5E95\u306B\u8FFD\u52A0\u3059\u308B\n     * @param\
+    \ vec \u5217\u30D9\u30AF\u30C8\u30EB\n     * @return\n     * \u30D9\u30AF\u30C8\
+    \u30EB\u304C\u73FE\u5728\u306E\u57FA\u5E95\u3068\u7DDA\u5F62\u72EC\u7ACB\u3067\
+    \u306A\u3044\u5834\u5408\u306F\u5EA7\u6A19\u30D9\u30AF\u30C8\u30EB\u3092\u8FD4\
+    \u3059\u3001\u305D\u3046\u3067\u306A\u3051\u308C\u3070nullopt\u3092\u8FD4\u3059\
+    \n     */\n    std::optional<Matrix> add(const Matrix &vec) {\n        assert(vec.get_h()\
+    \ == h);\n        assert(vec.get_w() == 1);\n\n        Matrix tmp(vec);\n    \
+    \    sweep(tmp);\n\n        int pivot = -1;\n        for (int i = rank; i < h;\
+    \ ++i) {\n            if (tmp[i][0] != Field(0)) {\n                pivot = i;\n\
+    \                break;\n            }\n        }\n        if (pivot == -1) return\
+    \ tmp;\n\n        if (pivot != rank) {\n            std::swap(tmp[pivot], tmp[rank]);\n\
+    \            hist.emplace_back(2, rank, pivot, Field(1), Field(1));\n        }\n\
+    \        if (tmp[rank][0] != Field(1)) {\n            hist.emplace_back(0, rank,\
+    \ -1, tmp[rank][0].inv(), tmp[rank][0]);\n            tmp[rank][0] = Field(1);\n\
+    \        }\n        for (int i = 0; i < h; ++i) {\n            if (i == rank)\
+    \ continue;\n            Field t = -tmp[i][0];\n            if (t == Field(0))\
+    \ continue;\n            hist.emplace_back(1, rank, i, t, -t);\n        }\n  \
+    \      ++rank;\n        return {};\n    }\n\n    Matrix get_coordinate(const Matrix\
+    \ &vec) const {\n        assert(vec.get_h() == h);\n        assert(vec.get_w()\
+    \ == 1);\n        Matrix res(vec);\n        sweep(res);\n        for (int i =\
+    \ rank; i < h; ++i) assert(res[i][0] == Field(0));\n        return res;\n    }\n\
+    \n    void snapshot() { snaps.emplace_back(rank, (int)hist.size()); }\n\n    void\
+    \ rollback() {\n        if (snaps.empty()) return;\n        auto snap = snaps.back();\n\
+    \        snaps.pop_back();\n        rank = snap.rank;\n        hist.resize(snap.hist_size);\n\
+    \    }\n};\n\n} // namespace linear_algebra\n\ntemplate <class Matrix> using BasisMatrix\
+    \ =\n    linear_algebra::BasisBase<Matrix, typename Matrix::value_type>;\n\n}\
+    \ // namespace kk2\n\n#endif // KK2_MATRIX_BASIS_HPP\n"
   dependsOn:
   - matrix/matrix_field.hpp
   - type_traits/io.hpp
@@ -88,7 +98,7 @@ data:
   path: matrix/basis.hpp
   requiredBy:
   - matrix/frobenius_form.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-24 20:44:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/basis.hpp
@@ -96,5 +106,6 @@ layout: document
 redirect_from:
 - /library/matrix/basis.hpp
 - /library/matrix/basis.hpp.html
-title: matrix/basis.hpp
+title: "\u30D9\u30AF\u30C8\u30EB\u304C\u73FE\u5728\u306E\u57FA\u5E95\u3068\u7DDA\u5F62\
+  \u72EC\u7ACB\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B"
 ---

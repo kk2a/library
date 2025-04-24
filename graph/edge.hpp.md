@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/static_graph.hpp
     title: graph/static_graph.hpp
   - icon: ':warning:'
@@ -21,34 +21,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
     title: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_graph/tree_lca_static.test.cpp
     title: verify/yosupo_graph/tree_lca_static.test.cpp
   - icon: ':x:'
@@ -75,8 +75,8 @@ data:
     namespace graph {\n\nstruct empty {};\n\ntemplate <class T> struct _Edge {\n \
     \   int from, to, id;\n    T cost;\n\n    _Edge(int to_, T cost_, int from_ =\
     \ -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n          id(id_),\n\
-    \          cost(cost_) {}\n\n    _Edge() : from(-1), to(-1), id(-1), cost() {}\n\
-    \n    operator int() const { return to; }\n\n    _Edge rev() const { return _Edge(from,\
+    \          cost(cost_) {}\n    _Edge() : from(-1), to(-1), id(-1) {}\n    operator\
+    \ int() const { return to; }\n    inline _Edge rev() const { return _Edge(from,\
     \ cost, to, id); }\n\n    template <class OStream, is_ostream_t<OStream> * = nullptr>\n\
     \    void debug_output(OStream &os) const {\n        os << '(' << id << \", \"\
     \ << from << \"->\" << to;\n        if constexpr (!std::is_same_v<T, empty>) os\
@@ -99,39 +99,39 @@ data:
     \    }\n\n    friend _Edges &add_edge(_Edges &edges, int from, int to, T cost\
     \ = T{}) {\n        edges.emplace_back(to, cost, from, edges.size());\n      \
     \  return edges;\n    }\n};\n\ntemplate <class T> struct _pair {\n    T cost;\n\
-    \    int id;\n\n    _pair(T cost_, int id_) : cost(cost_), id(id_) {}\n\n    _pair()\
-    \ : cost(), id(-1) {}\n\n    operator bool() const { return id != -1; }\n\n  \
-    \  template <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream\
-    \ &operator<<(OStream &os, const _pair &p) {\n        if constexpr (std::is_same_v<T,\
-    \ empty>) return os;\n        else return os << p.cost;\n    }\n};\ntemplate <class\
-    \ T> using _pairs = std::vector<_pair<T>>;\n\n} // namespace graph\n\ntemplate\
-    \ <typename T> using WEdge = graph::_Edge<T>;\ntemplate <typename T> using WEdges\
-    \ = graph::_Edges<T>;\nusing Edge = graph::_Edge<graph::empty>;\nusing Edges =\
-    \ graph::_Edges<graph::empty>;\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_EDGE_HPP\n"
+    \    int id;\n\n    _pair(T cost_, int id_) : cost(cost_), id(id_) {}\n    _pair()\
+    \ : cost(), id(-1) {}\n    operator bool() const { return id != -1; }\n    template\
+    \ <class OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
+    \ &os, const _pair &p) {\n        if constexpr (std::is_same_v<T, empty>) return\
+    \ os;\n        else return os << p.cost;\n    }\n};\ntemplate <class T> using\
+    \ _pairs = std::vector<_pair<T>>;\n\n} // namespace graph\n\ntemplate <typename\
+    \ T> using WEdge = graph::_Edge<T>;\ntemplate <typename T> using WEdges = graph::_Edges<T>;\n\
+    using Edge = graph::_Edge<graph::empty>;\nusing Edges = graph::_Edges<graph::empty>;\n\
+    \n} // namespace kk2\n\n#endif // KK2_GRAPH_EDGE_HPP\n"
   dependsOn:
   - type_traits/io.hpp
   isVerificationFile: false
   path: graph/edge.hpp
   requiredBy:
-  - random/graph.hpp
   - graph/graph.hpp
   - graph/static_graph.hpp
-  timestamp: '2025-04-05 10:48:22+09:00'
+  - random/graph.hpp
+  timestamp: '2025-04-24 20:50:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - verify/yosupo_graph/tree_diameter.test.cpp
-  - verify/yosupo_graph/tree_lca_static.test.cpp
-  - verify/yosupo_graph/graph_shortest_path.test.cpp
-  - verify/yosupo_graph/graph_bcc.test.cpp
-  - verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - verify/yosupo_graph/tree_lca.test.cpp
-  - verify/yosupo_graph/graph_scc.test.cpp
-  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - verify/aoj/aoj_grl_1_b.test.cpp
   - verify/aoj/aoj_grl_1_c.test.cpp
+  - verify/aoj/aoj_grl_1_b.test.cpp
   - verify/yuki/yuki_1326.test.cpp
+  - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
+  - verify/yosupo_graph/graph_cycle_detection.test.cpp
+  - verify/yosupo_graph/graph_shortest_path.test.cpp
+  - verify/yosupo_graph/graph_matching_bipartite.test.cpp
+  - verify/yosupo_graph/tree_lca_static.test.cpp
+  - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/tree_diameter.test.cpp
+  - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_graph/graph_scc.test.cpp
 documentation_of: graph/edge.hpp
 layout: document
 redirect_from:

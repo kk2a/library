@@ -63,15 +63,15 @@ data:
   isVerificationFile: false
   path: math/monoid/max.hpp
   requiredBy:
+  - template/procon.hpp
+  - template/function_util.hpp
   - math/action/add_max.hpp
   - math/action/update_max.hpp
-  - template/function_util.hpp
-  - template/procon.hpp
   timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
   - verify/unit_test/monoid.test.cpp
+  - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
 documentation_of: math/monoid/max.hpp
 layout: document
 redirect_from:

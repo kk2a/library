@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: math/sqrt_floor.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/convolution_lcm.hpp\"\n\n\n\n#include <cassert>\n\
@@ -74,13 +74,13 @@ data:
     \               _primes2.end(),\n                       std::back_inserter(tmp));\n\
     \        _primes = std::move(tmp);\n    }\n\n    static const std::vector<int>\
     \ &primes() { return _primes; }\n\n    template <typename It> struct PrimeIt {\n\
-    \        It bg, ed;\n\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n\
-    \n        It begin() const { return bg; }\n\n        It end() const { return ed;\
-    \ }\n\n        int size() const { return ed - bg; }\n\n        int operator[](int\
-    \ i) const { return bg[i]; }\n\n        std::vector<int> to_vec() const { return\
-    \ std::vector<int>(bg, ed); }\n    };\n\n    static auto primes(int n) {\n   \
-    \     if (n >= _n) set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
-    \ _primes.end(), n));\n    }\n};\n\n} // namespace kk2\n\n\n#line 5 \"convolution/divisor_multiple_transform.hpp\"\
+    \        It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n \
+    \       It begin() const { return bg; }\n        It end() const { return ed; }\n\
+    \        int size() const { return ed - bg; }\n        int operator[](int i) const\
+    \ { return bg[i]; }\n        std::vector<int> to_vec() const { return std::vector<int>(bg,\
+    \ ed); }\n    };\n\n    static auto primes(int n) {\n        if (n >= _n) set_upper(n);\n\
+    \        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(),\
+    \ n));\n    }\n};\n\n} // namespace kk2\n\n\n#line 5 \"convolution/divisor_multiple_transform.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class FPS> void multiple_transform(FPS &a) {\n\
     \    int n = int(a.size());\n    if (!n) return;\n    n--;\n    PrimeTable::set_upper(n);\n\
     \    for (const auto p : PrimeTable::primes()) {\n        if (p > n) break;\n\
@@ -119,8 +119,8 @@ data:
   isVerificationFile: false
   path: convolution/convolution_lcm.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-04-24 20:54:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_convolution/convolution_lcm.test.cpp
 documentation_of: convolution/convolution_lcm.hpp

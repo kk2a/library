@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: fps/poly_to_newton_basis.hpp
     title: fps/poly_to_newton_basis.hpp
   - icon: ':question:'
@@ -54,9 +54,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis
@@ -105,8 +105,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 00:09:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-24 20:44:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_to_newton_basis.test.cpp
 layout: document

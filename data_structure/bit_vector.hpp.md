@@ -63,7 +63,7 @@ data:
   path: data_structure/bit_vector.hpp
   requiredBy:
   - data_structure/wavelet_matrix.hpp
-  timestamp: '2025-04-05 10:48:22+09:00'
+  timestamp: '2025-04-24 20:44:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/bit_vector.test.cpp

@@ -37,7 +37,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: unionfind/rollback.hpp
     title: unionfind/rollback.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: unionfind/unionfind.hpp
     title: unionfind/unionfind.hpp
   _extendedRequiredBy: []
@@ -120,7 +120,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/offline_dynamic_connectivity.test.cpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-17 11:43:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/offline_dynamic_connectivity.test.cpp

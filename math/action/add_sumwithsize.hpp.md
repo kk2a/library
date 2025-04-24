@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: math/group/add.hpp
     title: math/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/group/sum_with_size.hpp
     title: math/group/sum_with_size.hpp
   - icon: ':question:'

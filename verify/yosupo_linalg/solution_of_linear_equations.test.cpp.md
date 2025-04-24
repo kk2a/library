@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_field.hpp
-    title: matrix/matrix_field.hpp
+    title: "\u6383\u304D\u51FA\u3057"
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -33,9 +33,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -59,8 +59,8 @@ data:
     \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
     \ {\n    int n, m;\n    kin >> n >> m;\n    kk2::MatrixField<kk2::mont998> a(n,\
     \ m), b(n, 1);\n    a.input(kin), b.input(kin);\n    if (const auto res = a.solve(b);\
-    \ !res.get_h()) kout << -1 << \"\\n\";\n    else {\n        kout << res.get_h()\
-    \ - 1 << \"\\n\";\n        res.output(kout);\n    }\n\n    return 0;\n}\n"
+    \ !res) kout << -1 << \"\\n\";\n    else {\n        kout << res->get_h() - 1 <<\
+    \ \"\\n\";\n        res->output(kout);\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - matrix/matrix_field.hpp
   - type_traits/io.hpp
@@ -75,8 +75,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-24 20:44:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
 layout: document

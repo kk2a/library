@@ -61,11 +61,11 @@ data:
   isVerificationFile: false
   path: math/monoid/update.hpp
   requiredBy:
-  - math/action/update_sumwithsize.hpp
-  - math/action/update_max_min_sumwithsize.hpp
-  - math/action/update_min.hpp
-  - math/action/update_max.hpp
   - math/action/update_affine.hpp
+  - math/action/update_max.hpp
+  - math/action/update_min.hpp
+  - math/action/update_max_min_sumwithsize.hpp
+  - math/action/update_sumwithsize.hpp
   timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

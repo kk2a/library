@@ -8,13 +8,13 @@ data:
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_gcd.hpp
     title: convolution/convolution_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/convolution_lcm.hpp
     title: convolution/convolution_lcm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/divisor_multiple_transform.hpp
     title: convolution/divisor_multiple_transform.hpp
   - icon: ':x:'
@@ -36,13 +36,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_table_extend.test.cpp
     title: verify/unit_test/prime_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_convolution/convolution_lcm.test.cpp
     title: verify/yosupo_convolution/convolution_lcm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_primes.test.cpp
     title: verify/yosupo_math/enumerate_primes.test.cpp
   - icon: ':x:'
@@ -106,13 +106,13 @@ data:
     \               _primes2.end(),\n                       std::back_inserter(tmp));\n\
     \        _primes = std::move(tmp);\n    }\n\n    static const std::vector<int>\
     \ &primes() { return _primes; }\n\n    template <typename It> struct PrimeIt {\n\
-    \        It bg, ed;\n\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n\
-    \n        It begin() const { return bg; }\n\n        It end() const { return ed;\
-    \ }\n\n        int size() const { return ed - bg; }\n\n        int operator[](int\
-    \ i) const { return bg[i]; }\n\n        std::vector<int> to_vec() const { return\
-    \ std::vector<int>(bg, ed); }\n    };\n\n    static auto primes(int n) {\n   \
-    \     if (n >= _n) set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
-    \ _primes.end(), n));\n    }\n};\n\n} // namespace kk2\n\n\n"
+    \        It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n \
+    \       It begin() const { return bg; }\n        It end() const { return ed; }\n\
+    \        int size() const { return ed - bg; }\n        int operator[](int i) const\
+    \ { return bg[i]; }\n        std::vector<int> to_vec() const { return std::vector<int>(bg,\
+    \ ed); }\n    };\n\n    static auto primes(int n) {\n        if (n >= _n) set_upper(n);\n\
+    \        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(),\
+    \ n));\n    }\n};\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_MATH_PRIME_TABLE_HPP\n#define KK2_MATH_PRIME_TABLE_HPP 1\n\n\
     #include <algorithm>\n#include <vector>\n\n#include \"sqrt_floor.hpp\"\n\nnamespace\
     \ kk2 {\n\nstruct PrimeTable {\n  private:\n    static inline int _n = 30;\n \
@@ -144,36 +144,36 @@ data:
     \                       _primes2.end(),\n                       std::back_inserter(tmp));\n\
     \        _primes = std::move(tmp);\n    }\n\n    static const std::vector<int>\
     \ &primes() { return _primes; }\n\n    template <typename It> struct PrimeIt {\n\
-    \        It bg, ed;\n\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n\
-    \n        It begin() const { return bg; }\n\n        It end() const { return ed;\
-    \ }\n\n        int size() const { return ed - bg; }\n\n        int operator[](int\
-    \ i) const { return bg[i]; }\n\n        std::vector<int> to_vec() const { return\
-    \ std::vector<int>(bg, ed); }\n    };\n\n    static auto primes(int n) {\n   \
-    \     if (n >= _n) set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
-    \ _primes.end(), n));\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_MATH_PRIME_TABLE_HPP\n"
+    \        It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n \
+    \       It begin() const { return bg; }\n        It end() const { return ed; }\n\
+    \        int size() const { return ed - bg; }\n        int operator[](int i) const\
+    \ { return bg[i]; }\n        std::vector<int> to_vec() const { return std::vector<int>(bg,\
+    \ ed); }\n    };\n\n    static auto primes(int n) {\n        if (n >= _n) set_upper(n);\n\
+    \        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(),\
+    \ n));\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_MATH_PRIME_TABLE_HPP\n"
   dependsOn:
   - math/sqrt_floor.hpp
   - math/frac_floor.hpp
   isVerificationFile: false
   path: math/prime_table.hpp
   requiredBy:
-  - convolution/convolution_gcd.hpp
   - convolution/divisor_multiple_transform.hpp
   - convolution/convolution_lcm.hpp
-  - math/multiplicative_function/prime_counting.hpp
+  - convolution/convolution_gcd.hpp
   - math/multiplicative_function/prefix_sum.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
+  - math/multiplicative_function/prime_counting.hpp
+  timestamp: '2025-04-24 20:54:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_math/enumerate_primes.test.cpp
   - verify/yosupo_math/prime_counting.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
-  - verify/yosupo_math/enumerate_primes.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
   - verify/yosupo_convolution/convolution_lcm.test.cpp
-  - verify/unit_test/prime_table_extend.test.cpp
-  - verify/unit_test/prime_table_extend.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
   - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/prime_table_extend.test.cpp
 documentation_of: math/prime_table.hpp
 layout: document
 redirect_from:

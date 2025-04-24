@@ -9,12 +9,12 @@ data:
     title: type_traits/integral.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -95,8 +95,8 @@ data:
   isVerificationFile: false
   path: data_structure/w_ary_tree.hpp
   requiredBy: []
-  timestamp: '2025-04-06 14:26:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-04-24 20:44:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
 documentation_of: data_structure/w_ary_tree.hpp

@@ -87,7 +87,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_string/string_z_roliha.test.cpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-17 11:43:05+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_z_roliha.test.cpp

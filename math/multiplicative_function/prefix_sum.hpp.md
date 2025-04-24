@@ -84,13 +84,13 @@ data:
     \               _primes2.end(),\n                       std::back_inserter(tmp));\n\
     \        _primes = std::move(tmp);\n    }\n\n    static const std::vector<int>\
     \ &primes() { return _primes; }\n\n    template <typename It> struct PrimeIt {\n\
-    \        It bg, ed;\n\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n\
-    \n        It begin() const { return bg; }\n\n        It end() const { return ed;\
-    \ }\n\n        int size() const { return ed - bg; }\n\n        int operator[](int\
-    \ i) const { return bg[i]; }\n\n        std::vector<int> to_vec() const { return\
-    \ std::vector<int>(bg, ed); }\n    };\n\n    static auto primes(int n) {\n   \
-    \     if (n >= _n) set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
-    \ _primes.end(), n));\n    }\n};\n\n} // namespace kk2\n\n\n#line 9 \"math/multiplicative_function/prefix_sum.hpp\"\
+    \        It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n \
+    \       It begin() const { return bg; }\n        It end() const { return ed; }\n\
+    \        int size() const { return ed - bg; }\n        int operator[](int i) const\
+    \ { return bg[i]; }\n        std::vector<int> to_vec() const { return std::vector<int>(bg,\
+    \ ed); }\n    };\n\n    static auto primes(int n) {\n        if (n >= _n) set_upper(n);\n\
+    \        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(),\
+    \ n));\n    }\n};\n\n} // namespace kk2\n\n\n#line 9 \"math/multiplicative_function/prefix_sum.hpp\"\
     \n\nnamespace kk2 {\n\ntemplate <class T> struct PrefixSumOfMultiplicativeFunction\
     \ {\n    long long n;\n    EnumerateQuotients<long long> eq;\n    std::vector<T>\
     \ prefix_sum_only_prime;\n    std::vector<T> prefix_sum;\n\n    PrefixSumOfMultiplicativeFunction(long\
@@ -166,7 +166,7 @@ data:
   isVerificationFile: false
   path: math/multiplicative_function/prefix_sum.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-24 20:54:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp

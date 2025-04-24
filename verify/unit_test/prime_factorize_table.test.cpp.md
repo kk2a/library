@@ -108,7 +108,7 @@ data:
   isVerificationFile: true
   path: verify/unit_test/prime_factorize_table.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 00:09:45+09:00'
+  timestamp: '2025-04-17 11:43:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/prime_factorize_table.test.cpp

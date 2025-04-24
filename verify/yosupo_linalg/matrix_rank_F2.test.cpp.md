@@ -4,12 +4,12 @@ data:
   - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/my_bitset.hpp
     title: data_structure/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: matrix/matrix_F2.hpp
-    title: matrix/matrix_F2.hpp
+    title: "\u6383\u304D\u51FA\u3057"
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -36,9 +36,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_rank_mod_2
@@ -64,9 +64,9 @@ data:
     \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n  \
     \  bool is_swap = false;\n    if (n > m) {\n        is_swap = true;\n        swap(n,\
     \ m);\n    }\n\n    kk2::MatrixF2 a(n, m);\n    if (is_swap) {\n        rep (j,\
-    \ m) {\n            string s;\n            kin >> s;\n            rep (i, n) a[i][j]\
-    \ = s[i] - '0';\n        }\n    } else {\n        a.input(kin);\n    }\n    kout\
-    \ << a.rank() << kendl;\n\n    return 0;\n}\n"
+    \ m) {\n            string s;\n            kin >> s;\n            rep (i, n) a[n\
+    \ - i - 1][j] = s[i] - '0';\n        }\n    } else {\n        a.input(kin);\n\
+    \    }\n    kout << a.rank() << kendl;\n\n    return 0;\n}\n"
   dependsOn:
   - matrix/matrix_F2.hpp
   - data_structure/my_bitset.hpp
@@ -82,8 +82,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_rank_F2.test.cpp
   requiredBy: []
-  timestamp: '2025-04-16 11:02:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-24 20:44:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_rank_F2.test.cpp
 layout: document

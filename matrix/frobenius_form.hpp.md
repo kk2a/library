@@ -3,10 +3,11 @@ data:
   _extendedDependsOn:
   - icon: ':warning:'
     path: matrix/basis.hpp
-    title: matrix/basis.hpp
-  - icon: ':heavy_check_mark:'
+    title: "\u30D9\u30AF\u30C8\u30EB\u304C\u73FE\u5728\u306E\u57FA\u5E95\u3068\u7DDA\
+      \u5F62\u72EC\u7ACB\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B"
+  - icon: ':x:'
     path: matrix/matrix_field.hpp
-    title: matrix/matrix_field.hpp
+    title: "\u6383\u304D\u51FA\u3057"
   - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
@@ -50,7 +51,7 @@ data:
   isVerificationFile: false
   path: matrix/frobenius_form.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-04-24 20:44:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/frobenius_form.hpp
