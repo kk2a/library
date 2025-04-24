@@ -10,10 +10,10 @@ int main() {
     kin >> n >> m;
     kk2::MatrixField<kk2::mont998> a(n, m), b(n, 1);
     a.input(kin), b.input(kin);
-    if (const auto res = a.solve(b); !res.get_h()) kout << -1 << "\n";
+    if (const auto res = a.solve(b); !res) kout << -1 << "\n";
     else {
-        kout << res.get_h() - 1 << "\n";
-        res.output(kout);
+        kout << res->get_h() - 1 << "\n";
+        res->output(kout);
     }
 
     return 0;

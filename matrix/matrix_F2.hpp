@@ -19,7 +19,6 @@ struct MatrixF2 {
     std::vector<DynamicBitSet> _mat;
 
     MatrixF2() : MatrixF2(0) {}
-
     MatrixF2(int n) : MatrixF2(n, n) {}
 
     MatrixF2(int h, int w) {
@@ -44,15 +43,9 @@ struct MatrixF2 {
         return res;
     }
 
-    int get_h() const { return _h; }
+    inline int get_h() const { return _h; }
 
-    int get_w() const { return _w; }
-
-    bool at(int i, int j) {
-        assert(0 <= i && i < _h);
-        assert(0 <= j && j < _w);
-        return _mat[i][j].val();
-    }
+    inline int get_w() const { return _w; }
 
     class Proxy {
         std::vector<DynamicBitSet> &bs;
@@ -78,7 +71,6 @@ struct MatrixF2 {
         }
 
         std::string to_string() const { return bs[i].to_string(); }
-
         std::string to_reversed_string() const { return bs[i].to_reversed_string(); }
 
         Proxy &operator=(const std::string &s) {
@@ -121,16 +113,6 @@ struct MatrixF2 {
             return *this;
         }
 
-        Proxy &operator^=(const DynamicBitSet &x) {
-            bs[i] ^= x;
-            return *this;
-        }
-
-        Proxy &operator^=(const Proxy &x) {
-            bs[i] ^= x.bs[x.i];
-            return *this;
-        }
-
         Proxy &flip() {
             bs[i].flip();
             return *this;
@@ -160,6 +142,17 @@ struct MatrixF2 {
         for (int i = 0; i < _h; i++) { os << _mat[i].to_reversed_string() << "\n"; }
     }
 
+    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    void debug_output(OStream &os) const {
+        os << "(h, w): " << "(" << _h << ", " << _w << "), [\n";
+        for (int i = 0; i < _h; i++) {
+            os << "  [ ";
+            for (int j = 0; j < _w; ++j) os << _mat[i].is_pinned(j) << " ";
+            os << "]\n";
+        }
+        os << "]\n";
+    }
+
     void set(int i, int j, bool x) {
         assert(0 <= i && i < _h);
         assert(0 <= j && j < _w);
@@ -179,35 +172,28 @@ struct MatrixF2 {
     mat &operator+=(const mat &rhs) {
         assert(_h == rhs._h);
         assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }
+        for (int i = 0; i < _h; i++) _mat[i] ^= rhs._mat[i];
         return *this;
     }
 
     mat &operator-=(const mat &rhs) {
         assert(_h == rhs._h);
         assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }
-        return *this;
-    }
-
-    mat &operator^=(const mat &rhs) {
-        assert(_h == rhs._h);
-        assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] ^ rhs._mat[i]; }
+        for (int i = 0; i < _h; i++) _mat[i] ^= rhs._mat[i];
         return *this;
     }
 
     mat &operator|=(const mat &rhs) {
         assert(_h == rhs._h);
         assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] | rhs._mat[i]; }
+        for (int i = 0; i < _h; i++) _mat[i] |= rhs._mat[i];
         return *this;
     }
 
     mat &operator&=(const mat &rhs) {
         assert(_h == rhs._h);
         assert(_w == rhs._w);
-        for (int i = 0; i < _h; i++) { _mat[i] = _mat[i] & rhs._mat[i]; }
+        for (int i = 0; i < _h; i++) _mat[i] &= rhs._mat[i];
         return *this;
     }
 
@@ -217,91 +203,26 @@ struct MatrixF2 {
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) {
                 if (_mat[i][j]) res[i] ^= rhs._mat[j];
-                // cout << i << " " << j << " " << _mat[i][j] << " check" <<
-                // endl; rep (i, 2) { cout << res[i] << endl; }
             }
         }
         _w = rhs._w;
-        _mat = res;
+        _mat = std::move(res);
         return *this;
     }
 
-    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) += rhs; }
-
-    friend mat operator-(const mat &lhs, const mat &rhs) { return mat(lhs) -= rhs; }
-
-    friend mat operator^(const mat &lhs, const mat &rhs) { return mat(lhs) ^= rhs; }
-
-    friend mat operator|(const mat &lhs, const mat &rhs) { return mat(lhs) |= rhs; }
-
-    friend mat operator&(const mat &lhs, const mat &rhs) { return mat(lhs) &= rhs; }
-
-    friend mat operator*(const mat &lhs, const mat &rhs) { return mat(lhs) *= rhs; }
-
-    friend bool operator==(const mat &lhs, const mat &rhs) {
-        assert(lhs._h == rhs._h);
-        assert(lhs._w == rhs._w);
-        for (int i = 0; i < lhs._h; i++) {
-            if (lhs._mat[i] != rhs._mat[i]) return false;
-        }
-        return true;
-    }
-
-    friend bool operator!=(const mat &lhs, const mat &rhs) { return !(lhs == rhs); }
-
-    mat &inplace_combine_top(const mat &rhs) {
-        assert(_w == rhs._w);
-        _mat.insert(std::begin(_mat), std::begin(rhs._mat), std::end(rhs._mat));
-        _h += rhs._h;
-        return *this;
-    }
-
-    mat combine_top(const mat &rhs) const {
-        assert(_w == rhs._w);
-        return mat(_mat).inplace_combine_top(rhs);
-    }
-
-    mat &inplace_combine_bottom(const mat &rhs) {
-        assert(_w == rhs._w);
-        _mat.insert(std::end(_mat), std::begin(rhs._mat), std::end(rhs._mat));
-        _h += rhs._h;
-        return *this;
-    }
-
-    mat combine_bottom(const mat &rhs) const {
-        assert(_w == rhs._w);
-        return mat(_mat).inplace_combine_bottom(rhs);
-    }
-
-    mat &inplace_combine_right(const mat &rhs) {
-        assert(_h == rhs._h);
-        for (int i = 0; i < _h; i++) _mat[i].inplace_combine_top(rhs._mat[i]);
-        _w += rhs._w;
-        return *this;
-    }
-
-    mat combine_right(const mat &rhs) const {
-        assert(_h == rhs._h);
-        return mat(_mat).inplace_combine_right(rhs);
-    }
-
-    mat &inplace_combine_left(const mat &rhs) {
-        assert(_h == rhs._h);
-        for (int i = 0; i < _h; i++) _mat[i].inplace_combine_bottom(rhs._mat[i]);
-        _w += rhs._w;
-        return *this;
-    }
-
-    mat combine_left(const mat &rhs) const {
-        assert(_h == rhs._h);
-        return mat(_mat).inplace_combine_left(rhs);
-    }
-
-    // [0, wr)
+    /**
+     * @brief 掃き出し
+     * @tparam RREF 行簡約化行列にするかどうか
+     * @tparam EARLY_TERMINATE フルランクでないことが確定したときに即打ち切るかどうか
+     * @param wr 列が[0, wr)の範囲だけで掃き出す．指定がないなら全体で掃き出す．
+     * @return int ランク．EARLY_TERMINATEがtrueのときに，フルランクでないことが確定したら-1を返す
+     */
+    template <bool RREF = true, bool EARLY_TERMINATE = false>
     int sweep(int wr = -1) {
         if (wr == -1) wr = _w;
         int r = 0;
         for (int i = 0; i < wr; i++) {
+            if (r >= _h) break;
             int pivot = -1;
             for (int j = r; j < _h; j++) {
                 if (_mat[j][i]) {
@@ -309,9 +230,12 @@ struct MatrixF2 {
                     break;
                 }
             }
-            if (pivot == -1) continue;
+            if (pivot == -1) {
+                if constexpr (EARLY_TERMINATE) return -1;
+                continue;
+            }
             if (r != pivot) std::swap(_mat[r], _mat[pivot]);
-            for (int j = 0; j < _h; j++) {
+            for (int j = RREF ? 0 : r + 1; j < _h; j++) {
                 if (j == r) continue;
                 if (_mat[j][i]) _mat[j] ^= _mat[r];
             }
@@ -321,90 +245,37 @@ struct MatrixF2 {
     }
 
     mat &shrink() {
-        while (_h && !(bool)_mat[_h - 1]) _mat.pop_back(), --_h;
+        while (_h && !bool(_mat.back())) _mat.pop_back(), --_h;
         return *this;
-    }
-
-    // it must be already swept and shrunk before calling this function
-    mat get_solution_base() const {
-        mat res(_w - _h, _w);
-        std::vector<int> step(_h);
-        std::vector<bool> is_step(_w, false);
-        int nowj = 0;
-        for (int i = 0; i < _h; i++) {
-            while (!_mat[i].is_pinned(nowj)) nowj++;
-            is_step[nowj] = true;
-            step[i] = nowj;
-        }
-        int now = 0;
-        nowj = 0;
-        while (nowj < _w) {
-            if (is_step[nowj]) {
-                nowj++;
-                continue;
-            }
-            res[now][nowj] = 1;
-            for (int i = 0; i < _h; i++)
-                if (_mat[i].is_pinned(nowj)) res[now][step[i]] = 1;
-            nowj++, now++;
-        }
-        return res;
     }
 
     std::optional<mat> solve(const mat &b) const {
         assert(_h == b._h);
         assert(b._w == 1);
         mat ab = combine_right(b);
-        ab.sweep();
-        ab.shrink();
-
-        // ab.display();
-
-        for (int i = 0; i < ab._h; i++) {
-            for (int j = 0; j < ab._w; j++) {
-                if (ab[i][j]) {
-                    if (j == ab._w - 1) return {};
-                    break;
-                }
-            }
+        int r = ab.sweep<true, false>();
+        if (r and ab._mat[r - 1].ctz() == _w) return std::nullopt;
+        mat res(1 + _w - r, _w);
+        std::vector<int> idx(_w, -1), step(r, -1);
+        for (int i = 0, j = 0, now = 0; j < _w; j++) {
+            kdebug(i, j, now, r);
+            if (i == r or !bool(ab[i][j])) idx[j] = now, res[1 + now++][j] = 1;
+            else res[0][j] = ab[i][_w], step[i++] = j;
         }
-
-        mat res(1 + _w - ab._h, _w);
-        for (int i = 0; i < ab._h; ++i) {
-            for (int j = 0; j < ab._w; ++j) {
-                if (ab[i][j]) {
-                    res[0][j] = ab[i][ab._w - 1];
-                    break;
-                }
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < _w; j++) {
+                if (idx[j] != -1) res[idx[j] + 1][step[i]] = ab[i][j];
             }
-        }
-
-        std::vector<int> step(ab._h);
-        std::vector<bool> is_step(ab._w - 1, false);
-        int nowj = 0;
-        for (int i = 0; i < ab._h; i++) {
-            while (!ab[i][nowj]) nowj++;
-            is_step[nowj] = true;
-            step[i] = nowj;
-        }
-        int now = 1;
-        nowj = 0;
-        while (nowj < ab._w - 1) {
-            if (is_step[nowj]) {
-                nowj++;
-                continue;
-            }
-            res[now][nowj] = 1;
-            for (int i = 0; i < ab._h; i++)
-                if (ab[i][nowj]) res[now][step[i]] = 1;
-            nowj++, now++;
         }
         return res;
     }
 
-    int rank() const { return mat(*this).sweep(); }
+    int rank() const { return mat(*this).sweep<false, false>(); }
 
-    bool det() const { return rank() == _h; }
+    bool det() const {
+        assert(_h == _w);
+        return mat(*this).sweep<false, true>() != -1;
+    }
 
     std::optional<mat> inv() const {
         assert(_h == _w);
@@ -433,6 +304,45 @@ struct MatrixF2 {
         return mat(res);
     }
 
+    template <class T> mat pow(T n) const {
+        assert(_h == _w);
+        assert(n >= 0);
+        mat mul(_mat), res = mat::unit(_h);
+        while (n) {
+            if (n & 1) res *= mul;
+            if (n >>= 1) mul *= mul;
+        }
+        return res;
+    }
+
+    mat &inplace_combine_top(const mat &rhs) {
+        assert(_w == rhs._w);
+        _mat.insert(std::begin(_mat), std::begin(rhs._mat), std::end(rhs._mat));
+        _h += rhs._h;
+        return *this;
+    }
+
+    mat &inplace_combine_bottom(const mat &rhs) {
+        assert(_w == rhs._w);
+        _mat.insert(std::end(_mat), std::begin(rhs._mat), std::end(rhs._mat));
+        _h += rhs._h;
+        return *this;
+    }
+
+    mat &inplace_combine_right(const mat &rhs) {
+        assert(_h == rhs._h);
+        for (int i = 0; i < _h; i++) _mat[i].inplace_combine_top(rhs._mat[i]);
+        _w += rhs._w;
+        return *this;
+    }
+
+    mat &inplace_combine_left(const mat &rhs) {
+        assert(_h == rhs._h);
+        for (int i = 0; i < _h; i++) _mat[i].inplace_combine_bottom(rhs._mat[i]);
+        _w += rhs._w;
+        return *this;
+    }
+
     mat transpose() {
         mat res(_w, _h);
         for (int i = 0; i < _h; i++) {
@@ -441,7 +351,25 @@ struct MatrixF2 {
         return res;
     }
 
+    mat combine_top(const mat &rhs) const { return mat(*this).inplace_combine_top(rhs); }
+    mat combine_bottom(const mat &rhs) const { return mat(*this).inplace_combine_bottom(rhs); }
+    mat combine_left(const mat &rhs) const { return mat(*this).inplace_combine_left(rhs); }
+    mat combine_right(const mat &rhs) const { return mat(*this).inplace_combine_right(rhs); }
     mat &inplace_transpose() { return *this = transpose(); }
+    friend mat operator+(const mat &lhs, const mat &rhs) { return mat(lhs) += rhs; }
+    friend mat operator-(const mat &lhs, const mat &rhs) { return mat(lhs) -= rhs; }
+    friend mat operator|(const mat &lhs, const mat &rhs) { return mat(lhs) |= rhs; }
+    friend mat operator&(const mat &lhs, const mat &rhs) { return mat(lhs) &= rhs; }
+    friend mat operator*(const mat &lhs, const mat &rhs) { return mat(lhs) *= rhs; }
+    friend bool operator==(const mat &lhs, const mat &rhs) {
+        if (lhs._h != rhs._h) return false;
+        if (lhs._w != rhs._w) return false;
+        for (int i = 0; i < lhs._h; i++) {
+            if (lhs._mat[i] != rhs._mat[i]) return false;
+        }
+        return true;
+    }
+    friend bool operator!=(const mat &lhs, const mat &rhs) { return !(lhs == rhs); }
 };
 
 } // namespace kk2

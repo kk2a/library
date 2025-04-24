@@ -7,7 +7,7 @@
 
 namespace kk2 {
 
-template <typename T> int ctz(T x) {
+template <typename T> constexpr int ctz(T x) {
     static_assert(is_integral<T>::value);
     assert(x != T(0));
 
@@ -22,14 +22,14 @@ template <typename T> int ctz(T x) {
     }
 }
 
-template <typename T> int lsb(T x) {
+template <typename T> constexpr int lsb(T x) {
     static_assert(is_integral<T>::value);
     assert(x != T(0));
 
     return ctz(x);
 }
 
-template <typename T> int clz(T x) {
+template <typename T> constexpr int clz(T x) {
     static_assert(is_integral<T>::value);
     assert(x != T(0));
 
@@ -43,14 +43,14 @@ template <typename T> int clz(T x) {
     }
 }
 
-template <typename T> int msb(T x) {
+template <typename T> constexpr int msb(T x) {
     static_assert(is_integral<T>::value);
     assert(x != T(0));
 
     return sizeof(T) * 8 - 1 - clz(x);
 }
 
-template <typename T> int popcount(T x) {
+template <typename T> constexpr int popcount(T x) {
     static_assert(is_integral<T>::value);
 
     if constexpr (sizeof(T) <= 4) {

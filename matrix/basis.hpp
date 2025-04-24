@@ -12,7 +12,7 @@ namespace kk2 {
 
 namespace linear_algebra {
 
-template <class Matrix, class Field> struct Basis_base {
+template <class Matrix, class Field> struct BasisBase {
     struct RowBasicTransform {
         int type;
         int i, j;
@@ -61,16 +61,20 @@ template <class Matrix, class Field> struct Basis_base {
     std::vector<RowBasicTransform> hist;
     std::vector<SnapShot> snaps;
 
-    BasisField() = default;
+    BasisBase() = default;
 
-    BasisField(int h_) : h(h_), rank(0) {}
+    BasisBase(int h_) : h(h_), rank(0) {}
 
     Matrix &sweep(Matrix &vec) const {
         for (auto &&t : hist) t.transform(vec);
         return vec;
     }
 
-    // vec is column vector
+    /**
+     * @brief ベクトルが現在の基底と線形独立かどうかを判定する
+     * @param vec 列ベクトル
+     * @return 線形独立ならtrue、そうでなければfalse
+     */
     bool is_linearly_independent(const Matrix &vec) const {
         assert(vec.get_h() == h);
         assert(vec.get_w() == 1);
@@ -84,9 +88,12 @@ template <class Matrix, class Field> struct Basis_base {
         return false;
     }
 
-    // vec is column vector
-    // if vec is not linearly independent with current basis, return coordinate vector
-    // else return std::nullopt
+    /**
+     * @brief ベクトルを基底に追加する
+     * @param vec 列ベクトル
+     * @return
+     * ベクトルが現在の基底と線形独立でない場合は座標ベクトルを返す、そうでなければnulloptを返す
+     */
     std::optional<Matrix> add(const Matrix &vec) {
         assert(vec.get_h() == h);
         assert(vec.get_w() == 1);
@@ -124,9 +131,9 @@ template <class Matrix, class Field> struct Basis_base {
     Matrix get_coordinate(const Matrix &vec) const {
         assert(vec.get_h() == h);
         assert(vec.get_w() == 1);
-        Matrix tmp(vec);
-        sweep(tmp);
-        for (int i = rank; i < h; ++i) assert(tmp[i][0] == Field(0));
+        Matrix res(vec);
+        sweep(res);
+        for (int i = rank; i < h; ++i) assert(res[i][0] == Field(0));
         return res;
     }
 
@@ -144,7 +151,7 @@ template <class Matrix, class Field> struct Basis_base {
 } // namespace linear_algebra
 
 template <class Matrix> using BasisMatrix =
-    linear_algebra::Basis_base<Matrix, typename Matrix::value_type>;
+    linear_algebra::BasisBase<Matrix, typename Matrix::value_type>;
 
 } // namespace kk2
 

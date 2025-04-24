@@ -31,16 +31,12 @@ struct DynamicBitSet {
         // fit the last block
     }
 
-    // Note that the string needs to be reversed.
-    // For example, if the input is "1010",
-    // the character at index 0 in the string is '1',
-    // but in the bitset it will be considered as index 0.
     DynamicBitSet(const std::string &s) : n(s.size()) {
         block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
         set(s);
     }
 
-    int size() const { return n; }
+    inline int size() const { return n; }
 
     T &inplace_combine_top(const T &rhs) {
         block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
