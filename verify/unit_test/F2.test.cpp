@@ -22,9 +22,9 @@ int main() {
     assert(z - y == z);
     assert(z - z == y);
     assert(y * y == y);
-    assert(z * y == z);
-    assert(y * z == z);
-    assert(z * z == y);
+    assert(z * y == y);
+    assert(y * z == y);
+    assert(z * z == z);
     assert(y / z == y);
     assert(z / z == z);
     assert(y.pow(0) == z);
