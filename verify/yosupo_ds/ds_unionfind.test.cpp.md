@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: unionfind/unionfind.hpp
     title: unionfind/unionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -75,7 +75,7 @@ data:
   path: verify/yosupo_ds/ds_unionfind.test.cpp
   requiredBy: []
   timestamp: '2025-04-17 11:43:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_unionfind.test.cpp
 layout: document

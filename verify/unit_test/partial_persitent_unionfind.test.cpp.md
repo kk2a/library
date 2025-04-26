@@ -34,7 +34,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: unionfind/partial_persistent.hpp
     title: unionfind/partial_persistent.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: unionfind/unionfind.hpp
     title: unionfind/unionfind.hpp
   _extendedRequiredBy: []
