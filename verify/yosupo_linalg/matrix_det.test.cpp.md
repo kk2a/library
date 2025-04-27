@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: matrix/matrix_field.hpp
-    title: "\u6383\u304D\u51FA\u3057"
+    title: "\u884C\u5217"
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
@@ -73,7 +73,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_linalg/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2025-04-24 20:44:35+09:00'
+  timestamp: '2025-04-27 18:34:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_det.test.cpp

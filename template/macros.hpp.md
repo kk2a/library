@@ -156,7 +156,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':x:'

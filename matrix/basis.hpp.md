@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: matrix/matrix_field.hpp
-    title: "\u6383\u304D\u51FA\u3057"
+    title: "\u884C\u5217"
   - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
@@ -98,7 +98,7 @@ data:
   path: matrix/basis.hpp
   requiredBy:
   - matrix/frobenius_form.hpp
-  timestamp: '2025-04-24 20:44:35+09:00'
+  timestamp: '2025-04-27 18:34:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/basis.hpp

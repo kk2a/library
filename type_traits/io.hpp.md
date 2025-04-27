@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':warning:'
@@ -155,7 +155,7 @@ data:
     title: "\u6383\u304D\u51FA\u3057"
   - icon: ':x:'
     path: matrix/matrix_field.hpp
-    title: "\u6383\u304D\u51FA\u3057"
+    title: "\u884C\u5217"
   - icon: ':heavy_check_mark:'
     path: modint/F2.hpp
     title: modint/F2.hpp
@@ -352,7 +352,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp.test.cpp
     title: verify/yosupo_fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_exp_arb.test.cpp
     title: verify/yosupo_fps/fps_exp_arb.test.cpp
   - icon: ':x:'

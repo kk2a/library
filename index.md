@@ -147,7 +147,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/compositional_inv.hpp
       title: fps/compositional_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: fps/fps_arb.hpp
       title: fps/fps_arb.hpp
     - icon: ':warning:'
@@ -488,6 +488,9 @@ data:
       title: "\u30D9\u30AF\u30C8\u30EB\u304C\u73FE\u5728\u306E\u57FA\u5E95\u3068\u7DDA\
         \u5F62\u72EC\u7ACB\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B"
     - icon: ':warning:'
+      path: matrix/characteristic_polynomial.hpp
+      title: matrix/characteristic_polynomial.hpp
+    - icon: ':warning:'
       path: matrix/frobenius_form.hpp
       title: matrix/frobenius_form.hpp
     - icon: ':x:'
@@ -495,7 +498,7 @@ data:
       title: "\u6383\u304D\u51FA\u3057"
     - icon: ':x:'
       path: matrix/matrix_field.hpp
-      title: "\u6383\u304D\u51FA\u3057"
+      title: "\u884C\u5217"
   - name: modint
     pages:
     - icon: ':heavy_check_mark:'
@@ -814,7 +817,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp.test.cpp
       title: verify/yosupo_fps/fps_exp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
       title: verify/yosupo_fps/fps_exp_arb.test.cpp
     - icon: ':x:'
