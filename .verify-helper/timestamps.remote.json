@@ -47,5 +47,6 @@
 "verify/yosupo_ds/ds_unionfind.test.cpp": "2025-04-17 11:43:05 +0900",
 "verify/yosupo_fps/fps_composition.test.cpp": "2025-04-24 20:44:35 +0900",
 "verify/yosupo_fps/fps_composition_inv.test.cpp": "2025-04-24 20:44:35 +0900",
-"verify/yosupo_fps/fps_exp.test.cpp": "2025-04-24 20:44:35 +0900"
+"verify/yosupo_fps/fps_exp.test.cpp": "2025-04-24 20:44:35 +0900",
+"verify/yosupo_fps/fps_exp_arb.test.cpp": "2025-04-24 20:44:35 +0900"
 }
