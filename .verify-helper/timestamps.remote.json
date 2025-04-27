@@ -48,5 +48,10 @@
 "verify/yosupo_fps/fps_composition.test.cpp": "2025-04-24 20:44:35 +0900",
 "verify/yosupo_fps/fps_composition_inv.test.cpp": "2025-04-24 20:44:35 +0900",
 "verify/yosupo_fps/fps_exp.test.cpp": "2025-04-24 20:44:35 +0900",
-"verify/yosupo_fps/fps_exp_arb.test.cpp": "2025-04-24 20:44:35 +0900"
+"verify/yosupo_fps/fps_exp_arb.test.cpp": "2025-04-24 20:44:35 +0900",
+"verify/yosupo_fps/fps_inv.test.cpp": "2025-04-24 20:44:35 +0900",
+"verify/yosupo_fps/fps_inv_arb.test.cpp": "2025-04-24 20:44:35 +0900",
+"verify/yosupo_fps/fps_log.test.cpp": "2025-04-24 20:44:35 +0900",
+"verify/yosupo_fps/fps_log_arb.test.cpp": "2025-04-24 20:44:35 +0900",
+"verify/yosupo_fps/fps_multipoint_evaluation.test.cpp": "2025-04-24 20:44:35 +0900"
 }
