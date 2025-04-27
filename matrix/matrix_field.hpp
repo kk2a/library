@@ -12,6 +12,11 @@
 
 namespace kk2 {
 
+/**
+ * @brief 行列
+ * 
+ * @tparam Field invメンバが必要
+ */
 template <class Field> struct MatrixField {
     using value_type = Field;
     using mat = MatrixField;
@@ -126,16 +131,9 @@ template <class Field> struct MatrixField {
         Field det = 1;
         for (int i = 0; i < wr; ++i) {
             if (r >= _h) break;
-            // kdebug(_mat);
-            int pivot = -1;
-            for (int j = r; j < _h; ++j) {
-                if (_mat[j][i] != Field(0)) {
-                    pivot = j;
-                    break;
-                }
-            }
-
-            if (pivot == -1) {
+            int pivot = r;
+            while (pivot < _h and _mat[pivot][i] == Field(0)) ++pivot;
+            if (pivot == _h) {
                 if constexpr (EARLY_TERMINATE) return {-1, Field(0)};
                 det = 0;
                 continue;
@@ -156,6 +154,32 @@ template <class Field> struct MatrixField {
             r++;
         }
         return {r, det};
+    }
+
+    mat &to_upper_Hessenberg() {
+        assert(_h == _w);
+        int n = _h;
+        for (int i = 0; i < n - 1; ++i) {
+            int pivot = i + 1;
+            while (pivot < n and _mat[pivot][i] == Field(0)) ++pivot;
+            if (pivot == n) continue;
+            if (pivot != i + 1) {
+                std::swap(_mat[pivot], _mat[i + 1]);
+                for (int j = 0; j < n; ++j) std::swap(_mat[j][i + 1], _mat[j][pivot]);
+            }
+            if (_mat[i + 1][i] != Field(1)) {
+                Field a = _mat[i + 1][i], iv = a.inv();
+                for (int j = i; j < n; ++j) _mat[i + 1][j] *= iv;
+                for (int j = 0; j < n; ++j) _mat[j][i + 1] *= a;
+            }
+            for (int j = i + 2; j < n; ++j) {
+                Field a = _mat[j][i];
+                if (a == Field(0)) continue;
+                for (int k = i; k < n; ++k) _mat[j][k] -= _mat[i + 1][k] * a;
+                for (int k = 0; k < n; ++k) _mat[k][i + 1] += _mat[k][j] * a;
+            }
+        }
+        return *this;
     }
 
     Field det() const {
