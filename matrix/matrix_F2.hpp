@@ -258,7 +258,6 @@ struct MatrixF2 {
         mat res(1 + _w - r, _w);
         std::vector<int> idx(_w, -1), step(r, -1);
         for (int i = 0, j = 0, now = 0; j < _w; j++) {
-            kdebug(i, j, now, r);
             if (i == r or !bool(ab[i][j])) idx[j] = now, res[1 + now++][j] = 1;
             else res[0][j] = ab[i][_w], step[i++] = j;
         }
