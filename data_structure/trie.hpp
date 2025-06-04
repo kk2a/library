@@ -38,7 +38,6 @@ template <int char_size, int margin> struct Trie {
     }
 
     void update_direct(int node, int id) { nodes[node].accept.push_back(id); }
-
     void update_child(int node) { ++nodes[node].passing; }
 
     void add(const std::string &str) {
@@ -70,7 +69,6 @@ template <int char_size, int margin> struct Trie {
     }
 
     int count() const { return nodes[0].passing; }
-
     int size() const { return (int)nodes.size(); }
 
     // return the number of strings which have the prefix corresponding to the node_id
