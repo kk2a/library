@@ -83,8 +83,7 @@ struct ModInt2_61m1 {
         mint x = *this, r = 1;
         while (n) {
             if (n & 1) r *= x;
-            x *= x;
-            n >>= 1;
+            if (n >>= 1) x *= x;
         }
         return r;
     }

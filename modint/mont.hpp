@@ -38,9 +38,7 @@ template <int p> struct LazyMontgomeryModInt {
         : _v(reduce(u64(b % p + p) * n2)) {}
 
     static constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }
-
     constexpr mint &operator++() { return *this += 1; }
-
     constexpr mint &operator--() { return *this -= 1; }
 
     constexpr mint operator++(int) {
@@ -95,13 +93,15 @@ template <int p> struct LazyMontgomeryModInt {
         mint ret(1), mul(*this);
         while (n > 0) {
             if (n & 1) ret *= mul;
-            mul *= mul;
-            n >>= 1;
+            if (n >>= 1) mul *= mul;
         }
         return ret;
     }
 
-    constexpr mint inv() const { return pow(p - 2); }
+    constexpr mint inv() const {
+        assert(*this != mint(0));
+        return pow(p - 2);
+    }
 
     template <class OStream, is_ostream_t<OStream> * = nullptr>
     friend OStream &operator<<(OStream &os, const mint &x) {

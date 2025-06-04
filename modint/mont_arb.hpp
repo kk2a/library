@@ -27,7 +27,7 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
     static void setmod(UInt m) {
         assert(m < (UInt(1u) << (bit_length - 2)));
-        assert((m & 1) == 1);
+        assert(m & 1);
         mod = m, n2 = -ULong(m) % m, r = get_r();
     }
 
@@ -36,7 +36,7 @@ struct ArbitraryLazyMontgomeryModIntBase {
     ArbitraryLazyMontgomeryModIntBase() : _v(0) {}
 
     template <class T, is_integral_t<T> * = nullptr> ArbitraryLazyMontgomeryModIntBase(const T &b)
-        : _v(reduce(ULong(b % mod + mod) * n2)) {}
+        : _v(reduce(ULong(b % (Int)mod + mod) * n2)) {}
 
     static UInt reduce(const ULong &b) {
         return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;
@@ -82,8 +82,7 @@ struct ArbitraryLazyMontgomeryModIntBase {
         n %= (Long)getmod() - 1;
         while (n > 0) {
             if (n & 1) ret *= mul;
-            mul *= mul;
-            n >>= 1;
+            if (n >>= 1) mul *= mul;
         }
         return ret;
     }
