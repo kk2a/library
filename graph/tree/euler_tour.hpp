@@ -62,10 +62,11 @@ template <typename G> struct EulerTour {
     StaticRMQ<std::pair<int, int>> rmq;
 
     void init() {
-        std::vector<typename StaticRMQ<std::pair<int, int>>::Monoid> rmq_init(2 * g.size());
+        using Monoid = typename decltype(rmq)::Monoid;
+        std::vector<Monoid> rmq_init(2 * g.size());
         auto dfs = [&](auto self, int now, int pre, int dep) -> void {
             in[now] = id;
-            rmq_init[id++] = {dep, now};
+            rmq_init[id++] = Monoid({dep, now});
             for (auto &&e : g[now]) {
                 if ((int)e == pre) continue;
                 par[(int)e] = now;
@@ -74,7 +75,7 @@ template <typename G> struct EulerTour {
                 edge_out[e.id] = id++;
             }
             out[now] = id;
-            rmq_init[id] = {dep - 1, pre};
+            rmq_init[id] = Monoid({dep - 1, pre});
         };
         dfs(dfs, root, -1, 0);
         for (int i = 0; i < (int)g.size(); i++) {
