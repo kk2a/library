@@ -1,5 +1,5 @@
-#ifndef KK2_MATH_MONOID_UPDATE_HPP
-#define KK2_MATH_MONOID_UPDATE_HPP 1
+#ifndef KK2_MATH_MONOID_HOLD_HPP
+#define KK2_MATH_MONOID_HOLD_HPP 1
 
 #include "../../type_traits/io.hpp"
 
@@ -8,18 +8,19 @@ namespace kk2 {
 namespace monoid {
 
 /**
- * @brief 常に左側を保持するモノイド
+ * @brief 常に右側を保持するモノイド
  */
-template <class S> struct Update {
+template <class S> struct Hold {
     static constexpr bool commutative = true;
-    using M = Update;
+    using M = Hold;
+
     S a;
     bool is_unit;
 
-    Update() : is_unit(true) {}
-    Update(S a_) : a(a_), is_unit(false) {}
+    Hold() : is_unit(true) {}
+    Hold(S a_) : a(a_), is_unit(false) {}
     operator S() const { return a; }
-    inline static M op(M l, M r) { return l.is_unit ? r : l; }
+    inline static M op(M l, M r) { return r.is_unit ? l : r; }
     inline static M unit() { return M(); }
 
     bool operator==(const M &rhs) const {
@@ -49,4 +50,4 @@ template <class S> struct Update {
 
 } // namespace kk2
 
-#endif // KK2_MATH_MONOID_UPDATE_HPP
+#endif // KK2_MATH_MONOID_HOLD_HPP
