@@ -5,6 +5,7 @@
 #include <array>
 #include <cassert>
 
+#include "../math_mod/primitive_root_64bit.hpp"
 #include "../modint/modint_2_61m1.hpp"
 #include "gen.hpp"
 
@@ -25,67 +26,43 @@ template <int NUM> struct Hash : std::array<ModInt2_61m1, NUM> {
 
     static Hash get_base() {
         Hash base;
-        for (int i = 0; i < NUM; i++) { base[i] = rng(1, mint::getmod() - 1); }
+        for (int i = 0; i < NUM; i++) base[i] = primitive_root_mint<ModInt2_61m1>();
         return base;
     }
 
     Hash &operator+=(const Hash &rhs) {
-        for (int i = 0; i < NUM; i++) { (*this)[i] += rhs[i]; }
+        for (int i = 0; i < NUM; i++) (*this)[i] += rhs[i];
         return *this;
     }
-
     Hash &operator-=(const Hash &rhs) {
-        for (int i = 0; i < NUM; i++) { (*this)[i] -= rhs[i]; }
+        for (int i = 0; i < NUM; i++) (*this)[i] -= rhs[i];
         return *this;
     }
-
     Hash &operator*=(const Hash &rhs) {
-        for (int i = 0; i < NUM; i++) { (*this)[i] *= rhs[i]; }
+        for (int i = 0; i < NUM; i++) (*this)[i] *= rhs[i];
         return *this;
     }
-
     Hash &operator/=(const Hash &rhs) {
-        for (int i = 0; i < NUM; i++) { (*this)[i] /= rhs[i]; }
+        for (int i = 0; i < NUM; i++) (*this)[i] /= rhs[i];
         return *this;
     }
 
     Hash operator+(const Hash &rhs) const { return Hash(*this) += rhs; }
-
     Hash operator-(const Hash &rhs) const { return Hash(*this) -= rhs; }
-
     Hash operator*(const Hash &rhs) const { return Hash(*this) *= rhs; }
-
     Hash operator/(const Hash &rhs) const { return Hash(*this) /= rhs; }
-
-    Hash operator-() const {
-        Hash res;
-        for (int i = 0; i < NUM; i++) { res[i] = -(*this)[i]; }
-        return res;
-    }
-
-    bool operator==(const Hash &rhs) const {
-        for (int i = 0; i < NUM; i++) {
-            if ((*this)[i] != rhs[i]) return false;
-        }
-        return true;
-    }
-
-    bool operator!=(const Hash &rhs) const {
-        for (int i = 0; i < NUM; i++) {
-            if ((*this)[i] != rhs[i]) return true;
-        }
-        return false;
-    }
+    Hash operator+() const { return *this; }
+    Hash operator-() const { return Hash(0) - *this; }
 
     Hash pow(u64 n) const {
-        Hash x = *this, r;
-        for (int i = 0; i < NUM; i++) { r[i] = x[i].pow(n); }
+        Hash r;
+        for (int i = 0; i < NUM; i++) r[i] = (*this)[i].pow(n);
         return r;
     }
 
     Hash inv() const {
         Hash r;
-        for (int i = 0; i < NUM; i++) { r[i] = (*this)[i].inv(); }
+        for (int i = 0; i < NUM; i++) r[i] = (*this)[i].inv();
         return r;
     }
 };
