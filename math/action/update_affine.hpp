@@ -9,11 +9,11 @@ namespace kk2 {
 namespace action {
 
 template <class T> struct UpdateAffine {
-    using A = monoid::Update<monoid::Affine<T>>;
     using S = monoid::Affine<T>;
+    using A = monoid::Update<S>;
 
-    inline static S act(A f, S x) { return f.is_unit ? x : S(f.a); }
-}
+    inline static S act(A f, S x) { return f.is_unit ? x : f.a; }
+};
 
 } // namespace action
 

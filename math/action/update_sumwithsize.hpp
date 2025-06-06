@@ -9,10 +9,10 @@ namespace kk2 {
 namespace action {
 
 template <class T, class U> struct UpdateSumWithSize {
-    using A = monoid::Update<T>;
     using S = group::SumWithSize<T, U>;
+    using A = monoid::Update<T>;
 
-    inline static S act(A f, S x) { return f.is_unit ? x : S(x.a + f.a * x.size, x.size); }
+    inline static S act(A f, S x) { return f.is_unit ? x : S(f.a * x.size, x.size); }
 };
 
 } // namespace action

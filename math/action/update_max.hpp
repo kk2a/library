@@ -9,10 +9,10 @@ namespace kk2 {
 namespace action {
 
 template <class T, class Compare = std::less<T>> struct UpdateMax {
-    using A = monoid::Update<T>;
     using S = monoid::Max<T, Compare>;
+    using A = monoid::Update<S>;
 
-    inline static S act(A f, S x) { return f.is_unit ? x : S(f.a); }
+    inline static S act(A f, S x) { return f.is_unit ? x : f.a; }
 };
 
 } // namespace action

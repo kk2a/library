@@ -9,8 +9,8 @@ namespace kk2 {
 namespace action {
 
 template <class T, class U, class Compare = std::less<T>> struct UpdateMaxMinSumWithSize {
-    using A = monoid::Update<T>;
     using S = monoid::MaxMinSumWithSize<T, U, Compare>;
+    using A = monoid::Update<T>;
 
     inline static S act(A f, S x) { return f.is_unit ? x : S(f.a, f.a, f.a * x.size, x.size); }
 };
