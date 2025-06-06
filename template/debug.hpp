@@ -326,10 +326,13 @@ void show_vars(const std::vector<std::string> &name, int pos, const T &t, const 
 }
 
 #define kdebug(...)                                                                                \
-    kk2::debug::output(std::cerr, "line:" + std::to_string(__LINE__));                             \
-    kk2::debug::output(std::cerr, ' ');                                                            \
+    std::cerr << "line:" << __LINE__ << ' ';                                                       \
     kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__), 0, __VA_ARGS__);                          \
-    kk2::debug::outputln(std::cerr);
+    std::cerr << std::endl;
+
+#define kput(s)                                                                                    \
+    std::cerr << "line:" << __LINE__ << ' ';                                                       \
+    kk2::debug::outputln(std::cerr, s);
 
 #else
 
@@ -342,6 +345,8 @@ void outputln(OStream &, const Args &...) {}
 template <class... Args> void fix_warn(const Args &...) {}
 
 #define kdebug(...) kk2::debug::fix_warn(__VA_ARGS__);
+
+#define kput(s) kk2::debug::fix_warn(s)
 
 #endif // KK2
 
