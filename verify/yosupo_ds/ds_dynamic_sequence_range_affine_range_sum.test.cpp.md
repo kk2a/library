@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bbst/base/red_black_tree_base.hpp
-    title: bbst/base/red_black_tree_base.hpp
+    title: "\u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9"
   - icon: ':heavy_check_mark:'
     path: bbst/lazy_red_black_tree.hpp
     title: bbst/lazy_red_black_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/action/affine_sumwithsize.hpp
     title: math/action/affine_sumwithsize.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/group/sum_with_size.hpp
     title: math/group/sum_with_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/affine.hpp
     title: math/monoid/affine.hpp
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   - icon: ':question:'
@@ -105,7 +105,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 11:43:05+09:00'
+  timestamp: '2025-06-06 17:43:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp

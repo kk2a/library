@@ -31,7 +31,7 @@ data:
     \ }\n\n    Trie(int Num) {\n        nodes.reserve(Num);\n        nodes.emplace_back();\n\
     \    }\n\n    int push_node() {\n        nodes.emplace_back();\n        return\
     \ (int)nodes.size() - 1;\n    }\n\n    void update_direct(int node, int id) {\
-    \ nodes[node].accept.push_back(id); }\n\n    void update_child(int node) { ++nodes[node].passing;\
+    \ nodes[node].accept.push_back(id); }\n    void update_child(int node) { ++nodes[node].passing;\
     \ }\n\n    void add(const std::string &str) {\n        assert(!str.empty());\n\
     \        const int id = nodes[root].passing;\n        int now = root;\n      \
     \  for (int i = 0; i < (int)str.size(); ++i) {\n            const int d = str[i]\
@@ -44,30 +44,30 @@ data:
     \ for (int &idx : nodes[now].accept) f(idx);\n            const int d = c - margin;\n\
     \            now = nodes[now].nxt[d];\n            if (now == -1) return;\n  \
     \      }\n        for (int idx : nodes[now].accept) f(idx);\n    }\n\n    int\
-    \ count() const { return nodes[0].passing; }\n\n    int size() const { return\
-    \ (int)nodes.size(); }\n\n    // return the number of strings which have the prefix\
-    \ corresponding to the node_id\n    int size(int node_idx) const {\n        return\
-    \ (int)nodes[node_idx].accept.size() + nodes[node_idx].passing;\n    }\n};\n\n\
-    } // namespace kk2\n\n\n#line 12 \"string/aho_corasick.hpp\"\n\nnamespace kk2\
-    \ {\n\ntemplate <int char_size, int margin> struct AhoCorasick : Trie<char_size\
-    \ + 1, margin> {\n    using Trie<char_size + 1, margin>::Trie;\n    using Trie<char_size\
-    \ + 1, margin>::count;\n\n    constexpr static int FAIL = char_size;\n    std::vector<int>\
-    \ correct, perm;\n\n    void build() {\n        correct.resize(this->size());\n\
-    \        int now = 0;\n        perm.resize(this->size());\n        perm[now++]\
-    \ = this->root;\n        for (int i = 0; i < (int)this->size(); ++i) {\n     \
-    \       correct[i] = (int)this->nodes[i].accept.size();\n        }\n        std::queue<int>\
-    \ que;\n        for (int i = 0; i <= char_size; ++i) {\n            if (this->nodes[this->root].nxt[i]\
-    \ == -1) {\n                this->nodes[this->root].nxt[i] = this->root;\n   \
-    \         } else {\n                this->nodes[this->nodes[this->root].nxt[i]].nxt[FAIL]\
-    \ = this->root;\n                que.emplace(this->nodes[this->root].nxt[i]);\n\
-    \            }\n        }\n        while (!que.empty()) {\n            perm[now++]\
-    \ = que.front();\n            auto &now = this->nodes[que.front()];\n        \
-    \    int fail = now.nxt[FAIL];\n            correct[que.front()] += correct[fail];\n\
-    \            que.pop();\n            for (int i = 0; i < char_size; ++i) {\n \
-    \               if (now.nxt[i] == -1) {\n                    now.nxt[i] = this->nodes[fail].nxt[i];\n\
-    \                } else {\n                    this->nodes[now.nxt[i]].nxt[FAIL]\
-    \ = this->nodes[fail].nxt[i];\n                    que.emplace(now.nxt[i]);\n\
-    \                }\n            }\n        }\n    }\n\n    long long all_match(const\
+    \ count() const { return nodes[0].passing; }\n    int size() const { return (int)nodes.size();\
+    \ }\n\n    // return the number of strings which have the prefix corresponding\
+    \ to the node_id\n    int size(int node_idx) const {\n        return (int)nodes[node_idx].accept.size()\
+    \ + nodes[node_idx].passing;\n    }\n};\n\n} // namespace kk2\n\n\n#line 12 \"\
+    string/aho_corasick.hpp\"\n\nnamespace kk2 {\n\ntemplate <int char_size, int margin>\
+    \ struct AhoCorasick : Trie<char_size + 1, margin> {\n    using Trie<char_size\
+    \ + 1, margin>::Trie;\n    using Trie<char_size + 1, margin>::count;\n\n    constexpr\
+    \ static int FAIL = char_size;\n    std::vector<int> correct, perm;\n\n    void\
+    \ build() {\n        correct.resize(this->size());\n        int now = 0;\n   \
+    \     perm.resize(this->size());\n        perm[now++] = this->root;\n        for\
+    \ (int i = 0; i < (int)this->size(); ++i) {\n            correct[i] = (int)this->nodes[i].accept.size();\n\
+    \        }\n        std::queue<int> que;\n        for (int i = 0; i <= char_size;\
+    \ ++i) {\n            if (this->nodes[this->root].nxt[i] == -1) {\n          \
+    \      this->nodes[this->root].nxt[i] = this->root;\n            } else {\n  \
+    \              this->nodes[this->nodes[this->root].nxt[i]].nxt[FAIL] = this->root;\n\
+    \                que.emplace(this->nodes[this->root].nxt[i]);\n            }\n\
+    \        }\n        while (!que.empty()) {\n            perm[now++] = que.front();\n\
+    \            auto &now = this->nodes[que.front()];\n            int fail = now.nxt[FAIL];\n\
+    \            correct[que.front()] += correct[fail];\n            que.pop();\n\
+    \            for (int i = 0; i < char_size; ++i) {\n                if (now.nxt[i]\
+    \ == -1) {\n                    now.nxt[i] = this->nodes[fail].nxt[i];\n     \
+    \           } else {\n                    this->nodes[now.nxt[i]].nxt[FAIL] =\
+    \ this->nodes[fail].nxt[i];\n                    que.emplace(now.nxt[i]);\n  \
+    \              }\n            }\n        }\n    }\n\n    long long all_match(const\
     \ std::string &str, int now_ = 0) {\n        std::unordered_map<int, int> visit_cnt;\n\
     \        for (char c : str) {\n            now_ = this->nodes[now_].nxt[c - margin];\n\
     \            visit_cnt[now_]++;\n        }\n        long long res{};\n       \
@@ -124,11 +124,11 @@ data:
   isVerificationFile: false
   path: string/aho_corasick.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
+  timestamp: '2025-06-04 11:51:10+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yuki/yuki_0430_2.test.cpp
   - verify/yuki/yuki_0430.test.cpp
+  - verify/yuki/yuki_0430_2.test.cpp
 documentation_of: string/aho_corasick.hpp
 layout: document
 redirect_from:

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
   - icon: ':question:'
@@ -60,9 +60,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
@@ -112,8 +112,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2025-04-24 20:44:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-04 12:12:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_arbitrary.test.cpp
 layout: document

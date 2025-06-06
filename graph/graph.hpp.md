@@ -160,14 +160,14 @@ data:
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/aoj/aoj_grl_1_b.test.cpp
-  - verify/yuki/yuki_1326.test.cpp
-  - verify/yosupo_graph/graph_shortest_path.test.cpp
-  - verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - verify/yosupo_graph/tree_lca.test.cpp
-  - verify/yosupo_graph/tree_diameter.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp
-  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_graph/tree_diameter.test.cpp
   - verify/yosupo_graph/graph_scc.test.cpp
+  - verify/yosupo_graph/graph_matching_bipartite.test.cpp
+  - verify/yosupo_graph/graph_shortest_path.test.cpp
+  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yuki/yuki_1326.test.cpp
 documentation_of: graph/graph.hpp
 layout: document
 redirect_from:

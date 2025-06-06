@@ -5,25 +5,31 @@ data:
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/action/add_sumwithsize.hpp
     title: math/action/add_sumwithsize.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/action/affine_sumwithsize.hpp
     title: math/action/affine_sumwithsize.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/action/update_sumwithsize.hpp
     title: math/action/update_sumwithsize.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/action.test.cpp
+    title: verify/unit_test/action.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/monoid.test.cpp
+    title: verify/unit_test/monoid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -59,11 +65,13 @@ data:
   path: math/group/sum_with_size.hpp
   requiredBy:
   - math/action/affine_sumwithsize.hpp
-  - math/action/add_sumwithsize.hpp
   - math/action/update_sumwithsize.hpp
+  - math/action/add_sumwithsize.hpp
   timestamp: '2025-04-06 13:01:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/unit_test/action.test.cpp
+  - verify/unit_test/monoid.test.cpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
 documentation_of: math/group/sum_with_size.hpp

@@ -67,11 +67,11 @@ data:
   isVerificationFile: false
   path: math/multiplicative_function/euler_phi.hpp
   requiredBy: []
-  timestamp: '2025-04-06 00:09:45+09:00'
+  timestamp: '2025-06-04 11:53:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/unit_test/famous_function_table.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: math/multiplicative_function/euler_phi.hpp
 layout: document
 redirect_from:

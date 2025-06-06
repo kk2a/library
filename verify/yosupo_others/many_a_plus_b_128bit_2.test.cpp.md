@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
   - icon: ':question:'
@@ -74,7 +74,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 14:27:06+09:00'
+  timestamp: '2025-06-06 17:43:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

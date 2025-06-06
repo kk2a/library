@@ -2,8 +2,24 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/group/add.hpp
+    title: math/group/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/group/rolling_hash.hpp
+    title: math/group/rolling_hash.hpp
+  - icon: ':question:'
+    path: math/group/sum_with_size.hpp
+    title: math/group/sum_with_size.hpp
+  - icon: ':question:'
+    path: math/is_prime.hpp
+    title: math/is_prime.hpp
+  - icon: ':question:'
     path: math/monoid/affine.hpp
     title: math/monoid/affine.hpp
+  - icon: ':question:'
+    path: math/monoid/hold.hpp
+    title: "\u5E38\u306B\u53F3\u5074\u3092\u4FDD\u6301\u3059\u308B\u30E2\u30CE\u30A4\
+      \u30C9"
   - icon: ':question:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
@@ -13,12 +29,43 @@ data:
   - icon: ':question:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/update.hpp
-    title: math/monoid/update.hpp
+    title: "\u5E38\u306B\u5DE6\u5074\u3092\u4FDD\u6301\u3059\u308B\u30E2\u30CE\u30A4\
+      \u30C9"
+  - icon: ':question:'
+    path: math/prime_factorize.hpp
+    title: math/prime_factorize.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/primitive_root_64bit.hpp
+    title: math_mod/primitive_root_64bit.hpp
+  - icon: ':question:'
+    path: modint/modint_2_61m1.hpp
+    title: modint/modint_2_61m1.hpp
+  - icon: ':question:'
+    path: modint/mont_arb.hpp
+    title: modint/mont_arb.hpp
   - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
+  - icon: ':question:'
+    path: random/gen.hpp
+    title: random/gen.hpp
+  - icon: ':question:'
+    path: random/gen.hpp
+    title: random/gen.hpp
+  - icon: ':question:'
+    path: random/gen.hpp
+    title: random/gen.hpp
+  - icon: ':question:'
+    path: random/hash.hpp
+    title: random/hash.hpp
   - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
@@ -40,6 +87,9 @@ data:
   - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
+  - icon: ':question:'
+    path: type_traits/container_traits.hpp
+    title: type_traits/container_traits.hpp
   - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
@@ -69,52 +119,154 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/io.hpp: line 4: #pragma once found in a non-first line\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" \n\n#include \"\
-    ../../math/monoid/affine.hpp\"\n#include \"../../math/monoid/max_min_sumwithsize.hpp\"\
-    \n#include \"../../math/monoid/max.hpp\"\n#include \"../../math/monoid/min.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    ../../math/group/add.hpp\"\n#include \"../../math/group/rolling_hash.hpp\"\n#include\
+    \ \"../../math/group/sum_with_size.hpp\"\n#include \"../../math/monoid/affine.hpp\"\
+    \n#include \"../../math/monoid/hold.hpp\"\n#include \"../../math/monoid/max.hpp\"\
+    \n#include \"../../math/monoid/max_min_sumwithsize.hpp\"\n#include \"../../math/monoid/min.hpp\"\
     \n#include \"../../math/monoid/update.hpp\"\n#include \"../../random/gen.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nvoid test()\
-    \ {\n    kk2::monoid::Affine<int> x11(2, 3), x12(3, 4);\n    auto x13 = x11.eval(5);\n\
-    \    auto x14 = kk2::monoid::Affine<int>::op(x11, x12);\n    auto x15 = kk2::monoid::Affine<int>::unit();\n\
-    \    auto x16 = kk2::monoid::Affine<int>::inv(x11);\n    auto x17 = x11 == x12;\n\
-    \    auto x18 = x11 != x12;\n\n    kk2::monoid::MaxMinSumWithSize<int, int> x21(1),\
-    \ x22(2, 3, 4, 5);\n    auto x23 = kk2::monoid::MaxMinSumWithSize<int, int>::op(x21,\
-    \ x22);\n    auto x24 = kk2::monoid::MaxMinSumWithSize<int, int>::unit();\n  \
-    \  auto x25 = x21 == x22;\n    auto x26 = x21 != x22;\n\n    kk2::monoid::Max<int>\
-    \ x31(1), x32(2);\n    auto x33 = kk2::monoid::Max<int>::op(x31, x32);\n    auto\
-    \ x34 = kk2::monoid::Max<int>::unit();\n    auto x35 = x31 == x32;\n    auto x36\
-    \ = x31 != x32;\n\n    kk2::monoid::Min<int> x41(1), x42(2);\n    auto x43 = kk2::monoid::Min<int>::op(x41,\
-    \ x42);\n    auto x44 = kk2::monoid::Min<int>::unit();\n    auto x45 = x41 ==\
-    \ x42;\n    auto x46 = x41 != x42;\n\n    kk2::monoid::Update<int> x51(1), x52(2);\n\
-    \    auto x53 = kk2::monoid::Update<int>::op(x51, x52);\n    auto x54 = kk2::monoid::Update<int>::unit();\n\
-    \    auto x55 = x51 == x52;\n    auto x56 = x51 != x52;\n\n    [&](auto, auto,\
-    \ auto, auto, auto, auto, auto, auto){}(x11, x12, x13, x14, x15, x16, x17, x18);\n\
-    \    [&](auto, auto, auto, auto, auto, auto){}(x21, x22, x23, x24, x25, x26);\n\
-    \    [&](auto, auto, auto, auto, auto, auto){}(x31, x32, x33, x34, x35, x36);\n\
-    \    [&](auto, auto, auto, auto, auto, auto){}(x41, x42, x43, x44, x45, x46);\n\
-    \    [&](auto, auto, auto, auto, auto, auto){}(x51, x52, x53, x54, x55, x56);\n\
-    }\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n    kout << a + b << kendl;\n\
-    \n    rep (10000) test();\n\n    return 0;\n}\n"
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nvoid test_monoid()\
+    \ {\n    // Update monoid test\n    {\n        using M = kk2::monoid::Update<int>;\n\
+    \        M unit = M::unit();\n\n        rep(10000) {\n            int val1 = kk2::random::rng(1,\
+    \ 1001);\n            int val2 = kk2::random::rng(1, 1001);\n            M a(val1),\
+    \ b(val2);\n\n            assert(M::op(unit, a) == a);\n            assert(M::op(a,\
+    \ unit) == a);\n            assert(M::op(a, b) == a); // \u5DE6\u5074\u3092\u4FDD\
+    \u6301\n            assert(M::op(b, a) == b);\n        }\n        cerr << \"Update:\
+    \ 10000 random tests passed!\" << endl;\n    }\n\n    // Min monoid test\n   \
+    \ {\n        using M = kk2::monoid::Min<int>;\n        M unit = M::unit();\n\n\
+    \        rep(10000) {\n            int val1 = kk2::random::rng(1, 1001);\n   \
+    \         int val2 = kk2::random::rng(1, 1001);\n            int val3 = kk2::random::rng(1,\
+    \ 1001);\n            M a(val1), b(val2), c(val3);\n\n            assert(M::op(unit,\
+    \ a) == a);\n            assert(M::op(a, unit) == a);\n\n            // min\u6F14\
+    \u7B97\u306E\u691C\u8A3C\n            int min_ab = min(val1, val2);\n        \
+    \    int min_bc = min(val2, val3);\n            int min_ac = min(val1, val3);\n\
+    \            assert(M::op(a, b).a == min_ab);\n            assert(M::op(b, c).a\
+    \ == min_bc);\n            assert(M::op(a, c).a == min_ac);\n\n            //\
+    \ \u7D50\u5408\u5F8B\u306E\u691C\u8A3C\n            assert(M::op(M::op(a, b),\
+    \ c) == M::op(a, M::op(b, c)));\n        }\n        cerr << \"Min: 10000 random\
+    \ tests passed!\" << endl;\n    }\n\n    // Max monoid test\n    {\n        using\
+    \ M = kk2::monoid::Max<int>;\n        M unit = M::unit();\n\n        rep(10000)\
+    \ {\n            int val1 = kk2::random::rng(1, 1001);\n            int val2 =\
+    \ kk2::random::rng(1, 1001);\n            int val3 = kk2::random::rng(1, 1001);\n\
+    \            M a(val1), b(val2), c(val3);\n\n            assert(M::op(unit, a)\
+    \ == a);\n            assert(M::op(a, unit) == a);\n\n            // max\u6F14\
+    \u7B97\u306E\u691C\u8A3C\n            int max_ab = max(val1, val2);\n        \
+    \    int max_bc = max(val2, val3);\n            int max_ac = max(val1, val3);\n\
+    \            assert(M::op(a, b).a == max_ab);\n            assert(M::op(b, c).a\
+    \ == max_bc);\n            assert(M::op(a, c).a == max_ac);\n\n            //\
+    \ \u7D50\u5408\u5F8B\u306E\u691C\u8A3C\n            assert(M::op(M::op(a, b),\
+    \ c) == M::op(a, M::op(b, c)));\n        }\n        cerr << \"Max: 10000 random\
+    \ tests passed!\" << endl;\n    }\n\n    // MaxMinSumWithSize test\n    {\n  \
+    \      using M = kk2::monoid::MaxMinSumWithSize<int, int>;\n        M unit = M::unit();\n\
+    \n        rep(10000) {\n            int val1 = kk2::random::rng(1, 1001);\n  \
+    \          int val2 = kk2::random::rng(1, 1001);\n            M a(val1), b(val2);\n\
+    \n            assert(M::op(unit, a) == a);\n\n            auto ab = M::op(a, b);\n\
+    \            assert(ab.max == max(val1, val2));\n            assert(ab.min ==\
+    \ min(val1, val2));\n            assert(ab.sum == val1 + val2);\n            assert(ab.size\
+    \ == 2);\n        }\n        cerr << \"MaxMinSumWithSize: 10000 random tests passed!\"\
+    \ << endl;\n    }\n\n    // Hold monoid test\n    {\n        using M = kk2::monoid::Hold<int>;\n\
+    \        M unit = M::unit();\n\n        rep(10000) {\n            int val1 = kk2::random::rng(1,\
+    \ 1001);\n            int val2 = kk2::random::rng(1, 1001);\n            M a(val1),\
+    \ b(val2);\n\n            assert(M::op(unit, a) == a);\n            assert(M::op(a,\
+    \ unit) == a);\n            assert(M::op(a, b) == b); // \u53F3\u5074\u3092\u4FDD\
+    \u6301\n            assert(M::op(b, a) == a);\n        }\n        cerr << \"Hold:\
+    \ 10000 random tests passed!\" << endl;\n    }\n\n    // Affine monoid test\n\
+    \    {\n        using M = kk2::monoid::Affine<int>;\n        M unit = M::unit();\n\
+    \n        rep(10000) {\n            int a1 = kk2::random::rng(1, 11), b1 = kk2::random::rng(1,\
+    \ 11);\n            int a2 = kk2::random::rng(1, 11), b2 = kk2::random::rng(1,\
+    \ 11);\n            int x = kk2::random::rng(1, 101);\n\n            M f(a1, b1),\
+    \ g(a2, b2);\n\n            assert(M::op(unit, f) == f);\n            assert(M::op(f,\
+    \ unit) == f);\n\n            assert(f.eval(x) == a1 * x + b1);\n            assert(g.eval(x)\
+    \ == a2 * x + b2);\n\n            // \u5408\u6210\u306E\u691C\u8A3C f(g(x)) =\
+    \ f(a2*x + b2) = a1*(a2*x + b2) + b1 = a1*a2*x + a1*b2 + b1\n            auto\
+    \ fg = M::op(f, g);\n            assert(fg.a == a1 * a2);\n            assert(fg.b\
+    \ == a1 * b2 + b1);\n            assert(fg.eval(x) == a1 * (a2 * x + b2) + b1);\n\
+    \n            // \u7D50\u5408\u5F8B\u306E\u691C\u8A3C\n            int a3 = kk2::random::rng(1,\
+    \ 11), b3 = kk2::random::rng(1, 11);\n            M h(a3, b3);\n            assert(M::op(M::op(f,\
+    \ g), h) == M::op(f, M::op(g, h)));\n        }\n        cerr << \"Affine: 10000\
+    \ random tests passed!\" << endl;\n    }\n}\n\nvoid test_group() {\n    // Add\
+    \ group test\n    {\n        using G = kk2::group::Add<int>;\n        G unit =\
+    \ G::unit();\n\n        rep(10000) {\n            int val1 = kk2::random::rng(-1000,\
+    \ 1001);\n            int val2 = kk2::random::rng(-1000, 1001);\n            G\
+    \ a(val1), b(val2);\n\n            assert(G::op(unit, a) == a);\n            assert(G::op(a,\
+    \ unit) == a);\n            assert(G::op(a, b).a == val1 + val2);\n\n        \
+    \    auto inv_a = G::inv(a);\n            assert(inv_a.a == -val1);\n        \
+    \    assert(G::op(a, inv_a) == unit);\n            assert(G::op(inv_a, a) == unit);\n\
+    \        }\n        cerr << \"Add: 10000 random tests passed!\" << endl;\n   \
+    \ }\n\n    // SumWithSize group test\n    {\n        using G = kk2::group::SumWithSize<int>;\n\
+    \        G unit = G::unit();\n\n        rep(10000) {\n            int val1 = kk2::random::rng(-1000,\
+    \ 1001);\n            int val2 = kk2::random::rng(-1000, 1001);\n            G\
+    \ a(val1), b(val2);\n\n            auto ab = G::op(a, b);\n            assert(ab.a\
+    \ == val1 + val2 && ab.size == 2);\n\n            auto inv_a = G::inv(a);\n  \
+    \          assert(inv_a.a == -val1 && inv_a.size == -1);\n\n            auto cancel\
+    \ = G::op(a, inv_a);\n            assert(cancel == unit);\n        }\n       \
+    \ cerr << \"SumWithSize: 10000 random tests passed!\" << endl;\n    }\n\n    //\
+    \ RollingHash group test\n    {\n        using RH = kk2::RollingHash<2>;\n   \
+    \     RH unit = RH::unit();\n\n        // \u4E71\u6570\u3092\u4F7F\u3063\u305F\
+    \u8907\u6570\u56DE\u30C6\u30B9\u30C8\n        rep(10000) {\n            // \u30E9\
+    \u30F3\u30C0\u30E0\u306A\u6574\u6570\u3067\u306E\u30C6\u30B9\u30C8\n         \
+    \   int val1 = kk2::random::rng(1, 1001);\n            int val2 = kk2::random::rng(1,\
+    \ 1001);\n            RH a(val1), b(val2);\n\n            assert(RH::op(unit,\
+    \ a) == a);\n            assert(RH::op(a, unit) == a);\n\n            // \u9006\
+    \u5143\u306E\u30C6\u30B9\u30C8\n            auto inv_a = RH::inv(a);\n       \
+    \     auto cancel = RH::op(a, inv_a);\n            assert(cancel == unit);\n\n\
+    \            // \u30E9\u30F3\u30C0\u30E0\u306A\u6587\u5B57\u5217\u3067\u306E\u30C6\
+    \u30B9\u30C8\n            string s1, s2;\n            int len1 = kk2::random::rng(1,\
+    \ 11);\n            int len2 = kk2::random::rng(1, 11);\n\n            rep(len1)\
+    \ { s1 += char('a' + kk2::random::rng(0, 26)); }\n            rep(len2) { s2 +=\
+    \ char('a' + kk2::random::rng(0, 26)); }\n\n            RH h1(s1), h2(s2);\n \
+    \           RH h12 = RH::op(h1, h2); // s1 + s2\n            RH h_concat(s1 +\
+    \ s2);\n            assert(h12.a == h_concat.a);\n\n            // \u9006\u5143\
+    \u3067\u306E\u9023\u7D50\u30C6\u30B9\u30C8\n            auto inv_h2 = RH::inv(h2);\n\
+    \            auto result = RH::op(h12, inv_h2);\n            assert(result.a ==\
+    \ h1.a);\n\n            // \u7D50\u5408\u5F8B\u306E\u30C6\u30B9\u30C8\uFF083\u3064\
+    \u306E\u6587\u5B57\u5217\uFF09\n            string s3;\n            int len3 =\
+    \ kk2::random::rng(1, 11);\n            rep(len3) { s3 += char('a' + kk2::random::rng(0,\
+    \ 26)); }\n            RH h3(s3);\n\n            RH h123_left = RH::op(RH::op(h1,\
+    \ h2), h3);\n            RH h123_right = RH::op(h1, RH::op(h2, h3));\n       \
+    \     RH h123_direct(s1 + s2 + s3);\n\n            assert(h123_left.a == h123_right.a);\n\
+    \            assert(h123_left.a == h123_direct.a);\n        }\n\n        cerr\
+    \ << \"RollingHash: 10000 random tests passed!\" << endl;\n    }\n}\n\nvoid test()\
+    \ {\n    test_monoid();\n    test_group();\n\n    // \u5168\u30C6\u30B9\u30C8\u901A\
+    \u904E\n    cerr << \"All monoid and group tests passed!\" << endl;\n}\n\nint\
+    \ main() {\n    int a, b;\n    kin >> a >> b;\n    kout << a + b << kendl;\n\n\
+    \    test();\n\n    return 0;\n}\n"
   dependsOn:
-  - math/monoid/affine.hpp
+  - math/group/add.hpp
   - type_traits/io.hpp
-  - math/monoid/max_min_sumwithsize.hpp
+  - math/group/rolling_hash.hpp
+  - random/hash.hpp
+  - math_mod/primitive_root_64bit.hpp
+  - math/prime_factorize.hpp
+  - math_mod/pow_mod.hpp
+  - modint/mont_arb.hpp
+  - type_traits/integral.hpp
+  - random/gen.hpp
+  - random/seed.hpp
+  - math/is_prime.hpp
+  - random/gen.hpp
+  - math_mod/pow_mod.hpp
+  - modint/modint_2_61m1.hpp
+  - random/gen.hpp
+  - type_traits/container_traits.hpp
+  - math/group/sum_with_size.hpp
+  - math/monoid/affine.hpp
+  - math/monoid/hold.hpp
   - math/monoid/max.hpp
+  - math/monoid/max_min_sumwithsize.hpp
   - math/monoid/min.hpp
   - math/monoid/update.hpp
   - random/gen.hpp
-  - random/seed.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
   - template/fastio.hpp
-  - type_traits/integral.hpp
   - template/io_util.hpp
   - template/macros.hpp
   isVerificationFile: true
   path: verify/unit_test/monoid.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 11:43:05+09:00'
+  timestamp: '2025-06-06 17:43:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/monoid.test.cpp

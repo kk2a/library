@@ -74,9 +74,9 @@ data:
   timestamp: '2025-01-06 05:33:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/many_factrials.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
 documentation_of: fps/poly_sample_point_shift.hpp
 layout: document
 redirect_from:

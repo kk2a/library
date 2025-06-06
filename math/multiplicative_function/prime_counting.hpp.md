@@ -127,10 +127,10 @@ data:
   timestamp: '2025-04-24 20:54:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/prime_counting.test.cpp
   - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/yosupo_math/prime_counting.test.cpp
 documentation_of: math/multiplicative_function/prime_counting.hpp
 layout: document
 redirect_from:

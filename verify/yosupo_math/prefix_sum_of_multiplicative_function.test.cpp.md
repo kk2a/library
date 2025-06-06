@@ -99,7 +99,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   requiredBy: []
-  timestamp: '2025-04-24 20:54:26+09:00'
+  timestamp: '2025-06-04 11:53:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp

@@ -127,8 +127,8 @@ data:
   timestamp: '2025-04-24 20:44:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/many_factrials.test.cpp
   - verify/unit_test/large_fact_arb_mod.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
 documentation_of: math_mod/comb_large.hpp
 layout: document
 redirect_from:

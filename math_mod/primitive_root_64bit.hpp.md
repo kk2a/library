@@ -31,14 +31,32 @@ data:
   - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/group/rolling_hash.hpp
+    title: math/group/rolling_hash.hpp
+  - icon: ':question:'
+    path: random/hash.hpp
+    title: random/hash.hpp
+  - icon: ':question:'
+    path: string/rolling_hash.hpp
+    title: string/rolling_hash.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_alds1_14_b.test.cpp
+    title: verify/aoj/aoj_alds1_14_b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/monoid.test.cpp
+    title: verify/unit_test/monoid.test.cpp
   - icon: ':x:'
     path: verify/yosupo_math/primitive_root.test.cpp
     title: verify/yosupo_math/primitive_root.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_string/string_z_roliha.test.cpp
+    title: verify/yosupo_string/string_z_roliha.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -60,11 +78,18 @@ data:
     \ 1\n\n#include \"../math/prime_factorize.hpp\"\n#include \"../random/gen.hpp\"\
     \n#include \"pow_mod.hpp\"\n\nnamespace kk2 {\n\nlong long primitive_root_64bit(long\
     \ long p) {\n    if (p == 2) return 1;\n    if (p == 3) return 2;\n\n    auto\
-    \ f = factorize(p - 1);\n    while (true) {\n        long long g = random::rng(2,\
-    \ p - 1);\n        bool ok = true;\n        for (auto &&[q, e] : f) {\n      \
-    \      if (pow_mod<__int128_t>(g, (p - 1) / q, p) == 1) {\n                ok\
-    \ = false;\n                break;\n            }\n        }\n        if (ok)\
-    \ return g;\n    }\n}\n\n} // namespace kk2\n\n#endif // KK2_MATH_MOD_PRIMITIVE_ROOT_64BIT_HPP\n"
+    \ f = factorize(p - 1);\n    for (long long g{}; g = random::rng(2, p - 1), 1;)\
+    \ {\n        if ([&]() {\n                for (auto &&[q, e] : f)\n          \
+    \          if (pow_mod<__int128_t>(g, (p - 1) / q, p) == 1) return false;\n  \
+    \              return true;\n            }())\n            return g;\n    }\n\
+    \    return -1;\n}\n\ntemplate <class mint> long long primitive_root_mint() {\n\
+    \    if (mint::getmod() == 2u) return 1;\n    if (mint::getmod() == 3u) return\
+    \ 2;\n\n    long long p = mint::getmod();\n\n    auto f = factorize(p - 1);\n\
+    \    for (mint g; g = random::rng(2, p - 1), 1;) {\n        if ([&]() {\n    \
+    \            for (auto &&[q, e] : f)\n                    if (g.pow((p - 1) /\
+    \ q) == mint(1)) return false;\n                return true;\n            }())\n\
+    \            return g.val();\n    }\n    return -1;\n}\n\n} // namespace kk2\n\
+    \n#endif // KK2_MATH_MOD_PRIMITIVE_ROOT_64BIT_HPP\n"
   dependsOn:
   - math/prime_factorize.hpp
   - math_mod/pow_mod.hpp
@@ -78,11 +103,17 @@ data:
   - math_mod/pow_mod.hpp
   isVerificationFile: false
   path: math_mod/primitive_root_64bit.hpp
-  requiredBy: []
-  timestamp: '2025-04-06 00:09:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  requiredBy:
+  - string/rolling_hash.hpp
+  - random/hash.hpp
+  - math/group/rolling_hash.hpp
+  timestamp: '2025-06-06 16:34:11+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_string/string_z_roliha.test.cpp
+  - verify/unit_test/monoid.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
 documentation_of: math_mod/primitive_root_64bit.hpp
 layout: document
 redirect_from:

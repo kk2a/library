@@ -106,9 +106,9 @@ data:
   timestamp: '2025-04-24 20:50:13+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/yosupo_graph/tree_lca_static.test.cpp
   - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
-  - verify/yosupo_graph/tree_lca_static.test.cpp
 documentation_of: graph/static_graph.hpp
 layout: document
 redirect_from:

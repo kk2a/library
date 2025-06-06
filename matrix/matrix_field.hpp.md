@@ -51,7 +51,7 @@ data:
   code: "#ifndef KK2_MATRIX_MATRIX_FIELD_HPP\n#define KK2_MATRIX_MATRIX_FIELD_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include\
     \ <optional>\n#include <string>\n#include <vector>\n\n#include \"../type_traits/io.hpp\"\
-    \n\nnamespace kk2 {\n\n/**\n * @brief \u884C\u5217\n * \n * @tparam Field inv\u30E1\
+    \n\nnamespace kk2 {\n\n/**\n * @brief \u884C\u5217\n *\n * @tparam Field inv\u30E1\
     \u30F3\u30D0\u304C\u5FC5\u8981\n */\ntemplate <class Field> struct MatrixField\
     \ {\n    using value_type = Field;\n    using mat = MatrixField;\n    int _h,\
     \ _w;\n    std::vector<std::vector<Field>> _mat;\n\n    MatrixField() : MatrixField(0)\
@@ -181,17 +181,17 @@ data:
   isVerificationFile: false
   path: matrix/matrix_field.hpp
   requiredBy:
-  - matrix/basis.hpp
   - matrix/frobenius_form.hpp
-  timestamp: '2025-04-27 18:34:04+09:00'
+  - matrix/basis.hpp
+  timestamp: '2025-06-06 17:43:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/yosupo_linalg/matrix_inv.test.cpp
+  - verify/yosupo_linalg/matrix_rank.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp
-  - verify/yosupo_linalg/matrix_inv.test.cpp
-  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  - verify/yosupo_linalg/matrix_rank.test.cpp
   - verify/yosupo_linalg/matrix_pow.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
 documentation_of: matrix/matrix_field.hpp
 layout: document
 redirect_from:

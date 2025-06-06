@@ -11,6 +11,9 @@ data:
   - icon: ':x:'
     path: fps/fps_sqrt.hpp
     title: fps/fps_sqrt.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/group/rolling_hash.hpp
+    title: math/group/rolling_hash.hpp
   - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
@@ -29,10 +32,19 @@ data:
   - icon: ':x:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
+  - icon: ':question:'
+    path: random/hash.hpp
+    title: random/hash.hpp
+  - icon: ':question:'
+    path: string/rolling_hash.hpp
+    title: string/rolling_hash.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aoj/aoj_alds1_14_b.test.cpp
+    title: verify/aoj/aoj_alds1_14_b.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
@@ -45,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/monoid.test.cpp
+    title: verify/unit_test/monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_factorize_table.test.cpp
     title: verify/unit_test/prime_factorize_table.test.cpp
@@ -66,6 +81,9 @@ data:
   - icon: ':x:'
     path: verify/yosupo_math/sqrt_mod.test.cpp
     title: verify/yosupo_math/sqrt_mod.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_string/string_z_roliha.test.cpp
+    title: verify/yosupo_string/string_z_roliha.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -91,14 +109,14 @@ data:
     \ constexpr int bit_length = sizeof(UInt) * 8;\n\n    static UInt get_r() {\n\
     \        UInt ret = mod;\n        while (mod * ret != 1) ret *= UInt(2) - mod\
     \ * ret;\n        return ret;\n    }\n\n    static void setmod(UInt m) {\n   \
-    \     assert(m < (UInt(1u) << (bit_length - 2)));\n        assert((m & 1) == 1);\n\
-    \        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt _v;\n\n\
-    \    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template <class T,\
-    \ is_integral_t<T> * = nullptr> ArbitraryLazyMontgomeryModIntBase(const T &b)\n\
-    \        : _v(reduce(ULong(b % mod + mod) * n2)) {}\n\n    static UInt reduce(const\
-    \ ULong &b) {\n        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n\
-    \    }\n\n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v -\
-    \ 2 * mod) < 0) _v += 2 * mod;\n        return *this;\n    }\n\n    mint &operator-=(const\
+    \     assert(m < (UInt(1u) << (bit_length - 2)));\n        assert(m & 1);\n  \
+    \      mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt _v;\n\n  \
+    \  ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template <class T, is_integral_t<T>\
+    \ * = nullptr> ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
+    \ % (Int)mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n  \
+    \      return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\n\
+    \    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod)\
+    \ < 0) _v += 2 * mod;\n        return *this;\n    }\n\n    mint &operator-=(const\
     \ mint &b) {\n        if (Int(_v -= b._v) < 0) _v += 2 * mod;\n        return\
     \ *this;\n    }\n\n    mint &operator*=(const mint &b) {\n        _v = reduce(ULong(_v)\
     \ * b._v);\n        return *this;\n    }\n\n    mint &operator/=(const mint &b)\
@@ -114,14 +132,14 @@ data:
     \ mod : _v) != (b._v >= mod ? b._v - mod : b._v);\n    }\n\n    template <class\
     \ T> mint pow(T n) const {\n        mint ret(1), mul(*this);\n        n %= (Long)getmod()\
     \ - 1;\n        while (n > 0) {\n            if (n & 1) ret *= mul;\n        \
-    \    mul *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\
-    \n    mint inv() const {\n        Int s = getmod(), t = val(), m0 = 0, m1 = 1;\n\
-    \        while (t) {\n            Int u = s / t;\n            std::swap(s -= t\
-    \ * u, t);\n            std::swap(m0 -= m1 * u, m1);\n        }\n        if (m0\
-    \ < 0) m0 += getmod();\n        return mint(m0);\n    }\n\n    template <class\
-    \ OStream, is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream\
-    \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-    \ <class IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream\
+    \    if (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    mint\
+    \ inv() const {\n        Int s = getmod(), t = val(), m0 = 0, m1 = 1;\n      \
+    \  while (t) {\n            Int u = s / t;\n            std::swap(s -= t * u,\
+    \ t);\n            std::swap(m0 -= m1 * u, m1);\n        }\n        if (m0 < 0)\
+    \ m0 += getmod();\n        return mint(m0);\n    }\n\n    template <class OStream,\
+    \ is_ostream_t<OStream> * = nullptr>\n    friend OStream &operator<<(OStream &os,\
+    \ const mint &x) {\n        return os << x.val();\n    }\n\n    template <class\
+    \ IStream, is_istream_t<IStream> * = nullptr>\n    friend IStream &operator>>(IStream\
     \ &is, mint &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n \
     \       return (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n\
     \        return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
@@ -136,28 +154,34 @@ data:
   isVerificationFile: false
   path: modint/mont_arb.hpp
   requiredBy:
-  - math_mod/primitive_root_64bit.hpp
+  - string/rolling_hash.hpp
   - math_mod/mod_sqrt.hpp
+  - math_mod/primitive_root_64bit.hpp
+  - fps/fps_sqrt.hpp
+  - random/hash.hpp
   - math/prime_factorize.hpp
+  - math/multiplicative_function/euler_phi.hpp
   - math/multiplicative_function/mobius.hpp
   - math/multiplicative_function/sigma.hpp
-  - math/multiplicative_function/euler_phi.hpp
   - math/is_prime.hpp
-  - fps/fps_sqrt.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
+  - math/group/rolling_hash.hpp
+  timestamp: '2025-06-04 11:53:52+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/sqrt_mod.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
-  - verify/yosupo_math/primality_test.test.cpp
-  - verify/yosupo_math/factrize.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/monoid.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
+  - verify/yosupo_math/sqrt_mod.test.cpp
+  - verify/yosupo_math/factrize.test.cpp
+  - verify/yosupo_math/primality_test.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: modint/mont_arb.hpp
 layout: document
 redirect_from:

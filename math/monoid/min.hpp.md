@@ -11,10 +11,10 @@ data:
   - icon: ':warning:'
     path: graph/tree/euler_tour.hpp
     title: graph/tree/euler_tour.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/action/add_min.hpp
     title: math/action/add_min.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/action/update_min.hpp
     title: math/action/update_min.hpp
   - icon: ':x:'
@@ -24,6 +24,9 @@ data:
     path: template/procon.hpp
     title: template/procon.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/action.test.cpp
+    title: verify/unit_test/action.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
@@ -75,19 +78,20 @@ data:
   isVerificationFile: false
   path: math/monoid/min.hpp
   requiredBy:
-  - graph/tree/euler_tour.hpp
-  - template/procon.hpp
-  - template/function_util.hpp
   - data_structure/static_rmq.hpp
+  - template/function_util.hpp
+  - template/procon.hpp
+  - graph/tree/euler_tour.hpp
   - math/action/add_min.hpp
   - math/action/update_min.hpp
   timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_ds/ds_static_rmq_2.test.cpp
-  - verify/yosupo_ds/ds_static_rmq.test.cpp
-  - verify/unit_test/monoid.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+  - verify/unit_test/action.test.cpp
+  - verify/unit_test/monoid.test.cpp
+  - verify/yosupo_ds/ds_static_rmq.test.cpp
+  - verify/yosupo_ds/ds_static_rmq_2.test.cpp
 documentation_of: math/monoid/min.hpp
 layout: document
 redirect_from:

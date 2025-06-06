@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/group/add.hpp
     title: math/group/add.hpp
   - icon: ':question:'
@@ -11,10 +11,13 @@ data:
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/action.test.cpp
+    title: verify/unit_test/action.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -44,8 +47,9 @@ data:
   path: math/action/add_min.hpp
   requiredBy: []
   timestamp: '2025-04-06 13:01:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/unit_test/action.test.cpp
 documentation_of: math/action/add_min.hpp
 layout: document
 redirect_from:

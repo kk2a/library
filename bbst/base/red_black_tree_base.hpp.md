@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: bbst/lazy_red_black_tree.hpp
     title: bbst/lazy_red_black_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bbst/red_black_tree.hpp
     title: bbst/red_black_tree.hpp
   - icon: ':warning:'
@@ -18,13 +18,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
+    title: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
+    title: verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
+    document_title: "\u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9"
     links: []
   bundledCode: "#line 1 \"bbst/base/red_black_tree_base.hpp\"\n\n\n\n#include <cassert>\n\
     #include <memory>\n#include <string>\n#include <utility>\n#include <vector>\n\n\
@@ -38,7 +45,8 @@ data:
     \ }\n};\n\n} // namespace kk2\n\n\n#line 11 \"bbst/base/red_black_tree_base.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace rbtree {\n\n// base\u306B\u5FC5\u8981\u306A\u30E1\
     \u30F3\u30D0\n// NodePtr left, right;\n// int rank, count;\n// bool is_red;\n\
-    // Monoid val;\n\ntemplate <typename Node> struct RedBlackTreeBase {\n    VectorPool<Node>\
+    // Monoid val;\n\n/**\n * @brief \u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\
+    \u30B9\n *\n */\ntemplate <typename Node> struct RedBlackTreeBase {\n    VectorPool<Node>\
     \ pool;\n    using NodePtr = Node *;\n    using Monoid = typename Node::Monoid;\n\
     \n    static auto MonoidOp(Monoid a, Monoid b) { return Node::MonoidOp(a, b);\
     \ }\n\n    static auto MonoidUnit() { return Node::MonoidUnit(); }\n\n    using\
@@ -100,19 +108,57 @@ data:
     \    }\n\n    void pop_front(NodePtr &t) {\n        auto [l, r] = split(t, 1);\n\
     \        t = r;\n    }\n\n    void pop_back(NodePtr &t) {\n        auto [l, r]\
     \ = split(t, size(t) - 1);\n        t = l;\n    }\n\n    struct bb_result {\n\
-    \        int s;\n        Monoid prod;\n        NodePtr t;\n    };\n\n    template\
-    \ <class G> bb_result max_right(NodePtr &t, int l, const G &g) {\n        assert(0\
-    \ <= l and l <= size(t));\n        assert(g(MonoidUnit()));\n        auto [t1,\
-    \ t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1, t2);\n   \
-    \         return {l, MonoidUnit(), nullptr};\n        }\n        if (g(t2->val))\
-    \ {\n            t = merge(t1, t2);\n            return {l + size(t2), t2->val,\
-    \ nullptr};\n        }\n\n        int k = l;\n        Monoid x = MonoidUnit();\n\
+    \        int s;\n        Monoid prod;\n        NodePtr t;\n    };\n\n    /**\n\
+    \     * @brief \u4E8C\u5206\u63A2\u7D22\uFF08\u53F3\u65B9\u5411\uFF09\n     *\n\
+    \     * \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5927\u306Ek\u3092\u6C42\u3081\
+    \u308B\u4E8C\u5206\u63A2\u7D22\u3092\u884C\u3044\u307E\u3059\u3002\n     *\n \
+    \    * \u4EE5\u4E0B\u306E\u6761\u4EF6\u3092\u6E80\u305F\u3059k\u3092\u8FD4\u3057\
+    \u307E\u3059\uFF1A\n     *\n     * - k = l \u307E\u305F\u306F (k \u2260 l \u304B\
+    \u3064 g(prod(l, k)) = true)\n     *\n     * - k = size(t) \u307E\u305F\u306F\
+    \ (k \u2260 size(t) \u304B\u3064 g(prod(l, k+1)) = false)\n     *\n     * @tparam\
+    \ G \u8FF0\u8A9E\u95A2\u6570\u306E\u578B\u3002bool operator()(Monoid)\u3092\u6301\
+    \u3064\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\n     * @param t \u63A2\u7D22\
+    \u5BFE\u8C61\u306E\u6728\uFF08\u53C2\u7167\u6E21\u3057\u3001\u64CD\u4F5C\u5F8C\
+    \u306B\u5FA9\u5143\u3055\u308C\u307E\u3059\uFF09\n     * @param l \u63A2\u7D22\
+    \u958B\u59CB\u4F4D\u7F6E\uFF080-indexed\uFF09\n     * @param g \u5224\u5B9A\u95A2\
+    \u6570\u3002Monoid\u3092\u53D7\u3051\u53D6\u308Abool\u3092\u8FD4\u3059\u95A2\u6570\
+    \u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\n     * @return bb_result \u69CB\u9020\u4F53\
+    \n     *\n     *         - s: \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5927\
+    \u306Ek\n     *\n     *         - prod: prod(l, k)\u306E\u5024\n     *\n     *\
+    \         - t: k\u756A\u76EE\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30DD\u30A4\u30F3\
+    \u30BF\uFF08\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306Fnullptr\uFF09\n  \
+    \   *\n     * @pre 0 <= l <= size(t)\n     * @pre g(MonoidUnit()) == true\n  \
+    \   */\n    template <class G> bb_result max_right(NodePtr &t, int l, const G\
+    \ &g) {\n        assert(0 <= l and l <= size(t));\n        assert(g(MonoidUnit()));\n\
+    \        auto [t1, t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1,\
+    \ t2);\n            return {l, MonoidUnit(), nullptr};\n        }\n        if\
+    \ (g(t2->val)) {\n            t = merge(t1, t2);\n            return {size(t),\
+    \ t2->val, nullptr};\n        }\n\n        int k = l;\n        Monoid x = MonoidUnit();\n\
     \        NodePtr now = t2;\n\n        while (now->left) {\n            now = push(now);\n\
     \            Monoid y = MonoidOp(x, now->left->val);\n            if (g(y)) {\n\
     \                x = y;\n                k += size(now->left);\n             \
     \   now = now->right;\n            } else {\n                now = now->left;\n\
     \            }\n        }\n        t = merge(t1, t2);\n        return {k, x, now};\n\
-    \    }\n\n    template <class G> bb_result min_left(NodePtr &t, int r, const G\
+    \    }\n\n    /**\n     * @brief \u4E8C\u5206\u63A2\u7D22\uFF08\u5DE6\u65B9\u5411\
+    \uFF09\n     *\n     * \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5C0F\u306E\
+    k\u3092\u6C42\u3081\u308B\u4E8C\u5206\u63A2\u7D22\u3092\u884C\u3044\u307E\u3059\
+    \u3002\n     *\n     * \u4EE5\u4E0B\u306E\u6761\u4EF6\u3092\u6E80\u305F\u3059\
+    k\u3092\u8FD4\u3057\u307E\u3059\uFF1A\n     *\n     * - k = r \u307E\u305F\u306F\
+    \ (k \u2260 r \u304B\u3064 g(prod(k, r)) = true)\n     *\n     * - k = 0 \u307E\
+    \u305F\u306F (k \u2260 0 \u304B\u3064 g(prod(k-1, r)) = false)\n     *\n     *\
+    \ @tparam G \u8FF0\u8A9E\u95A2\u6570\u306E\u578B\u3002bool operator()(Monoid)\u3092\
+    \u6301\u3064\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\n     * @param t \u63A2\
+    \u7D22\u5BFE\u8C61\u306E\u6728\uFF08\u53C2\u7167\u6E21\u3057\u3001\u64CD\u4F5C\
+    \u5F8C\u306B\u5FA9\u5143\u3055\u308C\u307E\u3059\uFF09\n     * @param r \u63A2\
+    \u7D22\u7D42\u4E86\u4F4D\u7F6E\uFF080-indexed\uFF09\n     * @param g \u5224\u5B9A\
+    \u95A2\u6570\u3002Monoid\u3092\u53D7\u3051\u53D6\u308Abool\u3092\u8FD4\u3059\u95A2\
+    \u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\n     * @return bb_result \u69CB\u9020\
+    \u4F53\n     *\n     *         - s: \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\
+    \u5C0F\u306Ek\n     *\n     *         - prod: prod(k, r)\u306E\u5024\n     *\n\
+    \     *         - t: k-1\u756A\u76EE\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30DD\
+    \u30A4\u30F3\u30BF\uFF08\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306Fnullptr\uFF09\
+    \n     *\n     * @pre 0 <= r <= size(t)\n     * @pre g(MonoidUnit()) == true\n\
+    \     */\n    template <class G> bb_result min_left(NodePtr &t, int r, const G\
     \ &g) {\n        assert(0 <= r and r <= size(t));\n        assert(g(MonoidUnit()));\n\
     \        auto [t1, t2] = split(t, r);\n        if (!t1) {\n            t = merge(t1,\
     \ t2);\n            return {r, MonoidUnit(), nullptr};\n        }\n        if\
@@ -149,13 +195,14 @@ data:
     #include <vector>\n\n#include \"../../others/vector_pool.hpp\"\n\nnamespace kk2\
     \ {\n\nnamespace rbtree {\n\n// base\u306B\u5FC5\u8981\u306A\u30E1\u30F3\u30D0\
     \n// NodePtr left, right;\n// int rank, count;\n// bool is_red;\n// Monoid val;\n\
-    \ntemplate <typename Node> struct RedBlackTreeBase {\n    VectorPool<Node> pool;\n\
-    \    using NodePtr = Node *;\n    using Monoid = typename Node::Monoid;\n\n  \
-    \  static auto MonoidOp(Monoid a, Monoid b) { return Node::MonoidOp(a, b); }\n\
-    \n    static auto MonoidUnit() { return Node::MonoidUnit(); }\n\n    using Action\
-    \ = typename Node::Action;\n\n    static auto Map(Action a, Monoid x) { return\
-    \ Node::Map(a, x); }\n\n    static auto ActionOp(Action a, Action b) { return\
-    \ Node::ActionOp(a, b); }\n\n    static auto ActionUnit() { return Node::ActionUnit();\
+    \n/**\n * @brief \u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9\n *\n\
+    \ */\ntemplate <typename Node> struct RedBlackTreeBase {\n    VectorPool<Node>\
+    \ pool;\n    using NodePtr = Node *;\n    using Monoid = typename Node::Monoid;\n\
+    \n    static auto MonoidOp(Monoid a, Monoid b) { return Node::MonoidOp(a, b);\
+    \ }\n\n    static auto MonoidUnit() { return Node::MonoidUnit(); }\n\n    using\
+    \ Action = typename Node::Action;\n\n    static auto Map(Action a, Monoid x) {\
+    \ return Node::Map(a, x); }\n\n    static auto ActionOp(Action a, Action b) {\
+    \ return Node::ActionOp(a, b); }\n\n    static auto ActionUnit() { return Node::ActionUnit();\
     \ }\n\n    RedBlackTreeBase(int sz) : pool(sz) { pool.clear(); }\n\n    template\
     \ <typename... Args> NodePtr alloc(Args... args) {\n        NodePtr t = &(*pool.alloc()\
     \ = Node(args...));\n        return update(t);\n    }\n\n    NodePtr make_tree()\
@@ -211,19 +258,57 @@ data:
     \    }\n\n    void pop_front(NodePtr &t) {\n        auto [l, r] = split(t, 1);\n\
     \        t = r;\n    }\n\n    void pop_back(NodePtr &t) {\n        auto [l, r]\
     \ = split(t, size(t) - 1);\n        t = l;\n    }\n\n    struct bb_result {\n\
-    \        int s;\n        Monoid prod;\n        NodePtr t;\n    };\n\n    template\
-    \ <class G> bb_result max_right(NodePtr &t, int l, const G &g) {\n        assert(0\
-    \ <= l and l <= size(t));\n        assert(g(MonoidUnit()));\n        auto [t1,\
-    \ t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1, t2);\n   \
-    \         return {l, MonoidUnit(), nullptr};\n        }\n        if (g(t2->val))\
-    \ {\n            t = merge(t1, t2);\n            return {l + size(t2), t2->val,\
-    \ nullptr};\n        }\n\n        int k = l;\n        Monoid x = MonoidUnit();\n\
+    \        int s;\n        Monoid prod;\n        NodePtr t;\n    };\n\n    /**\n\
+    \     * @brief \u4E8C\u5206\u63A2\u7D22\uFF08\u53F3\u65B9\u5411\uFF09\n     *\n\
+    \     * \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5927\u306Ek\u3092\u6C42\u3081\
+    \u308B\u4E8C\u5206\u63A2\u7D22\u3092\u884C\u3044\u307E\u3059\u3002\n     *\n \
+    \    * \u4EE5\u4E0B\u306E\u6761\u4EF6\u3092\u6E80\u305F\u3059k\u3092\u8FD4\u3057\
+    \u307E\u3059\uFF1A\n     *\n     * - k = l \u307E\u305F\u306F (k \u2260 l \u304B\
+    \u3064 g(prod(l, k)) = true)\n     *\n     * - k = size(t) \u307E\u305F\u306F\
+    \ (k \u2260 size(t) \u304B\u3064 g(prod(l, k+1)) = false)\n     *\n     * @tparam\
+    \ G \u8FF0\u8A9E\u95A2\u6570\u306E\u578B\u3002bool operator()(Monoid)\u3092\u6301\
+    \u3064\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\n     * @param t \u63A2\u7D22\
+    \u5BFE\u8C61\u306E\u6728\uFF08\u53C2\u7167\u6E21\u3057\u3001\u64CD\u4F5C\u5F8C\
+    \u306B\u5FA9\u5143\u3055\u308C\u307E\u3059\uFF09\n     * @param l \u63A2\u7D22\
+    \u958B\u59CB\u4F4D\u7F6E\uFF080-indexed\uFF09\n     * @param g \u5224\u5B9A\u95A2\
+    \u6570\u3002Monoid\u3092\u53D7\u3051\u53D6\u308Abool\u3092\u8FD4\u3059\u95A2\u6570\
+    \u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\n     * @return bb_result \u69CB\u9020\u4F53\
+    \n     *\n     *         - s: \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5927\
+    \u306Ek\n     *\n     *         - prod: prod(l, k)\u306E\u5024\n     *\n     *\
+    \         - t: k\u756A\u76EE\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30DD\u30A4\u30F3\
+    \u30BF\uFF08\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306Fnullptr\uFF09\n  \
+    \   *\n     * @pre 0 <= l <= size(t)\n     * @pre g(MonoidUnit()) == true\n  \
+    \   */\n    template <class G> bb_result max_right(NodePtr &t, int l, const G\
+    \ &g) {\n        assert(0 <= l and l <= size(t));\n        assert(g(MonoidUnit()));\n\
+    \        auto [t1, t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1,\
+    \ t2);\n            return {l, MonoidUnit(), nullptr};\n        }\n        if\
+    \ (g(t2->val)) {\n            t = merge(t1, t2);\n            return {size(t),\
+    \ t2->val, nullptr};\n        }\n\n        int k = l;\n        Monoid x = MonoidUnit();\n\
     \        NodePtr now = t2;\n\n        while (now->left) {\n            now = push(now);\n\
     \            Monoid y = MonoidOp(x, now->left->val);\n            if (g(y)) {\n\
     \                x = y;\n                k += size(now->left);\n             \
     \   now = now->right;\n            } else {\n                now = now->left;\n\
     \            }\n        }\n        t = merge(t1, t2);\n        return {k, x, now};\n\
-    \    }\n\n    template <class G> bb_result min_left(NodePtr &t, int r, const G\
+    \    }\n\n    /**\n     * @brief \u4E8C\u5206\u63A2\u7D22\uFF08\u5DE6\u65B9\u5411\
+    \uFF09\n     *\n     * \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5C0F\u306E\
+    k\u3092\u6C42\u3081\u308B\u4E8C\u5206\u63A2\u7D22\u3092\u884C\u3044\u307E\u3059\
+    \u3002\n     *\n     * \u4EE5\u4E0B\u306E\u6761\u4EF6\u3092\u6E80\u305F\u3059\
+    k\u3092\u8FD4\u3057\u307E\u3059\uFF1A\n     *\n     * - k = r \u307E\u305F\u306F\
+    \ (k \u2260 r \u304B\u3064 g(prod(k, r)) = true)\n     *\n     * - k = 0 \u307E\
+    \u305F\u306F (k \u2260 0 \u304B\u3064 g(prod(k-1, r)) = false)\n     *\n     *\
+    \ @tparam G \u8FF0\u8A9E\u95A2\u6570\u306E\u578B\u3002bool operator()(Monoid)\u3092\
+    \u6301\u3064\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\n     * @param t \u63A2\
+    \u7D22\u5BFE\u8C61\u306E\u6728\uFF08\u53C2\u7167\u6E21\u3057\u3001\u64CD\u4F5C\
+    \u5F8C\u306B\u5FA9\u5143\u3055\u308C\u307E\u3059\uFF09\n     * @param r \u63A2\
+    \u7D22\u7D42\u4E86\u4F4D\u7F6E\uFF080-indexed\uFF09\n     * @param g \u5224\u5B9A\
+    \u95A2\u6570\u3002Monoid\u3092\u53D7\u3051\u53D6\u308Abool\u3092\u8FD4\u3059\u95A2\
+    \u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\n     * @return bb_result \u69CB\u9020\
+    \u4F53\n     *\n     *         - s: \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\
+    \u5C0F\u306Ek\n     *\n     *         - prod: prod(k, r)\u306E\u5024\n     *\n\
+    \     *         - t: k-1\u756A\u76EE\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30DD\
+    \u30A4\u30F3\u30BF\uFF08\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306Fnullptr\uFF09\
+    \n     *\n     * @pre 0 <= r <= size(t)\n     * @pre g(MonoidUnit()) == true\n\
+    \     */\n    template <class G> bb_result min_left(NodePtr &t, int r, const G\
     \ &g) {\n        assert(0 <= r and r <= size(t));\n        assert(g(MonoidUnit()));\n\
     \        auto [t1, t2] = split(t, r);\n        if (!t1) {\n            t = merge(t1,\
     \ t2);\n            return {r, MonoidUnit(), nullptr};\n        }\n        if\
@@ -263,15 +348,17 @@ data:
   - data_structure/ordered_set.hpp
   - bbst/lazy_red_black_tree.hpp
   - bbst/red_black_tree.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-06 17:43:29+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
 documentation_of: bbst/base/red_black_tree_base.hpp
 layout: document
 redirect_from:
 - /library/bbst/base/red_black_tree_base.hpp
 - /library/bbst/base/red_black_tree_base.hpp.html
-title: bbst/base/red_black_tree_base.hpp
+title: "\u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9"
 ---

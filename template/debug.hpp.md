@@ -157,23 +157,26 @@ data:
     \    output(std::cerr, name[pos++] + \":\", t);\n    if (sizeof...(args) > 0)\
     \ output(std::cerr, \", \");\n    show_vars(name, pos, args...);\n}\n\n#define\
     \ kdebug(...)                                                                \
-    \                \\\n    kk2::debug::output(std::cerr, \"line:\" + std::to_string(__LINE__));\
-    \                             \\\n    kk2::debug::output(std::cerr, ' ');    \
-    \                                                        \\\n    kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__),\
-    \ 0, __VA_ARGS__);                          \\\n    kk2::debug::outputln(std::cerr);\n\
-    \n#else\n\ntemplate <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>\n\
-    void output(OStream &, const Args &...) {}\n\ntemplate <class OStream, class...\
-    \ Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream &, const Args\
-    \ &...) {}\n\ntemplate <class... Args> void fix_warn(const Args &...) {}\n\n#define\
-    \ kdebug(...) kk2::debug::fix_warn(__VA_ARGS__);\n\n#endif // KK2\n\n} // namespace\
-    \ debug\n\n} // namespace kk2\n\n#endif // KK2_TEMPLATE_DEBUG_HPP\n"
+    \                \\\n    std::cerr << \"line:\" << __LINE__ << ' ';          \
+    \                                             \\\n    kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__),\
+    \ 0, __VA_ARGS__);                          \\\n    std::cerr << std::endl;\n\n\
+    #define kput(s)                                                              \
+    \                      \\\n    std::cerr << \"line:\" << __LINE__ << ' ';    \
+    \                                                   \\\n    kk2::debug::outputln(std::cerr,\
+    \ s);\n\n#else\n\ntemplate <class OStream, class... Args, is_ostream_t<OStream>\
+    \ * = nullptr>\nvoid output(OStream &, const Args &...) {}\n\ntemplate <class\
+    \ OStream, class... Args, is_ostream_t<OStream> * = nullptr>\nvoid outputln(OStream\
+    \ &, const Args &...) {}\n\ntemplate <class... Args> void fix_warn(const Args\
+    \ &...) {}\n\n#define kdebug(...) kk2::debug::fix_warn(__VA_ARGS__);\n\n#define\
+    \ kput(s) kk2::debug::fix_warn(s)\n\n#endif // KK2\n\n} // namespace debug\n\n\
+    } // namespace kk2\n\n#endif // KK2_TEMPLATE_DEBUG_HPP\n"
   dependsOn:
   - type_traits/io.hpp
   - type_traits/member.hpp
   isVerificationFile: false
   path: template/debug.hpp
   requiredBy: []
-  timestamp: '2025-04-24 20:54:26+09:00'
+  timestamp: '2025-06-06 16:35:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp

@@ -132,37 +132,36 @@ data:
     \  * @return int \u30E9\u30F3\u30AF\uFF0EEARLY_TERMINATE\u304Ctrue\u306E\u3068\
     \u304D\u306B\uFF0C\u30D5\u30EB\u30E9\u30F3\u30AF\u3067\u306A\u3044\u3053\u3068\
     \u304C\u78BA\u5B9A\u3057\u305F\u3089-1\u3092\u8FD4\u3059\n     */\n    template\
-    \ <bool RREF = true, bool EARLY_TERMINATE = false>\n    int sweep(int wr = -1)\
-    \ {\n        if (wr == -1) wr = _w;\n        int r = 0;\n        for (int i =\
-    \ 0; i < wr; i++) {\n            if (r >= _h) break;\n            int pivot =\
-    \ -1;\n            for (int j = r; j < _h; j++) {\n                if (_mat[j][i])\
+    \ <bool RREF = true, bool EARLY_TERMINATE = false> int sweep(int wr = -1) {\n\
+    \        if (wr == -1) wr = _w;\n        int r = 0;\n        for (int i = 0; i\
+    \ < wr; i++) {\n            if (r >= _h) break;\n            int pivot = -1;\n\
+    \            for (int j = r; j < _h; j++) {\n                if (_mat[j][i]) {\n\
+    \                    pivot = j;\n                    break;\n                }\n\
+    \            }\n            if (pivot == -1) {\n                if constexpr (EARLY_TERMINATE)\
+    \ return -1;\n                continue;\n            }\n            if (r != pivot)\
+    \ std::swap(_mat[r], _mat[pivot]);\n            for (int j = RREF ? 0 : r + 1;\
+    \ j < _h; j++) {\n                if (j == r) continue;\n                if (_mat[j][i])\
+    \ _mat[j] ^= _mat[r];\n            }\n            r++;\n        }\n        return\
+    \ r;\n    }\n\n    mat &shrink() {\n        while (_h && !bool(_mat.back())) _mat.pop_back(),\
+    \ --_h;\n        return *this;\n    }\n\n    std::optional<mat> solve(const mat\
+    \ &b) const {\n        assert(_h == b._h);\n        assert(b._w == 1);\n     \
+    \   mat ab = combine_right(b);\n        int r = ab.sweep<true, false>();\n   \
+    \     if (r and ab._mat[r - 1].ctz() == _w) return std::nullopt;\n        mat\
+    \ res(1 + _w - r, _w);\n        std::vector<int> idx(_w, -1), step(r, -1);\n \
+    \       for (int i = 0, j = 0, now = 0; j < _w; j++) {\n            if (i == r\
+    \ or !bool(ab[i][j])) idx[j] = now, res[1 + now++][j] = 1;\n            else res[0][j]\
+    \ = ab[i][_w], step[i++] = j;\n        }\n        for (int i = 0; i < r; i++)\
+    \ {\n            for (int j = 0; j < _w; j++) {\n                if (idx[j] !=\
+    \ -1) res[idx[j] + 1][step[i]] = ab[i][j];\n            }\n        }\n       \
+    \ return res;\n    }\n\n    int rank() const { return mat(*this).sweep<false,\
+    \ false>(); }\n\n    bool det() const {\n        assert(_h == _w);\n        return\
+    \ mat(*this).sweep<false, true>() != -1;\n    }\n\n    std::optional<mat> inv()\
+    \ const {\n        assert(_h == _w);\n        std::vector<DynamicBitSet> res(_h,\
+    \ _w);\n        for (int i = 0; i < _h; i++) { res[i][i] = 1; }\n        std::vector<DynamicBitSet>\
+    \ buf(_mat);\n        for (int i = 0; i < _w; i++) {\n            int pivot =\
+    \ -1;\n            for (int j = i; j < _h; j++) {\n                if (buf[j][i])\
     \ {\n                    pivot = j;\n                    break;\n            \
-    \    }\n            }\n            if (pivot == -1) {\n                if constexpr\
-    \ (EARLY_TERMINATE) return -1;\n                continue;\n            }\n   \
-    \         if (r != pivot) std::swap(_mat[r], _mat[pivot]);\n            for (int\
-    \ j = RREF ? 0 : r + 1; j < _h; j++) {\n                if (j == r) continue;\n\
-    \                if (_mat[j][i]) _mat[j] ^= _mat[r];\n            }\n        \
-    \    r++;\n        }\n        return r;\n    }\n\n    mat &shrink() {\n      \
-    \  while (_h && !bool(_mat.back())) _mat.pop_back(), --_h;\n        return *this;\n\
-    \    }\n\n    std::optional<mat> solve(const mat &b) const {\n        assert(_h\
-    \ == b._h);\n        assert(b._w == 1);\n        mat ab = combine_right(b);\n\
-    \        int r = ab.sweep<true, false>();\n        if (r and ab._mat[r - 1].ctz()\
-    \ == _w) return std::nullopt;\n        mat res(1 + _w - r, _w);\n        std::vector<int>\
-    \ idx(_w, -1), step(r, -1);\n        for (int i = 0, j = 0, now = 0; j < _w; j++)\
-    \ {\n            kdebug(i, j, now, r);\n            if (i == r or !bool(ab[i][j]))\
-    \ idx[j] = now, res[1 + now++][j] = 1;\n            else res[0][j] = ab[i][_w],\
-    \ step[i++] = j;\n        }\n        for (int i = 0; i < r; i++) {\n         \
-    \   for (int j = 0; j < _w; j++) {\n                if (idx[j] != -1) res[idx[j]\
-    \ + 1][step[i]] = ab[i][j];\n            }\n        }\n        return res;\n \
-    \   }\n\n    int rank() const { return mat(*this).sweep<false, false>(); }\n\n\
-    \    bool det() const {\n        assert(_h == _w);\n        return mat(*this).sweep<false,\
-    \ true>() != -1;\n    }\n\n    std::optional<mat> inv() const {\n        assert(_h\
-    \ == _w);\n        std::vector<DynamicBitSet> res(_h, _w);\n        for (int i\
-    \ = 0; i < _h; i++) { res[i][i] = 1; }\n        std::vector<DynamicBitSet> buf(_mat);\n\
-    \        for (int i = 0; i < _w; i++) {\n            int pivot = -1;\n       \
-    \     for (int j = i; j < _h; j++) {\n                if (buf[j][i]) {\n     \
-    \               pivot = j;\n                    break;\n                }\n  \
-    \          }\n            if (pivot == -1) return {};\n            std::swap(buf[i],\
+    \    }\n            }\n            if (pivot == -1) return {};\n            std::swap(buf[i],\
     \ buf[pivot]);\n            std::swap(res[i], res[pivot]);\n            for (int\
     \ j = 0; j < _h; j++) {\n                if (j == i) continue;\n             \
     \   if (buf[j][i]) {\n                    buf[j] ^= buf[i];\n                \
@@ -208,14 +207,14 @@ data:
   isVerificationFile: false
   path: matrix/matrix_F2.hpp
   requiredBy: []
-  timestamp: '2025-04-24 20:44:35+09:00'
+  timestamp: '2025-06-06 17:43:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - verify/yosupo_linalg/matrix_det_f2.test.cpp
-  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
-  - verify/yosupo_linalg/matrix_rank_F2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
+  - verify/yosupo_linalg/matrix_rank_F2.test.cpp
+  - verify/yosupo_linalg/matrix_inv_f2.test.cpp
+  - verify/yosupo_linalg/matrix_det_f2.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
 documentation_of: matrix/matrix_F2.hpp
 layout: document
 redirect_from:

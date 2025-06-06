@@ -77,11 +77,11 @@ data:
   isVerificationFile: false
   path: fps/fps_sqrt.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-06-04 11:53:52+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   - verify/yosupo_fps/fps_sqrt.test.cpp
+  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
 documentation_of: fps/fps_sqrt.hpp
 layout: document
 redirect_from:

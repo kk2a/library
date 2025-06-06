@@ -51,7 +51,7 @@ data:
   isVerificationFile: false
   path: matrix/frobenius_form.hpp
   requiredBy: []
-  timestamp: '2025-04-27 18:34:04+09:00'
+  timestamp: '2025-06-06 17:43:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/frobenius_form.hpp

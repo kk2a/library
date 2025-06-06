@@ -65,7 +65,7 @@ data:
   isVerificationFile: false
   path: math/multiplicative_function/mobius.hpp
   requiredBy: []
-  timestamp: '2025-04-06 00:09:45+09:00'
+  timestamp: '2025-06-04 11:53:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/famous_function_table.test.cpp

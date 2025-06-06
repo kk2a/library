@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bbst/base/red_black_tree_base.hpp
-    title: bbst/base/red_black_tree_base.hpp
-  - icon: ':heavy_check_mark:'
+    title: "\u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9"
+  - icon: ':question:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   - icon: ':question:'
@@ -99,7 +99,7 @@ data:
   isVerificationFile: false
   path: bbst/lazy_red_black_tree.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
+  timestamp: '2025-06-06 17:43:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp

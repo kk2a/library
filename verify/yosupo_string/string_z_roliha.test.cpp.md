@@ -2,8 +2,32 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: math/is_prime.hpp
+    title: math/is_prime.hpp
+  - icon: ':question:'
+    path: math/prime_factorize.hpp
+    title: math/prime_factorize.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/pow_mod.hpp
+    title: math_mod/pow_mod.hpp
+  - icon: ':question:'
+    path: math_mod/primitive_root_64bit.hpp
+    title: math_mod/primitive_root_64bit.hpp
+  - icon: ':question:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
+  - icon: ':question:'
+    path: modint/mont_arb.hpp
+    title: modint/mont_arb.hpp
+  - icon: ':question:'
+    path: random/gen.hpp
+    title: random/gen.hpp
+  - icon: ':question:'
+    path: random/gen.hpp
+    title: random/gen.hpp
   - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
@@ -61,7 +85,7 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  [Previous line repeated 3 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
@@ -73,11 +97,19 @@ data:
   dependsOn:
   - string/rolling_hash.hpp
   - random/hash.hpp
-  - modint/modint_2_61m1.hpp
+  - math_mod/primitive_root_64bit.hpp
+  - math/prime_factorize.hpp
+  - math_mod/pow_mod.hpp
+  - modint/mont_arb.hpp
   - type_traits/integral.hpp
   - type_traits/io.hpp
   - random/gen.hpp
   - random/seed.hpp
+  - math/is_prime.hpp
+  - random/gen.hpp
+  - math_mod/pow_mod.hpp
+  - modint/modint_2_61m1.hpp
+  - random/gen.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
@@ -87,7 +119,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_string/string_z_roliha.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 11:43:05+09:00'
+  timestamp: '2025-06-06 16:34:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_z_roliha.test.cpp

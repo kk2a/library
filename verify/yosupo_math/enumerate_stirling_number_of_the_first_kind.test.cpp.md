@@ -108,7 +108,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   requiredBy: []
-  timestamp: '2025-04-24 20:44:35+09:00'
+  timestamp: '2025-06-04 11:53:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp

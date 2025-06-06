@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bbst/base/red_black_tree_base.hpp
-    title: bbst/base/red_black_tree_base.hpp
-  - icon: ':heavy_check_mark:'
+    title: "\u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9"
+  - icon: ':question:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   - icon: ':question:'
@@ -12,12 +12,18 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
+    title: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
+    title: verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -78,10 +84,12 @@ data:
   isVerificationFile: false
   path: bbst/red_black_tree.hpp
   requiredBy: []
-  timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-06 17:43:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
 documentation_of: bbst/red_black_tree.hpp
 layout: document
 redirect_from:

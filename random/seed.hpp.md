@@ -6,6 +6,9 @@ data:
     path: fps/poly_find_root.hpp
     title: fps/poly_find_root.hpp
   - icon: ':heavy_check_mark:'
+    path: math/group/rolling_hash.hpp
+    title: math/group/rolling_hash.hpp
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/euler_phi.hpp
     title: math/multiplicative_function/euler_phi.hpp
   - icon: ':heavy_check_mark:'
@@ -17,7 +20,7 @@ data:
   - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
   - icon: ':question:'
@@ -39,6 +42,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_ntl_1_d.test.cpp
     title: verify/aoj/aoj_ntl_1_d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/action.test.cpp
+    title: verify/unit_test/action.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/binom_table.test.cpp
+    title: verify/unit_test/binom_table.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/bit_vector.test.cpp
     title: verify/unit_test/bit_vector.test.cpp
@@ -116,37 +125,40 @@ data:
   isVerificationFile: false
   path: random/seed.hpp
   requiredBy:
-  - math_mod/primitive_root_64bit.hpp
   - string/rolling_hash.hpp
+  - math_mod/primitive_root_64bit.hpp
+  - fps/poly_find_root.hpp
+  - random/hash.hpp
   - random/graph.hpp
   - random/gen.hpp
-  - random/hash.hpp
   - math/prime_factorize.hpp
+  - math/multiplicative_function/euler_phi.hpp
   - math/multiplicative_function/mobius.hpp
   - math/multiplicative_function/sigma.hpp
-  - math/multiplicative_function/euler_phi.hpp
-  - fps/poly_find_root.hpp
+  - math/group/rolling_hash.hpp
   timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_math/primitive_root.test.cpp
-  - verify/yosupo_math/factrize.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
-  - verify/aoj/aoj_alds1_14_b.test.cpp
-  - verify/unit_test/bit_vector.test.cpp
-  - verify/unit_test/partial_persitent_unionfind.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/multiplicative_function_table.test.cpp
-  - verify/unit_test/monoid.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
-  - verify/unit_test/prime_table_extend.test.cpp
-  - verify/unit_test/offline_dynamic_connectivity.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/unit_test/wavelet_matrix.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
+  - verify/unit_test/action.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/prime_table_extend.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
+  - verify/unit_test/offline_dynamic_connectivity.test.cpp
+  - verify/unit_test/bit_vector.test.cpp
+  - verify/unit_test/partial_persitent_unionfind.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/unit_test/binom_table.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/monoid.test.cpp
+  - verify/unit_test/wavelet_matrix.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
+  - verify/unit_test/multiplicative_function_table.test.cpp
+  - verify/yosupo_math/factrize.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/aoj/aoj_ntl_1_d.test.cpp
 documentation_of: random/seed.hpp
 layout: document
 redirect_from:

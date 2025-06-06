@@ -58,17 +58,18 @@ data:
     \ + 1, in[v] + 1);\n    }\n\n    template <typename F> void subtree_query(int\
     \ u, bool is_node_query, const F &f) {\n        f(in[u] + (int)!is_node_query,\
     \ out[u]);\n    }\n\n  private:\n    StaticRMQ<std::pair<int, int>> rmq;\n\n \
-    \   void init() {\n        std::vector<typename StaticRMQ<std::pair<int, int>>::Monoid>\
-    \ rmq_init(2 * g.size());\n        auto dfs = [&](auto self, int now, int pre,\
-    \ int dep) -> void {\n            in[now] = id;\n            rmq_init[id++] =\
-    \ {dep, now};\n            for (auto &&e : g[now]) {\n                if ((int)e\
-    \ == pre) continue;\n                par[(int)e] = now;\n                edge_in[e.id]\
-    \ = id;\n                self(self, e, now, dep + 1);\n                edge_out[e.id]\
-    \ = id++;\n            }\n            out[now] = id;\n            rmq_init[id]\
-    \ = {dep - 1, pre};\n        };\n        dfs(dfs, root, -1, 0);\n        for (int\
-    \ i = 0; i < (int)g.size(); i++) {\n            if (in[i] == -1) dfs(dfs, i, -1,\
-    \ 0);\n        }\n        rmq = StaticRMQ<std::pair<int, int>>(rmq_init);\n  \
-    \  }\n};\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_EULER_TOUR_HPP\n"
+    \   void init() {\n        using Monoid = typename decltype(rmq)::Monoid;\n  \
+    \      std::vector<Monoid> rmq_init(2 * g.size());\n        auto dfs = [&](auto\
+    \ self, int now, int pre, int dep) -> void {\n            in[now] = id;\n    \
+    \        rmq_init[id++] = Monoid({dep, now});\n            for (auto &&e : g[now])\
+    \ {\n                if ((int)e == pre) continue;\n                par[(int)e]\
+    \ = now;\n                edge_in[e.id] = id;\n                self(self, e, now,\
+    \ dep + 1);\n                edge_out[e.id] = id++;\n            }\n         \
+    \   out[now] = id;\n            rmq_init[id] = Monoid({dep - 1, pre});\n     \
+    \   };\n        dfs(dfs, root, -1, 0);\n        for (int i = 0; i < (int)g.size();\
+    \ i++) {\n            if (in[i] == -1) dfs(dfs, i, -1, 0);\n        }\n      \
+    \  rmq = StaticRMQ<std::pair<int, int>>(rmq_init);\n    }\n};\n\n} // namespace\
+    \ kk2\n\n#endif // KK2_GRAPH_TREE_EULER_TOUR_HPP\n"
   dependsOn:
   - data_structure/static_rmq.hpp
   - math/monoid/min.hpp
@@ -77,7 +78,7 @@ data:
   isVerificationFile: false
   path: graph/tree/euler_tour.hpp
   requiredBy: []
-  timestamp: '2025-04-06 13:01:12+09:00'
+  timestamp: '2025-06-04 11:56:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/euler_tour.hpp

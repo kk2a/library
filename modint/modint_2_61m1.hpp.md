@@ -8,6 +8,9 @@ data:
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/group/rolling_hash.hpp
+    title: math/group/rolling_hash.hpp
   - icon: ':question:'
     path: random/hash.hpp
     title: random/hash.hpp
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/monoid.test.cpp
+    title: verify/unit_test/monoid.test.cpp
   - icon: ':x:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
@@ -68,9 +74,9 @@ data:
     \ constexpr mint operator/(const mint &x, const mint &y) { return mint(x) /= y;\
     \ }\n\n    template <class T, is_integral_t<T> * = nullptr> constexpr mint pow(T\
     \ n) const {\n        assert(n >= 0);\n        mint x = *this, r = 1;\n      \
-    \  while (n) {\n            if (n & 1) r *= x;\n            x *= x;\n        \
-    \    n >>= 1;\n        }\n        return r;\n    }\n\n    constexpr mint inv()\
-    \ const { return pow(mod - 2); }\n\n    template <class OStream, is_ostream_t<OStream>\
+    \  while (n) {\n            if (n & 1) r *= x;\n            if (n >>= 1) x *=\
+    \ x;\n        }\n        return r;\n    }\n\n    constexpr mint inv() const {\
+    \ return pow(mod - 2); }\n\n    template <class OStream, is_ostream_t<OStream>\
     \ * = nullptr>\n    friend OStream &operator<<(OStream &os, const mint &x) {\n\
     \        return os << x._v;\n    }\n\n    template <class IStream, is_istream_t<IStream>\
     \ * = nullptr>\n    friend IStream &operator>>(IStream &is, mint &x) {\n     \
@@ -92,11 +98,13 @@ data:
   requiredBy:
   - string/rolling_hash.hpp
   - random/hash.hpp
-  timestamp: '2025-04-05 12:46:42+09:00'
+  - math/group/rolling_hash.hpp
+  timestamp: '2025-06-04 11:53:52+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
+  - verify/unit_test/monoid.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
 documentation_of: modint/modint_2_61m1.hpp
 layout: document
 redirect_from:

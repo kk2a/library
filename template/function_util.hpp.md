@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
   - icon: ':question:'
@@ -86,7 +86,7 @@ data:
   path: template/function_util.hpp
   requiredBy:
   - template/procon.hpp
-  timestamp: '2025-04-06 13:01:12+09:00'
+  timestamp: '2025-06-06 17:43:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

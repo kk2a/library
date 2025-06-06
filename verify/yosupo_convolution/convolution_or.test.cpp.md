@@ -80,7 +80,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_convolution/convolution_or.test.cpp
   requiredBy: []
-  timestamp: '2025-04-17 11:43:05+09:00'
+  timestamp: '2025-06-04 11:53:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_or.test.cpp
