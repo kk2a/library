@@ -14,7 +14,7 @@ namespace kk2 {
 
 /**
  * @brief 行列
- * 
+ *
  * @tparam Field invメンバが必要
  */
 template <class Field> struct MatrixField {

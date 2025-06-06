@@ -21,7 +21,7 @@ namespace rbtree {
 
 /**
  * @brief 赤黒木の基本クラス
- * 
+ *
  */
 template <typename Node> struct RedBlackTreeBase {
     VectorPool<Node> pool;
@@ -191,27 +191,27 @@ template <typename Node> struct RedBlackTreeBase {
 
     /**
      * @brief 二分探索（右方向）
-     * 
+     *
      * 条件を満たす最大のkを求める二分探索を行います。
-     * 
+     *
      * 以下の条件を満たすkを返します：
-     * 
+     *
      * - k = l または (k ≠ l かつ g(prod(l, k)) = true)
-     * 
+     *
      * - k = size(t) または (k ≠ size(t) かつ g(prod(l, k+1)) = false)
-     * 
+     *
      * @tparam G 述語関数の型。bool operator()(Monoid)を持つ必要があります
      * @param t 探索対象の木（参照渡し、操作後に復元されます）
      * @param l 探索開始位置（0-indexed）
      * @param g 判定関数。Monoidを受け取りboolを返す関数オブジェクト
      * @return bb_result 構造体
-     * 
+     *
      *         - s: 条件を満たす最大のk
-     * 
+     *
      *         - prod: prod(l, k)の値
-     * 
+     *
      *         - t: k番目のノードへのポインタ（存在しない場合はnullptr）
-     * 
+     *
      * @pre 0 <= l <= size(t)
      * @pre g(MonoidUnit()) == true
      */
@@ -249,27 +249,27 @@ template <typename Node> struct RedBlackTreeBase {
 
     /**
      * @brief 二分探索（左方向）
-     * 
+     *
      * 条件を満たす最小のkを求める二分探索を行います。
-     * 
+     *
      * 以下の条件を満たすkを返します：
-     * 
+     *
      * - k = r または (k ≠ r かつ g(prod(k, r)) = true)
-     * 
+     *
      * - k = 0 または (k ≠ 0 かつ g(prod(k-1, r)) = false)
-     * 
+     *
      * @tparam G 述語関数の型。bool operator()(Monoid)を持つ必要があります
      * @param t 探索対象の木（参照渡し、操作後に復元されます）
      * @param r 探索終了位置（0-indexed）
      * @param g 判定関数。Monoidを受け取りboolを返す関数オブジェクト
      * @return bb_result 構造体
-     * 
+     *
      *         - s: 条件を満たす最小のk
-     * 
+     *
      *         - prod: prod(k, r)の値
-     * 
+     *
      *         - t: k-1番目のノードへのポインタ（存在しない場合はnullptr）
-     * 
+     *
      * @pre 0 <= r <= size(t)
      * @pre g(MonoidUnit()) == true
      */

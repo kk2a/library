@@ -217,8 +217,7 @@ struct MatrixF2 {
      * @param wr 列が[0, wr)の範囲だけで掃き出す．指定がないなら全体で掃き出す．
      * @return int ランク．EARLY_TERMINATEがtrueのときに，フルランクでないことが確定したら-1を返す
      */
-    template <bool RREF = true, bool EARLY_TERMINATE = false>
-    int sweep(int wr = -1) {
+    template <bool RREF = true, bool EARLY_TERMINATE = false> int sweep(int wr = -1) {
         if (wr == -1) wr = _w;
         int r = 0;
         for (int i = 0; i < wr; i++) {
