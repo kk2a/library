@@ -1,6 +1,7 @@
 #ifndef KK2_MATH_MOD_GARNER_HPP
 #define KK2_MATH_MOD_GARNER_HPP 1
 
+#include <cassert>
 #include <vector>
 
 #include "inv.hpp"
