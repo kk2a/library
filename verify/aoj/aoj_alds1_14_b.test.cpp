@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     string t, p;
     kin >> t >> p;
-    kk2::Roliha rt(t), rp(p);
+    kk2::SRoliha rt(t), rp(p);
     for (size_t i = 0; i + p.size() <= t.size(); ++i) {
         if (rt.get(i, i + p.size()) == rp.get(0, p.size())) kout << i << "\n";
     }

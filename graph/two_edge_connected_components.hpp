@@ -33,7 +33,7 @@ template <class G> struct TwoEdgeConnectedComponents : LowLink<G> {
         group.resize(k);
         for (int i = 0; i < this->n; i++) { group[comp[i]].emplace_back(i); }
 
-        typename G::edge_container tmp(this->bridges.size());
+        typename G::edge_collection tmp(this->bridges.size());
         for (int i = 0; i < (int)this->bridges.size(); i++) {
             tmp[i] = this->g.edges[this->bridges[i]];
             tmp[i].from = comp[tmp[i].from];

@@ -207,7 +207,7 @@ void test_group() {
 
     // RollingHash group test
     {
-        using RH = kk2::RollingHash<2>;
+        using RH = kk2::group::RollingHash<2>;
         RH unit = RH::unit();
 
         // 乱数を使った複数回テスト
