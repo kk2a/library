@@ -30,6 +30,13 @@ template <int NUM> struct StaticRollingHash {
         for (size_t i = 1; i < c.size(); ++i) prefix[i] = prefix[i - 1] + H(c[i]) * pw[i];
     }
 
+    inline int size() const { return prefix.size(); }
+
+    H get(int i) const {
+        assert(0 <= i and i < (int)prefix.size());
+        return prefix[i];
+    }
+
     // `[l, r)`のハッシュ値を取得する
     H get(int l, int r) const {
         assert(0 <= l and l <= r and r <= (int)prefix.size());
