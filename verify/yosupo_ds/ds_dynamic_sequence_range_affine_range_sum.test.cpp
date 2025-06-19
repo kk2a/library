@@ -15,7 +15,7 @@ int main() {
     kin >> n >> q;
     vc<A::S> a(n);
     kin >> a;
-    kk2::LazyRedBlackTreeS<A> rbt(2 * (n + q));
+    kk2::LazyRedBlackTree<A> rbt(2 * (n + q));
     auto t = rbt.build(a);
     rep (i, q) {
         int type;

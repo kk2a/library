@@ -7,13 +7,21 @@
 #include "../../template/template.hpp"
 using namespace std;
 
+struct S : public kk2::monoid::Affine<kk2::mont998> {
+    using base = kk2::monoid::Affine<kk2::mont998>;
+    using base::Affine;
+    S(const base &b) : base(b) {}
+    static inline S op(S l, S r) {
+        return S{r.a * l.a, r.a * l.b + r.b};
+    }
+};
+
 int main() {
     int n, q;
     kin >> n >> q;
-    using M = kk2::monoid::Affine<kk2::mont998>;
-    vc<M> a(n);
+    vc<S> a(n);
     kin >> a;
-    kk2::RedBlackTree<M, kk2::reverse_args<M::op>, M::unit> rbt(2 * (n + q));
+    kk2::RedBlackTree<S> rbt(2 * (n + q));
     auto root = rbt.build(a);
 
     rep (q) {

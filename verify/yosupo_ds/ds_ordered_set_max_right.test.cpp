@@ -10,7 +10,7 @@ int main() {
     kin >> n >> q;
     vc<kk2::monoid::Hold<int>> a(n);
     kin >> a;
-    kk2::RedBlackTreeS<kk2::monoid::Hold<int>> rb(2 * (n + q));
+    kk2::RedBlackTree<kk2::monoid::Hold<int>> rb(2 * (n + q));
     auto root = rb.build(a);
     rep (q) {
         int t, x;
