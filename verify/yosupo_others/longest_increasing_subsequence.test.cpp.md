@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: others/longest_increasing_subsequence.hpp
     title: others/longest_increasing_subsequence.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
@@ -73,7 +73,7 @@ data:
   path: verify/yosupo_others/longest_increasing_subsequence.test.cpp
   requiredBy: []
   timestamp: '2025-04-17 11:43:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/longest_increasing_subsequence.test.cpp
 layout: document

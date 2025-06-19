@@ -4,40 +4,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/action/affine_sumwithsize.hpp
     title: math/action/affine_sumwithsize.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/group/sum_with_size.hpp
     title: math/group/sum_with_size.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/affine.hpp
     title: math/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':heavy_check_mark:'
     path: segment_tree/lazy.hpp
     title: segment_tree/lazy.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []

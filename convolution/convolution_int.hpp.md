@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
   - icon: ':heavy_check_mark:'
@@ -19,19 +19,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []

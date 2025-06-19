@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/group/add.hpp
     title: math/group/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/group/sum_with_size.hpp
     title: math/group/sum_with_size.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []

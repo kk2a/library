@@ -5,10 +5,10 @@ data:
   - icon: ':warning:'
     path: bigint/int256.hpp
     title: bigint/int256.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -41,10 +41,10 @@ data:
   - icon: ':warning:'
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
   - icon: ':heavy_check_mark:'
@@ -53,10 +53,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/poly_taylor_shift.hpp
     title: fps/poly_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':heavy_check_mark:'
@@ -68,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/mod_sqrt.hpp
     title: math_mod/mod_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
   - icon: ':heavy_check_mark:'
@@ -98,27 +98,32 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/modint.hpp
     title: modint/modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
+    path: string/dynamic_rolling_hash.hpp
+    title: "\u6587\u5B57\u306E\u4E00\u70B9\u66F4\u65B0\u304C\u53EF\u80FD\u6587\u5B57\
+      \u5217\u306B\u5BFE\u3059\u308B\u52D5\u7684\u306A\u30ED\u30FC\u30EA\u30F3\u30B0\
+      \u30CF\u30C3\u30B7\u30E5"
+  - icon: ':heavy_check_mark:'
     path: string/static_rolling_hash.hpp
     title: "\u6587\u5B57\u306E\u5909\u66F4\u304C\u884C\u308F\u308C\u306A\u3044\u6587\
       \u5B57\u5217\u306B\u5BFE\u3059\u308B\u9759\u7684\u306A\u30ED\u30FC\u30EA\u30F3\
       \u30B0\u30CF\u30C3\u30B7\u30E5"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -131,7 +136,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_0560_2.test.cpp
     title: verify/aoj/aoj_0560_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
   - icon: ':heavy_check_mark:'
@@ -170,7 +175,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -383,7 +388,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
@@ -479,45 +484,45 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/sqrt_mod.test.cpp
     title: verify/yosupo_math/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/sum_of_floor_linear.test.cpp
     title: verify/yosupo_math/sum_of_floor_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_others/longest_increasing_subsequence.test.cpp
     title: verify/yosupo_others/longest_increasing_subsequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_others/many_a_plus_b.test.cpp
     title: verify/yosupo_others/many_a_plus_b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_string/string_number_of_substrings.test.cpp
     title: verify/yosupo_string/string_number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_string/string_suffix_array.test.cpp
     title: verify/yosupo_string/string_suffix_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_string/string_z_algorithm.test.cpp
     title: verify/yosupo_string/string_z_algorithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_0430.test.cpp
     title: verify/yuki/yuki_0430.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_0430_2.test.cpp
     title: verify/yuki/yuki_0430_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_1510.test.cpp
     title: verify/yuki/yuki_1510.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -568,6 +573,7 @@ data:
   path: type_traits/integral.hpp
   requiredBy:
   - string/static_rolling_hash.hpp
+  - string/dynamic_rolling_hash.hpp
   - template/fastio.hpp
   - template/template.hpp
   - fps/fps_ntt_friendly.hpp
@@ -607,7 +613,7 @@ data:
   - bigint/int256.hpp
   - bit/bitcount.hpp
   timestamp: '2025-04-05 10:48:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
   - verify/aoj/aoj_0560_2.test.cpp

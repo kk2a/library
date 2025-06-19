@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -35,10 +35,10 @@ data:
   - icon: ':warning:'
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
   - icon: ':heavy_check_mark:'
@@ -47,6 +47,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: matrix/matrix_F2.hpp
     title: "\u6383\u304D\u51FA\u3057"
+  - icon: ':warning:'
+    path: string/dynamic_rolling_hash.hpp
+    title: "\u6587\u5B57\u306E\u4E00\u70B9\u66F4\u65B0\u304C\u53EF\u80FD\u6587\u5B57\
+      \u5217\u306B\u5BFE\u3059\u308B\u52D5\u7684\u306A\u30ED\u30FC\u30EA\u30F3\u30B0\
+      \u30CF\u30C3\u30B7\u30E5"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/bit_vector.test.cpp
@@ -174,12 +179,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_1510.test.cpp
     title: verify/yuki/yuki_1510.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -221,6 +226,7 @@ data:
   isVerificationFile: false
   path: bit/bitcount.hpp
   requiredBy:
+  - string/dynamic_rolling_hash.hpp
   - fps/fps_ntt_friendly.hpp
   - fps/fps_multivariate.hpp
   - fps/fps_arb.hpp
@@ -236,7 +242,7 @@ data:
   - convolution/convolution.hpp
   - convolution/multi_convolution_truncated.hpp
   timestamp: '2025-04-24 20:44:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp

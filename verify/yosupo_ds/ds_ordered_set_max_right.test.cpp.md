@@ -7,35 +7,35 @@ data:
   - icon: ':heavy_check_mark:'
     path: bbst/red_black_tree.hpp
     title: bbst/red_black_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/hold.hpp
     title: "\u5E38\u306B\u53F3\u5074\u3092\u4FDD\u6301\u3059\u308B\u30E2\u30CE\u30A4\
       \u30C9"
   - icon: ':heavy_check_mark:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
@@ -98,7 +98,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
   requiredBy: []
-  timestamp: '2025-06-19 11:22:04+09:00'
+  timestamp: '2025-06-19 13:39:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp

@@ -1,79 +1,79 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/static_rolling_hash.hpp
     title: "\u6587\u5B57\u306E\u5909\u66F4\u304C\u884C\u308F\u308C\u306A\u3044\u6587\
       \u5B57\u5217\u306B\u5BFE\u3059\u308B\u9759\u7684\u306A\u30ED\u30FC\u30EA\u30F3\
       \u30B0\u30CF\u30C3\u30B7\u30E5"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -125,8 +125,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_string/string_z_roliha.test.cpp
   requiredBy: []
-  timestamp: '2025-06-19 11:21:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-19 22:00:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_z_roliha.test.cpp
 layout: document

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/two_edge_connected_components.hpp\"\n\n\n\n#include\
@@ -53,7 +53,7 @@ data:
     \ : this->g[now])\n                if (comp[e.to] == -1) self(self, e.to, now);\n\
     \        };\n        for (int i = 0; i < this->n; i++)\n            if (this->root[i])\
     \ dfs(dfs, i, -1);\n\n        group.resize(k);\n        for (int i = 0; i < this->n;\
-    \ i++) { group[comp[i]].emplace_back(i); }\n\n        typename G::edge_container\
+    \ i++) { group[comp[i]].emplace_back(i); }\n\n        typename G::edge_collection\
     \ tmp(this->bridges.size());\n        for (int i = 0; i < (int)this->bridges.size();\
     \ i++) {\n            tmp[i] = this->g.edges[this->bridges[i]];\n            tmp[i].from\
     \ = comp[tmp[i].from];\n            tmp[i].to = comp[tmp[i].to];\n           \
@@ -71,7 +71,7 @@ data:
     \ : this->g[now])\n                if (comp[e.to] == -1) self(self, e.to, now);\n\
     \        };\n        for (int i = 0; i < this->n; i++)\n            if (this->root[i])\
     \ dfs(dfs, i, -1);\n\n        group.resize(k);\n        for (int i = 0; i < this->n;\
-    \ i++) { group[comp[i]].emplace_back(i); }\n\n        typename G::edge_container\
+    \ i++) { group[comp[i]].emplace_back(i); }\n\n        typename G::edge_collection\
     \ tmp(this->bridges.size());\n        for (int i = 0; i < (int)this->bridges.size();\
     \ i++) {\n            tmp[i] = this->g.edges[this->bridges[i]];\n            tmp[i].from\
     \ = comp[tmp[i].from];\n            tmp[i].to = comp[tmp[i].to];\n           \
@@ -82,8 +82,8 @@ data:
   isVerificationFile: false
   path: graph/two_edge_connected_components.hpp
   requiredBy: []
-  timestamp: '2025-03-28 03:08:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-19 13:38:46+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
 documentation_of: graph/two_edge_connected_components.hpp

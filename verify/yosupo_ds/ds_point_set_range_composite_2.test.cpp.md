@@ -10,40 +10,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/affine.hpp
     title: math/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
   - icon: ':heavy_check_mark:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
   - icon: ':heavy_check_mark:'
     path: type_traits/functional.hpp
     title: type_traits/functional.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
@@ -103,7 +103,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   requiredBy: []
-  timestamp: '2025-06-19 11:22:04+09:00'
+  timestamp: '2025-06-19 13:39:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp

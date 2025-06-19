@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: template/procon.hpp
     title: template/procon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_aplusb_128bit
@@ -75,7 +75,7 @@ data:
   path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
   requiredBy: []
   timestamp: '2025-06-06 17:43:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
 layout: document

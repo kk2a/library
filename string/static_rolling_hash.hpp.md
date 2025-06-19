@@ -1,62 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u6587\u5B57\u306E\u5909\u66F4\u304C\u884C\u308F\u308C\u306A\u3044\
       \u6587\u5B57\u5217\u306B\u5BFE\u3059\u308B\u9759\u7684\u306A\u30ED\u30FC\u30EA\
@@ -90,31 +90,33 @@ data:
     \ StaticRollingHash(const C &c) {\n        if (c.empty()) return;\n        extend_base(c.size());\n\
     \        prefix.resize(c.size());\n        prefix[0] = H(c[0]);\n        for (size_t\
     \ i = 1; i < c.size(); ++i) prefix[i] = prefix[i - 1] + H(c[i]) * pw[i];\n   \
-    \ }\n\n    // `[l, r)`\u306E\u30CF\u30C3\u30B7\u30E5\u5024\u3092\u53D6\u5F97\u3059\
-    \u308B\n    H get(int l, int r) const {\n        assert(0 <= l and l <= r and\
-    \ r <= (int)prefix.size());\n        if (l == r) return H(0);\n        if (l ==\
-    \ 0) return prefix[r - 1];\n        return (prefix[r - 1] - prefix[l - 1]) * pwi[l];\n\
-    \    }\n\n    /**\n     * @brief \u6587\u5B57\u5217`lhs[l1, r1)`\u3068`rhs[l2,\
-    \ r2)`\u306E\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E\u3092\u6C42\u3081\u308B\
-    \n     *\n     * \u6642\u9593\u8A08\u7B97\u91CF: `O(log(min(r1 - l1, r2 - l2)))`\n\
-    \     * @param lhs \u6587\u5B57\u5217`lhs`\u306E\u30ED\u30FC\u30EA\u30F3\u30B0\
-    \u30CF\u30C3\u30B7\u30E5\n     * @param l1 `lhs`\u306E\u958B\u59CB\u30A4\u30F3\
-    \u30C7\u30C3\u30AF\u30B9\n     * @param r1 `lhs`\u306E\u7D42\u4E86\u30A4\u30F3\
-    \u30C7\u30C3\u30AF\u30B9\n     * @param rhs \u6587\u5B57\u5217`rhs`\u306E\u30ED\
-    \u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5\n     * @param l2 `rhs`\u306E\
-    \u958B\u59CB\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     * @param r2 `rhs`\u306E\
-    \u7D42\u4E86\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     * @return `lhs[l1, l1 +\
-    \ lcp)`\u3068`rhs[l2, l2 + lcp)`\u306E\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E\
-    \u306E\u9577\u3055\n     */\n    static int lcp(const StaticRollingHash &lhs,\n\
-    \                   int l1,\n                   int r1,\n                   const\
-    \ StaticRollingHash &rhs,\n                   int l2,\n                   int\
-    \ r2) {\n        int len = std::min(r1 - l1, r2 - l2);\n        int ok = 0, ng\
-    \ = len + 1;\n        while (ng - ok > 1) {\n            int mid = (ok + ng) /\
-    \ 2;\n            if (lhs.get(l1, l1 + mid) == rhs.get(l2, l2 + mid)) {\n    \
-    \            ok = mid;\n            } else {\n                ng = mid;\n    \
-    \        }\n        }\n        return ok;\n    }\n\n    /**\n     * @brief \u6587\
-    \u5B57\u5217`lhs[l1, r1)`\u3068`rhs[l2, r2)`\u306E\u8F9E\u66F8\u9806\u6BD4\u8F03\
-    \u3092\u884C\u3046\n     *\n     * \u6642\u9593\u8A08\u7B97\u91CF: `O(log(min(r1\
+    \ }\n\n    inline int size() const { return prefix.size(); }\n\n    H get(int\
+    \ i) const {\n        assert(0 <= i and i < (int)prefix.size());\n        return\
+    \ prefix[i];\n    }\n\n    // `[l, r)`\u306E\u30CF\u30C3\u30B7\u30E5\u5024\u3092\
+    \u53D6\u5F97\u3059\u308B\n    H get(int l, int r) const {\n        assert(0 <=\
+    \ l and l <= r and r <= (int)prefix.size());\n        if (l == r) return H(0);\n\
+    \        if (l == 0) return prefix[r - 1];\n        return (prefix[r - 1] - prefix[l\
+    \ - 1]) * pwi[l];\n    }\n\n    /**\n     * @brief \u6587\u5B57\u5217`lhs[l1,\
+    \ r1)`\u3068`rhs[l2, r2)`\u306E\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E\u3092\
+    \u6C42\u3081\u308B\n     *\n     * \u6642\u9593\u8A08\u7B97\u91CF: `O(log(min(r1\
+    \ - l1, r2 - l2)))`\n     * @param lhs \u6587\u5B57\u5217`lhs`\u306E\u30ED\u30FC\
+    \u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5\n     * @param l1 `lhs`\u306E\u958B\
+    \u59CB\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     * @param r1 `lhs`\u306E\u7D42\
+    \u4E86\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     * @param rhs \u6587\u5B57\u5217\
+    `rhs`\u306E\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5\n     * @param\
+    \ l2 `rhs`\u306E\u958B\u59CB\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     * @param\
+    \ r2 `rhs`\u306E\u7D42\u4E86\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     * @return\
+    \ `lhs[l1, l1 + lcp)`\u3068`rhs[l2, l2 + lcp)`\u306E\u6700\u9577\u5171\u901A\u63A5\
+    \u982D\u8F9E\u306E\u9577\u3055\n     */\n    static int lcp(const StaticRollingHash\
+    \ &lhs,\n                   int l1,\n                   int r1,\n            \
+    \       const StaticRollingHash &rhs,\n                   int l2,\n          \
+    \         int r2) {\n        int len = std::min(r1 - l1, r2 - l2);\n        int\
+    \ ok = 0, ng = len + 1;\n        while (ng - ok > 1) {\n            int mid =\
+    \ (ok + ng) / 2;\n            if (lhs.get(l1, l1 + mid) == rhs.get(l2, l2 + mid))\
+    \ {\n                ok = mid;\n            } else {\n                ng = mid;\n\
+    \            }\n        }\n        return ok;\n    }\n\n    /**\n     * @brief\
+    \ \u6587\u5B57\u5217`lhs[l1, r1)`\u3068`rhs[l2, r2)`\u306E\u8F9E\u66F8\u9806\u6BD4\
+    \u8F03\u3092\u884C\u3046\n     *\n     * \u6642\u9593\u8A08\u7B97\u91CF: `O(log(min(r1\
     \ - l1, r2 - l2)))`\n     * @param lhs \u6587\u5B57\u5217`lhs`\u306E\u30ED\u30FC\
     \u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5\n     * @param l1 `lhs`\u306E\u958B\
     \u59CB\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     * @param r1 `lhs`\u306E\u7D42\
@@ -169,8 +171,8 @@ data:
   isVerificationFile: false
   path: string/static_rolling_hash.hpp
   requiredBy: []
-  timestamp: '2025-06-19 11:21:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-19 22:00:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp

@@ -1,106 +1,106 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/group/add.hpp
     title: math/group/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/group/sum_with_size.hpp
     title: math/group/sum_with_size.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/affine.hpp
     title: math/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/hold.hpp
     title: "\u5E38\u306B\u53F3\u5074\u3092\u4FDD\u6301\u3059\u308B\u30E2\u30CE\u30A4\
       \u30C9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/max_min_sumwithsize.hpp
     title: math/monoid/max_min_sumwithsize.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/monoid/update.hpp
     title: "\u5E38\u306B\u5DE6\u5074\u3092\u4FDD\u6301\u3059\u308B\u30E2\u30CE\u30A4\
       \u30C9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -201,8 +201,8 @@ data:
     \          assert(inv_a.a == -val1 && inv_a.size == -1);\n\n            auto cancel\
     \ = G::op(a, inv_a);\n            assert(cancel == unit);\n        }\n       \
     \ cerr << \"SumWithSize: 10000 random tests passed!\" << endl;\n    }\n\n    //\
-    \ RollingHash group test\n    {\n        using RH = kk2::RollingHash<2>;\n   \
-    \     RH unit = RH::unit();\n\n        // \u4E71\u6570\u3092\u4F7F\u3063\u305F\
+    \ RollingHash group test\n    {\n        using RH = kk2::group::RollingHash<2>;\n\
+    \        RH unit = RH::unit();\n\n        // \u4E71\u6570\u3092\u4F7F\u3063\u305F\
     \u8907\u6570\u56DE\u30C6\u30B9\u30C8\n        rep(10000) {\n            // \u30E9\
     \u30F3\u30C0\u30E0\u306A\u6574\u6570\u3067\u306E\u30C6\u30B9\u30C8\n         \
     \   int val1 = kk2::random::rng(1, 1001);\n            int val2 = kk2::random::rng(1,\
@@ -266,8 +266,8 @@ data:
   isVerificationFile: true
   path: verify/unit_test/monoid.test.cpp
   requiredBy: []
-  timestamp: '2025-06-19 11:21:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-19 13:38:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/monoid.test.cpp
 layout: document

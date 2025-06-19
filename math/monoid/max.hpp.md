@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
@@ -11,25 +11,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/action/update_max.hpp
     title: math/action/update_max.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: template/function_util.hpp
     title: template/function_util.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: template/procon.hpp
     title: template/procon.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/action.test.cpp
     title: verify/unit_test/action.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -71,7 +71,7 @@ data:
   - math/action/add_max.hpp
   - math/action/update_max.hpp
   timestamp: '2025-04-06 13:01:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
   - verify/unit_test/monoid.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
@@ -58,12 +58,12 @@ data:
     \ += \") \";\n            self(self, t->left, dep + 1);\n            self(self,\
     \ t->right, dep + 1);\n        };\n        dfs(dfs, NodePtr(this), 0);\n     \
     \   for (auto &s : a) s.push_back('\\n');\n        a.push_back(\"]\");\n     \
-    \   for (auto &s : a) os << s;\n    }\n};\n\ntemplate <class A_>\nstruct LazyRedBlackTree\n\
-    \    : RedBlackTreeBase<LazyRedBlackTreeNode<A_>> {\n    using base = RedBlackTreeBase<LazyRedBlackTreeNode<A_>>;\n\
-    \    using typename base::S;\n    using typename base::A;\n    using base::s_op;\n\
-    \    using base::a_op;\n    using base::a_unit;\n    using base::sa_act;\n   \
-    \ using base::merge;\n    using base::RedBlackTreeBase;\n    using base::size;\n\
-    \    using base::split;\n    using base::split3;\n    using typename base::NodePtr;\n\
+    \   for (auto &s : a) os << s;\n    }\n};\n\ntemplate <class A_> struct LazyRedBlackTree\
+    \ : RedBlackTreeBase<LazyRedBlackTreeNode<A_>> {\n    using base = RedBlackTreeBase<LazyRedBlackTreeNode<A_>>;\n\
+    \    using base::a_op;\n    using base::a_unit;\n    using base::merge;\n    using\
+    \ base::RedBlackTreeBase;\n    using base::s_op;\n    using base::sa_act;\n  \
+    \  using base::size;\n    using base::split;\n    using base::split3;\n    using\
+    \ typename base::A;\n    using typename base::NodePtr;\n    using typename base::S;\n\
     \n    template <class... Args> void apply(NodePtr &t, int l, int r, Args... args)\
     \ {\n        assert(0 <= l and l <= r and r <= size(t));\n        auto [t1, t2,\
     \ t3] = split3(t, l, r);\n        all_apply(t2, A(args...));\n        t = merge(merge(t1,\
@@ -87,7 +87,7 @@ data:
   isVerificationFile: false
   path: bbst/lazy_red_black_tree.hpp
   requiredBy: []
-  timestamp: '2025-06-19 11:21:05+09:00'
+  timestamp: '2025-06-19 13:39:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp

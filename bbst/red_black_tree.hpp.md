@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
@@ -62,19 +62,18 @@ data:
     ;\n            self(self, t->left, dep + 1);\n            self(self, t->right,\
     \ dep + 1);\n        };\n        dfs(dfs, NodePtr(this), 0);\n        for (auto\
     \ &s : a) s.push_back('\\n');\n        a.push_back(\"]\");\n        for (auto\
-    \ &s : a) os << s;\n    }\n};\n\ntemplate <class M> struct RedBlackTree\n    :\
-    \ RedBlackTreeBase<RedBlackTreeNode<M>> {\n    using base = RedBlackTreeBase<RedBlackTreeNode<M>>;\n\
-    \    using base::RedBlackTreeBase;\n    using typename base::S;\n    using base::s_op;\n\
-    \    using base::size;\n    using typename base::NodePtr;\n\n  protected:\n  \
-    \  NodePtr update(NodePtr t) override {\n        t->count = size(t->left) + size(t->right)\
-    \ + (t->left == nullptr);\n        t->rank = t->left ? t->left->rank + !t->left->is_red\
-    \ : 1;\n        t->val = (t->left ? s_op(t->left->val, t->right->val) : t->val);\n\
-    \        return t;\n    }\n\n    NodePtr push(NodePtr t) override {\n        if\
-    \ (t->is_rev) {\n            std::swap(t->left, t->right);\n            if (t->left)\
-    \ t->left->is_rev ^= 1;\n            if (t->right) t->right->is_rev ^= 1;\n  \
-    \          t->is_rev = false;\n        }\n        return t;\n    }\n};\n\n} //\
-    \ namespace rbtree\n\nusing rbtree::RedBlackTree;\n\n} // namespace kk2\n\n\n\
-    #endif // KK2_BBST_RED_BLACK_TREE_HPP\n"
+    \ &s : a) os << s;\n    }\n};\n\ntemplate <class M> struct RedBlackTree : RedBlackTreeBase<RedBlackTreeNode<M>>\
+    \ {\n    using base = RedBlackTreeBase<RedBlackTreeNode<M>>;\n    using base::RedBlackTreeBase;\n\
+    \    using base::s_op;\n    using base::size;\n    using typename base::NodePtr;\n\
+    \    using typename base::S;\n\n  protected:\n    NodePtr update(NodePtr t) override\
+    \ {\n        t->count = size(t->left) + size(t->right) + (t->left == nullptr);\n\
+    \        t->rank = t->left ? t->left->rank + !t->left->is_red : 1;\n        t->val\
+    \ = (t->left ? s_op(t->left->val, t->right->val) : t->val);\n        return t;\n\
+    \    }\n\n    NodePtr push(NodePtr t) override {\n        if (t->is_rev) {\n \
+    \           std::swap(t->left, t->right);\n            if (t->left) t->left->is_rev\
+    \ ^= 1;\n            if (t->right) t->right->is_rev ^= 1;\n            t->is_rev\
+    \ = false;\n        }\n        return t;\n    }\n};\n\n} // namespace rbtree\n\
+    \nusing rbtree::RedBlackTree;\n\n} // namespace kk2\n\n\n#endif // KK2_BBST_RED_BLACK_TREE_HPP\n"
   dependsOn:
   - type_traits/io.hpp
   - bbst/base/red_black_tree_base.hpp
@@ -82,7 +81,7 @@ data:
   isVerificationFile: false
   path: bbst/red_black_tree.hpp
   requiredBy: []
-  timestamp: '2025-06-19 11:21:05+09:00'
+  timestamp: '2025-06-19 13:39:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp

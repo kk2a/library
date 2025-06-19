@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u5E38\u306B\u53F3\u5074\u3092\u4FDD\u6301\u3059\u308B\u30E2\u30CE\
       \u30A4\u30C9"
@@ -53,7 +53,7 @@ data:
   path: math/monoid/hold.hpp
   requiredBy: []
   timestamp: '2025-06-06 16:34:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
   - verify/unit_test/monoid.test.cpp
