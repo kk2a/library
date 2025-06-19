@@ -64,14 +64,13 @@ template <class M> struct RedBlackTreeNode {
     }
 };
 
-template <class M> struct RedBlackTree
-    : RedBlackTreeBase<RedBlackTreeNode<M>> {
+template <class M> struct RedBlackTree : RedBlackTreeBase<RedBlackTreeNode<M>> {
     using base = RedBlackTreeBase<RedBlackTreeNode<M>>;
     using base::RedBlackTreeBase;
-    using typename base::S;
     using base::s_op;
     using base::size;
     using typename base::NodePtr;
+    using typename base::S;
 
   protected:
     NodePtr update(NodePtr t) override {

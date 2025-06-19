@@ -67,22 +67,20 @@ template <class A_> struct LazyRedBlackTreeNode {
     }
 };
 
-template <class A_>
-struct LazyRedBlackTree
-    : RedBlackTreeBase<LazyRedBlackTreeNode<A_>> {
+template <class A_> struct LazyRedBlackTree : RedBlackTreeBase<LazyRedBlackTreeNode<A_>> {
     using base = RedBlackTreeBase<LazyRedBlackTreeNode<A_>>;
-    using typename base::S;
-    using typename base::A;
-    using base::s_op;
     using base::a_op;
     using base::a_unit;
-    using base::sa_act;
     using base::merge;
     using base::RedBlackTreeBase;
+    using base::s_op;
+    using base::sa_act;
     using base::size;
     using base::split;
     using base::split3;
+    using typename base::A;
     using typename base::NodePtr;
+    using typename base::S;
 
     template <class... Args> void apply(NodePtr &t, int l, int r, Args... args) {
         assert(0 <= l and l <= r and r <= size(t));
