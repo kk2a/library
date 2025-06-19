@@ -5,7 +5,7 @@ data:
     path: matrix/basis.hpp
     title: "\u30D9\u30AF\u30C8\u30EB\u304C\u73FE\u5728\u306E\u57FA\u5E95\u3068\u7DDA\
       \u5F62\u72EC\u7ACB\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: matrix/matrix_field.hpp
     title: "\u884C\u5217"
   - icon: ':question:'

@@ -23,7 +23,7 @@ data:
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
   - icon: ':heavy_check_mark:'
@@ -38,14 +38,16 @@ data:
   - icon: ':question:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':question:'
-    path: string/rolling_hash.hpp
-    title: string/rolling_hash.hpp
+  - icon: ':x:'
+    path: string/static_rolling_hash.hpp
+    title: "\u6587\u5B57\u306E\u5909\u66F4\u304C\u884C\u308F\u308C\u306A\u3044\u6587\
+      \u5B57\u5217\u306B\u5BFE\u3059\u308B\u9759\u7684\u306A\u30ED\u30FC\u30EA\u30F3\
+      \u30B0\u30CF\u30C3\u30B7\u30E5"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,16 +59,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/prime_factorize_table.test.cpp
     title: verify/unit_test/prime_factorize_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/primitive_root.test.cpp
     title: verify/yosupo_math/primitive_root.test.cpp
   - icon: ':x:'
@@ -142,25 +144,25 @@ data:
   isVerificationFile: false
   path: math/prime_factorize.hpp
   requiredBy:
-  - string/rolling_hash.hpp
-  - math_mod/primitive_root_64bit.hpp
+  - string/static_rolling_hash.hpp
   - random/hash.hpp
-  - math/multiplicative_function/euler_phi.hpp
-  - math/multiplicative_function/mobius.hpp
+  - math_mod/primitive_root_64bit.hpp
   - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/mobius.hpp
+  - math/multiplicative_function/euler_phi.hpp
   - math/group/rolling_hash.hpp
   timestamp: '2025-06-04 11:53:52+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_string/string_z_roliha.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
-  - verify/unit_test/monoid.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/yosupo_math/factrize.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
-  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/yosupo_string/string_z_roliha.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
+  - verify/yosupo_math/factrize.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
+  - verify/unit_test/prime_factorize_table.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/monoid.test.cpp
 documentation_of: math/prime_factorize.hpp
 layout: document
 redirect_from:

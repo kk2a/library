@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/prime_counting.hpp
     title: math/multiplicative_function/prime_counting.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_table.hpp
     title: math/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_table.hpp
     title: math/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   - icon: ':question:'

@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
   - icon: ':question:'

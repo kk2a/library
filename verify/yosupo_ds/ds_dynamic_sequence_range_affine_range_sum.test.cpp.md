@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bbst/base/red_black_tree_base.hpp
     title: "\u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9"
   - icon: ':heavy_check_mark:'
     path: bbst/lazy_red_black_tree.hpp
     title: bbst/lazy_red_black_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/action/affine_sumwithsize.hpp
     title: math/action/affine_sumwithsize.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   - icon: ':question:'
@@ -74,18 +74,17 @@ data:
     \n#include \"../../math/action/affine_sumwithsize.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nusing mint = kk2::mont998;\n\nusing A = kk2::action::AffineSumWithSize<mint,\
     \ mint>;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n    vc<A::S> a(n);\n\
-    \    kin >> a;\n    kk2::LazyRedBlackTreeS<A> rbt(2 * (n + q));\n    auto t =\
-    \ rbt.build(a);\n    rep (i, q) {\n        int type;\n        kin >> type;\n \
-    \       if (type == 0) {\n            int p, x;\n            kin >> p >> x;\n\
-    \            rbt.insert(t, p, mint(x), mint(1));\n        }\n        if (type\
-    \ == 1) {\n            int p;\n            kin >> p;\n            rbt.erase(t,\
-    \ p);\n        }\n        if (type == 2) {\n            int l, r;\n          \
-    \  kin >> l >> r;\n            rbt.reverse(t, l, r);\n        }\n        if (type\
-    \ == 3) {\n            int l, r;\n            mint b, c;\n            kin >> l\
-    \ >> r >> b >> c;\n            rbt.apply(t, l, r, b, c);\n        }\n        if\
-    \ (type == 4) {\n            int l, r;\n            kin >> l >> r;\n         \
-    \   kout << rbt.prod(t, l, r).a << \"\\n\";\n        }\n    }\n\n    return 0;\n\
-    }\n"
+    \    kin >> a;\n    kk2::LazyRedBlackTree<A> rbt(2 * (n + q));\n    auto t = rbt.build(a);\n\
+    \    rep (i, q) {\n        int type;\n        kin >> type;\n        if (type ==\
+    \ 0) {\n            int p, x;\n            kin >> p >> x;\n            rbt.insert(t,\
+    \ p, mint(x), mint(1));\n        }\n        if (type == 1) {\n            int\
+    \ p;\n            kin >> p;\n            rbt.erase(t, p);\n        }\n       \
+    \ if (type == 2) {\n            int l, r;\n            kin >> l >> r;\n      \
+    \      rbt.reverse(t, l, r);\n        }\n        if (type == 3) {\n          \
+    \  int l, r;\n            mint b, c;\n            kin >> l >> r >> b >> c;\n \
+    \           rbt.apply(t, l, r, b, c);\n        }\n        if (type == 4) {\n \
+    \           int l, r;\n            kin >> l >> r;\n            kout << rbt.prod(t,\
+    \ l, r).a << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - bbst/lazy_red_black_tree.hpp
   - type_traits/io.hpp
@@ -105,7 +104,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 17:43:29+09:00'
+  timestamp: '2025-06-19 11:22:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp

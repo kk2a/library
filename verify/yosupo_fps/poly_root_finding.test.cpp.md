@@ -13,13 +13,13 @@ data:
   - icon: ':question:'
     path: fps/fps_sparsity_detector.hpp
     title: fps/fps_sparsity_detector.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/mod_pow.hpp
     title: fps/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_find_root.hpp
     title: fps/poly_find_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_gcd.hpp
     title: fps/poly_gcd.hpp
   - icon: ':question:'
@@ -66,9 +66,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_root_finding
@@ -122,7 +122,7 @@ data:
   path: verify/yosupo_fps/poly_root_finding.test.cpp
   requiredBy: []
   timestamp: '2025-06-04 11:53:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_root_finding.test.cpp
 layout: document

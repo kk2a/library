@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
   - icon: ':heavy_check_mark:'
@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/pow.hpp
     title: math/pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   _extendedRequiredBy: []

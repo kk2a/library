@@ -42,9 +42,9 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/unit_test/offline_dynamic_connectivity.test.cpp
-  - verify/unit_test/partial_persitent_unionfind.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
+  - verify/unit_test/partial_persitent_unionfind.test.cpp
+  - verify/unit_test/offline_dynamic_connectivity.test.cpp
 documentation_of: unionfind/unionfind.hpp
 layout: document
 redirect_from:

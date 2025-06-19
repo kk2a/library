@@ -5,16 +5,16 @@ data:
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_taylor_shift.hpp
     title: fps/poly_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/bell_number.hpp
     title: math_mod/bell_number.hpp
   - icon: ':warning:'
     path: math_mod/bernoulli_number.hpp
     title: math_mod/bernoulli_number.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
@@ -27,21 +27,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/large_fact_arb_mod.test.cpp
     title: verify/unit_test/large_fact_arb_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     title: verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     title: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/enumerate_bell_number.test.cpp
     title: verify/yosupo_math/enumerate_bell_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -91,20 +91,20 @@ data:
   isVerificationFile: false
   path: math_mod/comb.hpp
   requiredBy:
-  - math_mod/comb_large.hpp
-  - math_mod/bell_number.hpp
-  - math_mod/bernoulli_number.hpp
   - fps/poly_taylor_shift.hpp
+  - math_mod/comb_large.hpp
+  - math_mod/bernoulli_number.hpp
+  - math_mod/bell_number.hpp
   timestamp: '2025-04-06 00:09:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
-  - verify/unit_test/binom_table.test.cpp
-  - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/unit_test/binom_table.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
 documentation_of: math_mod/comb.hpp
 layout: document
 redirect_from:

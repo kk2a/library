@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'
@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: unionfind/potentialized.hpp
     title: unionfind/potentialized.hpp
   _extendedRequiredBy: []

@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/convolution_arb.hpp
     title: convolution/convolution_arb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
   - icon: ':question:'
@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
   - icon: ':question:'
@@ -63,9 +63,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
@@ -115,8 +115,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_log_arb.test.cpp
   requiredBy: []
-  timestamp: '2025-06-04 12:12:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-06 19:36:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log_arb.test.cpp
 layout: document

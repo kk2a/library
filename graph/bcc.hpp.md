@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
   _extendedRequiredBy:
@@ -9,7 +9,7 @@ data:
     path: graph/tree/block_cut_tree.hpp
     title: graph/tree/block_cut_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: verify/yuki/yuki_1326.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/bcc.hpp\"\n\n\n\n#include <functional>\n#include <vector>\n\
@@ -119,7 +119,7 @@ data:
   requiredBy:
   - graph/tree/block_cut_tree.hpp
   timestamp: '2025-03-28 03:08:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_graph/graph_bcc.test.cpp
   - verify/yuki/yuki_1326.test.cpp

@@ -24,10 +24,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/action.test.cpp
     title: verify/unit_test/action.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
   _isVerificationFailed: true
@@ -71,16 +71,16 @@ data:
   path: math/monoid/update.hpp
   requiredBy:
   - math/action/update_affine.hpp
-  - math/action/update_max_min_sumwithsize.hpp
   - math/action/update_min.hpp
-  - math/action/update_max.hpp
   - math/action/update_sumwithsize.hpp
+  - math/action/update_max_min_sumwithsize.hpp
+  - math/action/update_max.hpp
   timestamp: '2025-06-06 16:34:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/unit_test/action.test.cpp
-  - verify/unit_test/monoid.test.cpp
   - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
+  - verify/unit_test/monoid.test.cpp
+  - verify/unit_test/action.test.cpp
 documentation_of: math/monoid/update.hpp
 layout: document
 redirect_from:

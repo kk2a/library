@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_table.hpp
     title: math/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   _extendedRequiredBy:
@@ -131,8 +131,8 @@ data:
   timestamp: '2025-04-24 20:54:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_lcm.test.cpp
 documentation_of: convolution/divisor_multiple_transform.hpp
 layout: document
 redirect_from:

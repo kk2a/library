@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/monoid/min.hpp
     title: math/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
   - icon: ':question:'

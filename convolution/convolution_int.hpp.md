@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/garner.hpp
     title: math_mod/garner.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
   - icon: ':question:'
@@ -95,7 +95,7 @@ data:
   isVerificationFile: false
   path: convolution/convolution_int.hpp
   requiredBy: []
-  timestamp: '2025-06-04 12:12:11+09:00'
+  timestamp: '2025-06-06 19:36:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/convolution_int.hpp

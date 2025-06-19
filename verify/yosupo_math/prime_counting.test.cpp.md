@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/prime_counting.hpp
     title: math/multiplicative_function/prime_counting.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_table.hpp
     title: math/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_primes
@@ -88,7 +88,7 @@ data:
   path: verify/yosupo_math/prime_counting.test.cpp
   requiredBy: []
   timestamp: '2025-04-24 20:54:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/prime_counting.test.cpp
 layout: document

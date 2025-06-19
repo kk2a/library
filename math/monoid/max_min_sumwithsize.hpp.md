@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/action.test.cpp
     title: verify/unit_test/action.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -66,13 +66,13 @@ data:
   isVerificationFile: false
   path: math/monoid/max_min_sumwithsize.hpp
   requiredBy:
-  - math/action/update_max_min_sumwithsize.hpp
   - math/action/add_max_min_sumwithsize.hpp
+  - math/action/update_max_min_sumwithsize.hpp
   timestamp: '2025-04-06 13:01:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/unit_test/action.test.cpp
   - verify/unit_test/monoid.test.cpp
+  - verify/unit_test/action.test.cpp
 documentation_of: math/monoid/max_min_sumwithsize.hpp
 layout: document
 redirect_from:

@@ -2,9 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
+  - icon: ':x:'
+    path: string/static_rolling_hash.hpp
+    title: "\u6587\u5B57\u306E\u5909\u66F4\u304C\u884C\u308F\u308C\u306A\u3044\u6587\
+      \u5B57\u5217\u306B\u5BFE\u3059\u308B\u9759\u7684\u306A\u30ED\u30FC\u30EA\u30F3\
+      \u30B0\u30CF\u30C3\u30B7\u30E5"
   - icon: ':x:'
     path: template/function_util.hpp
     title: template/function_util.hpp
@@ -12,15 +17,21 @@ data:
     path: template/procon.hpp
     title: template/procon.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: verify/aoj/aoj_alds1_14_b.test.cpp
+    title: verify/aoj/aoj_alds1_14_b.test.cpp
+  - icon: ':x:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
   - icon: ':x:'
     path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_string/string_z_roliha.test.cpp
+    title: verify/yosupo_string/string_z_roliha.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -55,13 +66,16 @@ data:
   isVerificationFile: false
   path: type_traits/container_traits.hpp
   requiredBy:
-  - template/function_util.hpp
+  - string/static_rolling_hash.hpp
   - template/procon.hpp
+  - template/function_util.hpp
   - math/group/rolling_hash.hpp
   timestamp: '2025-06-06 17:43:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+  - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/unit_test/monoid.test.cpp
 documentation_of: type_traits/container_traits.hpp
 layout: document

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/group/add.hpp
     title: math/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
   - icon: ':question:'
@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/max_min_sumwithsize.hpp
     title: math/monoid/max_min_sumwithsize.hpp
   - icon: ':question:'
@@ -45,7 +45,7 @@ data:
   - icon: ':question:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
   - icon: ':question:'
@@ -63,7 +63,7 @@ data:
   - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash.hpp
     title: random/hash.hpp
   - icon: ':question:'
@@ -87,7 +87,7 @@ data:
   - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
   - icon: ':question:'
@@ -98,9 +98,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -266,8 +266,8 @@ data:
   isVerificationFile: true
   path: verify/unit_test/monoid.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 17:43:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-19 11:21:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/unit_test/monoid.test.cpp
 layout: document

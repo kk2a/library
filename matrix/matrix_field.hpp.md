@@ -13,27 +13,27 @@ data:
     path: matrix/frobenius_form.hpp
     title: matrix/frobenius_form.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_det.test.cpp
     title: verify/yosupo_linalg/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_inv.test.cpp
     title: verify/yosupo_linalg/matrix_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_pow.test.cpp
     title: verify/yosupo_linalg/matrix_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_product.test.cpp
     title: verify/yosupo_linalg/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/matrix_rank.test.cpp
     title: verify/yosupo_linalg/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
     title: verify/yosupo_linalg/solution_of_linear_equations.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u884C\u5217"
     links: []
@@ -184,12 +184,12 @@ data:
   - matrix/frobenius_form.hpp
   - matrix/basis.hpp
   timestamp: '2025-06-06 17:43:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_linalg/matrix_inv.test.cpp
-  - verify/yosupo_linalg/matrix_rank.test.cpp
-  - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/matrix_product.test.cpp
+  - verify/yosupo_linalg/matrix_rank.test.cpp
+  - verify/yosupo_linalg/matrix_inv.test.cpp
+  - verify/yosupo_linalg/matrix_det.test.cpp
   - verify/yosupo_linalg/matrix_pow.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
 documentation_of: matrix/matrix_field.hpp

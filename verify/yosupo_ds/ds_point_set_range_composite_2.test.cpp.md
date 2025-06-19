@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bbst/base/red_black_tree_base.hpp
     title: "\u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bbst/red_black_tree.hpp
     title: bbst/red_black_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: functional/reverse_args.hpp
     title: functional/reverse_args.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   - icon: ':question:'
@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/functional.hpp
     title: type_traits/functional.hpp
   - icon: ':question:'
@@ -48,9 +48,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -72,16 +72,18 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \ \n\n#include \"../../bbst/red_black_tree.hpp\"\n#include \"../../functional/reverse_args.hpp\"\
     \n#include \"../../math/monoid/affine.hpp\"\n#include \"../../modint/mont.hpp\"\
-    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-    \ {\n    int n, q;\n    kin >> n >> q;\n    using M = kk2::monoid::Affine<kk2::mont998>;\n\
-    \    vc<M> a(n);\n    kin >> a;\n    kk2::RedBlackTree<M, kk2::reverse_args<M::op>,\
-    \ M::unit> rbt(2 * (n + q));\n    auto root = rbt.build(a);\n\n    rep (q) {\n\
-    \        int type;\n        kin >> type;\n        if (type == 0) {\n         \
-    \   int p;\n            kk2::mont998 c, d;\n            kin >> p >> c >> d;\n\
-    \            rbt.set(root, p, c, d);\n        }\n        if (type == 1) {\n  \
-    \          int l, r;\n            kk2::mont998 x;\n            kin >> l >> r >>\
-    \ x;\n            kout << rbt.prod(root, l, r).eval(x) << \"\\n\";\n        }\n\
-    \    }\n\n    return 0;\n}\n"
+    \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nstruct S :\
+    \ public kk2::monoid::Affine<kk2::mont998> {\n    using base = kk2::monoid::Affine<kk2::mont998>;\n\
+    \    using base::Affine;\n    S(const base &b) : base(b) {}\n    static inline\
+    \ S op(S l, S r) {\n        return S{r.a * l.a, r.a * l.b + r.b};\n    }\n};\n\
+    \nint main() {\n    int n, q;\n    kin >> n >> q;\n    vc<S> a(n);\n    kin >>\
+    \ a;\n    kk2::RedBlackTree<S> rbt(2 * (n + q));\n    auto root = rbt.build(a);\n\
+    \n    rep (q) {\n        int type;\n        kin >> type;\n        if (type ==\
+    \ 0) {\n            int p;\n            kk2::mont998 c, d;\n            kin >>\
+    \ p >> c >> d;\n            rbt.set(root, p, c, d);\n        }\n        if (type\
+    \ == 1) {\n            int l, r;\n            kk2::mont998 x;\n            kin\
+    \ >> l >> r >> x;\n            kout << rbt.prod(root, l, r).eval(x) << \"\\n\"\
+    ;\n        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - bbst/red_black_tree.hpp
   - type_traits/io.hpp
@@ -101,8 +103,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 17:43:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-19 11:22:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
 layout: document

@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
   - icon: ':question:'
@@ -41,17 +41,19 @@ data:
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
-  - icon: ':question:'
-    path: string/rolling_hash.hpp
-    title: string/rolling_hash.hpp
+  - icon: ':x:'
+    path: string/static_rolling_hash.hpp
+    title: "\u6587\u5B57\u306E\u5909\u66F4\u304C\u884C\u308F\u308C\u306A\u3044\u6587\
+      \u5B57\u5217\u306B\u5BFE\u3059\u308B\u9759\u7684\u306A\u30ED\u30FC\u30EA\u30F3\
+      \u30B0\u30CF\u30C3\u30B7\u30E5"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
   - icon: ':x:'
@@ -59,7 +61,7 @@ data:
     title: verify/yosupo_string/string_z_roliha.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -120,14 +122,14 @@ data:
   isVerificationFile: false
   path: random/hash.hpp
   requiredBy:
-  - string/rolling_hash.hpp
+  - string/static_rolling_hash.hpp
   - math/group/rolling_hash.hpp
   timestamp: '2025-06-06 16:34:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/unit_test/monoid.test.cpp
-  - verify/aoj/aoj_alds1_14_b.test.cpp
 documentation_of: random/hash.hpp
 layout: document
 redirect_from:

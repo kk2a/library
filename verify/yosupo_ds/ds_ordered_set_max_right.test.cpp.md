@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bbst/base/red_black_tree_base.hpp
     title: "\u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bbst/red_black_tree.hpp
     title: bbst/red_black_tree.hpp
   - icon: ':question:'
     path: math/monoid/hold.hpp
     title: "\u5E38\u306B\u53F3\u5074\u3092\u4FDD\u6301\u3059\u308B\u30E2\u30CE\u30A4\
       \u30C9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
   - icon: ':question:'
@@ -40,9 +40,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/ordered_set
@@ -65,7 +65,7 @@ data:
     \ \"../../bbst/red_black_tree.hpp\"\n#include \"../../math/monoid/hold.hpp\"\n\
     #include \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n\
     \    int n, q;\n    kin >> n >> q;\n    vc<kk2::monoid::Hold<int>> a(n);\n   \
-    \ kin >> a;\n    kk2::RedBlackTreeS<kk2::monoid::Hold<int>> rb(2 * (n + q));\n\
+    \ kin >> a;\n    kk2::RedBlackTree<kk2::monoid::Hold<int>> rb(2 * (n + q));\n\
     \    auto root = rb.build(a);\n    rep (q) {\n        int t, x;\n        kin >>\
     \ t >> x;\n        if (t == 0) {\n            auto [k, a, b] = rb.max_right(root,\
     \ 0, [&](auto t) { return t.is_unit or t.a < x; });\n            if (b and b->val.a\
@@ -98,8 +98,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 17:43:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-19 11:22:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
 layout: document

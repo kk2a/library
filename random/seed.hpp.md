@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/poly_find_root.hpp
     title: fps/poly_find_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
   - icon: ':heavy_check_mark:'
@@ -29,14 +29,16 @@ data:
   - icon: ':warning:'
     path: random/graph.hpp
     title: random/graph.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':question:'
-    path: string/rolling_hash.hpp
-    title: string/rolling_hash.hpp
+  - icon: ':x:'
+    path: string/static_rolling_hash.hpp
+    title: "\u6587\u5B57\u306E\u5909\u66F4\u304C\u884C\u308F\u308C\u306A\u3044\u6587\
+      \u5B57\u5217\u306B\u5BFE\u3059\u308B\u9759\u7684\u306A\u30ED\u30FC\u30EA\u30F3\
+      \u30B0\u30CF\u30C3\u30B7\u30E5"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/lpf_table_extend.test.cpp
     title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -84,13 +86,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/wavelet_matrix.test.cpp
     title: verify/unit_test/wavelet_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_root_finding.test.cpp
     title: verify/yosupo_fps/poly_root_finding.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/factrize.test.cpp
     title: verify/yosupo_math/factrize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/primitive_root.test.cpp
     title: verify/yosupo_math/primitive_root.test.cpp
   - icon: ':x:'
@@ -125,40 +127,40 @@ data:
   isVerificationFile: false
   path: random/seed.hpp
   requiredBy:
-  - string/rolling_hash.hpp
-  - math_mod/primitive_root_64bit.hpp
+  - string/static_rolling_hash.hpp
   - fps/poly_find_root.hpp
   - random/hash.hpp
   - random/graph.hpp
   - random/gen.hpp
+  - math_mod/primitive_root_64bit.hpp
   - math/prime_factorize.hpp
-  - math/multiplicative_function/euler_phi.hpp
-  - math/multiplicative_function/mobius.hpp
   - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/mobius.hpp
+  - math/multiplicative_function/euler_phi.hpp
   - math/group/rolling_hash.hpp
   timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
+  - verify/yosupo_math/primitive_root.test.cpp
+  - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
-  - verify/unit_test/action.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/famous_function_table.test.cpp
+  - verify/unit_test/binom_table.test.cpp
+  - verify/unit_test/multiplicative_function_table.test.cpp
   - verify/unit_test/prime_table_extend.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
-  - verify/unit_test/offline_dynamic_connectivity.test.cpp
-  - verify/unit_test/bit_vector.test.cpp
   - verify/unit_test/partial_persitent_unionfind.test.cpp
   - verify/unit_test/prime_factorize_table.test.cpp
-  - verify/unit_test/binom_table.test.cpp
-  - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/lpf_table_extend.test.cpp
+  - verify/unit_test/bit_vector.test.cpp
+  - verify/unit_test/offline_dynamic_connectivity.test.cpp
   - verify/unit_test/monoid.test.cpp
   - verify/unit_test/wavelet_matrix.test.cpp
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/unit_test/multiplicative_function_table.test.cpp
-  - verify/yosupo_math/factrize.test.cpp
-  - verify/yosupo_math/primitive_root.test.cpp
-  - verify/aoj/aoj_alds1_14_b.test.cpp
-  - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/unit_test/isprime_table_extend.test.cpp
+  - verify/unit_test/large_fact_arb_mod.test.cpp
+  - verify/unit_test/action.test.cpp
 documentation_of: random/seed.hpp
 layout: document
 redirect_from:

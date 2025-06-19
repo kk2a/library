@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
   - icon: ':question:'
@@ -31,15 +31,17 @@ data:
   - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash.hpp
     title: random/hash.hpp
   - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':question:'
-    path: string/rolling_hash.hpp
-    title: string/rolling_hash.hpp
+  - icon: ':x:'
+    path: string/static_rolling_hash.hpp
+    title: "\u6587\u5B57\u306E\u5909\u66F4\u304C\u884C\u308F\u308C\u306A\u3044\u6587\
+      \u5B57\u5217\u306B\u5BFE\u3059\u308B\u9759\u7684\u306A\u30ED\u30FC\u30EA\u30F3\
+      \u30B0\u30CF\u30C3\u30B7\u30E5"
   - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
@@ -58,6 +60,9 @@ data:
   - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
+  - icon: ':x:'
+    path: type_traits/container_traits.hpp
+    title: type_traits/container_traits.hpp
   - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
@@ -66,9 +71,9 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
@@ -90,13 +95,13 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
-    \ \n\n#include \"../../string/rolling_hash.hpp\"\n#include \"../../template/template.hpp\"\
+    \ \n\n#include \"../../string/static_rolling_hash.hpp\"\n#include \"../../template/template.hpp\"\
     \nusing namespace std;\n\nint main() {\n    string t, p;\n    kin >> t >> p;\n\
     \    kk2::Roliha rt(t), rp(p);\n    for (size_t i = 0; i + p.size() <= t.size();\
     \ ++i) {\n        if (rt.get(i, i + p.size()) == rp.get(0, p.size())) kout <<\
     \ i << \"\\n\";\n    }\n\n    return 0;\n}\n"
   dependsOn:
-  - string/rolling_hash.hpp
+  - string/static_rolling_hash.hpp
   - random/hash.hpp
   - math_mod/primitive_root_64bit.hpp
   - math/prime_factorize.hpp
@@ -111,6 +116,7 @@ data:
   - math_mod/pow_mod.hpp
   - modint/modint_2_61m1.hpp
   - random/gen.hpp
+  - type_traits/container_traits.hpp
   - template/template.hpp
   - template/constant.hpp
   - template/type_alias.hpp
@@ -120,8 +126,8 @@ data:
   isVerificationFile: true
   path: verify/aoj/aoj_alds1_14_b.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 16:34:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-19 11:21:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/aoj/aoj_alds1_14_b.test.cpp
 layout: document

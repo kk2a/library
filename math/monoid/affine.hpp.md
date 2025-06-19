@@ -5,7 +5,7 @@ data:
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/action/affine_sumwithsize.hpp
     title: math/action/affine_sumwithsize.hpp
   - icon: ':heavy_check_mark:'
@@ -15,19 +15,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/action.test.cpp
     title: verify/unit_test/action.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   _isVerificationFailed: true
@@ -67,17 +67,17 @@ data:
   isVerificationFile: false
   path: math/monoid/affine.hpp
   requiredBy:
-  - math/action/update_affine.hpp
   - math/action/affine_sumwithsize.hpp
+  - math/action/update_affine.hpp
   timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/unit_test/action.test.cpp
-  - verify/unit_test/monoid.test.cpp
-  - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - verify/unit_test/monoid.test.cpp
+  - verify/unit_test/action.test.cpp
 documentation_of: math/monoid/affine.hpp
 layout: document
 redirect_from:

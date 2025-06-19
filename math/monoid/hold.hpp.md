@@ -6,10 +6,10 @@ data:
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/unit_test/monoid.test.cpp
     title: verify/unit_test/monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
   _isVerificationFailed: true
@@ -55,8 +55,8 @@ data:
   timestamp: '2025-06-06 16:34:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/unit_test/monoid.test.cpp
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
+  - verify/unit_test/monoid.test.cpp
 documentation_of: math/monoid/hold.hpp
 layout: document
 redirect_from:

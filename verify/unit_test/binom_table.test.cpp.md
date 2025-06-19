@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/binom_table.hpp
     title: math_mod/binom_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/modint.hpp
     title: modint/modint.hpp
   - icon: ':question:'

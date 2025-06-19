@@ -18,25 +18,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_grl_1_c.test.cpp
     title: verify/aoj/aoj_grl_1_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_bcc.test.cpp
     title: verify/yosupo_graph/graph_bcc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_matching_bipartite.test.cpp
     title: verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_scc.test.cpp
     title: verify/yosupo_graph/graph_scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/graph_shortest_path.test.cpp
     title: verify/yosupo_graph/graph_shortest_path.test.cpp
   - icon: ':x:'
     path: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
     title: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/tree_diameter.test.cpp
     title: verify/yosupo_graph/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_graph/tree_lca.test.cpp
     title: verify/yosupo_graph/tree_lca.test.cpp
   - icon: ':x:'
@@ -158,15 +158,15 @@ data:
   timestamp: '2025-04-24 20:50:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/aoj/aoj_grl_1_b.test.cpp
-  - verify/yosupo_graph/graph_bcc.test.cpp
-  - verify/yosupo_graph/tree_diameter.test.cpp
-  - verify/yosupo_graph/graph_scc.test.cpp
-  - verify/yosupo_graph/graph_matching_bipartite.test.cpp
-  - verify/yosupo_graph/graph_shortest_path.test.cpp
-  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/graph_matching_bipartite.test.cpp
+  - verify/yosupo_graph/tree_diameter.test.cpp
+  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_graph/graph_scc.test.cpp
+  - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_shortest_path.test.cpp
   - verify/yuki/yuki_1326.test.cpp
 documentation_of: graph/graph.hpp
 layout: document

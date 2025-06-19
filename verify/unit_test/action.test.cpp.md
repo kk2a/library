@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/action/add_sumwithsize.hpp
     title: math/action/add_sumwithsize.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/action/affine_sumwithsize.hpp
     title: math/action/affine_sumwithsize.hpp
   - icon: ':heavy_check_mark:'
@@ -31,7 +31,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/action/update_sumwithsize.hpp
     title: math/action/update_sumwithsize.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/group/add.hpp
     title: math/group/add.hpp
   - icon: ':question:'
@@ -43,7 +43,7 @@ data:
   - icon: ':question:'
     path: math/monoid/max.hpp
     title: math/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/monoid/max_min_sumwithsize.hpp
     title: math/monoid/max_min_sumwithsize.hpp
   - icon: ':question:'
