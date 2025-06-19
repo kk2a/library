@@ -14,36 +14,24 @@ namespace kk2 {
 
 namespace rbtree {
 
-template <class S,
-          S (*op)(S, S),
-          S (*e)(),
-          class F,
-          S (*mapping)(F, S),
-          F (*composition)(F, F),
-          F (*id)()>
-struct LazyRedBlackTreeNode {
+template <class A_> struct LazyRedBlackTreeNode {
     using NodePtr = typename RedBlackTreeBase<LazyRedBlackTreeNode>::NodePtr;
-    using Monoid = S;
-
-    static Monoid MonoidOp(Monoid a, Monoid b) { return op(a, b); }
-
-    static Monoid MonoidUnit() { return e(); }
-
-    using Action = F;
-
-    static Monoid Map(Action f, Monoid x) { return mapping(f, x); }
-
-    static Action ActionOp(Action f, Action g) { return composition(f, g); }
-
-    static Action ActionUnit() { return id(); }
+    using action_type = A_;
+    using S = typename A_::S;
+    using A = typename A_::A;
+    static S s_op(S a, S b) { return S::op(a, b); }
+    static S s_unit() { return S::unit(); }
+    static S sa_act(A f, S x) { return action_type::act(f, x); }
+    static A a_op(A f, A g) { return A::op(f, g); }
+    static A a_unit() { return A::unit(); }
 
     NodePtr left, right;
     int rank, count;
     bool is_red, is_rev;
     S val;
-    F lazy;
+    A lazy;
 
-    LazyRedBlackTreeNode(S val_ = e(), F lazy_ = id())
+    LazyRedBlackTreeNode(S val_ = s_unit(), A lazy_ = a_unit())
         : left(nullptr),
           right(nullptr),
           rank(0),
@@ -79,18 +67,16 @@ struct LazyRedBlackTreeNode {
     }
 };
 
-template <class S,
-          S (*op)(S, S),
-          S (*e)(),
-          class F,
-          S (*mapping)(F, S),
-          F (*composition)(F, F),
-          F (*id)()>
+template <class A_>
 struct LazyRedBlackTree
-    : RedBlackTreeBase<LazyRedBlackTreeNode<S, op, e, F, mapping, composition, id>> {
-    using base = RedBlackTreeBase<LazyRedBlackTreeNode<S, op, e, F, mapping, composition, id>>;
-    using base::ActionOp;
-    using base::Map;
+    : RedBlackTreeBase<LazyRedBlackTreeNode<A_>> {
+    using base = RedBlackTreeBase<LazyRedBlackTreeNode<A_>>;
+    using typename base::S;
+    using typename base::A;
+    using base::s_op;
+    using base::a_op;
+    using base::a_unit;
+    using base::sa_act;
     using base::merge;
     using base::RedBlackTreeBase;
     using base::size;
@@ -101,7 +87,7 @@ struct LazyRedBlackTree
     template <class... Args> void apply(NodePtr &t, int l, int r, Args... args) {
         assert(0 <= l and l <= r and r <= size(t));
         auto [t1, t2, t3] = split3(t, l, r);
-        all_apply(t2, F(args...));
+        all_apply(t2, A(args...));
         t = merge(merge(t1, t2), t3);
     }
 
@@ -109,14 +95,14 @@ struct LazyRedBlackTree
     NodePtr update(NodePtr t) override {
         t->count = size(t->left) + size(t->right) + (t->left == nullptr);
         t->rank = t->left ? t->left->rank + !t->left->is_red : 1;
-        t->val = (t->left ? op(t->left->val, t->right->val) : t->val);
+        t->val = (t->left ? s_op(t->left->val, t->right->val) : t->val);
         return t;
     }
 
-    void all_apply(NodePtr &t, F f) {
+    void all_apply(NodePtr &t, A f) {
         if (!t) return;
-        t->val = Map(f, t->val);
-        if (t->left) t->lazy = ActionOp(f, t->lazy);
+        t->val = sa_act(f, t->val);
+        if (t->left) t->lazy = a_op(f, t->lazy);
     }
 
     NodePtr push(NodePtr t) override {
@@ -127,27 +113,18 @@ struct LazyRedBlackTree
             t->is_rev = false;
         }
 
-        if (t->lazy != id()) {
+        if (t->lazy != a_unit()) {
             all_apply(t->left, t->lazy);
             all_apply(t->right, t->lazy);
-            t->lazy = id();
+            t->lazy = a_unit();
         }
         return t;
     }
 };
 
-template <class A> using LazyRedBlackTreeS = LazyRedBlackTree<typename A::S,
-                                                              A::S::op,
-                                                              A::S::unit,
-                                                              typename A::A,
-                                                              A::act,
-                                                              A::A::op,
-                                                              A::A::unit>;
-
 } // namespace rbtree
 
 using rbtree::LazyRedBlackTree;
-using rbtree::LazyRedBlackTreeS;
 
 } // namespace kk2
 

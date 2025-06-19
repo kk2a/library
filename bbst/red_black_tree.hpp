@@ -14,14 +14,23 @@ namespace kk2 {
 
 namespace rbtree {
 
-template <class S, S (*op)(S, S), S (*e)()> struct RedBlackTreeNode {
+template <class M> struct RedBlackTreeNode {
     using NodePtr = typename RedBlackTreeBase<RedBlackTreeNode>::NodePtr;
+    using action_type = void;
+    using S = M;
+    using A = int;
+    static S s_op(S a, S b) { return S::op(a, b); }
+    static S s_unit() { return S::unit(); }
+    static S sa_act(A, S) { return S(); }
+    static A a_op(A, A) { return 0; }
+    static A a_unit() { return 0; }
+
     NodePtr left, right;
     int rank, count;
     bool is_red, is_rev;
     S val;
 
-    RedBlackTreeNode(S val_ = e())
+    RedBlackTreeNode(S val_ = s_unit())
         : left(nullptr),
           right(nullptr),
           rank(0),
@@ -53,26 +62,14 @@ template <class S, S (*op)(S, S), S (*e)()> struct RedBlackTreeNode {
         a.push_back("]");
         for (auto &s : a) os << s;
     }
-
-    using Monoid = S;
-
-    static Monoid MonoidOp(Monoid a, Monoid b) { return op(a, b); }
-
-    static Monoid MonoidUnit() { return e(); }
-
-    using Action = int;
-
-    static Monoid Map(Action, Monoid x) { return x; }
-
-    static Action ActionOp(Action, Action) { return 0; }
-
-    static Action ActionUnit() { return 0; }
 };
 
-template <class S, S (*op)(S, S), S (*e)()> struct RedBlackTree
-    : RedBlackTreeBase<RedBlackTreeNode<S, op, e>> {
-    using base = RedBlackTreeBase<RedBlackTreeNode<S, op, e>>;
+template <class M> struct RedBlackTree
+    : RedBlackTreeBase<RedBlackTreeNode<M>> {
+    using base = RedBlackTreeBase<RedBlackTreeNode<M>>;
     using base::RedBlackTreeBase;
+    using typename base::S;
+    using base::s_op;
     using base::size;
     using typename base::NodePtr;
 
@@ -80,7 +77,7 @@ template <class S, S (*op)(S, S), S (*e)()> struct RedBlackTree
     NodePtr update(NodePtr t) override {
         t->count = size(t->left) + size(t->right) + (t->left == nullptr);
         t->rank = t->left ? t->left->rank + !t->left->is_red : 1;
-        t->val = (t->left ? op(t->left->val, t->right->val) : t->val);
+        t->val = (t->left ? s_op(t->left->val, t->right->val) : t->val);
         return t;
     }
 
@@ -95,12 +92,9 @@ template <class S, S (*op)(S, S), S (*e)()> struct RedBlackTree
     }
 };
 
-template <class M> using RedBlackTreeS = RedBlackTree<M, M::op, M::unit>;
-
 } // namespace rbtree
 
 using rbtree::RedBlackTree;
-using rbtree::RedBlackTreeS;
 
 } // namespace kk2
 

@@ -17,7 +17,7 @@ namespace rbtree {
 // NodePtr left, right;
 // int rank, count;
 // bool is_red;
-// Monoid val;
+// S val;
 
 /**
  * @brief 赤黒木の基本クラス
@@ -26,19 +26,14 @@ namespace rbtree {
 template <typename Node> struct RedBlackTreeBase {
     VectorPool<Node> pool;
     using NodePtr = Node *;
-    using Monoid = typename Node::Monoid;
-
-    static auto MonoidOp(Monoid a, Monoid b) { return Node::MonoidOp(a, b); }
-
-    static auto MonoidUnit() { return Node::MonoidUnit(); }
-
-    using Action = typename Node::Action;
-
-    static auto Map(Action a, Monoid x) { return Node::Map(a, x); }
-
-    static auto ActionOp(Action a, Action b) { return Node::ActionOp(a, b); }
-
-    static auto ActionUnit() { return Node::ActionUnit(); }
+    using action_type = typename Node::action_type;
+    using S = typename Node::S;
+    using A = typename Node::A;
+    static S s_op(S a, S b) { return Node::s_op(a, b); }
+    static S s_unit() { return Node::s_unit(); }
+    static S sa_act(A f, S x) { return Node::sa_act(f, x); }
+    static A a_op(A f, A g) { return Node::a_op(f, g); }
+    static A a_unit() { return Node::a_unit(); }
 
     RedBlackTreeBase(int sz) : pool(sz) { pool.clear(); }
 
@@ -58,7 +53,7 @@ template <typename Node> struct RedBlackTreeBase {
         free(t);
     }
 
-    NodePtr build(const std::vector<Monoid> &v) {
+    NodePtr build(const std::vector<S> &v) {
         auto dfs = [&](auto self, int l, int r) -> NodePtr {
             if (l == r) return nullptr;
             if (l + 1 == r) return alloc(v[l]);
@@ -109,7 +104,7 @@ template <typename Node> struct RedBlackTreeBase {
     template <typename... Args> void insert(NodePtr &t, int k, Args... args) {
         assert(0 <= k and k <= size(t));
         auto [l, r] = split(t, k);
-        t = merge(merge(l, alloc(Monoid(args...))), r);
+        t = merge(merge(l, alloc(S(args...))), r);
     }
 
     void erase(NodePtr &t, int k) {
@@ -125,7 +120,7 @@ template <typename Node> struct RedBlackTreeBase {
         NodePtr now = t;
         auto dfs = [&](auto self, NodePtr now, int k) -> void {
             if (!now->left) {
-                now->val = Monoid(args...);
+                now->val = S(args...);
                 return;
             }
             now = push(now);
@@ -136,7 +131,7 @@ template <typename Node> struct RedBlackTreeBase {
         dfs(dfs, now, k);
     }
 
-    Monoid get(NodePtr t, int k) {
+    S get(NodePtr t, int k) {
         assert(0 <= k and k < size(t));
         NodePtr now = t;
         while (now->left) {
@@ -150,10 +145,10 @@ template <typename Node> struct RedBlackTreeBase {
         return now->val;
     }
 
-    Monoid prod(NodePtr &t, int l, int r) {
+    S prod(NodePtr &t, int l, int r) {
         assert(0 <= l and l <= r and r <= size(t));
         auto [t1, t2, t3] = split3(t, l, r);
-        Monoid res = (t2 ? t2->val : MonoidUnit());
+        S res = (t2 ? t2->val : s_unit());
         t = merge(merge(t1, t2), t3);
         return res;
     }
@@ -166,11 +161,11 @@ template <typename Node> struct RedBlackTreeBase {
     }
 
     template <typename... Args> void push_front(NodePtr &t, Args... args) {
-        t = merge(alloc(Monoid(args...)), t);
+        t = merge(alloc(S(args...)), t);
     }
 
     template <typename... Args> void push_back(NodePtr &t, Args... args) {
-        t = merge(t, alloc(Monoid(args...)));
+        t = merge(t, alloc(S(args...)));
     }
 
     void pop_front(NodePtr &t) {
@@ -185,7 +180,7 @@ template <typename Node> struct RedBlackTreeBase {
 
     struct bb_result {
         int s;
-        Monoid prod;
+        S prod;
         NodePtr t;
     };
 
@@ -200,10 +195,10 @@ template <typename Node> struct RedBlackTreeBase {
      *
      * - k = size(t) または (k ≠ size(t) かつ g(prod(l, k+1)) = false)
      *
-     * @tparam G 述語関数の型。bool operator()(Monoid)を持つ必要があります
+     * @tparam G 述語関数の型。bool operator()(S)を持つ必要があります
      * @param t 探索対象の木（参照渡し、操作後に復元されます）
      * @param l 探索開始位置（0-indexed）
-     * @param g 判定関数。Monoidを受け取りboolを返す関数オブジェクト
+     * @param g 判定関数。Sを受け取りboolを返す関数オブジェクト
      * @return bb_result 構造体
      *
      *         - s: 条件を満たす最大のk
@@ -213,15 +208,15 @@ template <typename Node> struct RedBlackTreeBase {
      *         - t: k番目のノードへのポインタ（存在しない場合はnullptr）
      *
      * @pre 0 <= l <= size(t)
-     * @pre g(MonoidUnit()) == true
+     * @pre g(s_unit()) == true
      */
     template <class G> bb_result max_right(NodePtr &t, int l, const G &g) {
         assert(0 <= l and l <= size(t));
-        assert(g(MonoidUnit()));
+        assert(g(s_unit()));
         auto [t1, t2] = split(t, l);
         if (!t2) {
             t = merge(t1, t2);
-            return {l, MonoidUnit(), nullptr};
+            return {l, s_unit(), nullptr};
         }
         if (g(t2->val)) {
             t = merge(t1, t2);
@@ -229,12 +224,12 @@ template <typename Node> struct RedBlackTreeBase {
         }
 
         int k = l;
-        Monoid x = MonoidUnit();
+        S x = s_unit();
         NodePtr now = t2;
 
         while (now->left) {
             now = push(now);
-            Monoid y = MonoidOp(x, now->left->val);
+            S y = s_op(x, now->left->val);
             if (g(y)) {
                 x = y;
                 k += size(now->left);
@@ -258,10 +253,10 @@ template <typename Node> struct RedBlackTreeBase {
      *
      * - k = 0 または (k ≠ 0 かつ g(prod(k-1, r)) = false)
      *
-     * @tparam G 述語関数の型。bool operator()(Monoid)を持つ必要があります
+     * @tparam G 述語関数の型。bool operator()(S)を持つ必要があります
      * @param t 探索対象の木（参照渡し、操作後に復元されます）
      * @param r 探索終了位置（0-indexed）
-     * @param g 判定関数。Monoidを受け取りboolを返す関数オブジェクト
+     * @param g 判定関数。Sを受け取りboolを返す関数オブジェクト
      * @return bb_result 構造体
      *
      *         - s: 条件を満たす最小のk
@@ -271,15 +266,15 @@ template <typename Node> struct RedBlackTreeBase {
      *         - t: k-1番目のノードへのポインタ（存在しない場合はnullptr）
      *
      * @pre 0 <= r <= size(t)
-     * @pre g(MonoidUnit()) == true
+     * @pre g(s_unit()) == true
      */
     template <class G> bb_result min_left(NodePtr &t, int r, const G &g) {
         assert(0 <= r and r <= size(t));
-        assert(g(MonoidUnit()));
+        assert(g(s_unit()));
         auto [t1, t2] = split(t, r);
         if (!t1) {
             t = merge(t1, t2);
-            return {r, MonoidUnit(), nullptr};
+            return {r, s_unit(), nullptr};
         }
         if (g(t1->val)) {
             t = merge(t1, t2);
@@ -287,12 +282,12 @@ template <typename Node> struct RedBlackTreeBase {
         }
 
         int k = r;
-        Monoid x = MonoidUnit();
+        S x = s_unit();
         NodePtr now = t1;
 
         while (now->right) {
             now = push(now);
-            Monoid y = MonoidOp(now->right->val, x);
+            S y = s_op(now->right->val, x);
             if (g(y)) {
                 x = y;
                 k -= size(now->right);
