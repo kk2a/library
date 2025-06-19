@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B" 
 
-#include "../../string/rolling_hash.hpp"
+#include "../../string/static_rolling_hash.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 

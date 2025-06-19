@@ -1,11 +1,15 @@
 #ifndef KK2_MATH_GROUP_ROLLING_HASH_HPP
 #define KK2_MATH_GROUP_ROLLING_HASH_HPP 1
 
+#include <vector>
+
 #include "../../random/hash.hpp"
 #include "../../type_traits/container_traits.hpp"
 #include "../../type_traits/integral.hpp"
 
 namespace kk2 {
+
+namespace group {
 
 template <int Num> struct RollingHash {
     static constexpr bool commutative = false;
@@ -45,6 +49,8 @@ template <int Num> struct RollingHash {
         os << "(" << a << ", " << pw << ", " << ipw << ")";
     }
 };
+
+} // namespace group
 
 } // namespace kk2
 
