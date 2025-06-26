@@ -352,7 +352,6 @@ template <typename Node> struct RedBlackTreeBase {
     }
 
     virtual NodePtr update(NodePtr t) = 0;
-
     virtual NodePtr push(NodePtr t) = 0;
 };
 
