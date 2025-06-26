@@ -11,7 +11,10 @@ namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS &a, const FPS &b) {
     int n = int(a.size()), m = int(b.size());
-    if (!n || !m) return {};
+    if (!n || !m) {
+        a.clear();
+        return a;
+    }
     if (is_sparse_operation(FPSOperation::CONVOLUTION, 1, a, b)) {
         std::vector<int> nza(n), nzb(m);
         int ai = 0, bi = 0;
