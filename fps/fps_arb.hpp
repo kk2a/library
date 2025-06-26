@@ -32,7 +32,7 @@ template <class mint> struct FormalPowerSeriesArbitrary
     FPS dense_inv(int deg = -1) const {
         if (deg == -1) deg = this->size();
         FPS res{(*this)[0].inv()};
-        for (int i = 1; i < deg; i <<= 1) { res = this->pre(i << 1) * res * res; }
+        for (int i = 1; i < deg; i <<= 1) { res = res + res - this->pre(i << 1) * (res * res); }
         return res.pre(deg);
     }
 
