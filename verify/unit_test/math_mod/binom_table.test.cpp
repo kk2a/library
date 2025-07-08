@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
 
-#include "../../math_mod/binom_table.hpp"
-#include "../../math_mod/comb.hpp"
-#include "../../modint/modint.hpp"
-#include "../../random/gen.hpp"
-#include "../../template/template.hpp"
+#include "../../../math_mod/binom_table.hpp"
+#include "../../../math_mod/comb.hpp"
+#include "../../../modint/modint.hpp"
+#include "../../../random/gen.hpp"
+#include "../../../template/template.hpp"
 using namespace std;
 
 int main() {

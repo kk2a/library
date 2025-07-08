@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
 
-#include "../../math_mod/inv_table.hpp"
-#include "../../modint/modint.hpp"
-#include "../../random/gen.hpp"
-#include "../../template/template.hpp"
+#include "../../../math_mod/inv_table.hpp"
+#include "../../../modint/modint.hpp"
+#include "../../../random/gen.hpp"
+#include "../../../template/template.hpp"
 using namespace std;
 
 void test_inv_table() {

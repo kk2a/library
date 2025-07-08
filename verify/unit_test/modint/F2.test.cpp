@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include "../../modint/F2.hpp"
-#include "../../template/template.hpp"
+#include "../../../modint/F2.hpp"
+#include "../../../template/template.hpp"
 using namespace std;
 
 int main() {

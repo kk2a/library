@@ -43,8 +43,7 @@ struct ParallelUnionFind {
     int count = 0;
     double time = 0;
 
-    template <class F>
-    bool unite(int a, int b, int k, const F &f) {
+    template <class F> bool unite(int a, int b, int k, const F &f) {
         int c = DR::lcp(roots, a, a + k, roots, b, b + k);
         if (c == k) return false;
         while (c != k) {
@@ -68,8 +67,7 @@ struct ParallelUnionFind {
     inline int size(int a) { return -d[find(a)]; }
     inline std::vector<int> enumerate(int a) {
         std::vector<int> res{a};
-        for (int j = nxt[a]; j != a; j = nxt[j]) 
-            res.push_back(j);
+        for (int j = nxt[a]; j != a; j = nxt[j]) res.push_back(j);
         return res;
     }
 };

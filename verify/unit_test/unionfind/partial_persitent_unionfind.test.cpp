@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
 
-#include "../../unionfind/partial_persistent.hpp"
-#include "../../unionfind/unionfind.hpp"
-#include "../../random/gen.hpp"
-#include "../../template/template.hpp"
+#include "../../../unionfind/partial_persistent.hpp"
+#include "../../../unionfind/unionfind.hpp"
+#include "../../../random/gen.hpp"
+#include "../../../template/template.hpp"
 using namespace std;
 
 int main() {

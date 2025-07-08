@@ -22,8 +22,7 @@ struct UnionFind {
         return true;
     }
 
-    template <class F>
-    bool unite(int x, int y, const F& f) {
+    template <class F> bool unite(int x, int y, const F &f) {
         x = find(x), y = find(y);
         if (x == y) return false;
         if (-d[x] < -d[y]) std::swap(x, y);

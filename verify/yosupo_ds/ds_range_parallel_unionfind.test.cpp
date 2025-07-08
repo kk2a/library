@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_parallel_unionfind" 
 
 #include "../../unionfind/parallel.hpp"
+#include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 

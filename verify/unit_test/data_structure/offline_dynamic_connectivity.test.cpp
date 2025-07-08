@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
 
-#include "../../data_structure/offline_dynamic_connectivity.hpp"
-#include "../../unionfind/unionfind.hpp"
-#include "../../random/gen.hpp"
-#include "../../template/template.hpp"
+#include "../../../data_structure/offline_dynamic_connectivity.hpp"
+#include "../../../unionfind/unionfind.hpp"
+#include "../../../random/gen.hpp"
+#include "../../../template/template.hpp"
 using namespace std;
 
 int main() {

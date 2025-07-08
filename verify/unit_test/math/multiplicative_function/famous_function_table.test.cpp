@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
 
-#include "../../math/multiplicative_function/famous_function_table.hpp"
-#include "../../math/multiplicative_function/mobius.hpp"
-#include "../../math/multiplicative_function/sigma.hpp"
-#include "../../math/multiplicative_function/euler_phi.hpp"
-#include "../../random/gen.hpp"
-#include "../../template/template.hpp"
+#include "../../../../math/multiplicative_function/famous_function_table.hpp"
+#include "../../../../math/multiplicative_function/mobius.hpp"
+#include "../../../../math/multiplicative_function/sigma.hpp"
+#include "../../../../math/multiplicative_function/euler_phi.hpp"
+#include "../../../../random/gen.hpp"
+#include "../../../../template/template.hpp"
 using namespace std;
 
 int main() {
