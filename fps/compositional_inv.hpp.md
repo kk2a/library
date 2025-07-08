@@ -69,28 +69,28 @@ data:
     }\n\n} // namespace kk2\n\n\n#line 7 \"fps/compositional_inv.hpp\"\n\nnamespace\
     \ kk2 {\n\n// calculate f ^ {-1} (X)  mod X ^ deg\ntemplate <class FPS, class\
     \ mint = typename FPS::value_type>\nFPS compositional_inv(const FPS &f, int deg\
-    \ = -1) {\n    assert(int(size(f)) >= 2 and f[1] != mint(0));\n    if (deg ==\
-    \ -1) deg = int(size(f));\n    if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);\n\
-    \    int n = deg - 1;\n    FPS h = power_projection(f) * n;\n\n    for (int k\
-    \ = 1; k <= n; k++) h[k] /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n \
-    \   FPS g = (h.log() * mint(-n).inv()).exp();\n    g *= f[1].inv();\n    return\
-    \ (g << 1).pre(deg);\n}\n\n} // namespace kk2\n\n\n"
-  code: "#ifndef KK2_FPS_COMPOSITIONAL_INV_HPP\n#define KK2_FPS_COMPOSITIONAL_INV_HPP\
-    \ 1\n\n#include <cassert>\n\n#include \"power_projection.hpp\"\n\nnamespace kk2\
-    \ {\n\n// calculate f ^ {-1} (X)  mod X ^ deg\ntemplate <class FPS, class mint\
-    \ = typename FPS::value_type>\nFPS compositional_inv(const FPS &f, int deg = -1)\
-    \ {\n    assert(int(size(f)) >= 2 and f[1] != mint(0));\n    if (deg == -1) deg\
+    \ = -1) {\n    assert(size(f) >= 2 and f[1] != mint(0));\n    if (deg == -1) deg\
     \ = int(size(f));\n    if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);\n    int\
     \ n = deg - 1;\n    FPS h = power_projection(f) * n;\n\n    for (int k = 1; k\
     \ <= n; k++) h[k] /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n    FPS g\
     \ = (h.log() * mint(-n).inv()).exp();\n    g *= f[1].inv();\n    return (g <<\
-    \ 1).pre(deg);\n}\n\n} // namespace kk2\n\n#endif // KK2_FPS_COMPOSITIONAL_INV_HPP\n"
+    \ 1).pre(deg);\n}\n\n} // namespace kk2\n\n\n"
+  code: "#ifndef KK2_FPS_COMPOSITIONAL_INV_HPP\n#define KK2_FPS_COMPOSITIONAL_INV_HPP\
+    \ 1\n\n#include <cassert>\n\n#include \"power_projection.hpp\"\n\nnamespace kk2\
+    \ {\n\n// calculate f ^ {-1} (X)  mod X ^ deg\ntemplate <class FPS, class mint\
+    \ = typename FPS::value_type>\nFPS compositional_inv(const FPS &f, int deg = -1)\
+    \ {\n    assert(size(f) >= 2 and f[1] != mint(0));\n    if (deg == -1) deg = int(size(f));\n\
+    \    if (deg < 2) return FPS{0, f[1].inv()}.pre(deg);\n    int n = deg - 1;\n\
+    \    FPS h = power_projection(f) * n;\n\n    for (int k = 1; k <= n; k++) h[k]\
+    \ /= k;\n    h.inplace_rev();\n    h *= h[0].inv();\n    FPS g = (h.log() * mint(-n).inv()).exp();\n\
+    \    g *= f[1].inv();\n    return (g << 1).pre(deg);\n}\n\n} // namespace kk2\n\
+    \n#endif // KK2_FPS_COMPOSITIONAL_INV_HPP\n"
   dependsOn:
   - fps/power_projection.hpp
   isVerificationFile: false
   path: fps/compositional_inv.hpp
   requiredBy: []
-  timestamp: '2025-01-05 04:43:56+09:00'
+  timestamp: '2025-07-08 15:03:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_composition_inv.test.cpp

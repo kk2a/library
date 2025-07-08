@@ -186,8 +186,8 @@ data:
     \           l->left->is_red = 0;\n            }\n            return update(l);\n\
     \        } else {\n            return alloc(l, r);\n        }\n    }\n\n    NodePtr\
     \ as_root(NodePtr t) {\n        if (!t) return t;\n        t->is_red = false;\n\
-    \        return t;\n    }\n\n    virtual NodePtr update(NodePtr t) = 0;\n\n  \
-    \  virtual NodePtr push(NodePtr t) = 0;\n};\n\n} // namespace rbtree\n\n} // namespace\
+    \        return t;\n    }\n\n    virtual NodePtr update(NodePtr t) = 0;\n    virtual\
+    \ NodePtr push(NodePtr t) = 0;\n};\n\n} // namespace rbtree\n\n} // namespace\
     \ kk2\n\n\n"
   code: "#ifndef KK2_BBST_BASE_RED_BLACK_TREE_BASE_HPP\n#define KK2_BBST_BASE_RED_BLACK_TREE_BASE_HPP\
     \ 1\n\n#include <cassert>\n#include <memory>\n#include <string>\n#include <utility>\n\
@@ -335,8 +335,8 @@ data:
     \           l->left->is_red = 0;\n            }\n            return update(l);\n\
     \        } else {\n            return alloc(l, r);\n        }\n    }\n\n    NodePtr\
     \ as_root(NodePtr t) {\n        if (!t) return t;\n        t->is_red = false;\n\
-    \        return t;\n    }\n\n    virtual NodePtr update(NodePtr t) = 0;\n\n  \
-    \  virtual NodePtr push(NodePtr t) = 0;\n};\n\n} // namespace rbtree\n\n} // namespace\
+    \        return t;\n    }\n\n    virtual NodePtr update(NodePtr t) = 0;\n    virtual\
+    \ NodePtr push(NodePtr t) = 0;\n};\n\n} // namespace rbtree\n\n} // namespace\
     \ kk2\n\n#endif // KK2_BBST_BASE_RED_BLACK_TREE_BASE_HPP\n"
   dependsOn:
   - others/vector_pool.hpp
@@ -346,13 +346,13 @@ data:
   - data_structure/ordered_set.hpp
   - bbst/lazy_red_black_tree.hpp
   - bbst/red_black_tree.hpp
-  timestamp: '2025-06-19 11:21:05+09:00'
+  timestamp: '2025-06-26 23:23:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
 documentation_of: bbst/base/red_black_tree_base.hpp
 layout: document
 redirect_from:

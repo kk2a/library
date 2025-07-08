@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
   _extendedRequiredBy: []

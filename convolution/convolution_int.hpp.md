@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   - icon: ':heavy_check_mark:'
@@ -28,10 +28,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
@@ -95,7 +95,7 @@ data:
   isVerificationFile: false
   path: convolution/convolution_int.hpp
   requiredBy: []
-  timestamp: '2025-06-06 19:36:33+09:00'
+  timestamp: '2025-06-26 23:23:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/convolution_int.hpp

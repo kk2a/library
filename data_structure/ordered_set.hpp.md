@@ -168,8 +168,8 @@ data:
     \           l->left->is_red = 0;\n            }\n            return update(l);\n\
     \        } else {\n            return alloc(l, r);\n        }\n    }\n\n    NodePtr\
     \ as_root(NodePtr t) {\n        if (!t) return t;\n        t->is_red = false;\n\
-    \        return t;\n    }\n\n    virtual NodePtr update(NodePtr t) = 0;\n\n  \
-    \  virtual NodePtr push(NodePtr t) = 0;\n};\n\n} // namespace rbtree\n\n} // namespace\
+    \        return t;\n    }\n\n    virtual NodePtr update(NodePtr t) = 0;\n    virtual\
+    \ NodePtr push(NodePtr t) = 0;\n};\n\n} // namespace rbtree\n\n} // namespace\
     \ kk2\n\n\n#line 9 \"data_structure/ordered_set.hpp\"\n\nnamespace kk2 {\n\nnamespace\
     \ rbtree {\n\ntemplate <typename T, typename Compare> struct SetNode {\n    using\
     \ NodePtr = typename rbtree::RedBlackTreeBase<SetNode>::NodePtr;\n    NodePtr\
@@ -274,7 +274,7 @@ data:
   isVerificationFile: false
   path: data_structure/ordered_set.hpp
   requiredBy: []
-  timestamp: '2025-06-19 11:21:05+09:00'
+  timestamp: '2025-06-26 23:23:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/ordered_set.hpp

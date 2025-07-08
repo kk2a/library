@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/modint_2_61m1.hpp
     title: modint/modint_2_61m1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/mont_arb.hpp
     title: modint/mont_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/gen.hpp
     title: random/gen.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/seed.hpp
     title: random/seed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/container_traits.hpp
     title: type_traits/container_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/unit_test/monoid.test.cpp
-    title: verify/unit_test/monoid.test.cpp
+    path: verify/unit_test/math/group/group.test.cpp
+    title: verify/unit_test/math/group/group.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -113,10 +113,10 @@ data:
   isVerificationFile: false
   path: math/group/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2025-06-19 11:21:54+09:00'
+  timestamp: '2025-07-08 15:02:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/unit_test/monoid.test.cpp
+  - verify/unit_test/math/group/group.test.cpp
 documentation_of: math/group/rolling_hash.hpp
 layout: document
 redirect_from:

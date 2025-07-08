@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/fps_base.hpp
+    title: fps/fps_base.hpp
   - icon: ':heavy_check_mark:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
@@ -23,22 +26,23 @@ data:
     path: math_mod/comb.hpp
     title: math_mod/comb.hpp
   - icon: ':heavy_check_mark:'
+    path: math_mod/inv_table.hpp
+    title: "`[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\
+      \u30D6\u30EB"
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/large_fact_arb_mod.test.cpp
-    title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
@@ -118,17 +122,18 @@ data:
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
+  - fps/fps_base.hpp
+  - math_mod/inv_table.hpp
   - type_traits/io.hpp
   - fps/poly_sample_point_shift.hpp
   - math_mod/comb.hpp
   isVerificationFile: false
   path: math_mod/comb_large.hpp
   requiredBy: []
-  timestamp: '2025-04-24 20:44:35+09:00'
+  timestamp: '2025-07-08 15:03:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
 documentation_of: math_mod/comb_large.hpp
 layout: document
 redirect_from:

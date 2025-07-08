@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':heavy_check_mark:'
     path: convolution/convolution.hpp
     title: convolution/convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/fps_base.hpp
+    title: fps/fps_base.hpp
   - icon: ':heavy_check_mark:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
@@ -17,6 +20,10 @@ data:
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
   - icon: ':heavy_check_mark:'
+    path: math_mod/inv_table.hpp
+    title: "`[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\
+      \u30D6\u30EB"
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   - icon: ':heavy_check_mark:'
@@ -25,28 +32,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/constant.hpp
     title: template/constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/fastio.hpp
     title: template/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/io_util.hpp
     title: template/io_util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_alias.hpp
     title: template/type_alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
@@ -89,6 +96,8 @@ data:
   - math_mod/butterfly.hpp
   - math_mod/primitive_root.hpp
   - math_mod/pow_mod.hpp
+  - fps/fps_base.hpp
+  - math_mod/inv_table.hpp
   - type_traits/io.hpp
   - modint/mont.hpp
   - template/template.hpp
@@ -100,7 +109,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_fps/fps_pow.test.cpp
   requiredBy: []
-  timestamp: '2025-06-04 11:53:52+09:00'
+  timestamp: '2025-07-08 15:03:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_pow.test.cpp

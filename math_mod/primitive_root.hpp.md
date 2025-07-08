@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   _extendedRequiredBy:
@@ -33,9 +33,6 @@ data:
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/large_fact_arb_mod.test.cpp
-    title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
     title: verify/yosupo_convolution/convolution_arbitrary.test.cpp
@@ -182,53 +179,52 @@ data:
   isVerificationFile: false
   path: math_mod/primitive_root.hpp
   requiredBy:
-  - fps/fps_ntt_friendly.hpp
-  - fps/fps_multivariate.hpp
-  - fps/fps_arb.hpp
-  - math_mod/butterfly.hpp
-  - math_mod/comb_large.hpp
-  - convolution/convolution_int.hpp
   - convolution/convolution_arb.hpp
   - convolution/convolution.hpp
+  - convolution/convolution_int.hpp
   - convolution/multi_convolution_truncated.hpp
+  - math_mod/butterfly.hpp
+  - math_mod/comb_large.hpp
+  - fps/fps_arb.hpp
+  - fps/fps_ntt_friendly.hpp
+  - fps/fps_multivariate.hpp
   timestamp: '2025-04-06 00:09:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
+  - verify/yuki/yuki_1510.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - verify/yosupo_fps/fps_sparse_exp.test.cpp
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
-  - verify/yosupo_fps/fps_sparse_inv.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
-  - verify/yosupo_fps/fps_pow.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - verify/yosupo_fps/fps_composition_inv.test.cpp
-  - verify/yosupo_fps/poly_division.test.cpp
-  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
-  - verify/yosupo_fps/fps_composition.test.cpp
-  - verify/yosupo_fps/fps_inv.test.cpp
-  - verify/yosupo_fps/poly_inv.test.cpp
+  - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
-  - verify/yosupo_fps/poly_interpolation.test.cpp
-  - verify/yosupo_fps/fps_sparse_pow.test.cpp
-  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
+  - verify/yosupo_fps/poly_division.test.cpp
+  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
+  - verify/yosupo_fps/fps_sparse_inv.test.cpp
   - verify/yosupo_fps/fps_sqrt.test.cpp
-  - verify/yuki/yuki_1510.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
+  - verify/yosupo_fps/fps_sparse_exp.test.cpp
+  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
+  - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/fps_composition.test.cpp
+  - verify/yosupo_fps/poly_interpolation.test.cpp
+  - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_fps/poly_inv.test.cpp
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/fps_sparse_pow.test.cpp
+  - verify/yosupo_fps/fps_composition_inv.test.cpp
+  - verify/yosupo_fps/fps_inv.test.cpp
+  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
+  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
+  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
 documentation_of: math_mod/primitive_root.hpp
 layout: document
 redirect_from:

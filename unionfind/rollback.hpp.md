@@ -2,16 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: data_structure/offline_dynamic_connectivity.hpp
     title: data_structure/offline_dynamic_connectivity.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/offline_dynamic_connectivity.test.cpp
-    title: verify/unit_test/offline_dynamic_connectivity.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"unionfind/rollback.hpp\"\n\n\n\n#include <utility>\n#include\
@@ -49,9 +46,8 @@ data:
   requiredBy:
   - data_structure/offline_dynamic_connectivity.hpp
   timestamp: '2025-03-02 17:31:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/unit_test/offline_dynamic_connectivity.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: unionfind/rollback.hpp
 layout: document
 redirect_from:

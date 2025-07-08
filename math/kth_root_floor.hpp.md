@@ -59,8 +59,8 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_math/kth_root_int.test.cpp
   - verify/yosupo_math/kth_root_int_ceil.test.cpp
+  - verify/yosupo_math/kth_root_int.test.cpp
 documentation_of: math/kth_root_floor.hpp
 layout: document
 redirect_from:

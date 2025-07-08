@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/inv.hpp
     title: math_mod/inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   - icon: ':heavy_check_mark:'
@@ -28,10 +28,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
@@ -74,14 +74,14 @@ data:
     \n#include \"../modint/mont.hpp\"\n#include \"convolution.hpp\"\n\nnamespace kk2\
     \ {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS convolution_arb(FPS\
     \ &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n\
-    \ || !m) return {};\n    if (is_sparse_operation(FPSOperation::CONVOLUTION, 0,\
-    \ a, b)) {\n        std::vector<int> nza(n), nzb(m);\n        int ai = 0, bi =\
-    \ 0;\n        for (int i = 0; i < n; i++)\n            if (a[i] != mint(0)) nza[ai++]\
-    \ = i;\n        for (int i = 0; i < m; i++)\n            if (b[i] != mint(0))\
-    \ nzb[bi++] = i;\n        nza.resize(ai), nzb.resize(bi);\n        FPS res(n +\
-    \ m - 1);\n        for (int i : nza)\n            for (int j : nzb) res[i + j]\
-    \ += a[i] * b[j];\n        return a = res;\n    }\n\n    static constexpr long\
-    \ long MOD1 = 754974721; // 2^24\n    static constexpr long long MOD2 = 167772161;\
+    \ || !m) {\n        a.clear();\n        return a;\n    }\n    if (is_sparse_operation(FPSOperation::CONVOLUTION,\
+    \ 0, a, b)) {\n        std::vector<int> nza(n), nzb(m);\n        int ai = 0, bi\
+    \ = 0;\n        for (int i = 0; i < n; i++)\n            if (a[i] != mint(0))\
+    \ nza[ai++] = i;\n        for (int i = 0; i < m; i++)\n            if (b[i] !=\
+    \ mint(0)) nzb[bi++] = i;\n        nza.resize(ai), nzb.resize(bi);\n        FPS\
+    \ res(n + m - 1);\n        for (int i : nza)\n            for (int j : nzb) res[i\
+    \ + j] += a[i] * b[j];\n        return a = res;\n    }\n\n    static constexpr\
+    \ long long MOD1 = 754974721; // 2^24\n    static constexpr long long MOD2 = 167772161;\
     \ // 2^25\n    static constexpr long long MOD3 = 469762049; // 2^26\n    using\
     \ mint1 = LazyMontgomeryModInt<MOD1>;\n    using mint2 = LazyMontgomeryModInt<MOD2>;\n\
     \    using mint3 = LazyMontgomeryModInt<MOD3>;\n\n    std::vector<long long> a0(n),\
@@ -112,13 +112,13 @@ data:
   path: convolution/convolution_arb.hpp
   requiredBy:
   - fps/fps_arb.hpp
-  timestamp: '2025-06-06 19:36:33+09:00'
+  timestamp: '2025-06-26 23:23:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/fps_inv_arb.test.cpp
+  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
 documentation_of: convolution/convolution_arb.hpp
 layout: document
 redirect_from:

@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/pow.hpp
     title: math/pow.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/multiplicative_function_table.test.cpp
-    title: verify/unit_test/multiplicative_function_table.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/multiplicative_function/famous_function.hpp\"\n\n\n\
@@ -40,9 +37,8 @@ data:
   path: math/multiplicative_function/famous_function.hpp
   requiredBy: []
   timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/unit_test/multiplicative_function_table.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math/multiplicative_function/famous_function.hpp
 layout: document
 redirect_from:

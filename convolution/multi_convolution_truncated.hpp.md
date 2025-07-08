@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':heavy_check_mark:'
@@ -13,13 +13,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/butterfly.hpp
     title: math_mod/butterfly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
   _extendedRequiredBy:
@@ -84,7 +84,7 @@ data:
   path: convolution/multi_convolution_truncated.hpp
   requiredBy:
   - fps/fps_multivariate.hpp
-  timestamp: '2025-04-24 20:44:35+09:00'
+  timestamp: '2025-06-26 23:23:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp

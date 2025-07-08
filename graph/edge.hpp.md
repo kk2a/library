@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
@@ -113,25 +113,25 @@ data:
   isVerificationFile: false
   path: graph/edge.hpp
   requiredBy:
-  - graph/static_graph.hpp
-  - graph/graph.hpp
   - random/graph.hpp
+  - graph/graph.hpp
+  - graph/static_graph.hpp
   timestamp: '2025-04-24 20:50:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yuki/yuki_1326.test.cpp
   - verify/aoj/aoj_grl_1_b.test.cpp
   - verify/aoj/aoj_grl_1_c.test.cpp
-  - verify/yosupo_graph/tree_lca.test.cpp
-  - verify/yosupo_graph/graph_matching_bipartite.test.cpp
   - verify/yosupo_graph/graph_cycle_detection_directed.test.cpp
-  - verify/yosupo_graph/tree_diameter.test.cpp
-  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
-  - verify/yosupo_graph/graph_scc.test.cpp
-  - verify/yosupo_graph/graph_bcc.test.cpp
-  - verify/yosupo_graph/graph_shortest_path.test.cpp
   - verify/yosupo_graph/graph_cycle_detection.test.cpp
   - verify/yosupo_graph/tree_lca_static.test.cpp
-  - verify/yuki/yuki_1326.test.cpp
+  - verify/yosupo_graph/graph_bcc.test.cpp
+  - verify/yosupo_graph/graph_shortest_path.test.cpp
+  - verify/yosupo_graph/graph_matching_bipartite.test.cpp
+  - verify/yosupo_graph/graph_two_edge_connected_components.test.cpp
+  - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/tree_diameter.test.cpp
+  - verify/yosupo_graph/graph_scc.test.cpp
 documentation_of: graph/edge.hpp
 layout: document
 redirect_from:

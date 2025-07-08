@@ -2,34 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/multiplicative_function/arbitrary_table.hpp
     title: math/multiplicative_function/arbitrary_table.hpp
   - icon: ':warning:'
     path: math/multiplicative_function/counting_square_free.hpp
     title: math/multiplicative_function/counting_square_free.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/multiplicative_function/famous_function.hpp
     title: math/multiplicative_function/famous_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/multiplicative_function/famous_function_table.hpp
     title: math/multiplicative_function/famous_function_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/famous_function_table.test.cpp
-    title: verify/unit_test/famous_function_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/multiplicative_function_table.test.cpp
-    title: verify/unit_test/multiplicative_function_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/wavelet_matrix.test.cpp
-    title: verify/unit_test/wavelet_matrix.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/pow.hpp\"\n\n\n\n#include <cassert>\n\nnamespace kk2\
@@ -46,17 +37,14 @@ data:
   isVerificationFile: false
   path: math/pow.hpp
   requiredBy:
-  - math/multiplicative_function/famous_function.hpp
   - math/multiplicative_function/famous_function_table.hpp
-  - math/multiplicative_function/sigma.hpp
+  - math/multiplicative_function/famous_function.hpp
   - math/multiplicative_function/counting_square_free.hpp
   - math/multiplicative_function/arbitrary_table.hpp
+  - math/multiplicative_function/sigma.hpp
   timestamp: '2025-01-05 04:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/unit_test/multiplicative_function_table.test.cpp
-  - verify/unit_test/wavelet_matrix.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math/pow.hpp
 layout: document
 redirect_from:

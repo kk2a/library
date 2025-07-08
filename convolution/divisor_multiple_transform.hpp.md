@@ -126,8 +126,8 @@ data:
   isVerificationFile: false
   path: convolution/divisor_multiple_transform.hpp
   requiredBy:
-  - convolution/convolution_gcd.hpp
   - convolution/convolution_lcm.hpp
+  - convolution/convolution_gcd.hpp
   timestamp: '2025-04-24 20:54:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

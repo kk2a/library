@@ -7,14 +7,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/monoid/affine.hpp
     title: math/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/action.test.cpp
-    title: verify/unit_test/action.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
@@ -57,7 +54,6 @@ data:
   verifiedWith:
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - verify/unit_test/action.test.cpp
 documentation_of: math/action/affine_sumwithsize.hpp
 layout: document
 redirect_from:

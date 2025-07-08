@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/binom_table.test.cpp
-    title: verify/unit_test/binom_table.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/binom_table.hpp\"\n\n\n\n#include <vector>\n\n\
@@ -38,9 +35,8 @@ data:
   path: math_mod/binom_table.hpp
   requiredBy: []
   timestamp: '2025-06-04 12:11:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/unit_test/binom_table.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math_mod/binom_table.hpp
 layout: document
 redirect_from:

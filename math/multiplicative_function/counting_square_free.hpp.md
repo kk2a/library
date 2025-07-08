@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/lpf_table.hpp
     title: math/lpf_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/multiplicative_function/famous_function_table.hpp
     title: math/multiplicative_function/famous_function_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/pow.hpp
     title: math/pow.hpp
   - icon: ':heavy_check_mark:'

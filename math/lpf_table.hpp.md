@@ -2,34 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/multiplicative_function/arbitrary_table.hpp
     title: math/multiplicative_function/arbitrary_table.hpp
   - icon: ':warning:'
     path: math/multiplicative_function/counting_square_free.hpp
     title: math/multiplicative_function/counting_square_free.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/multiplicative_function/famous_function_table.hpp
     title: math/multiplicative_function/famous_function_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/prime_factorize_table.hpp
     title: math/prime_factorize_table.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/famous_function_table.test.cpp
-    title: verify/unit_test/famous_function_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/lpf_table_extend.test.cpp
-    title: verify/unit_test/lpf_table_extend.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/multiplicative_function_table.test.cpp
-    title: verify/unit_test/multiplicative_function_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/prime_factorize_table.test.cpp
-    title: verify/unit_test/prime_factorize_table.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/lpf_table.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -84,17 +72,13 @@ data:
   isVerificationFile: false
   path: math/lpf_table.hpp
   requiredBy:
+  - math/prime_factorize_table.hpp
   - math/multiplicative_function/famous_function_table.hpp
   - math/multiplicative_function/counting_square_free.hpp
   - math/multiplicative_function/arbitrary_table.hpp
-  - math/prime_factorize_table.hpp
   timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/unit_test/famous_function_table.test.cpp
-  - verify/unit_test/multiplicative_function_table.test.cpp
-  - verify/unit_test/prime_factorize_table.test.cpp
-  - verify/unit_test/lpf_table_extend.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math/lpf_table.hpp
 layout: document
 redirect_from:

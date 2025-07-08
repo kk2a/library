@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: others/vector_pool.hpp
     title: others/vector_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
@@ -81,12 +81,12 @@ data:
   isVerificationFile: false
   path: bbst/red_black_tree.hpp
   requiredBy: []
-  timestamp: '2025-06-19 13:39:58+09:00'
+  timestamp: '2025-06-26 23:23:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
+  - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
 documentation_of: bbst/red_black_tree.hpp
 layout: document
 redirect_from:

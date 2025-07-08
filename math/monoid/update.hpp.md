@@ -1,32 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/action/update_affine.hpp
     title: math/action/update_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/action/update_max.hpp
     title: math/action/update_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/action/update_max_min_sumwithsize.hpp
     title: math/action/update_max_min_sumwithsize.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/action/update_min.hpp
     title: math/action/update_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/action/update_sumwithsize.hpp
     title: math/action/update_sumwithsize.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/unit_test/action.test.cpp
-    title: verify/unit_test/action.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/monoid.test.cpp
-    title: verify/unit_test/monoid.test.cpp
+    path: verify/unit_test/math/monoid/monoid.test.cpp
+    title: verify/unit_test/math/monoid/monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
     title: verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
@@ -70,17 +67,16 @@ data:
   isVerificationFile: false
   path: math/monoid/update.hpp
   requiredBy:
+  - math/action/update_max.hpp
+  - math/action/update_sumwithsize.hpp
   - math/action/update_affine.hpp
   - math/action/update_min.hpp
-  - math/action/update_sumwithsize.hpp
   - math/action/update_max_min_sumwithsize.hpp
-  - math/action/update_max.hpp
   timestamp: '2025-06-06 16:34:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/math/monoid/monoid.test.cpp
   - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
-  - verify/unit_test/monoid.test.cpp
-  - verify/unit_test/action.test.cpp
 documentation_of: math/monoid/update.hpp
 layout: document
 redirect_from:

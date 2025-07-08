@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
@@ -181,17 +181,17 @@ data:
   isVerificationFile: false
   path: matrix/matrix_field.hpp
   requiredBy:
-  - matrix/frobenius_form.hpp
   - matrix/basis.hpp
+  - matrix/frobenius_form.hpp
   timestamp: '2025-06-06 17:43:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_linalg/matrix_product.test.cpp
-  - verify/yosupo_linalg/matrix_rank.test.cpp
+  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
   - verify/yosupo_linalg/matrix_inv.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
+  - verify/yosupo_linalg/matrix_product.test.cpp
   - verify/yosupo_linalg/matrix_pow.test.cpp
-  - verify/yosupo_linalg/solution_of_linear_equations.test.cpp
+  - verify/yosupo_linalg/matrix_rank.test.cpp
 documentation_of: matrix/matrix_field.hpp
 layout: document
 redirect_from:

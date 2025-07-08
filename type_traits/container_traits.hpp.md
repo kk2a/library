@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: string/dynamic_rolling_hash.hpp
     title: "\u6587\u5B57\u306E\u4E00\u70B9\u66F4\u65B0\u304C\u53EF\u80FD\u6587\u5B57\
       \u5217\u306B\u5BFE\u3059\u308B\u52D5\u7684\u306A\u30ED\u30FC\u30EA\u30F3\u30B0\
@@ -21,22 +21,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/procon.hpp
     title: template/procon.hpp
+  - icon: ':x:'
+    path: unionfind/parallel.hpp
+    title: unionfind/parallel.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/aoj_alds1_14_b.test.cpp
     title: verify/aoj/aoj_alds1_14_b.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/unit_test/monoid.test.cpp
-    title: verify/unit_test/monoid.test.cpp
+    path: verify/unit_test/math/group/group.test.cpp
+    title: verify/unit_test/math/group/group.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/string/dynamic_rolling_hash.test.cpp
+    title: verify/unit_test/string/dynamic_rolling_hash.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/string/static_rolling_hash.test.cpp
+    title: verify/unit_test/string/static_rolling_hash.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
+    title: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
     title: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -71,18 +83,22 @@ data:
   isVerificationFile: false
   path: type_traits/container_traits.hpp
   requiredBy:
-  - string/static_rolling_hash.hpp
   - string/dynamic_rolling_hash.hpp
-  - template/procon.hpp
+  - string/static_rolling_hash.hpp
   - template/function_util.hpp
+  - template/procon.hpp
+  - unionfind/parallel.hpp
   - math/group/rolling_hash.hpp
   timestamp: '2025-06-06 17:43:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/aoj/aoj_alds1_14_b.test.cpp
-  - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
-  - verify/unit_test/monoid.test.cpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/unit_test/string/static_rolling_hash.test.cpp
+  - verify/unit_test/string/dynamic_rolling_hash.test.cpp
+  - verify/unit_test/math/group/group.test.cpp
+  - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+  - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
 documentation_of: type_traits/container_traits.hpp
 layout: document
 redirect_from:

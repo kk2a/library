@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
   _extendedRequiredBy:
@@ -18,15 +18,6 @@ data:
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/binom_table.test.cpp
-    title: verify/unit_test/binom_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/large_fact_arb_mod.test.cpp
-    title: verify/unit_test/large_fact_arb_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/large_fact_arb_mod.test.cpp
-    title: verify/unit_test/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     title: verify/yosupo_fps/poly_taylor_shift.test.cpp
@@ -91,20 +82,17 @@ data:
   isVerificationFile: false
   path: math_mod/comb.hpp
   requiredBy:
-  - fps/poly_taylor_shift.hpp
-  - math_mod/comb_large.hpp
-  - math_mod/bernoulli_number.hpp
   - math_mod/bell_number.hpp
+  - math_mod/bernoulli_number.hpp
+  - math_mod/comb_large.hpp
+  - fps/poly_taylor_shift.hpp
   timestamp: '2025-04-06 00:09:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - verify/unit_test/binom_table.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
-  - verify/unit_test/large_fact_arb_mod.test.cpp
 documentation_of: math_mod/comb.hpp
 layout: document
 redirect_from:

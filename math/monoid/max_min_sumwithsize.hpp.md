@@ -1,23 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/action/add_max_min_sumwithsize.hpp
     title: math/action/add_max_min_sumwithsize.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/action/update_max_min_sumwithsize.hpp
     title: math/action/update_max_min_sumwithsize.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/unit_test/action.test.cpp
-    title: verify/unit_test/action.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/unit_test/monoid.test.cpp
-    title: verify/unit_test/monoid.test.cpp
+    path: verify/unit_test/math/monoid/monoid.test.cpp
+    title: verify/unit_test/math/monoid/monoid.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -71,8 +68,7 @@ data:
   timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/unit_test/monoid.test.cpp
-  - verify/unit_test/action.test.cpp
+  - verify/unit_test/math/monoid/monoid.test.cpp
 documentation_of: math/monoid/max_min_sumwithsize.hpp
 layout: document
 redirect_from:

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/point.hpp
     title: geometry/point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
@@ -83,9 +83,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp
+  - verify/yosupo_geometry/static_convex_hull.test.cpp
   - verify/yosupo_geometry/static_convex_hull_2.test.cpp
   - verify/yosupo_geometry/static_convex_hull_3.test.cpp
-  - verify/yosupo_geometry/static_convex_hull.test.cpp
 documentation_of: geometry/static_convex_hull.hpp
 layout: document
 redirect_from:
