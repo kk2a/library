@@ -225,12 +225,10 @@ template <class Derived, class mint> struct FormalPowerSeriesBase : std::vector<
     }
 
     FPS dense_log(int deg = -1) const {
-        assert(!this->empty() && (*this)[0] == mint(1));
         if (deg == -1) deg = this->size();
         return (derived().diff() * derived().inv(deg)).pre(deg - 1).integral();
     }
     FPS sparse_log(int deg = -1) const {
-        assert(!this->empty() && (*this)[0] == mint(1));
         if (deg == -1) deg = this->size();
         std::vector<std::pair<int, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {
@@ -338,7 +336,6 @@ template <class Derived, class mint> struct FormalPowerSeriesBase : std::vector<
     }
 
     FPS sparse_inv(int deg = -1) const {
-        assert(!this->empty() && (*this)[0] != mint(0));
         if (deg == -1) deg = this->size();
         std::vector<std::pair<int, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {
@@ -358,7 +355,6 @@ template <class Derived, class mint> struct FormalPowerSeriesBase : std::vector<
     }
 
     FPS sparse_exp(int deg = -1) const {
-        assert(this->empty() || (*this)[0] == mint(0));
         if (deg == -1) deg = this->size();
         std::vector<std::pair<int, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {

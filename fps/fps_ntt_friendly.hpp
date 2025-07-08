@@ -17,6 +17,7 @@ template <class mint> struct FormalPowerSeriesNTTFriendly
     using base = FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint>;
     using FPS = FormalPowerSeriesNTTFriendly<mint>;
     using base::FormalPowerSeriesBase;
+    using base::operator*=; // 基底クラスのoperator*=を継承
     static constexpr bool is_ntt_friendly = true;
 
     // CRTPを使った実装 - overrideは不要
@@ -27,6 +28,7 @@ template <class mint> struct FormalPowerSeriesNTTFriendly
     void but() { butterfly(*this); }
     void ibut() { butterfly_inv(*this); }
     void db() { doubling(*this); }
+    static int but_pr() { return primitive_root<mint::getmod()>; }
 
     FPS dense_inv(int deg = -1) const {
         if (deg == -1) deg = (int)this->size();
