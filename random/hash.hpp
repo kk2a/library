@@ -65,6 +65,18 @@ template <int NUM> struct Hash : std::array<ModInt2_61m1, NUM> {
         for (int i = 0; i < NUM; i++) r[i] = (*this)[i].inv();
         return r;
     }
+
+    static Hash mulplus(const Hash &a, const Hash &b, const Hash &c) {
+        Hash res;
+        for (int i = 0; i < NUM; i++) res[i] = mint::mulplus(a[i], b[i], c[i]);
+        return res;
+    }
+
+    static Hash plusmul(const Hash &a, const Hash &b, const Hash &c) {
+        Hash res;
+        for (int i = 0; i < NUM; i++) res[i] = mint::plusmul(a[i], b[i], c[i]);
+        return res;
+    }
 };
 
 } // namespace random

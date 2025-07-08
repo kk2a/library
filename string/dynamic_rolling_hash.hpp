@@ -19,24 +19,27 @@ template <int NUM> struct DynamicRollingHash {
     using H = random::Hash<NUM>;
     int _n, lg, siz;
     std::vector<H> d;
+    std::vector<int> dsz;
     bool is_built = false;
 
-    DynamicRollingHash() {}
+    DynamicRollingHash() : DynamicRollingHash(0) {}
     DynamicRollingHash(int n) : _n(n) {
+        extend_base(_n);
         lg = 0;
         while ((1 << lg) < _n) lg++;
-        extend_base(lg + 1);
         siz = 1 << lg;
         d.resize(2 * siz);
+        dsz.resize(2 * siz);
     }
     template <class C, is_container_t<C> * = nullptr> DynamicRollingHash(const C &c) {
         _n = c.size();
         lg = 0;
-        extend_base(_n + 1);
+        extend_base(_n);
         while ((1 << lg) < _n) lg++;
         siz = 1 << lg;
         d.resize(2 * siz);
-        for (int i = 0; i < _n; i++) d[siz + i] = H(c[i]);
+        dsz.resize(2 * siz);
+        for (int i = 0; i < _n; i++) d[siz + i] = H(c[i]), dsz[siz + i] = 1;
         build();
     }
 
@@ -45,13 +48,15 @@ template <int NUM> struct DynamicRollingHash {
     void build() {
         assert(!is_built);
         is_built = true;
-        for (int i = siz - 1; i >= 1; i--) update(i);
+        for (int i = siz - 1; i >= 1; --i) dsz[i] = dsz[2 * i] + dsz[2 * i + 1];
+        for (int i = siz - 1; i >= 1; --i) update(i);
     }
 
     template <class T> void init_set(int p, T x) {
         assert(0 <= p && p < _n);
         assert(!is_built);
         d[siz + p] = H(x);
+        dsz[siz + p] = 1;
     }
 
     template <class T> void set(int p, T x) {
@@ -83,11 +88,11 @@ template <int NUM> struct DynamicRollingHash {
         int l_siz = 0;
 
         while (l < r) {
-            if (l & 1) sml = sml + d[l] * pw[l_siz], l++, l_siz += inner_size(l);
-            if (r & 1) --r, smr = d[r] + smr * pw[inner_size(r)];
+            if (l & 1) sml = H::plusmul(sml, d[l], pw[l_siz]), l_siz += dsz[l++];
+            if (r & 1) --r, smr = H::plusmul(d[r], smr, pw[dsz[r]]);
             l >>= 1, r >>= 1;
         }
-        return sml + smr * pwi[l_siz];
+        return H::plusmul(sml, smr, pw[l_siz]);
     }
 
     H all_prod() const {
@@ -114,7 +119,8 @@ template <int NUM> struct DynamicRollingHash {
                    int l2,
                    int r2) {
         int len = std::min(r1 - l1, r2 - l2);
-        int ok = 0, ng = len + 1;
+        if (lhs.get(l1, l1 + len) == rhs.get(l2, l2 + len)) return len;
+        int ok = 0, ng = len;
         while (ng - ok > 1) {
             int mid = (ok + ng) / 2;
             if (lhs.get(l1, l1 + mid) == rhs.get(l2, l2 + mid)) {
@@ -164,6 +170,8 @@ template <int NUM> struct DynamicRollingHash {
      * @return 結合後のローリングハッシュ
      */
     static DynamicRollingHash merge(const DynamicRollingHash &lhs, const DynamicRollingHash &rhs) {
+        if (lhs._n == 0) return rhs;
+        if (rhs._n == 0) return lhs;
         DynamicRollingHash res(lhs._n + rhs._n);
         for (int i = 0; i < lhs._n; i++) res.init_set(i, lhs.get(i));
         for (int i = 0; i < rhs._n; i++) res.init_set(lhs._n + i, rhs.get(i));
@@ -172,18 +180,17 @@ template <int NUM> struct DynamicRollingHash {
     }
 
   private:
-    static inline std::vector<H> pw, pwi;
+    static inline std::vector<H> pw;
     static void extend_base(int m) {
-        if (pw.size() == 0u) pw = {H(1), H::get_base()}, pwi = {H(1), pw[1].inv()};
+        if (pw.size() == 0u) pw = {H(1), H::get_base()};
 
-        int n = pwpw.size();
+        int n = pw.size();
         if (n > m) return;
-        pw.resize(m + 1), pwi.resize(m + 1);
-        for (int i = n; i <= m; ++i) pw[i] = pw[i - 1] * pw[1], pwi[i] = pwi[i - 1] * pwi[1];
+        pw.resize(m + 1);
+        for (int i = n; i <= m; ++i) pw[i] = pw[i - 1] * pw[1];
     }
 
-    inline int inner_size(int k) const { return 1 << (lg - msb(k)); }
-    inline void update(int k) { d[k] = d[2 * k] + d[2 * k + 1] * inner_size(2 * k); }
+    inline void update(int k) { d[k] = H::plusmul(d[2 * k], d[2 * k + 1], pw[dsz[2 * k]]); }
 };
 
 using DRoliha = DynamicRollingHash<2>;

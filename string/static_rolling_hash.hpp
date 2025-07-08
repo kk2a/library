@@ -32,9 +32,11 @@ template <int NUM> struct StaticRollingHash {
 
     inline int size() const { return prefix.size(); }
 
+    // `i`番目の文字のハッシュ値を取得する
     H get(int i) const {
         assert(0 <= i and i < (int)prefix.size());
-        return prefix[i];
+        if (i == 0) return prefix[i];
+        return (prefix[i] - prefix[i - 1]) * pwi[i];
     }
 
     // `[l, r)`のハッシュ値を取得する
@@ -99,8 +101,8 @@ template <int NUM> struct StaticRollingHash {
         else if (lcp_ == r1 - l1) return -1;
         else if (lcp_ == r2 - l2) return 1;
         else {
-            auto c1 = lhs.get(l1 + lcp_, l1 + lcp_ + 1)[0].val();
-            auto c2 = rhs.get(l2 + lcp_, l2 + lcp_ + 1)[0].val();
+            auto c1 = lhs.get(l1 + lcp_)[0].val();
+            auto c2 = rhs.get(l2 + lcp_)[0].val();
             return c1 < c2 ? -1 : 1;
         }
     }
@@ -115,13 +117,15 @@ template <int NUM> struct StaticRollingHash {
      * @return 結合されたローリングハッシュ
      */
     static StaticRollingHash merge(const StaticRollingHash &lhs, const StaticRollingHash &rhs) {
+        if (lhs.prefix.empty()) return rhs;
+        if (rhs.prefix.empty()) return lhs;
         StaticRollingHash res;
-        int n = lhs.prefix.size() - 1, m = rhs.prefix.size() - 1;
-        extend_base(n + m + 1);
-        res.prefix.resize(n + m + 1);
-        for (int i = 0; i <= n; ++i) res.prefix[i] = lhs.prefix[i];
+        int n = lhs.prefix.size(), m = rhs.prefix.size();
+        extend_base(n + m);
+        res.prefix.resize(n + m);
+        for (int i = 0; i < n; ++i) res.prefix[i] = lhs.prefix[i];
         for (int i = n; i < n + m; ++i)
-            res.prefix[i + 1] = res.prefix[n] + rhs.prefix[i - n + 1] * pw[i];
+            res.prefix[i] = res.prefix[n - 1] + rhs.prefix[i - n] * pw[n];
         return res;
     }
 

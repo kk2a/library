@@ -105,6 +105,28 @@ struct ModInt2_61m1 {
 
     constexpr u64 val() const { return _v; }
 
+    static constexpr mint mulplus(const mint &a, const mint &b, const mint &c) {
+        // a * b + c
+        u64 ah = a._v >> 31, al = a._v & mask31;
+        u64 bh = b._v >> 31, bl = b._v & mask31;
+        u64 m = ah * bl + al * bh;
+        u64 t = 2 * ah * bh + al * bl + (m >> 30) + ((m & mask30) << 31) + c._v;
+        mint ret;
+        ret._v = chmod(t);
+        return ret;
+    }
+
+    static constexpr mint plusmul(const mint &a, const mint &b, const mint &c) {
+        // a + b * c
+        u64 bh = b._v >> 31, bl = b._v & mask31;
+        u64 ch = c._v >> 31, cl = c._v & mask31;
+        u64 m = bh * cl + bl * ch;
+        u64 t = 2 * bh * ch + bl * cl + (m >> 30) + ((m & mask30) << 31) + a._v;
+        mint ret;
+        ret._v = chmod(t);
+        return ret;
+    }
+
   private:
     u64 _v;
 
@@ -118,6 +140,31 @@ struct ModInt2_61m1 {
     constexpr static u64 mask31 = (1ULL << 31) - 1;
 
     constexpr static u64 mulmod(u64 x, u64 y) {
+        /*
+        A = 2^61 - 1, B = 2^31, C = 2^30
+        0 <= x, y < A
+        x = xh * B + xl
+        y = yh * B + yl
+        0 <= xh, yh < C
+        0 <= xl, yl < B
+
+        m = xh * yl + xl * yh
+        m = mh * C + ml
+        m * B = mh + ml * B mod A
+        0 <= mh < 2B
+        0 <= ml < C
+
+        x * y
+        = xh * yh * B^2 + m * B + xl * yl
+        = xh * yh * 2 + mh + ml * B + xl * yl mod A
+
+        xh * yh * 2 <= 2(C - 1)^2 = 2^61 - 2^32 + 2
+        mh + ml * B <= 2B - 1 + (C - 1) * B = 2^61 + 2^31 - 1
+        xl * yl <= (B - 1)^2 = 2^62 - 2^32 + 1
+
+        xh * yh * 2 + mh + ml * B + xl * yl
+        <= 2^63 - 2^33 + 2^31 + 2
+        */
         u64 xh = x >> 31, xl = x & mask31;
         u64 yh = y >> 31, yl = y & mask31;
         u64 m = xh * yl + xl * yh;
