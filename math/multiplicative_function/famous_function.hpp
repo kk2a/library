@@ -7,17 +7,19 @@ namespace kk2 {
 
 namespace mf {
 
-long long mobius(long long, long long e) { return e == 1 ? -1 : 0; }
+using i64 = long long;
 
-long long sigma0(long long, long long e) { return e + 1; }
+i64 mobius(i64, i64 e) { return e == 1 ? -1 : 0; }
 
-long long sigma1(long long p, long long e) {
-    long long p_e = pow<long long>(p, e);
+i64 sigma0(i64, i64 e) { return e + 1; }
+
+i64 sigma1(i64 p, i64 e) {
+    i64 p_e = pow<i64>(p, e);
     return p_e + (p_e - 1) / (p - 1);
 }
 
-long long euler_phi(long long p, long long e) {
-    long long p_e = pow<long long>(p, e);
+i64 euler_phi(i64 p, i64 e) {
+    i64 p_e = pow<i64>(p, e);
     return p_e - p_e / p;
 }
 

@@ -40,17 +40,11 @@ struct IsPrimeTable {
 
     template <typename It> struct PrimeIt {
         It bg, ed;
-
         PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}
-
         It begin() const { return bg; }
-
         It end() const { return ed; }
-
         int size() const { return ed - bg; }
-
         int operator[](int i) const { return bg[i]; }
-
         std::vector<int> to_vec() const { return std::vector<int>(bg, ed); }
     };
 
@@ -60,7 +54,8 @@ struct IsPrimeTable {
     }
 
     static bool isprime(int n) {
-        assert(n < (int)_isprime.size() && n != 0);
+        assert(n > 0);
+        if (n >= (int)_isprime.size()) set_upper(n);
         return _isprime[n];
     }
 };

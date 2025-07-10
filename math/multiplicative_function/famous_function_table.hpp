@@ -12,7 +12,7 @@ namespace kk2 {
 
 struct FamousFunctionTable {
   private:
-    static inline std::vector<int> _v_lpf{0, 0}, _mobius{0, 1}, _sigma0{0, 1}, _euler_phi{0, 1};
+    static inline std::vector<int> _mobius{0, 1}, _sigma0{0, 1}, _euler_phi{0, 1};
     static inline std::vector<long long> _sigma1{0, 1};
 
   public:
@@ -24,7 +24,6 @@ struct FamousFunctionTable {
 
         LPFTable::set_upper(m);
 
-        _v_lpf.resize(m + 1, 0);
         _mobius.resize(m + 1, 1);
         _sigma0.resize(m + 1, 1);
         _sigma1.resize(m + 1, 1);
@@ -33,20 +32,16 @@ struct FamousFunctionTable {
         for (int n = start; n <= m; ++n) {
             int p = LPFTable::lpf(n);
             if (p == n) {
-                _v_lpf[n] = 1;
                 _mobius[n] = -1;
                 _sigma0[n] = 2;
                 _sigma1[n] = p + 1;
                 _euler_phi[n] = p - 1;
             } else {
-                if (n / p % p == 0) _v_lpf[n] = _v_lpf[n / p] + 1;
-                else _v_lpf[n] = 1;
-
-                int p_pw = pow<int>(p, _v_lpf[n]);
+                int p_pw = LPFTable::lpf_pow(n);
                 int q = n / p_pw;
                 if (q == 1) {
                     _mobius[n] = 0;
-                    _sigma0[n] = _v_lpf[n] + 1;
+                    _sigma0[n] = _sigma0[n / p] + 1;
                     _sigma1[n] = _sigma1[n / p] + p_pw;
                     _euler_phi[n] = p_pw - p_pw / p;
                 } else {
