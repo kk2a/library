@@ -7,6 +7,9 @@ data:
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     title: verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,6 +75,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/many_factrials.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
 documentation_of: fps/poly_sample_point_shift.hpp
 layout: document

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
@@ -63,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
+    title: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
@@ -282,6 +285,7 @@ data:
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp

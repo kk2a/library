@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: unionfind/rollback.hpp
     title: unionfind/rollback.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
+    title: verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/offline_dynamic_connectivity.hpp\"\n\n\n\n\
@@ -115,8 +118,9 @@ data:
   path: data_structure/offline_dynamic_connectivity.hpp
   requiredBy: []
   timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
 documentation_of: data_structure/offline_dynamic_connectivity.hpp
 layout: document
 redirect_from:

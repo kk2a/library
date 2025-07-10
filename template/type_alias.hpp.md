@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/constant.hpp
     title: template/constant.hpp
   - icon: ':heavy_check_mark:'
     path: template/procon.hpp
     title: template/procon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -37,17 +37,62 @@ data:
     path: verify/aoj/aoj_ntl_1_e.test.cpp
     title: verify/aoj/aoj_ntl_1_e.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/data_structure/bit_vector.test.cpp
+    title: verify/unit_test/data_structure/bit_vector.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
+    title: verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+    title: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/action/action.test.cpp
+    title: verify/unit_test/math/action/action.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/math/group/group.test.cpp
     title: verify/unit_test/math/group/group.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/isprime_table_extend.test.cpp
+    title: verify/unit_test/math/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/lpf_table_extend.test.cpp
+    title: verify/unit_test/math/lpf_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/unit_test/math/monoid/monoid.test.cpp
     title: verify/unit_test/math/monoid/monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
+    title: verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+    title: verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/prime_factorize_table.test.cpp
+    title: verify/unit_test/math/prime_factorize_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/prime_table_extend.test.cpp
+    title: verify/unit_test/math/prime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/binom_table.test.cpp
+    title: verify/unit_test/math_mod/binom_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/inv_table.test.cpp
+    title: verify/unit_test/math_mod/inv_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/modint/F2.test.cpp
+    title: verify/unit_test/modint/F2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/string/dynamic_rolling_hash.test.cpp
     title: verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/string/static_rolling_hash.test.cpp
     title: verify/unit_test/string/static_rolling_hash.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/unionfind/partial_persitent_unionfind.test.cpp
+    title: verify/unit_test/unionfind/partial_persitent_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_and.test.cpp
     title: verify/yosupo_convolution/convolution_and.test.cpp
@@ -108,7 +153,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
     title: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -378,9 +423,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_1510.test.cpp
     title: verify/yuki/yuki_1510.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: '#line 1 "template/type_alias.hpp"
@@ -492,7 +537,7 @@ data:
   - template/procon.hpp
   - template/template.hpp
   timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_string/string_suffix_array.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
@@ -543,10 +588,25 @@ data:
   - verify/aoj/aoj_0560.test.cpp
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/aoj/aoj_0233.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/unit_test/math_mod/binom_table.test.cpp
+  - verify/unit_test/math_mod/inv_table.test.cpp
+  - verify/unit_test/modint/F2.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
+  - verify/unit_test/data_structure/bit_vector.test.cpp
+  - verify/unit_test/data_structure/wavelet_matrix.test.cpp
+  - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
+  - verify/unit_test/unionfind/partial_persitent_unionfind.test.cpp
+  - verify/unit_test/math/isprime_table_extend.test.cpp
+  - verify/unit_test/math/prime_factorize_table.test.cpp
+  - verify/unit_test/math/action/action.test.cpp
   - verify/unit_test/math/monoid/monoid.test.cpp
+  - verify/unit_test/math/prime_table_extend.test.cpp
+  - verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+  - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
   - verify/unit_test/math/group/group.test.cpp
+  - verify/unit_test/math/lpf_table_extend.test.cpp
   - verify/yosupo_others/many_a_plus_b.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

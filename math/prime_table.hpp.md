@@ -25,6 +25,18 @@ data:
     title: math/multiplicative_function/prime_counting.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/isprime_table_extend.test.cpp
+    title: verify/unit_test/math/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/lpf_table_extend.test.cpp
+    title: verify/unit_test/math/lpf_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/prime_table_extend.test.cpp
+    title: verify/unit_test/math/prime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/prime_table_extend.test.cpp
+    title: verify/unit_test/math/prime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_gcd.test.cpp
     title: verify/yosupo_convolution/convolution_gcd.test.cpp
   - icon: ':heavy_check_mark:'
@@ -156,6 +168,10 @@ data:
   - verify/yosupo_math/enumerate_primes.test.cpp
   - verify/yosupo_math/prime_counting.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+  - verify/unit_test/math/isprime_table_extend.test.cpp
+  - verify/unit_test/math/prime_table_extend.test.cpp
+  - verify/unit_test/math/prime_table_extend.test.cpp
+  - verify/unit_test/math/lpf_table_extend.test.cpp
   - verify/yosupo_convolution/convolution_gcd.test.cpp
   - verify/yosupo_convolution/convolution_lcm.test.cpp
 documentation_of: math/prime_table.hpp

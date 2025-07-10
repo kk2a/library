@@ -19,6 +19,12 @@ data:
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/inv_table.test.cpp
+    title: verify/unit_test/math_mod/inv_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/fps_composition.test.cpp
     title: verify/yosupo_fps/fps_composition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -159,6 +165,8 @@ data:
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/unit_test/math_mod/inv_table.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp

@@ -1,14 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/binom_table.test.cpp
+    title: verify/unit_test/math_mod/binom_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/inv_table.test.cpp
+    title: verify/unit_test/math_mod/inv_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
@@ -95,6 +104,9 @@ data:
   verifiedWith:
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - verify/yosupo_math/discrete_logarithm.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/unit_test/math_mod/binom_table.test.cpp
+  - verify/unit_test/math_mod/inv_table.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
 documentation_of: modint/modint.hpp
 layout: document

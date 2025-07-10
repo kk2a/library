@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
   _extendedRequiredBy:
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/multi_convolution_truncated.hpp
     title: convolution/multi_convolution_truncated.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/bit_vector.hpp
     title: data_structure/bit_vector.hpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data_structure/w_ary_tree.hpp
     title: data_structure/w_ary_tree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/wavelet_matrix.hpp
     title: data_structure/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -47,15 +47,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: matrix/matrix_F2.hpp
     title: "\u6383\u304D\u51FA\u3057"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/dynamic_rolling_hash.hpp
     title: "\u6587\u5B57\u306E\u4E00\u70B9\u66F4\u65B0\u304C\u53EF\u80FD\u6587\u5B57\
       \u5217\u306B\u5BFE\u3059\u308B\u52D5\u7684\u306A\u30ED\u30FC\u30EA\u30F3\u30B0\
       \u30CF\u30C3\u30B7\u30E5"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: unionfind/parallel.hpp
     title: unionfind/parallel.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/data_structure/bit_vector.test.cpp
+    title: verify/unit_test/data_structure/bit_vector.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+    title: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/string/dynamic_rolling_hash.test.cpp
     title: verify/unit_test/string/dynamic_rolling_hash.test.cpp
@@ -71,7 +80,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
     title: verify/yosupo_ds/ds_predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
     title: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -182,9 +191,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_1510.test.cpp
     title: verify/yuki/yuki_1510.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -243,7 +252,7 @@ data:
   - data_structure/w_ary_tree.hpp
   - unionfind/parallel.hpp
   timestamp: '2025-04-24 20:44:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yuki/yuki_1510.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
@@ -255,7 +264,10 @@ data:
   - verify/yosupo_linalg/matrix_rank_F2.test.cpp
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
+  - verify/unit_test/data_structure/bit_vector.test.cpp
+  - verify/unit_test/data_structure/wavelet_matrix.test.cpp
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp

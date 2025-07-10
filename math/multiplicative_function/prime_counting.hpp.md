@@ -16,6 +16,15 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/isprime_table_extend.test.cpp
+    title: verify/unit_test/math/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/lpf_table_extend.test.cpp
+    title: verify/unit_test/math/lpf_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/prime_table_extend.test.cpp
+    title: verify/unit_test/math/prime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_math/prime_counting.test.cpp
     title: verify/yosupo_math/prime_counting.test.cpp
   _isVerificationFailed: false
@@ -119,6 +128,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/prime_counting.test.cpp
+  - verify/unit_test/math/isprime_table_extend.test.cpp
+  - verify/unit_test/math/prime_table_extend.test.cpp
+  - verify/unit_test/math/lpf_table_extend.test.cpp
 documentation_of: math/multiplicative_function/prime_counting.hpp
 layout: document
 redirect_from:

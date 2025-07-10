@@ -29,19 +29,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/is_prime.hpp
     title: math/is_prime.hpp
   - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/euler_phi.hpp
     title: math/multiplicative_function/euler_phi.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/mobius.hpp
     title: math/multiplicative_function/mobius.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/multiplicative_function/sigma.hpp
     title: math/multiplicative_function/sigma.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_factorize.hpp
     title: math/prime_factorize.hpp
   - icon: ':heavy_check_mark:'
@@ -53,24 +53,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root.hpp
     title: math_mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/primitive_root_64bit.hpp
     title: math_mod/primitive_root_64bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/hash.hpp
     title: random/hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/dynamic_rolling_hash.hpp
     title: "\u6587\u5B57\u306E\u4E00\u70B9\u66F4\u65B0\u304C\u53EF\u80FD\u6587\u5B57\
       \u5217\u306B\u5BFE\u3059\u308B\u52D5\u7684\u306A\u30ED\u30FC\u30EA\u30F3\u30B0\
       \u30CF\u30C3\u30B7\u30E5"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/dynamic_rolling_hash.hpp
     title: "\u6587\u5B57\u306E\u4E00\u70B9\u66F4\u65B0\u304C\u53EF\u80FD\u6587\u5B57\
       \u5217\u306B\u5BFE\u3059\u308B\u52D5\u7684\u306A\u30ED\u30FC\u30EA\u30F3\u30B0\
@@ -85,10 +85,10 @@ data:
     title: "\u6587\u5B57\u306E\u5909\u66F4\u304C\u884C\u308F\u308C\u306A\u3044\u6587\
       \u5B57\u5217\u306B\u5BFE\u3059\u308B\u9759\u7684\u306A\u30ED\u30FC\u30EA\u30F3\
       \u30B0\u30CF\u30C3\u30B7\u30E5"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: unionfind/parallel.hpp
     title: unionfind/parallel.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: unionfind/parallel.hpp
     title: unionfind/parallel.hpp
   _extendedVerifiedWith:
@@ -107,6 +107,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/math/group/group.test.cpp
     title: verify/unit_test/math/group/group.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/isprime_table_extend.test.cpp
+    title: verify/unit_test/math/isprime_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/lpf_table_extend.test.cpp
+    title: verify/unit_test/math/lpf_table_extend.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
+    title: verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/prime_factorize_table.test.cpp
+    title: verify/unit_test/math/prime_factorize_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    title: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/string/dynamic_rolling_hash.test.cpp
     title: verify/unit_test/string/dynamic_rolling_hash.test.cpp
@@ -128,10 +143,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     title: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
     title: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
     title: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -245,9 +260,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yuki/yuki_1510.test.cpp
     title: verify/yuki/yuki_1510.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n\nnamespace\
@@ -294,7 +309,7 @@ data:
   - math/group/rolling_hash.hpp
   - math/is_prime.hpp
   timestamp: '2025-04-06 00:09:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
@@ -310,12 +325,17 @@ data:
   - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
+  - verify/unit_test/math/isprime_table_extend.test.cpp
+  - verify/unit_test/math/prime_factorize_table.test.cpp
+  - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/math/group/group.test.cpp
+  - verify/unit_test/math/lpf_table_extend.test.cpp
   - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - verify/yosupo_fps/fps_sparse_log.test.cpp

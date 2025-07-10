@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/action/add_max.hpp
     title: math/action/add_max.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/action/update_max.hpp
     title: math/action/update_max.hpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +18,9 @@ data:
     path: template/procon.hpp
     title: template/procon.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/unit_test/math/action/action.test.cpp
+    title: verify/unit_test/math/action/action.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/math/monoid/monoid.test.cpp
     title: verify/unit_test/math/monoid/monoid.test.cpp
@@ -70,6 +73,7 @@ data:
   timestamp: '2025-04-06 13:01:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/math/action/action.test.cpp
   - verify/unit_test/math/monoid/monoid.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
 documentation_of: math/monoid/max.hpp

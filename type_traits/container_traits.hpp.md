@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/group/rolling_hash.hpp
     title: math/group/rolling_hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/dynamic_rolling_hash.hpp
     title: "\u6587\u5B57\u306E\u4E00\u70B9\u66F4\u65B0\u304C\u53EF\u80FD\u6587\u5B57\
       \u5217\u306B\u5BFE\u3059\u308B\u52D5\u7684\u306A\u30ED\u30FC\u30EA\u30F3\u30B0\
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/procon.hpp
     title: template/procon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: unionfind/parallel.hpp
     title: unionfind/parallel.hpp
   _extendedVerifiedWith:
@@ -37,7 +37,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/string/static_rolling_hash.test.cpp
     title: verify/unit_test/string/static_rolling_hash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
     title: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -46,9 +46,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_string/string_z_roliha.test.cpp
     title: verify/yosupo_string/string_z_roliha.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -90,7 +90,7 @@ data:
   - unionfind/parallel.hpp
   - math/group/rolling_hash.hpp
   timestamp: '2025-06-06 17:43:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/aoj/aoj_alds1_14_b.test.cpp

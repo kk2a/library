@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/bitcount.hpp
     title: bit/bitcount.hpp
   - icon: ':heavy_check_mark:'
@@ -29,7 +29,7 @@ data:
     path: math_mod/inv_table.hpp
     title: "`[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\
       \u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math_mod/pow_mod.hpp
     title: math_mod/pow_mod.hpp
   - icon: ':heavy_check_mark:'
@@ -38,10 +38,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/mont.hpp
     title: modint/mont.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/integral.hpp
     title: type_traits/integral.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: type_traits/io.hpp
     title: type_traits/io.hpp
   _extendedRequiredBy: []
@@ -90,10 +90,10 @@ data:
     \ }\n    static int but_pr() {\n        exit(1);\n        return 0;\n    }\n\n\
     \    FPS dense_inv(int deg = -1) const {\n        if (deg == -1) deg = this->size();\n\
     \        FPS res{(*this)[0].inv()};\n        for (int i = 1; i < deg; i <<= 1)\
-    \ { res = (res + res - this->pre(i << 1) * (res * res)).pre(i << 1); }\n     \
-    \   return res.pre(deg);\n    }\n\n    FPS dense_exp(int deg = -1) const {\n \
-    \       if (deg == -1) deg = this->size();\n        FPS ret{mint(1)};\n      \
-    \  for (int i = 1; i < deg; i <<= 1) {\n            ret = (ret * (this->pre(i\
+    \ {\n            res = (res + res - this->pre(i << 1) * (res * res)).pre(i <<\
+    \ 1);\n        }\n        return res.pre(deg);\n    }\n\n    FPS dense_exp(int\
+    \ deg = -1) const {\n        if (deg == -1) deg = this->size();\n        FPS ret{mint(1)};\n\
+    \        for (int i = 1; i < deg; i <<= 1) {\n            ret = (ret * (this->pre(i\
     \ << 1) + mint{1} - ret.log(i << 1))).pre(i << 1);\n        }\n        return\
     \ ret.pre(deg);\n    }\n};\n\ntemplate <class mint> using FPSArb = FormalPowerSeriesArbitrary<mint>;\n\
     \n} // namespace kk2\n\n#endif // KK2_FPS_FPS_ARB_HPP\n"
@@ -115,7 +115,7 @@ data:
   isVerificationFile: false
   path: fps/fps_arb.hpp
   requiredBy: []
-  timestamp: '2025-07-08 15:03:38+09:00'
+  timestamp: '2025-07-08 15:40:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_log_arb.test.cpp

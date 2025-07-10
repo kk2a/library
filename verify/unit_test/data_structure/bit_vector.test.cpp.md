@@ -1,12 +1,52 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: bit/bitcount.hpp
+    title: bit/bitcount.hpp
+  - icon: ':heavy_check_mark:'
+    path: data_structure/bit_vector.hpp
+    title: data_structure/bit_vector.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/gen.hpp
+    title: random/gen.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/seed.hpp
+    title: random/seed.hpp
+  - icon: ':heavy_check_mark:'
+    path: template/constant.hpp
+    title: template/constant.hpp
+  - icon: ':heavy_check_mark:'
+    path: template/fastio.hpp
+    title: template/fastio.hpp
+  - icon: ':heavy_check_mark:'
+    path: template/io_util.hpp
+    title: template/io_util.hpp
+  - icon: ':heavy_check_mark:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':heavy_check_mark:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':heavy_check_mark:'
+    path: template/type_alias.hpp
+    title: template/type_alias.hpp
+  - icon: ':heavy_check_mark:'
+    path: type_traits/integral.hpp
+    title: type_traits/integral.hpp
+  - icon: ':heavy_check_mark:'
+    path: type_traits/io.hpp
+    title: type_traits/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    links:
+    - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -14,16 +54,19 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../data_structure/bit_vector.hpp:\
-    \ line -1: no such header\n"
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ type_traits/integral.hpp: line 4: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" \n\n#include \"\
-    ../../data_structure/bit_vector.hpp\"\n#include \"../../random/gen.hpp\"\n#include\
-    \ \"../../template/template.hpp\"\nusing namespace std;\n\nint main() {\n    int\
-    \ a, b;\n    kin >> a >> b;\n    kout << a + b << kendl;\n\n    rep (2000) {\n\
-    \        int n = kk2::random::rng(1, 1e4);\n        auto a = kk2::random::random_vector<int>(n,\
+    ../../../data_structure/bit_vector.hpp\"\n#include \"../../../random/gen.hpp\"\
+    \n#include \"../../../template/template.hpp\"\nusing namespace std;\n\nint main()\
+    \ {\n    int a, b;\n    kin >> a >> b;\n    kout << a + b << kendl;\n\n    rep\
+    \ (2000) {\n        int n = kk2::random::rng(1, 1e4);\n        auto a = kk2::random::random_vector<int>(n,\
     \ 0, 2);\n    \n        if (!kk2::random::rng(0, 10)) {\n            a.assign(n,\
     \ 0);\n        }\n        if (!kk2::random::rng(0, 10)) {\n            a.assign(n,\
     \ 1);\n        }\n    \n        kk2::BitVector bv(n);\n        rep (i, n) if (a[i]\
@@ -44,12 +87,24 @@ data:
     \ endl;\n                exit(1);\n            }\n            if (naive_select1\
     \ != bv.select1(i)) {\n                cerr << \"select1\" << endl;\n        \
     \        exit(1);\n            }\n        }\n    }\n\n    return 0;\n}\n"
-  dependsOn: []
+  dependsOn:
+  - data_structure/bit_vector.hpp
+  - bit/bitcount.hpp
+  - type_traits/integral.hpp
+  - random/gen.hpp
+  - random/seed.hpp
+  - template/template.hpp
+  - template/constant.hpp
+  - template/type_alias.hpp
+  - template/fastio.hpp
+  - type_traits/io.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
   isVerificationFile: true
   path: verify/unit_test/data_structure/bit_vector.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-07-08 15:40:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/data_structure/bit_vector.test.cpp
 layout: document
