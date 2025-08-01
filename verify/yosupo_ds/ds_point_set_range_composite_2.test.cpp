@@ -4,19 +4,12 @@
 #include "../../functional/reverse_args.hpp"
 #include "../../math/monoid/affine.hpp"
 #include "../../modint/mont.hpp"
+#include "../../math/monoid/rev_op.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
-struct S : public kk2::monoid::Affine<kk2::mont998> {
-    using base = kk2::monoid::Affine<kk2::mont998>;
-    using base::Affine;
-    S(const base &b) : base(b) {}
-    static inline S op(S l, S r) {
-        return S{r.a * l.a, r.a * l.b + r.b};
-    }
-};
-
 int main() {
+    using S = kk2::monoid::ReverseOp<kk2::monoid::Affine<kk2::mont998>>;
     int n, q;
     kin >> n >> q;
     vc<S> a(n);
