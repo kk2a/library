@@ -319,7 +319,7 @@ void show_vars(const std::vector<std::string> &, int) {}
 
 template <class T, class... Args>
 void show_vars(const std::vector<std::string> &name, int pos, const T &t, const Args &...args) {
-    assert(pos < (int)name.size());
+    // assert(pos < (int)name.size());
     output(std::cerr, name[pos++] + ":", t);
     if (sizeof...(args) > 0) output(std::cerr, ", ");
     show_vars(name, pos, args...);
