@@ -8,6 +8,7 @@
 #include <set>
 #include <stack>
 #include <string>
+#include <tuple>
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
@@ -32,6 +33,7 @@ template <class OStream, class T, size_t F, is_ostream_t<OStream> *>
 void output(OStream &os, const std::array<T, F> &a);
 template <class OStream, class T, class U, is_ostream_t<OStream> *>
 void output(OStream &os, const std::pair<T, U> &p);
+template <class OStream, class... Args> void output(OStream &os, const std::tuple<Args...> &t);
 template <class OStream, class T, is_ostream_t<OStream> *>
 void output(OStream &os, const std::queue<T> &q);
 template <class OStream, class T, class Container, class Compare, is_ostream_t<OStream> *>
@@ -120,6 +122,18 @@ void output(OStream &os, const std::pair<T, U> &p) {
     output(os, p.first);
     os << ", ";
     output(os, p.second);
+    os << ")";
+}
+
+template <class OStream, class... Args, is_ostream_t<OStream> * = nullptr>
+void output(OStream &os, const std::tuple<Args...> &t) {
+    os << "(";
+    std::apply(
+        [&](const Args &...args) {
+            size_t n = 0;
+            ((output(os, args), os << (++n != sizeof...(Args) ? ", " : "")), ...);
+        },
+        t);
     os << ")";
 }
 

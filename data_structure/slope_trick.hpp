@@ -12,28 +12,19 @@ template <class T, class U = T> struct SlopeTrick {
     struct P {
         T pos;
         U count;
-
         P(T pos, U count) : pos(pos), count(count) {}
-
         bool operator<(const P &p) const { return pos < p.pos; }
-
         bool operator>(const P &p) const { return pos > p.pos; }
     };
 
     std::priority_queue<P> left;
     std::priority_queue<P, std::vector<P>, std::greater<P>> right;
     T _shift_left, _shift_right, min_y;
-
     void push_left(T pos, U count) { left.emplace(pos - _shift_left, count); }
-
     void push_right(T pos, U count) { right.emplace(pos - _shift_right, count); }
-
     P get_left() { return P(left.top().pos + _shift_left, left.top().count); }
-
     P get_right() { return P(right.top().pos + _shift_right, right.top().count); }
-
     void pop_left() { left.pop(); }
-
     void pop_right() { right.pop(); }
 
   public:
@@ -108,22 +99,17 @@ template <class T, class U = T> struct SlopeTrick {
             b.a = get_right().pos;
             b.minf = false;
         }
-        return {a, b, min_y};
+        return get_min_result{a, b, min_y};
     }
 
     // f \mapsto (x \mapsto min_(y <= x) f(y))
     void chmin_left() { decltype(left)().swap(left); }
-
     // f \mapsto (x \mapsto min_(y >= x) f(y))
     void chmin_right() { decltype(right)().swap(right); }
-
     void shift_left(T x) { _shift_left += x; }
-
     void shift_right(T x) { _shift_right += x; }
-
     // f \mapsto (t \mapsto f(t - x))
     void shift_x(T x) { _shift_left += x, _shift_right += x; }
-
     // f \mapsto f + x
     void shift_y(T x) { min_y += x; }
 };

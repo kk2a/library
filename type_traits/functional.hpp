@@ -1,8 +1,6 @@
 #ifndef KK2_TYPE_TRAITS_FUNCTIONAL_HPP
 #define KK2_TYPE_TRAITS_FUNCTIONAL_HPP 1
 
-#pragma once // oj-verify
-
 #include <type_traits>
 
 namespace kk2 {

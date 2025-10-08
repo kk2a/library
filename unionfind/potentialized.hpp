@@ -57,22 +57,18 @@ template <class A, bool right = true> struct PotentializedUnionFind {
     }
 };
 
-template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyAbelianGroup {
+template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyGroup {
     A val;
 
-    EasyAbelianGroup() : val(e()) {}
+    EasyGroup() : val(e()) {}
 
-    template <class... Args> EasyAbelianGroup(Args... args) : val(args...) {}
+    template <class... Args> EasyGroup(Args... args) : val(args...) {}
 
-    EasyAbelianGroup operator+(const EasyAbelianGroup &rhs) const {
-        return EasyAbelianGroup(op(val, rhs.val));
-    }
+    EasyGroup operator+(const EasyGroup &rhs) const { return EasyGroup(op(val, rhs.val)); }
 
-    EasyAbelianGroup operator-(const EasyAbelianGroup &rhs) const {
-        return EasyAbelianGroup(op(val, inv(rhs.val)));
-    }
+    EasyGroup operator-(const EasyGroup &rhs) const { return EasyGroup(op(val, inv(rhs.val))); }
 
-    EasyAbelianGroup operator-() const { return EasyAbelianGroup(inv(val)); }
+    EasyGroup operator-() const { return EasyGroup(inv(val)); }
 };
 
 } // namespace kk2

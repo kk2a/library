@@ -13,7 +13,7 @@ template <class T> T garner(const std::vector<T> &d, const std::vector<T> &p) {
     int nm = d.size();
     std::vector<T> kp(nm + 1, 0), rmult(nm + 1, 1);
     for (int ii = 0; ii < nm; ii++) {
-        long long x = (d[ii] - kp[ii]) * mod_inversion(rmult[ii], p[ii]) % p[ii];
+        T x = (d[ii] - kp[ii]) * mod_inversion(rmult[ii], p[ii]) % p[ii];
         if (x < 0) x += p[ii];
         for (int iii = ii + 1; iii < nm + 1; iii++) {
             kp[iii] = (kp[iii] + rmult[iii] * x) % p[iii];

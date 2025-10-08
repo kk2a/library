@@ -8,7 +8,7 @@
 namespace kk2 {
 
 template <class T> std::vector<T> convert_base(T x, T b) {
-    if (x == 0) return {0};
+    if (x == 0) return {};
     assert(b);
     std::vector<T> res;
     T k = abs(b);

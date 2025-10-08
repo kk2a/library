@@ -18,7 +18,7 @@ template <class mint> struct Comb {
         int n = (int)_fact.size();
         if (m == -1) m = n << 1;
         if (n > m) return;
-        m = std::min<int>(m, mint::getmod() - 1);
+        m = std::min<long long>(m, mint::getmod() - 1);
         _fact.resize(m + 1);
         _ifact.resize(m + 1);
         _inv.resize(m + 1);

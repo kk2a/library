@@ -1,8 +1,6 @@
 #ifndef KK2_TYPE_TRAITS_OPERATOR_HPP
 #define KK2_TYPE_TRAITS_OPERATOR_HPP 1
 
-#pragma once
-
 #include <type_traits>
 
 namespace kk2 {

@@ -6,6 +6,7 @@
 namespace kk2 {
 
 // https://atcoder.jp/contests/practice2/editorial/579
+// a, bは非負でないといけない
 // sum_{i=0}^{n-1} floor((a * i + b) / m)
 template <class T> T sum_of_floor(T n, T m, T a, T b) {
     T res = 0;

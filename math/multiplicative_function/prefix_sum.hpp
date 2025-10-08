@@ -23,7 +23,7 @@ template <class T> struct PrefixSumOfMultiplicativeFunction {
 
     int size() const { return eq.size(); }
 
-    template <T (*f)(long long)> void LucyDP(std::vector<T> &dp, T a) {
+    template <T (*f)(long long)> void LucyDP(std::vector<T> &dp) {
         LucyDP([](long long x) { return f(x); }, dp);
     }
 

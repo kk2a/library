@@ -1,8 +1,6 @@
 #ifndef KK2_TYPE_TRAITS_IO_HPP
 #define KK2_TYPE_TRAITS_IO_HPP 1
 
-#pragma once // oj-verify
-
 #include <istream>
 #include <ostream>
 #include <type_traits>
