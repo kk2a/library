@@ -17,166 +17,190 @@ data:
   bundledCode: "#line 1 \"data_structure/ordered_set.hpp\"\n\n\n\n#include <optional>\n\
     #include <utility>\n#include <vector>\n\n#line 1 \"bbst/base/red_black_tree_base.hpp\"\
     \n\n\n\n#include <cassert>\n#include <memory>\n#include <string>\n#line 9 \"bbst/base/red_black_tree_base.hpp\"\
-    \n\n#line 1 \"others/vector_pool.hpp\"\n\n\n\n#line 5 \"others/vector_pool.hpp\"\
-    \n\nnamespace kk2 {\n\ntemplate <typename T> struct VectorPool {\n    std::vector<T>\
-    \ pool;\n    std::vector<T *> ptrs;\n    int pos = 0;\n\n    VectorPool() = default;\n\
-    \n    VectorPool(int n) : pool(n), ptrs(n) {}\n\n    inline T *alloc() { return\
-    \ ptrs[pos++]; }\n\n    inline void free(T *ptr) { ptrs[--pos] = ptr; }\n\n  \
-    \  void clear() {\n        for (size_t i = 0; i < pool.size(); i++) ptrs[i] =\
-    \ &pool[i];\n        pos = 0;\n    }\n\n    T &operator[](int i) { return pool[i];\
-    \ }\n};\n\n} // namespace kk2\n\n\n#line 11 \"bbst/base/red_black_tree_base.hpp\"\
+    \n\n#line 1 \"others/vector_pool.hpp\"\n\n\n\n#line 6 \"others/vector_pool.hpp\"\
+    \n\nnamespace kk2 {\n\ntemplate <typename T> struct VectorPool {\n  private:\n\
+    \    static constexpr size_t CHUNK_SIZE = 1 << 11;\n    std::vector<std::unique_ptr<T[]>>\
+    \ chunks; // \u56FA\u5B9A\u30B5\u30A4\u30BA\u914D\u5217\u306E\u30DD\u30A4\u30F3\
+    \u30BF\n    std::vector<T *> free_ptrs;\n    size_t pos = 0;\n\n  public:\n  \
+    \  VectorPool() = default;\n    VectorPool(int n) { reserve(n); }\n\n    inline\
+    \ T *alloc() {\n        if (pos >= free_ptrs.size()) { expand(); }\n        return\
+    \ free_ptrs[pos++];\n    }\n\n    inline void free(T *ptr) { free_ptrs[--pos]\
+    \ = ptr; }\n\n    void clear() {\n        pos = 0;\n        size_t idx = 0;\n\
+    \        for (auto &chunk : chunks) {\n            for (size_t i = 0; i < CHUNK_SIZE;\
+    \ i++) { free_ptrs[idx++] = &chunk[i]; }\n        }\n    }\n\n    void reserve(int\
+    \ n) {\n        size_t needed_chunks = (n + CHUNK_SIZE - 1) / CHUNK_SIZE;\n  \
+    \      size_t current_chunks = chunks.size();\n\n        if (needed_chunks <=\
+    \ current_chunks) return;\n\n        chunks.reserve(needed_chunks);\n        free_ptrs.reserve(n);\n\
+    \n        // \u4E00\u5EA6\u306B\u5FC5\u8981\u306A\u5206\u306E\u30C1\u30E3\u30F3\
+    \u30AF\u3092\u78BA\u4FDD\n        size_t old_free_size = free_ptrs.size();\n \
+    \       size_t new_chunks_count = needed_chunks - current_chunks;\n        free_ptrs.resize(old_free_size\
+    \ + new_chunks_count * CHUNK_SIZE);\n\n        for (size_t chunk_idx = 0; chunk_idx\
+    \ < new_chunks_count; ++chunk_idx) {\n            auto new_chunk = std::make_unique<T[]>(CHUNK_SIZE);\n\
+    \            T *chunk_ptr = new_chunk.get();\n            chunks.push_back(std::move(new_chunk));\n\
+    \n            size_t base_idx = old_free_size + chunk_idx * CHUNK_SIZE;\n    \
+    \        for (size_t i = 0; i < CHUNK_SIZE; ++i) { free_ptrs[base_idx + i] = &chunk_ptr[i];\
+    \ }\n        }\n    }\n\n  private:\n    void expand() { add_chunk(); }\n\n  \
+    \  void add_chunk() {\n        auto new_chunk = std::make_unique<T[]>(CHUNK_SIZE);\n\
+    \        T *chunk_ptr = new_chunk.get();\n        chunks.push_back(std::move(new_chunk));\n\
+    \n        size_t old_size = free_ptrs.size();\n        free_ptrs.resize(old_size\
+    \ + CHUNK_SIZE);\n\n        for (size_t i = 0; i < CHUNK_SIZE; i++) { free_ptrs[old_size\
+    \ + i] = &chunk_ptr[i]; }\n    }\n\n  public:\n    size_t size() const { return\
+    \ chunks.size() * CHUNK_SIZE; }\n\n    size_t available() const { return free_ptrs.size()\
+    \ - pos; }\n};\n\n} // namespace kk2\n\n\n#line 11 \"bbst/base/red_black_tree_base.hpp\"\
     \n\nnamespace kk2 {\n\nnamespace rbtree {\n\n// base\u306B\u5FC5\u8981\u306A\u30E1\
     \u30F3\u30D0\n// NodePtr left, right;\n// int rank, count;\n// bool is_red;\n\
     // S val;\n\n/**\n * @brief \u8D64\u9ED2\u6728\u306E\u57FA\u672C\u30AF\u30E9\u30B9\
-    \n *\n */\ntemplate <typename Node> struct RedBlackTreeBase {\n    VectorPool<Node>\
-    \ pool;\n    using NodePtr = Node *;\n    using action_type = typename Node::action_type;\n\
+    \n *\n */\ntemplate <typename Derived, typename Node> struct RedBlackTreeBase\
+    \ {\n    using NodePtr = Node::NodePtr;\n    using action_type = typename Node::action_type;\n\
     \    using S = typename Node::S;\n    using A = typename Node::A;\n    static\
     \ S s_op(S a, S b) { return Node::s_op(a, b); }\n    static S s_unit() { return\
     \ Node::s_unit(); }\n    static S sa_act(A f, S x) { return Node::sa_act(f, x);\
     \ }\n    static A a_op(A f, A g) { return Node::a_op(f, g); }\n    static A a_unit()\
-    \ { return Node::a_unit(); }\n\n    RedBlackTreeBase(int sz) : pool(sz) { pool.clear();\
-    \ }\n\n    template <typename... Args> NodePtr alloc(Args... args) {\n       \
-    \ NodePtr t = &(*pool.alloc() = Node(args...));\n        return update(t);\n \
-    \   }\n\n    NodePtr make_tree() { return nullptr; }\n\n    void free(NodePtr\
-    \ t) { pool.free(t); }\n\n    void clear(NodePtr t) {\n        if (!t) return;\n\
-    \        clear(t->left);\n        clear(t->right);\n        free(t);\n    }\n\n\
-    \    NodePtr build(const std::vector<S> &v) {\n        auto dfs = [&](auto self,\
-    \ int l, int r) -> NodePtr {\n            if (l == r) return nullptr;\n      \
-    \      if (l + 1 == r) return alloc(v[l]);\n            int m = (l + r) / 2;\n\
-    \            return merge(self(self, l, m), self(self, m, r));\n        };\n \
-    \       return dfs(dfs, 0, (int)v.size());\n    }\n\n    NodePtr merge(NodePtr\
-    \ l, NodePtr r) {\n        if (!l or !r) return l ? l : r;\n        NodePtr c\
-    \ = submerge(l, r);\n        c->is_red = false;\n        return c;\n    }\n\n\
-    \    std::pair<NodePtr, NodePtr> split(NodePtr t, int k) {\n        assert(0 <=\
-    \ k and k <= size(t));\n        if (!t) return {nullptr, nullptr};\n        if\
-    \ (k == 0) return {nullptr, as_root(t)};\n        if (k == size(t)) return {as_root(t),\
-    \ nullptr};\n        t = push(t);\n        NodePtr l = as_root(t->left), r = as_root(t->right);\n\
-    \        free(t);\n        if (k < size(l)) {\n            auto [ll, rr] = split(l,\
-    \ k);\n            return {ll, merge(rr, r)};\n        }\n        if (k > size(l))\
-    \ {\n            auto [ll, rr] = split(r, k - size(l));\n            return {merge(l,\
+    \ { return Node::a_unit(); }\n\n    VectorPool<Node> pool;\n\n    RedBlackTreeBase()\
+    \ : pool() {}\n    RedBlackTreeBase(int sz) : pool(sz) {}\n\n    template <typename...\
+    \ Args> NodePtr alloc(Args... args) {\n        NodePtr t = &(*pool.alloc() = Node(args...));\n\
+    \        return static_cast<Derived *>(this)->update(t);\n    }\n\n    NodePtr\
+    \ make_tree() { return nullptr; }\n\n    void free(NodePtr t) { pool.free(t);\
+    \ }\n\n    void clear(NodePtr t) {\n        if (!t) return;\n        clear(t->left);\n\
+    \        clear(t->right);\n        free(t);\n    }\n\n    NodePtr build(const\
+    \ std::vector<S> &v) {\n        auto dfs = [&](auto self, int l, int r) -> NodePtr\
+    \ {\n            if (l == r) return nullptr;\n            if (l + 1 == r) return\
+    \ alloc(v[l]);\n            int m = (l + r) / 2;\n            return merge(self(self,\
+    \ l, m), self(self, m, r));\n        };\n        return dfs(dfs, 0, (int)v.size());\n\
+    \    }\n\n    NodePtr merge(NodePtr l, NodePtr r) {\n        if (!l or !r) return\
+    \ l ? l : r;\n        NodePtr c = submerge(l, r);\n        c->is_red = false;\n\
+    \        return c;\n    }\n\n    std::pair<NodePtr, NodePtr> split(NodePtr t,\
+    \ int k) {\n        assert(0 <= k and k <= size(t));\n        if (!t) return {nullptr,\
+    \ nullptr};\n        if (k == 0) return {nullptr, as_root(t)};\n        if (k\
+    \ == size(t)) return {as_root(t), nullptr};\n        t = static_cast<Derived *>(this)->push(t);\n\
+    \        NodePtr l = as_root(t->left), r = as_root(t->right);\n        free(t);\n\
+    \        if (k < size(l)) {\n            auto [ll, rr] = split(l, k);\n      \
+    \      return {ll, merge(rr, r)};\n        }\n        if (k > size(l)) {\n   \
+    \         auto [ll, rr] = split(r, k - size(l));\n            return {merge(l,\
     \ ll), rr};\n        }\n        return {l, r};\n    }\n\n    struct NodePtr3 {\n\
     \        NodePtr x, y, z;\n    };\n\n    NodePtr3 split3(NodePtr t, int a, int\
-    \ b) {\n        // assert\u3057\u306A\u304F\u3066\u3082\u52D5\u304F\u3051\u3069\
-    \uFF0C\u5206\u304B\u308A\u306B\u304F\u3044\n        assert(0 <= a and a <= b and\
-    \ b <= size(t));\n        auto [x, y] = split(t, a);\n        auto [y1, z] = split(y,\
-    \ b - a);\n        return {x, y1, z};\n    }\n\n    template <typename... Args>\
-    \ void insert(NodePtr &t, int k, Args... args) {\n        assert(0 <= k and k\
-    \ <= size(t));\n        auto [l, r] = split(t, k);\n        t = merge(merge(l,\
-    \ alloc(S(args...))), r);\n    }\n\n    void erase(NodePtr &t, int k) {\n    \
-    \    assert(0 <= k and k < size(t));\n        auto [l, r] = split(t, k);\n   \
-    \     auto [ll, rr] = split(r, 1);\n        free(ll);\n        t = merge(l, rr);\n\
-    \    }\n\n    template <typename... Args> void set(NodePtr t, int k, Args... args)\
-    \ {\n        assert(0 <= k and k < size(t));\n        NodePtr now = t;\n     \
-    \   auto dfs = [&](auto self, NodePtr now, int k) -> void {\n            if (!now->left)\
-    \ {\n                now->val = S(args...);\n                return;\n       \
-    \     }\n            now = push(now);\n            if (size(now->left) > k) self(self,\
-    \ now->left, k);\n            else self(self, now->right, k - size(now->left));\n\
-    \            now = update(now);\n        };\n        dfs(dfs, now, k);\n    }\n\
-    \n    S get(NodePtr t, int k) {\n        assert(0 <= k and k < size(t));\n   \
-    \     NodePtr now = t;\n        while (now->left) {\n            now = push(now);\n\
-    \            if (size(now->left) > k) now = now->left;\n            else {\n \
-    \               k -= size(now->left);\n                now = now->right;\n   \
-    \         }\n        }\n        return now->val;\n    }\n\n    S prod(NodePtr\
-    \ &t, int l, int r) {\n        assert(0 <= l and l <= r and r <= size(t));\n \
-    \       auto [t1, t2, t3] = split3(t, l, r);\n        S res = (t2 ? t2->val :\
-    \ s_unit());\n        t = merge(merge(t1, t2), t3);\n        return res;\n   \
-    \ }\n\n    void reverse(NodePtr &t, int l, int r) {\n        assert(0 <= l and\
-    \ l <= r and r <= size(t));\n        auto [t1, t2, t3] = split3(t, l, r);\n  \
-    \      if (t2) t2->is_rev ^= 1;\n        t = merge(merge(t1, t2), t3);\n    }\n\
-    \n    template <typename... Args> void push_front(NodePtr &t, Args... args) {\n\
-    \        t = merge(alloc(S(args...)), t);\n    }\n\n    template <typename...\
-    \ Args> void push_back(NodePtr &t, Args... args) {\n        t = merge(t, alloc(S(args...)));\n\
-    \    }\n\n    void pop_front(NodePtr &t) {\n        auto [l, r] = split(t, 1);\n\
-    \        t = r;\n    }\n\n    void pop_back(NodePtr &t) {\n        auto [l, r]\
-    \ = split(t, size(t) - 1);\n        t = l;\n    }\n\n    struct bb_result {\n\
-    \        int s;\n        S prod;\n        NodePtr t;\n    };\n\n    /**\n    \
-    \ * @brief \u4E8C\u5206\u63A2\u7D22\uFF08\u53F3\u65B9\u5411\uFF09\n     *\n  \
-    \   * \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5927\u306Ek\u3092\u6C42\u3081\
-    \u308B\u4E8C\u5206\u63A2\u7D22\u3092\u884C\u3044\u307E\u3059\u3002\n     *\n \
-    \    * \u4EE5\u4E0B\u306E\u6761\u4EF6\u3092\u6E80\u305F\u3059k\u3092\u8FD4\u3057\
-    \u307E\u3059\uFF1A\n     *\n     * - k = l \u307E\u305F\u306F (k \u2260 l \u304B\
-    \u3064 g(prod(l, k)) = true)\n     *\n     * - k = size(t) \u307E\u305F\u306F\
-    \ (k \u2260 size(t) \u304B\u3064 g(prod(l, k+1)) = false)\n     *\n     * @tparam\
-    \ G \u8FF0\u8A9E\u95A2\u6570\u306E\u578B\u3002bool operator()(S)\u3092\u6301\u3064\
-    \u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\n     * @param t \u63A2\u7D22\u5BFE\
-    \u8C61\u306E\u6728\uFF08\u53C2\u7167\u6E21\u3057\u3001\u64CD\u4F5C\u5F8C\u306B\
-    \u5FA9\u5143\u3055\u308C\u307E\u3059\uFF09\n     * @param l \u63A2\u7D22\u958B\
-    \u59CB\u4F4D\u7F6E\uFF080-indexed\uFF09\n     * @param g \u5224\u5B9A\u95A2\u6570\
-    \u3002S\u3092\u53D7\u3051\u53D6\u308Abool\u3092\u8FD4\u3059\u95A2\u6570\u30AA\u30D6\
-    \u30B8\u30A7\u30AF\u30C8\n     * @return bb_result \u69CB\u9020\u4F53\n     *\n\
-    \     *         - s: \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5927\u306Ek\n\
-    \     *\n     *         - prod: prod(l, k)\u306E\u5024\n     *\n     *       \
-    \  - t: k\u756A\u76EE\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30DD\u30A4\u30F3\u30BF\
-    \uFF08\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306Fnullptr\uFF09\n     *\n\
-    \     * @pre 0 <= l <= size(t)\n     * @pre g(s_unit()) == true\n     */\n   \
-    \ template <class G> bb_result max_right(NodePtr &t, int l, const G &g) {\n  \
-    \      assert(0 <= l and l <= size(t));\n        assert(g(s_unit()));\n      \
-    \  auto [t1, t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1,\
+    \ b) {\n        assert(0 <= a and a <= b and b <= size(t));\n        auto [x,\
+    \ y] = split(t, a);\n        auto [y1, z] = split(y, b - a);\n        return {x,\
+    \ y1, z};\n    }\n\n    template <typename... Args> void insert(NodePtr &t, int\
+    \ k, Args... args) {\n        assert(0 <= k and k <= size(t));\n        auto [l,\
+    \ r] = split(t, k);\n        t = merge(merge(l, alloc(S(args...))), r);\n    }\n\
+    \n    void erase(NodePtr &t, int k) {\n        assert(0 <= k and k < size(t));\n\
+    \        auto [l, r] = split(t, k);\n        auto [ll, rr] = split(r, 1);\n  \
+    \      free(ll);\n        t = merge(l, rr);\n    }\n\n    template <typename...\
+    \ Args> void set(NodePtr t, int k, Args... args) {\n        assert(0 <= k and\
+    \ k < size(t));\n        NodePtr now = t;\n        auto dfs = [&](auto self, NodePtr\
+    \ now, int k) -> void {\n            if (!now->left) {\n                now->val\
+    \ = S(args...);\n                return;\n            }\n            now = static_cast<Derived\
+    \ *>(this)->push(now);\n            if (size(now->left) > k) self(self, now->left,\
+    \ k);\n            else self(self, now->right, k - size(now->left));\n       \
+    \     now = static_cast<Derived *>(this)->update(now);\n        };\n        dfs(dfs,\
+    \ now, k);\n    }\n\n    S get(NodePtr t, int k) {\n        assert(0 <= k and\
+    \ k < size(t));\n        NodePtr now = t;\n        while (now->left) {\n     \
+    \       now = static_cast<Derived *>(this)->push(now);\n            if (size(now->left)\
+    \ > k) now = now->left;\n            else {\n                k -= size(now->left);\n\
+    \                now = now->right;\n            }\n        }\n        return now->val;\n\
+    \    }\n\n    S prod(NodePtr &t, int l, int r) {\n        assert(0 <= l and l\
+    \ <= r and r <= size(t));\n        auto [t1, t2, t3] = split3(t, l, r);\n    \
+    \    S res = (t2 ? t2->val : s_unit());\n        t = merge(merge(t1, t2), t3);\n\
+    \        return res;\n    }\n\n    void reverse(NodePtr &t, int l, int r) {\n\
+    \        assert(0 <= l and l <= r and r <= size(t));\n        auto [t1, t2, t3]\
+    \ = split3(t, l, r);\n        if (t2) t2->is_rev ^= 1;\n        t = merge(merge(t1,\
+    \ t2), t3);\n    }\n\n    template <typename... Args> void push_front(NodePtr\
+    \ &t, Args... args) {\n        t = merge(alloc(S(args...)), t);\n    }\n\n   \
+    \ template <typename... Args> void push_back(NodePtr &t, Args... args) {\n   \
+    \     t = merge(t, alloc(S(args...)));\n    }\n\n    void pop_front(NodePtr &t)\
+    \ {\n        auto [l, r] = split(t, 1);\n        t = r;\n    }\n\n    void pop_back(NodePtr\
+    \ &t) {\n        auto [l, r] = split(t, size(t) - 1);\n        t = l;\n    }\n\
+    \n    struct bb_result {\n        int s;\n        S prod;\n        NodePtr t;\n\
+    \    };\n\n    /**\n     * @brief \u4E8C\u5206\u63A2\u7D22\uFF08\u53F3\u65B9\u5411\
+    \uFF09\n     *\n     * \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5927\u306E\
+    k\u3092\u6C42\u3081\u308B\u4E8C\u5206\u63A2\u7D22\u3092\u884C\u3044\u307E\u3059\
+    \u3002\n     *\n     * \u4EE5\u4E0B\u306E\u6761\u4EF6\u3092\u6E80\u305F\u3059\
+    k\u3092\u8FD4\u3057\u307E\u3059\uFF1A\n     *\n     * - k = l \u307E\u305F\u306F\
+    \ (k \u2260 l \u304B\u3064 g(prod(l, k)) = true)\n     *\n     * - k = size(t)\
+    \ \u307E\u305F\u306F (k \u2260 size(t) \u304B\u3064 g(prod(l, k+1)) = false)\n\
+    \     *\n     * @tparam G \u8FF0\u8A9E\u95A2\u6570\u306E\u578B\u3002bool operator()(S)\u3092\
+    \u6301\u3064\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\n     * @param t \u63A2\
+    \u7D22\u5BFE\u8C61\u306E\u6728\uFF08\u53C2\u7167\u6E21\u3057\u3001\u64CD\u4F5C\
+    \u5F8C\u306B\u5FA9\u5143\u3055\u308C\u307E\u3059\uFF09\n     * @param l \u63A2\
+    \u7D22\u958B\u59CB\u4F4D\u7F6E\uFF080-indexed\uFF09\n     * @param g \u5224\u5B9A\
+    \u95A2\u6570\u3002S\u3092\u53D7\u3051\u53D6\u308Abool\u3092\u8FD4\u3059\u95A2\u6570\
+    \u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\n     * @return bb_result \u69CB\u9020\u4F53\
+    \n     *\n     *         - s: \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5927\
+    \u306Ek\n     *\n     *         - prod: prod(l, k)\u306E\u5024\n     *\n     *\
+    \         - t: k\u756A\u76EE\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30DD\u30A4\u30F3\
+    \u30BF\uFF08\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306Fnullptr\uFF09\n  \
+    \   *\n     * @pre 0 <= l <= size(t)\n     * @pre g(s_unit()) == true\n     */\n\
+    \    template <class G> bb_result max_right(NodePtr &t, int l, const G &g) {\n\
+    \        assert(0 <= l and l <= size(t));\n        assert(g(s_unit()));\n    \
+    \    auto [t1, t2] = split(t, l);\n        if (!t2) {\n            t = merge(t1,\
     \ t2);\n            return {l, s_unit(), nullptr};\n        }\n        if (g(t2->val))\
     \ {\n            t = merge(t1, t2);\n            return {size(t), t2->val, nullptr};\n\
     \        }\n\n        int k = l;\n        S x = s_unit();\n        NodePtr now\
-    \ = t2;\n\n        while (now->left) {\n            now = push(now);\n       \
-    \     S y = s_op(x, now->left->val);\n            if (g(y)) {\n              \
-    \  x = y;\n                k += size(now->left);\n                now = now->right;\n\
-    \            } else {\n                now = now->left;\n            }\n     \
-    \   }\n        t = merge(t1, t2);\n        return {k, x, now};\n    }\n\n    /**\n\
-    \     * @brief \u4E8C\u5206\u63A2\u7D22\uFF08\u5DE6\u65B9\u5411\uFF09\n     *\n\
-    \     * \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5C0F\u306Ek\u3092\u6C42\u3081\
-    \u308B\u4E8C\u5206\u63A2\u7D22\u3092\u884C\u3044\u307E\u3059\u3002\n     *\n \
-    \    * \u4EE5\u4E0B\u306E\u6761\u4EF6\u3092\u6E80\u305F\u3059k\u3092\u8FD4\u3057\
-    \u307E\u3059\uFF1A\n     *\n     * - k = r \u307E\u305F\u306F (k \u2260 r \u304B\
-    \u3064 g(prod(k, r)) = true)\n     *\n     * - k = 0 \u307E\u305F\u306F (k \u2260\
-    \ 0 \u304B\u3064 g(prod(k-1, r)) = false)\n     *\n     * @tparam G \u8FF0\u8A9E\
-    \u95A2\u6570\u306E\u578B\u3002bool operator()(S)\u3092\u6301\u3064\u5FC5\u8981\
-    \u304C\u3042\u308A\u307E\u3059\n     * @param t \u63A2\u7D22\u5BFE\u8C61\u306E\
-    \u6728\uFF08\u53C2\u7167\u6E21\u3057\u3001\u64CD\u4F5C\u5F8C\u306B\u5FA9\u5143\
-    \u3055\u308C\u307E\u3059\uFF09\n     * @param r \u63A2\u7D22\u7D42\u4E86\u4F4D\
-    \u7F6E\uFF080-indexed\uFF09\n     * @param g \u5224\u5B9A\u95A2\u6570\u3002S\u3092\
-    \u53D7\u3051\u53D6\u308Abool\u3092\u8FD4\u3059\u95A2\u6570\u30AA\u30D6\u30B8\u30A7\
-    \u30AF\u30C8\n     * @return bb_result \u69CB\u9020\u4F53\n     *\n     *    \
-    \     - s: \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5C0F\u306Ek\n     *\n \
-    \    *         - prod: prod(k, r)\u306E\u5024\n     *\n     *         - t: k-1\u756A\
-    \u76EE\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30DD\u30A4\u30F3\u30BF\uFF08\u5B58\
-    \u5728\u3057\u306A\u3044\u5834\u5408\u306Fnullptr\uFF09\n     *\n     * @pre 0\
-    \ <= r <= size(t)\n     * @pre g(s_unit()) == true\n     */\n    template <class\
-    \ G> bb_result min_left(NodePtr &t, int r, const G &g) {\n        assert(0 <=\
-    \ r and r <= size(t));\n        assert(g(s_unit()));\n        auto [t1, t2] =\
-    \ split(t, r);\n        if (!t1) {\n            t = merge(t1, t2);\n         \
-    \   return {r, s_unit(), nullptr};\n        }\n        if (g(t1->val)) {\n   \
-    \         t = merge(t1, t2);\n            return {0, t1->val, nullptr};\n    \
-    \    }\n\n        int k = r;\n        S x = s_unit();\n        NodePtr now = t1;\n\
-    \n        while (now->right) {\n            now = push(now);\n            S y\
-    \ = s_op(now->right->val, x);\n            if (g(y)) {\n                x = y;\n\
-    \                k -= size(now->right);\n                now = now->left;\n  \
-    \          } else {\n                now = now->right;\n            }\n      \
-    \  }\n        t = merge(t1, t2);\n        return {k, x, now};\n    }\n\n    inline\
-    \ int size(NodePtr t) const { return t ? t->count : 0; }\n\n  protected:\n   \
-    \ NodePtr rotate(NodePtr t, bool left) {\n        t = push(t);\n        NodePtr\
-    \ s;\n        if (left) {\n            s = push(t->left);\n            t->left\
-    \ = s->right;\n            s->right = t;\n        } else {\n            s = push(t->right);\n\
-    \            t->right = s->left;\n            s->left = t;\n        }\n      \
-    \  update(t);\n        return update(s);\n    }\n\n    NodePtr submerge(NodePtr\
-    \ l, NodePtr r) {\n        if (l->rank < r->rank) {\n            r = push(r);\n\
-    \            NodePtr c = submerge(l, r->left);\n            r->left = c;\n   \
-    \         if (c->is_red and c->left->is_red) {\n                c->is_red = 0,\
-    \ r->is_red = 1;\n                if (!r->right->is_red) return rotate(r, true);\n\
-    \                r->right->is_red = 0;\n            }\n            return update(r);\n\
-    \        } else if (l->rank > r->rank) {\n            l = push(l);\n         \
-    \   NodePtr c = submerge(l->right, r);\n            l->right = c;\n          \
-    \  if (c->is_red and c->right->is_red) {\n                c->is_red = 0, l->is_red\
-    \ = 1;\n                if (!l->left->is_red) return rotate(l, false);\n     \
-    \           l->left->is_red = 0;\n            }\n            return update(l);\n\
-    \        } else {\n            return alloc(l, r);\n        }\n    }\n\n    NodePtr\
-    \ as_root(NodePtr t) {\n        if (!t) return t;\n        t->is_red = false;\n\
-    \        return t;\n    }\n\n    virtual NodePtr update(NodePtr t) = 0;\n    virtual\
-    \ NodePtr push(NodePtr t) = 0;\n};\n\n} // namespace rbtree\n\n} // namespace\
-    \ kk2\n\n\n#line 9 \"data_structure/ordered_set.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-    \ rbtree {\n\ntemplate <typename T, typename Compare> struct SetNode {\n    using\
-    \ NodePtr = typename rbtree::RedBlackTreeBase<SetNode>::NodePtr;\n    NodePtr\
-    \ left, right;\n    int rank, count;\n    bool is_red;\n\n    struct Monoid {\n\
-    \        T mx;\n        bool unit;\n\n        Monoid() : mx(T{}), unit(true) {}\n\
-    \n        Monoid(T x) : mx(x), unit(false) {}\n    };\n\n    Monoid val;\n\n \
-    \   SetNode(Monoid val_ = Monoid())\n        : left(nullptr),\n          right(nullptr),\n\
+    \ = t2;\n\n        while (now->left) {\n            now = static_cast<Derived\
+    \ *>(this)->push(now);\n            S y = s_op(x, now->left->val);\n         \
+    \   if (g(y)) {\n                x = y;\n                k += size(now->left);\n\
+    \                now = now->right;\n            } else {\n                now\
+    \ = now->left;\n            }\n        }\n        t = merge(t1, t2);\n       \
+    \ return {k, x, now};\n    }\n\n    /**\n     * @brief \u4E8C\u5206\u63A2\u7D22\
+    \uFF08\u5DE6\u65B9\u5411\uFF09\n     *\n     * \u6761\u4EF6\u3092\u6E80\u305F\u3059\
+    \u6700\u5C0F\u306Ek\u3092\u6C42\u3081\u308B\u4E8C\u5206\u63A2\u7D22\u3092\u884C\
+    \u3044\u307E\u3059\u3002\n     *\n     * \u4EE5\u4E0B\u306E\u6761\u4EF6\u3092\u6E80\
+    \u305F\u3059k\u3092\u8FD4\u3057\u307E\u3059\uFF1A\n     *\n     * - k = r \u307E\
+    \u305F\u306F (k \u2260 r \u304B\u3064 g(prod(k, r)) = true)\n     *\n     * -\
+    \ k = 0 \u307E\u305F\u306F (k \u2260 0 \u304B\u3064 g(prod(k-1, r)) = false)\n\
+    \     *\n     * @tparam G \u8FF0\u8A9E\u95A2\u6570\u306E\u578B\u3002bool operator()(S)\u3092\
+    \u6301\u3064\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\n     * @param t \u63A2\
+    \u7D22\u5BFE\u8C61\u306E\u6728\uFF08\u53C2\u7167\u6E21\u3057\u3001\u64CD\u4F5C\
+    \u5F8C\u306B\u5FA9\u5143\u3055\u308C\u307E\u3059\uFF09\n     * @param r \u63A2\
+    \u7D22\u7D42\u4E86\u4F4D\u7F6E\uFF080-indexed\uFF09\n     * @param g \u5224\u5B9A\
+    \u95A2\u6570\u3002S\u3092\u53D7\u3051\u53D6\u308Abool\u3092\u8FD4\u3059\u95A2\u6570\
+    \u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\n     * @return bb_result \u69CB\u9020\u4F53\
+    \n     *\n     *         - s: \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u5C0F\
+    \u306Ek\n     *\n     *         - prod: prod(k, r)\u306E\u5024\n     *\n     *\
+    \         - t: k-1\u756A\u76EE\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30DD\u30A4\
+    \u30F3\u30BF\uFF08\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306Fnullptr\uFF09\
+    \n     *\n     * @pre 0 <= r <= size(t)\n     * @pre g(s_unit()) == true\n   \
+    \  */\n    template <class G> bb_result min_left(NodePtr &t, int r, const G &g)\
+    \ {\n        assert(0 <= r and r <= size(t));\n        assert(g(s_unit()));\n\
+    \        auto [t1, t2] = split(t, r);\n        if (!t1) {\n            t = merge(t1,\
+    \ t2);\n            return {r, s_unit(), nullptr};\n        }\n        if (g(t1->val))\
+    \ {\n            t = merge(t1, t2);\n            return {0, t1->val, nullptr};\n\
+    \        }\n\n        int k = r;\n        S x = s_unit();\n        NodePtr now\
+    \ = t1;\n\n        while (now->right) {\n            now = static_cast<Derived\
+    \ *>(this)->push(now);\n            S y = s_op(now->right->val, x);\n        \
+    \    if (g(y)) {\n                x = y;\n                k -= size(now->right);\n\
+    \                now = now->left;\n            } else {\n                now =\
+    \ now->right;\n            }\n        }\n        t = merge(t1, t2);\n        return\
+    \ {k, x, now};\n    }\n\n    inline int size(NodePtr t) const { return t ? t->count\
+    \ : 0; }\n\n  protected:\n    NodePtr rotate(NodePtr t, bool left) {\n       \
+    \ t = static_cast<Derived *>(this)->push(t);\n        NodePtr s;\n        if (left)\
+    \ {\n            s = static_cast<Derived *>(this)->push(t->left);\n          \
+    \  t->left = s->right;\n            s->right = t;\n        } else {\n        \
+    \    s = static_cast<Derived *>(this)->push(t->right);\n            t->right =\
+    \ s->left;\n            s->left = t;\n        }\n        static_cast<Derived *>(this)->update(t);\n\
+    \        return static_cast<Derived *>(this)->update(s);\n    }\n\n    NodePtr\
+    \ submerge(NodePtr l, NodePtr r) {\n        if (l->rank < r->rank) {\n       \
+    \     r = static_cast<Derived *>(this)->push(r);\n            NodePtr c = submerge(l,\
+    \ r->left);\n            r->left = c;\n            if (c->is_red and c->left->is_red)\
+    \ {\n                c->is_red = 0, r->is_red = 1;\n                if (!r->right->is_red)\
+    \ return rotate(r, true);\n                r->right->is_red = 0;\n           \
+    \ }\n            return static_cast<Derived *>(this)->update(r);\n        } else\
+    \ if (l->rank > r->rank) {\n            l = static_cast<Derived *>(this)->push(l);\n\
+    \            NodePtr c = submerge(l->right, r);\n            l->right = c;\n \
+    \           if (c->is_red and c->right->is_red) {\n                c->is_red =\
+    \ 0, l->is_red = 1;\n                if (!l->left->is_red) return rotate(l, false);\n\
+    \                l->left->is_red = 0;\n            }\n            return static_cast<Derived\
+    \ *>(this)->update(l);\n        } else {\n            return alloc(l, r);\n  \
+    \      }\n    }\n\n    NodePtr as_root(NodePtr t) {\n        if (!t) return t;\n\
+    \        t->is_red = false;\n        return t;\n    }\n};\n\n} // namespace rbtree\n\
+    \n} // namespace kk2\n\n\n#line 9 \"data_structure/ordered_set.hpp\"\n\nnamespace\
+    \ kk2 {\n\nnamespace rbtree {\n\ntemplate <typename T, typename Compare> struct\
+    \ SetNode {\n    using NodePtr = typename rbtree::RedBlackTreeBase<SetNode>::NodePtr;\n\
+    \    NodePtr left, right;\n    int rank, count;\n    bool is_red;\n\n    struct\
+    \ Monoid {\n        T mx;\n        bool unit;\n\n        Monoid() : mx(T{}), unit(true)\
+    \ {}\n\n        Monoid(T x) : mx(x), unit(false) {}\n    };\n\n    Monoid val;\n\
+    \n    SetNode(Monoid val_ = Monoid())\n        : left(nullptr),\n          right(nullptr),\n\
     \          rank(0),\n          count(1),\n          is_red(false),\n         \
     \ val(val_) {}\n\n    SetNode(NodePtr l, NodePtr r) : left(l), right(r), is_red(true)\
     \ {}\n\n    static Monoid MonoidOp(Monoid a, Monoid b) {\n        if (a.unit or\
@@ -274,7 +298,7 @@ data:
   isVerificationFile: false
   path: data_structure/ordered_set.hpp
   requiredBy: []
-  timestamp: '2025-06-26 23:23:56+09:00'
+  timestamp: '2025-10-08 11:16:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/ordered_set.hpp

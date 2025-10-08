@@ -5,16 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/fps_arb.hpp
     title: fps/fps_arb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: fps/fps_base.hpp
     title: fps/fps_base.hpp
   - icon: ':warning:'
     path: fps/fps_multivariate.hpp
     title: fps/fps_multivariate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: fps/fps_ntt_friendly.hpp
     title: fps/fps_ntt_friendly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math_mod/comb_large.hpp
     title: math_mod/comb_large.hpp
   _extendedVerifiedWith:
@@ -102,24 +102,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     title: verify/yosupo_fps/poly_to_newton_basis.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_bell_number.test.cpp
     title: verify/yosupo_math/enumerate_bell_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
     title: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/many_factrials.test.cpp
     title: verify/yosupo_math/many_factrials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_1510.test.cpp
     title: verify/yuki/yuki_1510.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "`[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\
       \u30FC\u30D6\u30EB"
@@ -152,47 +152,47 @@ data:
   isVerificationFile: false
   path: math_mod/inv_table.hpp
   requiredBy:
-  - math_mod/comb_large.hpp
-  - fps/fps_arb.hpp
   - fps/fps_base.hpp
+  - fps/fps_arb.hpp
   - fps/fps_ntt_friendly.hpp
   - fps/fps_multivariate.hpp
+  - math_mod/comb_large.hpp
   timestamp: '2025-06-26 23:23:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yuki/yuki_1510.test.cpp
-  - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - verify/yosupo_math/enumerate_bell_number.test.cpp
-  - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - verify/yosupo_math/many_factrials.test.cpp
-  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
-  - verify/unit_test/math_mod/inv_table.test.cpp
-  - verify/yosupo_fps/fps_sparse_log.test.cpp
-  - verify/yosupo_fps/fps_log_arb.test.cpp
-  - verify/yosupo_fps/fps_pow.test.cpp
-  - verify/yosupo_fps/fps_log.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - verify/yosupo_fps/poly_root_finding.test.cpp
-  - verify/yosupo_fps/poly_division.test.cpp
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - verify/yosupo_fps/fps_sparse_inv.test.cpp
-  - verify/yosupo_fps/fps_sqrt.test.cpp
-  - verify/yosupo_fps/fps_sparse_exp.test.cpp
   - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - verify/yosupo_fps/fps_composition.test.cpp
-  - verify/yosupo_fps/poly_interpolation.test.cpp
+  - verify/yosupo_fps/fps_sparse_pow.test.cpp
+  - verify/yosupo_fps/fps_sparse_log.test.cpp
+  - verify/yosupo_fps/fps_pow.test.cpp
+  - verify/yosupo_fps/poly_division.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - verify/yosupo_fps/fps_sparse_exp.test.cpp
+  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/poly_inv.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  - verify/yosupo_fps/fps_sparse_pow.test.cpp
+  - verify/yosupo_fps/fps_sparse_inv.test.cpp
+  - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - verify/yosupo_fps/poly_interpolation.test.cpp
+  - verify/yosupo_fps/fps_composition.test.cpp
+  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
-  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
+  - verify/yosupo_fps/fps_log_arb.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
+  - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
+  - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
+  - verify/yosupo_math/enumerate_bell_number.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/unit_test/math_mod/inv_table.test.cpp
+  - verify/yuki/yuki_1510.test.cpp
 documentation_of: math_mod/inv_table.hpp
 layout: document
 redirect_from:

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_table.hpp
     title: math/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   _extendedRequiredBy:

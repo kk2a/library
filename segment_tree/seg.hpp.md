@@ -6,6 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+    title: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp
+    title: verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -129,7 +135,9 @@ data:
   timestamp: '2025-04-05 12:46:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
+  - verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp
 documentation_of: segment_tree/seg.hpp
 layout: document
 redirect_from:

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/enumerate_quotients.hpp
     title: math/enumerate_quotients.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/frac_floor.hpp
     title: math/frac_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime_table.hpp
     title: math/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/sqrt_floor.hpp
     title: math/sqrt_floor.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
     title: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/multiplicative_function/prefix_sum.hpp\"\n\n\n\n#include\
@@ -96,8 +96,8 @@ data:
     \ prefix_sum_only_prime;\n    std::vector<T> prefix_sum;\n\n    PrefixSumOfMultiplicativeFunction(long\
     \ long n)\n        : n(n),\n          eq(n),\n          prefix_sum_only_prime(eq.size()),\n\
     \          prefix_sum(eq.size()) {}\n\n    int size() const { return eq.size();\
-    \ }\n\n    template <T (*f)(long long)> void LucyDP(std::vector<T> &dp, T a) {\n\
-    \        LucyDP([](long long x) { return f(x); }, dp);\n    }\n\n    // f is completely\
+    \ }\n\n    template <T (*f)(long long)> void LucyDP(std::vector<T> &dp) {\n  \
+    \      LucyDP([](long long x) { return f(x); }, dp);\n    }\n\n    // f is completely\
     \ multiplicative function\n    template <class F> void LucyDP(const F &f, std::vector<T>\
     \ &dp) {\n        assert((int)dp.size() == eq.size());\n        PrimeTable::set_upper(eq.sqrt_n);\n\
     \        for (const long long p : PrimeTable::primes()) {\n            if (p >\
@@ -131,33 +131,32 @@ data:
     \n    PrefixSumOfMultiplicativeFunction(long long n)\n        : n(n),\n      \
     \    eq(n),\n          prefix_sum_only_prime(eq.size()),\n          prefix_sum(eq.size())\
     \ {}\n\n    int size() const { return eq.size(); }\n\n    template <T (*f)(long\
-    \ long)> void LucyDP(std::vector<T> &dp, T a) {\n        LucyDP([](long long x)\
-    \ { return f(x); }, dp);\n    }\n\n    // f is completely multiplicative function\n\
-    \    template <class F> void LucyDP(const F &f, std::vector<T> &dp) {\n      \
-    \  assert((int)dp.size() == eq.size());\n        PrimeTable::set_upper(eq.sqrt_n);\n\
-    \        for (const long long p : PrimeTable::primes()) {\n            if (p >\
-    \ eq.sqrt_n) break;\n            T fp = f(p);\n            for (int i = eq.size()\
-    \ - 1;; --i) {\n                if (eq[i] < p * p) break;\n                dp[i]\
-    \ -= (dp[eq.idx(eq[i] / p)] - dp[p - 2]) * fp;\n            }\n        }\n   \
-    \ }\n\n    template <T (*f)(long long, long long)> void Min_25Sieve() {\n    \
-    \    Min_25Sieve([](long long x, long long y) { return f(x, y); });\n    }\n\n\
-    \    // f is multiplicative function\n    template <class F> void Min_25Sieve(const\
-    \ F &f) {\n        PrimeTable::set_upper(eq.sqrt_n);\n        std::copy(prefix_sum_only_prime.begin(),\
-    \ prefix_sum_only_prime.end(), prefix_sum.begin());\n        const auto &primes\
-    \ = PrimeTable::primes();\n        std::vector<T> tmp(eq.size());\n        for\
-    \ (int i = std::upper_bound(primes.begin(), primes.end(), eq.sqrt_n) - primes.begin()\
-    \ - 1;\n             i >= 0;\n             --i) {\n            const long long\
-    \ p = primes[i];\n            T pk = f(p, 1);\n            T pk1;\n          \
-    \  for (long long p_pw = p, k = 1; n / p >= p_pw; ++k, p_pw *= p) {\n        \
-    \        T pk1 = f(p, k + 1);\n                for (int j = eq.size() - 1;; --j)\
-    \ {\n                    if (eq[j] < p_pw * p) break;\n                    tmp[j]\
-    \ += pk * (prefix_sum[eq.idx(eq[j] / p_pw)] - prefix_sum_only_prime[p - 1])\n\
-    \                              + pk1;\n                }\n                pk =\
-    \ pk1;\n            }\n            for (int j = eq.size() - 1;; --j) {\n     \
-    \           if (eq[j] < p * p) break;\n                prefix_sum[j] += tmp[j];\n\
-    \                tmp[j] = T();\n            }\n        }\n        for (int i =\
-    \ 0; i < eq.size(); ++i) ++prefix_sum[i];\n    }\n};\n\n} // namespace kk2\n\n\
-    #endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_PREFIX_SUM_HPP\n"
+    \ long)> void LucyDP(std::vector<T> &dp) {\n        LucyDP([](long long x) { return\
+    \ f(x); }, dp);\n    }\n\n    // f is completely multiplicative function\n   \
+    \ template <class F> void LucyDP(const F &f, std::vector<T> &dp) {\n        assert((int)dp.size()\
+    \ == eq.size());\n        PrimeTable::set_upper(eq.sqrt_n);\n        for (const\
+    \ long long p : PrimeTable::primes()) {\n            if (p > eq.sqrt_n) break;\n\
+    \            T fp = f(p);\n            for (int i = eq.size() - 1;; --i) {\n \
+    \               if (eq[i] < p * p) break;\n                dp[i] -= (dp[eq.idx(eq[i]\
+    \ / p)] - dp[p - 2]) * fp;\n            }\n        }\n    }\n\n    template <T\
+    \ (*f)(long long, long long)> void Min_25Sieve() {\n        Min_25Sieve([](long\
+    \ long x, long long y) { return f(x, y); });\n    }\n\n    // f is multiplicative\
+    \ function\n    template <class F> void Min_25Sieve(const F &f) {\n        PrimeTable::set_upper(eq.sqrt_n);\n\
+    \        std::copy(prefix_sum_only_prime.begin(), prefix_sum_only_prime.end(),\
+    \ prefix_sum.begin());\n        const auto &primes = PrimeTable::primes();\n \
+    \       std::vector<T> tmp(eq.size());\n        for (int i = std::upper_bound(primes.begin(),\
+    \ primes.end(), eq.sqrt_n) - primes.begin() - 1;\n             i >= 0;\n     \
+    \        --i) {\n            const long long p = primes[i];\n            T pk\
+    \ = f(p, 1);\n            T pk1;\n            for (long long p_pw = p, k = 1;\
+    \ n / p >= p_pw; ++k, p_pw *= p) {\n                T pk1 = f(p, k + 1);\n   \
+    \             for (int j = eq.size() - 1;; --j) {\n                    if (eq[j]\
+    \ < p_pw * p) break;\n                    tmp[j] += pk * (prefix_sum[eq.idx(eq[j]\
+    \ / p_pw)] - prefix_sum_only_prime[p - 1])\n                              + pk1;\n\
+    \                }\n                pk = pk1;\n            }\n            for\
+    \ (int j = eq.size() - 1;; --j) {\n                if (eq[j] < p * p) break;\n\
+    \                prefix_sum[j] += tmp[j];\n                tmp[j] = T();\n   \
+    \         }\n        }\n        for (int i = 0; i < eq.size(); ++i) ++prefix_sum[i];\n\
+    \    }\n};\n\n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_PREFIX_SUM_HPP\n"
   dependsOn:
   - math/enumerate_quotients.hpp
   - math/sqrt_floor.hpp
@@ -166,8 +165,8 @@ data:
   isVerificationFile: false
   path: math/multiplicative_function/prefix_sum.hpp
   requiredBy: []
-  timestamp: '2025-04-24 20:54:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-10-08 11:21:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
 documentation_of: math/multiplicative_function/prefix_sum.hpp

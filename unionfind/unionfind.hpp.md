@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/tree/minimum_spanning_tree.hpp
+    title: graph/tree/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
@@ -12,9 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_unionfind.test.cpp
     title: verify/yosupo_ds/ds_unionfind.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: verify/yosupo_graph/graph_minimum_spanning_tree.test.cpp
+    title: verify/yosupo_graph/graph_minimum_spanning_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"unionfind/unionfind.hpp\"\n\n\n\n#include <utility>\n#include\
@@ -45,13 +51,15 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: unionfind/unionfind.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/tree/minimum_spanning_tree.hpp
   timestamp: '2025-07-08 15:40:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_ds/ds_unionfind.test.cpp
+  - verify/yosupo_graph/graph_minimum_spanning_tree.test.cpp
   - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
   - verify/unit_test/unionfind/partial_persitent_unionfind.test.cpp
-  - verify/yosupo_ds/ds_unionfind.test.cpp
 documentation_of: unionfind/unionfind.hpp
 layout: document
 redirect_from:

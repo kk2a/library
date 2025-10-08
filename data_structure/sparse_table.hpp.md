@@ -5,13 +5,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: data_structure/static_rmq.hpp
     title: data_structure/static_rmq.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/euler_tour.hpp
     title: graph/tree/euler_tour.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_rmq.test.cpp
     title: verify/yosupo_ds/ds_static_rmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_vertex_add_path_sum_1.test.cpp
+    title: verify/yosupo_graph/tree_vertex_add_path_sum_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_vertex_add_subtree_sum_1.test.cpp
+    title: verify/yosupo_graph/tree_vertex_add_subtree_sum_1.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -109,6 +115,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp
+  - verify/yosupo_graph/tree_vertex_add_path_sum_1.test.cpp
+  - verify/yosupo_graph/tree_vertex_add_subtree_sum_1.test.cpp
 documentation_of: data_structure/sparse_table.hpp
 layout: document
 redirect_from:

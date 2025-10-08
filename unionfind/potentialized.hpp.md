@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     title: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
     title: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"unionfind/potentialized.hpp\"\n\n\n\n#include <vector>\n\
@@ -33,13 +33,12 @@ data:
     \    }\n\n    // x -> y\n    A diff(int x, int y) {\n        if constexpr (right)\
     \ return potential(y) - potential(x);\n        else return -potential(x) + potential(y);\n\
     \    }\n};\n\ntemplate <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct\
-    \ EasyAbelianGroup {\n    A val;\n\n    EasyAbelianGroup() : val(e()) {}\n\n \
-    \   template <class... Args> EasyAbelianGroup(Args... args) : val(args...) {}\n\
-    \n    EasyAbelianGroup operator+(const EasyAbelianGroup &rhs) const {\n      \
-    \  return EasyAbelianGroup(op(val, rhs.val));\n    }\n\n    EasyAbelianGroup operator-(const\
-    \ EasyAbelianGroup &rhs) const {\n        return EasyAbelianGroup(op(val, inv(rhs.val)));\n\
-    \    }\n\n    EasyAbelianGroup operator-() const { return EasyAbelianGroup(inv(val));\
-    \ }\n};\n\n} // namespace kk2\n\n\n"
+    \ EasyGroup {\n    A val;\n\n    EasyGroup() : val(e()) {}\n\n    template <class...\
+    \ Args> EasyGroup(Args... args) : val(args...) {}\n\n    EasyGroup operator+(const\
+    \ EasyGroup &rhs) const { return EasyGroup(op(val, rhs.val)); }\n\n    EasyGroup\
+    \ operator-(const EasyGroup &rhs) const { return EasyGroup(op(val, inv(rhs.val)));\
+    \ }\n\n    EasyGroup operator-() const { return EasyGroup(inv(val)); }\n};\n\n\
+    } // namespace kk2\n\n\n"
   code: "#ifndef KK2_UNIONFIND_POTENTIALIZED_HPP\n#define KK2_UNIONFIND_POTENTIALIZED_HPP\
     \ 1\n\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class A, bool right =\
     \ true> struct PotentializedUnionFind {\n  private:\n    std::vector<int> d;\n\
@@ -59,23 +58,22 @@ data:
     \ x) {\n        find(x);\n        return par_diff[x];\n    }\n\n    // x -> y\n\
     \    A diff(int x, int y) {\n        if constexpr (right) return potential(y)\
     \ - potential(x);\n        else return -potential(x) + potential(y);\n    }\n\
-    };\n\ntemplate <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyAbelianGroup\
-    \ {\n    A val;\n\n    EasyAbelianGroup() : val(e()) {}\n\n    template <class...\
-    \ Args> EasyAbelianGroup(Args... args) : val(args...) {}\n\n    EasyAbelianGroup\
-    \ operator+(const EasyAbelianGroup &rhs) const {\n        return EasyAbelianGroup(op(val,\
-    \ rhs.val));\n    }\n\n    EasyAbelianGroup operator-(const EasyAbelianGroup &rhs)\
-    \ const {\n        return EasyAbelianGroup(op(val, inv(rhs.val)));\n    }\n\n\
-    \    EasyAbelianGroup operator-() const { return EasyAbelianGroup(inv(val)); }\n\
-    };\n\n} // namespace kk2\n\n#endif // KK2_UNIONFIND_POTENTIALIZED_HPP\n"
+    };\n\ntemplate <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyGroup\
+    \ {\n    A val;\n\n    EasyGroup() : val(e()) {}\n\n    template <class... Args>\
+    \ EasyGroup(Args... args) : val(args...) {}\n\n    EasyGroup operator+(const EasyGroup\
+    \ &rhs) const { return EasyGroup(op(val, rhs.val)); }\n\n    EasyGroup operator-(const\
+    \ EasyGroup &rhs) const { return EasyGroup(op(val, inv(rhs.val))); }\n\n    EasyGroup\
+    \ operator-() const { return EasyGroup(inv(val)); }\n};\n\n} // namespace kk2\n\
+    \n#endif // KK2_UNIONFIND_POTENTIALIZED_HPP\n"
   dependsOn: []
   isVerificationFile: false
   path: unionfind/potentialized.hpp
   requiredBy: []
-  timestamp: '2025-01-06 05:33:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-10-08 11:21:40+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
+  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
 documentation_of: unionfind/potentialized.hpp
 layout: document
 redirect_from:

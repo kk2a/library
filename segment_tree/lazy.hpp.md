@@ -7,6 +7,9 @@ data:
     path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
     title: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
+    title: verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
     title: verify/yosupo_ds/ds_range_set_range_composite.test.cpp
   _isVerificationFailed: false
@@ -197,6 +200,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp
+  - verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
 documentation_of: segment_tree/lazy.hpp
 layout: document

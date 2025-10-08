@@ -17,17 +17,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ type_traits/functional.hpp: line 4: #pragma once found in a non-first line\n"
+  bundledCode: "#line 1 \"functional/reverse_args.hpp\"\n\n\n\n#line 1 \"type_traits/functional.hpp\"\
+    \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T> using\
+    \ is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T> &&\
+    \ std::is_function_v<std::remove_pointer_t<T>>,\n                            \
+    \  std::true_type,\n                              std::false_type>::type;\n\n\
+    template <typename T, std::enable_if_t<is_function_pointer<T>::value> * = nullptr>\n\
+    struct is_two_args_function_pointer : std::false_type {};\n\ntemplate <typename\
+    \ R, typename T1, typename T2> struct is_two_args_function_pointer<R (*)(T1, T2)>\n\
+    \    : std::true_type {};\n\ntemplate <typename T> using is_two_args_function_pointer_t\
+    \ =\n    std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\n} // namespace\
+    \ kk2\n\n\n#line 5 \"functional/reverse_args.hpp\"\n\nnamespace kk2 {\n\n// reverse_args<f>(y,\
+    \ x) = f(x, y)\ntemplate <auto f, is_two_args_function_pointer_t<decltype(f)>\
+    \ * = nullptr>\ninline auto reverse_args(auto x, auto y) {\n    return f(y, x);\n\
+    }\n\n} // namespace kk2\n\n\n"
   code: "#ifndef KK2_FUNCTIONAL_REVERSE_ARGS_HPP\n#define KK2_FUNCTIONAL_REVERSE_ARGS_HPP\
     \ 1\n\n#include \"../type_traits/functional.hpp\"\n\nnamespace kk2 {\n\n// reverse_args<f>(y,\
     \ x) = f(x, y)\ntemplate <auto f, is_two_args_function_pointer_t<decltype(f)>\
@@ -38,7 +41,7 @@ data:
   isVerificationFile: false
   path: functional/reverse_args.hpp
   requiredBy: []
-  timestamp: '2025-04-06 00:07:43+09:00'
+  timestamp: '2025-10-08 11:21:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp

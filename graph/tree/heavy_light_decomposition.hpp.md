@@ -13,11 +13,20 @@ data:
     path: verify/yosupo_graph/tree_lca_static.test.cpp
     title: verify/yosupo_graph/tree_lca_static.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_vertex_add_path_sum_2.test.cpp
+    title: verify/yosupo_graph/tree_vertex_add_path_sum_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_vertex_add_subtree_sum_2.test.cpp
+    title: verify/yosupo_graph/tree_vertex_add_subtree_sum_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp
+    title: verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp
+  - icon: ':x:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n\n#include\
@@ -126,11 +135,14 @@ data:
   requiredBy:
   - graph/tree/auxiliary_tree.hpp
   timestamp: '2025-03-28 03:08:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yuki/yuki_1326.test.cpp
   - verify/yosupo_graph/tree_lca_static.test.cpp
+  - verify/yosupo_graph/tree_vertex_add_path_sum_2.test.cpp
   - verify/yosupo_graph/tree_lca.test.cpp
+  - verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp
+  - verify/yosupo_graph/tree_vertex_add_subtree_sum_2.test.cpp
+  - verify/yuki/yuki_1326.test.cpp
 documentation_of: graph/tree/heavy_light_decomposition.hpp
 layout: document
 redirect_from:

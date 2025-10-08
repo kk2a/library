@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/trie.hpp
     title: data_structure/trie.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430.test.cpp
     title: verify/yuki/yuki_0430.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_0430_2.test.cpp
     title: verify/yuki/yuki_0430_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/aho_corasick.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -125,7 +125,7 @@ data:
   path: string/aho_corasick.hpp
   requiredBy: []
   timestamp: '2025-06-04 11:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_0430.test.cpp
   - verify/yuki/yuki_0430_2.test.cpp

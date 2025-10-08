@@ -4,6 +4,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+    title: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
+    title: verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_ds/ds_static_range_inversions.test.cpp
     title: verify/yosupo_ds/ds_static_range_inversions.test.cpp
   _isVerificationFailed: false
@@ -66,6 +72,8 @@ data:
   timestamp: '2025-01-05 04:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+  - verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
 documentation_of: others/coordinate_compression.hpp
 layout: document

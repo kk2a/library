@@ -129,8 +129,8 @@ data:
   timestamp: '2025-07-10 13:49:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
   - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
+  - verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
 documentation_of: math/multiplicative_function/famous_function_table.hpp
 layout: document
 redirect_from:

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bcc.hpp
     title: graph/bcc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lowlink.hpp
     title: graph/lowlink.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yuki/yuki_1326.test.cpp
     title: verify/yuki/yuki_1326.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree/block_cut_tree.hpp\"\n\n\n\n#include <vector>\n\
@@ -121,7 +121,7 @@ data:
   path: graph/tree/block_cut_tree.hpp
   requiredBy: []
   timestamp: '2025-04-05 12:46:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp
 documentation_of: graph/tree/block_cut_tree.hpp
