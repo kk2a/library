@@ -15,42 +15,46 @@ template <typename G> struct EulerTour {
     static_assert(!G::directed, "EulerTour requires undirected graph");
 
     const G &g;
-    int root, id;
+    int id;
     std::vector<int> in, out, par;
-    std::vector<int> edge_in, edge_out;
 
-    EulerTour(const G &g_, int root_ = 0)
+    EulerTour(const G &g_, int root = 0)
         : g(g_),
-          root(root_),
           id(0),
           in(g.size(), -1),
           out(g.size(), -1),
-          par(g.size(), root),
-          edge_in(g.size() - 1, -1),
-          edge_out(g.size() - 1, -1) {
-        init();
+          par(g.size(), -1) {
+        init(root);
     }
 
     std::pair<int, int> get_edge_idx(int i) const {
-        return std::make_pair(edge_in[i], edge_out[i]);
+        if (par[i] == -1) return {-1, -1};
+        return {in[i], out[i]};
     }
 
-    std::pair<int, int> get_node_idx(int u) const { return std::make_pair(in[u], out[u]); }
+    std::pair<int, int> get_node_idx(int u) const { return {in[u], out[u]}; }
 
     int lca(int u, int v) const {
         if (in[u] > in[v]) std::swap(u, v);
-        return std::pair<int, int>(rmq.prod(in[u], in[v] + 1)).second;
+        return rmq.prod(in[u], in[v] + 1).a.second;
     }
 
     int dist(int u, int v) const {
-        int depu = std::pair<int, int>(rmq.get(in[u])).first;
-        int depv = std::pair<int, int>(rmq.get(in[v])).first;
-        return depu + depv - 2 * std::pair<int, int>(rmq.get(in[lca(u, v)])).first;
+        int depu = rmq.get(in[u]).a.first;
+        int depv = rmq.get(in[v]).a.first;
+        return depu + depv - 2 * rmq.get(in[lca(u, v)]).a.first;
     }
 
     template <typename F> void path_query(int u, int v, bool is_node_query, const F &f) {
         int l = lca(u, v);
         f(in[l] + (int)!is_node_query, in[u] + 1);
+        f(in[l] + 1, in[v] + 1);
+    }
+
+    template <typename F>
+    void path_noncommutative_query(int u, int v, bool is_node_query, const F &f) {
+        int l = lca(u, v);
+        f(in[u] + 1, in[l] + (int)!is_node_query);
         f(in[l] + 1, in[v] + 1);
     }
 
@@ -61,7 +65,7 @@ template <typename G> struct EulerTour {
   private:
     StaticRMQ<std::pair<int, int>> rmq;
 
-    void init() {
+    void init(int root) {
         using Monoid = typename decltype(rmq)::Monoid;
         std::vector<Monoid> rmq_init(2 * g.size());
         auto dfs = [&](auto self, int now, int pre, int dep) -> void {
@@ -70,12 +74,10 @@ template <typename G> struct EulerTour {
             for (auto &&e : g[now]) {
                 if ((int)e == pre) continue;
                 par[(int)e] = now;
-                edge_in[e.id] = id;
                 self(self, e, now, dep + 1);
-                edge_out[e.id] = id++;
             }
-            out[now] = id;
             rmq_init[id] = Monoid({dep - 1, pre});
+            out[now] = id++;
         };
         dfs(dfs, root, -1, 0);
         for (int i = 0; i < (int)g.size(); i++) {
