@@ -23,9 +23,8 @@ namespace rbtree {
  * @brief 赤黒木の基本クラス
  *
  */
-template <typename Node> struct RedBlackTreeBase {
-    VectorPool<Node> pool;
-    using NodePtr = Node *;
+template <typename Derived, typename Node> struct RedBlackTreeBase {
+    using NodePtr = Node::NodePtr;
     using action_type = typename Node::action_type;
     using S = typename Node::S;
     using A = typename Node::A;
@@ -35,11 +34,14 @@ template <typename Node> struct RedBlackTreeBase {
     static A a_op(A f, A g) { return Node::a_op(f, g); }
     static A a_unit() { return Node::a_unit(); }
 
-    RedBlackTreeBase(int sz) : pool(sz) { pool.clear(); }
+    VectorPool<Node> pool;
+
+    RedBlackTreeBase() : pool() {}
+    RedBlackTreeBase(int sz) : pool(sz) {}
 
     template <typename... Args> NodePtr alloc(Args... args) {
         NodePtr t = &(*pool.alloc() = Node(args...));
-        return update(t);
+        return static_cast<Derived*>(this)->update(t);
     }
 
     NodePtr make_tree() { return nullptr; }
@@ -75,7 +77,7 @@ template <typename Node> struct RedBlackTreeBase {
         if (!t) return {nullptr, nullptr};
         if (k == 0) return {nullptr, as_root(t)};
         if (k == size(t)) return {as_root(t), nullptr};
-        t = push(t);
+        t = static_cast<Derived*>(this)->push(t);
         NodePtr l = as_root(t->left), r = as_root(t->right);
         free(t);
         if (k < size(l)) {
@@ -94,7 +96,6 @@ template <typename Node> struct RedBlackTreeBase {
     };
 
     NodePtr3 split3(NodePtr t, int a, int b) {
-        // assertしなくても動くけど，分かりにくい
         assert(0 <= a and a <= b and b <= size(t));
         auto [x, y] = split(t, a);
         auto [y1, z] = split(y, b - a);
@@ -123,10 +124,10 @@ template <typename Node> struct RedBlackTreeBase {
                 now->val = S(args...);
                 return;
             }
-            now = push(now);
+            now = static_cast<Derived*>(this)->push(now);
             if (size(now->left) > k) self(self, now->left, k);
             else self(self, now->right, k - size(now->left));
-            now = update(now);
+            now = static_cast<Derived*>(this)->update(now);
         };
         dfs(dfs, now, k);
     }
@@ -135,7 +136,7 @@ template <typename Node> struct RedBlackTreeBase {
         assert(0 <= k and k < size(t));
         NodePtr now = t;
         while (now->left) {
-            now = push(now);
+            now = static_cast<Derived*>(this)->push(now);
             if (size(now->left) > k) now = now->left;
             else {
                 k -= size(now->left);
@@ -228,7 +229,7 @@ template <typename Node> struct RedBlackTreeBase {
         NodePtr now = t2;
 
         while (now->left) {
-            now = push(now);
+            now = static_cast<Derived*>(this)->push(now);
             S y = s_op(x, now->left->val);
             if (g(y)) {
                 x = y;
@@ -286,7 +287,7 @@ template <typename Node> struct RedBlackTreeBase {
         NodePtr now = t1;
 
         while (now->right) {
-            now = push(now);
+            now = static_cast<Derived*>(this)->push(now);
             S y = s_op(now->right->val, x);
             if (g(y)) {
                 x = y;
@@ -304,24 +305,24 @@ template <typename Node> struct RedBlackTreeBase {
 
   protected:
     NodePtr rotate(NodePtr t, bool left) {
-        t = push(t);
+        t = static_cast<Derived*>(this)->push(t);
         NodePtr s;
         if (left) {
-            s = push(t->left);
+            s = static_cast<Derived*>(this)->push(t->left);
             t->left = s->right;
             s->right = t;
         } else {
-            s = push(t->right);
+            s = static_cast<Derived*>(this)->push(t->right);
             t->right = s->left;
             s->left = t;
         }
-        update(t);
-        return update(s);
+        static_cast<Derived*>(this)->update(t);
+        return static_cast<Derived*>(this)->update(s);
     }
 
     NodePtr submerge(NodePtr l, NodePtr r) {
         if (l->rank < r->rank) {
-            r = push(r);
+            r = static_cast<Derived*>(this)->push(r);
             NodePtr c = submerge(l, r->left);
             r->left = c;
             if (c->is_red and c->left->is_red) {
@@ -329,9 +330,9 @@ template <typename Node> struct RedBlackTreeBase {
                 if (!r->right->is_red) return rotate(r, true);
                 r->right->is_red = 0;
             }
-            return update(r);
+            return static_cast<Derived*>(this)->update(r);
         } else if (l->rank > r->rank) {
-            l = push(l);
+            l = static_cast<Derived*>(this)->push(l);
             NodePtr c = submerge(l->right, r);
             l->right = c;
             if (c->is_red and c->right->is_red) {
@@ -339,7 +340,7 @@ template <typename Node> struct RedBlackTreeBase {
                 if (!l->left->is_red) return rotate(l, false);
                 l->left->is_red = 0;
             }
-            return update(l);
+            return static_cast<Derived*>(this)->update(l);
         } else {
             return alloc(l, r);
         }
@@ -350,9 +351,6 @@ template <typename Node> struct RedBlackTreeBase {
         t->is_red = false;
         return t;
     }
-
-    virtual NodePtr update(NodePtr t) = 0;
-    virtual NodePtr push(NodePtr t) = 0;
 };
 
 } // namespace rbtree

@@ -1,11 +1,5 @@
-#ifndef KK2_BBST_LAZY_RED_BLACK_TREE_HPP
-#define KK2_BBST_LAZY_RED_BLACK_TREE_HPP 1
-
-#include <cassert>
-#include <memory>
-#include <string>
-#include <utility>
-#include <vector>
+#ifndef KK2_BBST_PERSISTENT_LAZY_RED_BLACK_TREE_HPP
+#define KK2_BBST_PERSISTENT_LAZY_RED_BLACK_TREE_HPP 1
 
 #include "base/lazy_red_black_tree_node.hpp"
 #include "base/red_black_tree_base.hpp"
@@ -14,11 +8,12 @@ namespace kk2 {
 
 namespace rbtree {
 
-template <class A_> struct LazyRedBlackTree
-    : RedBlackTreeBase<LazyRedBlackTree<A_>, LazyRedBlackTreeNode<A_>> {
-    using base = RedBlackTreeBase<LazyRedBlackTree<A_>, LazyRedBlackTreeNode<A_>>;
+template <class A_> struct PersistentLazyRedBlackTree
+    : RedBlackTreeBase<PersistentLazyRedBlackTree<A_>, LazyRedBlackTreeNode<A_>> {
+    using base = RedBlackTreeBase<PersistentLazyRedBlackTree<A_>, LazyRedBlackTreeNode<A_>>;
     using base::a_op;
     using base::a_unit;
+    using base::alloc;
     using base::merge;
     using base::RedBlackTreeBase;
     using base::s_op;
@@ -46,13 +41,16 @@ template <class A_> struct LazyRedBlackTree
 
     void all_apply(NodePtr &t, A f) {
         if (!t) return;
+        t = alloc(*t);
         t->val = sa_act(f, t->val);
         if (t->left) t->lazy = a_op(f, t->lazy);
     }
 
     NodePtr push(NodePtr t) {
+        t = alloc(*t);
         if (t->is_rev) {
             std::swap(t->left, t->right);
+            // ここで子供を複製しないといけない．
             if (t->left) t->left->is_rev ^= 1;
             if (t->right) t->right->is_rev ^= 1;
             t->is_rev = false;
@@ -69,8 +67,8 @@ template <class A_> struct LazyRedBlackTree
 
 } // namespace rbtree
 
-using rbtree::LazyRedBlackTree;
+using rbtree::PersistentLazyRedBlackTree;
 
 } // namespace kk2
 
-#endif // KK2_BBST_LAZY_RED_BLACK_TREE_HPP
+#endif // KK2_BBST_PERSISTENT_LAZY_RED_BLACK_TREE_HPP
