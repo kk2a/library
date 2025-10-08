@@ -77,6 +77,9 @@ template <class U, class T> U all_gcd(const std::vector<T> &v, U unit = U()) {
 template <class U, class T> U all_lcm(const std::vector<T> &v, U unit = U(1)) {
     return all_monoid_prod<U, T>(v, unit, [](U a, U b) { return std::lcm(a, b); });
 }
+template <class U, class T> int all_count(const std::vector<T> &v, U x) {
+    return all_monoid_prod<int, T>(v, 0, [x](int a, U y) { return a + int(x == y); });
+}
 
 } // namespace kk2
 
