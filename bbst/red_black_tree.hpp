@@ -14,7 +14,7 @@ namespace kk2 {
 
 namespace rbtree {
 
-template <class M> struct RedBlackTree : RedBlackTreeBase<RedBlackTree<M>, RedBlackTreeNode <M>> {
+template <class M> struct RedBlackTree : RedBlackTreeBase<RedBlackTree<M>, RedBlackTreeNode<M>> {
     using base = RedBlackTreeBase<RedBlackTree<M>, RedBlackTreeNode<M>>;
     using base::RedBlackTreeBase;
     using base::s_op;
