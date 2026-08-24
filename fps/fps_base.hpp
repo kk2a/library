@@ -1,4 +1,4 @@
-#ifndef KK2_FPS_FPS_BASE_HPP
+    #ifndef KK2_FPS_FPS_BASE_HPP
 #define KK2_FPS_FPS_BASE_HPP 1
 
 #include <algorithm>

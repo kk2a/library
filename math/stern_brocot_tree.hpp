@@ -2,6 +2,9 @@
 #define KK2_MATH_STERN_BROCOT_TREE_HPP 1
 
 #include <algorithm>
+#include <cassert>
+#include <vector>
+#include <tuple>
 
 namespace kk2 {
 

@@ -9,6 +9,11 @@
 
 namespace kk2 {
 
+
+// f: multiplicative function
+// f = a * g_1 + b * g_2 + ...
+// g_i: completely multiplicative function
+// there exists s.t. h_i(p) = g(p) and can compute sum_x h_i(x)
 template <class T> struct PrefixSumOfMultiplicativeFunction {
     long long n;
     EnumerateQuotients<long long> eq;
