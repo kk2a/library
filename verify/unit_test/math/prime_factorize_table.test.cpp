@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../math/prime_factorize_table.hpp"
 #include "../../../math/prime_factorize.hpp"
@@ -120,10 +120,6 @@ void test_edge_cases() {
 }
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     test_basic_factorization();
     test_perfect_powers();
     test_prime_numbers();

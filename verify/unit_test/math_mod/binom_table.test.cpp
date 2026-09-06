@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../math_mod/binom_table.hpp"
 #include "../../../math_mod/comb.hpp"
@@ -8,10 +8,6 @@
 using namespace std;
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     // aliasの定義
     using mint = kk2::mint998;
     using BTable = kk2::BinomTable<mint>;

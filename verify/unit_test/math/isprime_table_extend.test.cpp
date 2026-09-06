@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../math/isprime_table.hpp"
 #include "../../../math/multiplicative_function/prime_counting.hpp"
@@ -102,10 +102,6 @@ void test_random_numbers() {
 }
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     test_basic_primality();
     test_prime_generation();
     test_consistency_with_reference();

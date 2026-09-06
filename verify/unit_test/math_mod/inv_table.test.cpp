@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../math_mod/inv_table.hpp"
 #include "../../../modint/modint.hpp"
@@ -73,10 +73,6 @@ void test() {
 }
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     test();
 
     return 0;

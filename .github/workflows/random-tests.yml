@@ -1,0 +1,25 @@
+name: random-tests
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  random-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run random tests
+      env:
+        JOBS: 4
+        TIME_LIMIT: 2
+      run: ./scripts/verify-random.sh

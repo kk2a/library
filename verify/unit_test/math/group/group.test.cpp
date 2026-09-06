@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+#define IGNORE
 
 #include "../../../../math/group/add.hpp"
 #include "../../../../math/group/rolling_hash.hpp"
@@ -116,10 +116,6 @@ void test() {
 }
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     test();
 
     return 0;

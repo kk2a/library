@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../data_structure/bit_vector.hpp"
 #include "../../../random/gen.hpp"
@@ -6,10 +6,6 @@
 using namespace std;
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     rep (2000) {
         int n = kk2::random::rng(1, 1e4);
         auto a = kk2::random::random_vector<int>(n, 0, 2);

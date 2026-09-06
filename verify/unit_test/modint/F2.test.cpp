@@ -1,14 +1,10 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+#define IGNORE
 
 #include "../../../modint/F2.hpp"
 #include "../../../template/template.hpp"
 using namespace std;
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     kk2::F2 x, y(0), z(1);
     assert(x == y);
     assert(x != z);
