@@ -1,4 +1,6 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group" 
+#define IGNORE
+// #define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group" 
+// あとでなおす
 
 #include "../../modint/modint.hpp"
 #include "../../unionfind/potentialized.hpp"
