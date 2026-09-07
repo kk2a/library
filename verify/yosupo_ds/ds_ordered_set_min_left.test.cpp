@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/ordered_set" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/ordered_set
 
 #include "../../bbst/red_black_tree.hpp"
 #include "../../math/monoid/update.hpp"

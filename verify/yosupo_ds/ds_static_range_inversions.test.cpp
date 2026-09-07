@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/static_range_inversions_query" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_inversions_query
 
 #include "../../others/coordinate_compression.hpp"
 #include "../../data_structure/binary_indexed_tree.hpp"

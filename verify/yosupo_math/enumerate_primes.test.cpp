@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/enumerate_primes" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_primes
 
 #include "../../math/prime_table.hpp"
 #include "../../math/frac_floor.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/sum_of_multiplicative_function" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_multiplicative_function
 
 #include "../../math/multiplicative_function/prefix_sum.hpp"
 #include "../../modint/mont.hpp"

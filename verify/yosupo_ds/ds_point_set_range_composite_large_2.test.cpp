@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite_large_array" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_set_range_composite_large_array
 
 #include "../../segment_tree/seg.hpp"
 #include "../../math/monoid/affine.hpp"

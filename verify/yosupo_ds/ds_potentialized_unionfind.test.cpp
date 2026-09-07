@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/unionfind_with_potential
 
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"

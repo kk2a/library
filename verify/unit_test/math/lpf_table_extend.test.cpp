@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../math/lpf_table.hpp"
 #include "../../../math/multiplicative_function/prime_counting.hpp"

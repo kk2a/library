@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../math_mod/binom_table.hpp"
 #include "../../../math_mod/comb.hpp"

@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../modint/modint.hpp"
 #include "../../../math_mod/comb_large.hpp"

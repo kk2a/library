@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../math/rational.hpp"
 #include "../../../random/gen.hpp"

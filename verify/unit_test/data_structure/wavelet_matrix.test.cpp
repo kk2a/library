@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../data_structure/wavelet_matrix.hpp"
 #include "../../../math/pow.hpp"

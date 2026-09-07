@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_subtree_sum
 
 #include "../../graph/tree/euler_tour.hpp"
 #include "../../graph/graph.hpp"

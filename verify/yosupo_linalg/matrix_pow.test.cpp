@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/pow_of_matrix
 
 #include "../../matrix/matrix_field.hpp"
 #include "../../modint/mont.hpp"

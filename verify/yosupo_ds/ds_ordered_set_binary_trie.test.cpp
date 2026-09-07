@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/ordered_set" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/ordered_set
 
 #include "../../data_structure/binary_trie.hpp"
 #include "../../template/template.hpp"

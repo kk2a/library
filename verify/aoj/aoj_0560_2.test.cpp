@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0560" 
+// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0560
 
 #include "../../data_structure/prefix_sum_arbitrary.hpp"
 #include "../../template/template.hpp"

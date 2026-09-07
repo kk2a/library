@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../../type_traits/algebra.hpp"
 #include "../../../../math/action/add_sumwithsize.hpp"

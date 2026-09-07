@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/number_of_substrings" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/number_of_substrings
 
 #include "../../string/suffix_array.hpp"
 #include "../../template/template.hpp"

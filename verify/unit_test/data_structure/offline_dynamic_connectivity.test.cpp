@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../data_structure/offline_dynamic_connectivity.hpp"
 #include "../../../unionfind/unionfind.hpp"

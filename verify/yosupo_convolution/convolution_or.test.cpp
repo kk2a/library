@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bitwise_and_convolution
 
 #include "../../convolution/convolution_or.hpp"
 #include "../../modint/mont.hpp"

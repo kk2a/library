@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bipartitematching
 
 #include "../../graph/graph.hpp"
 #include "../../graph/maxflow.hpp"

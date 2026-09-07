@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis
 
 #include "../../fps/fps_ntt_friendly.hpp"
 #include "../../fps/poly_to_newton_basis.hpp"

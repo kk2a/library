@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/cartesian_tree" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/cartesian_tree
 
 #include "../../graph/tree/cartesian_tree.hpp"
 #include "../../template/template.hpp"
