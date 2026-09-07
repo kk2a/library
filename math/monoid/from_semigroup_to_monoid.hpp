@@ -31,13 +31,13 @@ template <class SM> struct FromSemigroupToMonoid {
         return is_unit != rhs.is_unit or (!is_unit and a != rhs.a);
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const M &x) {
         if (x.is_unit) return os << "unit";
         return os << x.a;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, M &x) {
         is >> x.a;
         x.is_unit = false;

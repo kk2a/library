@@ -4,6 +4,9 @@
 #include <limits>
 #include <vector>
 
+#include "../../type_traits/graph.hpp"
+#include "../../type_traits/io.hpp"
+
 namespace kk2 {
 
 namespace shortest_path_impl {
@@ -16,7 +19,7 @@ template <class T> struct bf_len {
     T len;
     bool inf, minf;
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         if (minf) os << "MINF";
         else if (inf) os << "INF";
@@ -29,10 +32,8 @@ template <class T> struct bf_result {
     std::vector<bf_edge<T>> prev;
 };
 
-template <class WG, class T = typename WG::value_type>
+template <graph::WeightedDirectedEdgeListGraph WG, class T = typename WG::value_type>
 bf_result<T> bellman_ford(const WG &g, int start) {
-    static_assert(WG::weighted, "bellman_ford requires weighted graph");
-    static_assert(WG::directed, "bellman_ford requires directed graph");
 
     std::vector<bf_len<T>> dist(g.num_vertices(), {0, true, false});
     std::vector<bf_edge<T>> prev(g.num_vertices(), {-1, -1});

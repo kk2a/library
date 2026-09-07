@@ -6,10 +6,11 @@
 #include <numeric>
 #include <vector>
 
+#include "../../type_traits/graph.hpp"
+
 namespace kk2 {
 
-template <class G> int centroid(const G &g) {
-    static_assert(!G::directed, "Centroid requires undirected graph");
+template <graph::UndirectedGraph G> int centroid(const G &g) {
 
     int n = g.size();
     std::vector<int> sz(n, 0);
@@ -35,8 +36,8 @@ template <class G> int centroid(const G &g) {
     return find(find, 0);
 }
 
-template <class G> int centroid(const G &g, const std::vector<long long> &weight) {
-    static_assert(!G::directed, "Centroid requires undirected graph");
+template <graph::UndirectedGraph G>
+int centroid(const G &g, const std::vector<long long> &weight) {
     assert((int)g.size() == (int)weight.size());
     int n = g.size();
     std::vector<long long> sz(n, 0);

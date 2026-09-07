@@ -52,6 +52,35 @@ HAS_BINARY_OP(>, greater)
 HAS_BINARY_OP(<=, less_equal)
 HAS_BINARY_OP(>=, greater_equal)
 
+#define HAS_UNARY_CONCEPT(op, name) \
+    template <class T> concept Has##name = requires(T x) { op x; };
+
+#define HAS_BINARY_CONCEPT(op, name) \
+    template <class LHS, class RHS = LHS> concept Has##name = requires(LHS lhs, RHS rhs) { lhs op rhs; };
+
+HAS_UNARY_CONCEPT(-, Negation)
+HAS_BINARY_CONCEPT(+, Plus)
+HAS_BINARY_CONCEPT(-, Minus)
+HAS_BINARY_CONCEPT(*, Multiplies)
+HAS_BINARY_CONCEPT(/, Divides)
+HAS_BINARY_CONCEPT(%, Modulus)
+HAS_UNARY_CONCEPT(~, BitNot)
+HAS_BINARY_CONCEPT(&, BitAnd)
+HAS_BINARY_CONCEPT(|, BitOr)
+HAS_BINARY_CONCEPT(^, BitXor)
+HAS_UNARY_CONCEPT(!, LogicalNot)
+HAS_BINARY_CONCEPT(&&, LogicalAnd)
+HAS_BINARY_CONCEPT(||, LogicalOr)
+HAS_BINARY_CONCEPT(==, EqualTo)
+HAS_BINARY_CONCEPT(!=, NotEqualTo)
+HAS_BINARY_CONCEPT(<, Less)
+HAS_BINARY_CONCEPT(>, Greater)
+HAS_BINARY_CONCEPT(<=, LessEqual)
+HAS_BINARY_CONCEPT(>=, GreaterEqual)
+
+#undef HAS_UNARY_CONCEPT
+#undef HAS_BINARY_CONCEPT
+
 // END_PRESERVE_NEWLINES
 
 #undef HAS_BINARY_OP

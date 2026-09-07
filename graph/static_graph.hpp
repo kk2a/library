@@ -69,7 +69,7 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
                                                       data.begin() + head[k + 1]};
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     StaticAdjacencyList &input(IStream &is, bool oneindexed = false) {
         for (int i = 0; i < num_edges(); i++) {
             int u, v;
@@ -84,7 +84,7 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
         return *this;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         assert(is_built);
         os << "[\n";

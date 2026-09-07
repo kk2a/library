@@ -2,6 +2,7 @@
 #define KK2_TYPE_TRAITS_CONTAINER_TRAITS_HPP 1
 
 #include <array>
+#include <concepts>
 #include <deque>
 #include <list>
 #include <string>
@@ -22,6 +23,12 @@ template <typename T, std::size_t N> struct is_container<std::array<T, N>> : std
 template <typename T, typename Alloc> struct is_container<std::deque<T, Alloc>> : std::true_type {};
 template <typename T, typename Alloc> struct is_container<std::list<T, Alloc>> : std::true_type {};
 template <typename T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;
+
+template <class T>
+concept Vector = is_vector<std::remove_cvref_t<T>>::value;
+
+template <class T>
+concept Container = is_container<std::remove_cvref_t<T>>::value;
 
 } // namespace kk2
 

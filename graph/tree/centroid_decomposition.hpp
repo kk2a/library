@@ -4,10 +4,11 @@
 #include <cassert>
 #include <vector>
 
+#include "../../type_traits/graph.hpp"
+
 namespace kk2 {
 
-template <class G> struct CentroidDecomposition {
-    static_assert(!G::directed, "CentroidDecomposition requires undirected graph");
+template <graph::UndirectedGraph G> struct CentroidDecomposition {
 
     const G &g;
     std::vector<int> parent;

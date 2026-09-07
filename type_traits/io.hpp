@@ -1,6 +1,8 @@
 #ifndef KK2_TYPE_TRAITS_IO_HPP
 #define KK2_TYPE_TRAITS_IO_HPP 1
 
+#include <concepts>
+#include <fstream>
 #include <istream>
 #include <ostream>
 #include <type_traits>
@@ -39,6 +41,18 @@ template <typename T> using is_ostream =
 
 template <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;
 template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;
+
+template <class T>
+concept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;
+
+template <class T>
+concept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;
+
+template <class T>
+concept InputStream = is_istream<std::remove_cvref_t<T>>::value;
+
+template <class T>
+concept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;
 
 } // namespace kk2
 

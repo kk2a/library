@@ -4,22 +4,24 @@
 #include <cassert>
 #include <vector>
 
+#include "../type_traits/algebra.hpp"
+
 namespace kk2 {
 
 // require: op(x, x) = x for all x
-template <class S, S (*op)(S, S), S (*e)()> struct SparseTable {
+template <algebra::Monoid M> struct SparseTable {
     SparseTable() = default;
 
     SparseTable(int n) : _n(n) {
         log = 0;
         while ((1 << log) < _n) log++;
-        table.assign(log + 1, std::vector<S>(_n));
+        table.assign(log + 1, std::vector<M>(_n));
     }
 
-    SparseTable(const std::vector<S> &v) : _n(int(v.size())) {
+    SparseTable(const std::vector<M> &v) : _n(int(v.size())) {
         log = 0;
         while ((1 << log) < _n) log++;
-        table.assign(log + 1, std::vector<S>(_n));
+        table.assign(log + 1, std::vector<M>(_n));
         for (int i = 0; i < _n; i++) table[0][i] = v[i];
         build();
     }
@@ -29,7 +31,7 @@ template <class S, S (*op)(S, S), S (*e)()> struct SparseTable {
         is_built = true;
         for (int i = 1; i <= log; i++) {
             for (int j = 0; j + (1 << i) <= _n; j++) {
-                table[i][j] = op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
+                table[i][j] = M::op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
             }
         }
     }
@@ -37,24 +39,24 @@ template <class S, S (*op)(S, S), S (*e)()> struct SparseTable {
     template <class... Args> void init_set(int p, Args... args) {
         assert(0 <= p && p < _n);
         assert(!is_built);
-        table[0][p] = S(args...);
+        table[0][p] = M(args...);
     }
 
-    using Monoid = S;
+    using Monoid = M;
 
-    static S Op(S l, S r) { return op(l, r); }
+    static M Op(M l, M r) { return M::op(l, r); }
 
-    static S MonoidUnit() { return e(); }
+    static M MonoidUnit() { return M::unit(); }
 
-    S prod(int l, int r) const {
+    M prod(int l, int r) const {
         assert(0 <= l && l <= r && r <= _n);
         assert(is_built);
-        if (l == r) return e();
+        if (l == r) return M::unit();
         int i = 31 ^ __builtin_clz(r - l);
-        return op(table[i][l], table[i][r - (1 << i)]);
+        return M::op(table[i][l], table[i][r - (1 << i)]);
     }
 
-    S get(int i) const {
+    M get(int i) const {
         assert(0 <= i && i < _n);
         assert(is_built);
         return table[0][i];
@@ -63,13 +65,13 @@ template <class S, S (*op)(S, S), S (*e)()> struct SparseTable {
     // return r s.t.
     // r = l or f(op(a[l], a[l+1], ..., a[r-1])) == true
     // r = n or f(op(a[l], a[l+1], ..., a[r]))   == false
-    template <bool (*f)(S)> int max_right(int l) const {
-        return max_right(l, [](S x) { return f(x); });
+    template <bool (*f)(M)> int max_right(int l) const {
+        return max_right(l, [](M x) { return f(x); });
     }
 
     template <class F> int max_right(int l, F f) const {
         assert(0 <= l && l <= _n);
-        assert(f(e()));
+        assert(f(M::unit()));
         assert(is_built);
         if (l == _n) return _n;
         int left = l - 1, right = _n;
@@ -84,13 +86,13 @@ template <class S, S (*op)(S, S), S (*e)()> struct SparseTable {
     // return l s.t.
     // l = r or f(op(a[l], a[l+1], ..., a[r-1])) == false
     // l = 0 or f(op(a[l], a[l+1], ..., a[r]))   == true
-    template <bool (*f)(S)> int min_left(int r) const {
-        return min_left(r, [](S x) { return f(x); });
+    template <bool (*f)(M)> int min_left(int r) const {
+        return min_left(r, [](M x) { return f(x); });
     }
 
     template <class F> int min_left(int r, F f) const {
         assert(0 <= r && r <= _n);
-        assert(f(e()));
+        assert(f(M::unit()));
         assert(is_built);
         if (r == 0) return 0;
         int left = -1, right = r;
@@ -104,11 +106,9 @@ template <class S, S (*op)(S, S), S (*e)()> struct SparseTable {
 
   private:
     int _n, log;
-    std::vector<std::vector<S>> table;
+    std::vector<std::vector<M>> table;
     bool is_built = false;
 };
-
-template <class M> using SparseTableS = SparseTable<M, M::op, M::unit>;
 
 } // namespace kk2
 

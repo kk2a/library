@@ -36,7 +36,7 @@ int main() {
             x[2] = cc.get(x[2]);
         }
     }
-    kk2::LazySegmentTreeS<A> seg(cc.size());
+    kk2::LazySegmentTree<A> seg(cc.size());
     rep (i, cc.size() - 1) seg.init_set(i, 0, cc[i + 1] - cc[i]);
     seg.build();
 

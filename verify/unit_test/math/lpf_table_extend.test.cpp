@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../math/lpf_table.hpp"
 #include "../../../math/multiplicative_function/prime_counting.hpp"
@@ -163,10 +163,6 @@ void test_edge_cases() {
 }
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     test_basic_functionality();
     test_prime_generation();
     test_factorization_consistency();

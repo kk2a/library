@@ -8,7 +8,7 @@
 
 namespace kk2 {
 
-template <class T, is_integral_t<T> * = nullptr> int mobius(T n) {
+template <Integral T> int mobius(T n) {
     assert(n >= 0);
     if (n == 0) return 0;
     int res = 1;

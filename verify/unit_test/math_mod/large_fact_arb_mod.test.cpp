@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../modint/modint.hpp"
 #include "../../../math_mod/comb_large.hpp"
@@ -8,10 +8,6 @@
 using namespace std;
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     kk2::Comb<kk2::mint107>::set_upper(1e7);
     int up = 2000001, lw = 1e7;
     int t = 2;

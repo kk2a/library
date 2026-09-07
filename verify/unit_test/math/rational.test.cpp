@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../math/rational.hpp"
 #include "../../../random/gen.hpp"
@@ -342,10 +342,6 @@ void test_chain_operations() {
 }
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     cerr << "Starting comprehensive rational number tests..." << endl;
 
     // 基本テスト実行

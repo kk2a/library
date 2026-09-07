@@ -22,12 +22,12 @@ template <class S> struct Affine {
     bool operator==(const M &rhs) const { return a == rhs.a and b == rhs.b; }
     bool operator!=(const M &rhs) const { return a != rhs.a or b != rhs.b; }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const M &x) {
         return os << x.a << " " << x.b;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, M &x) {
         return is >> x.a >> x.b;
     }

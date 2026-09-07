@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "../../type_traits/io.hpp"
+#include "../../type_traits/graph.hpp"
 
 namespace kk2 {
 
@@ -16,7 +17,7 @@ template <typename T> struct wf_len {
     T len;
     bool inf, minf;
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         if (minf) os << "MINF";
         else if (inf) os << "INF";
@@ -24,9 +25,8 @@ template <typename T> struct wf_len {
     }
 };
 
-template <typename WG, typename T = typename WG::value_type>
+template <graph::WeightedEdgeListGraph WG, typename T = typename WG::value_type>
 std::vector<std::vector<wf_len<T>>> warshall_froyd(const WG &g) {
-    static_assert(WG::weighted, "warshall_froyd requires weighted graph");
 
     int n = g.size();
     std::vector<std::vector<wf_len<T>>> res(n, std::vector<wf_len<T>>(n, {0, true, false}));

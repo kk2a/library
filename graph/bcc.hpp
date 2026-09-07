@@ -8,7 +8,7 @@
 
 namespace kk2 {
 
-template <class G> struct BCC : LowLink<G> {
+template <graph::UndirectedGraph G> struct BCC : LowLink<G> {
     BCC(const G &g_) : LowLink<G>(g_) { init_bcc(); }
 
     std::vector<std::vector<int>> group_e;

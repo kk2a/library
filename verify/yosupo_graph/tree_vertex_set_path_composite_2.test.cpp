@@ -23,8 +23,8 @@ int main() {
     kk2::AdjList g(n, n - 1);
     g.input(kin);
     kk2::HeavyLightDecomposition hld(g);
-    kk2::SegmentTreeS<M1> seg1(hld.id);
-    kk2::SegmentTreeS<M2> seg2(hld.id);
+    kk2::SegmentTree<M1> seg1(hld.id);
+    kk2::SegmentTree<M2> seg2(hld.id);
     rep (i, n) {
         auto [l, r] = hld.get_node_idx(i);
         seg1.init_set(l, a[i]), seg2.init_set(l, a[i]);

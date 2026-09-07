@@ -12,10 +12,13 @@
 
 namespace kk2 {
 
-template <typename mint> struct MultivariateFormalPowerSeries {
+template <fps::Modular mint> struct MultivariateFormalPowerSeries {
     using mfps = MultivariateFormalPowerSeries;
     using fps = FormalPowerSeriesNTTFriendly<mint>;
     using value_type = mint;
+    using modulus_category = kk2::fps::category::ntt_friendly_modulus;
+    using series_category = kk2::fps::category::ordinary;
+    using variable_category = kk2::fps::category::multivariate;
 
     std::vector<int> base;
     fps f;
@@ -32,23 +35,29 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         : base(base_),
           f(f_) {}
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    int size() const { return f.size(); }
+    auto begin() { return f.begin(); }
+    auto end() { return f.end(); }
+    auto begin() const { return f.begin(); }
+    auto end() const { return f.end(); }
+
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const mfps &mfps_) {
         for (int i = 0; i < (int)mfps_.f.size(); i++)
             os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? "" : " ");
         return os;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
+    template <OutputStream OStream> void output(OStream &os) const {
         for (int i = 0; i < (int)f.size(); i++) os << f[i] << (i + 1 == (int)f.size() ? "\n" : " ");
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr> mfps &input(IStream &is) {
+    template <InputStream IStream> mfps &input(IStream &is) {
         for (auto &x : f) is >> x;
         return *this;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, mfps &mfps_) {
         for (auto &x : mfps_.f) is >> x;
         return is;
@@ -60,16 +69,18 @@ template <typename mint> struct MultivariateFormalPowerSeries {
         else return y + base[x] * _id(x + 1, ys...);
     }
 
-    template <typename... Args> int id(Args... args) {
-        static_assert(sizeof...(Args) > 0);
+    template <typename... Args>
+        requires(sizeof...(Args) > 0)
+    int id(Args... args) {
         return _id(0, args...);
     }
 
     template <typename... Args> mint &operator()(Args... args) { return f[id(args...)]; }
 
     mint &operator[](int i) { return f[i]; }
+    const mint &operator[](int i) const { return f[i]; }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr> void display(OStream &os) const {
+    template <OutputStream OStream> void display(OStream &os) const {
         for (int i = 0; i < (int)f.size(); i++) {
             int x = i;
             os << "f(";
@@ -277,7 +288,8 @@ template <typename mint> struct MultivariateFormalPowerSeries {
     }
 };
 
-template <typename mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv = {0, 1};
+template <fps::Modular mint>
+std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv = {0, 1};
 
 } // namespace kk2
 

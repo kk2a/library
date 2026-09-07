@@ -1,0 +1,61 @@
+name: random-tests
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  random-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Restore random test mark
+      run: |
+        mkdir -p .verify-helper
+        if git fetch origin random-tests-mark; then
+          if git cat-file -e FETCH_HEAD:.verify-helper/timestamps.random.json 2>/dev/null; then
+            git show FETCH_HEAD:.verify-helper/timestamps.random.json > .verify-helper/timestamps.random.json
+          fi
+        fi
+
+    - name: Run random tests
+      env:
+        JOBS: 4
+        TIME_LIMIT: 2
+      run: ./scripts/verify-random.sh
+
+    - name: Publish random test mark
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        mark_repo="$(mktemp -d)"
+        mark_url="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+        if ! git clone --depth 1 --branch random-tests-mark "$mark_url" "$mark_repo"; then
+          git init "$mark_repo"
+          git -C "$mark_repo" switch --orphan random-tests-mark
+          git -C "$mark_repo" remote add origin "$mark_url"
+        fi
+
+        mkdir -p "$mark_repo/.verify-helper"
+        cp .verify-helper/timestamps.random.json "$mark_repo/.verify-helper/timestamps.random.json"
+        git -C "$mark_repo" config user.name github-actions[bot]
+        git -C "$mark_repo" config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        git -C "$mark_repo" add .verify-helper/timestamps.random.json
+        if git -C "$mark_repo" diff --cached --quiet; then
+          exit 0
+        fi
+        git -C "$mark_repo" commit -m "ci: update random test mark"
+        git -C "$mark_repo" push origin HEAD:random-tests-mark

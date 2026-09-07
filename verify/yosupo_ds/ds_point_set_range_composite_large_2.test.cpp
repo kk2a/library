@@ -21,7 +21,7 @@ int main() {
         if (t == 0) cc.add(p);
     }
     cc.build();
-    kk2::SegmentTreeS<S> seg(cc.size());
+    kk2::SegmentTree<S> seg(cc.size());
     seg.build();
     for (auto query : queries) {
         if (query[0] == 0) {

@@ -16,7 +16,7 @@ struct ModInt2_61m1 {
 
     constexpr ModInt2_61m1() : _v(0) {}
 
-    template <class T, is_integral_t<T> * = nullptr> constexpr ModInt2_61m1(T x_) {
+    template <Integral T> constexpr ModInt2_61m1(T x_) {
         if (x_ < 0) {
             _v = -x_;
             chmod(_v);
@@ -78,7 +78,7 @@ struct ModInt2_61m1 {
     friend constexpr mint operator*(const mint &x, const mint &y) { return mint(x) *= y; }
     friend constexpr mint operator/(const mint &x, const mint &y) { return mint(x) /= y; }
 
-    template <class T, is_integral_t<T> * = nullptr> constexpr mint pow(T n) const {
+    template <Integral T> constexpr mint pow(T n) const {
         assert(n >= 0);
         mint x = *this, r = 1;
         while (n) {
@@ -90,12 +90,12 @@ struct ModInt2_61m1 {
 
     constexpr mint inv() const { return pow(mod - 2); }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const mint &x) {
         return os << x._v;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, mint &x) {
         u64 y;
         is >> y;

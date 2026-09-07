@@ -2,6 +2,7 @@
 
 #include "../../functional/reverse_args.hpp"
 #include "../../math/monoid/affine.hpp"
+#include "../../math/monoid/rev_op.hpp"
 #include "../../modint/mont.hpp"
 #include "../../segment_tree/seg.hpp"
 #include "../../template/template.hpp"
@@ -11,9 +12,10 @@ int main() {
     int n, q;
     kin >> n >> q;
     using M = kk2::monoid::Affine<kk2::mont998>;
-    vc<M> a(n);
+    using RM = kk2::monoid::ReverseOp<M>;
+    vc<RM> a(n);
     kin >> a;
-    kk2::SegmentTree<M, kk2::reverse_args<M::op>, M::unit> seg(a);
+    kk2::SegmentTree<RM> seg(a);
 
     rep (q) {
         int t;

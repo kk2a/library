@@ -11,7 +11,7 @@ int main() {
     kin >> n >> q;
     vc<M> a(n);
     kin >> a;
-    kk2::DisjointSparseTableS<M> dst(a);
+    kk2::DisjointSparseTable<M> dst(a);
 
     rep (q) {
         int l, r;

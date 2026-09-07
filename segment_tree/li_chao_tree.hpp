@@ -86,7 +86,7 @@ template <class X, class T, bool isMin = true> struct LiChaoTree {
         return has_value ? std::optional<value_type>(res) : std::nullopt;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         os << "LiChaoTree: n = " << n << ", lg = " << lg << ", siz = " << siz << "\n";
         os << "Lines:";

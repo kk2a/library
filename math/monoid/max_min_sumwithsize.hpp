@@ -47,7 +47,7 @@ template <class S, class T, class Compare = std::less<S>> struct MaxMinSumWithSi
                    and (max != rhs.max or min != rhs.min or sum != rhs.sum or size != rhs.size));
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const M &x) {
         if (x.is_unit) os << "(unit)";
         else
@@ -56,7 +56,7 @@ template <class S, class T, class Compare = std::less<S>> struct MaxMinSumWithSi
         return os;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, M &x) {
         S a;
         is >> a;

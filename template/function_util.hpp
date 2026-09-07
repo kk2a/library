@@ -19,7 +19,7 @@ template <class T, class... Sizes> auto make_vector(int first, Sizes... sizes) {
 }
 
 template <class T, class U> void fill_all(std::vector<T> &v, const U &x) {
-    if constexpr (is_vector<T>::value) {
+    if constexpr (Vector<T>) {
         for (auto &u : v) fill_all(u, x);
     } else {
         std::fill(v.begin(), v.end(), T(x));
@@ -27,7 +27,7 @@ template <class T, class U> void fill_all(std::vector<T> &v, const U &x) {
 }
 
 template <class T, class U> int iota_all(std::vector<T> &v, U x, int offset = 0) {
-    if constexpr (is_vector<T>::value) {
+    if constexpr (Vector<T>) {
         for (auto &u : v) offset += iota_all(u, x + offset);
     } else {
         for (auto &u : v) u = x++, ++offset;
@@ -42,7 +42,7 @@ template <class C> int mysize(const C &c) { return size(c); }
 template <class U, class T, class F>
 U all_monoid_prod(const std::vector<T> &v, U unit, const F &f) {
     U res = unit;
-    if constexpr (is_vector<T>::value) {
+    if constexpr (Vector<T>) {
         for (const auto &x : v) res = f(res, all_monoid_prod(x, unit, f));
     } else {
         for (const auto &x : v) res = f(res, x);

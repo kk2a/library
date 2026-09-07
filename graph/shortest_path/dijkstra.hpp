@@ -6,6 +6,8 @@
 #include <utility>
 #include <vector>
 
+#include "../../type_traits/graph.hpp"
+
 namespace kk2 {
 
 namespace shortest_path_impl {
@@ -19,9 +21,8 @@ template <class T> struct dij_result {
     std::vector<dij_edge> prev;
 };
 
-template <class WG, class T = typename WG::value_type>
+template <graph::WeightedGraph WG, class T = typename WG::value_type>
 dij_result<T> dijkstra(const WG &g, int start, T inf = std::numeric_limits<T>::max()) {
-    static_assert(WG::weighted, "dijkstra requires weighted graph");
     T alt;
     int n = g.size();
     std::vector<T> dist(n, inf);

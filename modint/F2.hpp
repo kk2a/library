@@ -14,7 +14,7 @@ struct F2 {
     constexpr static unsigned int getmod() { return 2; }
     constexpr F2() : _v(0) {}
     constexpr F2(bool v) : _v(v) {}
-    template <class T, is_integral_t<T> * = nullptr> constexpr F2(T v) : _v(v & 1) {}
+    template <Integral T> constexpr F2(T v) : _v(v & 1) {}
     unsigned int val() const { return _v; }
     constexpr F2 &operator++() {
         _v = !_v;
@@ -66,12 +66,12 @@ struct F2 {
         assert(_v != 0);
         return F2(_v);
     }
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const F2 &a) {
         os << a._v;
         return os;
     }
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, F2 &a) {
         bool x;
         is >> x;

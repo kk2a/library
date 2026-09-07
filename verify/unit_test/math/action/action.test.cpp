@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+#define IGNORE
 
 #include "../../../../math/action/add_max.hpp"
 #include "../../../../math/action/add_max_min_sumwithsize.hpp"
@@ -273,10 +273,6 @@ void test_action() {
 }
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     test_action();
 
     return 0;

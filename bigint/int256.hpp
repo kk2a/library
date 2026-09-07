@@ -17,7 +17,7 @@ struct uint256 {
     using u256 = uint256;
 
     constexpr uint256() { _v[0] = _v[1] = 0; }
-    template <class T, is_integral_t<T> * = nullptr> constexpr uint256(T x) {
+    template <Integral T> constexpr uint256(T x) {
         _v[0] = x, _v[1] = 0;
     }
 

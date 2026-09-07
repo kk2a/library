@@ -20,7 +20,7 @@ template <int NUM> struct Hash : std::array<ModInt2_61m1, NUM> {
 
     Hash() : std::array<mint, NUM>() {}
 
-    template <class T, is_integral_t<T> * = nullptr> Hash(T x) {
+    template <Integral T> Hash(T x) {
         std::fill(this->begin(), this->end(), mint(x));
     }
 

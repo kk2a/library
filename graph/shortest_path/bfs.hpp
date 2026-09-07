@@ -2,13 +2,14 @@
 #define KK2_GRAPH_SHORTEST_PATH_BFS_HPP 1
 
 #include <queue>
-#include <type_traits>
 #include <vector>
+
+#include "../../type_traits/graph.hpp"
 
 namespace kk2 {
 
-template <class G, std::enable_if_t<!G::weighted> * = nullptr>
-void bfs(queue &q, std::vector<int> &dist, int init) {
+template <graph::UnweightedGraph G>
+void bfs(const G &g, std::queue<int> &q, std::vector<int> &dist, int init) {
     while (!q.empty()) {
         int now = q.front();
         q.pop();
@@ -20,8 +21,9 @@ void bfs(queue &q, std::vector<int> &dist, int init) {
     }
 }
 
-template <class G, std::enable_if_t<G::weighted> * = nullptr>
-void bfs(queue &q, std::vector<G::value_type> &dist, G::value_type init) {
+template <graph::WeightedGraph G>
+void bfs(const G &g, std::queue<int> &q, std::vector<typename G::value_type> &dist,
+         typename G::value_type init) {
     while (!q.empty()) {
         int now = q.front();
         q.pop();

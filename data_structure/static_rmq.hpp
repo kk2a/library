@@ -6,7 +6,7 @@
 
 namespace kk2 {
 
-template <class S> using StaticRMQ = SparseTableS<monoid::Min<S>>;
+template <class S> using StaticRMQ = SparseTable<monoid::Min<S>>;
 
 } // namespace kk2
 

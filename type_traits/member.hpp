@@ -36,6 +36,12 @@ namespace kk2 {
 HAS_MEMBER_FUNC(debug_output)
 HAS_MEMBER_FUNC(val)
 
+template <class T, class... Ts>
+concept HasDebugOutput = has_member_func_debug_output<T, Ts...>::value;
+
+template <class T, class... Ts>
+concept HasVal = has_member_func_val<T, Ts...>::value;
+
 // END_PRESERVE_NEWLINES
 
 #undef HAS_MEMBER_FUNC

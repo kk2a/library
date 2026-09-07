@@ -21,8 +21,8 @@ template <int NUM> struct StaticRollingHash {
     std::vector<H> prefix;
 
     StaticRollingHash() {}
-    template <class T, is_integral_t<T> * = nullptr> StaticRollingHash(T v) : prefix({H(v)}) {}
-    template <class C, is_container_t<C> * = nullptr> StaticRollingHash(const C &c) {
+    template <Integral T> StaticRollingHash(T v) : prefix({H(v)}) {}
+    template <Container C> StaticRollingHash(const C &c) {
         if (c.empty()) return;
         extend_base(c.size());
         prefix.resize(c.size());

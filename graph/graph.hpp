@@ -47,7 +47,7 @@ template <class T, bool is_directed> struct AdjacencyList {
     void add_edge(int from, int to, T cost = T{}) { _add_edge<false>(from, to, cost, num_edges()); }
     void add_vertex(int n = 1) { data.insert(data.end(), n, out_edges()); }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     AdjacencyList &input(IStream &is, bool oneindexed = false) {
         for (int i = 0; i < num_edges(); i++) {
             int u, v;
@@ -60,7 +60,7 @@ template <class T, bool is_directed> struct AdjacencyList {
         return *this;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         os << "[\n";
         for (int i = 0; i < num_vertices(); i++) {
@@ -130,7 +130,7 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
         for (auto &&d : data) d.resize(now + n);
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     AdjacencyMatrix &input(IStream &is, bool oneindexed = false) {
         for (int i = 0; i < num_edges(); i++) {
             int u, v;
@@ -143,7 +143,7 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
         return *this;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         os << "[\n";
         for (int i = 0; i < num_vertices(); i++) {

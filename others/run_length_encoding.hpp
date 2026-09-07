@@ -14,7 +14,7 @@ template <class T> struct rle_element {
     T value;
     int length;
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const rle_element &rle) {
         return os << "(value: " << rle.value << ", length: " << rle.length << ")";
     }

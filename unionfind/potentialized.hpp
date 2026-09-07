@@ -5,6 +5,8 @@
 
 namespace kk2 {
 
+// 実装の方針をほかのものに合わせる
+
 template <class A, bool right = true> struct PotentializedUnionFind {
   private:
     std::vector<int> d;
@@ -55,20 +57,6 @@ template <class A, bool right = true> struct PotentializedUnionFind {
         if constexpr (right) return potential(y) - potential(x);
         else return -potential(x) + potential(y);
     }
-};
-
-template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyGroup {
-    A val;
-
-    EasyGroup() : val(e()) {}
-
-    template <class... Args> EasyGroup(Args... args) : val(args...) {}
-
-    EasyGroup operator+(const EasyGroup &rhs) const { return EasyGroup(op(val, rhs.val)); }
-
-    EasyGroup operator-(const EasyGroup &rhs) const { return EasyGroup(op(val, inv(rhs.val))); }
-
-    EasyGroup operator-() const { return EasyGroup(inv(val)); }
 };
 
 } // namespace kk2

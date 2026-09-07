@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../math/prime_table.hpp"
 #include "../../../math/multiplicative_function/prime_counting.hpp"
@@ -133,10 +133,6 @@ void test_random_large_numbers() {
 }
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     test_basic_prime_generation();
     test_first_100_primes();
     test_prime_counting_properties();

@@ -1,2 +1,3 @@
 .vscode
 all-format.ps1
+.verify-helper/timestamps.random.json

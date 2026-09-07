@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../data_structure/wavelet_matrix.hpp"
 #include "../../../math/pow.hpp"
@@ -7,10 +7,6 @@
 using namespace std;
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     rep (200) {
         int n = kk2::random::rng(1, 1e4);
         int q = 1000;

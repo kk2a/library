@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb" 
+#define IGNORE
 
 #include "../../../string/dynamic_rolling_hash.hpp"
 #include "../../../random/gen.hpp"
@@ -497,10 +497,6 @@ void test() {
 }
 
 int main() {
-    int a, b;
-    kin >> a >> b;
-    kout << a + b << kendl;
-
     test();
 
     return 0;
