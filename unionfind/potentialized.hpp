@@ -5,6 +5,8 @@
 
 namespace kk2 {
 
+// 実装の方針をほかのものに合わせる
+
 template <class A, bool right = true> struct PotentializedUnionFind {
   private:
     std::vector<int> d;

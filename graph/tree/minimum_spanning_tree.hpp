@@ -2,6 +2,7 @@
 #define KK2_GRAPH_TREE_MINIMUM_SPANNING_TREE_HPP 1
 
 #include <utility>
+#include <algorithm>
 
 #include "../../unionfind/unionfind.hpp"
 
