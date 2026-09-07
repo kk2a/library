@@ -10,7 +10,7 @@ int main() {
     kin >> n >> m >> s;
     kk2::DWAdjList<int> g(n, m);
     g.input(kin);
-    auto [dist, prev] = kk2::bellman_ford(g, s);
+    auto [dist, prev] = kk2::bellman_ford(n, g.edges, s);
 
     rep (i, n) {
         if (dist[i].minf) {

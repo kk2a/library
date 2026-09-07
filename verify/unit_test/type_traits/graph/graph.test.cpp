@@ -14,6 +14,7 @@ static_assert(kk2::graph::UndirectedGraph<kk2::AdjList>);
 
 static_assert(kk2::graph::WeightedGraph<kk2::DWAdjList<int>>);
 static_assert(kk2::graph::WeightedEdgeListGraph<kk2::DWAdjList<int>>);
+static_assert(kk2::graph::WeightedEdgeRange<kk2::WEdges<int>>);
 static_assert(kk2::graph::WeightedDirectedGraph<kk2::DWAdjList<int>>);
 static_assert(kk2::graph::WeightedDirectedEdgeListGraph<kk2::DWAdjList<int>>);
 

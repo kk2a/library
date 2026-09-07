@@ -10,7 +10,7 @@ int main() {
     kin >> n >> m;
     kk2::WAdjList<i64> g(n, m);
     g.input(kin);
-    auto [cost, idxs] = kk2::minimum_spanning_tree(g);
+    auto [cost, idxs] = kk2::minimum_spanning_tree(n, g.edges);
     kout << cost << "\n" << idxs << "\n";
 
     return 0;

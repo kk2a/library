@@ -2,6 +2,9 @@
 #define KK2_GRAPH_SHORTEST_PATH_BELLMAN_FORD_HPP 1
 
 #include <limits>
+#include <ranges>
+#include <type_traits>
+#include <utility>
 #include <vector>
 
 #include "../../type_traits/graph.hpp"
@@ -32,33 +35,32 @@ template <class T> struct bf_result {
     std::vector<bf_edge<T>> prev;
 };
 
-template <graph::WeightedDirectedEdgeListGraph WG, class T = typename WG::value_type>
-bf_result<T> bellman_ford(const WG &g, int start) {
+template <graph::ForwardWeightedEdgeRange E,
+          class T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>
+bf_result<T> bellman_ford(int n, const E &edges, int start) {
 
-    std::vector<bf_len<T>> dist(g.num_vertices(), {0, true, false});
-    std::vector<bf_edge<T>> prev(g.num_vertices(), {-1, -1});
+    std::vector<bf_len<T>> dist(n, {0, true, false});
+    std::vector<bf_edge<T>> prev(n, {-1, -1});
     dist[start] = {0, false, false};
 
-    int iter = g.num_vertices();
+    int iter = n;
     while (iter--) {
         bool update = false;
-        for (int i = 0; i < g.num_edges(); i++) {
-            auto e = g.edges[i];
+        for (auto e : edges) {
             if (dist[e.from].inf) continue;
             if (dist[e.to].inf or dist[e.to].len > dist[e.from].len + e.cost) {
                 update = true;
                 dist[e.to].len = dist[e.from].len + e.cost;
                 dist[e.to].inf = false;
-                prev[e.to] = {e.from, i};
+                prev[e.to] = {e.from, e.id};
             }
         }
         if (!update) return {dist, prev};
     }
 
-    iter = g.num_vertices();
+    iter = n;
     while (iter--) {
-        for (int i = 0; i < g.num_edges(); i++) {
-            auto e = g.edges[i];
+        for (auto e : edges) {
             if (dist[e.from].inf) continue;
             if (dist[e.to].inf or dist[e.to].len > dist[e.from].len + e.cost) {
                 dist[e.to].minf = true;

@@ -18,6 +18,17 @@ concept Edge = requires(const E &e) {
 template <class E>
 concept WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };
 
+template <class R>
+concept EdgeRange = std::ranges::input_range<R> &&
+                    Edge<std::ranges::range_value_t<R>>;
+
+template <class R>
+concept WeightedEdgeRange = EdgeRange<R> &&
+                            WeightedEdge<std::ranges::range_value_t<R>>;
+
+template <class R>
+concept ForwardWeightedEdgeRange = std::ranges::forward_range<R> && WeightedEdgeRange<R>;
+
 template <class G>
 concept Graph = requires(const G &g, int v) {
     typename G::value_type;
