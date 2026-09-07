@@ -7,10 +7,11 @@
 #include <type_traits>
 #include <vector>
 
+#include "../type_traits/graph.hpp"
+
 namespace kk2 {
 
-template <class G> struct LowLink {
-    static_assert(!G::directed, "LowLink requires undirected graph");
+template <graph::UndirectedGraph G> struct LowLink {
 
     int n, m;
     const G &g;

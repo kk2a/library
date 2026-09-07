@@ -6,10 +6,11 @@
 #include <utility>
 #include <vector>
 
+#include "../../type_traits/graph.hpp"
+
 namespace kk2 {
 
-template <typename G> struct HeavyLightDecomposition {
-    static_assert(!G::directed, "HeavyLightDecomposition requires undirected graph");
+template <graph::UndirectedGraph G> struct HeavyLightDecomposition {
 
     G &g;
     int root, id;

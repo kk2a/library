@@ -4,13 +4,12 @@
 #include <utility>
 #include <algorithm>
 
+#include "../../type_traits/graph.hpp"
 #include "../../unionfind/unionfind.hpp"
 
 namespace kk2 {
 
-template <class G> auto minimum_spanning_tree(const G &g) {
-    static_assert(!G::directed, "minimum_spanning_tree requires undirected graph");
-    static_assert(G::weighted, "minimum_spanning_tree requires weighted graph");
+template <graph::WeightedUndirectedEdgeListGraph G> auto minimum_spanning_tree(const G &g) {
 
     using value_type = typename G::value_type;
 

@@ -4,9 +4,11 @@
 #include <queue>
 #include <vector>
 
+#include "../type_traits/graph.hpp"
+
 namespace kk2 {
 
-template <class G> std::vector<int> topological_sort(const G &graph) {
+template <graph::VertexAdjacency G> std::vector<int> topological_sort(const G &graph) {
     int siz = size(graph);
     std::vector<int> indegree(siz);
     for (int i = 0; i < siz; i++)

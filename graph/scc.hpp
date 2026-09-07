@@ -6,10 +6,11 @@
 #include <functional>
 #include <vector>
 
+#include "../type_traits/graph.hpp"
+
 namespace kk2 {
 
-template <class G> struct SCC {
-    static_assert(G::directed, "SCC requires directed graph");
+template <graph::DirectedGraph G> struct SCC {
     int n;
     const G &g;
     std::vector<std::vector<int>> revg;

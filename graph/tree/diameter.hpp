@@ -7,16 +7,18 @@
 #include <utility>
 #include <vector>
 
+#include "../../type_traits/graph.hpp"
+
 namespace kk2 {
 
 namespace tree_diameter_impl {
 
-template <class G> struct result {
+template <graph::Graph G> struct result {
     std::conditional_t<G::weighted, typename G::value_type, int> diameter;
     std::vector<int> path;
 };
 
-template <class G, std::enable_if_t<!G::weighted> * = nullptr> result<G> tree_diameter(const G &g) {
+template <graph::UnweightedGraph G> result<G> tree_diameter(const G &g) {
     std::vector<int> dist(g.size(), -1), par(g.size(), -1);
     auto dfs = [&](auto self, int now) -> void {
         for (auto &e : g[now]) {
@@ -38,7 +40,7 @@ template <class G, std::enable_if_t<!G::weighted> * = nullptr> result<G> tree_di
     return {dist[v], path};
 }
 
-template <class G, std::enable_if_t<G::weighted> * = nullptr> result<G> tree_diameter(const G &g) {
+template <graph::WeightedGraph G> result<G> tree_diameter(const G &g) {
     using T = typename G::value_type;
     std::vector<T> dist(g.size(), -1);
     std::vector<int> par(g.size(), -1);

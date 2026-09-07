@@ -9,11 +9,11 @@
 #include <queue>
 #include <vector>
 
+#include "../type_traits/graph.hpp"
+
 namespace kk2 {
 
-template <class WG> struct MaxFlow {
-    static_assert(WG::directed, "MaxFlow requires directed graph");
-    static_assert(WG::weighted, "MaxFlow requires weighted graph");
+template <graph::WeightedDirectedGraph WG> struct MaxFlow {
 
     using Cap = typename WG::value_type;
 

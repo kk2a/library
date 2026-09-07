@@ -7,7 +7,7 @@
 
 namespace kk2 {
 
-template <class G> struct TwoEdgeConnectedComponents : LowLink<G> {
+template <graph::UndirectedGraph G> struct TwoEdgeConnectedComponents : LowLink<G> {
     TwoEdgeConnectedComponents(const G &g_) : LowLink<G>(g_) { init_tecc(); }
 
     std::vector<int> comp;

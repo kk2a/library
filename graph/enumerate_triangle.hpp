@@ -4,11 +4,12 @@
 #include <utility>
 #include <vector>
 
+#include "../type_traits/graph.hpp"
+
 namespace kk2 {
 
-template <class G, class H, class F> void enumerate_triangle(const G &g, const F &f) {
-    static_assert(!G::directed, "enumerate_triangle requires undirected graph");
-    static_assert(H::directed, "enumerate_triangle requires directed graph");
+template <graph::UndirectedGraph G, graph::DirectedGraph H, class F>
+void enumerate_triangle(const G &g, const F &f) {
 
     H h(g.num_vertices());
     for (auto &&e : g.edges) {

@@ -8,11 +8,11 @@
 #include <vector>
 
 #include "../../data_structure/static_rmq.hpp"
+#include "../../type_traits/graph.hpp"
 
 namespace kk2 {
 
-template <typename G> struct EulerTour {
-    static_assert(!G::directed, "EulerTour requires undirected graph");
+template <graph::UndirectedGraph G> struct EulerTour {
 
     const G &g;
     int id;

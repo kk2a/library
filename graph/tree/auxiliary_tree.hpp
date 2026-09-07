@@ -12,8 +12,7 @@
 
 namespace kk2 {
 
-template <typename G> struct AuxiliaryTree {
-    static_assert(!G::directed, "AuxiliaryTree requires undirected graph");
+template <graph::UndirectedGraph G> struct AuxiliaryTree {
 
     G g;
     HeavyLightDecomposition<G> hld;
