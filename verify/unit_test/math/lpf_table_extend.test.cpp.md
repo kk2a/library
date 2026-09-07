@@ -4,13 +4,93 @@ data:
     STANDALONE: ''
     links: []
   dependencies:
-  - files: []
+  - files:
+    - filename: enumerate_quotients.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/enumerate_quotients.hpp
+    - filename: frac_floor.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/frac_floor.hpp
+    - filename: is_prime.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/is_prime.hpp
+    - filename: lpf_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_table.hpp
+    - filename: prime_counting.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/prime_counting.hpp
+    - filename: prime_factorize.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/prime_factorize.hpp
+    - filename: prime_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/prime_table.hpp
+    - filename: sqrt_floor.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/sqrt_floor.hpp
+    - filename: pow_mod.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/pow_mod.hpp
+    - filename: mont_arb.hpp
+      icon: LIBRARY_ALL_AC
+      path: modint/mont_arb.hpp
+    - filename: gen.hpp
+      icon: LIBRARY_ALL_AC
+      path: random/gen.hpp
+    - filename: seed.hpp
+      icon: LIBRARY_ALL_AC
+      path: random/seed.hpp
+    - filename: constant.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/constant.hpp
+    - filename: fastio.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/fastio.hpp
+    - filename: io_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/io_util.hpp
+    - filename: macros.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/macros.hpp
+    - filename: template.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/template.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/type_alias.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - math/enumerate_quotients.hpp
+  - math/frac_floor.hpp
+  - math/is_prime.hpp
+  - math/lpf_table.hpp
+  - math/multiplicative_function/prime_counting.hpp
+  - math/prime_factorize.hpp
+  - math/prime_table.hpp
+  - math/sqrt_floor.hpp
+  - math_mod/pow_mod.hpp
+  - modint/mont_arb.hpp
+  - random/gen.hpp
+  - random/seed.hpp
+  - template/constant.hpp
+  - template/fastio.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
+  - template/template.hpp
+  - template/type_alias.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../math/lpf_table.hpp\"\
       \n#include \"../../../math/multiplicative_function/prime_counting.hpp\"\n#include\
@@ -671,7 +751,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/lpf_table_extend.test.cpp

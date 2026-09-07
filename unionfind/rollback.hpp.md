@@ -1,0 +1,65 @@
+---
+data:
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    links: []
+  dependencies:
+  - files: []
+    type: Depends on
+  - files:
+    - filename: offline_dynamic_connectivity.hpp
+      icon: LIBRARY_ALL_AC
+      path: data_structure/offline_dynamic_connectivity.hpp
+    type: Required by
+  - files:
+    - filename: offline_dynamic_connectivity.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
+    type: Verified with
+  dependsOn: []
+  embedded:
+  - code: "#ifndef KK2_UNIONFIND_ROLLBACK_HPP\n#define KK2_UNIONFIND_ROLLBACK_HPP\
+      \ 1\n\n#include <utility>\n#include <vector>\n\nnamespace kk2 {\n\nstruct RollbackableUnionFind\
+      \ {\n    std::vector<int> d;\n    std::vector<std::pair<int, int>> hist;\n \
+      \   std::vector<int> snaps;\n\n    RollbackableUnionFind(int n = 0) : d(n, -1)\
+      \ {}\n\n    bool same(int x, int y) { return find(x) == find(y); }\n\n    bool\
+      \ unite(int x, int y) {\n        x = find(x), y = find(y);\n        if (x ==\
+      \ y) return false;\n        if (d[x] > d[y]) std::swap(x, y);\n        hist.emplace_back(x,\
+      \ d[x]);\n        d[x] += d[y];\n        hist.emplace_back(y, d[y]);\n     \
+      \   d[y] = x;\n        return true;\n    }\n\n    int find(int x) {\n      \
+      \  if (d[x] < 0) return x;\n        return find(d[x]);\n    }\n\n    int size(int\
+      \ x) { return -d[find(x)]; }\n\n    void snapshot() { snaps.push_back(hist.size());\
+      \ }\n\n    void rollback() {\n        while (int(hist.size()) > snaps.back())\
+      \ {\n            auto [i, x] = hist.back();\n            hist.pop_back();\n\
+      \            d[i] = x;\n        }\n        snaps.pop_back();\n    }\n};\n\n\
+      } // namespace kk2\n\n#endif // KK2_UNIONFIND_ROLLBACK_HPP\n"
+    name: default
+  - code: "#line 1 \"unionfind/rollback.hpp\"\n\n\n\n#include <utility>\n#include\
+      \ <vector>\n\nnamespace kk2 {\n\nstruct RollbackableUnionFind {\n    std::vector<int>\
+      \ d;\n    std::vector<std::pair<int, int>> hist;\n    std::vector<int> snaps;\n\
+      \n    RollbackableUnionFind(int n = 0) : d(n, -1) {}\n\n    bool same(int x,\
+      \ int y) { return find(x) == find(y); }\n\n    bool unite(int x, int y) {\n\
+      \        x = find(x), y = find(y);\n        if (x == y) return false;\n    \
+      \    if (d[x] > d[y]) std::swap(x, y);\n        hist.emplace_back(x, d[x]);\n\
+      \        d[x] += d[y];\n        hist.emplace_back(y, d[y]);\n        d[y] =\
+      \ x;\n        return true;\n    }\n\n    int find(int x) {\n        if (d[x]\
+      \ < 0) return x;\n        return find(d[x]);\n    }\n\n    int size(int x) {\
+      \ return -d[find(x)]; }\n\n    void snapshot() { snaps.push_back(hist.size());\
+      \ }\n\n    void rollback() {\n        while (int(hist.size()) > snaps.back())\
+      \ {\n            auto [i, x] = hist.back();\n            hist.pop_back();\n\
+      \            d[i] = x;\n        }\n        snaps.pop_back();\n    }\n};\n\n\
+      } // namespace kk2\n\n\n"
+    name: bundled
+  isFailed: false
+  isVerificationFile: false
+  path: unionfind/rollback.hpp
+  pathExtension: hpp
+  requiredBy:
+  - data_structure/offline_dynamic_connectivity.hpp
+  timestamp: '2026-09-07 22:58:43+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
+documentation_of: unionfind/rollback.hpp
+layout: document
+---

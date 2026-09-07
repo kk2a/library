@@ -5,13 +5,109 @@ data:
     links:
     - https://judge.yosupo.jp/problem/polynomial_root_finding
   dependencies:
-  - files: []
+  - files:
+    - filename: bitcount.hpp
+      icon: LIBRARY_ALL_AC
+      path: bit/bitcount.hpp
+    - filename: convolution.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/convolution.hpp
+    - filename: fps_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_base.hpp
+    - filename: fps_ntt_friendly.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_ntt_friendly.hpp
+    - filename: fps_sparsity_detector.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_sparsity_detector.hpp
+    - filename: mod_pow.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/mod_pow.hpp
+    - filename: poly_find_root.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/poly_find_root.hpp
+    - filename: poly_gcd.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/poly_gcd.hpp
+    - filename: butterfly.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/butterfly.hpp
+    - filename: inv_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/inv_table.hpp
+    - filename: pow_mod.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/pow_mod.hpp
+    - filename: primitive_root.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/primitive_root.hpp
+    - filename: mont.hpp
+      icon: LIBRARY_ALL_AC
+      path: modint/mont.hpp
+    - filename: gen.hpp
+      icon: LIBRARY_ALL_AC
+      path: random/gen.hpp
+    - filename: seed.hpp
+      icon: LIBRARY_ALL_AC
+      path: random/seed.hpp
+    - filename: constant.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/constant.hpp
+    - filename: fastio.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/fastio.hpp
+    - filename: io_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/io_util.hpp
+    - filename: macros.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/macros.hpp
+    - filename: template.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/template.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/type_alias.hpp
+    - filename: fps.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/fps.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - bit/bitcount.hpp
+  - convolution/convolution.hpp
+  - fps/fps_base.hpp
+  - fps/fps_ntt_friendly.hpp
+  - fps/fps_sparsity_detector.hpp
+  - fps/mod_pow.hpp
+  - fps/poly_find_root.hpp
+  - fps/poly_gcd.hpp
+  - math_mod/butterfly.hpp
+  - math_mod/inv_table.hpp
+  - math_mod/pow_mod.hpp
+  - math_mod/primitive_root.hpp
+  - modint/mont.hpp
+  - random/gen.hpp
+  - random/seed.hpp
+  - template/constant.hpp
+  - template/fastio.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
+  - template/template.hpp
+  - template/type_alias.hpp
+  - type_traits/fps.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/polynomial_root_finding\n\
       \n#include \"../../fps/fps_ntt_friendly.hpp\"\n#include \"../../fps/poly_find_root.hpp\"\
@@ -1019,7 +1115,7 @@ data:
     memory: 3.792
     name: small_random_09
     status: AC
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_root_finding.test.cpp

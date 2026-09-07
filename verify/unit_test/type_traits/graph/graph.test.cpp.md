@@ -4,13 +4,33 @@ data:
     STANDALONE: ''
     links: []
   dependencies:
-  - files: []
+  - files:
+    - filename: edge.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/edge.hpp
+    - filename: graph.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/graph.hpp
+    - filename: static_graph.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/static_graph.hpp
+    - filename: graph.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/graph.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - graph/edge.hpp
+  - graph/graph.hpp
+  - graph/static_graph.hpp
+  - type_traits/graph.hpp
+  - type_traits/io.hpp
   embedded:
   - code: '// competitive-verifier: STANDALONE
 
@@ -333,7 +353,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/type_traits/graph/graph.test.cpp

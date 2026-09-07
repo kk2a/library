@@ -4,13 +4,89 @@ data:
     STANDALONE: ''
     links: []
   dependencies:
-  - files: []
+  - files:
+    - filename: bitcount.hpp
+      icon: LIBRARY_ALL_AC
+      path: bit/bitcount.hpp
+    - filename: convolution.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/convolution.hpp
+    - filename: convolution_arb.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/convolution_arb.hpp
+    - filename: multi_convolution_truncated.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/multi_convolution_truncated.hpp
+    - filename: fps_arb.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_arb.hpp
+    - filename: fps_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_base.hpp
+    - filename: fps_multivariate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_multivariate.hpp
+    - filename: fps_ntt_friendly.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_ntt_friendly.hpp
+    - filename: fps_sparsity_detector.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_sparsity_detector.hpp
+    - filename: butterfly.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/butterfly.hpp
+    - filename: garner.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/garner.hpp
+    - filename: inv.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/inv.hpp
+    - filename: inv_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/inv_table.hpp
+    - filename: pow_mod.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/pow_mod.hpp
+    - filename: primitive_root.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/primitive_root.hpp
+    - filename: mont.hpp
+      icon: LIBRARY_ALL_AC
+      path: modint/mont.hpp
+    - filename: fps.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/fps.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - bit/bitcount.hpp
+  - convolution/convolution.hpp
+  - convolution/convolution_arb.hpp
+  - convolution/multi_convolution_truncated.hpp
+  - fps/fps_arb.hpp
+  - fps/fps_base.hpp
+  - fps/fps_multivariate.hpp
+  - fps/fps_ntt_friendly.hpp
+  - fps/fps_sparsity_detector.hpp
+  - math_mod/butterfly.hpp
+  - math_mod/garner.hpp
+  - math_mod/inv.hpp
+  - math_mod/inv_table.hpp
+  - math_mod/pow_mod.hpp
+  - math_mod/primitive_root.hpp
+  - modint/mont.hpp
+  - type_traits/fps.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include <vector>\n\n#include \"\
       ../../../../fps/fps_arb.hpp\"\n#include \"../../../../fps/fps_multivariate.hpp\"\
@@ -785,7 +861,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/type_traits/fps/fps.test.cpp

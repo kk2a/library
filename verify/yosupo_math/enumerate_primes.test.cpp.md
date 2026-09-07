@@ -5,13 +5,57 @@ data:
     links:
     - https://judge.yosupo.jp/problem/enumerate_primes
   dependencies:
-  - files: []
+  - files:
+    - filename: frac_floor.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/frac_floor.hpp
+    - filename: prime_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/prime_table.hpp
+    - filename: sqrt_floor.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/sqrt_floor.hpp
+    - filename: constant.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/constant.hpp
+    - filename: fastio.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/fastio.hpp
+    - filename: io_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/io_util.hpp
+    - filename: macros.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/macros.hpp
+    - filename: template.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/template.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/type_alias.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - math/frac_floor.hpp
+  - math/prime_table.hpp
+  - math/sqrt_floor.hpp
+  - template/constant.hpp
+  - template/fastio.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
+  - template/template.hpp
+  - template/type_alias.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_primes\n\
       \n#include \"../../math/prime_table.hpp\"\n#include \"../../math/frac_floor.hpp\"\
@@ -386,7 +430,7 @@ data:
     memory: 4.972
     name: ten_02
     status: AC
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_primes.test.cpp

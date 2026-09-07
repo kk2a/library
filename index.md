@@ -2,6 +2,734 @@
 data:
   top:
   - categories:
+    - name: bbst/
+      pages:
+      - filename: lazy_red_black_tree.hpp
+        icon: LIBRARY_ALL_AC
+        path: bbst/lazy_red_black_tree.hpp
+      - filename: persistent_lazy_red_black_tree.hpp
+        icon: LIBRARY_NO_TESTS
+        path: bbst/persistent_lazy_red_black_tree.hpp
+      - filename: red_black_tree.hpp
+        icon: LIBRARY_ALL_AC
+        path: bbst/red_black_tree.hpp
+      - filename: splay_tree.hpp
+        icon: LIBRARY_NO_TESTS
+        path: bbst/splay_tree.hpp
+    - name: bbst/base/
+      pages:
+      - filename: lazy_red_black_tree_node.hpp
+        icon: LIBRARY_ALL_AC
+        path: bbst/base/lazy_red_black_tree_node.hpp
+      - filename: red_black_tree_base.hpp
+        icon: LIBRARY_ALL_AC
+        path: bbst/base/red_black_tree_base.hpp
+      - filename: red_black_tree_node.hpp
+        icon: LIBRARY_ALL_AC
+        path: bbst/base/red_black_tree_node.hpp
+    - name: bigint/
+      pages:
+      - filename: int256.hpp
+        icon: LIBRARY_NO_TESTS
+        path: bigint/int256.hpp
+    - name: bit/
+      pages:
+      - filename: bitcount.hpp
+        icon: LIBRARY_ALL_AC
+        path: bit/bitcount.hpp
+    - name: convolution/
+      pages:
+      - filename: convolution.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/convolution.hpp
+      - filename: convolution_and.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/convolution_and.hpp
+      - filename: convolution_arb.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/convolution_arb.hpp
+      - filename: convolution_gcd.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/convolution_gcd.hpp
+      - filename: convolution_int.hpp
+        icon: LIBRARY_NO_TESTS
+        path: convolution/convolution_int.hpp
+      - filename: convolution_lcm.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/convolution_lcm.hpp
+      - filename: convolution_or.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/convolution_or.hpp
+      - filename: convolution_subset.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/convolution_subset.hpp
+      - filename: convolution_xor.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/convolution_xor.hpp
+      - filename: divisor_multiple_transform.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/divisor_multiple_transform.hpp
+      - filename: multi_convolution_truncated.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/multi_convolution_truncated.hpp
+      - filename: walsh_hadamard_transform.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/walsh_hadamard_transform.hpp
+      - filename: zeta_mobius_transfrom.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/zeta_mobius_transfrom.hpp
+    - name: data_structure/
+      pages:
+      - filename: binary_indexed_tree.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/binary_indexed_tree.hpp
+      - filename: binary_indexed_tree_abstract.hpp
+        icon: LIBRARY_NO_TESTS
+        path: data_structure/binary_indexed_tree_abstract.hpp
+      - filename: binary_trie.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/binary_trie.hpp
+      - filename: bit_vector.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/bit_vector.hpp
+      - filename: convex_hull_trick_add_monotone.hpp
+        icon: LIBRARY_NO_TESTS
+        path: data_structure/convex_hull_trick_add_monotone.hpp
+      - filename: disjoint_sparse_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/disjoint_sparse_table.hpp
+      - filename: hash_map.hpp
+        icon: LIBRARY_NO_TESTS
+        path: data_structure/hash_map.hpp
+      - filename: interval_heap.hpp
+        icon: LIBRARY_NO_TESTS
+        path: data_structure/interval_heap.hpp
+      - filename: my_bitset.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/my_bitset.hpp
+      - filename: my_bitset_old.hpp
+        icon: LIBRARY_NO_TESTS
+        path: data_structure/my_bitset_old.hpp
+      - filename: offline_dynamic_connectivity.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/offline_dynamic_connectivity.hpp
+      - filename: ordered_set.hpp
+        icon: LIBRARY_NO_TESTS
+        path: data_structure/ordered_set.hpp
+      - filename: prefix_sum.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/prefix_sum.hpp
+      - filename: prefix_sum_2d.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/prefix_sum_2d.hpp
+      - filename: prefix_sum_arbitrary.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/prefix_sum_arbitrary.hpp
+      - filename: slope_trick.hpp
+        icon: LIBRARY_NO_TESTS
+        path: data_structure/slope_trick.hpp
+      - filename: sparse_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/sparse_table.hpp
+      - filename: static_rmq.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/static_rmq.hpp
+      - filename: trie.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/trie.hpp
+      - filename: w_ary_tree.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/w_ary_tree.hpp
+      - filename: wavelet_matrix.hpp
+        icon: LIBRARY_ALL_AC
+        path: data_structure/wavelet_matrix.hpp
+    - name: fps/
+      pages:
+      - filename: bbb.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/bbb.hpp
+      - filename: bostan_mori.hpp
+        icon: LIBRARY_NO_TESTS
+        path: fps/bostan_mori.hpp
+      - filename: chirp_Z.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/chirp_Z.hpp
+      - filename: composition.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/composition.hpp
+      - filename: compositional_inv.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/compositional_inv.hpp
+      - filename: fps_arb.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/fps_arb.hpp
+      - filename: fps_base.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/fps_base.hpp
+      - filename: fps_multivariate.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/fps_multivariate.hpp
+      - filename: fps_ntt_friendly.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/fps_ntt_friendly.hpp
+      - filename: fps_sparsity_detector.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/fps_sparsity_detector.hpp
+      - filename: fps_sqrt.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/fps_sqrt.hpp
+      - filename: mod_pow.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/mod_pow.hpp
+      - filename: poly_find_root.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/poly_find_root.hpp
+      - filename: poly_gcd.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/poly_gcd.hpp
+      - filename: poly_interpolation.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/poly_interpolation.hpp
+      - filename: poly_multi_eval.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/poly_multi_eval.hpp
+      - filename: poly_sample_point_shift.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/poly_sample_point_shift.hpp
+      - filename: poly_taylor_shift.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/poly_taylor_shift.hpp
+      - filename: poly_to_newton_basis.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/poly_to_newton_basis.hpp
+      - filename: power_projection.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/power_projection.hpp
+      - filename: product.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/product.hpp
+    - name: functional/
+      pages:
+      - filename: reverse_args.hpp
+        icon: LIBRARY_ALL_AC
+        path: functional/reverse_args.hpp
+    - name: geometry/
+      pages:
+      - filename: argument_sort.hpp
+        icon: LIBRARY_ALL_AC
+        path: geometry/argument_sort.hpp
+      - filename: cross_point_line_line.hpp
+        icon: LIBRARY_NO_TESTS
+        path: geometry/cross_point_line_line.hpp
+      - filename: line.hpp
+        icon: LIBRARY_NO_TESTS
+        path: geometry/line.hpp
+      - filename: point.hpp
+        icon: LIBRARY_ALL_AC
+        path: geometry/point.hpp
+      - filename: static_convex_hull.hpp
+        icon: LIBRARY_ALL_AC
+        path: geometry/static_convex_hull.hpp
+    - name: graph/
+      pages:
+      - filename: bcc.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/bcc.hpp
+      - filename: cycle_detection.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/cycle_detection.hpp
+      - filename: edge.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/edge.hpp
+      - filename: enumerate_triangle.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/enumerate_triangle.hpp
+      - filename: graph.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/graph.hpp
+      - filename: induced_subgraph.hpp
+        icon: LIBRARY_NO_TESTS
+        path: graph/induced_subgraph.hpp
+      - filename: lowlink.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/lowlink.hpp
+      - filename: maxflow.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/maxflow.hpp
+      - filename: scc.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/scc.hpp
+      - filename: static_graph.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/static_graph.hpp
+      - filename: topological_sort.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/topological_sort.hpp
+      - filename: two_edge_connected_components.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/two_edge_connected_components.hpp
+    - name: graph/shortest_path/
+      pages:
+      - filename: bellman_ford.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/shortest_path/bellman_ford.hpp
+      - filename: bfs.hpp
+        icon: LIBRARY_NO_TESTS
+        path: graph/shortest_path/bfs.hpp
+      - filename: dijkstra.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/shortest_path/dijkstra.hpp
+      - filename: warshall_floyd.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/shortest_path/warshall_floyd.hpp
+    - name: graph/tree/
+      pages:
+      - filename: auxiliary_tree.hpp
+        icon: LIBRARY_NO_TESTS
+        path: graph/tree/auxiliary_tree.hpp
+      - filename: block_cut_tree.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/tree/block_cut_tree.hpp
+      - filename: cartesian_tree.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/tree/cartesian_tree.hpp
+      - filename: centroid.hpp
+        icon: LIBRARY_NO_TESTS
+        path: graph/tree/centroid.hpp
+      - filename: centroid_decomposition.hpp
+        icon: LIBRARY_NO_TESTS
+        path: graph/tree/centroid_decomposition.hpp
+      - filename: diameter.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/tree/diameter.hpp
+      - filename: euler_tour.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/tree/euler_tour.hpp
+      - filename: heavy_light_decomposition.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/tree/heavy_light_decomposition.hpp
+      - filename: minimum_spanning_tree.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/tree/minimum_spanning_tree.hpp
+    - name: math/
+      pages:
+      - filename: convert_base.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/convert_base.hpp
+      - filename: enumerate_quotients.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/enumerate_quotients.hpp
+      - filename: factrial.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math/factrial.hpp
+      - filename: flatten_indices.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math/flatten_indices.hpp
+      - filename: floor_sum.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/floor_sum.hpp
+      - filename: frac_floor.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/frac_floor.hpp
+      - filename: inv_gcd.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/inv_gcd.hpp
+      - filename: is_prime.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/is_prime.hpp
+      - filename: isprime_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/isprime_table.hpp
+      - filename: kth_root_floor.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/kth_root_floor.hpp
+      - filename: lpf_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/lpf_table.hpp
+      - filename: max_division_times.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math/max_division_times.hpp
+      - filename: min_of_mod_of_linear.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math/min_of_mod_of_linear.hpp
+      - filename: pow.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/pow.hpp
+      - filename: prime_factorize.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/prime_factorize.hpp
+      - filename: prime_factorize_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/prime_factorize_table.hpp
+      - filename: prime_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/prime_table.hpp
+      - filename: rational.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/rational.hpp
+      - filename: sqrt_floor.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/sqrt_floor.hpp
+      - filename: stern_brocot_tree.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/stern_brocot_tree.hpp
+    - name: math/action/
+      pages:
+      - filename: add_max.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/add_max.hpp
+      - filename: add_max_min_sumwithsize.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/add_max_min_sumwithsize.hpp
+      - filename: add_min.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/add_min.hpp
+      - filename: add_sumwithsize.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/add_sumwithsize.hpp
+      - filename: affine_sumwithsize.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/affine_sumwithsize.hpp
+      - filename: update_affine.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/update_affine.hpp
+      - filename: update_max.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/update_max.hpp
+      - filename: update_max_min_sumwithsize.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/update_max_min_sumwithsize.hpp
+      - filename: update_min.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/update_min.hpp
+      - filename: update_sumwithsize.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/action/update_sumwithsize.hpp
+    - name: math/group/
+      pages:
+      - filename: add.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/group/add.hpp
+      - filename: rolling_hash.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/group/rolling_hash.hpp
+      - filename: sum_with_size.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/group/sum_with_size.hpp
+    - name: math/monoid/
+      pages:
+      - filename: affine.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/monoid/affine.hpp
+      - filename: bsgs.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math/monoid/bsgs.hpp
+      - filename: from_semigroup_to_monoid.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math/monoid/from_semigroup_to_monoid.hpp
+      - filename: hold.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/monoid/hold.hpp
+      - filename: max.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/monoid/max.hpp
+      - filename: max_min_sumwithsize.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/monoid/max_min_sumwithsize.hpp
+      - filename: min.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/monoid/min.hpp
+      - filename: pow.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math/monoid/pow.hpp
+      - filename: rev_op.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/monoid/rev_op.hpp
+      - filename: update.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/monoid/update.hpp
+    - name: math/multiplicative_function/
+      pages:
+      - filename: arbitrary_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/multiplicative_function/arbitrary_table.hpp
+      - filename: counting_square_free.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math/multiplicative_function/counting_square_free.hpp
+      - filename: euler_phi.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/multiplicative_function/euler_phi.hpp
+      - filename: famous_function.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/multiplicative_function/famous_function.hpp
+      - filename: famous_function_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/multiplicative_function/famous_function_table.hpp
+      - filename: mobius.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/multiplicative_function/mobius.hpp
+      - filename: prefix_sum.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/multiplicative_function/prefix_sum.hpp
+      - filename: prime_counting.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/multiplicative_function/prime_counting.hpp
+      - filename: sigma.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/multiplicative_function/sigma.hpp
+    - name: math_mod/
+      pages:
+      - filename: bell_number.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/bell_number.hpp
+      - filename: bernoulli_number.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math_mod/bernoulli_number.hpp
+      - filename: binom_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/binom_table.hpp
+      - filename: butterfly.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/butterfly.hpp
+      - filename: comb.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/comb.hpp
+      - filename: comb_large.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/comb_large.hpp
+      - filename: garner.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/garner.hpp
+      - filename: inv.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/inv.hpp
+      - filename: inv_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/inv_table.hpp
+      - filename: kth_root_mod.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math_mod/kth_root_mod.hpp
+      - filename: log.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/log.hpp
+      - filename: mod_sqrt.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/mod_sqrt.hpp
+      - filename: pow_mod.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/pow_mod.hpp
+      - filename: primitive_root.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/primitive_root.hpp
+      - filename: primitive_root_64bit.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/primitive_root_64bit.hpp
+      - filename: stirling_number.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/stirling_number.hpp
+      - filename: tetration.hpp
+        icon: LIBRARY_NO_TESTS
+        path: math_mod/tetration.hpp
+    - name: matrix/
+      pages:
+      - filename: basis.hpp
+        icon: LIBRARY_NO_TESTS
+        path: matrix/basis.hpp
+      - filename: characteristic_polynomial.hpp
+        icon: LIBRARY_NO_TESTS
+        path: matrix/characteristic_polynomial.hpp
+      - filename: frobenius_form.hpp
+        icon: LIBRARY_NO_TESTS
+        path: matrix/frobenius_form.hpp
+      - filename: matrix_F2.hpp
+        icon: LIBRARY_ALL_AC
+        path: matrix/matrix_F2.hpp
+      - filename: matrix_field.hpp
+        icon: LIBRARY_ALL_AC
+        path: matrix/matrix_field.hpp
+      - filename: static_matrix_field.hpp
+        icon: LIBRARY_NO_TESTS
+        path: matrix/static_matrix_field.hpp
+    - name: modint/
+      pages:
+      - filename: F2.hpp
+        icon: LIBRARY_ALL_AC
+        path: modint/F2.hpp
+      - filename: modint.hpp
+        icon: LIBRARY_ALL_AC
+        path: modint/modint.hpp
+      - filename: modint_2_61m1.hpp
+        icon: LIBRARY_ALL_AC
+        path: modint/modint_2_61m1.hpp
+      - filename: mont.hpp
+        icon: LIBRARY_ALL_AC
+        path: modint/mont.hpp
+      - filename: mont_arb.hpp
+        icon: LIBRARY_ALL_AC
+        path: modint/mont_arb.hpp
+    - name: others/
+      pages:
+      - filename: coordinate_compression.hpp
+        icon: LIBRARY_ALL_AC
+        path: others/coordinate_compression.hpp
+      - filename: longest_increasing_subsequence.hpp
+        icon: LIBRARY_ALL_AC
+        path: others/longest_increasing_subsequence.hpp
+      - filename: mo.hpp
+        icon: LIBRARY_ALL_AC
+        path: others/mo.hpp
+      - filename: multiset_hash.hpp
+        icon: LIBRARY_NO_TESTS
+        path: others/multiset_hash.hpp
+      - filename: run_length_encoding.hpp
+        icon: LIBRARY_NO_TESTS
+        path: others/run_length_encoding.hpp
+      - filename: timer.hpp
+        icon: LIBRARY_NO_TESTS
+        path: others/timer.hpp
+      - filename: vector_pool.hpp
+        icon: LIBRARY_ALL_AC
+        path: others/vector_pool.hpp
+    - name: random/
+      pages:
+      - filename: gen.hpp
+        icon: LIBRARY_ALL_AC
+        path: random/gen.hpp
+      - filename: graph.hpp
+        icon: LIBRARY_NO_TESTS
+        path: random/graph.hpp
+      - filename: hash.hpp
+        icon: LIBRARY_ALL_AC
+        path: random/hash.hpp
+      - filename: seed.hpp
+        icon: LIBRARY_ALL_AC
+        path: random/seed.hpp
+    - name: scripts/
+      pages:
+      - filename: add_standalone_timeout.py
+        icon: LIBRARY_NO_TESTS
+        path: scripts/add_standalone_timeout.py
+    - name: segment_tree/
+      pages:
+      - filename: beats.hpp
+        icon: LIBRARY_NO_TESTS
+        path: segment_tree/beats.hpp
+      - filename: beats_utility.hpp
+        icon: LIBRARY_NO_TESTS
+        path: segment_tree/beats_utility.hpp
+      - filename: dual_seg.hpp
+        icon: LIBRARY_NO_TESTS
+        path: segment_tree/dual_seg.hpp
+      - filename: dynamic_seg.hpp
+        icon: LIBRARY_NO_TESTS
+        path: segment_tree/dynamic_seg.hpp
+      - filename: lazy.hpp
+        icon: LIBRARY_ALL_AC
+        path: segment_tree/lazy.hpp
+      - filename: li_chao_tree.hpp
+        icon: LIBRARY_ALL_AC
+        path: segment_tree/li_chao_tree.hpp
+      - filename: seg.hpp
+        icon: LIBRARY_ALL_AC
+        path: segment_tree/seg.hpp
+      - filename: seg2d.hpp
+        icon: LIBRARY_NO_TESTS
+        path: segment_tree/seg2d.hpp
+    - name: string/
+      pages:
+      - filename: aho_corasick.hpp
+        icon: LIBRARY_ALL_AC
+        path: string/aho_corasick.hpp
+      - filename: dynamic_rolling_hash.hpp
+        icon: LIBRARY_ALL_AC
+        path: string/dynamic_rolling_hash.hpp
+      - filename: static_rolling_hash.hpp
+        icon: LIBRARY_ALL_AC
+        path: string/static_rolling_hash.hpp
+      - filename: suffix_array.hpp
+        icon: LIBRARY_ALL_AC
+        path: string/suffix_array.hpp
+      - filename: z_algorithm.hpp
+        icon: LIBRARY_ALL_AC
+        path: string/z_algorithm.hpp
+    - name: template/
+      pages:
+      - filename: constant.hpp
+        icon: LIBRARY_ALL_AC
+        path: template/constant.hpp
+      - filename: debug.hpp
+        icon: LIBRARY_NO_TESTS
+        path: template/debug.hpp
+      - filename: fastio.hpp
+        icon: LIBRARY_ALL_AC
+        path: template/fastio.hpp
+      - filename: function_util.hpp
+        icon: LIBRARY_ALL_AC
+        path: template/function_util.hpp
+      - filename: io_util.hpp
+        icon: LIBRARY_ALL_AC
+        path: template/io_util.hpp
+      - filename: macros.hpp
+        icon: LIBRARY_ALL_AC
+        path: template/macros.hpp
+      - filename: procon.hpp
+        icon: LIBRARY_ALL_AC
+        path: template/procon.hpp
+      - filename: simpleio.hpp
+        icon: LIBRARY_NO_TESTS
+        path: template/simpleio.hpp
+      - filename: template.hpp
+        icon: LIBRARY_ALL_AC
+        path: template/template.hpp
+      - filename: type_alias.hpp
+        icon: LIBRARY_ALL_AC
+        path: template/type_alias.hpp
+    - name: type_traits/
+      pages:
+      - filename: algebra.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/algebra.hpp
+      - filename: container_traits.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/container_traits.hpp
+      - filename: fps.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/fps.hpp
+      - filename: functional.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/functional.hpp
+      - filename: graph.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/graph.hpp
+      - filename: integral.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/integral.hpp
+      - filename: io.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/io.hpp
+      - filename: member.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/member.hpp
+      - filename: operator.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/operator.hpp
+    - name: unionfind/
+      pages:
+      - filename: parallel.hpp
+        icon: LIBRARY_ALL_AC
+        path: unionfind/parallel.hpp
+      - filename: partial_persistent.hpp
+        icon: LIBRARY_ALL_AC
+        path: unionfind/partial_persistent.hpp
+      - filename: potentialized.hpp
+        icon: LIBRARY_ALL_AC
+        path: unionfind/potentialized.hpp
+      - filename: rollback.hpp
+        icon: LIBRARY_ALL_AC
+        path: unionfind/rollback.hpp
+      - filename: unionfind.hpp
+        icon: LIBRARY_ALL_AC
+        path: unionfind/unionfind.hpp
     - name: verify/yosupo_fps/
       pages:
       - filename: fps_exp_arb.test.cpp

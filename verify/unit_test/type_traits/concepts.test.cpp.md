@@ -4,13 +4,37 @@ data:
     STANDALONE: ''
     links: []
   dependencies:
-  - files: []
+  - files:
+    - filename: container_traits.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/container_traits.hpp
+    - filename: functional.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/functional.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
+    - filename: member.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/member.hpp
+    - filename: operator.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/operator.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - type_traits/container_traits.hpp
+  - type_traits/functional.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
+  - type_traits/member.hpp
+  - type_traits/operator.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include <ostream>\n#include <vector>\n\
       \n#include \"../../../type_traits/container_traits.hpp\"\n#include \"../../../type_traits/functional.hpp\"\
@@ -229,7 +253,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/type_traits/concepts.test.cpp

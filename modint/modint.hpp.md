@@ -1,0 +1,228 @@
+---
+data:
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    links: []
+  dependencies:
+  - files:
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
+    type: Depends on
+  - files: []
+    type: Required by
+  - files:
+    - filename: binom_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math_mod/binom_table.test.cpp
+    - filename: inv_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math_mod/inv_table.test.cpp
+    - filename: large_fact_arb_mod.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    - filename: ds_point_set_range_composite_large_2.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+    - filename: ds_potentiailized_uf_non_commutattive.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+    - filename: ds_range_affine_range_sum_large_2.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
+    - filename: binomial_coefficient_prime_mod.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+    - filename: discrete_logarithm.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_math/discrete_logarithm.test.cpp
+    type: Verified with
+  dependsOn:
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
+  embedded:
+  - code: "#ifndef KK2_MODINT_MODINT_HPP\n#define KK2_MODINT_MODINT_HPP 1\n\n#include\
+      \ <cassert>\n#include <iostream>\n#include <type_traits>\n#include <utility>\n\
+      \n#include \"../type_traits/integral.hpp\"\n#include \"../type_traits/io.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <int p> struct ModInt {\n    using mint = ModInt;\n\
+      \n  public:\n    static int Mod;\n\n    constexpr static unsigned int getmod()\
+      \ {\n        if (p > 0) return p;\n        else return Mod;\n    }\n\n    static\
+      \ void setmod(int Mod_) {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n\
+      \    }\n\n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n\
+      \        return x;\n    }\n\n    constexpr ModInt() : _v(0) {}\n\n    template\
+      \ <Integral T> constexpr ModInt(T v) {\n        if constexpr (SignedIntegral<T>)\
+      \ {\n            v = v % (long long)(getmod());\n            if (v < 0) v +=\
+      \ getmod();\n            _v = v;\n        } else if constexpr (UnsignedIntegral<T>)\
+      \ {\n            _v = v %= getmod();\n        } else {\n            ModInt();\n\
+      \        }\n    }\n\n    unsigned int val() const { return _v; }\n\n    mint\
+      \ &operator++() {\n        _v++;\n        if (_v == getmod()) _v = 0;\n    \
+      \    return *this;\n    }\n\n    mint &operator--() {\n        if (_v == 0)\
+      \ _v = getmod();\n        _v--;\n        return *this;\n    }\n\n    mint operator++(int)\
+      \ {\n        mint result = *this;\n        ++*this;\n        return result;\n\
+      \    }\n\n    mint operator--(int) {\n        mint result = *this;\n       \
+      \ --*this;\n        return result;\n    }\n\n    mint &operator+=(const mint\
+      \ &rhs) {\n        _v += rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
+      \        return *this;\n    }\n\n    mint &operator-=(const mint &rhs) {\n \
+      \       _v += getmod() - rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
+      \        return *this;\n    }\n\n    mint &operator*=(const mint &rhs) {\n \
+      \       unsigned long long z = _v;\n        z *= rhs._v;\n        z %= getmod();\n\
+      \        _v = z;\n        return *this;\n    }\n\n    mint &operator/=(const\
+      \ mint &rhs) { return *this = *this * rhs.inv(); }\n    mint operator+() const\
+      \ { return *this; }\n    mint operator-() const { return mint() - *this; }\n\
+      \    friend mint operator+(const mint &lhs, const mint &rhs) { return mint(lhs)\
+      \ += rhs; }\n    friend mint operator-(const mint &lhs, const mint &rhs) { return\
+      \ mint(lhs) -= rhs; }\n    friend mint operator*(const mint &lhs, const mint\
+      \ &rhs) { return mint(lhs) *= rhs; }\n    friend mint operator/(const mint &lhs,\
+      \ const mint &rhs) { return mint(lhs) /= rhs; }\n    friend bool operator==(const\
+      \ mint &lhs, const mint &rhs) { return lhs._v == rhs._v; }\n    friend bool\
+      \ operator!=(const mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\
+      \n    mint pow(long long n) const {\n        assert(0 <= n);\n        mint x\
+      \ = *this, r = 1;\n        while (n) {\n            if (n & 1) r *= x;\n   \
+      \         x *= x;\n            n >>= 1;\n        }\n        return r;\n    }\n\
+      \n    mint inv() const {\n        long long s = getmod(), t = _v;\n        long\
+      \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
+      \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
+      \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
+      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
+      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
+      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
+      \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
+      \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
+      \n} // namespace kk2\n\n#endif // KK2_MODINT_MODINT_HPP\n"
+    name: default
+  - code: "#line 1 \"modint/modint.hpp\"\n\n\n\n#include <cassert>\n#include <iostream>\n\
+      #include <type_traits>\n#include <utility>\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
+      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
+      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
+      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
+      template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
+      \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
+      template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
+      #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
+      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                  || std::is_same<T, std::ifstream>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
+      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
+      \                                || std::is_same<T, std::ofstream>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
+      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 11 \"modint/modint.hpp\"\n\nnamespace kk2 {\n\
+      \ntemplate <int p> struct ModInt {\n    using mint = ModInt;\n\n  public:\n\
+      \    static int Mod;\n\n    constexpr static unsigned int getmod() {\n     \
+      \   if (p > 0) return p;\n        else return Mod;\n    }\n\n    static void\
+      \ setmod(int Mod_) {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n    }\n\
+      \n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n       \
+      \ return x;\n    }\n\n    constexpr ModInt() : _v(0) {}\n\n    template <Integral\
+      \ T> constexpr ModInt(T v) {\n        if constexpr (SignedIntegral<T>) {\n \
+      \           v = v % (long long)(getmod());\n            if (v < 0) v += getmod();\n\
+      \            _v = v;\n        } else if constexpr (UnsignedIntegral<T>) {\n\
+      \            _v = v %= getmod();\n        } else {\n            ModInt();\n\
+      \        }\n    }\n\n    unsigned int val() const { return _v; }\n\n    mint\
+      \ &operator++() {\n        _v++;\n        if (_v == getmod()) _v = 0;\n    \
+      \    return *this;\n    }\n\n    mint &operator--() {\n        if (_v == 0)\
+      \ _v = getmod();\n        _v--;\n        return *this;\n    }\n\n    mint operator++(int)\
+      \ {\n        mint result = *this;\n        ++*this;\n        return result;\n\
+      \    }\n\n    mint operator--(int) {\n        mint result = *this;\n       \
+      \ --*this;\n        return result;\n    }\n\n    mint &operator+=(const mint\
+      \ &rhs) {\n        _v += rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
+      \        return *this;\n    }\n\n    mint &operator-=(const mint &rhs) {\n \
+      \       _v += getmod() - rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
+      \        return *this;\n    }\n\n    mint &operator*=(const mint &rhs) {\n \
+      \       unsigned long long z = _v;\n        z *= rhs._v;\n        z %= getmod();\n\
+      \        _v = z;\n        return *this;\n    }\n\n    mint &operator/=(const\
+      \ mint &rhs) { return *this = *this * rhs.inv(); }\n    mint operator+() const\
+      \ { return *this; }\n    mint operator-() const { return mint() - *this; }\n\
+      \    friend mint operator+(const mint &lhs, const mint &rhs) { return mint(lhs)\
+      \ += rhs; }\n    friend mint operator-(const mint &lhs, const mint &rhs) { return\
+      \ mint(lhs) -= rhs; }\n    friend mint operator*(const mint &lhs, const mint\
+      \ &rhs) { return mint(lhs) *= rhs; }\n    friend mint operator/(const mint &lhs,\
+      \ const mint &rhs) { return mint(lhs) /= rhs; }\n    friend bool operator==(const\
+      \ mint &lhs, const mint &rhs) { return lhs._v == rhs._v; }\n    friend bool\
+      \ operator!=(const mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\
+      \n    mint pow(long long n) const {\n        assert(0 <= n);\n        mint x\
+      \ = *this, r = 1;\n        while (n) {\n            if (n & 1) r *= x;\n   \
+      \         x *= x;\n            n >>= 1;\n        }\n        return r;\n    }\n\
+      \n    mint inv() const {\n        long long s = getmod(), t = _v;\n        long\
+      \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
+      \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
+      \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
+      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
+      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
+      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
+      \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
+      \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
+      \n} // namespace kk2\n\n\n"
+    name: bundled
+  isFailed: false
+  isVerificationFile: false
+  path: modint/modint.hpp
+  pathExtension: hpp
+  requiredBy: []
+  timestamp: '2026-09-07 22:58:43+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/unit_test/math_mod/binom_table.test.cpp
+  - verify/unit_test/math_mod/inv_table.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+  - verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
+  - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
+  - verify/yosupo_math/discrete_logarithm.test.cpp
+documentation_of: modint/modint.hpp
+layout: document
+---

@@ -4,13 +4,93 @@ data:
     STANDALONE: ''
     links: []
   dependencies:
-  - files: []
+  - files:
+    - filename: is_prime.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/is_prime.hpp
+    - filename: lpf_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_table.hpp
+    - filename: euler_phi.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/euler_phi.hpp
+    - filename: famous_function_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/famous_function_table.hpp
+    - filename: mobius.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/mobius.hpp
+    - filename: sigma.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/sigma.hpp
+    - filename: pow.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/pow.hpp
+    - filename: prime_factorize.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/prime_factorize.hpp
+    - filename: pow_mod.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/pow_mod.hpp
+    - filename: mont_arb.hpp
+      icon: LIBRARY_ALL_AC
+      path: modint/mont_arb.hpp
+    - filename: gen.hpp
+      icon: LIBRARY_ALL_AC
+      path: random/gen.hpp
+    - filename: seed.hpp
+      icon: LIBRARY_ALL_AC
+      path: random/seed.hpp
+    - filename: constant.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/constant.hpp
+    - filename: fastio.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/fastio.hpp
+    - filename: io_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/io_util.hpp
+    - filename: macros.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/macros.hpp
+    - filename: template.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/template.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/type_alias.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - math/is_prime.hpp
+  - math/lpf_table.hpp
+  - math/multiplicative_function/euler_phi.hpp
+  - math/multiplicative_function/famous_function_table.hpp
+  - math/multiplicative_function/mobius.hpp
+  - math/multiplicative_function/sigma.hpp
+  - math/pow.hpp
+  - math/prime_factorize.hpp
+  - math_mod/pow_mod.hpp
+  - modint/mont_arb.hpp
+  - random/gen.hpp
+  - random/seed.hpp
+  - template/constant.hpp
+  - template/fastio.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
+  - template/template.hpp
+  - template/type_alias.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../../math/multiplicative_function/famous_function_table.hpp\"\
       \n#include \"../../../../math/multiplicative_function/mobius.hpp\"\n#include\
@@ -514,7 +594,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp

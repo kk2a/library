@@ -1,0 +1,55 @@
+---
+data:
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    links: []
+  dependencies:
+  - files: []
+    type: Depends on
+  - files: []
+    type: Required by
+  - files:
+    - filename: longest_increasing_subsequence.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_others/longest_increasing_subsequence.test.cpp
+    type: Verified with
+  dependsOn: []
+  embedded:
+  - code: "#ifndef KK2_OTHERS_LONGEST_INCREASING_SUBSEQUENCE_HPP\n#define KK2_OTHERS_LONGEST_INCREASING_SUBSEQUENCE_HPP\
+      \ 1\n\n#include <algorithm>\n#include <utility>\n#include <vector>\n\nnamespace\
+      \ kk2 {\n\n// return indices of longest increasing subsequence\ntemplate <class\
+      \ T> std::vector<int> longest_increasing_subsequence(const std::vector<T> &a)\
+      \ {\n    int n = a.size();\n    std::vector<std::pair<T, int>> dp;\n    std::vector<int>\
+      \ prev(n, -1);\n    for (int i = 0; i < n; ++i) {\n        auto it = std::lower_bound(dp.begin(),\
+      \ dp.end(), std::make_pair(a[i], -i));\n        if (it != dp.begin()) { prev[i]\
+      \ = -std::prev(it)->second; }\n        if (it == dp.end()) {\n            dp.emplace_back(a[i],\
+      \ -i);\n        } else {\n            *it = std::make_pair(a[i], -i);\n    \
+      \    }\n    }\n\n    std::vector<int> res;\n    for (int i = -std::prev(dp.end())->second;\
+      \ i >= 0; i = prev[i]) { res.push_back(i); }\n    std::reverse(res.begin(),\
+      \ res.end());\n    return res;\n}\n\n} // namespace kk2\n\n#endif // KK2_OTHERS_LONGEST_INCREASING_SUBSEQUENCE_HPP\n"
+    name: default
+  - code: "#line 1 \"others/longest_increasing_subsequence.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <utility>\n#include <vector>\n\nnamespace kk2 {\n\n// return indices\
+      \ of longest increasing subsequence\ntemplate <class T> std::vector<int> longest_increasing_subsequence(const\
+      \ std::vector<T> &a) {\n    int n = a.size();\n    std::vector<std::pair<T,\
+      \ int>> dp;\n    std::vector<int> prev(n, -1);\n    for (int i = 0; i < n; ++i)\
+      \ {\n        auto it = std::lower_bound(dp.begin(), dp.end(), std::make_pair(a[i],\
+      \ -i));\n        if (it != dp.begin()) { prev[i] = -std::prev(it)->second; }\n\
+      \        if (it == dp.end()) {\n            dp.emplace_back(a[i], -i);\n   \
+      \     } else {\n            *it = std::make_pair(a[i], -i);\n        }\n   \
+      \ }\n\n    std::vector<int> res;\n    for (int i = -std::prev(dp.end())->second;\
+      \ i >= 0; i = prev[i]) { res.push_back(i); }\n    std::reverse(res.begin(),\
+      \ res.end());\n    return res;\n}\n\n} // namespace kk2\n\n\n"
+    name: bundled
+  isFailed: false
+  isVerificationFile: false
+  path: others/longest_increasing_subsequence.hpp
+  pathExtension: hpp
+  requiredBy: []
+  timestamp: '2026-09-07 22:58:43+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_others/longest_increasing_subsequence.test.cpp
+documentation_of: others/longest_increasing_subsequence.hpp
+layout: document
+---

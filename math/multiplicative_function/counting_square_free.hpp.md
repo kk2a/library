@@ -1,0 +1,157 @@
+---
+data:
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    links: []
+  dependencies:
+  - files:
+    - filename: enumerate_quotients.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/enumerate_quotients.hpp
+    - filename: frac_floor.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/frac_floor.hpp
+    - filename: lpf_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_table.hpp
+    - filename: famous_function_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/famous_function_table.hpp
+    - filename: pow.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/pow.hpp
+    - filename: sqrt_floor.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/sqrt_floor.hpp
+    type: Depends on
+  - files: []
+    type: Required by
+  - files: []
+    type: Verified with
+  dependsOn:
+  - math/enumerate_quotients.hpp
+  - math/frac_floor.hpp
+  - math/lpf_table.hpp
+  - math/multiplicative_function/famous_function_table.hpp
+  - math/pow.hpp
+  - math/sqrt_floor.hpp
+  embedded:
+  - code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP\n#define\
+      \ KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP 1\n\n#include <cmath>\n\
+      \n#include \"../enumerate_quotients.hpp\"\n#include \"famous_function_table.hpp\"\
+      \n\nnamespace kk2 {\n\nlong long counting_square_free(long long n) {\n    long\
+      \ long I = std::pow(n, 0.2);\n    long long D = kk2::sqrt_floor(n / I);\n}\n\
+      \n} // namespace kk2\n\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_COUNTING_SQUARE_FREE_HPP\n"
+    name: default
+  - code: "#line 1 \"math/multiplicative_function/counting_square_free.hpp\"\n\n\n\
+      \n#include <cmath>\n\n#line 1 \"math/enumerate_quotients.hpp\"\n\n\n\n#include\
+      \ <numeric>\n#include <vector>\n\n#line 1 \"math/sqrt_floor.hpp\"\n\n\n\n#line\
+      \ 5 \"math/sqrt_floor.hpp\"\n\n#line 1 \"math/frac_floor.hpp\"\n\n\n\n#include\
+      \ <cassert>\n\nnamespace kk2 {\n\n// floor(x) = ceil(x) - 1 (for all x not in\
+      \ Z) ...(1)\n// floor(x) = -ceil(-x)   (for all x)          ...(2)\n\n// return\
+      \ floor(a / b)\ntemplate <typename T, typename U> constexpr T fracfloor(T a,\
+      \ U b) {\n    assert(b != 0);\n    if (a % b == 0) return a / b;\n    if (a\
+      \ >= 0) return a / b;\n\n    // floor(x) = -ceil(-x)      by (2)\n    //   \
+      \       = -floor(-x) - 1 by (1)\n    return -((-a) / b) - 1;\n}\n\n// return\
+      \ ceil(a / b)\ntemplate <typename T, typename U> constexpr T fracceil(T a, U\
+      \ b) {\n    assert(b != 0);\n    if (a % b == 0) return a / b;\n    if (a >=\
+      \ 0) return a / b + 1;\n\n    // ceil(x) = -floor(-x)      by (2)\n    return\
+      \ -((-a) / b);\n}\n\n} // namespace kk2\n\n\n#line 7 \"math/sqrt_floor.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <typename T> T sqrt_floor(T n) {\n    assert(n\
+      \ >= 0);\n    if (n == T(0)) return 0;\n    T x = std::sqrt(n);\n    if (x ==\
+      \ T(0)) ++x;\n    while (x > kk2::fracfloor(n, x)) --x;\n    while (x + 1 <=\
+      \ kk2::fracfloor(n, x + 1)) ++x;\n    return x;\n}\n\ntemplate <typename T>\
+      \ T sqrt_ceil(T n) {\n    assert(n >= 0);\n    if (n <= T(1)) return n;\n  \
+      \  T x = std::sqrt(n);\n    if (x == T(0)) ++x;\n    while (x < kk2::fracceil(n,\
+      \ x)) ++x;\n    while (x - 1 >= kk2::fracceil(n, x - 1)) --x;\n    return x;\n\
+      }\n\n} // namespace kk2\n\n\n#line 8 \"math/enumerate_quotients.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <class T> struct EnumerateQuotients {\n    T n;\n    int\
+      \ sqrt_n;\n    std::vector<T> res;\n\n    EnumerateQuotients(T n) : n(n), sqrt_n(sqrt_floor(n))\
+      \ {\n        res.resize(sqrt_n + n / (sqrt_n + 1));\n        std::iota(res.begin(),\
+      \ res.begin() + sqrt_n, 1);\n        for (T i = n / (sqrt_n + 1), j = sqrt_n;\
+      \ i; --i, ++j) res[j] = n / i;\n    }\n\n    const std::vector<T> &get() const\
+      \ { return res; }\n\n    int size() const { return res.size(); }\n\n    const\
+      \ T &operator[](int i) const { return res[i]; }\n\n    int idx(T x) const {\n\
+      \        if (x <= sqrt_n) return x - 1;\n        return size() - n / x;\n  \
+      \  }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math/multiplicative_function/famous_function_table.hpp\"\
+      \n\n\n\n#include <algorithm>\n#line 7 \"math/multiplicative_function/famous_function_table.hpp\"\
+      \n\n#line 1 \"math/lpf_table.hpp\"\n\n\n\n#line 8 \"math/lpf_table.hpp\"\n\n\
+      namespace kk2 {\n\nstruct LPFTable {\n  private:\n    static inline std::vector<int>\
+      \ _primes{2}, _lpf{0, 1, 2}, _lpf_pow{0, 1, 2}, _v_lpf{0, 1, 1};\n\n  public:\n\
+      \    LPFTable() = delete;\n\n    static void set_upper(int m, int reserve_size\
+      \ = 26355867) {\n        if ((int)_lpf.size() == 0) _primes.reserve(reserve_size);\n\
+      \        if ((int)_lpf.size() > m) return;\n        m = std::max<int>(2 * _lpf.size(),\
+      \ m);\n        _lpf_pow.resize(m + 1);\n        _v_lpf.resize(m + 1);\n    \
+      \    _lpf.resize(m + 1);\n        iota(_lpf.begin(), _lpf.end(), 0);\n     \
+      \   for (int i = 2; i <= m; i++) {\n            if (_lpf[i] == i and i > (int)_primes.back())\n\
+      \                _primes.emplace_back(i), _lpf_pow[i] = i, _v_lpf[i] = 1;\n\
+      \            for (const long long p : _primes) {\n                if (p * i\
+      \ > m) break;\n                if (_lpf[i] < p) break;\n                _lpf[p\
+      \ * i] = p;\n                if (_lpf[i] == p) {\n                    _v_lpf[p\
+      \ * i] = _v_lpf[i] + 1;\n                    _lpf_pow[p * i] = _lpf_pow[i] *\
+      \ p;\n                } else {\n                    _v_lpf[p * i] = 1;\n   \
+      \                 _lpf_pow[p * i] = p;\n                }\n            }\n \
+      \       }\n    }\n\n    static const std::vector<int> &primes() { return _primes;\
+      \ }\n\n    template <typename It> struct PrimeIt {\n        It bg, ed;\n   \
+      \     PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n        It begin() const\
+      \ { return bg; }\n        It end() const { return ed; }\n        int size()\
+      \ const { return ed - bg; }\n        int operator[](int i) const { return bg[i];\
+      \ }\n        std::vector<int> to_vec() const { return std::vector<int>(bg, ed);\
+      \ }\n    };\n\n    static auto primes(int n) {\n        if (n >= (int)_lpf.size())\
+      \ set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
+      \ _primes.end(), n));\n    }\n\n    static int lpf(int n) {\n        assert(n\
+      \ > 1);\n        if (n >= (int)_lpf.size()) set_upper(n);\n        return _lpf[n];\n\
+      \    }\n\n    static bool isprime(int n) {\n        assert(n > 0);\n       \
+      \ if (n >= (int)_lpf.size()) set_upper(n);\n        return n != 1 and _lpf[n]\
+      \ == n;\n    }\n\n    static int lpf_pow(int n) {\n        assert(n > 1);\n\
+      \        if (n >= (int)_lpf_pow.size()) set_upper(n);\n        return _lpf_pow[n];\n\
+      \    }\n\n    static int v_lpf(int n) {\n        assert(n > 1);\n        if\
+      \ (n >= (int)_v_lpf.size()) set_upper(n);\n        return _v_lpf[n];\n    }\n\
+      };\n\n} // namespace kk2\n\n\n\n#line 1 \"math/pow.hpp\"\n\n\n\n#line 5 \"math/pow.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow(T\
+      \ x, U n) {\n    assert(n >= 0);\n    S r = 1, y = x;\n    while (n) {\n   \
+      \     if (n & 1) r *= y;\n        if (n >>= 1) y *= y;\n    }\n    return r;\n\
+      }\n\n} // namespace kk2\n\n\n#line 10 \"math/multiplicative_function/famous_function_table.hpp\"\
+      \n\nnamespace kk2 {\n\nstruct FamousFunctionTable {\n  private:\n    static\
+      \ inline std::vector<int> _mobius{0, 1}, _sigma0{0, 1}, _euler_phi{0, 1};\n\
+      \    static inline std::vector<long long> _sigma1{0, 1};\n\n  public:\n    FamousFunctionTable()\
+      \ = delete;\n\n    static void set_upper(int m) {\n        if ((int)_mobius.size()\
+      \ > m) return;\n        int start = _mobius.size();\n\n        LPFTable::set_upper(m);\n\
+      \n        _mobius.resize(m + 1, 1);\n        _sigma0.resize(m + 1, 1);\n   \
+      \     _sigma1.resize(m + 1, 1);\n        _euler_phi.resize(m + 1, 1);\n\n  \
+      \      for (int n = start; n <= m; ++n) {\n            int p = LPFTable::lpf(n);\n\
+      \            if (p == n) {\n                _mobius[n] = -1;\n             \
+      \   _sigma0[n] = 2;\n                _sigma1[n] = p + 1;\n                _euler_phi[n]\
+      \ = p - 1;\n            } else {\n                int p_pw = LPFTable::lpf_pow(n);\n\
+      \                int q = n / p_pw;\n                if (q == 1) {\n        \
+      \            _mobius[n] = 0;\n                    _sigma0[n] = _sigma0[n / p]\
+      \ + 1;\n                    _sigma1[n] = _sigma1[n / p] + p_pw;\n          \
+      \          _euler_phi[n] = p_pw - p_pw / p;\n                } else {\n    \
+      \                _mobius[n] = _mobius[q] * _mobius[p_pw];\n                \
+      \    _sigma0[n] = _sigma0[q] * _sigma0[p_pw];\n                    _sigma1[n]\
+      \ = _sigma1[q] * _sigma1[p_pw];\n                    _euler_phi[n] = _euler_phi[q]\
+      \ * _euler_phi[p_pw];\n                }\n            }\n        }\n    }\n\n\
+      \    static int mobius(int n) {\n        assert(n >= 0);\n        if ((int)_mobius.size()\
+      \ <= n) set_upper(n);\n        return _mobius[n];\n    }\n\n    static int sigma0(int\
+      \ n) {\n        assert(n > 0);\n        if ((int)_sigma0.size() <= n) set_upper(n);\n\
+      \        return _sigma0[n];\n    }\n\n    static long long sigma1(int n) {\n\
+      \        assert(n > 0);\n        if ((int)_sigma1.size() <= n) set_upper(n);\n\
+      \        return _sigma1[n];\n    }\n\n    static int euler_phi(int n) {\n  \
+      \      assert(n > 0);\n        if ((int)_euler_phi.size() <= n) set_upper(n);\n\
+      \        return _euler_phi[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 8\
+      \ \"math/multiplicative_function/counting_square_free.hpp\"\n\nnamespace kk2\
+      \ {\n\nlong long counting_square_free(long long n) {\n    long long I = std::pow(n,\
+      \ 0.2);\n    long long D = kk2::sqrt_floor(n / I);\n}\n\n} // namespace kk2\n\
+      \n\n\n"
+    name: bundled
+  isFailed: false
+  isVerificationFile: false
+  path: math/multiplicative_function/counting_square_free.hpp
+  pathExtension: hpp
+  requiredBy: []
+  timestamp: '2026-09-07 22:58:43+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: math/multiplicative_function/counting_square_free.hpp
+layout: document
+---

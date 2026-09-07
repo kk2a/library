@@ -5,13 +5,81 @@ data:
     links:
     - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
   dependencies:
-  - files: []
+  - files:
+    - filename: lazy_red_black_tree_node.hpp
+      icon: LIBRARY_ALL_AC
+      path: bbst/base/lazy_red_black_tree_node.hpp
+    - filename: red_black_tree_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: bbst/base/red_black_tree_base.hpp
+    - filename: lazy_red_black_tree.hpp
+      icon: LIBRARY_ALL_AC
+      path: bbst/lazy_red_black_tree.hpp
+    - filename: affine_sumwithsize.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/action/affine_sumwithsize.hpp
+    - filename: sum_with_size.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/group/sum_with_size.hpp
+    - filename: affine.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/monoid/affine.hpp
+    - filename: mont.hpp
+      icon: LIBRARY_ALL_AC
+      path: modint/mont.hpp
+    - filename: vector_pool.hpp
+      icon: LIBRARY_ALL_AC
+      path: others/vector_pool.hpp
+    - filename: constant.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/constant.hpp
+    - filename: fastio.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/fastio.hpp
+    - filename: io_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/io_util.hpp
+    - filename: macros.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/macros.hpp
+    - filename: template.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/template.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/type_alias.hpp
+    - filename: algebra.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/algebra.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - bbst/base/lazy_red_black_tree_node.hpp
+  - bbst/base/red_black_tree_base.hpp
+  - bbst/lazy_red_black_tree.hpp
+  - math/action/affine_sumwithsize.hpp
+  - math/group/sum_with_size.hpp
+  - math/monoid/affine.hpp
+  - modint/mont.hpp
+  - others/vector_pool.hpp
+  - template/constant.hpp
+  - template/fastio.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
+  - template/template.hpp
+  - template/type_alias.hpp
+  - type_traits/algebra.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\n\
       \n#include \"../../bbst/lazy_red_black_tree.hpp\"\n#include \"../../modint/mont.hpp\"\
@@ -814,7 +882,7 @@ data:
     memory: 58.376
     name: wrong_splay_killer_03
     status: AC
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp

@@ -5,13 +5,53 @@ data:
     links:
     - https://judge.yosupo.jp/problem/many_aplusb_128bit
   dependencies:
-  - files: []
+  - files:
+    - filename: max.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/monoid/max.hpp
+    - filename: min.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/monoid/min.hpp
+    - filename: constant.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/constant.hpp
+    - filename: function_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/function_util.hpp
+    - filename: io_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/io_util.hpp
+    - filename: macros.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/macros.hpp
+    - filename: procon.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/procon.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/type_alias.hpp
+    - filename: container_traits.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/container_traits.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - math/monoid/max.hpp
+  - math/monoid/min.hpp
+  - template/constant.hpp
+  - template/function_util.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
+  - template/procon.hpp
+  - template/type_alias.hpp
+  - type_traits/container_traits.hpp
+  - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/many_aplusb_128bit\n\
       \n#include \"../../template/procon.hpp\"\nusing namespace std;\n\nint main()\
@@ -288,7 +328,7 @@ data:
     memory: 3.628
     name: random_01
     status: AC
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

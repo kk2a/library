@@ -4,13 +4,61 @@ data:
     STANDALONE: ''
     links: []
   dependencies:
-  - files: []
+  - files:
+    - filename: add_sumwithsize.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/action/add_sumwithsize.hpp
+    - filename: affine_sumwithsize.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/action/affine_sumwithsize.hpp
+    - filename: add.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/group/add.hpp
+    - filename: sum_with_size.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/group/sum_with_size.hpp
+    - filename: affine.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/monoid/affine.hpp
+    - filename: min.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/monoid/min.hpp
+    - filename: mont.hpp
+      icon: LIBRARY_ALL_AC
+      path: modint/mont.hpp
+    - filename: lazy.hpp
+      icon: LIBRARY_ALL_AC
+      path: segment_tree/lazy.hpp
+    - filename: seg.hpp
+      icon: LIBRARY_ALL_AC
+      path: segment_tree/seg.hpp
+    - filename: algebra.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/algebra.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - math/action/add_sumwithsize.hpp
+  - math/action/affine_sumwithsize.hpp
+  - math/group/add.hpp
+  - math/group/sum_with_size.hpp
+  - math/monoid/affine.hpp
+  - math/monoid/min.hpp
+  - modint/mont.hpp
+  - segment_tree/lazy.hpp
+  - segment_tree/seg.hpp
+  - type_traits/algebra.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../../type_traits/algebra.hpp\"\
       \n#include \"../../../../math/action/add_sumwithsize.hpp\"\n#include \"../../../../math/action/affine_sumwithsize.hpp\"\
@@ -419,7 +467,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/type_traits/algebra/algebra.test.cpp

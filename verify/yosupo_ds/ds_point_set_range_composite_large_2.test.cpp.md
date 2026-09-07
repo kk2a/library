@@ -5,13 +5,69 @@ data:
     links:
     - https://judge.yosupo.jp/problem/point_set_range_composite_large_array
   dependencies:
-  - files: []
+  - files:
+    - filename: affine.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/monoid/affine.hpp
+    - filename: rev_op.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/monoid/rev_op.hpp
+    - filename: modint.hpp
+      icon: LIBRARY_ALL_AC
+      path: modint/modint.hpp
+    - filename: coordinate_compression.hpp
+      icon: LIBRARY_ALL_AC
+      path: others/coordinate_compression.hpp
+    - filename: seg.hpp
+      icon: LIBRARY_ALL_AC
+      path: segment_tree/seg.hpp
+    - filename: constant.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/constant.hpp
+    - filename: fastio.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/fastio.hpp
+    - filename: io_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/io_util.hpp
+    - filename: macros.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/macros.hpp
+    - filename: template.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/template.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/type_alias.hpp
+    - filename: algebra.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/algebra.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - math/monoid/affine.hpp
+  - math/monoid/rev_op.hpp
+  - modint/modint.hpp
+  - others/coordinate_compression.hpp
+  - segment_tree/seg.hpp
+  - template/constant.hpp
+  - template/fastio.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
+  - template/template.hpp
+  - template/type_alias.hpp
+  - type_traits/algebra.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_set_range_composite_large_array\n\
       \n#include \"../../segment_tree/seg.hpp\"\n#include \"../../math/monoid/affine.hpp\"\
@@ -593,7 +649,7 @@ data:
     memory: 12.48
     name: small_N_04
     status: AC
-  timestamp: '2026-09-07 22:25:19+09:00'
+  timestamp: '2026-09-07 22:58:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
