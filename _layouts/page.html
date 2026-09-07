@@ -2,8 +2,6 @@
 layout: default
 ---
 
-{% include mathjax.html %}
-
-{% include theme_fix.html %}
-
-{{ content }}
+<div {%- if page.lang %} lang="{{page.lang}}"{%- endif -%}>
+{{- content -}}
+</div>

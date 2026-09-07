@@ -1,30 +1,35 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: true
-  _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    IGNORE: ''
+    IGNORE_IF_GCC: ''
     links: []
-  bundledCode: '#line 1 "verify/yosupo_graph/tree_vertex_set_path_composite_1.test.cpp"
-
-
-    '
-  code: ''
+  dependencies:
+  - files: []
+    type: Depends on
+  - files: []
+    type: Required by
+  - files: []
+    type: Verified with
   dependsOn: []
-  isVerificationFile: true
+  embedded:
+  - code: '#define IGNORE'
+    name: default
+  - code: '#line 1 "verify/yosupo_graph/tree_vertex_set_path_composite_1.test.cpp"
+
+      #define IGNORE
+
+      '
+    name: bundled
+  isFailed: false
+  isVerificationFile: false
   path: verify/yosupo_graph/tree_vertex_set_path_composite_1.test.cpp
+  pathExtension: cpp
   requiredBy: []
-  timestamp: '2025-10-08 11:20:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-07 22:25:19+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_vertex_set_path_composite_1.test.cpp
 layout: document
-redirect_from:
-- /verify/verify/yosupo_graph/tree_vertex_set_path_composite_1.test.cpp
-- /verify/verify/yosupo_graph/tree_vertex_set_path_composite_1.test.cpp.html
-title: verify/yosupo_graph/tree_vertex_set_path_composite_1.test.cpp
 ---
