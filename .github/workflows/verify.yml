@@ -116,18 +116,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Download verification files
-      uses: actions/download-artifact@v4
-      with:
-        name: verify-files
-        path: .
-
-    - name: Download bundled sources
-      uses: actions/download-artifact@v4
-      with:
-        name: verify-bundled
-        path: .competitive-verifier/bundled
-
     - name: Download verification results
       uses: actions/download-artifact@v4
       with:
@@ -150,6 +138,13 @@ jobs:
       uses: competitive-verifier/actions/check@v2
       with:
         verify-result: .competitive-verifier/result.json
+
+    - name: Upload merged verification result
+      uses: actions/upload-artifact@v4
+      with:
+        name: verify-merged-result
+        path: .competitive-verifier/result.json
+        retention-days: 1
 
     - name: Publish verification result mark
       if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -174,6 +169,38 @@ jobs:
         fi
         git -C "$mark_repo" commit -m "ci: update competitive-verifier result mark"
         git -C "$mark_repo" push origin HEAD:competitive-verifier-mark
+
+  docs:
+    needs: check
+    if: needs.check.result == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download verification files
+      uses: actions/download-artifact@v4
+      with:
+        name: verify-files
+        path: .
+
+    - name: Download bundled sources
+      uses: actions/download-artifact@v4
+      with:
+        name: verify-bundled
+        path: .competitive-verifier/bundled
+
+    - name: Download merged verification result
+      uses: actions/download-artifact@v4
+      with:
+        name: verify-merged-result
+        path: .competitive-verifier
+
+    - name: Set up competitive-verifier
+      uses: competitive-verifier/actions/setup@v2
+      with:
+        cache-pip: true
+        package: competitive-verifier==${{ env.COMPETITIVE_VERIFIER_VERSION }}
 
     - name: Generate documentation
       run: >-
