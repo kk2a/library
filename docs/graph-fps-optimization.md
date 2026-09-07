@@ -42,6 +42,12 @@
    Warshall-Floyd、Bellman-Ford、MST などは、`VertexCount` と `EdgeList`、必要なら `WeightedEdge` だけを要求する。
    `WeightedEdgeListGraph` が `Graph` を経由して隣接 access を要求している構造は見直す。
 
+   さらに、これらのアルゴリズムは graph オブジェクトではなく、頂点数と edge range を直接受け取る API を基本形にする。
+   例えば `minimum_spanning_tree(n, edges)`、`bellman_ford(n, edges, start)`、
+   `warshall_floyd(n, edges, directedness)` のような形にする。
+   directed / undirected は edge range だけから安全に推測できないため、必要なアルゴリズムでは明示的に渡す。
+   graph 型を受け取る overload が必要な場合も、この基本形へ変換する薄い adapter に留める。
+
 4. adjacency matrix は edge と同じ型を無理に要求せず、matrix entry 用の concept または graph view を用意する。
    simple graph 用の matrix と、多重辺を保持できる matrix を別の型または capability として扱う。
    多重辺を1セルにまとめる場合は、最小値・最後に追加した辺などの重複辺ポリシーを型の仕様にする。
@@ -62,12 +68,24 @@
 - adjacency matrix は `O(V^2)` のメモリを必要とするため、利用箇所を行列演算向けに限定し、一般 graph algorithm の入力に暗黙変換しない。
 - adjacency matrix は単純 graph 用と多重辺 graph 用を分ける。多重辺を扱う型では、セルを edge の集合にするか、明示的な集約関数を保持する。
 - edge list only の graph では adjacency list を構築せず、入力された `edges` をそのままアルゴリズムへ渡せるようにする。
+- edge list algorithm の入力を graph 全体から `n + edges` へ変更し、`g.edges` や edge id の内部配置に依存しないようにする。
+- edge range は所有権を持たない `std::ranges::input_range` として受け取り、ソートが必要な場合だけアルゴリズム内部で明示的にコピーする。
 
 ### アルゴリズム側の整理
 
 - BFS、Dijkstra、SCC、lowlink、tree algorithms について、隣接 access が必要な範囲に concept を限定する。
 - Warshall-Floyd、Bellman-Ford、MST について、edge list only の入力で動作する concept に分離する。
 - edge list が不要なアルゴリズムから `g.edges` 依存を除く。
+- shortest path は、(1) edge list algorithms、(2) vertex から outgoing edge range を取得する adjacency algorithms、
+  (3) graph 型からそれらへ接続する adapter の三層に分ける。
+  Bellman-Ford / Warshall-Floyd は (1)、BFS / Dijkstra は (2) に分類する。
+- adjacency algorithms では `operator[]` を直接要求せず、`out_edges(g, v)`、`target(g, e)`、
+  `weight(g, e)`、必要なら `edge_id(g, e)` のような共通 access point を要求する。
+  これにより dynamic list、static CSR、matrix view、外部の graph view を同じアルゴリズムに渡せるようにする。
+- edge descriptor は原則として opaque に扱い、`int` の連番や `g.edges[id]` への変換を一般 concept の要件にしない。
+  配列添字が必要な実装は、dense edge index を提供する別 capability を要求するか、アルゴリズム内部の index に変換する。
+- max-flow のように逆辺 id の規則や edge cost の直接変更に依存する処理は、一般 graph concept に押し込まず、
+  入力 graph から専用の residual graph を構築する。
 - 重みの型、距離の型、無限大の表現を分離し、`value_type` を距離型として暗黙利用しない箇所を確認する。
 - DFS の再帰深さ、priority queue の stale entry、不要な `vector` 初期化・コピーを benchmark で確認する。
 - graph view を導入する場合、元の graph の所有権を持たず、アルゴリズムの引数で一時 view を安全に渡せる形にする。
