@@ -12,12 +12,15 @@
 
 namespace kk2 {
 
-template <class mint> struct FormalPowerSeriesArbitrary
+template <fps::Modular mint> struct FormalPowerSeriesArbitrary
     : FormalPowerSeriesBase<FormalPowerSeriesArbitrary<mint>, mint> {
     using base = FormalPowerSeriesBase<FormalPowerSeriesArbitrary<mint>, mint>;
     using FPS = FormalPowerSeriesArbitrary<mint>;
     using base::FormalPowerSeriesBase;
     using base::operator*=; // 基底クラスのoperator*=を継承
+    using modulus_category = kk2::fps::category::arbitrary_modulus;
+    using series_category = kk2::fps::category::ordinary;
+    using variable_category = kk2::fps::category::univariate;
     static constexpr bool is_ntt_friendly = false;
 
     // CRTPを使った実装 - overrideは不要
@@ -52,7 +55,7 @@ template <class mint> struct FormalPowerSeriesArbitrary
     }
 };
 
-template <class mint> using FPSArb = FormalPowerSeriesArbitrary<mint>;
+template <fps::Modular mint> using FPSArb = FormalPowerSeriesArbitrary<mint>;
 
 } // namespace kk2
 

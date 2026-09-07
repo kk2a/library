@@ -1,4 +1,4 @@
-    #ifndef KK2_FPS_FPS_BASE_HPP
+#ifndef KK2_FPS_FPS_BASE_HPP
 #define KK2_FPS_FPS_BASE_HPP 1
 
 #include <algorithm>
@@ -8,11 +8,12 @@
 #include <vector>
 
 #include "../math_mod/inv_table.hpp"
+#include "../type_traits/fps.hpp"
 #include "../type_traits/io.hpp"
 
 namespace kk2 {
 
-template <class Derived, class mint> struct FormalPowerSeriesBase : std::vector<mint> {
+template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::vector<mint> {
     using std::vector<mint>::vector;
     using FPS = Derived;
     using ivta = InvTable<mint>;
@@ -21,7 +22,7 @@ template <class Derived, class mint> struct FormalPowerSeriesBase : std::vector<
     Derived &derived() { return static_cast<Derived &>(*this); }
     const Derived &derived() const { return static_cast<const Derived &>(*this); }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         os << "[";
         for (size_t i = 0; i < this->size(); i++) {
@@ -30,12 +31,12 @@ template <class Derived, class mint> struct FormalPowerSeriesBase : std::vector<
         os << "]";
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
+    template <OutputStream OStream> void output(OStream &os) const {
         for (size_t i = 0; i < this->size(); i++) {
             os << (*this)[i] << (i + 1 == this->size() ? "\n" : " ");
         }
     }
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const FPS &fps_) {
         for (size_t i = 0; i < fps_.size(); i++) {
             os << fps_[i] << (i + 1 == fps_.size() ? "" : " ");
@@ -43,12 +44,12 @@ template <class Derived, class mint> struct FormalPowerSeriesBase : std::vector<
         return os;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr> FPS &input(IStream &is) {
+    template <InputStream IStream> FPS &input(IStream &is) {
         for (size_t i = 0; i < this->size(); i++) is >> (*this)[i];
         return derived();
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, FPS &fps_) {
         for (auto &x : fps_) is >> x;
         return is;

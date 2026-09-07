@@ -12,12 +12,15 @@
 
 namespace kk2 {
 
-template <class mint> struct FormalPowerSeriesNTTFriendly
+template <fps::Modular mint> struct FormalPowerSeriesNTTFriendly
     : FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint> {
     using base = FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint>;
     using FPS = FormalPowerSeriesNTTFriendly<mint>;
     using base::FormalPowerSeriesBase;
     using base::operator*=; // 基底クラスのoperator*=を継承
+    using modulus_category = kk2::fps::category::ntt_friendly_modulus;
+    using series_category = kk2::fps::category::ordinary;
+    using variable_category = kk2::fps::category::univariate;
     static constexpr bool is_ntt_friendly = true;
 
     // CRTPを使った実装 - overrideは不要
@@ -104,7 +107,7 @@ template <class mint> struct FormalPowerSeriesNTTFriendly
     }
 };
 
-template <class mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;
+template <fps::Modular mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;
 
 } // namespace kk2
 

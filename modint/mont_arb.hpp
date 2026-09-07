@@ -35,7 +35,7 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
     ArbitraryLazyMontgomeryModIntBase() : _v(0) {}
 
-    template <class T, is_integral_t<T> * = nullptr> ArbitraryLazyMontgomeryModIntBase(const T &b)
+    template <Integral T> ArbitraryLazyMontgomeryModIntBase(const T &b)
         : _v(reduce(ULong(b % (Int)mod + mod) * n2)) {}
 
     static UInt reduce(const ULong &b) {
@@ -98,12 +98,12 @@ struct ArbitraryLazyMontgomeryModIntBase {
         return mint(m0);
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const mint &x) {
         return os << x.val();
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, mint &x) {
         Long t;
         is >> t;

@@ -47,7 +47,7 @@ struct Scanner : type_traits::istream_tag {
         while (isspace(now())) ++pos;
     }
 
-    template <class T, is_unsigned_t<T> * = nullptr> T next_unsigned_integral() {
+    template <UnsignedIntegral T> T next_unsigned_integral() {
         skip_space();
         T res{};
         while (isdigit(now())) {
@@ -57,7 +57,7 @@ struct Scanner : type_traits::istream_tag {
         return res;
     }
 
-    template <class T, is_signed_t<T> * = nullptr> T next_signed_integral() {
+    template <SignedIntegral T> T next_signed_integral() {
         skip_space();
         if (now() == '-') {
             ++pos;
@@ -84,12 +84,12 @@ struct Scanner : type_traits::istream_tag {
         return res;
     }
 
-    template <class T, is_unsigned_t<T> * = nullptr> Scanner &operator>>(T &x) {
+    template <UnsignedIntegral T> Scanner &operator>>(T &x) {
         x = next_unsigned_integral<T>();
         return *this;
     }
 
-    template <class T, is_signed_t<T> * = nullptr> Scanner &operator>>(T &x) {
+    template <SignedIntegral T> Scanner &operator>>(T &x) {
         x = next_signed_integral<T>();
         return *this;
     }
@@ -245,14 +245,14 @@ struct Printer : type_traits::ostream_tag {
         } else put_u128(x);
     }
 
-    template <class T, is_unsigned_t<T> * = nullptr> Printer &operator<<(T x) {
+    template <UnsignedIntegral T> Printer &operator<<(T x) {
         if constexpr (sizeof(T) <= 4) put_u32(x);
         else if constexpr (sizeof(T) <= 8) put_u64(x);
         else put_u128(x);
         return *this;
     }
 
-    template <class T, is_signed_t<T> * = nullptr> Printer &operator<<(T x) {
+    template <SignedIntegral T> Printer &operator<<(T x) {
         if constexpr (sizeof(T) <= 4) put_i32(x);
         else if constexpr (sizeof(T) <= 8) put_i64(x);
         else put_i128(x);

@@ -22,13 +22,13 @@ template <int Num> struct RollingHash {
     H a, pw, ipw;
     RollingHash() : a(0), pw(1), ipw(1) {}
     RollingHash(H a_, H pw_, H ipw_) : a(a_), pw(pw_), ipw(ipw_) {}
-    template <class T, is_integral_t<T> * = nullptr> RollingHash(T x)
+    template <Integral T> RollingHash(T x)
         : a(x),
           pw(base),
           ipw(inv_base) {}
 
     // s[0] * base^0 + s[1] * base^1 + ... + s[n-1] * base^(n-1)
-    template <class C, is_container_t<C> * = nullptr> RollingHash(const C &s)
+    template <Container C> RollingHash(const C &s)
         : a(0),
           pw(1),
           ipw(inv_base.pow(s.size())) {
@@ -44,7 +44,7 @@ template <int Num> struct RollingHash {
     bool operator==(const M &rhs) const { return a == rhs.a and pw == rhs.pw and ipw == rhs.ipw; }
     bool operator!=(const M &rhs) const { return a != rhs.a or pw != rhs.pw or ipw != rhs.ipw; }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         os << "(" << a << ", " << pw << ", " << ipw << ")";
     }

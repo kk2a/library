@@ -31,7 +31,7 @@ template <int NUM> struct DynamicRollingHash {
         d.resize(2 * siz);
         dsz.resize(2 * siz);
     }
-    template <class C, is_container_t<C> * = nullptr> DynamicRollingHash(const C &c) {
+    template <Container C> DynamicRollingHash(const C &c) {
         _n = c.size();
         lg = 0;
         extend_base(_n);

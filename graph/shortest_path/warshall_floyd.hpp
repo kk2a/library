@@ -17,7 +17,7 @@ template <typename T> struct wf_len {
     T len;
     bool inf, minf;
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         if (minf) os << "MINF";
         else if (inf) os << "INF";

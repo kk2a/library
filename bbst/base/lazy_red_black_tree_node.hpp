@@ -38,7 +38,7 @@ template <algebra::Action A_> struct LazyRedBlackTreeNode {
 
     LazyRedBlackTreeNode(NodePtr l, NodePtr r) : left(l), right(r), is_red(true), is_rev(false) {}
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         os << "[\n";
 

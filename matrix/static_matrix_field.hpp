@@ -44,20 +44,20 @@ template <int _H, int _W, class Field> struct StaticMatrixFiled {
         return res;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr> mat &input(IStream &is) {
+    template <InputStream IStream> mat &input(IStream &is) {
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) { is >> _mat[i][j]; }
         }
         return *this;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr> void output(OStream &os) const {
+    template <OutputStream OStream> void output(OStream &os) const {
         for (int i = 0; i < _h; i++) {
             for (int j = 0; j < _w; j++) os << _mat[i][j] << " \n"[j + 1 == _w];
         }
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     void debug_output(OStream &os) const {
         os << "(h, w): " << "(" << _h << ", " << _w << "), [\n";
         for (int i = 0; i < _h; i++) {

@@ -54,8 +54,7 @@ template <class mint> struct Comb {
         return fact(n) * ifact(k) * ifact(n - k);
     }
 
-    template <class T> static mint multinomial(const std::vector<T> &r) {
-        static_assert(is_integral<T>::value, "T must be integral");
+    template <Integral T> static mint multinomial(const std::vector<T> &r) {
         int n = 0;
         for (auto &x : r) {
             if (x < 0) return 0;

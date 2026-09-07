@@ -63,7 +63,7 @@ template <typename T, typename Compare> struct RationalBase {
     }
     friend bool operator<=(const B &lhs, const B &rhs) { return lhs == rhs or lhs < rhs; }
     friend bool operator>=(const B &lhs, const B &rhs) { return lhs == rhs or lhs > rhs; }
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const B &rhs) {
         return os << rhs.a << " / " << rhs.b;
     }

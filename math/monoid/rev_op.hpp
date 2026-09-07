@@ -1,6 +1,8 @@
 #ifndef KK2_MATH_MONOID_REV_OP_HPP
 #define KK2_MATH_MONOID_REV_OP_HPP 1
 
+#include "../../type_traits/io.hpp"
+
 namespace kk2 {
 
 namespace monoid {
@@ -18,12 +20,12 @@ template <class T> struct ReverseOp : public T {
 
     bool operator==(const M &rhs) const { return static_cast<T>(*this) == static_cast<T>(rhs); }
     bool operator!=(const M &rhs) const { return static_cast<T>(*this) != static_cast<T>(rhs); }
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const M &x) {
         os << static_cast<T>(x);
         return os;
     }
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, M &x) {
         is >> static_cast<T &>(x);
         return is;

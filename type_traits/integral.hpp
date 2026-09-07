@@ -58,6 +58,15 @@ template <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::val
 template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;
 template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;
 
+template <class T>
+concept Integral = is_integral<std::remove_cv_t<T>>::value;
+
+template <class T>
+concept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;
+
+template <class T>
+concept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;
+
 } // namespace kk2
 
 #endif // KK2_TYPE_TRAITS_INTERGRAL_HPP

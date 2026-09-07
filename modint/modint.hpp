@@ -35,12 +35,12 @@ template <int p> struct ModInt {
 
     constexpr ModInt() : _v(0) {}
 
-    template <class T, is_integral_t<T> * = nullptr> constexpr ModInt(T v) {
-        if constexpr (is_signed<T>::value) {
+    template <Integral T> constexpr ModInt(T v) {
+        if constexpr (SignedIntegral<T>) {
             v = v % (long long)(getmod());
             if (v < 0) v += getmod();
             _v = v;
-        } else if constexpr (is_unsigned<T>::value) {
+        } else if constexpr (UnsignedIntegral<T>) {
             _v = v %= getmod();
         } else {
             ModInt();
@@ -130,13 +130,13 @@ template <int p> struct ModInt {
         return m0;
     }
 
-    template <class OStream, is_ostream_t<OStream> * = nullptr>
+    template <OutputStream OStream>
     friend OStream &operator<<(OStream &os, const mint &mint_) {
         os << mint_._v;
         return os;
     }
 
-    template <class IStream, is_istream_t<IStream> * = nullptr>
+    template <InputStream IStream>
     friend IStream &operator>>(IStream &is, mint &mint_) {
         long long x;
         is >> x;
