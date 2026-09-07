@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../string/dynamic_rolling_hash.hpp"
 #include "../../../random/gen.hpp"

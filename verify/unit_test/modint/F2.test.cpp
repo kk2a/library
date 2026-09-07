@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../modint/F2.hpp"
 #include "../../../template/template.hpp"

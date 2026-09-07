@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B" 
+// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B
 
 #include "../../graph/graph.hpp"
 #include "../../graph/shortest_path/bellman_ford.hpp"

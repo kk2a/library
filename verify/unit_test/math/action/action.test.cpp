@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../../math/action/add_max.hpp"
 #include "../../../../math/action/add_max_min_sumwithsize.hpp"

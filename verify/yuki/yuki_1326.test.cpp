@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1326" 
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1326
 
 #include "../../graph/graph.hpp"
 #include "../../graph/tree/block_cut_tree.hpp"

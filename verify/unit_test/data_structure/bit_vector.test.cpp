@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../data_structure/bit_vector.hpp"
 #include "../../../random/gen.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_mod_2"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/matrix_det_mod_2
 
 #include "../../matrix/matrix_F2.hpp"
 #include "../../template/template.hpp"

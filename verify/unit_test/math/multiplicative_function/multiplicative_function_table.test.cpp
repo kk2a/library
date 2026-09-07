@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../../math/multiplicative_function/famous_function_table.hpp"
 #include "../../../../math/multiplicative_function/famous_function.hpp"

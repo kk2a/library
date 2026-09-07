@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../../math/monoid/affine.hpp"
 #include "../../../../math/monoid/hold.hpp"

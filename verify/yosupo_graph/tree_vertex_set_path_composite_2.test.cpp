@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_set_path_composite
 
 #include "../../graph/tree/heavy_light_decomposition.hpp"
 #include "../../graph/graph.hpp"

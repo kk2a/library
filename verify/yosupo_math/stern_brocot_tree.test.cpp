@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/stern_brocot_tree" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/stern_brocot_tree
 
 #include "../../math/stern_brocot_tree.hpp"
 #include "../../template/template.hpp"

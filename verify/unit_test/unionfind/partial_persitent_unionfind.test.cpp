@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../unionfind/partial_persistent.hpp"
 #include "../../../unionfind/unionfind.hpp"

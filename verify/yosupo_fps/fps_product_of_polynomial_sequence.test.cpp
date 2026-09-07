@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/product_of_polynomial_sequence" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/product_of_polynomial_sequence
 
 #include "../../fps/fps_ntt_friendly.hpp"
 #include "../../fps/product.hpp"

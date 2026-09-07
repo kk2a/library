@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum_large_array" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum_large_array
 
 #include "../../segment_tree/lazy.hpp"
 #include "../../math/action/affine_sumwithsize.hpp"

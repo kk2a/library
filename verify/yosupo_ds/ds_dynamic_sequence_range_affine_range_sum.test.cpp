@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
 
 #include "../../bbst/lazy_red_black_tree.hpp"
 #include "../../modint/mont.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/range_parallel_unionfind" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_parallel_unionfind
 
 #include "../../unionfind/parallel.hpp"
 #include "../../modint/mont.hpp"

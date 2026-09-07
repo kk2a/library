@@ -1,5 +1,5 @@
 // #define PROBLEM "https://yukicoder.me/problems/no/1510" 
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb
 
 #include "../../fps/fps_ntt_friendly.hpp"
 #include "../../fps/bbb.hpp"

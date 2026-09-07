@@ -1,4 +1,4 @@
-#define IGNORE
+// competitive-verifier: STANDALONE
 
 #include "../../../../math/group/add.hpp"
 #include "../../../../math/group/rolling_hash.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/bell_number" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bell_number
 
 #include "../../math_mod/bell_number.hpp"
 #include "../../fps/fps_ntt_friendly.hpp"

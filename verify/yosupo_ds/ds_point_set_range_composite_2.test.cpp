@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_set_range_composite
 
 #include "../../bbst/red_black_tree.hpp"
 #include "../../functional/reverse_args.hpp"

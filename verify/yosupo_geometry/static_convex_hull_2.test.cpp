@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/static_convex_hull" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_convex_hull
 
 #include "../../geometry/point.hpp"
 #include "../../geometry/static_convex_hull.hpp"

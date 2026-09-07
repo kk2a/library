@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/zalgorithm
 
 #include "../../string/static_rolling_hash.hpp"
 #include "../../template/template.hpp"

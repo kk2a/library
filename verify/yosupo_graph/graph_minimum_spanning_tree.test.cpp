@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/minimum_spanning_tree" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/minimum_spanning_tree
 
 #include "../../graph/graph.hpp"
 #include "../../graph/tree/minimum_spanning_tree.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
 
 #include "../../fps/fps_ntt_friendly.hpp"
 #include "../../modint/mont.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/polynomial_root_finding" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/polynomial_root_finding
 
 #include "../../fps/fps_ntt_friendly.hpp"
 #include "../../fps/poly_find_root.hpp"

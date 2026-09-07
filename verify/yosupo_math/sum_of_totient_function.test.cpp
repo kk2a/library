@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_totient_function
 
 // #include "../../math/multiplicative_function/euler_phi.hpp"
 #include "../../math/multiplicative_function/famous_function.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/segment_add_get_min
 
 #include "../../segment_tree/li_chao_tree.hpp"
 #include "../../template/template.hpp"

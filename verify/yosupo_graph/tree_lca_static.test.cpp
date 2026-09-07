@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/lca" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/lca
 
 #include "../../graph/static_graph.hpp"
 #include "../../graph/tree/heavy_light_decomposition.hpp"

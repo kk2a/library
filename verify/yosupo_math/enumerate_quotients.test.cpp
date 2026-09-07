@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/enumerate_quotients" 
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_quotients
 
 #include "../../math/enumerate_quotients.hpp"
 #include "../../template/template.hpp"
