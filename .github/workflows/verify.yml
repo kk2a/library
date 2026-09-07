@@ -32,7 +32,7 @@ jobs:
     - name: Resolve verification files
       uses: competitive-verifier/actions/oj-resolve@v2
       with:
-        include: verify
+        include: .
         config: .competitive-verifier/config.toml
         output-path: verify.json
 
