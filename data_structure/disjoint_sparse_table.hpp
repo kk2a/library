@@ -5,21 +5,23 @@
 #include <cassert>
 #include <vector>
 
+#include "../type_traits/algebra.hpp"
+
 namespace kk2 {
 
-template <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable {
+template <algebra::Monoid M> struct DisjointSparseTable {
     DisjointSparseTable() = default;
 
     DisjointSparseTable(int n) : _n(n) {
         log = 0;
         while ((1 << log) < _n) log++;
-        table.assign(log + 1, std::vector<S>(_n));
+        table.assign(log + 1, std::vector<M>(_n));
     }
 
-    DisjointSparseTable(const std::vector<S> &v) : _n(int(v.size())) {
+    DisjointSparseTable(const std::vector<M> &v) : _n(int(v.size())) {
         log = 0;
         while ((1 << log) < _n) log++;
-        table.assign(log + 1, std::vector<S>(_n));
+        table.assign(log + 1, std::vector<M>(_n));
         for (int i = 0; i < _n; ++i) table[0][i] = v[i];
         build();
     }
@@ -33,13 +35,13 @@ template <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable {
                 int cent = std::min(left + shift, _n);
                 table[i][cent - 1] = table[0][cent - 1];
                 for (int j = cent - 2; j >= left; --j) {
-                    table[i][j] = op(table[0][j], table[i][j + 1]);
+                    table[i][j] = M::op(table[0][j], table[i][j + 1]);
                 }
                 if (cent == _n) break;
                 table[i][cent] = table[0][cent];
                 int right = std::min(cent + shift, _n);
                 for (int j = cent + 1; j < right; ++j) {
-                    table[i][j] = op(table[i][j - 1], table[0][j]);
+                    table[i][j] = M::op(table[i][j - 1], table[0][j]);
                 }
             }
         }
@@ -48,27 +50,25 @@ template <class S, S (*op)(S, S), S (*e)()> struct DisjointSparseTable {
     template <class... Args> void init_set(int p, Args... args) {
         assert(0 <= p && p < _n);
         assert(!is_built);
-        table[0][p] = S(args...);
+        table[0][p] = M(args...);
     }
 
-    S prod(int l, int r) const {
+    M prod(int l, int r) const {
         assert(0 <= l && l <= r && r <= _n);
         assert(is_built);
-        if (l == r) return e();
+        if (l == r) return M::unit();
         if (l + 1 == r) return table[0][l];
         --r;
         int pos = 31 ^ __builtin_clz(l ^ r);
-        return op(table[pos][l], table[pos][r]);
+        return M::op(table[pos][l], table[pos][r]);
     }
 
   private:
     int _n, log;
-    std::vector<std::vector<S>> table;
+    std::vector<std::vector<M>> table;
     std::vector<int> lookup;
     bool is_built = false;
 };
-
-template <class M> using DisjointSparseTableS = DisjointSparseTable<M, M::op, M::unit>;
 
 } // namespace kk2
 

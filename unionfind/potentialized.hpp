@@ -59,20 +59,6 @@ template <class A, bool right = true> struct PotentializedUnionFind {
     }
 };
 
-template <class A, A (*op)(A, A), A (*e)(), A (*inv)(A)> struct EasyGroup {
-    A val;
-
-    EasyGroup() : val(e()) {}
-
-    template <class... Args> EasyGroup(Args... args) : val(args...) {}
-
-    EasyGroup operator+(const EasyGroup &rhs) const { return EasyGroup(op(val, rhs.val)); }
-
-    EasyGroup operator-(const EasyGroup &rhs) const { return EasyGroup(op(val, inv(rhs.val))); }
-
-    EasyGroup operator-() const { return EasyGroup(inv(val)); }
-};
-
 } // namespace kk2
 
 #endif // KK2_UNIONFIND_POTENTIALIZED_HPP

@@ -8,6 +8,12 @@ using namespace std;
 struct S {
     kk2::mont998 a, b;
     int size;
+
+    static S op(S l, S r) {
+        return S{r.a * l.a, r.a * l.b + r.b, l.size + r.size};
+    }
+
+    static S unit() { return S{1, 0, 0}; }
 };
 
 template <class IStream> IStream &operator>>(IStream &is, S &s) {
@@ -27,6 +33,13 @@ S e() {
 struct F {
     S a;
     bool id;
+
+    static F op(F l, F r) {
+        if (l.id) return r;
+        return l;
+    }
+
+    static F unit() { return F{S::unit(), true}; }
 };
 
 S mapping(F f, S x) {
@@ -42,8 +55,15 @@ F composition(F l, F r) {
 }
 
 F id() {
-    return F{S{1, 0, 0}, true};
+    return F::unit();
 }
+
+struct RangeSetRangeComposite {
+    using S = ::S;
+    using A = ::F;
+
+    static S act(A f, S x) { return mapping(f, x); }
+};
 
 int main() {
     int n, q;
@@ -51,7 +71,7 @@ int main() {
     vector<S> a(n);
     kin >> a;
 
-    kk2::LazySegmentTree<S, op, e, F, mapping, composition, id> seg(a);
+    kk2::LazySegmentTree<RangeSetRangeComposite> seg(a);
 
     rep (q) {
         int t;

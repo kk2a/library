@@ -12,7 +12,7 @@ int main() {
     kin >> n >> q;
     vc<A::S> a(n);
     kin >> a;
-    kk2::LazySegmentTreeS<A> seg(a);
+    kk2::LazySegmentTree<A> seg(a);
 
     rep (q) {
         int t;

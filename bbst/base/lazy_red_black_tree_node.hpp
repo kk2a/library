@@ -2,12 +2,13 @@
 #define KK2_BBST_BASE_LAZY_RED_BLACK_TREE_NODE_HPP 1
 
 #include "../../type_traits/io.hpp"
+#include "../../type_traits/algebra.hpp"
 
 namespace kk2 {
 
 namespace rbtree {
 
-template <class A_> struct LazyRedBlackTreeNode {
+template <algebra::Action A_> struct LazyRedBlackTreeNode {
     using LazyRedBlackTreeNode_t = LazyRedBlackTreeNode<A_>;
     using NodePtr = LazyRedBlackTreeNode_t *;
     using action_type = A_;

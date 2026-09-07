@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group" 
+#define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group"
 
 #include "../../modint/modint.hpp"
 #include "../../unionfind/potentialized.hpp"
@@ -7,7 +7,7 @@ using namespace std;
 
 struct A {
     kk2::mint998 a00, a01, a10, a11;
-    bool operator==(const A& r) const {
+    bool operator==(const A &r) const {
         return a00 == r.a00 && a01 == r.a01 && a10 == r.a10 && a11 == r.a11;
     }
 };
@@ -21,15 +21,18 @@ A op(A l, A r) {
     };
 }
 
-A e() {
-    return A{1, 0, 0, 1};
-}
+A e() { return A{1, 0, 0, 1}; }
 
-A inv(A a) {
-    return A{a.a11, -a.a01, -a.a10, a.a00};
-}
+A inv(A a) { return A{a.a11, -a.a01, -a.a10, a.a00}; }
 
-using Ab = kk2::EasyAbelianGroup<A, op, e, inv>;
+struct Ab {
+    A val;
+    Ab() : val(e()) {}
+    Ab(A val_) : val(val_) {}
+    Ab operator+(const Ab &r) const { return Ab(op(val, r.val)); }
+    Ab operator-(const Ab &r) const { return Ab(op(val, inv(r.val))); }
+    Ab operator-() const { return Ab(inv(val)); }
+};
 
 int main() {
     int n, q;
@@ -48,7 +51,7 @@ int main() {
                 kout << (puf.diff(v, u).val == x) << "\n";
             } else {
                 kout << "1\n";
-                puf.unite(v, u, x);
+                puf.unite(v, u, Ab(x));
             }
         } else {
             int u, v;
