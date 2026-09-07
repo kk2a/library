@@ -46,6 +46,14 @@ jobs:
         path: verify.json
         retention-days: 1
 
+    - name: Upload bundled sources
+      uses: actions/upload-artifact@v4
+      with:
+        name: verify-bundled
+        path: .competitive-verifier/bundled
+        include-hidden-files: true
+        retention-days: 1
+
   verify:
     needs: resolve
     runs-on: ubuntu-latest
@@ -114,6 +122,12 @@ jobs:
         name: verify-files
         path: .
 
+    - name: Download bundled sources
+      uses: actions/download-artifact@v4
+      with:
+        name: verify-bundled
+        path: .competitive-verifier/bundled
+
     - name: Download verification results
       uses: actions/download-artifact@v4
       with:
@@ -136,14 +150,6 @@ jobs:
       uses: competitive-verifier/actions/check@v2
       with:
         verify-result: .competitive-verifier/result.json
-
-    - name: Generate documentation
-      run: >-
-        competitive-verifier docs
-        --verify-json verify.json
-        --destination .competitive-verifier/_jekyll
-        --check-error
-        .competitive-verifier/result.json
 
     - name: Publish verification result mark
       if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -168,6 +174,14 @@ jobs:
         fi
         git -C "$mark_repo" commit -m "ci: update competitive-verifier result mark"
         git -C "$mark_repo" push origin HEAD:competitive-verifier-mark
+
+    - name: Generate documentation
+      run: >-
+        competitive-verifier docs
+        --verify-json verify.json
+        --destination .competitive-verifier/_jekyll
+        --check-error
+        .competitive-verifier/result.json
 
     - name: Publish documentation
       if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
