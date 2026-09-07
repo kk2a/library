@@ -251,7 +251,7 @@ data:
   - math_mod/comb_large.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-07 22:58:43+09:00'
+  timestamp: '2026-09-07 23:25:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp

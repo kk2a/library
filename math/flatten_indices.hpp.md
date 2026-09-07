@@ -58,7 +58,7 @@ data:
   path: math/flatten_indices.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-07 22:58:43+09:00'
+  timestamp: '2026-09-07 23:25:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/flatten_indices.hpp

@@ -960,7 +960,7 @@ data:
     memory: 45.376
     name: unbalanced_02
     status: AC
-  timestamp: '2026-09-07 22:58:43+09:00'
+  timestamp: '2026-09-07 23:25:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp

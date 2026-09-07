@@ -901,7 +901,7 @@ data:
     memory: 3.844
     name: zero_00
     status: AC
-  timestamp: '2026-09-07 22:58:43+09:00'
+  timestamp: '2026-09-07 23:25:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp

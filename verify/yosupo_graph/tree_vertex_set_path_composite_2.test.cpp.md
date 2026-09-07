@@ -826,7 +826,7 @@ data:
     memory: 37.732
     name: worst_for_path_decomposition_01
     status: AC
-  timestamp: '2026-09-07 22:58:43+09:00'
+  timestamp: '2026-09-07 23:25:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp

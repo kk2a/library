@@ -935,7 +935,7 @@ data:
     memory: 15.152
     name: small_dense_04
     status: AC
-  timestamp: '2026-09-07 22:58:43+09:00'
+  timestamp: '2026-09-07 23:25:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_sparse_log.test.cpp

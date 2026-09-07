@@ -515,7 +515,7 @@ data:
     memory: 3.952
     name: zero_or_inf_00
     status: AC
-  timestamp: '2026-09-07 22:58:43+09:00'
+  timestamp: '2026-09-07 23:25:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/rational_approximation.test.cpp

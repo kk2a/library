@@ -286,7 +286,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - fps/fps_multivariate.hpp
-  timestamp: '2026-09-07 22:58:43+09:00'
+  timestamp: '2026-09-07 23:25:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/type_traits/fps/fps.test.cpp
