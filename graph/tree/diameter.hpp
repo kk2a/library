@@ -21,7 +21,7 @@ template <graph::Graph G> struct result {
 template <graph::UnweightedGraph G> result<G> tree_diameter(const G &g) {
     std::vector<int> dist(g.size(), -1), par(g.size(), -1);
     auto dfs = [&](auto self, int now) -> void {
-        for (auto &e : g[now]) {
+        for (auto e : g[now]) {
             if ((int)e == par[now]) continue;
             par[(int)e] = now;
             dist[(int)e] = dist[now] + 1;
@@ -46,7 +46,7 @@ template <graph::WeightedGraph G> result<G> tree_diameter(const G &g) {
     std::vector<int> par(g.size(), -1);
 
     auto dfs = [&](auto self, int now) -> void {
-        for (auto &e : g[now]) {
+        for (auto e : g[now]) {
             if ((int)e == par[now]) continue;
             par[(int)e] = now;
             dist[(int)e] = dist[now] + e.cost;

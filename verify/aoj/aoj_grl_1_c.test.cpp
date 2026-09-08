@@ -1,6 +1,6 @@
 // competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
 
-#include "../../graph/graph.hpp"
+#include "../../graph/matrix.hpp"
 #include "../../graph/shortest_path/warshall_floyd.hpp"
 #include "../../template/template.hpp"
 using namespace std;
