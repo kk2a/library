@@ -31,7 +31,7 @@ template <graph::DirectedGraph G> struct SCC {
         auto dfs = [&](auto self, int u) -> void {
             if (used[u]) return;
             used[u] = true;
-            for (auto &e : g[u]) self(self, e.to);
+            for (auto e : g[u]) self(self, e.to);
             ord.emplace_back(u);
         };
         auto rdfs = [&](auto self, int u, int k) -> void {
@@ -48,7 +48,7 @@ template <graph::DirectedGraph G> struct SCC {
         scc_id.resize(n, -1);
         revg.resize(n);
         for (int u = 0; u < n; u++)
-            for (auto &e : g[u]) { revg[e.to].emplace_back(u); }
+            for (auto e : g[u]) { revg[e.to].emplace_back(u); }
         int k = 0;
         for (auto &u : ord)
             if (scc_id[u] == -1) rdfs(rdfs, u, k++);
@@ -57,7 +57,7 @@ template <graph::DirectedGraph G> struct SCC {
         blng.resize(k);
         for (int u = 0; u < n; u++) {
             blng[scc_id[u]].emplace_back(u);
-            for (auto &e : g[u]) {
+            for (auto e : g[u]) {
                 int v = e.to;
                 if (scc_id[u] == scc_id[v]) continue;
                 dag[scc_id[u]].emplace_back(scc_id[v]);

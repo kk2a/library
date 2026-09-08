@@ -8,8 +8,7 @@ using namespace std;
 int main() {
     int n, m;
     kin >> n >> m;
-    kk2::SAdjList g(n, m);
-    g.input(kin);
+    kk2::SAdjList g(n, m, kin);
     if (const auto res = kk2::cycle_detection(g); res) {
         kout << res->size() << '\n';
         kout << res->vertices << '\n';

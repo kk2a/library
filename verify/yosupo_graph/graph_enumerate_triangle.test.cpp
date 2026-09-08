@@ -13,8 +13,7 @@ int main() {
     kin >> n >> m;
     vc<mint> x(n);
     kin >> x;
-    kk2::SAdjList g(n, m);
-    g.input(kin);
+    kk2::SAdjList g(n, m, kin);
     mint res = 0;
     kk2::enumerate_triangle<kk2::SAdjList, kk2::SDAdjList>(g, [&](int u, int v, int w) {
         res += x[u] * x[v] * x[w];

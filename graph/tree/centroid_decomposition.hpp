@@ -30,7 +30,7 @@ template <graph::UndirectedGraph G> struct CentroidDecomposition {
 
     int get_size(int now, int par) {
         subsize[now] = 1;
-        for (auto &e : g[now]) {
+        for (auto e : g[now]) {
             if (e.to == par or used[e.to]) continue;
             subsize[now] += get_size(e.to, now);
         }
@@ -38,7 +38,7 @@ template <graph::UndirectedGraph G> struct CentroidDecomposition {
     }
 
     int get_centroid(int now, int par, int mid) {
-        for (auto &e : g[now]) {
+        for (auto e : g[now]) {
             if (e.to == par or used[e.to]) continue;
             if (subsize[e.to] > mid) return get_centroid(e.to, now, mid);
         }
@@ -48,7 +48,7 @@ template <graph::UndirectedGraph G> struct CentroidDecomposition {
     int build_dfs(int v) {
         int centroid = get_centroid(v, -1, get_size(v, -1) / 2);
         used[centroid] = true;
-        for (auto &e : g[centroid]) {
+        for (auto e : g[centroid]) {
             if (used[e.to]) continue;
             int nxt = build_dfs(e.to);
             if (centroid != nxt) {

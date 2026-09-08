@@ -1,24 +1,28 @@
 #ifndef KK2_GRAPH_TREE_MINIMUM_SPANNING_TREE_HPP
 #define KK2_GRAPH_TREE_MINIMUM_SPANNING_TREE_HPP 1
 
-#include <utility>
 #include <algorithm>
+#include <ranges>
+#include <type_traits>
+#include <utility>
+#include <vector>
 
 #include "../../type_traits/graph.hpp"
 #include "../../unionfind/unionfind.hpp"
 
 namespace kk2 {
 
-template <graph::WeightedUndirectedEdgeListGraph G> auto minimum_spanning_tree(const G &g) {
+template <graph::WeightedEdgeRange E> auto minimum_spanning_tree(int n, const E &input_edges) {
 
-    using value_type = typename G::value_type;
+    using edge_type = std::ranges::range_value_t<E>;
+    using value_type = std::remove_cvref_t<decltype(std::declval<edge_type>().cost)>;
 
-    auto edges = g.edges;
+    std::vector<edge_type> edges(std::ranges::begin(input_edges), std::ranges::end(input_edges));
     std::sort(edges.begin(), edges.end(), [](const auto &e1, const auto &e2) {
         return e1.cost < e2.cost;
     });
-    UnionFind uf(g.num_vertices());
-    std::vector<int> idxs(g.num_vertices() - 1);
+    UnionFind uf(n);
+    std::vector<int> idxs(n - 1);
     value_type total_cost = 0;
     int i = 0;
     for (auto &&e : edges) {

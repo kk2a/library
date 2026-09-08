@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <cassert>
 #include <limits>
+#include <ranges>
+#include <type_traits>
+#include <utility>
 #include <vector>
 
 #include "../../type_traits/io.hpp"
@@ -25,13 +28,13 @@ template <typename T> struct wf_len {
     }
 };
 
-template <graph::WeightedEdgeListGraph WG, typename T = typename WG::value_type>
-std::vector<std::vector<wf_len<T>>> warshall_froyd(const WG &g) {
+template <graph::WeightedEdgeRange E,
+          typename T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>
+std::vector<std::vector<wf_len<T>>> warshall_froyd(int n, const E &edges, bool directed) {
 
-    int n = g.size();
     std::vector<std::vector<wf_len<T>>> res(n, std::vector<wf_len<T>>(n, {0, true, false}));
     for (int i = 0; i < n; ++i) res[i][i] = {0, false, false};
-    for (auto &&e : g.edges) {
+    for (auto &&e : edges) {
         {
             auto &[len, inf, minf] = res[e.from][e.to];
             if (inf or len > e.cost) {
@@ -39,7 +42,7 @@ std::vector<std::vector<wf_len<T>>> warshall_froyd(const WG &g) {
                 inf = false;
             }
         }
-        if constexpr (!WG::directed) {
+        if (!directed) {
             auto &[len, inf, minf] = res[e.to][e.from];
             if (inf or len > e.cost) {
                 len = e.cost;

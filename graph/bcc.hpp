@@ -22,7 +22,7 @@ template <graph::UndirectedGraph G> struct BCC : LowLink<G> {
             comp_e[ei] = k;
         };
         auto dfs = [&](auto self, int u, int k = -1, int ei = -1) -> void {
-            for (auto &e : this->g[u]) {
+            for (auto e : this->g[u]) {
                 if (e.id == ei) continue;
                 if (this->used_on_dfs_tree[e.id]) {
                     int nk = k;

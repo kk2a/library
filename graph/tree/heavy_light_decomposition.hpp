@@ -72,25 +72,33 @@ template <graph::UndirectedGraph G> struct HeavyLightDecomposition {
 
   private:
     void init() {
+        auto swap_edges = [&](int v, int i, int j) {
+            if constexpr (requires { g.swap_edges(v, i, j); }) g.swap_edges(v, i, j);
+            else std::swap(g[v][i], g[v][j]);
+        };
         auto dfs_sz = [&](auto self, int now) -> void {
             sz[now] = 1;
-            for (auto &e : g[now]) {
-                if ((int)e == par[now]) {
-                    if (g[now].size() >= 2 and e == g[now][0]) std::swap(e, g[now][1]);
-                    else continue;
+            for (int i = 0; i < (int)g[now].size(); ++i) {
+                if (g[now][i].to == par[now]) {
+                    if (g[now].size() >= 2 and g[now][i].id == g[now][0].id) {
+                        swap_edges(now, i, 1);
+                    } else {
+                        continue;
+                    }
                 }
-                par[(int)e] = now;
-                dep[(int)e] = dep[now] + 1;
-                self(self, (int)e);
-                sz[now] += sz[(int)e];
-                if (sz[(int)e] > sz[(int)g[now][0]]) std::swap(e, g[now][0]);
+                const int child = g[now][i].to;
+                par[child] = now;
+                dep[child] = dep[now] + 1;
+                self(self, child);
+                sz[now] += sz[child];
+                if (sz[child] > sz[g[now][0].to]) swap_edges(now, i, 0);
             }
         };
         dfs_sz(dfs_sz, root);
 
         auto dfs_hld = [&](auto self, int now) -> void {
             in[now] = id++;
-            for (auto &e : g[now]) {
+            for (auto e : g[now]) {
                 if ((int)e == par[now]) continue;
                 head[(int)e] = ((int)e == (int)g[now][0] ? head[now] : (int)e);
                 edge_idx[e.id] = id;
