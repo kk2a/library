@@ -15,7 +15,22 @@ env:
   VERIFY_SPLIT_SIZE: 20
 
 jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install clang-format
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang-format
+
+    - name: Check formatting
+      run: bash scripts/check_format.sh
+
   resolve:
+    needs: format
     runs-on: ubuntu-latest
 
     steps:
@@ -108,6 +123,51 @@ jobs:
         path: result-${{ matrix.split-index }}.json
         retention-days: 1
 
+  coverage:
+    needs: format
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+
+    - name: Install gcovr
+      run: python3 -m pip install --disable-pip-version-check gcovr==8.6
+
+    - name: Generate standalone coverage
+      run: >-
+        python3 scripts/standalone_coverage.py
+        --output .competitive-verifier/coverage
+        --build-directory .competitive-verifier/coverage-build
+        --jobs 4
+        --timeout 10
+
+    - name: Add coverage summary
+      if: always()
+      run: |
+        {
+          echo '## Standalone coverage'
+          echo
+          echo '```text'
+          if [ -f .competitive-verifier/coverage/summary.txt ]; then
+            cat .competitive-verifier/coverage/summary.txt
+          else
+            echo 'Coverage generation failed before producing a summary.'
+          fi
+          echo '```'
+        } >> "$GITHUB_STEP_SUMMARY"
+
+    - name: Upload standalone coverage
+      uses: actions/upload-artifact@v4
+      with:
+        name: standalone-coverage
+        path: .competitive-verifier/coverage
+        retention-days: 7
+
   check:
     needs: verify
     if: always()
@@ -171,8 +231,8 @@ jobs:
         git -C "$mark_repo" push origin HEAD:competitive-verifier-mark
 
   docs:
-    needs: check
-    if: needs.check.result == 'success'
+    needs: [check, coverage]
+    if: needs.check.result == 'success' && needs.coverage.result == 'success'
     runs-on: ubuntu-latest
 
     steps:
@@ -196,6 +256,12 @@ jobs:
         name: verify-merged-result
         path: .competitive-verifier
 
+    - name: Download standalone coverage
+      uses: actions/download-artifact@v4
+      with:
+        name: standalone-coverage
+        path: .competitive-verifier/coverage
+
     - name: Set up competitive-verifier
       uses: competitive-verifier/actions/setup@v2
       with:
@@ -209,6 +275,9 @@ jobs:
         --destination .competitive-verifier/_jekyll
         --check-error
         .competitive-verifier/result.json
+
+    - name: Add standalone coverage page
+      run: cp -R .competitive-verifier/coverage .competitive-verifier/_jekyll/coverage
 
     - name: Publish documentation
       if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
