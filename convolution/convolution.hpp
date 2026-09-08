@@ -2,6 +2,7 @@
 #define KK2_CONVOLUTION_CONVOLUTION_HPP 1
 
 #include <algorithm>
+#include <ranges>
 #include <vector>
 
 #include "../fps/fps_sparsity_detector.hpp"

@@ -8,8 +8,7 @@ using namespace std;
 int main() {
     int n, m, s;
     kin >> n >> m >> s;
-    kk2::DWAdjList<int> g(n, m);
-    g.input(kin);
+    kk2::DWAdjList<int> g(n, m, kin);
     auto [dist, prev] = kk2::bellman_ford(n, g.edges, s);
 
     rep (i, n) {

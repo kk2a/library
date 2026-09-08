@@ -29,35 +29,49 @@ template <class T, bool is_directed> struct AdjacencyList {
 
     adjacency_container data;
     edge_collection edges;
+    int pending_input_edges = 0;
 
     AdjacencyList() = default;
     AdjacencyList(int n_) : data(n_) {}
     // input を使うことが前提
-    AdjacencyList(int n_, int m_) : data(n_), edges(m_) {}
-    AdjacencyList(int n_, const edge_collection &edges_) : data(n_), edges(edges_.size()) {
+    AdjacencyList(int n_, int m_) : data(n_), pending_input_edges(m_) { edges.reserve(m_); }
+    template <InputStream IStream>
+    AdjacencyList(int n_, int m_, IStream &is, bool oneindexed = false)
+        : AdjacencyList(n_, m_) {
+        input(is, oneindexed);
+    }
+    AdjacencyList(int n_, const edge_collection &edges_) : data(n_) {
+        edges.reserve(edges_.size());
         _reserve_adjacency(edges_);
-        for (auto &&e : edges_) _add_edge<true>(e.from, e.to, e.cost, e.id);
+        for (auto &&e : edges_) _add_edge_with_id(e.from, e.to, e.cost, e.id);
     }
 
     inline int num_vertices() const { return data.size(); }
     inline int size() const { return data.size(); }
-    inline int num_edges() const { return edges.size(); }
+    inline int num_edges() const { return pending_input_edges ? pending_input_edges : edges.size(); }
     out_edges &operator[](int k) { return data[k]; }
     const out_edges &operator[](int k) const { return data[k]; }
     void edge_clear() { *this = AdjacencyList(num_vertices()); }
-    void add_edge(int from, int to, T cost = T{}) { _add_edge<false>(from, to, cost, num_edges()); }
+    void add_edge(int from, int to, T cost = T{}) {
+        assert(!pending_input_edges);
+        _add_edge<false>(from, to, cost, num_edges());
+    }
     void add_vertex(int n = 1) { data.insert(data.end(), n, out_edges()); }
 
     template <InputStream IStream>
     AdjacencyList &input(IStream &is, bool oneindexed = false) {
+        const int m = pending_input_edges ? pending_input_edges : edges.size();
+        pending_input_edges = 0;
+        edges.clear();
+        edges.reserve(m);
         std::vector<int> degree(num_vertices());
-        for (int i = 0; i < num_edges(); i++) {
+        for (int i = 0; i < m; i++) {
             int u, v;
             T w{};
             is >> u >> v;
             if constexpr (weighted) is >> w;
             if (oneindexed) --u, --v;
-            edges[i] = edge_type(v, w, u, i);
+            edges.emplace_back(v, w, u, i);
             ++degree[u];
             if constexpr (!is_directed) {
                 if (u != v) ++degree[v];
@@ -106,11 +120,18 @@ template <class T, bool is_directed> struct AdjacencyList {
         else edges.emplace_back(to, cost, from, id);
     }
 
+    void _add_edge_with_id(int from, int to, T cost, int id) {
+        data[from].emplace_back(to, cost, from, id);
+        if (!is_directed and from != to) data[to].emplace_back(from, cost, to, id);
+        edges.emplace_back(to, cost, from, id);
+    }
+
   public:
     AdjacencyList reverse() const {
-        AdjacencyList res(num_vertices(), num_edges());
+        AdjacencyList res(num_vertices());
+        res.edges.reserve(edges.size());
         res._reserve_adjacency(edges);
-        for (auto &&e : edges) res._add_edge<true>(e.to, e.from, e.cost, e.id);
+        for (auto &&e : edges) res._add_edge_with_id(e.to, e.from, e.cost, e.id);
         return res;
     }
 };

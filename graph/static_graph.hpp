@@ -31,20 +31,28 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
     edge_collection edges;
     adjacency_container data;
     bool is_built = false;
+    int pending_input_edges = 0;
 
     StaticAdjacencyList() = default;
     StaticAdjacencyList(int n_) : head(n_) {}
-    StaticAdjacencyList(int n_, int m_) : head(n_), edges(m_) {}
-    StaticAdjacencyList(int n_, const edge_collection &edges_) : head(n_), edges(edges_.size()) {
-        for (auto &&e : edges_) _add_edge<true>(e.from, e.to, e.cost, e.id);
+    StaticAdjacencyList(int n_, int m_) : head(n_), pending_input_edges(m_) { edges.reserve(m_); }
+    template <InputStream IStream>
+    StaticAdjacencyList(int n_, int m_, IStream &is, bool oneindexed = false)
+        : StaticAdjacencyList(n_, m_) {
+        input(is, oneindexed);
+    }
+    StaticAdjacencyList(int n_, const edge_collection &edges_) : head(n_) {
+        edges.reserve(edges_.size());
+        for (auto &&e : edges_) _add_edge_with_id(e.from, e.to, e.cost, e.id);
         build();
     }
 
     inline int num_vertices() const { return head.size(); }
     inline int size() const { return head.size(); }
-    inline int num_edges() const { return edges.size(); }
+    inline int num_edges() const { return pending_input_edges ? pending_input_edges : edges.size(); }
     void add_edge(int from, int to, T cost = T{}) {
         assert(!is_built);
+        assert(!pending_input_edges);
         _add_edge<false>(from, to, cost, num_edges());
     }
     void add_vertex(int n = 1) {
@@ -70,13 +78,17 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
     template <InputStream IStream>
     StaticAdjacencyList &input(IStream &is, bool oneindexed = false) {
         assert(!is_built);
-        for (int i = 0; i < num_edges(); i++) {
+        const int m = pending_input_edges ? pending_input_edges : edges.size();
+        pending_input_edges = 0;
+        edges.clear();
+        edges.reserve(m);
+        for (int i = 0; i < m; i++) {
             int u, v;
             T w{};
             is >> u >> v;
             if constexpr (weighted) is >> w;
             if (oneindexed) --u, --v;
-            _add_edge<true>(u, v, w, i);
+            _add_edge<false>(u, v, w, i);
         }
 
         build();
@@ -121,10 +133,17 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
         else edges.emplace_back(to, cost, from, id);
     }
 
+    void _add_edge_with_id(int from, int to, T cost, int id) {
+        head[from]++;
+        if (!is_directed and from != to) head[to]++;
+        edges.emplace_back(to, cost, from, id);
+    }
+
   public:
     StaticAdjacencyList reverse() const {
-        StaticAdjacencyList res(num_vertices(), num_edges());
-        for (auto &&e : edges) res._add_edge<true>(e.to, e.from, e.cost, e.id);
+        StaticAdjacencyList res(num_vertices());
+        res.edges.reserve(edges.size());
+        for (auto &&e : edges) res._add_edge_with_id(e.to, e.from, e.cost, e.id);
         res.build();
         return res;
     }
