@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     int t;
     kin >> t;
-    rep (t) {
+    rep(t) {
         i128 a, b;
         kin >> a >> b;
         kout << a + b << "\n";

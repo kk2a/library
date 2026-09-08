@@ -1,8 +1,9 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
+// competitive-verifier: PROBLEM
+// https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
 
 #include "../../bbst/lazy_red_black_tree.hpp"
-#include "../../modint/mont.hpp"
 #include "../../math/action/affine_sumwithsize.hpp"
+#include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
@@ -17,7 +18,7 @@ int main() {
     kin >> a;
     kk2::LazyRedBlackTree<A> rbt(2 * (n + q));
     auto t = rbt.build(a);
-    rep (i, q) {
+    rep(i, q) {
         int type;
         kin >> type;
         if (type == 0) {

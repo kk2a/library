@@ -20,13 +20,11 @@ template <class T> struct ReverseOp : public T {
 
     bool operator==(const M &rhs) const { return static_cast<T>(*this) == static_cast<T>(rhs); }
     bool operator!=(const M &rhs) const { return static_cast<T>(*this) != static_cast<T>(rhs); }
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const M &x) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const M &x) {
         os << static_cast<T>(x);
         return os;
     }
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, M &x) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, M &x) {
         is >> static_cast<T &>(x);
         return is;
     }

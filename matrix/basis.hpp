@@ -150,8 +150,8 @@ template <class Matrix, class Field> struct BasisBase {
 
 } // namespace linear_algebra
 
-template <class Matrix> using BasisMatrix =
-    linear_algebra::BasisBase<Matrix, typename Matrix::value_type>;
+template <class Matrix>
+using BasisMatrix = linear_algebra::BasisBase<Matrix, typename Matrix::value_type>;
 
 } // namespace kk2
 

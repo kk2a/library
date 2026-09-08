@@ -19,8 +19,7 @@ struct result {
     int size() const { return edges.size(); }
 };
 
-template <graph::UndirectedGraph G>
-std::optional<result> cycle_detection(const G &g) {
+template <graph::UndirectedGraph G> std::optional<result> cycle_detection(const G &g) {
     std::vector<int> edges, vertices;
     std::vector<int> buf(g.num_vertices(), -1);
     auto dfs = [&](auto self, int now, int ei, int dep) -> int {
@@ -55,8 +54,7 @@ std::optional<result> cycle_detection(const G &g) {
     return {};
 }
 
-template <graph::DirectedGraph G>
-std::optional<result> cycle_detection(const G &g) {
+template <graph::DirectedGraph G> std::optional<result> cycle_detection(const G &g) {
     std::vector<int> edges, vertices;
 
     // buf[i] = x

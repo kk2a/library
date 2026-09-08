@@ -1,6 +1,7 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/longest_increasing_subsequence
 
 #include "../../others/longest_increasing_subsequence.hpp"
+
 #include "../../template/template.hpp"
 using namespace std;
 

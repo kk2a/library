@@ -1,8 +1,8 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
 
 #include "../../fps/fps_ntt_friendly.hpp"
-#include "../../modint/mont.hpp"
 #include "../../math_mod/stirling_number.hpp"
+#include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 

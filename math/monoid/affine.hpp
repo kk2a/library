@@ -12,7 +12,7 @@ template <class S> struct Affine {
     using M = Affine;
     S a, b; // x \mapsto ax + b
 
-    Affine() : a(S(1)), b(S(0)) {};
+    Affine() : a(S(1)), b(S(0)){};
     Affine(S a, S b) : a(a), b(b) {}
     inline S eval(S x) const { return a * x + b; }
     // l \circ r
@@ -22,13 +22,11 @@ template <class S> struct Affine {
     bool operator==(const M &rhs) const { return a == rhs.a and b == rhs.b; }
     bool operator!=(const M &rhs) const { return a != rhs.a or b != rhs.b; }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const M &x) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const M &x) {
         return os << x.a << " " << x.b;
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, M &x) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, M &x) {
         return is >> x.a >> x.b;
     }
 };

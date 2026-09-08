@@ -1,6 +1,7 @@
 // competitive-verifier: STANDALONE
 
 #include "../../../math_mod/inv_table.hpp"
+
 #include "../../../modint/modint.hpp"
 #include "../../../random/gen.hpp"
 #include "../../../template/template.hpp"
@@ -9,7 +10,7 @@ using namespace std;
 void test_inv_table() {
     using mint = kk2::mint998;
     using InvTab = kk2::InvTable<mint>;
-    
+
     // 基本的な逆元のテスト
     {
         rep(100) {
@@ -19,7 +20,7 @@ void test_inv_table() {
         }
         cerr << "Basic inverse: 100 random tests passed!" << endl;
     }
-    
+
     // 大きな値での自動拡張テスト
     {
         rep(1000) {
@@ -29,7 +30,7 @@ void test_inv_table() {
         }
         cerr << "Auto expansion: 1000 random tests passed!" << endl;
     }
-    
+
     // 負の数のテスト
     {
         rep(1000) {
@@ -41,7 +42,7 @@ void test_inv_table() {
         }
         cerr << "Negative numbers: 1000 random tests passed!" << endl;
     }
-    
+
     // set_upperの動作テスト
     {
         InvTab::set_upper(20000);
@@ -52,7 +53,7 @@ void test_inv_table() {
         }
         cerr << "set_upper: 1000 random tests passed!" << endl;
     }
-    
+
     // 一致性テスト（複数回呼び出しで同じ結果）
     {
         rep(100) {
@@ -67,7 +68,7 @@ void test_inv_table() {
 
 void test() {
     test_inv_table();
-    
+
     // 全テスト通過
     cerr << "All InvTable tests passed!" << endl;
 }

@@ -22,7 +22,9 @@ void bfs(const G &g, std::queue<int> &q, std::vector<int> &dist, int init) {
 }
 
 template <graph::WeightedGraph G>
-void bfs(const G &g, std::queue<int> &q, std::vector<typename G::value_type> &dist,
+void bfs(const G &g,
+         std::queue<int> &q,
+         std::vector<typename G::value_type> &dist,
          typename G::value_type init) {
     while (!q.empty()) {
         int now = q.front();

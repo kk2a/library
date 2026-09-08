@@ -7,15 +7,14 @@ using namespace std;
 int main() {
     int q;
     kin >> q;
-    rep (q) {
+    rep(q) {
         i64 a;
         kin >> a;
         int cnt = 0;
         auto f = kk2::factorize(a);
         for (auto [p, e] : f) cnt += e;
         kout << cnt << ' ';
-        for (auto [p, e] : f)
-            rep (e) kout << p << ' ';
+        for (auto [p, e] : f) rep(e) kout << p << ' ';
         kout << '\n';
     }
 

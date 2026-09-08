@@ -2,5 +2,4 @@
 #define KK2_MATH_MOD_KTH_ROOT_MOD_HPP 1
 
 
-
 #endif // KK2_MATH_MOD_KTH_ROOT_MOD_HPP

@@ -1,7 +1,8 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/polynomial_taylor_shift
 
-#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../fps/poly_taylor_shift.hpp"
+
+#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;

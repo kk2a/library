@@ -1,7 +1,8 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/composition_of_formal_power_series_large
+// competitive-verifier: PROBLEM
+// https://judge.yosupo.jp/problem/composition_of_formal_power_series_large
 
-#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../fps/composition.hpp"
+#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;

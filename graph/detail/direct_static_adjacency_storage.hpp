@@ -4,8 +4,8 @@
 #include <span>
 #include <utility>
 
-#include "adjacency_storage_common.hpp"
 #include "../edge.hpp"
+#include "adjacency_storage_common.hpp"
 
 namespace kk2::graph::detail {
 

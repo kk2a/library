@@ -15,11 +15,26 @@ env:
   VERIFY_SPLIT_SIZE: 20
 
 jobs:
-  resolve:
+  format:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
+
+    - name: Install clang-format
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang-format
+
+    - name: Check formatting
+      run: bash .scripts/check_format.sh
+
+  resolve:
+    needs: format
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
@@ -33,21 +48,23 @@ jobs:
       uses: competitive-verifier/actions/oj-resolve@v2
       with:
         include: .
+        exclude: |
+          .scripts
         config: .competitive-verifier/config.toml
         output-path: verify.json
 
     - name: Add timeout to standalone tests
-      run: python3 scripts/add_standalone_timeout.py verify.json
+      run: python3 .scripts/add_standalone_timeout.py verify.json
 
     - name: Upload verification files
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: verify-files
         path: verify.json
         retention-days: 1
 
     - name: Upload bundled sources
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: verify-bundled
         path: .competitive-verifier/bundled
@@ -63,12 +80,12 @@ jobs:
         split-index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
     - name: Download verification files
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: verify-files
         path: .
@@ -102,11 +119,56 @@ jobs:
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
 
     - name: Upload verification result
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: verify-result-${{ matrix.split-index }}
         path: result-${{ matrix.split-index }}.json
         retention-days: 1
+
+  coverage:
+    needs: format
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up Python
+      uses: actions/setup-python@v7
+      with:
+        python-version: "3.x"
+
+    - name: Install gcovr
+      run: python3 -m pip install --disable-pip-version-check gcovr==8.6
+
+    - name: Generate standalone coverage
+      run: >-
+        python3 .scripts/standalone_coverage.py
+        --output .competitive-verifier/coverage
+        --build-directory .competitive-verifier/coverage-build
+        --jobs 4
+        --timeout 10
+
+    - name: Add coverage summary
+      if: always()
+      run: |
+        {
+          echo '## Standalone coverage'
+          echo
+          echo '```text'
+          if [ -f .competitive-verifier/coverage/summary.txt ]; then
+            cat .competitive-verifier/coverage/summary.txt
+          else
+            echo 'Coverage generation failed before producing a summary.'
+          fi
+          echo '```'
+        } >> "$GITHUB_STEP_SUMMARY"
+
+    - name: Upload standalone coverage
+      uses: actions/upload-artifact@v7
+      with:
+        name: standalone-coverage
+        path: .competitive-verifier/coverage
+        retention-days: 7
 
   check:
     needs: verify
@@ -114,10 +176,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Download verification results
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         pattern: verify-result-*
         path: .artifacts
@@ -140,7 +202,7 @@ jobs:
         verify-result: .competitive-verifier/result.json
 
     - name: Upload merged verification result
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: verify-merged-result
         path: .competitive-verifier/result.json
@@ -171,30 +233,36 @@ jobs:
         git -C "$mark_repo" push origin HEAD:competitive-verifier-mark
 
   docs:
-    needs: check
-    if: needs.check.result == 'success'
+    needs: [check, coverage]
+    if: needs.check.result == 'success' && needs.coverage.result == 'success'
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Download verification files
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: verify-files
         path: .
 
     - name: Download bundled sources
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: verify-bundled
         path: .competitive-verifier/bundled
 
     - name: Download merged verification result
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: verify-merged-result
         path: .competitive-verifier
+
+    - name: Download standalone coverage
+      uses: actions/download-artifact@v8
+      with:
+        name: standalone-coverage
+        path: .competitive-verifier/coverage
 
     - name: Set up competitive-verifier
       uses: competitive-verifier/actions/setup@v2
@@ -209,6 +277,9 @@ jobs:
         --destination .competitive-verifier/_jekyll
         --check-error
         .competitive-verifier/result.json
+
+    - name: Add standalone coverage page
+      run: cp -R .competitive-verifier/coverage .competitive-verifier/_jekyll/coverage
 
     - name: Publish documentation
       if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'

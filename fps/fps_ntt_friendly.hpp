@@ -12,7 +12,8 @@
 
 namespace kk2 {
 
-template <fps::Modular mint> struct FormalPowerSeriesNTTFriendly
+template <fps::Modular mint>
+struct FormalPowerSeriesNTTFriendly
     : FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint> {
     using base = FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint>;
     using FPS = FormalPowerSeriesNTTFriendly<mint>;

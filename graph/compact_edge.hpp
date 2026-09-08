@@ -43,8 +43,7 @@ template <class T, bool is_const> struct _AdjacencyEdgeProxy {
 
     operator int() const { return to; }
 
-    template <class OStream>
-    void debug_output(OStream &os) const {
+    template <class OStream> void debug_output(OStream &os) const {
         os << '(' << id << ", " << from << "->" << to;
         if constexpr (!std::is_same_v<T, empty>) os << ":" << cost;
         os << ')';
@@ -151,12 +150,10 @@ template <class T, bool is_const> class _AdjacencyEdgeIterator {
                                      const _AdjacencyEdgeIterator &rhs) {
         return lhs.it - rhs.it;
     }
-    friend bool operator==(const _AdjacencyEdgeIterator &lhs,
-                           const _AdjacencyEdgeIterator &rhs) {
+    friend bool operator==(const _AdjacencyEdgeIterator &lhs, const _AdjacencyEdgeIterator &rhs) {
         return lhs.it == rhs.it;
     }
-    friend auto operator<=>(const _AdjacencyEdgeIterator &lhs,
-                            const _AdjacencyEdgeIterator &rhs) {
+    friend auto operator<=>(const _AdjacencyEdgeIterator &lhs, const _AdjacencyEdgeIterator &rhs) {
         return lhs.it <=> rhs.it;
     }
 };
@@ -203,7 +200,11 @@ template <class T, bool is_const> class _AdjacencyView {
         return const_value_type(from, slots[i], (*edges)[id]);
     }
 
-    void swap(int i, int j) requires(!is_const) { std::swap(slots[i], slots[j]); }
+    void swap(int i, int j)
+        requires(!is_const)
+    {
+        std::swap(slots[i], slots[j]);
+    }
 };
 
 } // namespace kk2::graph

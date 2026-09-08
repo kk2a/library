@@ -3,8 +3,8 @@
 #include "../../bbst/red_black_tree.hpp"
 #include "../../functional/reverse_args.hpp"
 #include "../../math/monoid/affine.hpp"
-#include "../../modint/mont.hpp"
 #include "../../math/monoid/rev_op.hpp"
+#include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
@@ -17,7 +17,7 @@ int main() {
     kk2::RedBlackTree<S> rbt(2 * (n + q));
     auto root = rbt.build(a);
 
-    rep (q) {
+    rep(q) {
         int type;
         kin >> type;
         if (type == 0) {

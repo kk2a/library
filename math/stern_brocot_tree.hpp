@@ -3,8 +3,8 @@
 
 #include <algorithm>
 #include <cassert>
-#include <vector>
 #include <tuple>
+#include <vector>
 
 namespace kk2 {
 

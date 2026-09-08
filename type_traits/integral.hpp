@@ -7,38 +7,43 @@ namespace kk2 {
 
 #ifndef _MSC_VER
 
-template <typename T> using is_signed_int128 =
-    typename std::conditional<std::is_same<T, __int128_t>::value
-                                  or std::is_same<T, __int128>::value,
-                              std::true_type,
-                              std::false_type>::type;
+template <typename T>
+using is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value
+                                                       or std::is_same<T, __int128>::value,
+                                                   std::true_type,
+                                                   std::false_type>::type;
 
-template <typename T> using is_unsigned_int128 =
+template <typename T>
+using is_unsigned_int128 =
     typename std::conditional<std::is_same<T, __uint128_t>::value
                                   or std::is_same<T, unsigned __int128>::value,
                               std::true_type,
                               std::false_type>::type;
 
-template <typename T> using is_integral =
+template <typename T>
+using is_integral =
     typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value
                                   or is_unsigned_int128<T>::value,
                               std::true_type,
                               std::false_type>::type;
 
-template <typename T> using is_signed =
-    typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,
-                              std::true_type,
-                              std::false_type>::type;
+template <typename T>
+using is_signed = typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,
+                                            std::true_type,
+                                            std::false_type>::type;
 
-template <typename T> using is_unsigned =
+template <typename T>
+using is_unsigned =
     typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,
                               std::true_type,
                               std::false_type>::type;
 
-template <typename T> using make_unsigned_int128 =
+template <typename T>
+using make_unsigned_int128 =
     typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t, unsigned __int128>;
 
-template <typename T> using to_unsigned =
+template <typename T>
+using to_unsigned =
     typename std::conditional<is_signed_int128<T>::value,
                               make_unsigned_int128<T>,
                               typename std::conditional<std::is_signed<T>::value,

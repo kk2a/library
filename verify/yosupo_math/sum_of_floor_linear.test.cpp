@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     int t;
     kin >> t;
-    rep (t) {
+    rep(t) {
         i64 n, m, a, b;
         kin >> n >> m >> a >> b;
         kout << kk2::sum_of_floor(n, m, a, b) << "\n";

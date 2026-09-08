@@ -10,7 +10,7 @@ int main() {
     kin >> n >> q;
     kk2::PotentializedUnionFind<kk2::mont998> puf(n);
 
-    rep (q) {
+    rep(q) {
         int t;
         kin >> t;
         if (t == 0) {

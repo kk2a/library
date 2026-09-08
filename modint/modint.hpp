@@ -130,14 +130,12 @@ template <int p> struct ModInt {
         return m0;
     }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const mint &mint_) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const mint &mint_) {
         os << mint_._v;
         return os;
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, mint &mint_) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, mint &mint_) {
         long long x;
         is >> x;
         mint_ = mint(x);

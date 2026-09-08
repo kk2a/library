@@ -11,8 +11,7 @@
 namespace kk2::graph::detail {
 
 template <class T, bool is_directed, class Storage>
-struct AdjacencyListBase
-    : GraphBase<T, is_directed, false>, private Storage {
+struct AdjacencyListBase : GraphBase<T, is_directed, false>, private Storage {
     using base = GraphBase<T, is_directed, false>;
 
   public:
@@ -72,8 +71,7 @@ struct AdjacencyListBase
     void swap_edges(int v, int i, int j) { Storage::swap_edges(v, i, j); }
     void edge_clear() { *this = AdjacencyListBase(num_vertices()); }
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << "[\n";
         for (int i = 0; i < num_vertices(); ++i) {
             os << "  " << i << ": [";
@@ -88,9 +86,7 @@ struct AdjacencyListBase
         os << "]\n";
     }
 
-    void add_edge(int from, int to, T cost = T{}) {
-        _add_edge<false>(from, to, cost, num_edges());
-    }
+    void add_edge(int from, int to, T cost = T{}) { _add_edge<false>(from, to, cost, num_edges()); }
     void add_vertex(int n = 1) { Storage::add_vertex(n); }
 
     AdjacencyListBase reverse() const {
@@ -102,8 +98,7 @@ struct AdjacencyListBase
     }
 
   private:
-    template <InputStream IStream>
-    void _input(IStream &is, int m, bool oneindexed) {
+    template <InputStream IStream> void _input(IStream &is, int m, bool oneindexed) {
         edges.clear();
         edges.reserve(m);
         this->reset();

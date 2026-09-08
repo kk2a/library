@@ -1,6 +1,7 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/stern_brocot_tree
 
 #include "../../math/stern_brocot_tree.hpp"
+
 #include "../../template/template.hpp"
 using namespace std;
 
@@ -10,7 +11,7 @@ int main() {
 
     int t;
     kin >> t;
-    rep (t) {
+    rep(t) {
         string type;
         kin >> type;
         if (type == "ENCODE_PATH") {
@@ -19,7 +20,7 @@ int main() {
             sbt_node x(a, b);
             auto p = x.get_path();
             vc<pair<char, i64>> res;
-            rep (i, p.size()) {
+            rep(i, p.size()) {
                 if (p[i] == 0) continue;
                 res.emplace_back(i & 1 ? 'L' : 'R', p[i]);
             }

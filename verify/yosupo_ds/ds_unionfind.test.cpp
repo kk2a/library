@@ -9,7 +9,7 @@ int main() {
     kin >> n >> q;
     kk2::UnionFind uf(n);
 
-    rep (q) {
+    rep(q) {
         int t;
         kin >> t;
         if (t == 0) {

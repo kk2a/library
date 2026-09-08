@@ -21,13 +21,11 @@ template <class S> struct Add {
     bool operator==(const M &rhs) const { return a == rhs.a; }
     bool operator!=(const M &rhs) const { return a != rhs.a; }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const M &x) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const M &x) {
         return os << x.a;
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, M &x) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, M &x) {
         return is >> x.a;
     }
 };

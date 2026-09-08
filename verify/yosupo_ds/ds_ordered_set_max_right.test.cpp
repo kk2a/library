@@ -12,14 +12,14 @@ int main() {
     kin >> a;
     kk2::RedBlackTree<kk2::monoid::Hold<int>> rb(2 * (n + q));
     auto root = rb.build(a);
-    rep (q) {
+    rep(q) {
         int t, x;
         kin >> t >> x;
         if (t == 0) {
             auto [k, a, b] = rb.max_right(root, 0, [&](auto t) { return t.is_unit or t.a < x; });
             if (b and b->val.a == x) continue;
             rb.insert(root, k, x);
-        } 
+        }
         if (t == 1) {
             auto [k, a, b] = rb.max_right(root, 0, [&](auto t) { return t.is_unit or t.a < x; });
             if (b and b->val.a == x) rb.erase(root, k);

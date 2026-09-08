@@ -22,13 +22,11 @@ template <class S, class T = S> struct SumWithSize {
     bool operator==(const M &rhs) const { return a == rhs.a and size == rhs.size; }
     bool operator!=(const M &rhs) const { return a != rhs.a or size != rhs.size; }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const M &x) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const M &x) {
         return os << x.a << " " << x.size;
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, M &x) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, M &x) {
         is >> x.a;
         x.size = T(1);
         return is;

@@ -1,8 +1,8 @@
 #ifndef KK2_BBST_BASE_LAZY_RED_BLACK_TREE_NODE_HPP
 #define KK2_BBST_BASE_LAZY_RED_BLACK_TREE_NODE_HPP 1
 
-#include "../../type_traits/io.hpp"
 #include "../../type_traits/algebra.hpp"
+#include "../../type_traits/io.hpp"
 
 namespace kk2 {
 
@@ -38,8 +38,7 @@ template <algebra::Action A_> struct LazyRedBlackTreeNode {
 
     LazyRedBlackTreeNode(NodePtr l, NodePtr r) : left(l), right(r), is_red(true), is_rev(false) {}
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << "[\n";
 
         // BFS用のキュー：(ノード, 深度)のペア

@@ -67,8 +67,7 @@ IStream &operator>>(IStream &is, std::pair<T, U> &p) {
     return is;
 }
 
-template <kk2::InputStream IStream, class T>
-IStream &operator>>(IStream &is, std::vector<T> &v) {
+template <kk2::InputStream IStream, class T> IStream &operator>>(IStream &is, std::vector<T> &v) {
     impl::read::all_read(is, v);
     return is;
 }

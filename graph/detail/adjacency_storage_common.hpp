@@ -19,8 +19,7 @@ std::vector<int> adjacency_degrees(int n, const _Edges<T> &edges) {
     return degree;
 }
 
-template <bool is_directed>
-void count_adjacency_edge(std::vector<int> &head, int from, int to) {
+template <bool is_directed> void count_adjacency_edge(std::vector<int> &head, int from, int to) {
     ++head[from];
     if constexpr (!is_directed) {
         if (from != to) ++head[to];

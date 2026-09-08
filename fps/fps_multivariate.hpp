@@ -41,8 +41,7 @@ template <fps::Modular mint> struct MultivariateFormalPowerSeries {
     auto begin() const { return f.begin(); }
     auto end() const { return f.end(); }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const mfps &mfps_) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const mfps &mfps_) {
         for (int i = 0; i < (int)mfps_.f.size(); i++)
             os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? "" : " ");
         return os;
@@ -57,8 +56,7 @@ template <fps::Modular mint> struct MultivariateFormalPowerSeries {
         return *this;
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, mfps &mfps_) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, mfps &mfps_) {
         for (auto &x : mfps_.f) is >> x;
         return is;
     }
@@ -288,8 +286,7 @@ template <fps::Modular mint> struct MultivariateFormalPowerSeries {
     }
 };
 
-template <fps::Modular mint>
-std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv = {0, 1};
+template <fps::Modular mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv = {0, 1};
 
 } // namespace kk2
 

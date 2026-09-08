@@ -22,8 +22,7 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
     Derived &derived() { return static_cast<Derived &>(*this); }
     const Derived &derived() const { return static_cast<const Derived &>(*this); }
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << "[";
         for (size_t i = 0; i < this->size(); i++) {
             os << (*this)[i] << (i + 1 == this->size() ? "" : ", ");
@@ -36,8 +35,7 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
             os << (*this)[i] << (i + 1 == this->size() ? "\n" : " ");
         }
     }
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const FPS &fps_) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const FPS &fps_) {
         for (size_t i = 0; i < fps_.size(); i++) {
             os << fps_[i] << (i + 1 == fps_.size() ? "" : " ");
         }
@@ -49,8 +47,7 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         return derived();
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, FPS &fps_) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, FPS &fps_) {
         for (auto &x : fps_) is >> x;
         return is;
     }

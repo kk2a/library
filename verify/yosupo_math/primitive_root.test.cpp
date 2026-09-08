@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     int q;
     kin >> q;
-    rep (q) {
+    rep(q) {
         i64 p;
         kin >> p;
         kout << kk2::primitive_root_64bit(p) << "\n";

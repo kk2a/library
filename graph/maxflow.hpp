@@ -64,11 +64,16 @@ template <graph::WeightedDirectedGraph WG> struct MaxFlow {
     graph_type g;
     int n, m;
 
-    MaxFlow(const WG &g_) : g(g_.num_vertices(), g_.edges), n(g_.num_vertices()), m(g_.num_edges()) {}
+    MaxFlow(const WG &g_)
+        : g(g_.num_vertices(), g_.edges),
+          n(g_.num_vertices()),
+          m(g_.num_edges()) {}
 
     template <class Edges_>
         requires graph::WeightedEdgeRange<const Edges_>
-    MaxFlow(int n_, const Edges_ &edges) : g(n_, edges), n(n_), m(g.edges.size()) {}
+    MaxFlow(int n_, const Edges_ &edges) : g(n_, edges),
+                                           n(n_),
+                                           m(g.edges.size()) {}
 
     Cap flow(int s, int t) { return flow(s, t, std::numeric_limits<Cap>::max()); }
 

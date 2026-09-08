@@ -35,8 +35,8 @@ struct ArbitraryLazyMontgomeryModIntBase {
 
     ArbitraryLazyMontgomeryModIntBase() : _v(0) {}
 
-    template <Integral T> ArbitraryLazyMontgomeryModIntBase(const T &b)
-        : _v(reduce(ULong(b % (Int)mod + mod) * n2)) {}
+    template <Integral T>
+    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b % (Int)mod + mod) * n2)) {}
 
     static UInt reduce(const ULong &b) {
         return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;
@@ -98,13 +98,11 @@ struct ArbitraryLazyMontgomeryModIntBase {
         return mint(m0);
     }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const mint &x) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const mint &x) {
         return os << x.val();
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, mint &x) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {
         Long t;
         is >> t;
         x = mint(t);
@@ -119,10 +117,12 @@ struct ArbitraryLazyMontgomeryModIntBase {
     static UInt getmod() { return mod; }
 };
 
-template <int id> using ArbitraryLazyMontgomeryModInt =
+template <int id>
+using ArbitraryLazyMontgomeryModInt =
     ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned long long, id>;
 
-template <int id> using ArbitraryLazyMontgomeryModInt64bit =
+template <int id>
+using ArbitraryLazyMontgomeryModInt64bit =
     ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t, __uint128_t, id>;
 
 } // namespace kk2

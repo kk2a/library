@@ -1,6 +1,7 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bitwise_and_convolution
 
 #include "../../convolution/convolution_and.hpp"
+
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
