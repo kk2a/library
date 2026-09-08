@@ -100,6 +100,8 @@ def main() -> None:
     parser.add_argument("--jobs", type=int, default=max(1, min(4, os.cpu_count() or 1)))
     parser.add_argument("--timeout", type=int, default=10)
     args = parser.parse_args()
+    args.output = args.output.resolve()
+    args.build_directory = args.build_directory.resolve()
 
     if shutil.which("g++") is None:
         raise SystemExit("g++ was not found")
