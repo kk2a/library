@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Install clang-format
       run: |
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
@@ -57,14 +57,14 @@ jobs:
       run: python3 .scripts/add_standalone_timeout.py verify.json
 
     - name: Upload verification files
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: verify-files
         path: verify.json
         retention-days: 1
 
     - name: Upload bundled sources
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: verify-bundled
         path: .competitive-verifier/bundled
@@ -80,12 +80,12 @@ jobs:
         split-index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
     - name: Download verification files
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: verify-files
         path: .
@@ -119,7 +119,7 @@ jobs:
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
 
     - name: Upload verification result
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: verify-result-${{ matrix.split-index }}
         path: result-${{ matrix.split-index }}.json
@@ -130,10 +130,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v7
       with:
         python-version: "3.x"
 
@@ -164,7 +164,7 @@ jobs:
         } >> "$GITHUB_STEP_SUMMARY"
 
     - name: Upload standalone coverage
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: standalone-coverage
         path: .competitive-verifier/coverage
@@ -176,10 +176,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Download verification results
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         pattern: verify-result-*
         path: .artifacts
@@ -202,7 +202,7 @@ jobs:
         verify-result: .competitive-verifier/result.json
 
     - name: Upload merged verification result
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: verify-merged-result
         path: .competitive-verifier/result.json
@@ -238,28 +238,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Download verification files
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: verify-files
         path: .
 
     - name: Download bundled sources
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: verify-bundled
         path: .competitive-verifier/bundled
 
     - name: Download merged verification result
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: verify-merged-result
         path: .competitive-verifier
 
     - name: Download standalone coverage
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: standalone-coverage
         path: .competitive-verifier/coverage
