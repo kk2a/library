@@ -63,55 +63,56 @@ data:
       \        _upper = 255;\n        init();\n    }\n\n    // all elements of s_\
       \ must be in [0, upper]\n    SuffixArray(const std::vector<int> &s_, int upper_)\n\
       \        : _n((int)s_.size()),\n          _upper(upper_),\n          _s(s_)\
-      \ {\n        init();\n    }\n\n    template <class T> SuffixArray(const std::vector<T>\
-      \ &s_)\n        : _n((int)s_.size()),\n          _s((int)s_.size()) {\n    \
-      \    std::vector<int> idx(_n);\n        std::iota(std::begin(idx), std::end(idx),\
-      \ 0);\n        std::sort(std::begin(idx), std::end(idx), [&](int l, int r) {\
-      \ return s_[l] < s_[r]; });\n        _upper = 0;\n        for (int i = 0; i\
-      \ < _n; ++i) {\n            if (i && s_[idx[i - 1]] != s_[idx[i]]) _upper++;\n\
-      \            _s[idx[i]] = _upper;\n        }\n        init();\n    }\n\n   \
-      \ const std::vector<int> &get_sa() const { return _sa; }\n\n    const std::vector<int>\
-      \ &get_s() const { return _s; }\n\n    int operator[](int i) const { return\
-      \ _sa[i]; }\n\n    int size() const { return _n; }\n\n    int upper() const\
-      \ { return _upper; }\n\n    bool op(int i, const std::string &t) const {\n \
-      \       int off = _sa[i];\n        int m = std::min(_n - off, (int)t.size());\n\
-      \        for (int j = 0; j < m; ++j) {\n            if (_s[off + j] != t[j])\
-      \ return _s[off + j] < t[j];\n        }\n        return _n - off < (int)t.size();\n\
-      \    }\n\n    bool op(int i, const std::vector<int> &t) const {\n        int\
-      \ off = _sa[i];\n        int m = std::min(_n - off, (int)t.size());\n      \
-      \  for (int j = 0; j < m; ++j) {\n            if (_s[off + j] != t[j]) return\
-      \ _s[off + j] < t[j];\n        }\n        return _n - off < (int)t.size();\n\
-      \    }\n\n    // return the smallest index i s.t. s[sa[i]:] >= t\n    int lower_bound(const\
-      \ std::vector<int> &t) const {\n        int l = -1, r = _n;\n        while (r\
-      \ - l > 1) {\n            int m = (l + r) / 2;\n            if (op(m, t)) l\
-      \ = m;\n            else r = m;\n        }\n        return r;\n    }\n\n   \
-      \ int lower_bound(const std::string &t) const {\n        int l = -1, r = _n;\n\
-      \        while (r - l > 1) {\n            int m = (l + r) / 2;\n           \
-      \ if (op(m, t)) l = m;\n            else r = m;\n        }\n        return r;\n\
-      \    }\n\n  private:\n    int _n, _upper;\n    std::vector<int> _sa, _s;\n\n\
-      \    std::vector<int> sa_naive(const std::vector<int> &s) {\n        int n =\
-      \ (int)s.size();\n        std::vector<int> sa(n);\n        std::iota(std::begin(sa),\
-      \ std::end(sa), 0);\n        std::sort(std::begin(sa), std::end(sa), [&](int\
-      \ l, int r) {\n            if (l == r) return false;\n            while (l <\
-      \ n && r < n) {\n                if (s[l] != s[r]) return s[l] < s[r];\n   \
-      \             l++;\n                r++;\n            }\n            return\
-      \ l == n;\n        });\n        return sa;\n    }\n\n    std::vector<int> sa_doubling(const\
-      \ std::vector<int> &s) {\n        int n = (int)s.size();\n        std::vector<int>\
-      \ sa(n), cpy = s, tmp(n);\n        std::iota(std::begin(sa), std::end(sa), 0);\n\
-      \        for (int len = 1; len < n; len <<= 1) {\n            auto Compare =\
-      \ [&](int x, int y) {\n                if (cpy[x] != cpy[y]) return cpy[x] <\
-      \ cpy[y];\n                int rx = x + len < n ? cpy[x + len] : -1;\n     \
-      \           int ry = y + len < n ? cpy[y + len] : -1;\n                return\
-      \ rx < ry;\n            };\n            std::sort(std::begin(sa), std::end(sa),\
-      \ Compare);\n            tmp[sa[0]] = 0;\n            for (int i = 1; i < n;\
-      \ i++) {\n                tmp[sa[i]] = tmp[sa[i - 1]] + (Compare(sa[i - 1],\
-      \ sa[i]) ? 1 : 0);\n            }\n            std::swap(cpy, tmp);\n      \
-      \  }\n        return sa;\n    }\n\n    template <int THRESHOLD_NAIVE = 10, int\
-      \ THRESHOLD_DOUBLING = 40>\n    std::vector<int> sa_is(const std::vector<int>\
-      \ &s, int upper) {\n        int n = (int)s.size();\n        if (n == 0) return\
-      \ {};\n        if (n == 1) return {0};\n        if (n == 2) {\n            if\
-      \ (s[0] < s[1]) return {0, 1};\n            else return {1, 0};\n        }\n\
-      \        if (n < THRESHOLD_NAIVE) return sa_naive(s);\n        if (n < THRESHOLD_DOUBLING)\
+      \ {\n        init();\n    }\n\n    template <class T>\n    SuffixArray(const\
+      \ std::vector<T> &s_) : _n((int)s_.size()),\n                              \
+      \              _s((int)s_.size()) {\n        std::vector<int> idx(_n);\n   \
+      \     std::iota(std::begin(idx), std::end(idx), 0);\n        std::sort(std::begin(idx),\
+      \ std::end(idx), [&](int l, int r) { return s_[l] < s_[r]; });\n        _upper\
+      \ = 0;\n        for (int i = 0; i < _n; ++i) {\n            if (i && s_[idx[i\
+      \ - 1]] != s_[idx[i]]) _upper++;\n            _s[idx[i]] = _upper;\n       \
+      \ }\n        init();\n    }\n\n    const std::vector<int> &get_sa() const {\
+      \ return _sa; }\n\n    const std::vector<int> &get_s() const { return _s; }\n\
+      \n    int operator[](int i) const { return _sa[i]; }\n\n    int size() const\
+      \ { return _n; }\n\n    int upper() const { return _upper; }\n\n    bool op(int\
+      \ i, const std::string &t) const {\n        int off = _sa[i];\n        int m\
+      \ = std::min(_n - off, (int)t.size());\n        for (int j = 0; j < m; ++j)\
+      \ {\n            if (_s[off + j] != t[j]) return _s[off + j] < t[j];\n     \
+      \   }\n        return _n - off < (int)t.size();\n    }\n\n    bool op(int i,\
+      \ const std::vector<int> &t) const {\n        int off = _sa[i];\n        int\
+      \ m = std::min(_n - off, (int)t.size());\n        for (int j = 0; j < m; ++j)\
+      \ {\n            if (_s[off + j] != t[j]) return _s[off + j] < t[j];\n     \
+      \   }\n        return _n - off < (int)t.size();\n    }\n\n    // return the\
+      \ smallest index i s.t. s[sa[i]:] >= t\n    int lower_bound(const std::vector<int>\
+      \ &t) const {\n        int l = -1, r = _n;\n        while (r - l > 1) {\n  \
+      \          int m = (l + r) / 2;\n            if (op(m, t)) l = m;\n        \
+      \    else r = m;\n        }\n        return r;\n    }\n\n    int lower_bound(const\
+      \ std::string &t) const {\n        int l = -1, r = _n;\n        while (r - l\
+      \ > 1) {\n            int m = (l + r) / 2;\n            if (op(m, t)) l = m;\n\
+      \            else r = m;\n        }\n        return r;\n    }\n\n  private:\n\
+      \    int _n, _upper;\n    std::vector<int> _sa, _s;\n\n    std::vector<int>\
+      \ sa_naive(const std::vector<int> &s) {\n        int n = (int)s.size();\n  \
+      \      std::vector<int> sa(n);\n        std::iota(std::begin(sa), std::end(sa),\
+      \ 0);\n        std::sort(std::begin(sa), std::end(sa), [&](int l, int r) {\n\
+      \            if (l == r) return false;\n            while (l < n && r < n) {\n\
+      \                if (s[l] != s[r]) return s[l] < s[r];\n                l++;\n\
+      \                r++;\n            }\n            return l == n;\n        });\n\
+      \        return sa;\n    }\n\n    std::vector<int> sa_doubling(const std::vector<int>\
+      \ &s) {\n        int n = (int)s.size();\n        std::vector<int> sa(n), cpy\
+      \ = s, tmp(n);\n        std::iota(std::begin(sa), std::end(sa), 0);\n      \
+      \  for (int len = 1; len < n; len <<= 1) {\n            auto Compare = [&](int\
+      \ x, int y) {\n                if (cpy[x] != cpy[y]) return cpy[x] < cpy[y];\n\
+      \                int rx = x + len < n ? cpy[x + len] : -1;\n               \
+      \ int ry = y + len < n ? cpy[y + len] : -1;\n                return rx < ry;\n\
+      \            };\n            std::sort(std::begin(sa), std::end(sa), Compare);\n\
+      \            tmp[sa[0]] = 0;\n            for (int i = 1; i < n; i++) {\n  \
+      \              tmp[sa[i]] = tmp[sa[i - 1]] + (Compare(sa[i - 1], sa[i]) ? 1\
+      \ : 0);\n            }\n            std::swap(cpy, tmp);\n        }\n      \
+      \  return sa;\n    }\n\n    template <int THRESHOLD_NAIVE = 10, int THRESHOLD_DOUBLING\
+      \ = 40>\n    std::vector<int> sa_is(const std::vector<int> &s, int upper) {\n\
+      \        int n = (int)s.size();\n        if (n == 0) return {};\n        if\
+      \ (n == 1) return {0};\n        if (n == 2) {\n            if (s[0] < s[1])\
+      \ return {0, 1};\n            else return {1, 0};\n        }\n        if (n\
+      \ < THRESHOLD_NAIVE) return sa_naive(s);\n        if (n < THRESHOLD_DOUBLING)\
       \ return sa_doubling(s);\n\n        std::vector<int> sa(n);\n        std::vector<bool>\
       \ ls(n);\n        for (int i = n - 2; i >= 0; i--) {\n            ls[i] = (s[i]\
       \ == s[i + 1]) ? ls[i + 1] : (s[i] < s[i + 1]);\n        }\n        std::vector<int>\
@@ -192,30 +193,32 @@ data:
       \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n\
       #include <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -230,20 +233,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -378,7 +383,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -415,257 +420,257 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.21636812199999866
+  - elapsed: 0.2355260570000013
     environment: g++
-    memory: 9.896
+    memory: 9.8
     name: all_same_00
     status: AC
-  - elapsed: 0.2167457139999982
+  - elapsed: 0.23682827300000042
     environment: g++
-    memory: 10.012
+    memory: 9.94
     name: all_same_01
     status: AC
-  - elapsed: 0.21771231399999635
+  - elapsed: 0.23808497299999942
     environment: g++
-    memory: 10.04
+    memory: 9.892
     name: all_same_02
     status: AC
-  - elapsed: 0.21619419200000323
+  - elapsed: 0.23699381800000197
     environment: g++
-    memory: 10.004
+    memory: 9.948
     name: all_same_03
     status: AC
-  - elapsed: 0.21693564700000678
+  - elapsed: 0.2354087279999959
     environment: g++
-    memory: 9.904
+    memory: 9.84
     name: all_same_04
     status: AC
-  - elapsed: 0.25604006500000054
+  - elapsed: 0.2823446169999926
     environment: g++
-    memory: 10.012
+    memory: 9.908
     name: almost_single_00
     status: AC
-  - elapsed: 0.2669761289999997
+  - elapsed: 0.2922246259999923
     environment: g++
-    memory: 10.012
+    memory: 9.948
     name: almost_single_01
     status: AC
-  - elapsed: 0.2676422210000027
+  - elapsed: 0.2920339530000007
     environment: g++
-    memory: 10.012
+    memory: 9.896
     name: almost_single_02
     status: AC
-  - elapsed: 0.19200299199999904
+  - elapsed: 0.2255679980000025
     environment: g++
-    memory: 10.036
+    memory: 9.952
     name: almost_single_03
     status: AC
-  - elapsed: 0.26692752600000347
+  - elapsed: 0.2919360269999913
     environment: g++
-    memory: 10.04
+    memory: 9.948
     name: almost_single_04
     status: AC
-  - elapsed: 0.252938565000008
+  - elapsed: 0.2806997779999989
     environment: g++
-    memory: 10.012
+    memory: 9.952
     name: almost_single_05
     status: AC
-  - elapsed: 0.45079066200000284
+  - elapsed: 0.528614864000005
     environment: g++
-    memory: 19.444
+    memory: 19.384
     name: binary_carry_00
     status: AC
-  - elapsed: 0.45349554700000283
+  - elapsed: 0.5217298489999962
     environment: g++
-    memory: 19.608
+    memory: 19.548
     name: binary_carry_01
     status: AC
-  - elapsed: 0.002252064000003884
+  - elapsed: 0.0026121099999869557
     environment: g++
-    memory: 3.86
+    memory: 3.816
     name: example_00
     status: AC
-  - elapsed: 0.0018255200000112382
+  - elapsed: 0.0021256120000003875
     environment: g++
-    memory: 3.908
+    memory: 3.824
     name: example_01
     status: AC
-  - elapsed: 0.001823897000008401
+  - elapsed: 0.0021731960000010986
     environment: g++
-    memory: 3.88
+    memory: 3.624
     name: example_02
     status: AC
-  - elapsed: 0.0017674529999993638
+  - elapsed: 0.002106947000001469
     environment: g++
-    memory: 3.88
+    memory: 3.764
     name: example_03
     status: AC
-  - elapsed: 0.3560773130000001
+  - elapsed: 0.40570264399998734
     environment: g++
-    memory: 15.264
+    memory: 15.16
     name: fib_str_00
     status: AC
-  - elapsed: 0.2504954870000091
+  - elapsed: 0.28765705600000047
     environment: g++
-    memory: 12.104
+    memory: 12.012
     name: fib_str_01
     status: AC
-  - elapsed: 0.2912267609999901
+  - elapsed: 0.33162778000000515
     environment: g++
-    memory: 13.384
+    memory: 13.284
     name: fib_str_02
     status: AC
-  - elapsed: 0.18863612200000546
+  - elapsed: 0.21723404799999457
     environment: g++
-    memory: 10.028
+    memory: 9.928
     name: fib_str_03
     status: AC
-  - elapsed: 0.3672370660000013
+  - elapsed: 0.41996287800000687
     environment: g++
-    memory: 16.048
+    memory: 15.984
     name: fib_str_04
     status: AC
-  - elapsed: 0.0022982830000017884
+  - elapsed: 0.002797018999999068
     environment: g++
-    memory: 3.872
+    memory: 3.772
     name: hack_00
     status: AC
-  - elapsed: 0.0018320590000087122
+  - elapsed: 0.002323230000001786
     environment: g++
-    memory: 3.864
+    memory: 3.816
     name: hack_01
     status: AC
-  - elapsed: 0.0018722089999982927
+  - elapsed: 0.0022235929999965265
     environment: g++
-    memory: 3.88
+    memory: 3.8
     name: hack_02
     status: AC
-  - elapsed: 0.37417062399998713
+  - elapsed: 0.43048296800000685
     environment: g++
-    memory: 15.912
+    memory: 15.872
     name: max_random_00
     status: AC
-  - elapsed: 0.37711294700000053
+  - elapsed: 0.42985456899999974
     environment: g++
-    memory: 16.052
+    memory: 15.924
     name: max_random_01
     status: AC
-  - elapsed: 0.37669140900000286
+  - elapsed: 0.43404532399999596
     environment: g++
-    memory: 16.028
+    memory: 15.836
     name: max_random_02
     status: AC
-  - elapsed: 0.3761996970000041
+  - elapsed: 0.4307988079999916
     environment: g++
-    memory: 16.056
+    memory: 15.836
     name: max_random_03
     status: AC
-  - elapsed: 0.3727185810000009
+  - elapsed: 0.4297779049999946
     environment: g++
-    memory: 15.94
+    memory: 15.784
     name: max_random_04
     status: AC
-  - elapsed: 0.19703399099999785
+  - elapsed: 0.2263861380000094
     environment: g++
-    memory: 10.232
+    memory: 10.176
     name: near_power_of_2_max_random_00
     status: AC
-  - elapsed: 0.1959762660000024
+  - elapsed: 0.22532707100000948
     environment: g++
-    memory: 10.284
+    memory: 10.22
     name: near_power_of_2_max_random_01
     status: AC
-  - elapsed: 0.11504650400000571
+  - elapsed: 0.12569793199999424
     environment: g++
-    memory: 7.076
+    memory: 7.02
     name: near_power_of_2_max_same_00
     status: AC
-  - elapsed: 0.11626034100000027
+  - elapsed: 0.12638984999999536
     environment: g++
-    memory: 7.084
+    memory: 6.968
     name: near_power_of_2_max_same_01
     status: AC
-  - elapsed: 0.0021331479999986414
+  - elapsed: 0.002317865999998503
     environment: g++
-    memory: 3.876
+    memory: 3.836
     name: one_00
     status: AC
-  - elapsed: 0.29661745100000303
+  - elapsed: 0.3386214710000104
     environment: g++
-    memory: 13.484
+    memory: 13.396
     name: random_00
     status: AC
-  - elapsed: 0.35397325799999635
+  - elapsed: 0.40258924699999454
     environment: g++
-    memory: 15.268
+    memory: 15.132
     name: random_01
     status: AC
-  - elapsed: 0.04024113299999499
+  - elapsed: 0.045449950999994826
     environment: g++
-    memory: 4.872
+    memory: 4.804
     name: random_02
     status: AC
-  - elapsed: 0.3259077919999953
+  - elapsed: 0.3756591949999972
     environment: g++
-    memory: 14.392
+    memory: 14.32
     name: random_03
     status: AC
-  - elapsed: 0.20713087200000757
+  - elapsed: 0.2389874859999992
     environment: g++
-    memory: 10.54
+    memory: 10.48
     name: random_04
     status: AC
-  - elapsed: 0.002157143000005135
+  - elapsed: 0.002362403999995877
     environment: g++
-    memory: 3.864
+    memory: 3.832
     name: small_random_00
     status: AC
-  - elapsed: 0.0018180490000077043
+  - elapsed: 0.0021736700000047904
     environment: g++
-    memory: 3.872
+    memory: 3.812
     name: small_random_01
     status: AC
-  - elapsed: 0.0018394100000023172
+  - elapsed: 0.0021362390000092546
     environment: g++
-    memory: 3.856
+    memory: 3.816
     name: small_random_02
     status: AC
-  - elapsed: 0.0018324189999958662
+  - elapsed: 0.0021696520000062947
     environment: g++
-    memory: 3.88
+    memory: 3.612
     name: small_random_03
     status: AC
-  - elapsed: 0.001900941999991801
+  - elapsed: 0.002167008000000692
     environment: g++
-    memory: 3.856
+    memory: 3.668
     name: small_random_04
     status: AC
-  - elapsed: 0.001838488999993615
+  - elapsed: 0.0022246560000098725
     environment: g++
-    memory: 3.864
+    memory: 3.616
     name: small_random_05
     status: AC
-  - elapsed: 0.0017953440000013643
+  - elapsed: 0.0022442619999907265
     environment: g++
-    memory: 3.892
+    memory: 3.812
     name: small_random_06
     status: AC
-  - elapsed: 0.0018048390000018344
+  - elapsed: 0.0021881259999929625
     environment: g++
-    memory: 3.9
+    memory: 3.784
     name: small_random_07
     status: AC
-  - elapsed: 0.001735554999996225
+  - elapsed: 0.0020763769999945225
     environment: g++
-    memory: 3.908
+    memory: 3.764
     name: small_random_08
     status: AC
-  - elapsed: 0.0018498559999926556
+  - elapsed: 0.0021538520000063954
     environment: g++
-    memory: 3.864
+    memory: 3.668
     name: small_random_09
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_suffix_array.test.cpp

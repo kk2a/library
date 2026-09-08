@@ -50,13 +50,13 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/stern_brocot_tree\n\
-      \n#include \"../../math/stern_brocot_tree.hpp\"\n#include \"../../template/template.hpp\"\
+      \n#include \"../../math/stern_brocot_tree.hpp\"\n\n#include \"../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    using sbt = kk2::SternBrocotTree<i64>;\n\
-      \    using sbt_node = sbt::Node;\n\n    int t;\n    kin >> t;\n    rep (t) {\n\
+      \    using sbt_node = sbt::Node;\n\n    int t;\n    kin >> t;\n    rep(t) {\n\
       \        string type;\n        kin >> type;\n        if (type == \"ENCODE_PATH\"\
       ) {\n            int a, b;\n            kin >> a >> b;\n            sbt_node\
       \ x(a, b);\n            auto p = x.get_path();\n            vc<pair<char, i64>>\
-      \ res;\n            rep (i, p.size()) {\n                if (p[i] == 0) continue;\n\
+      \ res;\n            rep(i, p.size()) {\n                if (p[i] == 0) continue;\n\
       \                res.emplace_back(i & 1 ? 'L' : 'R', p[i]);\n            }\n\
       \            kout << res.size() << \" \" << res << \"\\n\";\n        } else\
       \ if (type == \"DECODE_PATH\") {\n            int k;\n            kin >> k;\n\
@@ -76,8 +76,8 @@ data:
     name: default
   - code: "#line 1 \"verify/yosupo_math/stern_brocot_tree.test.cpp\"\n// competitive-verifier:\
       \ PROBLEM https://judge.yosupo.jp/problem/stern_brocot_tree\n\n#line 1 \"math/stern_brocot_tree.hpp\"\
-      \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n#include\
-      \ <tuple>\n\nnamespace kk2 {\n\ntemplate <class T> struct SternBrocotTreeNode\
+      \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <tuple>\n#include\
+      \ <vector>\n\nnamespace kk2 {\n\ntemplate <class T> struct SternBrocotTreeNode\
       \ {\n    T lnum, lden;\n    T rnum, rden;\n    // even: right, odd: left\n \
       \   std::vector<T> path;\n    T dep;\n\n    SternBrocotTreeNode() : lnum(0),\
       \ lden(1), rnum(1), rden(0), path({0}), dep(0) {}\n    SternBrocotTreeNode(T\
@@ -134,58 +134,60 @@ data:
       \         std::swap(num1, num2), std::swap(den1, den2), left = !left;\n    \
       \    }\n        if (left) std::swap(num1, num2), std::swap(den1, den2);\n  \
       \      return {num1, den1, num2, den2};\n    }\n};\n\n} // namespace kk2\n\n\
-      \n#line 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\
-      \n#include <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\n#include\
-      \ <chrono>\n#include <cmath>\n#include <deque>\n#include <functional>\n#include\
-      \ <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-      \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include\
-      \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
-      #include <utility>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
-      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
-      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
-      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
-      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
-      \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
+      \n#line 4 \"verify/yosupo_math/stern_brocot_tree.test.cpp\"\n\n#line 1 \"template/template.hpp\"\
+      \n\n\n\n#line 5 \"template/template.hpp\"\n#include <array>\n#include <bitset>\n\
+      #line 8 \"template/template.hpp\"\n#include <chrono>\n#include <cmath>\n#include\
+      \ <deque>\n#include <functional>\n#include <iterator>\n#include <limits>\n#include\
+      \ <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n#include\
+      \ <random>\n#include <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n\
+      #include <unordered_set>\n#include <utility>\n#line 26 \"template/template.hpp\"\
+      \n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
+      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
+      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
+      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
+      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
+      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
+      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
+      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
+      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
+      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
+      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
+      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
+      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
+      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
+      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
+      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
+      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n\
+      #include <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -200,20 +202,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -348,7 +352,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -375,13 +379,13 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/stern_brocot_tree.test.cpp\"\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/stern_brocot_tree.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using sbt = kk2::SternBrocotTree<i64>;\n\
-      \    using sbt_node = sbt::Node;\n\n    int t;\n    kin >> t;\n    rep (t) {\n\
+      \    using sbt_node = sbt::Node;\n\n    int t;\n    kin >> t;\n    rep(t) {\n\
       \        string type;\n        kin >> type;\n        if (type == \"ENCODE_PATH\"\
       ) {\n            int a, b;\n            kin >> a >> b;\n            sbt_node\
       \ x(a, b);\n            auto p = x.get_path();\n            vc<pair<char, i64>>\
-      \ res;\n            rep (i, p.size()) {\n                if (p[i] == 0) continue;\n\
+      \ res;\n            rep(i, p.size()) {\n                if (p[i] == 0) continue;\n\
       \                res.emplace_back(i & 1 ? 'L' : 'R', p[i]);\n            }\n\
       \            kout << res.size() << \" \" << res << \"\\n\";\n        } else\
       \ if (type == \"DECODE_PATH\") {\n            int k;\n            kin >> k;\n\
@@ -405,97 +409,97 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.18572011000000543
+  - elapsed: 0.10691446800001358
     environment: g++
-    memory: 4.06
+    memory: 4.164
     name: edge_decode_00
     status: AC
-  - elapsed: 0.22199992400000212
+  - elapsed: 0.13497154000003775
     environment: g++
-    memory: 3.896
+    memory: 4.184
     name: edge_encode_00
     status: AC
-  - elapsed: 0.12666930199999626
+  - elapsed: 0.0714622539999823
     environment: g++
-    memory: 4.052
+    memory: 4.108
     name: edge_lca_00
     status: AC
-  - elapsed: 0.11724757800000418
+  - elapsed: 0.07106861799996977
     environment: g++
-    memory: 3.86
+    memory: 4.116
     name: edge_range_00
     status: AC
-  - elapsed: 0.0025634349999990036
+  - elapsed: 0.0017287469999587302
     environment: g++
-    memory: 3.784
+    memory: 3.856
     name: example_00
     status: AC
-  - elapsed: 0.002315647000003196
+  - elapsed: 0.0016421259999788163
     environment: g++
-    memory: 3.6
+    memory: 3.844
     name: hand_00
     status: AC
-  - elapsed: 0.0022968180000049188
+  - elapsed: 0.0016469639999741048
     environment: g++
-    memory: 3.792
+    memory: 3.868
     name: hand_01
     status: AC
-  - elapsed: 0.24225750800000867
+  - elapsed: 0.14303973900001665
     environment: g++
-    memory: 4.048
+    memory: 3.992
     name: random_ancestor_no_00
     status: AC
-  - elapsed: 0.29832331599999407
+  - elapsed: 0.17776548399996273
     environment: g++
-    memory: 4.056
+    memory: 4.136
     name: random_ancestor_yes_00
     status: AC
-  - elapsed: 0.5217666919999999
+  - elapsed: 0.2874981049999974
     environment: g++
-    memory: 3.912
+    memory: 4.156
     name: random_decode_00
     status: AC
-  - elapsed: 0.5742660359999974
+  - elapsed: 0.36862719499998775
     environment: g++
-    memory: 4.012
+    memory: 4.124
     name: random_encode_00
     status: AC
-  - elapsed: 0.4114435609999987
+  - elapsed: 0.23878170199998294
     environment: g++
-    memory: 4.024
+    memory: 3.996
     name: random_lca_00
     status: AC
-  - elapsed: 0.2659855550000003
+  - elapsed: 0.15956673499999852
     environment: g++
-    memory: 3.84
+    memory: 4.124
     name: random_range_00
     status: AC
-  - elapsed: 0.14883022200000084
+  - elapsed: 0.0856985560000112
     environment: g++
-    memory: 3.912
+    memory: 4.124
     name: small_ancestor_00
     status: AC
-  - elapsed: 0.26137179699999535
+  - elapsed: 0.14809997200001135
     environment: g++
-    memory: 4.06
+    memory: 4.192
     name: small_decode_00
     status: AC
-  - elapsed: 0.3250573879999905
+  - elapsed: 0.1857000919999905
     environment: g++
-    memory: 4.072
+    memory: 4.184
     name: small_encode_00
     status: AC
-  - elapsed: 0.18006941899999163
+  - elapsed: 0.10061276800001906
     environment: g++
-    memory: 4.06
+    memory: 4.112
     name: small_lca_00
     status: AC
-  - elapsed: 0.16602958199999307
+  - elapsed: 0.09753733799999509
     environment: g++
-    memory: 4.08
+    memory: 4.152
     name: small_range_00
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/stern_brocot_tree.test.cpp

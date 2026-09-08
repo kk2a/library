@@ -26,55 +26,56 @@ data:
       \        _upper = 255;\n        init();\n    }\n\n    // all elements of s_\
       \ must be in [0, upper]\n    SuffixArray(const std::vector<int> &s_, int upper_)\n\
       \        : _n((int)s_.size()),\n          _upper(upper_),\n          _s(s_)\
-      \ {\n        init();\n    }\n\n    template <class T> SuffixArray(const std::vector<T>\
-      \ &s_)\n        : _n((int)s_.size()),\n          _s((int)s_.size()) {\n    \
-      \    std::vector<int> idx(_n);\n        std::iota(std::begin(idx), std::end(idx),\
-      \ 0);\n        std::sort(std::begin(idx), std::end(idx), [&](int l, int r) {\
-      \ return s_[l] < s_[r]; });\n        _upper = 0;\n        for (int i = 0; i\
-      \ < _n; ++i) {\n            if (i && s_[idx[i - 1]] != s_[idx[i]]) _upper++;\n\
-      \            _s[idx[i]] = _upper;\n        }\n        init();\n    }\n\n   \
-      \ const std::vector<int> &get_sa() const { return _sa; }\n\n    const std::vector<int>\
-      \ &get_s() const { return _s; }\n\n    int operator[](int i) const { return\
-      \ _sa[i]; }\n\n    int size() const { return _n; }\n\n    int upper() const\
-      \ { return _upper; }\n\n    bool op(int i, const std::string &t) const {\n \
-      \       int off = _sa[i];\n        int m = std::min(_n - off, (int)t.size());\n\
-      \        for (int j = 0; j < m; ++j) {\n            if (_s[off + j] != t[j])\
-      \ return _s[off + j] < t[j];\n        }\n        return _n - off < (int)t.size();\n\
-      \    }\n\n    bool op(int i, const std::vector<int> &t) const {\n        int\
-      \ off = _sa[i];\n        int m = std::min(_n - off, (int)t.size());\n      \
-      \  for (int j = 0; j < m; ++j) {\n            if (_s[off + j] != t[j]) return\
-      \ _s[off + j] < t[j];\n        }\n        return _n - off < (int)t.size();\n\
-      \    }\n\n    // return the smallest index i s.t. s[sa[i]:] >= t\n    int lower_bound(const\
-      \ std::vector<int> &t) const {\n        int l = -1, r = _n;\n        while (r\
-      \ - l > 1) {\n            int m = (l + r) / 2;\n            if (op(m, t)) l\
-      \ = m;\n            else r = m;\n        }\n        return r;\n    }\n\n   \
-      \ int lower_bound(const std::string &t) const {\n        int l = -1, r = _n;\n\
-      \        while (r - l > 1) {\n            int m = (l + r) / 2;\n           \
-      \ if (op(m, t)) l = m;\n            else r = m;\n        }\n        return r;\n\
-      \    }\n\n  private:\n    int _n, _upper;\n    std::vector<int> _sa, _s;\n\n\
-      \    std::vector<int> sa_naive(const std::vector<int> &s) {\n        int n =\
-      \ (int)s.size();\n        std::vector<int> sa(n);\n        std::iota(std::begin(sa),\
-      \ std::end(sa), 0);\n        std::sort(std::begin(sa), std::end(sa), [&](int\
-      \ l, int r) {\n            if (l == r) return false;\n            while (l <\
-      \ n && r < n) {\n                if (s[l] != s[r]) return s[l] < s[r];\n   \
-      \             l++;\n                r++;\n            }\n            return\
-      \ l == n;\n        });\n        return sa;\n    }\n\n    std::vector<int> sa_doubling(const\
-      \ std::vector<int> &s) {\n        int n = (int)s.size();\n        std::vector<int>\
-      \ sa(n), cpy = s, tmp(n);\n        std::iota(std::begin(sa), std::end(sa), 0);\n\
-      \        for (int len = 1; len < n; len <<= 1) {\n            auto Compare =\
-      \ [&](int x, int y) {\n                if (cpy[x] != cpy[y]) return cpy[x] <\
-      \ cpy[y];\n                int rx = x + len < n ? cpy[x + len] : -1;\n     \
-      \           int ry = y + len < n ? cpy[y + len] : -1;\n                return\
-      \ rx < ry;\n            };\n            std::sort(std::begin(sa), std::end(sa),\
-      \ Compare);\n            tmp[sa[0]] = 0;\n            for (int i = 1; i < n;\
-      \ i++) {\n                tmp[sa[i]] = tmp[sa[i - 1]] + (Compare(sa[i - 1],\
-      \ sa[i]) ? 1 : 0);\n            }\n            std::swap(cpy, tmp);\n      \
-      \  }\n        return sa;\n    }\n\n    template <int THRESHOLD_NAIVE = 10, int\
-      \ THRESHOLD_DOUBLING = 40>\n    std::vector<int> sa_is(const std::vector<int>\
-      \ &s, int upper) {\n        int n = (int)s.size();\n        if (n == 0) return\
-      \ {};\n        if (n == 1) return {0};\n        if (n == 2) {\n            if\
-      \ (s[0] < s[1]) return {0, 1};\n            else return {1, 0};\n        }\n\
-      \        if (n < THRESHOLD_NAIVE) return sa_naive(s);\n        if (n < THRESHOLD_DOUBLING)\
+      \ {\n        init();\n    }\n\n    template <class T>\n    SuffixArray(const\
+      \ std::vector<T> &s_) : _n((int)s_.size()),\n                              \
+      \              _s((int)s_.size()) {\n        std::vector<int> idx(_n);\n   \
+      \     std::iota(std::begin(idx), std::end(idx), 0);\n        std::sort(std::begin(idx),\
+      \ std::end(idx), [&](int l, int r) { return s_[l] < s_[r]; });\n        _upper\
+      \ = 0;\n        for (int i = 0; i < _n; ++i) {\n            if (i && s_[idx[i\
+      \ - 1]] != s_[idx[i]]) _upper++;\n            _s[idx[i]] = _upper;\n       \
+      \ }\n        init();\n    }\n\n    const std::vector<int> &get_sa() const {\
+      \ return _sa; }\n\n    const std::vector<int> &get_s() const { return _s; }\n\
+      \n    int operator[](int i) const { return _sa[i]; }\n\n    int size() const\
+      \ { return _n; }\n\n    int upper() const { return _upper; }\n\n    bool op(int\
+      \ i, const std::string &t) const {\n        int off = _sa[i];\n        int m\
+      \ = std::min(_n - off, (int)t.size());\n        for (int j = 0; j < m; ++j)\
+      \ {\n            if (_s[off + j] != t[j]) return _s[off + j] < t[j];\n     \
+      \   }\n        return _n - off < (int)t.size();\n    }\n\n    bool op(int i,\
+      \ const std::vector<int> &t) const {\n        int off = _sa[i];\n        int\
+      \ m = std::min(_n - off, (int)t.size());\n        for (int j = 0; j < m; ++j)\
+      \ {\n            if (_s[off + j] != t[j]) return _s[off + j] < t[j];\n     \
+      \   }\n        return _n - off < (int)t.size();\n    }\n\n    // return the\
+      \ smallest index i s.t. s[sa[i]:] >= t\n    int lower_bound(const std::vector<int>\
+      \ &t) const {\n        int l = -1, r = _n;\n        while (r - l > 1) {\n  \
+      \          int m = (l + r) / 2;\n            if (op(m, t)) l = m;\n        \
+      \    else r = m;\n        }\n        return r;\n    }\n\n    int lower_bound(const\
+      \ std::string &t) const {\n        int l = -1, r = _n;\n        while (r - l\
+      \ > 1) {\n            int m = (l + r) / 2;\n            if (op(m, t)) l = m;\n\
+      \            else r = m;\n        }\n        return r;\n    }\n\n  private:\n\
+      \    int _n, _upper;\n    std::vector<int> _sa, _s;\n\n    std::vector<int>\
+      \ sa_naive(const std::vector<int> &s) {\n        int n = (int)s.size();\n  \
+      \      std::vector<int> sa(n);\n        std::iota(std::begin(sa), std::end(sa),\
+      \ 0);\n        std::sort(std::begin(sa), std::end(sa), [&](int l, int r) {\n\
+      \            if (l == r) return false;\n            while (l < n && r < n) {\n\
+      \                if (s[l] != s[r]) return s[l] < s[r];\n                l++;\n\
+      \                r++;\n            }\n            return l == n;\n        });\n\
+      \        return sa;\n    }\n\n    std::vector<int> sa_doubling(const std::vector<int>\
+      \ &s) {\n        int n = (int)s.size();\n        std::vector<int> sa(n), cpy\
+      \ = s, tmp(n);\n        std::iota(std::begin(sa), std::end(sa), 0);\n      \
+      \  for (int len = 1; len < n; len <<= 1) {\n            auto Compare = [&](int\
+      \ x, int y) {\n                if (cpy[x] != cpy[y]) return cpy[x] < cpy[y];\n\
+      \                int rx = x + len < n ? cpy[x + len] : -1;\n               \
+      \ int ry = y + len < n ? cpy[y + len] : -1;\n                return rx < ry;\n\
+      \            };\n            std::sort(std::begin(sa), std::end(sa), Compare);\n\
+      \            tmp[sa[0]] = 0;\n            for (int i = 1; i < n; i++) {\n  \
+      \              tmp[sa[i]] = tmp[sa[i - 1]] + (Compare(sa[i - 1], sa[i]) ? 1\
+      \ : 0);\n            }\n            std::swap(cpy, tmp);\n        }\n      \
+      \  return sa;\n    }\n\n    template <int THRESHOLD_NAIVE = 10, int THRESHOLD_DOUBLING\
+      \ = 40>\n    std::vector<int> sa_is(const std::vector<int> &s, int upper) {\n\
+      \        int n = (int)s.size();\n        if (n == 0) return {};\n        if\
+      \ (n == 1) return {0};\n        if (n == 2) {\n            if (s[0] < s[1])\
+      \ return {0, 1};\n            else return {1, 0};\n        }\n        if (n\
+      \ < THRESHOLD_NAIVE) return sa_naive(s);\n        if (n < THRESHOLD_DOUBLING)\
       \ return sa_doubling(s);\n\n        std::vector<int> sa(n);\n        std::vector<bool>\
       \ ls(n);\n        for (int i = n - 2; i >= 0; i--) {\n            ls[i] = (s[i]\
       \ == s[i + 1]) ? ls[i + 1] : (s[i] < s[i + 1]);\n        }\n        std::vector<int>\
@@ -137,9 +138,9 @@ data:
       \        init();\n    }\n\n    // all elements of s_ must be in [0, upper]\n\
       \    SuffixArray(const std::vector<int> &s_, int upper_)\n        : _n((int)s_.size()),\n\
       \          _upper(upper_),\n          _s(s_) {\n        init();\n    }\n\n \
-      \   template <class T> SuffixArray(const std::vector<T> &s_)\n        : _n((int)s_.size()),\n\
-      \          _s((int)s_.size()) {\n        std::vector<int> idx(_n);\n       \
-      \ std::iota(std::begin(idx), std::end(idx), 0);\n        std::sort(std::begin(idx),\
+      \   template <class T>\n    SuffixArray(const std::vector<T> &s_) : _n((int)s_.size()),\n\
+      \                                            _s((int)s_.size()) {\n        std::vector<int>\
+      \ idx(_n);\n        std::iota(std::begin(idx), std::end(idx), 0);\n        std::sort(std::begin(idx),\
       \ std::end(idx), [&](int l, int r) { return s_[l] < s_[r]; });\n        _upper\
       \ = 0;\n        for (int i = 0; i < _n; ++i) {\n            if (i && s_[idx[i\
       \ - 1]] != s_[idx[i]]) _upper++;\n            _s[idx[i]] = _upper;\n       \
@@ -244,7 +245,7 @@ data:
   path: string/suffix_array.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_string/string_number_of_substrings.test.cpp

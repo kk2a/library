@@ -70,11 +70,11 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/lcm_convolution\n\
-      \n#include \"../../convolution/convolution_lcm.hpp\"\n#include \"../../modint/mont.hpp\"\
+      \n#include \"../../convolution/convolution_lcm.hpp\"\n\n#include \"../../modint/mont.hpp\"\
       \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
       \ {\n    int n;\n    kin >> n;\n    vc<kk2::mont998> a(n + 1), b(n + 1);\n \
-      \   rep (i, n) kin >> a[i + 1];\n    rep (i, n) kin >> b[i + 1];\n    kk2::convolution_lcm(a,\
-      \ b);\n    rep (i, n) kout << a[i + 1] << \" \\n\"[i == n - 1];\n\n    return\
+      \   rep(i, n) kin >> a[i + 1];\n    rep(i, n) kin >> b[i + 1];\n    kk2::convolution_lcm(a,\
+      \ b);\n    rep(i, n) kout << a[i + 1] << \" \\n\"[i == n - 1];\n\n    return\
       \ 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_convolution/convolution_lcm.test.cpp\"\n// competitive-verifier:\
@@ -160,29 +160,31 @@ data:
       \ {};\n    n--;\n    FPS c(b.begin(), b.end());\n\n    divisor_transform(a);\n\
       \    divisor_transform(c);\n    for (int i = 1; i <= n; i++) a[i] *= c[i];\n\
       \    inverse_divisor_transform(a);\n\n    return a;\n}\n\n} // namespace kk2\n\
-      \n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include\
-      \ <cstdint>\n#include <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n#line 4 \"verify/yosupo_convolution/convolution_lcm.test.cpp\"\n\n#line\
+      \ 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include <cstdint>\n\
+      #include <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -200,21 +202,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -232,8 +235,8 @@ data:
       \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
       );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
       \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\n\
-      \        : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
+      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
+      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
       \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
       \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
       \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
@@ -260,12 +263,12 @@ data:
       \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
       \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
       \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
-      \ - 2);\n    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, mint &x)\
-      \ {\n        i64 t;\n        is >> t;\n        x = mint(t);\n        return\
-      \ (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n\
-      \        return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n \
+      \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
       \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\
@@ -420,7 +423,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -447,10 +450,10 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_lcm.test.cpp\"\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_convolution/convolution_lcm.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    vc<kk2::mont998>\
-      \ a(n + 1), b(n + 1);\n    rep (i, n) kin >> a[i + 1];\n    rep (i, n) kin >>\
-      \ b[i + 1];\n    kk2::convolution_lcm(a, b);\n    rep (i, n) kout << a[i + 1]\
+      \ a(n + 1), b(n + 1);\n    rep(i, n) kin >> a[i + 1];\n    rep(i, n) kin >>\
+      \ b[i + 1];\n    kk2::convolution_lcm(a, b);\n    rep(i, n) kout << a[i + 1]\
       \ << \" \\n\"[i == n - 1];\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
@@ -459,152 +462,152 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002912602999998626
+  - elapsed: 0.002397654000020566
     environment: g++
-    memory: 3.716
+    memory: 3.884
     name: all_zero_00
     status: AC
-  - elapsed: 0.002344155999992381
+  - elapsed: 0.002126336000003448
     environment: g++
-    memory: 3.744
+    memory: 3.884
     name: example_00
     status: AC
-  - elapsed: 0.5378769600000055
+  - elapsed: 0.418748872000009
     environment: g++
-    memory: 19.284
+    memory: 19.512
     name: max_random_00
     status: AC
-  - elapsed: 0.5371903150000037
+  - elapsed: 0.4231232019999993
     environment: g++
-    memory: 19.352
+    memory: 19.452
     name: max_random_01
     status: AC
-  - elapsed: 0.538674407000002
+  - elapsed: 0.42194677000000524
     environment: g++
-    memory: 19.352
+    memory: 19.504
     name: near_prime_00
     status: AC
-  - elapsed: 0.5355285470000126
+  - elapsed: 0.42411230400000477
     environment: g++
-    memory: 19.352
+    memory: 19.54
     name: near_prime_01
     status: AC
-  - elapsed: 0.5393165609999926
+  - elapsed: 0.42104114199997866
     environment: g++
-    memory: 19.408
+    memory: 19.536
     name: near_prime_02
     status: AC
-  - elapsed: 0.530205651000017
+  - elapsed: 0.4344783710000115
     environment: g++
-    memory: 19.244
+    memory: 19.368
     name: near_prime_squared_00
     status: AC
-  - elapsed: 0.5359054469999762
+  - elapsed: 0.41779000600001837
     environment: g++
-    memory: 19.24
+    memory: 19.288
     name: near_prime_squared_01
     status: AC
-  - elapsed: 0.532665771000012
+  - elapsed: 0.4177161210000122
     environment: g++
-    memory: 19.24
+    memory: 19.344
     name: near_prime_squared_02
     status: AC
-  - elapsed: 0.21184340900001075
+  - elapsed: 0.16030587399998808
     environment: g++
-    memory: 9.632
+    memory: 9.732
     name: random_00
     status: AC
-  - elapsed: 0.25430139999997436
+  - elapsed: 0.19409502199999906
     environment: g++
-    memory: 11.628
+    memory: 11.764
     name: random_01
     status: AC
-  - elapsed: 0.31132966700002385
+  - elapsed: 0.23997326099998872
     environment: g++
-    memory: 12.664
+    memory: 12.764
     name: random_02
     status: AC
-  - elapsed: 0.0028411540000092828
+  - elapsed: 0.0024193130000185192
     environment: g++
-    memory: 3.768
+    memory: 3.912
     name: small_00
     status: AC
-  - elapsed: 0.002339358000028824
+  - elapsed: 0.002130004000008512
     environment: g++
-    memory: 3.688
+    memory: 3.888
     name: small_01
     status: AC
-  - elapsed: 0.0022776650000082554
+  - elapsed: 0.0020117210000023533
     environment: g++
-    memory: 3.752
+    memory: 3.812
     name: small_02
     status: AC
-  - elapsed: 0.0023176050000301984
+  - elapsed: 0.0019475100000079237
     environment: g++
-    memory: 3.756
+    memory: 3.912
     name: small_03
     status: AC
-  - elapsed: 0.0023245760000349946
+  - elapsed: 0.0019245020000084878
     environment: g++
-    memory: 3.756
+    memory: 3.828
     name: small_04
     status: AC
-  - elapsed: 0.0022969540000303823
+  - elapsed: 0.0020662960000095154
     environment: g++
-    memory: 3.756
+    memory: 3.828
     name: small_05
     status: AC
-  - elapsed: 0.0022760319999974854
+  - elapsed: 0.0019615060000148787
     environment: g++
-    memory: 3.776
+    memory: 3.864
     name: small_06
     status: AC
-  - elapsed: 0.002297615000031783
+  - elapsed: 0.0019574599999998554
     environment: g++
-    memory: 3.688
+    memory: 3.884
     name: small_07
     status: AC
-  - elapsed: 0.002301190000025599
+  - elapsed: 0.0019808700000112367
     environment: g++
-    memory: 3.728
+    memory: 3.828
     name: small_08
     status: AC
-  - elapsed: 0.0023545810000200618
+  - elapsed: 0.0019416350000085458
     environment: g++
-    memory: 3.76
+    memory: 3.888
     name: small_09
     status: AC
-  - elapsed: 0.0022914459999583414
+  - elapsed: 0.0019145499999808635
     environment: g++
-    memory: 3.76
+    memory: 3.856
     name: small_10
     status: AC
-  - elapsed: 0.002309473000025264
+  - elapsed: 0.002078374999996413
     environment: g++
-    memory: 3.728
+    memory: 3.884
     name: small_11
     status: AC
-  - elapsed: 0.002356633999966107
+  - elapsed: 0.0019408439999892835
     environment: g++
-    memory: 3.768
+    memory: 3.864
     name: small_12
     status: AC
-  - elapsed: 0.002381081000009999
+  - elapsed: 0.00187871400001427
     environment: g++
-    memory: 3.756
+    memory: 3.852
     name: small_13
     status: AC
-  - elapsed: 0.0023303639999880943
+  - elapsed: 0.0019147049999901355
     environment: g++
-    memory: 3.688
+    memory: 3.88
     name: small_14
     status: AC
-  - elapsed: 0.002281390999996802
+  - elapsed: 0.0019350009999925533
     environment: g++
-    memory: 3.756
+    memory: 3.868
     name: small_15
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_lcm.test.cpp

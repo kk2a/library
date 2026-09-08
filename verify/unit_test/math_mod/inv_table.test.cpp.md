@@ -61,36 +61,35 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../math_mod/inv_table.hpp\"\
-      \n#include \"../../../modint/modint.hpp\"\n#include \"../../../random/gen.hpp\"\
+      \n\n#include \"../../../modint/modint.hpp\"\n#include \"../../../random/gen.hpp\"\
       \n#include \"../../../template/template.hpp\"\nusing namespace std;\n\nvoid\
       \ test_inv_table() {\n    using mint = kk2::mint998;\n    using InvTab = kk2::InvTable<mint>;\n\
-      \    \n    // \u57FA\u672C\u7684\u306A\u9006\u5143\u306E\u30C6\u30B9\u30C8\n\
-      \    {\n        rep(100) {\n            int i = kk2::random::rng(1, 1001);\n\
-      \            mint inv_i = InvTab::inv(i);\n            assert(mint(i) * inv_i\
-      \ == mint(1));\n        }\n        cerr << \"Basic inverse: 100 random tests\
-      \ passed!\" << endl;\n    }\n    \n    // \u5927\u304D\u306A\u5024\u3067\u306E\
-      \u81EA\u52D5\u62E1\u5F35\u30C6\u30B9\u30C8\n    {\n        rep(1000) {\n   \
-      \         int i = kk2::random::rng(1, 50001);\n            mint inv_i = InvTab::inv(i);\n\
-      \            assert(mint(i) * inv_i == mint(1));\n        }\n        cerr <<\
-      \ \"Auto expansion: 1000 random tests passed!\" << endl;\n    }\n    \n    //\
-      \ \u8CA0\u306E\u6570\u306E\u30C6\u30B9\u30C8\n    {\n        rep(1000) {\n \
-      \           int i = kk2::random::rng(1, 10001);\n            mint inv_pos =\
-      \ InvTab::inv(i);\n            mint inv_neg = InvTab::inv(-i);\n           \
-      \ assert(inv_pos == -inv_neg);\n            assert(mint(-i) * inv_neg == mint(1));\n\
-      \        }\n        cerr << \"Negative numbers: 1000 random tests passed!\"\
-      \ << endl;\n    }\n    \n    // set_upper\u306E\u52D5\u4F5C\u30C6\u30B9\u30C8\
-      \n    {\n        InvTab::set_upper(20000);\n        rep(1000) {\n          \
-      \  int i = kk2::random::rng(1, 20001);\n            mint inv_i = InvTab::inv(i);\n\
-      \            assert(mint(i) * inv_i == mint(1));\n        }\n        cerr <<\
-      \ \"set_upper: 1000 random tests passed!\" << endl;\n    }\n    \n    // \u4E00\
-      \u81F4\u6027\u30C6\u30B9\u30C8\uFF08\u8907\u6570\u56DE\u547C\u3073\u51FA\u3057\
-      \u3067\u540C\u3058\u7D50\u679C\uFF09\n    {\n        rep(100) {\n          \
-      \  int i = kk2::random::rng(1, 10001);\n            mint inv1 = InvTab::inv(i);\n\
-      \            mint inv2 = InvTab::inv(i);\n            assert(inv1 == inv2);\n\
-      \        }\n        cerr << \"Consistency: 100 random tests passed!\" << endl;\n\
-      \    }\n}\n\nvoid test() {\n    test_inv_table();\n    \n    // \u5168\u30C6\
-      \u30B9\u30C8\u901A\u904E\n    cerr << \"All InvTable tests passed!\" << endl;\n\
-      }\n\nint main() {\n    test();\n\n    return 0;\n}\n"
+      \n    // \u57FA\u672C\u7684\u306A\u9006\u5143\u306E\u30C6\u30B9\u30C8\n    {\n\
+      \        rep(100) {\n            int i = kk2::random::rng(1, 1001);\n      \
+      \      mint inv_i = InvTab::inv(i);\n            assert(mint(i) * inv_i == mint(1));\n\
+      \        }\n        cerr << \"Basic inverse: 100 random tests passed!\" << endl;\n\
+      \    }\n\n    // \u5927\u304D\u306A\u5024\u3067\u306E\u81EA\u52D5\u62E1\u5F35\
+      \u30C6\u30B9\u30C8\n    {\n        rep(1000) {\n            int i = kk2::random::rng(1,\
+      \ 50001);\n            mint inv_i = InvTab::inv(i);\n            assert(mint(i)\
+      \ * inv_i == mint(1));\n        }\n        cerr << \"Auto expansion: 1000 random\
+      \ tests passed!\" << endl;\n    }\n\n    // \u8CA0\u306E\u6570\u306E\u30C6\u30B9\
+      \u30C8\n    {\n        rep(1000) {\n            int i = kk2::random::rng(1,\
+      \ 10001);\n            mint inv_pos = InvTab::inv(i);\n            mint inv_neg\
+      \ = InvTab::inv(-i);\n            assert(inv_pos == -inv_neg);\n           \
+      \ assert(mint(-i) * inv_neg == mint(1));\n        }\n        cerr << \"Negative\
+      \ numbers: 1000 random tests passed!\" << endl;\n    }\n\n    // set_upper\u306E\
+      \u52D5\u4F5C\u30C6\u30B9\u30C8\n    {\n        InvTab::set_upper(20000);\n \
+      \       rep(1000) {\n            int i = kk2::random::rng(1, 20001);\n     \
+      \       mint inv_i = InvTab::inv(i);\n            assert(mint(i) * inv_i ==\
+      \ mint(1));\n        }\n        cerr << \"set_upper: 1000 random tests passed!\"\
+      \ << endl;\n    }\n\n    // \u4E00\u81F4\u6027\u30C6\u30B9\u30C8\uFF08\u8907\
+      \u6570\u56DE\u547C\u3073\u51FA\u3057\u3067\u540C\u3058\u7D50\u679C\uFF09\n \
+      \   {\n        rep(100) {\n            int i = kk2::random::rng(1, 10001);\n\
+      \            mint inv1 = InvTab::inv(i);\n            mint inv2 = InvTab::inv(i);\n\
+      \            assert(inv1 == inv2);\n        }\n        cerr << \"Consistency:\
+      \ 100 random tests passed!\" << endl;\n    }\n}\n\nvoid test() {\n    test_inv_table();\n\
+      \n    // \u5168\u30C6\u30B9\u30C8\u901A\u904E\n    cerr << \"All InvTable tests\
+      \ passed!\" << endl;\n}\n\nint main() {\n    test();\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/math_mod/inv_table.test.cpp\"\n// competitive-verifier:\
       \ STANDALONE\n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#include <vector>\n\
@@ -104,33 +103,35 @@ data:
       \ i <= m; ++i) _invs[i] = (-_invs[_mod % i]) * (_mod / i);\n    }\n\n    static\
       \ inline mint inv(int n) {\n        bool neg = n < 0;\n        if (neg) n =\
       \ -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n        return neg\
-      \ ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"modint/modint.hpp\"\
-      \n\n\n\n#include <cassert>\n#include <iostream>\n#include <type_traits>\n#include\
-      \ <utility>\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
-      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
+      \ ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 4 \"verify/unit_test/math_mod/inv_table.test.cpp\"\
+      \n\n#line 1 \"modint/modint.hpp\"\n\n\n\n#include <cassert>\n#include <iostream>\n\
+      #include <type_traits>\n#include <utility>\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -144,21 +145,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -207,10 +209,10 @@ data:
       \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
       \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
       \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
-      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
-      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
+      \ mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\
+      \ friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
       \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
       \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
       \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
@@ -399,7 +401,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -426,36 +428,35 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/unit_test/math_mod/inv_table.test.cpp\"\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/unit_test/math_mod/inv_table.test.cpp\"\
       \nusing namespace std;\n\nvoid test_inv_table() {\n    using mint = kk2::mint998;\n\
-      \    using InvTab = kk2::InvTable<mint>;\n    \n    // \u57FA\u672C\u7684\u306A\
-      \u9006\u5143\u306E\u30C6\u30B9\u30C8\n    {\n        rep(100) {\n          \
-      \  int i = kk2::random::rng(1, 1001);\n            mint inv_i = InvTab::inv(i);\n\
-      \            assert(mint(i) * inv_i == mint(1));\n        }\n        cerr <<\
-      \ \"Basic inverse: 100 random tests passed!\" << endl;\n    }\n    \n    //\
-      \ \u5927\u304D\u306A\u5024\u3067\u306E\u81EA\u52D5\u62E1\u5F35\u30C6\u30B9\u30C8\
-      \n    {\n        rep(1000) {\n            int i = kk2::random::rng(1, 50001);\n\
+      \    using InvTab = kk2::InvTable<mint>;\n\n    // \u57FA\u672C\u7684\u306A\u9006\
+      \u5143\u306E\u30C6\u30B9\u30C8\n    {\n        rep(100) {\n            int i\
+      \ = kk2::random::rng(1, 1001);\n            mint inv_i = InvTab::inv(i);\n \
+      \           assert(mint(i) * inv_i == mint(1));\n        }\n        cerr <<\
+      \ \"Basic inverse: 100 random tests passed!\" << endl;\n    }\n\n    // \u5927\
+      \u304D\u306A\u5024\u3067\u306E\u81EA\u52D5\u62E1\u5F35\u30C6\u30B9\u30C8\n \
+      \   {\n        rep(1000) {\n            int i = kk2::random::rng(1, 50001);\n\
       \            mint inv_i = InvTab::inv(i);\n            assert(mint(i) * inv_i\
       \ == mint(1));\n        }\n        cerr << \"Auto expansion: 1000 random tests\
-      \ passed!\" << endl;\n    }\n    \n    // \u8CA0\u306E\u6570\u306E\u30C6\u30B9\
-      \u30C8\n    {\n        rep(1000) {\n            int i = kk2::random::rng(1,\
-      \ 10001);\n            mint inv_pos = InvTab::inv(i);\n            mint inv_neg\
-      \ = InvTab::inv(-i);\n            assert(inv_pos == -inv_neg);\n           \
-      \ assert(mint(-i) * inv_neg == mint(1));\n        }\n        cerr << \"Negative\
-      \ numbers: 1000 random tests passed!\" << endl;\n    }\n    \n    // set_upper\u306E\
-      \u52D5\u4F5C\u30C6\u30B9\u30C8\n    {\n        InvTab::set_upper(20000);\n \
-      \       rep(1000) {\n            int i = kk2::random::rng(1, 20001);\n     \
-      \       mint inv_i = InvTab::inv(i);\n            assert(mint(i) * inv_i ==\
-      \ mint(1));\n        }\n        cerr << \"set_upper: 1000 random tests passed!\"\
-      \ << endl;\n    }\n    \n    // \u4E00\u81F4\u6027\u30C6\u30B9\u30C8\uFF08\u8907\
-      \u6570\u56DE\u547C\u3073\u51FA\u3057\u3067\u540C\u3058\u7D50\u679C\uFF09\n \
-      \   {\n        rep(100) {\n            int i = kk2::random::rng(1, 10001);\n\
-      \            mint inv1 = InvTab::inv(i);\n            mint inv2 = InvTab::inv(i);\n\
-      \            assert(inv1 == inv2);\n        }\n        cerr << \"Consistency:\
-      \ 100 random tests passed!\" << endl;\n    }\n}\n\nvoid test() {\n    test_inv_table();\n\
-      \    \n    // \u5168\u30C6\u30B9\u30C8\u901A\u904E\n    cerr << \"All InvTable\
-      \ tests passed!\" << endl;\n}\n\nint main() {\n    test();\n\n    return 0;\n\
-      }\n"
+      \ passed!\" << endl;\n    }\n\n    // \u8CA0\u306E\u6570\u306E\u30C6\u30B9\u30C8\
+      \n    {\n        rep(1000) {\n            int i = kk2::random::rng(1, 10001);\n\
+      \            mint inv_pos = InvTab::inv(i);\n            mint inv_neg = InvTab::inv(-i);\n\
+      \            assert(inv_pos == -inv_neg);\n            assert(mint(-i) * inv_neg\
+      \ == mint(1));\n        }\n        cerr << \"Negative numbers: 1000 random tests\
+      \ passed!\" << endl;\n    }\n\n    // set_upper\u306E\u52D5\u4F5C\u30C6\u30B9\
+      \u30C8\n    {\n        InvTab::set_upper(20000);\n        rep(1000) {\n    \
+      \        int i = kk2::random::rng(1, 20001);\n            mint inv_i = InvTab::inv(i);\n\
+      \            assert(mint(i) * inv_i == mint(1));\n        }\n        cerr <<\
+      \ \"set_upper: 1000 random tests passed!\" << endl;\n    }\n\n    // \u4E00\u81F4\
+      \u6027\u30C6\u30B9\u30C8\uFF08\u8907\u6570\u56DE\u547C\u3073\u51FA\u3057\u3067\
+      \u540C\u3058\u7D50\u679C\uFF09\n    {\n        rep(100) {\n            int i\
+      \ = kk2::random::rng(1, 10001);\n            mint inv1 = InvTab::inv(i);\n \
+      \           mint inv2 = InvTab::inv(i);\n            assert(inv1 == inv2);\n\
+      \        }\n        cerr << \"Consistency: 100 random tests passed!\" << endl;\n\
+      \    }\n}\n\nvoid test() {\n    test_inv_table();\n\n    // \u5168\u30C6\u30B9\
+      \u30C8\u901A\u904E\n    cerr << \"All InvTable tests passed!\" << endl;\n}\n\
+      \nint main() {\n    test();\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -463,7 +464,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math_mod/inv_table.test.cpp

@@ -60,55 +60,57 @@ data:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_set_range_composite\n\
       \n#include \"../../modint/mont.hpp\"\n#include \"../../segment_tree/lazy.hpp\"\
       \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nstruct S\
-      \ {\n    kk2::mont998 a, b;\n    int size;\n\n    static S op(S l, S r) {\n\
-      \        return S{r.a * l.a, r.a * l.b + r.b, l.size + r.size};\n    }\n\n \
-      \   static S unit() { return S{1, 0, 0}; }\n};\n\ntemplate <class IStream> IStream\
-      \ &operator>>(IStream &is, S &s) {\n    is >> s.a >> s.b;\n    s.size = 1;\n\
-      \    return is;\n}\n\nS op(S l, S r) {\n    return S{r.a * l.a, r.a * l.b +\
-      \ r.b, l.size + r.size};\n}\n\nS e() {\n    return S{1, 0, 0};\n}\n\nstruct\
-      \ F {\n    S a;\n    bool id;\n\n    static F op(F l, F r) {\n        if (l.id)\
-      \ return r;\n        return l;\n    }\n\n    static F unit() { return F{S::unit(),\
-      \ true}; }\n};\n\nS mapping(F f, S x) {\n    if (f.id) return x;\n    if (f.a.a\
-      \ == kk2::mont998(1)) return S{kk2::mont998(1), f.a.b * x.size, x.size};\n \
-      \   kk2::mont998 p = f.a.a.pow(x.size);\n    return S{p, f.a.b * (p - 1) * (f.a.a\
-      \ - 1).inv(), x.size};\n}\n\nF composition(F l, F r) {\n    if (l.id) return\
-      \ r;\n    return l;\n}\n\nF id() {\n    return F::unit();\n}\n\nstruct RangeSetRangeComposite\
-      \ {\n    using S = ::S;\n    using A = ::F;\n\n    static S act(A f, S x) {\
-      \ return mapping(f, x); }\n};\n\nint main() {\n    int n, q;\n    kin >> n >>\
-      \ q;\n    vector<S> a(n);\n    kin >> a;\n\n    kk2::LazySegmentTree<RangeSetRangeComposite>\
-      \ seg(a);\n\n    rep (q) {\n        int t;\n        kin >> t;\n        if (t\
-      \ == 0) {\n            int l, r;\n            kk2::mont998 c, d;\n         \
-      \   kin >> l >> r >> c >> d;\n            seg.apply_range(l, r, F{S{c, d, 1},\
-      \ false});\n        }\n        if (t == 1) {\n            int l, r;\n      \
-      \      kk2::mont998 x;\n            kin >> l >> r >> x;\n            auto f\
-      \ = seg.prod(l, r);\n            kout << f.a * x + f.b << \"\\n\";\n       \
-      \ }\n    }\n\n    return 0;\n}\n"
+      \ {\n    kk2::mont998 a, b;\n    int size;\n\n    static S op(S l, S r) { return\
+      \ S{r.a * l.a, r.a * l.b + r.b, l.size + r.size}; }\n\n    static S unit() {\
+      \ return S{1, 0, 0}; }\n};\n\ntemplate <class IStream> IStream &operator>>(IStream\
+      \ &is, S &s) {\n    is >> s.a >> s.b;\n    s.size = 1;\n    return is;\n}\n\n\
+      S op(S l, S r) { return S{r.a * l.a, r.a * l.b + r.b, l.size + r.size}; }\n\n\
+      S e() { return S{1, 0, 0}; }\n\nstruct F {\n    S a;\n    bool id;\n\n    static\
+      \ F op(F l, F r) {\n        if (l.id) return r;\n        return l;\n    }\n\n\
+      \    static F unit() { return F{S::unit(), true}; }\n};\n\nS mapping(F f, S\
+      \ x) {\n    if (f.id) return x;\n    if (f.a.a == kk2::mont998(1)) return S{kk2::mont998(1),\
+      \ f.a.b * x.size, x.size};\n    kk2::mont998 p = f.a.a.pow(x.size);\n    return\
+      \ S{p, f.a.b * (p - 1) * (f.a.a - 1).inv(), x.size};\n}\n\nF composition(F l,\
+      \ F r) {\n    if (l.id) return r;\n    return l;\n}\n\nF id() { return F::unit();\
+      \ }\n\nstruct RangeSetRangeComposite {\n    using S = ::S;\n    using A = ::F;\n\
+      \n    static S act(A f, S x) { return mapping(f, x); }\n};\n\nint main() {\n\
+      \    int n, q;\n    kin >> n >> q;\n    vector<S> a(n);\n    kin >> a;\n\n \
+      \   kk2::LazySegmentTree<RangeSetRangeComposite> seg(a);\n\n    rep(q) {\n \
+      \       int t;\n        kin >> t;\n        if (t == 0) {\n            int l,\
+      \ r;\n            kk2::mont998 c, d;\n            kin >> l >> r >> c >> d;\n\
+      \            seg.apply_range(l,\n                            r,\n          \
+      \                  F{\n                                S{c, d, 1},\n       \
+      \                         false\n            });\n        }\n        if (t ==\
+      \ 1) {\n            int l, r;\n            kk2::mont998 x;\n            kin\
+      \ >> l >> r >> x;\n            auto f = seg.prod(l, r);\n            kout <<\
+      \ f.a * x + f.b << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_ds/ds_range_set_range_composite.test.cpp\"\n//\
       \ competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_set_range_composite\n\
       \n#line 1 \"modint/mont.hpp\"\n\n\n\n#include <cassert>\n#include <cstdint>\n\
       #include <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -126,21 +128,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -158,8 +161,8 @@ data:
       \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
       );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
       \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\n\
-      \        : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
+      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
+      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
       \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
       \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
       \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
@@ -186,12 +189,12 @@ data:
       \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
       \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
       \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
-      \ - 2);\n    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, mint &x)\
-      \ {\n        i64 t;\n        is >> t;\n        x = mint(t);\n        return\
-      \ (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n\
-      \        return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n \
+      \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
       \ namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\n\n\n\n#line 5 \"segment_tree/lazy.hpp\"\
@@ -214,24 +217,24 @@ data:
       \  { T::commutative } -> std::convertible_to<bool>;\n} && bool(T::commutative);\n\
       \n// An action specification owns the pair of algebraic types and the mapping\n\
       // between them. It is the interface required by lazy propagation structures.\n\
-      template <class T>\nconcept Action = requires {\n    typename T::A;\n    typename\
-      \ T::S;\n} && Monoid<typename T::A> && Monoid<typename T::S>\n    && requires(const\
-      \ typename T::A &f, const typename T::S &x) {\n           { T::act(f, x) } ->\
-      \ std::same_as<typename T::S>;\n       };\n\n} // namespace algebra\n\n} //\
-      \ namespace kk2\n\n\n#line 8 \"segment_tree/lazy.hpp\"\n\nnamespace kk2 {\n\n\
-      template <algebra::Action Action> struct LazySegmentTree {\n    using S = typename\
-      \ Action::S;\n    using F = typename Action::A;\n\n  public:\n    LazySegmentTree()\
-      \ : LazySegmentTree(0) {}\n\n    LazySegmentTree(int n) : _n(n) {\n        log\
-      \ = 0;\n        while ((1ll << log) < _n) log++;\n        size = 1 << log;\n\
-      \        d = std::vector<S>(2 * size, S::unit());\n        lz = std::vector<F>(size,\
-      \ F::unit());\n    }\n\n    template <class... Args> LazySegmentTree(int n,\
-      \ Args... args)\n        : LazySegmentTree(std::vector<S>(n, S(args...))) {}\n\
-      \n    LazySegmentTree(const std::vector<S> &v) : _n(int(v.size())) {\n     \
-      \   log = 0;\n        while ((1ll << log) < _n) log++;\n        size = 1 <<\
-      \ log;\n        d = std::vector<S>(2 * size, S::unit());\n        lz = std::vector<F>(size,\
-      \ F::unit());\n        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n  \
-      \      build();\n    }\n\n    void build() {\n        assert(!is_built);\n \
-      \       is_built = true;\n        for (int i = size - 1; i >= 1; i--) update(i);\n\
+      template <class T>\nconcept Action =\n    requires {\n        typename T::A;\n\
+      \        typename T::S;\n    } && Monoid<typename T::A> && Monoid<typename T::S>\n\
+      \    && requires(const typename T::A &f, const typename T::S &x) {\n       \
+      \    { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n} // namespace\
+      \ algebra\n\n} // namespace kk2\n\n\n#line 8 \"segment_tree/lazy.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <algebra::Action Action> struct LazySegmentTree {\n    using\
+      \ S = typename Action::S;\n    using F = typename Action::A;\n\n  public:\n\
+      \    LazySegmentTree() : LazySegmentTree(0) {}\n\n    LazySegmentTree(int n)\
+      \ : _n(n) {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n  \
+      \      size = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n\
+      \        lz = std::vector<F>(size, F::unit());\n    }\n\n    template <class...\
+      \ Args>\n    LazySegmentTree(int n, Args... args) : LazySegmentTree(std::vector<S>(n,\
+      \ S(args...))) {}\n\n    LazySegmentTree(const std::vector<S> &v) : _n(int(v.size()))\
+      \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
+      \ = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n        lz\
+      \ = std::vector<F>(size, F::unit());\n        for (int i = 0; i < _n; i++) d[size\
+      \ + i] = v[i];\n        build();\n    }\n\n    void build() {\n        assert(!is_built);\n\
+      \        is_built = true;\n        for (int i = size - 1; i >= 1; i--) update(i);\n\
       \    }\n\n    template <class... Args> void init_set(int p, Args... args) {\n\
       \        assert(0 <= p && p < _n);\n        assert(!is_built);\n        d[p\
       \ + size] = S(args...);\n    }\n\n    using Monoid = S;\n    static S Op(S l,\
@@ -452,7 +455,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -481,25 +484,26 @@ data:
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_ds/ds_range_set_range_composite.test.cpp\"\
       \nusing namespace std;\n\nstruct S {\n    kk2::mont998 a, b;\n    int size;\n\
-      \n    static S op(S l, S r) {\n        return S{r.a * l.a, r.a * l.b + r.b,\
-      \ l.size + r.size};\n    }\n\n    static S unit() { return S{1, 0, 0}; }\n};\n\
-      \ntemplate <class IStream> IStream &operator>>(IStream &is, S &s) {\n    is\
-      \ >> s.a >> s.b;\n    s.size = 1;\n    return is;\n}\n\nS op(S l, S r) {\n \
-      \   return S{r.a * l.a, r.a * l.b + r.b, l.size + r.size};\n}\n\nS e() {\n \
-      \   return S{1, 0, 0};\n}\n\nstruct F {\n    S a;\n    bool id;\n\n    static\
-      \ F op(F l, F r) {\n        if (l.id) return r;\n        return l;\n    }\n\n\
-      \    static F unit() { return F{S::unit(), true}; }\n};\n\nS mapping(F f, S\
-      \ x) {\n    if (f.id) return x;\n    if (f.a.a == kk2::mont998(1)) return S{kk2::mont998(1),\
-      \ f.a.b * x.size, x.size};\n    kk2::mont998 p = f.a.a.pow(x.size);\n    return\
-      \ S{p, f.a.b * (p - 1) * (f.a.a - 1).inv(), x.size};\n}\n\nF composition(F l,\
-      \ F r) {\n    if (l.id) return r;\n    return l;\n}\n\nF id() {\n    return\
-      \ F::unit();\n}\n\nstruct RangeSetRangeComposite {\n    using S = ::S;\n   \
-      \ using A = ::F;\n\n    static S act(A f, S x) { return mapping(f, x); }\n};\n\
-      \nint main() {\n    int n, q;\n    kin >> n >> q;\n    vector<S> a(n);\n   \
-      \ kin >> a;\n\n    kk2::LazySegmentTree<RangeSetRangeComposite> seg(a);\n\n\
-      \    rep (q) {\n        int t;\n        kin >> t;\n        if (t == 0) {\n \
-      \           int l, r;\n            kk2::mont998 c, d;\n            kin >> l\
-      \ >> r >> c >> d;\n            seg.apply_range(l, r, F{S{c, d, 1}, false});\n\
+      \n    static S op(S l, S r) { return S{r.a * l.a, r.a * l.b + r.b, l.size +\
+      \ r.size}; }\n\n    static S unit() { return S{1, 0, 0}; }\n};\n\ntemplate <class\
+      \ IStream> IStream &operator>>(IStream &is, S &s) {\n    is >> s.a >> s.b;\n\
+      \    s.size = 1;\n    return is;\n}\n\nS op(S l, S r) { return S{r.a * l.a,\
+      \ r.a * l.b + r.b, l.size + r.size}; }\n\nS e() { return S{1, 0, 0}; }\n\nstruct\
+      \ F {\n    S a;\n    bool id;\n\n    static F op(F l, F r) {\n        if (l.id)\
+      \ return r;\n        return l;\n    }\n\n    static F unit() { return F{S::unit(),\
+      \ true}; }\n};\n\nS mapping(F f, S x) {\n    if (f.id) return x;\n    if (f.a.a\
+      \ == kk2::mont998(1)) return S{kk2::mont998(1), f.a.b * x.size, x.size};\n \
+      \   kk2::mont998 p = f.a.a.pow(x.size);\n    return S{p, f.a.b * (p - 1) * (f.a.a\
+      \ - 1).inv(), x.size};\n}\n\nF composition(F l, F r) {\n    if (l.id) return\
+      \ r;\n    return l;\n}\n\nF id() { return F::unit(); }\n\nstruct RangeSetRangeComposite\
+      \ {\n    using S = ::S;\n    using A = ::F;\n\n    static S act(A f, S x) {\
+      \ return mapping(f, x); }\n};\n\nint main() {\n    int n, q;\n    kin >> n >>\
+      \ q;\n    vector<S> a(n);\n    kin >> a;\n\n    kk2::LazySegmentTree<RangeSetRangeComposite>\
+      \ seg(a);\n\n    rep(q) {\n        int t;\n        kin >> t;\n        if (t\
+      \ == 0) {\n            int l, r;\n            kk2::mont998 c, d;\n         \
+      \   kin >> l >> r >> c >> d;\n            seg.apply_range(l,\n             \
+      \               r,\n                            F{\n                       \
+      \         S{c, d, 1},\n                                false\n            });\n\
       \        }\n        if (t == 1) {\n            int l, r;\n            kk2::mont998\
       \ x;\n            kin >> l >> r >> x;\n            auto f = seg.prod(l, r);\n\
       \            kout << f.a * x + f.b << \"\\n\";\n        }\n    }\n\n    return\
@@ -511,122 +515,122 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002692025999976977
+  - elapsed: 0.002627339000014217
     environment: g++
-    memory: 3.776
+    memory: 3.78
     name: example_00
     status: AC
-  - elapsed: 2.9385710249999875
+  - elapsed: 2.9540033969999513
     environment: g++
-    memory: 30.0
+    memory: 30.004
     name: fragment_00
     status: AC
-  - elapsed: 2.9224360480000087
-    environment: g++
-    memory: 29.996
-    name: fragment_01
-    status: AC
-  - elapsed: 14.00422828500001
+  - elapsed: 2.9727159690000917
     environment: g++
     memory: 29.964
-    name: max_random_00
+    name: fragment_01
     status: AC
-  - elapsed: 14.086288613000022
-    environment: g++
-    memory: 30.004
-    name: max_random_01
-    status: AC
-  - elapsed: 14.14603673800002
-    environment: g++
-    memory: 30.004
-    name: max_random_02
-    status: AC
-  - elapsed: 11.201166070999989
-    environment: g++
-    memory: 28.704
-    name: random_00
-    status: AC
-  - elapsed: 11.48961366399999
-    environment: g++
-    memory: 29.464
-    name: random_01
-    status: AC
-  - elapsed: 7.838249748999999
-    environment: g++
-    memory: 6.668
-    name: random_02
-    status: AC
-  - elapsed: 7.20284962300002
+  - elapsed: 14.148712477000004
     environment: g++
     memory: 30.0
+    name: max_random_00
+    status: AC
+  - elapsed: 14.231657673000086
+    environment: g++
+    memory: 30.0
+    name: max_random_01
+    status: AC
+  - elapsed: 14.263347242999998
+    environment: g++
+    memory: 30.0
+    name: max_random_02
+    status: AC
+  - elapsed: 11.283790473000067
+    environment: g++
+    memory: 28.708
+    name: random_00
+    status: AC
+  - elapsed: 11.608089336000035
+    environment: g++
+    memory: 29.508
+    name: random_01
+    status: AC
+  - elapsed: 7.789313387999982
+    environment: g++
+    memory: 6.696
+    name: random_02
+    status: AC
+  - elapsed: 7.086865602999978
+    environment: g++
+    memory: 29.864
     name: slide_window_00
     status: AC
-  - elapsed: 7.332030058999976
+  - elapsed: 7.074578015000043
     environment: g++
-    memory: 30.004
+    memory: 29.876
     name: slide_window_01
     status: AC
-  - elapsed: 0.0030911530000139464
+  - elapsed: 0.0030702490000749094
     environment: g++
-    memory: 3.784
+    memory: 3.636
     name: small_00
     status: AC
-  - elapsed: 0.0029075019999709184
+  - elapsed: 0.002923132000091755
     environment: g++
-    memory: 3.808
+    memory: 3.764
     name: small_01
     status: AC
-  - elapsed: 0.0030903609999768378
+  - elapsed: 0.00307435800004896
     environment: g++
-    memory: 3.748
+    memory: 3.776
     name: small_02
     status: AC
-  - elapsed: 0.003115221999962614
+  - elapsed: 0.0031508680000342792
     environment: g++
-    memory: 3.772
+    memory: 3.752
     name: small_03
     status: AC
-  - elapsed: 0.003463082999985545
+  - elapsed: 0.0033524670000133483
     environment: g++
-    memory: 3.768
+    memory: 3.636
     name: small_04
     status: AC
-  - elapsed: 0.0034348990000125923
+  - elapsed: 0.0034552299999859315
     environment: g++
-    memory: 3.74
+    memory: 3.636
     name: small_05
     status: AC
-  - elapsed: 0.003560429000003751
+  - elapsed: 0.0035265999999865016
     environment: g++
-    memory: 3.796
+    memory: 3.764
     name: small_06
     status: AC
-  - elapsed: 0.003577176000021609
+  - elapsed: 0.0035516419999339632
     environment: g++
-    memory: 3.784
+    memory: 3.792
     name: small_07
     status: AC
-  - elapsed: 0.0037244659999942087
+  - elapsed: 0.003717959000027804
     environment: g++
-    memory: 3.784
+    memory: 3.732
     name: small_08
     status: AC
-  - elapsed: 0.0038228870000125426
+  - elapsed: 0.0038388400000712863
     environment: g++
-    memory: 3.8
+    memory: 3.76
     name: small_09
     status: AC
-  - elapsed: 0.014332688000024518
+  - elapsed: 0.014184565000050497
     environment: g++
-    memory: 3.712
+    memory: 3.912
     name: small_random_00
     status: AC
-  - elapsed: 0.009971003999964978
+  - elapsed: 0.009831918000031692
     environment: g++
-    memory: 3.588
+    memory: 3.58
     name: small_random_01
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_set_range_composite.test.cpp

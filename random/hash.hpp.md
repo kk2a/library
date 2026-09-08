@@ -49,11 +49,11 @@ data:
     - filename: parallel.hpp
       icon: LIBRARY_ALL_AC
       path: unionfind/parallel.hpp
+    - filename: aoj_alds1_14_b.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/aoj/aoj_alds1_14_b.test.cpp
     type: Required by
   - files:
-    - filename: aoj_alds1_14_b.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/aoj/aoj_alds1_14_b.test.cpp
     - filename: group.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/group/group.test.cpp
@@ -88,9 +88,9 @@ data:
       \ kk2 {\n\nnamespace random {\n\ntemplate <int NUM> struct Hash : std::array<ModInt2_61m1,\
       \ NUM> {\n    using mint = ModInt2_61m1;\n    using std::array<mint, NUM>::operator[];\n\
       \    using u64 = unsigned long long;\n\n    Hash() : std::array<mint, NUM>()\
-      \ {}\n\n    template <Integral T> Hash(T x) {\n        std::fill(this->begin(),\
-      \ this->end(), mint(x));\n    }\n\n    static Hash get_base() {\n        Hash\
-      \ base;\n        for (int i = 0; i < NUM; i++) base[i] = primitive_root_mint<ModInt2_61m1>();\n\
+      \ {}\n\n    template <Integral T> Hash(T x) { std::fill(this->begin(), this->end(),\
+      \ mint(x)); }\n\n    static Hash get_base() {\n        Hash base;\n        for\
+      \ (int i = 0; i < NUM; i++) base[i] = primitive_root_mint<ModInt2_61m1>();\n\
       \        return base;\n    }\n\n    Hash &operator+=(const Hash &rhs) {\n  \
       \      for (int i = 0; i < NUM; i++) (*this)[i] += rhs[i];\n        return *this;\n\
       \    }\n    Hash &operator-=(const Hash &rhs) {\n        for (int i = 0; i <\
@@ -127,30 +127,32 @@ data:
       \    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\
       \n\n\n\n#line 5 \"modint/mont_arb.hpp\"\n#include <iostream>\n#line 7 \"modint/mont_arb.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -164,21 +166,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -197,7 +200,7 @@ data:
       \ m) {\n        assert(m < (UInt(1u) << (bit_length - 2)));\n        assert(m\
       \ & 1);\n        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt\
       \ _v;\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template\
-      \ <Integral T> ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
+      \ <Integral T>\n    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b\
       \ % (Int)mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n\
       \        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\
       \n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod)\
@@ -222,15 +225,15 @@ data:
       \ s = getmod(), t = val(), m0 = 0, m1 = 1;\n        while (t) {\n          \
       \  Int u = s / t;\n            std::swap(s -= t * u, t);\n            std::swap(m0\
       \ -= m1 * u, m1);\n        }\n        if (m0 < 0) m0 += getmod();\n        return\
-      \ mint(m0);\n    }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const mint &x) {\n        return os << x.val();\n\
-      \    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
-      \ &is, mint &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n\
-      \        return (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n\
-      \        return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
-      \ { return mod; }\n};\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt\
-      \ =\n    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
-      \ long long, id>;\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt64bit\
+      \ mint(m0);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        Long t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n        return\
+      \ ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod() { return\
+      \ mod; }\n};\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt =\n \
+      \   ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
+      \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
       \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
       \ __uint128_t, id>;\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\
       \n\n#line 7 \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n\
@@ -376,9 +379,9 @@ data:
       \ const {\n        assert(n >= 0);\n        mint x = *this, r = 1;\n       \
       \ while (n) {\n            if (n & 1) r *= x;\n            if (n >>= 1) x *=\
       \ x;\n        }\n        return r;\n    }\n\n    constexpr mint inv() const\
-      \ { return pow(mod - 2); }\n\n    template <OutputStream OStream>\n    friend\
-      \ OStream &operator<<(OStream &os, const mint &x) {\n        return os << x._v;\n\
-      \    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
+      \ { return pow(mod - 2); }\n\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const mint &x) {\n        return os << x._v;\n  \
+      \  }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
       \ &is, mint &x) {\n        u64 y;\n        is >> y;\n        x = mint(y);\n\
       \        return is;\n    }\n\n    constexpr u64 val() const { return _v; }\n\
       \n    static constexpr mint mulplus(const mint &a, const mint &b, const mint\
@@ -412,9 +415,9 @@ data:
       \ {\n\ntemplate <int NUM> struct Hash : std::array<ModInt2_61m1, NUM> {\n  \
       \  using mint = ModInt2_61m1;\n    using std::array<mint, NUM>::operator[];\n\
       \    using u64 = unsigned long long;\n\n    Hash() : std::array<mint, NUM>()\
-      \ {}\n\n    template <Integral T> Hash(T x) {\n        std::fill(this->begin(),\
-      \ this->end(), mint(x));\n    }\n\n    static Hash get_base() {\n        Hash\
-      \ base;\n        for (int i = 0; i < NUM; i++) base[i] = primitive_root_mint<ModInt2_61m1>();\n\
+      \ {}\n\n    template <Integral T> Hash(T x) { std::fill(this->begin(), this->end(),\
+      \ mint(x)); }\n\n    static Hash get_base() {\n        Hash base;\n        for\
+      \ (int i = 0; i < NUM; i++) base[i] = primitive_root_mint<ModInt2_61m1>();\n\
       \        return base;\n    }\n\n    Hash &operator+=(const Hash &rhs) {\n  \
       \      for (int i = 0; i < NUM; i++) (*this)[i] += rhs[i];\n        return *this;\n\
       \    }\n    Hash &operator-=(const Hash &rhs) {\n        for (int i = 0; i <\
@@ -447,10 +450,10 @@ data:
   - string/dynamic_rolling_hash.hpp
   - string/static_rolling_hash.hpp
   - unionfind/parallel.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  - verify/aoj/aoj_alds1_14_b.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp

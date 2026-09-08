@@ -13,6 +13,9 @@ data:
     - filename: poly_interpolation.hpp
       icon: LIBRARY_ALL_AC
       path: fps/poly_interpolation.hpp
+    - filename: poly_interpolation_geometric.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
     type: Required by
   - files:
     - filename: fps_multipoint_evaluation.test.cpp
@@ -21,9 +24,6 @@ data:
     - filename: poly_interpolation.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_interpolation.test.cpp
-    - filename: poly_interpolation_geometric.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
     - filename: yuki_1510.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yuki/yuki_1510.test.cpp
@@ -97,12 +97,12 @@ data:
   requiredBy:
   - fps/bbb.hpp
   - fps/poly_interpolation.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
   - verify/yosupo_fps/poly_interpolation.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yuki/yuki_1510.test.cpp
 documentation_of: fps/poly_multi_eval.hpp
 layout: document

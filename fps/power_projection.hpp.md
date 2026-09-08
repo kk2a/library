@@ -10,11 +10,11 @@ data:
     - filename: compositional_inv.hpp
       icon: LIBRARY_ALL_AC
       path: fps/compositional_inv.hpp
-    type: Required by
-  - files:
     - filename: fps_composition_inv.test.cpp
-      icon: TEST_ACCEPTED
+      icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_composition_inv.test.cpp
+    type: Required by
+  - files: []
     type: Verified with
   dependsOn: []
   embedded:
@@ -135,10 +135,10 @@ data:
   pathExtension: hpp
   requiredBy:
   - fps/compositional_inv.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
   - verify/yosupo_fps/fps_composition_inv.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith: []
 documentation_of: fps/power_projection.hpp
 layout: document
 ---

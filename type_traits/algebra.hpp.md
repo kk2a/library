@@ -43,20 +43,20 @@ data:
     - filename: seg2d.hpp
       icon: LIBRARY_NO_TESTS
       path: segment_tree/seg2d.hpp
+    - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+    - filename: ds_point_set_range_composite_large_2.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
     type: Required by
   - files:
     - filename: algebra.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/algebra/algebra.test.cpp
-    - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     - filename: ds_point_set_range_composite.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-    - filename: ds_point_set_range_composite_large_2.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
     - filename: ds_range_affine_range_sum.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
@@ -103,11 +103,11 @@ data:
       \  { T::commutative } -> std::convertible_to<bool>;\n} && bool(T::commutative);\n\
       \n// An action specification owns the pair of algebraic types and the mapping\n\
       // between them. It is the interface required by lazy propagation structures.\n\
-      template <class T>\nconcept Action = requires {\n    typename T::A;\n    typename\
-      \ T::S;\n} && Monoid<typename T::A> && Monoid<typename T::S>\n    && requires(const\
-      \ typename T::A &f, const typename T::S &x) {\n           { T::act(f, x) } ->\
-      \ std::same_as<typename T::S>;\n       };\n\n} // namespace algebra\n\n} //\
-      \ namespace kk2\n\n#endif // KK2_TYPE_TRAITS_ALGEBRA_HPP\n"
+      template <class T>\nconcept Action =\n    requires {\n        typename T::A;\n\
+      \        typename T::S;\n    } && Monoid<typename T::A> && Monoid<typename T::S>\n\
+      \    && requires(const typename T::A &f, const typename T::S &x) {\n       \
+      \    { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n} // namespace\
+      \ algebra\n\n} // namespace kk2\n\n#endif // KK2_TYPE_TRAITS_ALGEBRA_HPP\n"
     name: default
   - code: "#line 1 \"type_traits/algebra.hpp\"\n\n\n\n#include <concepts>\n\nnamespace\
       \ kk2 {\n\nnamespace algebra {\n\n// These concepts describe the static interface\
@@ -127,11 +127,11 @@ data:
       \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
       } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
       \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action = requires {\n\
-      \    typename T::A;\n    typename T::S;\n} && Monoid<typename T::A> && Monoid<typename\
-      \ T::S>\n    && requires(const typename T::A &f, const typename T::S &x) {\n\
-      \           { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n\
-      } // namespace algebra\n\n} // namespace kk2\n\n\n"
+      \ propagation structures.\ntemplate <class T>\nconcept Action =\n    requires\
+      \ {\n        typename T::A;\n        typename T::S;\n    } && Monoid<typename\
+      \ T::A> && Monoid<typename T::S>\n    && requires(const typename T::A &f, const\
+      \ typename T::S &x) {\n           { T::act(f, x) } -> std::same_as<typename\
+      \ T::S>;\n       };\n\n} // namespace algebra\n\n} // namespace kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
@@ -150,13 +150,13 @@ data:
   - segment_tree/lazy.hpp
   - segment_tree/seg.hpp
   - segment_tree/seg2d.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/type_traits/algebra/algebra.test.cpp
-  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
-  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
   - verify/yosupo_ds/ds_range_set_range_composite.test.cpp

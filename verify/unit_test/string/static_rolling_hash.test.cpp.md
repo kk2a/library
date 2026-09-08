@@ -89,198 +89,193 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../string/static_rolling_hash.hpp\"\
-      \n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
+      \n\n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
       \nusing namespace std;\n\nvoid test_basic_and_edge_cases() {\n    // Test basic\
       \ constructor and get operations\n    string s = \"hello\";\n    kk2::SRoliha\
-      \ rh(s);\n    assert(rh.size() == 5);\n    \n    // Test single point get\n\
-      \    auto h_first = rh.get(0);\n    auto h_second = rh.get(1);\n    assert(h_first\
-      \ != h_second); // 'h' != 'e'\n    assert(h_first == kk2::SRoliha::H('h'));\n\
-      \    assert(h_second == kk2::SRoliha::H('e'));\n    \n    // Test empty range\n\
-      \    auto h_empty = rh.get(2, 2);\n    assert(h_empty == kk2::SRoliha::H(0));\n\
-      \    \n    // Test single character constructor\n    kk2::SRoliha rh_char(65);\
-      \ // 'A'\n    assert(rh_char.size() == 1);\n    assert(rh_char.get(0) == kk2::SRoliha::H(65));\
-      \ // single point get\n    \n    // Test vector constructor\n    vector<int>\
-      \ v = {1, 2, 3, 4, 5};\n    kk2::SRoliha rh_vec(v);\n    assert(rh_vec.size()\
-      \ == 5);\n    assert(rh_vec.get(0) == kk2::SRoliha::H(1));\n    assert(rh_vec.get(4)\
-      \ == kk2::SRoliha::H(5));\n    \n    // Test empty string\n    string empty\
-      \ = \"\";\n    kk2::SRoliha rh_empty(empty);\n    assert(rh_empty.size() ==\
-      \ 0);\n    \n    // Test default constructor\n    kk2::SRoliha rh_default;\n\
-      \    assert(rh_default.size() == 0);\n    \n    // Test empty vector\n    vector<int>\
-      \ empty_vec;\n    kk2::SRoliha rh_empty_vec(empty_vec);\n    assert(rh_empty_vec.size()\
-      \ == 0);\n    \n    // Test basic LCP\n    string s1 = \"abcdef\", s2 = \"abcxyz\"\
-      ;\n    kk2::SRoliha rh1(s1), rh2(s2);\n    assert(kk2::SRoliha::lcp(rh1, 0,\
-      \ 6, rh2, 0, 6) == 3); // \"abc\" common prefix\n    \n    // Test LCP with\
-      \ empty ranges\n    assert(kk2::SRoliha::lcp(rh1, 0, 0, rh2, 0, 0) == 0);\n\
-      \    assert(kk2::SRoliha::lcp(rh1, 0, 3, rh2, 0, 0) == 0);\n    assert(kk2::SRoliha::lcp(rh_empty,\
-      \ 0, 0, rh1, 0, 3) == 0);\n    \n    // Test basic strcmp\n    string s3 = \"\
-      abc\", s4 = \"abd\";\n    kk2::SRoliha rh3(s3), rh4(s4);\n    assert(kk2::SRoliha::strcmp(rh3,\
-      \ 0, 3, rh4, 0, 3) == -1); // abc < abd\n    \n    // Test strcmp edge cases\n\
-      \    assert(kk2::SRoliha::strcmp(rh3, 0, 0, rh4, 0, 0) == 0); // empty == empty\n\
-      \    assert(kk2::SRoliha::strcmp(rh3, 0, 0, rh4, 0, 3) == -1); // empty < non-empty\n\
-      \    assert(kk2::SRoliha::strcmp(rh3, 0, 3, rh4, 0, 0) == 1); // non-empty >\
-      \ empty\n    assert(kk2::SRoliha::strcmp(rh3, 0, 3, rh3, 0, 3) == 0); // same\
-      \ == same\n    \n    // Test basic merge\n    string s5 = \"hello\", s6 = \"\
-      world\", s7 = \"helloworld\";\n    kk2::SRoliha rh5(s5), rh6(s6), rh7(s7);\n\
-      \    auto merged = kk2::SRoliha::merge(rh5, rh6);\n    assert(merged.size()\
+      \ rh(s);\n    assert(rh.size() == 5);\n\n    // Test single point get\n    auto\
+      \ h_first = rh.get(0);\n    auto h_second = rh.get(1);\n    assert(h_first !=\
+      \ h_second); // 'h' != 'e'\n    assert(h_first == kk2::SRoliha::H('h'));\n \
+      \   assert(h_second == kk2::SRoliha::H('e'));\n\n    // Test empty range\n \
+      \   auto h_empty = rh.get(2, 2);\n    assert(h_empty == kk2::SRoliha::H(0));\n\
+      \n    // Test single character constructor\n    kk2::SRoliha rh_char(65); //\
+      \ 'A'\n    assert(rh_char.size() == 1);\n    assert(rh_char.get(0) == kk2::SRoliha::H(65));\
+      \ // single point get\n\n    // Test vector constructor\n    vector<int> v =\
+      \ {1, 2, 3, 4, 5};\n    kk2::SRoliha rh_vec(v);\n    assert(rh_vec.size() ==\
+      \ 5);\n    assert(rh_vec.get(0) == kk2::SRoliha::H(1));\n    assert(rh_vec.get(4)\
+      \ == kk2::SRoliha::H(5));\n\n    // Test empty string\n    string empty = \"\
+      \";\n    kk2::SRoliha rh_empty(empty);\n    assert(rh_empty.size() == 0);\n\n\
+      \    // Test default constructor\n    kk2::SRoliha rh_default;\n    assert(rh_default.size()\
+      \ == 0);\n\n    // Test empty vector\n    vector<int> empty_vec;\n    kk2::SRoliha\
+      \ rh_empty_vec(empty_vec);\n    assert(rh_empty_vec.size() == 0);\n\n    //\
+      \ Test basic LCP\n    string s1 = \"abcdef\", s2 = \"abcxyz\";\n    kk2::SRoliha\
+      \ rh1(s1), rh2(s2);\n    assert(kk2::SRoliha::lcp(rh1, 0, 6, rh2, 0, 6) == 3);\
+      \ // \"abc\" common prefix\n\n    // Test LCP with empty ranges\n    assert(kk2::SRoliha::lcp(rh1,\
+      \ 0, 0, rh2, 0, 0) == 0);\n    assert(kk2::SRoliha::lcp(rh1, 0, 3, rh2, 0, 0)\
+      \ == 0);\n    assert(kk2::SRoliha::lcp(rh_empty, 0, 0, rh1, 0, 3) == 0);\n\n\
+      \    // Test basic strcmp\n    string s3 = \"abc\", s4 = \"abd\";\n    kk2::SRoliha\
+      \ rh3(s3), rh4(s4);\n    assert(kk2::SRoliha::strcmp(rh3, 0, 3, rh4, 0, 3) ==\
+      \ -1); // abc < abd\n\n    // Test strcmp edge cases\n    assert(kk2::SRoliha::strcmp(rh3,\
+      \ 0, 0, rh4, 0, 0) == 0);  // empty == empty\n    assert(kk2::SRoliha::strcmp(rh3,\
+      \ 0, 0, rh4, 0, 3) == -1); // empty < non-empty\n    assert(kk2::SRoliha::strcmp(rh3,\
+      \ 0, 3, rh4, 0, 0) == 1);  // non-empty > empty\n    assert(kk2::SRoliha::strcmp(rh3,\
+      \ 0, 3, rh3, 0, 3) == 0);  // same == same\n\n    // Test basic merge\n    string\
+      \ s5 = \"hello\", s6 = \"world\", s7 = \"helloworld\";\n    kk2::SRoliha rh5(s5),\
+      \ rh6(s6), rh7(s7);\n    auto merged = kk2::SRoliha::merge(rh5, rh6);\n    assert(merged.size()\
       \ == 10);\n    assert(merged.get(0, 10) == rh7.get(0, 10)); // merged hash equals\
-      \ direct construction\n    \n    // Test merge with empty\n    auto merged_empty1\
+      \ direct construction\n\n    // Test merge with empty\n    auto merged_empty1\
       \ = kk2::SRoliha::merge(rh_empty, rh5);\n    assert(merged_empty1.size() ==\
-      \ 5);\n    assert(merged_empty1.get(0, 5) == rh5.get(0, 5));\n    \n    auto\
-      \ merged_empty2 = kk2::SRoliha::merge(rh5, rh_empty);\n    assert(merged_empty2.size()\
-      \ == 5);\n    assert(merged_empty2.get(0, 5) == rh5.get(0, 5));\n    \n    //\
-      \ Test numerical sequence\n    vector<int> nums = {1, 2, 3, 2, 1};\n    kk2::SRoliha\
+      \ 5);\n    assert(merged_empty1.get(0, 5) == rh5.get(0, 5));\n\n    auto merged_empty2\
+      \ = kk2::SRoliha::merge(rh5, rh_empty);\n    assert(merged_empty2.size() ==\
+      \ 5);\n    assert(merged_empty2.get(0, 5) == rh5.get(0, 5));\n\n    // Test\
+      \ numerical sequence\n    vector<int> nums = {1, 2, 3, 2, 1};\n    kk2::SRoliha\
       \ rh_nums(nums);\n    assert(rh_nums.get(0) == rh_nums.get(4)); // single point\
       \ palindrome\n    assert(rh_nums.get(1) == rh_nums.get(3)); // single point\
-      \ palindrome\n    \n    // Test large values\n    vector<int> large_nums = {1000000,\
+      \ palindrome\n\n    // Test large values\n    vector<int> large_nums = {1000000,\
       \ 999999, 1000001};\n    kk2::SRoliha rh_large(large_nums);\n    assert(rh_large.size()\
       \ == 3);\n    assert(rh_large.get(0) == kk2::SRoliha::H(1000000));\n}\nvoid\
       \ test_random_comprehensive() {\n    // Test random strings with all operations\n\
       \    rep(2000) {\n        int len1 = kk2::random::rng(1, 101);\n        int\
-      \ len2 = kk2::random::rng(1, 101);\n        \n        string s1, s2;\n     \
-      \   rep(len1) s1 += char('a' + kk2::random::rng(0, 26));\n        rep(len2)\
-      \ s2 += char('a' + kk2::random::rng(0, 26));\n        \n        kk2::SRoliha\
-      \ rh1(s1);\n        kk2::SRoliha rh2(s2);\n        \n        assert(rh1.size()\
-      \ == len1);\n        assert(rh2.size() == len2);\n        \n        // Test\
-      \ single point get\n        if (len1 > 0) {\n            int idx1 = kk2::random::rng(0,\
-      \ len1);\n            assert(rh1.get(idx1) == kk2::SRoliha::H(s1[idx1]));\n\
-      \        }\n        if (len2 > 0) {\n            int idx2 = kk2::random::rng(0,\
-      \ len2);\n            assert(rh2.get(idx2) == kk2::SRoliha::H(s2[idx2]));\n\
-      \        }\n        \n        // Test substring operations\n        int l1 =\
-      \ kk2::random::rng(0, len1);\n        int r1 = kk2::random::rng(l1, len1 + 1);\n\
-      \        int l2 = kk2::random::rng(0, len2);\n        int r2 = kk2::random::rng(l2,\
-      \ len2 + 1);\n        \n        auto h1 = rh1.get(l1, r1);\n        \n     \
-      \   // Verify substring hash consistency\n        if (l1 < r1) {\n         \
-      \   string sub1 = s1.substr(l1, r1 - l1);\n            kk2::SRoliha rh_sub1(sub1);\n\
-      \            assert(h1 == rh_sub1.get(0, r1 - l1));\n        }\n        \n \
-      \       // Test LCP\n        int lcp_len = kk2::SRoliha::lcp(rh1, l1, r1, rh2,\
-      \ l2, r2);\n        int expected_lcp = 0;\n        int min_len = min(r1 - l1,\
-      \ r2 - l2);\n        for (int i = 0; i < min_len; i++) {\n            if (l1\
-      \ + i < len1 && l2 + i < len2 && s1[l1 + i] == s2[l2 + i]) {\n             \
-      \   expected_lcp++;\n            } else {\n                break;\n        \
-      \    }\n        }\n        assert(lcp_len == expected_lcp);\n        \n    \
-      \    // Test strcmp\n        int cmp_result = kk2::SRoliha::strcmp(rh1, l1,\
-      \ r1, rh2, l2, r2);\n        string sub1 = s1.substr(l1, r1 - l1);\n       \
-      \ string sub2 = s2.substr(l2, r2 - l2);\n        int expected_cmp = (sub1 <\
-      \ sub2) ? -1 : (sub1 > sub2) ? 1 : 0;\n        assert(cmp_result == expected_cmp);\n\
-      \        \n        // Test hash collision detection\n        if (s1 == s2) {\n\
-      \            assert(rh1.get(0, len1) == rh2.get(0, len2));\n        } else if\
-      \ (len1 == len2) {\n            assert(rh1.get(0, len1) != rh2.get(0, len2));\n\
-      \        }\n    }\n}\nvoid test_random_merge() {\n    // Test merge operation\
-      \ with random strings\n    rep(500) {\n        int len1 = kk2::random::rng(1,\
-      \ 51);\n        int len2 = kk2::random::rng(1, 51);\n        \n        string\
-      \ s1, s2;\n        rep(len1) s1 += char('a' + kk2::random::rng(0, 26));\n  \
-      \      rep(len2) s2 += char('a' + kk2::random::rng(0, 26));\n        \n    \
-      \    kk2::SRoliha rh1(s1);\n        kk2::SRoliha rh2(s2);\n        \n      \
-      \  auto merged = kk2::SRoliha::merge(rh1, rh2);\n        assert(merged.size()\
-      \ == len1 + len2);\n        \n        // Test that merged hash equals direct\
-      \ construction\n        string concatenated = s1 + s2;\n        kk2::SRoliha\
-      \ rh_direct(concatenated);\n        assert(merged.get(0, len1 + len2) == rh_direct.get(0,\
-      \ len1 + len2));\n        \n        // Test partial hashes\n        assert(merged.get(0,\
-      \ len1) == rh1.get(0, len1));\n        assert(merged.get(len1, len1 + len2)\
-      \ == rh2.get(0, len2));\n        \n        // Test single point get on merged\n\
-      \        if (len1 + len2 > 0) {\n            int idx = kk2::random::rng(0, len1\
-      \ + len2);\n            assert(merged.get(idx) == rh_direct.get(idx));\n   \
-      \         assert(merged.get(idx) == kk2::SRoliha::H(concatenated[idx]));\n \
-      \       }\n        \n        // Test random substrings of merged\n        rep(10)\
-      \ {\n            int l = kk2::random::rng(0, len1 + len2);\n            int\
-      \ r = kk2::random::rng(l, len1 + len2 + 1);\n            \n            auto\
-      \ h_merged = merged.get(l, r);\n            auto h_direct = rh_direct.get(l,\
-      \ r);\n            assert(h_merged == h_direct);\n        }\n    }\n}\n\n//\
-      \ Performance test configuration\nstruct PerformanceConfig {\n    // Test sizes\n\
-      \    static constexpr int LARGE_SIZE = 100000;\n    static constexpr int MEDIUM_SIZE\
-      \ = 50000;\n    static constexpr int SMALL_SIZE = 10000;\n    \n    // Test\
-      \ iterations\n    static constexpr int MANY_QUERIES = 100000;\n    static constexpr\
-      \ int MEDIUM_QUERIES = 50000;\n    static constexpr int FEW_QUERIES = 1000;\n\
-      \    \n    // Hash collision test settings\n    static constexpr int COLLISION_TEST_SIZE\
-      \ = 100000;\n    static constexpr int STRING_MAX_LENGTH = 21;\n    \n    //\
-      \ Value ranges\n    static constexpr int ALPHABET_SIZE = 26;\n    static constexpr\
-      \ int LARGE_VALUE_RANGE = 1000000;\n};\n\nvoid test_performance() {\n    //\
-      \ Large size performance test\n    cerr << \"Starting StaticRollingHash performance\
-      \ tests...\" << endl;\n    cerr << \"Configuration:\" << endl;\n    cerr <<\
-      \ \"  Large size: \" << PerformanceConfig::LARGE_SIZE << endl;\n    cerr <<\
-      \ \"  Medium size: \" << PerformanceConfig::MEDIUM_SIZE << endl;\n    cerr <<\
-      \ \"  Many queries: \" << PerformanceConfig::MANY_QUERIES << endl;\n    cerr\
-      \ << \"  Medium queries: \" << PerformanceConfig::MEDIUM_QUERIES << endl;\n\
-      \    cerr << endl;\n    \n    // Test 1: Large string construction and substring\
-      \ queries\n    {\n        int n = PerformanceConfig::LARGE_SIZE;\n        string\
-      \ large_str;\n        large_str.reserve(n);\n        for (int i = 0; i < n;\
-      \ i++) {\n            large_str += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\
-      \        }\n        \n        auto start = chrono::high_resolution_clock::now();\n\
+      \ len2 = kk2::random::rng(1, 101);\n\n        string s1, s2;\n        rep(len1)\
+      \ s1 += char('a' + kk2::random::rng(0, 26));\n        rep(len2) s2 += char('a'\
+      \ + kk2::random::rng(0, 26));\n\n        kk2::SRoliha rh1(s1);\n        kk2::SRoliha\
+      \ rh2(s2);\n\n        assert(rh1.size() == len1);\n        assert(rh2.size()\
+      \ == len2);\n\n        // Test single point get\n        if (len1 > 0) {\n \
+      \           int idx1 = kk2::random::rng(0, len1);\n            assert(rh1.get(idx1)\
+      \ == kk2::SRoliha::H(s1[idx1]));\n        }\n        if (len2 > 0) {\n     \
+      \       int idx2 = kk2::random::rng(0, len2);\n            assert(rh2.get(idx2)\
+      \ == kk2::SRoliha::H(s2[idx2]));\n        }\n\n        // Test substring operations\n\
+      \        int l1 = kk2::random::rng(0, len1);\n        int r1 = kk2::random::rng(l1,\
+      \ len1 + 1);\n        int l2 = kk2::random::rng(0, len2);\n        int r2 =\
+      \ kk2::random::rng(l2, len2 + 1);\n\n        auto h1 = rh1.get(l1, r1);\n\n\
+      \        // Verify substring hash consistency\n        if (l1 < r1) {\n    \
+      \        string sub1 = s1.substr(l1, r1 - l1);\n            kk2::SRoliha rh_sub1(sub1);\n\
+      \            assert(h1 == rh_sub1.get(0, r1 - l1));\n        }\n\n        //\
+      \ Test LCP\n        int lcp_len = kk2::SRoliha::lcp(rh1, l1, r1, rh2, l2, r2);\n\
+      \        int expected_lcp = 0;\n        int min_len = min(r1 - l1, r2 - l2);\n\
+      \        for (int i = 0; i < min_len; i++) {\n            if (l1 + i < len1\
+      \ && l2 + i < len2 && s1[l1 + i] == s2[l2 + i]) {\n                expected_lcp++;\n\
+      \            } else {\n                break;\n            }\n        }\n  \
+      \      assert(lcp_len == expected_lcp);\n\n        // Test strcmp\n        int\
+      \ cmp_result = kk2::SRoliha::strcmp(rh1, l1, r1, rh2, l2, r2);\n        string\
+      \ sub1 = s1.substr(l1, r1 - l1);\n        string sub2 = s2.substr(l2, r2 - l2);\n\
+      \        int expected_cmp = (sub1 < sub2) ? -1 : (sub1 > sub2) ? 1 : 0;\n  \
+      \      assert(cmp_result == expected_cmp);\n\n        // Test hash collision\
+      \ detection\n        if (s1 == s2) {\n            assert(rh1.get(0, len1) ==\
+      \ rh2.get(0, len2));\n        } else if (len1 == len2) {\n            assert(rh1.get(0,\
+      \ len1) != rh2.get(0, len2));\n        }\n    }\n}\nvoid test_random_merge()\
+      \ {\n    // Test merge operation with random strings\n    rep(500) {\n     \
+      \   int len1 = kk2::random::rng(1, 51);\n        int len2 = kk2::random::rng(1,\
+      \ 51);\n\n        string s1, s2;\n        rep(len1) s1 += char('a' + kk2::random::rng(0,\
+      \ 26));\n        rep(len2) s2 += char('a' + kk2::random::rng(0, 26));\n\n  \
+      \      kk2::SRoliha rh1(s1);\n        kk2::SRoliha rh2(s2);\n\n        auto\
+      \ merged = kk2::SRoliha::merge(rh1, rh2);\n        assert(merged.size() == len1\
+      \ + len2);\n\n        // Test that merged hash equals direct construction\n\
+      \        string concatenated = s1 + s2;\n        kk2::SRoliha rh_direct(concatenated);\n\
+      \        assert(merged.get(0, len1 + len2) == rh_direct.get(0, len1 + len2));\n\
+      \n        // Test partial hashes\n        assert(merged.get(0, len1) == rh1.get(0,\
+      \ len1));\n        assert(merged.get(len1, len1 + len2) == rh2.get(0, len2));\n\
+      \n        // Test single point get on merged\n        if (len1 + len2 > 0) {\n\
+      \            int idx = kk2::random::rng(0, len1 + len2);\n            assert(merged.get(idx)\
+      \ == rh_direct.get(idx));\n            assert(merged.get(idx) == kk2::SRoliha::H(concatenated[idx]));\n\
+      \        }\n\n        // Test random substrings of merged\n        rep(10) {\n\
+      \            int l = kk2::random::rng(0, len1 + len2);\n            int r =\
+      \ kk2::random::rng(l, len1 + len2 + 1);\n\n            auto h_merged = merged.get(l,\
+      \ r);\n            auto h_direct = rh_direct.get(l, r);\n            assert(h_merged\
+      \ == h_direct);\n        }\n    }\n}\n\n// Performance test configuration\n\
+      struct PerformanceConfig {\n    // Test sizes\n    static constexpr int LARGE_SIZE\
+      \ = 100000;\n    static constexpr int MEDIUM_SIZE = 50000;\n    static constexpr\
+      \ int SMALL_SIZE = 10000;\n\n    // Test iterations\n    static constexpr int\
+      \ MANY_QUERIES = 100000;\n    static constexpr int MEDIUM_QUERIES = 50000;\n\
+      \    static constexpr int FEW_QUERIES = 1000;\n\n    // Hash collision test\
+      \ settings\n    static constexpr int COLLISION_TEST_SIZE = 100000;\n    static\
+      \ constexpr int STRING_MAX_LENGTH = 21;\n\n    // Value ranges\n    static constexpr\
+      \ int ALPHABET_SIZE = 26;\n    static constexpr int LARGE_VALUE_RANGE = 1000000;\n\
+      };\n\nvoid test_performance() {\n    // Large size performance test\n    cerr\
+      \ << \"Starting StaticRollingHash performance tests...\" << endl;\n    cerr\
+      \ << \"Configuration:\" << endl;\n    cerr << \"  Large size: \" << PerformanceConfig::LARGE_SIZE\
+      \ << endl;\n    cerr << \"  Medium size: \" << PerformanceConfig::MEDIUM_SIZE\
+      \ << endl;\n    cerr << \"  Many queries: \" << PerformanceConfig::MANY_QUERIES\
+      \ << endl;\n    cerr << \"  Medium queries: \" << PerformanceConfig::MEDIUM_QUERIES\
+      \ << endl;\n    cerr << endl;\n\n    // Test 1: Large string construction and\
+      \ substring queries\n    {\n        int n = PerformanceConfig::LARGE_SIZE;\n\
+      \        string large_str;\n        large_str.reserve(n);\n        for (int\
+      \ i = 0; i < n; i++) {\n            large_str += char('a' + kk2::random::rng(0,\
+      \ PerformanceConfig::ALPHABET_SIZE));\n        }\n\n        auto start = chrono::high_resolution_clock::now();\n\
       \        kk2::SRoliha rh(large_str);\n        auto end = chrono::high_resolution_clock::now();\n\
       \        auto construction_time = chrono::duration_cast<chrono::microseconds>(end\
       \ - start).count();\n        cerr << \"Construction time for \" << n << \" characters:\
-      \ \" << construction_time << \" microseconds\" << endl;\n        \n        //\
-      \ Test many substring queries\n        start = chrono::high_resolution_clock::now();\n\
+      \ \" << construction_time\n             << \" microseconds\" << endl;\n\n  \
+      \      // Test many substring queries\n        start = chrono::high_resolution_clock::now();\n\
       \        for (int i = 0; i < PerformanceConfig::MANY_QUERIES; i++) {\n     \
       \       int l = kk2::random::rng(0, n);\n            int r = kk2::random::rng(l,\
       \ n + 1);\n            auto h = rh.get(l, r);\n            (void)h; // suppress\
       \ unused variable warning\n        }\n        end = chrono::high_resolution_clock::now();\n\
       \        auto query_time = chrono::duration_cast<chrono::microseconds>(end -\
       \ start).count();\n        cerr << PerformanceConfig::MANY_QUERIES << \" substring\
-      \ queries time: \" << query_time << \" microseconds\" << endl;\n    }\n    \n\
-      \    // Test 2: Large vector construction and queries\n    {\n        int n\
-      \ = PerformanceConfig::LARGE_SIZE;\n        vector<int> large_vec;\n       \
-      \ large_vec.reserve(n);\n        for (int i = 0; i < n; i++) {\n           \
-      \ large_vec.push_back(kk2::random::rng(0, PerformanceConfig::LARGE_VALUE_RANGE));\n\
-      \        }\n        \n        auto start = chrono::high_resolution_clock::now();\n\
-      \        kk2::SRoliha rh(large_vec);\n        auto end = chrono::high_resolution_clock::now();\n\
+      \ queries time: \" << query_time\n             << \" microseconds\" << endl;\n\
+      \    }\n\n    // Test 2: Large vector construction and queries\n    {\n    \
+      \    int n = PerformanceConfig::LARGE_SIZE;\n        vector<int> large_vec;\n\
+      \        large_vec.reserve(n);\n        for (int i = 0; i < n; i++) {\n    \
+      \        large_vec.push_back(kk2::random::rng(0, PerformanceConfig::LARGE_VALUE_RANGE));\n\
+      \        }\n\n        auto start = chrono::high_resolution_clock::now();\n \
+      \       kk2::SRoliha rh(large_vec);\n        auto end = chrono::high_resolution_clock::now();\n\
       \        auto construction_time = chrono::duration_cast<chrono::microseconds>(end\
       \ - start).count();\n        cerr << \"Vector construction time for \" << n\
-      \ << \" elements: \" << construction_time << \" microseconds\" << endl;\n  \
-      \      \n        // Test many single point queries\n        start = chrono::high_resolution_clock::now();\n\
+      \ << \" elements: \" << construction_time\n             << \" microseconds\"\
+      \ << endl;\n\n        // Test many single point queries\n        start = chrono::high_resolution_clock::now();\n\
       \        for (int i = 0; i < PerformanceConfig::MANY_QUERIES; i++) {\n     \
       \       int idx = kk2::random::rng(0, n);\n            auto h = rh.get(idx);\n\
       \            (void)h;\n        }\n        end = chrono::high_resolution_clock::now();\n\
       \        auto point_query_time = chrono::duration_cast<chrono::microseconds>(end\
-      \ - start).count();\n        cerr << PerformanceConfig::MANY_QUERIES << \" single\
-      \ point queries time: \" << point_query_time << \" microseconds\" << endl;\n\
-      \    }\n    \n    // Test 3: Many LCP operations\n    {\n        int n = PerformanceConfig::MEDIUM_SIZE;\n\
-      \        string s1, s2;\n        s1.reserve(n);\n        s2.reserve(n);\n  \
-      \      for (int i = 0; i < n; i++) {\n            s1 += char('a' + kk2::random::rng(0,\
-      \ PerformanceConfig::ALPHABET_SIZE));\n            s2 += char('a' + kk2::random::rng(0,\
-      \ PerformanceConfig::ALPHABET_SIZE));\n        }\n        \n        kk2::SRoliha\
-      \ rh1(s1), rh2(s2);\n        \n        auto start = chrono::high_resolution_clock::now();\n\
-      \        for (int i = 0; i < PerformanceConfig::MEDIUM_QUERIES; i++) {\n   \
-      \         int l1 = kk2::random::rng(0, n);\n            int r1 = kk2::random::rng(l1,\
-      \ n + 1);\n            int l2 = kk2::random::rng(0, n);\n            int r2\
-      \ = kk2::random::rng(l2, n + 1);\n            int lcp_len = kk2::SRoliha::lcp(rh1,\
-      \ l1, r1, rh2, l2, r2);\n            (void)lcp_len;\n        }\n        auto\
-      \ end = chrono::high_resolution_clock::now();\n        auto lcp_time = chrono::duration_cast<chrono::microseconds>(end\
-      \ - start).count();\n        cerr << PerformanceConfig::MEDIUM_QUERIES << \"\
-      \ LCP operations time: \" << lcp_time << \" microseconds\" << endl;\n    }\n\
-      \    \n    // Test 4: Many merge operations\n    {\n        int n = PerformanceConfig::SMALL_SIZE;\n\
+      \ - start).count();\n        cerr << PerformanceConfig::MANY_QUERIES\n     \
+      \        << \" single point queries time: \" << point_query_time << \" microseconds\"\
+      \ << endl;\n    }\n\n    // Test 3: Many LCP operations\n    {\n        int\
+      \ n = PerformanceConfig::MEDIUM_SIZE;\n        string s1, s2;\n        s1.reserve(n);\n\
+      \        s2.reserve(n);\n        for (int i = 0; i < n; i++) {\n           \
+      \ s1 += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\
+      \            s2 += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\
+      \        }\n\n        kk2::SRoliha rh1(s1), rh2(s2);\n\n        auto start =\
+      \ chrono::high_resolution_clock::now();\n        for (int i = 0; i < PerformanceConfig::MEDIUM_QUERIES;\
+      \ i++) {\n            int l1 = kk2::random::rng(0, n);\n            int r1 =\
+      \ kk2::random::rng(l1, n + 1);\n            int l2 = kk2::random::rng(0, n);\n\
+      \            int r2 = kk2::random::rng(l2, n + 1);\n            int lcp_len\
+      \ = kk2::SRoliha::lcp(rh1, l1, r1, rh2, l2, r2);\n            (void)lcp_len;\n\
+      \        }\n        auto end = chrono::high_resolution_clock::now();\n     \
+      \   auto lcp_time = chrono::duration_cast<chrono::microseconds>(end - start).count();\n\
+      \        cerr << PerformanceConfig::MEDIUM_QUERIES << \" LCP operations time:\
+      \ \" << lcp_time\n             << \" microseconds\" << endl;\n    }\n\n    //\
+      \ Test 4: Many merge operations\n    {\n        int n = PerformanceConfig::SMALL_SIZE;\n\
       \        auto start = chrono::high_resolution_clock::now();\n        for (int\
       \ i = 0; i < PerformanceConfig::FEW_QUERIES; i++) {\n            int len1 =\
       \ kk2::random::rng(1, n / 100);\n            int len2 = kk2::random::rng(1,\
-      \ n / 100);\n            \n            string s1, s2;\n            s1.reserve(len1);\n\
-      \            s2.reserve(len2);\n            for (int j = 0; j < len1; j++) s1\
-      \ += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n  \
-      \          for (int j = 0; j < len2; j++) s2 += char('a' + kk2::random::rng(0,\
-      \ PerformanceConfig::ALPHABET_SIZE));\n            \n            kk2::SRoliha\
+      \ n / 100);\n\n            string s1, s2;\n            s1.reserve(len1);\n \
+      \           s2.reserve(len2);\n            for (int j = 0; j < len1; j++)\n\
+      \                s1 += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\
+      \            for (int j = 0; j < len2; j++)\n                s2 += char('a'\
+      \ + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\n            kk2::SRoliha\
       \ rh1(s1), rh2(s2);\n            auto merged = kk2::SRoliha::merge(rh1, rh2);\n\
       \            (void)merged;\n        }\n        auto end = chrono::high_resolution_clock::now();\n\
       \        auto merge_time = chrono::duration_cast<chrono::microseconds>(end -\
       \ start).count();\n        cerr << PerformanceConfig::FEW_QUERIES << \" merge\
-      \ operations time: \" << merge_time << \" microseconds\" << endl;\n    }\n \
-      \   \n    // Test 5: strcmp performance\n    {\n        int n = PerformanceConfig::MEDIUM_SIZE;\n\
+      \ operations time: \" << merge_time\n             << \" microseconds\" << endl;\n\
+      \    }\n\n    // Test 5: strcmp performance\n    {\n        int n = PerformanceConfig::MEDIUM_SIZE;\n\
       \        string s1, s2;\n        s1.reserve(n);\n        s2.reserve(n);\n  \
       \      for (int i = 0; i < n; i++) {\n            s1 += char('a' + kk2::random::rng(0,\
       \ PerformanceConfig::ALPHABET_SIZE));\n            s2 += char('a' + kk2::random::rng(0,\
-      \ PerformanceConfig::ALPHABET_SIZE));\n        }\n        \n        kk2::SRoliha\
-      \ rh1(s1), rh2(s2);\n        \n        auto start = chrono::high_resolution_clock::now();\n\
-      \        for (int i = 0; i < PerformanceConfig::MEDIUM_QUERIES; i++) {\n   \
-      \         int l1 = kk2::random::rng(0, n);\n            int r1 = kk2::random::rng(l1,\
+      \ PerformanceConfig::ALPHABET_SIZE));\n        }\n\n        kk2::SRoliha rh1(s1),\
+      \ rh2(s2);\n\n        auto start = chrono::high_resolution_clock::now();\n \
+      \       for (int i = 0; i < PerformanceConfig::MEDIUM_QUERIES; i++) {\n    \
+      \        int l1 = kk2::random::rng(0, n);\n            int r1 = kk2::random::rng(l1,\
       \ n + 1);\n            int l2 = kk2::random::rng(0, n);\n            int r2\
       \ = kk2::random::rng(l2, n + 1);\n            int cmp_result = kk2::SRoliha::strcmp(rh1,\
       \ l1, r1, rh2, l2, r2);\n            (void)cmp_result;\n        }\n        auto\
       \ end = chrono::high_resolution_clock::now();\n        auto strcmp_time = chrono::duration_cast<chrono::microseconds>(end\
       \ - start).count();\n        cerr << PerformanceConfig::MEDIUM_QUERIES << \"\
-      \ strcmp operations time: \" << strcmp_time << \" microseconds\" << endl;\n\
-      \    }\n    \n    cerr << \"StaticRollingHash performance tests completed!\"\
+      \ strcmp operations time: \" << strcmp_time\n             << \" microseconds\"\
+      \ << endl;\n    }\n\n    cerr << \"StaticRollingHash performance tests completed!\"\
       \ << endl;\n}\n\nvoid test() {\n    test_basic_and_edge_cases();\n    test_random_comprehensive();\n\
-      \    test_random_merge();\n    test_performance();\n    \n    cerr << \"All\
-      \ tests passed!\" << endl;\n}\n\nint main() {\n    test();\n\n    return 0;\n\
-      }\n"
+      \    test_random_merge();\n    test_performance();\n\n    cerr << \"All tests\
+      \ passed!\" << endl;\n}\n\nint main() {\n    test();\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/string/static_rolling_hash.test.cpp\"\n// competitive-verifier:\
       \ STANDALONE\n\n#line 1 \"string/static_rolling_hash.hpp\"\n\n\n\n#include <cassert>\n\
@@ -297,26 +292,27 @@ data:
       \ // namespace kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\n\n\n\n#line 5 \"modint/mont_arb.hpp\"\
       \n#include <iostream>\n#line 7 \"modint/mont_arb.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -334,21 +330,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -367,7 +364,7 @@ data:
       \ m) {\n        assert(m < (UInt(1u) << (bit_length - 2)));\n        assert(m\
       \ & 1);\n        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt\
       \ _v;\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template\
-      \ <Integral T> ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
+      \ <Integral T>\n    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b\
       \ % (Int)mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n\
       \        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\
       \n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod)\
@@ -392,15 +389,15 @@ data:
       \ s = getmod(), t = val(), m0 = 0, m1 = 1;\n        while (t) {\n          \
       \  Int u = s / t;\n            std::swap(s -= t * u, t);\n            std::swap(m0\
       \ -= m1 * u, m1);\n        }\n        if (m0 < 0) m0 += getmod();\n        return\
-      \ mint(m0);\n    }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const mint &x) {\n        return os << x.val();\n\
-      \    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
-      \ &is, mint &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n\
-      \        return (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n\
-      \        return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
-      \ { return mod; }\n};\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt\
-      \ =\n    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
-      \ long long, id>;\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt64bit\
+      \ mint(m0);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        Long t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n        return\
+      \ ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod() { return\
+      \ mod; }\n};\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt =\n \
+      \   ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
+      \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
       \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
       \ __uint128_t, id>;\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\
       \n\n#line 7 \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n\
@@ -546,9 +543,9 @@ data:
       \ const {\n        assert(n >= 0);\n        mint x = *this, r = 1;\n       \
       \ while (n) {\n            if (n & 1) r *= x;\n            if (n >>= 1) x *=\
       \ x;\n        }\n        return r;\n    }\n\n    constexpr mint inv() const\
-      \ { return pow(mod - 2); }\n\n    template <OutputStream OStream>\n    friend\
-      \ OStream &operator<<(OStream &os, const mint &x) {\n        return os << x._v;\n\
-      \    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
+      \ { return pow(mod - 2); }\n\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const mint &x) {\n        return os << x._v;\n  \
+      \  }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
       \ &is, mint &x) {\n        u64 y;\n        is >> y;\n        x = mint(y);\n\
       \        return is;\n    }\n\n    constexpr u64 val() const { return _v; }\n\
       \n    static constexpr mint mulplus(const mint &a, const mint &b, const mint\
@@ -582,9 +579,9 @@ data:
       \ {\n\ntemplate <int NUM> struct Hash : std::array<ModInt2_61m1, NUM> {\n  \
       \  using mint = ModInt2_61m1;\n    using std::array<mint, NUM>::operator[];\n\
       \    using u64 = unsigned long long;\n\n    Hash() : std::array<mint, NUM>()\
-      \ {}\n\n    template <Integral T> Hash(T x) {\n        std::fill(this->begin(),\
-      \ this->end(), mint(x));\n    }\n\n    static Hash get_base() {\n        Hash\
-      \ base;\n        for (int i = 0; i < NUM; i++) base[i] = primitive_root_mint<ModInt2_61m1>();\n\
+      \ {}\n\n    template <Integral T> Hash(T x) { std::fill(this->begin(), this->end(),\
+      \ mint(x)); }\n\n    static Hash get_base() {\n        Hash base;\n        for\
+      \ (int i = 0; i < NUM; i++) base[i] = primitive_root_mint<ModInt2_61m1>();\n\
       \        return base;\n    }\n\n    Hash &operator+=(const Hash &rhs) {\n  \
       \      for (int i = 0; i < NUM; i++) (*this)[i] += rhs[i];\n        return *this;\n\
       \    }\n    Hash &operator-=(const Hash &rhs) {\n        for (int i = 0; i <\
@@ -612,10 +609,10 @@ data:
       \n\nnamespace kk2 {\n\ntemplate <typename T> struct is_vector : std::false_type\
       \ {};\ntemplate <typename T, typename Alloc> struct is_vector<std::vector<T,\
       \ Alloc>> : std::true_type {};\n\ntemplate <typename T> struct is_container\
-      \ : std::false_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::vector<T,\
-      \ Alloc>> : std::true_type {\n};\ntemplate <typename CharT, typename Traits,\
-      \ typename Alloc>\nstruct is_container<std::basic_string<CharT, Traits, Alloc>>\
-      \ : std::true_type {};\ntemplate <typename T, std::size_t N> struct is_container<std::array<T,\
+      \ : std::false_type {};\ntemplate <typename T, typename Alloc>\nstruct is_container<std::vector<T,\
+      \ Alloc>> : std::true_type {};\ntemplate <typename CharT, typename Traits, typename\
+      \ Alloc>\nstruct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type\
+      \ {};\ntemplate <typename T, std::size_t N> struct is_container<std::array<T,\
       \ N>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::deque<T,\
       \ Alloc>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct\
       \ is_container<std::list<T, Alloc>> : std::true_type {};\ntemplate <typename\
@@ -698,7 +695,8 @@ data:
       \        if (n > m) return;\n        pw.resize(m + 1), pwi.resize(m + 1);\n\
       \        for (int i = n; i <= m; ++i) pw[i] = pw[i - 1] * pw[1], pwi[i] = pwi[i\
       \ - 1] * pwi[1];\n    }\n};\n\nusing SRoliha = StaticRollingHash<2>;\n\n} //\
-      \ namespace kk2\n\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 6 \"template/template.hpp\"\
+      \ namespace kk2\n\n\n\n#line 4 \"verify/unit_test/string/static_rolling_hash.test.cpp\"\
+      \n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 6 \"template/template.hpp\"\
       \n#include <bitset>\n#line 9 \"template/template.hpp\"\n#include <cmath>\n#line\
       \ 11 \"template/template.hpp\"\n#include <functional>\n#include <iterator>\n\
       #include <limits>\n#line 16 \"template/template.hpp\"\n#include <optional>\n\
@@ -850,7 +848,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -877,198 +875,193 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/unit_test/string/static_rolling_hash.test.cpp\"\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/unit_test/string/static_rolling_hash.test.cpp\"\
       \nusing namespace std;\n\nvoid test_basic_and_edge_cases() {\n    // Test basic\
       \ constructor and get operations\n    string s = \"hello\";\n    kk2::SRoliha\
-      \ rh(s);\n    assert(rh.size() == 5);\n    \n    // Test single point get\n\
-      \    auto h_first = rh.get(0);\n    auto h_second = rh.get(1);\n    assert(h_first\
-      \ != h_second); // 'h' != 'e'\n    assert(h_first == kk2::SRoliha::H('h'));\n\
-      \    assert(h_second == kk2::SRoliha::H('e'));\n    \n    // Test empty range\n\
-      \    auto h_empty = rh.get(2, 2);\n    assert(h_empty == kk2::SRoliha::H(0));\n\
-      \    \n    // Test single character constructor\n    kk2::SRoliha rh_char(65);\
-      \ // 'A'\n    assert(rh_char.size() == 1);\n    assert(rh_char.get(0) == kk2::SRoliha::H(65));\
-      \ // single point get\n    \n    // Test vector constructor\n    vector<int>\
-      \ v = {1, 2, 3, 4, 5};\n    kk2::SRoliha rh_vec(v);\n    assert(rh_vec.size()\
-      \ == 5);\n    assert(rh_vec.get(0) == kk2::SRoliha::H(1));\n    assert(rh_vec.get(4)\
-      \ == kk2::SRoliha::H(5));\n    \n    // Test empty string\n    string empty\
-      \ = \"\";\n    kk2::SRoliha rh_empty(empty);\n    assert(rh_empty.size() ==\
-      \ 0);\n    \n    // Test default constructor\n    kk2::SRoliha rh_default;\n\
-      \    assert(rh_default.size() == 0);\n    \n    // Test empty vector\n    vector<int>\
-      \ empty_vec;\n    kk2::SRoliha rh_empty_vec(empty_vec);\n    assert(rh_empty_vec.size()\
-      \ == 0);\n    \n    // Test basic LCP\n    string s1 = \"abcdef\", s2 = \"abcxyz\"\
-      ;\n    kk2::SRoliha rh1(s1), rh2(s2);\n    assert(kk2::SRoliha::lcp(rh1, 0,\
-      \ 6, rh2, 0, 6) == 3); // \"abc\" common prefix\n    \n    // Test LCP with\
-      \ empty ranges\n    assert(kk2::SRoliha::lcp(rh1, 0, 0, rh2, 0, 0) == 0);\n\
-      \    assert(kk2::SRoliha::lcp(rh1, 0, 3, rh2, 0, 0) == 0);\n    assert(kk2::SRoliha::lcp(rh_empty,\
-      \ 0, 0, rh1, 0, 3) == 0);\n    \n    // Test basic strcmp\n    string s3 = \"\
-      abc\", s4 = \"abd\";\n    kk2::SRoliha rh3(s3), rh4(s4);\n    assert(kk2::SRoliha::strcmp(rh3,\
-      \ 0, 3, rh4, 0, 3) == -1); // abc < abd\n    \n    // Test strcmp edge cases\n\
-      \    assert(kk2::SRoliha::strcmp(rh3, 0, 0, rh4, 0, 0) == 0); // empty == empty\n\
-      \    assert(kk2::SRoliha::strcmp(rh3, 0, 0, rh4, 0, 3) == -1); // empty < non-empty\n\
-      \    assert(kk2::SRoliha::strcmp(rh3, 0, 3, rh4, 0, 0) == 1); // non-empty >\
-      \ empty\n    assert(kk2::SRoliha::strcmp(rh3, 0, 3, rh3, 0, 3) == 0); // same\
-      \ == same\n    \n    // Test basic merge\n    string s5 = \"hello\", s6 = \"\
-      world\", s7 = \"helloworld\";\n    kk2::SRoliha rh5(s5), rh6(s6), rh7(s7);\n\
-      \    auto merged = kk2::SRoliha::merge(rh5, rh6);\n    assert(merged.size()\
+      \ rh(s);\n    assert(rh.size() == 5);\n\n    // Test single point get\n    auto\
+      \ h_first = rh.get(0);\n    auto h_second = rh.get(1);\n    assert(h_first !=\
+      \ h_second); // 'h' != 'e'\n    assert(h_first == kk2::SRoliha::H('h'));\n \
+      \   assert(h_second == kk2::SRoliha::H('e'));\n\n    // Test empty range\n \
+      \   auto h_empty = rh.get(2, 2);\n    assert(h_empty == kk2::SRoliha::H(0));\n\
+      \n    // Test single character constructor\n    kk2::SRoliha rh_char(65); //\
+      \ 'A'\n    assert(rh_char.size() == 1);\n    assert(rh_char.get(0) == kk2::SRoliha::H(65));\
+      \ // single point get\n\n    // Test vector constructor\n    vector<int> v =\
+      \ {1, 2, 3, 4, 5};\n    kk2::SRoliha rh_vec(v);\n    assert(rh_vec.size() ==\
+      \ 5);\n    assert(rh_vec.get(0) == kk2::SRoliha::H(1));\n    assert(rh_vec.get(4)\
+      \ == kk2::SRoliha::H(5));\n\n    // Test empty string\n    string empty = \"\
+      \";\n    kk2::SRoliha rh_empty(empty);\n    assert(rh_empty.size() == 0);\n\n\
+      \    // Test default constructor\n    kk2::SRoliha rh_default;\n    assert(rh_default.size()\
+      \ == 0);\n\n    // Test empty vector\n    vector<int> empty_vec;\n    kk2::SRoliha\
+      \ rh_empty_vec(empty_vec);\n    assert(rh_empty_vec.size() == 0);\n\n    //\
+      \ Test basic LCP\n    string s1 = \"abcdef\", s2 = \"abcxyz\";\n    kk2::SRoliha\
+      \ rh1(s1), rh2(s2);\n    assert(kk2::SRoliha::lcp(rh1, 0, 6, rh2, 0, 6) == 3);\
+      \ // \"abc\" common prefix\n\n    // Test LCP with empty ranges\n    assert(kk2::SRoliha::lcp(rh1,\
+      \ 0, 0, rh2, 0, 0) == 0);\n    assert(kk2::SRoliha::lcp(rh1, 0, 3, rh2, 0, 0)\
+      \ == 0);\n    assert(kk2::SRoliha::lcp(rh_empty, 0, 0, rh1, 0, 3) == 0);\n\n\
+      \    // Test basic strcmp\n    string s3 = \"abc\", s4 = \"abd\";\n    kk2::SRoliha\
+      \ rh3(s3), rh4(s4);\n    assert(kk2::SRoliha::strcmp(rh3, 0, 3, rh4, 0, 3) ==\
+      \ -1); // abc < abd\n\n    // Test strcmp edge cases\n    assert(kk2::SRoliha::strcmp(rh3,\
+      \ 0, 0, rh4, 0, 0) == 0);  // empty == empty\n    assert(kk2::SRoliha::strcmp(rh3,\
+      \ 0, 0, rh4, 0, 3) == -1); // empty < non-empty\n    assert(kk2::SRoliha::strcmp(rh3,\
+      \ 0, 3, rh4, 0, 0) == 1);  // non-empty > empty\n    assert(kk2::SRoliha::strcmp(rh3,\
+      \ 0, 3, rh3, 0, 3) == 0);  // same == same\n\n    // Test basic merge\n    string\
+      \ s5 = \"hello\", s6 = \"world\", s7 = \"helloworld\";\n    kk2::SRoliha rh5(s5),\
+      \ rh6(s6), rh7(s7);\n    auto merged = kk2::SRoliha::merge(rh5, rh6);\n    assert(merged.size()\
       \ == 10);\n    assert(merged.get(0, 10) == rh7.get(0, 10)); // merged hash equals\
-      \ direct construction\n    \n    // Test merge with empty\n    auto merged_empty1\
+      \ direct construction\n\n    // Test merge with empty\n    auto merged_empty1\
       \ = kk2::SRoliha::merge(rh_empty, rh5);\n    assert(merged_empty1.size() ==\
-      \ 5);\n    assert(merged_empty1.get(0, 5) == rh5.get(0, 5));\n    \n    auto\
-      \ merged_empty2 = kk2::SRoliha::merge(rh5, rh_empty);\n    assert(merged_empty2.size()\
-      \ == 5);\n    assert(merged_empty2.get(0, 5) == rh5.get(0, 5));\n    \n    //\
-      \ Test numerical sequence\n    vector<int> nums = {1, 2, 3, 2, 1};\n    kk2::SRoliha\
+      \ 5);\n    assert(merged_empty1.get(0, 5) == rh5.get(0, 5));\n\n    auto merged_empty2\
+      \ = kk2::SRoliha::merge(rh5, rh_empty);\n    assert(merged_empty2.size() ==\
+      \ 5);\n    assert(merged_empty2.get(0, 5) == rh5.get(0, 5));\n\n    // Test\
+      \ numerical sequence\n    vector<int> nums = {1, 2, 3, 2, 1};\n    kk2::SRoliha\
       \ rh_nums(nums);\n    assert(rh_nums.get(0) == rh_nums.get(4)); // single point\
       \ palindrome\n    assert(rh_nums.get(1) == rh_nums.get(3)); // single point\
-      \ palindrome\n    \n    // Test large values\n    vector<int> large_nums = {1000000,\
+      \ palindrome\n\n    // Test large values\n    vector<int> large_nums = {1000000,\
       \ 999999, 1000001};\n    kk2::SRoliha rh_large(large_nums);\n    assert(rh_large.size()\
       \ == 3);\n    assert(rh_large.get(0) == kk2::SRoliha::H(1000000));\n}\nvoid\
       \ test_random_comprehensive() {\n    // Test random strings with all operations\n\
       \    rep(2000) {\n        int len1 = kk2::random::rng(1, 101);\n        int\
-      \ len2 = kk2::random::rng(1, 101);\n        \n        string s1, s2;\n     \
-      \   rep(len1) s1 += char('a' + kk2::random::rng(0, 26));\n        rep(len2)\
-      \ s2 += char('a' + kk2::random::rng(0, 26));\n        \n        kk2::SRoliha\
-      \ rh1(s1);\n        kk2::SRoliha rh2(s2);\n        \n        assert(rh1.size()\
-      \ == len1);\n        assert(rh2.size() == len2);\n        \n        // Test\
-      \ single point get\n        if (len1 > 0) {\n            int idx1 = kk2::random::rng(0,\
-      \ len1);\n            assert(rh1.get(idx1) == kk2::SRoliha::H(s1[idx1]));\n\
-      \        }\n        if (len2 > 0) {\n            int idx2 = kk2::random::rng(0,\
-      \ len2);\n            assert(rh2.get(idx2) == kk2::SRoliha::H(s2[idx2]));\n\
-      \        }\n        \n        // Test substring operations\n        int l1 =\
-      \ kk2::random::rng(0, len1);\n        int r1 = kk2::random::rng(l1, len1 + 1);\n\
-      \        int l2 = kk2::random::rng(0, len2);\n        int r2 = kk2::random::rng(l2,\
-      \ len2 + 1);\n        \n        auto h1 = rh1.get(l1, r1);\n        \n     \
-      \   // Verify substring hash consistency\n        if (l1 < r1) {\n         \
-      \   string sub1 = s1.substr(l1, r1 - l1);\n            kk2::SRoliha rh_sub1(sub1);\n\
-      \            assert(h1 == rh_sub1.get(0, r1 - l1));\n        }\n        \n \
-      \       // Test LCP\n        int lcp_len = kk2::SRoliha::lcp(rh1, l1, r1, rh2,\
-      \ l2, r2);\n        int expected_lcp = 0;\n        int min_len = min(r1 - l1,\
-      \ r2 - l2);\n        for (int i = 0; i < min_len; i++) {\n            if (l1\
-      \ + i < len1 && l2 + i < len2 && s1[l1 + i] == s2[l2 + i]) {\n             \
-      \   expected_lcp++;\n            } else {\n                break;\n        \
-      \    }\n        }\n        assert(lcp_len == expected_lcp);\n        \n    \
-      \    // Test strcmp\n        int cmp_result = kk2::SRoliha::strcmp(rh1, l1,\
-      \ r1, rh2, l2, r2);\n        string sub1 = s1.substr(l1, r1 - l1);\n       \
-      \ string sub2 = s2.substr(l2, r2 - l2);\n        int expected_cmp = (sub1 <\
-      \ sub2) ? -1 : (sub1 > sub2) ? 1 : 0;\n        assert(cmp_result == expected_cmp);\n\
-      \        \n        // Test hash collision detection\n        if (s1 == s2) {\n\
-      \            assert(rh1.get(0, len1) == rh2.get(0, len2));\n        } else if\
-      \ (len1 == len2) {\n            assert(rh1.get(0, len1) != rh2.get(0, len2));\n\
-      \        }\n    }\n}\nvoid test_random_merge() {\n    // Test merge operation\
-      \ with random strings\n    rep(500) {\n        int len1 = kk2::random::rng(1,\
-      \ 51);\n        int len2 = kk2::random::rng(1, 51);\n        \n        string\
-      \ s1, s2;\n        rep(len1) s1 += char('a' + kk2::random::rng(0, 26));\n  \
-      \      rep(len2) s2 += char('a' + kk2::random::rng(0, 26));\n        \n    \
-      \    kk2::SRoliha rh1(s1);\n        kk2::SRoliha rh2(s2);\n        \n      \
-      \  auto merged = kk2::SRoliha::merge(rh1, rh2);\n        assert(merged.size()\
-      \ == len1 + len2);\n        \n        // Test that merged hash equals direct\
-      \ construction\n        string concatenated = s1 + s2;\n        kk2::SRoliha\
-      \ rh_direct(concatenated);\n        assert(merged.get(0, len1 + len2) == rh_direct.get(0,\
-      \ len1 + len2));\n        \n        // Test partial hashes\n        assert(merged.get(0,\
-      \ len1) == rh1.get(0, len1));\n        assert(merged.get(len1, len1 + len2)\
-      \ == rh2.get(0, len2));\n        \n        // Test single point get on merged\n\
-      \        if (len1 + len2 > 0) {\n            int idx = kk2::random::rng(0, len1\
-      \ + len2);\n            assert(merged.get(idx) == rh_direct.get(idx));\n   \
-      \         assert(merged.get(idx) == kk2::SRoliha::H(concatenated[idx]));\n \
-      \       }\n        \n        // Test random substrings of merged\n        rep(10)\
-      \ {\n            int l = kk2::random::rng(0, len1 + len2);\n            int\
-      \ r = kk2::random::rng(l, len1 + len2 + 1);\n            \n            auto\
-      \ h_merged = merged.get(l, r);\n            auto h_direct = rh_direct.get(l,\
-      \ r);\n            assert(h_merged == h_direct);\n        }\n    }\n}\n\n//\
-      \ Performance test configuration\nstruct PerformanceConfig {\n    // Test sizes\n\
-      \    static constexpr int LARGE_SIZE = 100000;\n    static constexpr int MEDIUM_SIZE\
-      \ = 50000;\n    static constexpr int SMALL_SIZE = 10000;\n    \n    // Test\
-      \ iterations\n    static constexpr int MANY_QUERIES = 100000;\n    static constexpr\
-      \ int MEDIUM_QUERIES = 50000;\n    static constexpr int FEW_QUERIES = 1000;\n\
-      \    \n    // Hash collision test settings\n    static constexpr int COLLISION_TEST_SIZE\
-      \ = 100000;\n    static constexpr int STRING_MAX_LENGTH = 21;\n    \n    //\
-      \ Value ranges\n    static constexpr int ALPHABET_SIZE = 26;\n    static constexpr\
-      \ int LARGE_VALUE_RANGE = 1000000;\n};\n\nvoid test_performance() {\n    //\
-      \ Large size performance test\n    cerr << \"Starting StaticRollingHash performance\
-      \ tests...\" << endl;\n    cerr << \"Configuration:\" << endl;\n    cerr <<\
-      \ \"  Large size: \" << PerformanceConfig::LARGE_SIZE << endl;\n    cerr <<\
-      \ \"  Medium size: \" << PerformanceConfig::MEDIUM_SIZE << endl;\n    cerr <<\
-      \ \"  Many queries: \" << PerformanceConfig::MANY_QUERIES << endl;\n    cerr\
-      \ << \"  Medium queries: \" << PerformanceConfig::MEDIUM_QUERIES << endl;\n\
-      \    cerr << endl;\n    \n    // Test 1: Large string construction and substring\
-      \ queries\n    {\n        int n = PerformanceConfig::LARGE_SIZE;\n        string\
-      \ large_str;\n        large_str.reserve(n);\n        for (int i = 0; i < n;\
-      \ i++) {\n            large_str += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\
-      \        }\n        \n        auto start = chrono::high_resolution_clock::now();\n\
+      \ len2 = kk2::random::rng(1, 101);\n\n        string s1, s2;\n        rep(len1)\
+      \ s1 += char('a' + kk2::random::rng(0, 26));\n        rep(len2) s2 += char('a'\
+      \ + kk2::random::rng(0, 26));\n\n        kk2::SRoliha rh1(s1);\n        kk2::SRoliha\
+      \ rh2(s2);\n\n        assert(rh1.size() == len1);\n        assert(rh2.size()\
+      \ == len2);\n\n        // Test single point get\n        if (len1 > 0) {\n \
+      \           int idx1 = kk2::random::rng(0, len1);\n            assert(rh1.get(idx1)\
+      \ == kk2::SRoliha::H(s1[idx1]));\n        }\n        if (len2 > 0) {\n     \
+      \       int idx2 = kk2::random::rng(0, len2);\n            assert(rh2.get(idx2)\
+      \ == kk2::SRoliha::H(s2[idx2]));\n        }\n\n        // Test substring operations\n\
+      \        int l1 = kk2::random::rng(0, len1);\n        int r1 = kk2::random::rng(l1,\
+      \ len1 + 1);\n        int l2 = kk2::random::rng(0, len2);\n        int r2 =\
+      \ kk2::random::rng(l2, len2 + 1);\n\n        auto h1 = rh1.get(l1, r1);\n\n\
+      \        // Verify substring hash consistency\n        if (l1 < r1) {\n    \
+      \        string sub1 = s1.substr(l1, r1 - l1);\n            kk2::SRoliha rh_sub1(sub1);\n\
+      \            assert(h1 == rh_sub1.get(0, r1 - l1));\n        }\n\n        //\
+      \ Test LCP\n        int lcp_len = kk2::SRoliha::lcp(rh1, l1, r1, rh2, l2, r2);\n\
+      \        int expected_lcp = 0;\n        int min_len = min(r1 - l1, r2 - l2);\n\
+      \        for (int i = 0; i < min_len; i++) {\n            if (l1 + i < len1\
+      \ && l2 + i < len2 && s1[l1 + i] == s2[l2 + i]) {\n                expected_lcp++;\n\
+      \            } else {\n                break;\n            }\n        }\n  \
+      \      assert(lcp_len == expected_lcp);\n\n        // Test strcmp\n        int\
+      \ cmp_result = kk2::SRoliha::strcmp(rh1, l1, r1, rh2, l2, r2);\n        string\
+      \ sub1 = s1.substr(l1, r1 - l1);\n        string sub2 = s2.substr(l2, r2 - l2);\n\
+      \        int expected_cmp = (sub1 < sub2) ? -1 : (sub1 > sub2) ? 1 : 0;\n  \
+      \      assert(cmp_result == expected_cmp);\n\n        // Test hash collision\
+      \ detection\n        if (s1 == s2) {\n            assert(rh1.get(0, len1) ==\
+      \ rh2.get(0, len2));\n        } else if (len1 == len2) {\n            assert(rh1.get(0,\
+      \ len1) != rh2.get(0, len2));\n        }\n    }\n}\nvoid test_random_merge()\
+      \ {\n    // Test merge operation with random strings\n    rep(500) {\n     \
+      \   int len1 = kk2::random::rng(1, 51);\n        int len2 = kk2::random::rng(1,\
+      \ 51);\n\n        string s1, s2;\n        rep(len1) s1 += char('a' + kk2::random::rng(0,\
+      \ 26));\n        rep(len2) s2 += char('a' + kk2::random::rng(0, 26));\n\n  \
+      \      kk2::SRoliha rh1(s1);\n        kk2::SRoliha rh2(s2);\n\n        auto\
+      \ merged = kk2::SRoliha::merge(rh1, rh2);\n        assert(merged.size() == len1\
+      \ + len2);\n\n        // Test that merged hash equals direct construction\n\
+      \        string concatenated = s1 + s2;\n        kk2::SRoliha rh_direct(concatenated);\n\
+      \        assert(merged.get(0, len1 + len2) == rh_direct.get(0, len1 + len2));\n\
+      \n        // Test partial hashes\n        assert(merged.get(0, len1) == rh1.get(0,\
+      \ len1));\n        assert(merged.get(len1, len1 + len2) == rh2.get(0, len2));\n\
+      \n        // Test single point get on merged\n        if (len1 + len2 > 0) {\n\
+      \            int idx = kk2::random::rng(0, len1 + len2);\n            assert(merged.get(idx)\
+      \ == rh_direct.get(idx));\n            assert(merged.get(idx) == kk2::SRoliha::H(concatenated[idx]));\n\
+      \        }\n\n        // Test random substrings of merged\n        rep(10) {\n\
+      \            int l = kk2::random::rng(0, len1 + len2);\n            int r =\
+      \ kk2::random::rng(l, len1 + len2 + 1);\n\n            auto h_merged = merged.get(l,\
+      \ r);\n            auto h_direct = rh_direct.get(l, r);\n            assert(h_merged\
+      \ == h_direct);\n        }\n    }\n}\n\n// Performance test configuration\n\
+      struct PerformanceConfig {\n    // Test sizes\n    static constexpr int LARGE_SIZE\
+      \ = 100000;\n    static constexpr int MEDIUM_SIZE = 50000;\n    static constexpr\
+      \ int SMALL_SIZE = 10000;\n\n    // Test iterations\n    static constexpr int\
+      \ MANY_QUERIES = 100000;\n    static constexpr int MEDIUM_QUERIES = 50000;\n\
+      \    static constexpr int FEW_QUERIES = 1000;\n\n    // Hash collision test\
+      \ settings\n    static constexpr int COLLISION_TEST_SIZE = 100000;\n    static\
+      \ constexpr int STRING_MAX_LENGTH = 21;\n\n    // Value ranges\n    static constexpr\
+      \ int ALPHABET_SIZE = 26;\n    static constexpr int LARGE_VALUE_RANGE = 1000000;\n\
+      };\n\nvoid test_performance() {\n    // Large size performance test\n    cerr\
+      \ << \"Starting StaticRollingHash performance tests...\" << endl;\n    cerr\
+      \ << \"Configuration:\" << endl;\n    cerr << \"  Large size: \" << PerformanceConfig::LARGE_SIZE\
+      \ << endl;\n    cerr << \"  Medium size: \" << PerformanceConfig::MEDIUM_SIZE\
+      \ << endl;\n    cerr << \"  Many queries: \" << PerformanceConfig::MANY_QUERIES\
+      \ << endl;\n    cerr << \"  Medium queries: \" << PerformanceConfig::MEDIUM_QUERIES\
+      \ << endl;\n    cerr << endl;\n\n    // Test 1: Large string construction and\
+      \ substring queries\n    {\n        int n = PerformanceConfig::LARGE_SIZE;\n\
+      \        string large_str;\n        large_str.reserve(n);\n        for (int\
+      \ i = 0; i < n; i++) {\n            large_str += char('a' + kk2::random::rng(0,\
+      \ PerformanceConfig::ALPHABET_SIZE));\n        }\n\n        auto start = chrono::high_resolution_clock::now();\n\
       \        kk2::SRoliha rh(large_str);\n        auto end = chrono::high_resolution_clock::now();\n\
       \        auto construction_time = chrono::duration_cast<chrono::microseconds>(end\
       \ - start).count();\n        cerr << \"Construction time for \" << n << \" characters:\
-      \ \" << construction_time << \" microseconds\" << endl;\n        \n        //\
-      \ Test many substring queries\n        start = chrono::high_resolution_clock::now();\n\
+      \ \" << construction_time\n             << \" microseconds\" << endl;\n\n  \
+      \      // Test many substring queries\n        start = chrono::high_resolution_clock::now();\n\
       \        for (int i = 0; i < PerformanceConfig::MANY_QUERIES; i++) {\n     \
       \       int l = kk2::random::rng(0, n);\n            int r = kk2::random::rng(l,\
       \ n + 1);\n            auto h = rh.get(l, r);\n            (void)h; // suppress\
       \ unused variable warning\n        }\n        end = chrono::high_resolution_clock::now();\n\
       \        auto query_time = chrono::duration_cast<chrono::microseconds>(end -\
       \ start).count();\n        cerr << PerformanceConfig::MANY_QUERIES << \" substring\
-      \ queries time: \" << query_time << \" microseconds\" << endl;\n    }\n    \n\
-      \    // Test 2: Large vector construction and queries\n    {\n        int n\
-      \ = PerformanceConfig::LARGE_SIZE;\n        vector<int> large_vec;\n       \
-      \ large_vec.reserve(n);\n        for (int i = 0; i < n; i++) {\n           \
-      \ large_vec.push_back(kk2::random::rng(0, PerformanceConfig::LARGE_VALUE_RANGE));\n\
-      \        }\n        \n        auto start = chrono::high_resolution_clock::now();\n\
-      \        kk2::SRoliha rh(large_vec);\n        auto end = chrono::high_resolution_clock::now();\n\
+      \ queries time: \" << query_time\n             << \" microseconds\" << endl;\n\
+      \    }\n\n    // Test 2: Large vector construction and queries\n    {\n    \
+      \    int n = PerformanceConfig::LARGE_SIZE;\n        vector<int> large_vec;\n\
+      \        large_vec.reserve(n);\n        for (int i = 0; i < n; i++) {\n    \
+      \        large_vec.push_back(kk2::random::rng(0, PerformanceConfig::LARGE_VALUE_RANGE));\n\
+      \        }\n\n        auto start = chrono::high_resolution_clock::now();\n \
+      \       kk2::SRoliha rh(large_vec);\n        auto end = chrono::high_resolution_clock::now();\n\
       \        auto construction_time = chrono::duration_cast<chrono::microseconds>(end\
       \ - start).count();\n        cerr << \"Vector construction time for \" << n\
-      \ << \" elements: \" << construction_time << \" microseconds\" << endl;\n  \
-      \      \n        // Test many single point queries\n        start = chrono::high_resolution_clock::now();\n\
+      \ << \" elements: \" << construction_time\n             << \" microseconds\"\
+      \ << endl;\n\n        // Test many single point queries\n        start = chrono::high_resolution_clock::now();\n\
       \        for (int i = 0; i < PerformanceConfig::MANY_QUERIES; i++) {\n     \
       \       int idx = kk2::random::rng(0, n);\n            auto h = rh.get(idx);\n\
       \            (void)h;\n        }\n        end = chrono::high_resolution_clock::now();\n\
       \        auto point_query_time = chrono::duration_cast<chrono::microseconds>(end\
-      \ - start).count();\n        cerr << PerformanceConfig::MANY_QUERIES << \" single\
-      \ point queries time: \" << point_query_time << \" microseconds\" << endl;\n\
-      \    }\n    \n    // Test 3: Many LCP operations\n    {\n        int n = PerformanceConfig::MEDIUM_SIZE;\n\
-      \        string s1, s2;\n        s1.reserve(n);\n        s2.reserve(n);\n  \
-      \      for (int i = 0; i < n; i++) {\n            s1 += char('a' + kk2::random::rng(0,\
-      \ PerformanceConfig::ALPHABET_SIZE));\n            s2 += char('a' + kk2::random::rng(0,\
-      \ PerformanceConfig::ALPHABET_SIZE));\n        }\n        \n        kk2::SRoliha\
-      \ rh1(s1), rh2(s2);\n        \n        auto start = chrono::high_resolution_clock::now();\n\
-      \        for (int i = 0; i < PerformanceConfig::MEDIUM_QUERIES; i++) {\n   \
-      \         int l1 = kk2::random::rng(0, n);\n            int r1 = kk2::random::rng(l1,\
-      \ n + 1);\n            int l2 = kk2::random::rng(0, n);\n            int r2\
-      \ = kk2::random::rng(l2, n + 1);\n            int lcp_len = kk2::SRoliha::lcp(rh1,\
-      \ l1, r1, rh2, l2, r2);\n            (void)lcp_len;\n        }\n        auto\
-      \ end = chrono::high_resolution_clock::now();\n        auto lcp_time = chrono::duration_cast<chrono::microseconds>(end\
-      \ - start).count();\n        cerr << PerformanceConfig::MEDIUM_QUERIES << \"\
-      \ LCP operations time: \" << lcp_time << \" microseconds\" << endl;\n    }\n\
-      \    \n    // Test 4: Many merge operations\n    {\n        int n = PerformanceConfig::SMALL_SIZE;\n\
+      \ - start).count();\n        cerr << PerformanceConfig::MANY_QUERIES\n     \
+      \        << \" single point queries time: \" << point_query_time << \" microseconds\"\
+      \ << endl;\n    }\n\n    // Test 3: Many LCP operations\n    {\n        int\
+      \ n = PerformanceConfig::MEDIUM_SIZE;\n        string s1, s2;\n        s1.reserve(n);\n\
+      \        s2.reserve(n);\n        for (int i = 0; i < n; i++) {\n           \
+      \ s1 += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\
+      \            s2 += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\
+      \        }\n\n        kk2::SRoliha rh1(s1), rh2(s2);\n\n        auto start =\
+      \ chrono::high_resolution_clock::now();\n        for (int i = 0; i < PerformanceConfig::MEDIUM_QUERIES;\
+      \ i++) {\n            int l1 = kk2::random::rng(0, n);\n            int r1 =\
+      \ kk2::random::rng(l1, n + 1);\n            int l2 = kk2::random::rng(0, n);\n\
+      \            int r2 = kk2::random::rng(l2, n + 1);\n            int lcp_len\
+      \ = kk2::SRoliha::lcp(rh1, l1, r1, rh2, l2, r2);\n            (void)lcp_len;\n\
+      \        }\n        auto end = chrono::high_resolution_clock::now();\n     \
+      \   auto lcp_time = chrono::duration_cast<chrono::microseconds>(end - start).count();\n\
+      \        cerr << PerformanceConfig::MEDIUM_QUERIES << \" LCP operations time:\
+      \ \" << lcp_time\n             << \" microseconds\" << endl;\n    }\n\n    //\
+      \ Test 4: Many merge operations\n    {\n        int n = PerformanceConfig::SMALL_SIZE;\n\
       \        auto start = chrono::high_resolution_clock::now();\n        for (int\
       \ i = 0; i < PerformanceConfig::FEW_QUERIES; i++) {\n            int len1 =\
       \ kk2::random::rng(1, n / 100);\n            int len2 = kk2::random::rng(1,\
-      \ n / 100);\n            \n            string s1, s2;\n            s1.reserve(len1);\n\
-      \            s2.reserve(len2);\n            for (int j = 0; j < len1; j++) s1\
-      \ += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n  \
-      \          for (int j = 0; j < len2; j++) s2 += char('a' + kk2::random::rng(0,\
-      \ PerformanceConfig::ALPHABET_SIZE));\n            \n            kk2::SRoliha\
+      \ n / 100);\n\n            string s1, s2;\n            s1.reserve(len1);\n \
+      \           s2.reserve(len2);\n            for (int j = 0; j < len1; j++)\n\
+      \                s1 += char('a' + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\
+      \            for (int j = 0; j < len2; j++)\n                s2 += char('a'\
+      \ + kk2::random::rng(0, PerformanceConfig::ALPHABET_SIZE));\n\n            kk2::SRoliha\
       \ rh1(s1), rh2(s2);\n            auto merged = kk2::SRoliha::merge(rh1, rh2);\n\
       \            (void)merged;\n        }\n        auto end = chrono::high_resolution_clock::now();\n\
       \        auto merge_time = chrono::duration_cast<chrono::microseconds>(end -\
       \ start).count();\n        cerr << PerformanceConfig::FEW_QUERIES << \" merge\
-      \ operations time: \" << merge_time << \" microseconds\" << endl;\n    }\n \
-      \   \n    // Test 5: strcmp performance\n    {\n        int n = PerformanceConfig::MEDIUM_SIZE;\n\
+      \ operations time: \" << merge_time\n             << \" microseconds\" << endl;\n\
+      \    }\n\n    // Test 5: strcmp performance\n    {\n        int n = PerformanceConfig::MEDIUM_SIZE;\n\
       \        string s1, s2;\n        s1.reserve(n);\n        s2.reserve(n);\n  \
       \      for (int i = 0; i < n; i++) {\n            s1 += char('a' + kk2::random::rng(0,\
       \ PerformanceConfig::ALPHABET_SIZE));\n            s2 += char('a' + kk2::random::rng(0,\
-      \ PerformanceConfig::ALPHABET_SIZE));\n        }\n        \n        kk2::SRoliha\
-      \ rh1(s1), rh2(s2);\n        \n        auto start = chrono::high_resolution_clock::now();\n\
-      \        for (int i = 0; i < PerformanceConfig::MEDIUM_QUERIES; i++) {\n   \
-      \         int l1 = kk2::random::rng(0, n);\n            int r1 = kk2::random::rng(l1,\
+      \ PerformanceConfig::ALPHABET_SIZE));\n        }\n\n        kk2::SRoliha rh1(s1),\
+      \ rh2(s2);\n\n        auto start = chrono::high_resolution_clock::now();\n \
+      \       for (int i = 0; i < PerformanceConfig::MEDIUM_QUERIES; i++) {\n    \
+      \        int l1 = kk2::random::rng(0, n);\n            int r1 = kk2::random::rng(l1,\
       \ n + 1);\n            int l2 = kk2::random::rng(0, n);\n            int r2\
       \ = kk2::random::rng(l2, n + 1);\n            int cmp_result = kk2::SRoliha::strcmp(rh1,\
       \ l1, r1, rh2, l2, r2);\n            (void)cmp_result;\n        }\n        auto\
       \ end = chrono::high_resolution_clock::now();\n        auto strcmp_time = chrono::duration_cast<chrono::microseconds>(end\
       \ - start).count();\n        cerr << PerformanceConfig::MEDIUM_QUERIES << \"\
-      \ strcmp operations time: \" << strcmp_time << \" microseconds\" << endl;\n\
-      \    }\n    \n    cerr << \"StaticRollingHash performance tests completed!\"\
+      \ strcmp operations time: \" << strcmp_time\n             << \" microseconds\"\
+      \ << endl;\n    }\n\n    cerr << \"StaticRollingHash performance tests completed!\"\
       \ << endl;\n}\n\nvoid test() {\n    test_basic_and_edge_cases();\n    test_random_comprehensive();\n\
-      \    test_random_merge();\n    test_performance();\n    \n    cerr << \"All\
-      \ tests passed!\" << endl;\n}\n\nint main() {\n    test();\n\n    return 0;\n\
-      }\n"
+      \    test_random_merge();\n    test_performance();\n\n    cerr << \"All tests\
+      \ passed!\" << endl;\n}\n\nint main() {\n    test();\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -1076,7 +1069,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/string/static_rolling_hash.test.cpp

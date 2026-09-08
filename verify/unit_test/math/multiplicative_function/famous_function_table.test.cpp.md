@@ -93,10 +93,10 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../../math/multiplicative_function/famous_function_table.hpp\"\
-      \n#include \"../../../../math/multiplicative_function/mobius.hpp\"\n#include\
-      \ \"../../../../math/multiplicative_function/sigma.hpp\"\n#include \"../../../../math/multiplicative_function/euler_phi.hpp\"\
+      \n\n#include \"../../../../math/multiplicative_function/euler_phi.hpp\"\n#include\
+      \ \"../../../../math/multiplicative_function/mobius.hpp\"\n#include \"../../../../math/multiplicative_function/sigma.hpp\"\
       \n#include \"../../../../random/gen.hpp\"\n#include \"../../../../template/template.hpp\"\
-      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep (iter)\
+      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep(iter)\
       \ {\n        int n = kk2::random::rng(2, 1000000);\n        assert(kk2::FamousFunctionTable::euler_phi(n)\
       \ == kk2::euler_phi(n));\n        assert(kk2::FamousFunctionTable::mobius(n)\
       \ == kk2::mobius(n));\n        assert(kk2::FamousFunctionTable::sigma0(n) ==\
@@ -169,33 +169,36 @@ data:
       \        assert(n > 0);\n        if ((int)_sigma1.size() <= n) set_upper(n);\n\
       \        return _sigma1[n];\n    }\n\n    static int euler_phi(int n) {\n  \
       \      assert(n > 0);\n        if ((int)_euler_phi.size() <= n) set_upper(n);\n\
-      \        return _euler_phi[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1\
-      \ \"math/multiplicative_function/mobius.hpp\"\n\n\n\n#line 5 \"math/multiplicative_function/mobius.hpp\"\
-      \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
+      \        return _euler_phi[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 4\
+      \ \"verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp\"\
+      \n\n#line 1 \"math/multiplicative_function/euler_phi.hpp\"\n\n\n\n#line 5 \"\
+      math/multiplicative_function/euler_phi.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -219,20 +222,22 @@ data:
       \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
       \ <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace\
       \ type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace\
-      \ type_traits\n\ntemplate <typename T> using is_standard_istream =\n    typename\
+      \ type_traits\n\ntemplate <typename T>\nusing is_standard_istream = typename\
       \ std::conditional<std::is_same<T, std::istream>::value\n                  \
-      \                || std::is_same<T, std::ifstream>::value,\n               \
-      \               std::true_type,\n                              std::false_type>::type;\n\
-      template <typename T> using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \                                        || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -251,7 +256,7 @@ data:
       \ m) {\n        assert(m < (UInt(1u) << (bit_length - 2)));\n        assert(m\
       \ & 1);\n        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt\
       \ _v;\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template\
-      \ <Integral T> ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
+      \ <Integral T>\n    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b\
       \ % (Int)mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n\
       \        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\
       \n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod)\
@@ -276,15 +281,15 @@ data:
       \ s = getmod(), t = val(), m0 = 0, m1 = 1;\n        while (t) {\n          \
       \  Int u = s / t;\n            std::swap(s -= t * u, t);\n            std::swap(m0\
       \ -= m1 * u, m1);\n        }\n        if (m0 < 0) m0 += getmod();\n        return\
-      \ mint(m0);\n    }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const mint &x) {\n        return os << x.val();\n\
-      \    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
-      \ &is, mint &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n\
-      \        return (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n\
-      \        return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
-      \ { return mod; }\n};\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt\
-      \ =\n    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
-      \ long long, id>;\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt64bit\
+      \ mint(m0);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        Long t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n        return\
+      \ ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod() { return\
+      \ mod; }\n};\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt =\n \
+      \   ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
+      \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
       \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
       \ __uint128_t, id>;\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\
       \n\n#line 7 \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n\
@@ -385,25 +390,25 @@ data:
       \        }\n    }\n    std::sort(res.begin(), res.end());\n    return res;\n\
       }\n\n} // namespace number_theory\n\nusing number_theory::divisors;\nusing number_theory::factorize;\n\
       using number_theory::factorize_map;\n\n} // namespace kk2\n\n\n\n#line 8 \"\
-      math/multiplicative_function/mobius.hpp\"\n\nnamespace kk2 {\n\ntemplate <Integral\
-      \ T> int mobius(T n) {\n    assert(n >= 0);\n    if (n == 0) return 0;\n   \
-      \ int res = 1;\n    for (auto [p, k] : factorize(static_cast<long long>(n)))\
-      \ {\n        if (k > 1) return 0;\n        res = -res;\n    }\n    return res;\n\
-      }\n\n} // namespace kk2\n\n\n#line 1 \"math/multiplicative_function/sigma.hpp\"\
-      \n\n\n\n#line 5 \"math/multiplicative_function/sigma.hpp\"\n\n#line 9 \"math/multiplicative_function/sigma.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <Integral T> T sigma0(T n) {\n    assert(n >\
+      math/multiplicative_function/euler_phi.hpp\"\n\nnamespace kk2 {\n\ntemplate\
+      \ <Integral T> T euler_phi(T n) {\n    assert(n > 0);\n    for (auto [p, k]\
+      \ : factorize(static_cast<long long>(n))) n -= n / p;\n    return n;\n}\n\n\
+      } // namespace kk2\n\n\n#line 1 \"math/multiplicative_function/mobius.hpp\"\n\
+      \n\n\n#line 5 \"math/multiplicative_function/mobius.hpp\"\n\n#line 8 \"math/multiplicative_function/mobius.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <Integral T> int mobius(T n) {\n    assert(n\
+      \ >= 0);\n    if (n == 0) return 0;\n    int res = 1;\n    for (auto [p, k]\
+      \ : factorize(static_cast<long long>(n))) {\n        if (k > 1) return 0;\n\
+      \        res = -res;\n    }\n    return res;\n}\n\n} // namespace kk2\n\n\n\
+      #line 1 \"math/multiplicative_function/sigma.hpp\"\n\n\n\n#line 5 \"math/multiplicative_function/sigma.hpp\"\
+      \n\n#line 9 \"math/multiplicative_function/sigma.hpp\"\n\nnamespace kk2 {\n\n\
+      template <Integral T> T sigma0(T n) {\n    assert(n > 0);\n    T res = 1;\n\
+      \    for (auto [p, k] : factorize(static_cast<long long>(n))) res *= k + 1;\n\
+      \    return res;\n}\n\ntemplate <Integral T> T sigma1(T n) {\n    assert(n >\
       \ 0);\n    T res = 1;\n    for (auto [p, k] : factorize(static_cast<long long>(n)))\
-      \ res *= k + 1;\n    return res;\n}\n\ntemplate <Integral T> T sigma1(T n) {\n\
-      \    assert(n > 0);\n    T res = 1;\n    for (auto [p, k] : factorize(static_cast<long\
-      \ long>(n))) {\n        T p_k = pow<T>(p, k);\n        res *= p_k + (p_k - 1)\
-      \ / (p - 1);\n    }\n    return res;\n}\n\n} // namespace kk2\n\n\n#line 1 \"\
-      math/multiplicative_function/euler_phi.hpp\"\n\n\n\n#line 5 \"math/multiplicative_function/euler_phi.hpp\"\
-      \n\n#line 8 \"math/multiplicative_function/euler_phi.hpp\"\n\nnamespace kk2\
-      \ {\n\ntemplate <Integral T> T euler_phi(T n) {\n    assert(n > 0);\n    for\
-      \ (auto [p, k] : factorize(static_cast<long long>(n))) n -= n / p;\n    return\
-      \ n;\n}\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n\
-      #line 5 \"template/template.hpp\"\n#include <array>\n#include <bitset>\n#line\
-      \ 9 \"template/template.hpp\"\n#include <cmath>\n#include <deque>\n#include\
+      \ {\n        T p_k = pow<T>(p, k);\n        res *= p_k + (p_k - 1) / (p - 1);\n\
+      \    }\n    return res;\n}\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\
+      \n\n\n\n#line 5 \"template/template.hpp\"\n#include <array>\n#include <bitset>\n\
+      #line 9 \"template/template.hpp\"\n#include <cmath>\n#include <deque>\n#include\
       \ <functional>\n#include <iterator>\n#include <limits>\n#line 16 \"template/template.hpp\"\
       \n#include <optional>\n#include <queue>\n#line 19 \"template/template.hpp\"\n\
       #include <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n\
@@ -553,7 +558,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -580,8 +585,8 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 9 \"verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep (iter)\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 10 \"verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp\"\
+      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep(iter)\
       \ {\n        int n = kk2::random::rng(2, 1000000);\n        assert(kk2::FamousFunctionTable::euler_phi(n)\
       \ == kk2::euler_phi(n));\n        assert(kk2::FamousFunctionTable::mobius(n)\
       \ == kk2::mobius(n));\n        assert(kk2::FamousFunctionTable::sigma0(n) ==\
@@ -594,7 +599,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp

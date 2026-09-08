@@ -86,26 +86,27 @@ data:
       \ <vector>\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#line 1 \"bit/bitcount.hpp\"\
       \n\n\n\n#include <cassert>\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include\
       \ <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename\
-      \ T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
-      \                               or std::is_same<T, unsigned __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-      \                                  or is_unsigned_int128<T>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
+      \ T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+      \                                                       or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __uint128_t>::value\n                                  or std::is_same<T,\
+      \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -141,32 +142,33 @@ data:
       \ long long)(x >> 64))\n               + __builtin_popcountll((unsigned long\
       \ long)(x & 0xffffffffffffffff));\n    }\n}\n\n}; // namespace kk2\n\n\n#line\
       \ 5 \"fps/fps_sparsity_detector.hpp\"\n\nnamespace kk2 {\n\nenum class FPSOperation\
-      \ { CONVOLUTION, EXP };\n\ntemplate <class FPS, class mint = typename FPS::value_type>\
-      \ bool\nis_sparse_operation(FPSOperation op, bool is_ntt_friendly, const FPS\
-      \ &a, const FPS &b = FPS()) {\n    int n = a.size(), m = b.size();\n    long\
-      \ long not_zero_a = 0, not_zero_b = 0;\n    bool same = a == b;\n    int lg\
-      \ = msb(n + m) + 1;\n    for (int i = 0; i < n; i++) not_zero_a += a[i] != mint(0);\n\
-      \    for (int i = 0; i < m; i++) not_zero_b += b[i] != mint(0);\n\n    if (op\
-      \ == FPSOperation::CONVOLUTION) {\n        return (n + m) * lg * (is_ntt_friendly\
-      \ ? 3.42 : 20.0) * (same ? 0.5 : 1)\n               > double(not_zero_a) * not_zero_b;\n\
-      \    }\n    if (op == FPSOperation::EXP) {\n        return n * lg * (is_ntt_friendly\
-      \ ? 8.2 : 60.0) > double(n) * not_zero_a;\n    }\n    return false;\n}\n\n}\
-      \ // namespace kk2\n\n\n#line 1 \"math_mod/butterfly.hpp\"\n\n\n\n#line 5 \"\
-      math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\n\n\n\n\
-      #line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\n\
-      namespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T\
-      \ x, U n, T m) {\n    assert(n >= 0);\n    if (m == 1) return S(0);\n    S _m\
-      \ = m, r = 1;\n    S y = x % _m;\n    if (y < 0) y += _m;\n    while (n) {\n\
-      \        if (n & 1) r = (r * y) % _m;\n        if (n >>= 1) y = (y * y) % _m;\n\
-      \    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\
-      \n\nnamespace kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n   \
-      \ if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049)\
-      \ return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return\
-      \ 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0]\
-      \ = 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x\
-      \ /= 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x\
-      \ % i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0)\
-      \ { x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
+      \ { CONVOLUTION, EXP };\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      bool is_sparse_operation(FPSOperation op,\n                         bool is_ntt_friendly,\n\
+      \                         const FPS &a,\n                         const FPS\
+      \ &b = FPS()) {\n    int n = a.size(), m = b.size();\n    long long not_zero_a\
+      \ = 0, not_zero_b = 0;\n    bool same = a == b;\n    int lg = msb(n + m) + 1;\n\
+      \    for (int i = 0; i < n; i++) not_zero_a += a[i] != mint(0);\n    for (int\
+      \ i = 0; i < m; i++) not_zero_b += b[i] != mint(0);\n\n    if (op == FPSOperation::CONVOLUTION)\
+      \ {\n        return (n + m) * lg * (is_ntt_friendly ? 3.42 : 20.0) * (same ?\
+      \ 0.5 : 1)\n               > double(not_zero_a) * not_zero_b;\n    }\n    if\
+      \ (op == FPSOperation::EXP) {\n        return n * lg * (is_ntt_friendly ? 8.2\
+      \ : 60.0) > double(n) * not_zero_a;\n    }\n    return false;\n}\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"math_mod/butterfly.hpp\"\n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\
+      \n\n#line 1 \"math_mod/primitive_root.hpp\"\n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\
+      \n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+      \ S, class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(n >=\
+      \ 0);\n    if (m == 1) return S(0);\n    S _m = m, r = 1;\n    S y = x % _m;\n\
+      \    if (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) %\
+      \ _m;\n        if (n >>= 1) y = (y * y) % _m;\n    }\n    return r;\n}\n\n}\
+      \ // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\n\nnamespace\
+      \ kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n    if (m == 2)\
+      \ return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049) return\
+      \ 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return 3;\n\
+      \    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0] =\
+      \ 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x /=\
+      \ 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x %\
+      \ i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0) {\
+      \ x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
       \ (int g = 2;; g++) {\n        bool ok = true;\n        for (int i = 0; i <\
       \ cnt; i++) {\n            if (pow_mod<long long>(g, (m - 1) / divs[i], m) ==\
       \ 1) {\n                ok = false;\n                break;\n            }\n\
@@ -275,20 +277,22 @@ data:
       \ <concepts>\n#include <fstream>\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -306,8 +310,8 @@ data:
       \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
       );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
       \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\n\
-      \        : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
+      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
+      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
       \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
       \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
       \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
@@ -334,12 +338,12 @@ data:
       \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
       \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
       \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
-      \ - 2);\n    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, mint &x)\
-      \ {\n        i64 t;\n        is >> t;\n        x = mint(t);\n        return\
-      \ (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n\
-      \        return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n \
+      \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
       \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\
@@ -494,7 +498,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -532,272 +536,272 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.9654067259999692
+  - elapsed: 0.5270790299999817
     environment: g++
-    memory: 13.824
+    memory: 13.828
     name: all_same_00
     status: AC
-  - elapsed: 1.451547124000001
+  - elapsed: 0.7441426470000181
     environment: g++
-    memory: 15.856
+    memory: 15.92
     name: all_same_01
     status: AC
-  - elapsed: 1.4491866539999592
+  - elapsed: 0.7585249929999804
     environment: g++
-    memory: 15.856
+    memory: 15.924
     name: all_same_02
     status: AC
-  - elapsed: 1.4489747590000093
-    environment: g++
-    memory: 15.82
-    name: all_same_03
-    status: AC
-  - elapsed: 0.002910759999963375
-    environment: g++
-    memory: 3.596
-    name: example_00
-    status: AC
-  - elapsed: 0.002417486000013014
-    environment: g++
-    memory: 3.788
-    name: example_01
-    status: AC
-  - elapsed: 1.6976884140000266
-    environment: g++
-    memory: 15.848
-    name: fft_killer_00
-    status: AC
-  - elapsed: 1.6924627260000307
-    environment: g++
-    memory: 15.852
-    name: fft_killer_01
-    status: AC
-  - elapsed: 1.7096962840000174
-    environment: g++
-    memory: 15.816
-    name: fft_killer_02
-    status: AC
-  - elapsed: 1.692838259000041
-    environment: g++
-    memory: 15.824
-    name: fft_killer_03
-    status: AC
-  - elapsed: 1.6910801820000074
-    environment: g++
-    memory: 15.856
-    name: fft_killer_04
-    status: AC
-  - elapsed: 1.703872749000027
-    environment: g++
-    memory: 15.856
-    name: fft_killer_05
-    status: AC
-  - elapsed: 1.6921624789999896
-    environment: g++
-    memory: 15.86
-    name: fft_killer_06
-    status: AC
-  - elapsed: 1.6913475100000142
-    environment: g++
-    memory: 15.86
-    name: fft_killer_07
-    status: AC
-  - elapsed: 1.6918835040000317
-    environment: g++
-    memory: 15.852
-    name: fft_killer_08
-    status: AC
-  - elapsed: 1.6940936269999725
-    environment: g++
-    memory: 15.86
-    name: fft_killer_09
-    status: AC
-  - elapsed: 1.696189086000004
-    environment: g++
-    memory: 15.856
-    name: max_ans_zero_00
-    status: AC
-  - elapsed: 1.6873351570000068
-    environment: g++
-    memory: 15.82
-    name: max_random_00
-    status: AC
-  - elapsed: 1.6906849449999868
-    environment: g++
-    memory: 15.8
-    name: max_random_01
-    status: AC
-  - elapsed: 0.022282184000005145
-    environment: g++
-    memory: 4.124
-    name: medium_00
-    status: AC
-  - elapsed: 0.01273826999999983
-    environment: g++
-    memory: 3.9
-    name: medium_01
-    status: AC
-  - elapsed: 0.021861610000030396
-    environment: g++
-    memory: 4.028
-    name: medium_02
-    status: AC
-  - elapsed: 0.004608399999995072
-    environment: g++
-    memory: 3.9
-    name: medium_all_zero_00
-    status: AC
-  - elapsed: 0.004642031000003044
-    environment: g++
-    memory: 3.748
-    name: medium_pre_suf_zero_00
-    status: AC
-  - elapsed: 0.0046793469999784065
-    environment: g++
-    memory: 3.772
-    name: medium_pre_suf_zero_01
-    status: AC
-  - elapsed: 0.002742526000020007
-    environment: g++
-    memory: 3.644
-    name: medium_pre_suf_zero_02
-    status: AC
-  - elapsed: 0.0026535810000041238
-    environment: g++
-    memory: 3.804
-    name: medium_pre_suf_zero_03
-    status: AC
-  - elapsed: 0.004541049000010844
-    environment: g++
-    memory: 3.788
-    name: medium_pre_suf_zero_04
-    status: AC
-  - elapsed: 1.6380434140000375
-    environment: g++
-    memory: 14.824
-    name: random_00
-    status: AC
-  - elapsed: 1.6401285079999752
-    environment: g++
-    memory: 14.984
-    name: random_01
-    status: AC
-  - elapsed: 0.7860129239999765
-    environment: g++
-    memory: 10.544
-    name: random_02
-    status: AC
-  - elapsed: 0.0029319280000095205
-    environment: g++
-    memory: 3.792
-    name: signed_overflow_00
-    status: AC
-  - elapsed: 0.002689260000011018
-    environment: g++
-    memory: 3.588
-    name: small_00
-    status: AC
-  - elapsed: 0.0025148290000061024
-    environment: g++
-    memory: 3.792
-    name: small_01
-    status: AC
-  - elapsed: 0.0030137150000086876
-    environment: g++
-    memory: 3.804
-    name: small_02
-    status: AC
-  - elapsed: 0.003032858999972632
-    environment: g++
-    memory: 3.816
-    name: small_03
-    status: AC
-  - elapsed: 0.002469450000035067
-    environment: g++
-    memory: 3.644
-    name: small_04
-    status: AC
-  - elapsed: 0.0024400099999866143
-    environment: g++
-    memory: 3.6
-    name: small_05
-    status: AC
-  - elapsed: 0.0024679370000058043
-    environment: g++
-    memory: 3.792
-    name: small_06
-    status: AC
-  - elapsed: 0.0023879579999857015
-    environment: g++
-    memory: 3.792
-    name: small_07
-    status: AC
-  - elapsed: 0.0024707609999836677
-    environment: g++
-    memory: 3.792
-    name: small_08
-    status: AC
-  - elapsed: 0.0024072859999932916
-    environment: g++
-    memory: 3.644
-    name: small_09
-    status: AC
-  - elapsed: 0.002365872000041236
-    environment: g++
-    memory: 3.588
-    name: small_10
-    status: AC
-  - elapsed: 0.0024808379999967656
-    environment: g++
-    memory: 3.792
-    name: small_11
-    status: AC
-  - elapsed: 0.002344600000014907
-    environment: g++
-    memory: 3.644
-    name: small_12
-    status: AC
-  - elapsed: 0.0023517630000355894
-    environment: g++
-    memory: 3.74
-    name: small_13
-    status: AC
-  - elapsed: 0.0023065729999984796
-    environment: g++
-    memory: 3.784
-    name: small_14
-    status: AC
-  - elapsed: 0.0023245559999622856
-    environment: g++
-    memory: 3.792
-    name: small_15
-    status: AC
-  - elapsed: 1.481028426000023
+  - elapsed: 0.7609465519999787
     environment: g++
     memory: 15.864
+    name: all_same_03
+    status: AC
+  - elapsed: 0.002057239999999183
+    environment: g++
+    memory: 3.848
+    name: example_00
+    status: AC
+  - elapsed: 0.0015140319999886742
+    environment: g++
+    memory: 3.876
+    name: example_01
+    status: AC
+  - elapsed: 0.9733407200000102
+    environment: g++
+    memory: 15.864
+    name: fft_killer_00
+    status: AC
+  - elapsed: 0.972192218999993
+    environment: g++
+    memory: 15.968
+    name: fft_killer_01
+    status: AC
+  - elapsed: 0.9755266669999969
+    environment: g++
+    memory: 15.92
+    name: fft_killer_02
+    status: AC
+  - elapsed: 0.9722540890000175
+    environment: g++
+    memory: 15.92
+    name: fft_killer_03
+    status: AC
+  - elapsed: 0.9732324260000098
+    environment: g++
+    memory: 15.92
+    name: fft_killer_04
+    status: AC
+  - elapsed: 0.9758576579999954
+    environment: g++
+    memory: 15.812
+    name: fft_killer_05
+    status: AC
+  - elapsed: 0.9765218110000262
+    environment: g++
+    memory: 15.912
+    name: fft_killer_06
+    status: AC
+  - elapsed: 0.9713778299999944
+    environment: g++
+    memory: 15.924
+    name: fft_killer_07
+    status: AC
+  - elapsed: 0.9795394360000103
+    environment: g++
+    memory: 15.912
+    name: fft_killer_08
+    status: AC
+  - elapsed: 0.9773242329999903
+    environment: g++
+    memory: 15.92
+    name: fft_killer_09
+    status: AC
+  - elapsed: 0.9739512300000115
+    environment: g++
+    memory: 15.792
+    name: max_ans_zero_00
+    status: AC
+  - elapsed: 0.9760967899999855
+    environment: g++
+    memory: 15.912
+    name: max_random_00
+    status: AC
+  - elapsed: 0.9543821719999812
+    environment: g++
+    memory: 15.92
+    name: max_random_01
+    status: AC
+  - elapsed: 0.01307236300002046
+    environment: g++
+    memory: 4.236
+    name: medium_00
+    status: AC
+  - elapsed: 0.007111374999993814
+    environment: g++
+    memory: 3.98
+    name: medium_01
+    status: AC
+  - elapsed: 0.012321600000007038
+    environment: g++
+    memory: 4.216
+    name: medium_02
+    status: AC
+  - elapsed: 0.0029262070000015683
+    environment: g++
+    memory: 4.164
+    name: medium_all_zero_00
+    status: AC
+  - elapsed: 0.0028654850000009446
+    environment: g++
+    memory: 3.924
+    name: medium_pre_suf_zero_00
+    status: AC
+  - elapsed: 0.002777462999972613
+    environment: g++
+    memory: 3.728
+    name: medium_pre_suf_zero_01
+    status: AC
+  - elapsed: 0.001749651000011454
+    environment: g++
+    memory: 3.84
+    name: medium_pre_suf_zero_02
+    status: AC
+  - elapsed: 0.0017478580000158672
+    environment: g++
+    memory: 3.888
+    name: medium_pre_suf_zero_03
+    status: AC
+  - elapsed: 0.0028083290000040506
+    environment: g++
+    memory: 3.844
+    name: medium_pre_suf_zero_04
+    status: AC
+  - elapsed: 0.9316847559999815
+    environment: g++
+    memory: 15.036
+    name: random_00
+    status: AC
+  - elapsed: 0.955531843999978
+    environment: g++
+    memory: 14.864
+    name: random_01
+    status: AC
+  - elapsed: 0.4502595659999997
+    environment: g++
+    memory: 10.972
+    name: random_02
+    status: AC
+  - elapsed: 0.001754148000003397
+    environment: g++
+    memory: 3.84
+    name: signed_overflow_00
+    status: AC
+  - elapsed: 0.0015397850000056224
+    environment: g++
+    memory: 3.76
+    name: small_00
+    status: AC
+  - elapsed: 0.0014931040000192297
+    environment: g++
+    memory: 3.848
+    name: small_01
+    status: AC
+  - elapsed: 0.0014958579999984067
+    environment: g++
+    memory: 3.856
+    name: small_02
+    status: AC
+  - elapsed: 0.0015237099999865222
+    environment: g++
+    memory: 3.884
+    name: small_03
+    status: AC
+  - elapsed: 0.0015089879999834466
+    environment: g++
+    memory: 3.856
+    name: small_04
+    status: AC
+  - elapsed: 0.0015039799999954084
+    environment: g++
+    memory: 3.856
+    name: small_05
+    status: AC
+  - elapsed: 0.0014657920000047397
+    environment: g++
+    memory: 3.72
+    name: small_06
+    status: AC
+  - elapsed: 0.0014720319999810272
+    environment: g++
+    memory: 3.924
+    name: small_07
+    status: AC
+  - elapsed: 0.0015100090000146338
+    environment: g++
+    memory: 3.856
+    name: small_08
+    status: AC
+  - elapsed: 0.001567546000018183
+    environment: g++
+    memory: 3.856
+    name: small_09
+    status: AC
+  - elapsed: 0.0014804650000144193
+    environment: g++
+    memory: 3.856
+    name: small_10
+    status: AC
+  - elapsed: 0.0014813960000026327
+    environment: g++
+    memory: 3.908
+    name: small_11
+    status: AC
+  - elapsed: 0.001476289000009956
+    environment: g++
+    memory: 3.832
+    name: small_12
+    status: AC
+  - elapsed: 0.0015295190000017556
+    environment: g++
+    memory: 3.84
+    name: small_13
+    status: AC
+  - elapsed: 0.001580956999987393
+    environment: g++
+    memory: 3.772
+    name: small_14
+    status: AC
+  - elapsed: 0.001466104000002133
+    environment: g++
+    memory: 3.768
+    name: small_15
+    status: AC
+  - elapsed: 0.839505048999996
+    environment: g++
+    memory: 15.928
     name: small_and_large_00
     status: AC
-  - elapsed: 1.5005084640000064
+  - elapsed: 0.8558442129999833
     environment: g++
-    memory: 15.804
+    memory: 15.92
     name: small_and_large_01
     status: AC
-  - elapsed: 1.485739792000004
+  - elapsed: 0.832879523999992
     environment: g++
-    memory: 11.588
+    memory: 11.692
     name: small_and_large_02
     status: AC
-  - elapsed: 1.4774946499999828
+  - elapsed: 0.8482793039999876
     environment: g++
-    memory: 11.64
+    memory: 11.576
     name: small_and_large_03
     status: AC
-  - elapsed: 0.0029003600000123697
+  - elapsed: 0.0016617580000115595
     environment: g++
-    memory: 3.644
+    memory: 3.848
     name: unsigned_overflow_00
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp

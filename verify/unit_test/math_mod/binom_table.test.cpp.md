@@ -65,30 +65,29 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../math_mod/binom_table.hpp\"\
-      \n#include \"../../../math_mod/comb.hpp\"\n#include \"../../../modint/modint.hpp\"\
+      \n\n#include \"../../../math_mod/comb.hpp\"\n#include \"../../../modint/modint.hpp\"\
       \n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    // alias\u306E\u5B9A\u7FA9\n   \
       \ using mint = kk2::mint998;\n    using BTable = kk2::BinomTable<mint>;\n  \
       \  using Comb = kk2::Comb<mint>;\n\n    // binom_table\u306E\u30C6\u30B9\u30C8\
-      \n    rep (1000) {\n        int max_n = kk2::random::rng(1, 1000);\n       \
-      \ BTable::set_upper(max_n);\n        \n        rep (1000) {\n            int\
-      \ n = kk2::random::rng(0, max_n + 1);\n            int k = kk2::random::rng(-10,\
-      \ n + 10);\n            \n            auto table_result = BTable::binom(n, k);\n\
-      \            auto comb_result = Comb::binom(n, k);\n            \n         \
-      \   if (table_result != comb_result) {\n                cerr << \"binom mismatch:\
-      \ n=\" << n << \", k=\" << k << endl;\n                cerr << \"table: \" <<\
-      \ table_result << \", comb: \" << comb_result << endl;\n                exit(1);\n\
-      \            }\n        }\n        \n        // \u30A8\u30C3\u30B8\u30B1\u30FC\
-      \u30B9\u306E\u30C6\u30B9\u30C8\n        if (BTable::binom(0, 0) != 1) {\n  \
-      \          cerr << \"binom(0,0) should be 1\" << endl;\n            exit(1);\n\
-      \        }\n        if (BTable::binom(max_n, 0) != 1) {\n            cerr <<\
-      \ \"binom(n,0) should be 1\" << endl;\n            exit(1);\n        }\n   \
-      \     if (BTable::binom(max_n, max_n) != 1) {\n            cerr << \"binom(n,n)\
-      \ should be 1\" << endl;\n            exit(1);\n        }\n        if (BTable::binom(max_n,\
-      \ -1) != 0) {\n            cerr << \"binom(n,-1) should be 0\" << endl;\n  \
-      \          exit(1);\n        }\n        if (BTable::binom(max_n, max_n + 1)\
-      \ != 0) {\n            cerr << \"binom(n,n+1) should be 0\" << endl;\n     \
-      \       exit(1);\n        }\n    }\n\n    return 0;\n}\n"
+      \n    rep(1000) {\n        int max_n = kk2::random::rng(1, 1000);\n        BTable::set_upper(max_n);\n\
+      \n        rep(1000) {\n            int n = kk2::random::rng(0, max_n + 1);\n\
+      \            int k = kk2::random::rng(-10, n + 10);\n\n            auto table_result\
+      \ = BTable::binom(n, k);\n            auto comb_result = Comb::binom(n, k);\n\
+      \n            if (table_result != comb_result) {\n                cerr << \"\
+      binom mismatch: n=\" << n << \", k=\" << k << endl;\n                cerr <<\
+      \ \"table: \" << table_result << \", comb: \" << comb_result << endl;\n    \
+      \            exit(1);\n            }\n        }\n\n        // \u30A8\u30C3\u30B8\
+      \u30B1\u30FC\u30B9\u306E\u30C6\u30B9\u30C8\n        if (BTable::binom(0, 0)\
+      \ != 1) {\n            cerr << \"binom(0,0) should be 1\" << endl;\n       \
+      \     exit(1);\n        }\n        if (BTable::binom(max_n, 0) != 1) {\n   \
+      \         cerr << \"binom(n,0) should be 1\" << endl;\n            exit(1);\n\
+      \        }\n        if (BTable::binom(max_n, max_n) != 1) {\n            cerr\
+      \ << \"binom(n,n) should be 1\" << endl;\n            exit(1);\n        }\n\
+      \        if (BTable::binom(max_n, -1) != 0) {\n            cerr << \"binom(n,-1)\
+      \ should be 0\" << endl;\n            exit(1);\n        }\n        if (BTable::binom(max_n,\
+      \ max_n + 1) != 0) {\n            cerr << \"binom(n,n+1) should be 0\" << endl;\n\
+      \            exit(1);\n        }\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/math_mod/binom_table.test.cpp\"\n// competitive-verifier:\
       \ STANDALONE\n\n#line 1 \"math_mod/binom_table.hpp\"\n\n\n\n#include <vector>\n\
@@ -101,33 +100,35 @@ data:
       \ _binom[i][j] = _binom[i - 1][j - 1] + _binom[i - 1][j];\n        }\n    }\n\
       \n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return\
       \ 0;\n        if ((int)_binom.size() <= n) set_upper(n);\n        return _binom[n][k];\n\
-      \    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math_mod/comb.hpp\"\n\n\n\n\
-      #include <algorithm>\n#include <cassert>\n#line 7 \"math_mod/comb.hpp\"\n\n\
-      #line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \    }\n};\n\n} // namespace kk2\n\n\n#line 4 \"verify/unit_test/math_mod/binom_table.test.cpp\"\
+      \n\n#line 1 \"math_mod/comb.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
+      #line 7 \"math_mod/comb.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n\
+      #include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename\
+      \ T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+      \                                                       or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -172,20 +173,22 @@ data:
       \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
       \ <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace\
       \ type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace\
-      \ type_traits\n\ntemplate <typename T> using is_standard_istream =\n    typename\
+      \ type_traits\n\ntemplate <typename T>\nusing is_standard_istream = typename\
       \ std::conditional<std::is_same<T, std::istream>::value\n                  \
-      \                || std::is_same<T, std::ifstream>::value,\n               \
-      \               std::true_type,\n                              std::false_type>::type;\n\
-      template <typename T> using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \                                        || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -234,10 +237,10 @@ data:
       \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
       \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
       \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
-      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
-      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
+      \ mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\
+      \ friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
       \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
       \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
       \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
@@ -425,7 +428,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -452,29 +455,28 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/unit_test/math_mod/binom_table.test.cpp\"\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 9 \"verify/unit_test/math_mod/binom_table.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    // alias\u306E\u5B9A\u7FA9\n   \
       \ using mint = kk2::mint998;\n    using BTable = kk2::BinomTable<mint>;\n  \
       \  using Comb = kk2::Comb<mint>;\n\n    // binom_table\u306E\u30C6\u30B9\u30C8\
-      \n    rep (1000) {\n        int max_n = kk2::random::rng(1, 1000);\n       \
-      \ BTable::set_upper(max_n);\n        \n        rep (1000) {\n            int\
-      \ n = kk2::random::rng(0, max_n + 1);\n            int k = kk2::random::rng(-10,\
-      \ n + 10);\n            \n            auto table_result = BTable::binom(n, k);\n\
-      \            auto comb_result = Comb::binom(n, k);\n            \n         \
-      \   if (table_result != comb_result) {\n                cerr << \"binom mismatch:\
-      \ n=\" << n << \", k=\" << k << endl;\n                cerr << \"table: \" <<\
-      \ table_result << \", comb: \" << comb_result << endl;\n                exit(1);\n\
-      \            }\n        }\n        \n        // \u30A8\u30C3\u30B8\u30B1\u30FC\
-      \u30B9\u306E\u30C6\u30B9\u30C8\n        if (BTable::binom(0, 0) != 1) {\n  \
-      \          cerr << \"binom(0,0) should be 1\" << endl;\n            exit(1);\n\
-      \        }\n        if (BTable::binom(max_n, 0) != 1) {\n            cerr <<\
-      \ \"binom(n,0) should be 1\" << endl;\n            exit(1);\n        }\n   \
-      \     if (BTable::binom(max_n, max_n) != 1) {\n            cerr << \"binom(n,n)\
-      \ should be 1\" << endl;\n            exit(1);\n        }\n        if (BTable::binom(max_n,\
-      \ -1) != 0) {\n            cerr << \"binom(n,-1) should be 0\" << endl;\n  \
-      \          exit(1);\n        }\n        if (BTable::binom(max_n, max_n + 1)\
-      \ != 0) {\n            cerr << \"binom(n,n+1) should be 0\" << endl;\n     \
-      \       exit(1);\n        }\n    }\n\n    return 0;\n}\n"
+      \n    rep(1000) {\n        int max_n = kk2::random::rng(1, 1000);\n        BTable::set_upper(max_n);\n\
+      \n        rep(1000) {\n            int n = kk2::random::rng(0, max_n + 1);\n\
+      \            int k = kk2::random::rng(-10, n + 10);\n\n            auto table_result\
+      \ = BTable::binom(n, k);\n            auto comb_result = Comb::binom(n, k);\n\
+      \n            if (table_result != comb_result) {\n                cerr << \"\
+      binom mismatch: n=\" << n << \", k=\" << k << endl;\n                cerr <<\
+      \ \"table: \" << table_result << \", comb: \" << comb_result << endl;\n    \
+      \            exit(1);\n            }\n        }\n\n        // \u30A8\u30C3\u30B8\
+      \u30B1\u30FC\u30B9\u306E\u30C6\u30B9\u30C8\n        if (BTable::binom(0, 0)\
+      \ != 1) {\n            cerr << \"binom(0,0) should be 1\" << endl;\n       \
+      \     exit(1);\n        }\n        if (BTable::binom(max_n, 0) != 1) {\n   \
+      \         cerr << \"binom(n,0) should be 1\" << endl;\n            exit(1);\n\
+      \        }\n        if (BTable::binom(max_n, max_n) != 1) {\n            cerr\
+      \ << \"binom(n,n) should be 1\" << endl;\n            exit(1);\n        }\n\
+      \        if (BTable::binom(max_n, -1) != 0) {\n            cerr << \"binom(n,-1)\
+      \ should be 0\" << endl;\n            exit(1);\n        }\n        if (BTable::binom(max_n,\
+      \ max_n + 1) != 0) {\n            cerr << \"binom(n,n+1) should be 0\" << endl;\n\
+      \            exit(1);\n        }\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -482,7 +484,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math_mod/binom_table.test.cpp

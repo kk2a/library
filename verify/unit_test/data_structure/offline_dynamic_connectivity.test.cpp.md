@@ -65,11 +65,11 @@ data:
   - unionfind/unionfind.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../data_structure/offline_dynamic_connectivity.hpp\"\
-      \n#include \"../../../unionfind/unionfind.hpp\"\n#include \"../../../random/gen.hpp\"\
-      \n#include \"../../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-      \ {\n    rep (200) {\n        int n = 10000;\n        int q = 1000;\n      \
-      \  vc<array<int, 3>> query(q);\n        vc<pi> insert_query;\n        rep (i,\
-      \ q) {\n            int t = kk2::random::rng(0, 4);\n            query[i][0]\
+      \n\n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
+      \n#include \"../../../unionfind/unionfind.hpp\"\nusing namespace std;\n\nint\
+      \ main() {\n    rep(200) {\n        int n = 10000;\n        int q = 1000;\n\
+      \        vc<array<int, 3>> query(q);\n        vc<pi> insert_query;\n       \
+      \ rep(i, q) {\n            int t = kk2::random::rng(0, 4);\n            query[i][0]\
       \ = t;\n            if (t == 0) {\n                int a = kk2::random::rng(0,\
       \ n - 1);\n                int b = kk2::random::rng(a, n);\n               \
       \ query[i][1] = a;\n                query[i][2] = b;\n                insert_query.emplace_back(a,\
@@ -84,24 +84,22 @@ data:
       \                query[i][1] = a;\n            } else if (t == 3) {\n      \
       \          int a = kk2::random::rng(0, n - 1);\n                int b = kk2::random::rng(a,\
       \ n);\n                query[i][1] = a;\n                query[i][2] = b;\n\
-      \            }\n        }\n    \n        vc<int> res(q);\n        kk2::OfflineDynamicConnectivity\
-      \ odc(n, q);\n        rep (i, q) {\n            if (query[i][0] == 0) odc.add_edge(i,\
+      \            }\n        }\n\n        vc<int> res(q);\n        kk2::OfflineDynamicConnectivity\
+      \ odc(n, q);\n        rep(i, q) {\n            if (query[i][0] == 0) odc.add_edge(i,\
       \ query[i][1], query[i][2]);\n            if (query[i][0] == 1) odc.del_edge(i,\
       \ query[i][1], query[i][2]);\n        }\n        odc.build();\n        odc.run([&](int\
       \ i) {\n            if (query[i][0] == 2) res[i] = odc.uf.size(query[i][1]);\n\
       \            if (query[i][0] == 3) res[i] = odc.uf.same(query[i][1], query[i][2]);\n\
-      \        });\n    \n        std::set<pi> edges;\n        vc<int> res2(q);\n\
-      \        rep (i, q) {\n            if (query[i][0] == 0) {\n               \
-      \ edges.emplace(query[i][1], query[i][2]);\n            } else if (query[i][0]\
-      \ == 1) {\n                edges.erase(pi(query[i][1], query[i][2]));\n    \
-      \        } else if (query[i][0] == 2) {\n                kk2::UnionFind uf(n);\n\
-      \                for (auto [a, b] : edges) {\n                    uf.unite(a,\
-      \ b);\n                }\n                res2[i] = uf.size(query[i][1]);\n\
+      \        });\n\n        std::set<pi> edges;\n        vc<int> res2(q);\n    \
+      \    rep(i, q) {\n            if (query[i][0] == 0) {\n                edges.emplace(query[i][1],\
+      \ query[i][2]);\n            } else if (query[i][0] == 1) {\n              \
+      \  edges.erase(pi(query[i][1], query[i][2]));\n            } else if (query[i][0]\
+      \ == 2) {\n                kk2::UnionFind uf(n);\n                for (auto\
+      \ [a, b] : edges) { uf.unite(a, b); }\n                res2[i] = uf.size(query[i][1]);\n\
       \            } else {\n                kk2::UnionFind uf(n);\n             \
-      \   for (auto [a, b] : edges) {\n                    uf.unite(a, b);\n     \
-      \           }\n                res2[i] = uf.same(query[i][1], query[i][2]);\n\
-      \            }\n        }\n        assert(res == res2);\n    }\n\n    return\
-      \ 0;\n}\n"
+      \   for (auto [a, b] : edges) { uf.unite(a, b); }\n                res2[i] =\
+      \ uf.same(query[i][1], query[i][2]);\n            }\n        }\n        assert(res\
+      \ == res2);\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp\"\
       \n// competitive-verifier: STANDALONE\n\n#line 1 \"data_structure/offline_dynamic_connectivity.hpp\"\
@@ -160,28 +158,16 @@ data:
       \  if (now >= sz) {\n                query(now - sz);\n            } else {\n\
       \                self(self, now * 2);\n                self(self, now * 2 +\
       \ 1);\n            }\n            uf.rollback();\n        };\n        dfs(dfs,\
-      \ 1);\n    }\n};\n\n\n} // namespace kk2\n\n\n#line 1 \"unionfind/unionfind.hpp\"\
-      \n\n\n\n#line 6 \"unionfind/unionfind.hpp\"\n\nnamespace kk2 {\n\nstruct UnionFind\
-      \ {\n    std::vector<int> d;\n\n    UnionFind(int n = 0) : d(n, -1) {}\n\n \
-      \   bool same(int x, int y) { return find(x) == find(y); }\n\n    bool unite(int\
-      \ x, int y) {\n        x = find(x), y = find(y);\n        if (x == y) return\
-      \ false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n        d[x] += d[y];\n\
-      \        d[y] = x;\n        return true;\n    }\n\n    template <class F> bool\
-      \ unite(int x, int y, const F &f) {\n        x = find(x), y = find(y);\n   \
-      \     if (x == y) return false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n\
-      \        f(x, y);\n        d[x] += d[y];\n        d[y] = x;\n        return\
-      \ true;\n    }\n\n    int find(int x) {\n        if (d[x] < 0) return x;\n \
-      \       return d[x] = find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)];\
-      \ }\n};\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\n#line 5\
-      \ \"random/gen.hpp\"\n#include <cassert>\n#include <numeric>\n#include <random>\n\
-      #include <unordered_set>\n#line 10 \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\
-      \n\n\n\n#include <chrono>\n\nnamespace kk2 {\n\nnamespace random {\n\nusing\
-      \ u64 = unsigned long long;\n\ninline u64 non_deterministic_seed() {\n    u64\
-      \ seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n           \
-      \        std::chrono::high_resolution_clock::now().time_since_epoch())\n   \
-      \                .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n    seed\
-      \ ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return\
-      \ seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
+      \ 1);\n    }\n};\n\n\n} // namespace kk2\n\n\n#line 4 \"verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp\"\
+      \n\n#line 1 \"random/gen.hpp\"\n\n\n\n#line 5 \"random/gen.hpp\"\n#include <cassert>\n\
+      #include <numeric>\n#include <random>\n#include <unordered_set>\n#line 10 \"\
+      random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\n\
+      namespace kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\n\
+      inline u64 non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
+      \                   std::chrono::high_resolution_clock::now().time_since_epoch())\n\
+      \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n \
+      \   seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n \
+      \   return seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
       \ }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return\
       \ deterministic_seed();\n#else\n    return non_deterministic_seed();\n#endif\n\
       }\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\
@@ -233,30 +219,32 @@ data:
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
       \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -271,20 +259,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -419,7 +409,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -446,10 +436,22 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    rep (200) {\n        int n = 10000;\n\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 1 \"unionfind/unionfind.hpp\"\
+      \n\n\n\n#line 6 \"unionfind/unionfind.hpp\"\n\nnamespace kk2 {\n\nstruct UnionFind\
+      \ {\n    std::vector<int> d;\n\n    UnionFind(int n = 0) : d(n, -1) {}\n\n \
+      \   bool same(int x, int y) { return find(x) == find(y); }\n\n    bool unite(int\
+      \ x, int y) {\n        x = find(x), y = find(y);\n        if (x == y) return\
+      \ false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n        d[x] += d[y];\n\
+      \        d[y] = x;\n        return true;\n    }\n\n    template <class F> bool\
+      \ unite(int x, int y, const F &f) {\n        x = find(x), y = find(y);\n   \
+      \     if (x == y) return false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n\
+      \        f(x, y);\n        d[x] += d[y];\n        d[y] = x;\n        return\
+      \ true;\n    }\n\n    int find(int x) {\n        if (d[x] < 0) return x;\n \
+      \       return d[x] = find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)];\
+      \ }\n};\n\n} // namespace kk2\n\n\n#line 8 \"verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp\"\
+      \nusing namespace std;\n\nint main() {\n    rep(200) {\n        int n = 10000;\n\
       \        int q = 1000;\n        vc<array<int, 3>> query(q);\n        vc<pi>\
-      \ insert_query;\n        rep (i, q) {\n            int t = kk2::random::rng(0,\
+      \ insert_query;\n        rep(i, q) {\n            int t = kk2::random::rng(0,\
       \ 4);\n            query[i][0] = t;\n            if (t == 0) {\n           \
       \     int a = kk2::random::rng(0, n - 1);\n                int b = kk2::random::rng(a,\
       \ n);\n                query[i][1] = a;\n                query[i][2] = b;\n\
@@ -465,24 +467,22 @@ data:
       \ = a;\n            } else if (t == 3) {\n                int a = kk2::random::rng(0,\
       \ n - 1);\n                int b = kk2::random::rng(a, n);\n               \
       \ query[i][1] = a;\n                query[i][2] = b;\n            }\n      \
-      \  }\n    \n        vc<int> res(q);\n        kk2::OfflineDynamicConnectivity\
-      \ odc(n, q);\n        rep (i, q) {\n            if (query[i][0] == 0) odc.add_edge(i,\
+      \  }\n\n        vc<int> res(q);\n        kk2::OfflineDynamicConnectivity odc(n,\
+      \ q);\n        rep(i, q) {\n            if (query[i][0] == 0) odc.add_edge(i,\
       \ query[i][1], query[i][2]);\n            if (query[i][0] == 1) odc.del_edge(i,\
       \ query[i][1], query[i][2]);\n        }\n        odc.build();\n        odc.run([&](int\
       \ i) {\n            if (query[i][0] == 2) res[i] = odc.uf.size(query[i][1]);\n\
       \            if (query[i][0] == 3) res[i] = odc.uf.same(query[i][1], query[i][2]);\n\
-      \        });\n    \n        std::set<pi> edges;\n        vc<int> res2(q);\n\
-      \        rep (i, q) {\n            if (query[i][0] == 0) {\n               \
-      \ edges.emplace(query[i][1], query[i][2]);\n            } else if (query[i][0]\
-      \ == 1) {\n                edges.erase(pi(query[i][1], query[i][2]));\n    \
-      \        } else if (query[i][0] == 2) {\n                kk2::UnionFind uf(n);\n\
-      \                for (auto [a, b] : edges) {\n                    uf.unite(a,\
-      \ b);\n                }\n                res2[i] = uf.size(query[i][1]);\n\
+      \        });\n\n        std::set<pi> edges;\n        vc<int> res2(q);\n    \
+      \    rep(i, q) {\n            if (query[i][0] == 0) {\n                edges.emplace(query[i][1],\
+      \ query[i][2]);\n            } else if (query[i][0] == 1) {\n              \
+      \  edges.erase(pi(query[i][1], query[i][2]));\n            } else if (query[i][0]\
+      \ == 2) {\n                kk2::UnionFind uf(n);\n                for (auto\
+      \ [a, b] : edges) { uf.unite(a, b); }\n                res2[i] = uf.size(query[i][1]);\n\
       \            } else {\n                kk2::UnionFind uf(n);\n             \
-      \   for (auto [a, b] : edges) {\n                    uf.unite(a, b);\n     \
-      \           }\n                res2[i] = uf.same(query[i][1], query[i][2]);\n\
-      \            }\n        }\n        assert(res == res2);\n    }\n\n    return\
-      \ 0;\n}\n"
+      \   for (auto [a, b] : edges) { uf.unite(a, b); }\n                res2[i] =\
+      \ uf.same(query[i][1], query[i][2]);\n            }\n        }\n        assert(res\
+      \ == res2);\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -490,7 +490,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp

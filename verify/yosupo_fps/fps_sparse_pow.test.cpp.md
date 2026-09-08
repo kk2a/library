@@ -93,9 +93,9 @@ data:
       \n#include \"../../fps/fps_ntt_friendly.hpp\"\n#include \"../../modint/mont.hpp\"\
       \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing FPS\
       \ = kk2::FPSNTT<kk2::mont998>;\n\nint main() {\n    int n, k;\n    i64 m;\n\
-      \    kin >> n >> k >> m;\n    FPS f(n);\n    rep (k) {\n        int i;\n   \
-      \     kk2::mont998 a;\n        kin >> i >> a;\n        f[i] = a;\n    }\n  \
-      \  f.sparse_pow(m).output(kout);\n\n    return 0;\n}\n"
+      \    kin >> n >> k >> m;\n    FPS f(n);\n    rep(k) {\n        int i;\n    \
+      \    kk2::mont998 a;\n        kin >> i >> a;\n        f[i] = a;\n    }\n   \
+      \ f.sparse_pow(m).output(kout);\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_fps/fps_sparse_pow.test.cpp\"\n// competitive-verifier:\
       \ PROBLEM https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\n\
@@ -105,26 +105,27 @@ data:
       \n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#line 1 \"bit/bitcount.hpp\"\
       \n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -160,32 +161,33 @@ data:
       \ long long)(x >> 64))\n               + __builtin_popcountll((unsigned long\
       \ long)(x & 0xffffffffffffffff));\n    }\n}\n\n}; // namespace kk2\n\n\n#line\
       \ 5 \"fps/fps_sparsity_detector.hpp\"\n\nnamespace kk2 {\n\nenum class FPSOperation\
-      \ { CONVOLUTION, EXP };\n\ntemplate <class FPS, class mint = typename FPS::value_type>\
-      \ bool\nis_sparse_operation(FPSOperation op, bool is_ntt_friendly, const FPS\
-      \ &a, const FPS &b = FPS()) {\n    int n = a.size(), m = b.size();\n    long\
-      \ long not_zero_a = 0, not_zero_b = 0;\n    bool same = a == b;\n    int lg\
-      \ = msb(n + m) + 1;\n    for (int i = 0; i < n; i++) not_zero_a += a[i] != mint(0);\n\
-      \    for (int i = 0; i < m; i++) not_zero_b += b[i] != mint(0);\n\n    if (op\
-      \ == FPSOperation::CONVOLUTION) {\n        return (n + m) * lg * (is_ntt_friendly\
-      \ ? 3.42 : 20.0) * (same ? 0.5 : 1)\n               > double(not_zero_a) * not_zero_b;\n\
-      \    }\n    if (op == FPSOperation::EXP) {\n        return n * lg * (is_ntt_friendly\
-      \ ? 8.2 : 60.0) > double(n) * not_zero_a;\n    }\n    return false;\n}\n\n}\
-      \ // namespace kk2\n\n\n#line 1 \"math_mod/butterfly.hpp\"\n\n\n\n#line 5 \"\
-      math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\n\n\n\n\
-      #line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\n\
-      namespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T\
-      \ x, U n, T m) {\n    assert(n >= 0);\n    if (m == 1) return S(0);\n    S _m\
-      \ = m, r = 1;\n    S y = x % _m;\n    if (y < 0) y += _m;\n    while (n) {\n\
-      \        if (n & 1) r = (r * y) % _m;\n        if (n >>= 1) y = (y * y) % _m;\n\
-      \    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\
-      \n\nnamespace kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n   \
-      \ if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049)\
-      \ return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return\
-      \ 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0]\
-      \ = 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x\
-      \ /= 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x\
-      \ % i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0)\
-      \ { x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
+      \ { CONVOLUTION, EXP };\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      bool is_sparse_operation(FPSOperation op,\n                         bool is_ntt_friendly,\n\
+      \                         const FPS &a,\n                         const FPS\
+      \ &b = FPS()) {\n    int n = a.size(), m = b.size();\n    long long not_zero_a\
+      \ = 0, not_zero_b = 0;\n    bool same = a == b;\n    int lg = msb(n + m) + 1;\n\
+      \    for (int i = 0; i < n; i++) not_zero_a += a[i] != mint(0);\n    for (int\
+      \ i = 0; i < m; i++) not_zero_b += b[i] != mint(0);\n\n    if (op == FPSOperation::CONVOLUTION)\
+      \ {\n        return (n + m) * lg * (is_ntt_friendly ? 3.42 : 20.0) * (same ?\
+      \ 0.5 : 1)\n               > double(not_zero_a) * not_zero_b;\n    }\n    if\
+      \ (op == FPSOperation::EXP) {\n        return n * lg * (is_ntt_friendly ? 8.2\
+      \ : 60.0) > double(n) * not_zero_a;\n    }\n    return false;\n}\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"math_mod/butterfly.hpp\"\n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\
+      \n\n#line 1 \"math_mod/primitive_root.hpp\"\n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\
+      \n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+      \ S, class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(n >=\
+      \ 0);\n    if (m == 1) return S(0);\n    S _m = m, r = 1;\n    S y = x % _m;\n\
+      \    if (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) %\
+      \ _m;\n        if (n >>= 1) y = (y * y) % _m;\n    }\n    return r;\n}\n\n}\
+      \ // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\n\nnamespace\
+      \ kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n    if (m == 2)\
+      \ return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049) return\
+      \ 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return 3;\n\
+      \    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0] =\
+      \ 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x /=\
+      \ 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x %\
+      \ i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0) {\
+      \ x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
       \ (int g = 2;; g++) {\n        bool ok = true;\n        for (int i = 0; i <\
       \ cnt; i++) {\n            if (pow_mod<long long>(g, (m - 1) / divs[i], m) ==\
       \ 1) {\n                ok = false;\n                break;\n            }\n\
@@ -312,46 +314,46 @@ data:
       \ requires(const F &f, int i) {\n    typename F::value_type;\n    typename F::modulus_category;\n\
       \    typename F::series_category;\n    { f.size() } -> std::integral;\n    f[i];\n\
       } && std::ranges::range<const F>;\n\ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> &&\n    std::same_as<typename F::modulus_category,\
+      \ =\n    FormalPowerSeries<F>\n    && std::same_as<typename F::modulus_category,\
       \ category::ntt_friendly_modulus>;\n\ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> &&\n    std::same_as<typename F::modulus_category,\
+      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::modulus_category,\
       \ category::arbitrary_modulus>;\n\ntemplate <class F>\nconcept OrdinaryFormalPowerSeries\
       \ =\n    FormalPowerSeries<F> && std::same_as<typename F::series_category, category::ordinary>;\n\
-      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\
-      \ &&\n    std::same_as<typename F::series_category, category::exponential_generating>;\n\
+      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
+      \    && std::same_as<typename F::series_category, category::exponential_generating>;\n\
       \ntemplate <class F>\nconcept SetPowerSeries =\n    FormalPowerSeries<F> &&\
       \ std::same_as<typename F::series_category, category::set_power_series>;\n\n\
-      template <class F>\nconcept UnivariateFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && requires { typename F::variable_category; } &&\n    std::same_as<typename\
+      template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries =\n    FormalPowerSeries<F> && requires { typename\
-      \ F::variable_category; } &&\n    std::same_as<typename F::variable_category,\
-      \ category::bivariate>;\n\ntemplate <class F>\nconcept MultivariateFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> && requires { typename F::variable_category; }\
-      \ &&\n    std::same_as<typename F::variable_category, category::multivariate>;\n\
-      \n// Short names for the categories that are commonly used in algorithms.\n\
-      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
-      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
-      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
-      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
-      \n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\n#include\
-      \ <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
+      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
+      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
+      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
+      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
+      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
+      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
+      \ namespace kk2::fps\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\
+      \n#include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -367,20 +369,20 @@ data:
       \u3066\u6D3E\u751F\u30AF\u30E9\u30B9\u306E\u53C2\u7167\u3092\u53D6\u5F97\n \
       \   Derived &derived() { return static_cast<Derived &>(*this); }\n    const\
       \ Derived &derived() const { return static_cast<const Derived &>(*this); }\n\
-      \n    template <OutputStream OStream>\n    void debug_output(OStream &os) const\
-      \ {\n        os << \"[\";\n        for (size_t i = 0; i < this->size(); i++)\
-      \ {\n            os << (*this)[i] << (i + 1 == this->size() ? \"\" : \", \"\
-      );\n        }\n        os << \"]\";\n    }\n\n    template <OutputStream OStream>\
+      \n    template <OutputStream OStream> void debug_output(OStream &os) const {\n\
+      \        os << \"[\";\n        for (size_t i = 0; i < this->size(); i++) {\n\
+      \            os << (*this)[i] << (i + 1 == this->size() ? \"\" : \", \");\n\
+      \        }\n        os << \"]\";\n    }\n\n    template <OutputStream OStream>\
       \ void output(OStream &os) const {\n        for (size_t i = 0; i < this->size();\
       \ i++) {\n            os << (*this)[i] << (i + 1 == this->size() ? \"\\n\" :\
-      \ \" \");\n        }\n    }\n    template <OutputStream OStream>\n    friend\
-      \ OStream &operator<<(OStream &os, const FPS &fps_) {\n        for (size_t i\
-      \ = 0; i < fps_.size(); i++) {\n            os << fps_[i] << (i + 1 == fps_.size()\
+      \ \" \");\n        }\n    }\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const FPS &fps_) {\n        for (size_t i = 0; i\
+      \ < fps_.size(); i++) {\n            os << fps_[i] << (i + 1 == fps_.size()\
       \ ? \"\" : \" \");\n        }\n        return os;\n    }\n\n    template <InputStream\
       \ IStream> FPS &input(IStream &is) {\n        for (size_t i = 0; i < this->size();\
       \ i++) is >> (*this)[i];\n        return derived();\n    }\n\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, FPS &fps_) {\n     \
-      \   for (auto &x : fps_) is >> x;\n        return is;\n    }\n    FPS &operator+=(const\
+      \ IStream> friend IStream &operator>>(IStream &is, FPS &fps_) {\n        for\
+      \ (auto &x : fps_) is >> x;\n        return is;\n    }\n    FPS &operator+=(const\
       \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
       \        for (size_t i = 0; i < r.size(); i++) (*this)[i] += r[i];\n       \
       \ return derived();\n    }\n\n    FPS &operator+=(const mint &r) {\n       \
@@ -531,7 +533,7 @@ data:
       \ derived();\n    }\n    FPS imos(int n) const { return FPS(derived()).inplace_imos(n);\
       \ }\n    FPS iimos(int n) const { return FPS(derived()).inplace_iimos(n); }\n\
       };\n\n} // namespace kk2\n\n\n#line 12 \"fps/fps_ntt_friendly.hpp\"\n\nnamespace\
-      \ kk2 {\n\ntemplate <fps::Modular mint> struct FormalPowerSeriesNTTFriendly\n\
+      \ kk2 {\n\ntemplate <fps::Modular mint>\nstruct FormalPowerSeriesNTTFriendly\n\
       \    : FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint> {\n \
       \   using base = FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint>;\n\
       \    using FPS = FormalPowerSeriesNTTFriendly<mint>;\n    using base::FormalPowerSeriesBase;\n\
@@ -588,23 +590,23 @@ data:
       \ * p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
       \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
       \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n\n    template\
-      \ <Integral T> constexpr LazyMontgomeryModInt(T b)\n        : _v(reduce(u64(b\
-      \ % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) { return\
-      \ (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint &operator++()\
-      \ { return *this += 1; }\n    constexpr mint &operator--() { return *this -=\
-      \ 1; }\n\n    constexpr mint operator++(int) {\n        mint ret = *this;\n\
-      \        *this += 1;\n        return ret;\n    }\n\n    constexpr mint operator--(int)\
-      \ {\n        mint ret = *this;\n        *this -= 1;\n        return ret;\n \
-      \   }\n\n    constexpr mint &operator+=(const mint &b) {\n        if (i32(_v\
-      \ += b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
-      \ mint &operator-=(const mint &b) {\n        if (i32(_v -= b._v) < 0) _v +=\
-      \ 2 * p;\n        return *this;\n    }\n\n    constexpr mint &operator*=(const\
-      \ mint &b) {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n\
-      \    }\n\n    constexpr mint &operator/=(const mint &b) {\n        *this *=\
-      \ b.inv();\n        return *this;\n    }\n\n\n    constexpr bool operator==(const\
-      \ mint &b) const {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v\
-      \ - p : b._v);\n    }\n\n    constexpr bool operator!=(const mint &b) const\
-      \ {\n        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n\
+      \ <Integral T> constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p)\
+      \ * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b)\
+      \ * u32(-r)) * p) >> 32; }\n    constexpr mint &operator++() { return *this\
+      \ += 1; }\n    constexpr mint &operator--() { return *this -= 1; }\n\n    constexpr\
+      \ mint operator++(int) {\n        mint ret = *this;\n        *this += 1;\n \
+      \       return ret;\n    }\n\n    constexpr mint operator--(int) {\n       \
+      \ mint ret = *this;\n        *this -= 1;\n        return ret;\n    }\n\n   \
+      \ constexpr mint &operator+=(const mint &b) {\n        if (i32(_v += b._v -\
+      \ 2 * p) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr mint\
+      \ &operator-=(const mint &b) {\n        if (i32(_v -= b._v) < 0) _v += 2 * p;\n\
+      \        return *this;\n    }\n\n    constexpr mint &operator*=(const mint &b)\
+      \ {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n    }\n\n\
+      \    constexpr mint &operator/=(const mint &b) {\n        *this *= b.inv();\n\
+      \        return *this;\n    }\n\n\n    constexpr bool operator==(const mint\
+      \ &b) const {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v -\
+      \ p : b._v);\n    }\n\n    constexpr bool operator!=(const mint &b) const {\n\
+      \        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n\
       \    }\n\n    constexpr mint operator-() const { return mint() - mint(*this);\
       \ }\n    constexpr mint operator+() const { return mint(*this); }\n    friend\
       \ constexpr mint operator+(const mint &a, const mint &b) { return mint(a) +=\
@@ -616,12 +618,12 @@ data:
       \  while (n > 0) {\n            if (n & 1) ret *= mul;\n            if (n >>=\
       \ 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr mint\
       \ inv() const {\n        assert(*this != mint(0));\n        return pow(p - 2);\n\
-      \    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, mint &x)\
-      \ {\n        i64 t;\n        is >> t;\n        x = mint(t);\n        return\
-      \ (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n\
-      \        return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n \
+      \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
       \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\
@@ -776,7 +778,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -806,7 +808,7 @@ data:
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_fps/fps_sparse_pow.test.cpp\"\
       \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
       \ {\n    int n, k;\n    i64 m;\n    kin >> n >> k >> m;\n    FPS f(n);\n   \
-      \ rep (k) {\n        int i;\n        kk2::mont998 a;\n        kin >> i >> a;\n\
+      \ rep(k) {\n        int i;\n        kk2::mont998 a;\n        kin >> i >> a;\n\
       \        f[i] = a;\n    }\n    f.sparse_pow(m).output(kout);\n\n    return 0;\n\
       }\n"
     name: bundled
@@ -816,182 +818,182 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002945029000002819
+  - elapsed: 0.0026272320000089167
     environment: g++
-    memory: 3.64
+    memory: 3.704
     name: example_00
     status: AC
-  - elapsed: 0.002439002000002688
+  - elapsed: 0.0020684989999892878
     environment: g++
-    memory: 3.788
+    memory: 3.648
     name: example_01
     status: AC
-  - elapsed: 0.0023632400000082043
+  - elapsed: 0.00201058199999693
     environment: g++
-    memory: 3.776
+    memory: 3.704
     name: example_02
     status: AC
-  - elapsed: 0.002375968999999145
+  - elapsed: 0.0020197340000009945
     environment: g++
-    memory: 3.788
+    memory: 3.76
     name: example_03
     status: AC
-  - elapsed: 0.7024848360000107
+  - elapsed: 0.5054069109999944
     environment: g++
-    memory: 27.328
+    memory: 27.896
     name: low_deg_zero2_00
     status: AC
-  - elapsed: 0.7173675909999986
+  - elapsed: 0.5172849580000047
     environment: g++
-    memory: 28.42
+    memory: 28.1
     name: low_deg_zero2_01
     status: AC
-  - elapsed: 0.613248358000007
+  - elapsed: 0.4471043350000059
     environment: g++
-    memory: 29.704
+    memory: 30.868
     name: low_deg_zero2_02
     status: AC
-  - elapsed: 0.6140141510000063
+  - elapsed: 0.43323930799999744
     environment: g++
-    memory: 27.78
+    memory: 27.84
     name: low_deg_zero2_03
     status: AC
-  - elapsed: 0.5947388530000097
+  - elapsed: 0.4334140989999895
     environment: g++
-    memory: 29.948
+    memory: 29.796
     name: low_deg_zero2_04
     status: AC
-  - elapsed: 0.05576758099999779
+  - elapsed: 0.04421090700000718
     environment: g++
-    memory: 11.312
+    memory: 11.368
     name: low_deg_zero_00
     status: AC
-  - elapsed: 0.05594489300000305
+  - elapsed: 0.045958256000005804
     environment: g++
-    memory: 11.316
+    memory: 11.404
     name: low_deg_zero_01
     status: AC
-  - elapsed: 0.5753338530000036
+  - elapsed: 0.4126456359999935
     environment: g++
-    memory: 15.328
+    memory: 15.424
     name: max_random_00
     status: AC
-  - elapsed: 0.6593819959999934
+  - elapsed: 0.4581140770000047
     environment: g++
-    memory: 15.32
+    memory: 15.428
     name: max_random_01
     status: AC
-  - elapsed: 0.5174755999999974
+  - elapsed: 0.3754944370000004
     environment: g++
-    memory: 15.36
+    memory: 15.428
     name: max_random_02
     status: AC
-  - elapsed: 0.5118806079999985
+  - elapsed: 0.36420817000001193
     environment: g++
-    memory: 15.332
+    memory: 15.42
     name: max_random_03
     status: AC
-  - elapsed: 0.5884017850000021
+  - elapsed: 0.42979193200000054
     environment: g++
-    memory: 15.36
+    memory: 15.428
     name: max_random_04
     status: AC
-  - elapsed: 0.02775724899998977
+  - elapsed: 0.022100193999989415
     environment: g++
-    memory: 6.536
+    memory: 6.636
     name: min_K_00
     status: AC
-  - elapsed: 0.03231876600000305
+  - elapsed: 0.025728258999990317
     environment: g++
-    memory: 7.084
+    memory: 7.18
     name: min_K_01
     status: AC
-  - elapsed: 0.0028147270000005165
+  - elapsed: 0.0024164369999937207
     environment: g++
-    memory: 3.64
+    memory: 3.852
     name: overflow_killer_00
     status: AC
-  - elapsed: 0.002345073999990177
+  - elapsed: 0.0020737609999912365
     environment: g++
     memory: 3.776
     name: overflow_killer_01
     status: AC
-  - elapsed: 0.20970259000000624
+  - elapsed: 0.14578425099999492
     environment: g++
-    memory: 8.156
+    memory: 8.22
     name: random_00
     status: AC
-  - elapsed: 0.30751800699999876
+  - elapsed: 0.21966236599999434
     environment: g++
-    memory: 9.088
+    memory: 9.152
     name: random_01
     status: AC
-  - elapsed: 0.37724510699999314
+  - elapsed: 0.26432733100000405
     environment: g++
-    memory: 10.336
+    memory: 11.476
     name: random_02
     status: AC
-  - elapsed: 0.09071340700000974
+  - elapsed: 0.0601542429999995
     environment: g++
-    memory: 8.692
+    memory: 8.76
     name: random_03
     status: AC
-  - elapsed: 0.17132567500000562
+  - elapsed: 0.12783902700000738
     environment: g++
-    memory: 12.98
+    memory: 13.052
     name: random_04
     status: AC
-  - elapsed: 0.002919081000001711
+  - elapsed: 0.0024338610000000926
     environment: g++
-    memory: 3.64
+    memory: 3.912
     name: small_N_00
     status: AC
-  - elapsed: 0.002376159999997185
+  - elapsed: 0.0020912009999989323
     environment: g++
-    memory: 3.784
+    memory: 3.828
     name: small_N_01
     status: AC
-  - elapsed: 0.0023184839999998985
+  - elapsed: 0.0020530050000076017
     environment: g++
-    memory: 3.64
+    memory: 3.852
     name: small_N_02
     status: AC
-  - elapsed: 0.0023330859999930453
+  - elapsed: 0.002035714000001576
     environment: g++
-    memory: 3.768
+    memory: 3.704
     name: small_N_03
     status: AC
-  - elapsed: 0.0023334669999997004
+  - elapsed: 0.0020448309999920866
     environment: g++
-    memory: 3.736
+    memory: 3.872
     name: small_N_04
     status: AC
-  - elapsed: 0.49258411499999966
+  - elapsed: 0.3551848510000042
     environment: g++
-    memory: 15.364
+    memory: 15.472
     name: small_dense_00
     status: AC
-  - elapsed: 0.5967126640000089
+  - elapsed: 0.4263730629999998
     environment: g++
-    memory: 15.332
+    memory: 15.348
     name: small_dense_01
     status: AC
-  - elapsed: 0.7825339120000052
+  - elapsed: 0.5336836079999898
     environment: g++
-    memory: 15.364
+    memory: 15.428
     name: small_dense_02
     status: AC
-  - elapsed: 0.06517593899999952
+  - elapsed: 0.05238293200000044
     environment: g++
-    memory: 11.316
+    memory: 11.408
     name: small_dense_03
     status: AC
-  - elapsed: 0.41264836099999513
+  - elapsed: 0.291529335000007
     environment: g++
-    memory: 15.364
+    memory: 15.424
     name: small_dense_04
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_sparse_pow.test.cpp

@@ -115,21 +115,22 @@ data:
       \n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#line 6 \"type_traits/io.hpp\"\
       \n#include <istream>\n#include <ostream>\n#include <type_traits>\n\nnamespace\
       \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
-      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T> using is_standard_istream\
-      \ =\n    typename std::conditional<std::is_same<T, std::istream>::value\n  \
-      \                                || std::is_same<T, std::ifstream>::value,\n\
+      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
+      \ = typename std::conditional<std::is_same<T, std::istream>::value\n       \
+      \                                                   || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -149,9 +150,9 @@ data:
       \ const {\n        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n\
       \    }\n\n    bool operator!=(const M &rhs) const {\n        return is_unit\
       \ != rhs.is_unit or (!is_unit and a != rhs.a);\n    }\n\n    template <OutputStream\
-      \ OStream>\n    friend OStream &operator<<(OStream &os, const M &x) {\n    \
-      \    if (x.is_unit) os << \"-inf\";\n        else os << x.a;\n        return\
-      \ os;\n    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
+      \ OStream> friend OStream &operator<<(OStream &os, const M &x) {\n        if\
+      \ (x.is_unit) os << \"-inf\";\n        else os << x.a;\n        return os;\n\
+      \    }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
       \ &is, M &x) {\n        is >> x.a;\n        x.is_unit = false;\n        return\
       \ is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n#line 1\
       \ \"math/monoid/min.hpp\"\n\n\n\n#line 5 \"math/monoid/min.hpp\"\n\n#line 7\
@@ -165,22 +166,21 @@ data:
       \ { return M(); }\n\n    bool operator==(const M &rhs) const {\n        return\
       \ is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n    }\n\n    bool operator!=(const\
       \ M &rhs) const {\n        return is_unit != rhs.is_unit or (!is_unit and a\
-      \ != rhs.a);\n    }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const M &x) {\n        if (x.is_unit) os << \"inf\"\
-      ;\n        else os << x.a;\n        return os;\n    }\n\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, M &x) {\n        is\
-      \ >> x.a;\n        x.is_unit = false;\n        return is;\n    }\n};\n\n} //\
-      \ namespace monoid\n\n} // namespace kk2\n\n\n#line 1 \"type_traits/container_traits.hpp\"\
-      \n\n\n\n#line 7 \"type_traits/container_traits.hpp\"\n#include <list>\n#line\
-      \ 11 \"type_traits/container_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename\
-      \ T> struct is_vector : std::false_type {};\ntemplate <typename T, typename\
-      \ Alloc> struct is_vector<std::vector<T, Alloc>> : std::true_type {};\n\ntemplate\
-      \ <typename T> struct is_container : std::false_type {};\ntemplate <typename\
-      \ T, typename Alloc> struct is_container<std::vector<T, Alloc>> : std::true_type\
-      \ {\n};\ntemplate <typename CharT, typename Traits, typename Alloc>\nstruct\
-      \ is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type {};\n\
-      template <typename T, std::size_t N> struct is_container<std::array<T, N>> :\
-      \ std::true_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::deque<T,\
+      \ != rhs.a);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const M &x) {\n        if (x.is_unit) os << \"inf\";\n        else os\
+      \ << x.a;\n        return os;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.is_unit\
+      \ = false;\n        return is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"type_traits/container_traits.hpp\"\n\n\n\n#line 7 \"type_traits/container_traits.hpp\"\
+      \n#include <list>\n#line 11 \"type_traits/container_traits.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <typename T> struct is_vector : std::false_type {};\ntemplate\
+      \ <typename T, typename Alloc> struct is_vector<std::vector<T, Alloc>> : std::true_type\
+      \ {};\n\ntemplate <typename T> struct is_container : std::false_type {};\ntemplate\
+      \ <typename T, typename Alloc>\nstruct is_container<std::vector<T, Alloc>> :\
+      \ std::true_type {};\ntemplate <typename CharT, typename Traits, typename Alloc>\n\
+      struct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type\
+      \ {};\ntemplate <typename T, std::size_t N> struct is_container<std::array<T,\
+      \ N>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::deque<T,\
       \ Alloc>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct\
       \ is_container<std::list<T, Alloc>> : std::true_type {};\ntemplate <typename\
       \ T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;\n\
@@ -248,7 +248,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -299,7 +299,7 @@ data:
   path: template/procon.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

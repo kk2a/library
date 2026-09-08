@@ -74,20 +74,20 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum_large_array\n\
-      \n#include \"../../segment_tree/lazy.hpp\"\n#include \"../../math/action/affine_sumwithsize.hpp\"\
-      \n#include \"../../modint/modint.hpp\"\n#include \"../../others/coordinate_compression.hpp\"\
+      \n#include \"../../math/action/affine_sumwithsize.hpp\"\n#include \"../../modint/modint.hpp\"\
+      \n#include \"../../others/coordinate_compression.hpp\"\n#include \"../../segment_tree/lazy.hpp\"\
       \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
       \ {\n    using mint = kk2::mint998;\n    using A = kk2::action::AffineSumWithSize<mint,\
       \ mint>;\n    int n, q;\n    kin >> n >> q;\n    vc<array<int, 5>> queries(q);\n\
-      \    kk2::CC<int> cc;\n    rep (i, q) {\n        auto &x = queries[i];\n   \
-      \     kin >> x[0];\n        if (x[0] == 0) {\n            kin >> x[1] >> x[2]\
+      \    kk2::CC<int> cc;\n    rep(i, q) {\n        auto &x = queries[i];\n    \
+      \    kin >> x[0];\n        if (x[0] == 0) {\n            kin >> x[1] >> x[2]\
       \ >> x[3] >> x[4];\n            cc.add(x[1]), cc.add(x[2]);\n        } else\
       \ if (x[0] == 1) {\n            kin >> x[1] >> x[2];\n            cc.add(x[1]),\
-      \ cc.add(x[2]);\n        }\n    }\n    cc.build();\n    rep (i, q) {\n     \
-      \   auto &x = queries[i];\n        if (x[0] == 0) {\n            x[1] = cc.get(x[1]);\n\
+      \ cc.add(x[2]);\n        }\n    }\n    cc.build();\n    rep(i, q) {\n      \
+      \  auto &x = queries[i];\n        if (x[0] == 0) {\n            x[1] = cc.get(x[1]);\n\
       \            x[2] = cc.get(x[2]);\n        } else if (x[0] == 1) {\n       \
       \     x[1] = cc.get(x[1]);\n            x[2] = cc.get(x[2]);\n        }\n  \
-      \  }\n    kk2::LazySegmentTree<A> seg(cc.size());\n    rep (i, cc.size() - 1)\
+      \  }\n    kk2::LazySegmentTree<A> seg(cc.size());\n    rep(i, cc.size() - 1)\
       \ seg.init_set(i, 0, cc[i + 1] - cc[i]);\n    seg.build();\n\n    for (auto\
       \ query : queries) {\n        if (query[0] == 0) {\n            auto [_, l,\
       \ r, a, b] = query;\n            seg.apply_range(l, r, a, b);\n        } else\
@@ -96,37 +96,208 @@ data:
     name: default
   - code: "#line 1 \"verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp\"\
       \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum_large_array\n\
-      \n#line 1 \"segment_tree/lazy.hpp\"\n\n\n\n#include <cassert>\n#include <vector>\n\
-      \n#line 1 \"type_traits/algebra.hpp\"\n\n\n\n#include <concepts>\n\nnamespace\
-      \ kk2 {\n\nnamespace algebra {\n\n// These concepts describe the static interface\
-      \ expected by the library.\n// Algebraic laws such as associativity cannot be\
-      \ checked by the type system.\n//\n// A user-defined monoid therefore needs\
-      \ only:\n//\n//   struct MyMonoid {\n//       static MyMonoid op(const MyMonoid\
-      \ &, const MyMonoid &);\n//       static MyMonoid unit();\n//   };\n//\n// The\
-      \ return types are intentionally exact, so a typo such as returning the\n//\
-      \ underlying scalar instead of MyMonoid is diagnosed at the concept boundary.\n\
-      template <class T>\nconcept Semigroup = requires(const T &x, const T &y) {\n\
-      \    { T::op(x, y) } -> std::same_as<T>;\n};\n\ntemplate <class T>\nconcept\
-      \ Monoid = Semigroup<T> && requires {\n    { T::unit() } -> std::same_as<T>;\n\
-      };\n\ntemplate <class T>\nconcept Group = Monoid<T> && requires(const T &x)\
-      \ {\n    { T::inv(x) } -> std::same_as<T>;\n};\n\ntemplate <class T>\nconcept\
-      \ CommutativeMonoid = Monoid<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
-      } && bool(T::commutative);\n\ntemplate <class T>\nconcept CommutativeGroup =\
-      \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
-      } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
-      \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action = requires {\n\
-      \    typename T::A;\n    typename T::S;\n} && Monoid<typename T::A> && Monoid<typename\
-      \ T::S>\n    && requires(const typename T::A &f, const typename T::S &x) {\n\
-      \           { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n\
-      } // namespace algebra\n\n} // namespace kk2\n\n\n#line 8 \"segment_tree/lazy.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <algebra::Action Action> struct LazySegmentTree\
-      \ {\n    using S = typename Action::S;\n    using F = typename Action::A;\n\n\
-      \  public:\n    LazySegmentTree() : LazySegmentTree(0) {}\n\n    LazySegmentTree(int\
-      \ n) : _n(n) {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n\
-      \        size = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n\
+      \n#line 1 \"math/action/affine_sumwithsize.hpp\"\n\n\n\n#line 1 \"math/group/sum_with_size.hpp\"\
+      \n\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include\
+      \ <fstream>\n#include <istream>\n#include <ostream>\n#include <type_traits>\n\
+      \nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
+      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 5 \"math/group/sum_with_size.hpp\"\n\nnamespace\
+      \ kk2 {\n\nnamespace group {\n\ntemplate <class S, class T = S> struct SumWithSize\
+      \ {\n    static constexpr bool commutative = true;\n    using M = SumWithSize;\n\
+      \    S a;\n    T size;\n\n    SumWithSize() : a(S()), size(0) {}\n    SumWithSize(S\
+      \ a_, S size_ = T(1)) : a(a_), size(size_) {}\n    operator S() const { return\
+      \ a; }\n    inline static M op(M l, M r) { return M(l.a + r.a, l.size + r.size);\
+      \ }\n    inline static M inv(M x) { return M(-x.a, -x.size); }\n    inline static\
+      \ M unit() { return M(); }\n    bool operator==(const M &rhs) const { return\
+      \ a == rhs.a and size == rhs.size; }\n    bool operator!=(const M &rhs) const\
+      \ { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const M &x) {\n        return os <<\
+      \ x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.size\
+      \ = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\n\n\n\n#line 5 \"math/monoid/affine.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Affine\
+      \ {\n    static constexpr bool commutative = false;\n    using M = Affine;\n\
+      \    S a, b; // x \\mapsto ax + b\n\n    Affine() : a(S(1)), b(S(0)){};\n  \
+      \  Affine(S a, S b) : a(a), b(b) {}\n    inline S eval(S x) const { return a\
+      \ * x + b; }\n    // l \\circ r\n    inline static M op(M l, M r) { return M(l.a\
+      \ * r.a, l.a * r.b + l.b); }\n    inline static M unit() { return M(); }\n \
+      \   inline static M inv(M f) { return M(S(1) / f.a, -f.b / f.a); }\n    bool\
+      \ operator==(const M &rhs) const { return a == rhs.a and b == rhs.b; }\n   \
+      \ bool operator!=(const M &rhs) const { return a != rhs.a or b != rhs.b; }\n\
+      \n    template <OutputStream OStream> friend OStream &operator<<(OStream &os,\
+      \ const M &x) {\n        return os << x.a << \" \" << x.b;\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, M &x) {\n  \
+      \      return is >> x.a >> x.b;\n    }\n};\n\n} // namespace monoid\n\n} //\
+      \ namespace kk2\n\n\n#line 6 \"math/action/affine_sumwithsize.hpp\"\n\nnamespace\
+      \ kk2 {\n\nnamespace action {\n\ntemplate <class T, class U> struct AffineSumWithSize\
+      \ {\n    using A = monoid::Affine<T>;\n    using S = group::SumWithSize<T, U>;\n\
+      \n    inline static S act(A f, S x) { return S(f.a * x.a + f.b * x.size, x.size);\
+      \ }\n};\n\n} // namespace action\n\n} // namespace kk2\n\n\n#line 1 \"modint/modint.hpp\"\
+      \n\n\n\n#include <cassert>\n#include <iostream>\n#line 7 \"modint/modint.hpp\"\
+      \n#include <utility>\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5\
+      \ \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
+      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
+      template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
+      \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
+      template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 11 \"modint/modint.hpp\"\n\nnamespace kk2 {\n\
+      \ntemplate <int p> struct ModInt {\n    using mint = ModInt;\n\n  public:\n\
+      \    static int Mod;\n\n    constexpr static unsigned int getmod() {\n     \
+      \   if (p > 0) return p;\n        else return Mod;\n    }\n\n    static void\
+      \ setmod(int Mod_) {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n    }\n\
+      \n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n       \
+      \ return x;\n    }\n\n    constexpr ModInt() : _v(0) {}\n\n    template <Integral\
+      \ T> constexpr ModInt(T v) {\n        if constexpr (SignedIntegral<T>) {\n \
+      \           v = v % (long long)(getmod());\n            if (v < 0) v += getmod();\n\
+      \            _v = v;\n        } else if constexpr (UnsignedIntegral<T>) {\n\
+      \            _v = v %= getmod();\n        } else {\n            ModInt();\n\
+      \        }\n    }\n\n    unsigned int val() const { return _v; }\n\n    mint\
+      \ &operator++() {\n        _v++;\n        if (_v == getmod()) _v = 0;\n    \
+      \    return *this;\n    }\n\n    mint &operator--() {\n        if (_v == 0)\
+      \ _v = getmod();\n        _v--;\n        return *this;\n    }\n\n    mint operator++(int)\
+      \ {\n        mint result = *this;\n        ++*this;\n        return result;\n\
+      \    }\n\n    mint operator--(int) {\n        mint result = *this;\n       \
+      \ --*this;\n        return result;\n    }\n\n    mint &operator+=(const mint\
+      \ &rhs) {\n        _v += rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
+      \        return *this;\n    }\n\n    mint &operator-=(const mint &rhs) {\n \
+      \       _v += getmod() - rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
+      \        return *this;\n    }\n\n    mint &operator*=(const mint &rhs) {\n \
+      \       unsigned long long z = _v;\n        z *= rhs._v;\n        z %= getmod();\n\
+      \        _v = z;\n        return *this;\n    }\n\n    mint &operator/=(const\
+      \ mint &rhs) { return *this = *this * rhs.inv(); }\n    mint operator+() const\
+      \ { return *this; }\n    mint operator-() const { return mint() - *this; }\n\
+      \    friend mint operator+(const mint &lhs, const mint &rhs) { return mint(lhs)\
+      \ += rhs; }\n    friend mint operator-(const mint &lhs, const mint &rhs) { return\
+      \ mint(lhs) -= rhs; }\n    friend mint operator*(const mint &lhs, const mint\
+      \ &rhs) { return mint(lhs) *= rhs; }\n    friend mint operator/(const mint &lhs,\
+      \ const mint &rhs) { return mint(lhs) /= rhs; }\n    friend bool operator==(const\
+      \ mint &lhs, const mint &rhs) { return lhs._v == rhs._v; }\n    friend bool\
+      \ operator!=(const mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\
+      \n    mint pow(long long n) const {\n        assert(0 <= n);\n        mint x\
+      \ = *this, r = 1;\n        while (n) {\n            if (n & 1) r *= x;\n   \
+      \         x *= x;\n            n >>= 1;\n        }\n        return r;\n    }\n\
+      \n    mint inv() const {\n        long long s = getmod(), t = _v;\n        long\
+      \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
+      \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
+      \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
+      \ mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\
+      \ friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
+      \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
+      \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
+      \n} // namespace kk2\n\n\n#line 1 \"others/coordinate_compression.hpp\"\n\n\n\
+      \n#include <algorithm>\n#include <vector>\n\nnamespace kk2 {\n\n// Coordinate\
+      \ Compression\ntemplate <typename S = int> struct CC {\n    std::vector<S> xs;\n\
+      \    bool initialized;\n\n    CC() : initialized(false) {}\n\n    CC(const std::vector<S>\
+      \ &xs_) : xs(xs_), initialized(false) {}\n\n    void add(S x) {\n        xs.push_back(x);\n\
+      \        initialized = false;\n    }\n\n    void add(const std::vector<S> &ys)\
+      \ {\n        std::copy(std::begin(ys), std::end(ys), std::back_inserter(xs));\n\
+      \        initialized = false;\n    }\n\n    void build() {\n        std::sort(std::begin(xs),\
+      \ std::end(xs));\n        xs.erase(std::unique(std::begin(xs), std::end(xs)),\
+      \ std::end(xs));\n        initialized = true;\n    }\n\n    S operator[](int\
+      \ i) {\n        if (!initialized) build();\n        return xs[i];\n    }\n\n\
+      \    int size() {\n        if (!initialized) build();\n        return xs.size();\n\
+      \    }\n\n    int get(S x) {\n        if (!initialized) build();\n        return\
+      \ std::upper_bound(std::begin(xs), std::end(xs), x) - std::begin(xs) - 1;\n\
+      \    }\n\n    std::vector<int> get(const std::vector<S> &ys) {\n        std::vector<int>\
+      \ ret(ys.size());\n        for (int i = 0; i < (int)ys.size(); ++i) ret[i] =\
+      \ get(ys[i]);\n        return ret;\n    }\n\n    int operator()(S x) { return\
+      \ get(x); }\n\n    std::vector<int> operator()(const std::vector<S> &ys) { return\
+      \ get(ys); }\n\n    int lower(S x) {\n        if (!initialized) build();\n \
+      \       return std::lower_bound(std::begin(xs), std::end(xs), x) - std::begin(xs);\n\
+      \    }\n\n    int upper(S x) {\n        if (!initialized) build();\n       \
+      \ return std::upper_bound(std::begin(xs), std::end(xs), x) - std::begin(xs);\n\
+      \    }\n\n    bool exist(S x) {\n        if (!initialized) build();\n      \
+      \  int idx = lower(x);\n        return idx < (int)xs.size() && xs[idx] == x;\n\
+      \    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\n\n\n\
+      \n#line 6 \"segment_tree/lazy.hpp\"\n\n#line 1 \"type_traits/algebra.hpp\"\n\
+      \n\n\n#line 5 \"type_traits/algebra.hpp\"\n\nnamespace kk2 {\n\nnamespace algebra\
+      \ {\n\n// These concepts describe the static interface expected by the library.\n\
+      // Algebraic laws such as associativity cannot be checked by the type system.\n\
+      //\n// A user-defined monoid therefore needs only:\n//\n//   struct MyMonoid\
+      \ {\n//       static MyMonoid op(const MyMonoid &, const MyMonoid &);\n//  \
+      \     static MyMonoid unit();\n//   };\n//\n// The return types are intentionally\
+      \ exact, so a typo such as returning the\n// underlying scalar instead of MyMonoid\
+      \ is diagnosed at the concept boundary.\ntemplate <class T>\nconcept Semigroup\
+      \ = requires(const T &x, const T &y) {\n    { T::op(x, y) } -> std::same_as<T>;\n\
+      };\n\ntemplate <class T>\nconcept Monoid = Semigroup<T> && requires {\n    {\
+      \ T::unit() } -> std::same_as<T>;\n};\n\ntemplate <class T>\nconcept Group =\
+      \ Monoid<T> && requires(const T &x) {\n    { T::inv(x) } -> std::same_as<T>;\n\
+      };\n\ntemplate <class T>\nconcept CommutativeMonoid = Monoid<T> && requires\
+      \ {\n    { T::commutative } -> std::convertible_to<bool>;\n} && bool(T::commutative);\n\
+      \ntemplate <class T>\nconcept CommutativeGroup = Group<T> && requires {\n  \
+      \  { T::commutative } -> std::convertible_to<bool>;\n} && bool(T::commutative);\n\
+      \n// An action specification owns the pair of algebraic types and the mapping\n\
+      // between them. It is the interface required by lazy propagation structures.\n\
+      template <class T>\nconcept Action =\n    requires {\n        typename T::A;\n\
+      \        typename T::S;\n    } && Monoid<typename T::A> && Monoid<typename T::S>\n\
+      \    && requires(const typename T::A &f, const typename T::S &x) {\n       \
+      \    { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n} // namespace\
+      \ algebra\n\n} // namespace kk2\n\n\n#line 8 \"segment_tree/lazy.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <algebra::Action Action> struct LazySegmentTree {\n    using\
+      \ S = typename Action::S;\n    using F = typename Action::A;\n\n  public:\n\
+      \    LazySegmentTree() : LazySegmentTree(0) {}\n\n    LazySegmentTree(int n)\
+      \ : _n(n) {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n  \
+      \      size = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n\
       \        lz = std::vector<F>(size, F::unit());\n    }\n\n    template <class...\
-      \ Args> LazySegmentTree(int n, Args... args)\n        : LazySegmentTree(std::vector<S>(n,\
+      \ Args>\n    LazySegmentTree(int n, Args... args) : LazySegmentTree(std::vector<S>(n,\
       \ S(args...))) {}\n\n    LazySegmentTree(const std::vector<S> &v) : _n(int(v.size()))\
       \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
       \ = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n        lz\
@@ -201,176 +372,7 @@ data:
       \ = Action::act(f, d[k]);\n        if (k < size) lz[k] = F::op(f, lz[k]);\n\
       \    }\n\n    void push(int k) {\n        all_apply(2 * k, lz[k]);\n       \
       \ all_apply(2 * k + 1, lz[k]);\n        lz[k] = F::unit();\n    }\n};\n\n} //\
-      \ namespace kk2\n\n\n#line 1 \"math/action/affine_sumwithsize.hpp\"\n\n\n\n\
-      #line 1 \"math/group/sum_with_size.hpp\"\n\n\n\n#line 1 \"type_traits/io.hpp\"\
-      \n\n\n\n#line 5 \"type_traits/io.hpp\"\n#include <fstream>\n#include <istream>\n\
-      #include <ostream>\n#include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits\
-      \ {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 5 \"math/group/sum_with_size.hpp\"\n\nnamespace\
-      \ kk2 {\n\nnamespace group {\n\ntemplate <class S, class T = S> struct SumWithSize\
-      \ {\n    static constexpr bool commutative = true;\n    using M = SumWithSize;\n\
-      \    S a;\n    T size;\n\n    SumWithSize() : a(S()), size(0) {}\n    SumWithSize(S\
-      \ a_, S size_ = T(1)) : a(a_), size(size_) {}\n    operator S() const { return\
-      \ a; }\n    inline static M op(M l, M r) { return M(l.a + r.a, l.size + r.size);\
-      \ }\n    inline static M inv(M x) { return M(-x.a, -x.size); }\n    inline static\
-      \ M unit() { return M(); }\n    bool operator==(const M &rhs) const { return\
-      \ a == rhs.a and size == rhs.size; }\n    bool operator!=(const M &rhs) const\
-      \ { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const M &x) {\n        return os\
-      \ << x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n \
-      \       x.size = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\
-      \n} // namespace kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\n\n\n\n#line 5\
-      \ \"math/monoid/affine.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate\
-      \ <class S> struct Affine {\n    static constexpr bool commutative = false;\n\
-      \    using M = Affine;\n    S a, b; // x \\mapsto ax + b\n\n    Affine() : a(S(1)),\
-      \ b(S(0)) {};\n    Affine(S a, S b) : a(a), b(b) {}\n    inline S eval(S x)\
-      \ const { return a * x + b; }\n    // l \\circ r\n    inline static M op(M l,\
-      \ M r) { return M(l.a * r.a, l.a * r.b + l.b); }\n    inline static M unit()\
-      \ { return M(); }\n    inline static M inv(M f) { return M(S(1) / f.a, -f.b\
-      \ / f.a); }\n    bool operator==(const M &rhs) const { return a == rhs.a and\
-      \ b == rhs.b; }\n    bool operator!=(const M &rhs) const { return a != rhs.a\
-      \ or b != rhs.b; }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const M &x) {\n        return os << x.a << \" \"\
-      \ << x.b;\n    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
-      \ &is, M &x) {\n        return is >> x.a >> x.b;\n    }\n};\n\n} // namespace\
-      \ monoid\n\n} // namespace kk2\n\n\n#line 6 \"math/action/affine_sumwithsize.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace action {\n\ntemplate <class T, class U> struct\
-      \ AffineSumWithSize {\n    using A = monoid::Affine<T>;\n    using S = group::SumWithSize<T,\
-      \ U>;\n\n    inline static S act(A f, S x) { return S(f.a * x.a + f.b * x.size,\
-      \ x.size); }\n};\n\n} // namespace action\n\n} // namespace kk2\n\n\n#line 1\
-      \ \"modint/modint.hpp\"\n\n\n\n#line 5 \"modint/modint.hpp\"\n#include <iostream>\n\
-      #line 7 \"modint/modint.hpp\"\n#include <utility>\n\n#line 1 \"type_traits/integral.hpp\"\
-      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
-      \                               or std::is_same<T, unsigned __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-      \                                  or is_unsigned_int128<T>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
-      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
-      \                              make_unsigned_int128<T>,\n                  \
-      \            typename std::conditional<std::is_signed<T>::value,\n         \
-      \                                               std::make_unsigned<T>,\n   \
-      \                                                     std::common_type<T>>::type>::type;\n\
-      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
-      template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
-      template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
-      template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
-      \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
-      template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
-      template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
-      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 11 \"modint/modint.hpp\"\n\nnamespace kk2 {\n\
-      \ntemplate <int p> struct ModInt {\n    using mint = ModInt;\n\n  public:\n\
-      \    static int Mod;\n\n    constexpr static unsigned int getmod() {\n     \
-      \   if (p > 0) return p;\n        else return Mod;\n    }\n\n    static void\
-      \ setmod(int Mod_) {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n    }\n\
-      \n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n       \
-      \ return x;\n    }\n\n    constexpr ModInt() : _v(0) {}\n\n    template <Integral\
-      \ T> constexpr ModInt(T v) {\n        if constexpr (SignedIntegral<T>) {\n \
-      \           v = v % (long long)(getmod());\n            if (v < 0) v += getmod();\n\
-      \            _v = v;\n        } else if constexpr (UnsignedIntegral<T>) {\n\
-      \            _v = v %= getmod();\n        } else {\n            ModInt();\n\
-      \        }\n    }\n\n    unsigned int val() const { return _v; }\n\n    mint\
-      \ &operator++() {\n        _v++;\n        if (_v == getmod()) _v = 0;\n    \
-      \    return *this;\n    }\n\n    mint &operator--() {\n        if (_v == 0)\
-      \ _v = getmod();\n        _v--;\n        return *this;\n    }\n\n    mint operator++(int)\
-      \ {\n        mint result = *this;\n        ++*this;\n        return result;\n\
-      \    }\n\n    mint operator--(int) {\n        mint result = *this;\n       \
-      \ --*this;\n        return result;\n    }\n\n    mint &operator+=(const mint\
-      \ &rhs) {\n        _v += rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
-      \        return *this;\n    }\n\n    mint &operator-=(const mint &rhs) {\n \
-      \       _v += getmod() - rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
-      \        return *this;\n    }\n\n    mint &operator*=(const mint &rhs) {\n \
-      \       unsigned long long z = _v;\n        z *= rhs._v;\n        z %= getmod();\n\
-      \        _v = z;\n        return *this;\n    }\n\n    mint &operator/=(const\
-      \ mint &rhs) { return *this = *this * rhs.inv(); }\n    mint operator+() const\
-      \ { return *this; }\n    mint operator-() const { return mint() - *this; }\n\
-      \    friend mint operator+(const mint &lhs, const mint &rhs) { return mint(lhs)\
-      \ += rhs; }\n    friend mint operator-(const mint &lhs, const mint &rhs) { return\
-      \ mint(lhs) -= rhs; }\n    friend mint operator*(const mint &lhs, const mint\
-      \ &rhs) { return mint(lhs) *= rhs; }\n    friend mint operator/(const mint &lhs,\
-      \ const mint &rhs) { return mint(lhs) /= rhs; }\n    friend bool operator==(const\
-      \ mint &lhs, const mint &rhs) { return lhs._v == rhs._v; }\n    friend bool\
-      \ operator!=(const mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\
-      \n    mint pow(long long n) const {\n        assert(0 <= n);\n        mint x\
-      \ = *this, r = 1;\n        while (n) {\n            if (n & 1) r *= x;\n   \
-      \         x *= x;\n            n >>= 1;\n        }\n        return r;\n    }\n\
-      \n    mint inv() const {\n        long long s = getmod(), t = _v;\n        long\
-      \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
-      \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
-      \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
-      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
-      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
-      \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
-      \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
-      \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"others/coordinate_compression.hpp\"\n\n\n\
-      \n#include <algorithm>\n#line 6 \"others/coordinate_compression.hpp\"\n\nnamespace\
-      \ kk2 {\n\n// Coordinate Compression\ntemplate <typename S = int> struct CC\
-      \ {\n    std::vector<S> xs;\n    bool initialized;\n\n    CC() : initialized(false)\
-      \ {}\n\n    CC(const std::vector<S> &xs_) : xs(xs_), initialized(false) {}\n\
-      \n    void add(S x) {\n        xs.push_back(x);\n        initialized = false;\n\
-      \    }\n\n    void add(const std::vector<S> &ys) {\n        std::copy(std::begin(ys),\
-      \ std::end(ys), std::back_inserter(xs));\n        initialized = false;\n   \
-      \ }\n\n    void build() {\n        std::sort(std::begin(xs), std::end(xs));\n\
-      \        xs.erase(std::unique(std::begin(xs), std::end(xs)), std::end(xs));\n\
-      \        initialized = true;\n    }\n\n    S operator[](int i) {\n        if\
-      \ (!initialized) build();\n        return xs[i];\n    }\n\n    int size() {\n\
-      \        if (!initialized) build();\n        return xs.size();\n    }\n\n  \
-      \  int get(S x) {\n        if (!initialized) build();\n        return std::upper_bound(std::begin(xs),\
-      \ std::end(xs), x) - std::begin(xs) - 1;\n    }\n\n    std::vector<int> get(const\
-      \ std::vector<S> &ys) {\n        std::vector<int> ret(ys.size());\n        for\
-      \ (int i = 0; i < (int)ys.size(); ++i) ret[i] = get(ys[i]);\n        return\
-      \ ret;\n    }\n\n    int operator()(S x) { return get(x); }\n\n    std::vector<int>\
-      \ operator()(const std::vector<S> &ys) { return get(ys); }\n\n    int lower(S\
-      \ x) {\n        if (!initialized) build();\n        return std::lower_bound(std::begin(xs),\
-      \ std::end(xs), x) - std::begin(xs);\n    }\n\n    int upper(S x) {\n      \
-      \  if (!initialized) build();\n        return std::upper_bound(std::begin(xs),\
-      \ std::end(xs), x) - std::begin(xs);\n    }\n\n    bool exist(S x) {\n     \
-      \   if (!initialized) build();\n        int idx = lower(x);\n        return\
-      \ idx < (int)xs.size() && xs[idx] == x;\n    }\n};\n\n} // namespace kk2\n\n\
-      \n#line 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\
+      \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\
       \n#include <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\n#include\
       \ <chrono>\n#include <cmath>\n#include <deque>\n#include <functional>\n#include\
       \ <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
@@ -522,7 +524,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -553,15 +555,15 @@ data:
       \nusing namespace std;\n\nint main() {\n    using mint = kk2::mint998;\n   \
       \ using A = kk2::action::AffineSumWithSize<mint, mint>;\n    int n, q;\n   \
       \ kin >> n >> q;\n    vc<array<int, 5>> queries(q);\n    kk2::CC<int> cc;\n\
-      \    rep (i, q) {\n        auto &x = queries[i];\n        kin >> x[0];\n   \
-      \     if (x[0] == 0) {\n            kin >> x[1] >> x[2] >> x[3] >> x[4];\n \
-      \           cc.add(x[1]), cc.add(x[2]);\n        } else if (x[0] == 1) {\n \
-      \           kin >> x[1] >> x[2];\n            cc.add(x[1]), cc.add(x[2]);\n\
-      \        }\n    }\n    cc.build();\n    rep (i, q) {\n        auto &x = queries[i];\n\
+      \    rep(i, q) {\n        auto &x = queries[i];\n        kin >> x[0];\n    \
+      \    if (x[0] == 0) {\n            kin >> x[1] >> x[2] >> x[3] >> x[4];\n  \
+      \          cc.add(x[1]), cc.add(x[2]);\n        } else if (x[0] == 1) {\n  \
+      \          kin >> x[1] >> x[2];\n            cc.add(x[1]), cc.add(x[2]);\n \
+      \       }\n    }\n    cc.build();\n    rep(i, q) {\n        auto &x = queries[i];\n\
       \        if (x[0] == 0) {\n            x[1] = cc.get(x[1]);\n            x[2]\
       \ = cc.get(x[2]);\n        } else if (x[0] == 1) {\n            x[1] = cc.get(x[1]);\n\
       \            x[2] = cc.get(x[2]);\n        }\n    }\n    kk2::LazySegmentTree<A>\
-      \ seg(cc.size());\n    rep (i, cc.size() - 1) seg.init_set(i, 0, cc[i + 1] -\
+      \ seg(cc.size());\n    rep(i, cc.size() - 1) seg.init_set(i, 0, cc[i + 1] -\
       \ cc[i]);\n    seg.build();\n\n    for (auto query : queries) {\n        if\
       \ (query[0] == 0) {\n            auto [_, l, r, a, b] = query;\n           \
       \ seg.apply_range(l, r, a, b);\n        } else {\n            auto [_0, l, r,\
@@ -574,162 +576,162 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.12787749899999312
+  - elapsed: 0.11641881799999965
     environment: g++
-    memory: 6.672
+    memory: 6.708
     name: dense_00
     status: AC
-  - elapsed: 0.5415752669999847
+  - elapsed: 0.4452329370000143
     environment: g++
-    memory: 6.672
+    memory: 6.74
     name: dense_01
     status: AC
-  - elapsed: 0.9972584139999867
+  - elapsed: 0.8662833430000205
     environment: g++
-    memory: 12.616
+    memory: 12.68
     name: dense_02
     status: AC
-  - elapsed: 0.0023999199999877874
+  - elapsed: 0.0021986500000252818
     environment: g++
-    memory: 3.604
+    memory: 3.864
     name: example_00
     status: AC
-  - elapsed: 1.1253468479999924
+  - elapsed: 0.9409772669999938
     environment: g++
-    memory: 12.484
+    memory: 12.676
     name: many_query_0_00
     status: AC
-  - elapsed: 1.1375679949999835
-    environment: g++
-    memory: 12.488
-    name: many_query_0_01
-    status: AC
-  - elapsed: 0.9181242280000106
-    environment: g++
-    memory: 12.616
-    name: many_query_1_00
-    status: AC
-  - elapsed: 0.8839003079999941
-    environment: g++
-    memory: 12.616
-    name: many_query_1_01
-    status: AC
-  - elapsed: 1.0240210519999948
-    environment: g++
-    memory: 12.62
-    name: max_random_00
-    status: AC
-  - elapsed: 1.025604541000007
-    environment: g++
-    memory: 12.544
-    name: max_random_01
-    status: AC
-  - elapsed: 1.0317026479999925
-    environment: g++
-    memory: 12.608
-    name: max_random_02
-    status: AC
-  - elapsed: 0.8867233590000012
-    environment: g++
-    memory: 9.616
-    name: near_0_and_N_00
-    status: AC
-  - elapsed: 0.8878745709999976
-    environment: g++
-    memory: 9.576
-    name: near_0_and_N_01
-    status: AC
-  - elapsed: 1.0057292400000222
+  - elapsed: 0.9525738499999648
     environment: g++
     memory: 12.552
+    name: many_query_0_01
+    status: AC
+  - elapsed: 0.7778318919999947
+    environment: g++
+    memory: 12.648
+    name: many_query_1_00
+    status: AC
+  - elapsed: 0.7622084980000068
+    environment: g++
+    memory: 12.808
+    name: many_query_1_01
+    status: AC
+  - elapsed: 0.8693889570000124
+    environment: g++
+    memory: 12.68
+    name: max_random_00
+    status: AC
+  - elapsed: 0.8746416099999692
+    environment: g++
+    memory: 12.676
+    name: max_random_01
+    status: AC
+  - elapsed: 0.8537365770000065
+    environment: g++
+    memory: 12.68
+    name: max_random_02
+    status: AC
+  - elapsed: 0.7312412310000127
+    environment: g++
+    memory: 9.68
+    name: near_0_and_N_00
+    status: AC
+  - elapsed: 0.7332011309999871
+    environment: g++
+    memory: 9.712
+    name: near_0_and_N_01
+    status: AC
+  - elapsed: 0.8539525030000163
+    environment: g++
+    memory: 12.58
     name: query_0_then_1_00
     status: AC
-  - elapsed: 1.0104592100000218
+  - elapsed: 0.8414168200000063
     environment: g++
-    memory: 12.54
+    memory: 12.68
     name: query_0_then_1_01
     status: AC
-  - elapsed: 0.15586626800001113
+  - elapsed: 0.1294392429999789
     environment: g++
-    memory: 5.68
+    memory: 5.748
     name: random_00
     status: AC
-  - elapsed: 0.17386950200000229
+  - elapsed: 0.14313655099999778
     environment: g++
-    memory: 5.808
+    memory: 5.904
     name: random_01
     status: AC
-  - elapsed: 0.5879222840000011
+  - elapsed: 0.4898041760000069
     environment: g++
-    memory: 8.488
+    memory: 8.556
     name: random_02
     status: AC
-  - elapsed: 0.22866214100000093
+  - elapsed: 0.18978489400001308
     environment: g++
-    memory: 6.06
+    memory: 6.132
     name: random_03
     status: AC
-  - elapsed: 1.0095734930000049
+  - elapsed: 0.8625536829999874
     environment: g++
-    memory: 12.572
+    memory: 12.652
     name: random_04
     status: AC
-  - elapsed: 0.1181438830000161
+  - elapsed: 0.1047829539999725
     environment: g++
-    memory: 6.672
+    memory: 6.74
     name: small_N_00
     status: AC
-  - elapsed: 0.1460434859999964
+  - elapsed: 0.12739536100002624
     environment: g++
-    memory: 6.616
+    memory: 6.732
     name: small_N_01
     status: AC
-  - elapsed: 0.1536280139999917
+  - elapsed: 0.13259784100000616
     environment: g++
-    memory: 6.636
+    memory: 6.684
     name: small_N_02
     status: AC
-  - elapsed: 0.1770389909999892
+  - elapsed: 0.15193360399996436
     environment: g++
-    memory: 6.64
+    memory: 6.74
     name: small_N_03
     status: AC
-  - elapsed: 0.1881670129999975
+  - elapsed: 0.15840834099998347
     environment: g++
-    memory: 6.676
+    memory: 6.764
     name: small_N_04
     status: AC
-  - elapsed: 0.0026285920000077567
+  - elapsed: 0.002219623000030424
     environment: g++
-    memory: 3.588
+    memory: 3.848
     name: small_Q_00
     status: AC
-  - elapsed: 0.0020804920000045968
+  - elapsed: 0.00184745999996494
     environment: g++
-    memory: 3.812
+    memory: 3.9
     name: small_Q_01
     status: AC
-  - elapsed: 0.002091161999999258
+  - elapsed: 0.0018116260000056172
     environment: g++
-    memory: 3.768
+    memory: 3.836
     name: small_Q_02
     status: AC
-  - elapsed: 0.002068087999987256
+  - elapsed: 0.0017859469999734756
     environment: g++
-    memory: 3.768
+    memory: 3.84
     name: small_Q_03
     status: AC
-  - elapsed: 0.002086403000021164
+  - elapsed: 0.0018725279999785016
     environment: g++
-    memory: 3.756
+    memory: 3.732
     name: small_Q_04
     status: AC
-  - elapsed: 0.002123983999979373
+  - elapsed: 0.001797543999998652
     environment: g++
-    memory: 3.808
+    memory: 3.788
     name: small_Q_05
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp

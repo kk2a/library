@@ -12,7 +12,13 @@ data:
       icon: LIBRARY_ALL_AC
       path: type_traits/io.hpp
     type: Depends on
-  - files: []
+  - files:
+    - filename: ds_point_set_range_composite_large_2.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+    - filename: ds_potentiailized_uf_non_commutattive.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     type: Required by
   - files:
     - filename: binom_table.test.cpp
@@ -24,12 +30,6 @@ data:
     - filename: large_fact_arb_mod.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
-    - filename: ds_point_set_range_composite_large_2.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
-    - filename: ds_potentiailized_uf_non_commutattive.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     - filename: ds_range_affine_range_sum_large_2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
@@ -86,10 +86,10 @@ data:
       \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
       \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
       \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
-      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
-      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
+      \ mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\
+      \ friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
       \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
       \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
       \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
@@ -98,26 +98,27 @@ data:
   - code: "#line 1 \"modint/modint.hpp\"\n\n\n\n#include <cassert>\n#include <iostream>\n\
       #include <type_traits>\n#include <utility>\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -135,21 +136,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -198,10 +200,10 @@ data:
       \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
       \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
       \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
-      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
-      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
+      \ mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\
+      \ friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
       \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
       \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
       \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
@@ -211,15 +213,15 @@ data:
   isVerificationFile: false
   path: modint/modint.hpp
   pathExtension: hpp
-  requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  requiredBy:
+  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math_mod/binom_table.test.cpp
   - verify/unit_test/math_mod/inv_table.test.cpp
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
-  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
-  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - verify/yosupo_math/discrete_logarithm.test.cpp

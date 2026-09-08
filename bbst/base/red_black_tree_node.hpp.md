@@ -41,9 +41,9 @@ data:
       \        rank(0),\n          count(1),\n          is_red(false),\n         \
       \ is_rev(false),\n          val(val_) {}\n\n    RedBlackTreeNode(NodePtr l,\
       \ NodePtr r) : left(l), right(r), is_red(true), is_rev(false) {}\n\n    template\
-      \ <OutputStream OStream>\n    void debug_output(OStream &os) const {\n     \
-      \   os << \"[\\n\";\n\n        // BFS\u7528\u306E\u30AD\u30E5\u30FC\uFF1A(\u30CE\
-      \u30FC\u30C9, \u6DF1\u5EA6)\u306E\u30DA\u30A2\n        std::vector<std::pair<NodePtr,\
+      \ <OutputStream OStream> void debug_output(OStream &os) const {\n        os\
+      \ << \"[\\n\";\n\n        // BFS\u7528\u306E\u30AD\u30E5\u30FC\uFF1A(\u30CE\u30FC\
+      \u30C9, \u6DF1\u5EA6)\u306E\u30DA\u30A2\n        std::vector<std::pair<NodePtr,\
       \ int>> queue;\n        queue.emplace_back(NodePtr(const_cast<RedBlackTreeNode\
       \ *>(this)), 0);\n\n        int current_depth = -1;\n\n        for (size_t i\
       \ = 0; i < queue.size(); i++) {\n            auto [node, depth] = queue[i];\n\
@@ -71,20 +71,22 @@ data:
       \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
       \ <ostream>\n#include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits\
       \ {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -105,7 +107,7 @@ data:
       \          right(nullptr),\n          rank(0),\n          count(1),\n      \
       \    is_red(false),\n          is_rev(false),\n          val(val_) {}\n\n  \
       \  RedBlackTreeNode(NodePtr l, NodePtr r) : left(l), right(r), is_red(true),\
-      \ is_rev(false) {}\n\n    template <OutputStream OStream>\n    void debug_output(OStream\
+      \ is_rev(false) {}\n\n    template <OutputStream OStream> void debug_output(OStream\
       \ &os) const {\n        os << \"[\\n\";\n\n        // BFS\u7528\u306E\u30AD\u30E5\
       \u30FC\uFF1A(\u30CE\u30FC\u30C9, \u6DF1\u5EA6)\u306E\u30DA\u30A2\n        std::vector<std::pair<NodePtr,\
       \ int>> queue;\n        queue.emplace_back(NodePtr(const_cast<RedBlackTreeNode\
@@ -137,7 +139,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - bbst/red_black_tree.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp

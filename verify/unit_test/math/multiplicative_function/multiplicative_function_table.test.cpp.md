@@ -72,23 +72,24 @@ data:
   - type_traits/integral.hpp
   - type_traits/io.hpp
   embedded:
-  - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../../math/multiplicative_function/famous_function_table.hpp\"\
+  - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../../math/multiplicative_function/arbitrary_table.hpp\"\
       \n#include \"../../../../math/multiplicative_function/famous_function.hpp\"\n\
-      #include \"../../../../math/multiplicative_function/arbitrary_table.hpp\"\n\
-      #include \"../../../../random/gen.hpp\"\n#include \"../../../../template/template.hpp\"\
-      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep (iter)\
+      #include \"../../../../math/multiplicative_function/famous_function_table.hpp\"\
+      \n#include \"../../../../random/gen.hpp\"\n#include \"../../../../template/template.hpp\"\
+      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep(iter)\
       \ {\n        int n = kk2::random::rng(2, 1000000);\n\n        assert((kk2::MultiplicativeFunctionTable<long\
-      \ long, kk2::mf::mobius>::val(n) == kk2::FamousFunctionTable::mobius(n)));\n\
-      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::euler_phi>::val(n)\
-      \ == kk2::FamousFunctionTable::euler_phi(n)));\n        assert((kk2::MultiplicativeFunctionTable<long\
-      \ long, kk2::mf::sigma0>::val(n) == kk2::FamousFunctionTable::sigma0(n)));\n\
-      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::sigma1>::val(n)\
-      \ == kk2::FamousFunctionTable::sigma1(n)));\n    }\n\n    return 0;\n}\n"
+      \ long, kk2::mf::mobius>::val(n)\n                == kk2::FamousFunctionTable::mobius(n)));\n\
+      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::euler_phi>::val(n)\n\
+      \                == kk2::FamousFunctionTable::euler_phi(n)));\n        assert((kk2::MultiplicativeFunctionTable<long\
+      \ long, kk2::mf::sigma0>::val(n)\n                == kk2::FamousFunctionTable::sigma0(n)));\n\
+      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::sigma1>::val(n)\n\
+      \                == kk2::FamousFunctionTable::sigma1(n)));\n    }\n\n    return\
+      \ 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp\"\
-      \n// competitive-verifier: STANDALONE\n\n#line 1 \"math/multiplicative_function/famous_function_table.hpp\"\
-      \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\n#line\
-      \ 1 \"math/lpf_table.hpp\"\n\n\n\n#line 6 \"math/lpf_table.hpp\"\n#include <numeric>\n\
+      \n// competitive-verifier: STANDALONE\n\n#line 1 \"math/multiplicative_function/arbitrary_table.hpp\"\
+      \n\n\n\n#include <cassert>\n#include <vector>\n\n#line 1 \"math/lpf_table.hpp\"\
+      \n\n\n\n#include <algorithm>\n#line 6 \"math/lpf_table.hpp\"\n#include <numeric>\n\
       #line 8 \"math/lpf_table.hpp\"\n\nnamespace kk2 {\n\nstruct LPFTable {\n  private:\n\
       \    static inline std::vector<int> _primes{2}, _lpf{0, 1, 2}, _lpf_pow{0, 1,\
       \ 2}, _v_lpf{0, 1, 1};\n\n  public:\n    LPFTable() = delete;\n\n    static\
@@ -124,15 +125,38 @@ data:
       \n\n\n\n#line 5 \"math/pow.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S, class\
       \ T, class U> constexpr S pow(T x, U n) {\n    assert(n >= 0);\n    S r = 1,\
       \ y = x;\n    while (n) {\n        if (n & 1) r *= y;\n        if (n >>= 1)\
-      \ y *= y;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 10 \"math/multiplicative_function/famous_function_table.hpp\"\
-      \n\nnamespace kk2 {\n\nstruct FamousFunctionTable {\n  private:\n    static\
-      \ inline std::vector<int> _mobius{0, 1}, _sigma0{0, 1}, _euler_phi{0, 1};\n\
-      \    static inline std::vector<long long> _sigma1{0, 1};\n\n  public:\n    FamousFunctionTable()\
-      \ = delete;\n\n    static void set_upper(int m) {\n        if ((int)_mobius.size()\
-      \ > m) return;\n        int start = _mobius.size();\n\n        LPFTable::set_upper(m);\n\
-      \n        _mobius.resize(m + 1, 1);\n        _sigma0.resize(m + 1, 1);\n   \
-      \     _sigma1.resize(m + 1, 1);\n        _euler_phi.resize(m + 1, 1);\n\n  \
-      \      for (int n = start; n <= m; ++n) {\n            int p = LPFTable::lpf(n);\n\
+      \ y *= y;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 9 \"math/multiplicative_function/arbitrary_table.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <class T, T (*f)(long long, long long)> struct\
+      \ MultiplicativeFunctionTable {\n  private:\n    static inline std::vector<T>\
+      \ _table{0, 1};\n\n  public:\n    MultiplicativeFunctionTable() = delete;\n\n\
+      \    static void set_upper(int m) {\n        if ((int)_table.size() > m) return;\n\
+      \        int start = _table.size();\n\n        LPFTable::set_upper(m);\n\n \
+      \       _table.resize(m + 1);\n\n        for (int n = start; n <= m; ++n) {\n\
+      \            int p = LPFTable::lpf(n);\n            if (p == n) {\n        \
+      \        _table[n] = f(p, 1);\n            } else {\n                int p_pw\
+      \ = LPFTable::lpf_pow(n);\n                int q = n / p_pw;\n             \
+      \   if (q == 1) {\n                    _table[n] = f(p, LPFTable::v_lpf(n));\n\
+      \                } else {\n                    _table[n] = _table[q] * _table[p_pw];\n\
+      \                }\n            }\n        }\n    }\n\n    static T val(int\
+      \ n) {\n        assert(n > 0);\n        if ((int)_table.size() <= n) set_upper(n);\n\
+      \        return _table[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"\
+      math/multiplicative_function/famous_function.hpp\"\n\n\n\n#line 5 \"math/multiplicative_function/famous_function.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace mf {\n\nusing i64 = long long;\n\ni64 mobius(i64,\
+      \ i64 e) { return e == 1 ? -1 : 0; }\n\ni64 sigma0(i64, i64 e) { return e +\
+      \ 1; }\n\ni64 sigma1(i64 p, i64 e) {\n    i64 p_e = pow<i64>(p, e);\n    return\
+      \ p_e + (p_e - 1) / (p - 1);\n}\n\ni64 euler_phi(i64 p, i64 e) {\n    i64 p_e\
+      \ = pow<i64>(p, e);\n    return p_e - p_e / p;\n}\n\n} // namespace mf\n\n}\
+      \ // namespace kk2\n\n\n#line 1 \"math/multiplicative_function/famous_function_table.hpp\"\
+      \n\n\n\n#line 7 \"math/multiplicative_function/famous_function_table.hpp\"\n\
+      \n#line 10 \"math/multiplicative_function/famous_function_table.hpp\"\n\nnamespace\
+      \ kk2 {\n\nstruct FamousFunctionTable {\n  private:\n    static inline std::vector<int>\
+      \ _mobius{0, 1}, _sigma0{0, 1}, _euler_phi{0, 1};\n    static inline std::vector<long\
+      \ long> _sigma1{0, 1};\n\n  public:\n    FamousFunctionTable() = delete;\n\n\
+      \    static void set_upper(int m) {\n        if ((int)_mobius.size() > m) return;\n\
+      \        int start = _mobius.size();\n\n        LPFTable::set_upper(m);\n\n\
+      \        _mobius.resize(m + 1, 1);\n        _sigma0.resize(m + 1, 1);\n    \
+      \    _sigma1.resize(m + 1, 1);\n        _euler_phi.resize(m + 1, 1);\n\n   \
+      \     for (int n = start; n <= m; ++n) {\n            int p = LPFTable::lpf(n);\n\
       \            if (p == n) {\n                _mobius[n] = -1;\n             \
       \   _sigma0[n] = 2;\n                _sigma1[n] = p + 1;\n                _euler_phi[n]\
       \ = p - 1;\n            } else {\n                int p_pw = LPFTable::lpf_pow(n);\n\
@@ -152,37 +176,15 @@ data:
       \        return _sigma1[n];\n    }\n\n    static int euler_phi(int n) {\n  \
       \      assert(n > 0);\n        if ((int)_euler_phi.size() <= n) set_upper(n);\n\
       \        return _euler_phi[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1\
-      \ \"math/multiplicative_function/famous_function.hpp\"\n\n\n\n#line 5 \"math/multiplicative_function/famous_function.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace mf {\n\nusing i64 = long long;\n\ni64 mobius(i64,\
-      \ i64 e) { return e == 1 ? -1 : 0; }\n\ni64 sigma0(i64, i64 e) { return e +\
-      \ 1; }\n\ni64 sigma1(i64 p, i64 e) {\n    i64 p_e = pow<i64>(p, e);\n    return\
-      \ p_e + (p_e - 1) / (p - 1);\n}\n\ni64 euler_phi(i64 p, i64 e) {\n    i64 p_e\
-      \ = pow<i64>(p, e);\n    return p_e - p_e / p;\n}\n\n} // namespace mf\n\n}\
-      \ // namespace kk2\n\n\n#line 1 \"math/multiplicative_function/arbitrary_table.hpp\"\
-      \n\n\n\n#line 6 \"math/multiplicative_function/arbitrary_table.hpp\"\n\n#line\
-      \ 9 \"math/multiplicative_function/arbitrary_table.hpp\"\n\nnamespace kk2 {\n\
-      \ntemplate <class T, T (*f)(long long, long long)> struct MultiplicativeFunctionTable\
-      \ {\n  private:\n    static inline std::vector<T> _table{0, 1};\n\n  public:\n\
-      \    MultiplicativeFunctionTable() = delete;\n\n    static void set_upper(int\
-      \ m) {\n        if ((int)_table.size() > m) return;\n        int start = _table.size();\n\
-      \n        LPFTable::set_upper(m);\n\n        _table.resize(m + 1);\n\n     \
-      \   for (int n = start; n <= m; ++n) {\n            int p = LPFTable::lpf(n);\n\
-      \            if (p == n) {\n                _table[n] = f(p, 1);\n         \
-      \   } else {\n                int p_pw = LPFTable::lpf_pow(n);\n           \
-      \     int q = n / p_pw;\n                if (q == 1) {\n                   \
-      \ _table[n] = f(p, LPFTable::v_lpf(n));\n                } else {\n        \
-      \            _table[n] = _table[q] * _table[p_pw];\n                }\n    \
-      \        }\n        }\n    }\n\n    static T val(int n) {\n        assert(n\
-      \ > 0);\n        if ((int)_table.size() <= n) set_upper(n);\n        return\
-      \ _table[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\
-      \n\n\n\n#line 7 \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n\
-      #line 10 \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\
-      \nnamespace kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\
-      \ninline u64 non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
-      \                   std::chrono::high_resolution_clock::now().time_since_epoch())\n\
-      \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n \
-      \   seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n \
-      \   return seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
+      \ \"random/gen.hpp\"\n\n\n\n#line 7 \"random/gen.hpp\"\n#include <random>\n\
+      #include <unordered_set>\n#line 10 \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\
+      \n\n\n\n#include <chrono>\n\nnamespace kk2 {\n\nnamespace random {\n\nusing\
+      \ u64 = unsigned long long;\n\ninline u64 non_deterministic_seed() {\n    u64\
+      \ seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n           \
+      \        std::chrono::high_resolution_clock::now().time_since_epoch())\n   \
+      \                .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n    seed\
+      \ ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return\
+      \ seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
       \ }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return\
       \ deterministic_seed();\n#else\n    return non_deterministic_seed();\n#endif\n\
       }\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\
@@ -235,30 +237,32 @@ data:
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
       \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -273,20 +277,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -421,7 +427,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -449,14 +455,15 @@ data:
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep (iter)\
+      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep(iter)\
       \ {\n        int n = kk2::random::rng(2, 1000000);\n\n        assert((kk2::MultiplicativeFunctionTable<long\
-      \ long, kk2::mf::mobius>::val(n) == kk2::FamousFunctionTable::mobius(n)));\n\
-      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::euler_phi>::val(n)\
-      \ == kk2::FamousFunctionTable::euler_phi(n)));\n        assert((kk2::MultiplicativeFunctionTable<long\
-      \ long, kk2::mf::sigma0>::val(n) == kk2::FamousFunctionTable::sigma0(n)));\n\
-      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::sigma1>::val(n)\
-      \ == kk2::FamousFunctionTable::sigma1(n)));\n    }\n\n    return 0;\n}\n"
+      \ long, kk2::mf::mobius>::val(n)\n                == kk2::FamousFunctionTable::mobius(n)));\n\
+      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::euler_phi>::val(n)\n\
+      \                == kk2::FamousFunctionTable::euler_phi(n)));\n        assert((kk2::MultiplicativeFunctionTable<long\
+      \ long, kk2::mf::sigma0>::val(n)\n                == kk2::FamousFunctionTable::sigma0(n)));\n\
+      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::sigma1>::val(n)\n\
+      \                == kk2::FamousFunctionTable::sigma1(n)));\n    }\n\n    return\
+      \ 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -464,7 +471,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp

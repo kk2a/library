@@ -96,7 +96,7 @@ data:
   path: data_structure/prefix_sum_arbitrary.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0560_2.test.cpp

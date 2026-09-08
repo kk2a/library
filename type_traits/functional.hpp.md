@@ -25,26 +25,26 @@ data:
   dependsOn: []
   embedded:
   - code: "#ifndef KK2_TYPE_TRAITS_FUNCTIONAL_HPP\n#define KK2_TYPE_TRAITS_FUNCTIONAL_HPP\
-      \ 1\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T> using\
-      \ is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T>\
+      \ 1\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\n\
+      using is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T>\
       \ && std::is_function_v<std::remove_pointer_t<T>>,\n                       \
       \       std::true_type,\n                              std::false_type>::type;\n\
       \ntemplate <typename T> struct is_two_args_function_pointer : std::false_type\
-      \ {};\n\ntemplate <typename R, typename T1, typename T2> struct is_two_args_function_pointer<R\
-      \ (*)(T1, T2)>\n    : std::true_type {};\n\ntemplate <typename T> using is_two_args_function_pointer_t\
-      \ =\n    std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate\
-      \ <class T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate\
-      \ <class T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
+      \ {};\n\ntemplate <typename R, typename T1, typename T2>\nstruct is_two_args_function_pointer<R\
+      \ (*)(T1, T2)> : std::true_type {};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t\
+      \ = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate <class\
+      \ T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate <class\
+      \ T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
       \n} // namespace kk2\n\n#endif // KK2_TYPE_TRAITS_FUNCTIONAL_HPP\n"
     name: default
   - code: "#line 1 \"type_traits/functional.hpp\"\n\n\n\n#include <type_traits>\n\n\
-      namespace kk2 {\n\ntemplate <typename T> using is_function_pointer =\n    typename\
+      namespace kk2 {\n\ntemplate <typename T>\nusing is_function_pointer =\n    typename\
       \ std::conditional<std::is_pointer_v<T> && std::is_function_v<std::remove_pointer_t<T>>,\n\
       \                              std::true_type,\n                           \
       \   std::false_type>::type;\n\ntemplate <typename T> struct is_two_args_function_pointer\
-      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2> struct\
-      \ is_two_args_function_pointer<R (*)(T1, T2)>\n    : std::true_type {};\n\n\
-      template <typename T> using is_two_args_function_pointer_t =\n    std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\
+      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2>\n\
+      struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {};\n\n\
+      template <typename T>\nusing is_two_args_function_pointer_t = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\
       \ntemplate <class T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\
       \ntemplate <class T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
       \n} // namespace kk2\n\n\n"
@@ -55,7 +55,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - functional/reverse_args.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/type_traits/concepts.test.cpp

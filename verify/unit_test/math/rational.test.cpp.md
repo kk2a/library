@@ -57,181 +57,178 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../math/rational.hpp\"\
-      \n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
+      \n\n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
       \nusing namespace std;\nusing namespace kk2;\n\nvoid test_constructor() {\n\
       \    // \u30C7\u30D5\u30A9\u30EB\u30C8\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
-      \n    RationalInt r1;\n    assert(r1.a == 0 && r1.b == 1);\n    \n    // \u6574\
-      \u6570\u304B\u3089\u306E\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n    RationalInt\
-      \ r2(5);\n    assert(r2.a == 5 && r2.b == 1);\n    \n    // \u5206\u6570\u30B3\
-      \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\uFF08\u65E2\u7D04\u5206\u6570\u306B\u306A\
-      \u308B\u3053\u3068\u3092\u78BA\u8A8D\uFF09\n    RationalInt r3(6, 9);\n    assert(r3.a\
-      \ == 2 && r3.b == 3);\n    \n    // \u8CA0\u306E\u6570\u306E\u30C6\u30B9\u30C8\
-      \n    RationalInt r4(-6, 9);\n    assert(r4.a == -2 && r4.b == 3);\n    \n \
-      \   RationalInt r5(6, -9);\n    assert(r5.a == -2 && r5.b == 3);\n    \n   \
-      \ RationalInt r6(-6, -9);\n    assert(r6.a == 2 && r6.b == 3);\n}\n\nvoid test_arithmetic()\
-      \ {\n    RationalInt r1(1, 2);  // 1/2\n    RationalInt r2(1, 3);  // 1/3\n\
-      \    \n    // \u8DB3\u3057\u7B97\n    auto sum = r1 + r2;\n    assert(sum.a\
-      \ == 5 && sum.b == 6);  // 1/2 + 1/3 = 5/6\n    \n    // \u5F15\u304D\u7B97\n\
-      \    auto diff = r1 - r2;\n    assert(diff.a == 1 && diff.b == 6);  // 1/2 -\
-      \ 1/3 = 1/6\n    \n    // \u639B\u3051\u7B97\n    auto prod = r1 * r2;\n   \
-      \ assert(prod.a == 1 && prod.b == 6);  // 1/2 * 1/3 = 1/6\n    \n    // \u5272\
-      \u308A\u7B97\n    auto div = r1 / r2;\n    assert(div.a == 3 && div.b == 2);\
-      \  // (1/2) / (1/3) = 3/2\n    \n    // \u540C\u3058\u5206\u6BCD\u306E\u5834\
-      \u5408\n    RationalInt r3(2, 7);  // 2/7\n    RationalInt r4(3, 7);  // 3/7\n\
-      \    auto sum2 = r3 + r4;\n    assert(sum2.a == 5 && sum2.b == 7);  // 2/7 +\
-      \ 3/7 = 5/7\n}\n\nvoid test_comparison() {\n    RationalInt r1(1, 2);  // 1/2\n\
-      \    RationalInt r2(2, 4);  // 2/4 = 1/2\n    RationalInt r3(1, 3);  // 1/3\n\
-      \    \n    // \u7B49\u4FA1\u6027\n    assert(r1 == r2);\n    assert(!(r1 !=\
-      \ r2));\n    \n    // \u5927\u5C0F\u6BD4\u8F03\n    assert(r1 > r3);\n    assert(r3\
-      \ < r1);\n    assert(r1 >= r2);\n    assert(r1 <= r2);\n    assert(r3 <= r1);\n\
-      \    \n    // \u8CA0\u306E\u6570\u306E\u6BD4\u8F03\n    RationalInt r4(-1, 2);\
-      \  // -1/2\n    assert(r4 < r3);\n    assert(r3 > r4);\n}\n\nvoid test_unary_operations()\
-      \ {\n    RationalInt r1(3, 4);  // 3/4\n    \n    // \u5358\u9805\u30DE\u30A4\
-      \u30CA\u30B9\n    auto neg = -r1;\n    assert(neg.a == -3 && neg.b == 4);\n\
-      \    \n    // \u5358\u9805\u30D7\u30E9\u30B9\n    auto pos = +r1;\n    assert(pos.a\
-      \ == 3 && pos.b == 4);\n    \n    // \u9006\u6570\n    auto inv = r1.inv();\n\
-      \    assert(inv.a == 4 && inv.b == 3);\n    \n    // \u8CA0\u306E\u6570\u306E\
-      \u9006\u6570\n    RationalInt r2(-3, 4);\n    auto inv2 = r2.inv();\n    assert(inv2.a\
-      \ == -4 && inv2.b == 3);\n    \n    // \u7D76\u5BFE\u5024\n    auto abs1 = r1.abs();\n\
-      \    assert(abs1.a == 3 && abs1.b == 4);\n    \n    auto abs2 = r2.abs();\n\
-      \    assert(abs2.a == 3 && abs2.b == 4);\n}\n\nvoid test_assignment_operators()\
-      \ {\n    RationalInt r1(1, 2);\n    RationalInt r2(1, 3);\n    \n    // +=\n\
-      \    r1 += r2;\n    assert(r1.a == 5 && r1.b == 6);  // 1/2 + 1/3 = 5/6\n  \
-      \  \n    // -=\n    r1 -= r2;\n    assert(r1.a == 1 && r1.b == 2);  // 5/6 -\
-      \ 1/3 = 1/2\n    \n    // *=\n    r1 *= r2;\n    assert(r1.a == 1 && r1.b ==\
-      \ 6);  // 1/2 * 1/3 = 1/6\n    \n    // /=\n    r1 /= r2;\n    assert(r1.a ==\
-      \ 1 && r1.b == 2);  // (1/6) / (1/3) = 1/2\n}\n\nvoid test_boolean_conversion()\
-      \ {\n    RationalInt r1(0, 1);  // 0\n    RationalInt r2(1, 2);  // 1/2\n  \
-      \  \n    assert(!r1);\n    assert(r2);\n}\n\nvoid test_floating_point_conversion()\
-      \ {\n    RationalInt r1(1, 2);  // 1/2\n    RationalInt r2(1, 3);  // 1/3\n\
-      \    \n    assert(abs(r1.to_double() - 0.5) < 1e-9);\n    assert(abs(r2.to_double()\
-      \ - (1.0/3.0)) < 1e-9);\n    \n    assert(abs(r1.to_ldouble() - 0.5L) < 1e-15L);\n\
-      \    assert(abs(r2.to_ldouble() - (1.0L/3.0L)) < 1e-15L);\n}\n\nvoid test_edge_cases()\
+      \n    RationalInt r1;\n    assert(r1.a == 0 && r1.b == 1);\n\n    // \u6574\u6570\
+      \u304B\u3089\u306E\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n    RationalInt\
+      \ r2(5);\n    assert(r2.a == 5 && r2.b == 1);\n\n    // \u5206\u6570\u30B3\u30F3\
+      \u30B9\u30C8\u30E9\u30AF\u30BF\uFF08\u65E2\u7D04\u5206\u6570\u306B\u306A\u308B\
+      \u3053\u3068\u3092\u78BA\u8A8D\uFF09\n    RationalInt r3(6, 9);\n    assert(r3.a\
+      \ == 2 && r3.b == 3);\n\n    // \u8CA0\u306E\u6570\u306E\u30C6\u30B9\u30C8\n\
+      \    RationalInt r4(-6, 9);\n    assert(r4.a == -2 && r4.b == 3);\n\n    RationalInt\
+      \ r5(6, -9);\n    assert(r5.a == -2 && r5.b == 3);\n\n    RationalInt r6(-6,\
+      \ -9);\n    assert(r6.a == 2 && r6.b == 3);\n}\n\nvoid test_arithmetic() {\n\
+      \    RationalInt r1(1, 2); // 1/2\n    RationalInt r2(1, 3); // 1/3\n\n    //\
+      \ \u8DB3\u3057\u7B97\n    auto sum = r1 + r2;\n    assert(sum.a == 5 && sum.b\
+      \ == 6); // 1/2 + 1/3 = 5/6\n\n    // \u5F15\u304D\u7B97\n    auto diff = r1\
+      \ - r2;\n    assert(diff.a == 1 && diff.b == 6); // 1/2 - 1/3 = 1/6\n\n    //\
+      \ \u639B\u3051\u7B97\n    auto prod = r1 * r2;\n    assert(prod.a == 1 && prod.b\
+      \ == 6); // 1/2 * 1/3 = 1/6\n\n    // \u5272\u308A\u7B97\n    auto div = r1\
+      \ / r2;\n    assert(div.a == 3 && div.b == 2); // (1/2) / (1/3) = 3/2\n\n  \
+      \  // \u540C\u3058\u5206\u6BCD\u306E\u5834\u5408\n    RationalInt r3(2, 7);\
+      \ // 2/7\n    RationalInt r4(3, 7); // 3/7\n    auto sum2 = r3 + r4;\n    assert(sum2.a\
+      \ == 5 && sum2.b == 7); // 2/7 + 3/7 = 5/7\n}\n\nvoid test_comparison() {\n\
+      \    RationalInt r1(1, 2); // 1/2\n    RationalInt r2(2, 4); // 2/4 = 1/2\n\
+      \    RationalInt r3(1, 3); // 1/3\n\n    // \u7B49\u4FA1\u6027\n    assert(r1\
+      \ == r2);\n    assert(!(r1 != r2));\n\n    // \u5927\u5C0F\u6BD4\u8F03\n   \
+      \ assert(r1 > r3);\n    assert(r3 < r1);\n    assert(r1 >= r2);\n    assert(r1\
+      \ <= r2);\n    assert(r3 <= r1);\n\n    // \u8CA0\u306E\u6570\u306E\u6BD4\u8F03\
+      \n    RationalInt r4(-1, 2); // -1/2\n    assert(r4 < r3);\n    assert(r3 >\
+      \ r4);\n}\n\nvoid test_unary_operations() {\n    RationalInt r1(3, 4); // 3/4\n\
+      \n    // \u5358\u9805\u30DE\u30A4\u30CA\u30B9\n    auto neg = -r1;\n    assert(neg.a\
+      \ == -3 && neg.b == 4);\n\n    // \u5358\u9805\u30D7\u30E9\u30B9\n    auto pos\
+      \ = +r1;\n    assert(pos.a == 3 && pos.b == 4);\n\n    // \u9006\u6570\n   \
+      \ auto inv = r1.inv();\n    assert(inv.a == 4 && inv.b == 3);\n\n    // \u8CA0\
+      \u306E\u6570\u306E\u9006\u6570\n    RationalInt r2(-3, 4);\n    auto inv2 =\
+      \ r2.inv();\n    assert(inv2.a == -4 && inv2.b == 3);\n\n    // \u7D76\u5BFE\
+      \u5024\n    auto abs1 = r1.abs();\n    assert(abs1.a == 3 && abs1.b == 4);\n\
+      \n    auto abs2 = r2.abs();\n    assert(abs2.a == 3 && abs2.b == 4);\n}\n\n\
+      void test_assignment_operators() {\n    RationalInt r1(1, 2);\n    RationalInt\
+      \ r2(1, 3);\n\n    // +=\n    r1 += r2;\n    assert(r1.a == 5 && r1.b == 6);\
+      \ // 1/2 + 1/3 = 5/6\n\n    // -=\n    r1 -= r2;\n    assert(r1.a == 1 && r1.b\
+      \ == 2); // 5/6 - 1/3 = 1/2\n\n    // *=\n    r1 *= r2;\n    assert(r1.a ==\
+      \ 1 && r1.b == 6); // 1/2 * 1/3 = 1/6\n\n    // /=\n    r1 /= r2;\n    assert(r1.a\
+      \ == 1 && r1.b == 2); // (1/6) / (1/3) = 1/2\n}\n\nvoid test_boolean_conversion()\
+      \ {\n    RationalInt r1(0, 1); // 0\n    RationalInt r2(1, 2); // 1/2\n\n  \
+      \  assert(!r1);\n    assert(r2);\n}\n\nvoid test_floating_point_conversion()\
+      \ {\n    RationalInt r1(1, 2); // 1/2\n    RationalInt r2(1, 3); // 1/3\n\n\
+      \    assert(abs(r1.to_double() - 0.5) < 1e-9);\n    assert(abs(r2.to_double()\
+      \ - (1.0 / 3.0)) < 1e-9);\n\n    assert(abs(r1.to_ldouble() - 0.5L) < 1e-15L);\n\
+      \    assert(abs(r2.to_ldouble() - (1.0L / 3.0L)) < 1e-15L);\n}\n\nvoid test_edge_cases()\
       \ {\n    // \u5206\u6BCD\u304C1\u306E\u5834\u5408\n    RationalInt r1(5, 1);\n\
-      \    assert(r1.a == 5 && r1.b == 1);\n    \n    // \u5927\u304D\u306AGCD\u306E\
-      \u5834\u5408\n    RationalInt r2(1000, 2000);\n    assert(r2.a == 1 && r2.b\
-      \ == 2);\n    \n    // 0\u306E\u5834\u5408\n    RationalInt r3(0, 5);\n    assert(r3.a\
-      \ == 0 && r3.b == 1);\n}\n\nvoid test_precision_edge_cases() {\n    // \u975E\
-      \u5E38\u306B\u5C0F\u3055\u306A\u5206\u6570\n    RationalInt r1(1LL, 1000000000LL);\n\
-      \    assert(r1.a == 1LL && r1.b == 1000000000LL);\n    \n    // \u5206\u5B50\
-      \u304C0\u306E\u30B1\u30FC\u30B9\n    RationalInt r2(0, 12345);\n    assert(r2.a\
-      \ == 0 && r2.b == 1);\n    \n    // \u5206\u5B50\u5206\u6BCD\u304C\u540C\u3058\
-      \u7B26\u53F7\n    RationalInt r3(-100, -200);\n    assert(r3.a == 1 && r3.b\
-      \ == 2);\n}\n\nvoid test_random_operations() {\n    // \u30E9\u30F3\u30C0\u30E0\
-      \u306A\u5206\u6570\u3067\u306E\u57FA\u672C\u6F14\u7B97\u30C6\u30B9\u30C8\uFF08\
-      1e6\u56DE\uFF09\n    for (int i = 0; i < 1000000; i++) {\n        int a1 = random::rng(-10000,\
+      \    assert(r1.a == 5 && r1.b == 1);\n\n    // \u5927\u304D\u306AGCD\u306E\u5834\
+      \u5408\n    RationalInt r2(1000, 2000);\n    assert(r2.a == 1 && r2.b == 2);\n\
+      \n    // 0\u306E\u5834\u5408\n    RationalInt r3(0, 5);\n    assert(r3.a ==\
+      \ 0 && r3.b == 1);\n}\n\nvoid test_precision_edge_cases() {\n    // \u975E\u5E38\
+      \u306B\u5C0F\u3055\u306A\u5206\u6570\n    RationalInt r1(1LL, 1000000000LL);\n\
+      \    assert(r1.a == 1LL && r1.b == 1000000000LL);\n\n    // \u5206\u5B50\u304C\
+      0\u306E\u30B1\u30FC\u30B9\n    RationalInt r2(0, 12345);\n    assert(r2.a ==\
+      \ 0 && r2.b == 1);\n\n    // \u5206\u5B50\u5206\u6BCD\u304C\u540C\u3058\u7B26\
+      \u53F7\n    RationalInt r3(-100, -200);\n    assert(r3.a == 1 && r3.b == 2);\n\
+      }\n\nvoid test_random_operations() {\n    // \u30E9\u30F3\u30C0\u30E0\u306A\u5206\
+      \u6570\u3067\u306E\u57FA\u672C\u6F14\u7B97\u30C6\u30B9\u30C8\uFF081e6\u56DE\uFF09\
+      \n    for (int i = 0; i < 1000000; i++) {\n        int a1 = random::rng(-10000,\
       \ 10001), b1 = random::rng(1, 10001);\n        int a2 = random::rng(-10000,\
-      \ 10001), b2 = random::rng(1, 10001);\n        \n        RationalInt r1(a1,\
-      \ b1), r2(a2, b2);\n        \n        // \u52A0\u6CD5\u306E\u9006\u5143\u30C6\
-      \u30B9\u30C8: r + (-r) = 0\n        assert((r1 + (-r1)).a == 0);\n        \n\
-      \        // \u4E57\u6CD5\u306E\u9006\u5143\u30C6\u30B9\u30C8: r * r.inv() =\
-      \ 1 (r != 0\u306E\u5834\u5408)\n        if (r1.a != 0) {\n            auto prod\
-      \ = r1 * r1.inv();\n            assert(prod.a == 1 && prod.b == 1);\n      \
-      \  }\n        \n        // \u4EA4\u63DB\u5F8B\u30C6\u30B9\u30C8: a + b = b +\
-      \ a, a * b = b * a\n        assert(r1 + r2 == r2 + r1);\n        assert(r1 *\
-      \ r2 == r2 * r1);\n        \n        // \u9664\u6CD5\u306E\u5B9A\u7FA9\u30C6\
-      \u30B9\u30C8: a / b = a * b.inv()\n        if (r2.a != 0) {\n            assert(r1\
-      \ / r2 == r1 * r2.inv());\n        }\n    }\n}\n\nvoid test_comparison_consistency()\
+      \ 10001), b2 = random::rng(1, 10001);\n\n        RationalInt r1(a1, b1), r2(a2,\
+      \ b2);\n\n        // \u52A0\u6CD5\u306E\u9006\u5143\u30C6\u30B9\u30C8: r + (-r)\
+      \ = 0\n        assert((r1 + (-r1)).a == 0);\n\n        // \u4E57\u6CD5\u306E\
+      \u9006\u5143\u30C6\u30B9\u30C8: r * r.inv() = 1 (r != 0\u306E\u5834\u5408)\n\
+      \        if (r1.a != 0) {\n            auto prod = r1 * r1.inv();\n        \
+      \    assert(prod.a == 1 && prod.b == 1);\n        }\n\n        // \u4EA4\u63DB\
+      \u5F8B\u30C6\u30B9\u30C8: a + b = b + a, a * b = b * a\n        assert(r1 +\
+      \ r2 == r2 + r1);\n        assert(r1 * r2 == r2 * r1);\n\n        // \u9664\u6CD5\
+      \u306E\u5B9A\u7FA9\u30C6\u30B9\u30C8: a / b = a * b.inv()\n        if (r2.a\
+      \ != 0) { assert(r1 / r2 == r1 * r2.inv()); }\n    }\n}\n\nvoid test_comparison_consistency()\
       \ {\n    // \u6BD4\u8F03\u6F14\u7B97\u5B50\u306E\u4E00\u8CAB\u6027\u30C6\u30B9\
       \u30C8\uFF081e6\u56DE\uFF09\n    for (int i = 0; i < 1000000; i++) {\n     \
       \   int a1 = random::rng(-10000, 10001), b1 = random::rng(1, 10001);\n     \
-      \   int a2 = random::rng(-10000, 10001), b2 = random::rng(1, 10001);\n     \
-      \   \n        RationalInt r1(a1, b1), r2(a2, b2);\n        \n        // \u4E09\
-      \u5206\u5F8B: r1 < r2, r1 == r2, r1 > r2 \u306E\u3046\u3061 exactly one \u304C\
-      \u771F\n        int count = 0;\n        if (r1 < r2) count++;\n        if (r1\
-      \ == r2) count++;\n        if (r1 > r2) count++;\n        assert(count == 1);\n\
-      \        \n        // \u63A8\u79FB\u5F8B\u306E\u4E00\u90E8: r1 <= r2 and r2\
-      \ <= r1 => r1 == r2\n        if (r1 <= r2 && r2 <= r1) {\n            assert(r1\
-      \ == r2);\n        }\n        \n        // \u53CD\u5BFE\u79F0\u6027: r1 < r2\
-      \ <=> r2 > r1\n        assert((r1 < r2) == (r2 > r1));\n        assert((r1 <=\
-      \ r2) == (r2 >= r1));\n    }\n}\n\nvoid test_overflow_safety() {\n    // \u30AA\
-      \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3092\u907F\u3051\u308B\u305F\u3081\u306E\
-      \u5883\u754C\u5024\u30C6\u30B9\u30C8\n    const int SAFE_MAX = 10000;  // \u5B89\
-      \u5168\u306A\u6700\u5927\u5024\n    \n    RationalInt r1(SAFE_MAX, 1);\n   \
-      \ RationalInt r2(1, SAFE_MAX);\n    \n    // \u5927\u304D\u306A\u6570\u540C\u58EB\
-      \u306E\u6F14\u7B97\n    auto sum = r1 + r2;  // SAFE_MAX + 1/SAFE_MAX\n    assert(sum.a\
-      \ == SAFE_MAX * SAFE_MAX + 1);\n    assert(sum.b == SAFE_MAX);\n    \n    //\
-      \ \u7D04\u5206\u304C\u6B63\u3057\u304F\u884C\u308F\u308C\u308B\u3053\u3068\u3092\
-      \u78BA\u8A8D\n    RationalInt r3(SAFE_MAX * 2, SAFE_MAX * 4);\n    assert(r3.a\
-      \ == 1 && r3.b == 2);\n}\n\nvoid test_double_conversion_accuracy() {\n    //\
-      \ \u6D6E\u52D5\u5C0F\u6570\u70B9\u5909\u63DB\u306E\u7CBE\u5EA6\u30C6\u30B9\u30C8\
-      \uFF081e6\u56DE\uFF09\n    for (int i = 0; i < 1000000; i++) {\n        int\
-      \ a = random::rng(-1000, 1001);\n        int b = random::rng(1, 1001);\n   \
-      \     \n        RationalInt r(a, b);\n        double expected = (double)a /\
-      \ b;\n        \n        assert(abs(r.to_double() - expected) < 1e-12);\n   \
-      \     \n        // long double\u7248\u3082\u78BA\u8A8D\n        long double\
-      \ expected_ld = (long double)a / b;\n        assert(abs(r.to_ldouble() - expected_ld)\
-      \ < 1e-15L);\n    }\n}\n\nvoid test_stress_large_numbers() {\n    // \u5927\u304D\
-      \u306A\u6570\u3067\u306E\u30B9\u30C8\u30EC\u30B9\u30C6\u30B9\u30C8\n    const\
-      \ long long BIG = 1000000007LL;\n    \n    RationalI64 r1(BIG, 1);\n    RationalI64\
-      \ r2(1, BIG);\n    \n    // \u5927\u304D\u306A\u6570\u540C\u58EB\u306E\u6F14\
-      \u7B97\n    auto sum = r1 + r2;\n    assert(sum.a == BIG * BIG + 1);\n    assert(sum.b\
-      \ == BIG);\n    \n    auto diff = r1 - r2;\n    assert(diff.a == BIG * BIG -\
-      \ 1);\n    assert(diff.b == BIG);\n    \n    auto prod = r1 * r2;\n    assert(prod.a\
-      \ == 1 && prod.b == 1);\n    \n    auto div = r1 / r2;\n    assert(div.a ==\
-      \ BIG * BIG && div.b == 1);\n}\n\nvoid test_special_rational_values() {\n  \
-      \  // \u7279\u6B8A\u306A\u6709\u7406\u6570\u5024\u306E\u30C6\u30B9\u30C8\n \
-      \   \n    // 1/1 = 1\n    RationalInt one(1, 1);\n    assert(one.a == 1 && one.b\
-      \ == 1);\n    \n    // \u4EFB\u610F\u306E\u6570\u306B1\u3092\u8DB3\u3059/\u5F15\
-      \u304F\n    RationalInt r(3, 7);\n    auto plus_one = r + one;\n    assert(plus_one.a\
-      \ == 10 && plus_one.b == 7);  // 3/7 + 1 = 10/7\n    \n    auto minus_one =\
-      \ r - one;\n    assert(minus_one.a == -4 && minus_one.b == 7);  // 3/7 - 1 =\
-      \ -4/7\n    \n    // 1/2\u306E\u7D2F\u4E57\n    RationalInt half(1, 2);\n  \
-      \  auto quarter = half * half;\n    assert(quarter.a == 1 && quarter.b == 4);\
-      \  // (1/2)^2 = 1/4\n    \n    auto eighth = quarter * half;\n    assert(eighth.a\
-      \ == 1 && eighth.b == 8);  // (1/4) * (1/2) = 1/8\n}\n\nvoid test_chain_operations()\
-      \ {\n    // \u9023\u7D9A\u6F14\u7B97\u306E\u30C6\u30B9\u30C8\uFF081e6\u56DE\uFF09\
-      \n    for (int i = 0; i < 1000000; i++) {\n        RationalInt result(1, 1);\
-      \  // 1\u304B\u3089\u958B\u59CB\n        \n        // \u5404\u30C6\u30B9\u30C8\
-      \u30B1\u30FC\u30B9\u306710\u56DE\u306E\u9023\u7D9A\u6F14\u7B97\n        for\
-      \ (int j = 0; j < 10; j++) {\n            int op = random::rng(0, 4);  // 0:+,\
-      \ 1:-, 2:*, 3:/\n            int a = random::rng(-10, 11);\n            int\
-      \ b = random::rng(1, 11);\n            \n            RationalInt operand(a,\
-      \ b);\n            \n            switch (op) {\n                case 0: result\
-      \ += operand; break;\n                case 1: result -= operand; break;\n  \
-      \              case 2: result *= operand; break;\n                case 3:\n\
-      \                    if (operand.a != 0) {\n                        result /=\
-      \ operand;\n                    }\n                    break;\n            }\n\
-      \            \n            // \u7D50\u679C\u304C\u6B63\u898F\u5316\u3055\u308C\
-      \u3066\u3044\u308B\u3053\u3068\u3092\u78BA\u8A8D\n            assert(result.b\
-      \ > 0);\n            assert(std::gcd(abs(result.a), result.b) == 1);\n     \
-      \   }\n    }\n}\n\nint main() {\n    cerr << \"Starting comprehensive rational\
-      \ number tests...\" << endl;\n\n    // \u57FA\u672C\u30C6\u30B9\u30C8\u5B9F\u884C\
-      \n    cerr << \"Running basic functionality tests...\" << endl;\n    test_constructor();\n\
-      \    test_arithmetic();\n    test_comparison();\n    test_unary_operations();\n\
-      \    test_assignment_operators();\n    test_boolean_conversion();\n    test_floating_point_conversion();\n\
-      \    test_edge_cases();\n    \n    // \u5883\u754C\u5024\u30FB\u30E9\u30F3\u30C0\
-      \u30E0\u30C6\u30B9\u30C8\u5B9F\u884C\n    cerr << \"Running boundary value and\
-      \ random tests...\" << endl;\n    test_precision_edge_cases();\n    test_random_operations();\n\
-      \    test_comparison_consistency();\n    test_overflow_safety();\n    test_double_conversion_accuracy();\n\
-      \    \n    // \u8FFD\u52A0\u306E\u53B3\u5BC6\u30C6\u30B9\u30C8\n    cerr <<\
-      \ \"Running stress and edge case tests...\" << endl;\n    test_stress_large_numbers();\n\
-      \    test_special_rational_values();\n    test_chain_operations();\n    \n \
-      \   // \u3059\u3079\u3066\u306E\u30C6\u30B9\u30C8\u304C\u901A\u3063\u305F\u5834\
-      \u5408\n    cerr << endl << \"=== ALL RATIONAL TESTS PASSED ===\" << endl;\n\
-      \    cerr << \"All tests completed successfully!\" << endl;\n\n    return 0;\n\
-      }\n"
+      \   int a2 = random::rng(-10000, 10001), b2 = random::rng(1, 10001);\n\n   \
+      \     RationalInt r1(a1, b1), r2(a2, b2);\n\n        // \u4E09\u5206\u5F8B:\
+      \ r1 < r2, r1 == r2, r1 > r2 \u306E\u3046\u3061 exactly one \u304C\u771F\n \
+      \       int count = 0;\n        if (r1 < r2) count++;\n        if (r1 == r2)\
+      \ count++;\n        if (r1 > r2) count++;\n        assert(count == 1);\n\n \
+      \       // \u63A8\u79FB\u5F8B\u306E\u4E00\u90E8: r1 <= r2 and r2 <= r1 => r1\
+      \ == r2\n        if (r1 <= r2 && r2 <= r1) { assert(r1 == r2); }\n\n       \
+      \ // \u53CD\u5BFE\u79F0\u6027: r1 < r2 <=> r2 > r1\n        assert((r1 < r2)\
+      \ == (r2 > r1));\n        assert((r1 <= r2) == (r2 >= r1));\n    }\n}\n\nvoid\
+      \ test_overflow_safety() {\n    // \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
+      \u3092\u907F\u3051\u308B\u305F\u3081\u306E\u5883\u754C\u5024\u30C6\u30B9\u30C8\
+      \n    const int SAFE_MAX = 10000; // \u5B89\u5168\u306A\u6700\u5927\u5024\n\n\
+      \    RationalInt r1(SAFE_MAX, 1);\n    RationalInt r2(1, SAFE_MAX);\n\n    //\
+      \ \u5927\u304D\u306A\u6570\u540C\u58EB\u306E\u6F14\u7B97\n    auto sum = r1\
+      \ + r2; // SAFE_MAX + 1/SAFE_MAX\n    assert(sum.a == SAFE_MAX * SAFE_MAX +\
+      \ 1);\n    assert(sum.b == SAFE_MAX);\n\n    // \u7D04\u5206\u304C\u6B63\u3057\
+      \u304F\u884C\u308F\u308C\u308B\u3053\u3068\u3092\u78BA\u8A8D\n    RationalInt\
+      \ r3(SAFE_MAX * 2, SAFE_MAX * 4);\n    assert(r3.a == 1 && r3.b == 2);\n}\n\n\
+      void test_double_conversion_accuracy() {\n    // \u6D6E\u52D5\u5C0F\u6570\u70B9\
+      \u5909\u63DB\u306E\u7CBE\u5EA6\u30C6\u30B9\u30C8\uFF081e6\u56DE\uFF09\n    for\
+      \ (int i = 0; i < 1000000; i++) {\n        int a = random::rng(-1000, 1001);\n\
+      \        int b = random::rng(1, 1001);\n\n        RationalInt r(a, b);\n   \
+      \     double expected = (double)a / b;\n\n        assert(abs(r.to_double() -\
+      \ expected) < 1e-12);\n\n        // long double\u7248\u3082\u78BA\u8A8D\n  \
+      \      long double expected_ld = (long double)a / b;\n        assert(abs(r.to_ldouble()\
+      \ - expected_ld) < 1e-15L);\n    }\n}\n\nvoid test_stress_large_numbers() {\n\
+      \    // \u5927\u304D\u306A\u6570\u3067\u306E\u30B9\u30C8\u30EC\u30B9\u30C6\u30B9\
+      \u30C8\n    const long long BIG = 1000000007LL;\n\n    RationalI64 r1(BIG, 1);\n\
+      \    RationalI64 r2(1, BIG);\n\n    // \u5927\u304D\u306A\u6570\u540C\u58EB\u306E\
+      \u6F14\u7B97\n    auto sum = r1 + r2;\n    assert(sum.a == BIG * BIG + 1);\n\
+      \    assert(sum.b == BIG);\n\n    auto diff = r1 - r2;\n    assert(diff.a ==\
+      \ BIG * BIG - 1);\n    assert(diff.b == BIG);\n\n    auto prod = r1 * r2;\n\
+      \    assert(prod.a == 1 && prod.b == 1);\n\n    auto div = r1 / r2;\n    assert(div.a\
+      \ == BIG * BIG && div.b == 1);\n}\n\nvoid test_special_rational_values() {\n\
+      \    // \u7279\u6B8A\u306A\u6709\u7406\u6570\u5024\u306E\u30C6\u30B9\u30C8\n\
+      \n    // 1/1 = 1\n    RationalInt one(1, 1);\n    assert(one.a == 1 && one.b\
+      \ == 1);\n\n    // \u4EFB\u610F\u306E\u6570\u306B1\u3092\u8DB3\u3059/\u5F15\u304F\
+      \n    RationalInt r(3, 7);\n    auto plus_one = r + one;\n    assert(plus_one.a\
+      \ == 10 && plus_one.b == 7); // 3/7 + 1 = 10/7\n\n    auto minus_one = r - one;\n\
+      \    assert(minus_one.a == -4 && minus_one.b == 7); // 3/7 - 1 = -4/7\n\n  \
+      \  // 1/2\u306E\u7D2F\u4E57\n    RationalInt half(1, 2);\n    auto quarter =\
+      \ half * half;\n    assert(quarter.a == 1 && quarter.b == 4); // (1/2)^2 = 1/4\n\
+      \n    auto eighth = quarter * half;\n    assert(eighth.a == 1 && eighth.b ==\
+      \ 8); // (1/4) * (1/2) = 1/8\n}\n\nvoid test_chain_operations() {\n    // \u9023\
+      \u7D9A\u6F14\u7B97\u306E\u30C6\u30B9\u30C8\uFF081e6\u56DE\uFF09\n    for (int\
+      \ i = 0; i < 1000000; i++) {\n        RationalInt result(1, 1); // 1\u304B\u3089\
+      \u958B\u59CB\n\n        // \u5404\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\
+      10\u56DE\u306E\u9023\u7D9A\u6F14\u7B97\n        for (int j = 0; j < 10; j++)\
+      \ {\n            int op = random::rng(0, 4); // 0:+, 1:-, 2:*, 3:/\n       \
+      \     int a = random::rng(-10, 11);\n            int b = random::rng(1, 11);\n\
+      \n            RationalInt operand(a, b);\n\n            switch (op) {\n    \
+      \        case 0:\n                result += operand;\n                break;\n\
+      \            case 1:\n                result -= operand;\n                break;\n\
+      \            case 2:\n                result *= operand;\n                break;\n\
+      \            case 3:\n                if (operand.a != 0) { result /= operand;\
+      \ }\n                break;\n            }\n\n            // \u7D50\u679C\u304C\
+      \u6B63\u898F\u5316\u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u78BA\u8A8D\
+      \n            assert(result.b > 0);\n            assert(std::gcd(abs(result.a),\
+      \ result.b) == 1);\n        }\n    }\n}\n\nint main() {\n    cerr << \"Starting\
+      \ comprehensive rational number tests...\" << endl;\n\n    // \u57FA\u672C\u30C6\
+      \u30B9\u30C8\u5B9F\u884C\n    cerr << \"Running basic functionality tests...\"\
+      \ << endl;\n    test_constructor();\n    test_arithmetic();\n    test_comparison();\n\
+      \    test_unary_operations();\n    test_assignment_operators();\n    test_boolean_conversion();\n\
+      \    test_floating_point_conversion();\n    test_edge_cases();\n\n    // \u5883\
+      \u754C\u5024\u30FB\u30E9\u30F3\u30C0\u30E0\u30C6\u30B9\u30C8\u5B9F\u884C\n \
+      \   cerr << \"Running boundary value and random tests...\" << endl;\n    test_precision_edge_cases();\n\
+      \    test_random_operations();\n    test_comparison_consistency();\n    test_overflow_safety();\n\
+      \    test_double_conversion_accuracy();\n\n    // \u8FFD\u52A0\u306E\u53B3\u5BC6\
+      \u30C6\u30B9\u30C8\n    cerr << \"Running stress and edge case tests...\" <<\
+      \ endl;\n    test_stress_large_numbers();\n    test_special_rational_values();\n\
+      \    test_chain_operations();\n\n    // \u3059\u3079\u3066\u306E\u30C6\u30B9\
+      \u30C8\u304C\u901A\u3063\u305F\u5834\u5408\n    cerr << endl << \"=== ALL RATIONAL\
+      \ TESTS PASSED ===\" << endl;\n    cerr << \"All tests completed successfully!\"\
+      \ << endl;\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/math/rational.test.cpp\"\n// competitive-verifier:\
       \ STANDALONE\n\n#line 1 \"math/rational.hpp\"\n\n\n\n#include <cassert>\n#include\
       \ <numeric>\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include\
       \ <fstream>\n#include <istream>\n#include <ostream>\n#include <type_traits>\n\
       \nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -271,16 +268,17 @@ data:
       \       return Compare{lhs.a} * rhs.b > Compare{rhs.a} * lhs.b;\n    }\n   \
       \ friend bool operator<=(const B &lhs, const B &rhs) { return lhs == rhs or\
       \ lhs < rhs; }\n    friend bool operator>=(const B &lhs, const B &rhs) { return\
-      \ lhs == rhs or lhs > rhs; }\n    template <OutputStream OStream>\n    friend\
-      \ OStream &operator<<(OStream &os, const B &rhs) {\n        return os << rhs.a\
-      \ << \" / \" << rhs.b;\n    }\n};\n\n} // namespace rational\n\ntemplate <typename\
+      \ lhs == rhs or lhs > rhs; }\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const B &rhs) {\n        return os << rhs.a << \"\
+      \ / \" << rhs.b;\n    }\n};\n\n} // namespace rational\n\ntemplate <typename\
       \ T> using Rational = rational::RationalBase<T, T>;\nusing RationalInt = rational::RationalBase<int,\
       \ long long>;\nusing RationalI64 = rational::RationalBase<long long, __int128>;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n\
-      #line 7 \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n#include\
-      \ <vector>\n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\nnamespace\
-      \ kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\ninline u64\
-      \ non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
+      \n} // namespace kk2\n\n\n#line 4 \"verify/unit_test/math/rational.test.cpp\"\
+      \n\n#line 1 \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n#line 7 \"random/gen.hpp\"\
+      \n#include <random>\n#include <unordered_set>\n#include <vector>\n\n#line 1\
+      \ \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\nnamespace kk2 {\n\nnamespace\
+      \ random {\n\nusing u64 = unsigned long long;\n\ninline u64 non_deterministic_seed()\
+      \ {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
       \                   std::chrono::high_resolution_clock::now().time_since_epoch())\n\
       \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n \
       \   seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n \
@@ -338,26 +336,27 @@ data:
       \ <cstdio>\n#line 8 \"template/fastio.hpp\"\n#include <iostream>\n#line 10 \"\
       template/fastio.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5\
       \ \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -498,7 +497,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -525,160 +524,156 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/unit_test/math/rational.test.cpp\"\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/unit_test/math/rational.test.cpp\"\
       \nusing namespace std;\nusing namespace kk2;\n\nvoid test_constructor() {\n\
       \    // \u30C7\u30D5\u30A9\u30EB\u30C8\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
-      \n    RationalInt r1;\n    assert(r1.a == 0 && r1.b == 1);\n    \n    // \u6574\
-      \u6570\u304B\u3089\u306E\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n    RationalInt\
-      \ r2(5);\n    assert(r2.a == 5 && r2.b == 1);\n    \n    // \u5206\u6570\u30B3\
-      \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\uFF08\u65E2\u7D04\u5206\u6570\u306B\u306A\
-      \u308B\u3053\u3068\u3092\u78BA\u8A8D\uFF09\n    RationalInt r3(6, 9);\n    assert(r3.a\
-      \ == 2 && r3.b == 3);\n    \n    // \u8CA0\u306E\u6570\u306E\u30C6\u30B9\u30C8\
-      \n    RationalInt r4(-6, 9);\n    assert(r4.a == -2 && r4.b == 3);\n    \n \
-      \   RationalInt r5(6, -9);\n    assert(r5.a == -2 && r5.b == 3);\n    \n   \
-      \ RationalInt r6(-6, -9);\n    assert(r6.a == 2 && r6.b == 3);\n}\n\nvoid test_arithmetic()\
-      \ {\n    RationalInt r1(1, 2);  // 1/2\n    RationalInt r2(1, 3);  // 1/3\n\
-      \    \n    // \u8DB3\u3057\u7B97\n    auto sum = r1 + r2;\n    assert(sum.a\
-      \ == 5 && sum.b == 6);  // 1/2 + 1/3 = 5/6\n    \n    // \u5F15\u304D\u7B97\n\
-      \    auto diff = r1 - r2;\n    assert(diff.a == 1 && diff.b == 6);  // 1/2 -\
-      \ 1/3 = 1/6\n    \n    // \u639B\u3051\u7B97\n    auto prod = r1 * r2;\n   \
-      \ assert(prod.a == 1 && prod.b == 6);  // 1/2 * 1/3 = 1/6\n    \n    // \u5272\
-      \u308A\u7B97\n    auto div = r1 / r2;\n    assert(div.a == 3 && div.b == 2);\
-      \  // (1/2) / (1/3) = 3/2\n    \n    // \u540C\u3058\u5206\u6BCD\u306E\u5834\
-      \u5408\n    RationalInt r3(2, 7);  // 2/7\n    RationalInt r4(3, 7);  // 3/7\n\
-      \    auto sum2 = r3 + r4;\n    assert(sum2.a == 5 && sum2.b == 7);  // 2/7 +\
-      \ 3/7 = 5/7\n}\n\nvoid test_comparison() {\n    RationalInt r1(1, 2);  // 1/2\n\
-      \    RationalInt r2(2, 4);  // 2/4 = 1/2\n    RationalInt r3(1, 3);  // 1/3\n\
-      \    \n    // \u7B49\u4FA1\u6027\n    assert(r1 == r2);\n    assert(!(r1 !=\
-      \ r2));\n    \n    // \u5927\u5C0F\u6BD4\u8F03\n    assert(r1 > r3);\n    assert(r3\
-      \ < r1);\n    assert(r1 >= r2);\n    assert(r1 <= r2);\n    assert(r3 <= r1);\n\
-      \    \n    // \u8CA0\u306E\u6570\u306E\u6BD4\u8F03\n    RationalInt r4(-1, 2);\
-      \  // -1/2\n    assert(r4 < r3);\n    assert(r3 > r4);\n}\n\nvoid test_unary_operations()\
-      \ {\n    RationalInt r1(3, 4);  // 3/4\n    \n    // \u5358\u9805\u30DE\u30A4\
-      \u30CA\u30B9\n    auto neg = -r1;\n    assert(neg.a == -3 && neg.b == 4);\n\
-      \    \n    // \u5358\u9805\u30D7\u30E9\u30B9\n    auto pos = +r1;\n    assert(pos.a\
-      \ == 3 && pos.b == 4);\n    \n    // \u9006\u6570\n    auto inv = r1.inv();\n\
-      \    assert(inv.a == 4 && inv.b == 3);\n    \n    // \u8CA0\u306E\u6570\u306E\
-      \u9006\u6570\n    RationalInt r2(-3, 4);\n    auto inv2 = r2.inv();\n    assert(inv2.a\
-      \ == -4 && inv2.b == 3);\n    \n    // \u7D76\u5BFE\u5024\n    auto abs1 = r1.abs();\n\
-      \    assert(abs1.a == 3 && abs1.b == 4);\n    \n    auto abs2 = r2.abs();\n\
-      \    assert(abs2.a == 3 && abs2.b == 4);\n}\n\nvoid test_assignment_operators()\
-      \ {\n    RationalInt r1(1, 2);\n    RationalInt r2(1, 3);\n    \n    // +=\n\
-      \    r1 += r2;\n    assert(r1.a == 5 && r1.b == 6);  // 1/2 + 1/3 = 5/6\n  \
-      \  \n    // -=\n    r1 -= r2;\n    assert(r1.a == 1 && r1.b == 2);  // 5/6 -\
-      \ 1/3 = 1/2\n    \n    // *=\n    r1 *= r2;\n    assert(r1.a == 1 && r1.b ==\
-      \ 6);  // 1/2 * 1/3 = 1/6\n    \n    // /=\n    r1 /= r2;\n    assert(r1.a ==\
-      \ 1 && r1.b == 2);  // (1/6) / (1/3) = 1/2\n}\n\nvoid test_boolean_conversion()\
-      \ {\n    RationalInt r1(0, 1);  // 0\n    RationalInt r2(1, 2);  // 1/2\n  \
-      \  \n    assert(!r1);\n    assert(r2);\n}\n\nvoid test_floating_point_conversion()\
-      \ {\n    RationalInt r1(1, 2);  // 1/2\n    RationalInt r2(1, 3);  // 1/3\n\
-      \    \n    assert(abs(r1.to_double() - 0.5) < 1e-9);\n    assert(abs(r2.to_double()\
-      \ - (1.0/3.0)) < 1e-9);\n    \n    assert(abs(r1.to_ldouble() - 0.5L) < 1e-15L);\n\
-      \    assert(abs(r2.to_ldouble() - (1.0L/3.0L)) < 1e-15L);\n}\n\nvoid test_edge_cases()\
+      \n    RationalInt r1;\n    assert(r1.a == 0 && r1.b == 1);\n\n    // \u6574\u6570\
+      \u304B\u3089\u306E\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n    RationalInt\
+      \ r2(5);\n    assert(r2.a == 5 && r2.b == 1);\n\n    // \u5206\u6570\u30B3\u30F3\
+      \u30B9\u30C8\u30E9\u30AF\u30BF\uFF08\u65E2\u7D04\u5206\u6570\u306B\u306A\u308B\
+      \u3053\u3068\u3092\u78BA\u8A8D\uFF09\n    RationalInt r3(6, 9);\n    assert(r3.a\
+      \ == 2 && r3.b == 3);\n\n    // \u8CA0\u306E\u6570\u306E\u30C6\u30B9\u30C8\n\
+      \    RationalInt r4(-6, 9);\n    assert(r4.a == -2 && r4.b == 3);\n\n    RationalInt\
+      \ r5(6, -9);\n    assert(r5.a == -2 && r5.b == 3);\n\n    RationalInt r6(-6,\
+      \ -9);\n    assert(r6.a == 2 && r6.b == 3);\n}\n\nvoid test_arithmetic() {\n\
+      \    RationalInt r1(1, 2); // 1/2\n    RationalInt r2(1, 3); // 1/3\n\n    //\
+      \ \u8DB3\u3057\u7B97\n    auto sum = r1 + r2;\n    assert(sum.a == 5 && sum.b\
+      \ == 6); // 1/2 + 1/3 = 5/6\n\n    // \u5F15\u304D\u7B97\n    auto diff = r1\
+      \ - r2;\n    assert(diff.a == 1 && diff.b == 6); // 1/2 - 1/3 = 1/6\n\n    //\
+      \ \u639B\u3051\u7B97\n    auto prod = r1 * r2;\n    assert(prod.a == 1 && prod.b\
+      \ == 6); // 1/2 * 1/3 = 1/6\n\n    // \u5272\u308A\u7B97\n    auto div = r1\
+      \ / r2;\n    assert(div.a == 3 && div.b == 2); // (1/2) / (1/3) = 3/2\n\n  \
+      \  // \u540C\u3058\u5206\u6BCD\u306E\u5834\u5408\n    RationalInt r3(2, 7);\
+      \ // 2/7\n    RationalInt r4(3, 7); // 3/7\n    auto sum2 = r3 + r4;\n    assert(sum2.a\
+      \ == 5 && sum2.b == 7); // 2/7 + 3/7 = 5/7\n}\n\nvoid test_comparison() {\n\
+      \    RationalInt r1(1, 2); // 1/2\n    RationalInt r2(2, 4); // 2/4 = 1/2\n\
+      \    RationalInt r3(1, 3); // 1/3\n\n    // \u7B49\u4FA1\u6027\n    assert(r1\
+      \ == r2);\n    assert(!(r1 != r2));\n\n    // \u5927\u5C0F\u6BD4\u8F03\n   \
+      \ assert(r1 > r3);\n    assert(r3 < r1);\n    assert(r1 >= r2);\n    assert(r1\
+      \ <= r2);\n    assert(r3 <= r1);\n\n    // \u8CA0\u306E\u6570\u306E\u6BD4\u8F03\
+      \n    RationalInt r4(-1, 2); // -1/2\n    assert(r4 < r3);\n    assert(r3 >\
+      \ r4);\n}\n\nvoid test_unary_operations() {\n    RationalInt r1(3, 4); // 3/4\n\
+      \n    // \u5358\u9805\u30DE\u30A4\u30CA\u30B9\n    auto neg = -r1;\n    assert(neg.a\
+      \ == -3 && neg.b == 4);\n\n    // \u5358\u9805\u30D7\u30E9\u30B9\n    auto pos\
+      \ = +r1;\n    assert(pos.a == 3 && pos.b == 4);\n\n    // \u9006\u6570\n   \
+      \ auto inv = r1.inv();\n    assert(inv.a == 4 && inv.b == 3);\n\n    // \u8CA0\
+      \u306E\u6570\u306E\u9006\u6570\n    RationalInt r2(-3, 4);\n    auto inv2 =\
+      \ r2.inv();\n    assert(inv2.a == -4 && inv2.b == 3);\n\n    // \u7D76\u5BFE\
+      \u5024\n    auto abs1 = r1.abs();\n    assert(abs1.a == 3 && abs1.b == 4);\n\
+      \n    auto abs2 = r2.abs();\n    assert(abs2.a == 3 && abs2.b == 4);\n}\n\n\
+      void test_assignment_operators() {\n    RationalInt r1(1, 2);\n    RationalInt\
+      \ r2(1, 3);\n\n    // +=\n    r1 += r2;\n    assert(r1.a == 5 && r1.b == 6);\
+      \ // 1/2 + 1/3 = 5/6\n\n    // -=\n    r1 -= r2;\n    assert(r1.a == 1 && r1.b\
+      \ == 2); // 5/6 - 1/3 = 1/2\n\n    // *=\n    r1 *= r2;\n    assert(r1.a ==\
+      \ 1 && r1.b == 6); // 1/2 * 1/3 = 1/6\n\n    // /=\n    r1 /= r2;\n    assert(r1.a\
+      \ == 1 && r1.b == 2); // (1/6) / (1/3) = 1/2\n}\n\nvoid test_boolean_conversion()\
+      \ {\n    RationalInt r1(0, 1); // 0\n    RationalInt r2(1, 2); // 1/2\n\n  \
+      \  assert(!r1);\n    assert(r2);\n}\n\nvoid test_floating_point_conversion()\
+      \ {\n    RationalInt r1(1, 2); // 1/2\n    RationalInt r2(1, 3); // 1/3\n\n\
+      \    assert(abs(r1.to_double() - 0.5) < 1e-9);\n    assert(abs(r2.to_double()\
+      \ - (1.0 / 3.0)) < 1e-9);\n\n    assert(abs(r1.to_ldouble() - 0.5L) < 1e-15L);\n\
+      \    assert(abs(r2.to_ldouble() - (1.0L / 3.0L)) < 1e-15L);\n}\n\nvoid test_edge_cases()\
       \ {\n    // \u5206\u6BCD\u304C1\u306E\u5834\u5408\n    RationalInt r1(5, 1);\n\
-      \    assert(r1.a == 5 && r1.b == 1);\n    \n    // \u5927\u304D\u306AGCD\u306E\
-      \u5834\u5408\n    RationalInt r2(1000, 2000);\n    assert(r2.a == 1 && r2.b\
-      \ == 2);\n    \n    // 0\u306E\u5834\u5408\n    RationalInt r3(0, 5);\n    assert(r3.a\
-      \ == 0 && r3.b == 1);\n}\n\nvoid test_precision_edge_cases() {\n    // \u975E\
-      \u5E38\u306B\u5C0F\u3055\u306A\u5206\u6570\n    RationalInt r1(1LL, 1000000000LL);\n\
-      \    assert(r1.a == 1LL && r1.b == 1000000000LL);\n    \n    // \u5206\u5B50\
-      \u304C0\u306E\u30B1\u30FC\u30B9\n    RationalInt r2(0, 12345);\n    assert(r2.a\
-      \ == 0 && r2.b == 1);\n    \n    // \u5206\u5B50\u5206\u6BCD\u304C\u540C\u3058\
-      \u7B26\u53F7\n    RationalInt r3(-100, -200);\n    assert(r3.a == 1 && r3.b\
-      \ == 2);\n}\n\nvoid test_random_operations() {\n    // \u30E9\u30F3\u30C0\u30E0\
-      \u306A\u5206\u6570\u3067\u306E\u57FA\u672C\u6F14\u7B97\u30C6\u30B9\u30C8\uFF08\
-      1e6\u56DE\uFF09\n    for (int i = 0; i < 1000000; i++) {\n        int a1 = random::rng(-10000,\
+      \    assert(r1.a == 5 && r1.b == 1);\n\n    // \u5927\u304D\u306AGCD\u306E\u5834\
+      \u5408\n    RationalInt r2(1000, 2000);\n    assert(r2.a == 1 && r2.b == 2);\n\
+      \n    // 0\u306E\u5834\u5408\n    RationalInt r3(0, 5);\n    assert(r3.a ==\
+      \ 0 && r3.b == 1);\n}\n\nvoid test_precision_edge_cases() {\n    // \u975E\u5E38\
+      \u306B\u5C0F\u3055\u306A\u5206\u6570\n    RationalInt r1(1LL, 1000000000LL);\n\
+      \    assert(r1.a == 1LL && r1.b == 1000000000LL);\n\n    // \u5206\u5B50\u304C\
+      0\u306E\u30B1\u30FC\u30B9\n    RationalInt r2(0, 12345);\n    assert(r2.a ==\
+      \ 0 && r2.b == 1);\n\n    // \u5206\u5B50\u5206\u6BCD\u304C\u540C\u3058\u7B26\
+      \u53F7\n    RationalInt r3(-100, -200);\n    assert(r3.a == 1 && r3.b == 2);\n\
+      }\n\nvoid test_random_operations() {\n    // \u30E9\u30F3\u30C0\u30E0\u306A\u5206\
+      \u6570\u3067\u306E\u57FA\u672C\u6F14\u7B97\u30C6\u30B9\u30C8\uFF081e6\u56DE\uFF09\
+      \n    for (int i = 0; i < 1000000; i++) {\n        int a1 = random::rng(-10000,\
       \ 10001), b1 = random::rng(1, 10001);\n        int a2 = random::rng(-10000,\
-      \ 10001), b2 = random::rng(1, 10001);\n        \n        RationalInt r1(a1,\
-      \ b1), r2(a2, b2);\n        \n        // \u52A0\u6CD5\u306E\u9006\u5143\u30C6\
-      \u30B9\u30C8: r + (-r) = 0\n        assert((r1 + (-r1)).a == 0);\n        \n\
-      \        // \u4E57\u6CD5\u306E\u9006\u5143\u30C6\u30B9\u30C8: r * r.inv() =\
-      \ 1 (r != 0\u306E\u5834\u5408)\n        if (r1.a != 0) {\n            auto prod\
-      \ = r1 * r1.inv();\n            assert(prod.a == 1 && prod.b == 1);\n      \
-      \  }\n        \n        // \u4EA4\u63DB\u5F8B\u30C6\u30B9\u30C8: a + b = b +\
-      \ a, a * b = b * a\n        assert(r1 + r2 == r2 + r1);\n        assert(r1 *\
-      \ r2 == r2 * r1);\n        \n        // \u9664\u6CD5\u306E\u5B9A\u7FA9\u30C6\
-      \u30B9\u30C8: a / b = a * b.inv()\n        if (r2.a != 0) {\n            assert(r1\
-      \ / r2 == r1 * r2.inv());\n        }\n    }\n}\n\nvoid test_comparison_consistency()\
+      \ 10001), b2 = random::rng(1, 10001);\n\n        RationalInt r1(a1, b1), r2(a2,\
+      \ b2);\n\n        // \u52A0\u6CD5\u306E\u9006\u5143\u30C6\u30B9\u30C8: r + (-r)\
+      \ = 0\n        assert((r1 + (-r1)).a == 0);\n\n        // \u4E57\u6CD5\u306E\
+      \u9006\u5143\u30C6\u30B9\u30C8: r * r.inv() = 1 (r != 0\u306E\u5834\u5408)\n\
+      \        if (r1.a != 0) {\n            auto prod = r1 * r1.inv();\n        \
+      \    assert(prod.a == 1 && prod.b == 1);\n        }\n\n        // \u4EA4\u63DB\
+      \u5F8B\u30C6\u30B9\u30C8: a + b = b + a, a * b = b * a\n        assert(r1 +\
+      \ r2 == r2 + r1);\n        assert(r1 * r2 == r2 * r1);\n\n        // \u9664\u6CD5\
+      \u306E\u5B9A\u7FA9\u30C6\u30B9\u30C8: a / b = a * b.inv()\n        if (r2.a\
+      \ != 0) { assert(r1 / r2 == r1 * r2.inv()); }\n    }\n}\n\nvoid test_comparison_consistency()\
       \ {\n    // \u6BD4\u8F03\u6F14\u7B97\u5B50\u306E\u4E00\u8CAB\u6027\u30C6\u30B9\
       \u30C8\uFF081e6\u56DE\uFF09\n    for (int i = 0; i < 1000000; i++) {\n     \
       \   int a1 = random::rng(-10000, 10001), b1 = random::rng(1, 10001);\n     \
-      \   int a2 = random::rng(-10000, 10001), b2 = random::rng(1, 10001);\n     \
-      \   \n        RationalInt r1(a1, b1), r2(a2, b2);\n        \n        // \u4E09\
-      \u5206\u5F8B: r1 < r2, r1 == r2, r1 > r2 \u306E\u3046\u3061 exactly one \u304C\
-      \u771F\n        int count = 0;\n        if (r1 < r2) count++;\n        if (r1\
-      \ == r2) count++;\n        if (r1 > r2) count++;\n        assert(count == 1);\n\
-      \        \n        // \u63A8\u79FB\u5F8B\u306E\u4E00\u90E8: r1 <= r2 and r2\
-      \ <= r1 => r1 == r2\n        if (r1 <= r2 && r2 <= r1) {\n            assert(r1\
-      \ == r2);\n        }\n        \n        // \u53CD\u5BFE\u79F0\u6027: r1 < r2\
-      \ <=> r2 > r1\n        assert((r1 < r2) == (r2 > r1));\n        assert((r1 <=\
-      \ r2) == (r2 >= r1));\n    }\n}\n\nvoid test_overflow_safety() {\n    // \u30AA\
-      \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3092\u907F\u3051\u308B\u305F\u3081\u306E\
-      \u5883\u754C\u5024\u30C6\u30B9\u30C8\n    const int SAFE_MAX = 10000;  // \u5B89\
-      \u5168\u306A\u6700\u5927\u5024\n    \n    RationalInt r1(SAFE_MAX, 1);\n   \
-      \ RationalInt r2(1, SAFE_MAX);\n    \n    // \u5927\u304D\u306A\u6570\u540C\u58EB\
-      \u306E\u6F14\u7B97\n    auto sum = r1 + r2;  // SAFE_MAX + 1/SAFE_MAX\n    assert(sum.a\
-      \ == SAFE_MAX * SAFE_MAX + 1);\n    assert(sum.b == SAFE_MAX);\n    \n    //\
-      \ \u7D04\u5206\u304C\u6B63\u3057\u304F\u884C\u308F\u308C\u308B\u3053\u3068\u3092\
-      \u78BA\u8A8D\n    RationalInt r3(SAFE_MAX * 2, SAFE_MAX * 4);\n    assert(r3.a\
-      \ == 1 && r3.b == 2);\n}\n\nvoid test_double_conversion_accuracy() {\n    //\
-      \ \u6D6E\u52D5\u5C0F\u6570\u70B9\u5909\u63DB\u306E\u7CBE\u5EA6\u30C6\u30B9\u30C8\
-      \uFF081e6\u56DE\uFF09\n    for (int i = 0; i < 1000000; i++) {\n        int\
-      \ a = random::rng(-1000, 1001);\n        int b = random::rng(1, 1001);\n   \
-      \     \n        RationalInt r(a, b);\n        double expected = (double)a /\
-      \ b;\n        \n        assert(abs(r.to_double() - expected) < 1e-12);\n   \
-      \     \n        // long double\u7248\u3082\u78BA\u8A8D\n        long double\
-      \ expected_ld = (long double)a / b;\n        assert(abs(r.to_ldouble() - expected_ld)\
-      \ < 1e-15L);\n    }\n}\n\nvoid test_stress_large_numbers() {\n    // \u5927\u304D\
-      \u306A\u6570\u3067\u306E\u30B9\u30C8\u30EC\u30B9\u30C6\u30B9\u30C8\n    const\
-      \ long long BIG = 1000000007LL;\n    \n    RationalI64 r1(BIG, 1);\n    RationalI64\
-      \ r2(1, BIG);\n    \n    // \u5927\u304D\u306A\u6570\u540C\u58EB\u306E\u6F14\
-      \u7B97\n    auto sum = r1 + r2;\n    assert(sum.a == BIG * BIG + 1);\n    assert(sum.b\
-      \ == BIG);\n    \n    auto diff = r1 - r2;\n    assert(diff.a == BIG * BIG -\
-      \ 1);\n    assert(diff.b == BIG);\n    \n    auto prod = r1 * r2;\n    assert(prod.a\
-      \ == 1 && prod.b == 1);\n    \n    auto div = r1 / r2;\n    assert(div.a ==\
-      \ BIG * BIG && div.b == 1);\n}\n\nvoid test_special_rational_values() {\n  \
-      \  // \u7279\u6B8A\u306A\u6709\u7406\u6570\u5024\u306E\u30C6\u30B9\u30C8\n \
-      \   \n    // 1/1 = 1\n    RationalInt one(1, 1);\n    assert(one.a == 1 && one.b\
-      \ == 1);\n    \n    // \u4EFB\u610F\u306E\u6570\u306B1\u3092\u8DB3\u3059/\u5F15\
-      \u304F\n    RationalInt r(3, 7);\n    auto plus_one = r + one;\n    assert(plus_one.a\
-      \ == 10 && plus_one.b == 7);  // 3/7 + 1 = 10/7\n    \n    auto minus_one =\
-      \ r - one;\n    assert(minus_one.a == -4 && minus_one.b == 7);  // 3/7 - 1 =\
-      \ -4/7\n    \n    // 1/2\u306E\u7D2F\u4E57\n    RationalInt half(1, 2);\n  \
-      \  auto quarter = half * half;\n    assert(quarter.a == 1 && quarter.b == 4);\
-      \  // (1/2)^2 = 1/4\n    \n    auto eighth = quarter * half;\n    assert(eighth.a\
-      \ == 1 && eighth.b == 8);  // (1/4) * (1/2) = 1/8\n}\n\nvoid test_chain_operations()\
-      \ {\n    // \u9023\u7D9A\u6F14\u7B97\u306E\u30C6\u30B9\u30C8\uFF081e6\u56DE\uFF09\
-      \n    for (int i = 0; i < 1000000; i++) {\n        RationalInt result(1, 1);\
-      \  // 1\u304B\u3089\u958B\u59CB\n        \n        // \u5404\u30C6\u30B9\u30C8\
-      \u30B1\u30FC\u30B9\u306710\u56DE\u306E\u9023\u7D9A\u6F14\u7B97\n        for\
-      \ (int j = 0; j < 10; j++) {\n            int op = random::rng(0, 4);  // 0:+,\
-      \ 1:-, 2:*, 3:/\n            int a = random::rng(-10, 11);\n            int\
-      \ b = random::rng(1, 11);\n            \n            RationalInt operand(a,\
-      \ b);\n            \n            switch (op) {\n                case 0: result\
-      \ += operand; break;\n                case 1: result -= operand; break;\n  \
-      \              case 2: result *= operand; break;\n                case 3:\n\
-      \                    if (operand.a != 0) {\n                        result /=\
-      \ operand;\n                    }\n                    break;\n            }\n\
-      \            \n            // \u7D50\u679C\u304C\u6B63\u898F\u5316\u3055\u308C\
-      \u3066\u3044\u308B\u3053\u3068\u3092\u78BA\u8A8D\n            assert(result.b\
-      \ > 0);\n            assert(std::gcd(abs(result.a), result.b) == 1);\n     \
-      \   }\n    }\n}\n\nint main() {\n    cerr << \"Starting comprehensive rational\
-      \ number tests...\" << endl;\n\n    // \u57FA\u672C\u30C6\u30B9\u30C8\u5B9F\u884C\
-      \n    cerr << \"Running basic functionality tests...\" << endl;\n    test_constructor();\n\
-      \    test_arithmetic();\n    test_comparison();\n    test_unary_operations();\n\
-      \    test_assignment_operators();\n    test_boolean_conversion();\n    test_floating_point_conversion();\n\
-      \    test_edge_cases();\n    \n    // \u5883\u754C\u5024\u30FB\u30E9\u30F3\u30C0\
-      \u30E0\u30C6\u30B9\u30C8\u5B9F\u884C\n    cerr << \"Running boundary value and\
-      \ random tests...\" << endl;\n    test_precision_edge_cases();\n    test_random_operations();\n\
-      \    test_comparison_consistency();\n    test_overflow_safety();\n    test_double_conversion_accuracy();\n\
-      \    \n    // \u8FFD\u52A0\u306E\u53B3\u5BC6\u30C6\u30B9\u30C8\n    cerr <<\
-      \ \"Running stress and edge case tests...\" << endl;\n    test_stress_large_numbers();\n\
-      \    test_special_rational_values();\n    test_chain_operations();\n    \n \
-      \   // \u3059\u3079\u3066\u306E\u30C6\u30B9\u30C8\u304C\u901A\u3063\u305F\u5834\
-      \u5408\n    cerr << endl << \"=== ALL RATIONAL TESTS PASSED ===\" << endl;\n\
-      \    cerr << \"All tests completed successfully!\" << endl;\n\n    return 0;\n\
-      }\n"
+      \   int a2 = random::rng(-10000, 10001), b2 = random::rng(1, 10001);\n\n   \
+      \     RationalInt r1(a1, b1), r2(a2, b2);\n\n        // \u4E09\u5206\u5F8B:\
+      \ r1 < r2, r1 == r2, r1 > r2 \u306E\u3046\u3061 exactly one \u304C\u771F\n \
+      \       int count = 0;\n        if (r1 < r2) count++;\n        if (r1 == r2)\
+      \ count++;\n        if (r1 > r2) count++;\n        assert(count == 1);\n\n \
+      \       // \u63A8\u79FB\u5F8B\u306E\u4E00\u90E8: r1 <= r2 and r2 <= r1 => r1\
+      \ == r2\n        if (r1 <= r2 && r2 <= r1) { assert(r1 == r2); }\n\n       \
+      \ // \u53CD\u5BFE\u79F0\u6027: r1 < r2 <=> r2 > r1\n        assert((r1 < r2)\
+      \ == (r2 > r1));\n        assert((r1 <= r2) == (r2 >= r1));\n    }\n}\n\nvoid\
+      \ test_overflow_safety() {\n    // \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
+      \u3092\u907F\u3051\u308B\u305F\u3081\u306E\u5883\u754C\u5024\u30C6\u30B9\u30C8\
+      \n    const int SAFE_MAX = 10000; // \u5B89\u5168\u306A\u6700\u5927\u5024\n\n\
+      \    RationalInt r1(SAFE_MAX, 1);\n    RationalInt r2(1, SAFE_MAX);\n\n    //\
+      \ \u5927\u304D\u306A\u6570\u540C\u58EB\u306E\u6F14\u7B97\n    auto sum = r1\
+      \ + r2; // SAFE_MAX + 1/SAFE_MAX\n    assert(sum.a == SAFE_MAX * SAFE_MAX +\
+      \ 1);\n    assert(sum.b == SAFE_MAX);\n\n    // \u7D04\u5206\u304C\u6B63\u3057\
+      \u304F\u884C\u308F\u308C\u308B\u3053\u3068\u3092\u78BA\u8A8D\n    RationalInt\
+      \ r3(SAFE_MAX * 2, SAFE_MAX * 4);\n    assert(r3.a == 1 && r3.b == 2);\n}\n\n\
+      void test_double_conversion_accuracy() {\n    // \u6D6E\u52D5\u5C0F\u6570\u70B9\
+      \u5909\u63DB\u306E\u7CBE\u5EA6\u30C6\u30B9\u30C8\uFF081e6\u56DE\uFF09\n    for\
+      \ (int i = 0; i < 1000000; i++) {\n        int a = random::rng(-1000, 1001);\n\
+      \        int b = random::rng(1, 1001);\n\n        RationalInt r(a, b);\n   \
+      \     double expected = (double)a / b;\n\n        assert(abs(r.to_double() -\
+      \ expected) < 1e-12);\n\n        // long double\u7248\u3082\u78BA\u8A8D\n  \
+      \      long double expected_ld = (long double)a / b;\n        assert(abs(r.to_ldouble()\
+      \ - expected_ld) < 1e-15L);\n    }\n}\n\nvoid test_stress_large_numbers() {\n\
+      \    // \u5927\u304D\u306A\u6570\u3067\u306E\u30B9\u30C8\u30EC\u30B9\u30C6\u30B9\
+      \u30C8\n    const long long BIG = 1000000007LL;\n\n    RationalI64 r1(BIG, 1);\n\
+      \    RationalI64 r2(1, BIG);\n\n    // \u5927\u304D\u306A\u6570\u540C\u58EB\u306E\
+      \u6F14\u7B97\n    auto sum = r1 + r2;\n    assert(sum.a == BIG * BIG + 1);\n\
+      \    assert(sum.b == BIG);\n\n    auto diff = r1 - r2;\n    assert(diff.a ==\
+      \ BIG * BIG - 1);\n    assert(diff.b == BIG);\n\n    auto prod = r1 * r2;\n\
+      \    assert(prod.a == 1 && prod.b == 1);\n\n    auto div = r1 / r2;\n    assert(div.a\
+      \ == BIG * BIG && div.b == 1);\n}\n\nvoid test_special_rational_values() {\n\
+      \    // \u7279\u6B8A\u306A\u6709\u7406\u6570\u5024\u306E\u30C6\u30B9\u30C8\n\
+      \n    // 1/1 = 1\n    RationalInt one(1, 1);\n    assert(one.a == 1 && one.b\
+      \ == 1);\n\n    // \u4EFB\u610F\u306E\u6570\u306B1\u3092\u8DB3\u3059/\u5F15\u304F\
+      \n    RationalInt r(3, 7);\n    auto plus_one = r + one;\n    assert(plus_one.a\
+      \ == 10 && plus_one.b == 7); // 3/7 + 1 = 10/7\n\n    auto minus_one = r - one;\n\
+      \    assert(minus_one.a == -4 && minus_one.b == 7); // 3/7 - 1 = -4/7\n\n  \
+      \  // 1/2\u306E\u7D2F\u4E57\n    RationalInt half(1, 2);\n    auto quarter =\
+      \ half * half;\n    assert(quarter.a == 1 && quarter.b == 4); // (1/2)^2 = 1/4\n\
+      \n    auto eighth = quarter * half;\n    assert(eighth.a == 1 && eighth.b ==\
+      \ 8); // (1/4) * (1/2) = 1/8\n}\n\nvoid test_chain_operations() {\n    // \u9023\
+      \u7D9A\u6F14\u7B97\u306E\u30C6\u30B9\u30C8\uFF081e6\u56DE\uFF09\n    for (int\
+      \ i = 0; i < 1000000; i++) {\n        RationalInt result(1, 1); // 1\u304B\u3089\
+      \u958B\u59CB\n\n        // \u5404\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\
+      10\u56DE\u306E\u9023\u7D9A\u6F14\u7B97\n        for (int j = 0; j < 10; j++)\
+      \ {\n            int op = random::rng(0, 4); // 0:+, 1:-, 2:*, 3:/\n       \
+      \     int a = random::rng(-10, 11);\n            int b = random::rng(1, 11);\n\
+      \n            RationalInt operand(a, b);\n\n            switch (op) {\n    \
+      \        case 0:\n                result += operand;\n                break;\n\
+      \            case 1:\n                result -= operand;\n                break;\n\
+      \            case 2:\n                result *= operand;\n                break;\n\
+      \            case 3:\n                if (operand.a != 0) { result /= operand;\
+      \ }\n                break;\n            }\n\n            // \u7D50\u679C\u304C\
+      \u6B63\u898F\u5316\u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u78BA\u8A8D\
+      \n            assert(result.b > 0);\n            assert(std::gcd(abs(result.a),\
+      \ result.b) == 1);\n        }\n    }\n}\n\nint main() {\n    cerr << \"Starting\
+      \ comprehensive rational number tests...\" << endl;\n\n    // \u57FA\u672C\u30C6\
+      \u30B9\u30C8\u5B9F\u884C\n    cerr << \"Running basic functionality tests...\"\
+      \ << endl;\n    test_constructor();\n    test_arithmetic();\n    test_comparison();\n\
+      \    test_unary_operations();\n    test_assignment_operators();\n    test_boolean_conversion();\n\
+      \    test_floating_point_conversion();\n    test_edge_cases();\n\n    // \u5883\
+      \u754C\u5024\u30FB\u30E9\u30F3\u30C0\u30E0\u30C6\u30B9\u30C8\u5B9F\u884C\n \
+      \   cerr << \"Running boundary value and random tests...\" << endl;\n    test_precision_edge_cases();\n\
+      \    test_random_operations();\n    test_comparison_consistency();\n    test_overflow_safety();\n\
+      \    test_double_conversion_accuracy();\n\n    // \u8FFD\u52A0\u306E\u53B3\u5BC6\
+      \u30C6\u30B9\u30C8\n    cerr << \"Running stress and edge case tests...\" <<\
+      \ endl;\n    test_stress_large_numbers();\n    test_special_rational_values();\n\
+      \    test_chain_operations();\n\n    // \u3059\u3079\u3066\u306E\u30C6\u30B9\
+      \u30C8\u304C\u901A\u3063\u305F\u5834\u5408\n    cerr << endl << \"=== ALL RATIONAL\
+      \ TESTS PASSED ===\" << endl;\n    cerr << \"All tests completed successfully!\"\
+      \ << endl;\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -686,7 +681,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/rational.test.cpp

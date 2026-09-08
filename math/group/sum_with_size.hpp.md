@@ -19,6 +19,9 @@ data:
     - filename: update_sumwithsize.hpp
       icon: LIBRARY_ALL_AC
       path: math/action/update_sumwithsize.hpp
+    - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     type: Required by
   - files:
     - filename: action.test.cpp
@@ -30,9 +33,6 @@ data:
     - filename: algebra.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/algebra/algebra.test.cpp
-    - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     - filename: ds_range_affine_range_sum.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
@@ -53,31 +53,33 @@ data:
       \ }\n    inline static M inv(M x) { return M(-x.a, -x.size); }\n    inline static\
       \ M unit() { return M(); }\n    bool operator==(const M &rhs) const { return\
       \ a == rhs.a and size == rhs.size; }\n    bool operator!=(const M &rhs) const\
-      \ { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const M &x) {\n        return os\
-      \ << x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n \
-      \       x.size = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\
-      \n} // namespace kk2\n\n#endif // KK2_MATH_GROUP_SUM_WITH_SIZE_HPP\n"
+      \ { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const M &x) {\n        return os <<\
+      \ x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.size\
+      \ = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\n} // namespace\
+      \ kk2\n\n#endif // KK2_MATH_GROUP_SUM_WITH_SIZE_HPP\n"
     name: default
   - code: "#line 1 \"math/group/sum_with_size.hpp\"\n\n\n\n#line 1 \"type_traits/io.hpp\"\
       \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
       \ <ostream>\n#include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits\
       \ {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -95,12 +97,12 @@ data:
       \ }\n    inline static M inv(M x) { return M(-x.a, -x.size); }\n    inline static\
       \ M unit() { return M(); }\n    bool operator==(const M &rhs) const { return\
       \ a == rhs.a and size == rhs.size; }\n    bool operator!=(const M &rhs) const\
-      \ { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const M &x) {\n        return os\
-      \ << x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n \
-      \       x.size = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\
-      \n} // namespace kk2\n\n\n"
+      \ { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const M &x) {\n        return os <<\
+      \ x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.size\
+      \ = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\n} // namespace\
+      \ kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
@@ -110,13 +112,13 @@ data:
   - math/action/add_sumwithsize.hpp
   - math/action/affine_sumwithsize.hpp
   - math/action/update_sumwithsize.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/action/action.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/type_traits/algebra/algebra.test.cpp
-  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
 documentation_of: math/group/sum_with_size.hpp

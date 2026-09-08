@@ -37,7 +37,7 @@ data:
       \ -ima[i];\n    }\n    std::vector<mint> ret = BBB(ima, f);\n    for (int i\
       \ = 0; i < n; i++) ret[i] *= -a[i] * prod;\n    return ret;\n}\n\n// f(X) /\
       \ \\prod (X - a_i)^d_i =  \\sum c_i,j / (X - a_i)^j\n// return {c_i,j}\ntemplate\
-      \ <class FPS, class mint = typename FPS::value_type> std::vector<std::vector<mint>>\n\
+      \ <class FPS, class mint = typename FPS::value_type>\nstd::vector<std::vector<mint>>\n\
       BBB(const std::vector<mint> &a, const std::vector<mint> &d, const FPS &f) {\n\
       \    // hoge\n}\n\n} // namespace kk2\n\n#endif // KK2_FPS_BBB_HPP\n"
     name: default
@@ -87,7 +87,7 @@ data:
       \ -ima[i];\n    }\n    std::vector<mint> ret = BBB(ima, f);\n    for (int i\
       \ = 0; i < n; i++) ret[i] *= -a[i] * prod;\n    return ret;\n}\n\n// f(X) /\
       \ \\prod (X - a_i)^d_i =  \\sum c_i,j / (X - a_i)^j\n// return {c_i,j}\ntemplate\
-      \ <class FPS, class mint = typename FPS::value_type> std::vector<std::vector<mint>>\n\
+      \ <class FPS, class mint = typename FPS::value_type>\nstd::vector<std::vector<mint>>\n\
       BBB(const std::vector<mint> &a, const std::vector<mint> &d, const FPS &f) {\n\
       \    // hoge\n}\n\n} // namespace kk2\n\n\n"
     name: bundled
@@ -96,7 +96,7 @@ data:
   path: fps/bbb.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yuki/yuki_1510.test.cpp

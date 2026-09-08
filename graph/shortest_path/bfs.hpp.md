@@ -23,12 +23,12 @@ data:
       \ {\n        int now = q.front();\n        q.pop();\n        for (auto e : g[now])\
       \ {\n            if (dist[e.to] != init) continue;\n            dist[e.to] =\
       \ dist[now] + 1;\n            q.push(e.to);\n        }\n    }\n}\n\ntemplate\
-      \ <graph::WeightedGraph G>\nvoid bfs(const G &g, std::queue<int> &q, std::vector<typename\
-      \ G::value_type> &dist,\n         typename G::value_type init) {\n    while\
-      \ (!q.empty()) {\n        int now = q.front();\n        q.pop();\n        for\
-      \ (auto e : g[now]) {\n            if (dist[e.to] != init) continue;\n     \
-      \       dist[e.to] = dist[now] + e.cost;\n            q.push(e.to);\n      \
-      \  }\n    }\n}\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_SHORTEST_PATH_BFS_HPP\n"
+      \ <graph::WeightedGraph G>\nvoid bfs(const G &g,\n         std::queue<int> &q,\n\
+      \         std::vector<typename G::value_type> &dist,\n         typename G::value_type\
+      \ init) {\n    while (!q.empty()) {\n        int now = q.front();\n        q.pop();\n\
+      \        for (auto e : g[now]) {\n            if (dist[e.to] != init) continue;\n\
+      \            dist[e.to] = dist[now] + e.cost;\n            q.push(e.to);\n \
+      \       }\n    }\n}\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_SHORTEST_PATH_BFS_HPP\n"
     name: default
   - code: "#line 1 \"graph/shortest_path/bfs.hpp\"\n\n\n\n#include <queue>\n#include\
       \ <vector>\n\n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#include <concepts>\n\
@@ -37,9 +37,8 @@ data:
       \ } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
       \    { e.id } -> std::convertible_to<int>;\n};\n\ntemplate <class E>\nconcept\
       \ WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };\n\ntemplate <class\
-      \ R>\nconcept EdgeRange = std::ranges::input_range<R> &&\n                 \
-      \   Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept WeightedEdgeRange\
-      \ = EdgeRange<R> &&\n                            WeightedEdge<std::ranges::range_value_t<R>>;\n\
+      \ R>\nconcept EdgeRange = std::ranges::input_range<R> && Edge<std::ranges::range_value_t<R>>;\n\
+      \ntemplate <class R>\nconcept WeightedEdgeRange = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\
       \ntemplate <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
       \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
       \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
@@ -52,10 +51,10 @@ data:
       \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
       \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
       \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
-      };\n\ntemplate <class G>\nconcept WeightedGraph = AdjacencyGraph<G> && G::weighted\
-      \ &&\n                        WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph = EdgeListGraph<G>\
-      \ && G::weighted &&\n                                WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      };\n\ntemplate <class G>\nconcept WeightedGraph =\n    AdjacencyGraph<G> &&\
+      \ G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph =\n   \
+      \ EdgeListGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
       \ && (!G::weighted);\n\ntemplate <class G>\nconcept DirectedGraph = AdjacencyGraph<G>\
       \ && G::directed;\n\ntemplate <class G>\nconcept UndirectedGraph = AdjacencyGraph<G>\
@@ -75,19 +74,19 @@ data:
       \ {\n        int now = q.front();\n        q.pop();\n        for (auto e : g[now])\
       \ {\n            if (dist[e.to] != init) continue;\n            dist[e.to] =\
       \ dist[now] + 1;\n            q.push(e.to);\n        }\n    }\n}\n\ntemplate\
-      \ <graph::WeightedGraph G>\nvoid bfs(const G &g, std::queue<int> &q, std::vector<typename\
-      \ G::value_type> &dist,\n         typename G::value_type init) {\n    while\
-      \ (!q.empty()) {\n        int now = q.front();\n        q.pop();\n        for\
-      \ (auto e : g[now]) {\n            if (dist[e.to] != init) continue;\n     \
-      \       dist[e.to] = dist[now] + e.cost;\n            q.push(e.to);\n      \
-      \  }\n    }\n}\n\n} // namespace kk2\n\n\n"
+      \ <graph::WeightedGraph G>\nvoid bfs(const G &g,\n         std::queue<int> &q,\n\
+      \         std::vector<typename G::value_type> &dist,\n         typename G::value_type\
+      \ init) {\n    while (!q.empty()) {\n        int now = q.front();\n        q.pop();\n\
+      \        for (auto e : g[now]) {\n            if (dist[e.to] != init) continue;\n\
+      \            dist[e.to] = dist[now] + e.cost;\n            q.push(e.to);\n \
+      \       }\n    }\n}\n\n} // namespace kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
   path: graph/shortest_path/bfs.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/shortest_path/bfs.hpp

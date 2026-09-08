@@ -645,11 +645,6 @@ data:
       - filename: seed.hpp
         icon: LIBRARY_ALL_AC
         path: random/seed.hpp
-    - name: scripts/
-      pages:
-      - filename: add_standalone_timeout.py
-        icon: LIBRARY_NO_TESTS
-        path: scripts/add_standalone_timeout.py
     - name: segment_tree/
       pages:
       - filename: beats.hpp
@@ -771,11 +766,45 @@ data:
       - filename: unionfind.hpp
         icon: LIBRARY_ALL_AC
         path: unionfind/unionfind.hpp
+    - name: verify/aoj/
+      pages:
+      - filename: aoj_alds1_14_b.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/aoj/aoj_alds1_14_b.test.cpp
+    - name: verify/yosupo_ds/
+      pages:
+      - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+      - filename: ds_point_set_range_composite_large_2.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+      - filename: ds_potentiailized_uf_non_commutattive.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     - name: verify/yosupo_fps/
       pages:
+      - filename: fps_composition.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/yosupo_fps/fps_composition.test.cpp
+      - filename: fps_composition_inv.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/yosupo_fps/fps_composition_inv.test.cpp
       - filename: fps_exp_arb.test.cpp
         icon: LIBRARY_NO_TESTS
         path: verify/yosupo_fps/fps_exp_arb.test.cpp
+      - filename: fps_multipoint_evaluation_geometric.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+      - filename: poly_interpolation_geometric.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+      - filename: poly_sample_point_shift.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+      - filename: poly_to_newton_basis.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     - name: verify/yosupo_graph/
       pages:
       - filename: tree_vertex_set_path_composite_1.test.cpp
@@ -799,9 +828,6 @@ data:
       - filename: aoj_0560_2.test.cpp
         icon: TEST_ACCEPTED
         path: verify/aoj/aoj_0560_2.test.cpp
-      - filename: aoj_alds1_14_b.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/aoj/aoj_alds1_14_b.test.cpp
       - filename: aoj_grl_1_b.test.cpp
         icon: TEST_ACCEPTED
         path: verify/aoj/aoj_grl_1_b.test.cpp
@@ -950,9 +976,6 @@ data:
         path: verify/yosupo_convolution/convolution_xor.test.cpp
     - name: verify/yosupo_ds/
       pages:
-      - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
       - filename: ds_ordered_set_binary_trie.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
@@ -971,12 +994,6 @@ data:
       - filename: ds_point_set_range_composite_2.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-      - filename: ds_point_set_range_composite_large_2.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
-      - filename: ds_potentiailized_uf_non_commutattive.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
       - filename: ds_potentialized_unionfind.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
@@ -1024,12 +1041,6 @@ data:
         path: verify/yosupo_ds/ds_unionfind.test.cpp
     - name: verify/yosupo_fps/
       pages:
-      - filename: fps_composition.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/yosupo_fps/fps_composition.test.cpp
-      - filename: fps_composition_inv.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/yosupo_fps/fps_composition_inv.test.cpp
       - filename: fps_exp.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/fps_exp.test.cpp
@@ -1048,9 +1059,6 @@ data:
       - filename: fps_multipoint_evaluation.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-      - filename: fps_multipoint_evaluation_geometric.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
       - filename: fps_pow.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/fps_pow.test.cpp
@@ -1081,24 +1089,15 @@ data:
       - filename: poly_interpolation.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/poly_interpolation.test.cpp
-      - filename: poly_interpolation_geometric.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
       - filename: poly_inv.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/poly_inv.test.cpp
       - filename: poly_root_finding.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/poly_root_finding.test.cpp
-      - filename: poly_sample_point_shift.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
       - filename: poly_taylor_shift.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/poly_taylor_shift.test.cpp
-      - filename: poly_to_newton_basis.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     - name: verify/yosupo_geometry/
       pages:
       - filename: arg_sort.test.cpp
@@ -1312,5 +1311,7 @@ data:
 layout: toppage
 ---
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kk2a/library?style=flat-square)
+
+[Standalone coverage report](coverage/)
 
 ああああああああああ

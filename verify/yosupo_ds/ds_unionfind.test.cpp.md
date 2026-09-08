@@ -52,11 +52,11 @@ data:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/unionfind\n\
       \n#include \"../../template/template.hpp\"\n#include \"../../unionfind/unionfind.hpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
-      \    kk2::UnionFind uf(n);\n\n    rep (q) {\n        int t;\n        kin >>\
-      \ t;\n        if (t == 0) {\n            int u, v;\n            kin >> u >>\
-      \ v;\n            uf.unite(u, v);\n        }\n        if (t == 1) {\n      \
-      \      int u, v;\n            kin >> u >> v;\n            kout << uf.same(u,\
-      \ v) << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
+      \    kk2::UnionFind uf(n);\n\n    rep(q) {\n        int t;\n        kin >> t;\n\
+      \        if (t == 0) {\n            int u, v;\n            kin >> u >> v;\n\
+      \            uf.unite(u, v);\n        }\n        if (t == 1) {\n           \
+      \ int u, v;\n            kin >> u >> v;\n            kout << uf.same(u, v) <<\
+      \ \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_ds/ds_unionfind.test.cpp\"\n// competitive-verifier:\
       \ PROBLEM https://judge.yosupo.jp/problem/unionfind\n\n#line 1 \"template/template.hpp\"\
@@ -87,30 +87,32 @@ data:
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
       \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -125,20 +127,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -273,7 +277,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -314,11 +318,11 @@ data:
       \       return d[x] = find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)];\
       \ }\n};\n\n} // namespace kk2\n\n\n#line 5 \"verify/yosupo_ds/ds_unionfind.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
-      \    kk2::UnionFind uf(n);\n\n    rep (q) {\n        int t;\n        kin >>\
-      \ t;\n        if (t == 0) {\n            int u, v;\n            kin >> u >>\
-      \ v;\n            uf.unite(u, v);\n        }\n        if (t == 1) {\n      \
-      \      int u, v;\n            kin >> u >> v;\n            kout << uf.same(u,\
-      \ v) << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
+      \    kk2::UnionFind uf(n);\n\n    rep(q) {\n        int t;\n        kin >> t;\n\
+      \        if (t == 0) {\n            int u, v;\n            kin >> u >> v;\n\
+      \            uf.unite(u, v);\n        }\n        if (t == 1) {\n           \
+      \ int u, v;\n            kin >> u >> v;\n            kout << uf.same(u, v) <<\
+      \ \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -326,97 +330,97 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0026626079999800822
+  - elapsed: 0.003052292999996098
     environment: g++
-    memory: 3.76
+    memory: 3.616
     name: example_00
     status: AC
-  - elapsed: 0.04933134399999517
+  - elapsed: 0.05429396700000666
     environment: g++
-    memory: 4.12
+    memory: 4.076
     name: max_random_00
     status: AC
-  - elapsed: 0.05058410199998775
+  - elapsed: 0.05424326600000029
     environment: g++
-    memory: 4.216
+    memory: 4.244
     name: max_random_01
     status: AC
-  - elapsed: 0.046203703000003316
+  - elapsed: 0.05030231799999285
     environment: g++
-    memory: 4.068
+    memory: 4.064
     name: max_random_02
     status: AC
-  - elapsed: 0.04571758200000886
+  - elapsed: 0.050100544000002856
     environment: g++
-    memory: 4.344
+    memory: 4.34
     name: path_00
     status: AC
-  - elapsed: 0.044486258000006274
+  - elapsed: 0.04715884100001233
     environment: g++
-    memory: 4.332
+    memory: 4.336
     name: path_01
     status: AC
-  - elapsed: 0.04787972999997692
-    environment: g++
-    memory: 4.2
-    name: path_02
-    status: AC
-  - elapsed: 0.044308995999983836
+  - elapsed: 0.05041119199999855
     environment: g++
     memory: 4.252
+    name: path_02
+    status: AC
+  - elapsed: 0.047764683999986346
+    environment: g++
+    memory: 4.216
     name: path_03
     status: AC
-  - elapsed: 0.03692719700001135
+  - elapsed: 0.03941500400000564
     environment: g++
-    memory: 4.084
+    memory: 4.068
     name: random_00
     status: AC
-  - elapsed: 0.03764926799999557
+  - elapsed: 0.0399344970000044
     environment: g++
-    memory: 4.2
+    memory: 4.216
     name: random_01
     status: AC
-  - elapsed: 0.029639884999994592
+  - elapsed: 0.031966651999994156
     environment: g++
-    memory: 4.06
+    memory: 4.144
     name: random_02
     status: AC
-  - elapsed: 0.009083825000004708
+  - elapsed: 0.009688315999994757
     environment: g++
     memory: 4.124
     name: random_03
     status: AC
-  - elapsed: 0.023433409999995547
+  - elapsed: 0.025650976999997965
     environment: g++
-    memory: 4.024
+    memory: 4.02
     name: random_04
     status: AC
-  - elapsed: 0.03355141400001571
+  - elapsed: 0.0365419759999952
     environment: g++
-    memory: 4.08
+    memory: 3.924
     name: random_05
     status: AC
-  - elapsed: 0.027215306000016426
+  - elapsed: 0.029758955999994896
     environment: g++
     memory: 4.38
     name: random_06
     status: AC
-  - elapsed: 0.005135687000006328
+  - elapsed: 0.005690925000010338
     environment: g++
-    memory: 3.9
+    memory: 3.94
     name: random_07
     status: AC
-  - elapsed: 0.012014659000016081
+  - elapsed: 0.013567351000006056
     environment: g++
-    memory: 3.904
+    memory: 3.696
     name: random_08
     status: AC
-  - elapsed: 0.04678070199997819
+  - elapsed: 0.05107139599999755
     environment: g++
-    memory: 4.088
+    memory: 3.996
     name: random_09
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_unionfind.test.cpp

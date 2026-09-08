@@ -70,42 +70,104 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum\n\
-      \n#include \"../../modint/mont.hpp\"\n#include \"../../math/action/affine_sumwithsize.hpp\"\
+      \n#include \"../../math/action/affine_sumwithsize.hpp\"\n#include \"../../modint/mont.hpp\"\
       \n#include \"../../segment_tree/lazy.hpp\"\n#include \"../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    using A = kk2::action::AffineSumWithSize<kk2::mont998,\
       \ kk2::mont998>;\n    int n, q;\n    kin >> n >> q;\n    vc<A::S> a(n);\n  \
-      \  kin >> a;\n    kk2::LazySegmentTree<A> seg(a);\n\n    rep (q) {\n       \
-      \ int t;\n        kin >> t;\n        if (t == 0) {\n            int l, r;\n\
-      \            kk2::mont998 b, c;\n            kin >> l >> r >> b >> c;\n    \
-      \        seg.apply_range(l, r, b, c);\n        }\n        if (t == 1) {\n  \
-      \          int l, r;\n            kin >> l >> r;\n            kout << seg.prod(l,\
+      \  kin >> a;\n    kk2::LazySegmentTree<A> seg(a);\n\n    rep(q) {\n        int\
+      \ t;\n        kin >> t;\n        if (t == 0) {\n            int l, r;\n    \
+      \        kk2::mont998 b, c;\n            kin >> l >> r >> b >> c;\n        \
+      \    seg.apply_range(l, r, b, c);\n        }\n        if (t == 1) {\n      \
+      \      int l, r;\n            kin >> l >> r;\n            kout << seg.prod(l,\
       \ r).a << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_ds/ds_range_affine_range_sum.test.cpp\"\n// competitive-verifier:\
       \ PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum\n\n#line 1\
-      \ \"modint/mont.hpp\"\n\n\n\n#include <cassert>\n#include <cstdint>\n#include\
-      \ <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\
-      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ \"math/action/affine_sumwithsize.hpp\"\n\n\n\n#line 1 \"math/group/sum_with_size.hpp\"\
+      \n\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include\
+      \ <fstream>\n#include <istream>\n#include <ostream>\n#include <type_traits>\n\
+      \nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
+      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 5 \"math/group/sum_with_size.hpp\"\n\nnamespace\
+      \ kk2 {\n\nnamespace group {\n\ntemplate <class S, class T = S> struct SumWithSize\
+      \ {\n    static constexpr bool commutative = true;\n    using M = SumWithSize;\n\
+      \    S a;\n    T size;\n\n    SumWithSize() : a(S()), size(0) {}\n    SumWithSize(S\
+      \ a_, S size_ = T(1)) : a(a_), size(size_) {}\n    operator S() const { return\
+      \ a; }\n    inline static M op(M l, M r) { return M(l.a + r.a, l.size + r.size);\
+      \ }\n    inline static M inv(M x) { return M(-x.a, -x.size); }\n    inline static\
+      \ M unit() { return M(); }\n    bool operator==(const M &rhs) const { return\
+      \ a == rhs.a and size == rhs.size; }\n    bool operator!=(const M &rhs) const\
+      \ { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const M &x) {\n        return os <<\
+      \ x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.size\
+      \ = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\n\n\n\n#line 5 \"math/monoid/affine.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Affine\
+      \ {\n    static constexpr bool commutative = false;\n    using M = Affine;\n\
+      \    S a, b; // x \\mapsto ax + b\n\n    Affine() : a(S(1)), b(S(0)){};\n  \
+      \  Affine(S a, S b) : a(a), b(b) {}\n    inline S eval(S x) const { return a\
+      \ * x + b; }\n    // l \\circ r\n    inline static M op(M l, M r) { return M(l.a\
+      \ * r.a, l.a * r.b + l.b); }\n    inline static M unit() { return M(); }\n \
+      \   inline static M inv(M f) { return M(S(1) / f.a, -f.b / f.a); }\n    bool\
+      \ operator==(const M &rhs) const { return a == rhs.a and b == rhs.b; }\n   \
+      \ bool operator!=(const M &rhs) const { return a != rhs.a or b != rhs.b; }\n\
+      \n    template <OutputStream OStream> friend OStream &operator<<(OStream &os,\
+      \ const M &x) {\n        return os << x.a << \" \" << x.b;\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, M &x) {\n  \
+      \      return is >> x.a >> x.b;\n    }\n};\n\n} // namespace monoid\n\n} //\
+      \ namespace kk2\n\n\n#line 6 \"math/action/affine_sumwithsize.hpp\"\n\nnamespace\
+      \ kk2 {\n\nnamespace action {\n\ntemplate <class T, class U> struct AffineSumWithSize\
+      \ {\n    using A = monoid::Affine<T>;\n    using S = group::SumWithSize<T, U>;\n\
+      \n    inline static S act(A f, S x) { return S(f.a * x.a + f.b * x.size, x.size);\
+      \ }\n};\n\n} // namespace action\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\
+      \n\n\n\n#include <cassert>\n#include <cstdint>\n#include <iostream>\n#line 8\
+      \ \"modint/mont.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5\
+      \ \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -120,32 +182,6 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
-      #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 11 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\n\
       template <int p> struct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
       \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
@@ -155,8 +191,8 @@ data:
       \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
       );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
       \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\n\
-      \        : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
+      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
+      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
       \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
       \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
       \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
@@ -183,79 +219,46 @@ data:
       \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
       \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
       \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
-      \ - 2);\n    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, mint &x)\
-      \ {\n        i64 t;\n        is >> t;\n        x = mint(t);\n        return\
-      \ (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n\
-      \        return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n \
+      \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
-      \ namespace kk2\n\n\n#line 1 \"math/action/affine_sumwithsize.hpp\"\n\n\n\n\
-      #line 1 \"math/group/sum_with_size.hpp\"\n\n\n\n#line 5 \"math/group/sum_with_size.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace group {\n\ntemplate <class S, class T = S>\
-      \ struct SumWithSize {\n    static constexpr bool commutative = true;\n    using\
-      \ M = SumWithSize;\n    S a;\n    T size;\n\n    SumWithSize() : a(S()), size(0)\
-      \ {}\n    SumWithSize(S a_, S size_ = T(1)) : a(a_), size(size_) {}\n    operator\
-      \ S() const { return a; }\n    inline static M op(M l, M r) { return M(l.a +\
-      \ r.a, l.size + r.size); }\n    inline static M inv(M x) { return M(-x.a, -x.size);\
-      \ }\n    inline static M unit() { return M(); }\n    bool operator==(const M\
-      \ &rhs) const { return a == rhs.a and size == rhs.size; }\n    bool operator!=(const\
-      \ M &rhs) const { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream\
-      \ OStream>\n    friend OStream &operator<<(OStream &os, const M &x) {\n    \
-      \    return os << x.a << \" \" << x.size;\n    }\n\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, M &x) {\n        is\
-      \ >> x.a;\n        x.size = T(1);\n        return is;\n    }\n};\n\n} // namespace\
-      \ group\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\n\n\n\n\
-      #line 5 \"math/monoid/affine.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid {\n\
-      \ntemplate <class S> struct Affine {\n    static constexpr bool commutative\
-      \ = false;\n    using M = Affine;\n    S a, b; // x \\mapsto ax + b\n\n    Affine()\
-      \ : a(S(1)), b(S(0)) {};\n    Affine(S a, S b) : a(a), b(b) {}\n    inline S\
-      \ eval(S x) const { return a * x + b; }\n    // l \\circ r\n    inline static\
-      \ M op(M l, M r) { return M(l.a * r.a, l.a * r.b + l.b); }\n    inline static\
-      \ M unit() { return M(); }\n    inline static M inv(M f) { return M(S(1) / f.a,\
-      \ -f.b / f.a); }\n    bool operator==(const M &rhs) const { return a == rhs.a\
-      \ and b == rhs.b; }\n    bool operator!=(const M &rhs) const { return a != rhs.a\
-      \ or b != rhs.b; }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const M &x) {\n        return os << x.a << \" \"\
-      \ << x.b;\n    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
-      \ &is, M &x) {\n        return is >> x.a >> x.b;\n    }\n};\n\n} // namespace\
-      \ monoid\n\n} // namespace kk2\n\n\n#line 6 \"math/action/affine_sumwithsize.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace action {\n\ntemplate <class T, class U> struct\
-      \ AffineSumWithSize {\n    using A = monoid::Affine<T>;\n    using S = group::SumWithSize<T,\
-      \ U>;\n\n    inline static S act(A f, S x) { return S(f.a * x.a + f.b * x.size,\
-      \ x.size); }\n};\n\n} // namespace action\n\n} // namespace kk2\n\n\n#line 1\
-      \ \"segment_tree/lazy.hpp\"\n\n\n\n#line 5 \"segment_tree/lazy.hpp\"\n#include\
-      \ <vector>\n\n#line 1 \"type_traits/algebra.hpp\"\n\n\n\n#line 5 \"type_traits/algebra.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace algebra {\n\n// These concepts describe the\
-      \ static interface expected by the library.\n// Algebraic laws such as associativity\
-      \ cannot be checked by the type system.\n//\n// A user-defined monoid therefore\
-      \ needs only:\n//\n//   struct MyMonoid {\n//       static MyMonoid op(const\
-      \ MyMonoid &, const MyMonoid &);\n//       static MyMonoid unit();\n//   };\n\
-      //\n// The return types are intentionally exact, so a typo such as returning\
-      \ the\n// underlying scalar instead of MyMonoid is diagnosed at the concept\
-      \ boundary.\ntemplate <class T>\nconcept Semigroup = requires(const T &x, const\
-      \ T &y) {\n    { T::op(x, y) } -> std::same_as<T>;\n};\n\ntemplate <class T>\n\
-      concept Monoid = Semigroup<T> && requires {\n    { T::unit() } -> std::same_as<T>;\n\
-      };\n\ntemplate <class T>\nconcept Group = Monoid<T> && requires(const T &x)\
-      \ {\n    { T::inv(x) } -> std::same_as<T>;\n};\n\ntemplate <class T>\nconcept\
-      \ CommutativeMonoid = Monoid<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
-      } && bool(T::commutative);\n\ntemplate <class T>\nconcept CommutativeGroup =\
-      \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
-      } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
-      \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action = requires {\n\
-      \    typename T::A;\n    typename T::S;\n} && Monoid<typename T::A> && Monoid<typename\
-      \ T::S>\n    && requires(const typename T::A &f, const typename T::S &x) {\n\
-      \           { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n\
-      } // namespace algebra\n\n} // namespace kk2\n\n\n#line 8 \"segment_tree/lazy.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <algebra::Action Action> struct LazySegmentTree\
-      \ {\n    using S = typename Action::S;\n    using F = typename Action::A;\n\n\
-      \  public:\n    LazySegmentTree() : LazySegmentTree(0) {}\n\n    LazySegmentTree(int\
-      \ n) : _n(n) {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n\
-      \        size = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n\
+      \ namespace kk2\n\n\n#line 1 \"segment_tree/lazy.hpp\"\n\n\n\n#line 5 \"segment_tree/lazy.hpp\"\
+      \n#include <vector>\n\n#line 1 \"type_traits/algebra.hpp\"\n\n\n\n#line 5 \"\
+      type_traits/algebra.hpp\"\n\nnamespace kk2 {\n\nnamespace algebra {\n\n// These\
+      \ concepts describe the static interface expected by the library.\n// Algebraic\
+      \ laws such as associativity cannot be checked by the type system.\n//\n// A\
+      \ user-defined monoid therefore needs only:\n//\n//   struct MyMonoid {\n//\
+      \       static MyMonoid op(const MyMonoid &, const MyMonoid &);\n//       static\
+      \ MyMonoid unit();\n//   };\n//\n// The return types are intentionally exact,\
+      \ so a typo such as returning the\n// underlying scalar instead of MyMonoid\
+      \ is diagnosed at the concept boundary.\ntemplate <class T>\nconcept Semigroup\
+      \ = requires(const T &x, const T &y) {\n    { T::op(x, y) } -> std::same_as<T>;\n\
+      };\n\ntemplate <class T>\nconcept Monoid = Semigroup<T> && requires {\n    {\
+      \ T::unit() } -> std::same_as<T>;\n};\n\ntemplate <class T>\nconcept Group =\
+      \ Monoid<T> && requires(const T &x) {\n    { T::inv(x) } -> std::same_as<T>;\n\
+      };\n\ntemplate <class T>\nconcept CommutativeMonoid = Monoid<T> && requires\
+      \ {\n    { T::commutative } -> std::convertible_to<bool>;\n} && bool(T::commutative);\n\
+      \ntemplate <class T>\nconcept CommutativeGroup = Group<T> && requires {\n  \
+      \  { T::commutative } -> std::convertible_to<bool>;\n} && bool(T::commutative);\n\
+      \n// An action specification owns the pair of algebraic types and the mapping\n\
+      // between them. It is the interface required by lazy propagation structures.\n\
+      template <class T>\nconcept Action =\n    requires {\n        typename T::A;\n\
+      \        typename T::S;\n    } && Monoid<typename T::A> && Monoid<typename T::S>\n\
+      \    && requires(const typename T::A &f, const typename T::S &x) {\n       \
+      \    { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n} // namespace\
+      \ algebra\n\n} // namespace kk2\n\n\n#line 8 \"segment_tree/lazy.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <algebra::Action Action> struct LazySegmentTree {\n    using\
+      \ S = typename Action::S;\n    using F = typename Action::A;\n\n  public:\n\
+      \    LazySegmentTree() : LazySegmentTree(0) {}\n\n    LazySegmentTree(int n)\
+      \ : _n(n) {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n  \
+      \      size = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n\
       \        lz = std::vector<F>(size, F::unit());\n    }\n\n    template <class...\
-      \ Args> LazySegmentTree(int n, Args... args)\n        : LazySegmentTree(std::vector<S>(n,\
+      \ Args>\n    LazySegmentTree(int n, Args... args) : LazySegmentTree(std::vector<S>(n,\
       \ S(args...))) {}\n\n    LazySegmentTree(const std::vector<S> &v) : _n(int(v.size()))\
       \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
       \ = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n        lz\
@@ -482,7 +485,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -512,11 +515,11 @@ data:
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_ds/ds_range_affine_range_sum.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using A = kk2::action::AffineSumWithSize<kk2::mont998,\
       \ kk2::mont998>;\n    int n, q;\n    kin >> n >> q;\n    vc<A::S> a(n);\n  \
-      \  kin >> a;\n    kk2::LazySegmentTree<A> seg(a);\n\n    rep (q) {\n       \
-      \ int t;\n        kin >> t;\n        if (t == 0) {\n            int l, r;\n\
-      \            kk2::mont998 b, c;\n            kin >> l >> r >> b >> c;\n    \
-      \        seg.apply_range(l, r, b, c);\n        }\n        if (t == 1) {\n  \
-      \          int l, r;\n            kin >> l >> r;\n            kout << seg.prod(l,\
+      \  kin >> a;\n    kk2::LazySegmentTree<A> seg(a);\n\n    rep(q) {\n        int\
+      \ t;\n        kin >> t;\n        if (t == 0) {\n            int l, r;\n    \
+      \        kk2::mont998 b, c;\n            kin >> l >> r >> b >> c;\n        \
+      \    seg.apply_range(l, r, b, c);\n        }\n        if (t == 1) {\n      \
+      \      int l, r;\n            kin >> l >> r;\n            kout << seg.prod(l,\
       \ r).a << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
@@ -525,102 +528,102 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0026233250000018415
+  - elapsed: 0.0024364910000258533
     environment: g++
-    memory: 3.632
+    memory: 3.836
     name: example_00
     status: AC
-  - elapsed: 4.476168800000011
+  - elapsed: 4.258449221000035
     environment: g++
-    memory: 19.82
+    memory: 19.884
     name: max_random_00
     status: AC
-  - elapsed: 4.481542136000002
+  - elapsed: 4.181963998000015
     environment: g++
-    memory: 19.764
+    memory: 19.884
     name: max_random_01
     status: AC
-  - elapsed: 4.484164665999998
+  - elapsed: 4.156651951000015
     environment: g++
-    memory: 19.648
+    memory: 19.88
     name: max_random_02
     status: AC
-  - elapsed: 3.6264627999999846
+  - elapsed: 3.290774789000011
     environment: g++
-    memory: 18.992
+    memory: 19.06
     name: random_00
     status: AC
-  - elapsed: 3.6906435980000083
+  - elapsed: 3.4699000599999863
     environment: g++
-    memory: 19.492
+    memory: 19.56
     name: random_01
     status: AC
-  - elapsed: 2.5937175770000067
+  - elapsed: 2.278210950000016
     environment: g++
-    memory: 5.532
+    memory: 5.604
     name: random_02
     status: AC
-  - elapsed: 0.0027546009999923626
+  - elapsed: 0.0026332059999845114
     environment: g++
-    memory: 3.776
+    memory: 3.876
     name: small_00
     status: AC
-  - elapsed: 0.0025625450000177352
+  - elapsed: 0.002207013999964147
     environment: g++
-    memory: 3.78
+    memory: 3.836
     name: small_01
     status: AC
-  - elapsed: 0.0028964869999867915
+  - elapsed: 0.002478343000007044
     environment: g++
-    memory: 3.792
+    memory: 3.76
     name: small_02
     status: AC
-  - elapsed: 0.002808681999994178
+  - elapsed: 0.0024486479999836774
     environment: g++
-    memory: 3.628
+    memory: 3.872
     name: small_03
     status: AC
-  - elapsed: 0.003199410000007674
+  - elapsed: 0.002748481000026004
     environment: g++
-    memory: 3.776
+    memory: 3.896
     name: small_04
     status: AC
-  - elapsed: 0.0032239810000191937
+  - elapsed: 0.002750533000039468
     environment: g++
-    memory: 3.632
+    memory: 3.88
     name: small_05
     status: AC
-  - elapsed: 0.0032493519999832188
+  - elapsed: 0.002739286999997148
     environment: g++
-    memory: 3.78
+    memory: 3.884
     name: small_06
     status: AC
-  - elapsed: 0.003141104999997424
+  - elapsed: 0.0026959319999946274
     environment: g++
-    memory: 3.776
+    memory: 3.884
     name: small_07
     status: AC
-  - elapsed: 0.003526402999995071
+  - elapsed: 0.0030738629999973455
     environment: g++
-    memory: 3.772
+    memory: 3.828
     name: small_08
     status: AC
-  - elapsed: 0.0035309259999962705
+  - elapsed: 0.0030295860000251196
     environment: g++
-    memory: 3.78
+    memory: 3.876
     name: small_09
     status: AC
-  - elapsed: 0.0075779119999879185
+  - elapsed: 0.006431634000023223
     environment: g++
-    memory: 3.78
+    memory: 3.88
     name: small_random_00
     status: AC
-  - elapsed: 0.0061968400000012025
+  - elapsed: 0.0053138849999641025
     environment: g++
-    memory: 3.768
+    memory: 3.756
     name: small_random_01
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

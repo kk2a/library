@@ -53,16 +53,16 @@ data:
       \n#include \"../../math/stern_brocot_tree.hpp\"\n#include \"../../template/template.hpp\"\
       \nusing namespace std;\n\nvoid solve() {\n    using sbt = kk2::SternBrocotTree<i64>;\n\
       \    // using sbt_node = sbt::Node;\n\n    int n, x, y;\n    kin >> n >> x >>\
-      \ y;\n\n    auto [lnum, lden, rnum, rden] = sbt::binary_search(n, [&](i64 num,\
-      \ i64 den) -> bool {\n        return num * y <= den * x;\n    });\n    if (lnum\
-      \ * y == lden * x) rnum = lnum, rden = lden;\n    kout << lnum << ' ' << lden\
-      \ << ' ' << rnum << ' ' << rden << '\\n';\n}\n\nint main() {\n    int t;\n \
-      \   kin >> t;\n\n    rep (t) solve();\n\n    return 0;\n}\n"
+      \ y;\n\n    auto [lnum, lden, rnum, rden] =\n        sbt::binary_search(n, [&](i64\
+      \ num, i64 den) -> bool { return num * y <= den * x; });\n    if (lnum * y ==\
+      \ lden * x) rnum = lnum, rden = lden;\n    kout << lnum << ' ' << lden << '\
+      \ ' << rnum << ' ' << rden << '\\n';\n}\n\nint main() {\n    int t;\n    kin\
+      \ >> t;\n\n    rep(t) solve();\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_math/rational_approximation.test.cpp\"\n// competitive-verifier:\
       \ PROBLEM https://judge.yosupo.jp/problem/rational_approximation\n\n#line 1\
       \ \"math/stern_brocot_tree.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
-      #include <vector>\n#include <tuple>\n\nnamespace kk2 {\n\ntemplate <class T>\
+      #include <tuple>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <class T>\
       \ struct SternBrocotTreeNode {\n    T lnum, lden;\n    T rnum, rden;\n    //\
       \ even: right, odd: left\n    std::vector<T> path;\n    T dep;\n\n    SternBrocotTreeNode()\
       \ : lnum(0), lden(1), rnum(1), rden(0), path({0}), dep(0) {}\n    SternBrocotTreeNode(T\
@@ -147,30 +147,32 @@ data:
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
       \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -185,20 +187,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -333,7 +337,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -363,11 +367,11 @@ data:
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/rational_approximation.test.cpp\"\
       \nusing namespace std;\n\nvoid solve() {\n    using sbt = kk2::SternBrocotTree<i64>;\n\
       \    // using sbt_node = sbt::Node;\n\n    int n, x, y;\n    kin >> n >> x >>\
-      \ y;\n\n    auto [lnum, lden, rnum, rden] = sbt::binary_search(n, [&](i64 num,\
-      \ i64 den) -> bool {\n        return num * y <= den * x;\n    });\n    if (lnum\
-      \ * y == lden * x) rnum = lnum, rden = lden;\n    kout << lnum << ' ' << lden\
-      \ << ' ' << rnum << ' ' << rden << '\\n';\n}\n\nint main() {\n    int t;\n \
-      \   kin >> t;\n\n    rep (t) solve();\n\n    return 0;\n}\n"
+      \ y;\n\n    auto [lnum, lden, rnum, rden] =\n        sbt::binary_search(n, [&](i64\
+      \ num, i64 den) -> bool { return num * y <= den * x; });\n    if (lnum * y ==\
+      \ lden * x) rnum = lnum, rden = lden;\n    kout << lnum << ' ' << lden << '\
+      \ ' << rnum << ' ' << rden << '\\n';\n}\n\nint main() {\n    int t;\n    kin\
+      \ >> t;\n\n    rep(t) solve();\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -375,147 +379,147 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.00285822799997959
+  - elapsed: 0.002502801999980875
     environment: g++
-    memory: 3.736
+    memory: 3.696
     name: boundary_00
     status: AC
-  - elapsed: 0.0022973220000039873
+  - elapsed: 0.0021139449997917836
     environment: g++
-    memory: 3.756
+    memory: 3.704
     name: example_00
     status: AC
-  - elapsed: 0.2000922169999626
+  - elapsed: 0.1996913499999664
     environment: g++
-    memory: 3.932
+    memory: 3.94
     name: fibonacci_00
     status: AC
-  - elapsed: 0.20043670199999042
+  - elapsed: 0.18238822499984053
     environment: g++
-    memory: 3.932
+    memory: 4.008
     name: input_reducible_00
     status: AC
-  - elapsed: 0.11773063900000125
+  - elapsed: 0.10800697900003797
     environment: g++
-    memory: 3.964
+    memory: 3.96
     name: large_run_length_00
     status: AC
-  - elapsed: 0.03678696099996159
+  - elapsed: 0.03479220600002009
     environment: g++
-    memory: 3.888
+    memory: 3.912
     name: random_00
     status: AC
-  - elapsed: 0.13606907799999135
+  - elapsed: 0.13127865599994948
     environment: g++
-    memory: 3.944
+    memory: 3.912
     name: random_01
     status: AC
-  - elapsed: 0.10546518300003527
+  - elapsed: 0.10080397899992022
     environment: g++
     memory: 3.952
     name: random_02
     status: AC
-  - elapsed: 0.19739654699998255
+  - elapsed: 0.1894322729999658
     environment: g++
-    memory: 3.98
+    memory: 3.96
     name: random_large_00
     status: AC
-  - elapsed: 0.19777823199996192
+  - elapsed: 0.19040846699999747
     environment: g++
-    memory: 3.924
+    memory: 3.932
     name: random_large_01
     status: AC
-  - elapsed: 0.19675486099998807
+  - elapsed: 0.18969949699999233
     environment: g++
-    memory: 3.976
+    memory: 3.952
     name: random_large_02
     status: AC
-  - elapsed: 0.04838406299995768
+  - elapsed: 0.043034185000124126
     environment: g++
-    memory: 3.976
+    memory: 3.992
     name: small_all_00
     status: AC
-  - elapsed: 0.05497683400000142
+  - elapsed: 0.04986711900005503
     environment: g++
-    memory: 3.904
+    memory: 3.932
     name: small_all_01
     status: AC
-  - elapsed: 0.0585650570000098
+  - elapsed: 0.053515033999929074
     environment: g++
-    memory: 4.008
+    memory: 3.992
     name: small_all_02
     status: AC
-  - elapsed: 0.06164088200000606
+  - elapsed: 0.05633220999993682
     environment: g++
-    memory: 4.008
+    memory: 3.96
     name: small_all_03
     status: AC
-  - elapsed: 0.06368481800001291
+  - elapsed: 0.0583826689999114
     environment: g++
-    memory: 3.96
+    memory: 3.976
     name: small_all_04
     status: AC
-  - elapsed: 0.06536313399999472
+  - elapsed: 0.06030014199996003
     environment: g++
-    memory: 3.912
+    memory: 3.952
     name: small_all_05
     status: AC
-  - elapsed: 0.06642396400002326
+  - elapsed: 0.060875565000060305
     environment: g++
-    memory: 3.98
+    memory: 3.968
     name: small_all_06
     status: AC
-  - elapsed: 0.06760594499996841
+  - elapsed: 0.06204693600011524
     environment: g++
-    memory: 4.016
+    memory: 4.0
     name: small_all_07
     status: AC
-  - elapsed: 0.06806072799997764
+  - elapsed: 0.06251303900012317
     environment: g++
-    memory: 3.96
+    memory: 3.992
     name: small_all_08
     status: AC
-  - elapsed: 0.06858820899998364
+  - elapsed: 0.06326717900014955
     environment: g++
     memory: 3.98
     name: small_all_09
     status: AC
-  - elapsed: 0.19551620199996478
-    environment: g++
-    memory: 3.968
-    name: small_run_length_00
-    status: AC
-  - elapsed: 0.19936678400000574
-    environment: g++
-    memory: 3.98
-    name: small_run_length_01
-    status: AC
-  - elapsed: 0.18839402599996902
+  - elapsed: 0.1932155459999194
     environment: g++
     memory: 3.956
-    name: small_run_length_02
+    name: small_run_length_00
     status: AC
-  - elapsed: 0.18039606399997865
-    environment: g++
-    memory: 3.924
-    name: small_run_length_03
-    status: AC
-  - elapsed: 0.17861428399999113
+  - elapsed: 0.19732371400004922
     environment: g++
     memory: 3.936
-    name: small_run_length_04
+    name: small_run_length_01
     status: AC
-  - elapsed: 0.19830709400002888
+  - elapsed: 0.18516695199991773
     environment: g++
     memory: 3.992
+    name: small_run_length_02
+    status: AC
+  - elapsed: 0.17611057999988589
+    environment: g++
+    memory: 3.98
+    name: small_run_length_03
+    status: AC
+  - elapsed: 0.17164390900006765
+    environment: g++
+    memory: 3.912
+    name: small_run_length_04
+    status: AC
+  - elapsed: 0.19098036299988053
+    environment: g++
+    memory: 4.008
     name: trivial_00
     status: AC
-  - elapsed: 0.05435031600001139
+  - elapsed: 0.04918395999993663
     environment: g++
-    memory: 3.952
+    memory: 3.98
     name: zero_or_inf_00
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/rational_approximation.test.cpp

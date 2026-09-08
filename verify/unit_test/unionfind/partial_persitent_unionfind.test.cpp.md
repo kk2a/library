@@ -60,74 +60,39 @@ data:
   - unionfind/partial_persistent.hpp
   - unionfind/unionfind.hpp
   embedded:
-  - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../unionfind/partial_persistent.hpp\"\
-      \n#include \"../../../unionfind/unionfind.hpp\"\n#include \"../../../random/gen.hpp\"\
-      \n#include \"../../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-      \ {\n    rep (200) {\n        int n = kk2::random::rng(1, 1e4);\n        kk2::PartialPersistentUnionFind\
-      \ ppu(n);\n        kk2::UnionFind uf(n);\n    \n        int q = 1e3;\n     \
-      \   vc<int> ask_size(q);\n        vc<pi> ask_same(q);\n        vc<int> res_size(q),\
-      \ res_same(q);\n        rep (t, q) {\n            int num = kk2::random::rng(1,\
-      \ 101);\n            rep (num) {\n                int a = kk2::random::rng(0,\
-      \ n);\n                int b = kk2::random::rng(0, n);\n                assert(ppu.unite(a,\
-      \ b, t) == uf.unite(a, b));\n            }\n            ask_size[t] = kk2::random::rng(0,\
-      \ n);\n            res_size[t] = uf.size(ask_size[t]);\n            ask_same[t]\
-      \ = {kk2::random::rng(0, n), kk2::random::rng(0, n)};\n            res_same[t]\
-      \ = uf.same(ask_same[t].first, ask_same[t].second);\n        }\n    \n     \
-      \   rep (t, q) {\n            assert(ppu.size(ask_size[t], t) == res_size[t]);\n\
-      \            assert(ppu.same(ask_same[t].first, ask_same[t].second, t) == res_same[t]);\n\
-      \        }\n    }\n\n    return 0;\n}\n"
+  - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../random/gen.hpp\"\
+      \n#include \"../../../template/template.hpp\"\n#include \"../../../unionfind/partial_persistent.hpp\"\
+      \n#include \"../../../unionfind/unionfind.hpp\"\nusing namespace std;\n\nint\
+      \ main() {\n    rep(200) {\n        int n = kk2::random::rng(1, 1e4);\n    \
+      \    kk2::PartialPersistentUnionFind ppu(n);\n        kk2::UnionFind uf(n);\n\
+      \n        int q = 1e3;\n        vc<int> ask_size(q);\n        vc<pi> ask_same(q);\n\
+      \        vc<int> res_size(q), res_same(q);\n        rep(t, q) {\n          \
+      \  int num = kk2::random::rng(1, 101);\n            rep(num) {\n           \
+      \     int a = kk2::random::rng(0, n);\n                int b = kk2::random::rng(0,\
+      \ n);\n                assert(ppu.unite(a, b, t) == uf.unite(a, b));\n     \
+      \       }\n            ask_size[t] = kk2::random::rng(0, n);\n            res_size[t]\
+      \ = uf.size(ask_size[t]);\n            ask_same[t] = {kk2::random::rng(0, n),\
+      \ kk2::random::rng(0, n)};\n            res_same[t] = uf.same(ask_same[t].first,\
+      \ ask_same[t].second);\n        }\n\n        rep(t, q) {\n            assert(ppu.size(ask_size[t],\
+      \ t) == res_size[t]);\n            assert(ppu.same(ask_same[t].first, ask_same[t].second,\
+      \ t) == res_same[t]);\n        }\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/unionfind/partial_persitent_unionfind.test.cpp\"\
-      \n// competitive-verifier: STANDALONE\n\n#line 1 \"unionfind/partial_persistent.hpp\"\
-      \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <numeric>\n#include\
-      \ <utility>\n#include <vector>\n\nnamespace kk2 {\n\nstruct PartialPersistentUnionFind\
-      \ {\n    struct d_time {\n        int d, time;\n        d_time() = default;\n\
-      \n        d_time(int d_, int time_) : d(d_), time(time_) {}\n    };\n\n    struct\
-      \ size_time {\n        int size, time;\n        size_time() = default;\n\n \
-      \       size_time(int size_, int time_) : size(size_), time(time_) {}\n\n  \
-      \      bool operator<(const size_time &a) const { return time < a.time; }\n\
-      \    };\n\n    int last_time;\n    std::vector<d_time> d;\n    std::vector<std::vector<size_time>>\
-      \ size_hist;\n\n    PartialPersistentUnionFind(int n)\n        : last_time(std::numeric_limits<int>::min()),\n\
-      \          d(n),\n          size_hist(n) {\n        for (int i = 0; i < n; ++i)\
-      \ {\n            d[i] = d_time(-1, std::numeric_limits<int>::max());\n     \
-      \       size_hist[i].emplace_back(1, last_time);\n        }\n    }\n\n    bool\
-      \ same(int x, int y, int time) { return find(x, time) == find(y, time); }\n\n\
-      \    bool unite(int x, int y, int time) {\n        assert(last_time <= time);\n\
-      \        last_time = time;\n        x = find(x, time), y = find(y, time);\n\
-      \        if (x == y) return false;\n        if (d[x].d > d[y].d) std::swap(x,\
-      \ y);\n        d[x].d += d[y].d;\n        d[y] = d_time(x, time);\n        if\
-      \ (size_hist[x].back().time < time)\n            size_hist[x].emplace_back(size_hist[x].back().size,\
-      \ time);\n        size_hist[x].back().size += size_hist[y].back().size;\n  \
-      \      return true;\n    }\n\n    int find(int x, int time) {\n        while\
-      \ (d[x].time <= time) x = d[x].d;\n        return x;\n    }\n\n    int size(int\
-      \ x, int time) {\n        x = find(x, time);\n        auto it = std::upper_bound(size_hist[x].begin(),\
-      \ size_hist[x].end(), size_time(0, time));\n        return prev(it)->size;\n\
-      \    }\n};\n\n} // namespace kk2\n\n\n\n#line 1 \"unionfind/unionfind.hpp\"\n\
-      \n\n\n#line 6 \"unionfind/unionfind.hpp\"\n\nnamespace kk2 {\n\nstruct UnionFind\
-      \ {\n    std::vector<int> d;\n\n    UnionFind(int n = 0) : d(n, -1) {}\n\n \
-      \   bool same(int x, int y) { return find(x) == find(y); }\n\n    bool unite(int\
-      \ x, int y) {\n        x = find(x), y = find(y);\n        if (x == y) return\
-      \ false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n        d[x] += d[y];\n\
-      \        d[y] = x;\n        return true;\n    }\n\n    template <class F> bool\
-      \ unite(int x, int y, const F &f) {\n        x = find(x), y = find(y);\n   \
-      \     if (x == y) return false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n\
-      \        f(x, y);\n        d[x] += d[y];\n        d[y] = x;\n        return\
-      \ true;\n    }\n\n    int find(int x) {\n        if (d[x] < 0) return x;\n \
-      \       return d[x] = find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)];\
-      \ }\n};\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\n#line 7\
-      \ \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n#line 10\
-      \ \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\
-      \nnamespace kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\
-      \ninline u64 non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
-      \                   std::chrono::high_resolution_clock::now().time_since_epoch())\n\
-      \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n \
-      \   seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n \
-      \   return seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
-      \ }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return\
-      \ deterministic_seed();\n#else\n    return non_deterministic_seed();\n#endif\n\
-      }\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace random {\n\nusing i64 = long long;\nusing u64\
-      \ = unsigned long long;\n\ninline u64 rng() {\n    static std::mt19937_64 mt(kk2::random::seed());\n\
+      \n// competitive-verifier: STANDALONE\n\n#line 1 \"random/gen.hpp\"\n\n\n\n\
+      #include <algorithm>\n#include <cassert>\n#include <numeric>\n#include <random>\n\
+      #include <unordered_set>\n#include <vector>\n\n#line 1 \"random/seed.hpp\"\n\
+      \n\n\n#include <chrono>\n\nnamespace kk2 {\n\nnamespace random {\n\nusing u64\
+      \ = unsigned long long;\n\ninline u64 non_deterministic_seed() {\n    u64 seed\
+      \ = std::chrono::duration_cast<std::chrono::nanoseconds>(\n                \
+      \   std::chrono::high_resolution_clock::now().time_since_epoch())\n        \
+      \           .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n    seed ^=\
+      \ seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return seed;\n\
+      }\n\ninline u64 deterministic_seed() { return 5801799128519729247ull; }\n\n\
+      inline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return deterministic_seed();\n\
+      #else\n    return non_deterministic_seed();\n#endif\n}\n\n} // namespace random\n\
+      \n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\n\nnamespace kk2 {\n\n\
+      namespace random {\n\nusing i64 = long long;\nusing u64 = unsigned long long;\n\
+      \ninline u64 rng() {\n    static std::mt19937_64 mt(kk2::random::seed());\n\
       \    return mt();\n}\n\n// [l, r)\ninline i64 rng(i64 l, i64 r) {\n    assert(l\
       \ < r);\n    return l + rng() % (r - l);\n}\n\n// [l, r)\ntemplate <class T>\
       \ std::vector<T> random_vector(int n, T l, T r) {\n    std::vector<T> res(n);\n\
@@ -152,52 +117,55 @@ data:
       #include <deque>\n#include <functional>\n#include <iterator>\n#include <limits>\n\
       #include <map>\n#line 16 \"template/template.hpp\"\n#include <optional>\n#include\
       \ <queue>\n#line 19 \"template/template.hpp\"\n#include <set>\n#include <stack>\n\
-      #include <string>\n#include <unordered_map>\n#line 26 \"template/template.hpp\"\
-      \n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n\
-      #include <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
+      #include <string>\n#include <unordered_map>\n#line 24 \"template/template.hpp\"\
+      \n#include <utility>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
+      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
+      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
+      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
+      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
+      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
+      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
+      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
+      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
+      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
+      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
+      \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -212,20 +180,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -360,7 +330,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -387,21 +357,55 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/unit_test/unionfind/partial_persitent_unionfind.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    rep (200) {\n        int n = kk2::random::rng(1,\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 1 \"unionfind/partial_persistent.hpp\"\
+      \n\n\n\n#line 9 \"unionfind/partial_persistent.hpp\"\n\nnamespace kk2 {\n\n\
+      struct PartialPersistentUnionFind {\n    struct d_time {\n        int d, time;\n\
+      \        d_time() = default;\n\n        d_time(int d_, int time_) : d(d_), time(time_)\
+      \ {}\n    };\n\n    struct size_time {\n        int size, time;\n        size_time()\
+      \ = default;\n\n        size_time(int size_, int time_) : size(size_), time(time_)\
+      \ {}\n\n        bool operator<(const size_time &a) const { return time < a.time;\
+      \ }\n    };\n\n    int last_time;\n    std::vector<d_time> d;\n    std::vector<std::vector<size_time>>\
+      \ size_hist;\n\n    PartialPersistentUnionFind(int n)\n        : last_time(std::numeric_limits<int>::min()),\n\
+      \          d(n),\n          size_hist(n) {\n        for (int i = 0; i < n; ++i)\
+      \ {\n            d[i] = d_time(-1, std::numeric_limits<int>::max());\n     \
+      \       size_hist[i].emplace_back(1, last_time);\n        }\n    }\n\n    bool\
+      \ same(int x, int y, int time) { return find(x, time) == find(y, time); }\n\n\
+      \    bool unite(int x, int y, int time) {\n        assert(last_time <= time);\n\
+      \        last_time = time;\n        x = find(x, time), y = find(y, time);\n\
+      \        if (x == y) return false;\n        if (d[x].d > d[y].d) std::swap(x,\
+      \ y);\n        d[x].d += d[y].d;\n        d[y] = d_time(x, time);\n        if\
+      \ (size_hist[x].back().time < time)\n            size_hist[x].emplace_back(size_hist[x].back().size,\
+      \ time);\n        size_hist[x].back().size += size_hist[y].back().size;\n  \
+      \      return true;\n    }\n\n    int find(int x, int time) {\n        while\
+      \ (d[x].time <= time) x = d[x].d;\n        return x;\n    }\n\n    int size(int\
+      \ x, int time) {\n        x = find(x, time);\n        auto it = std::upper_bound(size_hist[x].begin(),\
+      \ size_hist[x].end(), size_time(0, time));\n        return prev(it)->size;\n\
+      \    }\n};\n\n} // namespace kk2\n\n\n\n#line 1 \"unionfind/unionfind.hpp\"\n\
+      \n\n\n#line 6 \"unionfind/unionfind.hpp\"\n\nnamespace kk2 {\n\nstruct UnionFind\
+      \ {\n    std::vector<int> d;\n\n    UnionFind(int n = 0) : d(n, -1) {}\n\n \
+      \   bool same(int x, int y) { return find(x) == find(y); }\n\n    bool unite(int\
+      \ x, int y) {\n        x = find(x), y = find(y);\n        if (x == y) return\
+      \ false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n        d[x] += d[y];\n\
+      \        d[y] = x;\n        return true;\n    }\n\n    template <class F> bool\
+      \ unite(int x, int y, const F &f) {\n        x = find(x), y = find(y);\n   \
+      \     if (x == y) return false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n\
+      \        f(x, y);\n        d[x] += d[y];\n        d[y] = x;\n        return\
+      \ true;\n    }\n\n    int find(int x) {\n        if (d[x] < 0) return x;\n \
+      \       return d[x] = find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)];\
+      \ }\n};\n\n} // namespace kk2\n\n\n#line 7 \"verify/unit_test/unionfind/partial_persitent_unionfind.test.cpp\"\
+      \nusing namespace std;\n\nint main() {\n    rep(200) {\n        int n = kk2::random::rng(1,\
       \ 1e4);\n        kk2::PartialPersistentUnionFind ppu(n);\n        kk2::UnionFind\
-      \ uf(n);\n    \n        int q = 1e3;\n        vc<int> ask_size(q);\n       \
-      \ vc<pi> ask_same(q);\n        vc<int> res_size(q), res_same(q);\n        rep\
-      \ (t, q) {\n            int num = kk2::random::rng(1, 101);\n            rep\
-      \ (num) {\n                int a = kk2::random::rng(0, n);\n               \
-      \ int b = kk2::random::rng(0, n);\n                assert(ppu.unite(a, b, t)\
-      \ == uf.unite(a, b));\n            }\n            ask_size[t] = kk2::random::rng(0,\
-      \ n);\n            res_size[t] = uf.size(ask_size[t]);\n            ask_same[t]\
-      \ = {kk2::random::rng(0, n), kk2::random::rng(0, n)};\n            res_same[t]\
-      \ = uf.same(ask_same[t].first, ask_same[t].second);\n        }\n    \n     \
-      \   rep (t, q) {\n            assert(ppu.size(ask_size[t], t) == res_size[t]);\n\
-      \            assert(ppu.same(ask_same[t].first, ask_same[t].second, t) == res_same[t]);\n\
-      \        }\n    }\n\n    return 0;\n}\n"
+      \ uf(n);\n\n        int q = 1e3;\n        vc<int> ask_size(q);\n        vc<pi>\
+      \ ask_same(q);\n        vc<int> res_size(q), res_same(q);\n        rep(t, q)\
+      \ {\n            int num = kk2::random::rng(1, 101);\n            rep(num) {\n\
+      \                int a = kk2::random::rng(0, n);\n                int b = kk2::random::rng(0,\
+      \ n);\n                assert(ppu.unite(a, b, t) == uf.unite(a, b));\n     \
+      \       }\n            ask_size[t] = kk2::random::rng(0, n);\n            res_size[t]\
+      \ = uf.size(ask_size[t]);\n            ask_same[t] = {kk2::random::rng(0, n),\
+      \ kk2::random::rng(0, n)};\n            res_same[t] = uf.same(ask_same[t].first,\
+      \ ask_same[t].second);\n        }\n\n        rep(t, q) {\n            assert(ppu.size(ask_size[t],\
+      \ t) == res_size[t]);\n            assert(ppu.same(ask_same[t].first, ask_same[t].second,\
+      \ t) == res_same[t]);\n        }\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -409,7 +413,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/unionfind/partial_persitent_unionfind.test.cpp

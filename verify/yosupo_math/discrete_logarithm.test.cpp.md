@@ -56,7 +56,7 @@ data:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/discrete_logarithm_mod\n\
       \n#include \"../../math_mod/log.hpp\"\n#include \"../../modint/modint.hpp\"\n\
       #include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-      \ {\n    using mint = kk2::ModInt<0>;\n    int t;\n    kin >> t;\n    rep (t)\
+      \ {\n    using mint = kk2::ModInt<0>;\n    int t;\n    kin >> t;\n    rep(t)\
       \ {\n        int xx, yy, m;\n        kin >> xx >> yy >> m;\n        mint::setmod(m);\n\
       \        mint x = xx, y = yy;\n        kout << kk2::discrete_logarithm(x, y)\
       \ << \"\\n\";\n    }\n\n    return 0;\n}\n"
@@ -79,26 +79,27 @@ data:
       \n\n#line 1 \"modint/modint.hpp\"\n\n\n\n#include <cassert>\n#include <iostream>\n\
       #include <type_traits>\n#include <utility>\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -116,21 +117,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -179,10 +181,10 @@ data:
       \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
       \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
       \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
-      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
-      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
+      \ mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\
+      \ friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
       \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
       \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
       \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
@@ -338,7 +340,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -367,7 +369,7 @@ data:
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/discrete_logarithm.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using mint = kk2::ModInt<0>;\n \
-      \   int t;\n    kin >> t;\n    rep (t) {\n        int xx, yy, m;\n        kin\
+      \   int t;\n    kin >> t;\n    rep(t) {\n        int xx, yy, m;\n        kin\
       \ >> xx >> yy >> m;\n        mint::setmod(m);\n        mint x = xx, y = yy;\n\
       \        kout << kk2::discrete_logarithm(x, y) << \"\\n\";\n    }\n\n    return\
       \ 0;\n}\n"
@@ -378,107 +380,107 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 1.051500278000006
+  - elapsed: 1.3642203060000213
     environment: g++
-    memory: 5.132
+    memory: 4.936
     name: even_mod_00
     status: AC
-  - elapsed: 1.5960452959999998
+  - elapsed: 2.058110768000006
     environment: g++
-    memory: 5.168
+    memory: 4.996
     name: even_mod_01
     status: AC
-  - elapsed: 1.1502219670000073
+  - elapsed: 1.4986278869999978
     environment: g++
-    memory: 5.248
+    memory: 5.112
     name: even_mod_impossible_00
     status: AC
-  - elapsed: 1.7303722520000093
+  - elapsed: 2.232915907000006
     environment: g++
-    memory: 5.296
+    memory: 5.164
     name: even_mod_impossible_01
     status: AC
-  - elapsed: 0.0018775260000012395
+  - elapsed: 0.0023865880000073503
     environment: g++
-    memory: 3.812
+    memory: 3.744
     name: example_00
     status: AC
-  - elapsed: 1.0365031810000005
+  - elapsed: 1.3514514969999993
     environment: g++
-    memory: 5.08
+    memory: 4.948
     name: max_random_00
     status: AC
-  - elapsed: 1.1018507470000003
+  - elapsed: 1.4358987139999897
     environment: g++
-    memory: 5.024
+    memory: 4.964
     name: max_random_01
     status: AC
-  - elapsed: 1.121974716000011
+  - elapsed: 1.4661761849999948
     environment: g++
-    memory: 5.104
+    memory: 4.996
     name: max_random_02
     status: AC
-  - elapsed: 0.8066640739999968
+  - elapsed: 1.0420992980000108
     environment: g++
-    memory: 5.22
+    memory: 5.08
     name: max_random_yes_00
     status: AC
-  - elapsed: 0.8044164859999938
+  - elapsed: 1.052352739999975
     environment: g++
-    memory: 5.092
+    memory: 4.996
     name: max_random_yes_01
     status: AC
-  - elapsed: 0.8763248380000022
+  - elapsed: 1.133843829
     environment: g++
-    memory: 5.044
+    memory: 5.12
     name: max_random_yes_prime_00
     status: AC
-  - elapsed: 0.8947236759999981
+  - elapsed: 1.1662525559999892
     environment: g++
-    memory: 5.248
+    memory: 5.104
     name: max_random_yes_prime_01
     status: AC
-  - elapsed: 0.4129886959999993
+  - elapsed: 0.5354594730000031
     environment: g++
-    memory: 4.796
+    memory: 4.632
     name: random_00
     status: AC
-  - elapsed: 0.534732199000004
+  - elapsed: 0.7117968059999953
     environment: g++
-    memory: 5.012
+    memory: 4.904
     name: random_01
     status: AC
-  - elapsed: 0.6483439349999998
+  - elapsed: 0.8264544150000006
     environment: g++
-    memory: 5.1
+    memory: 4.972
     name: random_02
     status: AC
-  - elapsed: 0.9563353949999964
+  - elapsed: 1.248434316000015
     environment: g++
-    memory: 5.128
+    memory: 4.976
     name: random_prime_00
     status: AC
-  - elapsed: 0.9472983859999999
+  - elapsed: 1.228798678000004
     environment: g++
-    memory: 5.26
+    memory: 5.144
     name: random_prime_01
     status: AC
-  - elapsed: 0.0019558540000019775
+  - elapsed: 0.0024227170000017395
     environment: g++
-    memory: 3.844
+    memory: 3.708
     name: small_00
     status: AC
-  - elapsed: 0.0018713679999962096
+  - elapsed: 0.002409298000003446
     environment: g++
-    memory: 3.88
+    memory: 3.74
     name: small_01
     status: AC
-  - elapsed: 0.0018757790000023533
+  - elapsed: 0.0023364799999967545
     environment: g++
-    memory: 3.796
+    memory: 3.748
     name: small_02
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/discrete_logarithm.test.cpp

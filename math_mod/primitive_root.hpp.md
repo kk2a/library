@@ -37,9 +37,27 @@ data:
     - filename: comb_large.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb_large.hpp
+    - filename: fps_composition.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/fps_composition.test.cpp
+    - filename: fps_composition_inv.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/fps_composition_inv.test.cpp
     - filename: fps_exp_arb.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
+    - filename: fps_multipoint_evaluation_geometric.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+    - filename: poly_interpolation_geometric.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+    - filename: poly_sample_point_shift.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+    - filename: poly_to_newton_basis.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     - filename: kth_term_of_linearly_recurrent_sequence.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -60,12 +78,6 @@ data:
     - filename: convolution_ntt_friendly.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-    - filename: fps_composition.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_composition.test.cpp
-    - filename: fps_composition_inv.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_composition_inv.test.cpp
     - filename: fps_exp.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_exp.test.cpp
@@ -84,9 +96,6 @@ data:
     - filename: fps_multipoint_evaluation.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-    - filename: fps_multipoint_evaluation_geometric.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
     - filename: fps_pow.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_pow.test.cpp
@@ -117,24 +126,15 @@ data:
     - filename: poly_interpolation.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_interpolation.test.cpp
-    - filename: poly_interpolation_geometric.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
     - filename: poly_inv.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_inv.test.cpp
     - filename: poly_root_finding.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_root_finding.test.cpp
-    - filename: poly_sample_point_shift.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
-    - filename: poly_to_newton_basis.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     - filename: enumerate_bell_number.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/enumerate_bell_number.test.cpp
@@ -202,9 +202,15 @@ data:
   - fps/fps_ntt_friendly.hpp
   - math_mod/butterfly.hpp
   - math_mod/comb_large.hpp
+  - verify/yosupo_fps/fps_composition.test.cpp
+  - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
@@ -212,15 +218,12 @@ data:
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
   - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
-  - verify/yosupo_fps/fps_composition.test.cpp
-  - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
   - verify/yosupo_fps/fps_sparse_exp.test.cpp
@@ -231,12 +234,9 @@ data:
   - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_fps/poly_division.test.cpp
   - verify/yosupo_fps/poly_interpolation.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp

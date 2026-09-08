@@ -39,15 +39,15 @@ data:
       \ }\n\n    template <OutputStream OStream> void output(OStream &os) const {\n\
       \        for (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w;\
       \ j++) os << _mat[i][j] << \" \\n\"[j + 1 == _w];\n        }\n    }\n\n    template\
-      \ <OutputStream OStream>\n    void debug_output(OStream &os) const {\n     \
-      \   os << \"(h, w): \" << \"(\" << _h << \", \" << _w << \"), [\\n\";\n    \
-      \    for (int i = 0; i < _h; i++) {\n            os << \"  [ \";\n         \
-      \   for (int j = 0; j < _w; j++) os << _mat[i][j] << \" \";\n            os\
-      \ << \"]\\n\";\n        }\n        os << \"]\\n\";\n    }\n\n    mat &operator+=(const\
-      \ mat &rhs) {\n        for (int i = 0; i < _h; i++) {\n            for (int\
-      \ j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n        }\n       \
-      \ return *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n        for\
-      \ (int i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j]\
+      \ <OutputStream OStream> void debug_output(OStream &os) const {\n        os\
+      \ << \"(h, w): \" << \"(\" << _h << \", \" << _w << \"), [\\n\";\n        for\
+      \ (int i = 0; i < _h; i++) {\n            os << \"  [ \";\n            for (int\
+      \ j = 0; j < _w; j++) os << _mat[i][j] << \" \";\n            os << \"]\\n\"\
+      ;\n        }\n        os << \"]\\n\";\n    }\n\n    mat &operator+=(const mat\
+      \ &rhs) {\n        for (int i = 0; i < _h; i++) {\n            for (int j =\
+      \ 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j]; }\n        }\n        return\
+      \ *this;\n    }\n\n    mat &operator-=(const mat &rhs) {\n        for (int i\
+      \ = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j]\
       \ -= rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator*=(const\
       \ mat &rhs) {\n        static_assert(_w == rhs._h, \"matrix multiplication dimension\
       \ mismatch\");\n        std::array<std::array<Field, rhs._w>, _h> res{};\n \
@@ -89,21 +89,22 @@ data:
       \ <cassert>\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include\
       \ <fstream>\n#include <istream>\n#include <ostream>\n#include <type_traits>\n\
       \nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -133,17 +134,17 @@ data:
       \ }\n        }\n        return *this;\n    }\n\n    template <OutputStream OStream>\
       \ void output(OStream &os) const {\n        for (int i = 0; i < _h; i++) {\n\
       \            for (int j = 0; j < _w; j++) os << _mat[i][j] << \" \\n\"[j + 1\
-      \ == _w];\n        }\n    }\n\n    template <OutputStream OStream>\n    void\
-      \ debug_output(OStream &os) const {\n        os << \"(h, w): \" << \"(\" <<\
-      \ _h << \", \" << _w << \"), [\\n\";\n        for (int i = 0; i < _h; i++) {\n\
-      \            os << \"  [ \";\n            for (int j = 0; j < _w; j++) os <<\
-      \ _mat[i][j] << \" \";\n            os << \"]\\n\";\n        }\n        os <<\
-      \ \"]\\n\";\n    }\n\n    mat &operator+=(const mat &rhs) {\n        for (int\
-      \ i = 0; i < _h; i++) {\n            for (int j = 0; j < _w; j++) { _mat[i][j]\
-      \ += rhs._mat[i][j]; }\n        }\n        return *this;\n    }\n\n    mat &operator-=(const\
-      \ mat &rhs) {\n        for (int i = 0; i < _h; i++) {\n            for (int\
-      \ j = 0; j < _w; j++) { _mat[i][j] -= rhs._mat[i][j]; }\n        }\n       \
-      \ return *this;\n    }\n\n    mat &operator*=(const mat &rhs) {\n        static_assert(_w\
+      \ == _w];\n        }\n    }\n\n    template <OutputStream OStream> void debug_output(OStream\
+      \ &os) const {\n        os << \"(h, w): \" << \"(\" << _h << \", \" << _w <<\
+      \ \"), [\\n\";\n        for (int i = 0; i < _h; i++) {\n            os << \"\
+      \  [ \";\n            for (int j = 0; j < _w; j++) os << _mat[i][j] << \" \"\
+      ;\n            os << \"]\\n\";\n        }\n        os << \"]\\n\";\n    }\n\n\
+      \    mat &operator+=(const mat &rhs) {\n        for (int i = 0; i < _h; i++)\
+      \ {\n            for (int j = 0; j < _w; j++) { _mat[i][j] += rhs._mat[i][j];\
+      \ }\n        }\n        return *this;\n    }\n\n    mat &operator-=(const mat\
+      \ &rhs) {\n        for (int i = 0; i < _h; i++) {\n            for (int j =\
+      \ 0; j < _w; j++) { _mat[i][j] -= rhs._mat[i][j]; }\n        }\n        return\
+      \ *this;\n    }\n\n    mat &operator*=(const mat &rhs) {\n        static_assert(_w\
       \ == rhs._h, \"matrix multiplication dimension mismatch\");\n        std::array<std::array<Field,\
       \ rhs._w>, _h> res{};\n        for (int i = 0; i < _h; i++) {\n            for\
       \ (int k = 0; k < _w; k++) {\n                for (int j = 0; j < rhs._w; j++)\
@@ -184,7 +185,7 @@ data:
   path: matrix/static_matrix_field.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/static_matrix_field.hpp

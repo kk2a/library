@@ -26,13 +26,12 @@ data:
   - code: "#ifndef KK2_GRAPH_WARSHALL_FLOYD_HPP\n#define KK2_GRAPH_WARSHALL_FLOYD_HPP\
       \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include\
       \ <ranges>\n#include <type_traits>\n#include <utility>\n#include <vector>\n\n\
-      #include \"../../type_traits/io.hpp\"\n#include \"../../type_traits/graph.hpp\"\
+      #include \"../../type_traits/graph.hpp\"\n#include \"../../type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\ntemplate <typename\
       \ T> struct wf_len {\n    T len;\n    bool inf, minf;\n\n    template <OutputStream\
-      \ OStream>\n    void debug_output(OStream &os) const {\n        if (minf) os\
-      \ << \"MINF\";\n        else if (inf) os << \"INF\";\n        else os << len;\n\
-      \    }\n};\n\ntemplate <graph::WeightedEdgeRange E,\n          typename T =\
-      \ std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>\n\
+      \ OStream> void debug_output(OStream &os) const {\n        if (minf) os << \"\
+      MINF\";\n        else if (inf) os << \"INF\";\n        else os << len;\n   \
+      \ }\n};\n\ntemplate <\n    graph::WeightedEdgeRange E,\n    typename T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>\n\
       std::vector<std::vector<wf_len<T>>> warshall_froyd(int n, const E &edges, bool\
       \ directed) {\n\n    std::vector<std::vector<wf_len<T>>> res(n, std::vector<wf_len<T>>(n,\
       \ {0, true, false}));\n    for (int i = 0; i < n; ++i) res[i][i] = {0, false,\
@@ -57,57 +56,30 @@ data:
     name: default
   - code: "#line 1 \"graph/shortest_path/warshall_floyd.hpp\"\n\n\n\n#include <algorithm>\n\
       #include <cassert>\n#include <limits>\n#include <ranges>\n#include <type_traits>\n\
-      #include <utility>\n#include <vector>\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\
-      \n#include <concepts>\n#include <fstream>\n#include <istream>\n#include <ostream>\n\
-      #line 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\
-      \nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#line 8 \"\
-      type_traits/graph.hpp\"\n\nnamespace kk2::graph {\n\ntemplate <class E>\nconcept\
-      \ Edge = requires(const E &e) {\n    { e.from } -> std::convertible_to<int>;\n\
-      \    { e.to } -> std::convertible_to<int>;\n    { e.id } -> std::convertible_to<int>;\n\
-      };\n\ntemplate <class E>\nconcept WeightedEdge = Edge<E> && requires(const E\
-      \ &e) { e.cost; };\n\ntemplate <class R>\nconcept EdgeRange = std::ranges::input_range<R>\
-      \ &&\n                    Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class\
-      \ R>\nconcept WeightedEdgeRange = EdgeRange<R> &&\n                        \
-      \    WeightedEdge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept\
-      \ ForwardWeightedEdgeRange = std::ranges::forward_range<R> && WeightedEdgeRange<R>;\n\
-      \ntemplate <class G>\nconcept Graph = requires(const G &g, int v) {\n    typename\
-      \ G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n    { G::weighted\
-      \ } -> std::convertible_to<bool>;\n    { G::adjacency_list } -> std::convertible_to<bool>;\n\
-      \    { G::adjacency_matrix } -> std::convertible_to<bool>;\n    { G::static_graph\
-      \ } -> std::convertible_to<bool>;\n    { g.num_vertices() } -> std::integral;\n\
-      \    { g.num_edges() } -> std::integral;\n    g[v];\n    g.edges;\n};\n\ntemplate\
-      \ <class G>\nconcept EdgeListGraph = Graph<G> && requires(const G &g) {\n  \
-      \  requires std::ranges::range<decltype(g.edges)>;\n    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n\
-      };\n\ntemplate <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const\
-      \ G &g, int v) {\n    requires std::ranges::range<decltype(g[v])>;\n    requires\
-      \ Edge<std::ranges::range_value_t<decltype(g[v])>>;\n};\n\ntemplate <class G>\n\
-      concept WeightedGraph = AdjacencyGraph<G> && G::weighted &&\n              \
-      \          WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph = EdgeListGraph<G>\
-      \ && G::weighted &&\n                                WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      #include <utility>\n#include <vector>\n\n#line 1 \"type_traits/graph.hpp\"\n\
+      \n\n\n#include <concepts>\n#line 8 \"type_traits/graph.hpp\"\n\nnamespace kk2::graph\
+      \ {\n\ntemplate <class E>\nconcept Edge = requires(const E &e) {\n    { e.from\
+      \ } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
+      \    { e.id } -> std::convertible_to<int>;\n};\n\ntemplate <class E>\nconcept\
+      \ WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };\n\ntemplate <class\
+      \ R>\nconcept EdgeRange = std::ranges::input_range<R> && Edge<std::ranges::range_value_t<R>>;\n\
+      \ntemplate <class R>\nconcept WeightedEdgeRange = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\
+      \ntemplate <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
+      \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
+      \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
+      \    { G::weighted } -> std::convertible_to<bool>;\n    { G::adjacency_list\
+      \ } -> std::convertible_to<bool>;\n    { G::adjacency_matrix } -> std::convertible_to<bool>;\n\
+      \    { G::static_graph } -> std::convertible_to<bool>;\n    { g.num_vertices()\
+      \ } -> std::integral;\n    { g.num_edges() } -> std::integral;\n    g[v];\n\
+      \    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph = Graph<G> &&\
+      \ requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
+      \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
+      \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
+      \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
+      };\n\ntemplate <class G>\nconcept WeightedGraph =\n    AdjacencyGraph<G> &&\
+      \ G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph =\n   \
+      \ EdgeListGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
       \ && (!G::weighted);\n\ntemplate <class G>\nconcept DirectedGraph = AdjacencyGraph<G>\
       \ && G::directed;\n\ntemplate <class G>\nconcept UndirectedGraph = AdjacencyGraph<G>\
@@ -121,13 +93,40 @@ data:
       \ <class G>\nconcept VertexAdjacency = requires(const G &g, int v) {\n    {\
       \ g.size() } -> std::integral;\n    requires std::ranges::range<decltype(g[v])>;\n\
       \    requires std::convertible_to<std::ranges::range_value_t<decltype(g[v])>,\
-      \ int>;\n};\n\n} // namespace kk2::graph\n\n\n#line 14 \"graph/shortest_path/warshall_floyd.hpp\"\
+      \ int>;\n};\n\n} // namespace kk2::graph\n\n\n#line 1 \"type_traits/io.hpp\"\
+      \n\n\n\n#line 5 \"type_traits/io.hpp\"\n#include <fstream>\n#include <istream>\n\
+      #include <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+      \ type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace\
+      \ type_traits\n\ntemplate <typename T>\nusing is_standard_istream = typename\
+      \ std::conditional<std::is_same<T, std::istream>::value\n                  \
+      \                                        || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
+      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 14 \"graph/shortest_path/warshall_floyd.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\ntemplate <typename\
       \ T> struct wf_len {\n    T len;\n    bool inf, minf;\n\n    template <OutputStream\
-      \ OStream>\n    void debug_output(OStream &os) const {\n        if (minf) os\
-      \ << \"MINF\";\n        else if (inf) os << \"INF\";\n        else os << len;\n\
-      \    }\n};\n\ntemplate <graph::WeightedEdgeRange E,\n          typename T =\
-      \ std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>\n\
+      \ OStream> void debug_output(OStream &os) const {\n        if (minf) os << \"\
+      MINF\";\n        else if (inf) os << \"INF\";\n        else os << len;\n   \
+      \ }\n};\n\ntemplate <\n    graph::WeightedEdgeRange E,\n    typename T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>\n\
       std::vector<std::vector<wf_len<T>>> warshall_froyd(int n, const E &edges, bool\
       \ directed) {\n\n    std::vector<std::vector<wf_len<T>>> res(n, std::vector<wf_len<T>>(n,\
       \ {0, true, false}));\n    for (int i = 0; i < n; ++i) res[i][i] = {0, false,\
@@ -155,7 +154,7 @@ data:
   path: graph/shortest_path/warshall_floyd.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp

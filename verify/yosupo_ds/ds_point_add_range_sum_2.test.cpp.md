@@ -52,13 +52,12 @@ data:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum\n\
       \n#include \"../../data_structure/binary_indexed_tree.hpp\"\n#include \"../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
-      \    kk2::BinaryIndexedTree<i64> bit(n);\n    rep (i, n) {\n        i64 a;\n\
-      \        kin >> a;\n        bit.add(i, a);\n    }\n\n    rep (q) {\n       \
-      \ int t;\n        kin >> t;\n        if (t == 0) {\n            int p, x;\n\
-      \            kin >> p >> x;\n            bit.add(p, x);\n        }\n       \
-      \ if (t == 1) {\n            int l, r;\n            kin >> l >> r;\n       \
-      \     kout << bit.sum(l, r) << \"\\n\";\n        }\n    }\n\n    return 0;\n\
-      }\n"
+      \    kk2::BinaryIndexedTree<i64> bit(n);\n    rep(i, n) {\n        i64 a;\n\
+      \        kin >> a;\n        bit.add(i, a);\n    }\n\n    rep(q) {\n        int\
+      \ t;\n        kin >> t;\n        if (t == 0) {\n            int p, x;\n    \
+      \        kin >> p >> x;\n            bit.add(p, x);\n        }\n        if (t\
+      \ == 1) {\n            int l, r;\n            kin >> l >> r;\n            kout\
+      \ << bit.sum(l, r) << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp\"\n// competitive-verifier:\
       \ PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum\n\n#line 1 \"\
@@ -100,30 +99,32 @@ data:
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
       \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -138,20 +139,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -286,7 +289,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -315,13 +318,12 @@ data:
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
-      \    kk2::BinaryIndexedTree<i64> bit(n);\n    rep (i, n) {\n        i64 a;\n\
-      \        kin >> a;\n        bit.add(i, a);\n    }\n\n    rep (q) {\n       \
-      \ int t;\n        kin >> t;\n        if (t == 0) {\n            int p, x;\n\
-      \            kin >> p >> x;\n            bit.add(p, x);\n        }\n       \
-      \ if (t == 1) {\n            int l, r;\n            kin >> l >> r;\n       \
-      \     kout << bit.sum(l, r) << \"\\n\";\n        }\n    }\n\n    return 0;\n\
-      }\n"
+      \    kk2::BinaryIndexedTree<i64> bit(n);\n    rep(i, n) {\n        i64 a;\n\
+      \        kin >> a;\n        bit.add(i, a);\n    }\n\n    rep(q) {\n        int\
+      \ t;\n        kin >> t;\n        if (t == 0) {\n            int p, x;\n    \
+      \        kin >> p >> x;\n            bit.add(p, x);\n        }\n        if (t\
+      \ == 1) {\n            int l, r;\n            kin >> l >> r;\n            kout\
+      \ << bit.sum(l, r) << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -329,112 +331,112 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0025653430000147637
+  - elapsed: 0.0024388519999831715
     environment: g++
-    memory: 3.776
+    memory: 3.828
     name: example_00
     status: AC
-  - elapsed: 0.24041740100000197
+  - elapsed: 0.23503617899999085
     environment: g++
-    memory: 7.572
+    memory: 7.636
     name: max_random_00
     status: AC
-  - elapsed: 0.2396561940000197
+  - elapsed: 0.24480969399999708
     environment: g++
-    memory: 7.528
+    memory: 7.668
     name: max_random_01
     status: AC
-  - elapsed: 0.2570442940000248
+  - elapsed: 0.244974534000022
     environment: g++
-    memory: 7.564
+    memory: 7.64
     name: max_random_02
     status: AC
-  - elapsed: 0.24083410499997626
+  - elapsed: 0.241296119999987
     environment: g++
-    memory: 7.572
+    memory: 7.636
     name: max_random_03
     status: AC
-  - elapsed: 0.24204526700003726
+  - elapsed: 0.24289290199999414
     environment: g++
-    memory: 7.576
+    memory: 7.636
     name: max_random_04
     status: AC
-  - elapsed: 0.19381948099999136
+  - elapsed: 0.21403486799999882
     environment: g++
-    memory: 6.712
+    memory: 6.78
     name: random_00
     status: AC
-  - elapsed: 0.20513821200000848
+  - elapsed: 0.20941145800000527
     environment: g++
-    memory: 7.284
+    memory: 7.348
     name: random_01
     status: AC
-  - elapsed: 0.12702889299998787
+  - elapsed: 0.12700534399999697
     environment: g++
-    memory: 4.084
+    memory: 4.208
     name: random_02
     status: AC
-  - elapsed: 0.07401799000001574
+  - elapsed: 0.06663192599998524
     environment: g++
-    memory: 7.02
+    memory: 7.084
     name: random_03
     status: AC
-  - elapsed: 0.075818025999979
+  - elapsed: 0.07290600999999697
     environment: g++
-    memory: 5.82
+    memory: 5.9
     name: random_04
     status: AC
-  - elapsed: 0.0026443409999501455
+  - elapsed: 0.002651513000017758
     environment: g++
-    memory: 3.788
+    memory: 3.84
     name: small_00
     status: AC
-  - elapsed: 0.0024684679999609216
+  - elapsed: 0.002210468000015453
     environment: g++
-    memory: 3.764
+    memory: 3.856
     name: small_01
     status: AC
-  - elapsed: 0.0023671339999964403
+  - elapsed: 0.0022112480000089363
     environment: g++
-    memory: 3.712
+    memory: 3.868
     name: small_02
     status: AC
-  - elapsed: 0.0023826780000035797
+  - elapsed: 0.0022424160000014126
     environment: g++
-    memory: 3.764
+    memory: 3.828
     name: small_03
     status: AC
-  - elapsed: 0.002352986999994755
+  - elapsed: 0.0022142629999848396
     environment: g++
-    memory: 3.764
+    memory: 3.856
     name: small_04
     status: AC
-  - elapsed: 0.002367849999984628
+  - elapsed: 0.002257167999999865
     environment: g++
-    memory: 3.776
+    memory: 3.824
     name: small_05
     status: AC
-  - elapsed: 0.002298045000031834
+  - elapsed: 0.002196146000017052
     environment: g++
-    memory: 3.676
+    memory: 3.82
     name: small_06
     status: AC
-  - elapsed: 0.002404448999982378
+  - elapsed: 0.002171758999992335
     environment: g++
-    memory: 3.616
+    memory: 3.856
     name: small_07
     status: AC
-  - elapsed: 0.0023575660000005882
+  - elapsed: 0.00216861399999857
     environment: g++
-    memory: 3.572
+    memory: 3.828
     name: small_08
     status: AC
-  - elapsed: 0.0023809799999980896
+  - elapsed: 0.002121893999998292
     environment: g++
-    memory: 3.764
+    memory: 3.856
     name: small_09
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp

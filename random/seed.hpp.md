@@ -49,11 +49,11 @@ data:
     - filename: parallel.hpp
       icon: LIBRARY_ALL_AC
       path: unionfind/parallel.hpp
+    - filename: aoj_alds1_14_b.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/aoj/aoj_alds1_14_b.test.cpp
     type: Required by
   - files:
-    - filename: aoj_alds1_14_b.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/aoj/aoj_alds1_14_b.test.cpp
     - filename: aoj_ntl_1_d.test.cpp
       icon: TEST_ACCEPTED
       path: verify/aoj/aoj_ntl_1_d.test.cpp
@@ -173,10 +173,10 @@ data:
   - string/dynamic_rolling_hash.hpp
   - string/static_rolling_hash.hpp
   - unionfind/parallel.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  - verify/aoj/aoj_alds1_14_b.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/unit_test/data_structure/bit_vector.test.cpp
   - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp

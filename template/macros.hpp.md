@@ -13,9 +13,39 @@ data:
     - filename: template.hpp
       icon: LIBRARY_ALL_AC
       path: template/template.hpp
+    - filename: aoj_alds1_14_b.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/aoj/aoj_alds1_14_b.test.cpp
+    - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+    - filename: ds_point_set_range_composite_large_2.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+    - filename: ds_potentiailized_uf_non_commutattive.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+    - filename: fps_composition.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/fps_composition.test.cpp
+    - filename: fps_composition_inv.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/fps_composition_inv.test.cpp
     - filename: fps_exp_arb.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
+    - filename: fps_multipoint_evaluation_geometric.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+    - filename: poly_interpolation_geometric.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+    - filename: poly_sample_point_shift.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+    - filename: poly_to_newton_basis.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     - filename: kth_term_of_linearly_recurrent_sequence.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -30,9 +60,6 @@ data:
     - filename: aoj_0560_2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/aoj/aoj_0560_2.test.cpp
-    - filename: aoj_alds1_14_b.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/aoj/aoj_alds1_14_b.test.cpp
     - filename: aoj_grl_1_b.test.cpp
       icon: TEST_ACCEPTED
       path: verify/aoj/aoj_grl_1_b.test.cpp
@@ -132,9 +159,6 @@ data:
     - filename: convolution_xor.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_convolution/convolution_xor.test.cpp
-    - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     - filename: ds_ordered_set_binary_trie.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
@@ -153,12 +177,6 @@ data:
     - filename: ds_point_set_range_composite_2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-    - filename: ds_point_set_range_composite_large_2.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
-    - filename: ds_potentiailized_uf_non_commutattive.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
     - filename: ds_potentialized_unionfind.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
@@ -204,12 +222,6 @@ data:
     - filename: ds_unionfind.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_unionfind.test.cpp
-    - filename: fps_composition.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_composition.test.cpp
-    - filename: fps_composition_inv.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_composition_inv.test.cpp
     - filename: fps_exp.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_exp.test.cpp
@@ -228,9 +240,6 @@ data:
     - filename: fps_multipoint_evaluation.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-    - filename: fps_multipoint_evaluation_geometric.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
     - filename: fps_pow.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_pow.test.cpp
@@ -261,24 +270,15 @@ data:
     - filename: poly_interpolation.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_interpolation.test.cpp
-    - filename: poly_interpolation_geometric.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
     - filename: poly_inv.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_inv.test.cpp
     - filename: poly_root_finding.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_root_finding.test.cpp
-    - filename: poly_sample_point_shift.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
-    - filename: poly_to_newton_basis.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     - filename: arg_sort.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_geometry/arg_sort.test.cpp
@@ -549,15 +549,24 @@ data:
   requiredBy:
   - template/procon.hpp
   - template/template.hpp
+  - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+  - verify/yosupo_fps/fps_composition.test.cpp
+  - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
   - verify/aoj/aoj_0560.test.cpp
   - verify/aoj/aoj_0560_2.test.cpp
-  - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/aoj/aoj_grl_1_b.test.cpp
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
@@ -591,15 +600,12 @@ data:
   - verify/yosupo_convolution/convolution_or.test.cpp
   - verify/yosupo_convolution/convolution_subset.test.cpp
   - verify/yosupo_convolution/convolution_xor.test.cpp
-  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
   - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
   - verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp
-  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
-  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum.test.cpp
@@ -615,15 +621,12 @@ data:
   - verify/yosupo_ds/ds_static_rmq.test.cpp
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
-  - verify/yosupo_fps/fps_composition.test.cpp
-  - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
   - verify/yosupo_fps/fps_sparse_exp.test.cpp
@@ -634,12 +637,9 @@ data:
   - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_fps/poly_division.test.cpp
   - verify/yosupo_fps/poly_interpolation.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_geometry/arg_sort.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp

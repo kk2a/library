@@ -64,9 +64,9 @@ data:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/staticrmq\n\
       \n#include \"../../data_structure/static_rmq.hpp\"\n#include \"../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
-      \    kk2::StaticRMQ<int> rmq(n);\n    rep (i, n) {\n        int a;\n       \
-      \ kin >> a;\n        rmq.init_set(i, a);\n    }\n    rmq.build();\n\n    rep\
-      \ (q) {\n        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l,\
+      \    kk2::StaticRMQ<int> rmq(n);\n    rep(i, n) {\n        int a;\n        kin\
+      \ >> a;\n        rmq.init_set(i, a);\n    }\n    rmq.build();\n\n    rep(q)\
+      \ {\n        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l,\
       \ r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_ds/ds_static_rmq.test.cpp\"\n// competitive-verifier:\
@@ -75,21 +75,22 @@ data:
       \ 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
       #include <istream>\n#include <ostream>\n#include <type_traits>\n\nnamespace\
       \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
-      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T> using is_standard_istream\
-      \ =\n    typename std::conditional<std::is_same<T, std::istream>::value\n  \
-      \                                || std::is_same<T, std::ifstream>::value,\n\
+      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
+      \ = typename std::conditional<std::is_same<T, std::istream>::value\n       \
+      \                                                   || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -109,9 +110,9 @@ data:
       \ const {\n        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n\
       \    }\n\n    bool operator!=(const M &rhs) const {\n        return is_unit\
       \ != rhs.is_unit or (!is_unit and a != rhs.a);\n    }\n\n    template <OutputStream\
-      \ OStream>\n    friend OStream &operator<<(OStream &os, const M &x) {\n    \
-      \    if (x.is_unit) os << \"inf\";\n        else os << x.a;\n        return\
-      \ os;\n    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
+      \ OStream> friend OStream &operator<<(OStream &os, const M &x) {\n        if\
+      \ (x.is_unit) os << \"inf\";\n        else os << x.a;\n        return os;\n\
+      \    }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
       \ &is, M &x) {\n        is >> x.a;\n        x.is_unit = false;\n        return\
       \ is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n#line 1\
       \ \"data_structure/sparse_table.hpp\"\n\n\n\n#include <cassert>\n#include <vector>\n\
@@ -133,29 +134,29 @@ data:
       \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
       } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
       \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action = requires {\n\
-      \    typename T::A;\n    typename T::S;\n} && Monoid<typename T::A> && Monoid<typename\
-      \ T::S>\n    && requires(const typename T::A &f, const typename T::S &x) {\n\
-      \           { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n\
-      } // namespace algebra\n\n} // namespace kk2\n\n\n#line 8 \"data_structure/sparse_table.hpp\"\
-      \n\nnamespace kk2 {\n\n// require: op(x, x) = x for all x\ntemplate <algebra::Monoid\
-      \ M> struct SparseTable {\n    SparseTable() = default;\n\n    SparseTable(int\
-      \ n) : _n(n) {\n        log = 0;\n        while ((1 << log) < _n) log++;\n \
-      \       table.assign(log + 1, std::vector<M>(_n));\n    }\n\n    SparseTable(const\
-      \ std::vector<M> &v) : _n(int(v.size())) {\n        log = 0;\n        while\
-      \ ((1 << log) < _n) log++;\n        table.assign(log + 1, std::vector<M>(_n));\n\
-      \        for (int i = 0; i < _n; i++) table[0][i] = v[i];\n        build();\n\
-      \    }\n\n    void build() {\n        assert(!is_built);\n        is_built =\
-      \ true;\n        for (int i = 1; i <= log; i++) {\n            for (int j =\
-      \ 0; j + (1 << i) <= _n; j++) {\n                table[i][j] = M::op(table[i\
-      \ - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n        }\n  \
-      \  }\n\n    template <class... Args> void init_set(int p, Args... args) {\n\
-      \        assert(0 <= p && p < _n);\n        assert(!is_built);\n        table[0][p]\
-      \ = M(args...);\n    }\n\n    using Monoid = M;\n\n    static M Op(M l, M r)\
-      \ { return M::op(l, r); }\n\n    static M MonoidUnit() { return M::unit(); }\n\
-      \n    M prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <=\
-      \ _n);\n        assert(is_built);\n        if (l == r) return M::unit();\n \
-      \       int i = 31 ^ __builtin_clz(r - l);\n        return M::op(table[i][l],\
+      \ propagation structures.\ntemplate <class T>\nconcept Action =\n    requires\
+      \ {\n        typename T::A;\n        typename T::S;\n    } && Monoid<typename\
+      \ T::A> && Monoid<typename T::S>\n    && requires(const typename T::A &f, const\
+      \ typename T::S &x) {\n           { T::act(f, x) } -> std::same_as<typename\
+      \ T::S>;\n       };\n\n} // namespace algebra\n\n} // namespace kk2\n\n\n#line\
+      \ 8 \"data_structure/sparse_table.hpp\"\n\nnamespace kk2 {\n\n// require: op(x,\
+      \ x) = x for all x\ntemplate <algebra::Monoid M> struct SparseTable {\n    SparseTable()\
+      \ = default;\n\n    SparseTable(int n) : _n(n) {\n        log = 0;\n       \
+      \ while ((1 << log) < _n) log++;\n        table.assign(log + 1, std::vector<M>(_n));\n\
+      \    }\n\n    SparseTable(const std::vector<M> &v) : _n(int(v.size())) {\n \
+      \       log = 0;\n        while ((1 << log) < _n) log++;\n        table.assign(log\
+      \ + 1, std::vector<M>(_n));\n        for (int i = 0; i < _n; i++) table[0][i]\
+      \ = v[i];\n        build();\n    }\n\n    void build() {\n        assert(!is_built);\n\
+      \        is_built = true;\n        for (int i = 1; i <= log; i++) {\n      \
+      \      for (int j = 0; j + (1 << i) <= _n; j++) {\n                table[i][j]\
+      \ = M::op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n\
+      \        }\n    }\n\n    template <class... Args> void init_set(int p, Args...\
+      \ args) {\n        assert(0 <= p && p < _n);\n        assert(!is_built);\n \
+      \       table[0][p] = M(args...);\n    }\n\n    using Monoid = M;\n\n    static\
+      \ M Op(M l, M r) { return M::op(l, r); }\n\n    static M MonoidUnit() { return\
+      \ M::unit(); }\n\n    M prod(int l, int r) const {\n        assert(0 <= l &&\
+      \ l <= r && r <= _n);\n        assert(is_built);\n        if (l == r) return\
+      \ M::unit();\n        int i = 31 ^ __builtin_clz(r - l);\n        return M::op(table[i][l],\
       \ table[i][r - (1 << i)]);\n    }\n\n    M get(int i) const {\n        assert(0\
       \ <= i && i < _n);\n        assert(is_built);\n        return table[0][i];\n\
       \    }\n\n    // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1]))\
@@ -208,26 +209,27 @@ data:
       \ <cstdio>\n#line 8 \"template/fastio.hpp\"\n#include <iostream>\n#line 10 \"\
       template/fastio.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5\
       \ \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -368,7 +370,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -397,9 +399,9 @@ data:
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_static_rmq.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
-      \    kk2::StaticRMQ<int> rmq(n);\n    rep (i, n) {\n        int a;\n       \
-      \ kin >> a;\n        rmq.init_set(i, a);\n    }\n    rmq.build();\n\n    rep\
-      \ (q) {\n        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l,\
+      \    kk2::StaticRMQ<int> rmq(n);\n    rep(i, n) {\n        int a;\n        kin\
+      \ >> a;\n        rmq.init_set(i, a);\n    }\n    rmq.build();\n\n    rep(q)\
+      \ {\n        int l, r;\n        kin >> l >> r;\n        kout << rmq.prod(l,\
       \ r) << \"\\n\";\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
@@ -408,142 +410,142 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024562069999944924
+  - elapsed: 0.0030079699999987497
     environment: g++
-    memory: 3.796
+    memory: 3.804
     name: example_00
     status: AC
-  - elapsed: 0.5144573750000063
+  - elapsed: 0.6599467159999932
     environment: g++
-    memory: 85.532
+    memory: 85.536
     name: max_random_00
     status: AC
-  - elapsed: 0.5097075089999947
-    environment: g++
-    memory: 85.564
-    name: max_random_01
-    status: AC
-  - elapsed: 0.5101682519999997
+  - elapsed: 0.6531580329999969
     environment: g++
     memory: 85.572
+    name: max_random_01
+    status: AC
+  - elapsed: 0.6519255139999984
+    environment: g++
+    memory: 85.532
     name: max_random_02
     status: AC
-  - elapsed: 0.5127282370000046
+  - elapsed: 0.6530758640000016
     environment: g++
-    memory: 85.568
+    memory: 85.516
     name: max_random_03
     status: AC
-  - elapsed: 0.5015526430000108
+  - elapsed: 0.6485741320000074
     environment: g++
     memory: 85.572
     name: max_random_04
     status: AC
-  - elapsed: 0.40459397700000466
+  - elapsed: 0.5165143509999979
     environment: g++
-    memory: 67.46
+    memory: 67.464
     name: random_00
     status: AC
-  - elapsed: 0.4508515079999995
+  - elapsed: 0.5709861200000006
     environment: g++
-    memory: 79.52
+    memory: 79.468
     name: random_01
     status: AC
-  - elapsed: 0.12197081000000765
+  - elapsed: 0.17218584200000464
     environment: g++
     memory: 11.048
     name: random_02
     status: AC
-  - elapsed: 0.3350728409999988
+  - elapsed: 0.3799388509999915
     environment: g++
-    memory: 73.908
+    memory: 73.912
     name: random_03
     status: AC
-  - elapsed: 0.24828955399999586
+  - elapsed: 0.28398507299999665
     environment: g++
-    memory: 48.968
+    memory: 48.96
     name: random_04
     status: AC
-  - elapsed: 0.0025622699999985343
+  - elapsed: 0.0031149929999969572
     environment: g++
-    memory: 3.636
+    memory: 3.772
     name: small_00
     status: AC
-  - elapsed: 0.00235466100001247
+  - elapsed: 0.0027546409999956722
     environment: g++
-    memory: 3.776
+    memory: 3.784
     name: small_01
     status: AC
-  - elapsed: 0.0023262079999994967
+  - elapsed: 0.0027441839999937656
     environment: g++
-    memory: 3.8
+    memory: 3.636
     name: small_02
     status: AC
-  - elapsed: 0.0022793490000054817
+  - elapsed: 0.0026927379999932555
     environment: g++
     memory: 3.776
     name: small_03
     status: AC
-  - elapsed: 0.0023347639999968806
+  - elapsed: 0.002697353999991492
     environment: g++
-    memory: 3.636
+    memory: 3.78
     name: small_04
     status: AC
-  - elapsed: 0.0023631469999969568
+  - elapsed: 0.002671935999998709
     environment: g++
-    memory: 3.588
+    memory: 3.58
     name: small_05
     status: AC
-  - elapsed: 0.0023183330000051683
-    environment: g++
-    memory: 3.808
-    name: small_06
-    status: AC
-  - elapsed: 0.0024495180000059236
+  - elapsed: 0.002647609000007378
     environment: g++
     memory: 3.74
+    name: small_06
+    status: AC
+  - elapsed: 0.002676501999999914
+    environment: g++
+    memory: 3.804
     name: small_07
     status: AC
-  - elapsed: 0.0022396549999967874
+  - elapsed: 0.0028160679999871263
     environment: g++
-    memory: 3.588
+    memory: 3.784
     name: small_08
     status: AC
-  - elapsed: 0.0022961110000068174
+  - elapsed: 0.0026877549999966277
     environment: g++
-    memory: 3.772
+    memory: 3.78
     name: small_09
     status: AC
-  - elapsed: 0.4672244879999994
+  - elapsed: 0.5973816039999917
     environment: g++
-    memory: 85.452
+    memory: 85.568
     name: small_values_00
     status: AC
-  - elapsed: 0.5538505699999945
+  - elapsed: 0.6621076129999892
     environment: g++
-    memory: 85.532
+    memory: 85.568
     name: small_width_query_00
     status: AC
-  - elapsed: 0.5304256780000003
+  - elapsed: 0.6600329359999932
     environment: g++
-    memory: 85.532
+    memory: 85.536
     name: small_width_query_01
     status: AC
-  - elapsed: 0.5322557150000051
+  - elapsed: 0.6664975099999992
     environment: g++
-    memory: 85.568
+    memory: 85.528
     name: small_width_query_02
     status: AC
-  - elapsed: 0.5289629659999946
+  - elapsed: 0.653478910000004
     environment: g++
-    memory: 85.564
+    memory: 85.532
     name: small_width_query_03
     status: AC
-  - elapsed: 0.5431083599999909
+  - elapsed: 0.6597359559999916
     environment: g++
-    memory: 85.568
+    memory: 85.572
     name: small_width_query_04
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq.test.cpp

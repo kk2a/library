@@ -81,9 +81,9 @@ data:
       \n#include \"../../graph/graph.hpp\"\n#include \"../../graph/maxflow.hpp\"\n\
       #include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
       \ {\n    int l, r, m;\n    kin >> l >> r >> m;\n    kk2::DWAdjList<int> g(l\
-      \ + r + 2);\n    rep (m) {\n        int a, b;\n        kin >> a >> b;\n    \
-      \    g.add_edge(a, l + b, 1);\n    }\n    rep (i, l) g.add_edge(l + r, i, 1);\n\
-      \    rep (i, r) g.add_edge(l + i, l + r + 1, 1);\n\n    kk2::MaxFlow<kk2::DWAdjList<int>>\
+      \ + r + 2);\n    rep(m) {\n        int a, b;\n        kin >> a >> b;\n     \
+      \   g.add_edge(a, l + b, 1);\n    }\n    rep(i, l) g.add_edge(l + r, i, 1);\n\
+      \    rep(i, r) g.add_edge(l + i, l + r + 1, 1);\n\n    kk2::MaxFlow<kk2::DWAdjList<int>>\
       \ mf(g);\n\n    int count = mf.flow(l + r, l + r + 1);\n    kout << count <<\
       \ \"\\n\";\n\n    auto tmp = mf.get_edges();\n    for (auto &&e : tmp) {\n \
       \       if (count == 0) break;\n        if (e.flow == 0) continue;\n       \
@@ -96,21 +96,22 @@ data:
       #include <utility>\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -126,36 +127,36 @@ data:
       \ int id_ = -1)\n        : from(from_),\n          to(to_),\n          id(id_),\n\
       \          cost(cost_) {}\n    _Edge() : from(-1), to(-1), id(-1) {}\n    operator\
       \ int() const { return to; }\n    inline _Edge rev() const { return _Edge(from,\
-      \ cost, to, id); }\n\n    template <OutputStream OStream>\n    void debug_output(OStream\
+      \ cost, to, id); }\n\n    template <OutputStream OStream> void debug_output(OStream\
       \ &os) const {\n        os << '(' << id << \", \" << from << \"->\" << to;\n\
       \        if constexpr (!std::is_same_v<T, empty>) os << \":\" << cost;\n   \
       \     os << ')';\n    }\n};\n\ntemplate <> struct _Edge<empty> {\n    int from,\
-      \ to, id;\n\n    _Edge(int to_, empty = {}, int from_ = -1, int id_ = -1)\n\
-      \        : from(from_),\n          to(to_),\n          id(id_) {}\n    _Edge()\
-      \ : from(-1), to(-1), id(-1) {}\n    operator int() const { return to; }\n \
-      \   inline _Edge rev() const { return _Edge(from, {}, to, id); }\n\n    template\
-      \ <OutputStream OStream>\n    void debug_output(OStream &os) const {\n     \
-      \   os << '(' << id << \", \" << from << \"->\" << to << ')';\n    }\n};\n\n\
-      template <class T> T _edge_cost(const _Edge<T> &edge) {\n    if constexpr (std::is_same_v<T,\
-      \ empty>) return {};\n    else return edge.cost;\n}\n\ntemplate <class T> struct\
-      \ _Edges : public std::vector<_Edge<T>> {\n    using std::vector<_Edge<T>>::vector;\n\
-      \n    template <InputStream IStream>\n    _Edges(int m, IStream &is, bool is_one_indexed\
-      \ = false)\n        : std::vector<_Edge<T>>(m) {\n        _input(is, is_one_indexed);\n\
-      \    }\n\n    template <OutputStream OStream>\n    void debug_output(OStream\
-      \ &os) const {\n        os << '[';\n        for (int i = 0; i < (int)this->size();\
-      \ i++) {\n            if (i) os << \", \";\n            (*this)[i].debug_output(os);\n\
-      \        }\n        os << ']';\n    }\n\n    _Edges &add_edge(int from, int\
-      \ to, T cost = T{}) {\n        this->emplace_back(to, cost, from, this->size());\n\
-      \        return *this;\n    }\n\n    friend _Edges &add_edge(_Edges &edges,\
-      \ int from, int to, T cost = T{}) {\n        edges.emplace_back(to, cost, from,\
-      \ edges.size());\n        return edges;\n    }\n\n  private:\n    template <InputStream\
-      \ IStream>\n    void _input(IStream &is, bool is_one_indexed) {\n        for\
-      \ (int i = 0; i < (int)this->size(); ++i) {\n            int u, v;\n       \
-      \     T w{};\n            is >> u >> v;\n            if (is_one_indexed) --u,\
-      \ --v;\n            if constexpr (!std::is_same_v<T, empty>) is >> w;\n    \
-      \        (*this)[i] = _Edge<T>(v, w, u, i);\n        }\n    }\n};\n\n} // namespace\
-      \ graph\n\ntemplate <typename T> using WEdge = graph::_Edge<T>;\ntemplate <typename\
-      \ T> using WEdges = graph::_Edges<T>;\nusing Edge = graph::_Edge<graph::empty>;\n\
+      \ to, id;\n\n    _Edge(int to_, empty = {}, int from_ = -1, int id_ = -1) :\
+      \ from(from_), to(to_), id(id_) {}\n    _Edge() : from(-1), to(-1), id(-1) {}\n\
+      \    operator int() const { return to; }\n    inline _Edge rev() const { return\
+      \ _Edge(from, {}, to, id); }\n\n    template <OutputStream OStream> void debug_output(OStream\
+      \ &os) const {\n        os << '(' << id << \", \" << from << \"->\" << to <<\
+      \ ')';\n    }\n};\n\ntemplate <class T> T _edge_cost(const _Edge<T> &edge) {\n\
+      \    if constexpr (std::is_same_v<T, empty>) return {};\n    else return edge.cost;\n\
+      }\n\ntemplate <class T> struct _Edges : public std::vector<_Edge<T>> {\n   \
+      \ using std::vector<_Edge<T>>::vector;\n\n    template <InputStream IStream>\n\
+      \    _Edges(int m, IStream &is, bool is_one_indexed = false) : std::vector<_Edge<T>>(m)\
+      \ {\n        _input(is, is_one_indexed);\n    }\n\n    template <OutputStream\
+      \ OStream> void debug_output(OStream &os) const {\n        os << '[';\n    \
+      \    for (int i = 0; i < (int)this->size(); i++) {\n            if (i) os <<\
+      \ \", \";\n            (*this)[i].debug_output(os);\n        }\n        os <<\
+      \ ']';\n    }\n\n    _Edges &add_edge(int from, int to, T cost = T{}) {\n  \
+      \      this->emplace_back(to, cost, from, this->size());\n        return *this;\n\
+      \    }\n\n    friend _Edges &add_edge(_Edges &edges, int from, int to, T cost\
+      \ = T{}) {\n        edges.emplace_back(to, cost, from, edges.size());\n    \
+      \    return edges;\n    }\n\n  private:\n    template <InputStream IStream>\
+      \ void _input(IStream &is, bool is_one_indexed) {\n        for (int i = 0; i\
+      \ < (int)this->size(); ++i) {\n            int u, v;\n            T w{};\n \
+      \           is >> u >> v;\n            if (is_one_indexed) --u, --v;\n     \
+      \       if constexpr (!std::is_same_v<T, empty>) is >> w;\n            (*this)[i]\
+      \ = _Edge<T>(v, w, u, i);\n        }\n    }\n};\n\n} // namespace graph\n\n\
+      template <typename T> using WEdge = graph::_Edge<T>;\ntemplate <typename T>\
+      \ using WEdges = graph::_Edges<T>;\nusing Edge = graph::_Edge<graph::empty>;\n\
       using Edges = graph::_Edges<graph::empty>;\n\n} // namespace kk2\n\n\n#line\
       \ 1 \"graph/detail/graph_base.hpp\"\n\n\n\n#line 5 \"graph/detail/graph_base.hpp\"\
       \n\n#line 7 \"graph/detail/graph_base.hpp\"\n\nnamespace kk2::graph::detail\
@@ -172,52 +173,52 @@ data:
       \ data and common operations.\n    edge_collection edges;\n    int num_edges()\
       \ const { return edges.size(); }\n};\n\n} // namespace kk2::graph::detail\n\n\
       \n#line 10 \"graph/detail/adjacency_list_base.hpp\"\n\nnamespace kk2::graph::detail\
-      \ {\n\ntemplate <class T, bool is_directed, class Storage>\nstruct AdjacencyListBase\n\
-      \    : GraphBase<T, is_directed, false>, private Storage {\n    using base =\
-      \ GraphBase<T, is_directed, false>;\n\n  public:\n    // Public type interface\
-      \ and graph storage.\n    using base::edges;\n    using base::num_edges;\n \
-      \   using base::weighted;\n    using Storage::data;\n\n    using storage_type\
-      \ = Storage;\n    using value_type = T;\n    using out_edge_type = typename\
-      \ Storage::out_edge_type;\n    using out_edges = typename Storage::out_edges;\n\
-      \    using adjacency_container = typename Storage::adjacency_container;\n  \
-      \  using edge_type = _Edge<T>;\n    using edge_collection = _Edges<T>;\n\n \
-      \   // Construction and graph operations.\n    AdjacencyListBase() = default;\n\
-      \    explicit AdjacencyListBase(int n) : Storage(n) {}\n    template <InputStream\
-      \ IStream>\n    AdjacencyListBase(int n, int m, IStream &is, bool oneindexed\
-      \ = false) : Storage(n) {\n        edges.reserve(m);\n        _input(is, m,\
-      \ oneindexed);\n    }\n    AdjacencyListBase(int n, const edge_collection &edges_)\
-      \ : Storage(n) {\n        edges.reserve(edges_.size());\n        this->reserve(edges_);\n\
-      \        for (const auto &e : edges_) _add_edge_with_id(e.from, e.to, _edge_cost(e),\
-      \ e.id);\n    }\n\n    int num_vertices() const { return Storage::num_vertices();\
-      \ }\n    int size() const { return num_vertices(); }\n\n    decltype(auto) operator[](int\
-      \ k) {\n        if constexpr (requires { std::declval<Storage &>().view(k, &edges);\
-      \ }) {\n            return Storage::view(k, &edges);\n        } else {\n   \
-      \         return Storage::view(k);\n        }\n    }\n\n    decltype(auto) operator[](int\
-      \ k) const {\n        if constexpr (requires { std::declval<const Storage &>().view(k,\
-      \ &edges); }) {\n            return std::as_const(static_cast<const Storage\
-      \ &>(*this)).view(k, &edges);\n        } else {\n            return std::as_const(static_cast<const\
-      \ Storage &>(*this)).view(k);\n        }\n    }\n\n    auto edge_ids(int k)\
-      \ const\n        requires requires { std::declval<const Storage &>().edge_ids(k);\
-      \ }\n    {\n        return static_cast<const Storage &>(*this).edge_ids(k);\n\
-      \    }\n\n    void swap_edges(int v, int i, int j) { Storage::swap_edges(v,\
-      \ i, j); }\n    void edge_clear() { *this = AdjacencyListBase(num_vertices());\
-      \ }\n\n    template <OutputStream OStream>\n    void debug_output(OStream &os)\
-      \ const {\n        os << \"[\\n\";\n        for (int i = 0; i < num_vertices();\
-      \ ++i) {\n            os << \"  \" << i << \": [\";\n            bool first\
-      \ = true;\n            for (auto &&e : (*this)[i]) {\n                if (!first)\
-      \ os << \", \";\n                first = false;\n                e.debug_output(os);\n\
+      \ {\n\ntemplate <class T, bool is_directed, class Storage>\nstruct AdjacencyListBase\
+      \ : GraphBase<T, is_directed, false>, private Storage {\n    using base = GraphBase<T,\
+      \ is_directed, false>;\n\n  public:\n    // Public type interface and graph\
+      \ storage.\n    using base::edges;\n    using base::num_edges;\n    using base::weighted;\n\
+      \    using Storage::data;\n\n    using storage_type = Storage;\n    using value_type\
+      \ = T;\n    using out_edge_type = typename Storage::out_edge_type;\n    using\
+      \ out_edges = typename Storage::out_edges;\n    using adjacency_container =\
+      \ typename Storage::adjacency_container;\n    using edge_type = _Edge<T>;\n\
+      \    using edge_collection = _Edges<T>;\n\n    // Construction and graph operations.\n\
+      \    AdjacencyListBase() = default;\n    explicit AdjacencyListBase(int n) :\
+      \ Storage(n) {}\n    template <InputStream IStream>\n    AdjacencyListBase(int\
+      \ n, int m, IStream &is, bool oneindexed = false) : Storage(n) {\n        edges.reserve(m);\n\
+      \        _input(is, m, oneindexed);\n    }\n    AdjacencyListBase(int n, const\
+      \ edge_collection &edges_) : Storage(n) {\n        edges.reserve(edges_.size());\n\
+      \        this->reserve(edges_);\n        for (const auto &e : edges_) _add_edge_with_id(e.from,\
+      \ e.to, _edge_cost(e), e.id);\n    }\n\n    int num_vertices() const { return\
+      \ Storage::num_vertices(); }\n    int size() const { return num_vertices();\
+      \ }\n\n    decltype(auto) operator[](int k) {\n        if constexpr (requires\
+      \ { std::declval<Storage &>().view(k, &edges); }) {\n            return Storage::view(k,\
+      \ &edges);\n        } else {\n            return Storage::view(k);\n       \
+      \ }\n    }\n\n    decltype(auto) operator[](int k) const {\n        if constexpr\
+      \ (requires { std::declval<const Storage &>().view(k, &edges); }) {\n      \
+      \      return std::as_const(static_cast<const Storage &>(*this)).view(k, &edges);\n\
+      \        } else {\n            return std::as_const(static_cast<const Storage\
+      \ &>(*this)).view(k);\n        }\n    }\n\n    auto edge_ids(int k) const\n\
+      \        requires requires { std::declval<const Storage &>().edge_ids(k); }\n\
+      \    {\n        return static_cast<const Storage &>(*this).edge_ids(k);\n  \
+      \  }\n\n    void swap_edges(int v, int i, int j) { Storage::swap_edges(v, i,\
+      \ j); }\n    void edge_clear() { *this = AdjacencyListBase(num_vertices());\
+      \ }\n\n    template <OutputStream OStream> void debug_output(OStream &os) const\
+      \ {\n        os << \"[\\n\";\n        for (int i = 0; i < num_vertices(); ++i)\
+      \ {\n            os << \"  \" << i << \": [\";\n            bool first = true;\n\
+      \            for (auto &&e : (*this)[i]) {\n                if (!first) os <<\
+      \ \", \";\n                first = false;\n                e.debug_output(os);\n\
       \            }\n            os << \"]\\n\";\n        }\n        os << \"]\\\
-      n\";\n    }\n\n    void add_edge(int from, int to, T cost = T{}) {\n       \
-      \ _add_edge<false>(from, to, cost, num_edges());\n    }\n    void add_vertex(int\
-      \ n = 1) { Storage::add_vertex(n); }\n\n    AdjacencyListBase reverse() const\
-      \ {\n        AdjacencyListBase result(num_vertices());\n        result.edges.reserve(edges.size());\n\
-      \        result.reserve(edges);\n        for (const auto &e : edges) result._add_edge_with_id(e.to,\
-      \ e.from, _edge_cost(e), e.id);\n        return result;\n    }\n\n  private:\n\
-      \    template <InputStream IStream>\n    void _input(IStream &is, int m, bool\
-      \ oneindexed) {\n        edges.clear();\n        edges.reserve(m);\n       \
-      \ this->reset();\n        for (int i = 0; i < m; ++i) {\n            int u,\
-      \ v;\n            T w{};\n            is >> u >> v;\n            if constexpr\
-      \ (weighted) is >> w;\n            if (oneindexed) --u, --v;\n            edges.emplace_back(v,\
+      n\";\n    }\n\n    void add_edge(int from, int to, T cost = T{}) { _add_edge<false>(from,\
+      \ to, cost, num_edges()); }\n    void add_vertex(int n = 1) { Storage::add_vertex(n);\
+      \ }\n\n    AdjacencyListBase reverse() const {\n        AdjacencyListBase result(num_vertices());\n\
+      \        result.edges.reserve(edges.size());\n        result.reserve(edges);\n\
+      \        for (const auto &e : edges) result._add_edge_with_id(e.to, e.from,\
+      \ _edge_cost(e), e.id);\n        return result;\n    }\n\n  private:\n    template\
+      \ <InputStream IStream> void _input(IStream &is, int m, bool oneindexed) {\n\
+      \        edges.clear();\n        edges.reserve(m);\n        this->reset();\n\
+      \        for (int i = 0; i < m; ++i) {\n            int u, v;\n            T\
+      \ w{};\n            is >> u >> v;\n            if constexpr (weighted) is >>\
+      \ w;\n            if (oneindexed) --u, --v;\n            edges.emplace_back(v,\
       \ w, u, i);\n        }\n        this->reserve(edges);\n        for (const auto\
       \ &e : edges) Storage::add_edge(e.from, e.to, _edge_cost(e), e.id);\n    }\n\
       \n    template <bool update = false> void _add_edge(int from, int to, T cost,\
@@ -233,7 +234,7 @@ data:
       std::vector<int> adjacency_degrees(int n, const _Edges<T> &edges) {\n    std::vector<int>\
       \ degree(n);\n    for (const auto &e : edges) {\n        ++degree[e.from];\n\
       \        if constexpr (!is_directed) {\n            if (e.from != e.to) ++degree[e.to];\n\
-      \        }\n    }\n    return degree;\n}\n\ntemplate <bool is_directed>\nvoid\
+      \        }\n    }\n    return degree;\n}\n\ntemplate <bool is_directed> void\
       \ count_adjacency_edge(std::vector<int> &head, int from, int to) {\n    ++head[from];\n\
       \    if constexpr (!is_directed) {\n        if (from != to) ++head[to];\n  \
       \  }\n}\n\n} // namespace kk2::graph::detail\n\n\n#line 9 \"graph/detail/direct_adjacency_storage.hpp\"\
@@ -254,23 +255,21 @@ data:
       \ (!is_directed) {\n            if (from != to) data[to].emplace_back(from,\
       \ cost, to, id);\n        }\n    }\n};\n\n} // namespace kk2::graph::detail\n\
       \n\n#line 6 \"graph/graph.hpp\"\n\nnamespace kk2 {\n\nnamespace graph {\n\n\
-      template <class T, bool is_directed>\nusing AdjacencyList = detail::AdjacencyListBase<T,\
-      \ is_directed,\n                                                detail::DirectAdjacencyStorage<T,\
-      \ is_directed>>;\n\n} // namespace graph\n\ntemplate <typename T> using WAdjList\
-      \ = graph::AdjacencyList<T, false>;\ntemplate <typename T> using DWAdjList =\
-      \ graph::AdjacencyList<T, true>;\nusing AdjList = graph::AdjacencyList<graph::empty,\
-      \ false>;\nusing DAdjList = graph::AdjacencyList<graph::empty, true>;\n\n} //\
-      \ namespace kk2\n\n\n#line 1 \"graph/maxflow.hpp\"\n\n\n\n#include <algorithm>\n\
-      #include <cassert>\n#include <functional>\n#include <limits>\n#include <numeric>\n\
-      #include <queue>\n#include <ranges>\n#line 12 \"graph/maxflow.hpp\"\n\n#line\
-      \ 1 \"type_traits/graph.hpp\"\n\n\n\n#line 8 \"type_traits/graph.hpp\"\n\nnamespace\
-      \ kk2::graph {\n\ntemplate <class E>\nconcept Edge = requires(const E &e) {\n\
-      \    { e.from } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
+      template <class T, bool is_directed>\nusing AdjacencyList =\n    detail::AdjacencyListBase<T,\
+      \ is_directed, detail::DirectAdjacencyStorage<T, is_directed>>;\n\n} // namespace\
+      \ graph\n\ntemplate <typename T> using WAdjList = graph::AdjacencyList<T, false>;\n\
+      template <typename T> using DWAdjList = graph::AdjacencyList<T, true>;\nusing\
+      \ AdjList = graph::AdjacencyList<graph::empty, false>;\nusing DAdjList = graph::AdjacencyList<graph::empty,\
+      \ true>;\n\n} // namespace kk2\n\n\n#line 1 \"graph/maxflow.hpp\"\n\n\n\n#include\
+      \ <algorithm>\n#include <cassert>\n#include <functional>\n#include <limits>\n\
+      #include <numeric>\n#include <queue>\n#include <ranges>\n#line 12 \"graph/maxflow.hpp\"\
+      \n\n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#line 8 \"type_traits/graph.hpp\"\
+      \n\nnamespace kk2::graph {\n\ntemplate <class E>\nconcept Edge = requires(const\
+      \ E &e) {\n    { e.from } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
       \    { e.id } -> std::convertible_to<int>;\n};\n\ntemplate <class E>\nconcept\
       \ WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };\n\ntemplate <class\
-      \ R>\nconcept EdgeRange = std::ranges::input_range<R> &&\n                 \
-      \   Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept WeightedEdgeRange\
-      \ = EdgeRange<R> &&\n                            WeightedEdge<std::ranges::range_value_t<R>>;\n\
+      \ R>\nconcept EdgeRange = std::ranges::input_range<R> && Edge<std::ranges::range_value_t<R>>;\n\
+      \ntemplate <class R>\nconcept WeightedEdgeRange = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\
       \ntemplate <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
       \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
       \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
@@ -283,10 +282,10 @@ data:
       \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
       \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
       \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
-      };\n\ntemplate <class G>\nconcept WeightedGraph = AdjacencyGraph<G> && G::weighted\
-      \ &&\n                        WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph = EdgeListGraph<G>\
-      \ && G::weighted &&\n                                WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      };\n\ntemplate <class G>\nconcept WeightedGraph =\n    AdjacencyGraph<G> &&\
+      \ G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph =\n   \
+      \ EdgeListGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
       \ && (!G::weighted);\n\ntemplate <class G>\nconcept DirectedGraph = AdjacencyGraph<G>\
       \ && G::directed;\n\ntemplate <class G>\nconcept UndirectedGraph = AdjacencyGraph<G>\
@@ -320,18 +319,19 @@ data:
       \ = rev;\n        edges.push_back({from, to, index});\n    }\n};\n\ntemplate\
       \ <graph::WeightedDirectedGraph WG> struct MaxFlow {\n\n    using Cap = typename\
       \ WG::value_type;\n    using graph_type = MaxFlowGraph<Cap>;\n\n    graph_type\
-      \ g;\n    int n, m;\n\n    MaxFlow(const WG &g_) : g(g_.num_vertices(), g_.edges),\
-      \ n(g_.num_vertices()), m(g_.num_edges()) {}\n\n    template <class Edges_>\n\
-      \        requires graph::WeightedEdgeRange<const Edges_>\n    MaxFlow(int n_,\
-      \ const Edges_ &edges) : g(n_, edges), n(n_), m(g.edges.size()) {}\n\n    Cap\
-      \ flow(int s, int t) { return flow(s, t, std::numeric_limits<Cap>::max()); }\n\
-      \n    Cap flow(int s, int t, Cap flow_limit) {\n        assert(0 <= s && s <\
-      \ n);\n        assert(0 <= t && t < n);\n        assert(s != t);\n\n       \
-      \ std::vector<int> level(n), iter(n);\n        std::queue<int> que;\n\n    \
-      \    auto bfs = [&]() {\n            std::fill(std::begin(level), std::end(level),\
-      \ -1);\n            level[s] = 0;\n            que = std::queue<int>();\n  \
-      \          que.push(s);\n            while (!que.empty()) {\n              \
-      \  int v = que.front();\n                que.pop();\n                for (const\
+      \ g;\n    int n, m;\n\n    MaxFlow(const WG &g_)\n        : g(g_.num_vertices(),\
+      \ g_.edges),\n          n(g_.num_vertices()),\n          m(g_.num_edges()) {}\n\
+      \n    template <class Edges_>\n        requires graph::WeightedEdgeRange<const\
+      \ Edges_>\n    MaxFlow(int n_, const Edges_ &edges) : g(n_, edges),\n      \
+      \                                     n(n_),\n                             \
+      \              m(g.edges.size()) {}\n\n    Cap flow(int s, int t) { return flow(s,\
+      \ t, std::numeric_limits<Cap>::max()); }\n\n    Cap flow(int s, int t, Cap flow_limit)\
+      \ {\n        assert(0 <= s && s < n);\n        assert(0 <= t && t < n);\n  \
+      \      assert(s != t);\n\n        std::vector<int> level(n), iter(n);\n    \
+      \    std::queue<int> que;\n\n        auto bfs = [&]() {\n            std::fill(std::begin(level),\
+      \ std::end(level), -1);\n            level[s] = 0;\n            que = std::queue<int>();\n\
+      \            que.push(s);\n            while (!que.empty()) {\n            \
+      \    int v = que.front();\n                que.pop();\n                for (const\
       \ auto &e : g.data[v]) {\n                    if (e.cap == 0 || level[e.to]\
       \ >= 0) continue;\n                    level[e.to] = level[v] + 1;\n       \
       \             if (e.to == t) return;\n                    que.push(e.to);\n\
@@ -392,26 +392,27 @@ data:
       \ <cstdio>\n#line 8 \"template/fastio.hpp\"\n#include <iostream>\n#line 10 \"\
       template/fastio.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5\
       \ \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -552,7 +553,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -581,14 +582,14 @@ data:
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_matching_bipartite.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int l, r, m;\n    kin >> l >> r\
-      \ >> m;\n    kk2::DWAdjList<int> g(l + r + 2);\n    rep (m) {\n        int a,\
-      \ b;\n        kin >> a >> b;\n        g.add_edge(a, l + b, 1);\n    }\n    rep\
-      \ (i, l) g.add_edge(l + r, i, 1);\n    rep (i, r) g.add_edge(l + i, l + r +\
-      \ 1, 1);\n\n    kk2::MaxFlow<kk2::DWAdjList<int>> mf(g);\n\n    int count =\
-      \ mf.flow(l + r, l + r + 1);\n    kout << count << \"\\n\";\n\n    auto tmp\
-      \ = mf.get_edges();\n    for (auto &&e : tmp) {\n        if (count == 0) break;\n\
-      \        if (e.flow == 0) continue;\n        kout << e.from << \" \" << e.to\
-      \ - l << \"\\n\";\n        count--;\n    }\n\n    return 0;\n}\n"
+      \ >> m;\n    kk2::DWAdjList<int> g(l + r + 2);\n    rep(m) {\n        int a,\
+      \ b;\n        kin >> a >> b;\n        g.add_edge(a, l + b, 1);\n    }\n    rep(i,\
+      \ l) g.add_edge(l + r, i, 1);\n    rep(i, r) g.add_edge(l + i, l + r + 1, 1);\n\
+      \n    kk2::MaxFlow<kk2::DWAdjList<int>> mf(g);\n\n    int count = mf.flow(l\
+      \ + r, l + r + 1);\n    kout << count << \"\\n\";\n\n    auto tmp = mf.get_edges();\n\
+      \    for (auto &&e : tmp) {\n        if (count == 0) break;\n        if (e.flow\
+      \ == 0) continue;\n        kout << e.from << \" \" << e.to - l << \"\\n\";\n\
+      \        count--;\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -596,227 +597,227 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 8.691397840000008
+  - elapsed: 6.677677873000022
     environment: g++
-    memory: 56.968
+    memory: 56.988
     name: augmented_cycle_00
     status: AC
-  - elapsed: 6.385159286000004
+  - elapsed: 5.093339786999991
     environment: g++
-    memory: 57.468
+    memory: 58.96
     name: augmented_cycle_01
     status: AC
-  - elapsed: 12.424165052999996
+  - elapsed: 7.5376382480000075
     environment: g++
-    memory: 58.196
+    memory: 58.236
     name: augmented_cycle_02
     status: AC
-  - elapsed: 7.492524842000023
+  - elapsed: 3.894768405999997
     environment: g++
-    memory: 59.644
+    memory: 60.728
     name: cycle_00
     status: AC
-  - elapsed: 7.987796360999994
+  - elapsed: 4.034515971000019
     environment: g++
-    memory: 58.852
+    memory: 58.824
     name: cycle_01
     status: AC
-  - elapsed: 0.0026409499999999753
+  - elapsed: 0.00261722599998393
     environment: g++
-    memory: 3.812
+    memory: 3.768
     name: example_00
     status: AC
-  - elapsed: 0.0026230959999793413
+  - elapsed: 0.002579328999985364
     environment: g++
-    memory: 3.864
+    memory: 3.792
     name: issue1068_00
     status: AC
-  - elapsed: 0.27406955099999664
+  - elapsed: 0.2704356490000066
     environment: g++
-    memory: 54.048
+    memory: 53.516
     name: issue1068_large_00
     status: AC
-  - elapsed: 0.23014268599999355
+  - elapsed: 0.22818184900000915
     environment: g++
     memory: 47.292
     name: issue1068_large_01
     status: AC
-  - elapsed: 0.35188212599999247
+  - elapsed: 0.3129026350000004
     environment: g++
-    memory: 52.664
+    memory: 52.552
     name: issue1068_large_02
     status: AC
-  - elapsed: 0.23045828599998686
+  - elapsed: 0.23050967500000752
     environment: g++
-    memory: 46.228
+    memory: 46.256
     name: issue1068_large_03
     status: AC
-  - elapsed: 0.2439049650000129
+  - elapsed: 0.24270111300000963
     environment: g++
-    memory: 47.216
+    memory: 47.8
     name: issue1068_large_04
     status: AC
-  - elapsed: 0.33316464899999687
+  - elapsed: 0.2661573070000145
     environment: g++
-    memory: 46.38
+    memory: 47.416
     name: issue1068_large_05
     status: AC
-  - elapsed: 0.6587996880000162
+  - elapsed: 0.432112888000006
     environment: g++
-    memory: 38.62
+    memory: 37.588
     name: issue1124_00
     status: AC
-  - elapsed: 0.20571369000001027
+  - elapsed: 0.20657631299999935
     environment: g++
     memory: 37.316
     name: issue1124_01
     status: AC
-  - elapsed: 0.1838055279999935
+  - elapsed: 0.1843318730000192
     environment: g++
-    memory: 37.316
+    memory: 38.376
     name: issue1124_02
     status: AC
-  - elapsed: 0.291495857000001
+  - elapsed: 0.2869637050000051
     environment: g++
-    memory: 54.68
+    memory: 54.22
     name: kuhn_killer_00
     status: AC
-  - elapsed: 0.36562762999997744
+  - elapsed: 0.2993041889999972
     environment: g++
-    memory: 55.048
+    memory: 53.94
     name: line_00
     status: AC
-  - elapsed: 0.37135291799998527
+  - elapsed: 0.3050340179999864
     environment: g++
-    memory: 55.04
+    memory: 53.996
     name: line_01
     status: AC
-  - elapsed: 7.751184090999999
+  - elapsed: 4.21124072500001
     environment: g++
-    memory: 58.456
+    memory: 56.92
     name: line_random_00
     status: AC
-  - elapsed: 7.994078650999995
+  - elapsed: 4.396174790999993
     environment: g++
-    memory: 67.796
+    memory: 66.716
     name: line_random_01
     status: AC
-  - elapsed: 4.230351912999993
+  - elapsed: 3.1518461160000015
     environment: g++
-    memory: 54.444
+    memory: 53.96
     name: many_paths_00
     status: AC
-  - elapsed: 3.17537281700001
+  - elapsed: 2.1526495360000126
     environment: g++
-    memory: 54.428
+    memory: 54.392
     name: many_paths_01
     status: AC
-  - elapsed: 3.8704654100000084
+  - elapsed: 2.873732194000013
     environment: g++
-    memory: 54.432
+    memory: 55.504
     name: many_paths_02
     status: AC
-  - elapsed: 0.3946697770000185
+  - elapsed: 0.35643290499999125
     environment: g++
-    memory: 43.272
+    memory: 42.284
     name: many_smalls_00
     status: AC
-  - elapsed: 0.3632617320000122
+  - elapsed: 0.33945951299998
     environment: g++
-    memory: 42.66
+    memory: 42.152
     name: many_smalls_01
     status: AC
-  - elapsed: 0.8640871009999955
+  - elapsed: 0.6478120449999949
     environment: g++
-    memory: 53.872
+    memory: 53.824
     name: max_random_00
     status: AC
-  - elapsed: 0.879310256999986
+  - elapsed: 0.6964869219999912
     environment: g++
-    memory: 54.232
+    memory: 53.864
     name: max_random_01
     status: AC
-  - elapsed: 0.8582317709999927
+  - elapsed: 0.6613612029999842
     environment: g++
-    memory: 54.32
+    memory: 54.328
     name: max_random_02
     status: AC
-  - elapsed: 0.07660010700001862
+  - elapsed: 0.07578153800000109
     environment: g++
-    memory: 20.524
+    memory: 20.58
     name: random_00
     status: AC
-  - elapsed: 0.2123269899999798
+  - elapsed: 0.20925955399999907
     environment: g++
-    memory: 31.22
+    memory: 31.252
     name: random_01
     status: AC
-  - elapsed: 0.2542282420000106
+  - elapsed: 0.24417243700000313
     environment: g++
     memory: 31.116
     name: random_02
     status: AC
-  - elapsed: 0.233922218999993
+  - elapsed: 0.2327202760000091
     environment: g++
-    memory: 25.352
+    memory: 25.36
     name: random_03
     status: AC
-  - elapsed: 0.12037936500001933
+  - elapsed: 0.09582516899999405
     environment: g++
-    memory: 25.532
+    memory: 25.056
     name: random_04
     status: AC
-  - elapsed: 0.10809296799999402
+  - elapsed: 0.10609736600000019
     environment: g++
-    memory: 18.724
+    memory: 18.684
     name: random_05
     status: AC
-  - elapsed: 0.6504500069999892
+  - elapsed: 0.5771770549999928
     environment: g++
-    memory: 39.332
+    memory: 38.268
     name: random_06
     status: AC
-  - elapsed: 0.14532958500001314
+  - elapsed: 0.14033123900000533
     environment: g++
-    memory: 24.98
+    memory: 24.936
     name: random_07
     status: AC
-  - elapsed: 0.1569658489999881
+  - elapsed: 0.14508513399999856
     environment: g++
-    memory: 30.196
+    memory: 30.092
     name: random_08
     status: AC
-  - elapsed: 0.2599732589999917
+  - elapsed: 0.23558129599999234
     environment: g++
-    memory: 31.128
+    memory: 31.116
     name: random_09
     status: AC
-  - elapsed: 10.05737713000002
+  - elapsed: 7.038574906999997
     environment: g++
-    memory: 63.132
+    memory: 63.196
     name: unique_matching_00
     status: AC
-  - elapsed: 8.215579024999982
+  - elapsed: 6.018563575000002
     environment: g++
-    memory: 56.688
+    memory: 55.62
     name: unique_matching_01
     status: AC
-  - elapsed: 7.757369231000013
+  - elapsed: 4.8991906210000025
     environment: g++
-    memory: 56.688
+    memory: 57.716
     name: unique_matching_02
     status: AC
-  - elapsed: 3.8397373459999926
+  - elapsed: 2.8205252959999996
     environment: g++
-    memory: 56.084
+    memory: 56.192
     name: unique_matching_03
     status: AC
-  - elapsed: 2.659867331000015
+  - elapsed: 2.2053797809999764
     environment: g++
-    memory: 56.932
+    memory: 55.848
     name: unique_matching_04
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_matching_bipartite.test.cpp

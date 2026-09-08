@@ -45,15 +45,15 @@ data:
       \  { T::commutative } -> std::convertible_to<bool>;\n} && bool(T::commutative);\n\
       \n// An action specification owns the pair of algebraic types and the mapping\n\
       // between them. It is the interface required by lazy propagation structures.\n\
-      template <class T>\nconcept Action = requires {\n    typename T::A;\n    typename\
-      \ T::S;\n} && Monoid<typename T::A> && Monoid<typename T::S>\n    && requires(const\
-      \ typename T::A &f, const typename T::S &x) {\n           { T::act(f, x) } ->\
-      \ std::same_as<typename T::S>;\n       };\n\n} // namespace algebra\n\n} //\
-      \ namespace kk2\n\n\n#line 5 \"math/monoid/pow.hpp\"\n\nnamespace kk2 {\n\n\
-      namespace monoid {\n\ntemplate <algebra::Monoid M> M pow(M a, long long n) {\n\
-      \    M res = M::unit();\n    while (n > 0) {\n        if (n & 1) res = M::op(res,\
-      \ a);\n        if (n >>= 1) a = M::op(a, a);\n    }\n    return res;\n}\n\n\
-      } // namespace monoid\n\n} // namespace kk2\n\n\n"
+      template <class T>\nconcept Action =\n    requires {\n        typename T::A;\n\
+      \        typename T::S;\n    } && Monoid<typename T::A> && Monoid<typename T::S>\n\
+      \    && requires(const typename T::A &f, const typename T::S &x) {\n       \
+      \    { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n} // namespace\
+      \ algebra\n\n} // namespace kk2\n\n\n#line 5 \"math/monoid/pow.hpp\"\n\nnamespace\
+      \ kk2 {\n\nnamespace monoid {\n\ntemplate <algebra::Monoid M> M pow(M a, long\
+      \ long n) {\n    M res = M::unit();\n    while (n > 0) {\n        if (n & 1)\
+      \ res = M::op(res, a);\n        if (n >>= 1) a = M::op(a, a);\n    }\n    return\
+      \ res;\n}\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
@@ -61,7 +61,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - math/monoid/bsgs.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/pow.hpp

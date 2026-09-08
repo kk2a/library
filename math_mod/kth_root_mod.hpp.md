@@ -18,13 +18,11 @@ data:
 
 
 
-
       #endif // KK2_MATH_MOD_KTH_ROOT_MOD_HPP
 
       '
     name: default
   - code: '#line 1 "math_mod/kth_root_mod.hpp"
-
 
 
 
@@ -38,7 +36,7 @@ data:
   path: math_mod/kth_root_mod.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math_mod/kth_root_mod.hpp

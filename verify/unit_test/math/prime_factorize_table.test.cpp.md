@@ -77,31 +77,31 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../math/prime_factorize_table.hpp\"\
-      \n#include \"../../../math/prime_factorize.hpp\"\n#include \"../../../random/gen.hpp\"\
+      \n\n#include \"../../../math/prime_factorize.hpp\"\n#include \"../../../random/gen.hpp\"\
       \n#include \"../../../template/template.hpp\"\nusing namespace std;\n\nvoid\
       \ test_basic_factorization() {\n    // Test small numbers\n    auto f2 = kk2::FactorizeTable::factorize(2);\n\
-      \    assert(f2.size() == 1 && f2[0].first == 2 && f2[0].second == 1);\n    \n\
-      \    auto f3 = kk2::FactorizeTable::factorize(3);\n    assert(f3.size() == 1\
-      \ && f3[0].first == 3 && f3[0].second == 1);\n    \n    auto f4 = kk2::FactorizeTable::factorize(4);\n\
-      \    assert(f4.size() == 1 && f4[0].first == 2 && f4[0].second == 2);\n    \n\
-      \    auto f6 = kk2::FactorizeTable::factorize(6);\n    assert(f6.size() == 2\
-      \ && f6[0].first == 2 && f6[0].second == 1 && f6[1].first == 3 && f6[1].second\
-      \ == 1);\n    \n    auto f8 = kk2::FactorizeTable::factorize(8);\n    assert(f8.size()\
-      \ == 1 && f8[0].first == 2 && f8[0].second == 3);\n    \n    auto f12 = kk2::FactorizeTable::factorize(12);\n\
+      \    assert(f2.size() == 1 && f2[0].first == 2 && f2[0].second == 1);\n\n  \
+      \  auto f3 = kk2::FactorizeTable::factorize(3);\n    assert(f3.size() == 1 &&\
+      \ f3[0].first == 3 && f3[0].second == 1);\n\n    auto f4 = kk2::FactorizeTable::factorize(4);\n\
+      \    assert(f4.size() == 1 && f4[0].first == 2 && f4[0].second == 2);\n\n  \
+      \  auto f6 = kk2::FactorizeTable::factorize(6);\n    assert(f6.size() == 2 &&\
+      \ f6[0].first == 2 && f6[0].second == 1 && f6[1].first == 3\n           && f6[1].second\
+      \ == 1);\n\n    auto f8 = kk2::FactorizeTable::factorize(8);\n    assert(f8.size()\
+      \ == 1 && f8[0].first == 2 && f8[0].second == 3);\n\n    auto f12 = kk2::FactorizeTable::factorize(12);\n\
       \    assert(f12.size() == 2 && f12[0].first == 2 && f12[0].second == 2 && f12[1].first\
-      \ == 3 && f12[1].second == 1);\n    \n    auto f30 = kk2::FactorizeTable::factorize(30);\n\
-      \    assert(f30.size() == 3 && f30[0].first == 2 && f30[0].second == 1 && \n\
-      \           f30[1].first == 3 && f30[1].second == 1 && f30[2].first == 5 &&\
-      \ f30[2].second == 1);\n}\n\nvoid test_perfect_powers() {\n    // Test perfect\
-      \ powers\n    auto f16 = kk2::FactorizeTable::factorize(16); // 2^4\n    assert(f16.size()\
-      \ == 1 && f16[0].first == 2 && f16[0].second == 4);\n    \n    auto f27 = kk2::FactorizeTable::factorize(27);\
+      \ == 3\n           && f12[1].second == 1);\n\n    auto f30 = kk2::FactorizeTable::factorize(30);\n\
+      \    assert(f30.size() == 3 && f30[0].first == 2 && f30[0].second == 1 && f30[1].first\
+      \ == 3\n           && f30[1].second == 1 && f30[2].first == 5 && f30[2].second\
+      \ == 1);\n}\n\nvoid test_perfect_powers() {\n    // Test perfect powers\n  \
+      \  auto f16 = kk2::FactorizeTable::factorize(16); // 2^4\n    assert(f16.size()\
+      \ == 1 && f16[0].first == 2 && f16[0].second == 4);\n\n    auto f27 = kk2::FactorizeTable::factorize(27);\
       \ // 3^3\n    assert(f27.size() == 1 && f27[0].first == 3 && f27[0].second ==\
-      \ 3);\n    \n    auto f125 = kk2::FactorizeTable::factorize(125); // 5^3\n \
-      \   assert(f125.size() == 1 && f125[0].first == 5 && f125[0].second == 3);\n\
-      \    \n    auto f1024 = kk2::FactorizeTable::factorize(1024); // 2^10\n    assert(f1024.size()\
-      \ == 1 && f1024[0].first == 2 && f1024[0].second == 10);\n}\n\nvoid test_prime_numbers()\
-      \ {\n    // Test prime numbers\n    vector<int> primes = {2, 3, 5, 7, 11, 13,\
-      \ 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};\n\
+      \ 3);\n\n    auto f125 = kk2::FactorizeTable::factorize(125); // 5^3\n    assert(f125.size()\
+      \ == 1 && f125[0].first == 5 && f125[0].second == 3);\n\n    auto f1024 = kk2::FactorizeTable::factorize(1024);\
+      \ // 2^10\n    assert(f1024.size() == 1 && f1024[0].first == 2 && f1024[0].second\
+      \ == 10);\n}\n\nvoid test_prime_numbers() {\n    // Test prime numbers\n   \
+      \ vector<int> primes = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29, 31, 37, 41,\n\
+      \                          43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};\n\
       \    for (int p : primes) {\n        auto fp = kk2::FactorizeTable::factorize(p);\n\
       \        assert(fp.size() == 1 && fp[0].first == p && fp[0].second == 1);\n\
       \    }\n}\n\nvoid test_consistency_with_reference() {\n    // Test consistency\
@@ -109,31 +109,31 @@ data:
       \     auto f = kk2::factorize(n);\n        auto f1 = kk2::FactorizeTable::factorize(n);\n\
       \        assert(f.size() == f1.size());\n        for (int i = 0; i < (int)f.size();\
       \ i++) {\n            assert(f[i].first == f1[i].first);\n            assert(f[i].second\
-      \ == f1[i].second);\n        }\n        \n        // Verify that the factorization\
-      \ is correct\n        long long product = 1;\n        for (auto [p, e] : f1)\
-      \ {\n            for (int i = 0; i < e; i++) {\n                product *= p;\n\
-      \            }\n        }\n        assert(product == n);\n    }\n}\n\nvoid test_large_numbers()\
-      \ {\n    // Test with larger random numbers\n    int iter = 200;\n    rep (iter)\
-      \ {\n        int n = kk2::random::rng(2, 1000000);\n        auto f = kk2::factorize(n);\n\
+      \ == f1[i].second);\n        }\n\n        // Verify that the factorization is\
+      \ correct\n        long long product = 1;\n        for (auto [p, e] : f1) {\n\
+      \            for (int i = 0; i < e; i++) { product *= p; }\n        }\n    \
+      \    assert(product == n);\n    }\n}\n\nvoid test_large_numbers() {\n    //\
+      \ Test with larger random numbers\n    int iter = 200;\n    rep(iter) {\n  \
+      \      int n = kk2::random::rng(2, 1000000);\n        auto f = kk2::factorize(n);\n\
       \        auto f1 = kk2::FactorizeTable::factorize(n);\n        assert(f.size()\
       \ == f1.size());\n        for (int i = 0; i < (int)f.size(); i++) {\n      \
       \      assert(f[i].first == f1[i].first);\n            assert(f[i].second ==\
-      \ f1[i].second);\n        }\n        \n        // Verify correctness\n     \
-      \   long long product = 1;\n        for (auto [p, e] : f1) {\n            for\
-      \ (int i = 0; i < e; i++) {\n                product *= p;\n               \
-      \ if (product > n) break; // Avoid overflow\n            }\n            if (product\
-      \ > n) break;\n        }\n        if (product <= n) assert(product == n);\n\
-      \    }\n}\n\nvoid test_edge_cases() {\n    // Test highly composite numbers\n\
-      \    auto f60 = kk2::FactorizeTable::factorize(60); // 2^2 * 3 * 5\n    assert(f60.size()\
-      \ == 3 && f60[0].first == 2 && f60[0].second == 2 && \n           f60[1].first\
-      \ == 3 && f60[1].second == 1 && f60[2].first == 5 && f60[2].second == 1);\n\
-      \    \n    auto f120 = kk2::FactorizeTable::factorize(120); // 2^3 * 3 * 5\n\
-      \    assert(f120.size() == 3 && f120[0].first == 2 && f120[0].second == 3 &&\
-      \ \n           f120[1].first == 3 && f120[1].second == 1 && f120[2].first ==\
-      \ 5 && f120[2].second == 1);\n    \n    auto f210 = kk2::FactorizeTable::factorize(210);\
-      \ // 2 * 3 * 5 * 7\n    assert(f210.size() == 4 && f210[0].first == 2 && f210[0].second\
-      \ == 1 && \n           f210[1].first == 3 && f210[1].second == 1 && f210[2].first\
-      \ == 5 && f210[2].second == 1 &&\n           f210[3].first == 7 && f210[3].second\
+      \ f1[i].second);\n        }\n\n        // Verify correctness\n        long long\
+      \ product = 1;\n        for (auto [p, e] : f1) {\n            for (int i = 0;\
+      \ i < e; i++) {\n                product *= p;\n                if (product\
+      \ > n) break; // Avoid overflow\n            }\n            if (product > n)\
+      \ break;\n        }\n        if (product <= n) assert(product == n);\n    }\n\
+      }\n\nvoid test_edge_cases() {\n    // Test highly composite numbers\n    auto\
+      \ f60 = kk2::FactorizeTable::factorize(60); // 2^2 * 3 * 5\n    assert(f60.size()\
+      \ == 3 && f60[0].first == 2 && f60[0].second == 2 && f60[1].first == 3\n   \
+      \        && f60[1].second == 1 && f60[2].first == 5 && f60[2].second == 1);\n\
+      \n    auto f120 = kk2::FactorizeTable::factorize(120); // 2^3 * 3 * 5\n    assert(f120.size()\
+      \ == 3 && f120[0].first == 2 && f120[0].second == 3 && f120[1].first == 3\n\
+      \           && f120[1].second == 1 && f120[2].first == 5 && f120[2].second ==\
+      \ 1);\n\n    auto f210 = kk2::FactorizeTable::factorize(210); // 2 * 3 * 5 *\
+      \ 7\n    assert(f210.size() == 4 && f210[0].first == 2 && f210[0].second ==\
+      \ 1 && f210[1].first == 3\n           && f210[1].second == 1 && f210[2].first\
+      \ == 5 && f210[2].second == 1 && f210[3].first == 7\n           && f210[3].second\
       \ == 1);\n}\n\nint main() {\n    test_basic_factorization();\n    test_perfect_powers();\n\
       \    test_prime_numbers();\n    test_consistency_with_reference();\n    test_large_numbers();\n\
       \    test_edge_cases();\n\n    return 0;\n}\n"
@@ -195,37 +195,39 @@ data:
       \ for (int j = 0; j < k; ++j) {\n                    mul *= p;\n           \
       \         res.push_back(res[i] * mul);\n                }\n            }\n \
       \       }\n        std::sort(res.begin(), res.end());\n        return res;\n\
-      \    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math/prime_factorize.hpp\"\n\
-      \n\n\n#line 5 \"math/prime_factorize.hpp\"\n#include <map>\n#line 7 \"math/prime_factorize.hpp\"\
-      \n#include <utility>\n#line 9 \"math/prime_factorize.hpp\"\n\n#line 1 \"math_mod/pow_mod.hpp\"\
-      \n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-      \ S, class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(n >=\
-      \ 0);\n    if (m == 1) return S(0);\n    S _m = m, r = 1;\n    S y = x % _m;\n\
-      \    if (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) %\
-      \ _m;\n        if (n >>= 1) y = (y * y) % _m;\n    }\n    return r;\n}\n\n}\
-      \ // namespace kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\n\n\n\n#line 5 \"modint/mont_arb.hpp\"\
+      \    }\n};\n\n} // namespace kk2\n\n\n#line 4 \"verify/unit_test/math/prime_factorize_table.test.cpp\"\
+      \n\n#line 1 \"math/prime_factorize.hpp\"\n\n\n\n#line 5 \"math/prime_factorize.hpp\"\
+      \n#include <map>\n#line 7 \"math/prime_factorize.hpp\"\n#include <utility>\n\
+      #line 9 \"math/prime_factorize.hpp\"\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\
+      \n\n#line 5 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class S,\
+      \ class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(n >= 0);\n\
+      \    if (m == 1) return S(0);\n    S _m = m, r = 1;\n    S y = x % _m;\n   \
+      \ if (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) % _m;\n\
+      \        if (n >>= 1) y = (y * y) % _m;\n    }\n    return r;\n}\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\n\n\n\n#line 5 \"modint/mont_arb.hpp\"\
       \n#include <iostream>\n#line 7 \"modint/mont_arb.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -243,21 +245,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -276,7 +279,7 @@ data:
       \ m) {\n        assert(m < (UInt(1u) << (bit_length - 2)));\n        assert(m\
       \ & 1);\n        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt\
       \ _v;\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template\
-      \ <Integral T> ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
+      \ <Integral T>\n    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b\
       \ % (Int)mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n\
       \        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\
       \n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod)\
@@ -301,15 +304,15 @@ data:
       \ s = getmod(), t = val(), m0 = 0, m1 = 1;\n        while (t) {\n          \
       \  Int u = s / t;\n            std::swap(s -= t * u, t);\n            std::swap(m0\
       \ -= m1 * u, m1);\n        }\n        if (m0 < 0) m0 += getmod();\n        return\
-      \ mint(m0);\n    }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const mint &x) {\n        return os << x.val();\n\
-      \    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
-      \ &is, mint &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n\
-      \        return (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n\
-      \        return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
-      \ { return mod; }\n};\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt\
-      \ =\n    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
-      \ long long, id>;\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt64bit\
+      \ mint(m0);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        Long t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n        return\
+      \ ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod() { return\
+      \ mod; }\n};\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt =\n \
+      \   ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
+      \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
       \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
       \ __uint128_t, id>;\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\
       \n\n#line 7 \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n\
@@ -561,7 +564,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -588,31 +591,31 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/unit_test/math/prime_factorize_table.test.cpp\"\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/unit_test/math/prime_factorize_table.test.cpp\"\
       \nusing namespace std;\n\nvoid test_basic_factorization() {\n    // Test small\
       \ numbers\n    auto f2 = kk2::FactorizeTable::factorize(2);\n    assert(f2.size()\
-      \ == 1 && f2[0].first == 2 && f2[0].second == 1);\n    \n    auto f3 = kk2::FactorizeTable::factorize(3);\n\
-      \    assert(f3.size() == 1 && f3[0].first == 3 && f3[0].second == 1);\n    \n\
-      \    auto f4 = kk2::FactorizeTable::factorize(4);\n    assert(f4.size() == 1\
-      \ && f4[0].first == 2 && f4[0].second == 2);\n    \n    auto f6 = kk2::FactorizeTable::factorize(6);\n\
+      \ == 1 && f2[0].first == 2 && f2[0].second == 1);\n\n    auto f3 = kk2::FactorizeTable::factorize(3);\n\
+      \    assert(f3.size() == 1 && f3[0].first == 3 && f3[0].second == 1);\n\n  \
+      \  auto f4 = kk2::FactorizeTable::factorize(4);\n    assert(f4.size() == 1 &&\
+      \ f4[0].first == 2 && f4[0].second == 2);\n\n    auto f6 = kk2::FactorizeTable::factorize(6);\n\
       \    assert(f6.size() == 2 && f6[0].first == 2 && f6[0].second == 1 && f6[1].first\
-      \ == 3 && f6[1].second == 1);\n    \n    auto f8 = kk2::FactorizeTable::factorize(8);\n\
-      \    assert(f8.size() == 1 && f8[0].first == 2 && f8[0].second == 3);\n    \n\
-      \    auto f12 = kk2::FactorizeTable::factorize(12);\n    assert(f12.size() ==\
-      \ 2 && f12[0].first == 2 && f12[0].second == 2 && f12[1].first == 3 && f12[1].second\
-      \ == 1);\n    \n    auto f30 = kk2::FactorizeTable::factorize(30);\n    assert(f30.size()\
-      \ == 3 && f30[0].first == 2 && f30[0].second == 1 && \n           f30[1].first\
-      \ == 3 && f30[1].second == 1 && f30[2].first == 5 && f30[2].second == 1);\n\
-      }\n\nvoid test_perfect_powers() {\n    // Test perfect powers\n    auto f16\
-      \ = kk2::FactorizeTable::factorize(16); // 2^4\n    assert(f16.size() == 1 &&\
-      \ f16[0].first == 2 && f16[0].second == 4);\n    \n    auto f27 = kk2::FactorizeTable::factorize(27);\
+      \ == 3\n           && f6[1].second == 1);\n\n    auto f8 = kk2::FactorizeTable::factorize(8);\n\
+      \    assert(f8.size() == 1 && f8[0].first == 2 && f8[0].second == 3);\n\n  \
+      \  auto f12 = kk2::FactorizeTable::factorize(12);\n    assert(f12.size() ==\
+      \ 2 && f12[0].first == 2 && f12[0].second == 2 && f12[1].first == 3\n      \
+      \     && f12[1].second == 1);\n\n    auto f30 = kk2::FactorizeTable::factorize(30);\n\
+      \    assert(f30.size() == 3 && f30[0].first == 2 && f30[0].second == 1 && f30[1].first\
+      \ == 3\n           && f30[1].second == 1 && f30[2].first == 5 && f30[2].second\
+      \ == 1);\n}\n\nvoid test_perfect_powers() {\n    // Test perfect powers\n  \
+      \  auto f16 = kk2::FactorizeTable::factorize(16); // 2^4\n    assert(f16.size()\
+      \ == 1 && f16[0].first == 2 && f16[0].second == 4);\n\n    auto f27 = kk2::FactorizeTable::factorize(27);\
       \ // 3^3\n    assert(f27.size() == 1 && f27[0].first == 3 && f27[0].second ==\
-      \ 3);\n    \n    auto f125 = kk2::FactorizeTable::factorize(125); // 5^3\n \
-      \   assert(f125.size() == 1 && f125[0].first == 5 && f125[0].second == 3);\n\
-      \    \n    auto f1024 = kk2::FactorizeTable::factorize(1024); // 2^10\n    assert(f1024.size()\
-      \ == 1 && f1024[0].first == 2 && f1024[0].second == 10);\n}\n\nvoid test_prime_numbers()\
-      \ {\n    // Test prime numbers\n    vector<int> primes = {2, 3, 5, 7, 11, 13,\
-      \ 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};\n\
+      \ 3);\n\n    auto f125 = kk2::FactorizeTable::factorize(125); // 5^3\n    assert(f125.size()\
+      \ == 1 && f125[0].first == 5 && f125[0].second == 3);\n\n    auto f1024 = kk2::FactorizeTable::factorize(1024);\
+      \ // 2^10\n    assert(f1024.size() == 1 && f1024[0].first == 2 && f1024[0].second\
+      \ == 10);\n}\n\nvoid test_prime_numbers() {\n    // Test prime numbers\n   \
+      \ vector<int> primes = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29, 31, 37, 41,\n\
+      \                          43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};\n\
       \    for (int p : primes) {\n        auto fp = kk2::FactorizeTable::factorize(p);\n\
       \        assert(fp.size() == 1 && fp[0].first == p && fp[0].second == 1);\n\
       \    }\n}\n\nvoid test_consistency_with_reference() {\n    // Test consistency\
@@ -620,31 +623,31 @@ data:
       \     auto f = kk2::factorize(n);\n        auto f1 = kk2::FactorizeTable::factorize(n);\n\
       \        assert(f.size() == f1.size());\n        for (int i = 0; i < (int)f.size();\
       \ i++) {\n            assert(f[i].first == f1[i].first);\n            assert(f[i].second\
-      \ == f1[i].second);\n        }\n        \n        // Verify that the factorization\
-      \ is correct\n        long long product = 1;\n        for (auto [p, e] : f1)\
-      \ {\n            for (int i = 0; i < e; i++) {\n                product *= p;\n\
-      \            }\n        }\n        assert(product == n);\n    }\n}\n\nvoid test_large_numbers()\
-      \ {\n    // Test with larger random numbers\n    int iter = 200;\n    rep (iter)\
-      \ {\n        int n = kk2::random::rng(2, 1000000);\n        auto f = kk2::factorize(n);\n\
+      \ == f1[i].second);\n        }\n\n        // Verify that the factorization is\
+      \ correct\n        long long product = 1;\n        for (auto [p, e] : f1) {\n\
+      \            for (int i = 0; i < e; i++) { product *= p; }\n        }\n    \
+      \    assert(product == n);\n    }\n}\n\nvoid test_large_numbers() {\n    //\
+      \ Test with larger random numbers\n    int iter = 200;\n    rep(iter) {\n  \
+      \      int n = kk2::random::rng(2, 1000000);\n        auto f = kk2::factorize(n);\n\
       \        auto f1 = kk2::FactorizeTable::factorize(n);\n        assert(f.size()\
       \ == f1.size());\n        for (int i = 0; i < (int)f.size(); i++) {\n      \
       \      assert(f[i].first == f1[i].first);\n            assert(f[i].second ==\
-      \ f1[i].second);\n        }\n        \n        // Verify correctness\n     \
-      \   long long product = 1;\n        for (auto [p, e] : f1) {\n            for\
-      \ (int i = 0; i < e; i++) {\n                product *= p;\n               \
-      \ if (product > n) break; // Avoid overflow\n            }\n            if (product\
-      \ > n) break;\n        }\n        if (product <= n) assert(product == n);\n\
-      \    }\n}\n\nvoid test_edge_cases() {\n    // Test highly composite numbers\n\
-      \    auto f60 = kk2::FactorizeTable::factorize(60); // 2^2 * 3 * 5\n    assert(f60.size()\
-      \ == 3 && f60[0].first == 2 && f60[0].second == 2 && \n           f60[1].first\
-      \ == 3 && f60[1].second == 1 && f60[2].first == 5 && f60[2].second == 1);\n\
-      \    \n    auto f120 = kk2::FactorizeTable::factorize(120); // 2^3 * 3 * 5\n\
-      \    assert(f120.size() == 3 && f120[0].first == 2 && f120[0].second == 3 &&\
-      \ \n           f120[1].first == 3 && f120[1].second == 1 && f120[2].first ==\
-      \ 5 && f120[2].second == 1);\n    \n    auto f210 = kk2::FactorizeTable::factorize(210);\
-      \ // 2 * 3 * 5 * 7\n    assert(f210.size() == 4 && f210[0].first == 2 && f210[0].second\
-      \ == 1 && \n           f210[1].first == 3 && f210[1].second == 1 && f210[2].first\
-      \ == 5 && f210[2].second == 1 &&\n           f210[3].first == 7 && f210[3].second\
+      \ f1[i].second);\n        }\n\n        // Verify correctness\n        long long\
+      \ product = 1;\n        for (auto [p, e] : f1) {\n            for (int i = 0;\
+      \ i < e; i++) {\n                product *= p;\n                if (product\
+      \ > n) break; // Avoid overflow\n            }\n            if (product > n)\
+      \ break;\n        }\n        if (product <= n) assert(product == n);\n    }\n\
+      }\n\nvoid test_edge_cases() {\n    // Test highly composite numbers\n    auto\
+      \ f60 = kk2::FactorizeTable::factorize(60); // 2^2 * 3 * 5\n    assert(f60.size()\
+      \ == 3 && f60[0].first == 2 && f60[0].second == 2 && f60[1].first == 3\n   \
+      \        && f60[1].second == 1 && f60[2].first == 5 && f60[2].second == 1);\n\
+      \n    auto f120 = kk2::FactorizeTable::factorize(120); // 2^3 * 3 * 5\n    assert(f120.size()\
+      \ == 3 && f120[0].first == 2 && f120[0].second == 3 && f120[1].first == 3\n\
+      \           && f120[1].second == 1 && f120[2].first == 5 && f120[2].second ==\
+      \ 1);\n\n    auto f210 = kk2::FactorizeTable::factorize(210); // 2 * 3 * 5 *\
+      \ 7\n    assert(f210.size() == 4 && f210[0].first == 2 && f210[0].second ==\
+      \ 1 && f210[1].first == 3\n           && f210[1].second == 1 && f210[2].first\
+      \ == 5 && f210[2].second == 1 && f210[3].first == 7\n           && f210[3].second\
       \ == 1);\n}\n\nint main() {\n    test_basic_factorization();\n    test_perfect_powers();\n\
       \    test_prime_numbers();\n    test_consistency_with_reference();\n    test_large_numbers();\n\
       \    test_edge_cases();\n\n    return 0;\n}\n"
@@ -655,7 +658,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/prime_factorize_table.test.cpp

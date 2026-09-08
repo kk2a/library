@@ -143,29 +143,31 @@ data:
       \ h3));\n            RH h123_direct(s1 + s2 + s3);\n\n            assert(h123_left.a\
       \ == h123_right.a);\n            assert(h123_left.a == h123_direct.a);\n   \
       \     }\n\n        cerr << \"RollingHash: 10000 random tests passed!\" << endl;\n\
-      \    }\n}\n\nvoid test() {\n    test_group();\n    \n    // \u5168\u30C6\u30B9\
-      \u30C8\u901A\u904E\n    cerr << \"All group tests passed!\" << endl;\n}\n\n\
-      int main() {\n    test();\n\n    return 0;\n}\n"
+      \    }\n}\n\nvoid test() {\n    test_group();\n\n    // \u5168\u30C6\u30B9\u30C8\
+      \u901A\u904E\n    cerr << \"All group tests passed!\" << endl;\n}\n\nint main()\
+      \ {\n    test();\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/math/group/group.test.cpp\"\n// competitive-verifier:\
       \ STANDALONE\n\n#line 1 \"math/group/add.hpp\"\n\n\n\n#line 1 \"type_traits/io.hpp\"\
       \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
       \ <ostream>\n#include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits\
       \ {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -181,9 +183,9 @@ data:
       \ static M op(M l, M r) { return M(l.a + r.a); }\n    inline static M inv(M\
       \ x) { return M(-x.a); }\n    inline static M unit() { return M(); }\n    bool\
       \ operator==(const M &rhs) const { return a == rhs.a; }\n    bool operator!=(const\
-      \ M &rhs) const { return a != rhs.a; }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const M &x) {\n        return os\
-      \ << x.a;\n    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
+      \ M &rhs) const { return a != rhs.a; }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const M &x) {\n        return os <<\
+      \ x.a;\n    }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
       \ &is, M &x) {\n        return is >> x.a;\n    }\n};\n\n} // namespace group\n\
       \n} // namespace kk2\n\n\n#line 1 \"math/group/rolling_hash.hpp\"\n\n\n\n#include\
       \ <vector>\n\n#line 1 \"random/hash.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -198,30 +200,32 @@ data:
       \    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\
       \n\n\n\n#line 5 \"modint/mont_arb.hpp\"\n#include <iostream>\n#line 7 \"modint/mont_arb.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
-      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -242,7 +246,7 @@ data:
       \ m) {\n        assert(m < (UInt(1u) << (bit_length - 2)));\n        assert(m\
       \ & 1);\n        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt\
       \ _v;\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template\
-      \ <Integral T> ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
+      \ <Integral T>\n    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b\
       \ % (Int)mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n\
       \        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\
       \n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod)\
@@ -267,15 +271,15 @@ data:
       \ s = getmod(), t = val(), m0 = 0, m1 = 1;\n        while (t) {\n          \
       \  Int u = s / t;\n            std::swap(s -= t * u, t);\n            std::swap(m0\
       \ -= m1 * u, m1);\n        }\n        if (m0 < 0) m0 += getmod();\n        return\
-      \ mint(m0);\n    }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const mint &x) {\n        return os << x.val();\n\
-      \    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
-      \ &is, mint &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n\
-      \        return (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n\
-      \        return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
-      \ { return mod; }\n};\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt\
-      \ =\n    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
-      \ long long, id>;\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt64bit\
+      \ mint(m0);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        Long t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n        return\
+      \ ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod() { return\
+      \ mod; }\n};\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt =\n \
+      \   ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
+      \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
       \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
       \ __uint128_t, id>;\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\
       \n\n#line 7 \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n\
@@ -421,9 +425,9 @@ data:
       \ const {\n        assert(n >= 0);\n        mint x = *this, r = 1;\n       \
       \ while (n) {\n            if (n & 1) r *= x;\n            if (n >>= 1) x *=\
       \ x;\n        }\n        return r;\n    }\n\n    constexpr mint inv() const\
-      \ { return pow(mod - 2); }\n\n    template <OutputStream OStream>\n    friend\
-      \ OStream &operator<<(OStream &os, const mint &x) {\n        return os << x._v;\n\
-      \    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
+      \ { return pow(mod - 2); }\n\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const mint &x) {\n        return os << x._v;\n  \
+      \  }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
       \ &is, mint &x) {\n        u64 y;\n        is >> y;\n        x = mint(y);\n\
       \        return is;\n    }\n\n    constexpr u64 val() const { return _v; }\n\
       \n    static constexpr mint mulplus(const mint &a, const mint &b, const mint\
@@ -457,9 +461,9 @@ data:
       \ {\n\ntemplate <int NUM> struct Hash : std::array<ModInt2_61m1, NUM> {\n  \
       \  using mint = ModInt2_61m1;\n    using std::array<mint, NUM>::operator[];\n\
       \    using u64 = unsigned long long;\n\n    Hash() : std::array<mint, NUM>()\
-      \ {}\n\n    template <Integral T> Hash(T x) {\n        std::fill(this->begin(),\
-      \ this->end(), mint(x));\n    }\n\n    static Hash get_base() {\n        Hash\
-      \ base;\n        for (int i = 0; i < NUM; i++) base[i] = primitive_root_mint<ModInt2_61m1>();\n\
+      \ {}\n\n    template <Integral T> Hash(T x) { std::fill(this->begin(), this->end(),\
+      \ mint(x)); }\n\n    static Hash get_base() {\n        Hash base;\n        for\
+      \ (int i = 0; i < NUM; i++) base[i] = primitive_root_mint<ModInt2_61m1>();\n\
       \        return base;\n    }\n\n    Hash &operator+=(const Hash &rhs) {\n  \
       \      for (int i = 0; i < NUM; i++) (*this)[i] += rhs[i];\n        return *this;\n\
       \    }\n    Hash &operator-=(const Hash &rhs) {\n        for (int i = 0; i <\
@@ -487,10 +491,10 @@ data:
       \n\nnamespace kk2 {\n\ntemplate <typename T> struct is_vector : std::false_type\
       \ {};\ntemplate <typename T, typename Alloc> struct is_vector<std::vector<T,\
       \ Alloc>> : std::true_type {};\n\ntemplate <typename T> struct is_container\
-      \ : std::false_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::vector<T,\
-      \ Alloc>> : std::true_type {\n};\ntemplate <typename CharT, typename Traits,\
-      \ typename Alloc>\nstruct is_container<std::basic_string<CharT, Traits, Alloc>>\
-      \ : std::true_type {};\ntemplate <typename T, std::size_t N> struct is_container<std::array<T,\
+      \ : std::false_type {};\ntemplate <typename T, typename Alloc>\nstruct is_container<std::vector<T,\
+      \ Alloc>> : std::true_type {};\ntemplate <typename CharT, typename Traits, typename\
+      \ Alloc>\nstruct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type\
+      \ {};\ntemplate <typename T, std::size_t N> struct is_container<std::array<T,\
       \ N>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::deque<T,\
       \ Alloc>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct\
       \ is_container<std::list<T, Alloc>> : std::true_type {};\ntemplate <typename\
@@ -504,21 +508,20 @@ data:
       \ static H base = H::get_base(), inv_base = base.inv();\n\n    H a, pw, ipw;\n\
       \    RollingHash() : a(0), pw(1), ipw(1) {}\n    RollingHash(H a_, H pw_, H\
       \ ipw_) : a(a_), pw(pw_), ipw(ipw_) {}\n    template <Integral T> RollingHash(T\
-      \ x)\n        : a(x),\n          pw(base),\n          ipw(inv_base) {}\n\n \
-      \   // s[0] * base^0 + s[1] * base^1 + ... + s[n-1] * base^(n-1)\n    template\
-      \ <Container C> RollingHash(const C &s)\n        : a(0),\n          pw(1),\n\
-      \          ipw(inv_base.pow(s.size())) {\n        for (auto x : s) {\n     \
-      \       a += pw * H(x);\n            pw *= base;\n        }\n    }\n    operator\
-      \ H() const { return a; }\n    inline static M op(M l, M r) { return M(l.a +\
-      \ r.a * l.pw, l.pw * r.pw, l.ipw * r.ipw); }\n    inline static M inv(M x) {\
-      \ return M(-x.ipw * x.a, x.ipw, x.pw); }\n    inline static M unit() { return\
-      \ M(); }\n    bool operator==(const M &rhs) const { return a == rhs.a and pw\
-      \ == rhs.pw and ipw == rhs.ipw; }\n    bool operator!=(const M &rhs) const {\
-      \ return a != rhs.a or pw != rhs.pw or ipw != rhs.ipw; }\n\n    template <OutputStream\
-      \ OStream>\n    void debug_output(OStream &os) const {\n        os << \"(\"\
-      \ << a << \", \" << pw << \", \" << ipw << \")\";\n    }\n};\n\n} // namespace\
-      \ group\n\n} // namespace kk2\n\n\n#line 1 \"math/group/sum_with_size.hpp\"\n\
-      \n\n\n#line 5 \"math/group/sum_with_size.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+      \ x) : a(x), pw(base), ipw(inv_base) {}\n\n    // s[0] * base^0 + s[1] * base^1\
+      \ + ... + s[n-1] * base^(n-1)\n    template <Container C> RollingHash(const\
+      \ C &s) : a(0), pw(1), ipw(inv_base.pow(s.size())) {\n        for (auto x :\
+      \ s) {\n            a += pw * H(x);\n            pw *= base;\n        }\n  \
+      \  }\n    operator H() const { return a; }\n    inline static M op(M l, M r)\
+      \ { return M(l.a + r.a * l.pw, l.pw * r.pw, l.ipw * r.ipw); }\n    inline static\
+      \ M inv(M x) { return M(-x.ipw * x.a, x.ipw, x.pw); }\n    inline static M unit()\
+      \ { return M(); }\n    bool operator==(const M &rhs) const { return a == rhs.a\
+      \ and pw == rhs.pw and ipw == rhs.ipw; }\n    bool operator!=(const M &rhs)\
+      \ const { return a != rhs.a or pw != rhs.pw or ipw != rhs.ipw; }\n\n    template\
+      \ <OutputStream OStream> void debug_output(OStream &os) const {\n        os\
+      \ << \"(\" << a << \", \" << pw << \", \" << ipw << \")\";\n    }\n};\n\n} //\
+      \ namespace group\n\n} // namespace kk2\n\n\n#line 1 \"math/group/sum_with_size.hpp\"\
+      \n\n\n\n#line 5 \"math/group/sum_with_size.hpp\"\n\nnamespace kk2 {\n\nnamespace\
       \ group {\n\ntemplate <class S, class T = S> struct SumWithSize {\n    static\
       \ constexpr bool commutative = true;\n    using M = SumWithSize;\n    S a;\n\
       \    T size;\n\n    SumWithSize() : a(S()), size(0) {}\n    SumWithSize(S a_,\
@@ -527,19 +530,19 @@ data:
       \ }\n    inline static M inv(M x) { return M(-x.a, -x.size); }\n    inline static\
       \ M unit() { return M(); }\n    bool operator==(const M &rhs) const { return\
       \ a == rhs.a and size == rhs.size; }\n    bool operator!=(const M &rhs) const\
-      \ { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const M &x) {\n        return os\
-      \ << x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n \
-      \       x.size = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\
-      \n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 6 \"\
-      template/template.hpp\"\n#include <bitset>\n#line 9 \"template/template.hpp\"\
-      \n#include <cmath>\n#line 11 \"template/template.hpp\"\n#include <functional>\n\
-      #include <iterator>\n#include <limits>\n#line 16 \"template/template.hpp\"\n\
-      #include <optional>\n#include <queue>\n#line 19 \"template/template.hpp\"\n\
-      #include <set>\n#include <stack>\n#line 22 \"template/template.hpp\"\n#include\
-      \ <unordered_map>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
-      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
+      \ { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const M &x) {\n        return os <<\
+      \ x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.size\
+      \ = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 6 \"template/template.hpp\"\
+      \n#include <bitset>\n#line 9 \"template/template.hpp\"\n#include <cmath>\n#line\
+      \ 11 \"template/template.hpp\"\n#include <functional>\n#include <iterator>\n\
+      #include <limits>\n#line 16 \"template/template.hpp\"\n#include <optional>\n\
+      #include <queue>\n#line 19 \"template/template.hpp\"\n#include <set>\n#include\
+      \ <stack>\n#line 22 \"template/template.hpp\"\n#include <unordered_map>\n#line\
+      \ 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\n\
+      #line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
       \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
       \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
       \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
@@ -684,7 +687,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -756,9 +759,9 @@ data:
       \ h3));\n            RH h123_direct(s1 + s2 + s3);\n\n            assert(h123_left.a\
       \ == h123_right.a);\n            assert(h123_left.a == h123_direct.a);\n   \
       \     }\n\n        cerr << \"RollingHash: 10000 random tests passed!\" << endl;\n\
-      \    }\n}\n\nvoid test() {\n    test_group();\n    \n    // \u5168\u30C6\u30B9\
-      \u30C8\u901A\u904E\n    cerr << \"All group tests passed!\" << endl;\n}\n\n\
-      int main() {\n    test();\n\n    return 0;\n}\n"
+      \    }\n}\n\nvoid test() {\n    test_group();\n\n    // \u5168\u30C6\u30B9\u30C8\
+      \u901A\u904E\n    cerr << \"All group tests passed!\" << endl;\n}\n\nint main()\
+      \ {\n    test();\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -766,7 +769,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/group/group.test.cpp

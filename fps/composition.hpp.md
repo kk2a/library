@@ -6,12 +6,12 @@ data:
   dependencies:
   - files: []
     type: Depends on
-  - files: []
-    type: Required by
   - files:
     - filename: fps_composition.test.cpp
-      icon: TEST_ACCEPTED
+      icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_composition.test.cpp
+    type: Required by
+  - files: []
     type: Verified with
   dependsOn: []
   embedded:
@@ -88,11 +88,11 @@ data:
   isVerificationFile: false
   path: fps/composition.hpp
   pathExtension: hpp
-  requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
+  requiredBy:
   - verify/yosupo_fps/fps_composition.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith: []
 documentation_of: fps/composition.hpp
 layout: document
 ---

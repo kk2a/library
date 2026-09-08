@@ -108,40 +108,41 @@ data:
   - type_traits/integral.hpp
   - type_traits/io.hpp
   embedded:
-  - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../modint/modint.hpp\"\
-      \n#include \"../../../math_mod/comb_large.hpp\"\n#include \"../../../math_mod/comb.hpp\"\
+  - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../math_mod/comb.hpp\"\
+      \n#include \"../../../math_mod/comb_large.hpp\"\n#include \"../../../modint/modint.hpp\"\
       \n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    kk2::Comb<kk2::mint107>::set_upper(1e7);\n\
-      \    int up = 2000001, lw = 1e7;\n    int t = 2;\n    rep (t) {\n        int\
+      \    int up = 2000001, lw = 1e7;\n    int t = 2;\n    rep(t) {\n        int\
       \ n = kk2::random::rng(up, lw);\n        auto a = kk2::Comb<kk2::mint107>::fact(n);\n\
       \        auto b = kk2::CombLarge<kk2::mint107>::fact(n);\n        // \u58CA\u308C\
       \u3066\u3044\u308B\u306E\u3067false\u3092\u8FD4\u3059\n        // assert(a ==\
       \ b);\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/math_mod/large_fact_arb_mod.test.cpp\"\n// competitive-verifier:\
-      \ STANDALONE\n\n#line 1 \"modint/modint.hpp\"\n\n\n\n#include <cassert>\n#include\
-      \ <iostream>\n#include <type_traits>\n#include <utility>\n\n#line 1 \"type_traits/integral.hpp\"\
-      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ STANDALONE\n\n#line 1 \"math_mod/comb.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <cassert>\n#include <vector>\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -156,84 +157,40 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
-      #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 11 \"modint/modint.hpp\"\n\nnamespace kk2 {\n\
-      \ntemplate <int p> struct ModInt {\n    using mint = ModInt;\n\n  public:\n\
-      \    static int Mod;\n\n    constexpr static unsigned int getmod() {\n     \
-      \   if (p > 0) return p;\n        else return Mod;\n    }\n\n    static void\
-      \ setmod(int Mod_) {\n        assert(1 <= Mod_);\n        Mod = Mod_;\n    }\n\
-      \n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n       \
-      \ return x;\n    }\n\n    constexpr ModInt() : _v(0) {}\n\n    template <Integral\
-      \ T> constexpr ModInt(T v) {\n        if constexpr (SignedIntegral<T>) {\n \
-      \           v = v % (long long)(getmod());\n            if (v < 0) v += getmod();\n\
-      \            _v = v;\n        } else if constexpr (UnsignedIntegral<T>) {\n\
-      \            _v = v %= getmod();\n        } else {\n            ModInt();\n\
-      \        }\n    }\n\n    unsigned int val() const { return _v; }\n\n    mint\
-      \ &operator++() {\n        _v++;\n        if (_v == getmod()) _v = 0;\n    \
-      \    return *this;\n    }\n\n    mint &operator--() {\n        if (_v == 0)\
-      \ _v = getmod();\n        _v--;\n        return *this;\n    }\n\n    mint operator++(int)\
-      \ {\n        mint result = *this;\n        ++*this;\n        return result;\n\
-      \    }\n\n    mint operator--(int) {\n        mint result = *this;\n       \
-      \ --*this;\n        return result;\n    }\n\n    mint &operator+=(const mint\
-      \ &rhs) {\n        _v += rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
-      \        return *this;\n    }\n\n    mint &operator-=(const mint &rhs) {\n \
-      \       _v += getmod() - rhs._v;\n        if (_v >= getmod()) _v -= getmod();\n\
-      \        return *this;\n    }\n\n    mint &operator*=(const mint &rhs) {\n \
-      \       unsigned long long z = _v;\n        z *= rhs._v;\n        z %= getmod();\n\
-      \        _v = z;\n        return *this;\n    }\n\n    mint &operator/=(const\
-      \ mint &rhs) { return *this = *this * rhs.inv(); }\n    mint operator+() const\
-      \ { return *this; }\n    mint operator-() const { return mint() - *this; }\n\
-      \    friend mint operator+(const mint &lhs, const mint &rhs) { return mint(lhs)\
-      \ += rhs; }\n    friend mint operator-(const mint &lhs, const mint &rhs) { return\
-      \ mint(lhs) -= rhs; }\n    friend mint operator*(const mint &lhs, const mint\
-      \ &rhs) { return mint(lhs) *= rhs; }\n    friend mint operator/(const mint &lhs,\
-      \ const mint &rhs) { return mint(lhs) /= rhs; }\n    friend bool operator==(const\
-      \ mint &lhs, const mint &rhs) { return lhs._v == rhs._v; }\n    friend bool\
-      \ operator!=(const mint &lhs, const mint &rhs) { return lhs._v != rhs._v; }\n\
-      \n    mint pow(long long n) const {\n        assert(0 <= n);\n        mint x\
-      \ = *this, r = 1;\n        while (n) {\n            if (n & 1) r *= x;\n   \
-      \         x *= x;\n            n >>= 1;\n        }\n        return r;\n    }\n\
-      \n    mint inv() const {\n        long long s = getmod(), t = _v;\n        long\
-      \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
-      \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
-      \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
-      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
-      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
-      \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
-      \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
-      \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"math_mod/comb_large.hpp\"\n\n\n\n#include\
-      \ <algorithm>\n#line 6 \"math_mod/comb_large.hpp\"\n#include <functional>\n\
-      #include <vector>\n\n#line 1 \"fps/fps_ntt_friendly.hpp\"\n\n\n\n#line 9 \"\
-      fps/fps_ntt_friendly.hpp\"\n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n\
-      #line 6 \"convolution/convolution.hpp\"\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\
+      \n} // namespace kk2\n\n\n#line 9 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\
+      \ntemplate <class mint> struct Comb {\n    static inline std::vector<mint> _fact{1},\
+      \ _ifact{1}, _inv{1};\n\n    Comb() = delete;\n\n    static void set_upper(int\
+      \ m = -1) {\n        int n = (int)_fact.size();\n        if (m == -1) m = n\
+      \ << 1;\n        if (n > m) return;\n        m = std::min<long long>(m, mint::getmod()\
+      \ - 1);\n        _fact.resize(m + 1);\n        _ifact.resize(m + 1);\n     \
+      \   _inv.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact[i] = _fact[i\
+      \ - 1] * i;\n        _ifact[m] = _fact[m].inv();\n        _inv[m] = _ifact[m]\
+      \ * _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
+      \ - 1] = _ifact[i] * i;\n            _inv[i - 1] = _ifact[i - 1] * _fact[i -\
+      \ 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n < 0)\
+      \ return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
+      \ _fact[n];\n    }\n\n    static mint ifact(int n) {\n        if (n < 0) return\
+      \ 0;\n        if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
+      \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
+      \        if ((int)_inv.size() <= n) set_upper(n);\n        return _inv[n];\n\
+      \    }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n)\
+      \ return 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n  \
+      \  template <Integral T> static mint multinomial(const std::vector<T> &r) {\n\
+      \        int n = 0;\n        for (auto &x : r) {\n            if (x < 0) return\
+      \ 0;\n            n += x;\n        }\n        mint res = fact(n);\n        for\
+      \ (auto &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint\
+      \ binom_naive(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n\
+      \        mint res = 1;\n        k = std::min(k, n - k);\n        for (int i\
+      \ = 1; i <= k; i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n \
+      \   static mint permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n)\
+      \ return 0;\n        return fact(n) * ifact(n - k);\n    }\n\n    static mint\
+      \ homo(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        return\
+      \ k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line\
+      \ 1 \"math_mod/comb_large.hpp\"\n\n\n\n#line 6 \"math_mod/comb_large.hpp\"\n\
+      #include <functional>\n#line 8 \"math_mod/comb_large.hpp\"\n\n#line 1 \"fps/fps_ntt_friendly.hpp\"\
+      \n\n\n\n#line 6 \"fps/fps_ntt_friendly.hpp\"\n#include <iostream>\n#include\
+      \ <utility>\n#line 9 \"fps/fps_ntt_friendly.hpp\"\n\n#line 1 \"convolution/convolution.hpp\"\
+      \n\n\n\n#line 6 \"convolution/convolution.hpp\"\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\
       \n\n\n\n#line 1 \"bit/bitcount.hpp\"\n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n\
       #line 7 \"bit/bitcount.hpp\"\n\nnamespace kk2 {\n\ntemplate <Integral T> constexpr\
       \ int ctz(T x) {\n    assert(x != T(0));\n\n    if constexpr (sizeof(T) <= 4)\
@@ -256,9 +213,10 @@ data:
       \         + __builtin_popcountll((unsigned long long)(x & 0xffffffffffffffff));\n\
       \    }\n}\n\n}; // namespace kk2\n\n\n#line 5 \"fps/fps_sparsity_detector.hpp\"\
       \n\nnamespace kk2 {\n\nenum class FPSOperation { CONVOLUTION, EXP };\n\ntemplate\
-      \ <class FPS, class mint = typename FPS::value_type> bool\nis_sparse_operation(FPSOperation\
-      \ op, bool is_ntt_friendly, const FPS &a, const FPS &b = FPS()) {\n    int n\
-      \ = a.size(), m = b.size();\n    long long not_zero_a = 0, not_zero_b = 0;\n\
+      \ <class FPS, class mint = typename FPS::value_type>\nbool is_sparse_operation(FPSOperation\
+      \ op,\n                         bool is_ntt_friendly,\n                    \
+      \     const FPS &a,\n                         const FPS &b = FPS()) {\n    int\
+      \ n = a.size(), m = b.size();\n    long long not_zero_a = 0, not_zero_b = 0;\n\
       \    bool same = a == b;\n    int lg = msb(n + m) + 1;\n    for (int i = 0;\
       \ i < n; i++) not_zero_a += a[i] != mint(0);\n    for (int i = 0; i < m; i++)\
       \ not_zero_b += b[i] != mint(0);\n\n    if (op == FPSOperation::CONVOLUTION)\
@@ -397,8 +355,8 @@ data:
       \ % i]) * (_mod / i);\n    }\n\n    static inline mint inv(int n) {\n      \
       \  bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
       \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
-      \ // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#line 5 \"type_traits/fps.hpp\"\
-      \n#include <ranges>\n#line 7 \"type_traits/fps.hpp\"\n\nnamespace kk2::fps {\n\
+      \ // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n\
+      #include <ranges>\n#line 7 \"type_traits/fps.hpp\"\n\nnamespace kk2::fps {\n\
       \nnamespace category {\n\nstruct arbitrary_modulus {};\nstruct ntt_friendly_modulus\
       \ {};\n\nstruct ordinary {};\nstruct exponential_generating {};\nstruct set_power_series\
       \ {};\n\nstruct univariate {};\nstruct bivariate {};\nstruct multivariate {};\n\
@@ -408,49 +366,75 @@ data:
       \ requires(const F &f, int i) {\n    typename F::value_type;\n    typename F::modulus_category;\n\
       \    typename F::series_category;\n    { f.size() } -> std::integral;\n    f[i];\n\
       } && std::ranges::range<const F>;\n\ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> &&\n    std::same_as<typename F::modulus_category,\
+      \ =\n    FormalPowerSeries<F>\n    && std::same_as<typename F::modulus_category,\
       \ category::ntt_friendly_modulus>;\n\ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> &&\n    std::same_as<typename F::modulus_category,\
+      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::modulus_category,\
       \ category::arbitrary_modulus>;\n\ntemplate <class F>\nconcept OrdinaryFormalPowerSeries\
       \ =\n    FormalPowerSeries<F> && std::same_as<typename F::series_category, category::ordinary>;\n\
-      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\
-      \ &&\n    std::same_as<typename F::series_category, category::exponential_generating>;\n\
+      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
+      \    && std::same_as<typename F::series_category, category::exponential_generating>;\n\
       \ntemplate <class F>\nconcept SetPowerSeries =\n    FormalPowerSeries<F> &&\
       \ std::same_as<typename F::series_category, category::set_power_series>;\n\n\
-      template <class F>\nconcept UnivariateFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && requires { typename F::variable_category; } &&\n    std::same_as<typename\
+      template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries =\n    FormalPowerSeries<F> && requires { typename\
-      \ F::variable_category; } &&\n    std::same_as<typename F::variable_category,\
-      \ category::bivariate>;\n\ntemplate <class F>\nconcept MultivariateFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> && requires { typename F::variable_category; }\
-      \ &&\n    std::same_as<typename F::variable_category, category::multivariate>;\n\
-      \n// Short names for the categories that are commonly used in algorithms.\n\
-      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
-      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
-      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
-      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
-      \n\n#line 13 \"fps/fps_base.hpp\"\n\nnamespace kk2 {\n\ntemplate <class Derived,\
-      \ fps::Modular mint> struct FormalPowerSeriesBase : std::vector<mint> {\n  \
-      \  using std::vector<mint>::vector;\n    using FPS = Derived;\n    using ivta\
-      \ = InvTable<mint>;\n\n    // CRTP\u3092\u4F7F\u3063\u3066\u6D3E\u751F\u30AF\
-      \u30E9\u30B9\u306E\u53C2\u7167\u3092\u53D6\u5F97\n    Derived &derived() { return\
-      \ static_cast<Derived &>(*this); }\n    const Derived &derived() const { return\
-      \ static_cast<const Derived &>(*this); }\n\n    template <OutputStream OStream>\n\
-      \    void debug_output(OStream &os) const {\n        os << \"[\";\n        for\
-      \ (size_t i = 0; i < this->size(); i++) {\n            os << (*this)[i] << (i\
-      \ + 1 == this->size() ? \"\" : \", \");\n        }\n        os << \"]\";\n \
-      \   }\n\n    template <OutputStream OStream> void output(OStream &os) const\
-      \ {\n        for (size_t i = 0; i < this->size(); i++) {\n            os <<\
-      \ (*this)[i] << (i + 1 == this->size() ? \"\\n\" : \" \");\n        }\n    }\n\
-      \    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
-      \ &os, const FPS &fps_) {\n        for (size_t i = 0; i < fps_.size(); i++)\
-      \ {\n            os << fps_[i] << (i + 1 == fps_.size() ? \"\" : \" \");\n \
-      \       }\n        return os;\n    }\n\n    template <InputStream IStream> FPS\
-      \ &input(IStream &is) {\n        for (size_t i = 0; i < this->size(); i++) is\
-      \ >> (*this)[i];\n        return derived();\n    }\n\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, FPS &fps_) {\n     \
-      \   for (auto &x : fps_) is >> x;\n        return is;\n    }\n    FPS &operator+=(const\
+      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
+      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
+      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
+      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
+      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
+      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
+      \ namespace kk2::fps\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\
+      \n#include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
+      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 13 \"fps/fps_base.hpp\"\n\nnamespace kk2 {\n\
+      \ntemplate <class Derived, fps::Modular mint> struct FormalPowerSeriesBase :\
+      \ std::vector<mint> {\n    using std::vector<mint>::vector;\n    using FPS =\
+      \ Derived;\n    using ivta = InvTable<mint>;\n\n    // CRTP\u3092\u4F7F\u3063\
+      \u3066\u6D3E\u751F\u30AF\u30E9\u30B9\u306E\u53C2\u7167\u3092\u53D6\u5F97\n \
+      \   Derived &derived() { return static_cast<Derived &>(*this); }\n    const\
+      \ Derived &derived() const { return static_cast<const Derived &>(*this); }\n\
+      \n    template <OutputStream OStream> void debug_output(OStream &os) const {\n\
+      \        os << \"[\";\n        for (size_t i = 0; i < this->size(); i++) {\n\
+      \            os << (*this)[i] << (i + 1 == this->size() ? \"\" : \", \");\n\
+      \        }\n        os << \"]\";\n    }\n\n    template <OutputStream OStream>\
+      \ void output(OStream &os) const {\n        for (size_t i = 0; i < this->size();\
+      \ i++) {\n            os << (*this)[i] << (i + 1 == this->size() ? \"\\n\" :\
+      \ \" \");\n        }\n    }\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const FPS &fps_) {\n        for (size_t i = 0; i\
+      \ < fps_.size(); i++) {\n            os << fps_[i] << (i + 1 == fps_.size()\
+      \ ? \"\" : \" \");\n        }\n        return os;\n    }\n\n    template <InputStream\
+      \ IStream> FPS &input(IStream &is) {\n        for (size_t i = 0; i < this->size();\
+      \ i++) is >> (*this)[i];\n        return derived();\n    }\n\n    template <InputStream\
+      \ IStream> friend IStream &operator>>(IStream &is, FPS &fps_) {\n        for\
+      \ (auto &x : fps_) is >> x;\n        return is;\n    }\n    FPS &operator+=(const\
       \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
       \        for (size_t i = 0; i < r.size(); i++) (*this)[i] += r[i];\n       \
       \ return derived();\n    }\n\n    FPS &operator+=(const mint &r) {\n       \
@@ -601,7 +585,7 @@ data:
       \ derived();\n    }\n    FPS imos(int n) const { return FPS(derived()).inplace_imos(n);\
       \ }\n    FPS iimos(int n) const { return FPS(derived()).inplace_iimos(n); }\n\
       };\n\n} // namespace kk2\n\n\n#line 12 \"fps/fps_ntt_friendly.hpp\"\n\nnamespace\
-      \ kk2 {\n\ntemplate <fps::Modular mint> struct FormalPowerSeriesNTTFriendly\n\
+      \ kk2 {\n\ntemplate <fps::Modular mint>\nstruct FormalPowerSeriesNTTFriendly\n\
       \    : FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint> {\n \
       \   using base = FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint>;\n\
       \    using FPS = FormalPowerSeriesNTTFriendly<mint>;\n    using base::FormalPowerSeriesBase;\n\
@@ -670,37 +654,7 @@ data:
       \ t;\n    for (int i = 1; i <= k; i++) cur *= t - i;\n    for (int i = 0; i\
       \ < m; i++) {\n        ret[i] = cur * dh[k + i];\n        cur *= t + i + 1;\n\
       \        cur *= h[i];\n    }\n    return ret;\n}\n\n} // namespace kk2\n\n\n\
-      #line 1 \"math_mod/comb.hpp\"\n\n\n\n#line 7 \"math_mod/comb.hpp\"\n\n#line\
-      \ 9 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> struct\
-      \ Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1}, _inv{1};\n\
-      \n    Comb() = delete;\n\n    static void set_upper(int m = -1) {\n        int\
-      \ n = (int)_fact.size();\n        if (m == -1) m = n << 1;\n        if (n >\
-      \ m) return;\n        m = std::min<long long>(m, mint::getmod() - 1);\n    \
-      \    _fact.resize(m + 1);\n        _ifact.resize(m + 1);\n        _inv.resize(m\
-      \ + 1);\n        for (int i = n; i <= m; i++) _fact[i] = _fact[i - 1] * i;\n\
-      \        _ifact[m] = _fact[m].inv();\n        _inv[m] = _ifact[m] * _fact[m\
-      \ - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i - 1] =\
-      \ _ifact[i] * i;\n            _inv[i - 1] = _ifact[i - 1] * _fact[i - 2];\n\
-      \        }\n    }\n\n    static mint fact(int n) {\n        if (n < 0) return\
-      \ 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return _fact[n];\n\
-      \    }\n\n    static mint ifact(int n) {\n        if (n < 0) return 0;\n   \
-      \     if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
-      \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
-      \        if ((int)_inv.size() <= n) set_upper(n);\n        return _inv[n];\n\
-      \    }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n  \
-      \  template <Integral T> static mint multinomial(const std::vector<T> &r) {\n\
-      \        int n = 0;\n        for (auto &x : r) {\n            if (x < 0) return\
-      \ 0;\n            n += x;\n        }\n        mint res = fact(n);\n        for\
-      \ (auto &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint\
-      \ binom_naive(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n\
-      \        mint res = 1;\n        k = std::min(k, n - k);\n        for (int i\
-      \ = 1; i <= k; i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n \
-      \   static mint permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(n - k);\n    }\n\n    static mint\
-      \ homo(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        return\
-      \ k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line\
-      \ 13 \"math_mod/comb_large.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\
+      #line 13 \"math_mod/comb_large.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\
       \ struct CombLarge {\n    using FPS = FormalPowerSeriesNTTFriendly<mint>;\n\
       \    static constexpr int LOG_BLOCK_SIZE = 9;\n    static constexpr int BLOCK_SIZE\
       \ = 1 << LOG_BLOCK_SIZE;\n    static constexpr int BLOCK_NUM = mint::getmod()\
@@ -744,11 +698,59 @@ data:
       \     } else {\n            res = -1;\n            mint den = 1;\n         \
       \   for (int i = mint::getmod() - 1; i > n; i++) { den *= i; }\n           \
       \ res /= den;\n        }\n        return res;\n    }\n};\n\n} // namespace kk2\n\
-      \n\n#line 1 \"random/gen.hpp\"\n\n\n\n#line 6 \"random/gen.hpp\"\n#include <numeric>\n\
-      #include <random>\n#include <unordered_set>\n#line 10 \"random/gen.hpp\"\n\n\
-      #line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\nnamespace kk2 {\n\n\
-      namespace random {\n\nusing u64 = unsigned long long;\n\ninline u64 non_deterministic_seed()\
-      \ {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
+      \n\n#line 1 \"modint/modint.hpp\"\n\n\n\n#line 8 \"modint/modint.hpp\"\n\n#line\
+      \ 11 \"modint/modint.hpp\"\n\nnamespace kk2 {\n\ntemplate <int p> struct ModInt\
+      \ {\n    using mint = ModInt;\n\n  public:\n    static int Mod;\n\n    constexpr\
+      \ static unsigned int getmod() {\n        if (p > 0) return p;\n        else\
+      \ return Mod;\n    }\n\n    static void setmod(int Mod_) {\n        assert(1\
+      \ <= Mod_);\n        Mod = Mod_;\n    }\n\n    static mint raw(int v) {\n  \
+      \      mint x;\n        x._v = v;\n        return x;\n    }\n\n    constexpr\
+      \ ModInt() : _v(0) {}\n\n    template <Integral T> constexpr ModInt(T v) {\n\
+      \        if constexpr (SignedIntegral<T>) {\n            v = v % (long long)(getmod());\n\
+      \            if (v < 0) v += getmod();\n            _v = v;\n        } else\
+      \ if constexpr (UnsignedIntegral<T>) {\n            _v = v %= getmod();\n  \
+      \      } else {\n            ModInt();\n        }\n    }\n\n    unsigned int\
+      \ val() const { return _v; }\n\n    mint &operator++() {\n        _v++;\n  \
+      \      if (_v == getmod()) _v = 0;\n        return *this;\n    }\n\n    mint\
+      \ &operator--() {\n        if (_v == 0) _v = getmod();\n        _v--;\n    \
+      \    return *this;\n    }\n\n    mint operator++(int) {\n        mint result\
+      \ = *this;\n        ++*this;\n        return result;\n    }\n\n    mint operator--(int)\
+      \ {\n        mint result = *this;\n        --*this;\n        return result;\n\
+      \    }\n\n    mint &operator+=(const mint &rhs) {\n        _v += rhs._v;\n \
+      \       if (_v >= getmod()) _v -= getmod();\n        return *this;\n    }\n\n\
+      \    mint &operator-=(const mint &rhs) {\n        _v += getmod() - rhs._v;\n\
+      \        if (_v >= getmod()) _v -= getmod();\n        return *this;\n    }\n\
+      \n    mint &operator*=(const mint &rhs) {\n        unsigned long long z = _v;\n\
+      \        z *= rhs._v;\n        z %= getmod();\n        _v = z;\n        return\
+      \ *this;\n    }\n\n    mint &operator/=(const mint &rhs) { return *this = *this\
+      \ * rhs.inv(); }\n    mint operator+() const { return *this; }\n    mint operator-()\
+      \ const { return mint() - *this; }\n    friend mint operator+(const mint &lhs,\
+      \ const mint &rhs) { return mint(lhs) += rhs; }\n    friend mint operator-(const\
+      \ mint &lhs, const mint &rhs) { return mint(lhs) -= rhs; }\n    friend mint\
+      \ operator*(const mint &lhs, const mint &rhs) { return mint(lhs) *= rhs; }\n\
+      \    friend mint operator/(const mint &lhs, const mint &rhs) { return mint(lhs)\
+      \ /= rhs; }\n    friend bool operator==(const mint &lhs, const mint &rhs) {\
+      \ return lhs._v == rhs._v; }\n    friend bool operator!=(const mint &lhs, const\
+      \ mint &rhs) { return lhs._v != rhs._v; }\n\n    mint pow(long long n) const\
+      \ {\n        assert(0 <= n);\n        mint x = *this, r = 1;\n        while\
+      \ (n) {\n            if (n & 1) r *= x;\n            x *= x;\n            n\
+      \ >>= 1;\n        }\n        return r;\n    }\n\n    mint inv() const {\n  \
+      \      long long s = getmod(), t = _v;\n        long long m0 = 0, m1 = 1;\n\n\
+      \        while (t) {\n            long long u = s / t;\n            s -= t *\
+      \ u;\n            m0 -= m1 * u;\n\n            std::swap(s, t);\n          \
+      \  std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 += getmod() / s;\n\
+      \        return m0;\n    }\n\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const mint &mint_) {\n        os << mint_._v;\n \
+      \       return os;\n    }\n\n    template <InputStream IStream> friend IStream\
+      \ &operator>>(IStream &is, mint &mint_) {\n        long long x;\n        is\
+      \ >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\n  private:\n\
+      \    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod = 998244353;\n\
+      \nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\n\
+      } // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\n#line 6 \"random/gen.hpp\"\
+      \n#include <numeric>\n#include <random>\n#include <unordered_set>\n#line 10\
+      \ \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\
+      \nnamespace kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\
+      \ninline u64 non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
       \                   std::chrono::high_resolution_clock::now().time_since_epoch())\n\
       \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n \
       \   seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n \
@@ -929,7 +931,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -958,7 +960,7 @@ data:
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/unit_test/math_mod/large_fact_arb_mod.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    kk2::Comb<kk2::mint107>::set_upper(1e7);\n\
-      \    int up = 2000001, lw = 1e7;\n    int t = 2;\n    rep (t) {\n        int\
+      \    int up = 2000001, lw = 1e7;\n    int t = 2;\n    rep(t) {\n        int\
       \ n = kk2::random::rng(up, lw);\n        auto a = kk2::Comb<kk2::mint107>::fact(n);\n\
       \        auto b = kk2::CombLarge<kk2::mint107>::fact(n);\n        // \u58CA\u308C\
       \u3066\u3044\u308B\u306E\u3067false\u3092\u8FD4\u3059\n        // assert(a ==\
@@ -970,7 +972,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp

@@ -6,12 +6,12 @@ data:
   dependencies:
   - files: []
     type: Depends on
-  - files: []
-    type: Required by
   - files:
     - filename: ds_point_set_range_composite_large_2.test.cpp
-      icon: TEST_ACCEPTED
+      icon: LIBRARY_ALL_AC
       path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+    type: Required by
+  - files:
     - filename: ds_range_affine_range_sum_large_2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
@@ -77,11 +77,11 @@ data:
   isVerificationFile: false
   path: others/coordinate_compression.hpp
   pathExtension: hpp
-  requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  requiredBy:
+  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
   - verify/yosupo_ds/ds_static_range_inversions.test.cpp
 documentation_of: others/coordinate_compression.hpp

@@ -46,64 +46,41 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/many_aplusb_128bit\n\
-      \n#include \"../../template/template.hpp\"\n#include \"../../template/fastio.hpp\"\
-      \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t)\
+      \n#include \"../../template/fastio.hpp\"\n#include \"../../template/template.hpp\"\
+      \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep(t)\
       \ {\n        i128 a, b;\n        kin >> a >> b;\n        kout << a + b << \"\
       \\n\";\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_others/many_a_plus_b_128bit.test.cpp\"\n// competitive-verifier:\
-      \ PROBLEM https://judge.yosupo.jp/problem/many_aplusb_128bit\n\n#line 1 \"template/template.hpp\"\
-      \n\n\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include\
-      \ <cassert>\n#include <chrono>\n#include <cmath>\n#include <deque>\n#include\
-      \ <functional>\n#include <iterator>\n#include <limits>\n#include <map>\n#include\
-      \ <numeric>\n#include <optional>\n#include <queue>\n#include <random>\n#include\
-      \ <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n#include\
-      \ <unordered_set>\n#include <utility>\n#include <vector>\n\n#line 1 \"template/constant.hpp\"\
-      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
-      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
-      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
-      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
-      \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
-      \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
+      \ PROBLEM https://judge.yosupo.jp/problem/many_aplusb_128bit\n\n#line 1 \"template/fastio.hpp\"\
+      \n\n\n\n#include <cctype>\n#include <cstdint>\n#include <cstdio>\n#include <fstream>\n\
+      #include <iostream>\n#include <string>\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -118,20 +95,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -241,14 +220,38 @@ data:
       \ &kin = std::cin;\nauto &kout = std::cout;\nauto (*kendl)(std::ostream &) =\
       \ std::endl<char, std::char_traits<char>>;\n#else\nfastio::Scanner kin;\nfastio::Printer\
       \ kout;\nfastio::endl_struct_t kendl;\n#endif\n\n} // namespace kk2\n\n\n#line\
-      \ 1 \"template/io_util.hpp\"\n\n\n\n#line 7 \"template/io_util.hpp\"\n\n#line\
-      \ 9 \"template/io_util.hpp\"\n\n// \u306A\u3093\u304Boj verify\u306F\u30D7\u30ED\
-      \u30C8\u30BF\u30A4\u30D7\u5BA3\u8A00\u304C\u843D\u3061\u308B\n\nnamespace impl\
-      \ {\n\nstruct read {\n    template <class IStream, class T> inline static void\
-      \ all_read(IStream &is, T &x) { is >> x; }\n\n    template <class IStream, class\
-      \ T, class U>\n    inline static void all_read(IStream &is, std::pair<T, U>\
-      \ &p) {\n        all_read(is, p.first);\n        all_read(is, p.second);\n \
-      \   }\n\n    template <class IStream, class T> inline static void all_read(IStream\
+      \ 1 \"template/template.hpp\"\n\n\n\n#include <algorithm>\n#include <array>\n\
+      #include <bitset>\n#include <cassert>\n#include <chrono>\n#include <cmath>\n\
+      #include <deque>\n#include <functional>\n#include <iterator>\n#include <limits>\n\
+      #include <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n\
+      #include <random>\n#include <set>\n#include <stack>\n#line 22 \"template/template.hpp\"\
+      \n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include\
+      \ <vector>\n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
+      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
+      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
+      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
+      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
+      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
+      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
+      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
+      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
+      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
+      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
+      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
+      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
+      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
+      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
+      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
+      \n\n#line 1 \"template/io_util.hpp\"\n\n\n\n#line 7 \"template/io_util.hpp\"\
+      \n\n#line 9 \"template/io_util.hpp\"\n\n// \u306A\u3093\u304Boj verify\u306F\
+      \u30D7\u30ED\u30C8\u30BF\u30A4\u30D7\u5BA3\u8A00\u304C\u843D\u3061\u308B\n\n\
+      namespace impl {\n\nstruct read {\n    template <class IStream, class T> inline\
+      \ static void all_read(IStream &is, T &x) { is >> x; }\n\n    template <class\
+      \ IStream, class T, class U>\n    inline static void all_read(IStream &is, std::pair<T,\
+      \ U> &p) {\n        all_read(is, p.first);\n        all_read(is, p.second);\n\
+      \    }\n\n    template <class IStream, class T> inline static void all_read(IStream\
       \ &is, std::vector<T> &v) {\n        for (T &x : v) all_read(is, x);\n    }\n\
       \n    template <class IStream, class T, size_t F>\n    inline static void all_read(IStream\
       \ &is, std::array<T, F> &a) {\n        for (T &x : a) all_read(is, x);\n   \
@@ -266,7 +269,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -294,7 +297,7 @@ data:
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_others/many_a_plus_b_128bit.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t)\
+      \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep(t)\
       \ {\n        i128 a, b;\n        kin >> a >> b;\n        kout << a + b << \"\
       \\n\";\n    }\n\n    return 0;\n}\n"
     name: bundled
@@ -304,57 +307,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.39786112900000603
+  - elapsed: 0.31871726299999636
     environment: g++
-    memory: 4.016
+    memory: 4.104
     name: all_max_abs_00
     status: AC
-  - elapsed: 0.06153724000000693
+  - elapsed: 0.03947310999996034
     environment: g++
-    memory: 4.016
+    memory: 3.952
     name: all_zero_00
     status: AC
-  - elapsed: 0.44132004700000493
+  - elapsed: 0.32798963100003675
     environment: g++
-    memory: 3.872
+    memory: 4.064
     name: carry_up_00
     status: AC
-  - elapsed: 0.3100556290000043
+  - elapsed: 0.23252271299998029
     environment: g++
-    memory: 3.976
+    memory: 4.084
     name: digit_random_00
     status: AC
-  - elapsed: 0.3069017259999782
+  - elapsed: 0.2321021030000452
     environment: g++
-    memory: 3.82
+    memory: 4.112
     name: digit_random_01
     status: AC
-  - elapsed: 0.0027731889999813575
+  - elapsed: 0.0019882600000187267
     environment: g++
-    memory: 3.732
+    memory: 3.84
     name: example_00
     status: AC
-  - elapsed: 0.45928989899999806
+  - elapsed: 0.3625891050000405
     environment: g++
-    memory: 3.872
+    memory: 4.084
     name: max_random_00
     status: AC
-  - elapsed: 0.46413005200000157
+  - elapsed: 0.3652987449999614
     environment: g++
-    memory: 4.008
+    memory: 4.068
     name: max_random_01
     status: AC
-  - elapsed: 0.36362571199998683
+  - elapsed: 0.28089667200003987
     environment: g++
-    memory: 4.016
+    memory: 4.084
     name: random_00
     status: AC
-  - elapsed: 0.43138992900000517
+  - elapsed: 0.3344803449999745
     environment: g++
-    memory: 4.02
+    memory: 4.008
     name: random_01
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b_128bit.test.cpp

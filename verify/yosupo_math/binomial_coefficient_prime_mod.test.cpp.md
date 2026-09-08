@@ -57,38 +57,40 @@ data:
       \n#include \"../../math_mod/comb.hpp\"\n#include \"../../modint/modint.hpp\"\
       \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nusing mint\
       \ = kk2::ModInt<0>;\n\nint main() {\n    int t, m;\n    kin >> t >> m;\n   \
-      \ mint::setmod(m);\n    kk2::Comb<mint>::set_upper(1e7);\n    rep (t) {\n  \
-      \      int n, k;\n        kin >> n >> k;\n        kout << kk2::Comb<mint>::binom(n,\
+      \ mint::setmod(m);\n    kk2::Comb<mint>::set_upper(1e7);\n    rep(t) {\n   \
+      \     int n, k;\n        kin >> n >> k;\n        kout << kk2::Comb<mint>::binom(n,\
       \ k) << \"\\n\";\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp\"\n\
       // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\n\
       \n#line 1 \"math_mod/comb.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
       #include <vector>\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\
-      \nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -133,20 +135,22 @@ data:
       \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
       \ <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace\
       \ type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace\
-      \ type_traits\n\ntemplate <typename T> using is_standard_istream =\n    typename\
+      \ type_traits\n\ntemplate <typename T>\nusing is_standard_istream = typename\
       \ std::conditional<std::is_same<T, std::istream>::value\n                  \
-      \                || std::is_same<T, std::ifstream>::value,\n               \
-      \               std::true_type,\n                              std::false_type>::type;\n\
-      template <typename T> using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \                                        || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -195,10 +199,10 @@ data:
       \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
       \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
       \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
-      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
-      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
+      \ mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\
+      \ friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
       \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
       \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
       \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
@@ -354,7 +358,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -384,7 +388,7 @@ data:
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp\"\
       \nusing namespace std;\n\nusing mint = kk2::ModInt<0>;\n\nint main() {\n   \
       \ int t, m;\n    kin >> t >> m;\n    mint::setmod(m);\n    kk2::Comb<mint>::set_upper(1e7);\n\
-      \    rep (t) {\n        int n, k;\n        kin >> n >> k;\n        kout << kk2::Comb<mint>::binom(n,\
+      \    rep(t) {\n        int n, k;\n        kin >> n >> k;\n        kout << kk2::Comb<mint>::binom(n,\
       \ k) << \"\\n\";\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
@@ -393,107 +397,107 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002793785999998022
+  - elapsed: 0.0033413019999670723
     environment: g++
-    memory: 3.76
+    memory: 3.864
     name: example_00
     status: AC
-  - elapsed: 0.0019008960000022057
+  - elapsed: 0.0021611359999837987
     environment: g++
-    memory: 3.836
+    memory: 3.764
     name: example_01
     status: AC
-  - elapsed: 0.791840950000001
+  - elapsed: 0.8852425160000053
     environment: g++
-    memory: 120.844
+    memory: 120.78
     name: large_random_00
     status: AC
-  - elapsed: 0.7857814179999991
+  - elapsed: 0.8822743690000152
     environment: g++
-    memory: 120.844
+    memory: 120.78
     name: large_random_01
     status: AC
-  - elapsed: 0.828799398000001
+  - elapsed: 0.8854150559999994
     environment: g++
-    memory: 120.844
+    memory: 120.78
     name: large_random_02
     status: AC
-  - elapsed: 0.2526162879999987
+  - elapsed: 0.2788443489999963
     environment: g++
-    memory: 8.064
+    memory: 7.96
     name: med_random_00
     status: AC
-  - elapsed: 0.24498058800000422
+  - elapsed: 0.26659434200001897
     environment: g++
-    memory: 7.264
+    memory: 7.2
     name: med_random_01
     status: AC
-  - elapsed: 0.26068247399999933
+  - elapsed: 0.29763276800002814
     environment: g++
-    memory: 10.54
+    memory: 10.4
     name: med_random_02
     status: AC
-  - elapsed: 0.7821027009999995
+  - elapsed: 0.8833476540000333
     environment: g++
-    memory: 120.848
+    memory: 120.744
     name: mod1000000007_00
     status: AC
-  - elapsed: 0.7810734359999998
+  - elapsed: 0.888659916999984
     environment: g++
-    memory: 120.84
+    memory: 120.784
     name: mod1000000007_01
     status: AC
-  - elapsed: 0.1407006859999953
+  - elapsed: 0.13702068300000292
     environment: g++
-    memory: 4.092
+    memory: 3.88
     name: mod2_00
     status: AC
-  - elapsed: 0.13852374900000086
+  - elapsed: 0.13675594699998328
     environment: g++
-    memory: 4.084
+    memory: 4.028
     name: mod2_01
     status: AC
-  - elapsed: 0.1429790349999962
+  - elapsed: 0.1353873950000093
     environment: g++
-    memory: 3.956
+    memory: 3.828
     name: mod3_00
     status: AC
-  - elapsed: 0.13745979800000185
+  - elapsed: 0.13561906800003953
     environment: g++
-    memory: 4.144
+    memory: 4.044
     name: mod3_01
     status: AC
-  - elapsed: 0.7901368449999993
+  - elapsed: 0.8843747170000142
     environment: g++
-    memory: 120.828
+    memory: 120.78
     name: mod998244353_00
     status: AC
-  - elapsed: 0.7931008269999964
+  - elapsed: 0.8963411240000028
     environment: g++
-    memory: 120.88
+    memory: 120.78
     name: mod998244353_01
     status: AC
-  - elapsed: 0.8917689580000001
+  - elapsed: 0.9763865400000213
     environment: g++
-    memory: 120.836
+    memory: 120.732
     name: mod998244353_maxi_00
     status: AC
-  - elapsed: 0.15417850699999747
+  - elapsed: 0.15303861899997173
     environment: g++
-    memory: 4.132
+    memory: 4.008
     name: small_random_00
     status: AC
-  - elapsed: 0.1548932239999985
+  - elapsed: 0.15298473199999307
     environment: g++
-    memory: 4.092
+    memory: 4.028
     name: small_random_01
     status: AC
-  - elapsed: 0.15307989300000457
+  - elapsed: 0.15282096100003173
     environment: g++
-    memory: 4.092
+    memory: 4.016
     name: small_random_02
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp

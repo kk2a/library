@@ -10,14 +10,14 @@ data:
     - filename: comb_large.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb_large.hpp
+    - filename: poly_sample_point_shift.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     type: Required by
   - files:
     - filename: large_fact_arb_mod.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
-    - filename: poly_sample_point_shift.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     - filename: many_factrials.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/many_factrials.test.cpp
@@ -79,11 +79,11 @@ data:
   pathExtension: hpp
   requiredBy:
   - math_mod/comb_large.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp
 documentation_of: fps/poly_sample_point_shift.hpp
 layout: document

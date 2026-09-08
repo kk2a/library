@@ -237,21 +237,22 @@ data:
       \n\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include\
       \ <fstream>\n#include <istream>\n#include <ostream>\n#include <type_traits>\n\
       \nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -267,9 +268,9 @@ data:
       \ static M op(M l, M r) { return M(l.a + r.a); }\n    inline static M inv(M\
       \ x) { return M(-x.a); }\n    inline static M unit() { return M(); }\n    bool\
       \ operator==(const M &rhs) const { return a == rhs.a; }\n    bool operator!=(const\
-      \ M &rhs) const { return a != rhs.a; }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const M &x) {\n        return os\
-      \ << x.a;\n    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
+      \ M &rhs) const { return a != rhs.a; }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const M &x) {\n        return os <<\
+      \ x.a;\n    }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
       \ &is, M &x) {\n        return is >> x.a;\n    }\n};\n\n} // namespace group\n\
       \n} // namespace kk2\n\n\n#line 1 \"math/monoid/max.hpp\"\n\n\n\n#include <functional>\n\
       \n#line 7 \"math/monoid/max.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid {\n\
@@ -282,63 +283,62 @@ data:
       \ { return M(); }\n\n    bool operator==(const M &rhs) const {\n        return\
       \ is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n    }\n\n    bool operator!=(const\
       \ M &rhs) const {\n        return is_unit != rhs.is_unit or (!is_unit and a\
-      \ != rhs.a);\n    }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const M &x) {\n        if (x.is_unit) os << \"-inf\"\
-      ;\n        else os << x.a;\n        return os;\n    }\n\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, M &x) {\n        is\
-      \ >> x.a;\n        x.is_unit = false;\n        return is;\n    }\n};\n\n} //\
-      \ namespace monoid\n\n} // namespace kk2\n\n\n#line 6 \"math/action/add_max.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace action {\n\ntemplate <class T, class Compare\
-      \ = std::less<T>> struct AddMax {\n    using A = group::Add<T>;\n    using S\
-      \ = monoid::Max<T, Compare>;\n\n    inline static S act(A f, S x) { return x.is_unit\
-      \ ? x : S(x.a + f.a); }\n};\n\n} // namespace action\n\n} // namespace kk2\n\
-      \n\n#line 1 \"math/action/add_max_min_sumwithsize.hpp\"\n\n\n\n#line 1 \"math/monoid/max_min_sumwithsize.hpp\"\
-      \n\n\n\n#line 5 \"math/monoid/max_min_sumwithsize.hpp\"\n\n#line 7 \"math/monoid/max_min_sumwithsize.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S, class T, class\
-      \ Compare = std::less<S>> struct MaxMinSumWithSize {\n    static constexpr bool\
-      \ commutative = true;\n    using M = MaxMinSumWithSize;\n    S max, min, sum;\n\
-      \    T size;\n    bool is_unit;\n\n    MaxMinSumWithSize() : is_unit(true) {}\n\
-      \    MaxMinSumWithSize(S a) : max(a), min(a), sum(a), size(1), is_unit(false)\
-      \ {}\n    MaxMinSumWithSize(S max_, S min_, S sum_, T size_)\n        : max(max_),\n\
-      \          min(min_),\n          sum(sum_),\n          size(size_),\n      \
-      \    is_unit(false) {}\n\n    inline static M op(M l, M r) {\n        if (l.is_unit\
-      \ or r.is_unit) return l.is_unit ? r : l;\n        return M(Compare{}(l.max,\
-      \ r.max) ? r.max : l.max,\n                 Compare{}(l.min, r.min) ? l.min\
-      \ : r.min,\n                 l.sum + r.sum,\n                 l.size + r.size);\n\
-      \    }\n\n    inline static M unit() { return M(); }\n\n    bool operator==(const\
-      \ M &rhs) const {\n        return is_unit == rhs.is_unit\n               and\
-      \ (is_unit\n                    or (max == rhs.max and min == rhs.min and sum\
-      \ == rhs.sum and size == rhs.size));\n    }\n\n    bool operator!=(const M &rhs)\
-      \ const {\n        return is_unit != rhs.is_unit\n               or (!is_unit\n\
-      \                   and (max != rhs.max or min != rhs.min or sum != rhs.sum\
-      \ or size != rhs.size));\n    }\n\n    template <OutputStream OStream>\n   \
-      \ friend OStream &operator<<(OStream &os, const M &x) {\n        if (x.is_unit)\
-      \ os << \"(unit)\";\n        else\n            os << \"(max:\" << x.max << \"\
-      , min:\" << x.min << \", sum:\" << x.sum << \", size:\" << x.size\n        \
-      \       << \")\";\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, M &x) {\n        S a;\n       \
-      \ is >> a;\n        x = M(a);\n        return is;\n    }\n};\n\n} // namespace\
-      \ monoid\n\n} // namespace kk2\n\n\n#line 6 \"math/action/add_max_min_sumwithsize.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace action {\n\ntemplate <class T, class U, class\
-      \ Compare = std::less<T>> struct AddMaxMinSumWithSize {\n    using A = group::Add<T>;\n\
-      \    using S = monoid::MaxMinSumWithSize<T, U, Compare>;\n\n    inline static\
-      \ S act(A f, S x) {\n        return x.is_unit ? x : S(x.max + f.a, x.min + f.a,\
-      \ x.sum + f.a * x.size, x.size);\n    }\n};\n\n} // namespace action\n\n} //\
-      \ namespace kk2\n\n\n#line 1 \"math/action/add_min.hpp\"\n\n\n\n#line 1 \"math/monoid/min.hpp\"\
-      \n\n\n\n#line 5 \"math/monoid/min.hpp\"\n\n#line 7 \"math/monoid/min.hpp\"\n\
-      \nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S, class Compare\
-      \ = std::less<S>> struct Min {\n    static constexpr bool commutative = true;\n\
-      \    using M = Min;\n    S a;\n    bool is_unit;\n\n    Min() : a(S()), is_unit(true)\
-      \ {}\n    Min(S a_) : a(a_), is_unit(false) {}\n    operator S() const { return\
-      \ a; }\n\n    inline static M op(M l, M r) {\n        if (l.is_unit or r.is_unit)\
-      \ return l.is_unit ? r : l;\n        return Compare{}(l.a, r.a) ? l : r;\n \
-      \   }\n\n    inline static M unit() { return M(); }\n\n    bool operator==(const\
-      \ M &rhs) const {\n        return is_unit == rhs.is_unit and (is_unit or a ==\
-      \ rhs.a);\n    }\n\n    bool operator!=(const M &rhs) const {\n        return\
-      \ is_unit != rhs.is_unit or (!is_unit and a != rhs.a);\n    }\n\n    template\
-      \ <OutputStream OStream>\n    friend OStream &operator<<(OStream &os, const\
-      \ M &x) {\n        if (x.is_unit) os << \"inf\";\n        else os << x.a;\n\
-      \        return os;\n    }\n\n    template <InputStream IStream>\n    friend\
+      \ != rhs.a);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const M &x) {\n        if (x.is_unit) os << \"-inf\";\n        else os\
+      \ << x.a;\n        return os;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.is_unit\
+      \ = false;\n        return is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace\
+      \ kk2\n\n\n#line 6 \"math/action/add_max.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+      \ action {\n\ntemplate <class T, class Compare = std::less<T>> struct AddMax\
+      \ {\n    using A = group::Add<T>;\n    using S = monoid::Max<T, Compare>;\n\n\
+      \    inline static S act(A f, S x) { return x.is_unit ? x : S(x.a + f.a); }\n\
+      };\n\n} // namespace action\n\n} // namespace kk2\n\n\n#line 1 \"math/action/add_max_min_sumwithsize.hpp\"\
+      \n\n\n\n#line 1 \"math/monoid/max_min_sumwithsize.hpp\"\n\n\n\n#line 5 \"math/monoid/max_min_sumwithsize.hpp\"\
+      \n\n#line 7 \"math/monoid/max_min_sumwithsize.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+      \ monoid {\n\ntemplate <class S, class T, class Compare = std::less<S>> struct\
+      \ MaxMinSumWithSize {\n    static constexpr bool commutative = true;\n    using\
+      \ M = MaxMinSumWithSize;\n    S max, min, sum;\n    T size;\n    bool is_unit;\n\
+      \n    MaxMinSumWithSize() : is_unit(true) {}\n    MaxMinSumWithSize(S a) : max(a),\
+      \ min(a), sum(a), size(1), is_unit(false) {}\n    MaxMinSumWithSize(S max_,\
+      \ S min_, S sum_, T size_)\n        : max(max_),\n          min(min_),\n   \
+      \       sum(sum_),\n          size(size_),\n          is_unit(false) {}\n\n\
+      \    inline static M op(M l, M r) {\n        if (l.is_unit or r.is_unit) return\
+      \ l.is_unit ? r : l;\n        return M(Compare{}(l.max, r.max) ? r.max : l.max,\n\
+      \                 Compare{}(l.min, r.min) ? l.min : r.min,\n               \
+      \  l.sum + r.sum,\n                 l.size + r.size);\n    }\n\n    inline static\
+      \ M unit() { return M(); }\n\n    bool operator==(const M &rhs) const {\n  \
+      \      return is_unit == rhs.is_unit\n               and (is_unit\n        \
+      \            or (max == rhs.max and min == rhs.min and sum == rhs.sum and size\
+      \ == rhs.size));\n    }\n\n    bool operator!=(const M &rhs) const {\n     \
+      \   return is_unit != rhs.is_unit\n               or (!is_unit\n           \
+      \        and (max != rhs.max or min != rhs.min or sum != rhs.sum or size !=\
+      \ rhs.size));\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const M &x) {\n        if (x.is_unit) os << \"(unit)\";\n        else\n\
+      \            os << \"(max:\" << x.max << \", min:\" << x.min << \", sum:\" <<\
+      \ x.sum << \", size:\" << x.size\n               << \")\";\n        return os;\n\
+      \    }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
+      \ &is, M &x) {\n        S a;\n        is >> a;\n        x = M(a);\n        return\
+      \ is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n#line 6\
+      \ \"math/action/add_max_min_sumwithsize.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+      \ action {\n\ntemplate <class T, class U, class Compare = std::less<T>> struct\
+      \ AddMaxMinSumWithSize {\n    using A = group::Add<T>;\n    using S = monoid::MaxMinSumWithSize<T,\
+      \ U, Compare>;\n\n    inline static S act(A f, S x) {\n        return x.is_unit\
+      \ ? x : S(x.max + f.a, x.min + f.a, x.sum + f.a * x.size, x.size);\n    }\n\
+      };\n\n} // namespace action\n\n} // namespace kk2\n\n\n#line 1 \"math/action/add_min.hpp\"\
+      \n\n\n\n#line 1 \"math/monoid/min.hpp\"\n\n\n\n#line 5 \"math/monoid/min.hpp\"\
+      \n\n#line 7 \"math/monoid/min.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid {\n\
+      \ntemplate <class S, class Compare = std::less<S>> struct Min {\n    static\
+      \ constexpr bool commutative = true;\n    using M = Min;\n    S a;\n    bool\
+      \ is_unit;\n\n    Min() : a(S()), is_unit(true) {}\n    Min(S a_) : a(a_), is_unit(false)\
+      \ {}\n    operator S() const { return a; }\n\n    inline static M op(M l, M\
+      \ r) {\n        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;\n    \
+      \    return Compare{}(l.a, r.a) ? l : r;\n    }\n\n    inline static M unit()\
+      \ { return M(); }\n\n    bool operator==(const M &rhs) const {\n        return\
+      \ is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n    }\n\n    bool operator!=(const\
+      \ M &rhs) const {\n        return is_unit != rhs.is_unit or (!is_unit and a\
+      \ != rhs.a);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const M &x) {\n        if (x.is_unit) os << \"inf\";\n        else os\
+      \ << x.a;\n        return os;\n    }\n\n    template <InputStream IStream> friend\
       \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.is_unit\
       \ = false;\n        return is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace\
       \ kk2\n\n\n#line 6 \"math/action/add_min.hpp\"\n\nnamespace kk2 {\n\nnamespace\
@@ -356,67 +356,67 @@ data:
       \ }\n    inline static M unit() { return M(); }\n    bool operator==(const M\
       \ &rhs) const { return a == rhs.a and size == rhs.size; }\n    bool operator!=(const\
       \ M &rhs) const { return a != rhs.a or size != rhs.size; }\n\n    template <OutputStream\
-      \ OStream>\n    friend OStream &operator<<(OStream &os, const M &x) {\n    \
-      \    return os << x.a << \" \" << x.size;\n    }\n\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, M &x) {\n        is\
-      \ >> x.a;\n        x.size = T(1);\n        return is;\n    }\n};\n\n} // namespace\
-      \ group\n\n} // namespace kk2\n\n\n#line 6 \"math/action/add_sumwithsize.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace action {\n\ntemplate <class T, class U> struct\
-      \ AddSumWithSize {\n    using A = group::Add<T>;\n    using S = group::SumWithSize<T,\
-      \ U>;\n\n    inline static S act(A f, S x) { return S(x.a + f.a * x.size, x.size);\
+      \ OStream> friend OStream &operator<<(OStream &os, const M &x) {\n        return\
+      \ os << x.a << \" \" << x.size;\n    }\n\n    template <InputStream IStream>\
+      \ friend IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n    \
+      \    x.size = T(1);\n        return is;\n    }\n};\n\n} // namespace group\n\
+      \n} // namespace kk2\n\n\n#line 6 \"math/action/add_sumwithsize.hpp\"\n\nnamespace\
+      \ kk2 {\n\nnamespace action {\n\ntemplate <class T, class U> struct AddSumWithSize\
+      \ {\n    using A = group::Add<T>;\n    using S = group::SumWithSize<T, U>;\n\
+      \n    inline static S act(A f, S x) { return S(x.a + f.a * x.size, x.size);\
       \ }\n};\n\n} // namespace action\n\n} // namespace kk2\n\n\n#line 1 \"math/action/affine_sumwithsize.hpp\"\
       \n\n\n\n#line 1 \"math/monoid/affine.hpp\"\n\n\n\n#line 5 \"math/monoid/affine.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Affine\
       \ {\n    static constexpr bool commutative = false;\n    using M = Affine;\n\
-      \    S a, b; // x \\mapsto ax + b\n\n    Affine() : a(S(1)), b(S(0)) {};\n \
-      \   Affine(S a, S b) : a(a), b(b) {}\n    inline S eval(S x) const { return\
-      \ a * x + b; }\n    // l \\circ r\n    inline static M op(M l, M r) { return\
-      \ M(l.a * r.a, l.a * r.b + l.b); }\n    inline static M unit() { return M();\
-      \ }\n    inline static M inv(M f) { return M(S(1) / f.a, -f.b / f.a); }\n  \
-      \  bool operator==(const M &rhs) const { return a == rhs.a and b == rhs.b; }\n\
-      \    bool operator!=(const M &rhs) const { return a != rhs.a or b != rhs.b;\
-      \ }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
-      \ &os, const M &x) {\n        return os << x.a << \" \" << x.b;\n    }\n\n \
-      \   template <InputStream IStream>\n    friend IStream &operator>>(IStream &is,\
-      \ M &x) {\n        return is >> x.a >> x.b;\n    }\n};\n\n} // namespace monoid\n\
-      \n} // namespace kk2\n\n\n#line 6 \"math/action/affine_sumwithsize.hpp\"\n\n\
-      namespace kk2 {\n\nnamespace action {\n\ntemplate <class T, class U> struct\
-      \ AffineSumWithSize {\n    using A = monoid::Affine<T>;\n    using S = group::SumWithSize<T,\
-      \ U>;\n\n    inline static S act(A f, S x) { return S(f.a * x.a + f.b * x.size,\
-      \ x.size); }\n};\n\n} // namespace action\n\n} // namespace kk2\n\n\n#line 1\
-      \ \"math/action/update_affine.hpp\"\n\n\n\n#line 1 \"math/monoid/update.hpp\"\
-      \n\n\n\n#line 5 \"math/monoid/update.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid\
-      \ {\n\n/**\n * @brief \u5E38\u306B\u5DE6\u5074\u3092\u4FDD\u6301\u3059\u308B\
-      \u30E2\u30CE\u30A4\u30C9\n */\ntemplate <class S> struct Update {\n    static\
-      \ constexpr bool commutative = true;\n    using M = Update;\n    S a;\n    bool\
-      \ is_unit;\n\n    Update() : is_unit(true) {}\n    Update(S a_) : a(a_), is_unit(false)\
-      \ {}\n    operator S() const { return a; }\n    inline static M op(M l, M r)\
-      \ { return l.is_unit ? r : l; }\n    inline static M unit() { return M(); }\n\
-      \n    bool operator==(const M &rhs) const {\n        return is_unit == rhs.is_unit\
-      \ and (is_unit or a == rhs.a);\n    }\n\n    bool operator!=(const M &rhs) const\
-      \ {\n        return is_unit != rhs.is_unit or (!is_unit and a != rhs.a);\n \
-      \   }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
-      \ &os, const M &x) {\n        if (x.is_unit) os << \"unit\";\n        else os\
-      \ << x.a;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n \
-      \       x.is_unit = false;\n        return is;\n    }\n};\n\n} // namespace\
-      \ monoid\n\n} // namespace kk2\n\n\n#line 6 \"math/action/update_affine.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace action {\n\ntemplate <class T> struct UpdateAffine\
-      \ {\n    using S = monoid::Affine<T>;\n    using A = monoid::Update<S>;\n\n\
-      \    inline static S act(A f, S x) { return f.is_unit ? x : f.a; }\n};\n\n}\
-      \ // namespace action\n\n} // namespace kk2\n\n\n#line 1 \"math/action/update_max.hpp\"\
-      \n\n\n\n#line 6 \"math/action/update_max.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-      \ action {\n\ntemplate <class T, class Compare = std::less<T>> struct UpdateMax\
-      \ {\n    using S = monoid::Max<T, Compare>;\n    using A = monoid::Update<S>;\n\
-      \n    inline static S act(A f, S x) { return f.is_unit ? x : f.a; }\n};\n\n\
-      } // namespace action\n\n} // namespace kk2\n\n\n#line 1 \"math/action/update_max_min_sumwithsize.hpp\"\
-      \n\n\n\n#line 6 \"math/action/update_max_min_sumwithsize.hpp\"\n\nnamespace\
-      \ kk2 {\n\nnamespace action {\n\ntemplate <class T, class U, class Compare =\
-      \ std::less<T>> struct UpdateMaxMinSumWithSize {\n    using S = monoid::MaxMinSumWithSize<T,\
-      \ U, Compare>;\n    using A = monoid::Update<T>;\n\n    inline static S act(A\
-      \ f, S x) { return f.is_unit ? x : S(f.a, f.a, f.a * x.size, x.size); }\n};\n\
-      \n} // namespace action\n\n} // namespace kk2\n\n\n#line 1 \"math/action/update_min.hpp\"\
-      \n\n\n\n#line 6 \"math/action/update_min.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+      \    S a, b; // x \\mapsto ax + b\n\n    Affine() : a(S(1)), b(S(0)){};\n  \
+      \  Affine(S a, S b) : a(a), b(b) {}\n    inline S eval(S x) const { return a\
+      \ * x + b; }\n    // l \\circ r\n    inline static M op(M l, M r) { return M(l.a\
+      \ * r.a, l.a * r.b + l.b); }\n    inline static M unit() { return M(); }\n \
+      \   inline static M inv(M f) { return M(S(1) / f.a, -f.b / f.a); }\n    bool\
+      \ operator==(const M &rhs) const { return a == rhs.a and b == rhs.b; }\n   \
+      \ bool operator!=(const M &rhs) const { return a != rhs.a or b != rhs.b; }\n\
+      \n    template <OutputStream OStream> friend OStream &operator<<(OStream &os,\
+      \ const M &x) {\n        return os << x.a << \" \" << x.b;\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, M &x) {\n  \
+      \      return is >> x.a >> x.b;\n    }\n};\n\n} // namespace monoid\n\n} //\
+      \ namespace kk2\n\n\n#line 6 \"math/action/affine_sumwithsize.hpp\"\n\nnamespace\
+      \ kk2 {\n\nnamespace action {\n\ntemplate <class T, class U> struct AffineSumWithSize\
+      \ {\n    using A = monoid::Affine<T>;\n    using S = group::SumWithSize<T, U>;\n\
+      \n    inline static S act(A f, S x) { return S(f.a * x.a + f.b * x.size, x.size);\
+      \ }\n};\n\n} // namespace action\n\n} // namespace kk2\n\n\n#line 1 \"math/action/update_affine.hpp\"\
+      \n\n\n\n#line 1 \"math/monoid/update.hpp\"\n\n\n\n#line 5 \"math/monoid/update.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace monoid {\n\n/**\n * @brief \u5E38\u306B\u5DE6\
+      \u5074\u3092\u4FDD\u6301\u3059\u308B\u30E2\u30CE\u30A4\u30C9\n */\ntemplate\
+      \ <class S> struct Update {\n    static constexpr bool commutative = true;\n\
+      \    using M = Update;\n    S a;\n    bool is_unit;\n\n    Update() : is_unit(true)\
+      \ {}\n    Update(S a_) : a(a_), is_unit(false) {}\n    operator S() const {\
+      \ return a; }\n    inline static M op(M l, M r) { return l.is_unit ? r : l;\
+      \ }\n    inline static M unit() { return M(); }\n\n    bool operator==(const\
+      \ M &rhs) const {\n        return is_unit == rhs.is_unit and (is_unit or a ==\
+      \ rhs.a);\n    }\n\n    bool operator!=(const M &rhs) const {\n        return\
+      \ is_unit != rhs.is_unit or (!is_unit and a != rhs.a);\n    }\n\n    template\
+      \ <OutputStream OStream> friend OStream &operator<<(OStream &os, const M &x)\
+      \ {\n        if (x.is_unit) os << \"unit\";\n        else os << x.a;\n     \
+      \   return os;\n    }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
+      \ &is, M &x) {\n        is >> x.a;\n        x.is_unit = false;\n        return\
+      \ is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n#line 6\
+      \ \"math/action/update_affine.hpp\"\n\nnamespace kk2 {\n\nnamespace action {\n\
+      \ntemplate <class T> struct UpdateAffine {\n    using S = monoid::Affine<T>;\n\
+      \    using A = monoid::Update<S>;\n\n    inline static S act(A f, S x) { return\
+      \ f.is_unit ? x : f.a; }\n};\n\n} // namespace action\n\n} // namespace kk2\n\
+      \n\n#line 1 \"math/action/update_max.hpp\"\n\n\n\n#line 6 \"math/action/update_max.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace action {\n\ntemplate <class T, class Compare\
+      \ = std::less<T>> struct UpdateMax {\n    using S = monoid::Max<T, Compare>;\n\
+      \    using A = monoid::Update<S>;\n\n    inline static S act(A f, S x) { return\
+      \ f.is_unit ? x : f.a; }\n};\n\n} // namespace action\n\n} // namespace kk2\n\
+      \n\n#line 1 \"math/action/update_max_min_sumwithsize.hpp\"\n\n\n\n#line 6 \"\
+      math/action/update_max_min_sumwithsize.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+      \ action {\n\ntemplate <class T, class U, class Compare = std::less<T>> struct\
+      \ UpdateMaxMinSumWithSize {\n    using S = monoid::MaxMinSumWithSize<T, U, Compare>;\n\
+      \    using A = monoid::Update<T>;\n\n    inline static S act(A f, S x) { return\
+      \ f.is_unit ? x : S(f.a, f.a, f.a * x.size, x.size); }\n};\n\n} // namespace\
+      \ action\n\n} // namespace kk2\n\n\n#line 1 \"math/action/update_min.hpp\"\n\
+      \n\n\n#line 6 \"math/action/update_min.hpp\"\n\nnamespace kk2 {\n\nnamespace\
       \ action {\n\ntemplate <class T, class Compare = std::less<T>> struct UpdateMin\
       \ {\n    using S = monoid::Min<T, Compare>;\n    using A = monoid::Update<S>;\n\
       \n    inline static S act(A f, S x) { return f.is_unit ? x : f.a; }\n};\n\n\
@@ -488,26 +488,27 @@ data:
       #include <cstdio>\n#line 8 \"template/fastio.hpp\"\n#include <iostream>\n#line\
       \ 10 \"template/fastio.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n\
       #line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -648,7 +649,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -787,7 +788,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/action/action.test.cpp

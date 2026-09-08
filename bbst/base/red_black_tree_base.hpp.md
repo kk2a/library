@@ -22,11 +22,11 @@ data:
     - filename: ordered_set.hpp
       icon: LIBRARY_NO_TESTS
       path: data_structure/ordered_set.hpp
+    - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     type: Required by
   - files:
-    - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
     - filename: ds_ordered_set_max_right.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
@@ -391,10 +391,10 @@ data:
   - bbst/persistent_lazy_red_black_tree.hpp
   - bbst/red_black_tree.hpp
   - data_structure/ordered_set.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp
   - verify/yosupo_ds/ds_ordered_set_min_left.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp

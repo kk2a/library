@@ -6,12 +6,12 @@ data:
   dependencies:
   - files: []
     type: Depends on
-  - files: []
-    type: Required by
   - files:
     - filename: ds_potentiailized_uf_non_commutattive.test.cpp
-      icon: TEST_ACCEPTED
+      icon: LIBRARY_ALL_AC
       path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+    type: Required by
+  - files:
     - filename: ds_potentialized_unionfind.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
@@ -66,11 +66,11 @@ data:
   isVerificationFile: false
   path: unionfind/potentialized.hpp
   pathExtension: hpp
-  requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  requiredBy:
+  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_ds/ds_potentialized_unionfind.test.cpp
 documentation_of: unionfind/potentialized.hpp
 layout: document

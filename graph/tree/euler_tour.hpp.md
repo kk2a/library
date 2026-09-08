@@ -84,20 +84,22 @@ data:
       \n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include <ostream>\n\
       #include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct\
       \ istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\n\
-      template <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      template <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -117,9 +119,9 @@ data:
       \ const {\n        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n\
       \    }\n\n    bool operator!=(const M &rhs) const {\n        return is_unit\
       \ != rhs.is_unit or (!is_unit and a != rhs.a);\n    }\n\n    template <OutputStream\
-      \ OStream>\n    friend OStream &operator<<(OStream &os, const M &x) {\n    \
-      \    if (x.is_unit) os << \"inf\";\n        else os << x.a;\n        return\
-      \ os;\n    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
+      \ OStream> friend OStream &operator<<(OStream &os, const M &x) {\n        if\
+      \ (x.is_unit) os << \"inf\";\n        else os << x.a;\n        return os;\n\
+      \    }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
       \ &is, M &x) {\n        is >> x.a;\n        x.is_unit = false;\n        return\
       \ is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n#line 1\
       \ \"data_structure/sparse_table.hpp\"\n\n\n\n#line 6 \"data_structure/sparse_table.hpp\"\
@@ -141,29 +143,29 @@ data:
       \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
       } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
       \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action = requires {\n\
-      \    typename T::A;\n    typename T::S;\n} && Monoid<typename T::A> && Monoid<typename\
-      \ T::S>\n    && requires(const typename T::A &f, const typename T::S &x) {\n\
-      \           { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n\
-      } // namespace algebra\n\n} // namespace kk2\n\n\n#line 8 \"data_structure/sparse_table.hpp\"\
-      \n\nnamespace kk2 {\n\n// require: op(x, x) = x for all x\ntemplate <algebra::Monoid\
-      \ M> struct SparseTable {\n    SparseTable() = default;\n\n    SparseTable(int\
-      \ n) : _n(n) {\n        log = 0;\n        while ((1 << log) < _n) log++;\n \
-      \       table.assign(log + 1, std::vector<M>(_n));\n    }\n\n    SparseTable(const\
-      \ std::vector<M> &v) : _n(int(v.size())) {\n        log = 0;\n        while\
-      \ ((1 << log) < _n) log++;\n        table.assign(log + 1, std::vector<M>(_n));\n\
-      \        for (int i = 0; i < _n; i++) table[0][i] = v[i];\n        build();\n\
-      \    }\n\n    void build() {\n        assert(!is_built);\n        is_built =\
-      \ true;\n        for (int i = 1; i <= log; i++) {\n            for (int j =\
-      \ 0; j + (1 << i) <= _n; j++) {\n                table[i][j] = M::op(table[i\
-      \ - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n        }\n  \
-      \  }\n\n    template <class... Args> void init_set(int p, Args... args) {\n\
-      \        assert(0 <= p && p < _n);\n        assert(!is_built);\n        table[0][p]\
-      \ = M(args...);\n    }\n\n    using Monoid = M;\n\n    static M Op(M l, M r)\
-      \ { return M::op(l, r); }\n\n    static M MonoidUnit() { return M::unit(); }\n\
-      \n    M prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <=\
-      \ _n);\n        assert(is_built);\n        if (l == r) return M::unit();\n \
-      \       int i = 31 ^ __builtin_clz(r - l);\n        return M::op(table[i][l],\
+      \ propagation structures.\ntemplate <class T>\nconcept Action =\n    requires\
+      \ {\n        typename T::A;\n        typename T::S;\n    } && Monoid<typename\
+      \ T::A> && Monoid<typename T::S>\n    && requires(const typename T::A &f, const\
+      \ typename T::S &x) {\n           { T::act(f, x) } -> std::same_as<typename\
+      \ T::S>;\n       };\n\n} // namespace algebra\n\n} // namespace kk2\n\n\n#line\
+      \ 8 \"data_structure/sparse_table.hpp\"\n\nnamespace kk2 {\n\n// require: op(x,\
+      \ x) = x for all x\ntemplate <algebra::Monoid M> struct SparseTable {\n    SparseTable()\
+      \ = default;\n\n    SparseTable(int n) : _n(n) {\n        log = 0;\n       \
+      \ while ((1 << log) < _n) log++;\n        table.assign(log + 1, std::vector<M>(_n));\n\
+      \    }\n\n    SparseTable(const std::vector<M> &v) : _n(int(v.size())) {\n \
+      \       log = 0;\n        while ((1 << log) < _n) log++;\n        table.assign(log\
+      \ + 1, std::vector<M>(_n));\n        for (int i = 0; i < _n; i++) table[0][i]\
+      \ = v[i];\n        build();\n    }\n\n    void build() {\n        assert(!is_built);\n\
+      \        is_built = true;\n        for (int i = 1; i <= log; i++) {\n      \
+      \      for (int j = 0; j + (1 << i) <= _n; j++) {\n                table[i][j]\
+      \ = M::op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n\
+      \        }\n    }\n\n    template <class... Args> void init_set(int p, Args...\
+      \ args) {\n        assert(0 <= p && p < _n);\n        assert(!is_built);\n \
+      \       table[0][p] = M(args...);\n    }\n\n    using Monoid = M;\n\n    static\
+      \ M Op(M l, M r) { return M::op(l, r); }\n\n    static M MonoidUnit() { return\
+      \ M::unit(); }\n\n    M prod(int l, int r) const {\n        assert(0 <= l &&\
+      \ l <= r && r <= _n);\n        assert(is_built);\n        if (l == r) return\
+      \ M::unit();\n        int i = 31 ^ __builtin_clz(r - l);\n        return M::op(table[i][l],\
       \ table[i][r - (1 << i)]);\n    }\n\n    M get(int i) const {\n        assert(0\
       \ <= i && i < _n);\n        assert(is_built);\n        return table[0][i];\n\
       \    }\n\n    // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1]))\
@@ -193,9 +195,8 @@ data:
       \ E &e) {\n    { e.from } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
       \    { e.id } -> std::convertible_to<int>;\n};\n\ntemplate <class E>\nconcept\
       \ WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };\n\ntemplate <class\
-      \ R>\nconcept EdgeRange = std::ranges::input_range<R> &&\n                 \
-      \   Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept WeightedEdgeRange\
-      \ = EdgeRange<R> &&\n                            WeightedEdge<std::ranges::range_value_t<R>>;\n\
+      \ R>\nconcept EdgeRange = std::ranges::input_range<R> && Edge<std::ranges::range_value_t<R>>;\n\
+      \ntemplate <class R>\nconcept WeightedEdgeRange = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\
       \ntemplate <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
       \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
       \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
@@ -208,10 +209,10 @@ data:
       \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
       \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
       \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
-      };\n\ntemplate <class G>\nconcept WeightedGraph = AdjacencyGraph<G> && G::weighted\
-      \ &&\n                        WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph = EdgeListGraph<G>\
-      \ && G::weighted &&\n                                WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      };\n\ntemplate <class G>\nconcept WeightedGraph =\n    AdjacencyGraph<G> &&\
+      \ G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph =\n   \
+      \ EdgeListGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
       \ && (!G::weighted);\n\ntemplate <class G>\nconcept DirectedGraph = AdjacencyGraph<G>\
       \ && G::directed;\n\ntemplate <class G>\nconcept UndirectedGraph = AdjacencyGraph<G>\
@@ -263,7 +264,7 @@ data:
   path: graph/tree/euler_tour.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/tree_vertex_add_path_sum_1.test.cpp

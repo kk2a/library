@@ -44,18 +44,19 @@ data:
       \ = rev;\n        edges.push_back({from, to, index});\n    }\n};\n\ntemplate\
       \ <graph::WeightedDirectedGraph WG> struct MaxFlow {\n\n    using Cap = typename\
       \ WG::value_type;\n    using graph_type = MaxFlowGraph<Cap>;\n\n    graph_type\
-      \ g;\n    int n, m;\n\n    MaxFlow(const WG &g_) : g(g_.num_vertices(), g_.edges),\
-      \ n(g_.num_vertices()), m(g_.num_edges()) {}\n\n    template <class Edges_>\n\
-      \        requires graph::WeightedEdgeRange<const Edges_>\n    MaxFlow(int n_,\
-      \ const Edges_ &edges) : g(n_, edges), n(n_), m(g.edges.size()) {}\n\n    Cap\
-      \ flow(int s, int t) { return flow(s, t, std::numeric_limits<Cap>::max()); }\n\
-      \n    Cap flow(int s, int t, Cap flow_limit) {\n        assert(0 <= s && s <\
-      \ n);\n        assert(0 <= t && t < n);\n        assert(s != t);\n\n       \
-      \ std::vector<int> level(n), iter(n);\n        std::queue<int> que;\n\n    \
-      \    auto bfs = [&]() {\n            std::fill(std::begin(level), std::end(level),\
-      \ -1);\n            level[s] = 0;\n            que = std::queue<int>();\n  \
-      \          que.push(s);\n            while (!que.empty()) {\n              \
-      \  int v = que.front();\n                que.pop();\n                for (const\
+      \ g;\n    int n, m;\n\n    MaxFlow(const WG &g_)\n        : g(g_.num_vertices(),\
+      \ g_.edges),\n          n(g_.num_vertices()),\n          m(g_.num_edges()) {}\n\
+      \n    template <class Edges_>\n        requires graph::WeightedEdgeRange<const\
+      \ Edges_>\n    MaxFlow(int n_, const Edges_ &edges) : g(n_, edges),\n      \
+      \                                     n(n_),\n                             \
+      \              m(g.edges.size()) {}\n\n    Cap flow(int s, int t) { return flow(s,\
+      \ t, std::numeric_limits<Cap>::max()); }\n\n    Cap flow(int s, int t, Cap flow_limit)\
+      \ {\n        assert(0 <= s && s < n);\n        assert(0 <= t && t < n);\n  \
+      \      assert(s != t);\n\n        std::vector<int> level(n), iter(n);\n    \
+      \    std::queue<int> que;\n\n        auto bfs = [&]() {\n            std::fill(std::begin(level),\
+      \ std::end(level), -1);\n            level[s] = 0;\n            que = std::queue<int>();\n\
+      \            que.push(s);\n            while (!que.empty()) {\n            \
+      \    int v = que.front();\n                que.pop();\n                for (const\
       \ auto &e : g.data[v]) {\n                    if (e.cap == 0 || level[e.to]\
       \ >= 0) continue;\n                    level[e.to] = level[v] + 1;\n       \
       \             if (e.to == t) return;\n                    que.push(e.to);\n\
@@ -97,25 +98,24 @@ data:
       \    { e.to } -> std::convertible_to<int>;\n    { e.id } -> std::convertible_to<int>;\n\
       };\n\ntemplate <class E>\nconcept WeightedEdge = Edge<E> && requires(const E\
       \ &e) { e.cost; };\n\ntemplate <class R>\nconcept EdgeRange = std::ranges::input_range<R>\
-      \ &&\n                    Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class\
-      \ R>\nconcept WeightedEdgeRange = EdgeRange<R> &&\n                        \
-      \    WeightedEdge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept\
-      \ ForwardWeightedEdgeRange = std::ranges::forward_range<R> && WeightedEdgeRange<R>;\n\
-      \ntemplate <class G>\nconcept Graph = requires(const G &g, int v) {\n    typename\
-      \ G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n    { G::weighted\
-      \ } -> std::convertible_to<bool>;\n    { G::adjacency_list } -> std::convertible_to<bool>;\n\
-      \    { G::adjacency_matrix } -> std::convertible_to<bool>;\n    { G::static_graph\
-      \ } -> std::convertible_to<bool>;\n    { g.num_vertices() } -> std::integral;\n\
-      \    { g.num_edges() } -> std::integral;\n    g[v];\n    g.edges;\n};\n\ntemplate\
-      \ <class G>\nconcept EdgeListGraph = Graph<G> && requires(const G &g) {\n  \
-      \  requires std::ranges::range<decltype(g.edges)>;\n    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n\
-      };\n\ntemplate <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const\
-      \ G &g, int v) {\n    requires std::ranges::range<decltype(g[v])>;\n    requires\
-      \ Edge<std::ranges::range_value_t<decltype(g[v])>>;\n};\n\ntemplate <class G>\n\
-      concept WeightedGraph = AdjacencyGraph<G> && G::weighted &&\n              \
-      \          WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph = EdgeListGraph<G>\
-      \ && G::weighted &&\n                                WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ && Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept WeightedEdgeRange\
+      \ = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\ntemplate\
+      \ <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
+      \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
+      \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
+      \    { G::weighted } -> std::convertible_to<bool>;\n    { G::adjacency_list\
+      \ } -> std::convertible_to<bool>;\n    { G::adjacency_matrix } -> std::convertible_to<bool>;\n\
+      \    { G::static_graph } -> std::convertible_to<bool>;\n    { g.num_vertices()\
+      \ } -> std::integral;\n    { g.num_edges() } -> std::integral;\n    g[v];\n\
+      \    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph = Graph<G> &&\
+      \ requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
+      \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
+      \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
+      \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
+      };\n\ntemplate <class G>\nconcept WeightedGraph =\n    AdjacencyGraph<G> &&\
+      \ G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph =\n   \
+      \ EdgeListGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
       \ && (!G::weighted);\n\ntemplate <class G>\nconcept DirectedGraph = AdjacencyGraph<G>\
       \ && G::directed;\n\ntemplate <class G>\nconcept UndirectedGraph = AdjacencyGraph<G>\
@@ -149,18 +149,19 @@ data:
       \ = rev;\n        edges.push_back({from, to, index});\n    }\n};\n\ntemplate\
       \ <graph::WeightedDirectedGraph WG> struct MaxFlow {\n\n    using Cap = typename\
       \ WG::value_type;\n    using graph_type = MaxFlowGraph<Cap>;\n\n    graph_type\
-      \ g;\n    int n, m;\n\n    MaxFlow(const WG &g_) : g(g_.num_vertices(), g_.edges),\
-      \ n(g_.num_vertices()), m(g_.num_edges()) {}\n\n    template <class Edges_>\n\
-      \        requires graph::WeightedEdgeRange<const Edges_>\n    MaxFlow(int n_,\
-      \ const Edges_ &edges) : g(n_, edges), n(n_), m(g.edges.size()) {}\n\n    Cap\
-      \ flow(int s, int t) { return flow(s, t, std::numeric_limits<Cap>::max()); }\n\
-      \n    Cap flow(int s, int t, Cap flow_limit) {\n        assert(0 <= s && s <\
-      \ n);\n        assert(0 <= t && t < n);\n        assert(s != t);\n\n       \
-      \ std::vector<int> level(n), iter(n);\n        std::queue<int> que;\n\n    \
-      \    auto bfs = [&]() {\n            std::fill(std::begin(level), std::end(level),\
-      \ -1);\n            level[s] = 0;\n            que = std::queue<int>();\n  \
-      \          que.push(s);\n            while (!que.empty()) {\n              \
-      \  int v = que.front();\n                que.pop();\n                for (const\
+      \ g;\n    int n, m;\n\n    MaxFlow(const WG &g_)\n        : g(g_.num_vertices(),\
+      \ g_.edges),\n          n(g_.num_vertices()),\n          m(g_.num_edges()) {}\n\
+      \n    template <class Edges_>\n        requires graph::WeightedEdgeRange<const\
+      \ Edges_>\n    MaxFlow(int n_, const Edges_ &edges) : g(n_, edges),\n      \
+      \                                     n(n_),\n                             \
+      \              m(g.edges.size()) {}\n\n    Cap flow(int s, int t) { return flow(s,\
+      \ t, std::numeric_limits<Cap>::max()); }\n\n    Cap flow(int s, int t, Cap flow_limit)\
+      \ {\n        assert(0 <= s && s < n);\n        assert(0 <= t && t < n);\n  \
+      \      assert(s != t);\n\n        std::vector<int> level(n), iter(n);\n    \
+      \    std::queue<int> que;\n\n        auto bfs = [&]() {\n            std::fill(std::begin(level),\
+      \ std::end(level), -1);\n            level[s] = 0;\n            que = std::queue<int>();\n\
+      \            que.push(s);\n            while (!que.empty()) {\n            \
+      \    int v = que.front();\n                que.pop();\n                for (const\
       \ auto &e : g.data[v]) {\n                    if (e.cap == 0 || level[e.to]\
       \ >= 0) continue;\n                    level[e.to] = level[v] + 1;\n       \
       \             if (e.to == t) return;\n                    que.push(e.to);\n\
@@ -198,7 +199,7 @@ data:
   path: graph/maxflow.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/graph/maxflow.test.cpp

@@ -27,7 +27,7 @@ data:
       \ <vector>\n\n#include \"../type_traits/graph.hpp\"\n\nnamespace kk2 {\n\nnamespace\
       \ cycle_detection_impl {\n\nstruct result {\n    std::vector<int> edges;\n \
       \   std::vector<int> vertices;\n\n    int size() const { return edges.size();\
-      \ }\n};\n\ntemplate <graph::UndirectedGraph G>\nstd::optional<result> cycle_detection(const\
+      \ }\n};\n\ntemplate <graph::UndirectedGraph G> std::optional<result> cycle_detection(const\
       \ G &g) {\n    std::vector<int> edges, vertices;\n    std::vector<int> buf(g.num_vertices(),\
       \ -1);\n    auto dfs = [&](auto self, int now, int ei, int dep) -> int {\n \
       \       buf[now] = dep;\n        for (auto &&e : g[now]) {\n            if (e.id\
@@ -41,7 +41,7 @@ data:
       \   return -1;\n    };\n\n    for (int i = 0; i < g.num_vertices(); ++i) {\n\
       \        if (buf[i] != -1) continue;\n        if (dfs(dfs, i, -1, 0) >= 0) return\
       \ result{edges, vertices};\n    }\n\n    return {};\n}\n\ntemplate <graph::DirectedGraph\
-      \ G>\nstd::optional<result> cycle_detection(const G &g) {\n    std::vector<int>\
+      \ G> std::optional<result> cycle_detection(const G &g) {\n    std::vector<int>\
       \ edges, vertices;\n\n    // buf[i] = x\n    // x >= 0 : \u4ECA\u898B\u3089\u308C\
       \u3066\u3044\u308B\u9802\u70B9dfs\u306E\u6DF1\u3055\u306Fx\n    // x = -1 :\
       \ \u672A\u8A2A\u554F\n    // x = -2 : \u8A2A\u554F\u6E08\u307F\uFF0E\u9589\u8DEF\
@@ -72,25 +72,24 @@ data:
       \    { e.to } -> std::convertible_to<int>;\n    { e.id } -> std::convertible_to<int>;\n\
       };\n\ntemplate <class E>\nconcept WeightedEdge = Edge<E> && requires(const E\
       \ &e) { e.cost; };\n\ntemplate <class R>\nconcept EdgeRange = std::ranges::input_range<R>\
-      \ &&\n                    Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class\
-      \ R>\nconcept WeightedEdgeRange = EdgeRange<R> &&\n                        \
-      \    WeightedEdge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept\
-      \ ForwardWeightedEdgeRange = std::ranges::forward_range<R> && WeightedEdgeRange<R>;\n\
-      \ntemplate <class G>\nconcept Graph = requires(const G &g, int v) {\n    typename\
-      \ G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n    { G::weighted\
-      \ } -> std::convertible_to<bool>;\n    { G::adjacency_list } -> std::convertible_to<bool>;\n\
-      \    { G::adjacency_matrix } -> std::convertible_to<bool>;\n    { G::static_graph\
-      \ } -> std::convertible_to<bool>;\n    { g.num_vertices() } -> std::integral;\n\
-      \    { g.num_edges() } -> std::integral;\n    g[v];\n    g.edges;\n};\n\ntemplate\
-      \ <class G>\nconcept EdgeListGraph = Graph<G> && requires(const G &g) {\n  \
-      \  requires std::ranges::range<decltype(g.edges)>;\n    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n\
-      };\n\ntemplate <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const\
-      \ G &g, int v) {\n    requires std::ranges::range<decltype(g[v])>;\n    requires\
-      \ Edge<std::ranges::range_value_t<decltype(g[v])>>;\n};\n\ntemplate <class G>\n\
-      concept WeightedGraph = AdjacencyGraph<G> && G::weighted &&\n              \
-      \          WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph = EdgeListGraph<G>\
-      \ && G::weighted &&\n                                WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ && Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept WeightedEdgeRange\
+      \ = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\ntemplate\
+      \ <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
+      \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
+      \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
+      \    { G::weighted } -> std::convertible_to<bool>;\n    { G::adjacency_list\
+      \ } -> std::convertible_to<bool>;\n    { G::adjacency_matrix } -> std::convertible_to<bool>;\n\
+      \    { G::static_graph } -> std::convertible_to<bool>;\n    { g.num_vertices()\
+      \ } -> std::integral;\n    { g.num_edges() } -> std::integral;\n    g[v];\n\
+      \    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph = Graph<G> &&\
+      \ requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
+      \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
+      \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
+      \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
+      };\n\ntemplate <class G>\nconcept WeightedGraph =\n    AdjacencyGraph<G> &&\
+      \ G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph =\n   \
+      \ EdgeListGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
       \ && (!G::weighted);\n\ntemplate <class G>\nconcept DirectedGraph = AdjacencyGraph<G>\
       \ && G::directed;\n\ntemplate <class G>\nconcept UndirectedGraph = AdjacencyGraph<G>\
@@ -107,11 +106,11 @@ data:
       \ int>;\n};\n\n} // namespace kk2::graph\n\n\n#line 10 \"graph/cycle_detection.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace cycle_detection_impl {\n\nstruct result {\n\
       \    std::vector<int> edges;\n    std::vector<int> vertices;\n\n    int size()\
-      \ const { return edges.size(); }\n};\n\ntemplate <graph::UndirectedGraph G>\n\
-      std::optional<result> cycle_detection(const G &g) {\n    std::vector<int> edges,\
-      \ vertices;\n    std::vector<int> buf(g.num_vertices(), -1);\n    auto dfs =\
-      \ [&](auto self, int now, int ei, int dep) -> int {\n        buf[now] = dep;\n\
-      \        for (auto &&e : g[now]) {\n            if (e.id == ei) continue;\n\
+      \ const { return edges.size(); }\n};\n\ntemplate <graph::UndirectedGraph G>\
+      \ std::optional<result> cycle_detection(const G &g) {\n    std::vector<int>\
+      \ edges, vertices;\n    std::vector<int> buf(g.num_vertices(), -1);\n    auto\
+      \ dfs = [&](auto self, int now, int ei, int dep) -> int {\n        buf[now]\
+      \ = dep;\n        for (auto &&e : g[now]) {\n            if (e.id == ei) continue;\n\
       \            if (buf[e.to] >= 0) {\n                edges.resize(dep - buf[e.to]\
       \ + 1);\n                vertices.resize(dep - buf[e.to] + 1);\n           \
       \     edges.back() = e.id;\n                vertices.back() = now;\n       \
@@ -122,7 +121,7 @@ data:
       \   return -1;\n    };\n\n    for (int i = 0; i < g.num_vertices(); ++i) {\n\
       \        if (buf[i] != -1) continue;\n        if (dfs(dfs, i, -1, 0) >= 0) return\
       \ result{edges, vertices};\n    }\n\n    return {};\n}\n\ntemplate <graph::DirectedGraph\
-      \ G>\nstd::optional<result> cycle_detection(const G &g) {\n    std::vector<int>\
+      \ G> std::optional<result> cycle_detection(const G &g) {\n    std::vector<int>\
       \ edges, vertices;\n\n    // buf[i] = x\n    // x >= 0 : \u4ECA\u898B\u3089\u308C\
       \u3066\u3044\u308B\u9802\u70B9dfs\u306E\u6DF1\u3055\u306Fx\n    // x = -1 :\
       \ \u672A\u8A2A\u554F\n    // x = -2 : \u8A2A\u554F\u6E08\u307F\uFF0E\u9589\u8DEF\
@@ -149,7 +148,7 @@ data:
   path: graph/cycle_detection.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/graph_cycle_detection.test.cpp

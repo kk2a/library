@@ -58,7 +58,7 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_inversions_query\n\
-      \n#include \"../../others/coordinate_compression.hpp\"\n#include \"../../data_structure/binary_indexed_tree.hpp\"\
+      \n#include \"../../data_structure/binary_indexed_tree.hpp\"\n#include \"../../others/coordinate_compression.hpp\"\
       \n#include \"../../others/mo.hpp\"\n#include \"../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    vc<int> a(n);\n    kin >> a;\n    vc<pair<int, int>> queries(q);\n    kin\
@@ -70,52 +70,52 @@ data:
       \    };\n    auto erase_left = [&](int i) {\n        now -= bit.sum(0, b[i]);\n\
       \        bit.add(b[i], -1);\n    };\n    auto erase_right = [&](int i) {\n \
       \       now -= bit.sum(b[i] + 1, cc.size());\n        bit.add(b[i], -1);\n \
-      \   };\n    auto f = [&](int i) { res[i] = now; };\n\n    mo.calculate(insert_left,\
+      \   };\n    auto f = [&](int i) {\n        res[i] = now;\n    };\n\n    mo.calculate(insert_left,\
       \ insert_right, erase_left, erase_right, f);\n    for (auto x : res) kout <<\
       \ x << \"\\n\";\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_ds/ds_static_range_inversions.test.cpp\"\n// competitive-verifier:\
       \ PROBLEM https://judge.yosupo.jp/problem/static_range_inversions_query\n\n\
-      #line 1 \"others/coordinate_compression.hpp\"\n\n\n\n#include <algorithm>\n\
-      #include <vector>\n\nnamespace kk2 {\n\n// Coordinate Compression\ntemplate\
-      \ <typename S = int> struct CC {\n    std::vector<S> xs;\n    bool initialized;\n\
-      \n    CC() : initialized(false) {}\n\n    CC(const std::vector<S> &xs_) : xs(xs_),\
-      \ initialized(false) {}\n\n    void add(S x) {\n        xs.push_back(x);\n \
-      \       initialized = false;\n    }\n\n    void add(const std::vector<S> &ys)\
-      \ {\n        std::copy(std::begin(ys), std::end(ys), std::back_inserter(xs));\n\
-      \        initialized = false;\n    }\n\n    void build() {\n        std::sort(std::begin(xs),\
-      \ std::end(xs));\n        xs.erase(std::unique(std::begin(xs), std::end(xs)),\
-      \ std::end(xs));\n        initialized = true;\n    }\n\n    S operator[](int\
-      \ i) {\n        if (!initialized) build();\n        return xs[i];\n    }\n\n\
-      \    int size() {\n        if (!initialized) build();\n        return xs.size();\n\
-      \    }\n\n    int get(S x) {\n        if (!initialized) build();\n        return\
-      \ std::upper_bound(std::begin(xs), std::end(xs), x) - std::begin(xs) - 1;\n\
-      \    }\n\n    std::vector<int> get(const std::vector<S> &ys) {\n        std::vector<int>\
-      \ ret(ys.size());\n        for (int i = 0; i < (int)ys.size(); ++i) ret[i] =\
-      \ get(ys[i]);\n        return ret;\n    }\n\n    int operator()(S x) { return\
-      \ get(x); }\n\n    std::vector<int> operator()(const std::vector<S> &ys) { return\
-      \ get(ys); }\n\n    int lower(S x) {\n        if (!initialized) build();\n \
-      \       return std::lower_bound(std::begin(xs), std::end(xs), x) - std::begin(xs);\n\
-      \    }\n\n    int upper(S x) {\n        if (!initialized) build();\n       \
-      \ return std::upper_bound(std::begin(xs), std::end(xs), x) - std::begin(xs);\n\
-      \    }\n\n    bool exist(S x) {\n        if (!initialized) build();\n      \
-      \  int idx = lower(x);\n        return idx < (int)xs.size() && xs[idx] == x;\n\
-      \    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"data_structure/binary_indexed_tree.hpp\"\
-      \n\n\n\n#include <cassert>\n#line 6 \"data_structure/binary_indexed_tree.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <typename T> struct BinaryIndexedTree {\n  \
-      \  BinaryIndexedTree() : _n(0) {}\n    BinaryIndexedTree(int n) : _n(n), data(n)\
-      \ {}\n\n    void add(int p, T x) {\n        assert(0 <= p && p < _n);\n    \
-      \    for (p++; p <= _n; p += p & -p) data[p - 1] += x;\n    }\n\n    T sum(int\
+      #line 1 \"data_structure/binary_indexed_tree.hpp\"\n\n\n\n#include <cassert>\n\
+      #include <vector>\n\nnamespace kk2 {\n\ntemplate <typename T> struct BinaryIndexedTree\
+      \ {\n    BinaryIndexedTree() : _n(0) {}\n    BinaryIndexedTree(int n) : _n(n),\
+      \ data(n) {}\n\n    void add(int p, T x) {\n        assert(0 <= p && p < _n);\n\
+      \        for (p++; p <= _n; p += p & -p) data[p - 1] += x;\n    }\n\n    T sum(int\
       \ l, int r) {\n        assert(0 <= l && l <= r && r <= _n);\n        return\
       \ sum(r) - sum(l);\n    }\n\n    T get(int p) {\n        assert(0 <= p && p\
       \ < _n);\n        return sum(p + 1) - sum(p);\n    }\n\n  private:\n    int\
       \ _n;\n    std::vector<T> data;\n\n    T sum(int r) {\n        T s{};\n    \
       \    for (; r > 0; r -= r & -r) s += data[r - 1];\n        return s;\n    }\n\
-      };\n\n} // namespace kk2\n\n\n#line 1 \"others/mo.hpp\"\n\n\n\n#line 6 \"others/mo.hpp\"\
-      \n#include <cmath>\n#include <functional>\n#include <numeric>\n#line 10 \"others/mo.hpp\"\
-      \n\nnamespace kk2 {\n\nstruct Mo {\n    Mo(int n_, int q_) : n(n_), q(q_), ord(q)\
-      \ {\n        block_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0\
-      \ / 3.0)));\n        std::iota(ord.begin(), ord.end(), 0);\n        queries.reserve(q);\n\
+      };\n\n} // namespace kk2\n\n\n#line 1 \"others/coordinate_compression.hpp\"\n\
+      \n\n\n#include <algorithm>\n#line 6 \"others/coordinate_compression.hpp\"\n\n\
+      namespace kk2 {\n\n// Coordinate Compression\ntemplate <typename S = int> struct\
+      \ CC {\n    std::vector<S> xs;\n    bool initialized;\n\n    CC() : initialized(false)\
+      \ {}\n\n    CC(const std::vector<S> &xs_) : xs(xs_), initialized(false) {}\n\
+      \n    void add(S x) {\n        xs.push_back(x);\n        initialized = false;\n\
+      \    }\n\n    void add(const std::vector<S> &ys) {\n        std::copy(std::begin(ys),\
+      \ std::end(ys), std::back_inserter(xs));\n        initialized = false;\n   \
+      \ }\n\n    void build() {\n        std::sort(std::begin(xs), std::end(xs));\n\
+      \        xs.erase(std::unique(std::begin(xs), std::end(xs)), std::end(xs));\n\
+      \        initialized = true;\n    }\n\n    S operator[](int i) {\n        if\
+      \ (!initialized) build();\n        return xs[i];\n    }\n\n    int size() {\n\
+      \        if (!initialized) build();\n        return xs.size();\n    }\n\n  \
+      \  int get(S x) {\n        if (!initialized) build();\n        return std::upper_bound(std::begin(xs),\
+      \ std::end(xs), x) - std::begin(xs) - 1;\n    }\n\n    std::vector<int> get(const\
+      \ std::vector<S> &ys) {\n        std::vector<int> ret(ys.size());\n        for\
+      \ (int i = 0; i < (int)ys.size(); ++i) ret[i] = get(ys[i]);\n        return\
+      \ ret;\n    }\n\n    int operator()(S x) { return get(x); }\n\n    std::vector<int>\
+      \ operator()(const std::vector<S> &ys) { return get(ys); }\n\n    int lower(S\
+      \ x) {\n        if (!initialized) build();\n        return std::lower_bound(std::begin(xs),\
+      \ std::end(xs), x) - std::begin(xs);\n    }\n\n    int upper(S x) {\n      \
+      \  if (!initialized) build();\n        return std::upper_bound(std::begin(xs),\
+      \ std::end(xs), x) - std::begin(xs);\n    }\n\n    bool exist(S x) {\n     \
+      \   if (!initialized) build();\n        int idx = lower(x);\n        return\
+      \ idx < (int)xs.size() && xs[idx] == x;\n    }\n};\n\n} // namespace kk2\n\n\
+      \n#line 1 \"others/mo.hpp\"\n\n\n\n#line 6 \"others/mo.hpp\"\n#include <cmath>\n\
+      #include <functional>\n#include <numeric>\n#line 10 \"others/mo.hpp\"\n\nnamespace\
+      \ kk2 {\n\nstruct Mo {\n    Mo(int n_, int q_) : n(n_), q(q_), ord(q) {\n  \
+      \      block_size = std::max<int>(1, n / std::max(1.0, std::sqrt(q * 2.0 / 3.0)));\n\
+      \        std::iota(ord.begin(), ord.end(), 0);\n        queries.reserve(q);\n\
       \    }\n\n    Mo(int n_, const std::vector<std::pair<int, int>> &queries_)\n\
       \        : n(n_),\n          q(queries_.size()),\n          ord(q),\n      \
       \    queries(queries_) {\n        block_size = std::max<int>(1, n / std::max(1.0,\
@@ -172,30 +172,32 @@ data:
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
       \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -210,20 +212,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -358,7 +362,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -396,7 +400,7 @@ data:
       \    };\n    auto erase_left = [&](int i) {\n        now -= bit.sum(0, b[i]);\n\
       \        bit.add(b[i], -1);\n    };\n    auto erase_right = [&](int i) {\n \
       \       now -= bit.sum(b[i] + 1, cc.size());\n        bit.add(b[i], -1);\n \
-      \   };\n    auto f = [&](int i) { res[i] = now; };\n\n    mo.calculate(insert_left,\
+      \   };\n    auto f = [&](int i) {\n        res[i] = now;\n    };\n\n    mo.calculate(insert_left,\
       \ insert_right, erase_left, erase_right, f);\n    for (auto x : res) kout <<\
       \ x << \"\\n\";\n\n    return 0;\n}\n"
     name: bundled
@@ -406,72 +410,72 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002684971000007863
+  - elapsed: 0.002710755000066456
     environment: g++
-    memory: 3.756
+    memory: 3.752
     name: example_00
     status: AC
-  - elapsed: 2.9610485470000185
+  - elapsed: 2.957195124000009
     environment: g++
-    memory: 8.14
+    memory: 8.012
     name: max_00
     status: AC
-  - elapsed: 2.86176946300003
+  - elapsed: 2.868829007000045
     environment: g++
     memory: 8.148
     name: max_01
     status: AC
-  - elapsed: 2.9132131490000006
+  - elapsed: 2.951210892000063
     environment: g++
-    memory: 8.148
+    memory: 8.208
     name: max_02
     status: AC
-  - elapsed: 0.4756334660000334
+  - elapsed: 0.4756211469999698
     environment: g++
     memory: 5.972
     name: random_00
     status: AC
-  - elapsed: 0.8948187330000223
+  - elapsed: 0.9003750350000246
     environment: g++
-    memory: 5.396
+    memory: 5.332
     name: random_01
     status: AC
-  - elapsed: 1.162668870999994
+  - elapsed: 1.167917449000015
     environment: g++
-    memory: 6.172
+    memory: 6.292
     name: random_02
     status: AC
-  - elapsed: 2.013557321999997
+  - elapsed: 2.001170845000047
     environment: g++
     memory: 7.764
     name: small_a_00
     status: AC
-  - elapsed: 0.012550347000001238
+  - elapsed: 0.012626272999909816
     environment: g++
-    memory: 3.968
+    memory: 3.98
     name: small_n_00
     status: AC
-  - elapsed: 0.046657674000016414
+  - elapsed: 0.04809612000008201
     environment: g++
-    memory: 5.46
+    memory: 5.456
     name: small_n_01
     status: AC
-  - elapsed: 0.03768791000004512
+  - elapsed: 0.036014872000009746
     environment: g++
-    memory: 4.948
+    memory: 4.996
     name: small_n_02
     status: AC
-  - elapsed: 0.02494252700000743
+  - elapsed: 0.02453661100003046
     environment: g++
-    memory: 4.484
+    memory: 4.436
     name: small_n_03
     status: AC
-  - elapsed: 0.011206422999975985
+  - elapsed: 0.011959194000041862
     environment: g++
-    memory: 4.28
+    memory: 4.252
     name: small_n_04
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_range_inversions.test.cpp

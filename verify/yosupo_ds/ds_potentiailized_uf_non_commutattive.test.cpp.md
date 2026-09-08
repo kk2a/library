@@ -1,7 +1,7 @@
 ---
 data:
   attributes:
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
+    PROBLEM: ''
     links:
     - https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
   dependencies:
@@ -53,24 +53,24 @@ data:
   - type_traits/io.hpp
   - unionfind/potentialized.hpp
   embedded:
-  - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\n\
-      \n#include \"../../modint/modint.hpp\"\n#include \"../../unionfind/potentialized.hpp\"\
-      \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nstruct A\
-      \ {\n    kk2::mint998 a00, a01, a10, a11;\n    bool operator==(const A &r) const\
-      \ {\n        return a00 == r.a00 && a01 == r.a01 && a10 == r.a10 && a11 == r.a11;\n\
-      \    }\n};\n\nA op(A l, A r) {\n    return A{\n        l.a00 * r.a00 + l.a01\
-      \ * r.a10,\n        l.a00 * r.a01 + l.a01 * r.a11,\n        l.a10 * r.a00 +\
-      \ l.a11 * r.a10,\n        l.a10 * r.a01 + l.a11 * r.a11\n    };\n}\n\nA e()\
-      \ { return A{1, 0, 0, 1}; }\n\nA inv(A a) { return A{a.a11, -a.a01, -a.a10,\
+  - code: "// competitive-verifier: PROBLEM\n// https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\n\
+      \n#include \"../../modint/modint.hpp\"\n#include \"../../template/template.hpp\"\
+      \n#include \"../../unionfind/potentialized.hpp\"\nusing namespace std;\n\nstruct\
+      \ A {\n    kk2::mint998 a00, a01, a10, a11;\n    bool operator==(const A &r)\
+      \ const {\n        return a00 == r.a00 && a01 == r.a01 && a10 == r.a10 && a11\
+      \ == r.a11;\n    }\n};\n\nA op(A l, A r) {\n    return A{l.a00 * r.a00 + l.a01\
+      \ * r.a10,\n             l.a00 * r.a01 + l.a01 * r.a11,\n             l.a10\
+      \ * r.a00 + l.a11 * r.a10,\n             l.a10 * r.a01 + l.a11 * r.a11};\n}\n\
+      \nA e() { return A{1, 0, 0, 1}; }\n\nA inv(A a) { return A{a.a11, -a.a01, -a.a10,\
       \ a.a00}; }\n\nstruct Ab {\n    A val;\n    Ab() : val(e()) {}\n    Ab(A val_)\
       \ : val(val_) {}\n    Ab operator+(const Ab &r) const { return Ab(op(val, r.val));\
       \ }\n    Ab operator-(const Ab &r) const { return Ab(op(val, inv(r.val))); }\n\
       \    Ab operator-() const { return Ab(inv(val)); }\n};\n\nint main() {\n   \
       \ int n, q;\n    kin >> n >> q;\n    kk2::PotentializedUnionFind<Ab, false>\
-      \ puf(n);\n\n    rep (i, q) {\n        int type;\n        kin >> type;\n   \
-      \     if (type == 0) {\n            int u, v;\n            kin >> u >> v;\n\
-      \            A x;\n            kin >> x.a00 >> x.a01 >> x.a10 >> x.a11;\n  \
-      \          if (puf.same(v, u)) {\n                kout << (puf.diff(v, u).val\
+      \ puf(n);\n\n    rep(i, q) {\n        int type;\n        kin >> type;\n    \
+      \    if (type == 0) {\n            int u, v;\n            kin >> u >> v;\n \
+      \           A x;\n            kin >> x.a00 >> x.a01 >> x.a10 >> x.a11;\n   \
+      \         if (puf.same(v, u)) {\n                kout << (puf.diff(v, u).val\
       \ == x) << \"\\n\";\n            } else {\n                kout << \"1\\n\"\
       ;\n                puf.unite(v, u, Ab(x));\n            }\n        } else {\n\
       \            int u, v;\n            kin >> u >> v;\n            if (!puf.same(v,\
@@ -80,30 +80,31 @@ data:
       \     }\n    }\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp\"\
-      \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\n\
+      \n// competitive-verifier: PROBLEM\n// https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\n\
       \n#line 1 \"modint/modint.hpp\"\n\n\n\n#include <cassert>\n#include <iostream>\n\
       #include <type_traits>\n#include <utility>\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -121,21 +122,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -184,41 +186,21 @@ data:
       \ long m0 = 0, m1 = 1;\n\n        while (t) {\n            long long u = s /\
       \ t;\n            s -= t * u;\n            m0 -= m1 * u;\n\n            std::swap(s,\
       \ t);\n            std::swap(m0, m1);\n        }\n        if (m0 < 0) m0 +=\
-      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\n\
-      \    friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os\
-      \ << mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
+      \ getmod() / s;\n        return m0;\n    }\n\n    template <OutputStream OStream>\
+      \ friend OStream &operator<<(OStream &os, const mint &mint_) {\n        os <<\
+      \ mint_._v;\n        return os;\n    }\n\n    template <InputStream IStream>\
+      \ friend IStream &operator>>(IStream &is, mint &mint_) {\n        long long\
       \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
       \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
       \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"unionfind/potentialized.hpp\"\n\n\n\n#include\
-      \ <vector>\n\nnamespace kk2 {\n\n// \u5B9F\u88C5\u306E\u65B9\u91DD\u3092\u307B\
-      \u304B\u306E\u3082\u306E\u306B\u5408\u308F\u305B\u308B\n\ntemplate <class A,\
-      \ bool right = true> struct PotentializedUnionFind {\n  private:\n    std::vector<int>\
-      \ d;\n    std::vector<A> par_diff;\n\n  public:\n    PotentializedUnionFind(int\
-      \ n, A e_ = A()) : d(n, -1), par_diff(n, e_) {}\n\n    // x -> y : w\n    //\
-      \ right: a[y]a[x]^-1 = w\n    // !right: a[x]^-1a[y] = w\n    bool unite(int\
-      \ x, int y, A w) {\n        if constexpr (right) w = -potential(y) + w + potential(x);\n\
-      \        else w = potential(x) + w - potential(y);\n        x = find(x);\n \
-      \       y = find(y);\n        if (x == y) return false;\n        if (d[x] >\
-      \ d[y]) {\n            std::swap(x, y);\n            w = -w;\n        }\n  \
-      \      d[x] += d[y];\n        d[y] = x;\n        par_diff[y] = w;\n        return\
-      \ true;\n    }\n\n    int find(int x) {\n        if (d[x] < 0) return x;\n \
-      \       int r = find(d[x]);\n        if constexpr (right) par_diff[x] = par_diff[x]\
-      \ + par_diff[d[x]];\n        else par_diff[x] = par_diff[d[x]] + par_diff[x];\n\
-      \        return d[x] = r;\n    }\n\n    bool same(int x, int y) { return find(x)\
-      \ == find(y); }\n\n    int size(int x) { return -d[find(x)]; }\n\n    // root_x\
-      \ -> x\n    A potential(int x) {\n        find(x);\n        return par_diff[x];\n\
-      \    }\n\n    // x -> y\n    A diff(int x, int y) {\n        if constexpr (right)\
-      \ return potential(y) - potential(x);\n        else return -potential(x) + potential(y);\n\
-      \    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\
-      \n#include <algorithm>\n#include <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\
+      \n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#include\
+      \ <algorithm>\n#include <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\
       \n#include <chrono>\n#include <cmath>\n#include <deque>\n#include <functional>\n\
       #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n\
       #include <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include\
       \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
-      #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
-      \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
+      #line 25 \"template/template.hpp\"\n#include <vector>\n\n#line 1 \"template/constant.hpp\"\
+      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
       \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
       \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
       \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
@@ -363,7 +345,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -390,33 +372,53 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp\"\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 1 \"unionfind/potentialized.hpp\"\
+      \n\n\n\n#line 5 \"unionfind/potentialized.hpp\"\n\nnamespace kk2 {\n\n// \u5B9F\
+      \u88C5\u306E\u65B9\u91DD\u3092\u307B\u304B\u306E\u3082\u306E\u306B\u5408\u308F\
+      \u305B\u308B\n\ntemplate <class A, bool right = true> struct PotentializedUnionFind\
+      \ {\n  private:\n    std::vector<int> d;\n    std::vector<A> par_diff;\n\n \
+      \ public:\n    PotentializedUnionFind(int n, A e_ = A()) : d(n, -1), par_diff(n,\
+      \ e_) {}\n\n    // x -> y : w\n    // right: a[y]a[x]^-1 = w\n    // !right:\
+      \ a[x]^-1a[y] = w\n    bool unite(int x, int y, A w) {\n        if constexpr\
+      \ (right) w = -potential(y) + w + potential(x);\n        else w = potential(x)\
+      \ + w - potential(y);\n        x = find(x);\n        y = find(y);\n        if\
+      \ (x == y) return false;\n        if (d[x] > d[y]) {\n            std::swap(x,\
+      \ y);\n            w = -w;\n        }\n        d[x] += d[y];\n        d[y] =\
+      \ x;\n        par_diff[y] = w;\n        return true;\n    }\n\n    int find(int\
+      \ x) {\n        if (d[x] < 0) return x;\n        int r = find(d[x]);\n     \
+      \   if constexpr (right) par_diff[x] = par_diff[x] + par_diff[d[x]];\n     \
+      \   else par_diff[x] = par_diff[d[x]] + par_diff[x];\n        return d[x] =\
+      \ r;\n    }\n\n    bool same(int x, int y) { return find(x) == find(y); }\n\n\
+      \    int size(int x) { return -d[find(x)]; }\n\n    // root_x -> x\n    A potential(int\
+      \ x) {\n        find(x);\n        return par_diff[x];\n    }\n\n    // x ->\
+      \ y\n    A diff(int x, int y) {\n        if constexpr (right) return potential(y)\
+      \ - potential(x);\n        else return -potential(x) + potential(y);\n    }\n\
+      };\n\n} // namespace kk2\n\n\n#line 7 \"verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp\"\
       \nusing namespace std;\n\nstruct A {\n    kk2::mint998 a00, a01, a10, a11;\n\
       \    bool operator==(const A &r) const {\n        return a00 == r.a00 && a01\
       \ == r.a01 && a10 == r.a10 && a11 == r.a11;\n    }\n};\n\nA op(A l, A r) {\n\
-      \    return A{\n        l.a00 * r.a00 + l.a01 * r.a10,\n        l.a00 * r.a01\
-      \ + l.a01 * r.a11,\n        l.a10 * r.a00 + l.a11 * r.a10,\n        l.a10 *\
-      \ r.a01 + l.a11 * r.a11\n    };\n}\n\nA e() { return A{1, 0, 0, 1}; }\n\nA inv(A\
+      \    return A{l.a00 * r.a00 + l.a01 * r.a10,\n             l.a00 * r.a01 + l.a01\
+      \ * r.a11,\n             l.a10 * r.a00 + l.a11 * r.a10,\n             l.a10\
+      \ * r.a01 + l.a11 * r.a11};\n}\n\nA e() { return A{1, 0, 0, 1}; }\n\nA inv(A\
       \ a) { return A{a.a11, -a.a01, -a.a10, a.a00}; }\n\nstruct Ab {\n    A val;\n\
       \    Ab() : val(e()) {}\n    Ab(A val_) : val(val_) {}\n    Ab operator+(const\
       \ Ab &r) const { return Ab(op(val, r.val)); }\n    Ab operator-(const Ab &r)\
       \ const { return Ab(op(val, inv(r.val))); }\n    Ab operator-() const { return\
       \ Ab(inv(val)); }\n};\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n \
-      \   kk2::PotentializedUnionFind<Ab, false> puf(n);\n\n    rep (i, q) {\n   \
-      \     int type;\n        kin >> type;\n        if (type == 0) {\n          \
-      \  int u, v;\n            kin >> u >> v;\n            A x;\n            kin\
-      \ >> x.a00 >> x.a01 >> x.a10 >> x.a11;\n            if (puf.same(v, u)) {\n\
-      \                kout << (puf.diff(v, u).val == x) << \"\\n\";\n           \
-      \ } else {\n                kout << \"1\\n\";\n                puf.unite(v,\
-      \ u, Ab(x));\n            }\n        } else {\n            int u, v;\n     \
-      \       kin >> u >> v;\n            if (!puf.same(v, u)) {\n               \
-      \ kout << \"-1\\n\";\n            } else {\n                A x = puf.diff(v,\
-      \ u).val;\n                kout << x.a00 << \" \" << x.a01 << \" \" << x.a10\
-      \ << \" \" << x.a11 << \"\\n\";\n            }\n        }\n    }\n    return\
-      \ 0;\n}\n"
+      \   kk2::PotentializedUnionFind<Ab, false> puf(n);\n\n    rep(i, q) {\n    \
+      \    int type;\n        kin >> type;\n        if (type == 0) {\n           \
+      \ int u, v;\n            kin >> u >> v;\n            A x;\n            kin >>\
+      \ x.a00 >> x.a01 >> x.a10 >> x.a11;\n            if (puf.same(v, u)) {\n   \
+      \             kout << (puf.diff(v, u).val == x) << \"\\n\";\n            } else\
+      \ {\n                kout << \"1\\n\";\n                puf.unite(v, u, Ab(x));\n\
+      \            }\n        } else {\n            int u, v;\n            kin >>\
+      \ u >> v;\n            if (!puf.same(v, u)) {\n                kout << \"-1\\\
+      n\";\n            } else {\n                A x = puf.diff(v, u).val;\n    \
+      \            kout << x.a00 << \" \" << x.a01 << \" \" << x.a10 << \" \" << x.a11\
+      \ << \"\\n\";\n            }\n        }\n    }\n    return 0;\n}\n"
     name: bundled
   isFailed: false
-  isVerificationFile: true
+  isVerificationFile: false
   path: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   pathExtension: cpp
   requiredBy: []
@@ -511,8 +513,8 @@ data:
     memory: 5.668
     name: random_09
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-09 02:37:11+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
 layout: document

@@ -60,35 +60,35 @@ data:
       \        std::vector<DynamicBitSet> &bs;\n        int i;\n\n      public:\n\
       \        Proxy(std::vector<DynamicBitSet> &bs_, int i_) : bs(bs_), i(i_) {}\n\
       \n        operator DynamicBitSet() const { return bs[i]; }\n\n        template\
-      \ <InputStream IStream>\n        friend IStream &operator>>(IStream &is, Proxy\
-      \ p) {\n            std::string s;\n            is >> s;\n            p = s;\n\
-      \            return is;\n        }\n\n        template <OutputStream OStream>\n\
-      \        friend OStream &operator<<(OStream &os, Proxy p) {\n            os\
-      \ << p.to_reversed_string();\n            return os;\n        }\n\n        std::string\
-      \ to_string() const { return bs[i].to_string(); }\n        std::string to_reversed_string()\
-      \ const { return bs[i].to_reversed_string(); }\n\n        Proxy &operator=(const\
-      \ std::string &s) {\n            bs[i].set_reversed(s);\n            return\
-      \ *this;\n        }\n\n        Proxy &operator=(const DynamicBitSet &x) {\n\
-      \            bs[i] = x;\n            return *this;\n        }\n\n        Proxy\
-      \ &operator=(const Proxy &x) {\n            bs[i] = x.bs[x.i];\n           \
-      \ return *this;\n        }\n\n        DynamicBitSet::BitReference operator[](int\
-      \ j) {\n            assert(0 <= j && j < (int)bs[i].size());\n            return\
-      \ bs[i][j];\n        }\n\n        Proxy &operator&=(const DynamicBitSet &x)\
-      \ {\n            bs[i] &= x;\n            return *this;\n        }\n\n     \
-      \   Proxy &operator&=(const Proxy &x) {\n            bs[i] &= x.bs[x.i];\n \
-      \           return *this;\n        }\n\n        Proxy &operator|=(const DynamicBitSet\
-      \ &x) {\n            bs[i] |= x;\n            return *this;\n        }\n\n \
-      \       Proxy &operator|=(const Proxy &x) {\n            bs[i] |= x.bs[x.i];\n\
-      \            return *this;\n        }\n\n        Proxy &flip() {\n         \
-      \   bs[i].flip();\n            return *this;\n        }\n\n        Proxy &operator~()\
-      \ {\n            bs[i].flip();\n            return *this;\n        }\n    };\n\
-      \n    Proxy operator[](int i) {\n        assert(0 <= i && i < _h);\n       \
-      \ return Proxy(_mat, i);\n    }\n\n    template <InputStream IStream> mat &input(IStream\
-      \ &is) {\n        for (int i = 0; i < _h; i++) {\n            std::string s;\n\
-      \            is >> s;\n            _mat[i].set_reversed(s);\n        }\n   \
-      \     return *this;\n    }\n\n    template <OutputStream OStream> void output(OStream\
-      \ &os) const {\n        for (int i = 0; i < _h; i++) { os << _mat[i].to_reversed_string()\
-      \ << \"\\n\"; }\n    }\n\n    template <OutputStream OStream>\n    void debug_output(OStream\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, Proxy p) {\n\
+      \            std::string s;\n            is >> s;\n            p = s;\n    \
+      \        return is;\n        }\n\n        template <OutputStream OStream> friend\
+      \ OStream &operator<<(OStream &os, Proxy p) {\n            os << p.to_reversed_string();\n\
+      \            return os;\n        }\n\n        std::string to_string() const\
+      \ { return bs[i].to_string(); }\n        std::string to_reversed_string() const\
+      \ { return bs[i].to_reversed_string(); }\n\n        Proxy &operator=(const std::string\
+      \ &s) {\n            bs[i].set_reversed(s);\n            return *this;\n   \
+      \     }\n\n        Proxy &operator=(const DynamicBitSet &x) {\n            bs[i]\
+      \ = x;\n            return *this;\n        }\n\n        Proxy &operator=(const\
+      \ Proxy &x) {\n            bs[i] = x.bs[x.i];\n            return *this;\n \
+      \       }\n\n        DynamicBitSet::BitReference operator[](int j) {\n     \
+      \       assert(0 <= j && j < (int)bs[i].size());\n            return bs[i][j];\n\
+      \        }\n\n        Proxy &operator&=(const DynamicBitSet &x) {\n        \
+      \    bs[i] &= x;\n            return *this;\n        }\n\n        Proxy &operator&=(const\
+      \ Proxy &x) {\n            bs[i] &= x.bs[x.i];\n            return *this;\n\
+      \        }\n\n        Proxy &operator|=(const DynamicBitSet &x) {\n        \
+      \    bs[i] |= x;\n            return *this;\n        }\n\n        Proxy &operator|=(const\
+      \ Proxy &x) {\n            bs[i] |= x.bs[x.i];\n            return *this;\n\
+      \        }\n\n        Proxy &flip() {\n            bs[i].flip();\n         \
+      \   return *this;\n        }\n\n        Proxy &operator~() {\n            bs[i].flip();\n\
+      \            return *this;\n        }\n    };\n\n    Proxy operator[](int i)\
+      \ {\n        assert(0 <= i && i < _h);\n        return Proxy(_mat, i);\n   \
+      \ }\n\n    template <InputStream IStream> mat &input(IStream &is) {\n      \
+      \  for (int i = 0; i < _h; i++) {\n            std::string s;\n            is\
+      \ >> s;\n            _mat[i].set_reversed(s);\n        }\n        return *this;\n\
+      \    }\n\n    template <OutputStream OStream> void output(OStream &os) const\
+      \ {\n        for (int i = 0; i < _h; i++) { os << _mat[i].to_reversed_string()\
+      \ << \"\\n\"; }\n    }\n\n    template <OutputStream OStream> void debug_output(OStream\
       \ &os) const {\n        os << \"(h, w): \" << \"(\" << _h << \", \" << _w <<\
       \ \"), [\\n\";\n        for (int i = 0; i < _h; i++) {\n            os << \"\
       \  [ \";\n            for (int j = 0; j < _w; ++j) os << _mat[i].is_pinned(j)\
@@ -201,26 +201,27 @@ data:
       #line 11 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"bit/bitcount.hpp\"\n\n\
       \n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\
       \n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -258,21 +259,22 @@ data:
       \ 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
       #include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace\
       \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
-      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T> using is_standard_istream\
-      \ =\n    typename std::conditional<std::is_same<T, std::istream>::value\n  \
-      \                                || std::is_same<T, std::ifstream>::value,\n\
+      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
+      \ = typename std::conditional<std::is_same<T, std::istream>::value\n       \
+      \                                                   || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -339,61 +341,61 @@ data:
       \ {\n        std::vector<UInt> &block;\n        int idx;\n\n      public:\n\
       \        BitReference(std::vector<UInt> &block_, int idx_) : block(block_),\
       \ idx(idx_) {}\n\n        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG]\
-      \ >> (idx & BLOCK_MASK)) & 1; }\n\n        template <InputStream IStream>\n\
-      \        friend IStream &operator>>(IStream &is, BitReference a) {\n       \
-      \     bool c;\n            is >> c;\n            a = c;\n            return\
-      \ is;\n        }\n\n        BitReference &operator=(bool x) {\n            if\
-      \ (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n         \
-      \   else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n   \
-      \         return *this;\n        }\n\n        BitReference &operator=(const\
+      \ >> (idx & BLOCK_MASK)) & 1; }\n\n        template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, BitReference a) {\n            bool c;\n\
+      \            is >> c;\n            a = c;\n            return is;\n        }\n\
+      \n        BitReference &operator=(bool x) {\n            if (x) block[idx >>\
+      \ BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            else block[idx\
+      \ >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n\
+      \        }\n\n        BitReference &operator=(const BitReference &other) {\n\
+      \            if (other) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+      \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
+      \            return *this;\n        }\n\n        BitReference &operator&=(bool\
+      \ x) {\n            if (!x) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx &\
+      \ BLOCK_MASK));\n            return *this;\n        }\n\n        BitReference\
+      \ &operator&=(const BitReference &other) {\n            if (!other) block[idx\
+      \ >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n\
+      \        }\n\n        BitReference &operator|=(bool x) {\n            if (x)\
+      \ block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            return\
+      \ *this;\n        }\n\n        BitReference &operator|=(const BitReference &other)\
+      \ {\n            if (other) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+      \            return *this;\n        }\n\n        BitReference &operator^=(bool\
+      \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n\
+      \            return *this;\n        }\n\n        BitReference &operator^=(const\
       \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
-      \ |= ONE << (idx & BLOCK_MASK);\n            else block[idx >> BLOCK_SIZE_LOG]\
-      \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n\
-      \        BitReference &operator&=(bool x) {\n            if (!x) block[idx >>\
-      \ BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n\
-      \        }\n\n        BitReference &operator&=(const BitReference &other) {\n\
-      \            if (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
-      \            return *this;\n        }\n\n        BitReference &operator|=(bool\
-      \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
-      \            return *this;\n        }\n\n        BitReference &operator|=(const\
-      \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
-      \ |= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n  \
-      \      BitReference &operator^=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
       \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n  \
-      \      BitReference &operator^=(const BitReference &other) {\n            if\
-      \ (other) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n     \
-      \       return *this;\n        }\n\n        BitReference &flip() {\n       \
-      \     block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n         \
-      \   return *this;\n        }\n\n        BitReference &operator~() {\n      \
-      \      block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n        \
-      \    return *this;\n        }\n\n        bool val() const { return (block[idx\
-      \ >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n    };\n\n    BitReference\
-      \ operator[](int i) {\n        assert(0 <= i && i < n);\n        return BitReference(block,\
-      \ i);\n    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i &&\
-      \ i < n);\n        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) &\
-      \ 1;\n    }\n\n    T &operator=(const std::string &s) {\n        set(s);\n \
-      \       return *this;\n    }\n\n    T &flip() {\n        UInt mask = (ONE <<\
-      \ (n & BLOCK_MASK)) - 1;\n        for (UInt &x : block) x = ~x;\n        block.back()\
-      \ &= mask;\n        return *this;\n    }\n\n    T &flip(int i) {\n        assert(0\
-      \ <= i && i < n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n\
-      \        return *this;\n    }\n\n    int ctz() const {\n        int res = 0;\n\
-      \        int i = 0;\n        for (; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
-      \ ++i) {\n            if (block[i]) break;\n            res += BLOCK_SIZE;\n\
-      \        }\n        assert(i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n  \
-      \      res += kk2::ctz(block[i]);\n        return res;\n    }\n\n    int clz()\
-      \ const {\n        int res = 0;\n        int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
-      \        for (; i--;) {\n            if (block[i]) break;\n            if (i\
-      \ + 1 == (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) {\n                res += n\
-      \ & BLOCK_MASK;\n            } else {\n                res += BLOCK_SIZE;\n\
-      \            }\n        }\n        assert(i >= 0);\n        if (i + 1 == (n\
-      \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) {\n            res += kk2::clz(block[i])\
-      \ - (BLOCK_SIZE - (n & BLOCK_MASK));\n        } else {\n            res += kk2::clz(block[i]);\n\
-      \        }\n        return res;\n    }\n\n    int popcount() const {\n     \
-      \   int res = 0;\n        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
-      \ i++) {\n            res += kk2::popcount(block[i]);\n        }\n        return\
-      \ res;\n    }\n\n    T &operator~() { return flip(); }\n\n    T &operator&=(const\
-      \ T &other) {\n        assert(n == other.n);\n        for (int i = 0; i < (n\
-      \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] &= other.block[i];\n\
+      \      BitReference &flip() {\n            block[idx >> BLOCK_SIZE_LOG] ^= ONE\
+      \ << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n        BitReference\
+      \ &operator~() {\n            block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx &\
+      \ BLOCK_MASK);\n            return *this;\n        }\n\n        bool val() const\
+      \ { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n   \
+      \ };\n\n    BitReference operator[](int i) {\n        assert(0 <= i && i < n);\n\
+      \        return BitReference(block, i);\n    }\n\n    bool is_pinned(int i)\
+      \ const {\n        assert(0 <= i && i < n);\n        return (block[i >> BLOCK_SIZE_LOG]\
+      \ >> (i & BLOCK_MASK)) & 1;\n    }\n\n    T &operator=(const std::string &s)\
+      \ {\n        set(s);\n        return *this;\n    }\n\n    T &flip() {\n    \
+      \    UInt mask = (ONE << (n & BLOCK_MASK)) - 1;\n        for (UInt &x : block)\
+      \ x = ~x;\n        block.back() &= mask;\n        return *this;\n    }\n\n \
+      \   T &flip(int i) {\n        assert(0 <= i && i < n);\n        block[i >> BLOCK_SIZE_LOG]\
+      \ ^= ONE << (i & BLOCK_MASK);\n        return *this;\n    }\n\n    int ctz()\
+      \ const {\n        int res = 0;\n        int i = 0;\n        for (; i < (n +\
+      \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; ++i) {\n            if (block[i]) break;\n\
+      \            res += BLOCK_SIZE;\n        }\n        assert(i < (n + BLOCK_SIZE\
+      \ - 1) >> BLOCK_SIZE_LOG);\n        res += kk2::ctz(block[i]);\n        return\
+      \ res;\n    }\n\n    int clz() const {\n        int res = 0;\n        int i\
+      \ = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        for (; i--;) {\n    \
+      \        if (block[i]) break;\n            if (i + 1 == (n + BLOCK_SIZE - 1)\
+      \ >> BLOCK_SIZE_LOG) {\n                res += n & BLOCK_MASK;\n           \
+      \ } else {\n                res += BLOCK_SIZE;\n            }\n        }\n \
+      \       assert(i >= 0);\n        if (i + 1 == (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG)\
+      \ {\n            res += kk2::clz(block[i]) - (BLOCK_SIZE - (n & BLOCK_MASK));\n\
+      \        } else {\n            res += kk2::clz(block[i]);\n        }\n     \
+      \   return res;\n    }\n\n    int popcount() const {\n        int res = 0;\n\
+      \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            res += kk2::popcount(block[i]);\n        }\n        return res;\n\
+      \    }\n\n    T &operator~() { return flip(); }\n\n    T &operator&=(const T\
+      \ &other) {\n        assert(n == other.n);\n        for (int i = 0; i < (n +\
+      \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] &= other.block[i];\n\
       \        }\n        return *this;\n    }\n\n    T &operator|=(const T &other)\
       \ {\n        assert(n == other.n);\n        for (int i = 0; i < (n + BLOCK_SIZE\
       \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] |= other.block[i];\n\
@@ -431,11 +433,11 @@ data:
       \      }\n        std::string res;\n        for (int i = 0; i < (n + BLOCK_SIZE\
       \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            std::reverse(std::begin(tmp[i]),\
       \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return\
-      \ res;\n    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ res;\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const T &bs) {\n        return os << bs.to_string();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, T &bs)\
-      \ {\n        std::string s;\n        is >> s;\n        bs.set_reversed(s);\n\
-      \        return is;\n    }\n};\n\n} // namespace kk2\n\n\n#line 13 \"matrix/matrix_F2.hpp\"\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, T &bs) {\n \
+      \       std::string s;\n        is >> s;\n        bs.set_reversed(s);\n    \
+      \    return is;\n    }\n};\n\n} // namespace kk2\n\n\n#line 13 \"matrix/matrix_F2.hpp\"\
       \n\nnamespace kk2 {\n\nstruct MatrixF2 {\n    using mat = MatrixF2;\n    int\
       \ _h, _w;\n    std::vector<DynamicBitSet> _mat;\n\n    MatrixF2() : MatrixF2(0)\
       \ {}\n    MatrixF2(int n) : MatrixF2(n, n) {}\n\n    MatrixF2(int h, int w)\
@@ -449,11 +451,11 @@ data:
       \ const { return _w; }\n\n    class Proxy {\n        std::vector<DynamicBitSet>\
       \ &bs;\n        int i;\n\n      public:\n        Proxy(std::vector<DynamicBitSet>\
       \ &bs_, int i_) : bs(bs_), i(i_) {}\n\n        operator DynamicBitSet() const\
-      \ { return bs[i]; }\n\n        template <InputStream IStream>\n        friend\
-      \ IStream &operator>>(IStream &is, Proxy p) {\n            std::string s;\n\
-      \            is >> s;\n            p = s;\n            return is;\n        }\n\
-      \n        template <OutputStream OStream>\n        friend OStream &operator<<(OStream\
-      \ &os, Proxy p) {\n            os << p.to_reversed_string();\n            return\
+      \ { return bs[i]; }\n\n        template <InputStream IStream> friend IStream\
+      \ &operator>>(IStream &is, Proxy p) {\n            std::string s;\n        \
+      \    is >> s;\n            p = s;\n            return is;\n        }\n\n   \
+      \     template <OutputStream OStream> friend OStream &operator<<(OStream &os,\
+      \ Proxy p) {\n            os << p.to_reversed_string();\n            return\
       \ os;\n        }\n\n        std::string to_string() const { return bs[i].to_string();\
       \ }\n        std::string to_reversed_string() const { return bs[i].to_reversed_string();\
       \ }\n\n        Proxy &operator=(const std::string &s) {\n            bs[i].set_reversed(s);\n\
@@ -478,13 +480,13 @@ data:
       \        }\n        return *this;\n    }\n\n    template <OutputStream OStream>\
       \ void output(OStream &os) const {\n        for (int i = 0; i < _h; i++) { os\
       \ << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    template <OutputStream\
-      \ OStream>\n    void debug_output(OStream &os) const {\n        os << \"(h,\
-      \ w): \" << \"(\" << _h << \", \" << _w << \"), [\\n\";\n        for (int i\
-      \ = 0; i < _h; i++) {\n            os << \"  [ \";\n            for (int j =\
-      \ 0; j < _w; ++j) os << _mat[i].is_pinned(j) << \" \";\n            os << \"\
-      ]\\n\";\n        }\n        os << \"]\\n\";\n    }\n\n    void set(int i, int\
-      \ j, bool x) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j &&\
-      \ j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void set(int i, const std::string\
+      \ OStream> void debug_output(OStream &os) const {\n        os << \"(h, w): \"\
+      \ << \"(\" << _h << \", \" << _w << \"), [\\n\";\n        for (int i = 0; i\
+      \ < _h; i++) {\n            os << \"  [ \";\n            for (int j = 0; j <\
+      \ _w; ++j) os << _mat[i].is_pinned(j) << \" \";\n            os << \"]\\n\"\
+      ;\n        }\n        os << \"]\\n\";\n    }\n\n    void set(int i, int j, bool\
+      \ x) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
+      \        _mat[i].set(j, x);\n    }\n\n    void set(int i, const std::string\
       \ &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set(s);\n   \
       \ }\n\n    void set_reversed(int i, const std::string &s) {\n        assert((int)s.size()\
       \ == _w);\n        _mat[i].set_reversed(s);\n    }\n\n    mat &operator+=(const\
@@ -587,7 +589,7 @@ data:
   path: matrix/matrix_F2.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp

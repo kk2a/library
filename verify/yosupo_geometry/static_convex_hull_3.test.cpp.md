@@ -56,14 +56,14 @@ data:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_convex_hull\n\
       \n#include \"../../geometry/point.hpp\"\n#include \"../../geometry/static_convex_hull.hpp\"\
       \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
-      \ {\n    int t;\n    kin >> t;\n    rep (t) {\n        int n;\n        kin >>\
+      \ {\n    int t;\n    kin >> t;\n    rep(t) {\n        int n;\n        kin >>\
       \ n;\n        vc<kk2::Point<i64>> p(n);\n        kin >> p;\n        kk2::StaticConvexHull\
       \ ch(p);\n        ch.build();\n\n        if (n == 0) {\n            kout <<\
       \ 0 << \"\\n\";\n            continue;\n        }\n\n        if (ch.up.size()\
       \ == 1u) {\n            kout << 1 << \"\\n\";\n            kout << ch.up[0]\
       \ << \"\\n\";\n            continue;\n        }\n\n        kout << ch.up.size()\
       \ + ch.dw.size() - 2 << \"\\n\";\n        vc<kk2::Point<i64>> res(ch.up.size()\
-      \ + ch.dw.size() - 2);\n        rep (i, n) {\n            if (ch.idx_up[i] >\
+      \ + ch.dw.size() - 2);\n        rep(i, n) {\n            if (ch.idx_up[i] >\
       \ 0) res[ch.dw.size() + ch.up.size() - ch.idx_up[i] - 2] = p[i];\n         \
       \   if (ch.idx_dw[i] != -1) res[ch.idx_dw[i]] = p[i];\n        }\n        for\
       \ (auto &q : res) kout << q << \"\\n\";\n    }\n\n    return 0;\n}\n"
@@ -82,132 +82,132 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.35453150099999675
+  - elapsed: 0.35317541299991717
     environment: g++
     memory: 4.288
     name: all_same_00
     status: AC
-  - elapsed: 0.34605067800001166
+  - elapsed: 0.3449175080002078
     environment: g++
-    memory: 4.636
+    memory: 4.452
     name: all_same_01
     status: AC
-  - elapsed: 0.002521497000003592
+  - elapsed: 0.0022256239999478566
     environment: g++
-    memory: 3.808
+    memory: 3.668
     name: example_00
     status: AC
-  - elapsed: 0.002431610000002138
+  - elapsed: 0.0021312280000529427
     environment: g++
-    memory: 3.624
+    memory: 3.62
     name: example_01
     status: AC
-  - elapsed: 0.6844328379999922
+  - elapsed: 0.6637256369999704
     environment: g++
-    memory: 64.564
+    memory: 64.228
     name: max_ans_00
     status: AC
-  - elapsed: 0.5602738970000019
+  - elapsed: 0.5516316199998528
     environment: g++
     memory: 36.712
     name: max_colinear_00
     status: AC
-  - elapsed: 0.5589959570000076
+  - elapsed: 0.5485491160000038
     environment: g++
-    memory: 36.748
+    memory: 36.708
     name: max_colinear_01
     status: AC
-  - elapsed: 0.6119802169999957
+  - elapsed: 0.5942570400000022
     environment: g++
     memory: 36.788
     name: max_random_00
     status: AC
-  - elapsed: 0.5114545330000055
+  - elapsed: 0.5112748900000952
     environment: g++
-    memory: 36.752
+    memory: 36.712
     name: max_random_01
     status: AC
-  - elapsed: 0.5612810400000114
+  - elapsed: 0.5567643390002104
     environment: g++
-    memory: 36.716
+    memory: 36.788
     name: max_random_02
     status: AC
-  - elapsed: 0.5756196480000142
+  - elapsed: 0.5729923950000284
     environment: g++
-    memory: 36.788
+    memory: 36.716
     name: max_random_03
     status: AC
-  - elapsed: 0.5988333739999803
-    environment: g++
-    memory: 36.756
-    name: max_random_04
-    status: AC
-  - elapsed: 0.5093297459999917
-    environment: g++
-    memory: 36.792
-    name: max_random_05
-    status: AC
-  - elapsed: 0.5634469830000057
-    environment: g++
-    memory: 36.72
-    name: max_random_06
-    status: AC
-  - elapsed: 0.5781230199999925
+  - elapsed: 0.5958199079998394
     environment: g++
     memory: 36.788
+    name: max_random_04
+    status: AC
+  - elapsed: 0.5099285700000564
+    environment: g++
+    memory: 36.692
+    name: max_random_05
+    status: AC
+  - elapsed: 0.5572796550000021
+    environment: g++
+    memory: 36.708
+    name: max_random_06
+    status: AC
+  - elapsed: 0.5741559759999291
+    environment: g++
+    memory: 36.784
     name: max_random_07
     status: AC
-  - elapsed: 0.6583092490000126
+  - elapsed: 0.6522942449998936
     environment: g++
-    memory: 49.352
+    memory: 49.344
     name: near_circle_00
     status: AC
-  - elapsed: 0.6593638829999975
+  - elapsed: 0.6493232780001108
     environment: g++
-    memory: 49.44
+    memory: 49.352
     name: near_circle_01
     status: AC
-  - elapsed: 0.5894166029999894
+  - elapsed: 0.5768568220000816
     environment: g++
-    memory: 4.096
+    memory: 4.06
     name: small_random_00
     status: AC
-  - elapsed: 0.471668789000006
+  - elapsed: 0.47673531800001
     environment: g++
-    memory: 4.08
+    memory: 3.996
     name: small_random_01
     status: AC
-  - elapsed: 0.49080568400000857
-    environment: g++
-    memory: 4.072
-    name: small_random_02
-    status: AC
-  - elapsed: 0.4979150160000074
-    environment: g++
-    memory: 4.072
-    name: small_random_03
-    status: AC
-  - elapsed: 0.5886241990000087
+  - elapsed: 0.48782366000000366
     environment: g++
     memory: 4.092
+    name: small_random_02
+    status: AC
+  - elapsed: 0.4973706260000199
+    environment: g++
+    memory: 4.076
+    name: small_random_03
+    status: AC
+  - elapsed: 0.5755697280001186
+    environment: g++
+    memory: 4.028
     name: small_random_04
     status: AC
-  - elapsed: 0.47194743200000744
+  - elapsed: 0.46984008699996593
     environment: g++
-    memory: 3.72
+    memory: 3.908
     name: small_random_05
     status: AC
-  - elapsed: 0.4888764140000035
+  - elapsed: 0.48860388699995383
     environment: g++
-    memory: 4.04
+    memory: 3.88
     name: small_random_06
     status: AC
-  - elapsed: 0.5006846530000075
+  - elapsed: 0.49939908999999716
     environment: g++
-    memory: 4.072
+    memory: 3.868
     name: small_random_07
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/static_convex_hull_3.test.cpp

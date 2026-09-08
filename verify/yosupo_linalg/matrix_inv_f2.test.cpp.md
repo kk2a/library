@@ -72,26 +72,27 @@ data:
       #line 11 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"bit/bitcount.hpp\"\n\n\
       \n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\
       \n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -129,21 +130,22 @@ data:
       \ 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
       #include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace\
       \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
-      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T> using is_standard_istream\
-      \ =\n    typename std::conditional<std::is_same<T, std::istream>::value\n  \
-      \                                || std::is_same<T, std::ifstream>::value,\n\
+      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
+      \ = typename std::conditional<std::is_same<T, std::istream>::value\n       \
+      \                                                   || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -210,61 +212,61 @@ data:
       \ {\n        std::vector<UInt> &block;\n        int idx;\n\n      public:\n\
       \        BitReference(std::vector<UInt> &block_, int idx_) : block(block_),\
       \ idx(idx_) {}\n\n        operator bool() const { return (block[idx >> BLOCK_SIZE_LOG]\
-      \ >> (idx & BLOCK_MASK)) & 1; }\n\n        template <InputStream IStream>\n\
-      \        friend IStream &operator>>(IStream &is, BitReference a) {\n       \
-      \     bool c;\n            is >> c;\n            a = c;\n            return\
-      \ is;\n        }\n\n        BitReference &operator=(bool x) {\n            if\
-      \ (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n         \
-      \   else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n   \
-      \         return *this;\n        }\n\n        BitReference &operator=(const\
+      \ >> (idx & BLOCK_MASK)) & 1; }\n\n        template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, BitReference a) {\n            bool c;\n\
+      \            is >> c;\n            a = c;\n            return is;\n        }\n\
+      \n        BitReference &operator=(bool x) {\n            if (x) block[idx >>\
+      \ BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            else block[idx\
+      \ >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n\
+      \        }\n\n        BitReference &operator=(const BitReference &other) {\n\
+      \            if (other) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+      \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
+      \            return *this;\n        }\n\n        BitReference &operator&=(bool\
+      \ x) {\n            if (!x) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx &\
+      \ BLOCK_MASK));\n            return *this;\n        }\n\n        BitReference\
+      \ &operator&=(const BitReference &other) {\n            if (!other) block[idx\
+      \ >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n\
+      \        }\n\n        BitReference &operator|=(bool x) {\n            if (x)\
+      \ block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n            return\
+      \ *this;\n        }\n\n        BitReference &operator|=(const BitReference &other)\
+      \ {\n            if (other) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+      \            return *this;\n        }\n\n        BitReference &operator^=(bool\
+      \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n\
+      \            return *this;\n        }\n\n        BitReference &operator^=(const\
       \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
-      \ |= ONE << (idx & BLOCK_MASK);\n            else block[idx >> BLOCK_SIZE_LOG]\
-      \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n\
-      \        BitReference &operator&=(bool x) {\n            if (!x) block[idx >>\
-      \ BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n\
-      \        }\n\n        BitReference &operator&=(const BitReference &other) {\n\
-      \            if (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
-      \            return *this;\n        }\n\n        BitReference &operator|=(bool\
-      \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
-      \            return *this;\n        }\n\n        BitReference &operator|=(const\
-      \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
-      \ |= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n  \
-      \      BitReference &operator^=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
       \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n  \
-      \      BitReference &operator^=(const BitReference &other) {\n            if\
-      \ (other) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n     \
-      \       return *this;\n        }\n\n        BitReference &flip() {\n       \
-      \     block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n         \
-      \   return *this;\n        }\n\n        BitReference &operator~() {\n      \
-      \      block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n        \
-      \    return *this;\n        }\n\n        bool val() const { return (block[idx\
-      \ >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n    };\n\n    BitReference\
-      \ operator[](int i) {\n        assert(0 <= i && i < n);\n        return BitReference(block,\
-      \ i);\n    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i &&\
-      \ i < n);\n        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) &\
-      \ 1;\n    }\n\n    T &operator=(const std::string &s) {\n        set(s);\n \
-      \       return *this;\n    }\n\n    T &flip() {\n        UInt mask = (ONE <<\
-      \ (n & BLOCK_MASK)) - 1;\n        for (UInt &x : block) x = ~x;\n        block.back()\
-      \ &= mask;\n        return *this;\n    }\n\n    T &flip(int i) {\n        assert(0\
-      \ <= i && i < n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n\
-      \        return *this;\n    }\n\n    int ctz() const {\n        int res = 0;\n\
-      \        int i = 0;\n        for (; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
-      \ ++i) {\n            if (block[i]) break;\n            res += BLOCK_SIZE;\n\
-      \        }\n        assert(i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n  \
-      \      res += kk2::ctz(block[i]);\n        return res;\n    }\n\n    int clz()\
-      \ const {\n        int res = 0;\n        int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
-      \        for (; i--;) {\n            if (block[i]) break;\n            if (i\
-      \ + 1 == (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) {\n                res += n\
-      \ & BLOCK_MASK;\n            } else {\n                res += BLOCK_SIZE;\n\
-      \            }\n        }\n        assert(i >= 0);\n        if (i + 1 == (n\
-      \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) {\n            res += kk2::clz(block[i])\
-      \ - (BLOCK_SIZE - (n & BLOCK_MASK));\n        } else {\n            res += kk2::clz(block[i]);\n\
-      \        }\n        return res;\n    }\n\n    int popcount() const {\n     \
-      \   int res = 0;\n        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG;\
-      \ i++) {\n            res += kk2::popcount(block[i]);\n        }\n        return\
-      \ res;\n    }\n\n    T &operator~() { return flip(); }\n\n    T &operator&=(const\
-      \ T &other) {\n        assert(n == other.n);\n        for (int i = 0; i < (n\
-      \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] &= other.block[i];\n\
+      \      BitReference &flip() {\n            block[idx >> BLOCK_SIZE_LOG] ^= ONE\
+      \ << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n        BitReference\
+      \ &operator~() {\n            block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx &\
+      \ BLOCK_MASK);\n            return *this;\n        }\n\n        bool val() const\
+      \ { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n   \
+      \ };\n\n    BitReference operator[](int i) {\n        assert(0 <= i && i < n);\n\
+      \        return BitReference(block, i);\n    }\n\n    bool is_pinned(int i)\
+      \ const {\n        assert(0 <= i && i < n);\n        return (block[i >> BLOCK_SIZE_LOG]\
+      \ >> (i & BLOCK_MASK)) & 1;\n    }\n\n    T &operator=(const std::string &s)\
+      \ {\n        set(s);\n        return *this;\n    }\n\n    T &flip() {\n    \
+      \    UInt mask = (ONE << (n & BLOCK_MASK)) - 1;\n        for (UInt &x : block)\
+      \ x = ~x;\n        block.back() &= mask;\n        return *this;\n    }\n\n \
+      \   T &flip(int i) {\n        assert(0 <= i && i < n);\n        block[i >> BLOCK_SIZE_LOG]\
+      \ ^= ONE << (i & BLOCK_MASK);\n        return *this;\n    }\n\n    int ctz()\
+      \ const {\n        int res = 0;\n        int i = 0;\n        for (; i < (n +\
+      \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; ++i) {\n            if (block[i]) break;\n\
+      \            res += BLOCK_SIZE;\n        }\n        assert(i < (n + BLOCK_SIZE\
+      \ - 1) >> BLOCK_SIZE_LOG);\n        res += kk2::ctz(block[i]);\n        return\
+      \ res;\n    }\n\n    int clz() const {\n        int res = 0;\n        int i\
+      \ = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        for (; i--;) {\n    \
+      \        if (block[i]) break;\n            if (i + 1 == (n + BLOCK_SIZE - 1)\
+      \ >> BLOCK_SIZE_LOG) {\n                res += n & BLOCK_MASK;\n           \
+      \ } else {\n                res += BLOCK_SIZE;\n            }\n        }\n \
+      \       assert(i >= 0);\n        if (i + 1 == (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG)\
+      \ {\n            res += kk2::clz(block[i]) - (BLOCK_SIZE - (n & BLOCK_MASK));\n\
+      \        } else {\n            res += kk2::clz(block[i]);\n        }\n     \
+      \   return res;\n    }\n\n    int popcount() const {\n        int res = 0;\n\
+      \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            res += kk2::popcount(block[i]);\n        }\n        return res;\n\
+      \    }\n\n    T &operator~() { return flip(); }\n\n    T &operator&=(const T\
+      \ &other) {\n        assert(n == other.n);\n        for (int i = 0; i < (n +\
+      \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] &= other.block[i];\n\
       \        }\n        return *this;\n    }\n\n    T &operator|=(const T &other)\
       \ {\n        assert(n == other.n);\n        for (int i = 0; i < (n + BLOCK_SIZE\
       \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            block[i] |= other.block[i];\n\
@@ -302,11 +304,11 @@ data:
       \      }\n        std::string res;\n        for (int i = 0; i < (n + BLOCK_SIZE\
       \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            std::reverse(std::begin(tmp[i]),\
       \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return\
-      \ res;\n    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ res;\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const T &bs) {\n        return os << bs.to_string();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, T &bs)\
-      \ {\n        std::string s;\n        is >> s;\n        bs.set_reversed(s);\n\
-      \        return is;\n    }\n};\n\n} // namespace kk2\n\n\n#line 13 \"matrix/matrix_F2.hpp\"\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, T &bs) {\n \
+      \       std::string s;\n        is >> s;\n        bs.set_reversed(s);\n    \
+      \    return is;\n    }\n};\n\n} // namespace kk2\n\n\n#line 13 \"matrix/matrix_F2.hpp\"\
       \n\nnamespace kk2 {\n\nstruct MatrixF2 {\n    using mat = MatrixF2;\n    int\
       \ _h, _w;\n    std::vector<DynamicBitSet> _mat;\n\n    MatrixF2() : MatrixF2(0)\
       \ {}\n    MatrixF2(int n) : MatrixF2(n, n) {}\n\n    MatrixF2(int h, int w)\
@@ -320,11 +322,11 @@ data:
       \ const { return _w; }\n\n    class Proxy {\n        std::vector<DynamicBitSet>\
       \ &bs;\n        int i;\n\n      public:\n        Proxy(std::vector<DynamicBitSet>\
       \ &bs_, int i_) : bs(bs_), i(i_) {}\n\n        operator DynamicBitSet() const\
-      \ { return bs[i]; }\n\n        template <InputStream IStream>\n        friend\
-      \ IStream &operator>>(IStream &is, Proxy p) {\n            std::string s;\n\
-      \            is >> s;\n            p = s;\n            return is;\n        }\n\
-      \n        template <OutputStream OStream>\n        friend OStream &operator<<(OStream\
-      \ &os, Proxy p) {\n            os << p.to_reversed_string();\n            return\
+      \ { return bs[i]; }\n\n        template <InputStream IStream> friend IStream\
+      \ &operator>>(IStream &is, Proxy p) {\n            std::string s;\n        \
+      \    is >> s;\n            p = s;\n            return is;\n        }\n\n   \
+      \     template <OutputStream OStream> friend OStream &operator<<(OStream &os,\
+      \ Proxy p) {\n            os << p.to_reversed_string();\n            return\
       \ os;\n        }\n\n        std::string to_string() const { return bs[i].to_string();\
       \ }\n        std::string to_reversed_string() const { return bs[i].to_reversed_string();\
       \ }\n\n        Proxy &operator=(const std::string &s) {\n            bs[i].set_reversed(s);\n\
@@ -349,13 +351,13 @@ data:
       \        }\n        return *this;\n    }\n\n    template <OutputStream OStream>\
       \ void output(OStream &os) const {\n        for (int i = 0; i < _h; i++) { os\
       \ << _mat[i].to_reversed_string() << \"\\n\"; }\n    }\n\n    template <OutputStream\
-      \ OStream>\n    void debug_output(OStream &os) const {\n        os << \"(h,\
-      \ w): \" << \"(\" << _h << \", \" << _w << \"), [\\n\";\n        for (int i\
-      \ = 0; i < _h; i++) {\n            os << \"  [ \";\n            for (int j =\
-      \ 0; j < _w; ++j) os << _mat[i].is_pinned(j) << \" \";\n            os << \"\
-      ]\\n\";\n        }\n        os << \"]\\n\";\n    }\n\n    void set(int i, int\
-      \ j, bool x) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j &&\
-      \ j < _w);\n        _mat[i].set(j, x);\n    }\n\n    void set(int i, const std::string\
+      \ OStream> void debug_output(OStream &os) const {\n        os << \"(h, w): \"\
+      \ << \"(\" << _h << \", \" << _w << \"), [\\n\";\n        for (int i = 0; i\
+      \ < _h; i++) {\n            os << \"  [ \";\n            for (int j = 0; j <\
+      \ _w; ++j) os << _mat[i].is_pinned(j) << \" \";\n            os << \"]\\n\"\
+      ;\n        }\n        os << \"]\\n\";\n    }\n\n    void set(int i, int j, bool\
+      \ x) {\n        assert(0 <= i && i < _h);\n        assert(0 <= j && j < _w);\n\
+      \        _mat[i].set(j, x);\n    }\n\n    void set(int i, const std::string\
       \ &s) {\n        assert((int)s.size() == _w);\n        _mat[i].set(s);\n   \
       \ }\n\n    void set_reversed(int i, const std::string &s) {\n        assert((int)s.size()\
       \ == _w);\n        _mat[i].set_reversed(s);\n    }\n\n    mat &operator+=(const\
@@ -604,7 +606,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -642,192 +644,192 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0021320710000054532
+  - elapsed: 0.001749478000022009
     environment: g++
-    memory: 3.888
+    memory: 3.752
     name: example_00
     status: AC
-  - elapsed: 0.0016380880000070874
+  - elapsed: 0.0015061749999745189
     environment: g++
-    memory: 3.928
+    memory: 3.94
     name: example_01
     status: AC
-  - elapsed: 0.0016079829999995354
+  - elapsed: 0.001444198999990931
     environment: g++
-    memory: 3.884
+    memory: 3.9
     name: example_02
     status: AC
-  - elapsed: 0.41404648099999974
+  - elapsed: 0.3884107729999755
     environment: g++
     memory: 10.376
     name: lowrank_max_random_00
     status: AC
-  - elapsed: 0.423936157
+  - elapsed: 0.3881287539999789
     environment: g++
     memory: 10.376
     name: lowrank_max_random_01
     status: AC
-  - elapsed: 0.41567835700000444
+  - elapsed: 0.41385700099999667
     environment: g++
-    memory: 10.368
+    memory: 10.376
     name: lowrank_max_random_02
     status: AC
-  - elapsed: 0.6668009310000116
+  - elapsed: 0.6639726779999933
     environment: g++
     memory: 10.248
     name: lowrank_max_random_03
     status: AC
-  - elapsed: 0.4970473119999923
+  - elapsed: 0.48556180699995366
     environment: g++
-    memory: 10.404
+    memory: 10.376
     name: lowrank_max_random_04
     status: AC
-  - elapsed: 0.42816135600000393
+  - elapsed: 0.4108043659999794
     environment: g++
-    memory: 10.376
+    memory: 10.32
     name: lowrank_max_random_05
     status: AC
-  - elapsed: 0.4122704509999977
+  - elapsed: 0.387237951999964
     environment: g++
-    memory: 10.376
+    memory: 10.4
     name: lowrank_max_random_06
     status: AC
-  - elapsed: 0.4179325930000033
+  - elapsed: 0.39267896499995913
     environment: g++
-    memory: 10.392
+    memory: 10.376
     name: lowrank_max_random_07
     status: AC
-  - elapsed: 2.430453741000008
+  - elapsed: 2.5756772930000125
     environment: g++
-    memory: 12.548
+    memory: 12.572
     name: max_fullrank_00
     status: AC
-  - elapsed: 2.4591631060000054
+  - elapsed: 2.596613730999991
     environment: g++
-    memory: 12.548
+    memory: 12.552
     name: max_fullrank_01
     status: AC
-  - elapsed: 2.4136355500000093
+  - elapsed: 2.594622130999994
     environment: g++
     memory: 12.552
     name: max_fullrank_02
     status: AC
-  - elapsed: 2.500661788000002
+  - elapsed: 2.592732023999986
     environment: g++
     memory: 12.552
     name: max_fullrank_03
     status: AC
-  - elapsed: 2.1591365720000084
+  - elapsed: 2.2467133540000077
     environment: g++
     memory: 10.376
     name: max_random_00
     status: AC
-  - elapsed: 2.3965484779999997
+  - elapsed: 2.678508148999981
     environment: g++
     memory: 12.552
     name: max_random_01
     status: AC
-  - elapsed: 2.096436557000004
+  - elapsed: 2.359714242999985
     environment: g++
-    memory: 10.376
+    memory: 10.388
     name: max_random_02
     status: AC
-  - elapsed: 2.1647828309999966
+  - elapsed: 2.312352182999973
     environment: g++
-    memory: 10.248
+    memory: 10.376
     name: max_random_03
     status: AC
-  - elapsed: 0.4153193799999997
+  - elapsed: 0.38979203799999596
     environment: g++
-    memory: 10.248
+    memory: 10.268
     name: perm_max_random_00
     status: AC
-  - elapsed: 0.40968203900000333
+  - elapsed: 0.3868883549999964
     environment: g++
-    memory: 10.24
+    memory: 10.264
     name: perm_max_random_01
     status: AC
-  - elapsed: 0.030848524000006705
+  - elapsed: 0.02833609900000056
     environment: g++
-    memory: 4.268
+    memory: 4.3
     name: random_00
     status: AC
-  - elapsed: 0.005313635999996791
+  - elapsed: 0.004484127000011995
     environment: g++
-    memory: 4.012
+    memory: 3.992
     name: random_01
     status: AC
-  - elapsed: 0.002121489000003862
+  - elapsed: 0.0018099530000199593
     environment: g++
-    memory: 3.884
+    memory: 3.888
     name: random_02
     status: AC
-  - elapsed: 1.0688237689999909
+  - elapsed: 1.3041206309999893
     environment: g++
-    memory: 8.016
+    memory: 8.072
     name: random_03
     status: AC
-  - elapsed: 0.041164371000007804
+  - elapsed: 0.03874449099998856
     environment: g++
-    memory: 4.528
+    memory: 4.52
     name: random_fullrank_00
     status: AC
-  - elapsed: 0.005073157000012429
+  - elapsed: 0.0046066610000252695
     environment: g++
-    memory: 4.028
+    memory: 4.016
     name: random_fullrank_01
     status: AC
-  - elapsed: 0.002358792999999082
+  - elapsed: 0.002189581999971324
     environment: g++
-    memory: 3.92
+    memory: 3.888
     name: random_fullrank_02
     status: AC
-  - elapsed: 1.276358602000002
+  - elapsed: 1.5463955829999918
     environment: g++
     memory: 9.608
     name: random_fullrank_03
     status: AC
-  - elapsed: 0.0022432000000094376
-    environment: g++
-    memory: 3.948
-    name: small_random_00
-    status: AC
-  - elapsed: 0.0017317310000066755
-    environment: g++
-    memory: 3.92
-    name: small_random_01
-    status: AC
-  - elapsed: 0.0016571809999987863
-    environment: g++
-    memory: 3.872
-    name: small_random_02
-    status: AC
-  - elapsed: 0.0016214209999958484
-    environment: g++
-    memory: 3.884
-    name: small_random_03
-    status: AC
-  - elapsed: 0.0016398329999987027
-    environment: g++
-    memory: 3.872
-    name: small_random_04
-    status: AC
-  - elapsed: 0.0016012180000046783
+  - elapsed: 0.0020557770000095843
     environment: g++
     memory: 3.924
+    name: small_random_00
+    status: AC
+  - elapsed: 0.001752689999989343
+    environment: g++
+    memory: 3.888
+    name: small_random_01
+    status: AC
+  - elapsed: 0.001672643999995671
+    environment: g++
+    memory: 3.76
+    name: small_random_02
+    status: AC
+  - elapsed: 0.0017010739999818725
+    environment: g++
+    memory: 3.88
+    name: small_random_03
+    status: AC
+  - elapsed: 0.0016702159999795185
+    environment: g++
+    memory: 3.948
+    name: small_random_04
+    status: AC
+  - elapsed: 0.0016011259999686445
+    environment: g++
+    memory: 3.876
     name: small_random_05
     status: AC
-  - elapsed: 0.0016346509999891623
+  - elapsed: 0.001626679000025888
     environment: g++
-    memory: 3.928
+    memory: 3.752
     name: small_random_06
     status: AC
-  - elapsed: 0.00158867300000054
+  - elapsed: 0.0015852440000116985
     environment: g++
-    memory: 3.764
+    memory: 3.884
     name: small_random_07
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_inv_f2.test.cpp

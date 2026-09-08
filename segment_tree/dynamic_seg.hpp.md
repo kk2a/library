@@ -77,7 +77,7 @@ data:
       \ i64 l, const G &g) {}\n};\n\nnamespace DynamicSegImpl {\n\ntemplate <class\
       \ S> S mapping(S l, bool) { return l; }\nbool composition(bool, bool) { return\
       \ false; }\nbool id() { return false; }\n\ntemplate <class S, S (*op)(S, S),\
-      \ S (*e)()> using DynamicSegTree =\n    DynamicLazySegTree<S, op, e, bool, mapping,\
+      \ S (*e)()>\nusing DynamicSegTree = DynamicLazySegTree<S, op, e, bool, mapping,\
       \ composition, id>;\n\n} // namespace DynamicSegImpl\nusing DynamicSegImpl::DynamicSegTree;\n\
       \n} // namespace kk2\n\n#endif // KK2_SEGMENT_TREE_DYNAMIC_SEG_HPP\n"
     name: default
@@ -145,7 +145,7 @@ data:
       \ i64 l, const G &g) {}\n};\n\nnamespace DynamicSegImpl {\n\ntemplate <class\
       \ S> S mapping(S l, bool) { return l; }\nbool composition(bool, bool) { return\
       \ false; }\nbool id() { return false; }\n\ntemplate <class S, S (*op)(S, S),\
-      \ S (*e)()> using DynamicSegTree =\n    DynamicLazySegTree<S, op, e, bool, mapping,\
+      \ S (*e)()>\nusing DynamicSegTree = DynamicLazySegTree<S, op, e, bool, mapping,\
       \ composition, id>;\n\n} // namespace DynamicSegImpl\nusing DynamicSegImpl::DynamicSegTree;\n\
       \n} // namespace kk2\n\n\n"
     name: bundled
@@ -154,7 +154,7 @@ data:
   path: segment_tree/dynamic_seg.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/dynamic_seg.hpp

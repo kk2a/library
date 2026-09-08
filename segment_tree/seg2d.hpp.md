@@ -23,8 +23,8 @@ data:
       \ h_, int w_) : _h(h_), _w(w_) {\n        size_h = size_w = 1;\n        while\
       \ (size_h < _h) size_h <<= 1;\n        while (size_w < _w) size_w <<= 1;\n \
       \       d = std::vector<std::vector<M>>(size_h * 2, std::vector<M>(size_w *\
-      \ 2, M::unit()));\n    }\n\n    template <class... Args> SegmentTree2D(int h_,\
-      \ int w_, Args... args)\n        : SegmentTree2D(std::vector<std::vector<M>>(h_,\
+      \ 2, M::unit()));\n    }\n\n    template <class... Args>\n    SegmentTree2D(int\
+      \ h_, int w_, Args... args)\n        : SegmentTree2D(std::vector<std::vector<M>>(h_,\
       \ std::vector<M>(w_, M(args...)))) {}\n\n    SegmentTree2D(const std::vector<std::vector<M>>\
       \ &v) : _h(int(v.size())), _w(int(v[0].size())) {\n        size_h = size_w =\
       \ 1;\n        while (size_h < _h) size_h <<= 1;\n        while (size_w < _w)\
@@ -83,18 +83,18 @@ data:
       \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
       } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
       \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action = requires {\n\
-      \    typename T::A;\n    typename T::S;\n} && Monoid<typename T::A> && Monoid<typename\
-      \ T::S>\n    && requires(const typename T::A &f, const typename T::S &x) {\n\
-      \           { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n\
-      } // namespace algebra\n\n} // namespace kk2\n\n\n#line 8 \"segment_tree/seg2d.hpp\"\
-      \n\nnamespace kk2 {\n\n// commutative monoid\ntemplate <algebra::CommutativeMonoid\
-      \ M> struct SegmentTree2D {\n    SegmentTree2D() = default;\n\n    SegmentTree2D(int\
-      \ h_, int w_) : _h(h_), _w(w_) {\n        size_h = size_w = 1;\n        while\
-      \ (size_h < _h) size_h <<= 1;\n        while (size_w < _w) size_w <<= 1;\n \
-      \       d = std::vector<std::vector<M>>(size_h * 2, std::vector<M>(size_w *\
-      \ 2, M::unit()));\n    }\n\n    template <class... Args> SegmentTree2D(int h_,\
-      \ int w_, Args... args)\n        : SegmentTree2D(std::vector<std::vector<M>>(h_,\
+      \ propagation structures.\ntemplate <class T>\nconcept Action =\n    requires\
+      \ {\n        typename T::A;\n        typename T::S;\n    } && Monoid<typename\
+      \ T::A> && Monoid<typename T::S>\n    && requires(const typename T::A &f, const\
+      \ typename T::S &x) {\n           { T::act(f, x) } -> std::same_as<typename\
+      \ T::S>;\n       };\n\n} // namespace algebra\n\n} // namespace kk2\n\n\n#line\
+      \ 8 \"segment_tree/seg2d.hpp\"\n\nnamespace kk2 {\n\n// commutative monoid\n\
+      template <algebra::CommutativeMonoid M> struct SegmentTree2D {\n    SegmentTree2D()\
+      \ = default;\n\n    SegmentTree2D(int h_, int w_) : _h(h_), _w(w_) {\n     \
+      \   size_h = size_w = 1;\n        while (size_h < _h) size_h <<= 1;\n      \
+      \  while (size_w < _w) size_w <<= 1;\n        d = std::vector<std::vector<M>>(size_h\
+      \ * 2, std::vector<M>(size_w * 2, M::unit()));\n    }\n\n    template <class...\
+      \ Args>\n    SegmentTree2D(int h_, int w_, Args... args)\n        : SegmentTree2D(std::vector<std::vector<M>>(h_,\
       \ std::vector<M>(w_, M(args...)))) {}\n\n    SegmentTree2D(const std::vector<std::vector<M>>\
       \ &v) : _h(int(v.size())), _w(int(v[0].size())) {\n        size_h = size_w =\
       \ 1;\n        while (size_h < _h) size_h <<= 1;\n        while (size_w < _w)\
@@ -139,7 +139,7 @@ data:
   path: segment_tree/seg2d.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: segment_tree/seg2d.hpp

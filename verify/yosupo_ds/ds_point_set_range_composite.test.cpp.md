@@ -79,48 +79,50 @@ data:
       \n#include \"../../segment_tree/seg.hpp\"\n#include \"../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    using M = kk2::monoid::Affine<kk2::mont998>;\n    using RM = kk2::monoid::ReverseOp<M>;\n\
-      \    vc<RM> a(n);\n    kin >> a;\n    kk2::SegmentTree<RM> seg(a);\n\n    rep\
-      \ (q) {\n        int t;\n        kin >> t;\n        if (t == 0) {\n        \
-      \    int p;\n            kk2::mont998 c, d;\n            kin >> p >> c >> d;\n\
-      \            seg.set(p, c, d);\n        }\n        if (t == 1) {\n         \
-      \   int l, r;\n            kk2::mont998 x; \n            kin >> l >> r >> x;\n\
-      \            kout << seg.prod(l, r).eval(x) << \"\\n\";\n        }\n    }\n\n\
-      \    return 0;\n}\n"
+      \    vc<RM> a(n);\n    kin >> a;\n    kk2::SegmentTree<RM> seg(a);\n\n    rep(q)\
+      \ {\n        int t;\n        kin >> t;\n        if (t == 0) {\n            int\
+      \ p;\n            kk2::mont998 c, d;\n            kin >> p >> c >> d;\n    \
+      \        seg.set(p, c, d);\n        }\n        if (t == 1) {\n            int\
+      \ l, r;\n            kk2::mont998 x;\n            kin >> l >> r >> x;\n    \
+      \        kout << seg.prod(l, r).eval(x) << \"\\n\";\n        }\n    }\n\n  \
+      \  return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_ds/ds_point_set_range_composite.test.cpp\"\n//\
       \ competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_set_range_composite\n\
       \n#line 1 \"functional/reverse_args.hpp\"\n\n\n\n#line 1 \"type_traits/functional.hpp\"\
-      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T> using\
-      \ is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T>\
+      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\ntemplate <typename T>\n\
+      using is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T>\
       \ && std::is_function_v<std::remove_pointer_t<T>>,\n                       \
       \       std::true_type,\n                              std::false_type>::type;\n\
       \ntemplate <typename T> struct is_two_args_function_pointer : std::false_type\
-      \ {};\n\ntemplate <typename R, typename T1, typename T2> struct is_two_args_function_pointer<R\
-      \ (*)(T1, T2)>\n    : std::true_type {};\n\ntemplate <typename T> using is_two_args_function_pointer_t\
-      \ =\n    std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate\
-      \ <class T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate\
-      \ <class T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
+      \ {};\n\ntemplate <typename R, typename T1, typename T2>\nstruct is_two_args_function_pointer<R\
+      \ (*)(T1, T2)> : std::true_type {};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t\
+      \ = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate <class\
+      \ T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate <class\
+      \ T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
       \n} // namespace kk2\n\n\n#line 5 \"functional/reverse_args.hpp\"\n\nnamespace\
-      \ kk2 {\n\n// reverse_args<f>(y, x) = f(x, y)\ntemplate <auto f> requires TwoArgsFunctionPointer<decltype(f)>\n\
-      inline auto reverse_args(auto x, auto y) {\n    return f(y, x);\n}\n\n} // namespace\
-      \ kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\n\n\n\n#line 1 \"type_traits/io.hpp\"\
-      \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
-      \ <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-      \ type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace\
-      \ type_traits\n\ntemplate <typename T> using is_standard_istream =\n    typename\
-      \ std::conditional<std::is_same<T, std::istream>::value\n                  \
-      \                || std::is_same<T, std::ifstream>::value,\n               \
-      \               std::true_type,\n                              std::false_type>::type;\n\
-      template <typename T> using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ kk2 {\n\n// reverse_args<f>(y, x) = f(x, y)\ntemplate <auto f>\n    requires\
+      \ TwoArgsFunctionPointer<decltype(f)>\ninline auto reverse_args(auto x, auto\
+      \ y) {\n    return f(y, x);\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\
+      \n\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include\
+      \ <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
       \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -132,57 +134,58 @@ data:
       \n} // namespace kk2\n\n\n#line 5 \"math/monoid/affine.hpp\"\n\nnamespace kk2\
       \ {\n\nnamespace monoid {\n\ntemplate <class S> struct Affine {\n    static\
       \ constexpr bool commutative = false;\n    using M = Affine;\n    S a, b; //\
-      \ x \\mapsto ax + b\n\n    Affine() : a(S(1)), b(S(0)) {};\n    Affine(S a,\
-      \ S b) : a(a), b(b) {}\n    inline S eval(S x) const { return a * x + b; }\n\
-      \    // l \\circ r\n    inline static M op(M l, M r) { return M(l.a * r.a, l.a\
+      \ x \\mapsto ax + b\n\n    Affine() : a(S(1)), b(S(0)){};\n    Affine(S a, S\
+      \ b) : a(a), b(b) {}\n    inline S eval(S x) const { return a * x + b; }\n \
+      \   // l \\circ r\n    inline static M op(M l, M r) { return M(l.a * r.a, l.a\
       \ * r.b + l.b); }\n    inline static M unit() { return M(); }\n    inline static\
       \ M inv(M f) { return M(S(1) / f.a, -f.b / f.a); }\n    bool operator==(const\
       \ M &rhs) const { return a == rhs.a and b == rhs.b; }\n    bool operator!=(const\
       \ M &rhs) const { return a != rhs.a or b != rhs.b; }\n\n    template <OutputStream\
-      \ OStream>\n    friend OStream &operator<<(OStream &os, const M &x) {\n    \
-      \    return os << x.a << \" \" << x.b;\n    }\n\n    template <InputStream IStream>\n\
-      \    friend IStream &operator>>(IStream &is, M &x) {\n        return is >> x.a\
-      \ >> x.b;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n#line\
-      \ 1 \"math/monoid/rev_op.hpp\"\n\n\n\n#line 5 \"math/monoid/rev_op.hpp\"\n\n\
-      namespace kk2 {\n\nnamespace monoid {\n\ntemplate <class T> struct ReverseOp\
-      \ : public T {\n    static constexpr bool commutative = T::commutative;\n  \
-      \  using M = ReverseOp;\n    using base = T;\n    using T::T;\n    ReverseOp(const\
-      \ T &t) : T(t) {}\n    inline static M op(M l, M r) {\n        return static_cast<M>(T::op(static_cast<T>(r),\
-      \ static_cast<T>(l)));\n    }\n    inline static M unit() { return static_cast<M>(T::unit());\
-      \ }\n\n    bool operator==(const M &rhs) const { return static_cast<T>(*this)\
-      \ == static_cast<T>(rhs); }\n    bool operator!=(const M &rhs) const { return\
-      \ static_cast<T>(*this) != static_cast<T>(rhs); }\n    template <OutputStream\
-      \ OStream>\n    friend OStream &operator<<(OStream &os, const M &x) {\n    \
-      \    os << static_cast<T>(x);\n        return os;\n    }\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, M &x) {\n        is\
-      \ >> static_cast<T &>(x);\n        return is;\n    }\n};\n\n} // namespace monoid\n\
-      \n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#include <cassert>\n\
-      #include <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line\
-      \ 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
-      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
+      \ OStream> friend OStream &operator<<(OStream &os, const M &x) {\n        return\
+      \ os << x.a << \" \" << x.b;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        return is >> x.a >> x.b;\n\
+      \    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/rev_op.hpp\"\
+      \n\n\n\n#line 5 \"math/monoid/rev_op.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid\
+      \ {\n\ntemplate <class T> struct ReverseOp : public T {\n    static constexpr\
+      \ bool commutative = T::commutative;\n    using M = ReverseOp;\n    using base\
+      \ = T;\n    using T::T;\n    ReverseOp(const T &t) : T(t) {}\n    inline static\
+      \ M op(M l, M r) {\n        return static_cast<M>(T::op(static_cast<T>(r), static_cast<T>(l)));\n\
+      \    }\n    inline static M unit() { return static_cast<M>(T::unit()); }\n\n\
+      \    bool operator==(const M &rhs) const { return static_cast<T>(*this) == static_cast<T>(rhs);\
+      \ }\n    bool operator!=(const M &rhs) const { return static_cast<T>(*this)\
+      \ != static_cast<T>(rhs); }\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const M &x) {\n        os << static_cast<T>(x);\n\
+      \        return os;\n    }\n    template <InputStream IStream> friend IStream\
+      \ &operator>>(IStream &is, M &x) {\n        is >> static_cast<T &>(x);\n   \
+      \     return is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\
+      \n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#include <cassert>\n#include <cstdint>\n\
+      #include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -202,8 +205,8 @@ data:
       \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
       );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
       \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\n\
-      \        : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
+      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
+      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
       \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
       \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
       \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
@@ -230,12 +233,12 @@ data:
       \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
       \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
       \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
-      \ - 2);\n    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, mint &x)\
-      \ {\n        i64 t;\n        is >> t;\n        x = mint(t);\n        return\
-      \ (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n\
-      \        return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n \
+      \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
       \ namespace kk2\n\n\n#line 1 \"segment_tree/seg.hpp\"\n\n\n\n#line 5 \"segment_tree/seg.hpp\"\
@@ -258,40 +261,40 @@ data:
       \  { T::commutative } -> std::convertible_to<bool>;\n} && bool(T::commutative);\n\
       \n// An action specification owns the pair of algebraic types and the mapping\n\
       // between them. It is the interface required by lazy propagation structures.\n\
-      template <class T>\nconcept Action = requires {\n    typename T::A;\n    typename\
-      \ T::S;\n} && Monoid<typename T::A> && Monoid<typename T::S>\n    && requires(const\
-      \ typename T::A &f, const typename T::S &x) {\n           { T::act(f, x) } ->\
-      \ std::same_as<typename T::S>;\n       };\n\n} // namespace algebra\n\n} //\
-      \ namespace kk2\n\n\n#line 8 \"segment_tree/seg.hpp\"\n\nnamespace kk2 {\n\n\
-      template <algebra::Monoid M> struct SegmentTree {\n  public:\n    SegmentTree()\
-      \ : SegmentTree(0) {}\n\n    SegmentTree(int n) : _n(n) {\n        log = 0;\n\
-      \        while ((1U << log) < (unsigned int)(_n)) log++;\n        size = 1 <<\
-      \ log;\n        d = std::vector<M>(2 * size, M::unit());\n    }\n\n    template\
-      \ <class... Args> SegmentTree(int n, Args... args)\n        : SegmentTree(std::vector<M>(n,\
-      \ M(args...))) {}\n\n    SegmentTree(const std::vector<M> &v) : _n(int(v.size()))\
-      \ {\n        log = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n\
+      template <class T>\nconcept Action =\n    requires {\n        typename T::A;\n\
+      \        typename T::S;\n    } && Monoid<typename T::A> && Monoid<typename T::S>\n\
+      \    && requires(const typename T::A &f, const typename T::S &x) {\n       \
+      \    { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n} // namespace\
+      \ algebra\n\n} // namespace kk2\n\n\n#line 8 \"segment_tree/seg.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <algebra::Monoid M> struct SegmentTree {\n  public:\n  \
+      \  SegmentTree() : SegmentTree(0) {}\n\n    SegmentTree(int n) : _n(n) {\n \
+      \       log = 0;\n        while ((1U << log) < (unsigned int)(_n)) log++;\n\
       \        size = 1 << log;\n        d = std::vector<M>(2 * size, M::unit());\n\
-      \        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        build();\n\
-      \    }\n\n    void build() {\n        assert(!is_built);\n        is_built =\
-      \ true;\n        for (int i = size - 1; i >= 1; i--) update(i);\n    }\n\n \
-      \   template <class... Args> void init_set(int p, Args... args) {\n        assert(0\
-      \ <= p && p < _n);\n        assert(!is_built);\n        d[p + size] = M(args...);\n\
-      \    }\n\n    using Monoid = M;\n\n    static M Op(M l, M r) { return M::op(l,\
-      \ r); }\n\n    static M MonoidUnit() { return M::unit(); }\n\n    template <class...\
-      \ Args> void set(int p, Args... args) {\n        assert(0 <= p && p < _n);\n\
-      \        assert(is_built);\n        p += size;\n        d[p] = M(args...);\n\
-      \        for (int i = 1; i <= log; i++) update(p >> i);\n    }\n\n    M get(int\
-      \ p) {\n        assert(0 <= p && p < _n);\n        assert(is_built);\n     \
-      \   return d[p + size];\n    }\n\n    M prod(int l, int r) {\n        assert(0\
-      \ <= l && l <= r && r <= _n);\n        assert(is_built);\n        M sml = M::unit(),\
-      \ smr = M::unit();\n        l += size;\n        r += size;\n\n        while\
-      \ (l < r) {\n            if (l & 1) sml = M::op(sml, d[l++]);\n            if\
-      \ (r & 1) smr = M::op(d[--r], smr);\n            l >>= 1;\n            r >>=\
-      \ 1;\n        }\n        return M::op(sml, smr);\n    }\n\n    M all_prod()\
-      \ {\n        assert(is_built);\n        return d[1];\n    }\n\n    template\
-      \ <bool (*f)(M)> int max_right(int l) {\n        return max_right(l, [](M x)\
-      \ { return f(x); });\n    }\n\n    template <class F> int max_right(int l, F\
-      \ f) {\n        assert(0 <= l && l <= _n);\n        assert(f(M::unit()));\n\
+      \    }\n\n    template <class... Args>\n    SegmentTree(int n, Args... args)\
+      \ : SegmentTree(std::vector<M>(n, M(args...))) {}\n\n    SegmentTree(const std::vector<M>\
+      \ &v) : _n(int(v.size())) {\n        log = 0;\n        while ((1U << log) <\
+      \ (unsigned int)(_n)) log++;\n        size = 1 << log;\n        d = std::vector<M>(2\
+      \ * size, M::unit());\n        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n\
+      \        build();\n    }\n\n    void build() {\n        assert(!is_built);\n\
+      \        is_built = true;\n        for (int i = size - 1; i >= 1; i--) update(i);\n\
+      \    }\n\n    template <class... Args> void init_set(int p, Args... args) {\n\
+      \        assert(0 <= p && p < _n);\n        assert(!is_built);\n        d[p\
+      \ + size] = M(args...);\n    }\n\n    using Monoid = M;\n\n    static M Op(M\
+      \ l, M r) { return M::op(l, r); }\n\n    static M MonoidUnit() { return M::unit();\
+      \ }\n\n    template <class... Args> void set(int p, Args... args) {\n      \
+      \  assert(0 <= p && p < _n);\n        assert(is_built);\n        p += size;\n\
+      \        d[p] = M(args...);\n        for (int i = 1; i <= log; i++) update(p\
+      \ >> i);\n    }\n\n    M get(int p) {\n        assert(0 <= p && p < _n);\n \
+      \       assert(is_built);\n        return d[p + size];\n    }\n\n    M prod(int\
+      \ l, int r) {\n        assert(0 <= l && l <= r && r <= _n);\n        assert(is_built);\n\
+      \        M sml = M::unit(), smr = M::unit();\n        l += size;\n        r\
+      \ += size;\n\n        while (l < r) {\n            if (l & 1) sml = M::op(sml,\
+      \ d[l++]);\n            if (r & 1) smr = M::op(d[--r], smr);\n            l\
+      \ >>= 1;\n            r >>= 1;\n        }\n        return M::op(sml, smr);\n\
+      \    }\n\n    M all_prod() {\n        assert(is_built);\n        return d[1];\n\
+      \    }\n\n    template <bool (*f)(M)> int max_right(int l) {\n        return\
+      \ max_right(l, [](M x) { return f(x); });\n    }\n\n    template <class F> int\
+      \ max_right(int l, F f) {\n        assert(0 <= l && l <= _n);\n        assert(f(M::unit()));\n\
       \        assert(is_built);\n        if (l == _n) return _n;\n        l += size;\n\
       \        M sm = M::unit();\n        do {\n            while (l % 2 == 0) l >>=\
       \ 1;\n            if (!f(M::op(sm, d[l]))) {\n                while (l < size)\
@@ -465,7 +468,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -495,13 +498,13 @@ data:
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 9 \"verify/yosupo_ds/ds_point_set_range_composite.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    using M = kk2::monoid::Affine<kk2::mont998>;\n    using RM = kk2::monoid::ReverseOp<M>;\n\
-      \    vc<RM> a(n);\n    kin >> a;\n    kk2::SegmentTree<RM> seg(a);\n\n    rep\
-      \ (q) {\n        int t;\n        kin >> t;\n        if (t == 0) {\n        \
-      \    int p;\n            kk2::mont998 c, d;\n            kin >> p >> c >> d;\n\
-      \            seg.set(p, c, d);\n        }\n        if (t == 1) {\n         \
-      \   int l, r;\n            kk2::mont998 x; \n            kin >> l >> r >> x;\n\
-      \            kout << seg.prod(l, r).eval(x) << \"\\n\";\n        }\n    }\n\n\
-      \    return 0;\n}\n"
+      \    vc<RM> a(n);\n    kin >> a;\n    kk2::SegmentTree<RM> seg(a);\n\n    rep(q)\
+      \ {\n        int t;\n        kin >> t;\n        if (t == 0) {\n            int\
+      \ p;\n            kk2::mont998 c, d;\n            kin >> p >> c >> d;\n    \
+      \        seg.set(p, c, d);\n        }\n        if (t == 1) {\n            int\
+      \ l, r;\n            kk2::mont998 x;\n            kin >> l >> r >> x;\n    \
+      \        kout << seg.prod(l, r).eval(x) << \"\\n\";\n        }\n    }\n\n  \
+      \  return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -509,87 +512,87 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002694445999999573
+  - elapsed: 0.002587558000016088
     environment: g++
-    memory: 3.756
+    memory: 3.728
     name: example_00
     status: AC
-  - elapsed: 0.9668069499999987
+  - elapsed: 0.8360203750000039
     environment: g++
-    memory: 15.72
+    memory: 15.78
     name: max_random_00
     status: AC
-  - elapsed: 0.9801657040000009
+  - elapsed: 0.8723754309999947
     environment: g++
-    memory: 15.672
+    memory: 15.78
     name: max_random_01
     status: AC
-  - elapsed: 0.9783777200000046
+  - elapsed: 0.8899967330000038
     environment: g++
-    memory: 15.716
+    memory: 15.784
     name: max_random_02
     status: AC
-  - elapsed: 0.969650295000001
+  - elapsed: 0.8267382699999928
     environment: g++
-    memory: 15.72
+    memory: 15.812
     name: max_random_03
     status: AC
-  - elapsed: 0.950270629000002
+  - elapsed: 0.7920736049999846
     environment: g++
-    memory: 15.716
+    memory: 15.776
     name: max_random_04
     status: AC
-  - elapsed: 0.7632160880000001
+  - elapsed: 0.6171213890000047
     environment: g++
-    memory: 14.896
+    memory: 14.996
     name: random_00
     status: AC
-  - elapsed: 0.8540397679999998
+  - elapsed: 0.6667168060000108
     environment: g++
-    memory: 15.348
+    memory: 15.464
     name: random_01
     status: AC
-  - elapsed: 0.474638395999996
+  - elapsed: 0.39485040600001753
     environment: g++
-    memory: 4.992
+    memory: 5.088
     name: random_02
     status: AC
-  - elapsed: 0.17177279599999906
+  - elapsed: 0.1525136570000143
     environment: g++
-    memory: 15.124
+    memory: 15.064
     name: random_03
     status: AC
-  - elapsed: 0.2410500910000053
+  - elapsed: 0.2070249610000019
     environment: g++
-    memory: 14.028
+    memory: 14.096
     name: random_04
     status: AC
-  - elapsed: 0.002981712999996944
+  - elapsed: 0.0026047489999996287
     environment: g++
-    memory: 3.772
+    memory: 3.836
     name: small_00
     status: AC
-  - elapsed: 0.0026279009999967684
+  - elapsed: 0.002233437000001004
     environment: g++
-    memory: 3.788
+    memory: 3.704
     name: small_01
     status: AC
-  - elapsed: 0.002633130000006645
+  - elapsed: 0.002203823000002103
     environment: g++
-    memory: 3.768
+    memory: 3.824
     name: small_02
     status: AC
-  - elapsed: 0.0028792909999992844
+  - elapsed: 0.0022131970000032197
     environment: g++
-    memory: 3.628
+    memory: 3.824
     name: small_03
     status: AC
-  - elapsed: 0.002709250999998858
+  - elapsed: 0.0022946210000043266
     environment: g++
-    memory: 3.776
+    memory: 3.828
     name: small_04
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite.test.cpp

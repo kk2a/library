@@ -55,7 +55,7 @@ data:
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/many_aplusb_128bit\n\
       \n#include \"../../template/procon.hpp\"\nusing namespace std;\n\nint main()\
-      \ {\n    int t;\n    kin >> t;\n    rep (t) {\n        i128 a, b;\n        kin\
+      \ {\n    int t;\n    kin >> t;\n    rep(t) {\n        i128 a, b;\n        kin\
       \ >> a >> b;\n        kout << a + b << \"\\n\";\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp\"\n// competitive-verifier:\
@@ -89,21 +89,22 @@ data:
       \n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#line 6 \"type_traits/io.hpp\"\
       \n#include <istream>\n#include <ostream>\n#include <type_traits>\n\nnamespace\
       \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
-      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T> using is_standard_istream\
-      \ =\n    typename std::conditional<std::is_same<T, std::istream>::value\n  \
-      \                                || std::is_same<T, std::ifstream>::value,\n\
+      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
+      \ = typename std::conditional<std::is_same<T, std::istream>::value\n       \
+      \                                                   || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -123,9 +124,9 @@ data:
       \ const {\n        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n\
       \    }\n\n    bool operator!=(const M &rhs) const {\n        return is_unit\
       \ != rhs.is_unit or (!is_unit and a != rhs.a);\n    }\n\n    template <OutputStream\
-      \ OStream>\n    friend OStream &operator<<(OStream &os, const M &x) {\n    \
-      \    if (x.is_unit) os << \"-inf\";\n        else os << x.a;\n        return\
-      \ os;\n    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
+      \ OStream> friend OStream &operator<<(OStream &os, const M &x) {\n        if\
+      \ (x.is_unit) os << \"-inf\";\n        else os << x.a;\n        return os;\n\
+      \    }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
       \ &is, M &x) {\n        is >> x.a;\n        x.is_unit = false;\n        return\
       \ is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n#line 1\
       \ \"math/monoid/min.hpp\"\n\n\n\n#line 5 \"math/monoid/min.hpp\"\n\n#line 7\
@@ -139,22 +140,21 @@ data:
       \ { return M(); }\n\n    bool operator==(const M &rhs) const {\n        return\
       \ is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n    }\n\n    bool operator!=(const\
       \ M &rhs) const {\n        return is_unit != rhs.is_unit or (!is_unit and a\
-      \ != rhs.a);\n    }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const M &x) {\n        if (x.is_unit) os << \"inf\"\
-      ;\n        else os << x.a;\n        return os;\n    }\n\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, M &x) {\n        is\
-      \ >> x.a;\n        x.is_unit = false;\n        return is;\n    }\n};\n\n} //\
-      \ namespace monoid\n\n} // namespace kk2\n\n\n#line 1 \"type_traits/container_traits.hpp\"\
-      \n\n\n\n#line 7 \"type_traits/container_traits.hpp\"\n#include <list>\n#line\
-      \ 11 \"type_traits/container_traits.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename\
-      \ T> struct is_vector : std::false_type {};\ntemplate <typename T, typename\
-      \ Alloc> struct is_vector<std::vector<T, Alloc>> : std::true_type {};\n\ntemplate\
-      \ <typename T> struct is_container : std::false_type {};\ntemplate <typename\
-      \ T, typename Alloc> struct is_container<std::vector<T, Alloc>> : std::true_type\
-      \ {\n};\ntemplate <typename CharT, typename Traits, typename Alloc>\nstruct\
-      \ is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type {};\n\
-      template <typename T, std::size_t N> struct is_container<std::array<T, N>> :\
-      \ std::true_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::deque<T,\
+      \ != rhs.a);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const M &x) {\n        if (x.is_unit) os << \"inf\";\n        else os\
+      \ << x.a;\n        return os;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.is_unit\
+      \ = false;\n        return is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"type_traits/container_traits.hpp\"\n\n\n\n#line 7 \"type_traits/container_traits.hpp\"\
+      \n#include <list>\n#line 11 \"type_traits/container_traits.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <typename T> struct is_vector : std::false_type {};\ntemplate\
+      \ <typename T, typename Alloc> struct is_vector<std::vector<T, Alloc>> : std::true_type\
+      \ {};\n\ntemplate <typename T> struct is_container : std::false_type {};\ntemplate\
+      \ <typename T, typename Alloc>\nstruct is_container<std::vector<T, Alloc>> :\
+      \ std::true_type {};\ntemplate <typename CharT, typename Traits, typename Alloc>\n\
+      struct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type\
+      \ {};\ntemplate <typename T, std::size_t N> struct is_container<std::array<T,\
+      \ N>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::deque<T,\
       \ Alloc>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct\
       \ is_container<std::list<T, Alloc>> : std::true_type {};\ntemplate <typename\
       \ T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;\n\
@@ -222,7 +222,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -268,7 +268,7 @@ data:
       \ s;\n    while (x) {\n        s.push_back('0' + x % 10);\n        x /= 10;\n\
       \    }\n    std::reverse(s.begin(), s.end());\n    return os << s;\n}\n\n\n\
       #line 4 \"verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp\"\nusing namespace\
-      \ std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep (t) {\n        i128\
+      \ std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep(t) {\n        i128\
       \ a, b;\n        kin >> a >> b;\n        kout << a + b << \"\\n\";\n    }\n\n\
       \    return 0;\n}\n"
     name: bundled
@@ -278,57 +278,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 1.5495298900000023
+  - elapsed: 1.0231403349999937
     environment: g++
-    memory: 3.624
+    memory: 3.74
     name: all_max_abs_00
     status: AC
-  - elapsed: 0.1171286699999996
+  - elapsed: 0.07486786200001916
     environment: g++
-    memory: 3.584
+    memory: 3.748
     name: all_zero_00
     status: AC
-  - elapsed: 2.046946867999992
+  - elapsed: 1.3655634120000286
     environment: g++
-    memory: 3.64
+    memory: 3.744
     name: carry_up_00
     status: AC
-  - elapsed: 1.3577000899999803
+  - elapsed: 0.921593205000022
     environment: g++
-    memory: 3.624
+    memory: 3.756
     name: digit_random_00
     status: AC
-  - elapsed: 1.3524470339999937
+  - elapsed: 0.9157851420000043
     environment: g++
-    memory: 3.672
+    memory: 3.812
     name: digit_random_01
     status: AC
-  - elapsed: 0.0027108380000129273
+  - elapsed: 0.0019635769999695185
     environment: g++
-    memory: 3.632
+    memory: 3.832
     name: example_00
     status: AC
-  - elapsed: 2.1103174600000045
+  - elapsed: 1.404319369999996
     environment: g++
-    memory: 3.668
+    memory: 3.728
     name: max_random_00
     status: AC
-  - elapsed: 2.1095251389999987
+  - elapsed: 1.3977320709999503
     environment: g++
-    memory: 3.68
+    memory: 3.844
     name: max_random_01
     status: AC
-  - elapsed: 1.6382592479999971
+  - elapsed: 1.0859679289999917
     environment: g++
-    memory: 3.668
+    memory: 3.732
     name: random_00
     status: AC
-  - elapsed: 1.9537093900000002
+  - elapsed: 1.324861425999984
     environment: g++
-    memory: 3.628
+    memory: 3.692
     name: random_01
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

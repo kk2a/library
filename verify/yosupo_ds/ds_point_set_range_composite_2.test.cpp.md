@@ -83,12 +83,12 @@ data:
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_set_range_composite\n\
       \n#include \"../../bbst/red_black_tree.hpp\"\n#include \"../../functional/reverse_args.hpp\"\
-      \n#include \"../../math/monoid/affine.hpp\"\n#include \"../../modint/mont.hpp\"\
-      \n#include \"../../math/monoid/rev_op.hpp\"\n#include \"../../template/template.hpp\"\
+      \n#include \"../../math/monoid/affine.hpp\"\n#include \"../../math/monoid/rev_op.hpp\"\
+      \n#include \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    using S = kk2::monoid::ReverseOp<kk2::monoid::Affine<kk2::mont998>>;\n\
       \    int n, q;\n    kin >> n >> q;\n    vc<S> a(n);\n    kin >> a;\n    kk2::RedBlackTree<S>\
-      \ rbt(2 * (n + q));\n    auto root = rbt.build(a);\n\n    rep (q) {\n      \
-      \  int type;\n        kin >> type;\n        if (type == 0) {\n            int\
+      \ rbt(2 * (n + q));\n    auto root = rbt.build(a);\n\n    rep(q) {\n       \
+      \ int type;\n        kin >> type;\n        if (type == 0) {\n            int\
       \ p;\n            kk2::mont998 c, d;\n            kin >> p >> c >> d;\n    \
       \        rbt.set(root, p, c, d);\n        }\n        if (type == 1) {\n    \
       \        int l, r;\n            kk2::mont998 x;\n            kin >> l >> r >>\
@@ -286,20 +286,22 @@ data:
       \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
       \ <ostream>\n#include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits\
       \ {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -320,7 +322,7 @@ data:
       \          right(nullptr),\n          rank(0),\n          count(1),\n      \
       \    is_red(false),\n          is_rev(false),\n          val(val_) {}\n\n  \
       \  RedBlackTreeNode(NodePtr l, NodePtr r) : left(l), right(r), is_red(true),\
-      \ is_rev(false) {}\n\n    template <OutputStream OStream>\n    void debug_output(OStream\
+      \ is_rev(false) {}\n\n    template <OutputStream OStream> void debug_output(OStream\
       \ &os) const {\n        os << \"[\\n\";\n\n        // BFS\u7528\u306E\u30AD\u30E5\
       \u30FC\uFF1A(\u30CE\u30FC\u30C9, \u6DF1\u5EA6)\u306E\u30DA\u30A2\n        std::vector<std::pair<NodePtr,\
       \ int>> queue;\n        queue.emplace_back(NodePtr(const_cast<RedBlackTreeNode\
@@ -359,59 +361,75 @@ data:
       \  }\n        return t;\n    }\n};\n\n} // namespace rbtree\n\nusing rbtree::RedBlackTree;\n\
       \n} // namespace kk2\n\n\n\n#line 1 \"functional/reverse_args.hpp\"\n\n\n\n\
       #line 1 \"type_traits/functional.hpp\"\n\n\n\n#line 5 \"type_traits/functional.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <typename T> using is_function_pointer =\n \
-      \   typename std::conditional<std::is_pointer_v<T> && std::is_function_v<std::remove_pointer_t<T>>,\n\
+      \n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_function_pointer =\n\
+      \    typename std::conditional<std::is_pointer_v<T> && std::is_function_v<std::remove_pointer_t<T>>,\n\
       \                              std::true_type,\n                           \
       \   std::false_type>::type;\n\ntemplate <typename T> struct is_two_args_function_pointer\
-      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2> struct\
-      \ is_two_args_function_pointer<R (*)(T1, T2)>\n    : std::true_type {};\n\n\
-      template <typename T> using is_two_args_function_pointer_t =\n    std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\
+      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2>\n\
+      struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {};\n\n\
+      template <typename T>\nusing is_two_args_function_pointer_t = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\
       \ntemplate <class T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\
       \ntemplate <class T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
       \n} // namespace kk2\n\n\n#line 5 \"functional/reverse_args.hpp\"\n\nnamespace\
-      \ kk2 {\n\n// reverse_args<f>(y, x) = f(x, y)\ntemplate <auto f> requires TwoArgsFunctionPointer<decltype(f)>\n\
-      inline auto reverse_args(auto x, auto y) {\n    return f(y, x);\n}\n\n} // namespace\
-      \ kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\n\n\n\n#line 5 \"math/monoid/affine.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Affine\
-      \ {\n    static constexpr bool commutative = false;\n    using M = Affine;\n\
-      \    S a, b; // x \\mapsto ax + b\n\n    Affine() : a(S(1)), b(S(0)) {};\n \
-      \   Affine(S a, S b) : a(a), b(b) {}\n    inline S eval(S x) const { return\
-      \ a * x + b; }\n    // l \\circ r\n    inline static M op(M l, M r) { return\
-      \ M(l.a * r.a, l.a * r.b + l.b); }\n    inline static M unit() { return M();\
-      \ }\n    inline static M inv(M f) { return M(S(1) / f.a, -f.b / f.a); }\n  \
-      \  bool operator==(const M &rhs) const { return a == rhs.a and b == rhs.b; }\n\
-      \    bool operator!=(const M &rhs) const { return a != rhs.a or b != rhs.b;\
-      \ }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ kk2 {\n\n// reverse_args<f>(y, x) = f(x, y)\ntemplate <auto f>\n    requires\
+      \ TwoArgsFunctionPointer<decltype(f)>\ninline auto reverse_args(auto x, auto\
+      \ y) {\n    return f(y, x);\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\
+      \n\n\n\n#line 5 \"math/monoid/affine.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid\
+      \ {\n\ntemplate <class S> struct Affine {\n    static constexpr bool commutative\
+      \ = false;\n    using M = Affine;\n    S a, b; // x \\mapsto ax + b\n\n    Affine()\
+      \ : a(S(1)), b(S(0)){};\n    Affine(S a, S b) : a(a), b(b) {}\n    inline S\
+      \ eval(S x) const { return a * x + b; }\n    // l \\circ r\n    inline static\
+      \ M op(M l, M r) { return M(l.a * r.a, l.a * r.b + l.b); }\n    inline static\
+      \ M unit() { return M(); }\n    inline static M inv(M f) { return M(S(1) / f.a,\
+      \ -f.b / f.a); }\n    bool operator==(const M &rhs) const { return a == rhs.a\
+      \ and b == rhs.b; }\n    bool operator!=(const M &rhs) const { return a != rhs.a\
+      \ or b != rhs.b; }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const M &x) {\n        return os << x.a << \" \" << x.b;\n    }\n\n \
-      \   template <InputStream IStream>\n    friend IStream &operator>>(IStream &is,\
-      \ M &x) {\n        return is >> x.a >> x.b;\n    }\n};\n\n} // namespace monoid\n\
-      \n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\
-      \n#include <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line\
-      \ 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
-      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \   template <InputStream IStream> friend IStream &operator>>(IStream &is, M\
+      \ &x) {\n        return is >> x.a >> x.b;\n    }\n};\n\n} // namespace monoid\n\
+      \n} // namespace kk2\n\n\n#line 1 \"math/monoid/rev_op.hpp\"\n\n\n\n#line 5\
+      \ \"math/monoid/rev_op.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate\
+      \ <class T> struct ReverseOp : public T {\n    static constexpr bool commutative\
+      \ = T::commutative;\n    using M = ReverseOp;\n    using base = T;\n    using\
+      \ T::T;\n    ReverseOp(const T &t) : T(t) {}\n    inline static M op(M l, M\
+      \ r) {\n        return static_cast<M>(T::op(static_cast<T>(r), static_cast<T>(l)));\n\
+      \    }\n    inline static M unit() { return static_cast<M>(T::unit()); }\n\n\
+      \    bool operator==(const M &rhs) const { return static_cast<T>(*this) == static_cast<T>(rhs);\
+      \ }\n    bool operator!=(const M &rhs) const { return static_cast<T>(*this)\
+      \ != static_cast<T>(rhs); }\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const M &x) {\n        os << static_cast<T>(x);\n\
+      \        return os;\n    }\n    template <InputStream IStream> friend IStream\
+      \ &operator>>(IStream &is, M &x) {\n        is >> static_cast<T &>(x);\n   \
+      \     return is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\
+      \n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include\
+      \ <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line 1 \"\
+      type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -431,8 +449,8 @@ data:
       \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
       );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
       \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\n\
-      \        : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
+      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
+      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
       \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
       \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
       \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
@@ -459,32 +477,19 @@ data:
       \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
       \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
       \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
-      \ - 2);\n    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, mint &x)\
-      \ {\n        i64 t;\n        is >> t;\n        x = mint(t);\n        return\
-      \ (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n\
-      \        return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n \
+      \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
-      \ namespace kk2\n\n\n#line 1 \"math/monoid/rev_op.hpp\"\n\n\n\n#line 5 \"math/monoid/rev_op.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class T> struct ReverseOp\
-      \ : public T {\n    static constexpr bool commutative = T::commutative;\n  \
-      \  using M = ReverseOp;\n    using base = T;\n    using T::T;\n    ReverseOp(const\
-      \ T &t) : T(t) {}\n    inline static M op(M l, M r) {\n        return static_cast<M>(T::op(static_cast<T>(r),\
-      \ static_cast<T>(l)));\n    }\n    inline static M unit() { return static_cast<M>(T::unit());\
-      \ }\n\n    bool operator==(const M &rhs) const { return static_cast<T>(*this)\
-      \ == static_cast<T>(rhs); }\n    bool operator!=(const M &rhs) const { return\
-      \ static_cast<T>(*this) != static_cast<T>(rhs); }\n    template <OutputStream\
-      \ OStream>\n    friend OStream &operator<<(OStream &os, const M &x) {\n    \
-      \    os << static_cast<T>(x);\n        return os;\n    }\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, M &x) {\n        is\
-      \ >> static_cast<T &>(x);\n        return is;\n    }\n};\n\n} // namespace monoid\n\
-      \n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#include\
-      \ <algorithm>\n#include <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\
-      \n#include <chrono>\n#include <cmath>\n#include <deque>\n#include <functional>\n\
-      #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n\
-      #include <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include\
+      \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\n#include\
+      \ <chrono>\n#include <cmath>\n#include <deque>\n#include <functional>\n#include\
+      \ <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+      \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include\
       \ <stack>\n#line 22 \"template/template.hpp\"\n#include <unordered_map>\n#include\
       \ <unordered_set>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
       \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
@@ -632,7 +637,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -662,8 +667,8 @@ data:
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 9 \"verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using S = kk2::monoid::ReverseOp<kk2::monoid::Affine<kk2::mont998>>;\n\
       \    int n, q;\n    kin >> n >> q;\n    vc<S> a(n);\n    kin >> a;\n    kk2::RedBlackTree<S>\
-      \ rbt(2 * (n + q));\n    auto root = rbt.build(a);\n\n    rep (q) {\n      \
-      \  int type;\n        kin >> type;\n        if (type == 0) {\n            int\
+      \ rbt(2 * (n + q));\n    auto root = rbt.build(a);\n\n    rep(q) {\n       \
+      \ int type;\n        kin >> type;\n        if (type == 0) {\n            int\
       \ p;\n            kk2::mont998 c, d;\n            kin >> p >> c >> d;\n    \
       \        rbt.set(root, p, c, d);\n        }\n        if (type == 1) {\n    \
       \        int l, r;\n            kk2::mont998 x;\n            kin >> l >> r >>\
@@ -676,87 +681,87 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0027947479999994584
+  - elapsed: 0.002571266999979116
     environment: g++
-    memory: 3.924
+    memory: 3.884
     name: example_00
     status: AC
-  - elapsed: 4.335333300000002
+  - elapsed: 4.108435982999993
     environment: g++
-    memory: 101.36
+    memory: 101.508
     name: max_random_00
     status: AC
-  - elapsed: 4.446814180000004
+  - elapsed: 4.1175744779999945
     environment: g++
-    memory: 101.4
+    memory: 101.46
     name: max_random_01
     status: AC
-  - elapsed: 4.50386201900001
+  - elapsed: 4.09829885100001
     environment: g++
-    memory: 101.356
+    memory: 101.464
     name: max_random_02
     status: AC
-  - elapsed: 4.423300689000001
+  - elapsed: 4.13818120800002
     environment: g++
-    memory: 101.392
+    memory: 101.504
     name: max_random_03
     status: AC
-  - elapsed: 4.351217064000011
+  - elapsed: 4.157352648999989
     environment: g++
-    memory: 101.344
+    memory: 101.464
     name: max_random_04
     status: AC
-  - elapsed: 3.411659137000001
+  - elapsed: 3.2484728459999985
     environment: g++
-    memory: 81.792
+    memory: 81.856
     name: random_00
     status: AC
-  - elapsed: 3.5576423389999974
+  - elapsed: 3.5110855039999933
     environment: g++
-    memory: 89.34
+    memory: 89.46
     name: random_01
     status: AC
-  - elapsed: 2.1756041490000086
+  - elapsed: 1.893955511999991
     environment: g++
-    memory: 45.004
+    memory: 45.068
     name: random_02
     status: AC
-  - elapsed: 0.390433060999996
+  - elapsed: 0.3719601469999816
     environment: g++
-    memory: 49.68
+    memory: 49.788
     name: random_03
     status: AC
-  - elapsed: 0.8356947529999985
+  - elapsed: 0.7790630570000303
     environment: g++
-    memory: 41.172
+    memory: 41.236
     name: random_04
     status: AC
-  - elapsed: 0.0030320869999940214
+  - elapsed: 0.002950259999977334
     environment: g++
-    memory: 3.92
+    memory: 4.02
     name: small_00
     status: AC
-  - elapsed: 0.002821535999999014
+  - elapsed: 0.002815427000030013
     environment: g++
-    memory: 3.944
+    memory: 3.988
     name: small_01
     status: AC
-  - elapsed: 0.0029062529999919207
+  - elapsed: 0.0025893649999488844
     environment: g++
-    memory: 3.848
+    memory: 4.02
     name: small_02
     status: AC
-  - elapsed: 0.0029982449999863547
+  - elapsed: 0.002647407999972984
     environment: g++
-    memory: 3.92
+    memory: 3.988
     name: small_03
     status: AC
-  - elapsed: 0.003056094000001508
+  - elapsed: 0.0025978669999631165
     environment: g++
-    memory: 3.928
+    memory: 3.972
     name: small_04
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp

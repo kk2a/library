@@ -100,10 +100,10 @@ data:
       \   friend Point rotate180(const Point &p, const Point &O) { return p.rotate180(O);\
       \ }\n\n    friend Point rotate270(const Point &p) { return p.rotate270(); }\n\
       \n    friend Point rotate270(const Point &p, const Point &O) { return p.rotate270(O);\
-      \ }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const Point &p) {\n        return os << p.x << \" \" << p.y;\n    }\n\
-      \n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
-      \ &is, Point &p) {\n        return is >> p.x >> p.y;\n    }\n};\ntemplate <typename\
+      \n    template <InputStream IStream> friend IStream &operator>>(IStream &is,\
+      \ Point &p) {\n        return is >> p.x >> p.y;\n    }\n};\ntemplate <typename\
       \ T> long double Point<T>::PI = std::acos(-1.0);\n\n} // namespace kk2\n\n#endif\
       \ // KK2_GEOMETRY_POINT_HPP\n"
     name: default
@@ -121,7 +121,7 @@ data:
   requiredBy:
   - geometry/argument_sort.hpp
   - geometry/static_convex_hull.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_geometry/arg_sort.test.cpp

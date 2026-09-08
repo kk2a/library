@@ -28,9 +28,27 @@ data:
     - filename: comb_large.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb_large.hpp
+    - filename: fps_composition.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/fps_composition.test.cpp
+    - filename: fps_composition_inv.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/fps_composition_inv.test.cpp
     - filename: fps_exp_arb.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
+    - filename: fps_multipoint_evaluation_geometric.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+    - filename: poly_interpolation_geometric.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+    - filename: poly_sample_point_shift.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+    - filename: poly_to_newton_basis.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     - filename: kth_term_of_linearly_recurrent_sequence.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -42,12 +60,6 @@ data:
     - filename: fps.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/fps/fps.test.cpp
-    - filename: fps_composition.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_composition.test.cpp
-    - filename: fps_composition_inv.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_composition_inv.test.cpp
     - filename: fps_exp.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_exp.test.cpp
@@ -66,9 +78,6 @@ data:
     - filename: fps_multipoint_evaluation.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-    - filename: fps_multipoint_evaluation_geometric.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
     - filename: fps_pow.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_pow.test.cpp
@@ -99,24 +108,15 @@ data:
     - filename: poly_interpolation.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_interpolation.test.cpp
-    - filename: poly_interpolation_geometric.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
     - filename: poly_inv.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_inv.test.cpp
     - filename: poly_root_finding.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_root_finding.test.cpp
-    - filename: poly_sample_point_shift.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
-    - filename: poly_to_newton_basis.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
     - filename: enumerate_bell_number.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/enumerate_bell_number.test.cpp
@@ -144,45 +144,45 @@ data:
       \ = InvTable<mint>;\n\n    // CRTP\u3092\u4F7F\u3063\u3066\u6D3E\u751F\u30AF\
       \u30E9\u30B9\u306E\u53C2\u7167\u3092\u53D6\u5F97\n    Derived &derived() { return\
       \ static_cast<Derived &>(*this); }\n    const Derived &derived() const { return\
-      \ static_cast<const Derived &>(*this); }\n\n    template <OutputStream OStream>\n\
-      \    void debug_output(OStream &os) const {\n        os << \"[\";\n        for\
+      \ static_cast<const Derived &>(*this); }\n\n    template <OutputStream OStream>\
+      \ void debug_output(OStream &os) const {\n        os << \"[\";\n        for\
       \ (size_t i = 0; i < this->size(); i++) {\n            os << (*this)[i] << (i\
       \ + 1 == this->size() ? \"\" : \", \");\n        }\n        os << \"]\";\n \
       \   }\n\n    template <OutputStream OStream> void output(OStream &os) const\
       \ {\n        for (size_t i = 0; i < this->size(); i++) {\n            os <<\
       \ (*this)[i] << (i + 1 == this->size() ? \"\\n\" : \" \");\n        }\n    }\n\
-      \    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
-      \ &os, const FPS &fps_) {\n        for (size_t i = 0; i < fps_.size(); i++)\
-      \ {\n            os << fps_[i] << (i + 1 == fps_.size() ? \"\" : \" \");\n \
-      \       }\n        return os;\n    }\n\n    template <InputStream IStream> FPS\
-      \ &input(IStream &is) {\n        for (size_t i = 0; i < this->size(); i++) is\
-      \ >> (*this)[i];\n        return derived();\n    }\n\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, FPS &fps_) {\n     \
-      \   for (auto &x : fps_) is >> x;\n        return is;\n    }\n    FPS &operator+=(const\
+      \    template <OutputStream OStream> friend OStream &operator<<(OStream &os,\
+      \ const FPS &fps_) {\n        for (size_t i = 0; i < fps_.size(); i++) {\n \
+      \           os << fps_[i] << (i + 1 == fps_.size() ? \"\" : \" \");\n      \
+      \  }\n        return os;\n    }\n\n    template <InputStream IStream> FPS &input(IStream\
+      \ &is) {\n        for (size_t i = 0; i < this->size(); i++) is >> (*this)[i];\n\
+      \        return derived();\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, FPS &fps_) {\n        for (auto &x : fps_)\
+      \ is >> x;\n        return is;\n    }\n    FPS &operator+=(const FPS &r) {\n\
+      \        if (this->size() < r.size()) this->resize(r.size());\n        for (size_t\
+      \ i = 0; i < r.size(); i++) (*this)[i] += r[i];\n        return derived();\n\
+      \    }\n\n    FPS &operator+=(const mint &r) {\n        if (this->empty()) this->resize(1);\n\
+      \        (*this)[0] += r;\n        return derived();\n    }\n\n    FPS &operator-=(const\
       \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
-      \        for (size_t i = 0; i < r.size(); i++) (*this)[i] += r[i];\n       \
-      \ return derived();\n    }\n\n    FPS &operator+=(const mint &r) {\n       \
-      \ if (this->empty()) this->resize(1);\n        (*this)[0] += r;\n        return\
-      \ derived();\n    }\n\n    FPS &operator-=(const FPS &r) {\n        if (this->size()\
-      \ < r.size()) this->resize(r.size());\n        for (size_t i = 0; i < r.size();\
-      \ i++) (*this)[i] -= r[i];\n        return derived();\n    }\n\n    FPS &operator-=(const\
-      \ mint &r) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
-      \ -= r;\n        return derived();\n    }\n\n    FPS &operator*=(const mint\
-      \ &r) {\n        for (size_t i = 0; i < this->size(); i++) { (*this)[i] *= r;\
-      \ }\n        return derived();\n    }\n    FPS &operator/=(const FPS &r) {\n\
-      \        assert(!r.empty());\n        if (this->size() < r.size()) {\n     \
-      \       this->clear();\n            return derived();\n        }\n        int\
-      \ n = this->size() - r.size() + 1;\n        if (r.size() <= 64) {\n        \
-      \    FPS f(derived()), g(r);\n            g.shrink();\n            mint coeff\
-      \ = g.back().inv();\n            for (auto &x : g) x *= coeff;\n           \
-      \ int deg = (int)f.size() - (int)g.size() + 1;\n            int gs = g.size();\n\
-      \            FPS quo(deg);\n            for (int i = deg - 1; i >= 0; i--) {\n\
-      \                quo[i] = f[i + gs - 1];\n                for (int j = 0; j\
-      \ < gs; j++) f[i + j] -= quo[i] * g[j];\n            }\n            *this =\
-      \ quo * coeff;\n            this->resize(n, mint(0));\n            return derived();\n\
-      \        }\n        return derived() = (derived().rev().pre(n) * r.rev().inv(n)).pre(n).rev();\n\
-      \    }\n\n    FPS &operator%=(const FPS &r) {\n        derived() -= derived()\
-      \ / r * r;\n        shrink();\n        return derived();\n    }\n\n    FPS &operator>>=(int\
+      \        for (size_t i = 0; i < r.size(); i++) (*this)[i] -= r[i];\n       \
+      \ return derived();\n    }\n\n    FPS &operator-=(const mint &r) {\n       \
+      \ if (this->empty()) this->resize(1);\n        (*this)[0] -= r;\n        return\
+      \ derived();\n    }\n\n    FPS &operator*=(const mint &r) {\n        for (size_t\
+      \ i = 0; i < this->size(); i++) { (*this)[i] *= r; }\n        return derived();\n\
+      \    }\n    FPS &operator/=(const FPS &r) {\n        assert(!r.empty());\n \
+      \       if (this->size() < r.size()) {\n            this->clear();\n       \
+      \     return derived();\n        }\n        int n = this->size() - r.size()\
+      \ + 1;\n        if (r.size() <= 64) {\n            FPS f(derived()), g(r);\n\
+      \            g.shrink();\n            mint coeff = g.back().inv();\n       \
+      \     for (auto &x : g) x *= coeff;\n            int deg = (int)f.size() - (int)g.size()\
+      \ + 1;\n            int gs = g.size();\n            FPS quo(deg);\n        \
+      \    for (int i = deg - 1; i >= 0; i--) {\n                quo[i] = f[i + gs\
+      \ - 1];\n                for (int j = 0; j < gs; j++) f[i + j] -= quo[i] * g[j];\n\
+      \            }\n            *this = quo * coeff;\n            this->resize(n,\
+      \ mint(0));\n            return derived();\n        }\n        return derived()\
+      \ = (derived().rev().pre(n) * r.rev().inv(n)).pre(n).rev();\n    }\n\n    FPS\
+      \ &operator%=(const FPS &r) {\n        derived() -= derived() / r * r;\n   \
+      \     shrink();\n        return derived();\n    }\n\n    FPS &operator>>=(int\
       \ n) {\n        if (n >= (int)this->size()) {\n            this->clear();\n\
       \        } else {\n            this->erase(this->begin(), this->begin() + n);\n\
       \        }\n        return derived();\n    }\n\n    FPS &operator<<=(int n)\
@@ -334,46 +334,46 @@ data:
       \ requires(const F &f, int i) {\n    typename F::value_type;\n    typename F::modulus_category;\n\
       \    typename F::series_category;\n    { f.size() } -> std::integral;\n    f[i];\n\
       } && std::ranges::range<const F>;\n\ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> &&\n    std::same_as<typename F::modulus_category,\
+      \ =\n    FormalPowerSeries<F>\n    && std::same_as<typename F::modulus_category,\
       \ category::ntt_friendly_modulus>;\n\ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> &&\n    std::same_as<typename F::modulus_category,\
+      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::modulus_category,\
       \ category::arbitrary_modulus>;\n\ntemplate <class F>\nconcept OrdinaryFormalPowerSeries\
       \ =\n    FormalPowerSeries<F> && std::same_as<typename F::series_category, category::ordinary>;\n\
-      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\
-      \ &&\n    std::same_as<typename F::series_category, category::exponential_generating>;\n\
+      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
+      \    && std::same_as<typename F::series_category, category::exponential_generating>;\n\
       \ntemplate <class F>\nconcept SetPowerSeries =\n    FormalPowerSeries<F> &&\
       \ std::same_as<typename F::series_category, category::set_power_series>;\n\n\
-      template <class F>\nconcept UnivariateFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && requires { typename F::variable_category; } &&\n    std::same_as<typename\
+      template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries =\n    FormalPowerSeries<F> && requires { typename\
-      \ F::variable_category; } &&\n    std::same_as<typename F::variable_category,\
-      \ category::bivariate>;\n\ntemplate <class F>\nconcept MultivariateFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> && requires { typename F::variable_category; }\
-      \ &&\n    std::same_as<typename F::variable_category, category::multivariate>;\n\
-      \n// Short names for the categories that are commonly used in algorithms.\n\
-      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
-      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
-      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
-      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
-      \n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\n#include\
-      \ <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
+      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
+      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
+      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
+      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
+      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
+      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
+      \ namespace kk2::fps\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\
+      \n#include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -389,20 +389,20 @@ data:
       \u3066\u6D3E\u751F\u30AF\u30E9\u30B9\u306E\u53C2\u7167\u3092\u53D6\u5F97\n \
       \   Derived &derived() { return static_cast<Derived &>(*this); }\n    const\
       \ Derived &derived() const { return static_cast<const Derived &>(*this); }\n\
-      \n    template <OutputStream OStream>\n    void debug_output(OStream &os) const\
-      \ {\n        os << \"[\";\n        for (size_t i = 0; i < this->size(); i++)\
-      \ {\n            os << (*this)[i] << (i + 1 == this->size() ? \"\" : \", \"\
-      );\n        }\n        os << \"]\";\n    }\n\n    template <OutputStream OStream>\
+      \n    template <OutputStream OStream> void debug_output(OStream &os) const {\n\
+      \        os << \"[\";\n        for (size_t i = 0; i < this->size(); i++) {\n\
+      \            os << (*this)[i] << (i + 1 == this->size() ? \"\" : \", \");\n\
+      \        }\n        os << \"]\";\n    }\n\n    template <OutputStream OStream>\
       \ void output(OStream &os) const {\n        for (size_t i = 0; i < this->size();\
       \ i++) {\n            os << (*this)[i] << (i + 1 == this->size() ? \"\\n\" :\
-      \ \" \");\n        }\n    }\n    template <OutputStream OStream>\n    friend\
-      \ OStream &operator<<(OStream &os, const FPS &fps_) {\n        for (size_t i\
-      \ = 0; i < fps_.size(); i++) {\n            os << fps_[i] << (i + 1 == fps_.size()\
+      \ \" \");\n        }\n    }\n    template <OutputStream OStream> friend OStream\
+      \ &operator<<(OStream &os, const FPS &fps_) {\n        for (size_t i = 0; i\
+      \ < fps_.size(); i++) {\n            os << fps_[i] << (i + 1 == fps_.size()\
       \ ? \"\" : \" \");\n        }\n        return os;\n    }\n\n    template <InputStream\
       \ IStream> FPS &input(IStream &is) {\n        for (size_t i = 0; i < this->size();\
       \ i++) is >> (*this)[i];\n        return derived();\n    }\n\n    template <InputStream\
-      \ IStream>\n    friend IStream &operator>>(IStream &is, FPS &fps_) {\n     \
-      \   for (auto &x : fps_) is >> x;\n        return is;\n    }\n    FPS &operator+=(const\
+      \ IStream> friend IStream &operator>>(IStream &is, FPS &fps_) {\n        for\
+      \ (auto &x : fps_) is >> x;\n        return is;\n    }\n    FPS &operator+=(const\
       \ FPS &r) {\n        if (this->size() < r.size()) this->resize(r.size());\n\
       \        for (size_t i = 0; i < r.size(); i++) (*this)[i] += r[i];\n       \
       \ return derived();\n    }\n\n    FPS &operator+=(const mint &r) {\n       \
@@ -563,22 +563,25 @@ data:
   - fps/fps_multivariate.hpp
   - fps/fps_ntt_friendly.hpp
   - math_mod/comb_large.hpp
+  - verify/yosupo_fps/fps_composition.test.cpp
+  - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
+  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
+  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
-  - verify/yosupo_fps/fps_composition.test.cpp
-  - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
   - verify/yosupo_fps/fps_pow.test.cpp
   - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
   - verify/yosupo_fps/fps_sparse_exp.test.cpp
@@ -589,12 +592,9 @@ data:
   - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_fps/poly_division.test.cpp
   - verify/yosupo_fps/poly_interpolation.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
-  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp

@@ -71,11 +71,11 @@ data:
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/factorize\n\
       \n#include \"../../math/prime_factorize.hpp\"\n#include \"../../template/template.hpp\"\
-      \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep (q)\
+      \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep(q)\
       \ {\n        i64 a;\n        kin >> a;\n        int cnt = 0;\n        auto f\
       \ = kk2::factorize(a);\n        for (auto [p, e] : f) cnt += e;\n        kout\
-      \ << cnt << ' ';\n        for (auto [p, e] : f)\n            rep (e) kout <<\
-      \ p << ' ';\n        kout << '\\n';\n    }\n\n    return 0;\n}\n"
+      \ << cnt << ' ';\n        for (auto [p, e] : f) rep(e) kout << p << ' ';\n \
+      \       kout << '\\n';\n    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_math/factrize.test.cpp\"\n// competitive-verifier:\
       \ PROBLEM https://judge.yosupo.jp/problem/factorize\n\n#line 1 \"math/prime_factorize.hpp\"\
@@ -88,30 +88,32 @@ data:
       \    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\
       \n\n\n\n#line 5 \"modint/mont_arb.hpp\"\n#include <iostream>\n#line 7 \"modint/mont_arb.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -125,21 +127,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -158,7 +161,7 @@ data:
       \ m) {\n        assert(m < (UInt(1u) << (bit_length - 2)));\n        assert(m\
       \ & 1);\n        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt\
       \ _v;\n\n    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template\
-      \ <Integral T> ArbitraryLazyMontgomeryModIntBase(const T &b)\n        : _v(reduce(ULong(b\
+      \ <Integral T>\n    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b\
       \ % (Int)mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n\
       \        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\
       \n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod)\
@@ -183,15 +186,15 @@ data:
       \ s = getmod(), t = val(), m0 = 0, m1 = 1;\n        while (t) {\n          \
       \  Int u = s / t;\n            std::swap(s -= t * u, t);\n            std::swap(m0\
       \ -= m1 * u, m1);\n        }\n        if (m0 < 0) m0 += getmod();\n        return\
-      \ mint(m0);\n    }\n\n    template <OutputStream OStream>\n    friend OStream\
-      \ &operator<<(OStream &os, const mint &x) {\n        return os << x.val();\n\
-      \    }\n\n    template <InputStream IStream>\n    friend IStream &operator>>(IStream\
-      \ &is, mint &x) {\n        Long t;\n        is >> t;\n        x = mint(t);\n\
-      \        return (is);\n    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n\
-      \        return ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod()\
-      \ { return mod; }\n};\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt\
-      \ =\n    ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
-      \ long long, id>;\n\ntemplate <int id> using ArbitraryLazyMontgomeryModInt64bit\
+      \ mint(m0);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        Long t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    UInt val() const {\n        UInt ret = reduce(_v);\n        return\
+      \ ret >= mod ? ret - mod : ret;\n    }\n\n    static UInt getmod() { return\
+      \ mod; }\n};\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt =\n \
+      \   ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
+      \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
       \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
       \ __uint128_t, id>;\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\
       \n\n#line 7 \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n\
@@ -443,7 +446,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -471,11 +474,11 @@ data:
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
       \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/factrize.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep (q)\
+      \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep(q)\
       \ {\n        i64 a;\n        kin >> a;\n        int cnt = 0;\n        auto f\
       \ = kk2::factorize(a);\n        for (auto [p, e] : f) cnt += e;\n        kout\
-      \ << cnt << ' ';\n        for (auto [p, e] : f)\n            rep (e) kout <<\
-      \ p << ' ';\n        kout << '\\n';\n    }\n\n    return 0;\n}\n"
+      \ << cnt << ' ';\n        for (auto [p, e] : f) rep(e) kout << p << ' ';\n \
+      \       kout << '\\n';\n    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -483,162 +486,162 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.004437694999978703
+  - elapsed: 0.0055664650000153415
     environment: g++
-    memory: 3.904
+    memory: 3.808
     name: '4295098369_00'
     status: AC
-  - elapsed: 0.11622581299999979
+  - elapsed: 0.15171380499998577
     environment: g++
-    memory: 3.86
+    memory: 3.796
     name: '999381247093216751_00'
     status: AC
-  - elapsed: 0.10896478199998683
+  - elapsed: 0.13932383700000628
     environment: g++
-    memory: 3.86
+    memory: 3.784
     name: big2_00
     status: AC
-  - elapsed: 0.11142490899999302
+  - elapsed: 0.12290680900002826
     environment: g++
-    memory: 3.86
+    memory: 3.668
     name: big2_01
     status: AC
-  - elapsed: 0.1195663689999833
+  - elapsed: 0.1285707580000235
     environment: g++
-    memory: 3.856
+    memory: 3.668
     name: big2_02
     status: AC
-  - elapsed: 0.1181266600000015
+  - elapsed: 0.1529814180000244
     environment: g++
-    memory: 3.86
+    memory: 3.816
     name: big2_worse_00
     status: AC
-  - elapsed: 0.10242491200000359
+  - elapsed: 0.12465445199995884
     environment: g++
-    memory: 3.884
+    memory: 3.808
     name: big_semiprime_gen_00
     status: AC
-  - elapsed: 0.09845838699999376
+  - elapsed: 0.1282814809999877
     environment: g++
-    memory: 3.856
+    memory: 3.796
     name: big_semiprime_gen_01
     status: AC
-  - elapsed: 0.08954721999998583
+  - elapsed: 0.11031048699999246
     environment: g++
-    memory: 3.9
+    memory: 3.796
     name: big_semiprime_random_00
     status: AC
-  - elapsed: 0.08648730200002319
+  - elapsed: 0.11577989799997113
     environment: g++
-    memory: 3.856
+    memory: 3.616
     name: big_semiprime_random_01
     status: AC
-  - elapsed: 0.009663278000004993
+  - elapsed: 0.012786122000022715
     environment: g++
-    memory: 3.86
+    memory: 3.62
     name: carmichael_00
     status: AC
-  - elapsed: 0.0018844569999885152
+  - elapsed: 0.002482839000037984
     environment: g++
-    memory: 3.74
+    memory: 3.812
     name: example_00
     status: AC
-  - elapsed: 0.0018936109999856399
+  - elapsed: 0.0023820800000180498
     environment: g++
-    memory: 3.86
+    memory: 3.764
     name: fixed_RNG_buster_00
     status: AC
-  - elapsed: 0.0017876919999935126
+  - elapsed: 0.002391943999953128
     environment: g++
-    memory: 3.86
+    memory: 3.792
     name: hack00_00
     status: AC
-  - elapsed: 0.007351693999993358
+  - elapsed: 0.011245116999987204
     environment: g++
-    memory: 3.86
+    memory: 3.776
     name: max_00
     status: AC
-  - elapsed: 0.016289946000000555
+  - elapsed: 0.016697302000011405
     environment: g++
-    memory: 3.86
+    memory: 3.668
     name: pow2_00
     status: AC
-  - elapsed: 0.012935024000000794
+  - elapsed: 0.016391319000035764
     environment: g++
-    memory: 3.86
+    memory: 3.776
     name: pow2_01
     status: AC
-  - elapsed: 0.017844151999980795
+  - elapsed: 0.021250259999987975
     environment: g++
-    memory: 3.86
+    memory: 3.804
     name: pow2_02
     status: AC
-  - elapsed: 0.00426111900000592
+  - elapsed: 0.0060329940000087845
     environment: g++
-    memory: 3.856
+    memory: 3.668
     name: prime_test_special_00
     status: AC
-  - elapsed: 0.005158577000003106
+  - elapsed: 0.006906575000016346
     environment: g++
-    memory: 3.86
+    memory: 3.808
     name: prime_test_special_01
     status: AC
-  - elapsed: 0.006669447999996692
-    environment: g++
-    memory: 3.86
-    name: prime_test_special_02
-    status: AC
-  - elapsed: 0.0032629590000112785
-    environment: g++
-    memory: 3.86
-    name: prime_test_special_03
-    status: AC
-  - elapsed: 0.002500723000025573
-    environment: g++
-    memory: 3.744
-    name: prime_test_special_bug_00
-    status: AC
-  - elapsed: 0.003040464000008569
-    environment: g++
-    memory: 3.752
-    name: prime_test_special_bug_01
-    status: AC
-  - elapsed: 0.0022492859999942993
-    environment: g++
-    memory: 3.928
-    name: prime_test_special_bug_02
-    status: AC
-  - elapsed: 0.003829319000004716
-    environment: g++
-    memory: 3.912
-    name: random_00
-    status: AC
-  - elapsed: 0.005337005999990652
-    environment: g++
-    memory: 3.86
-    name: random_01
-    status: AC
-  - elapsed: 0.0051338899999961995
-    environment: g++
-    memory: 3.752
-    name: random_02
-    status: AC
-  - elapsed: 0.0020796009999912712
+  - elapsed: 0.011135163999995257
     environment: g++
     memory: 3.74
+    name: prime_test_special_02
+    status: AC
+  - elapsed: 0.003908925999951407
+    environment: g++
+    memory: 3.604
+    name: prime_test_special_03
+    status: AC
+  - elapsed: 0.003484037999953671
+    environment: g++
+    memory: 3.808
+    name: prime_test_special_bug_00
+    status: AC
+  - elapsed: 0.004026238999983889
+    environment: g++
+    memory: 3.792
+    name: prime_test_special_bug_01
+    status: AC
+  - elapsed: 0.003002195999954438
+    environment: g++
+    memory: 3.832
+    name: prime_test_special_bug_02
+    status: AC
+  - elapsed: 0.004752171999996335
+    environment: g++
+    memory: 3.768
+    name: random_00
+    status: AC
+  - elapsed: 0.005120615999999245
+    environment: g++
+    memory: 3.756
+    name: random_01
+    status: AC
+  - elapsed: 0.007446723999976257
+    environment: g++
+    memory: 3.74
+    name: random_02
+    status: AC
+  - elapsed: 0.002810633000024154
+    environment: g++
+    memory: 3.796
     name: small_00
     status: AC
-  - elapsed: 0.0021151340000074015
+  - elapsed: 0.0029125039999939872
     environment: g++
-    memory: 3.86
+    memory: 3.656
     name: small_01
     status: AC
-  - elapsed: 0.0021302669999840873
+  - elapsed: 0.0029586620000259245
     environment: g++
-    memory: 3.908
+    memory: 3.796
     name: small_02
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/factrize.test.cpp

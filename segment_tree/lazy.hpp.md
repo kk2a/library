@@ -36,7 +36,7 @@ data:
       \ n) : _n(n) {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n\
       \        size = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n\
       \        lz = std::vector<F>(size, F::unit());\n    }\n\n    template <class...\
-      \ Args> LazySegmentTree(int n, Args... args)\n        : LazySegmentTree(std::vector<S>(n,\
+      \ Args>\n    LazySegmentTree(int n, Args... args) : LazySegmentTree(std::vector<S>(n,\
       \ S(args...))) {}\n\n    LazySegmentTree(const std::vector<S> &v) : _n(int(v.size()))\
       \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
       \ = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n        lz\
@@ -132,18 +132,18 @@ data:
       \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
       } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
       \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action = requires {\n\
-      \    typename T::A;\n    typename T::S;\n} && Monoid<typename T::A> && Monoid<typename\
-      \ T::S>\n    && requires(const typename T::A &f, const typename T::S &x) {\n\
-      \           { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n\
-      } // namespace algebra\n\n} // namespace kk2\n\n\n#line 8 \"segment_tree/lazy.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <algebra::Action Action> struct LazySegmentTree\
-      \ {\n    using S = typename Action::S;\n    using F = typename Action::A;\n\n\
-      \  public:\n    LazySegmentTree() : LazySegmentTree(0) {}\n\n    LazySegmentTree(int\
-      \ n) : _n(n) {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n\
-      \        size = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n\
-      \        lz = std::vector<F>(size, F::unit());\n    }\n\n    template <class...\
-      \ Args> LazySegmentTree(int n, Args... args)\n        : LazySegmentTree(std::vector<S>(n,\
+      \ propagation structures.\ntemplate <class T>\nconcept Action =\n    requires\
+      \ {\n        typename T::A;\n        typename T::S;\n    } && Monoid<typename\
+      \ T::A> && Monoid<typename T::S>\n    && requires(const typename T::A &f, const\
+      \ typename T::S &x) {\n           { T::act(f, x) } -> std::same_as<typename\
+      \ T::S>;\n       };\n\n} // namespace algebra\n\n} // namespace kk2\n\n\n#line\
+      \ 8 \"segment_tree/lazy.hpp\"\n\nnamespace kk2 {\n\ntemplate <algebra::Action\
+      \ Action> struct LazySegmentTree {\n    using S = typename Action::S;\n    using\
+      \ F = typename Action::A;\n\n  public:\n    LazySegmentTree() : LazySegmentTree(0)\
+      \ {}\n\n    LazySegmentTree(int n) : _n(n) {\n        log = 0;\n        while\
+      \ ((1ll << log) < _n) log++;\n        size = 1 << log;\n        d = std::vector<S>(2\
+      \ * size, S::unit());\n        lz = std::vector<F>(size, F::unit());\n    }\n\
+      \n    template <class... Args>\n    LazySegmentTree(int n, Args... args) : LazySegmentTree(std::vector<S>(n,\
       \ S(args...))) {}\n\n    LazySegmentTree(const std::vector<S> &v) : _n(int(v.size()))\
       \ {\n        log = 0;\n        while ((1ll << log) < _n) log++;\n        size\
       \ = 1 << log;\n        d = std::vector<S>(2 * size, S::unit());\n        lz\
@@ -225,7 +225,7 @@ data:
   path: segment_tree/lazy.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/type_traits/algebra/algebra.test.cpp

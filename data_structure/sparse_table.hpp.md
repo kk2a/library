@@ -93,29 +93,29 @@ data:
       \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
       } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
       \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action = requires {\n\
-      \    typename T::A;\n    typename T::S;\n} && Monoid<typename T::A> && Monoid<typename\
-      \ T::S>\n    && requires(const typename T::A &f, const typename T::S &x) {\n\
-      \           { T::act(f, x) } -> std::same_as<typename T::S>;\n       };\n\n\
-      } // namespace algebra\n\n} // namespace kk2\n\n\n#line 8 \"data_structure/sparse_table.hpp\"\
-      \n\nnamespace kk2 {\n\n// require: op(x, x) = x for all x\ntemplate <algebra::Monoid\
-      \ M> struct SparseTable {\n    SparseTable() = default;\n\n    SparseTable(int\
-      \ n) : _n(n) {\n        log = 0;\n        while ((1 << log) < _n) log++;\n \
-      \       table.assign(log + 1, std::vector<M>(_n));\n    }\n\n    SparseTable(const\
-      \ std::vector<M> &v) : _n(int(v.size())) {\n        log = 0;\n        while\
-      \ ((1 << log) < _n) log++;\n        table.assign(log + 1, std::vector<M>(_n));\n\
-      \        for (int i = 0; i < _n; i++) table[0][i] = v[i];\n        build();\n\
-      \    }\n\n    void build() {\n        assert(!is_built);\n        is_built =\
-      \ true;\n        for (int i = 1; i <= log; i++) {\n            for (int j =\
-      \ 0; j + (1 << i) <= _n; j++) {\n                table[i][j] = M::op(table[i\
-      \ - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n        }\n  \
-      \  }\n\n    template <class... Args> void init_set(int p, Args... args) {\n\
-      \        assert(0 <= p && p < _n);\n        assert(!is_built);\n        table[0][p]\
-      \ = M(args...);\n    }\n\n    using Monoid = M;\n\n    static M Op(M l, M r)\
-      \ { return M::op(l, r); }\n\n    static M MonoidUnit() { return M::unit(); }\n\
-      \n    M prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <=\
-      \ _n);\n        assert(is_built);\n        if (l == r) return M::unit();\n \
-      \       int i = 31 ^ __builtin_clz(r - l);\n        return M::op(table[i][l],\
+      \ propagation structures.\ntemplate <class T>\nconcept Action =\n    requires\
+      \ {\n        typename T::A;\n        typename T::S;\n    } && Monoid<typename\
+      \ T::A> && Monoid<typename T::S>\n    && requires(const typename T::A &f, const\
+      \ typename T::S &x) {\n           { T::act(f, x) } -> std::same_as<typename\
+      \ T::S>;\n       };\n\n} // namespace algebra\n\n} // namespace kk2\n\n\n#line\
+      \ 8 \"data_structure/sparse_table.hpp\"\n\nnamespace kk2 {\n\n// require: op(x,\
+      \ x) = x for all x\ntemplate <algebra::Monoid M> struct SparseTable {\n    SparseTable()\
+      \ = default;\n\n    SparseTable(int n) : _n(n) {\n        log = 0;\n       \
+      \ while ((1 << log) < _n) log++;\n        table.assign(log + 1, std::vector<M>(_n));\n\
+      \    }\n\n    SparseTable(const std::vector<M> &v) : _n(int(v.size())) {\n \
+      \       log = 0;\n        while ((1 << log) < _n) log++;\n        table.assign(log\
+      \ + 1, std::vector<M>(_n));\n        for (int i = 0; i < _n; i++) table[0][i]\
+      \ = v[i];\n        build();\n    }\n\n    void build() {\n        assert(!is_built);\n\
+      \        is_built = true;\n        for (int i = 1; i <= log; i++) {\n      \
+      \      for (int j = 0; j + (1 << i) <= _n; j++) {\n                table[i][j]\
+      \ = M::op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n\
+      \        }\n    }\n\n    template <class... Args> void init_set(int p, Args...\
+      \ args) {\n        assert(0 <= p && p < _n);\n        assert(!is_built);\n \
+      \       table[0][p] = M(args...);\n    }\n\n    using Monoid = M;\n\n    static\
+      \ M Op(M l, M r) { return M::op(l, r); }\n\n    static M MonoidUnit() { return\
+      \ M::unit(); }\n\n    M prod(int l, int r) const {\n        assert(0 <= l &&\
+      \ l <= r && r <= _n);\n        assert(is_built);\n        if (l == r) return\
+      \ M::unit();\n        int i = 31 ^ __builtin_clz(r - l);\n        return M::op(table[i][l],\
       \ table[i][r - (1 << i)]);\n    }\n\n    M get(int i) const {\n        assert(0\
       \ <= i && i < _n);\n        assert(is_built);\n        return table[0][i];\n\
       \    }\n\n    // return r s.t.\n    // r = l or f(op(a[l], a[l+1], ..., a[r-1]))\
@@ -146,7 +146,7 @@ data:
   requiredBy:
   - data_structure/static_rmq.hpp
   - graph/tree/euler_tour.hpp
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_static_rmq.test.cpp

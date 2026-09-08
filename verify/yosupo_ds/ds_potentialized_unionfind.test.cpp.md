@@ -57,7 +57,7 @@ data:
       \n#include \"../../modint/mont.hpp\"\n#include \"../../template/template.hpp\"\
       \n#include \"../../unionfind/potentialized.hpp\"\nusing namespace std;\n\nint\
       \ main() {\n    int n, q;\n    kin >> n >> q;\n    kk2::PotentializedUnionFind<kk2::mont998>\
-      \ puf(n);\n\n    rep (q) {\n        int t;\n        kin >> t;\n        if (t\
+      \ puf(n);\n\n    rep(q) {\n        int t;\n        kin >> t;\n        if (t\
       \ == 0) {\n            int u, v;\n            kk2::mont998 w;\n            kin\
       \ >> u >> v >> w;\n            if (puf.same(v, u)) {\n                kout <<\
       \ (puf.diff(v, u) == w) << \"\\n\";\n            } else {\n                kout\
@@ -72,26 +72,27 @@ data:
       \ 1 \"modint/mont.hpp\"\n\n\n\n#include <cassert>\n#include <cstdint>\n#include\
       \ <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -109,21 +110,22 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -141,8 +143,8 @@ data:
       \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
       );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
       \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\n\
-      \        : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
+      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
+      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
       \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
       \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
       \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
@@ -169,12 +171,12 @@ data:
       \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
       \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
       \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
-      \ - 2);\n    }\n\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
+      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
-      \ <InputStream IStream>\n    friend IStream &operator>>(IStream &is, mint &x)\
-      \ {\n        i64 t;\n        is >> t;\n        x = mint(t);\n        return\
-      \ (is);\n    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n\
-      \        return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n \
+      \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
       \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -329,7 +331,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -379,13 +381,13 @@ data:
       \ - potential(x);\n        else return -potential(x) + potential(y);\n    }\n\
       };\n\n} // namespace kk2\n\n\n#line 6 \"verify/yosupo_ds/ds_potentialized_unionfind.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
-      \    kk2::PotentializedUnionFind<kk2::mont998> puf(n);\n\n    rep (q) {\n  \
-      \      int t;\n        kin >> t;\n        if (t == 0) {\n            int u,\
-      \ v;\n            kk2::mont998 w;\n            kin >> u >> v >> w;\n       \
-      \     if (puf.same(v, u)) {\n                kout << (puf.diff(v, u) == w) <<\
-      \ \"\\n\";\n            } else {\n                kout << \"1\\n\";\n      \
-      \          puf.unite(v, u, w);\n            }\n        }\n        if (t == 1)\
-      \ {\n            int u, v;\n            kin >> u >> v;\n            if (puf.same(v,\
+      \    kk2::PotentializedUnionFind<kk2::mont998> puf(n);\n\n    rep(q) {\n   \
+      \     int t;\n        kin >> t;\n        if (t == 0) {\n            int u, v;\n\
+      \            kk2::mont998 w;\n            kin >> u >> v >> w;\n            if\
+      \ (puf.same(v, u)) {\n                kout << (puf.diff(v, u) == w) << \"\\\
+      n\";\n            } else {\n                kout << \"1\\n\";\n            \
+      \    puf.unite(v, u, w);\n            }\n        }\n        if (t == 1) {\n\
+      \            int u, v;\n            kin >> u >> v;\n            if (puf.same(v,\
       \ u)) {\n                kout << puf.diff(v, u) << \"\\n\";\n            } else\
       \ kout << \"-1\\n\";\n        }\n    }\n\n    return 0;\n}\n"
     name: bundled
@@ -395,97 +397,97 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0026834589999964464
+  - elapsed: 0.002437159999999494
     environment: g++
-    memory: 3.58
+    memory: 3.836
     name: example_00
     status: AC
-  - elapsed: 0.08072690499997748
+  - elapsed: 0.07525588099997549
     environment: g++
-    memory: 4.636
+    memory: 4.704
     name: max_random_00
     status: AC
-  - elapsed: 0.08010639900001593
+  - elapsed: 0.07457139799998913
     environment: g++
-    memory: 4.768
+    memory: 4.824
     name: max_random_01
     status: AC
-  - elapsed: 0.08394807999999898
+  - elapsed: 0.0789047769999911
     environment: g++
-    memory: 4.104
+    memory: 4.148
     name: max_random_02
     status: AC
-  - elapsed: 0.08143711200000325
+  - elapsed: 0.07752842299998974
     environment: g++
-    memory: 5.092
+    memory: 5.216
     name: path_00
     status: AC
-  - elapsed: 0.09344739200000163
+  - elapsed: 0.08705642000001035
     environment: g++
-    memory: 5.112
+    memory: 5.208
     name: path_01
     status: AC
-  - elapsed: 0.09946617899998955
+  - elapsed: 0.09292305399998213
     environment: g++
-    memory: 5.144
+    memory: 5.248
     name: path_02
     status: AC
-  - elapsed: 0.10381349299998988
+  - elapsed: 0.09512159499996642
     environment: g++
-    memory: 5.152
+    memory: 5.252
     name: path_03
     status: AC
-  - elapsed: 0.058502771999997094
+  - elapsed: 0.054424328999971294
     environment: g++
-    memory: 4.604
+    memory: 4.704
     name: random_00
     status: AC
-  - elapsed: 0.058220295000012356
+  - elapsed: 0.05446622300001991
     environment: g++
-    memory: 4.76
+    memory: 4.776
     name: random_01
     status: AC
-  - elapsed: 0.04980028800000014
+  - elapsed: 0.046167890999981864
     environment: g++
-    memory: 4.092
+    memory: 4.172
     name: random_02
     status: AC
-  - elapsed: 0.013348806999999852
+  - elapsed: 0.011855147000005672
     environment: g++
-    memory: 4.86
+    memory: 4.96
     name: random_03
     status: AC
-  - elapsed: 0.043656300000009196
+  - elapsed: 0.04116359500000044
     environment: g++
-    memory: 4.152
+    memory: 4.196
     name: random_04
     status: AC
-  - elapsed: 0.05864533799999094
+  - elapsed: 0.05469793299999992
     environment: g++
-    memory: 4.044
+    memory: 4.148
     name: random_05
     status: AC
-  - elapsed: 0.0428083079999908
+  - elapsed: 0.04033034499997257
     environment: g++
-    memory: 5.112
+    memory: 5.208
     name: random_06
     status: AC
-  - elapsed: 0.007391585000021905
+  - elapsed: 0.006629637000003186
     environment: g++
-    memory: 4.22
+    memory: 4.312
     name: random_07
     status: AC
-  - elapsed: 0.02225676599999815
+  - elapsed: 0.021134669999980815
     environment: g++
-    memory: 4.028
+    memory: 4.084
     name: random_08
     status: AC
-  - elapsed: 0.0799002940000264
+  - elapsed: 0.07325734300002296
     environment: g++
-    memory: 4.476
+    memory: 4.44
     name: random_09
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp

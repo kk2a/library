@@ -19,8 +19,8 @@ data:
   dependsOn: []
   embedded:
   - code: "#ifndef KK2_MATH_STERN_BROCOT_TREE_HPP\n#define KK2_MATH_STERN_BROCOT_TREE_HPP\
-      \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n#include\
-      \ <tuple>\n\nnamespace kk2 {\n\ntemplate <class T> struct SternBrocotTreeNode\
+      \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <tuple>\n#include\
+      \ <vector>\n\nnamespace kk2 {\n\ntemplate <class T> struct SternBrocotTreeNode\
       \ {\n    T lnum, lden;\n    T rnum, rden;\n    // even: right, odd: left\n \
       \   std::vector<T> path;\n    T dep;\n\n    SternBrocotTreeNode() : lnum(0),\
       \ lden(1), rnum(1), rden(0), path({0}), dep(0) {}\n    SternBrocotTreeNode(T\
@@ -80,7 +80,7 @@ data:
       #endif // KK2_MATH_STERN_BROCOT_TREE_HPP\n"
     name: default
   - code: "#line 1 \"math/stern_brocot_tree.hpp\"\n\n\n\n#include <algorithm>\n#include\
-      \ <cassert>\n#include <vector>\n#include <tuple>\n\nnamespace kk2 {\n\ntemplate\
+      \ <cassert>\n#include <tuple>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate\
       \ <class T> struct SternBrocotTreeNode {\n    T lnum, lden;\n    T rnum, rden;\n\
       \    // even: right, odd: left\n    std::vector<T> path;\n    T dep;\n\n   \
       \ SternBrocotTreeNode() : lnum(0), lden(1), rnum(1), rden(0), path({0}), dep(0)\
@@ -144,7 +144,7 @@ data:
   path: math/stern_brocot_tree.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/rational_approximation.test.cpp

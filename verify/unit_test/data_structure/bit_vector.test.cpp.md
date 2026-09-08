@@ -61,22 +61,21 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../data_structure/bit_vector.hpp\"\
-      \n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
-      \nusing namespace std;\n\nint main() {\n    rep (2000) {\n        int n = kk2::random::rng(1,\
-      \ 1e4);\n        auto a = kk2::random::random_vector<int>(n, 0, 2);\n    \n\
-      \        if (!kk2::random::rng(0, 10)) {\n            a.assign(n, 0);\n    \
-      \    }\n        if (!kk2::random::rng(0, 10)) {\n            a.assign(n, 1);\n\
-      \        }\n    \n        kk2::BitVector bv(n);\n        rep (i, n) if (a[i]\
-      \ == 1) bv.set(i);\n        bv.build();\n    \n        vc<int> zero, one;\n\
-      \        vc<int> zero_acc(n + 1), one_acc(n + 1);\n        rep (i, n) {\n  \
-      \          if (a[i] == 0) zero.push_back(i);\n            else one.push_back(i);\n\
+      \n\n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
+      \nusing namespace std;\n\nint main() {\n    rep(2000) {\n        int n = kk2::random::rng(1,\
+      \ 1e4);\n        auto a = kk2::random::random_vector<int>(n, 0, 2);\n\n    \
+      \    if (!kk2::random::rng(0, 10)) { a.assign(n, 0); }\n        if (!kk2::random::rng(0,\
+      \ 10)) { a.assign(n, 1); }\n\n        kk2::BitVector bv(n);\n        rep(i,\
+      \ n) if (a[i] == 1) bv.set(i);\n        bv.build();\n\n        vc<int> zero,\
+      \ one;\n        vc<int> zero_acc(n + 1), one_acc(n + 1);\n        rep(i, n)\
+      \ {\n            if (a[i] == 0) zero.push_back(i);\n            else one.push_back(i);\n\
       \            zero_acc[i + 1] = zero_acc[i] + (a[i] == 0);\n            one_acc[i\
-      \ + 1] = one_acc[i] + (a[i] == 1);\n        }\n    \n        int q = 1000;\n\
-      \        rep (q) {\n            int i = kk2::random::rng(0, n);\n          \
-      \  int naive_rank0 = zero_acc[i];\n            int naive_rank1 = one_acc[i];\n\
-      \            int naive_select0 = -1;\n            int naive_select1 = -1;\n\
-      \            if (i < (int)zero.size()) naive_select0 = zero[i];\n          \
-      \  if (i < (int)one.size()) naive_select1 = one[i];\n            if (naive_rank0\
+      \ + 1] = one_acc[i] + (a[i] == 1);\n        }\n\n        int q = 1000;\n   \
+      \     rep(q) {\n            int i = kk2::random::rng(0, n);\n            int\
+      \ naive_rank0 = zero_acc[i];\n            int naive_rank1 = one_acc[i];\n  \
+      \          int naive_select0 = -1;\n            int naive_select1 = -1;\n  \
+      \          if (i < (int)zero.size()) naive_select0 = zero[i];\n            if\
+      \ (i < (int)one.size()) naive_select1 = one[i];\n            if (naive_rank0\
       \ != bv.rank0(i)) {\n                cerr << \"rank0\" << endl;\n          \
       \      exit(1);\n            }\n            if (naive_rank1 != bv.rank1(i))\
       \ {\n                cerr << \"rank1\" << endl;\n                exit(1);\n\
@@ -90,26 +89,27 @@ data:
       \ STANDALONE\n\n#line 1 \"data_structure/bit_vector.hpp\"\n\n\n\n#include <vector>\n\
       \n#line 1 \"bit/bitcount.hpp\"\n\n\n\n#include <cassert>\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T> using is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                  or std::is_same<T, __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned_int128\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
       \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
       \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_integral =\n \
-      \   typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
       \                                  or is_unsigned_int128<T>::value,\n      \
       \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_signed =\n    typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T> using to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
       \                              make_unsigned_int128<T>,\n                  \
       \            typename std::conditional<std::is_signed<T>::value,\n         \
       \                                               std::make_unsigned<T>,\n   \
@@ -163,7 +163,8 @@ data:
       \ lb = 0, ub = n;\n        while (ub - lb > 1) {\n            int mid = (lb\
       \ + ub) / 2;\n            if (rank1(mid) > i) ub = mid;\n            else lb\
       \ = mid;\n        }\n        return lb;\n    }\n};\n\n} // namespace kk2\n\n\
-      \n#line 1 \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n#line 6 \"random/gen.hpp\"\
+      \n#line 4 \"verify/unit_test/data_structure/bit_vector.test.cpp\"\n\n#line 1\
+      \ \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n#line 6 \"random/gen.hpp\"\
       \n#include <numeric>\n#include <random>\n#include <unordered_set>\n#line 10\
       \ \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\
       \nnamespace kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\
@@ -226,21 +227,22 @@ data:
       \n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#line 6 \"type_traits/io.hpp\"\
       \n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\n\n\
       namespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
-      \ is_standard_istream =\n    typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                  || std::is_same<T, std::ifstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_standard_ostream\
-      \ =\n    typename std::conditional<std::is_same<T, std::ostream>::value\n  \
-      \                                || std::is_same<T, std::ofstream>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -375,7 +377,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -402,22 +404,21 @@ data:
       no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
       template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
       \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/unit_test/data_structure/bit_vector.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    rep (2000) {\n        int n = kk2::random::rng(1,\
-      \ 1e4);\n        auto a = kk2::random::random_vector<int>(n, 0, 2);\n    \n\
-      \        if (!kk2::random::rng(0, 10)) {\n            a.assign(n, 0);\n    \
-      \    }\n        if (!kk2::random::rng(0, 10)) {\n            a.assign(n, 1);\n\
-      \        }\n    \n        kk2::BitVector bv(n);\n        rep (i, n) if (a[i]\
-      \ == 1) bv.set(i);\n        bv.build();\n    \n        vc<int> zero, one;\n\
-      \        vc<int> zero_acc(n + 1), one_acc(n + 1);\n        rep (i, n) {\n  \
-      \          if (a[i] == 0) zero.push_back(i);\n            else one.push_back(i);\n\
+      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/unit_test/data_structure/bit_vector.test.cpp\"\
+      \nusing namespace std;\n\nint main() {\n    rep(2000) {\n        int n = kk2::random::rng(1,\
+      \ 1e4);\n        auto a = kk2::random::random_vector<int>(n, 0, 2);\n\n    \
+      \    if (!kk2::random::rng(0, 10)) { a.assign(n, 0); }\n        if (!kk2::random::rng(0,\
+      \ 10)) { a.assign(n, 1); }\n\n        kk2::BitVector bv(n);\n        rep(i,\
+      \ n) if (a[i] == 1) bv.set(i);\n        bv.build();\n\n        vc<int> zero,\
+      \ one;\n        vc<int> zero_acc(n + 1), one_acc(n + 1);\n        rep(i, n)\
+      \ {\n            if (a[i] == 0) zero.push_back(i);\n            else one.push_back(i);\n\
       \            zero_acc[i + 1] = zero_acc[i] + (a[i] == 0);\n            one_acc[i\
-      \ + 1] = one_acc[i] + (a[i] == 1);\n        }\n    \n        int q = 1000;\n\
-      \        rep (q) {\n            int i = kk2::random::rng(0, n);\n          \
-      \  int naive_rank0 = zero_acc[i];\n            int naive_rank1 = one_acc[i];\n\
-      \            int naive_select0 = -1;\n            int naive_select1 = -1;\n\
-      \            if (i < (int)zero.size()) naive_select0 = zero[i];\n          \
-      \  if (i < (int)one.size()) naive_select1 = one[i];\n            if (naive_rank0\
+      \ + 1] = one_acc[i] + (a[i] == 1);\n        }\n\n        int q = 1000;\n   \
+      \     rep(q) {\n            int i = kk2::random::rng(0, n);\n            int\
+      \ naive_rank0 = zero_acc[i];\n            int naive_rank1 = one_acc[i];\n  \
+      \          int naive_select0 = -1;\n            int naive_select1 = -1;\n  \
+      \          if (i < (int)zero.size()) naive_select0 = zero[i];\n            if\
+      \ (i < (int)one.size()) naive_select1 = one[i];\n            if (naive_rank0\
       \ != bv.rank0(i)) {\n                cerr << \"rank0\" << endl;\n          \
       \      exit(1);\n            }\n            if (naive_rank1 != bv.rank1(i))\
       \ {\n                cerr << \"rank1\" << endl;\n                exit(1);\n\
@@ -433,7 +434,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/data_structure/bit_vector.test.cpp

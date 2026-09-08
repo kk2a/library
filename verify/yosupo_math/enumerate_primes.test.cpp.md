@@ -58,7 +58,7 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_primes\n\
-      \n#include \"../../math/prime_table.hpp\"\n#include \"../../math/frac_floor.hpp\"\
+      \n#include \"../../math/frac_floor.hpp\"\n#include \"../../math/prime_table.hpp\"\
       \n#include \"../../template/template.hpp\"\nusing namespace std;\n\nint main()\
       \ {\n    int n, a, b;\n    kin >> n >> a >> b;\n\n    auto primes = kk2::PrimeTable::primes(n);\n\
       \    int pi_n = (int)primes.size();\n    int m = kk2::fracceil(pi_n - b, a);\n\
@@ -67,76 +67,75 @@ data:
       \    kout << kendl;\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/yosupo_math/enumerate_primes.test.cpp\"\n// competitive-verifier:\
-      \ PROBLEM https://judge.yosupo.jp/problem/enumerate_primes\n\n#line 1 \"math/prime_table.hpp\"\
-      \n\n\n\n#include <algorithm>\n#include <vector>\n\n#line 1 \"math/sqrt_floor.hpp\"\
-      \n\n\n\n#include <cmath>\n\n#line 1 \"math/frac_floor.hpp\"\n\n\n\n#include\
-      \ <cassert>\n\nnamespace kk2 {\n\n// floor(x) = ceil(x) - 1 (for all x not in\
-      \ Z) ...(1)\n// floor(x) = -ceil(-x)   (for all x)          ...(2)\n\n// return\
-      \ floor(a / b)\ntemplate <typename T, typename U> constexpr T fracfloor(T a,\
-      \ U b) {\n    assert(b != 0);\n    if (a % b == 0) return a / b;\n    if (a\
-      \ >= 0) return a / b;\n\n    // floor(x) = -ceil(-x)      by (2)\n    //   \
-      \       = -floor(-x) - 1 by (1)\n    return -((-a) / b) - 1;\n}\n\n// return\
+      \ PROBLEM https://judge.yosupo.jp/problem/enumerate_primes\n\n#line 1 \"math/frac_floor.hpp\"\
+      \n\n\n\n#include <cassert>\n\nnamespace kk2 {\n\n// floor(x) = ceil(x) - 1 (for\
+      \ all x not in Z) ...(1)\n// floor(x) = -ceil(-x)   (for all x)          ...(2)\n\
+      \n// return floor(a / b)\ntemplate <typename T, typename U> constexpr T fracfloor(T\
+      \ a, U b) {\n    assert(b != 0);\n    if (a % b == 0) return a / b;\n    if\
+      \ (a >= 0) return a / b;\n\n    // floor(x) = -ceil(-x)      by (2)\n    //\
+      \          = -floor(-x) - 1 by (1)\n    return -((-a) / b) - 1;\n}\n\n// return\
       \ ceil(a / b)\ntemplate <typename T, typename U> constexpr T fracceil(T a, U\
       \ b) {\n    assert(b != 0);\n    if (a % b == 0) return a / b;\n    if (a >=\
       \ 0) return a / b + 1;\n\n    // ceil(x) = -floor(-x)      by (2)\n    return\
-      \ -((-a) / b);\n}\n\n} // namespace kk2\n\n\n#line 7 \"math/sqrt_floor.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <typename T> T sqrt_floor(T n) {\n    assert(n\
-      \ >= 0);\n    if (n == T(0)) return 0;\n    T x = std::sqrt(n);\n    if (x ==\
-      \ T(0)) ++x;\n    while (x > kk2::fracfloor(n, x)) --x;\n    while (x + 1 <=\
-      \ kk2::fracfloor(n, x + 1)) ++x;\n    return x;\n}\n\ntemplate <typename T>\
-      \ T sqrt_ceil(T n) {\n    assert(n >= 0);\n    if (n <= T(1)) return n;\n  \
-      \  T x = std::sqrt(n);\n    if (x == T(0)) ++x;\n    while (x < kk2::fracceil(n,\
-      \ x)) ++x;\n    while (x - 1 >= kk2::fracceil(n, x - 1)) --x;\n    return x;\n\
-      }\n\n} // namespace kk2\n\n\n#line 8 \"math/prime_table.hpp\"\n\nnamespace kk2\
-      \ {\n\nstruct PrimeTable {\n  private:\n    static inline int _n = 30;\n   \
-      \ static inline std::vector<int> _primes{2, 3, 5, 7, 11, 13, 17, 19, 23, 29};\n\
-      \n  public:\n    PrimeTable() = delete;\n\n    // wheel sieve\n    // reference:\
-      \ https://37zigen.com/wheel-sieve/\n    static void set_upper(int m, int reserve_size\
-      \ = 26355867) {\n        if (m <= _n) return;\n        _n = std::max(m, 2 *\
-      \ _n);\n        int sqrt_n = sqrt_floor(_n);\n        int w = 1;\n        std::vector<bool>\
-      \ iscoprime(sqrt_n, true);\n        for (int i = 0; i < 9; i++) {\n        \
-      \    if (w * _primes[i] > sqrt_n) break;\n            w *= _primes[i];\n   \
-      \         for (int j = _primes[i]; j < sqrt_n; j += _primes[i]) iscoprime[j]\
-      \ = false;\n        }\n\n        std::vector<int> idx_(w, -1);\n        int\
-      \ s = 0;\n        for (int i = 1; i < w; i++) {\n            if (iscoprime[i])\
-      \ idx_[i] = s++;\n        }\n        std::vector<int> coprimes(s);\n       \
-      \ for (int i = 1; i < w; i++) {\n            if (idx_[i] != -1) coprimes[idx_[i]]\
-      \ = i;\n        }\n\n        auto idx = [&](long long x) -> long long {\n  \
-      \          if (idx_[x % w] == -1) return -1;\n            return x / w * s +\
-      \ idx_[x % w];\n        };\n\n        auto val = [&](int i) {\n            return\
-      \ i / s * w + coprimes[i % s];\n        };\n\n        int n = (_n + w - 1) /\
-      \ w * s;\n        std::vector<int> _primes2;\n        _primes2.reserve(reserve_size);\n\
-      \        std::vector<int> lpf(n, 0);\n        for (int i = 1; i < n; i++) {\n\
-      \            int v = val(i);\n            if (lpf[i] == 0) {\n             \
-      \   lpf[i] = v;\n                _primes2.push_back(lpf[i]);\n            }\n\
-      \n            for (const long long p : _primes2) {\n                long long\
-      \ j = idx(p * v);\n                if (j >= n) break;\n                if (lpf[i]\
-      \ < p) break;\n                lpf[j] = p;\n            }\n        }\n\n   \
-      \     std::vector<int> tmp;\n        tmp.reserve(_primes.size() + _primes2.size());\n\
-      \        std::set_union(_primes.begin(),\n                       _primes.end(),\n\
-      \                       _primes2.begin(),\n                       _primes2.end(),\n\
-      \                       std::back_inserter(tmp));\n        _primes = std::move(tmp);\n\
-      \    }\n\n    static const std::vector<int> &primes() { return _primes; }\n\n\
-      \    template <typename It> struct PrimeIt {\n        It bg, ed;\n        PrimeIt(It\
-      \ bg_, It ed_) : bg(bg_), ed(ed_) {}\n        It begin() const { return bg;\
-      \ }\n        It end() const { return ed; }\n        int size() const { return\
-      \ ed - bg; }\n        int operator[](int i) const { return bg[i]; }\n      \
-      \  std::vector<int> to_vec() const { return std::vector<int>(bg, ed); }\n  \
-      \  };\n\n    static auto primes(int n) {\n        if (n >= _n) set_upper(n);\n\
-      \        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(),\
-      \ n));\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\
-      \n\n\n\n#line 5 \"template/template.hpp\"\n#include <array>\n#include <bitset>\n\
-      #line 8 \"template/template.hpp\"\n#include <chrono>\n#line 10 \"template/template.hpp\"\
-      \n#include <deque>\n#include <functional>\n#include <iterator>\n#include <limits>\n\
-      #include <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n\
-      #include <random>\n#include <set>\n#include <stack>\n#include <string>\n#include\
-      \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#line 26 \"\
-      template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1\
-      \ \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\n\n\
-      using u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long\
-      \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
-      \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\n\
-      using pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      \ -((-a) / b);\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/prime_table.hpp\"\
+      \n\n\n\n#include <algorithm>\n#include <vector>\n\n#line 1 \"math/sqrt_floor.hpp\"\
+      \n\n\n\n#include <cmath>\n\n#line 7 \"math/sqrt_floor.hpp\"\n\nnamespace kk2\
+      \ {\n\ntemplate <typename T> T sqrt_floor(T n) {\n    assert(n >= 0);\n    if\
+      \ (n == T(0)) return 0;\n    T x = std::sqrt(n);\n    if (x == T(0)) ++x;\n\
+      \    while (x > kk2::fracfloor(n, x)) --x;\n    while (x + 1 <= kk2::fracfloor(n,\
+      \ x + 1)) ++x;\n    return x;\n}\n\ntemplate <typename T> T sqrt_ceil(T n) {\n\
+      \    assert(n >= 0);\n    if (n <= T(1)) return n;\n    T x = std::sqrt(n);\n\
+      \    if (x == T(0)) ++x;\n    while (x < kk2::fracceil(n, x)) ++x;\n    while\
+      \ (x - 1 >= kk2::fracceil(n, x - 1)) --x;\n    return x;\n}\n\n} // namespace\
+      \ kk2\n\n\n#line 8 \"math/prime_table.hpp\"\n\nnamespace kk2 {\n\nstruct PrimeTable\
+      \ {\n  private:\n    static inline int _n = 30;\n    static inline std::vector<int>\
+      \ _primes{2, 3, 5, 7, 11, 13, 17, 19, 23, 29};\n\n  public:\n    PrimeTable()\
+      \ = delete;\n\n    // wheel sieve\n    // reference: https://37zigen.com/wheel-sieve/\n\
+      \    static void set_upper(int m, int reserve_size = 26355867) {\n        if\
+      \ (m <= _n) return;\n        _n = std::max(m, 2 * _n);\n        int sqrt_n =\
+      \ sqrt_floor(_n);\n        int w = 1;\n        std::vector<bool> iscoprime(sqrt_n,\
+      \ true);\n        for (int i = 0; i < 9; i++) {\n            if (w * _primes[i]\
+      \ > sqrt_n) break;\n            w *= _primes[i];\n            for (int j = _primes[i];\
+      \ j < sqrt_n; j += _primes[i]) iscoprime[j] = false;\n        }\n\n        std::vector<int>\
+      \ idx_(w, -1);\n        int s = 0;\n        for (int i = 1; i < w; i++) {\n\
+      \            if (iscoprime[i]) idx_[i] = s++;\n        }\n        std::vector<int>\
+      \ coprimes(s);\n        for (int i = 1; i < w; i++) {\n            if (idx_[i]\
+      \ != -1) coprimes[idx_[i]] = i;\n        }\n\n        auto idx = [&](long long\
+      \ x) -> long long {\n            if (idx_[x % w] == -1) return -1;\n       \
+      \     return x / w * s + idx_[x % w];\n        };\n\n        auto val = [&](int\
+      \ i) {\n            return i / s * w + coprimes[i % s];\n        };\n\n    \
+      \    int n = (_n + w - 1) / w * s;\n        std::vector<int> _primes2;\n   \
+      \     _primes2.reserve(reserve_size);\n        std::vector<int> lpf(n, 0);\n\
+      \        for (int i = 1; i < n; i++) {\n            int v = val(i);\n      \
+      \      if (lpf[i] == 0) {\n                lpf[i] = v;\n                _primes2.push_back(lpf[i]);\n\
+      \            }\n\n            for (const long long p : _primes2) {\n       \
+      \         long long j = idx(p * v);\n                if (j >= n) break;\n  \
+      \              if (lpf[i] < p) break;\n                lpf[j] = p;\n       \
+      \     }\n        }\n\n        std::vector<int> tmp;\n        tmp.reserve(_primes.size()\
+      \ + _primes2.size());\n        std::set_union(_primes.begin(),\n           \
+      \            _primes.end(),\n                       _primes2.begin(),\n    \
+      \                   _primes2.end(),\n                       std::back_inserter(tmp));\n\
+      \        _primes = std::move(tmp);\n    }\n\n    static const std::vector<int>\
+      \ &primes() { return _primes; }\n\n    template <typename It> struct PrimeIt\
+      \ {\n        It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_)\
+      \ {}\n        It begin() const { return bg; }\n        It end() const { return\
+      \ ed; }\n        int size() const { return ed - bg; }\n        int operator[](int\
+      \ i) const { return bg[i]; }\n        std::vector<int> to_vec() const { return\
+      \ std::vector<int>(bg, ed); }\n    };\n\n    static auto primes(int n) {\n \
+      \       if (n >= _n) set_upper(n);\n        return PrimeIt(_primes.begin(),\
+      \ std::upper_bound(_primes.begin(), _primes.end(), n));\n    }\n};\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\
+      \n#include <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\n#include\
+      \ <chrono>\n#line 10 \"template/template.hpp\"\n#include <deque>\n#include <functional>\n\
+      #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n\
+      #include <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include\
+      \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
+      #include <utility>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
+      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
+      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
+      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
+      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
+      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
       template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
       \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
       \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
@@ -153,30 +152,32 @@ data:
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
       \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value\n    \
-      \                              or std::is_same<T, __int128>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
       \ __uint128_t>::value\n                                  or std::is_same<T,\
       \ unsigned __int128>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
       \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_signed =\n   \
-      \ typename std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using is_unsigned =\n \
-      \   typename std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> using make_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
-      \ unsigned __int128>;\n\ntemplate <typename T> using to_unsigned =\n    typename\
-      \ std::conditional<is_signed_int128<T>::value,\n                           \
-      \   make_unsigned_int128<T>,\n                              typename std::conditional<std::is_signed<T>::value,\n\
-      \                                                        std::make_unsigned<T>,\n\
-      \                                                        std::common_type<T>>::type>::type;\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
       \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
@@ -191,20 +192,22 @@ data:
       #line 6 \"type_traits/io.hpp\"\n#include <istream>\n#include <ostream>\n#line\
       \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
       struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T> using is_standard_istream =\n    typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                  || std::is_same<T,\
-      \ std::ifstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_standard_ostream =\n    typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                  || std::is_same<T,\
-      \ std::ofstream>::value,\n                              std::true_type,\n  \
-      \                            std::false_type>::type;\ntemplate <typename T>\
-      \ using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T> using is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
       \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
@@ -339,7 +342,7 @@ data:
       \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
       \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
       \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T>\nIStream &operator>>(IStream\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
       \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
       }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
       \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
@@ -380,57 +383,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0023517639999965922
+  - elapsed: 0.0030735429999992903
     environment: g++
-    memory: 3.88
+    memory: 3.704
     name: '1_00'
     status: AC
-  - elapsed: 0.0018223589999877277
+  - elapsed: 0.002746074000015142
     environment: g++
-    memory: 3.88
+    memory: 3.752
     name: '2_00'
     status: AC
-  - elapsed: 8.332184233999996
+  - elapsed: 10.207844827999992
     environment: g++
-    memory: 614.728
+    memory: 614.552
     name: '499477801_00'
     status: AC
-  - elapsed: 8.380978476999985
+  - elapsed: 10.050062365999992
     environment: g++
-    memory: 616.66
+    memory: 616.568
     name: '499999993_00'
     status: AC
-  - elapsed: 0.0022851120000098035
+  - elapsed: 0.002723648999960915
     environment: g++
-    memory: 3.884
+    memory: 3.78
     name: example_00
     status: AC
-  - elapsed: 8.380363205000009
+  - elapsed: 10.086404509000033
     environment: g++
-    memory: 616.74
+    memory: 616.62
     name: max_00
     status: AC
-  - elapsed: 8.404462375000008
+  - elapsed: 10.062246856999991
     environment: g++
-    memory: 616.72
+    memory: 616.564
     name: max_01
     status: AC
-  - elapsed: 1.6220745790000137
+  - elapsed: 2.0118974559999856
     environment: g++
-    memory: 130.204
+    memory: 130.056
     name: ten_00
     status: AC
-  - elapsed: 0.145360079999989
+  - elapsed: 0.19459788699998626
     environment: g++
-    memory: 16.728
+    memory: 16.68
     name: ten_01
     status: AC
-  - elapsed: 0.01853442599997379
+  - elapsed: 0.02451930600000196
     environment: g++
-    memory: 4.972
+    memory: 4.856
     name: ten_02
     status: AC
-  timestamp: '2026-09-09 01:16:17+09:00'
+  timestamp: '2026-09-09 02:37:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_primes.test.cpp
