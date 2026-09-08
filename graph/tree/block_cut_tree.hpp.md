@@ -28,48 +28,55 @@ data:
   - type_traits/graph.hpp
   embedded:
   - code: "#ifndef KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP\n#define KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP\
-      \ 1\n\n#include <vector>\n\n#include \"../bcc.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-      \ <graph::UndirectedGraph G> struct BlockCutTree : BCC<G> {\n    std::vector<int>\
-      \ comp_v;\n    std::vector<std::vector<int>> group_v;\n    G forest;\n    int\
-      \ off;\n\n    BlockCutTree(const G &g_) : BCC<G>(g_) { init_bct(); }\n\n   \
-      \ int size() const { return group_v.size(); }\n\n    bool is_articulation(int\
-      \ v) const { return comp_v[v] >= off; }\n\n  private:\n    void init_bct() {\n\
-      \        comp_v.resize(this->n, -1);\n        auto bcc_v = this->get_bcc_vertices();\n\
-      \        off = bcc_v.size();\n        group_v.resize(bcc_v.size() + this->articulations.size());\n\
-      \        forest = G(group_v.size());\n        for (int i = 0; i < (int)this->articulations.size();\
-      \ ++i) {\n            comp_v[this->articulations[i]] = i + off;\n          \
-      \  group_v[i + off].emplace_back(this->articulations[i]);\n        }\n\n   \
-      \     std::vector<int> buf(this->articulations.size(), -1);\n\n        for (int\
-      \ i = 0; i < (int)bcc_v.size(); ++i) {\n            for (auto &v : bcc_v[i])\
-      \ {\n                group_v[i].emplace_back(v);\n                if (comp_v[v]\
-      \ == -1) comp_v[v] = i;\n                else if (buf[comp_v[v] - off] != i)\
-      \ {\n                    forest.add_edge(i, comp_v[v]);\n                  \
-      \  buf[comp_v[v] - off] = i;\n                }\n            }\n        }\n\n\
-      \        if constexpr (G::static_graph) forest.build();\n    }\n};\n\n} // namespace\
-      \ kk2\n\n#endif // KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP\n"
+      \ 1\n\n#include <type_traits>\n#include <vector>\n\n#include \"../bcc.hpp\"\n\
+      \nnamespace kk2 {\n\ntemplate <graph::UndirectedGraph G> struct BlockCutTree\
+      \ : BCC<G> {\n    std::vector<int> comp_v;\n    std::vector<std::vector<int>>\
+      \ group_v;\n    G forest;\n    int off;\n\n    BlockCutTree(const G &g_) : BCC<G>(g_)\
+      \ { init_bct(); }\n\n    int size() const { return group_v.size(); }\n\n   \
+      \ bool is_articulation(int v) const { return comp_v[v] >= off; }\n\n  private:\n\
+      \    void init_bct() {\n        comp_v.resize(this->n, -1);\n        auto bcc_v\
+      \ = this->get_bcc_vertices();\n        off = bcc_v.size();\n        group_v.resize(bcc_v.size()\
+      \ + this->articulations.size());\n        forest = G(group_v.size());\n    \
+      \    using edge_collection = std::remove_cvref_t<decltype(forest.edges)>;\n\
+      \        edge_collection forest_edges;\n        forest_edges.reserve(group_v.size());\n\
+      \        for (int i = 0; i < (int)this->articulations.size(); ++i) {\n     \
+      \       comp_v[this->articulations[i]] = i + off;\n            group_v[i + off].emplace_back(this->articulations[i]);\n\
+      \        }\n\n        std::vector<int> buf(this->articulations.size(), -1);\n\
+      \n        for (int i = 0; i < (int)bcc_v.size(); ++i) {\n            for (auto\
+      \ &v : bcc_v[i]) {\n                group_v[i].emplace_back(v);\n          \
+      \      if (comp_v[v] == -1) comp_v[v] = i;\n                else if (buf[comp_v[v]\
+      \ - off] != i) {\n                    forest_edges.add_edge(i, comp_v[v]);\n\
+      \                    buf[comp_v[v] - off] = i;\n                }\n        \
+      \    }\n        }\n\n        forest = G(group_v.size(), forest_edges);\n   \
+      \ }\n};\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP\n"
     name: default
-  - code: "#line 1 \"graph/tree/block_cut_tree.hpp\"\n\n\n\n#include <vector>\n\n\
-      #line 1 \"graph/bcc.hpp\"\n\n\n\n#include <functional>\n#line 6 \"graph/bcc.hpp\"\
-      \n\n#line 1 \"graph/lowlink.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
-      #line 7 \"graph/lowlink.hpp\"\n#include <type_traits>\n#line 9 \"graph/lowlink.hpp\"\
-      \n\n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#include <concepts>\n#include <ranges>\n\
-      #line 7 \"type_traits/graph.hpp\"\n#include <utility>\n\nnamespace kk2::graph\
-      \ {\n\ntemplate <class E>\nconcept Edge = requires(const E &e) {\n    { e.from\
-      \ } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
-      \    { e.id } -> std::convertible_to<int>;\n};\n\ntemplate <class E>\nconcept\
-      \ WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };\n\ntemplate <class\
-      \ G>\nconcept Graph = requires(const G &g, int v) {\n    typename G::value_type;\n\
-      \    { G::directed } -> std::convertible_to<bool>;\n    { G::weighted } -> std::convertible_to<bool>;\n\
-      \    { G::adjacency_list } -> std::convertible_to<bool>;\n    { G::adjacency_matrix\
-      \ } -> std::convertible_to<bool>;\n    { G::static_graph } -> std::convertible_to<bool>;\n\
-      \    { g.num_vertices() } -> std::integral;\n    { g.num_edges() } -> std::integral;\n\
-      \    g[v];\n    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph =\
-      \ Graph<G> && requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
-      \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
-      \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
-      \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
-      };\n\ntemplate <class G>\nconcept WeightedGraph = AdjacencyGraph<G> && G::weighted\
-      \ &&\n                        WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+  - code: "#line 1 \"graph/tree/block_cut_tree.hpp\"\n\n\n\n#include <type_traits>\n\
+      #include <vector>\n\n#line 1 \"graph/bcc.hpp\"\n\n\n\n#include <functional>\n\
+      #line 6 \"graph/bcc.hpp\"\n\n#line 1 \"graph/lowlink.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <cassert>\n#line 9 \"graph/lowlink.hpp\"\n\n#line 1 \"type_traits/graph.hpp\"\
+      \n\n\n\n#include <concepts>\n#include <ranges>\n#line 7 \"type_traits/graph.hpp\"\
+      \n#include <utility>\n\nnamespace kk2::graph {\n\ntemplate <class E>\nconcept\
+      \ Edge = requires(const E &e) {\n    { e.from } -> std::convertible_to<int>;\n\
+      \    { e.to } -> std::convertible_to<int>;\n    { e.id } -> std::convertible_to<int>;\n\
+      };\n\ntemplate <class E>\nconcept WeightedEdge = Edge<E> && requires(const E\
+      \ &e) { e.cost; };\n\ntemplate <class R>\nconcept EdgeRange = std::ranges::input_range<R>\
+      \ &&\n                    Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class\
+      \ R>\nconcept WeightedEdgeRange = EdgeRange<R> &&\n                        \
+      \    WeightedEdge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept\
+      \ ForwardWeightedEdgeRange = std::ranges::forward_range<R> && WeightedEdgeRange<R>;\n\
+      \ntemplate <class G>\nconcept Graph = requires(const G &g, int v) {\n    typename\
+      \ G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n    { G::weighted\
+      \ } -> std::convertible_to<bool>;\n    { G::adjacency_list } -> std::convertible_to<bool>;\n\
+      \    { G::adjacency_matrix } -> std::convertible_to<bool>;\n    { G::static_graph\
+      \ } -> std::convertible_to<bool>;\n    { g.num_vertices() } -> std::integral;\n\
+      \    { g.num_edges() } -> std::integral;\n    g[v];\n    g.edges;\n};\n\ntemplate\
+      \ <class G>\nconcept EdgeListGraph = Graph<G> && requires(const G &g) {\n  \
+      \  requires std::ranges::range<decltype(g.edges)>;\n    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n\
+      };\n\ntemplate <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const\
+      \ G &g, int v) {\n    requires std::ranges::range<decltype(g[v])>;\n    requires\
+      \ Edge<std::ranges::range_value_t<decltype(g[v])>>;\n};\n\ntemplate <class G>\n\
+      concept WeightedGraph = AdjacencyGraph<G> && G::weighted &&\n              \
+      \          WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph = EdgeListGraph<G>\
       \ && G::weighted &&\n                                WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
@@ -117,7 +124,7 @@ data:
       \n  private:\n    void init_bcc() {\n        comp_e = std::vector<int>(this->m,\
       \ -1);\n        auto add = [&](int ei, int k) {\n            group_e[k].emplace_back(ei);\n\
       \            comp_e[ei] = k;\n        };\n        auto dfs = [&](auto self,\
-      \ int u, int k = -1, int ei = -1) -> void {\n            for (auto &e : this->g[u])\
+      \ int u, int k = -1, int ei = -1) -> void {\n            for (auto e : this->g[u])\
       \ {\n                if (e.id == ei) continue;\n                if (this->used_on_dfs_tree[e.id])\
       \ {\n                    int nk = k;\n                    if (this->low[e.to]\
       \ >= this->ord[u])\n                        nk = group_e.size(), group_e.emplace_back();\n\
@@ -142,7 +149,7 @@ data:
       \      for (int i = 0; i < this->n; i++)\n            if (!buf1[i]) {\n    \
       \            int k = (int)res.size();\n                res.emplace_back();\n\
       \                res[k].emplace_back(i);\n            }\n        return res;\n\
-      \    }\n};\n\n} // namespace kk2\n\n\n#line 7 \"graph/tree/block_cut_tree.hpp\"\
+      \    }\n};\n\n} // namespace kk2\n\n\n#line 8 \"graph/tree/block_cut_tree.hpp\"\
       \n\nnamespace kk2 {\n\ntemplate <graph::UndirectedGraph G> struct BlockCutTree\
       \ : BCC<G> {\n    std::vector<int> comp_v;\n    std::vector<std::vector<int>>\
       \ group_v;\n    G forest;\n    int off;\n\n    BlockCutTree(const G &g_) : BCC<G>(g_)\
@@ -151,23 +158,25 @@ data:
       \    void init_bct() {\n        comp_v.resize(this->n, -1);\n        auto bcc_v\
       \ = this->get_bcc_vertices();\n        off = bcc_v.size();\n        group_v.resize(bcc_v.size()\
       \ + this->articulations.size());\n        forest = G(group_v.size());\n    \
-      \    for (int i = 0; i < (int)this->articulations.size(); ++i) {\n         \
-      \   comp_v[this->articulations[i]] = i + off;\n            group_v[i + off].emplace_back(this->articulations[i]);\n\
+      \    using edge_collection = std::remove_cvref_t<decltype(forest.edges)>;\n\
+      \        edge_collection forest_edges;\n        forest_edges.reserve(group_v.size());\n\
+      \        for (int i = 0; i < (int)this->articulations.size(); ++i) {\n     \
+      \       comp_v[this->articulations[i]] = i + off;\n            group_v[i + off].emplace_back(this->articulations[i]);\n\
       \        }\n\n        std::vector<int> buf(this->articulations.size(), -1);\n\
       \n        for (int i = 0; i < (int)bcc_v.size(); ++i) {\n            for (auto\
       \ &v : bcc_v[i]) {\n                group_v[i].emplace_back(v);\n          \
       \      if (comp_v[v] == -1) comp_v[v] = i;\n                else if (buf[comp_v[v]\
-      \ - off] != i) {\n                    forest.add_edge(i, comp_v[v]);\n     \
-      \               buf[comp_v[v] - off] = i;\n                }\n            }\n\
-      \        }\n\n        if constexpr (G::static_graph) forest.build();\n    }\n\
-      };\n\n} // namespace kk2\n\n\n"
+      \ - off] != i) {\n                    forest_edges.add_edge(i, comp_v[v]);\n\
+      \                    buf[comp_v[v] - off] = i;\n                }\n        \
+      \    }\n        }\n\n        forest = G(group_v.size(), forest_edges);\n   \
+      \ }\n};\n\n} // namespace kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
   path: graph/tree/block_cut_tree.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp

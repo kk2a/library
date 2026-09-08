@@ -27,7 +27,7 @@ data:
   path: verify/yosupo_graph/tree_vertex_set_path_composite_1.test.cpp
   pathExtension: cpp
   requiredBy: []
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_vertex_set_path_composite_1.test.cpp

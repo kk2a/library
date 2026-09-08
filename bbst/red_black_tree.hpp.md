@@ -321,7 +321,7 @@ data:
   path: bbst/red_black_tree.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp

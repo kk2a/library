@@ -24,48 +24,52 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "#ifndef KK2_GRAPH_SHORTEST_PATH_BELLMAN_FORD_HPP\n#define KK2_GRAPH_SHORTEST_PATH_BELLMAN_FORD_HPP\
-      \ 1\n\n#include <limits>\n#include <vector>\n\n#include \"../../type_traits/graph.hpp\"\
-      \n#include \"../../type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace shortest_path_impl\
+      \ 1\n\n#include <limits>\n#include <ranges>\n#include <type_traits>\n#include\
+      \ <utility>\n#include <vector>\n\n#include \"../../type_traits/graph.hpp\"\n\
+      #include \"../../type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace shortest_path_impl\
       \ {\n\ntemplate <class T> struct bf_edge {\n    int to, id;\n};\n\ntemplate\
       \ <class T> struct bf_len {\n    T len;\n    bool inf, minf;\n\n    template\
       \ <OutputStream OStream>\n    void debug_output(OStream &os) const {\n     \
       \   if (minf) os << \"MINF\";\n        else if (inf) os << \"INF\";\n      \
       \  else os << len;\n    }\n};\n\ntemplate <class T> struct bf_result {\n   \
       \ std::vector<bf_len<T>> dist;\n    std::vector<bf_edge<T>> prev;\n};\n\ntemplate\
-      \ <graph::WeightedDirectedEdgeListGraph WG, class T = typename WG::value_type>\n\
-      bf_result<T> bellman_ford(const WG &g, int start) {\n\n    std::vector<bf_len<T>>\
-      \ dist(g.num_vertices(), {0, true, false});\n    std::vector<bf_edge<T>> prev(g.num_vertices(),\
-      \ {-1, -1});\n    dist[start] = {0, false, false};\n\n    int iter = g.num_vertices();\n\
-      \    while (iter--) {\n        bool update = false;\n        for (int i = 0;\
-      \ i < g.num_edges(); i++) {\n            auto e = g.edges[i];\n            if\
-      \ (dist[e.from].inf) continue;\n            if (dist[e.to].inf or dist[e.to].len\
+      \ <graph::ForwardWeightedEdgeRange E,\n          class T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>\n\
+      bf_result<T> bellman_ford(int n, const E &edges, int start) {\n\n    std::vector<bf_len<T>>\
+      \ dist(n, {0, true, false});\n    std::vector<bf_edge<T>> prev(n, {-1, -1});\n\
+      \    dist[start] = {0, false, false};\n\n    int iter = n;\n    while (iter--)\
+      \ {\n        bool update = false;\n        for (auto e : edges) {\n        \
+      \    if (dist[e.from].inf) continue;\n            if (dist[e.to].inf or dist[e.to].len\
       \ > dist[e.from].len + e.cost) {\n                update = true;\n         \
       \       dist[e.to].len = dist[e.from].len + e.cost;\n                dist[e.to].inf\
-      \ = false;\n                prev[e.to] = {e.from, i};\n            }\n     \
-      \   }\n        if (!update) return {dist, prev};\n    }\n\n    iter = g.num_vertices();\n\
-      \    while (iter--) {\n        for (int i = 0; i < g.num_edges(); i++) {\n \
-      \           auto e = g.edges[i];\n            if (dist[e.from].inf) continue;\n\
-      \            if (dist[e.to].inf or dist[e.to].len > dist[e.from].len + e.cost)\
-      \ {\n                dist[e.to].minf = true;\n                dist[e.to].len\
+      \ = false;\n                prev[e.to] = {e.from, e.id};\n            }\n  \
+      \      }\n        if (!update) return {dist, prev};\n    }\n\n    iter = n;\n\
+      \    while (iter--) {\n        for (auto e : edges) {\n            if (dist[e.from].inf)\
+      \ continue;\n            if (dist[e.to].inf or dist[e.to].len > dist[e.from].len\
+      \ + e.cost) {\n                dist[e.to].minf = true;\n                dist[e.to].len\
       \ = dist[e.from].len + e.cost;\n            }\n            if (dist[e.from].minf)\
       \ dist[e.to].minf = true;\n        }\n    }\n\n    return {dist, prev};\n}\n\
       \n} // namespace shortest_path_impl\n\nusing shortest_path_impl::bellman_ford;\n\
       \n} // namespace kk2\n\n\n#endif // KK2_GRAPH_SHORTEST_PATH_BELLMAN_FORD_HPP\n"
     name: default
   - code: "#line 1 \"graph/shortest_path/bellman_ford.hpp\"\n\n\n\n#include <limits>\n\
-      #include <vector>\n\n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#include <concepts>\n\
-      #include <ranges>\n#include <type_traits>\n#include <utility>\n\nnamespace kk2::graph\
-      \ {\n\ntemplate <class E>\nconcept Edge = requires(const E &e) {\n    { e.from\
-      \ } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
+      #include <ranges>\n#include <type_traits>\n#include <utility>\n#include <vector>\n\
+      \n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#include <concepts>\n#line 8 \"type_traits/graph.hpp\"\
+      \n\nnamespace kk2::graph {\n\ntemplate <class E>\nconcept Edge = requires(const\
+      \ E &e) {\n    { e.from } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
       \    { e.id } -> std::convertible_to<int>;\n};\n\ntemplate <class E>\nconcept\
       \ WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };\n\ntemplate <class\
-      \ G>\nconcept Graph = requires(const G &g, int v) {\n    typename G::value_type;\n\
-      \    { G::directed } -> std::convertible_to<bool>;\n    { G::weighted } -> std::convertible_to<bool>;\n\
-      \    { G::adjacency_list } -> std::convertible_to<bool>;\n    { G::adjacency_matrix\
-      \ } -> std::convertible_to<bool>;\n    { G::static_graph } -> std::convertible_to<bool>;\n\
-      \    { g.num_vertices() } -> std::integral;\n    { g.num_edges() } -> std::integral;\n\
-      \    g[v];\n    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph =\
-      \ Graph<G> && requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
+      \ R>\nconcept EdgeRange = std::ranges::input_range<R> &&\n                 \
+      \   Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept WeightedEdgeRange\
+      \ = EdgeRange<R> &&\n                            WeightedEdge<std::ranges::range_value_t<R>>;\n\
+      \ntemplate <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
+      \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
+      \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
+      \    { G::weighted } -> std::convertible_to<bool>;\n    { G::adjacency_list\
+      \ } -> std::convertible_to<bool>;\n    { G::adjacency_matrix } -> std::convertible_to<bool>;\n\
+      \    { G::static_graph } -> std::convertible_to<bool>;\n    { g.num_vertices()\
+      \ } -> std::integral;\n    { g.num_edges() } -> std::integral;\n    g[v];\n\
+      \    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph = Graph<G> &&\
+      \ requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
       \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
       \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
       \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
@@ -112,29 +116,27 @@ data:
       \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
       \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
       \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 9 \"graph/shortest_path/bellman_ford.hpp\"\n\
+      \n} // namespace kk2\n\n\n#line 12 \"graph/shortest_path/bellman_ford.hpp\"\n\
       \nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\ntemplate <class T> struct\
       \ bf_edge {\n    int to, id;\n};\n\ntemplate <class T> struct bf_len {\n   \
       \ T len;\n    bool inf, minf;\n\n    template <OutputStream OStream>\n    void\
       \ debug_output(OStream &os) const {\n        if (minf) os << \"MINF\";\n   \
       \     else if (inf) os << \"INF\";\n        else os << len;\n    }\n};\n\ntemplate\
       \ <class T> struct bf_result {\n    std::vector<bf_len<T>> dist;\n    std::vector<bf_edge<T>>\
-      \ prev;\n};\n\ntemplate <graph::WeightedDirectedEdgeListGraph WG, class T =\
-      \ typename WG::value_type>\nbf_result<T> bellman_ford(const WG &g, int start)\
-      \ {\n\n    std::vector<bf_len<T>> dist(g.num_vertices(), {0, true, false});\n\
-      \    std::vector<bf_edge<T>> prev(g.num_vertices(), {-1, -1});\n    dist[start]\
-      \ = {0, false, false};\n\n    int iter = g.num_vertices();\n    while (iter--)\
-      \ {\n        bool update = false;\n        for (int i = 0; i < g.num_edges();\
-      \ i++) {\n            auto e = g.edges[i];\n            if (dist[e.from].inf)\
+      \ prev;\n};\n\ntemplate <graph::ForwardWeightedEdgeRange E,\n          class\
+      \ T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>\n\
+      bf_result<T> bellman_ford(int n, const E &edges, int start) {\n\n    std::vector<bf_len<T>>\
+      \ dist(n, {0, true, false});\n    std::vector<bf_edge<T>> prev(n, {-1, -1});\n\
+      \    dist[start] = {0, false, false};\n\n    int iter = n;\n    while (iter--)\
+      \ {\n        bool update = false;\n        for (auto e : edges) {\n        \
+      \    if (dist[e.from].inf) continue;\n            if (dist[e.to].inf or dist[e.to].len\
+      \ > dist[e.from].len + e.cost) {\n                update = true;\n         \
+      \       dist[e.to].len = dist[e.from].len + e.cost;\n                dist[e.to].inf\
+      \ = false;\n                prev[e.to] = {e.from, e.id};\n            }\n  \
+      \      }\n        if (!update) return {dist, prev};\n    }\n\n    iter = n;\n\
+      \    while (iter--) {\n        for (auto e : edges) {\n            if (dist[e.from].inf)\
       \ continue;\n            if (dist[e.to].inf or dist[e.to].len > dist[e.from].len\
-      \ + e.cost) {\n                update = true;\n                dist[e.to].len\
-      \ = dist[e.from].len + e.cost;\n                dist[e.to].inf = false;\n  \
-      \              prev[e.to] = {e.from, i};\n            }\n        }\n       \
-      \ if (!update) return {dist, prev};\n    }\n\n    iter = g.num_vertices();\n\
-      \    while (iter--) {\n        for (int i = 0; i < g.num_edges(); i++) {\n \
-      \           auto e = g.edges[i];\n            if (dist[e.from].inf) continue;\n\
-      \            if (dist[e.to].inf or dist[e.to].len > dist[e.from].len + e.cost)\
-      \ {\n                dist[e.to].minf = true;\n                dist[e.to].len\
+      \ + e.cost) {\n                dist[e.to].minf = true;\n                dist[e.to].len\
       \ = dist[e.from].len + e.cost;\n            }\n            if (dist[e.from].minf)\
       \ dist[e.to].minf = true;\n        }\n    }\n\n    return {dist, prev};\n}\n\
       \n} // namespace shortest_path_impl\n\nusing shortest_path_impl::bellman_ford;\n\
@@ -145,7 +147,7 @@ data:
   path: graph/shortest_path/bellman_ford.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_grl_1_b.test.cpp

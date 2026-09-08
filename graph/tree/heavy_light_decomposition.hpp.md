@@ -66,29 +66,33 @@ data:
       \ in[v]) std::swap(u, v);\n            u = par[head[u]];\n        }\n      \
       \  return dep[u] < dep[v] ? u : v;\n    }\n\n    int dist(int u, int v) const\
       \ { return dep[u] + dep[v] - 2 * dep[lca(u, v)]; }\n\n  private:\n    void init()\
-      \ {\n        auto dfs_sz = [&](auto self, int now) -> void {\n            sz[now]\
-      \ = 1;\n            for (auto &e : g[now]) {\n                if ((int)e ==\
-      \ par[now]) {\n                    if (g[now].size() >= 2 and e == g[now][0])\
-      \ std::swap(e, g[now][1]);\n                    else continue;\n           \
-      \     }\n                par[(int)e] = now;\n                dep[(int)e] = dep[now]\
-      \ + 1;\n                self(self, (int)e);\n                sz[now] += sz[(int)e];\n\
-      \                if (sz[(int)e] > sz[(int)g[now][0]]) std::swap(e, g[now][0]);\n\
-      \            }\n        };\n        dfs_sz(dfs_sz, root);\n\n        auto dfs_hld\
-      \ = [&](auto self, int now) -> void {\n            in[now] = id++;\n       \
-      \     for (auto &e : g[now]) {\n                if ((int)e == par[now]) continue;\n\
-      \                head[(int)e] = ((int)e == (int)g[now][0] ? head[now] : (int)e);\n\
-      \                edge_idx[e.id] = id;\n                self(self, (int)e);\n\
-      \            }\n            out[now] = id;\n        };\n        dfs_hld(dfs_hld,\
-      \ root);\n    }\n\n    // [u, v)\n    std::vector<std::pair<int, int>> ascend(int\
-      \ u, int v) const {\n        std::vector<std::pair<int, int>> res;\n       \
-      \ while (head[u] != head[v]) {\n            res.emplace_back(in[u], in[head[u]]);\n\
-      \            u = par[head[u]];\n        }\n        if (u != v) res.emplace_back(in[u],\
-      \ in[v] + 1);\n        return res;\n    }\n\n    // (u, v]\n    std::vector<std::pair<int,\
-      \ int>> descend(int u, int v) const {\n        if (u == v) return {};\n    \
-      \    if (head[u] == head[v]) return {std::make_pair(in[u] + 1, in[v])};\n  \
-      \      auto res = descend(u, par[head[v]]);\n        res.emplace_back(in[head[v]],\
-      \ in[v]);\n        return res;\n    }\n};\n\n} // namespace kk2\n\n#endif //\
-      \ KK2_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n"
+      \ {\n        auto swap_edges = [&](int v, int i, int j) {\n            if constexpr\
+      \ (requires { g.swap_edges(v, i, j); }) g.swap_edges(v, i, j);\n           \
+      \ else std::swap(g[v][i], g[v][j]);\n        };\n        auto dfs_sz = [&](auto\
+      \ self, int now) -> void {\n            sz[now] = 1;\n            for (int i\
+      \ = 0; i < (int)g[now].size(); ++i) {\n                if (g[now][i].to == par[now])\
+      \ {\n                    if (g[now].size() >= 2 and g[now][i].id == g[now][0].id)\
+      \ {\n                        swap_edges(now, i, 1);\n                    } else\
+      \ {\n                        continue;\n                    }\n            \
+      \    }\n                const int child = g[now][i].to;\n                par[child]\
+      \ = now;\n                dep[child] = dep[now] + 1;\n                self(self,\
+      \ child);\n                sz[now] += sz[child];\n                if (sz[child]\
+      \ > sz[g[now][0].to]) swap_edges(now, i, 0);\n            }\n        };\n  \
+      \      dfs_sz(dfs_sz, root);\n\n        auto dfs_hld = [&](auto self, int now)\
+      \ -> void {\n            in[now] = id++;\n            for (auto e : g[now])\
+      \ {\n                if ((int)e == par[now]) continue;\n                head[(int)e]\
+      \ = ((int)e == (int)g[now][0] ? head[now] : (int)e);\n                edge_idx[e.id]\
+      \ = id;\n                self(self, (int)e);\n            }\n            out[now]\
+      \ = id;\n        };\n        dfs_hld(dfs_hld, root);\n    }\n\n    // [u, v)\n\
+      \    std::vector<std::pair<int, int>> ascend(int u, int v) const {\n       \
+      \ std::vector<std::pair<int, int>> res;\n        while (head[u] != head[v])\
+      \ {\n            res.emplace_back(in[u], in[head[u]]);\n            u = par[head[u]];\n\
+      \        }\n        if (u != v) res.emplace_back(in[u], in[v] + 1);\n      \
+      \  return res;\n    }\n\n    // (u, v]\n    std::vector<std::pair<int, int>>\
+      \ descend(int u, int v) const {\n        if (u == v) return {};\n        if\
+      \ (head[u] == head[v]) return {std::make_pair(in[u] + 1, in[v])};\n        auto\
+      \ res = descend(u, par[head[v]]);\n        res.emplace_back(in[head[v]], in[v]);\n\
+      \        return res;\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n"
     name: default
   - code: "#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n\n#include <cassert>\n\
       #include <functional>\n#include <utility>\n#include <vector>\n\n#line 1 \"type_traits/graph.hpp\"\
@@ -97,19 +101,24 @@ data:
       concept Edge = requires(const E &e) {\n    { e.from } -> std::convertible_to<int>;\n\
       \    { e.to } -> std::convertible_to<int>;\n    { e.id } -> std::convertible_to<int>;\n\
       };\n\ntemplate <class E>\nconcept WeightedEdge = Edge<E> && requires(const E\
-      \ &e) { e.cost; };\n\ntemplate <class G>\nconcept Graph = requires(const G &g,\
-      \ int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
-      \    { G::weighted } -> std::convertible_to<bool>;\n    { G::adjacency_list\
-      \ } -> std::convertible_to<bool>;\n    { G::adjacency_matrix } -> std::convertible_to<bool>;\n\
-      \    { G::static_graph } -> std::convertible_to<bool>;\n    { g.num_vertices()\
-      \ } -> std::integral;\n    { g.num_edges() } -> std::integral;\n    g[v];\n\
-      \    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph = Graph<G> &&\
-      \ requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
-      \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
-      \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
-      \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
-      };\n\ntemplate <class G>\nconcept WeightedGraph = AdjacencyGraph<G> && G::weighted\
-      \ &&\n                        WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ &e) { e.cost; };\n\ntemplate <class R>\nconcept EdgeRange = std::ranges::input_range<R>\
+      \ &&\n                    Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class\
+      \ R>\nconcept WeightedEdgeRange = EdgeRange<R> &&\n                        \
+      \    WeightedEdge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept\
+      \ ForwardWeightedEdgeRange = std::ranges::forward_range<R> && WeightedEdgeRange<R>;\n\
+      \ntemplate <class G>\nconcept Graph = requires(const G &g, int v) {\n    typename\
+      \ G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n    { G::weighted\
+      \ } -> std::convertible_to<bool>;\n    { G::adjacency_list } -> std::convertible_to<bool>;\n\
+      \    { G::adjacency_matrix } -> std::convertible_to<bool>;\n    { G::static_graph\
+      \ } -> std::convertible_to<bool>;\n    { g.num_vertices() } -> std::integral;\n\
+      \    { g.num_edges() } -> std::integral;\n    g[v];\n    g.edges;\n};\n\ntemplate\
+      \ <class G>\nconcept EdgeListGraph = Graph<G> && requires(const G &g) {\n  \
+      \  requires std::ranges::range<decltype(g.edges)>;\n    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n\
+      };\n\ntemplate <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const\
+      \ G &g, int v) {\n    requires std::ranges::range<decltype(g[v])>;\n    requires\
+      \ Edge<std::ranges::range_value_t<decltype(g[v])>>;\n};\n\ntemplate <class G>\n\
+      concept WeightedGraph = AdjacencyGraph<G> && G::weighted &&\n              \
+      \          WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph = EdgeListGraph<G>\
       \ && G::weighted &&\n                                WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
       \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
@@ -152,28 +161,33 @@ data:
       \ in[v]) std::swap(u, v);\n            u = par[head[u]];\n        }\n      \
       \  return dep[u] < dep[v] ? u : v;\n    }\n\n    int dist(int u, int v) const\
       \ { return dep[u] + dep[v] - 2 * dep[lca(u, v)]; }\n\n  private:\n    void init()\
-      \ {\n        auto dfs_sz = [&](auto self, int now) -> void {\n            sz[now]\
-      \ = 1;\n            for (auto &e : g[now]) {\n                if ((int)e ==\
-      \ par[now]) {\n                    if (g[now].size() >= 2 and e == g[now][0])\
-      \ std::swap(e, g[now][1]);\n                    else continue;\n           \
-      \     }\n                par[(int)e] = now;\n                dep[(int)e] = dep[now]\
-      \ + 1;\n                self(self, (int)e);\n                sz[now] += sz[(int)e];\n\
-      \                if (sz[(int)e] > sz[(int)g[now][0]]) std::swap(e, g[now][0]);\n\
-      \            }\n        };\n        dfs_sz(dfs_sz, root);\n\n        auto dfs_hld\
-      \ = [&](auto self, int now) -> void {\n            in[now] = id++;\n       \
-      \     for (auto &e : g[now]) {\n                if ((int)e == par[now]) continue;\n\
-      \                head[(int)e] = ((int)e == (int)g[now][0] ? head[now] : (int)e);\n\
-      \                edge_idx[e.id] = id;\n                self(self, (int)e);\n\
-      \            }\n            out[now] = id;\n        };\n        dfs_hld(dfs_hld,\
-      \ root);\n    }\n\n    // [u, v)\n    std::vector<std::pair<int, int>> ascend(int\
-      \ u, int v) const {\n        std::vector<std::pair<int, int>> res;\n       \
-      \ while (head[u] != head[v]) {\n            res.emplace_back(in[u], in[head[u]]);\n\
-      \            u = par[head[u]];\n        }\n        if (u != v) res.emplace_back(in[u],\
-      \ in[v] + 1);\n        return res;\n    }\n\n    // (u, v]\n    std::vector<std::pair<int,\
-      \ int>> descend(int u, int v) const {\n        if (u == v) return {};\n    \
-      \    if (head[u] == head[v]) return {std::make_pair(in[u] + 1, in[v])};\n  \
-      \      auto res = descend(u, par[head[v]]);\n        res.emplace_back(in[head[v]],\
-      \ in[v]);\n        return res;\n    }\n};\n\n} // namespace kk2\n\n\n"
+      \ {\n        auto swap_edges = [&](int v, int i, int j) {\n            if constexpr\
+      \ (requires { g.swap_edges(v, i, j); }) g.swap_edges(v, i, j);\n           \
+      \ else std::swap(g[v][i], g[v][j]);\n        };\n        auto dfs_sz = [&](auto\
+      \ self, int now) -> void {\n            sz[now] = 1;\n            for (int i\
+      \ = 0; i < (int)g[now].size(); ++i) {\n                if (g[now][i].to == par[now])\
+      \ {\n                    if (g[now].size() >= 2 and g[now][i].id == g[now][0].id)\
+      \ {\n                        swap_edges(now, i, 1);\n                    } else\
+      \ {\n                        continue;\n                    }\n            \
+      \    }\n                const int child = g[now][i].to;\n                par[child]\
+      \ = now;\n                dep[child] = dep[now] + 1;\n                self(self,\
+      \ child);\n                sz[now] += sz[child];\n                if (sz[child]\
+      \ > sz[g[now][0].to]) swap_edges(now, i, 0);\n            }\n        };\n  \
+      \      dfs_sz(dfs_sz, root);\n\n        auto dfs_hld = [&](auto self, int now)\
+      \ -> void {\n            in[now] = id++;\n            for (auto e : g[now])\
+      \ {\n                if ((int)e == par[now]) continue;\n                head[(int)e]\
+      \ = ((int)e == (int)g[now][0] ? head[now] : (int)e);\n                edge_idx[e.id]\
+      \ = id;\n                self(self, (int)e);\n            }\n            out[now]\
+      \ = id;\n        };\n        dfs_hld(dfs_hld, root);\n    }\n\n    // [u, v)\n\
+      \    std::vector<std::pair<int, int>> ascend(int u, int v) const {\n       \
+      \ std::vector<std::pair<int, int>> res;\n        while (head[u] != head[v])\
+      \ {\n            res.emplace_back(in[u], in[head[u]]);\n            u = par[head[u]];\n\
+      \        }\n        if (u != v) res.emplace_back(in[u], in[v] + 1);\n      \
+      \  return res;\n    }\n\n    // (u, v]\n    std::vector<std::pair<int, int>>\
+      \ descend(int u, int v) const {\n        if (u == v) return {};\n        if\
+      \ (head[u] == head[v]) return {std::make_pair(in[u] + 1, in[v])};\n        auto\
+      \ res = descend(u, par[head[v]]);\n        res.emplace_back(in[head[v]], in[v]);\n\
+      \        return res;\n    }\n};\n\n} // namespace kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
@@ -181,7 +195,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - graph/tree/auxiliary_tree.hpp
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/tree_lca.test.cpp

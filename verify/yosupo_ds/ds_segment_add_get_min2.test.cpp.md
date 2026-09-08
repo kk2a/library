@@ -454,7 +454,7 @@ data:
     memory: 3.664
     name: small_01
     status: AC
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_segment_add_get_min2.test.cpp

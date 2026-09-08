@@ -10,9 +10,48 @@ data:
       path: type_traits/io.hpp
     type: Depends on
   - files:
+    - filename: compact_edge.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/compact_edge.hpp
+    - filename: compact_graph.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/compact_graph.hpp
+    - filename: compact_static_graph.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/compact_static_graph.hpp
+    - filename: adjacency_list_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/adjacency_list_base.hpp
+    - filename: adjacency_storage_common.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/adjacency_storage_common.hpp
+    - filename: compact_adjacency_storage.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/compact_adjacency_storage.hpp
+    - filename: compact_static_adjacency_storage.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/compact_static_adjacency_storage.hpp
+    - filename: direct_adjacency_storage.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/direct_adjacency_storage.hpp
+    - filename: direct_static_adjacency_storage.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/direct_static_adjacency_storage.hpp
+    - filename: graph_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/graph_base.hpp
+    - filename: static_adjacency_list_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/static_adjacency_list_base.hpp
     - filename: graph.hpp
       icon: LIBRARY_ALL_AC
       path: graph/graph.hpp
+    - filename: matrix.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/matrix.hpp
+    - filename: matrix_edge.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/matrix_edge.hpp
     - filename: static_graph.hpp
       icon: LIBRARY_ALL_AC
       path: graph/static_graph.hpp
@@ -27,6 +66,9 @@ data:
     - filename: aoj_grl_1_c.test.cpp
       icon: TEST_ACCEPTED
       path: verify/aoj/aoj_grl_1_c.test.cpp
+    - filename: maxflow.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/graph/maxflow.test.cpp
     - filename: graph.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/graph/graph.test.cpp
@@ -98,33 +140,36 @@ data:
       \ { return _Edge(from, cost, to, id); }\n\n    template <OutputStream OStream>\n\
       \    void debug_output(OStream &os) const {\n        os << '(' << id << \",\
       \ \" << from << \"->\" << to;\n        if constexpr (!std::is_same_v<T, empty>)\
-      \ os << \":\" << cost;\n        os << ')';\n    }\n};\n\ntemplate <class T>\
-      \ struct _Edges : public std::vector<_Edge<T>> {\n    using std::vector<_Edge<T>>::vector;\n\
-      \n    template <InputStream IStream>\n    _Edges &input(IStream &is, bool is_one_indexed\
-      \ = false) {\n        for (int i = 0; i < (int)this->size(); i++) {\n      \
-      \      int u, v;\n            T w{};\n            is >> u >> v;\n          \
-      \  if (is_one_indexed) --u, --v;\n            if constexpr (!std::is_same_v<T,\
-      \ empty>) is >> w;\n            (*this)[i] = _Edge<T>(v, w, u, i);\n       \
-      \ }\n        return *this;\n    }\n\n    template <InputStream IStream>\n  \
-      \  friend _Edges &input(_Edges &edges, IStream &is, bool is_one_indexed = false)\
-      \ {\n        return edges.input(is, is_one_indexed);\n    }\n\n    template\
-      \ <OutputStream OStream>\n    void debug_output(OStream &os) const {\n     \
-      \   os << '[';\n        for (int i = 0; i < (int)this->size(); i++) {\n    \
-      \        if (i) os << \", \";\n            (*this)[i].debug_output(os);\n  \
-      \      }\n        os << ']';\n    }\n\n    _Edges &add_edge(int from, int to,\
-      \ T cost = T{}) {\n        this->emplace_back(to, cost, from, this->size());\n\
-      \        return *this;\n    }\n\n    friend _Edges &add_edge(_Edges &edges,\
-      \ int from, int to, T cost = T{}) {\n        edges.emplace_back(to, cost, from,\
-      \ edges.size());\n        return edges;\n    }\n};\n\ntemplate <class T> struct\
-      \ _pair {\n    T cost;\n    int id;\n\n    _pair(T cost_, int id_) : cost(cost_),\
-      \ id(id_) {}\n    _pair() : cost(), id(-1) {}\n    operator bool() const { return\
-      \ id != -1; }\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
-      \ &os, const _pair &p) {\n        if constexpr (std::is_same_v<T, empty>) return\
-      \ os;\n        else return os << p.cost;\n    }\n};\ntemplate <class T> using\
-      \ _pairs = std::vector<_pair<T>>;\n\n} // namespace graph\n\ntemplate <typename\
-      \ T> using WEdge = graph::_Edge<T>;\ntemplate <typename T> using WEdges = graph::_Edges<T>;\n\
-      using Edge = graph::_Edge<graph::empty>;\nusing Edges = graph::_Edges<graph::empty>;\n\
-      \n} // namespace kk2\n\n#endif // KK2_GRAPH_EDGE_HPP\n"
+      \ os << \":\" << cost;\n        os << ')';\n    }\n};\n\ntemplate <> struct\
+      \ _Edge<empty> {\n    int from, to, id;\n\n    _Edge(int to_, empty = {}, int\
+      \ from_ = -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n  \
+      \        id(id_) {}\n    _Edge() : from(-1), to(-1), id(-1) {}\n    operator\
+      \ int() const { return to; }\n    inline _Edge rev() const { return _Edge(from,\
+      \ {}, to, id); }\n\n    template <OutputStream OStream>\n    void debug_output(OStream\
+      \ &os) const {\n        os << '(' << id << \", \" << from << \"->\" << to <<\
+      \ ')';\n    }\n};\n\ntemplate <class T> T _edge_cost(const _Edge<T> &edge) {\n\
+      \    if constexpr (std::is_same_v<T, empty>) return {};\n    else return edge.cost;\n\
+      }\n\ntemplate <class T> struct _Edges : public std::vector<_Edge<T>> {\n   \
+      \ using std::vector<_Edge<T>>::vector;\n\n    template <InputStream IStream>\n\
+      \    _Edges(int m, IStream &is, bool is_one_indexed = false)\n        : std::vector<_Edge<T>>(m)\
+      \ {\n        _input(is, is_one_indexed);\n    }\n\n    template <OutputStream\
+      \ OStream>\n    void debug_output(OStream &os) const {\n        os << '[';\n\
+      \        for (int i = 0; i < (int)this->size(); i++) {\n            if (i) os\
+      \ << \", \";\n            (*this)[i].debug_output(os);\n        }\n        os\
+      \ << ']';\n    }\n\n    _Edges &add_edge(int from, int to, T cost = T{}) {\n\
+      \        this->emplace_back(to, cost, from, this->size());\n        return *this;\n\
+      \    }\n\n    friend _Edges &add_edge(_Edges &edges, int from, int to, T cost\
+      \ = T{}) {\n        edges.emplace_back(to, cost, from, edges.size());\n    \
+      \    return edges;\n    }\n\n  private:\n    template <InputStream IStream>\n\
+      \    void _input(IStream &is, bool is_one_indexed) {\n        for (int i = 0;\
+      \ i < (int)this->size(); ++i) {\n            int u, v;\n            T w{};\n\
+      \            is >> u >> v;\n            if (is_one_indexed) --u, --v;\n    \
+      \        if constexpr (!std::is_same_v<T, empty>) is >> w;\n            (*this)[i]\
+      \ = _Edge<T>(v, w, u, i);\n        }\n    }\n};\n\n} // namespace graph\n\n\
+      template <typename T> using WEdge = graph::_Edge<T>;\ntemplate <typename T>\
+      \ using WEdges = graph::_Edges<T>;\nusing Edge = graph::_Edge<graph::empty>;\n\
+      using Edges = graph::_Edges<graph::empty>;\n\n} // namespace kk2\n\n#endif //\
+      \ KK2_GRAPH_EDGE_HPP\n"
     name: default
   - code: "#line 1 \"graph/edge.hpp\"\n\n\n\n#include <type_traits>\n#include <vector>\n\
       \n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
@@ -162,47 +207,63 @@ data:
       \ { return _Edge(from, cost, to, id); }\n\n    template <OutputStream OStream>\n\
       \    void debug_output(OStream &os) const {\n        os << '(' << id << \",\
       \ \" << from << \"->\" << to;\n        if constexpr (!std::is_same_v<T, empty>)\
-      \ os << \":\" << cost;\n        os << ')';\n    }\n};\n\ntemplate <class T>\
-      \ struct _Edges : public std::vector<_Edge<T>> {\n    using std::vector<_Edge<T>>::vector;\n\
-      \n    template <InputStream IStream>\n    _Edges &input(IStream &is, bool is_one_indexed\
-      \ = false) {\n        for (int i = 0; i < (int)this->size(); i++) {\n      \
-      \      int u, v;\n            T w{};\n            is >> u >> v;\n          \
-      \  if (is_one_indexed) --u, --v;\n            if constexpr (!std::is_same_v<T,\
-      \ empty>) is >> w;\n            (*this)[i] = _Edge<T>(v, w, u, i);\n       \
-      \ }\n        return *this;\n    }\n\n    template <InputStream IStream>\n  \
-      \  friend _Edges &input(_Edges &edges, IStream &is, bool is_one_indexed = false)\
-      \ {\n        return edges.input(is, is_one_indexed);\n    }\n\n    template\
-      \ <OutputStream OStream>\n    void debug_output(OStream &os) const {\n     \
-      \   os << '[';\n        for (int i = 0; i < (int)this->size(); i++) {\n    \
-      \        if (i) os << \", \";\n            (*this)[i].debug_output(os);\n  \
-      \      }\n        os << ']';\n    }\n\n    _Edges &add_edge(int from, int to,\
-      \ T cost = T{}) {\n        this->emplace_back(to, cost, from, this->size());\n\
-      \        return *this;\n    }\n\n    friend _Edges &add_edge(_Edges &edges,\
-      \ int from, int to, T cost = T{}) {\n        edges.emplace_back(to, cost, from,\
-      \ edges.size());\n        return edges;\n    }\n};\n\ntemplate <class T> struct\
-      \ _pair {\n    T cost;\n    int id;\n\n    _pair(T cost_, int id_) : cost(cost_),\
-      \ id(id_) {}\n    _pair() : cost(), id(-1) {}\n    operator bool() const { return\
-      \ id != -1; }\n    template <OutputStream OStream>\n    friend OStream &operator<<(OStream\
-      \ &os, const _pair &p) {\n        if constexpr (std::is_same_v<T, empty>) return\
-      \ os;\n        else return os << p.cost;\n    }\n};\ntemplate <class T> using\
-      \ _pairs = std::vector<_pair<T>>;\n\n} // namespace graph\n\ntemplate <typename\
-      \ T> using WEdge = graph::_Edge<T>;\ntemplate <typename T> using WEdges = graph::_Edges<T>;\n\
-      using Edge = graph::_Edge<graph::empty>;\nusing Edges = graph::_Edges<graph::empty>;\n\
-      \n} // namespace kk2\n\n\n"
+      \ os << \":\" << cost;\n        os << ')';\n    }\n};\n\ntemplate <> struct\
+      \ _Edge<empty> {\n    int from, to, id;\n\n    _Edge(int to_, empty = {}, int\
+      \ from_ = -1, int id_ = -1)\n        : from(from_),\n          to(to_),\n  \
+      \        id(id_) {}\n    _Edge() : from(-1), to(-1), id(-1) {}\n    operator\
+      \ int() const { return to; }\n    inline _Edge rev() const { return _Edge(from,\
+      \ {}, to, id); }\n\n    template <OutputStream OStream>\n    void debug_output(OStream\
+      \ &os) const {\n        os << '(' << id << \", \" << from << \"->\" << to <<\
+      \ ')';\n    }\n};\n\ntemplate <class T> T _edge_cost(const _Edge<T> &edge) {\n\
+      \    if constexpr (std::is_same_v<T, empty>) return {};\n    else return edge.cost;\n\
+      }\n\ntemplate <class T> struct _Edges : public std::vector<_Edge<T>> {\n   \
+      \ using std::vector<_Edge<T>>::vector;\n\n    template <InputStream IStream>\n\
+      \    _Edges(int m, IStream &is, bool is_one_indexed = false)\n        : std::vector<_Edge<T>>(m)\
+      \ {\n        _input(is, is_one_indexed);\n    }\n\n    template <OutputStream\
+      \ OStream>\n    void debug_output(OStream &os) const {\n        os << '[';\n\
+      \        for (int i = 0; i < (int)this->size(); i++) {\n            if (i) os\
+      \ << \", \";\n            (*this)[i].debug_output(os);\n        }\n        os\
+      \ << ']';\n    }\n\n    _Edges &add_edge(int from, int to, T cost = T{}) {\n\
+      \        this->emplace_back(to, cost, from, this->size());\n        return *this;\n\
+      \    }\n\n    friend _Edges &add_edge(_Edges &edges, int from, int to, T cost\
+      \ = T{}) {\n        edges.emplace_back(to, cost, from, edges.size());\n    \
+      \    return edges;\n    }\n\n  private:\n    template <InputStream IStream>\n\
+      \    void _input(IStream &is, bool is_one_indexed) {\n        for (int i = 0;\
+      \ i < (int)this->size(); ++i) {\n            int u, v;\n            T w{};\n\
+      \            is >> u >> v;\n            if (is_one_indexed) --u, --v;\n    \
+      \        if constexpr (!std::is_same_v<T, empty>) is >> w;\n            (*this)[i]\
+      \ = _Edge<T>(v, w, u, i);\n        }\n    }\n};\n\n} // namespace graph\n\n\
+      template <typename T> using WEdge = graph::_Edge<T>;\ntemplate <typename T>\
+      \ using WEdges = graph::_Edges<T>;\nusing Edge = graph::_Edge<graph::empty>;\n\
+      using Edges = graph::_Edges<graph::empty>;\n\n} // namespace kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
   path: graph/edge.hpp
   pathExtension: hpp
   requiredBy:
+  - graph/compact_edge.hpp
+  - graph/compact_graph.hpp
+  - graph/compact_static_graph.hpp
+  - graph/detail/adjacency_list_base.hpp
+  - graph/detail/adjacency_storage_common.hpp
+  - graph/detail/compact_adjacency_storage.hpp
+  - graph/detail/compact_static_adjacency_storage.hpp
+  - graph/detail/direct_adjacency_storage.hpp
+  - graph/detail/direct_static_adjacency_storage.hpp
+  - graph/detail/graph_base.hpp
+  - graph/detail/static_adjacency_list_base.hpp
   - graph/graph.hpp
+  - graph/matrix.hpp
+  - graph/matrix_edge.hpp
   - graph/static_graph.hpp
   - random/graph.hpp
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_grl_1_b.test.cpp
   - verify/aoj/aoj_grl_1_c.test.cpp
+  - verify/unit_test/graph/maxflow.test.cpp
   - verify/unit_test/type_traits/graph/graph.test.cpp
   - verify/yosupo_graph/graph_bcc.test.cpp
   - verify/yosupo_graph/graph_cycle_detection.test.cpp

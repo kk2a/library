@@ -235,6 +235,15 @@ data:
       - filename: bcc.hpp
         icon: LIBRARY_ALL_AC
         path: graph/bcc.hpp
+      - filename: compact_edge.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/compact_edge.hpp
+      - filename: compact_graph.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/compact_graph.hpp
+      - filename: compact_static_graph.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/compact_static_graph.hpp
       - filename: cycle_detection.hpp
         icon: LIBRARY_ALL_AC
         path: graph/cycle_detection.hpp
@@ -253,6 +262,12 @@ data:
       - filename: lowlink.hpp
         icon: LIBRARY_ALL_AC
         path: graph/lowlink.hpp
+      - filename: matrix.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/matrix.hpp
+      - filename: matrix_edge.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/matrix_edge.hpp
       - filename: maxflow.hpp
         icon: LIBRARY_ALL_AC
         path: graph/maxflow.hpp
@@ -268,6 +283,32 @@ data:
       - filename: two_edge_connected_components.hpp
         icon: LIBRARY_ALL_AC
         path: graph/two_edge_connected_components.hpp
+    - name: graph/detail/
+      pages:
+      - filename: adjacency_list_base.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/detail/adjacency_list_base.hpp
+      - filename: adjacency_storage_common.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/detail/adjacency_storage_common.hpp
+      - filename: compact_adjacency_storage.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/detail/compact_adjacency_storage.hpp
+      - filename: compact_static_adjacency_storage.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/detail/compact_static_adjacency_storage.hpp
+      - filename: direct_adjacency_storage.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/detail/direct_adjacency_storage.hpp
+      - filename: direct_static_adjacency_storage.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/detail/direct_static_adjacency_storage.hpp
+      - filename: graph_base.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/detail/graph_base.hpp
+      - filename: static_adjacency_list_base.hpp
+        icon: LIBRARY_ALL_AC
+        path: graph/detail/static_adjacency_list_base.hpp
     - name: graph/shortest_path/
       pages:
       - filename: bellman_ford.hpp
@@ -784,6 +825,11 @@ data:
       - filename: wavelet_matrix.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+    - name: verify/unit_test/graph/
+      pages:
+      - filename: maxflow.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/graph/maxflow.test.cpp
     - name: verify/unit_test/math/
       pages:
       - filename: isprime_table_extend.test.cpp

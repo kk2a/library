@@ -115,7 +115,7 @@ data:
   - math/multiplicative_function/prime_counting.hpp
   - math/prime_table.hpp
   - math/sqrt_floor.hpp
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/isprime_table_extend.test.cpp

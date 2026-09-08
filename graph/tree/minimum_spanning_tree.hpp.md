@@ -24,31 +24,38 @@ data:
   - unionfind/unionfind.hpp
   embedded:
   - code: "#ifndef KK2_GRAPH_TREE_MINIMUM_SPANNING_TREE_HPP\n#define KK2_GRAPH_TREE_MINIMUM_SPANNING_TREE_HPP\
-      \ 1\n\n#include <utility>\n#include <algorithm>\n\n#include \"../../type_traits/graph.hpp\"\
-      \n#include \"../../unionfind/unionfind.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-      \ <graph::WeightedUndirectedEdgeListGraph G> auto minimum_spanning_tree(const\
-      \ G &g) {\n\n    using value_type = typename G::value_type;\n\n    auto edges\
-      \ = g.edges;\n    std::sort(edges.begin(), edges.end(), [](const auto &e1, const\
-      \ auto &e2) {\n        return e1.cost < e2.cost;\n    });\n    UnionFind uf(g.num_vertices());\n\
-      \    std::vector<int> idxs(g.num_vertices() - 1);\n    value_type total_cost\
-      \ = 0;\n    int i = 0;\n    for (auto &&e : edges) {\n        if (uf.unite(e.from,\
-      \ e.to)) { idxs[i++] = e.id, total_cost += e.cost; }\n    }\n\n    return std::make_pair(total_cost,\
-      \ idxs);\n}\n\n} // namespace kk2\n\n#endif // KK2_GRAPH_TREE_MINIMUM_SPANNING_TREE_HPP\n"
+      \ 1\n\n#include <algorithm>\n#include <ranges>\n#include <type_traits>\n#include\
+      \ <utility>\n#include <vector>\n\n#include \"../../type_traits/graph.hpp\"\n\
+      #include \"../../unionfind/unionfind.hpp\"\n\nnamespace kk2 {\n\ntemplate <graph::WeightedEdgeRange\
+      \ E> auto minimum_spanning_tree(int n, const E &input_edges) {\n\n    using\
+      \ edge_type = std::ranges::range_value_t<E>;\n    using value_type = std::remove_cvref_t<decltype(std::declval<edge_type>().cost)>;\n\
+      \n    std::vector<edge_type> edges(std::ranges::begin(input_edges), std::ranges::end(input_edges));\n\
+      \    std::sort(edges.begin(), edges.end(), [](const auto &e1, const auto &e2)\
+      \ {\n        return e1.cost < e2.cost;\n    });\n    UnionFind uf(n);\n    std::vector<int>\
+      \ idxs(n - 1);\n    value_type total_cost = 0;\n    int i = 0;\n    for (auto\
+      \ &&e : edges) {\n        if (uf.unite(e.from, e.to)) { idxs[i++] = e.id, total_cost\
+      \ += e.cost; }\n    }\n\n    return std::make_pair(total_cost, idxs);\n}\n\n\
+      } // namespace kk2\n\n#endif // KK2_GRAPH_TREE_MINIMUM_SPANNING_TREE_HPP\n"
     name: default
-  - code: "#line 1 \"graph/tree/minimum_spanning_tree.hpp\"\n\n\n\n#include <utility>\n\
-      #include <algorithm>\n\n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#include <concepts>\n\
-      #include <ranges>\n#include <type_traits>\n#line 8 \"type_traits/graph.hpp\"\
+  - code: "#line 1 \"graph/tree/minimum_spanning_tree.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <ranges>\n#include <type_traits>\n#include <utility>\n#include <vector>\n\
+      \n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#include <concepts>\n#line 8 \"type_traits/graph.hpp\"\
       \n\nnamespace kk2::graph {\n\ntemplate <class E>\nconcept Edge = requires(const\
       \ E &e) {\n    { e.from } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
       \    { e.id } -> std::convertible_to<int>;\n};\n\ntemplate <class E>\nconcept\
       \ WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };\n\ntemplate <class\
-      \ G>\nconcept Graph = requires(const G &g, int v) {\n    typename G::value_type;\n\
-      \    { G::directed } -> std::convertible_to<bool>;\n    { G::weighted } -> std::convertible_to<bool>;\n\
-      \    { G::adjacency_list } -> std::convertible_to<bool>;\n    { G::adjacency_matrix\
-      \ } -> std::convertible_to<bool>;\n    { G::static_graph } -> std::convertible_to<bool>;\n\
-      \    { g.num_vertices() } -> std::integral;\n    { g.num_edges() } -> std::integral;\n\
-      \    g[v];\n    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph =\
-      \ Graph<G> && requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
+      \ R>\nconcept EdgeRange = std::ranges::input_range<R> &&\n                 \
+      \   Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept WeightedEdgeRange\
+      \ = EdgeRange<R> &&\n                            WeightedEdge<std::ranges::range_value_t<R>>;\n\
+      \ntemplate <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
+      \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
+      \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
+      \    { G::weighted } -> std::convertible_to<bool>;\n    { G::adjacency_list\
+      \ } -> std::convertible_to<bool>;\n    { G::adjacency_matrix } -> std::convertible_to<bool>;\n\
+      \    { G::static_graph } -> std::convertible_to<bool>;\n    { g.num_vertices()\
+      \ } -> std::integral;\n    { g.num_edges() } -> std::integral;\n    g[v];\n\
+      \    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph = Graph<G> &&\
+      \ requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
       \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
       \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
       \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
@@ -70,25 +77,26 @@ data:
       \ g.size() } -> std::integral;\n    requires std::ranges::range<decltype(g[v])>;\n\
       \    requires std::convertible_to<std::ranges::range_value_t<decltype(g[v])>,\
       \ int>;\n};\n\n} // namespace kk2::graph\n\n\n#line 1 \"unionfind/unionfind.hpp\"\
-      \n\n\n\n#line 5 \"unionfind/unionfind.hpp\"\n#include <vector>\n\nnamespace\
-      \ kk2 {\n\nstruct UnionFind {\n    std::vector<int> d;\n\n    UnionFind(int\
-      \ n = 0) : d(n, -1) {}\n\n    bool same(int x, int y) { return find(x) == find(y);\
-      \ }\n\n    bool unite(int x, int y) {\n        x = find(x), y = find(y);\n \
-      \       if (x == y) return false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n\
-      \        d[x] += d[y];\n        d[y] = x;\n        return true;\n    }\n\n \
-      \   template <class F> bool unite(int x, int y, const F &f) {\n        x = find(x),\
-      \ y = find(y);\n        if (x == y) return false;\n        if (-d[x] < -d[y])\
-      \ std::swap(x, y);\n        f(x, y);\n        d[x] += d[y];\n        d[y] =\
-      \ x;\n        return true;\n    }\n\n    int find(int x) {\n        if (d[x]\
-      \ < 0) return x;\n        return d[x] = find(d[x]);\n    }\n\n    int size(int\
-      \ x) { return -d[find(x)]; }\n};\n\n} // namespace kk2\n\n\n#line 9 \"graph/tree/minimum_spanning_tree.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <graph::WeightedUndirectedEdgeListGraph G> auto\
-      \ minimum_spanning_tree(const G &g) {\n\n    using value_type = typename G::value_type;\n\
-      \n    auto edges = g.edges;\n    std::sort(edges.begin(), edges.end(), [](const\
-      \ auto &e1, const auto &e2) {\n        return e1.cost < e2.cost;\n    });\n\
-      \    UnionFind uf(g.num_vertices());\n    std::vector<int> idxs(g.num_vertices()\
-      \ - 1);\n    value_type total_cost = 0;\n    int i = 0;\n    for (auto &&e :\
-      \ edges) {\n        if (uf.unite(e.from, e.to)) { idxs[i++] = e.id, total_cost\
+      \n\n\n\n#line 6 \"unionfind/unionfind.hpp\"\n\nnamespace kk2 {\n\nstruct UnionFind\
+      \ {\n    std::vector<int> d;\n\n    UnionFind(int n = 0) : d(n, -1) {}\n\n \
+      \   bool same(int x, int y) { return find(x) == find(y); }\n\n    bool unite(int\
+      \ x, int y) {\n        x = find(x), y = find(y);\n        if (x == y) return\
+      \ false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n        d[x] += d[y];\n\
+      \        d[y] = x;\n        return true;\n    }\n\n    template <class F> bool\
+      \ unite(int x, int y, const F &f) {\n        x = find(x), y = find(y);\n   \
+      \     if (x == y) return false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n\
+      \        f(x, y);\n        d[x] += d[y];\n        d[y] = x;\n        return\
+      \ true;\n    }\n\n    int find(int x) {\n        if (d[x] < 0) return x;\n \
+      \       return d[x] = find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)];\
+      \ }\n};\n\n} // namespace kk2\n\n\n#line 12 \"graph/tree/minimum_spanning_tree.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <graph::WeightedEdgeRange E> auto minimum_spanning_tree(int\
+      \ n, const E &input_edges) {\n\n    using edge_type = std::ranges::range_value_t<E>;\n\
+      \    using value_type = std::remove_cvref_t<decltype(std::declval<edge_type>().cost)>;\n\
+      \n    std::vector<edge_type> edges(std::ranges::begin(input_edges), std::ranges::end(input_edges));\n\
+      \    std::sort(edges.begin(), edges.end(), [](const auto &e1, const auto &e2)\
+      \ {\n        return e1.cost < e2.cost;\n    });\n    UnionFind uf(n);\n    std::vector<int>\
+      \ idxs(n - 1);\n    value_type total_cost = 0;\n    int i = 0;\n    for (auto\
+      \ &&e : edges) {\n        if (uf.unite(e.from, e.to)) { idxs[i++] = e.id, total_cost\
       \ += e.cost; }\n    }\n\n    return std::make_pair(total_cost, idxs);\n}\n\n\
       } // namespace kk2\n\n\n"
     name: bundled
@@ -97,7 +105,7 @@ data:
   path: graph/tree/minimum_spanning_tree.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/graph_minimum_spanning_tree.test.cpp

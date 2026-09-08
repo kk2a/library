@@ -64,12 +64,51 @@ data:
     - filename: static_convex_hull.hpp
       icon: LIBRARY_ALL_AC
       path: geometry/static_convex_hull.hpp
+    - filename: compact_edge.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/compact_edge.hpp
+    - filename: compact_graph.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/compact_graph.hpp
+    - filename: compact_static_graph.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/compact_static_graph.hpp
+    - filename: adjacency_list_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/adjacency_list_base.hpp
+    - filename: adjacency_storage_common.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/adjacency_storage_common.hpp
+    - filename: compact_adjacency_storage.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/compact_adjacency_storage.hpp
+    - filename: compact_static_adjacency_storage.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/compact_static_adjacency_storage.hpp
+    - filename: direct_adjacency_storage.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/direct_adjacency_storage.hpp
+    - filename: direct_static_adjacency_storage.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/direct_static_adjacency_storage.hpp
+    - filename: graph_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/graph_base.hpp
+    - filename: static_adjacency_list_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/detail/static_adjacency_list_base.hpp
     - filename: edge.hpp
       icon: LIBRARY_ALL_AC
       path: graph/edge.hpp
     - filename: graph.hpp
       icon: LIBRARY_ALL_AC
       path: graph/graph.hpp
+    - filename: matrix.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/matrix.hpp
+    - filename: matrix_edge.hpp
+      icon: LIBRARY_ALL_AC
+      path: graph/matrix_edge.hpp
     - filename: bellman_ford.hpp
       icon: LIBRARY_ALL_AC
       path: graph/shortest_path/bellman_ford.hpp
@@ -288,6 +327,9 @@ data:
     - filename: wavelet_matrix.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+    - filename: maxflow.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/graph/maxflow.test.cpp
     - filename: action.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/action/action.test.cpp
@@ -803,8 +845,21 @@ data:
   - geometry/cross_point_line_line.hpp
   - geometry/point.hpp
   - geometry/static_convex_hull.hpp
+  - graph/compact_edge.hpp
+  - graph/compact_graph.hpp
+  - graph/compact_static_graph.hpp
+  - graph/detail/adjacency_list_base.hpp
+  - graph/detail/adjacency_storage_common.hpp
+  - graph/detail/compact_adjacency_storage.hpp
+  - graph/detail/compact_static_adjacency_storage.hpp
+  - graph/detail/direct_adjacency_storage.hpp
+  - graph/detail/direct_static_adjacency_storage.hpp
+  - graph/detail/graph_base.hpp
+  - graph/detail/static_adjacency_list_base.hpp
   - graph/edge.hpp
   - graph/graph.hpp
+  - graph/matrix.hpp
+  - graph/matrix_edge.hpp
   - graph/shortest_path/bellman_ford.hpp
   - graph/shortest_path/warshall_floyd.hpp
   - graph/static_graph.hpp
@@ -866,7 +921,7 @@ data:
   - unionfind/parallel.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -880,6 +935,7 @@ data:
   - verify/unit_test/data_structure/bit_vector.test.cpp
   - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
   - verify/unit_test/data_structure/wavelet_matrix.test.cpp
+  - verify/unit_test/graph/maxflow.test.cpp
   - verify/unit_test/math/action/action.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/math/isprime_table_extend.test.cpp

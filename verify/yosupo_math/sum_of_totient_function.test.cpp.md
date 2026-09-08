@@ -752,7 +752,7 @@ data:
     memory: 3.74
     name: small_00
     status: AC
-  timestamp: '2026-09-07 23:25:05+09:00'
+  timestamp: '2026-09-09 01:16:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/sum_of_totient_function.test.cpp
