@@ -1,5 +1,7 @@
 // competitive-verifier: STANDALONE
 
+#include <cassert>
+#include <ranges>
 #include <vector>
 
 #include "../../../../graph/graph.hpp"
@@ -28,5 +30,18 @@ static_assert(!kk2::graph::AdjacencyGraph<kk2::DWAdjMat<int>>);
 static_assert(!kk2::graph::WeightedGraph<kk2::DWAdjMat<int>>);
 
 static_assert(kk2::graph::VertexAdjacency<std::vector<std::vector<int>>>);
+static_assert(std::ranges::random_access_range<decltype(std::declval<const kk2::SAdjList &>()[0])>);
 
-int main() {}
+int main() {
+    kk2::WEdges<int> edges;
+    edges.add_edge(0, 1, 3).add_edge(1, 2, 5);
+
+    kk2::SDWAdjList static_graph(3, edges);
+    assert(static_graph[0].size() == 1);
+    assert(static_graph[0][0].to == 1);
+    static_graph.build();
+    assert(static_graph[1].size() == 1);
+
+    kk2::DWAdjList<int> dynamic_graph(3, edges);
+    assert(dynamic_graph[0].capacity() >= dynamic_graph[0].size());
+}

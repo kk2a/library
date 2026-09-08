@@ -199,7 +199,8 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
 
     FPS log(int deg = -1) const {
         assert(!this->empty() && (*this)[0] == mint(1));
-        // sparsity check
+        if (is_sparse_operation(FPSOperation::LOG, fps::NTTFriendlyFormalPowerSeries<FPS>, derived()))
+            return derived().sparse_log(deg);
         return derived().dense_log(deg);
     }
 
@@ -215,13 +216,15 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
 
     FPS inv(int deg = -1) const {
         assert(!this->empty() && (*this)[0] != mint(0));
-        // sparsity check
+        if (is_sparse_operation(FPSOperation::INVERSE, fps::NTTFriendlyFormalPowerSeries<FPS>, derived()))
+            return derived().sparse_inv(deg);
         return derived().dense_inv(deg);
     }
 
     FPS exp(int deg = -1) const {
         assert(this->empty() || (*this)[0] == mint(0));
-        // sparsity check
+        if (is_sparse_operation(FPSOperation::EXP, fps::NTTFriendlyFormalPowerSeries<FPS>, derived()))
+            return derived().sparse_exp(deg);
         return derived().dense_exp(deg);
     }
 

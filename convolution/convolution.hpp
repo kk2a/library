@@ -16,13 +16,13 @@ template <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS 
         return a;
     }
     if (is_sparse_operation(FPSOperation::CONVOLUTION, 1, a, b)) {
-        std::vector<int> nza(n), nzb(m);
-        int ai = 0, bi = 0;
+        std::vector<int> nza, nzb;
+        nza.reserve(std::ranges::count_if(a, [](const mint &x) { return x != mint(0); }));
+        nzb.reserve(std::ranges::count_if(b, [](const mint &x) { return x != mint(0); }));
         for (int i = 0; i < n; i++)
-            if (a[i] != mint(0)) nza[ai++] = i;
+            if (a[i] != mint(0)) nza.push_back(i);
         for (int i = 0; i < m; i++)
-            if (b[i] != mint(0)) nzb[bi++] = i;
-        nza.resize(ai), nzb.resize(bi);
+            if (b[i] != mint(0)) nzb.push_back(i);
         FPS res(n + m - 1);
         for (int i : nza)
             for (int j : nzb) res[i + j] += a[i] * b[j];

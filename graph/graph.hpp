@@ -35,6 +35,7 @@ template <class T, bool is_directed> struct AdjacencyList {
     // input を使うことが前提
     AdjacencyList(int n_, int m_) : data(n_), edges(m_) {}
     AdjacencyList(int n_, const edge_collection &edges_) : data(n_), edges(edges_.size()) {
+        _reserve_adjacency(edges_);
         for (auto &&e : edges_) _add_edge<true>(e.from, e.to, e.cost, e.id);
     }
 
@@ -49,13 +50,25 @@ template <class T, bool is_directed> struct AdjacencyList {
 
     template <InputStream IStream>
     AdjacencyList &input(IStream &is, bool oneindexed = false) {
+        std::vector<int> degree(num_vertices());
         for (int i = 0; i < num_edges(); i++) {
             int u, v;
             T w{};
             is >> u >> v;
             if constexpr (weighted) is >> w;
             if (oneindexed) --u, --v;
-            _add_edge<true>(u, v, w, i);
+            edges[i] = edge_type(v, w, u, i);
+            ++degree[u];
+            if constexpr (!is_directed) {
+                if (u != v) ++degree[v];
+            }
+        }
+        for (int i = 0; i < num_vertices(); ++i) data[i].reserve(data[i].size() + degree[i]);
+        for (auto &&e : edges) {
+            data[e.from].emplace_back(e.to, e.cost, e.from, e.id);
+            if constexpr (!is_directed) {
+                if (e.from != e.to) data[e.to].emplace_back(e.from, e.cost, e.to, e.id);
+            }
         }
         return *this;
     }
@@ -75,6 +88,17 @@ template <class T, bool is_directed> struct AdjacencyList {
     }
 
   private:
+    void _reserve_adjacency(const edge_collection &es) {
+        std::vector<int> degree(num_vertices());
+        for (auto &&e : es) {
+            ++degree[e.from];
+            if constexpr (!is_directed) {
+                if (e.from != e.to) ++degree[e.to];
+            }
+        }
+        for (int i = 0; i < num_vertices(); ++i) data[i].reserve(data[i].size() + degree[i]);
+    }
+
     template <bool update = false> void _add_edge(int from, int to, T cost, int id) {
         data[from].emplace_back(to, cost, from, id);
         if (!is_directed and from != to) data[to].emplace_back(from, cost, to, id);
@@ -85,6 +109,7 @@ template <class T, bool is_directed> struct AdjacencyList {
   public:
     AdjacencyList reverse() const {
         AdjacencyList res(num_vertices(), num_edges());
+        res._reserve_adjacency(edges);
         for (auto &&e : edges) res._add_edge<true>(e.to, e.from, e.cost, e.id);
         return res;
     }

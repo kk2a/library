@@ -2,6 +2,7 @@
 #define KK2_GRAPH_STATIC_GRAPH_HPP 1
 
 #include <cassert>
+#include <span>
 #include <type_traits>
 #include <vector>
 
@@ -35,42 +36,40 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
     StaticAdjacencyList(int n_) : head(n_) {}
     StaticAdjacencyList(int n_, int m_) : head(n_), edges(m_) {}
     StaticAdjacencyList(int n_, const edge_collection &edges_) : head(n_), edges(edges_.size()) {
-        for (auto &&e : edges) _add_edge<true>(e.from, e.to, e.cost, e.id);
+        for (auto &&e : edges_) _add_edge<true>(e.from, e.to, e.cost, e.id);
         build();
     }
 
     inline int num_vertices() const { return head.size(); }
     inline int size() const { return head.size(); }
     inline int num_edges() const { return edges.size(); }
-    void add_edge(int from, int to, T cost = T{}) { _add_edge<false>(from, to, cost, num_edges()); }
-    void add_vertex(int n = 1) { head.insert(head.end(), n, 0); }
+    void add_edge(int from, int to, T cost = T{}) {
+        assert(!is_built);
+        _add_edge<false>(from, to, cost, num_edges());
+    }
+    void add_vertex(int n = 1) {
+        assert(!is_built);
+        head.insert(head.end(), n, 0);
+    }
     void edge_clear() { *this = StaticAdjacencyList(num_vertices()); }
 
-    template <class It> struct Es {
-        It b, e;
-        It begin() const { return b; }
-        It end() const { return e; }
-        int size() const { return int(e - b); }
-        auto &&operator[](int k) const { return b[k]; }
-    };
-
-    Es<typename _Edges<T>::iterator> operator[](int k) {
+    std::span<edge_type> operator[](int k) {
         assert(is_built);
-        if (k == (int)head.size() - 1)
-            return Es<typename _Edges<T>::iterator>{data.begin() + head[k], data.end()};
-        return Es<typename _Edges<T>::iterator>{data.begin() + head[k], data.begin() + head[k + 1]};
+        int e = k == (int)head.size() - 1 ? data.size() : head[k + 1];
+        auto *begin = data.empty() ? nullptr : data.data() + head[k];
+        return {begin, static_cast<size_t>(e - head[k])};
     }
 
-    const Es<typename _Edges<T>::const_iterator> operator[](int k) const {
+    std::span<const edge_type> operator[](int k) const {
         assert(is_built);
-        if (k == (int)head.size() - 1)
-            return Es<typename _Edges<T>::const_iterator>{data.begin() + head[k], data.end()};
-        return Es<typename _Edges<T>::const_iterator>{data.begin() + head[k],
-                                                      data.begin() + head[k + 1]};
+        int e = k == (int)head.size() - 1 ? data.size() : head[k + 1];
+        auto *begin = data.empty() ? nullptr : data.data() + head[k];
+        return {begin, static_cast<size_t>(e - head[k])};
     }
 
     template <InputStream IStream>
     StaticAdjacencyList &input(IStream &is, bool oneindexed = false) {
+        assert(!is_built);
         for (int i = 0; i < num_edges(); i++) {
             int u, v;
             T w{};
@@ -102,9 +101,10 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
     }
 
     void build() {
+        if (is_built) return;
         is_built = true;
         for (unsigned int i = 1; i < head.size(); ++i) head[i] += head[i - 1];
-        data.resize(head.back());
+        data.resize(head.empty() ? 0 : head.back());
         for (auto &&e : edges) {
             data[--head[e.from]] = e;
             if constexpr (!is_directed) {
