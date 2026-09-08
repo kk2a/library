@@ -116,7 +116,7 @@ struct AdjacencyListBase
             edges.emplace_back(v, w, u, i);
         }
         this->reserve(edges);
-        for (const auto &e : edges) _add_edge_with_id(e.from, e.to, _edge_cost(e), e.id);
+        for (const auto &e : edges) Storage::add_edge(e.from, e.to, _edge_cost(e), e.id);
     }
 
     template <bool update = false> void _add_edge(int from, int to, T cost, int id) {

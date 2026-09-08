@@ -3,6 +3,7 @@
 #include <cassert>
 #include <fstream>
 #include <ranges>
+#include <sstream>
 #include <vector>
 
 #include "../../../../graph/graph.hpp"
@@ -11,6 +12,10 @@
 #include "../../../../graph/static_graph.hpp"
 #include "../../../../graph/compact_static_graph.hpp"
 #include "../../../../type_traits/graph.hpp"
+
+struct TestInput : std::istringstream, kk2::type_traits::istream_tag {
+    using std::istringstream::istringstream;
+};
 
 static_assert(kk2::graph::Graph<kk2::AdjList>);
 static_assert(kk2::graph::EdgeListGraph<kk2::AdjList>);
@@ -76,6 +81,14 @@ int main() {
     kk2::DWAdjList<int> fast_graph(3, edges);
     fast_graph[0][0].cost = 9;
     assert(fast_graph[0][0].cost == 9);
+
+    TestInput input("0 1 4\n1 2 5\n");
+    kk2::DWAdjList<int> input_graph(3, 2, input);
+    assert(input_graph.edges.size() == 2);
+    assert(input_graph[0].size() == 1);
+    assert(input_graph[1].size() == 1);
+    assert(input_graph[0][0].to == 1);
+    assert(input_graph[1][0].to == 2);
 
     kk2::DWAdjMat<int> matrix(3);
     matrix.add_edge(0, 1, 11);
