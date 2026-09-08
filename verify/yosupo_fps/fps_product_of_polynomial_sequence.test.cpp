@@ -12,7 +12,7 @@ int main() {
     int n;
     kin >> n;
     vc<FPS> a(n);
-    rep (i, n) {
+    rep(i, n) {
         int d;
         kin >> d;
         a[i].resize(d + 1);

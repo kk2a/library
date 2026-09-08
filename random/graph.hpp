@@ -11,10 +11,10 @@ namespace kk2 {
 
 namespace random {
 
-template <bool is_weighted, bool is_directed, class T = int> using adjlist =
-    std::conditional_t<is_weighted,
-                       std::conditional_t<is_directed, DWAdjList<T>, WAdjList<T>>,
-                       std::conditional_t<is_directed, DAdjList, AdjList>>;
+template <bool is_weighted, bool is_directed, class T = int>
+using adjlist = std::conditional_t<is_weighted,
+                                   std::conditional_t<is_directed, DWAdjList<T>, WAdjList<T>>,
+                                   std::conditional_t<is_directed, DAdjList, AdjList>>;
 
 template <bool is_weighted, bool is_directed, class T = int>
 void add_edge(adjlist<is_weighted, is_directed, T> &g, int from, int to, T l = 0, T r = 1e9) {

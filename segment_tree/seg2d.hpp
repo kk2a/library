@@ -19,7 +19,8 @@ template <algebra::CommutativeMonoid M> struct SegmentTree2D {
         d = std::vector<std::vector<M>>(size_h * 2, std::vector<M>(size_w * 2, M::unit()));
     }
 
-    template <class... Args> SegmentTree2D(int h_, int w_, Args... args)
+    template <class... Args>
+    SegmentTree2D(int h_, int w_, Args... args)
         : SegmentTree2D(std::vector<std::vector<M>>(h_, std::vector<M>(w_, M(args...)))) {}
 
     SegmentTree2D(const std::vector<std::vector<M>> &v) : _h(int(v.size())), _w(int(v[0].size())) {

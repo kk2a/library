@@ -11,7 +11,7 @@ int main() {
 
     int n = s.size();
     vc<int> z(n);
-    rep (i, n) z[i] = kk2::SRoliha::lcp(rs, 0, n, rs, i, n);
+    rep(i, n) z[i] = kk2::SRoliha::lcp(rs, 0, n, rs, i, n);
     kout << z << kendl;
 
     return 0;

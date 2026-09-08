@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     int t;
     kin >> t;
-    rep (t) {
+    rep(t) {
         u64 a, b;
         kin >> a >> b;
         kout << a + b << "\n";

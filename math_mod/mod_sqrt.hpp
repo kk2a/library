@@ -23,7 +23,7 @@ template <class T, class U> long long mod_sqrt(const T &a, const U &p) {
 
     // (Z/pZ)^*
     // ≅ Z/(p-1)Z
-    // ≅ Z/2^eZ * Z/mZ (m: odd) 
+    // ≅ Z/2^eZ * Z/mZ (m: odd)
     long long m = p - 1, e = 0;
     while (m % 2 == 0) m >>= 1, e++;
 

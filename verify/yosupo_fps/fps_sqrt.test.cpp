@@ -1,7 +1,8 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
 
-#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../fps/fps_sqrt.hpp"
+
+#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;

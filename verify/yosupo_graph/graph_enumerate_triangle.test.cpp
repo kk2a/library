@@ -1,7 +1,7 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_triangles
 
-#include "../../graph/static_graph.hpp"
 #include "../../graph/enumerate_triangle.hpp"
+#include "../../graph/static_graph.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
@@ -15,9 +15,8 @@ int main() {
     kin >> x;
     kk2::SAdjList g(n, m, kin);
     mint res = 0;
-    kk2::enumerate_triangle<kk2::SAdjList, kk2::SDAdjList>(g, [&](int u, int v, int w) {
-        res += x[u] * x[v] * x[w];
-    });
+    kk2::enumerate_triangle<kk2::SAdjList, kk2::SDAdjList>(
+        g, [&](int u, int v, int w) { res += x[u] * x[v] * x[w]; });
     kout << res << kendl;
 
     return 0;

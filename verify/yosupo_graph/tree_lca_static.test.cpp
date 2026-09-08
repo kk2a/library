@@ -10,14 +10,14 @@ int main() {
     kin >> n >> q;
     kk2::Edges edges;
     edges.reserve(n - 1);
-    rep (i, n - 1) {
+    rep(i, n - 1) {
         int p;
         kin >> p;
         edges.add_edge(i + 1, p);
     }
     kk2::SAdjList g(n, edges);
     kk2::HeavyLightDecomposition<kk2::SAdjList> hld(g);
-    rep (q) {
+    rep(q) {
         int u, v;
         kin >> u >> v;
         kout << hld.lca(u, v) << "\n";

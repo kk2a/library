@@ -9,8 +9,8 @@ namespace kk2 {
 namespace graph {
 
 template <class T, bool is_directed>
-using StaticAdjacencyList = detail::StaticAdjacencyListBase<
-    T, is_directed, detail::DirectStaticAdjacencyStorage<T, is_directed>>;
+using StaticAdjacencyList = detail::
+    StaticAdjacencyListBase<T, is_directed, detail::DirectStaticAdjacencyStorage<T, is_directed>>;
 
 } // namespace graph
 

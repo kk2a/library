@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     int q;
     kin >> q;
-    rep (q) {
+    rep(q) {
         u64 n;
         kin >> n;
         Yes(kk2::is_prime(n));

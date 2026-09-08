@@ -1,8 +1,8 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_parallel_unionfind
 
-#include "../../unionfind/parallel.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
+#include "../../unionfind/parallel.hpp"
 using namespace std;
 
 int main() {
@@ -18,7 +18,7 @@ int main() {
         x[l] += x[r];
     };
 
-    rep (q) {
+    rep(q) {
         int k, a, b;
         kin >> k >> a >> b;
         uf.unite(a, b, k, f);

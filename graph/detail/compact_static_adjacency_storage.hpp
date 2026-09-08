@@ -5,8 +5,8 @@
 #include <utility>
 #include <vector>
 
-#include "adjacency_storage_common.hpp"
 #include "../compact_edge.hpp"
+#include "adjacency_storage_common.hpp"
 
 namespace kk2::graph::detail {
 
@@ -30,9 +30,8 @@ template <class T, bool is_directed> struct CompactStaticAdjacencyStorage {
         const int end = k + 1 == (int)head.size() ? data.size() : head[k + 1];
         return {std::span<int>(data).subspan(head[k], end - head[k]), edges, k};
     }
-    _AdjacencyView<T, true> view(const std::vector<int> &head,
-                                 const _Edges<T> *edges,
-                                 int k) const {
+    _AdjacencyView<T, true>
+    view(const std::vector<int> &head, const _Edges<T> *edges, int k) const {
         const int end = k + 1 == (int)head.size() ? data.size() : head[k + 1];
         return {std::span<const int>(data).subspan(head[k], end - head[k]), edges, k};
     }

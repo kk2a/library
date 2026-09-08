@@ -1,16 +1,17 @@
 // competitive-verifier: STANDALONE
 
+#include "../../../../graph/graph.hpp"
+
 #include <cassert>
 #include <fstream>
 #include <ranges>
 #include <sstream>
 #include <vector>
 
-#include "../../../../graph/graph.hpp"
-#include "../../../../graph/matrix.hpp"
 #include "../../../../graph/compact_graph.hpp"
-#include "../../../../graph/static_graph.hpp"
 #include "../../../../graph/compact_static_graph.hpp"
+#include "../../../../graph/matrix.hpp"
+#include "../../../../graph/static_graph.hpp"
 #include "../../../../type_traits/graph.hpp"
 
 struct TestInput : std::istringstream, kk2::type_traits::istream_tag {
@@ -42,10 +43,16 @@ static_assert(!kk2::graph::AdjacencyGraph<kk2::DWAdjMat<int>>);
 static_assert(!kk2::graph::WeightedGraph<kk2::DWAdjMat<int>>);
 
 static_assert(kk2::graph::VertexAdjacency<std::vector<std::vector<int>>>);
-static_assert(std::ranges::random_access_range<decltype(std::declval<const kk2::CSAdjList &>()[0])>);
+static_assert(
+    std::ranges::random_access_range<decltype(std::declval<const kk2::CSAdjList &>()[0])>);
 static_assert(std::same_as<decltype(std::declval<kk2::CDWAdjList<int> &>()[0][0].cost), int &>);
-static_assert(std::same_as<decltype(std::declval<const kk2::CDWAdjList<int> &>()[0][0].cost), const int &>);
-static_assert(std::same_as<decltype(std::declval<const decltype(std::declval<kk2::CDWAdjList<int> &>()[0]) &>()[0].cost), const int &>);
+static_assert(
+    std::same_as<decltype(std::declval<const kk2::CDWAdjList<int> &>()[0][0].cost), const int &>);
+static_assert(
+    std::same_as<
+        decltype(std::declval<const decltype(std::declval<kk2::CDWAdjList<int> &>()[0]) &>()[0]
+                     .cost),
+        const int &>);
 static_assert(std::same_as<decltype(std::declval<kk2::DWAdjMat<int> &>()[0][0].cost), int &>);
 static_assert(sizeof(kk2::Edge) < sizeof(kk2::WEdge<int>));
 

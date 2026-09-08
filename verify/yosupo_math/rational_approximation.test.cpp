@@ -11,9 +11,8 @@ void solve() {
     int n, x, y;
     kin >> n >> x >> y;
 
-    auto [lnum, lden, rnum, rden] = sbt::binary_search(n, [&](i64 num, i64 den) -> bool {
-        return num * y <= den * x;
-    });
+    auto [lnum, lden, rnum, rden] =
+        sbt::binary_search(n, [&](i64 num, i64 den) -> bool { return num * y <= den * x; });
     if (lnum * y == lden * x) rnum = lnum, rden = lden;
     kout << lnum << ' ' << lden << ' ' << rnum << ' ' << rden << '\n';
 }
@@ -22,7 +21,7 @@ int main() {
     int t;
     kin >> t;
 
-    rep (t) solve();
+    rep(t) solve();
 
     return 0;
 }

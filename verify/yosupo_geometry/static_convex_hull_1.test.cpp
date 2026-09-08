@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int t;
     kin >> t;
-    rep (t) {
+    rep(t) {
         int n;
         kin >> n;
         vc<kk2::Point<i64>> p(n);
@@ -28,12 +28,8 @@ int main() {
         }
 
         kout << ch.up.size() + ch.dw.size() - 2 << "\n";
-        for (int i = 0; i < (int)ch.dw.size(); ++i) {
-            kout << ch.dw[i] << "\n";
-        }
-        for (int i = (int)ch.up.size() - 2; i; --i) {
-            kout << ch.up[i] << "\n";
-        }
+        for (int i = 0; i < (int)ch.dw.size(); ++i) { kout << ch.dw[i] << "\n"; }
+        for (int i = (int)ch.up.size() - 2; i; --i) { kout << ch.up[i] << "\n"; }
     }
 
     return 0;

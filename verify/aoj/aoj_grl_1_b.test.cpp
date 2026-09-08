@@ -11,14 +11,14 @@ int main() {
     kk2::DWAdjList<int> g(n, m, kin);
     auto [dist, prev] = kk2::bellman_ford(n, g.edges, s);
 
-    rep (i, n) {
+    rep(i, n) {
         if (dist[i].minf) {
             kout << "NEGATIVE CYCLE" << kendl;
             return 0;
         }
     }
 
-    rep (i, n) {
+    rep(i, n) {
         if (dist[i].inf) {
             kout << "INF" << kendl;
         } else {

@@ -1,8 +1,8 @@
 #ifndef KK2_GRAPH_ENUMERATE_TRIANGLE_HPP
 #define KK2_GRAPH_ENUMERATE_TRIANGLE_HPP 1
 
-#include <utility>
 #include <type_traits>
+#include <utility>
 #include <vector>
 
 #include "../type_traits/graph.hpp"

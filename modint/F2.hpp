@@ -66,13 +66,11 @@ struct F2 {
         assert(_v != 0);
         return F2(_v);
     }
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const F2 &a) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const F2 &a) {
         os << a._v;
         return os;
     }
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, F2 &a) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, F2 &a) {
         bool x;
         is >> x;
         a = F2(x);

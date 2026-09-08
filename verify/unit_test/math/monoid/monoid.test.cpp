@@ -158,7 +158,6 @@ void test_monoid() {
 }
 
 
-
 void test() {
     test_monoid();
 

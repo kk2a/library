@@ -18,7 +18,7 @@ BreakBeforeTernaryOperators: false
 BreakConstructorInitializers: BeforeColon
 BreakInheritanceList: BeforeColon
 BreakStringLiterals: true
-BreakTemplateDeclarations: No
+AlwaysBreakTemplateDeclarations: false
 ColumnLimit: 100
 ContinuationIndentWidth: 4
 EmptyLineAfterAccessModifier: Never

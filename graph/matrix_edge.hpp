@@ -26,8 +26,7 @@ template <class T, bool is_const> struct _MatrixEdgeProxy {
 
     operator int() const { return to; }
 
-    template <class OStream>
-    void debug_output(OStream &os) const {
+    template <class OStream> void debug_output(OStream &os) const {
         os << '(' << id << ", " << from << "->" << to;
         if constexpr (!std::is_same_v<T, empty>) os << ":" << cost;
         os << ')';

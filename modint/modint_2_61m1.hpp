@@ -90,13 +90,11 @@ struct ModInt2_61m1 {
 
     constexpr mint inv() const { return pow(mod - 2); }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const mint &x) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const mint &x) {
         return os << x._v;
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, mint &x) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {
         u64 y;
         is >> y;
         x = mint(y);

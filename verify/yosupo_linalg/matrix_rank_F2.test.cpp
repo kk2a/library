@@ -15,10 +15,10 @@ int main() {
 
     kk2::MatrixF2 a(n, m);
     if (is_swap) {
-        rep (j, m) {
+        rep(j, m) {
             string s;
             kin >> s;
-            rep (i, n) a[n - i - 1][j] = s[i] - '0';
+            rep(i, n) a[n - i - 1][j] = s[i] - '0';
         }
     } else {
         a.input(kin);

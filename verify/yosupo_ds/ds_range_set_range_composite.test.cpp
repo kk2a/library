@@ -9,9 +9,7 @@ struct S {
     kk2::mont998 a, b;
     int size;
 
-    static S op(S l, S r) {
-        return S{r.a * l.a, r.a * l.b + r.b, l.size + r.size};
-    }
+    static S op(S l, S r) { return S{r.a * l.a, r.a * l.b + r.b, l.size + r.size}; }
 
     static S unit() { return S{1, 0, 0}; }
 };
@@ -22,13 +20,9 @@ template <class IStream> IStream &operator>>(IStream &is, S &s) {
     return is;
 }
 
-S op(S l, S r) {
-    return S{r.a * l.a, r.a * l.b + r.b, l.size + r.size};
-}
+S op(S l, S r) { return S{r.a * l.a, r.a * l.b + r.b, l.size + r.size}; }
 
-S e() {
-    return S{1, 0, 0};
-}
+S e() { return S{1, 0, 0}; }
 
 struct F {
     S a;
@@ -54,9 +48,7 @@ F composition(F l, F r) {
     return l;
 }
 
-F id() {
-    return F::unit();
-}
+F id() { return F::unit(); }
 
 struct RangeSetRangeComposite {
     using S = ::S;
@@ -73,14 +65,19 @@ int main() {
 
     kk2::LazySegmentTree<RangeSetRangeComposite> seg(a);
 
-    rep (q) {
+    rep(q) {
         int t;
         kin >> t;
         if (t == 0) {
             int l, r;
             kk2::mont998 c, d;
             kin >> l >> r >> c >> d;
-            seg.apply_range(l, r, F{S{c, d, 1}, false});
+            seg.apply_range(l,
+                            r,
+                            F{
+                                S{c, d, 1},
+                                false
+            });
         }
         if (t == 1) {
             int l, r;

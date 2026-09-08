@@ -1,9 +1,10 @@
 // competitive-verifier: STANDALONE
 
+#include "../../../graph/maxflow.hpp"
+
 #include <cassert>
 
 #include "../../../graph/graph.hpp"
-#include "../../../graph/maxflow.hpp"
 
 int main() {
     kk2::WEdges<int> edges;

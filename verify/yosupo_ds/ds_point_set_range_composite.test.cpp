@@ -17,7 +17,7 @@ int main() {
     kin >> a;
     kk2::SegmentTree<RM> seg(a);
 
-    rep (q) {
+    rep(q) {
         int t;
         kin >> t;
         if (t == 0) {
@@ -28,7 +28,7 @@ int main() {
         }
         if (t == 1) {
             int l, r;
-            kk2::mont998 x; 
+            kk2::mont998 x;
             kin >> l >> r >> x;
             kout << seg.prod(l, r).eval(x) << "\n";
         }

@@ -1,7 +1,7 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/cycle_detection_undirected
 
-#include "../../graph/static_graph.hpp"
 #include "../../graph/cycle_detection.hpp"
+#include "../../graph/static_graph.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 

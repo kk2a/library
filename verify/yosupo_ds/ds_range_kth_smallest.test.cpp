@@ -10,7 +10,7 @@ int main() {
     vc<int> a(n);
     kin >> a;
     kk2::WaveletMatrix wm(a);
-    rep (q) {
+    rep(q) {
         int l, r, k;
         kin >> l >> r >> k;
         kout << wm.kth_smallest(l, r, k) << "\n";

@@ -1,7 +1,7 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_inversions_query
 
-#include "../../others/coordinate_compression.hpp"
 #include "../../data_structure/binary_indexed_tree.hpp"
+#include "../../others/coordinate_compression.hpp"
 #include "../../others/mo.hpp"
 #include "../../template/template.hpp"
 using namespace std;
@@ -37,7 +37,9 @@ int main() {
         now -= bit.sum(b[i] + 1, cc.size());
         bit.add(b[i], -1);
     };
-    auto f = [&](int i) { res[i] = now; };
+    auto f = [&](int i) {
+        res[i] = now;
+    };
 
     mo.calculate(insert_left, insert_right, erase_left, erase_right, f);
     for (auto x : res) kout << x << "\n";

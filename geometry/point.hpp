@@ -170,13 +170,11 @@ template <typename T> struct Point {
 
     friend Point rotate270(const Point &p, const Point &O) { return p.rotate270(O); }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const Point &p) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const Point &p) {
         return os << p.x << " " << p.y;
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, Point &p) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, Point &p) {
         return is >> p.x >> p.y;
     }
 };

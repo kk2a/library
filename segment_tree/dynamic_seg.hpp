@@ -163,8 +163,8 @@ template <class S> S mapping(S l, bool) { return l; }
 bool composition(bool, bool) { return false; }
 bool id() { return false; }
 
-template <class S, S (*op)(S, S), S (*e)()> using DynamicSegTree =
-    DynamicLazySegTree<S, op, e, bool, mapping, composition, id>;
+template <class S, S (*op)(S, S), S (*e)()>
+using DynamicSegTree = DynamicLazySegTree<S, op, e, bool, mapping, composition, id>;
 
 } // namespace DynamicSegImpl
 using DynamicSegImpl::DynamicSegTree;

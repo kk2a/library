@@ -1,18 +1,19 @@
 // competitive-verifier: STANDALONE
 
 #include "../../../data_structure/offline_dynamic_connectivity.hpp"
-#include "../../../unionfind/unionfind.hpp"
+
 #include "../../../random/gen.hpp"
 #include "../../../template/template.hpp"
+#include "../../../unionfind/unionfind.hpp"
 using namespace std;
 
 int main() {
-    rep (200) {
+    rep(200) {
         int n = 10000;
         int q = 1000;
         vc<array<int, 3>> query(q);
         vc<pi> insert_query;
-        rep (i, q) {
+        rep(i, q) {
             int t = kk2::random::rng(0, 4);
             query[i][0] = t;
             if (t == 0) {
@@ -42,10 +43,10 @@ int main() {
                 query[i][2] = b;
             }
         }
-    
+
         vc<int> res(q);
         kk2::OfflineDynamicConnectivity odc(n, q);
-        rep (i, q) {
+        rep(i, q) {
             if (query[i][0] == 0) odc.add_edge(i, query[i][1], query[i][2]);
             if (query[i][0] == 1) odc.del_edge(i, query[i][1], query[i][2]);
         }
@@ -54,25 +55,21 @@ int main() {
             if (query[i][0] == 2) res[i] = odc.uf.size(query[i][1]);
             if (query[i][0] == 3) res[i] = odc.uf.same(query[i][1], query[i][2]);
         });
-    
+
         std::set<pi> edges;
         vc<int> res2(q);
-        rep (i, q) {
+        rep(i, q) {
             if (query[i][0] == 0) {
                 edges.emplace(query[i][1], query[i][2]);
             } else if (query[i][0] == 1) {
                 edges.erase(pi(query[i][1], query[i][2]));
             } else if (query[i][0] == 2) {
                 kk2::UnionFind uf(n);
-                for (auto [a, b] : edges) {
-                    uf.unite(a, b);
-                }
+                for (auto [a, b] : edges) { uf.unite(a, b); }
                 res2[i] = uf.size(query[i][1]);
             } else {
                 kk2::UnionFind uf(n);
-                for (auto [a, b] : edges) {
-                    uf.unite(a, b);
-                }
+                for (auto [a, b] : edges) { uf.unite(a, b); }
                 res2[i] = uf.same(query[i][1], query[i][2]);
             }
         }

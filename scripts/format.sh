@@ -8,4 +8,4 @@ if ((${#files[@]} == 0)); then
     exit 0
 fi
 
-clang-format --style=file:.clang-format --dry-run --Werror "${files[@]}"
+clang-format --style=file:.clang-format -i "${files[@]}"

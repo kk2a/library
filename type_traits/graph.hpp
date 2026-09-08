@@ -19,12 +19,10 @@ template <class E>
 concept WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };
 
 template <class R>
-concept EdgeRange = std::ranges::input_range<R> &&
-                    Edge<std::ranges::range_value_t<R>>;
+concept EdgeRange = std::ranges::input_range<R> && Edge<std::ranges::range_value_t<R>>;
 
 template <class R>
-concept WeightedEdgeRange = EdgeRange<R> &&
-                            WeightedEdge<std::ranges::range_value_t<R>>;
+concept WeightedEdgeRange = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;
 
 template <class R>
 concept ForwardWeightedEdgeRange = std::ranges::forward_range<R> && WeightedEdgeRange<R>;
@@ -56,12 +54,14 @@ concept AdjacencyGraph = Graph<G> && requires(const G &g, int v) {
 };
 
 template <class G>
-concept WeightedGraph = AdjacencyGraph<G> && G::weighted &&
-                        WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const G &>()[0])>>;
+concept WeightedGraph =
+    AdjacencyGraph<G> && G::weighted
+    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const G &>()[0])>>;
 
 template <class G>
-concept WeightedEdgeListGraph = EdgeListGraph<G> && G::weighted &&
-                                WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const G &>().edges)>>;
+concept WeightedEdgeListGraph =
+    EdgeListGraph<G> && G::weighted
+    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const G &>().edges)>>;
 
 template <class G>
 concept UnweightedGraph = AdjacencyGraph<G> && (!G::weighted);

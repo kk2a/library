@@ -1,9 +1,9 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum_large_array
 
-#include "../../segment_tree/lazy.hpp"
 #include "../../math/action/affine_sumwithsize.hpp"
 #include "../../modint/modint.hpp"
 #include "../../others/coordinate_compression.hpp"
+#include "../../segment_tree/lazy.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
@@ -14,7 +14,7 @@ int main() {
     kin >> n >> q;
     vc<array<int, 5>> queries(q);
     kk2::CC<int> cc;
-    rep (i, q) {
+    rep(i, q) {
         auto &x = queries[i];
         kin >> x[0];
         if (x[0] == 0) {
@@ -26,7 +26,7 @@ int main() {
         }
     }
     cc.build();
-    rep (i, q) {
+    rep(i, q) {
         auto &x = queries[i];
         if (x[0] == 0) {
             x[1] = cc.get(x[1]);
@@ -37,7 +37,7 @@ int main() {
         }
     }
     kk2::LazySegmentTree<A> seg(cc.size());
-    rep (i, cc.size() - 1) seg.init_set(i, 0, cc[i + 1] - cc[i]);
+    rep(i, cc.size() - 1) seg.init_set(i, 0, cc[i + 1] - cc[i]);
     seg.build();
 
     for (auto query : queries) {

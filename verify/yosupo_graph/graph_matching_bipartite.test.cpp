@@ -9,13 +9,13 @@ int main() {
     int l, r, m;
     kin >> l >> r >> m;
     kk2::DWAdjList<int> g(l + r + 2);
-    rep (m) {
+    rep(m) {
         int a, b;
         kin >> a >> b;
         g.add_edge(a, l + b, 1);
     }
-    rep (i, l) g.add_edge(l + r, i, 1);
-    rep (i, r) g.add_edge(l + i, l + r + 1, 1);
+    rep(i, l) g.add_edge(l + r, i, 1);
+    rep(i, r) g.add_edge(l + i, l + r + 1, 1);
 
     kk2::MaxFlow<kk2::DWAdjList<int>> mf(g);
 

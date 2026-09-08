@@ -13,7 +13,7 @@ int main() {
     kin >> a;
     kk2::DisjointSparseTable<M> dst(a);
 
-    rep (q) {
+    rep(q) {
         int l, r;
         kin >> l >> r;
         kout << dst.prod(l, r) << "\n";

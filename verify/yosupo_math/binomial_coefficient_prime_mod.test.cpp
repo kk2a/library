@@ -12,7 +12,7 @@ int main() {
     kin >> t >> m;
     mint::setmod(m);
     kk2::Comb<mint>::set_upper(1e7);
-    rep (t) {
+    rep(t) {
         int n, k;
         kin >> n >> k;
         kout << kk2::Comb<mint>::binom(n, k) << "\n";

@@ -1,8 +1,9 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
+// competitive-verifier: PROBLEM
+// https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
 
 #include "../../modint/modint.hpp"
-#include "../../unionfind/potentialized.hpp"
 #include "../../template/template.hpp"
+#include "../../unionfind/potentialized.hpp"
 using namespace std;
 
 struct A {
@@ -13,12 +14,10 @@ struct A {
 };
 
 A op(A l, A r) {
-    return A{
-        l.a00 * r.a00 + l.a01 * r.a10,
-        l.a00 * r.a01 + l.a01 * r.a11,
-        l.a10 * r.a00 + l.a11 * r.a10,
-        l.a10 * r.a01 + l.a11 * r.a11
-    };
+    return A{l.a00 * r.a00 + l.a01 * r.a10,
+             l.a00 * r.a01 + l.a01 * r.a11,
+             l.a10 * r.a00 + l.a11 * r.a10,
+             l.a10 * r.a01 + l.a11 * r.a11};
 }
 
 A e() { return A{1, 0, 0, 1}; }
@@ -39,7 +38,7 @@ int main() {
     kin >> n >> q;
     kk2::PotentializedUnionFind<Ab, false> puf(n);
 
-    rep (i, q) {
+    rep(i, q) {
         int type;
         kin >> type;
         if (type == 0) {

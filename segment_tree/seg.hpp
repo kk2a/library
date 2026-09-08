@@ -19,8 +19,8 @@ template <algebra::Monoid M> struct SegmentTree {
         d = std::vector<M>(2 * size, M::unit());
     }
 
-    template <class... Args> SegmentTree(int n, Args... args)
-        : SegmentTree(std::vector<M>(n, M(args...))) {}
+    template <class... Args>
+    SegmentTree(int n, Args... args) : SegmentTree(std::vector<M>(n, M(args...))) {}
 
     SegmentTree(const std::vector<M> &v) : _n(int(v.size())) {
         log = 0;

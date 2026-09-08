@@ -1,6 +1,7 @@
 // competitive-verifier: STANDALONE
 
 #include "../../../../type_traits/algebra.hpp"
+
 #include "../../../../math/action/add_sumwithsize.hpp"
 #include "../../../../math/action/affine_sumwithsize.hpp"
 #include "../../../../math/group/add.hpp"

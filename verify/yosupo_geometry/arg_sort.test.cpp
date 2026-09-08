@@ -1,7 +1,7 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sort_points_by_argument
 
-#include "../../geometry/point.hpp"
 #include "../../geometry/argument_sort.hpp"
+#include "../../geometry/point.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
@@ -11,7 +11,7 @@ int main() {
     vc<kk2::Point<i64>> p(n);
     kin >> p;
     kk2::ArgumentSort<i64>().argument_sort(p);
-    rep (i, n) kout << p[i] << "\n";
+    rep(i, n) kout << p[i] << "\n";
 
     return 0;
 }

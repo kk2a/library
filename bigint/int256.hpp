@@ -17,9 +17,7 @@ struct uint256 {
     using u256 = uint256;
 
     constexpr uint256() { _v[0] = _v[1] = 0; }
-    template <Integral T> constexpr uint256(T x) {
-        _v[0] = x, _v[1] = 0;
-    }
+    template <Integral T> constexpr uint256(T x) { _v[0] = x, _v[1] = 0; }
 
     constexpr uint256 &operator+=(const uint256 &r) {
         _v[1] += r._v[1];

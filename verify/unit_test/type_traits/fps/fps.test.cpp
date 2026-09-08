@@ -1,12 +1,13 @@
 // competitive-verifier: STANDALONE
 
+#include "../../../../type_traits/fps.hpp"
+
 #include <vector>
 
 #include "../../../../fps/fps_arb.hpp"
 #include "../../../../fps/fps_multivariate.hpp"
 #include "../../../../fps/fps_ntt_friendly.hpp"
 #include "../../../../modint/mont.hpp"
-#include "../../../../type_traits/fps.hpp"
 
 using NTTFPS = kk2::FPSNTT<kk2::mont998>;
 using ArbFPS = kk2::FPSArb<kk2::mont998>;

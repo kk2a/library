@@ -17,7 +17,7 @@ int main() {
     int q;
     kin >> q;
 
-    rep (q) {
+    rep(q) {
         int x, y;
         kin >> x >> y;
         --x, --y;

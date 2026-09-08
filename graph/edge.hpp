@@ -25,8 +25,7 @@ template <class T> struct _Edge {
     operator int() const { return to; }
     inline _Edge rev() const { return _Edge(from, cost, to, id); }
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << '(' << id << ", " << from << "->" << to;
         if constexpr (!std::is_same_v<T, empty>) os << ":" << cost;
         os << ')';
@@ -36,16 +35,12 @@ template <class T> struct _Edge {
 template <> struct _Edge<empty> {
     int from, to, id;
 
-    _Edge(int to_, empty = {}, int from_ = -1, int id_ = -1)
-        : from(from_),
-          to(to_),
-          id(id_) {}
+    _Edge(int to_, empty = {}, int from_ = -1, int id_ = -1) : from(from_), to(to_), id(id_) {}
     _Edge() : from(-1), to(-1), id(-1) {}
     operator int() const { return to; }
     inline _Edge rev() const { return _Edge(from, {}, to, id); }
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << '(' << id << ", " << from << "->" << to << ')';
     }
 };
@@ -59,13 +54,11 @@ template <class T> struct _Edges : public std::vector<_Edge<T>> {
     using std::vector<_Edge<T>>::vector;
 
     template <InputStream IStream>
-    _Edges(int m, IStream &is, bool is_one_indexed = false)
-        : std::vector<_Edge<T>>(m) {
+    _Edges(int m, IStream &is, bool is_one_indexed = false) : std::vector<_Edge<T>>(m) {
         _input(is, is_one_indexed);
     }
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << '[';
         for (int i = 0; i < (int)this->size(); i++) {
             if (i) os << ", ";
@@ -85,8 +78,7 @@ template <class T> struct _Edges : public std::vector<_Edge<T>> {
     }
 
   private:
-    template <InputStream IStream>
-    void _input(IStream &is, bool is_one_indexed) {
+    template <InputStream IStream> void _input(IStream &is, bool is_one_indexed) {
         for (int i = 0; i < (int)this->size(); ++i) {
             int u, v;
             T w{};

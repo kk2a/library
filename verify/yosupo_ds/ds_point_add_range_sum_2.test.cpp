@@ -8,13 +8,13 @@ int main() {
     int n, q;
     kin >> n >> q;
     kk2::BinaryIndexedTree<i64> bit(n);
-    rep (i, n) {
+    rep(i, n) {
         i64 a;
         kin >> a;
         bit.add(i, a);
     }
 
-    rep (q) {
+    rep(q) {
         int t;
         kin >> t;
         if (t == 0) {

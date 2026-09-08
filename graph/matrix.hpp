@@ -12,8 +12,7 @@ namespace kk2 {
 namespace graph {
 
 template <class T, bool is_directed>
-struct AdjacencyMatrix
-    : detail::GraphBase<T, is_directed, false, false> {
+struct AdjacencyMatrix : detail::GraphBase<T, is_directed, false, false> {
     using base = detail::GraphBase<T, is_directed, false, false>;
     using base::edges;
     using base::num_edges;
@@ -58,8 +57,7 @@ struct AdjacencyMatrix
         for (auto &d : data) d.resize(now + n, -1);
     }
 
-    template <InputStream IStream>
-    AdjacencyMatrix &input(IStream &is, bool oneindexed = false) {
+    template <InputStream IStream> AdjacencyMatrix &input(IStream &is, bool oneindexed = false) {
         for (int i = 0; i < num_edges(); ++i) {
             int u, v;
             T w{};
@@ -71,8 +69,7 @@ struct AdjacencyMatrix
         return *this;
     }
 
-    template <InputStream IStream>
-    void _input(IStream &is, int m, bool oneindexed) {
+    template <InputStream IStream> void _input(IStream &is, int m, bool oneindexed) {
         for (int i = 0; i < m; ++i) {
             int u, v;
             T w{};
@@ -83,8 +80,7 @@ struct AdjacencyMatrix
         }
     }
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << "[\n";
         for (int i = 0; i < num_vertices(); ++i) {
             os << "  " << i << ": [";
@@ -118,7 +114,6 @@ struct AdjacencyMatrix
         for (const auto &e : edges) result._add_edge_with_id(e.to, e.from, _edge_cost(e), e.id);
         return result;
     }
-
 };
 
 } // namespace graph

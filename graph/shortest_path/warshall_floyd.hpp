@@ -9,8 +9,8 @@
 #include <utility>
 #include <vector>
 
-#include "../../type_traits/io.hpp"
 #include "../../type_traits/graph.hpp"
+#include "../../type_traits/io.hpp"
 
 namespace kk2 {
 
@@ -20,16 +20,16 @@ template <typename T> struct wf_len {
     T len;
     bool inf, minf;
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         if (minf) os << "MINF";
         else if (inf) os << "INF";
         else os << len;
     }
 };
 
-template <graph::WeightedEdgeRange E,
-          typename T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>
+template <
+    graph::WeightedEdgeRange E,
+    typename T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>
 std::vector<std::vector<wf_len<T>>> warshall_froyd(int n, const E &edges, bool directed) {
 
     std::vector<std::vector<wf_len<T>>> res(n, std::vector<wf_len<T>>(n, {0, true, false}));

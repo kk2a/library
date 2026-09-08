@@ -7,8 +7,11 @@ namespace kk2 {
 
 enum class FPSOperation { CONVOLUTION, EXP };
 
-template <class FPS, class mint = typename FPS::value_type> bool
-is_sparse_operation(FPSOperation op, bool is_ntt_friendly, const FPS &a, const FPS &b = FPS()) {
+template <class FPS, class mint = typename FPS::value_type>
+bool is_sparse_operation(FPSOperation op,
+                         bool is_ntt_friendly,
+                         const FPS &a,
+                         const FPS &b = FPS()) {
     int n = a.size(), m = b.size();
     long long not_zero_a = 0, not_zero_b = 0;
     bool same = a == b;

@@ -5,8 +5,8 @@
 #include <utility>
 #include <vector>
 
-#include "adjacency_storage_common.hpp"
 #include "../compact_edge.hpp"
+#include "adjacency_storage_common.hpp"
 
 namespace kk2::graph::detail {
 

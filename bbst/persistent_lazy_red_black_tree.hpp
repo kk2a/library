@@ -8,7 +8,8 @@ namespace kk2 {
 
 namespace rbtree {
 
-template <class A_> struct PersistentLazyRedBlackTree
+template <class A_>
+struct PersistentLazyRedBlackTree
     : RedBlackTreeBase<PersistentLazyRedBlackTree<A_>, LazyRedBlackTreeNode<A_>> {
     using base = RedBlackTreeBase<PersistentLazyRedBlackTree<A_>, LazyRedBlackTreeNode<A_>>;
     using base::a_op;
