@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: clang-format-all
         name: clang-format all C++ sources
-        entry: bash scripts/format.sh
+        entry: bash .scripts/format.sh
         language: system
         pass_filenames: false
         always_run: true

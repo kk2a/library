@@ -82,7 +82,7 @@ def coverage_report(build_directory: Path, output_directory: Path) -> str:
         "--exclude",
         r"(^|.*/)verify/.*",
         "--exclude",
-        r"(^|.*/)scripts/.*",
+        r"(^|.*/)\.scripts/.*",
         "--exclude",
         r"(^|.*/)\.competitive-verifier/.*",
     ]
