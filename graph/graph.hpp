@@ -29,16 +29,14 @@ template <class T, bool is_directed> struct AdjacencyList {
 
     adjacency_container data;
     edge_collection edges;
-    int pending_input_edges = 0;
 
     AdjacencyList() = default;
     AdjacencyList(int n_) : data(n_) {}
-    // input を使うことが前提
-    AdjacencyList(int n_, int m_) : data(n_), pending_input_edges(m_) { edges.reserve(m_); }
     template <InputStream IStream>
     AdjacencyList(int n_, int m_, IStream &is, bool oneindexed = false)
-        : AdjacencyList(n_, m_) {
-        input(is, oneindexed);
+        : data(n_) {
+        edges.reserve(m_);
+        _input(is, m_, oneindexed);
     }
     AdjacencyList(int n_, const edge_collection &edges_) : data(n_) {
         edges.reserve(edges_.size());
@@ -48,20 +46,23 @@ template <class T, bool is_directed> struct AdjacencyList {
 
     inline int num_vertices() const { return data.size(); }
     inline int size() const { return data.size(); }
-    inline int num_edges() const { return pending_input_edges ? pending_input_edges : edges.size(); }
+    inline int num_edges() const { return edges.size(); }
     out_edges &operator[](int k) { return data[k]; }
     const out_edges &operator[](int k) const { return data[k]; }
     void edge_clear() { *this = AdjacencyList(num_vertices()); }
     void add_edge(int from, int to, T cost = T{}) {
-        assert(!pending_input_edges);
         _add_edge<false>(from, to, cost, num_edges());
     }
     void add_vertex(int n = 1) { data.insert(data.end(), n, out_edges()); }
 
     template <InputStream IStream>
     AdjacencyList &input(IStream &is, bool oneindexed = false) {
-        const int m = pending_input_edges ? pending_input_edges : edges.size();
-        pending_input_edges = 0;
+        _input(is, edges.size(), oneindexed);
+        return *this;
+    }
+
+    template <InputStream IStream>
+    void _input(IStream &is, int m, bool oneindexed) {
         edges.clear();
         edges.reserve(m);
         std::vector<int> degree(num_vertices());
@@ -84,7 +85,6 @@ template <class T, bool is_directed> struct AdjacencyList {
                 if (e.from != e.to) data[e.to].emplace_back(e.from, e.cost, e.to, e.id);
             }
         }
-        return *this;
     }
 
     template <OutputStream OStream>
@@ -155,12 +155,15 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
 
     AdjacencyMatrix() = default;
     AdjacencyMatrix(int n_) : data(n_, out_edges(n_)) {}
-    // input を使うことが前提
-    AdjacencyMatrix(int n_, int m_) : data(n_, out_edges(n_)), edges(m_) {}
-    AdjacencyMatrix(int n_, const edge_collection &edges_)
-        : data(n_, out_edges(n_)),
-          edges(edges_.size()) {
-        for (auto &&e : edges_) _add_edge<true>(e.from, e.to, e.cost, e.id);
+    template <InputStream IStream>
+    AdjacencyMatrix(int n_, int m_, IStream &is, bool oneindexed = false)
+        : data(n_, out_edges(n_)) {
+        edges.reserve(m_);
+        _input(is, m_, oneindexed);
+    }
+    AdjacencyMatrix(int n_, const edge_collection &edges_) : data(n_, out_edges(n_)) {
+        edges.reserve(edges_.size());
+        for (auto &&e : edges_) _add_edge_with_id(e.from, e.to, e.cost, e.id);
     }
 
     inline int num_vertices() const { return data.size(); }
@@ -189,6 +192,18 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
         return *this;
     }
 
+    template <InputStream IStream>
+    void _input(IStream &is, int m, bool oneindexed) {
+        for (int i = 0; i < m; i++) {
+            int u, v;
+            T w{};
+            is >> u >> v;
+            if constexpr (weighted) is >> w;
+            if (oneindexed) --u, --v;
+            _add_edge<false>(u, v, w, i);
+        }
+    }
+
     template <OutputStream OStream>
     void debug_output(OStream &os) const {
         os << "[\n";
@@ -213,10 +228,17 @@ template <class T, bool is_directed> struct AdjacencyMatrix {
         else edges.emplace_back(to, cost, from, id);
     }
 
+    void _add_edge_with_id(int from, int to, T cost, int id) {
+        data[from][to] = out_edge_type(cost, id);
+        if constexpr (!is_directed) data[to][from] = out_edge_type(cost, id);
+        edges.emplace_back(to, cost, from, id);
+    }
+
   public:
     AdjacencyMatrix reverse() const {
-        AdjacencyMatrix res(num_vertices(), num_edges());
-        for (auto &&e : edges) res._add_edge<true>(e.to, e.from, e.cost, e.id);
+        AdjacencyMatrix res(num_vertices());
+        res.edges.reserve(edges.size());
+        for (auto &&e : edges) res._add_edge_with_id(e.to, e.from, e.cost, e.id);
         return res;
     }
 };

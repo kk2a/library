@@ -31,15 +31,15 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
     edge_collection edges;
     adjacency_container data;
     bool is_built = false;
-    int pending_input_edges = 0;
 
     StaticAdjacencyList() = default;
     StaticAdjacencyList(int n_) : head(n_) {}
-    StaticAdjacencyList(int n_, int m_) : head(n_), pending_input_edges(m_) { edges.reserve(m_); }
     template <InputStream IStream>
     StaticAdjacencyList(int n_, int m_, IStream &is, bool oneindexed = false)
-        : StaticAdjacencyList(n_, m_) {
-        input(is, oneindexed);
+        : head(n_) {
+        edges.reserve(m_);
+        _input(is, m_, oneindexed);
+        build();
     }
     StaticAdjacencyList(int n_, const edge_collection &edges_) : head(n_) {
         edges.reserve(edges_.size());
@@ -49,10 +49,9 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
 
     inline int num_vertices() const { return head.size(); }
     inline int size() const { return head.size(); }
-    inline int num_edges() const { return pending_input_edges ? pending_input_edges : edges.size(); }
+    inline int num_edges() const { return edges.size(); }
     void add_edge(int from, int to, T cost = T{}) {
         assert(!is_built);
-        assert(!pending_input_edges);
         _add_edge<false>(from, to, cost, num_edges());
     }
     void add_vertex(int n = 1) {
@@ -78,8 +77,13 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
     template <InputStream IStream>
     StaticAdjacencyList &input(IStream &is, bool oneindexed = false) {
         assert(!is_built);
-        const int m = pending_input_edges ? pending_input_edges : edges.size();
-        pending_input_edges = 0;
+        _input(is, edges.size(), oneindexed);
+        build();
+        return *this;
+    }
+
+    template <InputStream IStream>
+    void _input(IStream &is, int m, bool oneindexed) {
         edges.clear();
         edges.reserve(m);
         for (int i = 0; i < m; i++) {
@@ -90,9 +94,6 @@ template <class T, bool is_directed> struct StaticAdjacencyList {
             if (oneindexed) --u, --v;
             _add_edge<false>(u, v, w, i);
         }
-
-        build();
-        return *this;
     }
 
     template <OutputStream OStream>

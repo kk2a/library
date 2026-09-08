@@ -11,8 +11,7 @@ int main() {
     kin >> n >> q;
     vc<i64> a(n);
     kin >> a;
-    kk2::AdjList g(n, n - 1);
-    g.input(kin);
+    kk2::AdjList g(n, n - 1, kin);
 
     kk2::HeavyLightDecomposition hld(g);
     kk2::BinaryIndexedTree<i64> bit(hld.id);

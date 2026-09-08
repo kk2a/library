@@ -8,8 +8,7 @@ using namespace std;
 int main() {
     int n, m;
     kin >> n >> m;
-    kk2::DWAdjMat<int> g(n, m);
-    g.input(kin);
+    kk2::DWAdjMat<int> g(n, m, kin);
     auto dist = kk2::warshall_froyd(n, g.edges, true);
     rep (i, n) if (dist[i][i].minf) {
         kout << "NEGATIVE CYCLE" << kendl;

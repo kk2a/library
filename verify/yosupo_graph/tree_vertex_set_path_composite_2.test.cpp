@@ -20,8 +20,7 @@ int main() {
     vc<M1> a(n);
     kin >> a;
 
-    kk2::AdjList g(n, n - 1);
-    g.input(kin);
+    kk2::AdjList g(n, n - 1, kin);
     kk2::HeavyLightDecomposition hld(g);
     kk2::SegmentTree<M1> seg1(hld.id);
     kk2::SegmentTree<M2> seg2(hld.id);

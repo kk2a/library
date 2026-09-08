@@ -9,8 +9,7 @@ using namespace std;
 int main() {
     int n, m;
     kin >> n >> m;
-    kk2::AdjList g(n, m);
-    g.input(kin, 1);
+    kk2::AdjList g(n, m, kin, 1);
 
     kk2::BlockCutTree bct(g);
     kk2::HeavyLightDecomposition hld(bct.forest);
