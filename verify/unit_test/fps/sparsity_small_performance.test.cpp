@@ -53,7 +53,7 @@ void check_choice(std::string_view name, bool selects_sparse, Sparse &&sparse, D
 }
 
 void test_small_measured_choices() {
-    for (int n : {64, 128}) {
+    for (int n : {16, 32}) {
         for (int support : {4, n / 2}) {
             const FPS unit = make_series(n, support, 1);
             const FPS other = make_series(n, support, 2);

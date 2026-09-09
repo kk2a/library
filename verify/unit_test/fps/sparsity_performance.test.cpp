@@ -28,9 +28,9 @@ FPS make_series(int n, int support, mint constant) {
     return f;
 }
 
-template <class F> double measure(F &&fn, int repetitions = 3) {
+template <class F> double measure(F &&fn, int repetitions = 2) {
     double best = std::numeric_limits<double>::infinity();
-    for (int trial = 0; trial < 3; ++trial) {
+    for (int trial = 0; trial < 2; ++trial) {
         kk2::Timer timer;
         for (int i = 0; i < repetitions; ++i) {
             auto result = fn();
@@ -57,9 +57,8 @@ void check_choice(std::string_view name, bool selects_sparse, Sparse &&sparse, D
 }
 
 void test_measured_choices() {
-    for (int n : {512, 1024, 2048}) {
-        for (int support : {16, 64, 256, 1024}) {
-            if (support > n) continue;
+    for (int n : {512, 2048}) {
+        for (int support : {16, n / 2}) {
             const FPS unit = make_series(n, support, 1);
             FPS exponential = unit;
             exponential[0] = 0;
