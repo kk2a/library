@@ -28,6 +28,11 @@ template <fps::Modular mint> struct FormalPowerSeriesNTTFriendly
         convolution(*this, r);
         return *this;
     }
+    FPS dense_mul(const FPS &r) const {
+        FPS result(*this);
+        convolution(result, r, false);
+        return result;
+    }
     void but() { butterfly(*this); }
     void ibut() { butterfly_inv(*this); }
     void db() { doubling(*this); }
