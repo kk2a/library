@@ -335,6 +335,7 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
             inv.push_back(-inv[mod % i] * (mod / i));
         }
 
+        const mint constant_term = (*this)[0].pow(k);
         k %= mod;
         std::vector<std::tuple<int, mint, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {
@@ -343,7 +344,7 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         }
 
         FPS g(deg);
-        g[0] = (*this)[0].pow(k);
+        g[0] = constant_term;
         mint denom = (*this)[0].inv();
         for (int a = 1; a < deg; a++) {
             for (auto &[i, f_i, weighted_f_i] : fs) {

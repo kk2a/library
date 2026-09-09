@@ -20,6 +20,10 @@ FPS make_series(int n, int support, mint constant) {
 }
 
 int main() {
+    const FPS pow_input{2, 3, 0, 5, 0, 0, 7, 0};
+    for (long long exponent : {0LL, 1LL, 7LL, 998244353LL, 1000000000000000000LL})
+        assert(pow_input.sparse_pow(exponent, 8) == pow_input.dense_pow(exponent, 8));
+
     constexpr int n = 1024;
     const FPS sparse = make_series(n, 32, 1);
     const FPS dense = make_series(n, 512, 1);

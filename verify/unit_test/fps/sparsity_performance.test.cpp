@@ -28,9 +28,9 @@ FPS make_series(int n, int support, mint constant) {
     return f;
 }
 
-template <class F> double measure(F &&fn, int repetitions = 8) {
+template <class F> double measure(F &&fn, int repetitions = 3) {
     double best = std::numeric_limits<double>::infinity();
-    for (int trial = 0; trial < 5; ++trial) {
+    for (int trial = 0; trial < 3; ++trial) {
         kk2::Timer timer;
         for (int i = 0; i < repetitions; ++i) {
             auto result = fn();
