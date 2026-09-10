@@ -61,7 +61,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - math/monoid/bsgs.hpp
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/monoid/pow.hpp

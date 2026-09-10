@@ -623,7 +623,7 @@ data:
     memory: 3.756
     name: small_random_01
     status: AC
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

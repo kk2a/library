@@ -1162,7 +1162,7 @@ data:
     memory: 3.784
     name: small_15
     status: AC
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_taylor_shift.test.cpp

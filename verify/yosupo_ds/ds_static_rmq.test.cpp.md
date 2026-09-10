@@ -545,7 +545,7 @@ data:
     memory: 85.572
     name: small_width_query_04
     status: AC
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq.test.cpp

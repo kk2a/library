@@ -114,7 +114,7 @@ data:
   path: graph/tree/centroid.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree/centroid.hpp

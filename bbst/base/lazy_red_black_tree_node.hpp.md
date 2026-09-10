@@ -175,7 +175,7 @@ data:
   - bbst/lazy_red_black_tree.hpp
   - bbst/persistent_lazy_red_black_tree.hpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith: []
 documentation_of: bbst/base/lazy_red_black_tree_node.hpp

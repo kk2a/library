@@ -115,7 +115,7 @@ data:
   - bbst/red_black_tree.hpp
   - data_structure/ordered_set.hpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp

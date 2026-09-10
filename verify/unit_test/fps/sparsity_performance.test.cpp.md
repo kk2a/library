@@ -139,8 +139,10 @@ data:
       \ true, dense_unit, FPS(), n));\n\n    kk2::Timer timer;\n    const FPS sparse_result\
       \ = sparse_exp_input.exp(n);\n    const FPS dense_result = dense_unit.inv(n);\n\
       \    benchmark_sink = benchmark_sink ^ sparse_result.back().val() ^ dense_result.back().val();\n\
-      \    assert(timer.elapsed() < 1000.0);\n}\n\n} // namespace\n\nint main() {\n\
-      \    test_measured_choices();\n    test_large_selected_paths();\n}\n"
+      \    const double elapsed = timer.elapsed();\n    if (elapsed > 1000.0) {\n\
+      \        std::cerr << \"elapsed: \" << elapsed << std::endl;\n        exit(1);\n\
+      \    }\n}\n\n} // namespace\n\nint main() {\n    test_measured_choices();\n\
+      \    test_large_selected_paths();\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/fps/sparsity_performance.test.cpp\"\n// competitive-verifier:\
       \ STANDALONE\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\
@@ -946,8 +948,10 @@ data:
       \ true, dense_unit, FPS(), n));\n\n    kk2::Timer timer;\n    const FPS sparse_result\
       \ = sparse_exp_input.exp(n);\n    const FPS dense_result = dense_unit.inv(n);\n\
       \    benchmark_sink = benchmark_sink ^ sparse_result.back().val() ^ dense_result.back().val();\n\
-      \    assert(timer.elapsed() < 1000.0);\n}\n\n} // namespace\n\nint main() {\n\
-      \    test_measured_choices();\n    test_large_selected_paths();\n}\n"
+      \    const double elapsed = timer.elapsed();\n    if (elapsed > 1000.0) {\n\
+      \        std::cerr << \"elapsed: \" << elapsed << std::endl;\n        exit(1);\n\
+      \    }\n}\n\n} // namespace\n\nint main() {\n    test_measured_choices();\n\
+      \    test_large_selected_paths();\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -955,7 +959,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/fps/sparsity_performance.test.cpp

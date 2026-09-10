@@ -703,7 +703,7 @@ data:
     memory: 71.828
     name: star_00
     status: AC
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_minimum_spanning_tree.test.cpp

@@ -45,6 +45,9 @@ data:
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
     type: Required by
   - files:
+    - filename: sparsity_boundary.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_boundary.test.cpp
     - filename: fps.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/fps/fps.test.cpp
@@ -491,9 +494,10 @@ data:
   requiredBy:
   - fps/fps_arb.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp

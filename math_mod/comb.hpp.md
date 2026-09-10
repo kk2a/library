@@ -155,7 +155,7 @@ data:
   - math_mod/bell_number.hpp
   - math_mod/bernoulli_number.hpp
   - math_mod/comb_large.hpp
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math_mod/binom_table.test.cpp

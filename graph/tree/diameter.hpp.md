@@ -121,7 +121,7 @@ data:
   path: graph/tree/diameter.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/tree_diameter.test.cpp

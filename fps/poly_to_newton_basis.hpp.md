@@ -55,7 +55,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith: []
 documentation_of: fps/poly_to_newton_basis.hpp

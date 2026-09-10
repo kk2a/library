@@ -44,7 +44,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - math_mod/stirling_number.hpp
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp

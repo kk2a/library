@@ -993,7 +993,7 @@ data:
     memory: 3.86
     name: example_00
     status: AC
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp

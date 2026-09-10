@@ -289,7 +289,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - math_mod/tetration.hpp
-  timestamp: '2026-09-11 00:30:14+09:00'
+  timestamp: '2026-09-11 01:16:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_ntl_1_d.test.cpp
