@@ -38,8 +38,8 @@ int main() {
     FPS sparse_divisor = sparse, dense_divisor = dense;
     sparse_divisor.back() = dense_divisor.back() = 1;
     const FPS dividend = dense.dense_mul(dense_divisor);
-    assert(kk2::is_sparse_operation(kk2::FPSOperation::POLYNOMIAL_DIVISION, true, dividend,
-                                    sparse_divisor, n));
-    assert(!kk2::is_sparse_operation(kk2::FPSOperation::POLYNOMIAL_DIVISION, true, dividend,
-                                     dense_divisor, n));
+    assert(kk2::is_sparse_operation(
+        kk2::FPSOperation::POLYNOMIAL_DIVISION, true, dividend, sparse_divisor, n));
+    assert(!kk2::is_sparse_operation(
+        kk2::FPSOperation::POLYNOMIAL_DIVISION, true, dividend, dense_divisor, n));
 }

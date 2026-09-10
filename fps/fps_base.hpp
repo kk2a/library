@@ -88,7 +88,10 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         }
         int n = this->size() - r.size() + 1;
         if (is_sparse_operation(FPSOperation::POLYNOMIAL_DIVISION,
-                                fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), r, n))
+                                fps::NTTFriendlyFormalPowerSeries<FPS>,
+                                derived(),
+                                r,
+                                n))
             return derived() = sparse_quo(r);
         return derived() = dense_quo(r);
     }
@@ -211,7 +214,8 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
 
     FPS log(int deg = -1) const {
         assert(!this->empty() && (*this)[0] == mint(1));
-        if (is_sparse_operation(FPSOperation::LOG, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
+        if (is_sparse_operation(
+                FPSOperation::LOG, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
             return derived().sparse_log(deg);
         return derived().dense_log(deg);
     }
@@ -224,12 +228,16 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         if (zero == int(this->size()) || __int128_t(zero) * k >= deg)
             return derived().dense_pow(k, deg);
         if (zero == 0
-            && is_sparse_operation(FPSOperation::POWER, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
+            && is_sparse_operation(
+                FPSOperation::POWER, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
             return derived().sparse_pow(k, deg);
         if (zero > 0) {
             FPS normalized(this->begin() + zero, this->end());
             const int normalized_deg = deg - int(__int128_t(zero) * k);
-            if (is_sparse_operation(FPSOperation::POWER, fps::NTTFriendlyFormalPowerSeries<FPS>, normalized, FPS(),
+            if (is_sparse_operation(FPSOperation::POWER,
+                                    fps::NTTFriendlyFormalPowerSeries<FPS>,
+                                    normalized,
+                                    FPS(),
                                     normalized_deg))
                 return derived().sparse_pow(k, deg);
         }
@@ -239,21 +247,27 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
     FPS div(const FPS &r, int deg = -1) const {
         assert(!r.empty() && r[0] != mint(0));
         if (deg == -1) deg = this->size();
-        if (is_sparse_operation(FPSOperation::DIVISION, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), r, deg))
+        if (is_sparse_operation(
+                FPSOperation::DIVISION, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), r, deg))
             return derived().sparse_div(r, deg);
         return FPS(derived()).pre(deg).dense_mul(r.dense_inv(deg)).pre(deg);
     }
 
     FPS inv(int deg = -1) const {
         assert(!this->empty() && (*this)[0] != mint(0));
-        if (is_sparse_operation(FPSOperation::INVERSE, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
+        if (is_sparse_operation(FPSOperation::INVERSE,
+                                fps::NTTFriendlyFormalPowerSeries<FPS>,
+                                derived(),
+                                FPS(),
+                                deg))
             return derived().sparse_inv(deg);
         return derived().dense_inv(deg);
     }
 
     FPS exp(int deg = -1) const {
         assert(this->empty() || (*this)[0] == mint(0));
-        if (is_sparse_operation(FPSOperation::EXP, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
+        if (is_sparse_operation(
+                FPSOperation::EXP, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
             return derived().sparse_exp(deg);
         return derived().dense_exp(deg);
     }

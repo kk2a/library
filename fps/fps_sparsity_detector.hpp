@@ -8,7 +8,16 @@
 
 namespace kk2 {
 
-enum class FPSOperation { CONVOLUTION, LOG, POWER, DIVISION, POLYNOMIAL_DIVISION, INVERSE, EXP, SQRT };
+enum class FPSOperation {
+    CONVOLUTION,
+    LOG,
+    POWER,
+    DIVISION,
+    POLYNOMIAL_DIVISION,
+    INVERSE,
+    EXP,
+    SQRT
+};
 
 namespace fps::sparsity_detail {
 
@@ -88,14 +97,17 @@ inline std::int64_t sqrt_dense_work(int deg, bool ntt_friendly) {
 
 inline long double sparse_leading_work(FPSOperation op, long double support_output_pairs) {
     switch (op) {
-    case FPSOperation::LOG: return 3 * support_output_pairs;
+    case FPSOperation::LOG:
+        return 3 * support_output_pairs;
     case FPSOperation::POWER:
-    case FPSOperation::SQRT: return 4 * support_output_pairs;
+    case FPSOperation::SQRT:
+        return 4 * support_output_pairs;
     case FPSOperation::CONVOLUTION:
     case FPSOperation::DIVISION:
     case FPSOperation::POLYNOMIAL_DIVISION:
     case FPSOperation::INVERSE:
-    case FPSOperation::EXP: return 2 * support_output_pairs;
+    case FPSOperation::EXP:
+        return 2 * support_output_pairs;
     }
     return 0;
 }
@@ -106,13 +118,19 @@ inline long double sparse_runtime_factor(FPSOperation op) {
     // the threshold conservative when the two implementations are close.
     switch (op) {
     case FPSOperation::POWER:
-    case FPSOperation::SQRT: return 0.60L;
+    case FPSOperation::SQRT:
+        return 0.60L;
     case FPSOperation::DIVISION:
-    case FPSOperation::POLYNOMIAL_DIVISION: return 0.75L;
-    case FPSOperation::CONVOLUTION: return 1.50L;
-    case FPSOperation::LOG: return 1.25L;
-    case FPSOperation::INVERSE: return 0.90L;
-    case FPSOperation::EXP: return 1.00L;
+    case FPSOperation::POLYNOMIAL_DIVISION:
+        return 0.75L;
+    case FPSOperation::CONVOLUTION:
+        return 1.50L;
+    case FPSOperation::LOG:
+        return 1.25L;
+    case FPSOperation::INVERSE:
+        return 0.90L;
+    case FPSOperation::EXP:
+        return 1.00L;
     }
     return 1.00L;
 }
@@ -120,8 +138,8 @@ inline long double sparse_runtime_factor(FPSOperation op) {
 } // namespace fps::sparsity_detail
 
 template <class FPS, class mint = typename FPS::value_type>
-bool is_sparse_operation(FPSOperation op, bool is_ntt_friendly, const FPS &a, const FPS &b = FPS(),
-                         int deg = -1) {
+bool is_sparse_operation(
+    FPSOperation op, bool is_ntt_friendly, const FPS &a, const FPS &b = FPS(), int deg = -1) {
     const int n = a.size(), m = b.size();
     if (n + m == 0) return false;
 
@@ -132,7 +150,9 @@ bool is_sparse_operation(FPSOperation op, bool is_ntt_friendly, const FPS &a, co
     std::int64_t nonzero_a = 0, nonzero_b = 0;
     long double pair_work = 0;
 
-    const int limit_a = convolution ? n : (division || polynomial_division) ? 0 : std::min(n, target);
+    const int limit_a = convolution                       ? n :
+                        (division || polynomial_division) ? 0 :
+                                                            std::min(n, target);
     for (int i = 0; i < limit_a; ++i) {
         if (a[i] == mint(0)) continue;
         ++nonzero_a;
@@ -142,7 +162,10 @@ bool is_sparse_operation(FPSOperation op, bool is_ntt_friendly, const FPS &a, co
         }
     }
 
-    const int limit_b = convolution ? m : division ? std::min(m, target) : polynomial_division ? m : 0;
+    const int limit_b = convolution         ? m :
+                        division            ? std::min(m, target) :
+                        polynomial_division ? m :
+                                              0;
     for (int i = 0; i < limit_b; ++i) {
         if (b[i] == mint(0)) continue;
         ++nonzero_b;
@@ -153,9 +176,7 @@ bool is_sparse_operation(FPSOperation op, bool is_ntt_friendly, const FPS &a, co
         }
     }
 
-    if (convolution) {
-        pair_work = static_cast<long double>(nonzero_a) * nonzero_b;
-    }
+    if (convolution) { pair_work = static_cast<long double>(nonzero_a) * nonzero_b; }
 
     long double dense_work = 0;
     switch (op) {

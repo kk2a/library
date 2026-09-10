@@ -64,36 +64,54 @@ void test_measured_choices() {
             exponential[0] = 0;
             const FPS other = make_series(n, support, 2);
 
-            check_choice("convolution",
-                         kk2::is_sparse_operation(kk2::FPSOperation::CONVOLUTION, true, unit, other),
-                         [&] {
-                             FPS result = unit;
-                             return kk2::sparse_convolution(result, other);
-                         },
-                         [&] { return unit.dense_mul(other); });
-            check_choice("inverse", kk2::is_sparse_operation(kk2::FPSOperation::INVERSE, true, unit, FPS(), n),
-                         [&] { return unit.sparse_inv(n); }, [&] { return unit.dense_inv(n); });
-            check_choice("log", kk2::is_sparse_operation(kk2::FPSOperation::LOG, true, unit, FPS(), n),
-                         [&] { return unit.sparse_log(n); }, [&] { return unit.dense_log(n); });
-            check_choice("exp", kk2::is_sparse_operation(kk2::FPSOperation::EXP, true, exponential, FPS(), n),
-                         [&] { return exponential.sparse_exp(n); }, [&] { return exponential.dense_exp(n); });
-            check_choice("pow", kk2::is_sparse_operation(kk2::FPSOperation::POWER, true, unit, FPS(), n),
-                         [&] { return unit.sparse_pow(7, n); }, [&] { return unit.dense_pow(7, n); });
-            check_choice("division",
-                         kk2::is_sparse_operation(kk2::FPSOperation::DIVISION, true, other, unit, n),
-                         [&] { return other.sparse_div(unit, n); },
-                         [&] { return other.dense_mul(unit.dense_inv(n)).pre(n); });
-            check_choice("sqrt", kk2::is_sparse_operation(kk2::FPSOperation::SQRT, true, unit, FPS(), n),
-                         [&] { return kk2::sparse_sqrt(unit, n); }, [&] { return kk2::dense_sqrt(unit, n); });
+            check_choice(
+                "convolution",
+                kk2::is_sparse_operation(kk2::FPSOperation::CONVOLUTION, true, unit, other),
+                [&] {
+                    FPS result = unit;
+                    return kk2::sparse_convolution(result, other);
+                },
+                [&] { return unit.dense_mul(other); });
+            check_choice(
+                "inverse",
+                kk2::is_sparse_operation(kk2::FPSOperation::INVERSE, true, unit, FPS(), n),
+                [&] { return unit.sparse_inv(n); },
+                [&] { return unit.dense_inv(n); });
+            check_choice(
+                "log",
+                kk2::is_sparse_operation(kk2::FPSOperation::LOG, true, unit, FPS(), n),
+                [&] { return unit.sparse_log(n); },
+                [&] { return unit.dense_log(n); });
+            check_choice(
+                "exp",
+                kk2::is_sparse_operation(kk2::FPSOperation::EXP, true, exponential, FPS(), n),
+                [&] { return exponential.sparse_exp(n); },
+                [&] { return exponential.dense_exp(n); });
+            check_choice(
+                "pow",
+                kk2::is_sparse_operation(kk2::FPSOperation::POWER, true, unit, FPS(), n),
+                [&] { return unit.sparse_pow(7, n); },
+                [&] { return unit.dense_pow(7, n); });
+            check_choice(
+                "division",
+                kk2::is_sparse_operation(kk2::FPSOperation::DIVISION, true, other, unit, n),
+                [&] { return other.sparse_div(unit, n); },
+                [&] { return other.dense_mul(unit.dense_inv(n)).pre(n); });
+            check_choice(
+                "sqrt",
+                kk2::is_sparse_operation(kk2::FPSOperation::SQRT, true, unit, FPS(), n),
+                [&] { return kk2::sparse_sqrt(unit, n); },
+                [&] { return kk2::dense_sqrt(unit, n); });
 
             FPS divisor = unit;
             divisor.back() = 1;
             const FPS dividend = other.dense_mul(divisor);
-            check_choice("polynomial division",
-                         kk2::is_sparse_operation(kk2::FPSOperation::POLYNOMIAL_DIVISION, true, dividend,
-                                                  divisor, n),
-                         [&] { return dividend.sparse_quo(divisor); },
-                         [&] { return dividend.dense_quo(divisor); });
+            check_choice(
+                "polynomial division",
+                kk2::is_sparse_operation(
+                    kk2::FPSOperation::POLYNOMIAL_DIVISION, true, dividend, divisor, n),
+                [&] { return dividend.sparse_quo(divisor); },
+                [&] { return dividend.dense_quo(divisor); });
         }
     }
 }

@@ -4,12 +4,13 @@
 #include <cassert>
 
 #include "../math_mod/mod_sqrt.hpp"
-#include "fps_sparsity_detector.hpp"
 #include "../type_traits/fps.hpp"
+#include "fps_sparsity_detector.hpp"
 
 namespace kk2 {
 
-template <class FPS, class mint = typename FPS::value_type> FPS dense_sqrt(const FPS &f, int deg = -1) {
+template <class FPS, class mint = typename FPS::value_type>
+FPS dense_sqrt(const FPS &f, int deg = -1) {
     if (deg == -1) deg = (int)f.size();
     if ((int)f.size() == 0) return FPS(deg, mint(0));
     if (f[0] == mint(0)) {
@@ -65,7 +66,8 @@ FPS sparse_sqrt(const FPS &f, int deg = -1) {
 template <class FPS, class mint = typename FPS::value_type> FPS sqrt(const FPS &f, int deg = -1) {
     if (deg == -1) deg = (int)f.size();
     if (!f.empty() && f[0] != mint(0)
-        && is_sparse_operation(FPSOperation::SQRT, fps::NTTFriendlyFormalPowerSeries<FPS>, f, FPS(), deg))
+        && is_sparse_operation(
+            FPSOperation::SQRT, fps::NTTFriendlyFormalPowerSeries<FPS>, f, FPS(), deg))
         return sparse_sqrt(f, deg);
     return dense_sqrt(f, deg);
 }
