@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     int t;
     kin >> t;
-    rep (t) {
+    rep(t) {
         int y, p;
         kin >> y >> p;
         kout << kk2::mod_sqrt(y, p) << "\n";

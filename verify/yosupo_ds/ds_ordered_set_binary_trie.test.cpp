@@ -10,9 +10,9 @@ int main() {
     vc<int> a(n);
     kin >> a;
     kk2::BinaryTrie<int, 30> bt(30 * q + 20 * n);
-    rep (i, n) bt.insert(a[i]);
+    rep(i, n) bt.insert(a[i]);
 
-    rep (q) {
+    rep(q) {
         int type, x;
         kin >> type >> x;
         if (type == 0) {

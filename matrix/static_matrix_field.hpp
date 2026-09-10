@@ -57,8 +57,7 @@ template <int _H, int _W, class Field> struct StaticMatrixFiled {
         }
     }
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << "(h, w): " << "(" << _h << ", " << _w << "), [\n";
         for (int i = 0; i < _h; i++) {
             os << "  [ ";

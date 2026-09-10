@@ -56,16 +56,14 @@ struct MatrixF2 {
 
         operator DynamicBitSet() const { return bs[i]; }
 
-        template <InputStream IStream>
-        friend IStream &operator>>(IStream &is, Proxy p) {
+        template <InputStream IStream> friend IStream &operator>>(IStream &is, Proxy p) {
             std::string s;
             is >> s;
             p = s;
             return is;
         }
 
-        template <OutputStream OStream>
-        friend OStream &operator<<(OStream &os, Proxy p) {
+        template <OutputStream OStream> friend OStream &operator<<(OStream &os, Proxy p) {
             os << p.to_reversed_string();
             return os;
         }
@@ -142,8 +140,7 @@ struct MatrixF2 {
         for (int i = 0; i < _h; i++) { os << _mat[i].to_reversed_string() << "\n"; }
     }
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << "(h, w): " << "(" << _h << ", " << _w << "), [\n";
         for (int i = 0; i < _h; i++) {
             os << "  [ ";

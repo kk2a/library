@@ -23,8 +23,8 @@ template <algebra::Action Action> struct LazySegmentTree {
         lz = std::vector<F>(size, F::unit());
     }
 
-    template <class... Args> LazySegmentTree(int n, Args... args)
-        : LazySegmentTree(std::vector<S>(n, S(args...))) {}
+    template <class... Args>
+    LazySegmentTree(int n, Args... args) : LazySegmentTree(std::vector<S>(n, S(args...))) {}
 
     LazySegmentTree(const std::vector<S> &v) : _n(int(v.size())) {
         log = 0;

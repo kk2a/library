@@ -11,7 +11,7 @@ int main() {
     kin >> segs;
     vc<array<i64, 5>> queries(q);
     vc<int> xs;
-    rep (i, q) {
+    rep(i, q) {
         kin >> queries[i][0];
         if (queries[i][0] == 0) {
             kin >> queries[i][1] >> queries[i][2] >> queries[i][3] >> queries[i][4];

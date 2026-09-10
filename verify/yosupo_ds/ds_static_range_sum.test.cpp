@@ -11,7 +11,7 @@ int main() {
     kin >> a;
     kk2::PrefixSum<i64> ps(a);
 
-    rep (q) {
+    rep(q) {
         int l, r;
         kin >> l >> r;
         kout << ps.sum(l, r) << "\n";

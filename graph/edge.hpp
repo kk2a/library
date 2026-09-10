@@ -25,37 +25,40 @@ template <class T> struct _Edge {
     operator int() const { return to; }
     inline _Edge rev() const { return _Edge(from, cost, to, id); }
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << '(' << id << ", " << from << "->" << to;
         if constexpr (!std::is_same_v<T, empty>) os << ":" << cost;
         os << ')';
     }
 };
 
+template <> struct _Edge<empty> {
+    int from, to, id;
+
+    _Edge(int to_, empty = {}, int from_ = -1, int id_ = -1) : from(from_), to(to_), id(id_) {}
+    _Edge() : from(-1), to(-1), id(-1) {}
+    operator int() const { return to; }
+    inline _Edge rev() const { return _Edge(from, {}, to, id); }
+
+    template <OutputStream OStream> void debug_output(OStream &os) const {
+        os << '(' << id << ", " << from << "->" << to << ')';
+    }
+};
+
+template <class T> T _edge_cost(const _Edge<T> &edge) {
+    if constexpr (std::is_same_v<T, empty>) return {};
+    else return edge.cost;
+}
+
 template <class T> struct _Edges : public std::vector<_Edge<T>> {
     using std::vector<_Edge<T>>::vector;
 
     template <InputStream IStream>
-    _Edges &input(IStream &is, bool is_one_indexed = false) {
-        for (int i = 0; i < (int)this->size(); i++) {
-            int u, v;
-            T w{};
-            is >> u >> v;
-            if (is_one_indexed) --u, --v;
-            if constexpr (!std::is_same_v<T, empty>) is >> w;
-            (*this)[i] = _Edge<T>(v, w, u, i);
-        }
-        return *this;
+    _Edges(int m, IStream &is, bool is_one_indexed = false) : std::vector<_Edge<T>>(m) {
+        _input(is, is_one_indexed);
     }
 
-    template <InputStream IStream>
-    friend _Edges &input(_Edges &edges, IStream &is, bool is_one_indexed = false) {
-        return edges.input(is, is_one_indexed);
-    }
-
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         os << '[';
         for (int i = 0; i < (int)this->size(); i++) {
             if (i) os << ", ";
@@ -73,22 +76,19 @@ template <class T> struct _Edges : public std::vector<_Edge<T>> {
         edges.emplace_back(to, cost, from, edges.size());
         return edges;
     }
-};
 
-template <class T> struct _pair {
-    T cost;
-    int id;
-
-    _pair(T cost_, int id_) : cost(cost_), id(id_) {}
-    _pair() : cost(), id(-1) {}
-    operator bool() const { return id != -1; }
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const _pair &p) {
-        if constexpr (std::is_same_v<T, empty>) return os;
-        else return os << p.cost;
+  private:
+    template <InputStream IStream> void _input(IStream &is, bool is_one_indexed) {
+        for (int i = 0; i < (int)this->size(); ++i) {
+            int u, v;
+            T w{};
+            is >> u >> v;
+            if (is_one_indexed) --u, --v;
+            if constexpr (!std::is_same_v<T, empty>) is >> w;
+            (*this)[i] = _Edge<T>(v, w, u, i);
+        }
     }
 };
-template <class T> using _pairs = std::vector<_pair<T>>;
 
 } // namespace graph
 

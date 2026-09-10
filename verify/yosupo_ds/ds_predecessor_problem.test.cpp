@@ -10,7 +10,7 @@ int main() {
     string t;
     kin >> t;
     kk2::w_ary_tree wt(t);
-    rep (q) {
+    rep(q) {
         int type, x;
         kin >> type >> x;
         if (type == 0) {

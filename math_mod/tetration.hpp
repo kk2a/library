@@ -1,8 +1,8 @@
 #ifndef KK2_MATH_MOD_TETRATION_HPP
 #define KK2_MATH_MOD_TETRATION_HPP 1
 
-#include "pow_mod.hpp"
 #include "../math/multiplicative_function/euler_phi.hpp"
+#include "pow_mod.hpp"
 
 namespace kk2 {
 
@@ -16,6 +16,6 @@ template <class T> T tetration(T a, T b, T m) {
     return pow_mod<T>(a, tetration(a, b - 1, euler_phi(m)), m);
 }
 
-}
+} // namespace kk2
 
 #endif // KK2_MATH_MOD_TETRATION_HPP

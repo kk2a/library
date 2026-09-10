@@ -1,10 +1,11 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_set_range_composite_large_array
+// competitive-verifier: PROBLEM
+// https://judge.yosupo.jp/problem/point_set_range_composite_large_array
 
-#include "../../segment_tree/seg.hpp"
 #include "../../math/monoid/affine.hpp"
 #include "../../math/monoid/rev_op.hpp"
 #include "../../modint/modint.hpp"
 #include "../../others/coordinate_compression.hpp"
+#include "../../segment_tree/seg.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 

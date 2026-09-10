@@ -40,13 +40,12 @@ concept FormalPowerSeries = requires(const F &f, int i) {
 
 template <class F>
 concept NTTFriendlyFormalPowerSeries =
-    FormalPowerSeries<F> &&
-    std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;
+    FormalPowerSeries<F>
+    && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;
 
 template <class F>
 concept ArbitraryModulusFormalPowerSeries =
-    FormalPowerSeries<F> &&
-    std::same_as<typename F::modulus_category, category::arbitrary_modulus>;
+    FormalPowerSeries<F> && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;
 
 template <class F>
 concept OrdinaryFormalPowerSeries =
@@ -54,27 +53,27 @@ concept OrdinaryFormalPowerSeries =
 
 template <class F>
 concept ExponentialGeneratingFunction =
-    FormalPowerSeries<F> &&
-    std::same_as<typename F::series_category, category::exponential_generating>;
+    FormalPowerSeries<F>
+    && std::same_as<typename F::series_category, category::exponential_generating>;
 
 template <class F>
 concept SetPowerSeries =
     FormalPowerSeries<F> && std::same_as<typename F::series_category, category::set_power_series>;
 
 template <class F>
-concept UnivariateFormalPowerSeries =
-    FormalPowerSeries<F> && requires { typename F::variable_category; } &&
-    std::same_as<typename F::variable_category, category::univariate>;
+concept UnivariateFormalPowerSeries = FormalPowerSeries<F> && requires {
+    typename F::variable_category;
+} && std::same_as<typename F::variable_category, category::univariate>;
 
 template <class F>
-concept BivariateFormalPowerSeries =
-    FormalPowerSeries<F> && requires { typename F::variable_category; } &&
-    std::same_as<typename F::variable_category, category::bivariate>;
+concept BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {
+    typename F::variable_category;
+} && std::same_as<typename F::variable_category, category::bivariate>;
 
 template <class F>
-concept MultivariateFormalPowerSeries =
-    FormalPowerSeries<F> && requires { typename F::variable_category; } &&
-    std::same_as<typename F::variable_category, category::multivariate>;
+concept MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {
+    typename F::variable_category;
+} && std::same_as<typename F::variable_category, category::multivariate>;
 
 // Short names for the categories that are commonly used in algorithms.
 template <class F>

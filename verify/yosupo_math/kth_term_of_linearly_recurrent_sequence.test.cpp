@@ -1,9 +1,9 @@
 #define IGNORE
-// #define PROBLEM "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence" 
+// #define PROBLEM "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence"
 // 落ちることがあるので修正する
 
-#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../fps/bostan_mori.hpp"
+#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;

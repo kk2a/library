@@ -12,8 +12,8 @@
 
 namespace kk2 {
 
-template <fps::Modular mint> struct FormalPowerSeriesArbitrary
-    : FormalPowerSeriesBase<FormalPowerSeriesArbitrary<mint>, mint> {
+template <fps::Modular mint>
+struct FormalPowerSeriesArbitrary : FormalPowerSeriesBase<FormalPowerSeriesArbitrary<mint>, mint> {
     using base = FormalPowerSeriesBase<FormalPowerSeriesArbitrary<mint>, mint>;
     using FPS = FormalPowerSeriesArbitrary<mint>;
     using base::FormalPowerSeriesBase;

@@ -12,7 +12,7 @@ int main() {
     i64 m;
     kin >> n >> k >> m;
     FPS f(n);
-    rep (k) {
+    rep(k) {
         int i;
         kk2::mont998 a;
         kin >> i >> a;

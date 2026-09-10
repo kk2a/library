@@ -8,8 +8,7 @@ using namespace std;
 int main() {
     int n, m, s, t;
     kin >> n >> m >> s >> t;
-    kk2::DWAdjList<i64> g(n, m);
-    g.input(kin);
+    kk2::DWAdjList<i64> g(n, m, kin);
     auto [dist, prev] = kk2::dijkstra(g, s);
 
     if (prev[t].to == -1) {

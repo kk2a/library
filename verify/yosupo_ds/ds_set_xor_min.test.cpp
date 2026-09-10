@@ -8,7 +8,7 @@ int main() {
     int q;
     kin >> q;
     kk2::BinaryTrie<int, 30> bt(30 * q);
-    rep (q) {
+    rep(q) {
         int type, x;
         kin >> type >> x;
         if (type == 0) {

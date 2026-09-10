@@ -6,7 +6,8 @@
 namespace kk2 {
 
 // reverse_args<f>(y, x) = f(x, y)
-template <auto f> requires TwoArgsFunctionPointer<decltype(f)>
+template <auto f>
+    requires TwoArgsFunctionPointer<decltype(f)>
 inline auto reverse_args(auto x, auto y) {
     return f(y, x);
 }

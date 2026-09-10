@@ -22,8 +22,7 @@ template <class T> struct bf_len {
     T len;
     bool inf, minf;
 
-    template <OutputStream OStream>
-    void debug_output(OStream &os) const {
+    template <OutputStream OStream> void debug_output(OStream &os) const {
         if (minf) os << "MINF";
         else if (inf) os << "INF";
         else os << len;
@@ -35,8 +34,9 @@ template <class T> struct bf_result {
     std::vector<bf_edge<T>> prev;
 };
 
-template <graph::ForwardWeightedEdgeRange E,
-          class T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>
+template <
+    graph::ForwardWeightedEdgeRange E,
+    class T = std::remove_cvref_t<decltype(std::declval<std::ranges::range_value_t<E>>().cost)>>
 bf_result<T> bellman_ford(int n, const E &edges, int start) {
 
     std::vector<bf_len<T>> dist(n, {0, true, false});

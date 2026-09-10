@@ -34,8 +34,7 @@ template <int p> struct LazyMontgomeryModInt {
 
     constexpr LazyMontgomeryModInt() : _v(0) {}
 
-    template <Integral T> constexpr LazyMontgomeryModInt(T b)
-        : _v(reduce(u64(b % p + p) * n2)) {}
+    template <Integral T> constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p) * n2)) {}
 
     static constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }
     constexpr mint &operator++() { return *this += 1; }
@@ -103,13 +102,11 @@ template <int p> struct LazyMontgomeryModInt {
         return pow(p - 2);
     }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const mint &x) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const mint &x) {
         return os << x.val();
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, mint &x) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {
         i64 t;
         is >> t;
         x = mint(t);

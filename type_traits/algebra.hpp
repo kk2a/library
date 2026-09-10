@@ -47,10 +47,11 @@ concept CommutativeGroup = Group<T> && requires {
 // An action specification owns the pair of algebraic types and the mapping
 // between them. It is the interface required by lazy propagation structures.
 template <class T>
-concept Action = requires {
-    typename T::A;
-    typename T::S;
-} && Monoid<typename T::A> && Monoid<typename T::S>
+concept Action =
+    requires {
+        typename T::A;
+        typename T::S;
+    } && Monoid<typename T::A> && Monoid<typename T::S>
     && requires(const typename T::A &f, const typename T::S &x) {
            { T::act(f, x) } -> std::same_as<typename T::S>;
        };

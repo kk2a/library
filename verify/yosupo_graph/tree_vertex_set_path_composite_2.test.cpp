@@ -1,10 +1,10 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_set_path_composite
 
-#include "../../graph/tree/heavy_light_decomposition.hpp"
 #include "../../graph/graph.hpp"
-#include "../../modint/mont.hpp"
+#include "../../graph/tree/heavy_light_decomposition.hpp"
 #include "../../math/monoid/affine.hpp"
 #include "../../math/monoid/rev_op.hpp"
+#include "../../modint/mont.hpp"
 #include "../../segment_tree/seg.hpp"
 #include "../../template/template.hpp"
 using namespace std;
@@ -13,25 +13,24 @@ int main() {
     using mint = kk2::mont998;
     using M1 = kk2::monoid::ReverseOp<kk2::monoid::Affine<mint>>;
     using M2 = kk2::monoid::Affine<mint>;
-    
+
     int n, q;
     kin >> n >> q;
 
     vc<M1> a(n);
     kin >> a;
 
-    kk2::AdjList g(n, n - 1);
-    g.input(kin);
+    kk2::AdjList g(n, n - 1, kin);
     kk2::HeavyLightDecomposition hld(g);
     kk2::SegmentTree<M1> seg1(hld.id);
     kk2::SegmentTree<M2> seg2(hld.id);
-    rep (i, n) {
+    rep(i, n) {
         auto [l, r] = hld.get_node_idx(i);
         seg1.init_set(l, a[i]), seg2.init_set(l, a[i]);
     }
     seg1.build(), seg2.build();
 
-    rep (q) {
+    rep(q) {
         int type;
         kin >> type;
         if (type == 0) {

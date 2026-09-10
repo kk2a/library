@@ -1,7 +1,7 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum
 
-#include "../../modint/mont.hpp"
 #include "../../math/action/affine_sumwithsize.hpp"
+#include "../../modint/mont.hpp"
 #include "../../segment_tree/lazy.hpp"
 #include "../../template/template.hpp"
 using namespace std;
@@ -14,7 +14,7 @@ int main() {
     kin >> a;
     kk2::LazySegmentTree<A> seg(a);
 
-    rep (q) {
+    rep(q) {
         int t;
         kin >> t;
         if (t == 0) {

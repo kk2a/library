@@ -123,8 +123,7 @@ struct DynamicBitSet {
 
         operator bool() const { return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }
 
-        template <InputStream IStream>
-        friend IStream &operator>>(IStream &is, BitReference a) {
+        template <InputStream IStream> friend IStream &operator>>(IStream &is, BitReference a) {
             bool c;
             is >> c;
             a = c;
@@ -342,13 +341,11 @@ struct DynamicBitSet {
         return res;
     }
 
-    template <OutputStream OStream>
-    friend OStream &operator<<(OStream &os, const T &bs) {
+    template <OutputStream OStream> friend OStream &operator<<(OStream &os, const T &bs) {
         return os << bs.to_string();
     }
 
-    template <InputStream IStream>
-    friend IStream &operator>>(IStream &is, T &bs) {
+    template <InputStream IStream> friend IStream &operator>>(IStream &is, T &bs) {
         std::string s;
         is >> s;
         bs.set_reversed(s);

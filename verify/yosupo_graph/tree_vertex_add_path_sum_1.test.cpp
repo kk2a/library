@@ -1,9 +1,9 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_path_sum
 
-#include "../../graph/tree/euler_tour.hpp"
-#include "../../graph/graph.hpp"
-#include "../../template/template.hpp"
 #include "../../data_structure/binary_indexed_tree.hpp"
+#include "../../graph/graph.hpp"
+#include "../../graph/tree/euler_tour.hpp"
+#include "../../template/template.hpp"
 using namespace std;
 
 int main() {
@@ -11,16 +11,15 @@ int main() {
     kin >> n >> q;
     vc<i64> a(n);
     kin >> a;
-    kk2::AdjList g(n, n - 1);
-    g.input(kin);
+    kk2::AdjList g(n, n - 1, kin);
 
     kk2::EulerTour et(g);
     kk2::BinaryIndexedTree<i64> bit(et.id + 1);
-    rep (i, n) {
+    rep(i, n) {
         auto [l, r] = et.get_node_idx(i);
         bit.add(l, a[i]), bit.add(r, -a[i]);
     }
-    rep (q) {
+    rep(q) {
         int type;
         kin >> type;
         if (type == 0) {
@@ -32,9 +31,7 @@ int main() {
             int u, v;
             kin >> u >> v;
             i64 res = 0;
-            et.path_query(u, v, 1, [&](int l, int r) {
-                res += bit.sum(l, r);
-            });
+            et.path_query(u, v, 1, [&](int l, int r) { res += bit.sum(l, r); });
             kout << res << "\n";
         }
     }

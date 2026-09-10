@@ -1,6 +1,7 @@
 #ifndef KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP
 #define KK2_GRAPH_TREE_BLOCK_CUT_TREE_HPP 1
 
+#include <type_traits>
 #include <vector>
 
 #include "../bcc.hpp"
@@ -26,6 +27,9 @@ template <graph::UndirectedGraph G> struct BlockCutTree : BCC<G> {
         off = bcc_v.size();
         group_v.resize(bcc_v.size() + this->articulations.size());
         forest = G(group_v.size());
+        using edge_collection = std::remove_cvref_t<decltype(forest.edges)>;
+        edge_collection forest_edges;
+        forest_edges.reserve(group_v.size());
         for (int i = 0; i < (int)this->articulations.size(); ++i) {
             comp_v[this->articulations[i]] = i + off;
             group_v[i + off].emplace_back(this->articulations[i]);
@@ -38,13 +42,13 @@ template <graph::UndirectedGraph G> struct BlockCutTree : BCC<G> {
                 group_v[i].emplace_back(v);
                 if (comp_v[v] == -1) comp_v[v] = i;
                 else if (buf[comp_v[v] - off] != i) {
-                    forest.add_edge(i, comp_v[v]);
+                    forest_edges.add_edge(i, comp_v[v]);
                     buf[comp_v[v] - off] = i;
                 }
             }
         }
 
-        if constexpr (G::static_graph) forest.build();
+        forest = G(group_v.size(), forest_edges);
     }
 };
 

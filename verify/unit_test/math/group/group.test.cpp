@@ -110,7 +110,7 @@ void test_group() {
 
 void test() {
     test_group();
-    
+
     // 全テスト通過
     cerr << "All group tests passed!" << endl;
 }

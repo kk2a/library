@@ -11,7 +11,7 @@ int main() {
     vc<int> base(k);
     kin >> base;
     int n = 1;
-    rep (i, k) n *= base[i];
+    rep(i, k) n *= base[i];
     vc<kk2::mont998> a(n), b(n);
     kin >> a >> b;
     kout << kk2::multi_convolution_truncated(a, b, base) << kendl;

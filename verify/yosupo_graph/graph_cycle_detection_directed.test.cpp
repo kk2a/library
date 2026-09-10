@@ -1,15 +1,14 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/cycle_detection
 
-#include "../../graph/static_graph.hpp"
 #include "../../graph/cycle_detection.hpp"
+#include "../../graph/static_graph.hpp"
 #include "../../template/template.hpp"
 using namespace std;
 
 int main() {
     int n, m;
     kin >> n >> m;
-    kk2::SDAdjList g(n, m);
-    g.input(kin);
+    kk2::SDAdjList g(n, m, kin);
     if (const auto res = kk2::cycle_detection(g); res) {
         kout << res->size() << '\n';
         for (auto &&v : res->edges) kout << v << "\n";

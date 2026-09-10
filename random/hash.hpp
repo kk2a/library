@@ -20,9 +20,7 @@ template <int NUM> struct Hash : std::array<ModInt2_61m1, NUM> {
 
     Hash() : std::array<mint, NUM>() {}
 
-    template <Integral T> Hash(T x) {
-        std::fill(this->begin(), this->end(), mint(x));
-    }
+    template <Integral T> Hash(T x) { std::fill(this->begin(), this->end(), mint(x)); }
 
     static Hash get_base() {
         Hash base;

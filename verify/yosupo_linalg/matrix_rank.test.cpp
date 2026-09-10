@@ -15,7 +15,7 @@ int main() {
     }
     kk2::MatrixField<kk2::mont998> a(n, m);
     if (is_swap) {
-        rep (j, m) rep (i, n) kin >> a[i][j];
+        rep(j, m) rep(i, n) kin >> a[i][j];
     } else {
         a.input(kin);
     }

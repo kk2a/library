@@ -9,7 +9,7 @@ int main() {
     using mint = kk2::ModInt<0>;
     int t;
     kin >> t;
-    rep (t) {
+    rep(t) {
         int xx, yy, m;
         kin >> xx >> yy >> m;
         mint::setmod(m);

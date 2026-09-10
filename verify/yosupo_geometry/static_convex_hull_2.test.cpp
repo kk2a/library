@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     int t;
     kin >> t;
-    rep (t) {
+    rep(t) {
         int n;
         kin >> n;
         vc<kk2::Point<i64>> p(n);
@@ -18,7 +18,7 @@ int main() {
 
         kout << ch.hull.size() << "\n";
         vc<kk2::Point<i64>> res(ch.hull.size());
-        rep (i, n) {
+        rep(i, n) {
             if (ch.idx_hull[i] != -1) res[ch.idx_hull[i]] = p[i];
         }
         for (auto &q : res) kout << q << "\n";
