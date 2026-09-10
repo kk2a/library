@@ -2,7 +2,9 @@
 #define KK2_CONVOLUTION_CONVOLUTION_HPP 1
 
 #include <algorithm>
+#include <memory>
 #include <ranges>
+#include <utility>
 #include <vector>
 
 #include "../fps/fps_sparsity_detector.hpp"
@@ -11,12 +13,9 @@
 namespace kk2 {
 
 template <class FPS, class mint = typename FPS::value_type>
-FPS sparse_convolution(FPS &a, const FPS &b) {
+FPS sparse_convolution(const FPS &a, const FPS &b) {
     int n = int(a.size()), m = int(b.size());
-    if (!n || !m) {
-        a.clear();
-        return a;
-    }
+    if (!n || !m) return {};
     std::vector<int> nza, nzb;
     nza.reserve(std::ranges::count_if(a, [](const mint &x) { return x != mint(0); }));
     nzb.reserve(std::ranges::count_if(b, [](const mint &x) { return x != mint(0); }));
@@ -27,10 +26,14 @@ FPS sparse_convolution(FPS &a, const FPS &b) {
     FPS res(n + m - 1);
     for (int i : nza)
         for (int j : nzb) res[i + j] += a[i] * b[j];
-    return a = res;
+    return res;
 }
 
-template <class FPS> FPS dense_convolution(FPS &a, const FPS &b) {
+template <class FPS> FPS &inplace_sparse_convolution(FPS &a, const FPS &b) {
+    return a = sparse_convolution(std::as_const(a), b);
+}
+
+template <class FPS> FPS &inplace_dense_convolution(FPS &a, const FPS &b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) {
         a.clear();
@@ -56,9 +59,20 @@ template <class FPS> FPS dense_convolution(FPS &a, const FPS &b) {
     return a;
 }
 
-template <class FPS> FPS convolution(FPS &a, const FPS &b, bool detect_sparsity = true) {
-    if (detect_sparsity && is_sparse_operation(FPSOperation::CONVOLUTION, 1, a, b))
-        return sparse_convolution(a, b);
+template <class FPS> FPS dense_convolution(const FPS &a, const FPS &b) {
+    FPS result = a;
+    inplace_dense_convolution(result, b);
+    return result;
+}
+
+template <class FPS> FPS &inplace_convolution(FPS &a, const FPS &b) {
+    const bool use_sparse = is_sparse_operation(FPSOperation::CONVOLUTION, true, a, b);
+    if (use_sparse) return inplace_sparse_convolution(a, b);
+    return inplace_dense_convolution(a, b);
+}
+
+template <class FPS> FPS convolution(const FPS &a, const FPS &b) {
+    if (is_sparse_operation(FPSOperation::CONVOLUTION, true, a, b)) return sparse_convolution(a, b);
     return dense_convolution(a, b);
 }
 

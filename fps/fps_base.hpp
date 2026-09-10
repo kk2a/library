@@ -2,15 +2,19 @@
 #define KK2_FPS_FPS_BASE_HPP 1
 
 #include <algorithm>
-#include <cassert>
 #include <iostream>
-#include <tuple>
-#include <utility>
 #include <vector>
 
 #include "../math_mod/inv_table.hpp"
 #include "../type_traits/fps.hpp"
 #include "../type_traits/io.hpp"
+#include "operations/division.hpp"
+#include "operations/exponential.hpp"
+#include "operations/inverse.hpp"
+#include "operations/logarithm.hpp"
+#include "operations/multiplication.hpp"
+#include "operations/power.hpp"
+#include "operations/sqrt.hpp"
 
 namespace kk2 {
 
@@ -80,54 +84,23 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         for (size_t i = 0; i < this->size(); i++) { (*this)[i] *= r; }
         return derived();
     }
-    FPS &operator/=(const FPS &r) {
-        assert(!r.empty());
-        if (this->size() < r.size()) {
-            this->clear();
-            return derived();
-        }
-        int n = this->size() - r.size() + 1;
-        if (is_sparse_operation(FPSOperation::POLYNOMIAL_DIVISION,
-                                fps::NTTFriendlyFormalPowerSeries<FPS>,
-                                derived(),
-                                r,
-                                n))
-            return derived() = sparse_quo(r);
-        return derived() = dense_quo(r);
-    }
+    FPS &operator*=(const FPS &r) { return inplace_mul(r); }
+    FPS &operator/=(const FPS &r) { return inplace_quo(r); }
 
-    FPS sparse_quo(const FPS &r) const {
-        assert(!r.empty());
-        if (this->size() < r.size()) return {};
-        const int n = this->size() - r.size() + 1;
-        const mint lead_inv = r.back().inv();
-        std::vector<std::pair<int, mint>> support;
-        for (int i = (int)r.size() - 2; i >= 0; --i) {
-            if (r[i] != mint(0)) support.emplace_back((int)r.size() - 1 - i, r[i] * lead_inv);
-        }
-        FPS quotient_rev(n);
-        for (int k = 0; k < n; ++k) {
-            quotient_rev[k] = (*this)[this->size() - 1 - k] * lead_inv;
-            for (const auto &[offset, coefficient] : support) {
-                if (offset > k) break;
-                quotient_rev[k] -= quotient_rev[k - offset] * coefficient;
-            }
-        }
-        return quotient_rev.rev();
+    FPS dense_quo(const FPS &r) const { return fps::operations::dense_quo(derived(), r); }
+    FPS &inplace_dense_quo(const FPS &r) {
+        return fps::operations::inplace_dense_quo(derived(), r);
     }
+    FPS sparse_quo(const FPS &r) const { return fps::operations::sparse_quo(derived(), r); }
+    FPS &inplace_sparse_quo(const FPS &r) {
+        return fps::operations::inplace_sparse_quo(derived(), r);
+    }
+    FPS quo(const FPS &r) const { return fps::operations::quo(derived(), r); }
+    FPS &inplace_quo(const FPS &r) { return fps::operations::inplace_quo(derived(), r); }
+    FPS mod(const FPS &r) const { return fps::operations::mod(derived(), r); }
+    FPS &inplace_mod(const FPS &r) { return fps::operations::inplace_mod(derived(), r); }
 
-    FPS dense_quo(const FPS &r) const {
-        assert(!r.empty());
-        if (this->size() < r.size()) return {};
-        const int n = this->size() - r.size() + 1;
-        return derived().rev().pre(n).dense_mul(r.rev().dense_inv(n)).pre(n).rev();
-    }
-
-    FPS &operator%=(const FPS &r) {
-        derived() -= derived() / r * r;
-        shrink();
-        return derived();
-    }
+    FPS &operator%=(const FPS &r) { return inplace_mod(r); }
 
     FPS &operator>>=(int n) {
         if (n >= (int)this->size()) {
@@ -148,7 +121,6 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
     FPS operator+(const mint &r) const { return FPS(derived()) += r; }
     FPS operator-(const FPS &r) const { return FPS(derived()) -= r; }
     FPS operator-(const mint &r) const { return FPS(derived()) -= r; }
-    // 掛け算は派生クラスで定義される
     FPS operator*(const FPS &r) const { return FPS(derived()) *= r; }
     FPS operator*(const mint &r) const { return FPS(derived()) *= r; }
     FPS operator/(const FPS &r) const { return FPS(derived()) /= r; }
@@ -212,224 +184,97 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         return r;
     }
 
-    FPS log(int deg = -1) const {
-        assert(!this->empty() && (*this)[0] == mint(1));
-        if (is_sparse_operation(
-                FPSOperation::LOG, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
-            return derived().sparse_log(deg);
-        return derived().dense_log(deg);
+    FPS dense_log(int deg = -1) const { return fps::operations::dense_log(derived(), deg); }
+    FPS &inplace_dense_log(int deg = -1) {
+        return fps::operations::inplace_dense_log(derived(), deg);
+    }
+    FPS sparse_log(int deg = -1) const { return fps::operations::sparse_log(derived(), deg); }
+    FPS &inplace_sparse_log(int deg = -1) {
+        return fps::operations::inplace_sparse_log(derived(), deg);
+    }
+    FPS log(int deg = -1) const { return fps::operations::log(derived(), deg); }
+    FPS &inplace_log(int deg = -1) { return fps::operations::inplace_log(derived(), deg); }
+
+    template <class T> FPS dense_pow(T exponent, int deg = -1) const {
+        return fps::operations::dense_pow(derived(), exponent, deg);
+    }
+    template <class T> FPS &inplace_dense_pow(T exponent, int deg = -1) {
+        return fps::operations::inplace_dense_pow(derived(), exponent, deg);
+    }
+    template <class T> FPS sparse_pow(T exponent, int deg = -1) const {
+        return fps::operations::sparse_pow(derived(), exponent, deg);
+    }
+    template <class T> FPS &inplace_sparse_pow(T exponent, int deg = -1) {
+        return fps::operations::inplace_sparse_pow(derived(), exponent, deg);
+    }
+    template <class T> FPS pow(T exponent, int deg = -1) const {
+        return fps::operations::pow(derived(), exponent, deg);
+    }
+    template <class T> FPS &inplace_pow(T exponent, int deg = -1) {
+        return fps::operations::inplace_pow(derived(), exponent, deg);
     }
 
-    template <class T> FPS pow(T k, int deg = -1) const {
-        if (deg == -1) deg = this->size();
-        if (k == 0) return derived().dense_pow(k, deg);
-        int zero = 0;
-        while (zero != int(this->size()) && (*this)[zero] == mint(0)) ++zero;
-        if (zero == int(this->size()) || __int128_t(zero) * k >= deg)
-            return derived().dense_pow(k, deg);
-        if (zero == 0
-            && is_sparse_operation(
-                FPSOperation::POWER, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
-            return derived().sparse_pow(k, deg);
-        if (zero > 0) {
-            FPS normalized(this->begin() + zero, this->end());
-            const int normalized_deg = deg - int(__int128_t(zero) * k);
-            if (is_sparse_operation(FPSOperation::POWER,
-                                    fps::NTTFriendlyFormalPowerSeries<FPS>,
-                                    normalized,
-                                    FPS(),
-                                    normalized_deg))
-                return derived().sparse_pow(k, deg);
-        }
-        return derived().dense_pow(k, deg);
+    FPS dense_div(const FPS &r, int deg = -1) const {
+        return fps::operations::dense_div(derived(), r, deg);
     }
-
-    FPS div(const FPS &r, int deg = -1) const {
-        assert(!r.empty() && r[0] != mint(0));
-        if (deg == -1) deg = this->size();
-        if (is_sparse_operation(
-                FPSOperation::DIVISION, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), r, deg))
-            return derived().sparse_div(r, deg);
-        return FPS(derived()).pre(deg).dense_mul(r.dense_inv(deg)).pre(deg);
+    FPS &inplace_dense_div(const FPS &r, int deg = -1) {
+        return fps::operations::inplace_dense_div(derived(), r, deg);
     }
-
-    FPS inv(int deg = -1) const {
-        assert(!this->empty() && (*this)[0] != mint(0));
-        if (is_sparse_operation(FPSOperation::INVERSE,
-                                fps::NTTFriendlyFormalPowerSeries<FPS>,
-                                derived(),
-                                FPS(),
-                                deg))
-            return derived().sparse_inv(deg);
-        return derived().dense_inv(deg);
-    }
-
-    FPS exp(int deg = -1) const {
-        assert(this->empty() || (*this)[0] == mint(0));
-        if (is_sparse_operation(
-                FPSOperation::EXP, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
-            return derived().sparse_exp(deg);
-        return derived().dense_exp(deg);
-    }
-
-    FPS dense_log(int deg = -1) const {
-        if (deg == -1) deg = this->size();
-        return derived().diff().dense_mul(derived().dense_inv(deg)).pre(deg - 1).integral();
-    }
-    FPS sparse_log(int deg = -1) const {
-        if (deg == -1) deg = this->size();
-        std::vector<std::pair<int, mint>> fs;
-        for (int i = 1; i < int(this->size()); i++) {
-            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
-        }
-        ivta::set_upper(deg);
-
-        FPS g(deg);
-        for (int k = 0; k < deg - 1; k++) {
-            for (auto &[j, fj] : fs) {
-                if (k < j) break;
-                int i = k - j;
-                g[k + 1] -= g[i + 1] * fj * (i + 1);
-            }
-            g[k + 1] *= ivta::inv(k + 1);
-            if (k + 1 < int(this->size())) g[k + 1] += (*this)[k + 1];
-        }
-
-        return g;
-    }
-
-    template <class T> FPS dense_pow(T k, int deg = -1) const {
-        const int n = this->size();
-        if (deg == -1) deg = n;
-        if (k == 0) {
-            FPS ret(deg);
-            if (deg > 0) ret[0] = mint(1);
-            return ret;
-        }
-        for (int i = 0; i < n; i++) {
-            if ((*this)[i] != mint(0)) {
-                mint rev = mint(1) / (*this)[i];
-                FPS ret = ((derived() * rev) >> i).dense_log(deg) * k;
-                ret = ret.dense_exp(deg);
-                ret *= (*this)[i].pow(k);
-                ret = (ret << (i * k)).pre(deg);
-                if ((int)ret.size() < deg) ret.resize(deg, mint(0));
-                return ret;
-            }
-            if (__int128_t(i + 1) * k >= deg) return FPS(deg, mint(0));
-        }
-        return FPS(deg, mint(0));
-    }
-    template <class T> FPS sparse_pow(T k, int deg = -1) const {
-        if (deg == -1) deg = this->size();
-        if (k == 0) {
-            FPS ret(deg);
-            if (deg > 0) ret[0] = mint(1);
-            return ret;
-        }
-
-        int zero = 0;
-        while (zero != int(this->size()) && (*this)[zero] == mint(0)) zero++;
-        if (zero == int(this->size()) || __int128_t(zero) * k >= deg) { return FPS(deg, mint(0)); }
-        if (zero != 0) {
-            FPS suf(this->begin() + zero, this->end());
-            auto g = suf.sparse_pow(k, deg - zero * k);
-            FPS ret(zero * k, mint(0));
-            std::copy(std::begin(g), std::end(g), std::back_inserter(ret));
-            return ret;
-        }
-
-        int mod = mint::getmod();
-        static std::vector<mint> inv{1, 1};
-        while ((int)inv.size() <= deg) {
-            int i = inv.size();
-            inv.push_back(-inv[mod % i] * (mod / i));
-        }
-
-        const mint constant_term = (*this)[0].pow(k);
-        k %= mod;
-        std::vector<std::tuple<int, mint, mint>> fs;
-        for (int i = 1; i < int(this->size()); i++) {
-            if ((*this)[i] != mint(0))
-                fs.emplace_back(i, (*this)[i], (*this)[i] * mint(i) * (k + 1));
-        }
-
-        FPS g(deg);
-        g[0] = constant_term;
-        mint denom = (*this)[0].inv();
-        for (int a = 1; a < deg; a++) {
-            for (auto &[i, f_i, weighted_f_i] : fs) {
-                if (a < i) break;
-                g[a] += g[a - i] * (weighted_f_i - f_i * a);
-            }
-            g[a] *= denom * inv[a];
-        }
-        return g;
-    } // return this / r
     FPS sparse_div(const FPS &r, int deg = -1) const {
-        assert(!r.empty() && r[0] != mint(0));
-        if (deg == -1) deg = this->size();
-        mint ir0 = r[0].inv();
-        FPS ret = derived() * ir0;
-        ret.resize(deg);
-        std::vector<std::pair<int, mint>> gs;
-        for (int i = 1; i < (int)r.size(); i++) {
-            if (r[i] != mint(0)) gs.emplace_back(i, r[i] * ir0);
-        }
-        for (int i = 0; i < deg; i++) {
-            for (auto &[j, g_j] : gs) {
-                if (i + j >= deg) break;
-                ret[i + j] -= ret[i] * g_j;
-            }
-        }
-        return ret;
+        return fps::operations::sparse_div(derived(), r, deg);
+    }
+    FPS &inplace_sparse_div(const FPS &r, int deg = -1) {
+        return fps::operations::inplace_sparse_div(derived(), r, deg);
+    }
+    FPS div(const FPS &r, int deg = -1) const { return fps::operations::div(derived(), r, deg); }
+    FPS &inplace_div(const FPS &r, int deg = -1) {
+        return fps::operations::inplace_div(derived(), r, deg);
     }
 
-    FPS sparse_inv(int deg = -1) const {
-        if (deg == -1) deg = this->size();
-        std::vector<std::pair<int, mint>> fs;
-        for (int i = 1; i < int(this->size()); i++) {
-            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
-        }
-        FPS ret(deg);
-        mint if0 = (*this)[0].inv();
-        if (0 < deg) ret[0] = if0;
-        for (int k = 1; k < deg; k++) {
-            for (auto &[j, fj] : fs) {
-                if (k < j) break;
-                ret[k] += ret[k - j] * fj;
-            }
-            ret[k] *= -if0;
-        }
-        return ret;
+    FPS dense_inv(int deg = -1) const { return fps::operations::dense_inv(derived(), deg); }
+    FPS &inplace_dense_inv(int deg = -1) {
+        return fps::operations::inplace_dense_inv(derived(), deg);
     }
-
-    FPS sparse_exp(int deg = -1) const {
-        if (deg == -1) deg = this->size();
-        std::vector<std::pair<int, mint>> fs;
-        for (int i = 1; i < int(this->size()); i++) {
-            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i] * i);
-        }
-
-        int mod = mint::getmod();
-        static std::vector<mint> inv{1, 1};
-        int now = inv.size();
-        inv.resize(std::max(now, deg + 1));
-        for (int i = now; i <= deg; i++) inv[i] = -inv[mod % i] * (mod / i);
-
-        FPS g(deg);
-        if (deg) g[0] = 1;
-        for (int k = 0; k < deg - 1; k++) {
-            for (auto &[ip1, derivative_coefficient] : fs) {
-                int i = ip1 - 1;
-                if (k < i) break;
-                g[k + 1] += g[k - i] * derivative_coefficient;
-            }
-            g[k + 1] *= inv[k + 1];
-        }
-
-        return g;
+    FPS sparse_inv(int deg = -1) const { return fps::operations::sparse_inv(derived(), deg); }
+    FPS &inplace_sparse_inv(int deg = -1) {
+        return fps::operations::inplace_sparse_inv(derived(), deg);
     }
+    FPS inv(int deg = -1) const { return fps::operations::inv(derived(), deg); }
+    FPS &inplace_inv(int deg = -1) { return fps::operations::inplace_inv(derived(), deg); }
+
+    FPS dense_exp(int deg = -1) const { return fps::operations::dense_exp(derived(), deg); }
+    FPS &inplace_dense_exp(int deg = -1) {
+        return fps::operations::inplace_dense_exp(derived(), deg);
+    }
+    FPS sparse_exp(int deg = -1) const { return fps::operations::sparse_exp(derived(), deg); }
+    FPS &inplace_sparse_exp(int deg = -1) {
+        return fps::operations::inplace_sparse_exp(derived(), deg);
+    }
+    FPS exp(int deg = -1) const { return fps::operations::exp(derived(), deg); }
+    FPS &inplace_exp(int deg = -1) { return fps::operations::inplace_exp(derived(), deg); }
+
+    FPS dense_sqrt(int deg = -1) const { return fps::operations::dense_sqrt(derived(), deg); }
+    FPS &inplace_dense_sqrt(int deg = -1) {
+        return fps::operations::inplace_dense_sqrt(derived(), deg);
+    }
+    FPS sparse_sqrt(int deg = -1) const { return fps::operations::sparse_sqrt(derived(), deg); }
+    FPS &inplace_sparse_sqrt(int deg = -1) {
+        return fps::operations::inplace_sparse_sqrt(derived(), deg);
+    }
+    FPS sqrt(int deg = -1) const { return fps::operations::sqrt(derived(), deg); }
+    FPS &inplace_sqrt(int deg = -1) { return fps::operations::inplace_sqrt(derived(), deg); }
+
+    FPS dense_mul(const FPS &r) const { return fps::operations::dense_mul(derived(), r); }
+    FPS &inplace_dense_mul(const FPS &r) {
+        return fps::operations::inplace_dense_mul(derived(), r);
+    }
+    FPS sparse_mul(const FPS &r) const { return fps::operations::sparse_mul(derived(), r); }
+    FPS &inplace_sparse_mul(const FPS &r) {
+        return fps::operations::inplace_sparse_mul(derived(), r);
+    }
+    FPS mul(const FPS &r) const { return fps::operations::mul(derived(), r); }
+    FPS &inplace_mul(const FPS &r) { return fps::operations::inplace_mul(derived(), r); }
+
     FPS &inplace_imos(int n) {
         inplace_pre(n);
         for (int i = 0; i < n - 1; i++) (*this)[i + 1] += (*this)[i];
