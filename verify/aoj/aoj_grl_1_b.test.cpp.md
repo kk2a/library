@@ -753,7 +753,7 @@ data:
     memory: 3.932
     name: 08_maximum_03
     status: AC
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_grl_1_b.test.cpp

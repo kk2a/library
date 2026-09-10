@@ -275,7 +275,7 @@ data:
   - graph/compact_static_graph.hpp
   - graph/detail/compact_adjacency_storage.hpp
   - graph/detail/compact_static_adjacency_storage.hpp
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/type_traits/graph/graph.test.cpp

@@ -626,7 +626,7 @@ data:
         icon: LIBRARY_NO_TESTS
         path: others/run_length_encoding.hpp
       - filename: timer.hpp
-        icon: LIBRARY_NO_TESTS
+        icon: LIBRARY_ALL_AC
         path: others/timer.hpp
       - filename: vector_pool.hpp
         icon: LIBRARY_ALL_AC
@@ -851,6 +851,17 @@ data:
       - filename: wavelet_matrix.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+    - name: verify/unit_test/fps/
+      pages:
+      - filename: sparsity_boundary.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/fps/sparsity_boundary.test.cpp
+      - filename: sparsity_performance.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/fps/sparsity_performance.test.cpp
+      - filename: sparsity_small_performance.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/fps/sparsity_small_performance.test.cpp
     - name: verify/unit_test/graph/
       pages:
       - filename: maxflow.test.cpp

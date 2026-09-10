@@ -354,6 +354,15 @@ data:
     - filename: wavelet_matrix.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+    - filename: sparsity_boundary.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_boundary.test.cpp
+    - filename: sparsity_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_performance.test.cpp
+    - filename: sparsity_small_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_small_performance.test.cpp
     - filename: maxflow.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/graph/maxflow.test.cpp
@@ -934,7 +943,7 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -947,6 +956,9 @@ data:
   - verify/unit_test/data_structure/bit_vector.test.cpp
   - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
   - verify/unit_test/data_structure/wavelet_matrix.test.cpp
+  - verify/unit_test/fps/sparsity_boundary.test.cpp
+  - verify/unit_test/fps/sparsity_performance.test.cpp
+  - verify/unit_test/fps/sparsity_small_performance.test.cpp
   - verify/unit_test/graph/maxflow.test.cpp
   - verify/unit_test/math/action/action.test.cpp
   - verify/unit_test/math/group/group.test.cpp

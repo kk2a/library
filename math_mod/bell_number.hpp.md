@@ -113,7 +113,7 @@ data:
   path: math_mod/bell_number.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/enumerate_bell_number.test.cpp

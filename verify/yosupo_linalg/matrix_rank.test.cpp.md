@@ -676,7 +676,7 @@ data:
     memory: 3.704
     name: zero_04
     status: AC
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_rank.test.cpp

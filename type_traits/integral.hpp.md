@@ -13,18 +13,12 @@ data:
     - filename: bitcount.hpp
       icon: LIBRARY_ALL_AC
       path: bit/bitcount.hpp
-    - filename: convolution.hpp
-      icon: LIBRARY_ALL_AC
-      path: convolution/convolution.hpp
     - filename: convolution_arb.hpp
       icon: LIBRARY_ALL_AC
       path: convolution/convolution_arb.hpp
     - filename: convolution_int.hpp
       icon: LIBRARY_NO_TESTS
       path: convolution/convolution_int.hpp
-    - filename: multi_convolution_truncated.hpp
-      icon: LIBRARY_ALL_AC
-      path: convolution/multi_convolution_truncated.hpp
     - filename: bit_vector.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/bit_vector.hpp
@@ -43,15 +37,6 @@ data:
     - filename: fps_arb.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_arb.hpp
-    - filename: fps_multivariate.hpp
-      icon: LIBRARY_ALL_AC
-      path: fps/fps_multivariate.hpp
-    - filename: fps_ntt_friendly.hpp
-      icon: LIBRARY_ALL_AC
-      path: fps/fps_ntt_friendly.hpp
-    - filename: fps_sparsity_detector.hpp
-      icon: LIBRARY_ALL_AC
-      path: fps/fps_sparsity_detector.hpp
     - filename: fps_sqrt.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_sqrt.hpp
@@ -201,6 +186,15 @@ data:
     - filename: wavelet_matrix.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+    - filename: sparsity_boundary.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_boundary.test.cpp
+    - filename: sparsity_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_performance.test.cpp
+    - filename: sparsity_small_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_small_performance.test.cpp
     - filename: action.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/action/action.test.cpp
@@ -688,19 +682,14 @@ data:
   requiredBy:
   - bigint/int256.hpp
   - bit/bitcount.hpp
-  - convolution/convolution.hpp
   - convolution/convolution_arb.hpp
   - convolution/convolution_int.hpp
-  - convolution/multi_convolution_truncated.hpp
   - data_structure/bit_vector.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
   - data_structure/my_bitset.hpp
   - data_structure/w_ary_tree.hpp
   - data_structure/wavelet_matrix.hpp
   - fps/fps_arb.hpp
-  - fps/fps_multivariate.hpp
-  - fps/fps_ntt_friendly.hpp
-  - fps/fps_sparsity_detector.hpp
   - fps/fps_sqrt.hpp
   - fps/poly_taylor_shift.hpp
   - math/group/rolling_hash.hpp
@@ -740,7 +729,7 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -753,6 +742,9 @@ data:
   - verify/unit_test/data_structure/bit_vector.test.cpp
   - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
   - verify/unit_test/data_structure/wavelet_matrix.test.cpp
+  - verify/unit_test/fps/sparsity_boundary.test.cpp
+  - verify/unit_test/fps/sparsity_performance.test.cpp
+  - verify/unit_test/fps/sparsity_small_performance.test.cpp
   - verify/unit_test/math/action/action.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/math/isprime_table_extend.test.cpp

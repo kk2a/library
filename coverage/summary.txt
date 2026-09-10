@@ -1,6 +1,6 @@
-lines: 92.5% (2057 out of 2223)
-functions: 96.3% (498 out of 517)
-branches: 64.4% (1510 out of 2344)
+lines: 89.2% (2768 out of 3103)
+functions: 94.7% (591 out of 624)
+branches: 58.4% (2226 out of 3809)
 (INFO) Reading coverage data...
 
 (INFO) Writing coverage report...

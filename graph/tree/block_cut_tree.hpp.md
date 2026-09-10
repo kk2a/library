@@ -175,7 +175,7 @@ data:
   path: graph/tree/block_cut_tree.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yuki/yuki_1326.test.cpp

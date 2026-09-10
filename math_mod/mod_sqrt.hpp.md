@@ -22,6 +22,12 @@ data:
       path: fps/fps_sqrt.hpp
     type: Required by
   - files:
+    - filename: sparsity_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_performance.test.cpp
+    - filename: sparsity_small_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_small_performance.test.cpp
     - filename: fps_sprase_sqrt.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
@@ -190,9 +196,11 @@ data:
   pathExtension: hpp
   requiredBy:
   - fps/fps_sqrt.hpp
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/fps/sparsity_performance.test.cpp
+  - verify/unit_test/fps/sparsity_small_performance.test.cpp
   - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
   - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_math/sqrt_mod.test.cpp

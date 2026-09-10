@@ -6,9 +6,6 @@ data:
     - https://judge.yosupo.jp/problem/convolution_mod_1000000007
   dependencies:
   - files:
-    - filename: bitcount.hpp
-      icon: LIBRARY_ALL_AC
-      path: bit/bitcount.hpp
     - filename: convolution.hpp
       icon: LIBRARY_ALL_AC
       path: convolution/convolution.hpp
@@ -66,7 +63,6 @@ data:
   - files: []
     type: Verified with
   dependsOn:
-  - bit/bitcount.hpp
   - convolution/convolution.hpp
   - convolution/convolution_arb.hpp
   - fps/fps_sparsity_detector.hpp
@@ -221,57 +217,126 @@ data:
       \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
-      \ namespace kk2\n\n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#line 6\
-      \ \"convolution/convolution.hpp\"\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\
-      \n\n\n\n#line 1 \"bit/bitcount.hpp\"\n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n\
-      #line 7 \"bit/bitcount.hpp\"\n\nnamespace kk2 {\n\ntemplate <Integral T> constexpr\
-      \ int ctz(T x) {\n    assert(x != T(0));\n\n    if constexpr (sizeof(T) <= 4)\
-      \ {\n        return __builtin_ctz(x);\n    } else if constexpr (sizeof(T) <=\
-      \ 8) {\n        return __builtin_ctzll(x);\n    } else {\n        if (x & 0xffffffffffffffff)\n\
-      \            return __builtin_ctzll((unsigned long long)(x & 0xffffffffffffffff));\n\
-      \        return 64 + __builtin_ctzll((unsigned long long)(x >> 64));\n    }\n\
-      }\n\ntemplate <Integral T> constexpr int lsb(T x) {\n    assert(x != T(0));\n\
-      \n    return ctz(x);\n}\n\ntemplate <Integral T> constexpr int clz(T x) {\n\
-      \    assert(x != T(0));\n\n    if constexpr (sizeof(T) <= 4) {\n        return\
-      \ __builtin_clz(x);\n    } else if constexpr (sizeof(T) <= 8) {\n        return\
-      \ __builtin_clzll(x);\n    } else {\n        if (x >> 64) return __builtin_clzll((unsigned\
-      \ long long)(x >> 64));\n        return 64 + __builtin_clzll((unsigned long\
-      \ long)(x & 0xffffffffffffffff));\n    }\n}\n\ntemplate <Integral T> constexpr\
-      \ int msb(T x) {\n    assert(x != T(0));\n\n    return sizeof(T) * 8 - 1 - clz(x);\n\
-      }\n\ntemplate <Integral T> constexpr int popcount(T x) {\n\n    if constexpr\
-      \ (sizeof(T) <= 4) {\n        return __builtin_popcount(x);\n    } else if constexpr\
-      \ (sizeof(T) <= 8) {\n        return __builtin_popcountll(x);\n    } else {\n\
-      \        return __builtin_popcountll((unsigned long long)(x >> 64))\n      \
-      \         + __builtin_popcountll((unsigned long long)(x & 0xffffffffffffffff));\n\
-      \    }\n}\n\n}; // namespace kk2\n\n\n#line 5 \"fps/fps_sparsity_detector.hpp\"\
-      \n\nnamespace kk2 {\n\nenum class FPSOperation { CONVOLUTION, EXP };\n\ntemplate\
-      \ <class FPS, class mint = typename FPS::value_type>\nbool is_sparse_operation(FPSOperation\
-      \ op,\n                         bool is_ntt_friendly,\n                    \
-      \     const FPS &a,\n                         const FPS &b = FPS()) {\n    int\
-      \ n = a.size(), m = b.size();\n    long long not_zero_a = 0, not_zero_b = 0;\n\
-      \    bool same = a == b;\n    int lg = msb(n + m) + 1;\n    for (int i = 0;\
-      \ i < n; i++) not_zero_a += a[i] != mint(0);\n    for (int i = 0; i < m; i++)\
-      \ not_zero_b += b[i] != mint(0);\n\n    if (op == FPSOperation::CONVOLUTION)\
-      \ {\n        return (n + m) * lg * (is_ntt_friendly ? 3.42 : 20.0) * (same ?\
-      \ 0.5 : 1)\n               > double(not_zero_a) * not_zero_b;\n    }\n    if\
-      \ (op == FPSOperation::EXP) {\n        return n * lg * (is_ntt_friendly ? 8.2\
-      \ : 60.0) > double(n) * not_zero_a;\n    }\n    return false;\n}\n\n} // namespace\
-      \ kk2\n\n\n#line 1 \"math_mod/butterfly.hpp\"\n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\
-      \n\n#line 1 \"math_mod/primitive_root.hpp\"\n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\
-      \n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-      \ S, class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(n >=\
-      \ 0);\n    if (m == 1) return S(0);\n    S _m = m, r = 1;\n    S y = x % _m;\n\
-      \    if (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) %\
-      \ _m;\n        if (n >>= 1) y = (y * y) % _m;\n    }\n    return r;\n}\n\n}\
-      \ // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\n\nnamespace\
-      \ kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n    if (m == 2)\
-      \ return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049) return\
-      \ 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return 3;\n\
-      \    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0] =\
-      \ 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x /=\
-      \ 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x %\
-      \ i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0) {\
-      \ x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
+      \ namespace kk2\n\n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#line 5\
+      \ \"convolution/convolution.hpp\"\n#include <ranges>\n#line 7 \"convolution/convolution.hpp\"\
+      \n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#line 5 \"fps/fps_sparsity_detector.hpp\"\
+      \n#include <bit>\n#line 7 \"fps/fps_sparsity_detector.hpp\"\n#include <memory>\n\
+      \nnamespace kk2 {\n\nenum class FPSOperation {\n    CONVOLUTION,\n    LOG,\n\
+      \    POWER,\n    DIVISION,\n    POLYNOMIAL_DIVISION,\n    INVERSE,\n    EXP,\n\
+      \    SQRT\n};\n\nnamespace fps::sparsity_detail {\n\n// E(n): the leading FFT\
+      \ evaluation cost, up to the common field-operation\n// constant that cancels\
+      \ when dense and sparse leading terms are compared.\ninline std::int64_t evaluation_work(int\
+      \ n) {\n    if (n <= 1) return 1;\n    const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n\
+      \    return static_cast<std::int64_t>(z) * std::countr_zero(z);\n}\n\ninline\
+      \ int transform_size(int n, int m) {\n    if (n <= 0 || m <= 0) return 0;\n\
+      \    return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n + m - 1)));\n\
+      }\n\ninline std::int64_t convolution_dense_work(int n, int m, bool same, bool\
+      \ ntt_friendly) {\n    const int z = transform_size(n, m);\n    if (z == 0)\
+      \ return 0;\n\n    // A different pair needs two forward and one inverse transform.\
+      \ Squaring\n    // reuses the forward transform and needs only one forward transform.\n\
+      \    const int transforms = same ? 2 : 3;\n    // Arbitrary-modulus convolution\
+      \ uses three NTT-friendly moduli.\n    const int moduli = ntt_friendly ? 1 :\
+      \ 3;\n    return static_cast<std::int64_t>(transforms) * moduli * evaluation_work(z);\n\
+      }\n\ninline std::int64_t inverse_dense_work(int deg, bool ntt_friendly) {\n\
+      \    if (deg <= 1) return 0;\n    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(deg)));\n\
+      \    // NTT-friendly uses five transforms per Newton level, whose geometric\n\
+      \    // sum has leading term 10 E(z). The arbitrary-modulus implementation\n\
+      \    // performs two fresh convolutions per level, giving 60 E(z).\n    return\
+      \ (ntt_friendly ? 10 : 60) * evaluation_work(z);\n}\n\ninline std::int64_t log_dense_work(int\
+      \ n, int deg, bool ntt_friendly) {\n    return inverse_dense_work(deg, ntt_friendly)\n\
+      \           + convolution_dense_work(std::max(0, n - 1), deg, false, ntt_friendly);\n\
+      }\n\ninline long double exp_dense_work(int deg, bool ntt_friendly) {\n    if\
+      \ (deg <= 1) return 0;\n    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(deg)));\n\
+      \    if (ntt_friendly) {\n        if (deg <= 2) return 0;\n        // Bostan--Schost,\
+      \ Theorem 1: (33/2) E(z) + (97/4) z.  Only\n        // the leading E(z) term\
+      \ matters for the sparsity threshold.\n        return 16.5L * evaluation_work(z);\n\
+      \    }\n    // FPSArb recomputes a logarithm and a product at every Newton level.\n\
+      \    return 192 * evaluation_work(z);\n}\n\ninline long double power_dense_work(int\
+      \ n, int deg, bool ntt_friendly) {\n    return log_dense_work(n, deg, ntt_friendly)\
+      \ + exp_dense_work(deg, ntt_friendly);\n}\n\ninline std::int64_t division_dense_work(int\
+      \ n, int deg, bool ntt_friendly) {\n    return inverse_dense_work(deg, ntt_friendly)\n\
+      \           + convolution_dense_work(std::min(n, deg), deg, false, ntt_friendly);\n\
+      }\n\ninline std::int64_t polynomial_division_dense_work(int quotient_size, bool\
+      \ ntt_friendly) {\n    return inverse_dense_work(quotient_size, ntt_friendly)\n\
+      \           + convolution_dense_work(quotient_size, quotient_size, false, ntt_friendly);\n\
+      }\n\ninline std::int64_t sqrt_dense_work(int deg, bool ntt_friendly) {\n   \
+      \ if (deg <= 1) return 0;\n    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(deg)));\n\
+      \    // Newton uses an inverse and one product at every level. The implementation\n\
+      \    // computes the complete next power-of-two block even at the last level.\n\
+      \    return (ntt_friendly ? 32 : 156) * evaluation_work(z);\n}\n\ninline long\
+      \ double sparse_leading_work(FPSOperation op, long double support_output_pairs)\
+      \ {\n    switch (op) {\n    case FPSOperation::LOG:\n        return 3 * support_output_pairs;\n\
+      \    case FPSOperation::POWER:\n    case FPSOperation::SQRT:\n        return\
+      \ 4 * support_output_pairs;\n    case FPSOperation::CONVOLUTION:\n    case FPSOperation::DIVISION:\n\
+      \    case FPSOperation::POLYNOMIAL_DIVISION:\n    case FPSOperation::INVERSE:\n\
+      \    case FPSOperation::EXP:\n        return 2 * support_output_pairs;\n   \
+      \ }\n    return 0;\n}\n\ninline long double sparse_runtime_factor(FPSOperation\
+      \ op) {\n    // Conversion from the field-operation model above to observed\
+      \ running\n    // time. Calibrated on powers of two from 256 through 4096 while\
+      \ keeping\n    // the threshold conservative when the two implementations are\
+      \ close.\n    switch (op) {\n    case FPSOperation::POWER:\n    case FPSOperation::SQRT:\n\
+      \        return 0.60L;\n    case FPSOperation::DIVISION:\n    case FPSOperation::POLYNOMIAL_DIVISION:\n\
+      \        return 0.75L;\n    case FPSOperation::CONVOLUTION:\n        return\
+      \ 1.50L;\n    case FPSOperation::LOG:\n        return 1.25L;\n    case FPSOperation::INVERSE:\n\
+      \        return 0.90L;\n    case FPSOperation::EXP:\n        return 1.00L;\n\
+      \    }\n    return 1.00L;\n}\n\n} // namespace fps::sparsity_detail\n\ntemplate\
+      \ <class FPS, class mint = typename FPS::value_type>\nbool is_sparse_operation(\n\
+      \    FPSOperation op, bool is_ntt_friendly, const FPS &a, const FPS &b = FPS(),\
+      \ int deg = -1) {\n    const int n = a.size(), m = b.size();\n    if (n + m\
+      \ == 0) return false;\n\n    const bool convolution = op == FPSOperation::CONVOLUTION;\n\
+      \    const bool division = op == FPSOperation::DIVISION;\n    const bool polynomial_division\
+      \ = op == FPSOperation::POLYNOMIAL_DIVISION;\n    const int target = deg < 0\
+      \ ? n : std::max(0, deg);\n    std::int64_t nonzero_a = 0, nonzero_b = 0;\n\
+      \    long double pair_work = 0;\n\n    const int limit_a = convolution     \
+      \                  ? n :\n                        (division || polynomial_division)\
+      \ ? 0 :\n                                                            std::min(n,\
+      \ target);\n    for (int i = 0; i < limit_a; ++i) {\n        if (a[i] == mint(0))\
+      \ continue;\n        ++nonzero_a;\n        if (!convolution && i > 0) {\n  \
+      \          const int terms = op == FPSOperation::LOG ? target - 1 - i : target\
+      \ - i;\n            if (terms > 0) pair_work += terms;\n        }\n    }\n\n\
+      \    const int limit_b = convolution         ? m :\n                       \
+      \ division            ? std::min(m, target) :\n                        polynomial_division\
+      \ ? m :\n                                              0;\n    for (int i =\
+      \ 0; i < limit_b; ++i) {\n        if (b[i] == mint(0)) continue;\n        ++nonzero_b;\n\
+      \        if (division && i > 0) pair_work += target - i;\n        if (polynomial_division\
+      \ && i + 1 < m) {\n            const int terms = target - (m - 1 - i);\n   \
+      \         if (terms > 0) pair_work += terms;\n        }\n    }\n\n    if (convolution)\
+      \ { pair_work = static_cast<long double>(nonzero_a) * nonzero_b; }\n\n    long\
+      \ double dense_work = 0;\n    switch (op) {\n    case FPSOperation::CONVOLUTION:\n\
+      \        dense_work = fps::sparsity_detail::convolution_dense_work(\n      \
+      \      n, m, std::addressof(a) == std::addressof(b), is_ntt_friendly);\n   \
+      \     break;\n    case FPSOperation::LOG:\n        dense_work = fps::sparsity_detail::log_dense_work(n,\
+      \ target, is_ntt_friendly);\n        break;\n    case FPSOperation::POWER:\n\
+      \        dense_work = fps::sparsity_detail::power_dense_work(n, target, is_ntt_friendly);\n\
+      \        break;\n    case FPSOperation::DIVISION:\n        dense_work = fps::sparsity_detail::division_dense_work(n,\
+      \ target, is_ntt_friendly);\n        break;\n    case FPSOperation::POLYNOMIAL_DIVISION:\n\
+      \        dense_work = fps::sparsity_detail::polynomial_division_dense_work(target,\
+      \ is_ntt_friendly);\n        break;\n    case FPSOperation::INVERSE:\n     \
+      \   dense_work = fps::sparsity_detail::inverse_dense_work(target, is_ntt_friendly);\n\
+      \        break;\n    case FPSOperation::EXP:\n        dense_work = fps::sparsity_detail::exp_dense_work(target,\
+      \ is_ntt_friendly);\n        break;\n    case FPSOperation::SQRT:\n        dense_work\
+      \ = fps::sparsity_detail::sqrt_dense_work(target, is_ntt_friendly);\n      \
+      \  break;\n    }\n\n    // Count the leading field operations executed for each\
+      \ support/output\n    // pair. Linear scans, initialization and per-output normalization\
+      \ are\n    // intentionally omitted on both the sparse and dense sides.\n  \
+      \  const long double sparse_work = fps::sparsity_detail::sparse_leading_work(op,\
+      \ pair_work);\n    return dense_work > fps::sparsity_detail::sparse_runtime_factor(op)\
+      \ * sparse_work;\n}\n\n} // namespace kk2\n\n\n#line 1 \"math_mod/butterfly.hpp\"\
+      \n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
+      \n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T\
+      \ x, U n, T m) {\n    assert(n >= 0);\n    if (m == 1) return S(0);\n    S _m\
+      \ = m, r = 1;\n    S y = x % _m;\n    if (y < 0) y += _m;\n    while (n) {\n\
+      \        if (n & 1) r = (r * y) % _m;\n        if (n >>= 1) y = (y * y) % _m;\n\
+      \    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\
+      \n\nnamespace kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n   \
+      \ if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049)\
+      \ return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return\
+      \ 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0]\
+      \ = 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x\
+      \ /= 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x\
+      \ % i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0)\
+      \ { x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
       \ (int g = 2;; g++) {\n        bool ok = true;\n        for (int i = 0; i <\
       \ cnt; i++) {\n            if (pow_mod<long long>(g, (m - 1) / divs[i], m) ==\
       \ 1) {\n                ok = false;\n                break;\n            }\n\
@@ -359,72 +424,80 @@ data:
       \ = mint(primitive_root<mint::getmod()>).pow((mint::getmod() - 1) / (n << 1));\n\
       \    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n\
       \    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
-      }\n\n} // namespace kk2\n\n\n#line 9 \"convolution/convolution.hpp\"\n\nnamespace\
-      \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS\
-      \ &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if\
-      \ (!n || !m) {\n        a.clear();\n        return a;\n    }\n    if (is_sparse_operation(FPSOperation::CONVOLUTION,\
-      \ 1, a, b)) {\n        std::vector<int> nza(n), nzb(m);\n        int ai = 0,\
-      \ bi = 0;\n        for (int i = 0; i < n; i++)\n            if (a[i] != mint(0))\
-      \ nza[ai++] = i;\n        for (int i = 0; i < m; i++)\n            if (b[i]\
-      \ != mint(0)) nzb[bi++] = i;\n        nza.resize(ai), nzb.resize(bi);\n    \
-      \    FPS res(n + m - 1);\n        for (int i : nza)\n            for (int j\
-      \ : nzb) res[i + j] += a[i] * b[j];\n        return a = res;\n    }\n\n    int\
-      \ z = 1;\n    while (z < n + m - 1) z <<= 1;\n    if (a == b) {\n        a.resize(z);\n\
-      \        butterfly(a);\n        for (int i = 0; i < z; i++) a[i] *= a[i];\n\
-      \    } else {\n        a.resize(z);\n        butterfly(a);\n        FPS t(b.begin(),\
-      \ b.end());\n        t.resize(z);\n        butterfly(t);\n        for (int i\
-      \ = 0; i < z; i++) a[i] *= t[i];\n    }\n    butterfly_inv(a);\n    a.resize(n\
-      \ + m - 1);\n    return a;\n}\n\n} // namespace kk2\n\n\n#line 10 \"convolution/convolution_arb.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-      FPS convolution_arb(FPS &a, const FPS &b) {\n    int n = int(a.size()), m =\
+      }\n\n} // namespace kk2\n\n\n#line 10 \"convolution/convolution.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS\
+      \ sparse_convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m =\
       \ int(b.size());\n    if (!n || !m) {\n        a.clear();\n        return a;\n\
-      \    }\n    if (is_sparse_operation(FPSOperation::CONVOLUTION, 0, a, b)) {\n\
-      \        std::vector<int> nza(n), nzb(m);\n        int ai = 0, bi = 0;\n   \
-      \     for (int i = 0; i < n; i++)\n            if (a[i] != mint(0)) nza[ai++]\
-      \ = i;\n        for (int i = 0; i < m; i++)\n            if (b[i] != mint(0))\
-      \ nzb[bi++] = i;\n        nza.resize(ai), nzb.resize(bi);\n        FPS res(n\
-      \ + m - 1);\n        for (int i : nza)\n            for (int j : nzb) res[i\
-      \ + j] += a[i] * b[j];\n        return a = res;\n    }\n\n    static constexpr\
-      \ long long MOD1 = 754974721; // 2^24\n    static constexpr long long MOD2 =\
-      \ 167772161; // 2^25\n    static constexpr long long MOD3 = 469762049; // 2^26\n\
-      \    using mint1 = LazyMontgomeryModInt<MOD1>;\n    using mint2 = LazyMontgomeryModInt<MOD2>;\n\
-      \    using mint3 = LazyMontgomeryModInt<MOD3>;\n\n    std::vector<long long>\
-      \ a0(n), b0(m);\n    for (int i = 0; i < n; i++) a0[i] = a[i].val();\n    for\
-      \ (int i = 0; i < m; i++) b0[i] = b[i].val();\n    auto a1 = std::vector<mint1>(a0.begin(),\
-      \ a0.end());\n    auto b1 = std::vector<mint1>(b0.begin(), b0.end());\n    convolution(a1,\
-      \ b1);\n    auto a2 = std::vector<mint2>(a0.begin(), a0.end());\n    auto b2\
-      \ = std::vector<mint2>(b0.begin(), b0.end());\n    convolution(a2, b2);\n  \
-      \  auto a3 = std::vector<mint3>(a0.begin(), a0.end());\n    auto b3 = std::vector<mint3>(b0.begin(),\
-      \ b0.end());\n    convolution(a3, b3);\n    const std::vector<long long> ps\
-      \ = {MOD1, MOD2, MOD3, mint::getmod()};\n    a.resize(n + m - 1);\n    for (int\
-      \ i = 0; i < n + m - 1; i++) {\n        a[i] = mint(garner({a1[i].val(), a2[i].val(),\
-      \ a3[i].val()}, ps));\n    }\n    return a;\n}\n\n} // namespace kk2\n\n\n#line\
-      \ 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\n#include\
-      \ <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\n#include <chrono>\n\
-      #include <cmath>\n#include <deque>\n#include <functional>\n#include <iterator>\n\
-      #include <limits>\n#include <map>\n#include <numeric>\n#include <optional>\n\
-      #include <queue>\n#include <random>\n#include <set>\n#include <stack>\n#include\
-      \ <string>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-      #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
-      \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
-      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
-      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
-      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
+      \    }\n    std::vector<int> nza, nzb;\n    nza.reserve(std::ranges::count_if(a,\
+      \ [](const mint &x) { return x != mint(0); }));\n    nzb.reserve(std::ranges::count_if(b,\
+      \ [](const mint &x) { return x != mint(0); }));\n    for (int i = 0; i < n;\
+      \ i++)\n        if (a[i] != mint(0)) nza.push_back(i);\n    for (int i = 0;\
+      \ i < m; i++)\n        if (b[i] != mint(0)) nzb.push_back(i);\n    FPS res(n\
+      \ + m - 1);\n    for (int i : nza)\n        for (int j : nzb) res[i + j] +=\
+      \ a[i] * b[j];\n    return a = res;\n}\n\ntemplate <class FPS> FPS dense_convolution(FPS\
+      \ &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if\
+      \ (!n || !m) {\n        a.clear();\n        return a;\n    }\n\n    int z =\
+      \ 1;\n    while (z < n + m - 1) z <<= 1;\n    if (std::addressof(a) == std::addressof(b))\
+      \ {\n        a.resize(z);\n        butterfly(a);\n        for (int i = 0; i\
+      \ < z; i++) a[i] *= a[i];\n    } else {\n        a.resize(z);\n        butterfly(a);\n\
+      \        FPS t(b.begin(), b.end());\n        t.resize(z);\n        butterfly(t);\n\
+      \        for (int i = 0; i < z; i++) a[i] *= t[i];\n    }\n    butterfly_inv(a);\n\
+      \    a.resize(n + m - 1);\n    return a;\n}\n\ntemplate <class FPS> FPS convolution(FPS\
+      \ &a, const FPS &b, bool detect_sparsity = true) {\n    if (detect_sparsity\
+      \ && is_sparse_operation(FPSOperation::CONVOLUTION, 1, a, b))\n        return\
+      \ sparse_convolution(a, b);\n    return dense_convolution(a, b);\n}\n\n} //\
+      \ namespace kk2\n\n\n#line 10 \"convolution/convolution_arb.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS\
+      \ convolution_arb(FPS &a, const FPS &b, bool detect_sparsity = true) {\n   \
+      \ int n = int(a.size()), m = int(b.size());\n    if (!n || !m) {\n        a.clear();\n\
+      \        return a;\n    }\n    if (detect_sparsity && is_sparse_operation(FPSOperation::CONVOLUTION,\
+      \ 0, a, b)) {\n        std::vector<int> nza, nzb;\n        nza.reserve(std::ranges::count_if(a,\
+      \ [](const mint &x) { return x != mint(0); }));\n        nzb.reserve(std::ranges::count_if(b,\
+      \ [](const mint &x) { return x != mint(0); }));\n        for (int i = 0; i <\
+      \ n; i++)\n            if (a[i] != mint(0)) nza.push_back(i);\n        for (int\
+      \ i = 0; i < m; i++)\n            if (b[i] != mint(0)) nzb.push_back(i);\n \
+      \       FPS res(n + m - 1);\n        for (int i : nza)\n            for (int\
+      \ j : nzb) res[i + j] += a[i] * b[j];\n        return a = res;\n    }\n\n  \
+      \  static constexpr long long MOD1 = 754974721; // 2^24\n    static constexpr\
+      \ long long MOD2 = 167772161; // 2^25\n    static constexpr long long MOD3 =\
+      \ 469762049; // 2^26\n    using mint1 = LazyMontgomeryModInt<MOD1>;\n    using\
+      \ mint2 = LazyMontgomeryModInt<MOD2>;\n    using mint3 = LazyMontgomeryModInt<MOD3>;\n\
+      \n    std::vector<long long> a0(n), b0(m);\n    for (int i = 0; i < n; i++)\
+      \ a0[i] = a[i].val();\n    for (int i = 0; i < m; i++) b0[i] = b[i].val();\n\
+      \    auto a1 = std::vector<mint1>(a0.begin(), a0.end());\n    auto b1 = std::vector<mint1>(b0.begin(),\
+      \ b0.end());\n    convolution(a1, b1, false);\n    auto a2 = std::vector<mint2>(a0.begin(),\
+      \ a0.end());\n    auto b2 = std::vector<mint2>(b0.begin(), b0.end());\n    convolution(a2,\
+      \ b2, false);\n    auto a3 = std::vector<mint3>(a0.begin(), a0.end());\n   \
+      \ auto b3 = std::vector<mint3>(b0.begin(), b0.end());\n    convolution(a3, b3,\
+      \ false);\n    const std::vector<long long> ps = {MOD1, MOD2, MOD3, mint::getmod()};\n\
+      \    a.resize(n + m - 1);\n    for (int i = 0; i < n + m - 1; i++) {\n     \
+      \   a[i] = mint(garner({a1[i].val(), a2[i].val(), a3[i].val()}, ps));\n    }\n\
+      \    return a;\n}\n\n} // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\
+      \n\n\n\n#line 5 \"template/template.hpp\"\n#include <array>\n#include <bitset>\n\
+      #line 8 \"template/template.hpp\"\n#include <chrono>\n#include <cmath>\n#include\
+      \ <deque>\n#include <functional>\n#include <iterator>\n#include <limits>\n#include\
+      \ <map>\n#include <numeric>\n#include <optional>\n#include <queue>\n#include\
+      \ <random>\n#include <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n\
+      #include <unordered_set>\n#include <utility>\n#line 26 \"template/template.hpp\"\
+      \n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
+      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
+      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
+      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
+      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
+      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
+      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
+      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
+      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
+      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
+      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
+      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
+      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
+      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
+      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
+      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
+      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
       \n#include <cstdio>\n#line 10 \"template/fastio.hpp\"\n\n#line 13 \"template/fastio.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace fastio {\n\nstruct Scanner : type_traits::istream_tag\
       \ {\n  private:\n    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t\
@@ -589,247 +662,247 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 2.3662289990000005
+  - elapsed: 4.2042604189999935
     environment: g++
-    memory: 42.42
+    memory: 42.46
     name: all_same_00
     status: AC
-  - elapsed: 3.1535620719999997
+  - elapsed: 4.301492591999988
     environment: g++
-    memory: 42.452
+    memory: 42.448
     name: all_same_01
     status: AC
-  - elapsed: 3.1569260979999996
+  - elapsed: 4.281190995999992
     environment: g++
-    memory: 42.668
+    memory: 42.476
     name: all_same_02
     status: AC
-  - elapsed: 3.1295193790000013
+  - elapsed: 4.28643263699999
     environment: g++
-    memory: 42.676
+    memory: 42.5
     name: all_same_03
     status: AC
-  - elapsed: 0.002444406999998705
+  - elapsed: 0.00280503400000498
     environment: g++
-    memory: 3.996
+    memory: 3.864
     name: example_00
     status: AC
-  - elapsed: 0.002113592000000608
+  - elapsed: 0.002511507999997775
     environment: g++
-    memory: 3.856
+    memory: 3.876
     name: example_01
     status: AC
-  - elapsed: 3.7844769000000014
+  - elapsed: 4.972140132999996
     environment: g++
-    memory: 42.42
+    memory: 42.536
     name: fft_killer_00
     status: AC
-  - elapsed: 3.7930671029999985
+  - elapsed: 4.994929114000001
     environment: g++
-    memory: 42.66
+    memory: 42.6
     name: fft_killer_01
     status: AC
-  - elapsed: 3.8013043109999956
+  - elapsed: 4.988444041999998
     environment: g++
-    memory: 42.704
+    memory: 42.54
     name: fft_killer_02
     status: AC
-  - elapsed: 3.800179870000008
+  - elapsed: 4.983876999000003
     environment: g++
-    memory: 42.672
+    memory: 42.42
     name: fft_killer_03
     status: AC
-  - elapsed: 3.8071263860000073
+  - elapsed: 5.000858964999992
     environment: g++
-    memory: 42.644
+    memory: 42.508
     name: fft_killer_04
     status: AC
-  - elapsed: 3.8060430810000128
+  - elapsed: 4.983421136000004
     environment: g++
-    memory: 42.496
+    memory: 42.524
     name: fft_killer_05
     status: AC
-  - elapsed: 3.7955936139999835
+  - elapsed: 4.9865895629999955
     environment: g++
-    memory: 42.612
+    memory: 42.464
     name: fft_killer_06
     status: AC
-  - elapsed: 3.8047116980000055
+  - elapsed: 4.982947612999993
     environment: g++
-    memory: 42.684
+    memory: 42.436
     name: fft_killer_07
     status: AC
-  - elapsed: 3.8175028320000024
+  - elapsed: 4.982954374000002
     environment: g++
-    memory: 42.708
+    memory: 42.556
     name: fft_killer_08
     status: AC
-  - elapsed: 3.808445436999989
+  - elapsed: 4.978898995999998
     environment: g++
-    memory: 42.552
+    memory: 42.46
     name: fft_killer_09
     status: AC
-  - elapsed: 3.820768802999993
+  - elapsed: 4.985359154999998
     environment: g++
-    memory: 42.62
+    memory: 42.34
     name: max_ans_zero_00
     status: AC
-  - elapsed: 3.806026484
+  - elapsed: 4.984441879999991
     environment: g++
-    memory: 42.596
+    memory: 42.456
     name: max_random_00
     status: AC
-  - elapsed: 3.807666490999992
+  - elapsed: 4.986497686999996
     environment: g++
-    memory: 42.668
+    memory: 42.524
     name: max_random_01
     status: AC
-  - elapsed: 0.04474392400001648
+  - elapsed: 0.05828860200000463
     environment: g++
-    memory: 4.448
+    memory: 4.22
     name: medium_00
     status: AC
-  - elapsed: 0.024622821000008344
+  - elapsed: 0.03124334900002168
     environment: g++
-    memory: 4.532
+    memory: 4.396
     name: medium_01
     status: AC
-  - elapsed: 0.04292806499998392
+  - elapsed: 0.05615255899999738
     environment: g++
-    memory: 4.484
+    memory: 4.172
     name: medium_02
     status: AC
-  - elapsed: 0.003913959000016121
+  - elapsed: 0.004533303999977534
     environment: g++
-    memory: 4.108
+    memory: 4.096
     name: medium_all_zero_00
     status: AC
-  - elapsed: 3.55299723600001
+  - elapsed: 4.687640622999993
     environment: g++
-    memory: 37.488
+    memory: 37.232
     name: random_00
     status: AC
-  - elapsed: 3.6168483959999946
+  - elapsed: 4.790089770000009
     environment: g++
-    memory: 37.948
+    memory: 38.108
     name: random_01
     status: AC
-  - elapsed: 1.7360387880000019
+  - elapsed: 2.2874876550000067
     environment: g++
-    memory: 22.972
+    memory: 23.064
     name: random_02
     status: AC
-  - elapsed: 0.0024063030000149865
-    environment: g++
-    memory: 3.896
-    name: signed_overflow_00
-    status: AC
-  - elapsed: 0.002024293000005173
-    environment: g++
-    memory: 3.848
-    name: small_00
-    status: AC
-  - elapsed: 0.002032180000014705
+  - elapsed: 0.0027225069999872176
     environment: g++
     memory: 3.872
+    name: signed_overflow_00
+    status: AC
+  - elapsed: 0.002316360000008899
+    environment: g++
+    memory: 3.832
+    name: small_00
+    status: AC
+  - elapsed: 0.002160631999998941
+    environment: g++
+    memory: 3.868
     name: small_01
     status: AC
-  - elapsed: 0.00197164300001873
+  - elapsed: 0.0021928250000087246
     environment: g++
-    memory: 3.852
+    memory: 3.884
     name: small_02
     status: AC
-  - elapsed: 0.0019955999999865526
-    environment: g++
-    memory: 4.0
-    name: small_03
-    status: AC
-  - elapsed: 0.0019664149999982783
-    environment: g++
-    memory: 4.0
-    name: small_04
-    status: AC
-  - elapsed: 0.001958569000009902
-    environment: g++
-    memory: 3.9
-    name: small_05
-    status: AC
-  - elapsed: 0.0019214139999803592
-    environment: g++
-    memory: 4.0
-    name: small_06
-    status: AC
-  - elapsed: 0.001911742000004324
-    environment: g++
-    memory: 3.996
-    name: small_07
-    status: AC
-  - elapsed: 0.0019465279999906215
-    environment: g++
-    memory: 3.984
-    name: small_08
-    status: AC
-  - elapsed: 0.0019177060000004076
+  - elapsed: 0.002121538000011469
     environment: g++
     memory: 3.852
+    name: small_03
+    status: AC
+  - elapsed: 0.002149422999991657
+    environment: g++
+    memory: 3.692
+    name: small_04
+    status: AC
+  - elapsed: 0.0022362329999907615
+    environment: g++
+    memory: 3.88
+    name: small_05
+    status: AC
+  - elapsed: 0.0021498540000095545
+    environment: g++
+    memory: 3.9
+    name: small_06
+    status: AC
+  - elapsed: 0.002138630999979796
+    environment: g++
+    memory: 3.884
+    name: small_07
+    status: AC
+  - elapsed: 0.0021427609999875585
+    environment: g++
+    memory: 3.876
+    name: small_08
+    status: AC
+  - elapsed: 0.0021795369999892955
+    environment: g++
+    memory: 3.832
     name: small_09
     status: AC
-  - elapsed: 0.0020649659999776304
+  - elapsed: 0.0021536419999961254
     environment: g++
-    memory: 4.02
+    memory: 3.808
     name: small_10
     status: AC
-  - elapsed: 0.001878892999997106
+  - elapsed: 0.002193994000009525
     environment: g++
-    memory: 3.984
+    memory: 3.884
     name: small_11
     status: AC
-  - elapsed: 0.001903858000019909
+  - elapsed: 0.0023100049999982275
     environment: g++
-    memory: 4.012
+    memory: 3.9
     name: small_12
     status: AC
-  - elapsed: 0.0019379689999823313
+  - elapsed: 0.0021941539999943416
     environment: g++
-    memory: 4.0
+    memory: 3.876
     name: small_13
     status: AC
-  - elapsed: 0.0018917209999926854
+  - elapsed: 0.002215356999982987
     environment: g++
-    memory: 3.988
+    memory: 3.736
     name: small_14
     status: AC
-  - elapsed: 0.0018934389999856194
+  - elapsed: 0.002198583000023291
     environment: g++
-    memory: 3.892
+    memory: 3.692
     name: small_15
     status: AC
-  - elapsed: 1.24264267800001
+  - elapsed: 1.50775562299998
     environment: g++
-    memory: 13.8
+    memory: 13.844
     name: small_and_large_00
     status: AC
-  - elapsed: 3.179354269000015
+  - elapsed: 4.2545368529999905
     environment: g++
-    memory: 34.352
+    memory: 34.292
     name: small_and_large_01
     status: AC
-  - elapsed: 1.2567637149999769
+  - elapsed: 1.533432371999993
     environment: g++
-    memory: 11.792
+    memory: 11.868
     name: small_and_large_02
     status: AC
-  - elapsed: 3.1406464760000006
+  - elapsed: 4.230605692000012
     environment: g++
-    memory: 28.328
+    memory: 28.348
     name: small_and_large_03
     status: AC
-  - elapsed: 0.0024500609999904555
+  - elapsed: 0.002766629000007015
     environment: g++
-    memory: 3.892
+    memory: 3.692
     name: unsigned_overflow_00
     status: AC
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_arbitrary.test.cpp

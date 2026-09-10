@@ -697,7 +697,7 @@ data:
     memory: 3.8
     name: small_random_2_02
     status: AC
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_bcc.test.cpp

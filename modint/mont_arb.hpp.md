@@ -63,6 +63,12 @@ data:
     - filename: aoj_ntl_1_d.test.cpp
       icon: TEST_ACCEPTED
       path: verify/aoj/aoj_ntl_1_d.test.cpp
+    - filename: sparsity_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_performance.test.cpp
+    - filename: sparsity_small_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_small_performance.test.cpp
     - filename: group.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/group/group.test.cpp
@@ -294,10 +300,12 @@ data:
   - string/static_rolling_hash.hpp
   - unionfind/parallel.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/unit_test/fps/sparsity_performance.test.cpp
+  - verify/unit_test/fps/sparsity_small_performance.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/math/isprime_table_extend.test.cpp
   - verify/unit_test/math/lpf_table_extend.test.cpp

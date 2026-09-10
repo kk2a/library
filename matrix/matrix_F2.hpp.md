@@ -589,7 +589,7 @@ data:
   path: matrix/matrix_F2.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_linalg/matrix_det_f2.test.cpp

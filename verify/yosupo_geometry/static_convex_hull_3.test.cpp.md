@@ -207,7 +207,7 @@ data:
     memory: 3.868
     name: small_random_07
     status: AC
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/static_convex_hull_3.test.cpp

@@ -51,6 +51,15 @@ data:
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     type: Required by
   - files:
+    - filename: sparsity_boundary.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_boundary.test.cpp
+    - filename: sparsity_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_performance.test.cpp
+    - filename: sparsity_small_performance.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sparsity_small_performance.test.cpp
     - filename: algebra.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/algebra/algebra.test.cpp
@@ -385,9 +394,12 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/fps/sparsity_boundary.test.cpp
+  - verify/unit_test/fps/sparsity_performance.test.cpp
+  - verify/unit_test/fps/sparsity_small_performance.test.cpp
   - verify/unit_test/type_traits/algebra/algebra.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_convolution/convolution_and.test.cpp

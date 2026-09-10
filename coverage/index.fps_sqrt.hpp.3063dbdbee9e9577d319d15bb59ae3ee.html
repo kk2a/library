@@ -43,18 +43,18 @@
       </tr>
       <tr>
         <th scope="row">Lines:</th>
-        <td class="coverage-unknown">-%</td>
-        <td class="coverage-unknown">0 / 0 / 0</td>
+        <td class="coverage-low">47.6%</td>
+        <td class="coverage-low">20 / 0 / 42</td>
       </tr>
       <tr>
         <th scope="row">Functions:</th>
-        <td class="coverage-unknown">-%</td>
-        <td class="coverage-unknown">0 / 0 / 0</td>
+        <td class="coverage-high">100.0%</td>
+        <td class="coverage-high">2 / 0 / 2</td>
       </tr>
       <tr>
         <th scope="row">Branches:</th>
-        <td class="coverage-unknown">-%</td>
-        <td class="coverage-unknown">0 / 0 / 0</td>
+        <td class="coverage-low">23.3%</td>
+        <td class="coverage-low">27 / 0 / 116</td>
       </tr>
     </table>
   </div>
@@ -62,6 +62,33 @@
         </header>
         <hr/>
         <nav>
+<div class="m-3">
+  <details>
+    <summary>List of functions</summary>
+<div class="Box m-3 functionslist">
+  <div class="Box-header py-2 d-flex sticky">
+    <div role="rowheader" class="color-fg-muted flex-auto min-width-0 col-md-2 sortable sorted-ascending">Function (File:Line)</div>
+    <div role="rowheader" class="color-fg-muted flex-auto min-width-0 d-flex flex-justify-end flex-wrap flex-items-baseline sortable">Calls</div>
+    <div role="rowheader" class="color-fg-muted d-flex flex-justify-end flex-wrap col-2 sortable">Lines</div>
+    <div role="rowheader" class="color-fg-muted d-flex flex-justify-end flex-wrap col-2 sortable">Branches</div>
+    <div role="rowheader" class="color-fg-muted d-flex flex-justify-end flex-wrap col-2 sortable">Blocks</div>
+  </div>
+  <div class="Box-row Box-row--focus-gray py-2 d-flex">
+    <div role="gridcell" class="color-fg-muted flex-auto min-width-0 col-md-2"><a href="#l13">kk2::FormalPowerSeriesNTTFriendly&lt;kk2::LazyMontgomeryModInt&lt;998244353&gt; &gt; kk2::dense_sqrt&lt;kk2::FormalPowerSeriesNTTFriendly&lt;kk2::LazyMontgomeryModInt&lt;998244353&gt; &gt;, kk2::LazyMontgomeryModInt&lt;998244353&gt; &gt;(kk2::FormalPowerSeriesNTTFriendly&lt;kk2::LazyMontgomeryModInt&lt;998244353&gt; &gt; const&amp;, int) (fps/fps_sqrt.hpp:13)</a>    </div>
+    <div role="gridcell" class="color-fg-muted flex-auto min-width-0 d-flex flex-justify-end flex-wrap flex-items-baseline" data-sort="4024">called 4024 times</div>
+    <div role="gridcell" class="color-fg-muted d-flex flex-justify-end flex-wrap col-2">54.2%</div>
+    <div role="gridcell" class="color-fg-muted d-flex flex-justify-end flex-wrap col-2">26.6%</div>
+    <div role="gridcell" class="color-fg-muted d-flex flex-justify-end flex-wrap col-2">32.0%</div>
+  </div>
+  <div class="Box-row Box-row--focus-gray py-2 d-flex">
+    <div role="gridcell" class="color-fg-muted flex-auto min-width-0 col-md-2"><a href="#l43">kk2::FormalPowerSeriesNTTFriendly&lt;kk2::LazyMontgomeryModInt&lt;998244353&gt; &gt; kk2::sparse_sqrt&lt;kk2::FormalPowerSeriesNTTFriendly&lt;kk2::LazyMontgomeryModInt&lt;998244353&gt; &gt;, kk2::LazyMontgomeryModInt&lt;998244353&gt; &gt;(kk2::FormalPowerSeriesNTTFriendly&lt;kk2::LazyMontgomeryModInt&lt;998244353&gt; &gt; const&amp;, int) (fps/fps_sqrt.hpp:43)</a>    </div>
+    <div role="gridcell" class="color-fg-muted flex-auto min-width-0 d-flex flex-justify-end flex-wrap flex-items-baseline" data-sort="4024">called 4024 times</div>
+    <div role="gridcell" class="color-fg-muted d-flex flex-justify-end flex-wrap col-2">38.9%</div>
+    <div role="gridcell" class="color-fg-muted d-flex flex-justify-end flex-wrap col-2">19.2%</div>
+    <div role="gridcell" class="color-fg-muted d-flex flex-justify-end flex-wrap col-2">23.0%</div>
+  </div>
+</div>  </details>
+</div>
 
         </nav>
         <main>
@@ -69,9 +96,9 @@
   <div class="Box-header d-flex flex-space-between sticky">
     fps/fps_sqrt.hpp
     <div class="toggle-buttons">
-      <button type="button" class="button_toggle_coveredLine show_coveredLine" value="coveredLine" title="Toggle covered lines">0 covered</button>
-      <button type="button" class="button_toggle_uncoveredLine show_uncoveredLine" value="uncoveredLine" title="Toggle uncovered lines">0 uncovered</button>
-      <button type="button" class="button_toggle_partialCoveredLine show_partialCoveredLine" value="partialCoveredLine" title="Toggle partial covered lines">0 partial covered</button>
+      <button type="button" class="button_toggle_coveredLine show_coveredLine" value="coveredLine" title="Toggle covered lines">5 covered</button>
+      <button type="button" class="button_toggle_uncoveredLine show_uncoveredLine" value="uncoveredLine" title="Toggle uncovered lines">22 uncovered</button>
+      <button type="button" class="button_toggle_partialCoveredLine show_partialCoveredLine" value="partialCoveredLine" title="Toggle partial covered lines">15 partial covered</button>
       <button type="button" class="button_toggle_excludedLine show_excludedLine" value="excludedLine" title="Toggle excluded lines">0 excluded</button>
     </div>
     <div class="nav">
@@ -135,14 +162,14 @@
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">"../type_traits/fps.hpp"</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l8" href="#l8">8</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">namespace</span><span class="w"> </span><span class="nn">kk2</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">"fps_sparsity_detector.hpp"</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l9" href="#l9">9</a></td>
@@ -156,388 +183,619 @@
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">FPS</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">mint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">FPS</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="src "><span class="k">namespace</span><span class="w"> </span><span class="nn">kk2</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l11" href="#l11">11</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="c1">// using mint = typename FPS::value_type;</span></td>
+        <td class="src "></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l12" href="#l12">12</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">();</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">FPS</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">mint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">FPS</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l13" href="#l13">13</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">FPS</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
+        <td class="linecount coveredLine show_coveredLine">4024</td>
+        <td class="src  coveredLine show_coveredLine"><span class="n">FPS</span><span class="w"> </span><span class="n">dense_sqrt</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l14" href="#l14">14</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/2</summary>
+            <div class="linebranchContents">
+              <div class="notTakenBranch">&cross; Branch 0 not taken.</div>
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">();</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l15" href="#l15">15</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/6</summary>
+            <div class="linebranchContents">
+              <div class="notTakenBranch">&cross; Branch 1 not taken.</div>
+              <div class="takenBranch">&check; Branch 2 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 4 not taken.</div>
+              <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+              <div class="notTakenBranch">&cross; Branch 7 not taken.</div>
+              <div class="notTakenBranch">&cross; Branch 8 not taken.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">FPS</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l16" href="#l16">16</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">2/4</summary>
+            <div class="linebranchContents">
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+              <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+              <div class="takenBranch">&check; Branch 6 taken 4024 times.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l17" href="#l17">17</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l18" href="#l18">18</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l19" href="#l19">19</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l20" href="#l20">20</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l21" href="#l21">21</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dense_sqrt</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l22" href="#l22">22</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">ret</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">deg</span><span class="p">)</span><span class="w"> </span><span class="n">ret</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l23" href="#l23">23</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l24" href="#l24">24</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">            </span><span class="p">}</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">ret</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">deg</span><span class="p">)</span><span class="w"> </span><span class="n">ret</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l25" href="#l25">25</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">        </span><span class="p">}</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l26" href="#l26">26</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FPS</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">            </span><span class="p">}</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l27" href="#l27">27</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">}</span></td>
+        <td class="src "><span class="w">        </span><span class="p">}</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l28" href="#l28">28</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FPS</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l29" href="#l29">29</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">sqr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mod_sqrt</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">val</span><span class="p">(),</span><span class="w"> </span><span class="n">mint</span><span class="o">::</span><span class="n">getmod</span><span class="p">());</span></td>
+        <td class="src "><span class="w">    </span><span class="p">}</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l30" href="#l30">30</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sqr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
+        <td class="src "></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l31" href="#l31">31</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/2</summary>
+            <div class="linebranchContents">
+              <div class="takenBranch">&check; Branch 4 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">sqr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sqr</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">mint</span><span class="o">::</span><span class="n">getmod</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">val</span><span class="p">());</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">sqr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mod_sqrt</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">val</span><span class="p">(),</span><span class="w"> </span><span class="n">mint</span><span class="o">::</span><span class="n">getmod</span><span class="p">());</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l32" href="#l32">32</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/2</summary>
+            <div class="linebranchContents">
+              <div class="notTakenBranch">&cross; Branch 0 not taken.</div>
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="n">FPS</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">mint</span><span class="p">(</span><span class="n">sqr</span><span class="p">)};</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sqr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l33" href="#l33">33</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/2</summary>
+            <div class="linebranchContents">
+              <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
+              <div class="takenBranch">&check; Branch 4 taken 4024 times.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="n">mint</span><span class="w"> </span><span class="n">inv2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">inv</span><span class="p">();</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">sqr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sqr</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">mint</span><span class="o">::</span><span class="n">getmod</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">val</span><span class="p">());</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l34" href="#l34">34</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">2/4</summary>
+            <div class="linebranchContents">
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+              <div class="takenBranch">&check; Branch 4 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">deg</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="k">pre</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ret</span><span class="p">.</span><span class="n">inv</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">inv2</span><span class="p">;</span><span class="w"> </span><span class="p">}</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">8048</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="n">FPS</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">mint</span><span class="p">(</span><span class="n">sqr</span><span class="p">)};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l35" href="#l35">35</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">.</span><span class="k">pre</span><span class="p">(</span><span class="n">deg</span><span class="p">);</span></td>
+        <td class="linecount coveredLine show_coveredLine">4024</td>
+        <td class="src  coveredLine show_coveredLine"><span class="w">    </span><span class="n">mint</span><span class="w"> </span><span class="n">inv2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">inv</span><span class="p">();</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l36" href="#l36">36</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">2/2</summary>
+            <div class="linebranchContents">
+              <div class="takenBranch">&check; Branch 0 taken 18218 times.</div>
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="p">}</span></td>
+        <td class="linecount coveredLine show_coveredLine">22242</td>
+        <td class="src  coveredLine show_coveredLine"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">deg</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l37" href="#l37">37</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">5/10</summary>
+            <div class="linebranchContents">
+              <div class="takenBranch">&check; Branch 1 taken 18218 times.</div>
+              <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+              <div class="takenBranch">&check; Branch 4 taken 18218 times.</div>
+              <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+              <div class="takenBranch">&check; Branch 7 taken 18218 times.</div>
+              <div class="notTakenBranch">&cross; Branch 8 not taken.</div>
+              <div class="takenBranch">&check; Branch 10 taken 18218 times.</div>
+              <div class="notTakenBranch">&cross; Branch 11 not taken.</div>
+              <div class="takenBranch">&check; Branch 13 taken 18218 times.</div>
+              <div class="notTakenBranch">&cross; Branch 14 not taken.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">18218</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="k">pre</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">).</span><span class="n">dense_mul</span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">dense_inv</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">inv2</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l38" href="#l38">38</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">FPS</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">mint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">FPS</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="w">    </span><span class="p">}</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l39" href="#l39">39</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/2</summary>
+            <div class="linebranchContents">
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="n">FPS</span><span class="w"> </span><span class="n">sparse_sqrt</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">.</span><span class="k">pre</span><span class="p">(</span><span class="n">deg</span><span class="p">);</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l40" href="#l40">40</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="c1">// using mint = typename FPS::value_type;</span></td>
+        <td class="linecount coveredLine show_coveredLine">4024</td>
+        <td class="src  coveredLine show_coveredLine"><span class="p">}</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l41" href="#l41">41</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">();</span></td>
+        <td class="src "></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l42" href="#l42">42</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">FPS</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">FPS</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">mint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">FPS</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l43" href="#l43">43</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="linecount coveredLine show_coveredLine">4024</td>
+        <td class="src  coveredLine show_coveredLine"><span class="n">FPS</span><span class="w"> </span><span class="n">sparse_sqrt</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l44" href="#l44">44</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="src "><span class="w">    </span><span class="c1">// using mint = typename FPS::value_type;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l45" href="#l45">45</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/2</summary>
+            <div class="linebranchContents">
+              <div class="notTakenBranch">&cross; Branch 0 not taken.</div>
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">();</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l46" href="#l46">46</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/6</summary>
+            <div class="linebranchContents">
+              <div class="notTakenBranch">&cross; Branch 1 not taken.</div>
+              <div class="takenBranch">&check; Branch 2 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 4 not taken.</div>
+              <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+              <div class="notTakenBranch">&cross; Branch 7 not taken.</div>
+              <div class="notTakenBranch">&cross; Branch 8 not taken.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">FPS</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l47" href="#l47">47</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">2/4</summary>
+            <div class="linebranchContents">
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+              <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+              <div class="takenBranch">&check; Branch 6 taken 4024 times.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l48" href="#l48">48</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sparse_sqrt</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l49" href="#l49">49</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l50" href="#l50">50</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l51" href="#l51">51</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">ret</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">deg</span><span class="p">)</span><span class="w"> </span><span class="n">ret</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l52" href="#l52">52</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sparse_sqrt</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l53" href="#l53">53</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">            </span><span class="p">}</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l54" href="#l54">54</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">        </span><span class="p">}</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l55" href="#l55">55</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FPS</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">ret</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">deg</span><span class="p">)</span><span class="w"> </span><span class="n">ret</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l56" href="#l56">56</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">}</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l57" href="#l57">57</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">sqr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mod_sqrt</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">val</span><span class="p">(),</span><span class="w"> </span><span class="n">mint</span><span class="o">::</span><span class="n">getmod</span><span class="p">());</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">            </span><span class="p">}</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l58" href="#l58">58</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sqr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
+        <td class="src "><span class="w">        </span><span class="p">}</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l59" href="#l59">59</a></td>
         <td class="linebranch">
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">sparse_pow</span><span class="p">(((</span><span class="n">mint</span><span class="o">::</span><span class="n">getmod</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">deg</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="n">sqr</span><span class="p">).</span><span class="n">inv</span><span class="p">();</span></td>
+        <td class="linecount uncoveredLine show_uncoveredLine">&cross;</td>
+        <td class="src  uncoveredLine show_uncoveredLine"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FPS</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l60" href="#l60">60</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="p">}</span></td>
+        <td class="src "><span class="w">    </span><span class="p">}</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l61" href="#l61">61</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/2</summary>
+            <div class="linebranchContents">
+              <div class="takenBranch">&check; Branch 4 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">sqr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mod_sqrt</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">val</span><span class="p">(),</span><span class="w"> </span><span class="n">mint</span><span class="o">::</span><span class="n">getmod</span><span class="p">());</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l62" href="#l62">62</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">1/2</summary>
+            <div class="linebranchContents">
+              <div class="notTakenBranch">&cross; Branch 0 not taken.</div>
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace kk2</span></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sqr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l63" href="#l63">63</a></td>
         <td class="linebranch">
+          <details class="linebranchDetails">
+            <summary class="linebranchSummary">4/8</summary>
+            <div class="linebranchContents">
+              <div class="takenBranch">&check; Branch 1 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+              <div class="takenBranch">&check; Branch 4 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+              <div class="takenBranch">&check; Branch 8 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 9 not taken.</div>
+              <div class="takenBranch">&check; Branch 11 taken 4024 times.</div>
+              <div class="notTakenBranch">&cross; Branch 12 not taken.</div>
+            </div>
+          </details>
         </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="linecount partialCoveredLine show_partialCoveredLine">4024</td>
+        <td class="src  partialCoveredLine show_partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">sparse_pow</span><span class="p">(((</span><span class="n">mint</span><span class="o">::</span><span class="n">getmod</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">deg</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="n">sqr</span><span class="p">).</span><span class="n">inv</span><span class="p">();</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l64" href="#l64">64</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="cp">#endif </span><span class="c1">// KK2_FPS_FPS_SQRT_HPP</span></td>
+        <td class="src "><span class="p">}</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l65" href="#l65">65</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l66" href="#l66">66</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">FPS</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">mint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">FPS</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l67" href="#l67">67</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span><span class="p">.</span><span class="n">size</span><span class="p">();</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l68" href="#l68">68</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">f</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">mint</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l69" href="#l69">69</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="w">        </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">is_sparse_operation</span><span class="p">(</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l70" href="#l70">70</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="w">            </span><span class="n">FPSOperation</span><span class="o">::</span><span class="n">SQRT</span><span class="p">,</span><span class="w"> </span><span class="n">fps</span><span class="o">::</span><span class="n">NTTFriendlyFormalPowerSeries</span><span class="o">&lt;</span><span class="n">FPS</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">FPS</span><span class="p">(),</span><span class="w"> </span><span class="n">deg</span><span class="p">))</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l71" href="#l71">71</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sparse_sqrt</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">deg</span><span class="p">);</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l72" href="#l72">72</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">dense_sqrt</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">deg</span><span class="p">);</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l73" href="#l73">73</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="p">}</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l74" href="#l74">74</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l75" href="#l75">75</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace kk2</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l76" href="#l76">76</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l77" href="#l77">77</a></td>
+        <td class="linebranch">
+        </td>
+        <td class="linecount"></td>
+        <td class="src "><span class="cp">#endif </span><span class="c1">// KK2_FPS_FPS_SQRT_HPP</span></td>
+      </tr>
+      <tr class="source-line">
+        <td class="lineno"><a id="l78" href="#l78">78</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
@@ -550,7 +808,7 @@
         <hr class="block-separator"/>
         <footer class="text-center">
           Created using <a href="http://gcovr.com/en/8.6">GCOVR (Version 8.6)</a>
-          at 2026-09-08 17:38:10
+          at 2026-09-10 15:31:17
         </footer>
       </div>
     </div>

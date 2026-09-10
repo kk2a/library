@@ -10,18 +10,6 @@ data:
       path: type_traits/integral.hpp
     type: Depends on
   - files:
-    - filename: convolution.hpp
-      icon: LIBRARY_ALL_AC
-      path: convolution/convolution.hpp
-    - filename: convolution_arb.hpp
-      icon: LIBRARY_ALL_AC
-      path: convolution/convolution_arb.hpp
-    - filename: convolution_int.hpp
-      icon: LIBRARY_NO_TESTS
-      path: convolution/convolution_int.hpp
-    - filename: multi_convolution_truncated.hpp
-      icon: LIBRARY_ALL_AC
-      path: convolution/multi_convolution_truncated.hpp
     - filename: bit_vector.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/bit_vector.hpp
@@ -34,21 +22,6 @@ data:
     - filename: wavelet_matrix.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/wavelet_matrix.hpp
-    - filename: fps_arb.hpp
-      icon: LIBRARY_ALL_AC
-      path: fps/fps_arb.hpp
-    - filename: fps_multivariate.hpp
-      icon: LIBRARY_ALL_AC
-      path: fps/fps_multivariate.hpp
-    - filename: fps_ntt_friendly.hpp
-      icon: LIBRARY_ALL_AC
-      path: fps/fps_ntt_friendly.hpp
-    - filename: fps_sparsity_detector.hpp
-      icon: LIBRARY_ALL_AC
-      path: fps/fps_sparsity_detector.hpp
-    - filename: comb_large.hpp
-      icon: LIBRARY_ALL_AC
-      path: math_mod/comb_large.hpp
     - filename: matrix_F2.hpp
       icon: LIBRARY_ALL_AC
       path: matrix/matrix_F2.hpp
@@ -58,30 +31,6 @@ data:
     - filename: parallel.hpp
       icon: LIBRARY_ALL_AC
       path: unionfind/parallel.hpp
-    - filename: fps_composition.test.cpp
-      icon: LIBRARY_ALL_AC
-      path: verify/yosupo_fps/fps_composition.test.cpp
-    - filename: fps_composition_inv.test.cpp
-      icon: LIBRARY_ALL_AC
-      path: verify/yosupo_fps/fps_composition_inv.test.cpp
-    - filename: fps_exp_arb.test.cpp
-      icon: LIBRARY_NO_TESTS
-      path: verify/yosupo_fps/fps_exp_arb.test.cpp
-    - filename: fps_multipoint_evaluation_geometric.test.cpp
-      icon: LIBRARY_ALL_AC
-      path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-    - filename: poly_interpolation_geometric.test.cpp
-      icon: LIBRARY_ALL_AC
-      path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    - filename: poly_sample_point_shift.test.cpp
-      icon: LIBRARY_ALL_AC
-      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
-    - filename: poly_to_newton_basis.test.cpp
-      icon: LIBRARY_ALL_AC
-      path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
-    - filename: kth_term_of_linearly_recurrent_sequence.test.cpp
-      icon: LIBRARY_NO_TESTS
-      path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     type: Required by
   - files:
     - filename: bit_vector.test.cpp
@@ -90,24 +39,9 @@ data:
     - filename: wavelet_matrix.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
-    - filename: large_fact_arb_mod.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: dynamic_rolling_hash.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/string/dynamic_rolling_hash.test.cpp
-    - filename: fps.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/unit_test/type_traits/fps/fps.test.cpp
-    - filename: convolution_arbitrary.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
-    - filename: convolution_multi_truncated.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-    - filename: convolution_ntt_friendly.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
     - filename: ds_predecessor_problem.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
@@ -117,63 +51,6 @@ data:
     - filename: ds_range_parallel_unionfind.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
-    - filename: fps_exp.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_exp.test.cpp
-    - filename: fps_inv.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_inv.test.cpp
-    - filename: fps_inv_arb.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_inv_arb.test.cpp
-    - filename: fps_log.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_log.test.cpp
-    - filename: fps_log_arb.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_log_arb.test.cpp
-    - filename: fps_multipoint_evaluation.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-    - filename: fps_pow.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_pow.test.cpp
-    - filename: fps_product_of_polynomial_sequence.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-    - filename: fps_sparse_exp.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_sparse_exp.test.cpp
-    - filename: fps_sparse_inv.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_sparse_inv.test.cpp
-    - filename: fps_sparse_log.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_sparse_log.test.cpp
-    - filename: fps_sparse_pow.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_sparse_pow.test.cpp
-    - filename: fps_sprase_sqrt.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-    - filename: fps_sqrt.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_sqrt.test.cpp
-    - filename: poly_division.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_division.test.cpp
-    - filename: poly_interpolation.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_interpolation.test.cpp
-    - filename: poly_inv.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_inv.test.cpp
-    - filename: poly_root_finding.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_root_finding.test.cpp
-    - filename: poly_taylor_shift.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/poly_taylor_shift.test.cpp
     - filename: matrix_det_f2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_linalg/matrix_det_f2.test.cpp
@@ -189,18 +66,6 @@ data:
     - filename: solution_of_linear_equations_F2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-    - filename: enumerate_bell_number.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_math/enumerate_bell_number.test.cpp
-    - filename: enumerate_stirling_number_of_the_first_kind.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-    - filename: many_factrials.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_math/many_factrials.test.cpp
-    - filename: yuki_1510.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yuki/yuki_1510.test.cpp
     type: Verified with
   dependsOn:
   - type_traits/integral.hpp
@@ -291,72 +156,27 @@ data:
   path: bit/bitcount.hpp
   pathExtension: hpp
   requiredBy:
-  - convolution/convolution.hpp
-  - convolution/convolution_arb.hpp
-  - convolution/convolution_int.hpp
-  - convolution/multi_convolution_truncated.hpp
   - data_structure/bit_vector.hpp
   - data_structure/my_bitset.hpp
   - data_structure/w_ary_tree.hpp
   - data_structure/wavelet_matrix.hpp
-  - fps/fps_arb.hpp
-  - fps/fps_multivariate.hpp
-  - fps/fps_ntt_friendly.hpp
-  - fps/fps_sparsity_detector.hpp
-  - math_mod/comb_large.hpp
   - matrix/matrix_F2.hpp
   - string/dynamic_rolling_hash.hpp
   - unionfind/parallel.hpp
-  - verify/yosupo_fps/fps_composition.test.cpp
-  - verify/yosupo_fps/fps_composition_inv.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
-  - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
-  - verify/yosupo_fps/poly_to_newton_basis.test.cpp
-  - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/data_structure/bit_vector.test.cpp
   - verify/unit_test/data_structure/wavelet_matrix.test.cpp
-  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
-  - verify/unit_test/type_traits/fps/fps.test.cpp
-  - verify/yosupo_convolution/convolution_arbitrary.test.cpp
-  - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
-  - verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - verify/yosupo_ds/ds_range_kth_smallest.test.cpp
   - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
-  - verify/yosupo_fps/fps_exp.test.cpp
-  - verify/yosupo_fps/fps_inv.test.cpp
-  - verify/yosupo_fps/fps_inv_arb.test.cpp
-  - verify/yosupo_fps/fps_log.test.cpp
-  - verify/yosupo_fps/fps_log_arb.test.cpp
-  - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp
-  - verify/yosupo_fps/fps_pow.test.cpp
-  - verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp
-  - verify/yosupo_fps/fps_sparse_exp.test.cpp
-  - verify/yosupo_fps/fps_sparse_inv.test.cpp
-  - verify/yosupo_fps/fps_sparse_log.test.cpp
-  - verify/yosupo_fps/fps_sparse_pow.test.cpp
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - verify/yosupo_fps/fps_sqrt.test.cpp
-  - verify/yosupo_fps/poly_division.test.cpp
-  - verify/yosupo_fps/poly_interpolation.test.cpp
-  - verify/yosupo_fps/poly_inv.test.cpp
-  - verify/yosupo_fps/poly_root_finding.test.cpp
-  - verify/yosupo_fps/poly_taylor_shift.test.cpp
   - verify/yosupo_linalg/matrix_det_f2.test.cpp
   - verify/yosupo_linalg/matrix_inv_f2.test.cpp
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
   - verify/yosupo_linalg/matrix_rank_F2.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
-  - verify/yosupo_math/enumerate_bell_number.test.cpp
-  - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
-  - verify/yosupo_math/many_factrials.test.cpp
-  - verify/yuki/yuki_1510.test.cpp
 documentation_of: bit/bitcount.hpp
 layout: document
 ---

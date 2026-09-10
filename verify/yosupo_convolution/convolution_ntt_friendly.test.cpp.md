@@ -6,9 +6,6 @@ data:
     - https://judge.yosupo.jp/problem/convolution_mod
   dependencies:
   - files:
-    - filename: bitcount.hpp
-      icon: LIBRARY_ALL_AC
-      path: bit/bitcount.hpp
     - filename: convolution.hpp
       icon: LIBRARY_ALL_AC
       path: convolution/convolution.hpp
@@ -57,7 +54,6 @@ data:
   - files: []
     type: Verified with
   dependsOn:
-  - bit/bitcount.hpp
   - convolution/convolution.hpp
   - fps/fps_sparsity_detector.hpp
   - math_mod/butterfly.hpp
@@ -83,92 +79,125 @@ data:
   - code: "#line 1 \"verify/yosupo_convolution/convolution_ntt_friendly.test.cpp\"\
       \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/convolution_mod\n\
       \n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#include <algorithm>\n#include\
-      \ <vector>\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#line 1 \"bit/bitcount.hpp\"\
-      \n\n\n\n#include <cassert>\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include\
-      \ <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename\
-      \ T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
-      \                                                       or std::is_same<T, __int128>::value,\n\
-      \                                                   std::true_type,\n      \
-      \                                             std::false_type>::type;\n\ntemplate\
-      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
-      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                                            std::true_type,\n             \
-      \                               std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
-      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
-      \                              make_unsigned_int128<T>,\n                  \
-      \            typename std::conditional<std::is_signed<T>::value,\n         \
-      \                                               std::make_unsigned<T>,\n   \
-      \                                                     std::common_type<T>>::type>::type;\n\
-      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
-      template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
-      template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
-      template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
-      \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
-      template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
-      template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
-      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 7 \"bit/bitcount.hpp\"\n\nnamespace kk2 {\n\n\
-      template <Integral T> constexpr int ctz(T x) {\n    assert(x != T(0));\n\n \
-      \   if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n    }\
-      \ else if constexpr (sizeof(T) <= 8) {\n        return __builtin_ctzll(x);\n\
-      \    } else {\n        if (x & 0xffffffffffffffff)\n            return __builtin_ctzll((unsigned\
-      \ long long)(x & 0xffffffffffffffff));\n        return 64 + __builtin_ctzll((unsigned\
-      \ long long)(x >> 64));\n    }\n}\n\ntemplate <Integral T> constexpr int lsb(T\
-      \ x) {\n    assert(x != T(0));\n\n    return ctz(x);\n}\n\ntemplate <Integral\
-      \ T> constexpr int clz(T x) {\n    assert(x != T(0));\n\n    if constexpr (sizeof(T)\
-      \ <= 4) {\n        return __builtin_clz(x);\n    } else if constexpr (sizeof(T)\
-      \ <= 8) {\n        return __builtin_clzll(x);\n    } else {\n        if (x >>\
-      \ 64) return __builtin_clzll((unsigned long long)(x >> 64));\n        return\
-      \ 64 + __builtin_clzll((unsigned long long)(x & 0xffffffffffffffff));\n    }\n\
-      }\n\ntemplate <Integral T> constexpr int msb(T x) {\n    assert(x != T(0));\n\
-      \n    return sizeof(T) * 8 - 1 - clz(x);\n}\n\ntemplate <Integral T> constexpr\
-      \ int popcount(T x) {\n\n    if constexpr (sizeof(T) <= 4) {\n        return\
-      \ __builtin_popcount(x);\n    } else if constexpr (sizeof(T) <= 8) {\n     \
-      \   return __builtin_popcountll(x);\n    } else {\n        return __builtin_popcountll((unsigned\
-      \ long long)(x >> 64))\n               + __builtin_popcountll((unsigned long\
-      \ long)(x & 0xffffffffffffffff));\n    }\n}\n\n}; // namespace kk2\n\n\n#line\
-      \ 5 \"fps/fps_sparsity_detector.hpp\"\n\nnamespace kk2 {\n\nenum class FPSOperation\
-      \ { CONVOLUTION, EXP };\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-      bool is_sparse_operation(FPSOperation op,\n                         bool is_ntt_friendly,\n\
-      \                         const FPS &a,\n                         const FPS\
-      \ &b = FPS()) {\n    int n = a.size(), m = b.size();\n    long long not_zero_a\
-      \ = 0, not_zero_b = 0;\n    bool same = a == b;\n    int lg = msb(n + m) + 1;\n\
-      \    for (int i = 0; i < n; i++) not_zero_a += a[i] != mint(0);\n    for (int\
-      \ i = 0; i < m; i++) not_zero_b += b[i] != mint(0);\n\n    if (op == FPSOperation::CONVOLUTION)\
-      \ {\n        return (n + m) * lg * (is_ntt_friendly ? 3.42 : 20.0) * (same ?\
-      \ 0.5 : 1)\n               > double(not_zero_a) * not_zero_b;\n    }\n    if\
-      \ (op == FPSOperation::EXP) {\n        return n * lg * (is_ntt_friendly ? 8.2\
-      \ : 60.0) > double(n) * not_zero_a;\n    }\n    return false;\n}\n\n} // namespace\
-      \ kk2\n\n\n#line 1 \"math_mod/butterfly.hpp\"\n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\
-      \n\n#line 1 \"math_mod/primitive_root.hpp\"\n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\
-      \n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
-      \ S, class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(n >=\
-      \ 0);\n    if (m == 1) return S(0);\n    S _m = m, r = 1;\n    S y = x % _m;\n\
-      \    if (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) %\
-      \ _m;\n        if (n >>= 1) y = (y * y) % _m;\n    }\n    return r;\n}\n\n}\
-      \ // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\n\nnamespace\
-      \ kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n    if (m == 2)\
-      \ return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049) return\
-      \ 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return 3;\n\
-      \    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0] =\
-      \ 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x /=\
-      \ 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x %\
-      \ i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0) {\
-      \ x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
+      \ <ranges>\n#include <vector>\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\
+      \n\n\n#line 5 \"fps/fps_sparsity_detector.hpp\"\n#include <bit>\n#include <cstdint>\n\
+      #include <memory>\n\nnamespace kk2 {\n\nenum class FPSOperation {\n    CONVOLUTION,\n\
+      \    LOG,\n    POWER,\n    DIVISION,\n    POLYNOMIAL_DIVISION,\n    INVERSE,\n\
+      \    EXP,\n    SQRT\n};\n\nnamespace fps::sparsity_detail {\n\n// E(n): the\
+      \ leading FFT evaluation cost, up to the common field-operation\n// constant\
+      \ that cancels when dense and sparse leading terms are compared.\ninline std::int64_t\
+      \ evaluation_work(int n) {\n    if (n <= 1) return 1;\n    const unsigned z\
+      \ = std::bit_ceil(static_cast<unsigned>(n));\n    return static_cast<std::int64_t>(z)\
+      \ * std::countr_zero(z);\n}\n\ninline int transform_size(int n, int m) {\n \
+      \   if (n <= 0 || m <= 0) return 0;\n    return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n\
+      \ + m - 1)));\n}\n\ninline std::int64_t convolution_dense_work(int n, int m,\
+      \ bool same, bool ntt_friendly) {\n    const int z = transform_size(n, m);\n\
+      \    if (z == 0) return 0;\n\n    // A different pair needs two forward and\
+      \ one inverse transform. Squaring\n    // reuses the forward transform and needs\
+      \ only one forward transform.\n    const int transforms = same ? 2 : 3;\n  \
+      \  // Arbitrary-modulus convolution uses three NTT-friendly moduli.\n    const\
+      \ int moduli = ntt_friendly ? 1 : 3;\n    return static_cast<std::int64_t>(transforms)\
+      \ * moduli * evaluation_work(z);\n}\n\ninline std::int64_t inverse_dense_work(int\
+      \ deg, bool ntt_friendly) {\n    if (deg <= 1) return 0;\n    const int z =\
+      \ static_cast<int>(std::bit_ceil(static_cast<unsigned>(deg)));\n    // NTT-friendly\
+      \ uses five transforms per Newton level, whose geometric\n    // sum has leading\
+      \ term 10 E(z). The arbitrary-modulus implementation\n    // performs two fresh\
+      \ convolutions per level, giving 60 E(z).\n    return (ntt_friendly ? 10 : 60)\
+      \ * evaluation_work(z);\n}\n\ninline std::int64_t log_dense_work(int n, int\
+      \ deg, bool ntt_friendly) {\n    return inverse_dense_work(deg, ntt_friendly)\n\
+      \           + convolution_dense_work(std::max(0, n - 1), deg, false, ntt_friendly);\n\
+      }\n\ninline long double exp_dense_work(int deg, bool ntt_friendly) {\n    if\
+      \ (deg <= 1) return 0;\n    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(deg)));\n\
+      \    if (ntt_friendly) {\n        if (deg <= 2) return 0;\n        // Bostan--Schost,\
+      \ Theorem 1: (33/2) E(z) + (97/4) z.  Only\n        // the leading E(z) term\
+      \ matters for the sparsity threshold.\n        return 16.5L * evaluation_work(z);\n\
+      \    }\n    // FPSArb recomputes a logarithm and a product at every Newton level.\n\
+      \    return 192 * evaluation_work(z);\n}\n\ninline long double power_dense_work(int\
+      \ n, int deg, bool ntt_friendly) {\n    return log_dense_work(n, deg, ntt_friendly)\
+      \ + exp_dense_work(deg, ntt_friendly);\n}\n\ninline std::int64_t division_dense_work(int\
+      \ n, int deg, bool ntt_friendly) {\n    return inverse_dense_work(deg, ntt_friendly)\n\
+      \           + convolution_dense_work(std::min(n, deg), deg, false, ntt_friendly);\n\
+      }\n\ninline std::int64_t polynomial_division_dense_work(int quotient_size, bool\
+      \ ntt_friendly) {\n    return inverse_dense_work(quotient_size, ntt_friendly)\n\
+      \           + convolution_dense_work(quotient_size, quotient_size, false, ntt_friendly);\n\
+      }\n\ninline std::int64_t sqrt_dense_work(int deg, bool ntt_friendly) {\n   \
+      \ if (deg <= 1) return 0;\n    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(deg)));\n\
+      \    // Newton uses an inverse and one product at every level. The implementation\n\
+      \    // computes the complete next power-of-two block even at the last level.\n\
+      \    return (ntt_friendly ? 32 : 156) * evaluation_work(z);\n}\n\ninline long\
+      \ double sparse_leading_work(FPSOperation op, long double support_output_pairs)\
+      \ {\n    switch (op) {\n    case FPSOperation::LOG:\n        return 3 * support_output_pairs;\n\
+      \    case FPSOperation::POWER:\n    case FPSOperation::SQRT:\n        return\
+      \ 4 * support_output_pairs;\n    case FPSOperation::CONVOLUTION:\n    case FPSOperation::DIVISION:\n\
+      \    case FPSOperation::POLYNOMIAL_DIVISION:\n    case FPSOperation::INVERSE:\n\
+      \    case FPSOperation::EXP:\n        return 2 * support_output_pairs;\n   \
+      \ }\n    return 0;\n}\n\ninline long double sparse_runtime_factor(FPSOperation\
+      \ op) {\n    // Conversion from the field-operation model above to observed\
+      \ running\n    // time. Calibrated on powers of two from 256 through 4096 while\
+      \ keeping\n    // the threshold conservative when the two implementations are\
+      \ close.\n    switch (op) {\n    case FPSOperation::POWER:\n    case FPSOperation::SQRT:\n\
+      \        return 0.60L;\n    case FPSOperation::DIVISION:\n    case FPSOperation::POLYNOMIAL_DIVISION:\n\
+      \        return 0.75L;\n    case FPSOperation::CONVOLUTION:\n        return\
+      \ 1.50L;\n    case FPSOperation::LOG:\n        return 1.25L;\n    case FPSOperation::INVERSE:\n\
+      \        return 0.90L;\n    case FPSOperation::EXP:\n        return 1.00L;\n\
+      \    }\n    return 1.00L;\n}\n\n} // namespace fps::sparsity_detail\n\ntemplate\
+      \ <class FPS, class mint = typename FPS::value_type>\nbool is_sparse_operation(\n\
+      \    FPSOperation op, bool is_ntt_friendly, const FPS &a, const FPS &b = FPS(),\
+      \ int deg = -1) {\n    const int n = a.size(), m = b.size();\n    if (n + m\
+      \ == 0) return false;\n\n    const bool convolution = op == FPSOperation::CONVOLUTION;\n\
+      \    const bool division = op == FPSOperation::DIVISION;\n    const bool polynomial_division\
+      \ = op == FPSOperation::POLYNOMIAL_DIVISION;\n    const int target = deg < 0\
+      \ ? n : std::max(0, deg);\n    std::int64_t nonzero_a = 0, nonzero_b = 0;\n\
+      \    long double pair_work = 0;\n\n    const int limit_a = convolution     \
+      \                  ? n :\n                        (division || polynomial_division)\
+      \ ? 0 :\n                                                            std::min(n,\
+      \ target);\n    for (int i = 0; i < limit_a; ++i) {\n        if (a[i] == mint(0))\
+      \ continue;\n        ++nonzero_a;\n        if (!convolution && i > 0) {\n  \
+      \          const int terms = op == FPSOperation::LOG ? target - 1 - i : target\
+      \ - i;\n            if (terms > 0) pair_work += terms;\n        }\n    }\n\n\
+      \    const int limit_b = convolution         ? m :\n                       \
+      \ division            ? std::min(m, target) :\n                        polynomial_division\
+      \ ? m :\n                                              0;\n    for (int i =\
+      \ 0; i < limit_b; ++i) {\n        if (b[i] == mint(0)) continue;\n        ++nonzero_b;\n\
+      \        if (division && i > 0) pair_work += target - i;\n        if (polynomial_division\
+      \ && i + 1 < m) {\n            const int terms = target - (m - 1 - i);\n   \
+      \         if (terms > 0) pair_work += terms;\n        }\n    }\n\n    if (convolution)\
+      \ { pair_work = static_cast<long double>(nonzero_a) * nonzero_b; }\n\n    long\
+      \ double dense_work = 0;\n    switch (op) {\n    case FPSOperation::CONVOLUTION:\n\
+      \        dense_work = fps::sparsity_detail::convolution_dense_work(\n      \
+      \      n, m, std::addressof(a) == std::addressof(b), is_ntt_friendly);\n   \
+      \     break;\n    case FPSOperation::LOG:\n        dense_work = fps::sparsity_detail::log_dense_work(n,\
+      \ target, is_ntt_friendly);\n        break;\n    case FPSOperation::POWER:\n\
+      \        dense_work = fps::sparsity_detail::power_dense_work(n, target, is_ntt_friendly);\n\
+      \        break;\n    case FPSOperation::DIVISION:\n        dense_work = fps::sparsity_detail::division_dense_work(n,\
+      \ target, is_ntt_friendly);\n        break;\n    case FPSOperation::POLYNOMIAL_DIVISION:\n\
+      \        dense_work = fps::sparsity_detail::polynomial_division_dense_work(target,\
+      \ is_ntt_friendly);\n        break;\n    case FPSOperation::INVERSE:\n     \
+      \   dense_work = fps::sparsity_detail::inverse_dense_work(target, is_ntt_friendly);\n\
+      \        break;\n    case FPSOperation::EXP:\n        dense_work = fps::sparsity_detail::exp_dense_work(target,\
+      \ is_ntt_friendly);\n        break;\n    case FPSOperation::SQRT:\n        dense_work\
+      \ = fps::sparsity_detail::sqrt_dense_work(target, is_ntt_friendly);\n      \
+      \  break;\n    }\n\n    // Count the leading field operations executed for each\
+      \ support/output\n    // pair. Linear scans, initialization and per-output normalization\
+      \ are\n    // intentionally omitted on both the sparse and dense sides.\n  \
+      \  const long double sparse_work = fps::sparsity_detail::sparse_leading_work(op,\
+      \ pair_work);\n    return dense_work > fps::sparsity_detail::sparse_runtime_factor(op)\
+      \ * sparse_work;\n}\n\n} // namespace kk2\n\n\n#line 1 \"math_mod/butterfly.hpp\"\
+      \n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
+      \n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n\nnamespace\
+      \ kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T x, U n,\
+      \ T m) {\n    assert(n >= 0);\n    if (m == 1) return S(0);\n    S _m = m, r\
+      \ = 1;\n    S y = x % _m;\n    if (y < 0) y += _m;\n    while (n) {\n      \
+      \  if (n & 1) r = (r * y) % _m;\n        if (n >>= 1) y = (y * y) % _m;\n  \
+      \  }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\
+      \n\nnamespace kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n   \
+      \ if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049)\
+      \ return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return\
+      \ 3;\n    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0]\
+      \ = 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x\
+      \ /= 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x\
+      \ % i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0)\
+      \ { x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
       \ (int g = 2;; g++) {\n        bool ok = true;\n        for (int i = 0; i <\
       \ cnt; i++) {\n            if (pow_mod<long long>(g, (m - 1) / divs[i], m) ==\
       \ 1) {\n                ok = false;\n                break;\n            }\n\
@@ -256,40 +285,82 @@ data:
       \ = mint(primitive_root<mint::getmod()>).pow((mint::getmod() - 1) / (n << 1));\n\
       \    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n\
       \    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
-      }\n\n} // namespace kk2\n\n\n#line 9 \"convolution/convolution.hpp\"\n\nnamespace\
-      \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type> FPS convolution(FPS\
+      }\n\n} // namespace kk2\n\n\n#line 10 \"convolution/convolution.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS\
+      \ sparse_convolution(FPS &a, const FPS &b) {\n    int n = int(a.size()), m =\
+      \ int(b.size());\n    if (!n || !m) {\n        a.clear();\n        return a;\n\
+      \    }\n    std::vector<int> nza, nzb;\n    nza.reserve(std::ranges::count_if(a,\
+      \ [](const mint &x) { return x != mint(0); }));\n    nzb.reserve(std::ranges::count_if(b,\
+      \ [](const mint &x) { return x != mint(0); }));\n    for (int i = 0; i < n;\
+      \ i++)\n        if (a[i] != mint(0)) nza.push_back(i);\n    for (int i = 0;\
+      \ i < m; i++)\n        if (b[i] != mint(0)) nzb.push_back(i);\n    FPS res(n\
+      \ + m - 1);\n    for (int i : nza)\n        for (int j : nzb) res[i + j] +=\
+      \ a[i] * b[j];\n    return a = res;\n}\n\ntemplate <class FPS> FPS dense_convolution(FPS\
       \ &a, const FPS &b) {\n    int n = int(a.size()), m = int(b.size());\n    if\
-      \ (!n || !m) {\n        a.clear();\n        return a;\n    }\n    if (is_sparse_operation(FPSOperation::CONVOLUTION,\
-      \ 1, a, b)) {\n        std::vector<int> nza(n), nzb(m);\n        int ai = 0,\
-      \ bi = 0;\n        for (int i = 0; i < n; i++)\n            if (a[i] != mint(0))\
-      \ nza[ai++] = i;\n        for (int i = 0; i < m; i++)\n            if (b[i]\
-      \ != mint(0)) nzb[bi++] = i;\n        nza.resize(ai), nzb.resize(bi);\n    \
-      \    FPS res(n + m - 1);\n        for (int i : nza)\n            for (int j\
-      \ : nzb) res[i + j] += a[i] * b[j];\n        return a = res;\n    }\n\n    int\
-      \ z = 1;\n    while (z < n + m - 1) z <<= 1;\n    if (a == b) {\n        a.resize(z);\n\
-      \        butterfly(a);\n        for (int i = 0; i < z; i++) a[i] *= a[i];\n\
-      \    } else {\n        a.resize(z);\n        butterfly(a);\n        FPS t(b.begin(),\
-      \ b.end());\n        t.resize(z);\n        butterfly(t);\n        for (int i\
-      \ = 0; i < z; i++) a[i] *= t[i];\n    }\n    butterfly_inv(a);\n    a.resize(n\
-      \ + m - 1);\n    return a;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\
-      \n\n\n\n#line 5 \"modint/mont.hpp\"\n#include <cstdint>\n#include <iostream>\n\
-      #line 8 \"modint/mont.hpp\"\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include\
-      \ <concepts>\n#include <fstream>\n#include <istream>\n#include <ostream>\n#line\
-      \ 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace type_traits {\n\n\
-      struct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                                   \
-      \       || std::is_same<T, std::ifstream>::value,\n                        \
+      \ (!n || !m) {\n        a.clear();\n        return a;\n    }\n\n    int z =\
+      \ 1;\n    while (z < n + m - 1) z <<= 1;\n    if (std::addressof(a) == std::addressof(b))\
+      \ {\n        a.resize(z);\n        butterfly(a);\n        for (int i = 0; i\
+      \ < z; i++) a[i] *= a[i];\n    } else {\n        a.resize(z);\n        butterfly(a);\n\
+      \        FPS t(b.begin(), b.end());\n        t.resize(z);\n        butterfly(t);\n\
+      \        for (int i = 0; i < z; i++) a[i] *= t[i];\n    }\n    butterfly_inv(a);\n\
+      \    a.resize(n + m - 1);\n    return a;\n}\n\ntemplate <class FPS> FPS convolution(FPS\
+      \ &a, const FPS &b, bool detect_sparsity = true) {\n    if (detect_sparsity\
+      \ && is_sparse_operation(FPSOperation::CONVOLUTION, 1, a, b))\n        return\
+      \ sparse_convolution(a, b);\n    return dense_convolution(a, b);\n}\n\n} //\
+      \ namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 6 \"modint/mont.hpp\"\
+      \n#include <iostream>\n#include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \                           std::false_type>::type;\ntemplate <typename T>\n\
-      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
+      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
+      template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
+      \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
+      template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
+      #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
       \                                                          || std::is_same<T,\
-      \ std::ofstream>::value,\n                                                 \
+      \ std::ifstream>::value,\n                                                 \
       \     std::true_type,\n                                                    \
-      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
@@ -536,272 +607,272 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.5270790299999817
+  - elapsed: 1.1974796179999885
     environment: g++
-    memory: 13.828
+    memory: 15.816
     name: all_same_00
     status: AC
-  - elapsed: 0.7441426470000181
-    environment: g++
-    memory: 15.92
-    name: all_same_01
-    status: AC
-  - elapsed: 0.7585249929999804
-    environment: g++
-    memory: 15.924
-    name: all_same_02
-    status: AC
-  - elapsed: 0.7609465519999787
-    environment: g++
-    memory: 15.864
-    name: all_same_03
-    status: AC
-  - elapsed: 0.002057239999999183
-    environment: g++
-    memory: 3.848
-    name: example_00
-    status: AC
-  - elapsed: 0.0015140319999886742
-    environment: g++
-    memory: 3.876
-    name: example_01
-    status: AC
-  - elapsed: 0.9733407200000102
-    environment: g++
-    memory: 15.864
-    name: fft_killer_00
-    status: AC
-  - elapsed: 0.972192218999993
-    environment: g++
-    memory: 15.968
-    name: fft_killer_01
-    status: AC
-  - elapsed: 0.9755266669999969
-    environment: g++
-    memory: 15.92
-    name: fft_killer_02
-    status: AC
-  - elapsed: 0.9722540890000175
-    environment: g++
-    memory: 15.92
-    name: fft_killer_03
-    status: AC
-  - elapsed: 0.9732324260000098
-    environment: g++
-    memory: 15.92
-    name: fft_killer_04
-    status: AC
-  - elapsed: 0.9758576579999954
-    environment: g++
-    memory: 15.812
-    name: fft_killer_05
-    status: AC
-  - elapsed: 0.9765218110000262
-    environment: g++
-    memory: 15.912
-    name: fft_killer_06
-    status: AC
-  - elapsed: 0.9713778299999944
-    environment: g++
-    memory: 15.924
-    name: fft_killer_07
-    status: AC
-  - elapsed: 0.9795394360000103
-    environment: g++
-    memory: 15.912
-    name: fft_killer_08
-    status: AC
-  - elapsed: 0.9773242329999903
-    environment: g++
-    memory: 15.92
-    name: fft_killer_09
-    status: AC
-  - elapsed: 0.9739512300000115
+  - elapsed: 1.2688014839999937
     environment: g++
     memory: 15.792
+    name: all_same_01
+    status: AC
+  - elapsed: 1.2758096520000208
+    environment: g++
+    memory: 15.812
+    name: all_same_02
+    status: AC
+  - elapsed: 1.267928368000014
+    environment: g++
+    memory: 15.824
+    name: all_same_03
+    status: AC
+  - elapsed: 0.0025480379999862635
+    environment: g++
+    memory: 3.652
+    name: example_00
+    status: AC
+  - elapsed: 0.002174156000023686
+    environment: g++
+    memory: 3.724
+    name: example_01
+    status: AC
+  - elapsed: 1.5305098389999898
+    environment: g++
+    memory: 15.852
+    name: fft_killer_00
+    status: AC
+  - elapsed: 1.5302664860000164
+    environment: g++
+    memory: 15.852
+    name: fft_killer_01
+    status: AC
+  - elapsed: 1.5258831919999807
+    environment: g++
+    memory: 15.864
+    name: fft_killer_02
+    status: AC
+  - elapsed: 1.5276368849999926
+    environment: g++
+    memory: 15.824
+    name: fft_killer_03
+    status: AC
+  - elapsed: 1.5290514849999681
+    environment: g++
+    memory: 15.86
+    name: fft_killer_04
+    status: AC
+  - elapsed: 1.5279191830000514
+    environment: g++
+    memory: 15.856
+    name: fft_killer_05
+    status: AC
+  - elapsed: 1.5277326870000252
+    environment: g++
+    memory: 15.816
+    name: fft_killer_06
+    status: AC
+  - elapsed: 1.525532677000001
+    environment: g++
+    memory: 15.852
+    name: fft_killer_07
+    status: AC
+  - elapsed: 1.5275962300000288
+    environment: g++
+    memory: 15.828
+    name: fft_killer_08
+    status: AC
+  - elapsed: 1.529738390000034
+    environment: g++
+    memory: 15.852
+    name: fft_killer_09
+    status: AC
+  - elapsed: 1.527594823999948
+    environment: g++
+    memory: 15.864
     name: max_ans_zero_00
     status: AC
-  - elapsed: 0.9760967899999855
+  - elapsed: 1.5269931919999635
     environment: g++
-    memory: 15.912
+    memory: 15.816
     name: max_random_00
     status: AC
-  - elapsed: 0.9543821719999812
+  - elapsed: 1.5267711839999834
     environment: g++
-    memory: 15.92
+    memory: 15.86
     name: max_random_01
     status: AC
-  - elapsed: 0.01307236300002046
+  - elapsed: 0.019847744999992756
     environment: g++
-    memory: 4.236
+    memory: 4.148
     name: medium_00
     status: AC
-  - elapsed: 0.007111374999993814
+  - elapsed: 0.010990981000020383
     environment: g++
-    memory: 3.98
+    memory: 4.032
     name: medium_01
     status: AC
-  - elapsed: 0.012321600000007038
+  - elapsed: 0.019155440000020008
     environment: g++
-    memory: 4.216
+    memory: 4.188
     name: medium_02
     status: AC
-  - elapsed: 0.0029262070000015683
+  - elapsed: 0.004349749000027714
     environment: g++
-    memory: 4.164
+    memory: 4.08
     name: medium_all_zero_00
     status: AC
-  - elapsed: 0.0028654850000009446
+  - elapsed: 0.004100999000002048
     environment: g++
-    memory: 3.924
+    memory: 3.788
     name: medium_pre_suf_zero_00
     status: AC
-  - elapsed: 0.002777462999972613
+  - elapsed: 0.0040699570000128915
     environment: g++
-    memory: 3.728
+    memory: 3.808
     name: medium_pre_suf_zero_01
     status: AC
-  - elapsed: 0.001749651000011454
+  - elapsed: 0.0024930789999757508
     environment: g++
-    memory: 3.84
+    memory: 3.652
     name: medium_pre_suf_zero_02
     status: AC
-  - elapsed: 0.0017478580000158672
+  - elapsed: 0.0024544199999922967
     environment: g++
-    memory: 3.888
+    memory: 3.796
     name: medium_pre_suf_zero_03
     status: AC
-  - elapsed: 0.0028083290000040506
-    environment: g++
-    memory: 3.844
-    name: medium_pre_suf_zero_04
-    status: AC
-  - elapsed: 0.9316847559999815
-    environment: g++
-    memory: 15.036
-    name: random_00
-    status: AC
-  - elapsed: 0.955531843999978
-    environment: g++
-    memory: 14.864
-    name: random_01
-    status: AC
-  - elapsed: 0.4502595659999997
-    environment: g++
-    memory: 10.972
-    name: random_02
-    status: AC
-  - elapsed: 0.001754148000003397
-    environment: g++
-    memory: 3.84
-    name: signed_overflow_00
-    status: AC
-  - elapsed: 0.0015397850000056224
-    environment: g++
-    memory: 3.76
-    name: small_00
-    status: AC
-  - elapsed: 0.0014931040000192297
-    environment: g++
-    memory: 3.848
-    name: small_01
-    status: AC
-  - elapsed: 0.0014958579999984067
-    environment: g++
-    memory: 3.856
-    name: small_02
-    status: AC
-  - elapsed: 0.0015237099999865222
-    environment: g++
-    memory: 3.884
-    name: small_03
-    status: AC
-  - elapsed: 0.0015089879999834466
-    environment: g++
-    memory: 3.856
-    name: small_04
-    status: AC
-  - elapsed: 0.0015039799999954084
-    environment: g++
-    memory: 3.856
-    name: small_05
-    status: AC
-  - elapsed: 0.0014657920000047397
-    environment: g++
-    memory: 3.72
-    name: small_06
-    status: AC
-  - elapsed: 0.0014720319999810272
-    environment: g++
-    memory: 3.924
-    name: small_07
-    status: AC
-  - elapsed: 0.0015100090000146338
-    environment: g++
-    memory: 3.856
-    name: small_08
-    status: AC
-  - elapsed: 0.001567546000018183
-    environment: g++
-    memory: 3.856
-    name: small_09
-    status: AC
-  - elapsed: 0.0014804650000144193
-    environment: g++
-    memory: 3.856
-    name: small_10
-    status: AC
-  - elapsed: 0.0014813960000026327
-    environment: g++
-    memory: 3.908
-    name: small_11
-    status: AC
-  - elapsed: 0.001476289000009956
-    environment: g++
-    memory: 3.832
-    name: small_12
-    status: AC
-  - elapsed: 0.0015295190000017556
-    environment: g++
-    memory: 3.84
-    name: small_13
-    status: AC
-  - elapsed: 0.001580956999987393
-    environment: g++
-    memory: 3.772
-    name: small_14
-    status: AC
-  - elapsed: 0.001466104000002133
+  - elapsed: 0.004059263999977247
     environment: g++
     memory: 3.768
+    name: medium_pre_suf_zero_04
+    status: AC
+  - elapsed: 1.4719599709999898
+    environment: g++
+    memory: 14.976
+    name: random_00
+    status: AC
+  - elapsed: 1.4798487099999988
+    environment: g++
+    memory: 14.988
+    name: random_01
+    status: AC
+  - elapsed: 0.7074826069999745
+    environment: g++
+    memory: 10.984
+    name: random_02
+    status: AC
+  - elapsed: 0.0026625770000237026
+    environment: g++
+    memory: 3.804
+    name: signed_overflow_00
+    status: AC
+  - elapsed: 0.002158947999987504
+    environment: g++
+    memory: 3.8
+    name: small_00
+    status: AC
+  - elapsed: 0.002148271000010027
+    environment: g++
+    memory: 3.6
+    name: small_01
+    status: AC
+  - elapsed: 0.0021576060000256803
+    environment: g++
+    memory: 3.652
+    name: small_02
+    status: AC
+  - elapsed: 0.002100920000032147
+    environment: g++
+    memory: 3.8
+    name: small_03
+    status: AC
+  - elapsed: 0.002127338999969197
+    environment: g++
+    memory: 3.8
+    name: small_04
+    status: AC
+  - elapsed: 0.0021797869999886643
+    environment: g++
+    memory: 3.748
+    name: small_05
+    status: AC
+  - elapsed: 0.0021529640000039763
+    environment: g++
+    memory: 3.784
+    name: small_06
+    status: AC
+  - elapsed: 0.0020958700000051067
+    environment: g++
+    memory: 3.8
+    name: small_07
+    status: AC
+  - elapsed: 0.0020999909999659394
+    environment: g++
+    memory: 3.652
+    name: small_08
+    status: AC
+  - elapsed: 0.0021462340000084623
+    environment: g++
+    memory: 3.8
+    name: small_09
+    status: AC
+  - elapsed: 0.002078176999987136
+    environment: g++
+    memory: 3.724
+    name: small_10
+    status: AC
+  - elapsed: 0.0020773759999883623
+    environment: g++
+    memory: 3.784
+    name: small_11
+    status: AC
+  - elapsed: 0.0021072389999972074
+    environment: g++
+    memory: 3.808
+    name: small_12
+    status: AC
+  - elapsed: 0.0020948789999692963
+    environment: g++
+    memory: 3.724
+    name: small_13
+    status: AC
+  - elapsed: 0.002158731000008629
+    environment: g++
+    memory: 3.748
+    name: small_14
+    status: AC
+  - elapsed: 0.0021038309999994453
+    environment: g++
+    memory: 3.82
     name: small_15
     status: AC
-  - elapsed: 0.839505048999996
+  - elapsed: 1.3398490710000033
     environment: g++
-    memory: 15.928
+    memory: 15.828
     name: small_and_large_00
     status: AC
-  - elapsed: 0.8558442129999833
+  - elapsed: 1.3573781190000318
     environment: g++
-    memory: 15.92
+    memory: 15.872
     name: small_and_large_01
     status: AC
-  - elapsed: 0.832879523999992
+  - elapsed: 1.3308450979999975
     environment: g++
-    memory: 11.692
+    memory: 11.628
     name: small_and_large_02
     status: AC
-  - elapsed: 0.8482793039999876
+  - elapsed: 1.347381783000003
     environment: g++
-    memory: 11.576
+    memory: 11.648
     name: small_and_large_03
     status: AC
-  - elapsed: 0.0016617580000115595
+  - elapsed: 0.002546875000007276
     environment: g++
-    memory: 3.848
+    memory: 3.608
     name: unsigned_overflow_00
     status: AC
-  timestamp: '2026-09-09 02:37:11+09:00'
+  timestamp: '2026-09-11 00:30:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp
