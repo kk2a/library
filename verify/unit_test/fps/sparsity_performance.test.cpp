@@ -129,8 +129,9 @@ void test_large_selected_paths() {
     kk2::Timer timer;
     const FPS sparse_result = sparse_exp_input.exp(n);
     const FPS dense_result = dense_unit.inv(n);
+    benchmark_sink = benchmark_sink ^ sparse_result.back().val() ^ dense_result.back().val();
     const double elapsed = timer.elapsed();
-    if (elapsed < 1000.0) {
+    if (elapsed > 1000.0) {
         std::cerr << "elapsed: " << elapsed << std::endl;
         exit(1);
     }
