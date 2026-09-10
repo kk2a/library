@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -86,23 +87,40 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
             return derived();
         }
         int n = this->size() - r.size() + 1;
-        if (r.size() <= 64) {
-            FPS f(derived()), g(r);
-            g.shrink();
-            mint coeff = g.back().inv();
-            for (auto &x : g) x *= coeff;
-            int deg = (int)f.size() - (int)g.size() + 1;
-            int gs = g.size();
-            FPS quo(deg);
-            for (int i = deg - 1; i >= 0; i--) {
-                quo[i] = f[i + gs - 1];
-                for (int j = 0; j < gs; j++) f[i + j] -= quo[i] * g[j];
-            }
-            *this = quo * coeff;
-            this->resize(n, mint(0));
-            return derived();
+        if (is_sparse_operation(FPSOperation::POLYNOMIAL_DIVISION,
+                                fps::NTTFriendlyFormalPowerSeries<FPS>,
+                                derived(),
+                                r,
+                                n))
+            return derived() = sparse_quo(r);
+        return derived() = dense_quo(r);
+    }
+
+    FPS sparse_quo(const FPS &r) const {
+        assert(!r.empty());
+        if (this->size() < r.size()) return {};
+        const int n = this->size() - r.size() + 1;
+        const mint lead_inv = r.back().inv();
+        std::vector<std::pair<int, mint>> support;
+        for (int i = (int)r.size() - 2; i >= 0; --i) {
+            if (r[i] != mint(0)) support.emplace_back((int)r.size() - 1 - i, r[i] * lead_inv);
         }
-        return derived() = (derived().rev().pre(n) * r.rev().inv(n)).pre(n).rev();
+        FPS quotient_rev(n);
+        for (int k = 0; k < n; ++k) {
+            quotient_rev[k] = (*this)[this->size() - 1 - k] * lead_inv;
+            for (const auto &[offset, coefficient] : support) {
+                if (offset > k) break;
+                quotient_rev[k] -= quotient_rev[k - offset] * coefficient;
+            }
+        }
+        return quotient_rev.rev();
+    }
+
+    FPS dense_quo(const FPS &r) const {
+        assert(!r.empty());
+        if (this->size() < r.size()) return {};
+        const int n = this->size() - r.size() + 1;
+        return derived().rev().pre(n).dense_mul(r.rev().dense_inv(n)).pre(n).rev();
     }
 
     FPS &operator%=(const FPS &r) {
@@ -196,35 +214,67 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
 
     FPS log(int deg = -1) const {
         assert(!this->empty() && (*this)[0] == mint(1));
-        // sparsity check
+        if (is_sparse_operation(
+                FPSOperation::LOG, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
+            return derived().sparse_log(deg);
         return derived().dense_log(deg);
     }
 
     template <class T> FPS pow(T k, int deg = -1) const {
-        // sparsity check
+        if (deg == -1) deg = this->size();
+        if (k == 0) return derived().dense_pow(k, deg);
+        int zero = 0;
+        while (zero != int(this->size()) && (*this)[zero] == mint(0)) ++zero;
+        if (zero == int(this->size()) || __int128_t(zero) * k >= deg)
+            return derived().dense_pow(k, deg);
+        if (zero == 0
+            && is_sparse_operation(
+                FPSOperation::POWER, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
+            return derived().sparse_pow(k, deg);
+        if (zero > 0) {
+            FPS normalized(this->begin() + zero, this->end());
+            const int normalized_deg = deg - int(__int128_t(zero) * k);
+            if (is_sparse_operation(FPSOperation::POWER,
+                                    fps::NTTFriendlyFormalPowerSeries<FPS>,
+                                    normalized,
+                                    FPS(),
+                                    normalized_deg))
+                return derived().sparse_pow(k, deg);
+        }
         return derived().dense_pow(k, deg);
     }
 
     FPS div(const FPS &r, int deg = -1) const {
-        // sparsity check
-        return (FPS(derived()).pre(deg) * r.inv(deg)).pre(deg);
+        assert(!r.empty() && r[0] != mint(0));
+        if (deg == -1) deg = this->size();
+        if (is_sparse_operation(
+                FPSOperation::DIVISION, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), r, deg))
+            return derived().sparse_div(r, deg);
+        return FPS(derived()).pre(deg).dense_mul(r.dense_inv(deg)).pre(deg);
     }
 
     FPS inv(int deg = -1) const {
         assert(!this->empty() && (*this)[0] != mint(0));
-        // sparsity check
+        if (is_sparse_operation(FPSOperation::INVERSE,
+                                fps::NTTFriendlyFormalPowerSeries<FPS>,
+                                derived(),
+                                FPS(),
+                                deg))
+            return derived().sparse_inv(deg);
         return derived().dense_inv(deg);
     }
 
     FPS exp(int deg = -1) const {
         assert(this->empty() || (*this)[0] == mint(0));
-        // sparsity check
+        if (is_sparse_operation(
+                FPSOperation::EXP, fps::NTTFriendlyFormalPowerSeries<FPS>, derived(), FPS(), deg))
+            return derived().sparse_exp(deg);
         return derived().dense_exp(deg);
     }
 
     FPS dense_log(int deg = -1) const {
         if (deg == -1) deg = this->size();
-        return (derived().diff() * derived().inv(deg)).pre(deg - 1).integral();
+        return derived().diff().dense_mul(derived().dense_inv(deg)).pre(deg - 1).integral();
     }
     FPS sparse_log(int deg = -1) const {
         if (deg == -1) deg = this->size();
@@ -259,8 +309,8 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         for (int i = 0; i < n; i++) {
             if ((*this)[i] != mint(0)) {
                 mint rev = mint(1) / (*this)[i];
-                FPS ret = ((derived() * rev) >> i).log(deg) * k;
-                ret = ret.exp(deg);
+                FPS ret = ((derived() * rev) >> i).dense_log(deg) * k;
+                ret = ret.dense_exp(deg);
                 ret *= (*this)[i].pow(k);
                 ret = (ret << (i * k)).pre(deg);
                 if ((int)ret.size() < deg) ret.resize(deg, mint(0));
@@ -296,19 +346,21 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
             inv.push_back(-inv[mod % i] * (mod / i));
         }
 
-        std::vector<std::pair<int, mint>> fs;
+        const mint constant_term = (*this)[0].pow(k);
+        k %= mod;
+        std::vector<std::tuple<int, mint, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {
-            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
+            if ((*this)[i] != mint(0))
+                fs.emplace_back(i, (*this)[i], (*this)[i] * mint(i) * (k + 1));
         }
 
         FPS g(deg);
-        g[0] = (*this)[0].pow(k);
+        g[0] = constant_term;
         mint denom = (*this)[0].inv();
-        k %= mod;
         for (int a = 1; a < deg; a++) {
-            for (auto &[i, f_i] : fs) {
+            for (auto &[i, f_i, weighted_f_i] : fs) {
                 if (a < i) break;
-                g[a] += g[a - i] * f_i * (mint(i) * (k + 1) - a);
+                g[a] += g[a - i] * (weighted_f_i - f_i * a);
             }
             g[a] *= denom * inv[a];
         }
@@ -356,7 +408,7 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         if (deg == -1) deg = this->size();
         std::vector<std::pair<int, mint>> fs;
         for (int i = 1; i < int(this->size()); i++) {
-            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i]);
+            if ((*this)[i] != mint(0)) fs.emplace_back(i, (*this)[i] * i);
         }
 
         int mod = mint::getmod();
@@ -368,10 +420,10 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         FPS g(deg);
         if (deg) g[0] = 1;
         for (int k = 0; k < deg - 1; k++) {
-            for (auto &[ip1, fip1] : fs) {
+            for (auto &[ip1, derivative_coefficient] : fs) {
                 int i = ip1 - 1;
                 if (k < i) break;
-                g[k + 1] += g[k - i] * fip1 * (i + 1);
+                g[k + 1] += g[k - i] * derivative_coefficient;
             }
             g[k + 1] *= inv[k + 1];
         }

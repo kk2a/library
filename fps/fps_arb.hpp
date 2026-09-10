@@ -28,6 +28,11 @@ struct FormalPowerSeriesArbitrary : FormalPowerSeriesBase<FormalPowerSeriesArbit
         convolution_arb(*this, r);
         return *this;
     }
+    FPS dense_mul(const FPS &r) const {
+        FPS result(*this);
+        convolution_arb(result, r, false);
+        return result;
+    }
     void but() { exit(1); }
     void ibut() { exit(1); }
     void db() { exit(1); }
@@ -40,7 +45,7 @@ struct FormalPowerSeriesArbitrary : FormalPowerSeriesBase<FormalPowerSeriesArbit
         if (deg == -1) deg = this->size();
         FPS res{(*this)[0].inv()};
         for (int i = 1; i < deg; i <<= 1) {
-            res = (res + res - this->pre(i << 1) * (res * res)).pre(i << 1);
+            res = (res + res - this->pre(i << 1).dense_mul(res.dense_mul(res))).pre(i << 1);
         }
         return res.pre(deg);
     }
@@ -49,7 +54,7 @@ struct FormalPowerSeriesArbitrary : FormalPowerSeriesBase<FormalPowerSeriesArbit
         if (deg == -1) deg = this->size();
         FPS ret{mint(1)};
         for (int i = 1; i < deg; i <<= 1) {
-            ret = (ret * (this->pre(i << 1) + mint{1} - ret.log(i << 1))).pre(i << 1);
+            ret = ret.dense_mul(this->pre(i << 1) + mint{1} - ret.dense_log(i << 1)).pre(i << 1);
         }
         return ret.pre(deg);
     }
