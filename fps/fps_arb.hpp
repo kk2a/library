@@ -4,6 +4,9 @@
 #include <cstdlib>
 
 #include "fps_base.hpp"
+#include "operations/arb/exponential.hpp"
+#include "operations/arb/inverse.hpp"
+#include "operations/arb/multiplication.hpp"
 
 namespace kk2 {
 

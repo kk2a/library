@@ -264,16 +264,22 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
     FPS sqrt(int deg = -1) const { return fps::operations::sqrt(derived(), deg); }
     FPS &inplace_sqrt(int deg = -1) { return fps::operations::inplace_sqrt(derived(), deg); }
 
-    FPS dense_mul(const FPS &r) const { return fps::operations::dense_mul(derived(), r); }
-    FPS &inplace_dense_mul(const FPS &r) {
-        return fps::operations::inplace_dense_mul(derived(), r);
+    FPS dense_mul(const FPS &r, int deg = -1) const {
+        return fps::operations::dense_mul(derived(), r, deg);
     }
-    FPS sparse_mul(const FPS &r) const { return fps::operations::sparse_mul(derived(), r); }
-    FPS &inplace_sparse_mul(const FPS &r) {
-        return fps::operations::inplace_sparse_mul(derived(), r);
+    FPS &inplace_dense_mul(const FPS &r, int deg = -1) {
+        return fps::operations::inplace_dense_mul(derived(), r, deg);
     }
-    FPS mul(const FPS &r) const { return fps::operations::mul(derived(), r); }
-    FPS &inplace_mul(const FPS &r) { return fps::operations::inplace_mul(derived(), r); }
+    FPS sparse_mul(const FPS &r, int deg = -1) const {
+        return fps::operations::sparse_mul(derived(), r, deg);
+    }
+    FPS &inplace_sparse_mul(const FPS &r, int deg = -1) {
+        return fps::operations::inplace_sparse_mul(derived(), r, deg);
+    }
+    FPS mul(const FPS &r, int deg = -1) const { return fps::operations::mul(derived(), r, deg); }
+    FPS &inplace_mul(const FPS &r, int deg = -1) {
+        return fps::operations::inplace_mul(derived(), r, deg);
+    }
 
     FPS &inplace_imos(int n) {
         inplace_pre(n);

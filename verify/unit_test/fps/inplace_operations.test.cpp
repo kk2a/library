@@ -1,5 +1,6 @@
 // competitive-verifier: STANDALONE
 
+#include <algorithm>
 #include <cassert>
 
 #include "../../../fps/fps_arb.hpp"
@@ -104,7 +105,8 @@ template <class FPS> void test_exponential_apis() {
 template <class FPS> void test_power_apis() {
     for (const FPS &source : {
              FPS{2, 0, 3, 0, 5},
-             FPS{0, 0, 2, 0, 3}
+             FPS{0, 0, 2, 0, 3},
+             FPS{0, 0, 0, 0}
     }) {
         for (long long exponent : {0, 1, 3}) {
             for (int deg : {0, 1, 7, 10}) {
@@ -192,8 +194,25 @@ template <class FPS> void test_multiplication_apis() {
     const FPS square = lhs.dense_mul(lhs);
     for (auto operation : {&FPS::inplace_dense_mul, &FPS::inplace_sparse_mul, &FPS::inplace_mul}) {
         FPS alias = lhs;
-        (alias.*operation)(alias);
+        (alias.*operation)(alias, -1);
         assert(alias == square);
+    }
+
+    for (int deg : {0, 1, 4, 10}) {
+        const int result_size = std::min(deg, static_cast<int>(dense.size()));
+        const FPS expected(dense.begin(), dense.begin() + result_size);
+        assert(lhs.dense_mul(rhs, deg) == expected);
+        assert(lhs.sparse_mul(rhs, deg) == expected);
+        assert(lhs.mul(rhs, deg) == expected);
+
+        const int square_size = std::min(deg, static_cast<int>(square.size()));
+        const FPS expected_square(square.begin(), square.begin() + square_size);
+        for (auto operation :
+             {&FPS::inplace_dense_mul, &FPS::inplace_sparse_mul, &FPS::inplace_mul}) {
+            FPS alias = lhs;
+            (alias.*operation)(alias, deg);
+            assert(alias == expected_square);
+        }
     }
 
     if constexpr (kk2::fps::NTTFriendlyFormalPowerSeries<FPS>) {
@@ -247,6 +266,9 @@ template <class FPS> void test_division_apis() {
         FPS identity(deg);
         if (deg > 0) identity[0] = 1;
         assert(alias == identity);
+        assert(divisor.dense_div(divisor, deg) == identity);
+        assert(divisor.sparse_div(divisor, deg) == identity);
+        assert(divisor.div(divisor, deg) == identity);
     }
 }
 
@@ -281,6 +303,9 @@ template <class FPS> void test_quotient_apis() {
         (alias.*operation)(alias);
         assert(alias == FPS{1});
     }
+    assert(divisor.dense_quo(divisor) == FPS{1});
+    assert(divisor.sparse_quo(divisor) == FPS{1});
+    assert(divisor.quo(divisor) == FPS{1});
 
     const FPS with_remainder = dividend + FPS{2, 3};
     const FPS remainder{2, 3};

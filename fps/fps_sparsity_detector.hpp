@@ -34,7 +34,9 @@ inline int transform_size(int n, int m) {
     return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n + m - 1)));
 }
 
-inline std::int64_t convolution_dense_work(int n, int m, bool same, bool ntt_friendly) {
+inline std::int64_t convolution_dense_work(int n, int m, int deg, bool same, bool ntt_friendly) {
+    n = std::min(n, deg);
+    m = std::min(m, deg);
     const int z = transform_size(n, m);
     if (z == 0) return 0;
 
@@ -57,7 +59,7 @@ inline std::int64_t inverse_dense_work(int deg, bool ntt_friendly) {
 
 inline std::int64_t log_dense_work(int n, int deg, bool ntt_friendly) {
     return inverse_dense_work(deg, ntt_friendly)
-           + convolution_dense_work(std::max(0, n - 1), deg, false, ntt_friendly);
+           + convolution_dense_work(std::max(0, n - 1), deg, deg, false, ntt_friendly);
 }
 
 inline long double exp_dense_work(int deg, bool ntt_friendly) {
@@ -79,12 +81,13 @@ inline long double power_dense_work(int n, int deg, bool ntt_friendly) {
 
 inline std::int64_t division_dense_work(int n, int deg, bool ntt_friendly) {
     return inverse_dense_work(deg, ntt_friendly)
-           + convolution_dense_work(std::min(n, deg), deg, false, ntt_friendly);
+           + convolution_dense_work(std::min(n, deg), deg, deg, false, ntt_friendly);
 }
 
 inline std::int64_t polynomial_division_dense_work(int quotient_size, bool ntt_friendly) {
     return inverse_dense_work(quotient_size, ntt_friendly)
-           + convolution_dense_work(quotient_size, quotient_size, false, ntt_friendly);
+           + convolution_dense_work(
+               quotient_size, quotient_size, quotient_size, false, ntt_friendly);
 }
 
 inline std::int64_t sqrt_dense_work(int deg, bool ntt_friendly) {
@@ -95,42 +98,44 @@ inline std::int64_t sqrt_dense_work(int deg, bool ntt_friendly) {
     return (ntt_friendly ? 32 : 156) * evaluation_work(z);
 }
 
-inline long double sparse_leading_work(FPSOperation op, long double support_output_pairs) {
+inline long double
+sparse_work(FPSOperation op, int target, std::int64_t nonzero_a, std::int64_t nonzero_b) {
     switch (op) {
-    case FPSOperation::LOG:
-        return 3 * support_output_pairs;
-    case FPSOperation::POWER:
-    case FPSOperation::SQRT:
-        return 4 * support_output_pairs;
     case FPSOperation::CONVOLUTION:
+        return static_cast<long double>(nonzero_a) * nonzero_b;
     case FPSOperation::DIVISION:
     case FPSOperation::POLYNOMIAL_DIVISION:
+        return static_cast<long double>(target) * nonzero_b;
+    case FPSOperation::LOG:
+    case FPSOperation::POWER:
     case FPSOperation::INVERSE:
     case FPSOperation::EXP:
-        return 2 * support_output_pairs;
+    case FPSOperation::SQRT:
+        return static_cast<long double>(target) * nonzero_a;
     }
     return 0;
 }
 
-inline long double sparse_runtime_factor(FPSOperation op) {
-    // Conversion from the field-operation model above to observed running
-    // time. Calibrated on powers of two from 256 through 4096 while keeping
-    // the threshold conservative when the two implementations are close.
+inline long double sparse_work_constant(FPSOperation op, bool ntt_friendly) {
+    // Calibrated against the simplified sparse-work model at degrees 1024
+    // and 4096.  Values are rounded upward near the measured crossover so a
+    // close decision favors the dense implementation.
     switch (op) {
-    case FPSOperation::POWER:
-    case FPSOperation::SQRT:
-        return 0.60L;
+    case FPSOperation::CONVOLUTION:
+        return ntt_friendly ? 0.90L : 0.55L;
     case FPSOperation::DIVISION:
     case FPSOperation::POLYNOMIAL_DIVISION:
-        return 0.75L;
-    case FPSOperation::CONVOLUTION:
-        return 1.50L;
+        return ntt_friendly ? 0.90L : 0.40L;
     case FPSOperation::LOG:
-        return 1.25L;
+        return ntt_friendly ? 2.70L : 1.00L;
+    case FPSOperation::POWER:
+        return ntt_friendly ? 1.35L : 0.70L;
     case FPSOperation::INVERSE:
-        return 0.90L;
+        return ntt_friendly ? 1.00L : 0.40L;
     case FPSOperation::EXP:
-        return 1.00L;
+        return ntt_friendly ? 1.05L : 0.45L;
+    case FPSOperation::SQRT:
+        return ntt_friendly ? 1.40L : 0.65L;
     }
     return 1.00L;
 }
@@ -146,43 +151,30 @@ bool is_sparse_operation(
     const bool convolution = op == FPSOperation::CONVOLUTION;
     const bool division = op == FPSOperation::DIVISION;
     const bool polynomial_division = op == FPSOperation::POLYNOMIAL_DIVISION;
-    const int target = deg < 0 ? n : std::max(0, deg);
+    const int requested = deg < 0 ? (convolution ? std::max(0, n + m - 1) : n) : std::max(0, deg);
+    const int target = convolution ? std::min(requested, std::max(0, n + m - 1)) : requested;
     std::int64_t nonzero_a = 0, nonzero_b = 0;
-    long double pair_work = 0;
 
-    const int limit_a = convolution                       ? n :
+    const int limit_a = convolution                       ? std::min(n, target) :
                         (division || polynomial_division) ? 0 :
                                                             std::min(n, target);
     for (int i = 0; i < limit_a; ++i) {
-        if (a[i] == mint(0)) continue;
-        ++nonzero_a;
-        if (!convolution && i > 0) {
-            const int terms = op == FPSOperation::LOG ? target - 1 - i : target - i;
-            if (terms > 0) pair_work += terms;
-        }
+        if (a[i] != mint(0)) ++nonzero_a;
     }
 
-    const int limit_b = convolution         ? m :
+    const int limit_b = convolution         ? std::min(m, target) :
                         division            ? std::min(m, target) :
                         polynomial_division ? m :
                                               0;
     for (int i = 0; i < limit_b; ++i) {
-        if (b[i] == mint(0)) continue;
-        ++nonzero_b;
-        if (division && i > 0) pair_work += target - i;
-        if (polynomial_division && i + 1 < m) {
-            const int terms = target - (m - 1 - i);
-            if (terms > 0) pair_work += terms;
-        }
+        if (b[i] != mint(0)) ++nonzero_b;
     }
-
-    if (convolution) { pair_work = static_cast<long double>(nonzero_a) * nonzero_b; }
 
     long double dense_work = 0;
     switch (op) {
     case FPSOperation::CONVOLUTION:
         dense_work = fps::sparsity_detail::convolution_dense_work(
-            n, m, std::addressof(a) == std::addressof(b), is_ntt_friendly);
+            n, m, target, std::addressof(a) == std::addressof(b), is_ntt_friendly);
         break;
     case FPSOperation::LOG:
         dense_work = fps::sparsity_detail::log_dense_work(n, target, is_ntt_friendly);
@@ -207,11 +199,10 @@ bool is_sparse_operation(
         break;
     }
 
-    // Count the leading field operations executed for each support/output
-    // pair. Linear scans, initialization and per-output normalization are
-    // intentionally omitted on both the sparse and dense sides.
-    const long double sparse_work = fps::sparsity_detail::sparse_leading_work(op, pair_work);
-    return dense_work > fps::sparsity_detail::sparse_runtime_factor(op) * sparse_work;
+    const long double sparse_work =
+        fps::sparsity_detail::sparse_work(op, target, nonzero_a, nonzero_b);
+    return dense_work
+           > fps::sparsity_detail::sparse_work_constant(op, is_ntt_friendly) * sparse_work;
 }
 
 } // namespace kk2

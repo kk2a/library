@@ -63,17 +63,7 @@ template <NTTFriendlyFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int deg 
     return FPS(result.begin(), result.begin() + deg);
 }
 
-template <ArbitraryModulusFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int deg = -1) {
-    using mint = typename FPS::value_type;
-    assert(f.empty() || f[0] == mint(0));
-    if (deg == -1) deg = static_cast<int>(f.size());
-
-    FPS result{mint(1)};
-    for (int d = 1; d < deg; d <<= 1) {
-        result = result.dense_mul(f.pre(d << 1) + mint(1) - result.dense_log(d << 1)).pre(d << 1);
-    }
-    return result.pre(deg);
-}
+template <ArbitraryModulusFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int deg = -1);
 
 template <UnivariateFormalPowerSeries FPS> FPS &inplace_dense_exp(FPS &f, int deg = -1) {
     if (deg == -1) deg = static_cast<int>(f.size());
