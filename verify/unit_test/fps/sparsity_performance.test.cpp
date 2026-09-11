@@ -67,10 +67,7 @@ void test_measured_choices() {
             check_choice(
                 "convolution",
                 kk2::is_sparse_operation(kk2::FPSOperation::CONVOLUTION, true, unit, other),
-                [&] {
-                    FPS result = unit;
-                    return kk2::sparse_convolution(result, other);
-                },
+                [&] { return kk2::sparse_convolution(unit, other); },
                 [&] { return unit.dense_mul(other); });
             check_choice(
                 "inverse",

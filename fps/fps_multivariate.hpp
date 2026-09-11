@@ -104,7 +104,7 @@ template <fps::Modular mint> struct MultivariateFormalPowerSeries {
 
     mfps &operator*=(const mfps &rhs) {
         assert(base == rhs.base && f.size() == rhs.f.size());
-        multi_convolution_truncated(f, rhs.f, base);
+        inplace_multi_convolution_truncated(f, rhs.f, base);
         return *this;
     }
 
