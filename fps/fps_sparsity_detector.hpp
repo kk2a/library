@@ -153,22 +153,17 @@ bool is_sparse_operation(
     const bool polynomial_division = op == FPSOperation::POLYNOMIAL_DIVISION;
     const int requested = deg < 0 ? (convolution ? std::max(0, n + m - 1) : n) : std::max(0, deg);
     const int target = convolution ? std::min(requested, std::max(0, n + m - 1)) : requested;
-    std::int64_t nonzero_a = 0, nonzero_b = 0;
-
     const int limit_a = convolution                       ? std::min(n, target) :
                         (division || polynomial_division) ? 0 :
                                                             std::min(n, target);
-    for (int i = 0; i < limit_a; ++i) {
-        if (a[i] != mint(0)) ++nonzero_a;
-    }
-
     const int limit_b = convolution         ? std::min(m, target) :
                         division            ? std::min(m, target) :
                         polynomial_division ? m :
                                               0;
-    for (int i = 0; i < limit_b; ++i) {
-        if (b[i] != mint(0)) ++nonzero_b;
-    }
+    const std::int64_t nonzero_a =
+        std::count_if(a.begin(), a.begin() + limit_a, [](const mint &x) { return x != mint(0); });
+    const std::int64_t nonzero_b =
+        std::count_if(b.begin(), b.begin() + limit_b, [](const mint &x) { return x != mint(0); });
 
     long double dense_work = 0;
     switch (op) {
