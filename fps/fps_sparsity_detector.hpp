@@ -5,6 +5,7 @@
 #include <bit>
 #include <cstdint>
 #include <memory>
+#include <ranges>
 
 namespace kk2 {
 
@@ -160,10 +161,11 @@ bool is_sparse_operation(
                         division            ? std::min(m, target) :
                         polynomial_division ? m :
                                               0;
-    const std::int64_t nonzero_a =
-        std::count_if(a.begin(), a.begin() + limit_a, [](const mint &x) { return x != mint(0); });
-    const std::int64_t nonzero_b =
-        std::count_if(b.begin(), b.begin() + limit_b, [](const mint &x) { return x != mint(0); });
+    const auto is_nonzero = [](const mint &x) {
+        return x != mint(0);
+    };
+    const std::int64_t nonzero_a = std::ranges::count_if(a | std::views::take(limit_a), is_nonzero);
+    const std::int64_t nonzero_b = std::ranges::count_if(b | std::views::take(limit_b), is_nonzero);
 
     long double dense_work = 0;
     switch (op) {
