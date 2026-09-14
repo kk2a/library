@@ -200,14 +200,53 @@ template <UnivariateFormalPowerSeries FPS> FPS &inplace_quo(FPS &dividend, const
     return inplace_dense_quo(dividend, divisor);
 }
 
+template <UnivariateFormalPowerSeries FPS>
+FPS &inplace_dense_mod(FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (std::addressof(dividend) == std::addressof(divisor)) {
+        dividend.clear();
+        return dividend;
+    }
+    FPS quotient = dense_quo(dividend, divisor);
+    return (dividend -= quotient.inplace_dense_mul(divisor)).shrink();
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS dense_mod(const FPS &dividend, const FPS &divisor) {
+    FPS result = dividend;
+    return inplace_dense_mod(result, divisor);
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS &inplace_sparse_mod(FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (std::addressof(dividend) == std::addressof(divisor)) {
+        dividend.clear();
+        return dividend;
+    }
+    FPS quotient = sparse_quo(dividend, divisor);
+    return (dividend -= quotient.inplace_sparse_mul(divisor)).shrink();
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS sparse_mod(const FPS &dividend, const FPS &divisor) {
+    FPS result = dividend;
+    return inplace_sparse_mod(result, divisor);
+}
+
 template <UnivariateFormalPowerSeries FPS> FPS &inplace_mod(FPS &dividend, const FPS &divisor) {
     assert(!divisor.empty());
     if (std::addressof(dividend) == std::addressof(divisor)) {
         dividend.clear();
         return dividend;
     }
-    FPS product = quo(dividend, divisor);
-    return (dividend -= product.inplace_mul(divisor)).shrink();
+    if (dividend.size() < divisor.size()) return dividend.shrink();
+    const int quotient_size = dividend.size() - divisor.size() + 1;
+    const bool use_sparse = is_sparse_operation(FPSOperation::POLYNOMIAL_DIVISION,
+                                                NTTFriendlyFormalPowerSeries<FPS>,
+                                                dividend,
+                                                divisor,
+                                                quotient_size);
+    if (use_sparse) return inplace_sparse_mod(dividend, divisor);
+    return inplace_dense_mod(dividend, divisor);
 }
 
 template <UnivariateFormalPowerSeries FPS> FPS mod(const FPS &dividend, const FPS &divisor) {

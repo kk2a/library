@@ -17,7 +17,7 @@ int main() {
         kin >> i >> a;
         f[i] = a;
     }
-    f.sparse_exp().output(kout);
+    f.exp().output(kout);
 
     return 0;
 }

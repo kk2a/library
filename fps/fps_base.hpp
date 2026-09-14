@@ -97,6 +97,14 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
     }
     FPS quo(const FPS &r) const { return fps::operations::quo(derived(), r); }
     FPS &inplace_quo(const FPS &r) { return fps::operations::inplace_quo(derived(), r); }
+    FPS dense_mod(const FPS &r) const { return fps::operations::dense_mod(derived(), r); }
+    FPS &inplace_dense_mod(const FPS &r) {
+        return fps::operations::inplace_dense_mod(derived(), r);
+    }
+    FPS sparse_mod(const FPS &r) const { return fps::operations::sparse_mod(derived(), r); }
+    FPS &inplace_sparse_mod(const FPS &r) {
+        return fps::operations::inplace_sparse_mod(derived(), r);
+    }
     FPS mod(const FPS &r) const { return fps::operations::mod(derived(), r); }
     FPS &inplace_mod(const FPS &r) { return fps::operations::inplace_mod(derived(), r); }
 

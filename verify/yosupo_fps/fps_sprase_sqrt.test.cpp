@@ -1,7 +1,6 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sqrt_of_formal_power_series_sparse
 
 #include "../../fps/fps_ntt_friendly.hpp"
-#include "../../fps/fps_sqrt.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
@@ -18,7 +17,7 @@ int main() {
         kin >> i >> a;
         f[i] = a;
     }
-    FPS res = kk2::sparse_sqrt(f);
+    FPS res = f.sqrt();
     if (res.empty()) kout << -1 << "\n";
     else res.output(kout);
 

@@ -309,16 +309,25 @@ template <class FPS> void test_quotient_apis() {
 
     const FPS with_remainder = dividend + FPS{2, 3};
     const FPS remainder{2, 3};
+    assert(with_remainder.dense_mod(divisor) == remainder);
+    assert(with_remainder.sparse_mod(divisor) == remainder);
     assert(with_remainder.mod(divisor) == remainder);
-    FPS inplace_remainder = with_remainder;
-    FPS &remainder_reference = inplace_remainder.inplace_mod(divisor);
-    assert(&remainder_reference == &inplace_remainder);
-    assert(inplace_remainder == remainder);
+    for (auto operation : {&FPS::inplace_dense_mod, &FPS::inplace_sparse_mod, &FPS::inplace_mod}) {
+        FPS inplace_remainder = with_remainder;
+        FPS &remainder_reference = (inplace_remainder.*operation)(divisor);
+        assert(&remainder_reference == &inplace_remainder);
+        assert(inplace_remainder == remainder);
+    }
     assert(with_remainder % divisor == remainder);
 
-    FPS alias_remainder = divisor;
-    alias_remainder.inplace_mod(alias_remainder);
-    assert(alias_remainder.empty());
+    for (auto operation : {&FPS::inplace_dense_mod, &FPS::inplace_sparse_mod, &FPS::inplace_mod}) {
+        FPS alias_remainder = divisor;
+        (alias_remainder.*operation)(alias_remainder);
+        assert(alias_remainder.empty());
+    }
+    assert(divisor.dense_mod(divisor).empty());
+    assert(divisor.sparse_mod(divisor).empty());
+    assert(divisor.mod(divisor).empty());
 }
 
 } // namespace

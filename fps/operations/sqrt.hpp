@@ -4,7 +4,7 @@
 #include <cassert>
 #include <utility>
 
-#include "../../math_mod/mod_sqrt.hpp"
+#include "../../math_mod/detail/mod_sqrt.hpp"
 #include "../../type_traits/fps.hpp"
 #include "../fps_sparsity_detector.hpp"
 #include "power.hpp"
@@ -29,7 +29,7 @@ template <UnivariateFormalPowerSeries FPS> FPS dense_sqrt(const FPS &f, int deg 
         return FPS(deg, mint(0));
     }
 
-    const long long root = mod_sqrt(f[0].val(), mint::getmod());
+    const long long root = mod_sqrt_detail::mod_sqrt<NTTFriendlyFormalPowerSeries<FPS>>(f[0]);
     if (root == -1) return {};
     assert(root * root % mint::getmod() == f[0].val());
     FPS result{mint(root)};
@@ -71,7 +71,7 @@ template <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_sqrt(FPS &f, int 
         return f;
     }
 
-    const long long root = mod_sqrt(f[0].val(), mint::getmod());
+    const long long root = mod_sqrt_detail::mod_sqrt<NTTFriendlyFormalPowerSeries<FPS>>(f[0]);
     if (root == -1) {
         f.clear();
         return f;
