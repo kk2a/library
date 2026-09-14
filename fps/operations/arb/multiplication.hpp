@@ -8,8 +8,8 @@
 namespace kk2::fps::operations {
 
 template <ArbitraryModulusFormalPowerSeries FPS>
-FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int deg) {
-    return inplace_dense_convolution_arb(lhs, rhs, deg);
+FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision) {
+    return inplace_dense_convolution_arb(lhs, rhs, precision);
 }
 
 } // namespace kk2::fps::operations

@@ -11,14 +11,14 @@
 
 namespace kk2::fps::operations {
 
-template <NTTFriendlyFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int deg = -1) {
+template <NTTFriendlyFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int precision = -1) {
     using mint = typename FPS::value_type;
     assert(f.empty() || f[0] == mint(0));
-    if (deg == -1) deg = static_cast<int>(f.size());
+    if (precision == -1) precision = static_cast<int>(f.size());
 
     FPS result{1, 1 < static_cast<int>(f.size()) ? f[1] : mint(0)};
     FPS inverse{1}, transformed_inverse, previous_transformed_inverse{1, 1};
-    for (int m = 2; m < deg; m <<= 1) {
+    for (int m = 2; m < precision; m <<= 1) {
         FPS transformed_result = result;
         transformed_result.resize(m << 1);
         transformed_result.but();
@@ -60,20 +60,20 @@ template <NTTFriendlyFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int deg 
         delta.ibut();
         result.insert(result.end(), delta.begin() + m, delta.end());
     }
-    return FPS(result.begin(), result.begin() + deg);
+    return FPS(result.begin(), result.begin() + precision);
 }
 
-template <ArbitraryModulusFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int deg = -1);
+template <ArbitraryModulusFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int precision = -1);
 
-template <UnivariateFormalPowerSeries FPS> FPS &inplace_dense_exp(FPS &f, int deg = -1) {
-    if (deg == -1) deg = static_cast<int>(f.size());
-    return f = dense_exp(std::as_const(f), deg);
+template <UnivariateFormalPowerSeries FPS> FPS &inplace_dense_exp(FPS &f, int precision = -1) {
+    if (precision == -1) precision = static_cast<int>(f.size());
+    return f = dense_exp(std::as_const(f), precision);
 }
 
-template <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_exp(FPS &f, int deg = -1) {
+template <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_exp(FPS &f, int precision = -1) {
     using mint = typename FPS::value_type;
     assert(f.empty() || f[0] == mint(0));
-    if (deg == -1) deg = static_cast<int>(f.size());
+    if (precision == -1) precision = static_cast<int>(f.size());
 
     std::vector<std::pair<int, mint>> support;
     for (int i = 1; i < static_cast<int>(f.size()); ++i) {
@@ -83,12 +83,12 @@ template <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_exp(FPS &f, int d
     const int mod = mint::getmod();
     static std::vector<mint> inverse{1, 1};
     const int old_size = inverse.size();
-    inverse.resize(std::max(old_size, deg + 1));
-    for (int i = old_size; i <= deg; ++i) inverse[i] = -inverse[mod % i] * (mod / i);
+    inverse.resize(std::max(old_size, precision + 1));
+    for (int i = old_size; i <= precision; ++i) inverse[i] = -inverse[mod % i] * (mod / i);
 
-    f.assign(deg, mint(0));
-    if (deg > 0) f[0] = mint(1);
-    for (int k = 0; k < deg - 1; ++k) {
+    f.assign(precision, mint(0));
+    if (precision > 0) f[0] = mint(1);
+    for (int k = 0; k < precision - 1; ++k) {
         for (const auto &[index, derivative_coefficient] : support) {
             const int derivative_index = index - 1;
             if (k < derivative_index) break;
@@ -99,26 +99,27 @@ template <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_exp(FPS &f, int d
     return f;
 }
 
-template <UnivariateFormalPowerSeries FPS> FPS sparse_exp(const FPS &f, int deg = -1) {
+template <UnivariateFormalPowerSeries FPS> FPS sparse_exp(const FPS &f, int precision = -1) {
     FPS result = f;
-    return inplace_sparse_exp(result, deg);
+    return inplace_sparse_exp(result, precision);
 }
 
-template <UnivariateFormalPowerSeries FPS> FPS exp(const FPS &f, int deg = -1) {
+template <UnivariateFormalPowerSeries FPS> FPS exp(const FPS &f, int precision = -1) {
     using mint = typename FPS::value_type;
     assert(f.empty() || f[0] == mint(0));
-    if (is_sparse_operation(FPSOperation::EXP, NTTFriendlyFormalPowerSeries<FPS>, f, FPS(), deg))
-        return sparse_exp(f, deg);
-    return dense_exp(f, deg);
+    if (is_sparse_operation(
+            FPSOperation::EXP, NTTFriendlyFormalPowerSeries<FPS>, f, FPS(), precision))
+        return sparse_exp(f, precision);
+    return dense_exp(f, precision);
 }
 
-template <UnivariateFormalPowerSeries FPS> FPS &inplace_exp(FPS &f, int deg = -1) {
+template <UnivariateFormalPowerSeries FPS> FPS &inplace_exp(FPS &f, int precision = -1) {
     using mint = typename FPS::value_type;
     assert(f.empty() || f[0] == mint(0));
-    const bool use_sparse =
-        is_sparse_operation(FPSOperation::EXP, NTTFriendlyFormalPowerSeries<FPS>, f, FPS(), deg);
-    if (use_sparse) return inplace_sparse_exp(f, deg);
-    return inplace_dense_exp(f, deg);
+    const bool use_sparse = is_sparse_operation(
+        FPSOperation::EXP, NTTFriendlyFormalPowerSeries<FPS>, f, FPS(), precision);
+    if (use_sparse) return inplace_sparse_exp(f, precision);
+    return inplace_dense_exp(f, precision);
 }
 
 } // namespace kk2::fps::operations

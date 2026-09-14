@@ -11,11 +11,11 @@ namespace kk2 {
 
 // calculate (g \circ f) (X)
 template <class FPS, class mint = typename FPS::value_type>
-FPS composition(const FPS &f_, const FPS &g_, int deg = -1) {
+FPS composition(const FPS &f_, const FPS &g_, int precision = -1) {
     if (f_.empty() || g_.empty()) return {};
-    if (deg == -1) deg = std::max(size(f_), size(g_));
+    if (precision == -1) precision = std::max(size(f_), size(g_));
     FPS f(f_.begin(), f_.end()), g(g_.begin(), g_.end());
-    f.resize(deg), g.resize(deg);
+    f.resize(precision), g.resize(precision);
 
     auto rec = [&](auto self, FPS q, int n, int h, int k) -> FPS {
         if (n == 0) {

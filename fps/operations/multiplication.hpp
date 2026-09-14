@@ -8,45 +8,46 @@
 namespace kk2::fps::operations {
 
 template <NTTFriendlyFormalPowerSeries FPS>
-FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int deg = -1) {
-    return inplace_dense_convolution(lhs, rhs, deg);
+FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1) {
+    return inplace_dense_convolution(lhs, rhs, precision);
 }
 
 template <ArbitraryModulusFormalPowerSeries FPS>
-FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int deg = -1);
+FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1);
 
 template <UnivariateFormalPowerSeries FPS>
-FPS dense_mul(const FPS &lhs, const FPS &rhs, int deg = -1) {
+FPS dense_mul(const FPS &lhs, const FPS &rhs, int precision = -1) {
     FPS result = lhs;
-    inplace_dense_mul(result, rhs, deg);
+    inplace_dense_mul(result, rhs, precision);
     return result;
 }
 
 template <UnivariateFormalPowerSeries FPS>
-FPS &inplace_sparse_mul(FPS &lhs, const FPS &rhs, int deg = -1) {
-    return inplace_sparse_convolution(lhs, rhs, deg);
+FPS &inplace_sparse_mul(FPS &lhs, const FPS &rhs, int precision = -1) {
+    return inplace_sparse_convolution(lhs, rhs, precision);
 }
 
 template <UnivariateFormalPowerSeries FPS>
-FPS sparse_mul(const FPS &lhs, const FPS &rhs, int deg = -1) {
+FPS sparse_mul(const FPS &lhs, const FPS &rhs, int precision = -1) {
     FPS result = lhs;
-    inplace_sparse_mul(result, rhs, deg);
+    inplace_sparse_mul(result, rhs, precision);
     return result;
 }
 
-template <UnivariateFormalPowerSeries FPS> FPS mul(const FPS &lhs, const FPS &rhs, int deg = -1) {
+template <UnivariateFormalPowerSeries FPS>
+FPS mul(const FPS &lhs, const FPS &rhs, int precision = -1) {
     if (is_sparse_operation(
-            FPSOperation::CONVOLUTION, NTTFriendlyFormalPowerSeries<FPS>, lhs, rhs, deg))
-        return sparse_mul(lhs, rhs, deg);
-    return dense_mul(lhs, rhs, deg);
+            FPSOperation::CONVOLUTION, NTTFriendlyFormalPowerSeries<FPS>, lhs, rhs, precision))
+        return sparse_mul(lhs, rhs, precision);
+    return dense_mul(lhs, rhs, precision);
 }
 
 template <UnivariateFormalPowerSeries FPS>
-FPS &inplace_mul(FPS &lhs, const FPS &rhs, int deg = -1) {
+FPS &inplace_mul(FPS &lhs, const FPS &rhs, int precision = -1) {
     const bool use_sparse = is_sparse_operation(
-        FPSOperation::CONVOLUTION, NTTFriendlyFormalPowerSeries<FPS>, lhs, rhs, deg);
-    if (use_sparse) return inplace_sparse_mul(lhs, rhs, deg);
-    return inplace_dense_mul(lhs, rhs, deg);
+        FPSOperation::CONVOLUTION, NTTFriendlyFormalPowerSeries<FPS>, lhs, rhs, precision);
+    if (use_sparse) return inplace_sparse_mul(lhs, rhs, precision);
+    return inplace_dense_mul(lhs, rhs, precision);
 }
 
 } // namespace kk2::fps::operations

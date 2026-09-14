@@ -35,9 +35,10 @@ inline int transform_size(int n, int m) {
     return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n + m - 1)));
 }
 
-inline std::int64_t convolution_dense_work(int n, int m, int deg, bool same, bool ntt_friendly) {
-    n = std::min(n, deg);
-    m = std::min(m, deg);
+inline std::int64_t
+convolution_dense_work(int n, int m, int precision, bool same, bool ntt_friendly) {
+    n = std::min(n, precision);
+    m = std::min(m, precision);
     const int z = transform_size(n, m);
     if (z == 0) return 0;
 
@@ -49,25 +50,25 @@ inline std::int64_t convolution_dense_work(int n, int m, int deg, bool same, boo
     return static_cast<std::int64_t>(transforms) * moduli * evaluation_work(z);
 }
 
-inline std::int64_t inverse_dense_work(int deg, bool ntt_friendly) {
-    if (deg <= 1) return 0;
-    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(deg)));
+inline std::int64_t inverse_dense_work(int precision, bool ntt_friendly) {
+    if (precision <= 1) return 0;
+    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(precision)));
     // NTT-friendly uses five transforms per Newton level, whose geometric
     // sum has leading term 10 E(z). The arbitrary-modulus implementation
     // performs two fresh convolutions per level, giving 60 E(z).
     return (ntt_friendly ? 10 : 60) * evaluation_work(z);
 }
 
-inline std::int64_t log_dense_work(int n, int deg, bool ntt_friendly) {
-    return inverse_dense_work(deg, ntt_friendly)
-           + convolution_dense_work(std::max(0, n - 1), deg, deg, false, ntt_friendly);
+inline std::int64_t log_dense_work(int n, int precision, bool ntt_friendly) {
+    return inverse_dense_work(precision, ntt_friendly)
+           + convolution_dense_work(std::max(0, n - 1), precision, precision, false, ntt_friendly);
 }
 
-inline long double exp_dense_work(int deg, bool ntt_friendly) {
-    if (deg <= 1) return 0;
-    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(deg)));
+inline long double exp_dense_work(int precision, bool ntt_friendly) {
+    if (precision <= 1) return 0;
+    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(precision)));
     if (ntt_friendly) {
-        if (deg <= 2) return 0;
+        if (precision <= 2) return 0;
         // Bostan--Schost, Theorem 1: (33/2) E(z) + (97/4) z.  Only
         // the leading E(z) term matters for the sparsity threshold.
         return 16.5L * evaluation_work(z);
@@ -76,13 +77,14 @@ inline long double exp_dense_work(int deg, bool ntt_friendly) {
     return 192 * evaluation_work(z);
 }
 
-inline long double power_dense_work(int n, int deg, bool ntt_friendly) {
-    return log_dense_work(n, deg, ntt_friendly) + exp_dense_work(deg, ntt_friendly);
+inline long double power_dense_work(int n, int precision, bool ntt_friendly) {
+    return log_dense_work(n, precision, ntt_friendly) + exp_dense_work(precision, ntt_friendly);
 }
 
-inline std::int64_t division_dense_work(int n, int deg, bool ntt_friendly) {
-    return inverse_dense_work(deg, ntt_friendly)
-           + convolution_dense_work(std::min(n, deg), deg, deg, false, ntt_friendly);
+inline std::int64_t division_dense_work(int n, int precision, bool ntt_friendly) {
+    return inverse_dense_work(precision, ntt_friendly)
+           + convolution_dense_work(
+               std::min(n, precision), precision, precision, false, ntt_friendly);
 }
 
 inline std::int64_t polynomial_division_dense_work(int quotient_size, bool ntt_friendly) {
@@ -91,9 +93,9 @@ inline std::int64_t polynomial_division_dense_work(int quotient_size, bool ntt_f
                quotient_size, quotient_size, quotient_size, false, ntt_friendly);
 }
 
-inline std::int64_t sqrt_dense_work(int deg, bool ntt_friendly) {
-    if (deg <= 1) return 0;
-    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(deg)));
+inline std::int64_t sqrt_dense_work(int precision, bool ntt_friendly) {
+    if (precision <= 1) return 0;
+    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(precision)));
     // Newton uses an inverse and one product at every level. The implementation
     // computes the complete next power-of-two block even at the last level.
     return (ntt_friendly ? 32 : 156) * evaluation_work(z);
@@ -145,14 +147,15 @@ inline long double sparse_work_constant(FPSOperation op, bool ntt_friendly) {
 
 template <class FPS, class mint = typename FPS::value_type>
 bool is_sparse_operation(
-    FPSOperation op, bool is_ntt_friendly, const FPS &a, const FPS &b = FPS(), int deg = -1) {
+    FPSOperation op, bool is_ntt_friendly, const FPS &a, const FPS &b = FPS(), int precision = -1) {
     const int n = a.size(), m = b.size();
     if (n + m == 0) return false;
 
     const bool convolution = op == FPSOperation::CONVOLUTION;
     const bool division = op == FPSOperation::DIVISION;
     const bool polynomial_division = op == FPSOperation::POLYNOMIAL_DIVISION;
-    const int requested = deg < 0 ? (convolution ? std::max(0, n + m - 1) : n) : std::max(0, deg);
+    const int requested =
+        precision < 0 ? (convolution ? std::max(0, n + m - 1) : n) : std::max(0, precision);
     const int target = convolution ? std::min(requested, std::max(0, n + m - 1)) : requested;
     const int limit_a = convolution                       ? std::min(n, target) :
                         (division || polynomial_division) ? 0 :

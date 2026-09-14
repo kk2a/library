@@ -33,6 +33,7 @@ IncludeCategories:
       Priority: 1
       SortPriority: 0
 IndentWidth: 4
+IndentCaseBlocks: true
 InsertNewlineAtEOF: true
 MaxEmptyLinesToKeep: 2
 NamespaceIndentation: None

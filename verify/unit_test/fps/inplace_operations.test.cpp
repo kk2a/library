@@ -5,31 +5,53 @@
 
 #include "../../../fps/fps_arb.hpp"
 #include "../../../fps/fps_ntt_friendly.hpp"
+#include "../../../fps/mod_pow.hpp"
 #include "../../../modint/mont.hpp"
 
 namespace {
 
+template <class FPS, class Exponent>
+concept SupportsPowerApis = requires(FPS f, const FPS source, Exponent exponent) {
+    source.dense_pow(exponent);
+    f.inplace_dense_pow(exponent);
+    source.sparse_pow(exponent);
+    f.inplace_sparse_pow(exponent);
+    source.pow(exponent);
+    f.inplace_pow(exponent);
+};
+
+static_assert(SupportsPowerApis<kk2::FPSNTT<kk2::mont998>, long long>);
+static_assert(!SupportsPowerApis<kk2::FPSNTT<kk2::mont998>, double>);
+
+template <class FPS, class Exponent>
+concept SupportsModPower = requires(const FPS f, const FPS modulus, Exponent exponent) {
+    kk2::mod_pow(exponent, f, modulus);
+};
+
+static_assert(SupportsModPower<kk2::FPSNTT<kk2::mont998>, long long>);
+static_assert(!SupportsModPower<kk2::FPSNTT<kk2::mont998>, double>);
+
 template <class FPS> void test_inverse_apis() {
     const FPS source{2, 0, 3, 0, 5, 0, 7};
 
-    for (int deg : {0, 1, 7, 10}) {
-        const FPS dense = source.dense_inv(deg);
-        const FPS sparse = source.sparse_inv(deg);
+    for (int precision : {0, 1, 7, 10}) {
+        const FPS dense = source.dense_inv(precision);
+        const FPS sparse = source.sparse_inv(precision);
         assert(dense == sparse);
 
         FPS inplace_dense = source;
-        FPS &dense_reference = inplace_dense.inplace_dense_inv(deg);
+        FPS &dense_reference = inplace_dense.inplace_dense_inv(precision);
         assert(&dense_reference == &inplace_dense);
         assert(inplace_dense == dense);
 
         FPS inplace_sparse = source;
-        FPS &sparse_reference = inplace_sparse.inplace_sparse_inv(deg);
+        FPS &sparse_reference = inplace_sparse.inplace_sparse_inv(precision);
         assert(&sparse_reference == &inplace_sparse);
         assert(inplace_sparse == sparse);
 
-        const FPS automatic = source.inv(deg);
+        const FPS automatic = source.inv(precision);
         FPS inplace_automatic = source;
-        FPS &automatic_reference = inplace_automatic.inplace_inv(deg);
+        FPS &automatic_reference = inplace_automatic.inplace_inv(precision);
         assert(&automatic_reference == &inplace_automatic);
         assert(inplace_automatic == automatic);
         assert(automatic == dense);
@@ -43,24 +65,24 @@ template <class FPS> void test_inverse_apis() {
 template <class FPS> void test_logarithm_apis() {
     const FPS source{1, 0, 3, 0, 5, 0, 7};
 
-    for (int deg : {0, 1, 7, 10}) {
-        const FPS dense = source.dense_log(deg);
-        const FPS sparse = source.sparse_log(deg);
+    for (int precision : {0, 1, 7, 10}) {
+        const FPS dense = source.dense_log(precision);
+        const FPS sparse = source.sparse_log(precision);
         assert(dense == sparse);
 
         FPS inplace_dense = source;
-        FPS &dense_reference = inplace_dense.inplace_dense_log(deg);
+        FPS &dense_reference = inplace_dense.inplace_dense_log(precision);
         assert(&dense_reference == &inplace_dense);
         assert(inplace_dense == dense);
 
         FPS inplace_sparse = source;
-        FPS &sparse_reference = inplace_sparse.inplace_sparse_log(deg);
+        FPS &sparse_reference = inplace_sparse.inplace_sparse_log(precision);
         assert(&sparse_reference == &inplace_sparse);
         assert(inplace_sparse == sparse);
 
-        const FPS automatic = source.log(deg);
+        const FPS automatic = source.log(precision);
         FPS inplace_automatic = source;
-        FPS &automatic_reference = inplace_automatic.inplace_log(deg);
+        FPS &automatic_reference = inplace_automatic.inplace_log(precision);
         assert(&automatic_reference == &inplace_automatic);
         assert(inplace_automatic == automatic);
         assert(automatic == dense);
@@ -74,24 +96,24 @@ template <class FPS> void test_logarithm_apis() {
 template <class FPS> void test_exponential_apis() {
     const FPS source{0, 0, 3, 0, 5, 0, 7};
 
-    for (int deg : {0, 1, 7, 10}) {
-        const FPS dense = source.dense_exp(deg);
-        const FPS sparse = source.sparse_exp(deg);
+    for (int precision : {0, 1, 7, 10}) {
+        const FPS dense = source.dense_exp(precision);
+        const FPS sparse = source.sparse_exp(precision);
         assert(dense == sparse);
 
         FPS inplace_dense = source;
-        FPS &dense_reference = inplace_dense.inplace_dense_exp(deg);
+        FPS &dense_reference = inplace_dense.inplace_dense_exp(precision);
         assert(&dense_reference == &inplace_dense);
         assert(inplace_dense == dense);
 
         FPS inplace_sparse = source;
-        FPS &sparse_reference = inplace_sparse.inplace_sparse_exp(deg);
+        FPS &sparse_reference = inplace_sparse.inplace_sparse_exp(precision);
         assert(&sparse_reference == &inplace_sparse);
         assert(inplace_sparse == sparse);
 
-        const FPS automatic = source.exp(deg);
+        const FPS automatic = source.exp(precision);
         FPS inplace_automatic = source;
-        FPS &automatic_reference = inplace_automatic.inplace_exp(deg);
+        FPS &automatic_reference = inplace_automatic.inplace_exp(precision);
         assert(&automatic_reference == &inplace_automatic);
         assert(inplace_automatic == automatic);
         assert(automatic == dense);
@@ -109,24 +131,24 @@ template <class FPS> void test_power_apis() {
              FPS{0, 0, 0, 0}
     }) {
         for (long long exponent : {0, 1, 3}) {
-            for (int deg : {0, 1, 7, 10}) {
-                const FPS dense = source.dense_pow(exponent, deg);
-                const FPS sparse = source.sparse_pow(exponent, deg);
+            for (int precision : {0, 1, 7, 10}) {
+                const FPS dense = source.dense_pow(exponent, precision);
+                const FPS sparse = source.sparse_pow(exponent, precision);
                 assert(dense == sparse);
 
                 FPS inplace_dense = source;
-                FPS &dense_reference = inplace_dense.inplace_dense_pow(exponent, deg);
+                FPS &dense_reference = inplace_dense.inplace_dense_pow(exponent, precision);
                 assert(&dense_reference == &inplace_dense);
                 assert(inplace_dense == dense);
 
                 FPS inplace_sparse = source;
-                FPS &sparse_reference = inplace_sparse.inplace_sparse_pow(exponent, deg);
+                FPS &sparse_reference = inplace_sparse.inplace_sparse_pow(exponent, precision);
                 assert(&sparse_reference == &inplace_sparse);
                 assert(inplace_sparse == sparse);
 
-                const FPS automatic = source.pow(exponent, deg);
+                const FPS automatic = source.pow(exponent, precision);
                 FPS inplace_automatic = source;
-                FPS &automatic_reference = inplace_automatic.inplace_pow(exponent, deg);
+                FPS &automatic_reference = inplace_automatic.inplace_pow(exponent, precision);
                 assert(&automatic_reference == &inplace_automatic);
                 assert(inplace_automatic == automatic);
                 assert(automatic == dense);
@@ -139,24 +161,24 @@ template <class FPS> void test_square_root_apis() {
     const FPS root{2, 0, 3, 0, 5};
     const FPS source = root.dense_mul(root).pre(9);
 
-    for (int deg : {0, 1, 7, 10}) {
-        const FPS dense = source.dense_sqrt(deg);
-        const FPS sparse = source.sparse_sqrt(deg);
+    for (int precision : {0, 1, 7, 10}) {
+        const FPS dense = source.dense_sqrt(precision);
+        const FPS sparse = source.sparse_sqrt(precision);
         assert(dense == sparse);
 
         FPS inplace_dense = source;
-        FPS &dense_reference = inplace_dense.inplace_dense_sqrt(deg);
+        FPS &dense_reference = inplace_dense.inplace_dense_sqrt(precision);
         assert(&dense_reference == &inplace_dense);
         assert(inplace_dense == dense);
 
         FPS inplace_sparse = source;
-        FPS &sparse_reference = inplace_sparse.inplace_sparse_sqrt(deg);
+        FPS &sparse_reference = inplace_sparse.inplace_sparse_sqrt(precision);
         assert(&sparse_reference == &inplace_sparse);
         assert(inplace_sparse == sparse);
 
-        const FPS automatic = source.sqrt(deg);
+        const FPS automatic = source.sqrt(precision);
         FPS inplace_automatic = source;
-        FPS &automatic_reference = inplace_automatic.inplace_sqrt(deg);
+        FPS &automatic_reference = inplace_automatic.inplace_sqrt(precision);
         assert(&automatic_reference == &inplace_automatic);
         assert(inplace_automatic == automatic);
         assert(automatic == dense);
@@ -198,19 +220,19 @@ template <class FPS> void test_multiplication_apis() {
         assert(alias == square);
     }
 
-    for (int deg : {0, 1, 4, 10}) {
-        const int result_size = std::min(deg, static_cast<int>(dense.size()));
+    for (int precision : {0, 1, 4, 10}) {
+        const int result_size = std::min(precision, static_cast<int>(dense.size()));
         const FPS expected(dense.begin(), dense.begin() + result_size);
-        assert(lhs.dense_mul(rhs, deg) == expected);
-        assert(lhs.sparse_mul(rhs, deg) == expected);
-        assert(lhs.mul(rhs, deg) == expected);
+        assert(lhs.dense_mul(rhs, precision) == expected);
+        assert(lhs.sparse_mul(rhs, precision) == expected);
+        assert(lhs.mul(rhs, precision) == expected);
 
-        const int square_size = std::min(deg, static_cast<int>(square.size()));
+        const int square_size = std::min(precision, static_cast<int>(square.size()));
         const FPS expected_square(square.begin(), square.begin() + square_size);
         for (auto operation :
              {&FPS::inplace_dense_mul, &FPS::inplace_sparse_mul, &FPS::inplace_mul}) {
             FPS alias = lhs;
-            (alias.*operation)(alias, deg);
+            (alias.*operation)(alias, precision);
             assert(alias == expected_square);
         }
     }
@@ -240,35 +262,35 @@ template <class FPS> void test_division_apis() {
     const FPS dividend{2, 0, 3, 0, 5};
     const FPS divisor{4, 0, 7};
 
-    for (int deg : {0, 1, 7, 10}) {
-        const FPS dense = dividend.dense_div(divisor, deg);
-        const FPS sparse = dividend.sparse_div(divisor, deg);
+    for (int precision : {0, 1, 7, 10}) {
+        const FPS dense = dividend.dense_div(divisor, precision);
+        const FPS sparse = dividend.sparse_div(divisor, precision);
         assert(dense == sparse);
 
         FPS inplace_dense = dividend;
-        FPS &dense_reference = inplace_dense.inplace_dense_div(divisor, deg);
+        FPS &dense_reference = inplace_dense.inplace_dense_div(divisor, precision);
         assert(&dense_reference == &inplace_dense);
         assert(inplace_dense == dense);
 
         FPS inplace_sparse = dividend;
-        FPS &sparse_reference = inplace_sparse.inplace_sparse_div(divisor, deg);
+        FPS &sparse_reference = inplace_sparse.inplace_sparse_div(divisor, precision);
         assert(&sparse_reference == &inplace_sparse);
         assert(inplace_sparse == sparse);
 
-        assert(dividend.div(divisor, deg) == dense);
+        assert(dividend.div(divisor, precision) == dense);
         FPS inplace_automatic = dividend;
-        FPS &automatic_reference = inplace_automatic.inplace_div(divisor, deg);
+        FPS &automatic_reference = inplace_automatic.inplace_div(divisor, precision);
         assert(&automatic_reference == &inplace_automatic);
         assert(inplace_automatic == dense);
 
         FPS alias = divisor;
-        alias.inplace_div(alias, deg);
-        FPS identity(deg);
-        if (deg > 0) identity[0] = 1;
+        alias.inplace_div(alias, precision);
+        FPS identity(precision);
+        if (precision > 0) identity[0] = 1;
         assert(alias == identity);
-        assert(divisor.dense_div(divisor, deg) == identity);
-        assert(divisor.sparse_div(divisor, deg) == identity);
-        assert(divisor.div(divisor, deg) == identity);
+        assert(divisor.dense_div(divisor, precision) == identity);
+        assert(divisor.sparse_div(divisor, precision) == identity);
+        assert(divisor.div(divisor, precision) == identity);
     }
 }
 

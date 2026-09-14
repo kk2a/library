@@ -7,6 +7,7 @@
 
 #include "../math_mod/inv_table.hpp"
 #include "../type_traits/fps.hpp"
+#include "../type_traits/integral.hpp"
 #include "../type_traits/io.hpp"
 #include "operations/division.hpp"
 #include "operations/exponential.hpp"
@@ -192,101 +193,129 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
         return r;
     }
 
-    FPS dense_log(int deg = -1) const { return fps::operations::dense_log(derived(), deg); }
-    FPS &inplace_dense_log(int deg = -1) {
-        return fps::operations::inplace_dense_log(derived(), deg);
+    FPS dense_log(int precision = -1) const {
+        return fps::operations::dense_log(derived(), precision);
     }
-    FPS sparse_log(int deg = -1) const { return fps::operations::sparse_log(derived(), deg); }
-    FPS &inplace_sparse_log(int deg = -1) {
-        return fps::operations::inplace_sparse_log(derived(), deg);
+    FPS &inplace_dense_log(int precision = -1) {
+        return fps::operations::inplace_dense_log(derived(), precision);
     }
-    FPS log(int deg = -1) const { return fps::operations::log(derived(), deg); }
-    FPS &inplace_log(int deg = -1) { return fps::operations::inplace_log(derived(), deg); }
-
-    template <class T> FPS dense_pow(T exponent, int deg = -1) const {
-        return fps::operations::dense_pow(derived(), exponent, deg);
+    FPS sparse_log(int precision = -1) const {
+        return fps::operations::sparse_log(derived(), precision);
     }
-    template <class T> FPS &inplace_dense_pow(T exponent, int deg = -1) {
-        return fps::operations::inplace_dense_pow(derived(), exponent, deg);
+    FPS &inplace_sparse_log(int precision = -1) {
+        return fps::operations::inplace_sparse_log(derived(), precision);
     }
-    template <class T> FPS sparse_pow(T exponent, int deg = -1) const {
-        return fps::operations::sparse_pow(derived(), exponent, deg);
-    }
-    template <class T> FPS &inplace_sparse_pow(T exponent, int deg = -1) {
-        return fps::operations::inplace_sparse_pow(derived(), exponent, deg);
-    }
-    template <class T> FPS pow(T exponent, int deg = -1) const {
-        return fps::operations::pow(derived(), exponent, deg);
-    }
-    template <class T> FPS &inplace_pow(T exponent, int deg = -1) {
-        return fps::operations::inplace_pow(derived(), exponent, deg);
+    FPS log(int precision = -1) const { return fps::operations::log(derived(), precision); }
+    FPS &inplace_log(int precision = -1) {
+        return fps::operations::inplace_log(derived(), precision);
     }
 
-    FPS dense_div(const FPS &r, int deg = -1) const {
-        return fps::operations::dense_div(derived(), r, deg);
+    template <Integral T> FPS dense_pow(T exponent, int precision = -1) const {
+        return fps::operations::dense_pow(derived(), exponent, precision);
     }
-    FPS &inplace_dense_div(const FPS &r, int deg = -1) {
-        return fps::operations::inplace_dense_div(derived(), r, deg);
+    template <Integral T> FPS &inplace_dense_pow(T exponent, int precision = -1) {
+        return fps::operations::inplace_dense_pow(derived(), exponent, precision);
     }
-    FPS sparse_div(const FPS &r, int deg = -1) const {
-        return fps::operations::sparse_div(derived(), r, deg);
+    template <Integral T> FPS sparse_pow(T exponent, int precision = -1) const {
+        return fps::operations::sparse_pow(derived(), exponent, precision);
     }
-    FPS &inplace_sparse_div(const FPS &r, int deg = -1) {
-        return fps::operations::inplace_sparse_div(derived(), r, deg);
+    template <Integral T> FPS &inplace_sparse_pow(T exponent, int precision = -1) {
+        return fps::operations::inplace_sparse_pow(derived(), exponent, precision);
     }
-    FPS div(const FPS &r, int deg = -1) const { return fps::operations::div(derived(), r, deg); }
-    FPS &inplace_div(const FPS &r, int deg = -1) {
-        return fps::operations::inplace_div(derived(), r, deg);
+    template <Integral T> FPS pow(T exponent, int precision = -1) const {
+        return fps::operations::pow(derived(), exponent, precision);
+    }
+    template <Integral T> FPS &inplace_pow(T exponent, int precision = -1) {
+        return fps::operations::inplace_pow(derived(), exponent, precision);
     }
 
-    FPS dense_inv(int deg = -1) const { return fps::operations::dense_inv(derived(), deg); }
-    FPS &inplace_dense_inv(int deg = -1) {
-        return fps::operations::inplace_dense_inv(derived(), deg);
+    FPS dense_div(const FPS &r, int precision = -1) const {
+        return fps::operations::dense_div(derived(), r, precision);
     }
-    FPS sparse_inv(int deg = -1) const { return fps::operations::sparse_inv(derived(), deg); }
-    FPS &inplace_sparse_inv(int deg = -1) {
-        return fps::operations::inplace_sparse_inv(derived(), deg);
+    FPS &inplace_dense_div(const FPS &r, int precision = -1) {
+        return fps::operations::inplace_dense_div(derived(), r, precision);
     }
-    FPS inv(int deg = -1) const { return fps::operations::inv(derived(), deg); }
-    FPS &inplace_inv(int deg = -1) { return fps::operations::inplace_inv(derived(), deg); }
+    FPS sparse_div(const FPS &r, int precision = -1) const {
+        return fps::operations::sparse_div(derived(), r, precision);
+    }
+    FPS &inplace_sparse_div(const FPS &r, int precision = -1) {
+        return fps::operations::inplace_sparse_div(derived(), r, precision);
+    }
+    FPS div(const FPS &r, int precision = -1) const {
+        return fps::operations::div(derived(), r, precision);
+    }
+    FPS &inplace_div(const FPS &r, int precision = -1) {
+        return fps::operations::inplace_div(derived(), r, precision);
+    }
 
-    FPS dense_exp(int deg = -1) const { return fps::operations::dense_exp(derived(), deg); }
-    FPS &inplace_dense_exp(int deg = -1) {
-        return fps::operations::inplace_dense_exp(derived(), deg);
+    FPS dense_inv(int precision = -1) const {
+        return fps::operations::dense_inv(derived(), precision);
     }
-    FPS sparse_exp(int deg = -1) const { return fps::operations::sparse_exp(derived(), deg); }
-    FPS &inplace_sparse_exp(int deg = -1) {
-        return fps::operations::inplace_sparse_exp(derived(), deg);
+    FPS &inplace_dense_inv(int precision = -1) {
+        return fps::operations::inplace_dense_inv(derived(), precision);
     }
-    FPS exp(int deg = -1) const { return fps::operations::exp(derived(), deg); }
-    FPS &inplace_exp(int deg = -1) { return fps::operations::inplace_exp(derived(), deg); }
+    FPS sparse_inv(int precision = -1) const {
+        return fps::operations::sparse_inv(derived(), precision);
+    }
+    FPS &inplace_sparse_inv(int precision = -1) {
+        return fps::operations::inplace_sparse_inv(derived(), precision);
+    }
+    FPS inv(int precision = -1) const { return fps::operations::inv(derived(), precision); }
+    FPS &inplace_inv(int precision = -1) {
+        return fps::operations::inplace_inv(derived(), precision);
+    }
 
-    FPS dense_sqrt(int deg = -1) const { return fps::operations::dense_sqrt(derived(), deg); }
-    FPS &inplace_dense_sqrt(int deg = -1) {
-        return fps::operations::inplace_dense_sqrt(derived(), deg);
+    FPS dense_exp(int precision = -1) const {
+        return fps::operations::dense_exp(derived(), precision);
     }
-    FPS sparse_sqrt(int deg = -1) const { return fps::operations::sparse_sqrt(derived(), deg); }
-    FPS &inplace_sparse_sqrt(int deg = -1) {
-        return fps::operations::inplace_sparse_sqrt(derived(), deg);
+    FPS &inplace_dense_exp(int precision = -1) {
+        return fps::operations::inplace_dense_exp(derived(), precision);
     }
-    FPS sqrt(int deg = -1) const { return fps::operations::sqrt(derived(), deg); }
-    FPS &inplace_sqrt(int deg = -1) { return fps::operations::inplace_sqrt(derived(), deg); }
+    FPS sparse_exp(int precision = -1) const {
+        return fps::operations::sparse_exp(derived(), precision);
+    }
+    FPS &inplace_sparse_exp(int precision = -1) {
+        return fps::operations::inplace_sparse_exp(derived(), precision);
+    }
+    FPS exp(int precision = -1) const { return fps::operations::exp(derived(), precision); }
+    FPS &inplace_exp(int precision = -1) {
+        return fps::operations::inplace_exp(derived(), precision);
+    }
 
-    FPS dense_mul(const FPS &r, int deg = -1) const {
-        return fps::operations::dense_mul(derived(), r, deg);
+    FPS dense_sqrt(int precision = -1) const {
+        return fps::operations::dense_sqrt(derived(), precision);
     }
-    FPS &inplace_dense_mul(const FPS &r, int deg = -1) {
-        return fps::operations::inplace_dense_mul(derived(), r, deg);
+    FPS &inplace_dense_sqrt(int precision = -1) {
+        return fps::operations::inplace_dense_sqrt(derived(), precision);
     }
-    FPS sparse_mul(const FPS &r, int deg = -1) const {
-        return fps::operations::sparse_mul(derived(), r, deg);
+    FPS sparse_sqrt(int precision = -1) const {
+        return fps::operations::sparse_sqrt(derived(), precision);
     }
-    FPS &inplace_sparse_mul(const FPS &r, int deg = -1) {
-        return fps::operations::inplace_sparse_mul(derived(), r, deg);
+    FPS &inplace_sparse_sqrt(int precision = -1) {
+        return fps::operations::inplace_sparse_sqrt(derived(), precision);
     }
-    FPS mul(const FPS &r, int deg = -1) const { return fps::operations::mul(derived(), r, deg); }
-    FPS &inplace_mul(const FPS &r, int deg = -1) {
-        return fps::operations::inplace_mul(derived(), r, deg);
+    FPS sqrt(int precision = -1) const { return fps::operations::sqrt(derived(), precision); }
+    FPS &inplace_sqrt(int precision = -1) {
+        return fps::operations::inplace_sqrt(derived(), precision);
+    }
+
+    FPS dense_mul(const FPS &r, int precision = -1) const {
+        return fps::operations::dense_mul(derived(), r, precision);
+    }
+    FPS &inplace_dense_mul(const FPS &r, int precision = -1) {
+        return fps::operations::inplace_dense_mul(derived(), r, precision);
+    }
+    FPS sparse_mul(const FPS &r, int precision = -1) const {
+        return fps::operations::sparse_mul(derived(), r, precision);
+    }
+    FPS &inplace_sparse_mul(const FPS &r, int precision = -1) {
+        return fps::operations::inplace_sparse_mul(derived(), r, precision);
+    }
+    FPS mul(const FPS &r, int precision = -1) const {
+        return fps::operations::mul(derived(), r, precision);
+    }
+    FPS &inplace_mul(const FPS &r, int precision = -1) {
+        return fps::operations::inplace_mul(derived(), r, precision);
     }
 
     FPS &inplace_imos(int n) {

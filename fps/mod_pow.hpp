@@ -3,10 +3,12 @@
 
 #include <cassert>
 
+#include "../type_traits/integral.hpp"
+
 namespace kk2 {
 
 // return f ^ k mod g
-template <class FPS, class mint = typename FPS::value_type, class T>
+template <class FPS, class mint = typename FPS::value_type, Integral T>
 FPS mod_pow(T k, const FPS &f, const FPS &g) {
     // assert(!is_signed_v<T> || k >= 0);
     assert(!g.empty());
