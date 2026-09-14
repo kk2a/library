@@ -26,7 +26,7 @@ template <NTTFriendlyFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int prec
         FPS correction(m);
         correction = transformed_result.dot(transformed_inverse);
         correction.ibut();
-        std::fill(correction.begin(), correction.begin() + (m >> 1), mint(0));
+        std::fill_n(correction.begin(), m >> 1, mint(0));
         correction.but();
         correction.inplace_dot(-transformed_inverse);
         correction.ibut();
@@ -44,17 +44,15 @@ template <NTTFriendlyFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int prec
         delta.ibut();
         delta -= result.diff();
         delta.resize(m << 1);
-        for (int i = 0; i < m - 1; ++i) {
-            delta[m + i] = delta[i];
-            delta[i] = mint(0);
-        }
+        std::copy_n(delta.begin(), m - 1, delta.begin() + m);
+        std::fill_n(delta.begin(), m - 1, mint(0));
         delta.but();
         delta.inplace_dot(previous_transformed_inverse);
         delta.ibut();
         delta.pop_back();
         delta.inplace_int();
         for (int i = m; i < std::min(static_cast<int>(f.size()), m << 1); ++i) delta[i] += f[i];
-        std::fill(delta.begin(), delta.begin() + m, mint(0));
+        std::fill_n(delta.begin(), m, mint(0));
         delta.but();
         delta.inplace_dot(transformed_result);
         delta.ibut();

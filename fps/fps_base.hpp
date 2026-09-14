@@ -139,7 +139,8 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
 
     FPS operator-() const {
         FPS ret(this->size());
-        for (size_t i = 0; i < this->size(); i++) ret[i] = -(*this)[i];
+        std::ranges::transform(
+            *this, ret.begin(), [](const mint &coefficient) { return -coefficient; });
         return ret;
     }
     FPS &shrink() {

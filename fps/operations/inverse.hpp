@@ -21,17 +21,21 @@ template <NTTFriendlyFormalPowerSeries FPS> FPS dense_inv(const FPS &f, int prec
     result[0] = mint(1) / f[0];
     for (int d = 1; d < precision; d <<= 1) {
         FPS lhs(2 * d), rhs(2 * d);
-        std::copy(f.begin(), f.begin() + std::min(static_cast<int>(f.size()), 2 * d), lhs.begin());
-        std::copy(result.begin(), result.begin() + d, rhs.begin());
+        std::copy_n(f.begin(), std::min(static_cast<int>(f.size()), 2 * d), lhs.begin());
+        std::copy_n(result.begin(), d, rhs.begin());
         lhs.but();
         rhs.but();
         lhs.inplace_dot(rhs);
         lhs.ibut();
-        std::fill(lhs.begin(), lhs.begin() + d, mint(0));
+        std::fill_n(lhs.begin(), d, mint(0));
         lhs.but();
         lhs.inplace_dot(rhs);
         lhs.ibut();
-        for (int j = d; j < std::min(2 * d, precision); ++j) result[j] = -lhs[j];
+        const int next_precision = std::min(2 * d, precision);
+        std::transform(lhs.begin() + d,
+                       lhs.begin() + next_precision,
+                       result.begin() + d,
+                       [](const mint &coefficient) { return -coefficient; });
     }
     return result;
 }
