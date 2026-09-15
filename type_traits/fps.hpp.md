@@ -22,6 +22,36 @@ data:
     - filename: fps_sqrt.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_sqrt.hpp
+    - filename: exponential.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/arb/exponential.hpp
+    - filename: inverse.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/arb/inverse.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/arb/multiplication.hpp
+    - filename: division.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/division.hpp
+    - filename: exponential.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/exponential.hpp
+    - filename: inverse.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/inverse.hpp
+    - filename: logarithm.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/logarithm.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multiplication.hpp
+    - filename: power.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/power.hpp
+    - filename: sqrt.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/sqrt.hpp
     - filename: comb_large.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb_large.hpp
@@ -51,6 +81,9 @@ data:
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
     type: Required by
   - files:
+    - filename: inplace_operations.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/inplace_operations.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -217,6 +250,16 @@ data:
   - fps/fps_multivariate.hpp
   - fps/fps_ntt_friendly.hpp
   - fps/fps_sqrt.hpp
+  - fps/operations/arb/exponential.hpp
+  - fps/operations/arb/inverse.hpp
+  - fps/operations/arb/multiplication.hpp
+  - fps/operations/division.hpp
+  - fps/operations/exponential.hpp
+  - fps/operations/inverse.hpp
+  - fps/operations/logarithm.hpp
+  - fps/operations/multiplication.hpp
+  - fps/operations/power.hpp
+  - fps/operations/sqrt.hpp
   - math_mod/comb_large.hpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
@@ -226,9 +269,10 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-11 01:16:45+09:00'
+  timestamp: '2026-09-15 18:49:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/fps/inplace_operations.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp

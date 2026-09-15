@@ -184,7 +184,7 @@
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="n">FPS</span><span class="w"> </span><span class="n">composition</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="o">&amp;</span><span class="n">f_</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g_</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="src "><span class="n">FPS</span><span class="w"> </span><span class="n">composition</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="o">&amp;</span><span class="n">f_</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FPS</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g_</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">precision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l15" href="#l15">15</a></td>
@@ -198,7 +198,7 @@
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">f_</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">g_</span><span class="p">));</span></td>
+        <td class="src "><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">precision</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">precision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">f_</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">g_</span><span class="p">));</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l17" href="#l17">17</a></td>
@@ -212,7 +212,7 @@
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">deg</span><span class="p">),</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">deg</span><span class="p">);</span></td>
+        <td class="src "><span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">precision</span><span class="p">),</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">precision</span><span class="p">);</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l19" href="#l19">19</a></td>
@@ -627,7 +627,7 @@
         <hr class="block-separator"/>
         <footer class="text-center">
           Created using <a href="http://gcovr.com/en/8.6">GCOVR (Version 8.6)</a>
-          at 2026-09-10 16:17:49
+          at 2026-09-15 09:50:58
         </footer>
       </div>
     </div>

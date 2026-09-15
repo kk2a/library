@@ -14,16 +14,25 @@ data:
       icon: LIBRARY_ALL_AC
       path: convolution/convolution_arb.hpp
     - filename: convolution_int.hpp
-      icon: LIBRARY_NO_TESTS
+      icon: LIBRARY_ALL_AC
       path: convolution/convolution_int.hpp
     - filename: fps_arb.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_arb.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/arb/multiplication.hpp
     - filename: fps_exp_arb.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
     type: Required by
   - files:
+    - filename: inplace_convolution.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/convolution/inplace_convolution.test.cpp
+    - filename: inplace_operations.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/inplace_operations.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -79,10 +88,13 @@ data:
   - convolution/convolution_arb.hpp
   - convolution/convolution_int.hpp
   - fps/fps_arb.hpp
+  - fps/operations/arb/multiplication.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-09-11 01:16:45+09:00'
+  timestamp: '2026-09-15 18:49:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/convolution/inplace_convolution.test.cpp
+  - verify/unit_test/fps/inplace_operations.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp

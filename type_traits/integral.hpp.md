@@ -17,7 +17,7 @@ data:
       icon: LIBRARY_ALL_AC
       path: convolution/convolution_arb.hpp
     - filename: convolution_int.hpp
-      icon: LIBRARY_NO_TESTS
+      icon: LIBRARY_ALL_AC
       path: convolution/convolution_int.hpp
     - filename: bit_vector.hpp
       icon: LIBRARY_ALL_AC
@@ -37,9 +37,33 @@ data:
     - filename: fps_arb.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_arb.hpp
+    - filename: fps_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_base.hpp
+    - filename: fps_multivariate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_multivariate.hpp
+    - filename: fps_ntt_friendly.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_ntt_friendly.hpp
     - filename: fps_sqrt.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_sqrt.hpp
+    - filename: mod_pow.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/mod_pow.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/arb/multiplication.hpp
+    - filename: power.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/power.hpp
+    - filename: sqrt.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/sqrt.hpp
+    - filename: poly_find_root.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/poly_find_root.hpp
     - filename: poly_taylor_shift.hpp
       icon: LIBRARY_ALL_AC
       path: fps/poly_taylor_shift.hpp
@@ -177,6 +201,9 @@ data:
     - filename: aoj_ntl_1_e.test.cpp
       icon: TEST_ACCEPTED
       path: verify/aoj/aoj_ntl_1_e.test.cpp
+    - filename: inplace_convolution.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/convolution/inplace_convolution.test.cpp
     - filename: bit_vector.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/data_structure/bit_vector.test.cpp
@@ -186,6 +213,9 @@ data:
     - filename: wavelet_matrix.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+    - filename: inplace_operations.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/inplace_operations.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -234,6 +264,9 @@ data:
     - filename: large_fact_arb_mod.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    - filename: mod_sqrt.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math_mod/mod_sqrt.test.cpp
     - filename: F2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/modint/F2.test.cpp
@@ -690,7 +723,15 @@ data:
   - data_structure/w_ary_tree.hpp
   - data_structure/wavelet_matrix.hpp
   - fps/fps_arb.hpp
+  - fps/fps_base.hpp
+  - fps/fps_multivariate.hpp
+  - fps/fps_ntt_friendly.hpp
   - fps/fps_sqrt.hpp
+  - fps/mod_pow.hpp
+  - fps/operations/arb/multiplication.hpp
+  - fps/operations/power.hpp
+  - fps/operations/sqrt.hpp
+  - fps/poly_find_root.hpp
   - fps/poly_taylor_shift.hpp
   - math/group/rolling_hash.hpp
   - math/is_prime.hpp
@@ -729,7 +770,7 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-11 01:16:45+09:00'
+  timestamp: '2026-09-15 18:49:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -739,9 +780,11 @@ data:
   - verify/aoj/aoj_grl_1_c.test.cpp
   - verify/aoj/aoj_ntl_1_d.test.cpp
   - verify/aoj/aoj_ntl_1_e.test.cpp
+  - verify/unit_test/convolution/inplace_convolution.test.cpp
   - verify/unit_test/data_structure/bit_vector.test.cpp
   - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
   - verify/unit_test/data_structure/wavelet_matrix.test.cpp
+  - verify/unit_test/fps/inplace_operations.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp
@@ -758,6 +801,7 @@ data:
   - verify/unit_test/math_mod/binom_table.test.cpp
   - verify/unit_test/math_mod/inv_table.test.cpp
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/unit_test/math_mod/mod_sqrt.test.cpp
   - verify/unit_test/modint/F2.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp

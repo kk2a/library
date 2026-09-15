@@ -52,7 +52,7 @@ data:
         icon: LIBRARY_ALL_AC
         path: convolution/convolution_gcd.hpp
       - filename: convolution_int.hpp
-        icon: LIBRARY_NO_TESTS
+        icon: LIBRARY_ALL_AC
         path: convolution/convolution_int.hpp
       - filename: convolution_lcm.hpp
         icon: LIBRARY_ALL_AC
@@ -208,6 +208,40 @@ data:
       - filename: product.hpp
         icon: LIBRARY_ALL_AC
         path: fps/product.hpp
+    - name: fps/operations/
+      pages:
+      - filename: division.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/division.hpp
+      - filename: exponential.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/exponential.hpp
+      - filename: inverse.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/inverse.hpp
+      - filename: logarithm.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/logarithm.hpp
+      - filename: multiplication.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/multiplication.hpp
+      - filename: power.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/power.hpp
+      - filename: sqrt.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/sqrt.hpp
+    - name: fps/operations/arb/
+      pages:
+      - filename: exponential.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/arb/exponential.hpp
+      - filename: inverse.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/arb/inverse.hpp
+      - filename: multiplication.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/arb/multiplication.hpp
     - name: functional/
       pages:
       - filename: reverse_args.hpp
@@ -571,6 +605,11 @@ data:
       - filename: tetration.hpp
         icon: LIBRARY_NO_TESTS
         path: math_mod/tetration.hpp
+    - name: math_mod/detail/
+      pages:
+      - filename: mod_sqrt.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/detail/mod_sqrt.hpp
     - name: matrix/
       pages:
       - filename: basis.hpp
@@ -840,6 +879,11 @@ data:
       - filename: aoj_ntl_1_e.test.cpp
         icon: TEST_ACCEPTED
         path: verify/aoj/aoj_ntl_1_e.test.cpp
+    - name: verify/unit_test/convolution/
+      pages:
+      - filename: inplace_convolution.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/convolution/inplace_convolution.test.cpp
     - name: verify/unit_test/data_structure/
       pages:
       - filename: bit_vector.test.cpp
@@ -853,6 +897,9 @@ data:
         path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
     - name: verify/unit_test/fps/
       pages:
+      - filename: inplace_operations.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/fps/inplace_operations.test.cpp
       - filename: sparsity_boundary.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -918,6 +965,9 @@ data:
       - filename: large_fact_arb_mod.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+      - filename: mod_sqrt.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/math_mod/mod_sqrt.test.cpp
     - name: verify/unit_test/modint/
       pages:
       - filename: F2.test.cpp

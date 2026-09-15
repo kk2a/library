@@ -8,7 +8,16 @@ data:
   - files:
     - filename: mod_sqrt.hpp
       icon: LIBRARY_ALL_AC
+      path: math_mod/detail/mod_sqrt.hpp
+    - filename: mod_sqrt.hpp
+      icon: LIBRARY_ALL_AC
       path: math_mod/mod_sqrt.hpp
+    - filename: pow_mod.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/pow_mod.hpp
+    - filename: primitive_root.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/primitive_root.hpp
     - filename: mont_arb.hpp
       icon: LIBRARY_ALL_AC
       path: modint/mont_arb.hpp
@@ -42,7 +51,10 @@ data:
   - files: []
     type: Verified with
   dependsOn:
+  - math_mod/detail/mod_sqrt.hpp
   - math_mod/mod_sqrt.hpp
+  - math_mod/pow_mod.hpp
+  - math_mod/primitive_root.hpp
   - modint/mont_arb.hpp
   - template/constant.hpp
   - template/fastio.hpp
@@ -172,48 +184,74 @@ data:
       \   ArbitraryLazyMontgomeryModIntBase<int, unsigned int, long long, unsigned\
       \ long long, id>;\n\ntemplate <int id>\nusing ArbitraryLazyMontgomeryModInt64bit\
       \ =\n    ArbitraryLazyMontgomeryModIntBase<long long, unsigned long long, __int128_t,\
-      \ __uint128_t, id>;\n\n} // namespace kk2\n\n\n#line 7 \"math_mod/mod_sqrt.hpp\"\
+      \ __uint128_t, id>;\n\n} // namespace kk2\n\n\n#line 1 \"math_mod/detail/mod_sqrt.hpp\"\
+      \n\n\n\n#line 1 \"math_mod/primitive_root.hpp\"\n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\
+      \n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+      \ S, class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(n >=\
+      \ 0);\n    if (m == 1) return S(0);\n    S _m = m, r = 1;\n    S y = x % _m;\n\
+      \    if (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) %\
+      \ _m;\n        if (n >>= 1) y = (y * y) % _m;\n    }\n    return r;\n}\n\n}\
+      \ // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\n\nnamespace\
+      \ kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n    if (m == 2)\
+      \ return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049) return\
+      \ 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return 3;\n\
+      \    if (m == 1107296257) return 10;\n    int divs[20] = {};\n    divs[0] =\
+      \ 2;\n    int cnt = 1;\n    int x = (m - 1) / 2;\n    while (x % 2 == 0) x /=\
+      \ 2;\n    for (int i = 3; (long long)(i)*i <= x; i += 2) {\n        if (x %\
+      \ i == 0) {\n            divs[cnt++] = i;\n            while (x % i == 0) {\
+      \ x /= i; }\n        }\n    }\n    if (x > 1) { divs[cnt++] = x; }\n    for\
+      \ (int g = 2;; g++) {\n        bool ok = true;\n        for (int i = 0; i <\
+      \ cnt; i++) {\n            if (pow_mod<long long>(g, (m - 1) / divs[i], m) ==\
+      \ 1) {\n                ok = false;\n                break;\n            }\n\
+      \        }\n        if (ok) return g;\n    }\n}\n\ntemplate <int m> static constexpr\
+      \ int primitive_root = primitive_root_constexpr(m);\n\n} // namespace kk2\n\n\
+      \n#line 5 \"math_mod/detail/mod_sqrt.hpp\"\n\nnamespace kk2::mod_sqrt_detail\
+      \ {\n\ntemplate <class Mint> long long tonelli_shanks(const Mint &a, Mint z,\
+      \ long long m, long long e) {\n    Mint x = a.pow((m - 1) / 2);\n    Mint y\
+      \ = a * x * x;\n    x *= a;\n    while (y != Mint(1)) {\n        long long j\
+      \ = 0;\n        Mint t = y;\n        while (t != Mint(1)) {\n            j++;\n\
+      \            t *= t;\n        }\n        z = z.pow(1LL << (e - j - 1));\n  \
+      \      x *= z;\n        z *= z;\n        y *= z;\n        e = j;\n    }\n  \
+      \  return x.val();\n}\n\ntemplate <bool ntt_friendly = false, class mint> long\
+      \ long mod_sqrt(const mint &a) {\n    const auto p = mint::getmod();\n    if\
+      \ (a.val() < 2) return a.val();\n\n    // Euler's criterion\n    if (a.pow((p\
+      \ - 1) / 2) != mint(1)) return -1;\n\n    mint b;\n    if constexpr (ntt_friendly)\
+      \ {\n        b = primitive_root<mint::getmod()>;\n    } else {\n        // Find\
+      \ a quadratic non-residue.\n        b = 1;\n        while (b.pow((p - 1) / 2)\
+      \ == mint(1)) b += 1;\n    }\n\n    long long m = p - 1, e = 0;\n    while (m\
+      \ % 2 == 0) m >>= 1, e++;\n\n    mint z = b.pow(m);\n    return tonelli_shanks(a,\
+      \ z, m, e);\n}\n\n} // namespace kk2::mod_sqrt_detail\n\n\n#line 8 \"math_mod/mod_sqrt.hpp\"\
       \n\nnamespace kk2 {\n\n// ref: https://37zigen.com/tonelli-shanks-algorithm/\n\
       template <class T, class U> long long mod_sqrt(const T &a, const U &p) {\n \
       \   assert(0 <= a && a < p);\n    if (a < 2) return a;\n    using Mint = ArbitraryLazyMontgomeryModInt<54105064>;\n\
-      \    Mint::setmod(p);\n\n    // euler's criterion\n    if (Mint(a).pow((p -\
-      \ 1) / 2) != Mint(1)) return -1;\n\n    // find b: non quadratic residue\n \
-      \   Mint b = 1;\n    while (b.pow((p - 1) / 2) == Mint(1)) b += 1;\n\n    //\
-      \ (Z/pZ)^*\n    // \u2245 Z/(p-1)Z\n    // \u2245 Z/2^eZ * Z/mZ (m: odd)\n \
-      \   long long m = p - 1, e = 0;\n    while (m % 2 == 0) m >>= 1, e++;\n\n  \
-      \  Mint x = Mint(a).pow((m - 1) / 2);\n    Mint y = Mint(a) * x * x;\n    x\
-      \ *= a;\n    Mint z = Mint(b).pow(m);\n    while (y != Mint(1)) {\n        //\
-      \ x -> (x_1, x_2) in Z/2^eZ * Z/mZ\n        // a -> (a_1, a_2) in Z/2^eZ * Z/mZ\n\
-      \        long long j = 0;\n        Mint t = y;\n        while (t != Mint(1))\
-      \ {\n            j++;\n            t *= t;\n        }\n        z = z.pow(1LL\
-      \ << (e - j - 1));\n        x *= z;\n        z *= z;\n        y *= z;\n    \
-      \    e = j;\n    }\n    return x.val();\n}\n\n} // namespace kk2\n\n\n#line\
-      \ 1 \"template/template.hpp\"\n\n\n\n#include <algorithm>\n#include <array>\n\
-      #include <bitset>\n#line 8 \"template/template.hpp\"\n#include <chrono>\n#include\
-      \ <cmath>\n#include <deque>\n#include <functional>\n#include <iterator>\n#include\
-      \ <limits>\n#include <map>\n#include <numeric>\n#include <optional>\n#include\
-      \ <queue>\n#include <random>\n#include <set>\n#include <stack>\n#include <string>\n\
-      #include <unordered_map>\n#include <unordered_set>\n#line 25 \"template/template.hpp\"\
-      \n#include <vector>\n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n\
-      #include <cstdio>\n#line 10 \"template/fastio.hpp\"\n\n#line 13 \"template/fastio.hpp\"\
+      \    Mint::setmod(p);\n    return mod_sqrt_detail::mod_sqrt(Mint(a));\n}\n\n\
+      } // namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\n#include\
+      \ <chrono>\n#include <cmath>\n#include <deque>\n#include <functional>\n#include\
+      \ <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+      \ <optional>\n#include <queue>\n#include <random>\n#include <set>\n#include\
+      \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
+      #line 25 \"template/template.hpp\"\n#include <vector>\n\n#line 1 \"template/constant.hpp\"\
+      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
+      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
+      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
+      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
+      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
+      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
+      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
+      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
+      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
+      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
+      \ <cstdio>\n#line 10 \"template/fastio.hpp\"\n\n#line 13 \"template/fastio.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace fastio {\n\nstruct Scanner : type_traits::istream_tag\
       \ {\n  private:\n    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t\
       \ pos = 0, end = 0;\n    bool is_eof = false;\n    static char buf[INPUT_BUF];\n\
@@ -377,72 +415,72 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0026328960000228108
+  - elapsed: 0.0023127839999972366
     environment: g++
-    memory: 3.716
+    memory: 3.688
     name: example_00
     status: AC
-  - elapsed: 0.10145982800008824
+  - elapsed: 0.10119320800000509
     environment: g++
-    memory: 3.98
+    memory: 3.964
     name: max_random_00
     status: AC
-  - elapsed: 0.10199361799982398
+  - elapsed: 0.10203100600000425
     environment: g++
-    memory: 3.972
+    memory: 3.984
     name: max_random_01
     status: AC
-  - elapsed: 0.10361633299999085
+  - elapsed: 0.10209915699999783
     environment: g++
-    memory: 3.96
+    memory: 3.988
     name: max_random_02
     status: AC
-  - elapsed: 0.10402227600002334
+  - elapsed: 0.10365434799999917
     environment: g++
-    memory: 3.928
+    memory: 3.964
     name: max_random_03
     status: AC
-  - elapsed: 0.10436379599991596
+  - elapsed: 0.11331366299999956
     environment: g++
-    memory: 4.0
+    memory: 3.796
     name: max_random_04
     status: AC
-  - elapsed: 0.20907556399993155
+  - elapsed: 0.2159692669999984
     environment: g++
-    memory: 3.992
+    memory: 3.984
     name: mod_998244353_00
     status: AC
-  - elapsed: 0.2096621570001389
+  - elapsed: 0.23061159499999917
     environment: g++
-    memory: 3.9
+    memory: 3.792
     name: mod_998244353_01
     status: AC
-  - elapsed: 0.01997652999989441
+  - elapsed: 0.020719077999999058
     environment: g++
-    memory: 4.012
+    memory: 3.984
     name: random_00
     status: AC
-  - elapsed: 0.022128093999981502
+  - elapsed: 0.021851539000003584
     environment: g++
-    memory: 3.996
+    memory: 3.98
     name: random_01
     status: AC
-  - elapsed: 0.06438856299996587
+  - elapsed: 0.06413780499999433
     environment: g++
     memory: 3.956
     name: random_02
     status: AC
-  - elapsed: 0.028373213000122632
+  - elapsed: 0.02827454999999901
     environment: g++
-    memory: 3.988
+    memory: 3.984
     name: random_03
     status: AC
-  - elapsed: 0.10366345299985369
+  - elapsed: 0.10292688299999497
     environment: g++
-    memory: 3.992
+    memory: 4.004
     name: random_04
     status: AC
-  timestamp: '2026-09-11 01:16:45+09:00'
+  timestamp: '2026-09-15 18:49:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/sqrt_mod.test.cpp

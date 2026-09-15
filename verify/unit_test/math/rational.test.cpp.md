@@ -184,29 +184,29 @@ data:
       \ {\n            int op = random::rng(0, 4); // 0:+, 1:-, 2:*, 3:/\n       \
       \     int a = random::rng(-10, 11);\n            int b = random::rng(1, 11);\n\
       \n            RationalInt operand(a, b);\n\n            switch (op) {\n    \
-      \        case 0:\n                result += operand;\n                break;\n\
-      \            case 1:\n                result -= operand;\n                break;\n\
-      \            case 2:\n                result *= operand;\n                break;\n\
-      \            case 3:\n                if (operand.a != 0) { result /= operand;\
-      \ }\n                break;\n            }\n\n            // \u7D50\u679C\u304C\
-      \u6B63\u898F\u5316\u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u78BA\u8A8D\
-      \n            assert(result.b > 0);\n            assert(std::gcd(abs(result.a),\
-      \ result.b) == 1);\n        }\n    }\n}\n\nint main() {\n    cerr << \"Starting\
-      \ comprehensive rational number tests...\" << endl;\n\n    // \u57FA\u672C\u30C6\
-      \u30B9\u30C8\u5B9F\u884C\n    cerr << \"Running basic functionality tests...\"\
-      \ << endl;\n    test_constructor();\n    test_arithmetic();\n    test_comparison();\n\
-      \    test_unary_operations();\n    test_assignment_operators();\n    test_boolean_conversion();\n\
-      \    test_floating_point_conversion();\n    test_edge_cases();\n\n    // \u5883\
-      \u754C\u5024\u30FB\u30E9\u30F3\u30C0\u30E0\u30C6\u30B9\u30C8\u5B9F\u884C\n \
-      \   cerr << \"Running boundary value and random tests...\" << endl;\n    test_precision_edge_cases();\n\
-      \    test_random_operations();\n    test_comparison_consistency();\n    test_overflow_safety();\n\
-      \    test_double_conversion_accuracy();\n\n    // \u8FFD\u52A0\u306E\u53B3\u5BC6\
-      \u30C6\u30B9\u30C8\n    cerr << \"Running stress and edge case tests...\" <<\
-      \ endl;\n    test_stress_large_numbers();\n    test_special_rational_values();\n\
-      \    test_chain_operations();\n\n    // \u3059\u3079\u3066\u306E\u30C6\u30B9\
-      \u30C8\u304C\u901A\u3063\u305F\u5834\u5408\n    cerr << endl << \"=== ALL RATIONAL\
-      \ TESTS PASSED ===\" << endl;\n    cerr << \"All tests completed successfully!\"\
-      \ << endl;\n\n    return 0;\n}\n"
+      \            case 0:\n                    result += operand;\n             \
+      \       break;\n                case 1:\n                    result -= operand;\n\
+      \                    break;\n                case 2:\n                    result\
+      \ *= operand;\n                    break;\n                case 3:\n       \
+      \             if (operand.a != 0) { result /= operand; }\n                 \
+      \   break;\n            }\n\n            // \u7D50\u679C\u304C\u6B63\u898F\u5316\
+      \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u78BA\u8A8D\n            assert(result.b\
+      \ > 0);\n            assert(std::gcd(abs(result.a), result.b) == 1);\n     \
+      \   }\n    }\n}\n\nint main() {\n    cerr << \"Starting comprehensive rational\
+      \ number tests...\" << endl;\n\n    // \u57FA\u672C\u30C6\u30B9\u30C8\u5B9F\u884C\
+      \n    cerr << \"Running basic functionality tests...\" << endl;\n    test_constructor();\n\
+      \    test_arithmetic();\n    test_comparison();\n    test_unary_operations();\n\
+      \    test_assignment_operators();\n    test_boolean_conversion();\n    test_floating_point_conversion();\n\
+      \    test_edge_cases();\n\n    // \u5883\u754C\u5024\u30FB\u30E9\u30F3\u30C0\
+      \u30E0\u30C6\u30B9\u30C8\u5B9F\u884C\n    cerr << \"Running boundary value and\
+      \ random tests...\" << endl;\n    test_precision_edge_cases();\n    test_random_operations();\n\
+      \    test_comparison_consistency();\n    test_overflow_safety();\n    test_double_conversion_accuracy();\n\
+      \n    // \u8FFD\u52A0\u306E\u53B3\u5BC6\u30C6\u30B9\u30C8\n    cerr << \"Running\
+      \ stress and edge case tests...\" << endl;\n    test_stress_large_numbers();\n\
+      \    test_special_rational_values();\n    test_chain_operations();\n\n    //\
+      \ \u3059\u3079\u3066\u306E\u30C6\u30B9\u30C8\u304C\u901A\u3063\u305F\u5834\u5408\
+      \n    cerr << endl << \"=== ALL RATIONAL TESTS PASSED ===\" << endl;\n    cerr\
+      \ << \"All tests completed successfully!\" << endl;\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/math/rational.test.cpp\"\n// competitive-verifier:\
       \ STANDALONE\n\n#line 1 \"math/rational.hpp\"\n\n\n\n#include <cassert>\n#include\
@@ -651,29 +651,29 @@ data:
       \ {\n            int op = random::rng(0, 4); // 0:+, 1:-, 2:*, 3:/\n       \
       \     int a = random::rng(-10, 11);\n            int b = random::rng(1, 11);\n\
       \n            RationalInt operand(a, b);\n\n            switch (op) {\n    \
-      \        case 0:\n                result += operand;\n                break;\n\
-      \            case 1:\n                result -= operand;\n                break;\n\
-      \            case 2:\n                result *= operand;\n                break;\n\
-      \            case 3:\n                if (operand.a != 0) { result /= operand;\
-      \ }\n                break;\n            }\n\n            // \u7D50\u679C\u304C\
-      \u6B63\u898F\u5316\u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u78BA\u8A8D\
-      \n            assert(result.b > 0);\n            assert(std::gcd(abs(result.a),\
-      \ result.b) == 1);\n        }\n    }\n}\n\nint main() {\n    cerr << \"Starting\
-      \ comprehensive rational number tests...\" << endl;\n\n    // \u57FA\u672C\u30C6\
-      \u30B9\u30C8\u5B9F\u884C\n    cerr << \"Running basic functionality tests...\"\
-      \ << endl;\n    test_constructor();\n    test_arithmetic();\n    test_comparison();\n\
-      \    test_unary_operations();\n    test_assignment_operators();\n    test_boolean_conversion();\n\
-      \    test_floating_point_conversion();\n    test_edge_cases();\n\n    // \u5883\
-      \u754C\u5024\u30FB\u30E9\u30F3\u30C0\u30E0\u30C6\u30B9\u30C8\u5B9F\u884C\n \
-      \   cerr << \"Running boundary value and random tests...\" << endl;\n    test_precision_edge_cases();\n\
-      \    test_random_operations();\n    test_comparison_consistency();\n    test_overflow_safety();\n\
-      \    test_double_conversion_accuracy();\n\n    // \u8FFD\u52A0\u306E\u53B3\u5BC6\
-      \u30C6\u30B9\u30C8\n    cerr << \"Running stress and edge case tests...\" <<\
-      \ endl;\n    test_stress_large_numbers();\n    test_special_rational_values();\n\
-      \    test_chain_operations();\n\n    // \u3059\u3079\u3066\u306E\u30C6\u30B9\
-      \u30C8\u304C\u901A\u3063\u305F\u5834\u5408\n    cerr << endl << \"=== ALL RATIONAL\
-      \ TESTS PASSED ===\" << endl;\n    cerr << \"All tests completed successfully!\"\
-      \ << endl;\n\n    return 0;\n}\n"
+      \            case 0:\n                    result += operand;\n             \
+      \       break;\n                case 1:\n                    result -= operand;\n\
+      \                    break;\n                case 2:\n                    result\
+      \ *= operand;\n                    break;\n                case 3:\n       \
+      \             if (operand.a != 0) { result /= operand; }\n                 \
+      \   break;\n            }\n\n            // \u7D50\u679C\u304C\u6B63\u898F\u5316\
+      \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u78BA\u8A8D\n            assert(result.b\
+      \ > 0);\n            assert(std::gcd(abs(result.a), result.b) == 1);\n     \
+      \   }\n    }\n}\n\nint main() {\n    cerr << \"Starting comprehensive rational\
+      \ number tests...\" << endl;\n\n    // \u57FA\u672C\u30C6\u30B9\u30C8\u5B9F\u884C\
+      \n    cerr << \"Running basic functionality tests...\" << endl;\n    test_constructor();\n\
+      \    test_arithmetic();\n    test_comparison();\n    test_unary_operations();\n\
+      \    test_assignment_operators();\n    test_boolean_conversion();\n    test_floating_point_conversion();\n\
+      \    test_edge_cases();\n\n    // \u5883\u754C\u5024\u30FB\u30E9\u30F3\u30C0\
+      \u30E0\u30C6\u30B9\u30C8\u5B9F\u884C\n    cerr << \"Running boundary value and\
+      \ random tests...\" << endl;\n    test_precision_edge_cases();\n    test_random_operations();\n\
+      \    test_comparison_consistency();\n    test_overflow_safety();\n    test_double_conversion_accuracy();\n\
+      \n    // \u8FFD\u52A0\u306E\u53B3\u5BC6\u30C6\u30B9\u30C8\n    cerr << \"Running\
+      \ stress and edge case tests...\" << endl;\n    test_stress_large_numbers();\n\
+      \    test_special_rational_values();\n    test_chain_operations();\n\n    //\
+      \ \u3059\u3079\u3066\u306E\u30C6\u30B9\u30C8\u304C\u901A\u3063\u305F\u5834\u5408\
+      \n    cerr << endl << \"=== ALL RATIONAL TESTS PASSED ===\" << endl;\n    cerr\
+      \ << \"All tests completed successfully!\" << endl;\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -681,7 +681,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-11 01:16:45+09:00'
+  timestamp: '2026-09-15 18:49:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/rational.test.cpp

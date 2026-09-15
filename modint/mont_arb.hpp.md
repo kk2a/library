@@ -13,9 +13,6 @@ data:
       path: type_traits/io.hpp
     type: Depends on
   - files:
-    - filename: fps_sqrt.hpp
-      icon: LIBRARY_ALL_AC
-      path: fps/fps_sqrt.hpp
     - filename: rolling_hash.hpp
       icon: LIBRARY_ALL_AC
       path: math/group/rolling_hash.hpp
@@ -63,12 +60,6 @@ data:
     - filename: aoj_ntl_1_d.test.cpp
       icon: TEST_ACCEPTED
       path: verify/aoj/aoj_ntl_1_d.test.cpp
-    - filename: sparsity_performance.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/unit_test/fps/sparsity_performance.test.cpp
-    - filename: sparsity_small_performance.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/unit_test/fps/sparsity_small_performance.test.cpp
     - filename: group.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/group/group.test.cpp
@@ -84,6 +75,9 @@ data:
     - filename: prime_factorize_table.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/prime_factorize_table.test.cpp
+    - filename: mod_sqrt.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math_mod/mod_sqrt.test.cpp
     - filename: dynamic_rolling_hash.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/string/dynamic_rolling_hash.test.cpp
@@ -93,12 +87,6 @@ data:
     - filename: ds_range_parallel_unionfind.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
-    - filename: fps_sprase_sqrt.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-    - filename: fps_sqrt.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/yosupo_fps/fps_sqrt.test.cpp
     - filename: factrize.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/factrize.test.cpp
@@ -285,7 +273,6 @@ data:
   path: modint/mont_arb.hpp
   pathExtension: hpp
   requiredBy:
-  - fps/fps_sqrt.hpp
   - math/group/rolling_hash.hpp
   - math/is_prime.hpp
   - math/multiplicative_function/euler_phi.hpp
@@ -300,22 +287,19 @@ data:
   - string/static_rolling_hash.hpp
   - unionfind/parallel.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
-  timestamp: '2026-09-11 01:16:45+09:00'
+  timestamp: '2026-09-15 18:49:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_ntl_1_d.test.cpp
-  - verify/unit_test/fps/sparsity_performance.test.cpp
-  - verify/unit_test/fps/sparsity_small_performance.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/math/isprime_table_extend.test.cpp
   - verify/unit_test/math/lpf_table_extend.test.cpp
   - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
   - verify/unit_test/math/prime_factorize_table.test.cpp
+  - verify/unit_test/math_mod/mod_sqrt.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
   - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
-  - verify/yosupo_fps/fps_sprase_sqrt.test.cpp
-  - verify/yosupo_fps/fps_sqrt.test.cpp
   - verify/yosupo_math/factrize.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp

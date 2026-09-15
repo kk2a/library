@@ -14,7 +14,7 @@ data:
       icon: LIBRARY_ALL_AC
       path: convolution/convolution_arb.hpp
     - filename: convolution_int.hpp
-      icon: LIBRARY_NO_TESTS
+      icon: LIBRARY_ALL_AC
       path: convolution/convolution_int.hpp
     - filename: multi_convolution_truncated.hpp
       icon: LIBRARY_ALL_AC
@@ -22,12 +22,27 @@ data:
     - filename: fps_arb.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_arb.hpp
+    - filename: fps_base.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_base.hpp
     - filename: fps_multivariate.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_multivariate.hpp
     - filename: fps_ntt_friendly.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_ntt_friendly.hpp
+    - filename: fps_sqrt.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_sqrt.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/arb/multiplication.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multiplication.hpp
+    - filename: sqrt.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/sqrt.hpp
     - filename: rolling_hash.hpp
       icon: LIBRARY_ALL_AC
       path: math/group/rolling_hash.hpp
@@ -52,6 +67,12 @@ data:
     - filename: comb_large.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb_large.hpp
+    - filename: mod_sqrt.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/detail/mod_sqrt.hpp
+    - filename: mod_sqrt.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/mod_sqrt.hpp
     - filename: primitive_root.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/primitive_root.hpp
@@ -105,6 +126,12 @@ data:
     - filename: aoj_ntl_1_d.test.cpp
       icon: TEST_ACCEPTED
       path: verify/aoj/aoj_ntl_1_d.test.cpp
+    - filename: inplace_convolution.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/convolution/inplace_convolution.test.cpp
+    - filename: inplace_operations.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/inplace_operations.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -132,6 +159,9 @@ data:
     - filename: large_fact_arb_mod.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    - filename: mod_sqrt.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math_mod/mod_sqrt.test.cpp
     - filename: dynamic_rolling_hash.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/string/dynamic_rolling_hash.test.cpp
@@ -228,6 +258,9 @@ data:
     - filename: primitive_root.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/primitive_root.test.cpp
+    - filename: sqrt_mod.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_math/sqrt_mod.test.cpp
     - filename: string_z_roliha.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_string/string_z_roliha.test.cpp
@@ -262,8 +295,13 @@ data:
   - convolution/convolution_int.hpp
   - convolution/multi_convolution_truncated.hpp
   - fps/fps_arb.hpp
+  - fps/fps_base.hpp
   - fps/fps_multivariate.hpp
   - fps/fps_ntt_friendly.hpp
+  - fps/fps_sqrt.hpp
+  - fps/operations/arb/multiplication.hpp
+  - fps/operations/multiplication.hpp
+  - fps/operations/sqrt.hpp
   - math/group/rolling_hash.hpp
   - math/is_prime.hpp
   - math/multiplicative_function/euler_phi.hpp
@@ -272,6 +310,8 @@ data:
   - math/prime_factorize.hpp
   - math_mod/butterfly.hpp
   - math_mod/comb_large.hpp
+  - math_mod/detail/mod_sqrt.hpp
+  - math_mod/mod_sqrt.hpp
   - math_mod/primitive_root.hpp
   - math_mod/primitive_root_64bit.hpp
   - math_mod/tetration.hpp
@@ -288,10 +328,12 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-11 01:16:45+09:00'
+  timestamp: '2026-09-15 18:49:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_ntl_1_d.test.cpp
+  - verify/unit_test/convolution/inplace_convolution.test.cpp
+  - verify/unit_test/fps/inplace_operations.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp
@@ -301,6 +343,7 @@ data:
   - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
   - verify/unit_test/math/prime_factorize_table.test.cpp
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/unit_test/math_mod/mod_sqrt.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
@@ -333,6 +376,7 @@ data:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/primality_test.test.cpp
   - verify/yosupo_math/primitive_root.test.cpp
+  - verify/yosupo_math/sqrt_mod.test.cpp
   - verify/yosupo_string/string_z_roliha.test.cpp
   - verify/yuki/yuki_1510.test.cpp
 documentation_of: math_mod/pow_mod.hpp
