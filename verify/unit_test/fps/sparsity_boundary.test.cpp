@@ -24,11 +24,11 @@ constexpr std::array degrees{-1, 0, 1, 2};
 template <class FPS> void call_at_boundary(const FPS &a, const FPS &b) {
     for (kk2::FPSOperation operation : operations) {
         for (bool is_ntt_friendly : {false, true}) {
-            // Also exercise the default arguments for b and deg.
+            // Also exercise the default arguments for b and precision.
             (void)kk2::is_sparse_operation(operation, is_ntt_friendly, a);
 
-            for (int deg : degrees) {
-                (void)kk2::is_sparse_operation(operation, is_ntt_friendly, a, b, deg);
+            for (int precision : degrees) {
+                (void)kk2::is_sparse_operation(operation, is_ntt_friendly, a, b, precision);
             }
         }
     }

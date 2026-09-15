@@ -1,0 +1,265 @@
+#ifndef KK2_FPS_OPERATIONS_DIVISION_HPP
+#define KK2_FPS_OPERATIONS_DIVISION_HPP 1
+
+#include <cassert>
+#include <memory>
+#include <utility>
+#include <vector>
+
+#include "../../type_traits/fps.hpp"
+#include "../fps_sparsity_detector.hpp"
+
+namespace kk2::fps::operations {
+
+template <UnivariateFormalPowerSeries FPS> FPS division_identity(int precision) {
+    using mint = typename FPS::value_type;
+    FPS result(precision, mint(0));
+    if (precision > 0) result[0] = mint(1);
+    return result;
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS &inplace_dense_div(FPS &dividend, const FPS &divisor, int precision = -1) {
+    using mint = typename FPS::value_type;
+    assert(!divisor.empty() && divisor[0] != mint(0));
+    if (precision == -1) precision = static_cast<int>(dividend.size());
+    if (std::addressof(dividend) == std::addressof(divisor))
+        return dividend = division_identity<FPS>(precision);
+
+    FPS inverse = divisor.dense_inv(precision);
+    return dividend.inplace_pre(precision).inplace_dense_mul(inverse).inplace_pre(precision);
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS dense_div(const FPS &dividend, const FPS &divisor, int precision = -1) {
+    using mint = typename FPS::value_type;
+    assert(!divisor.empty() && divisor[0] != mint(0));
+    if (precision == -1) precision = static_cast<int>(dividend.size());
+    if (std::addressof(dividend) == std::addressof(divisor))
+        return division_identity<FPS>(precision);
+    FPS result = dividend;
+    return inplace_dense_div(result, divisor, precision);
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS &inplace_sparse_div(FPS &dividend, const FPS &divisor, int precision = -1) {
+    using mint = typename FPS::value_type;
+    assert(!divisor.empty() && divisor[0] != mint(0));
+    if (precision == -1) precision = static_cast<int>(dividend.size());
+    if (std::addressof(dividend) == std::addressof(divisor))
+        return dividend = division_identity<FPS>(precision);
+
+    const mint constant_inv = divisor[0].inv();
+    std::vector<std::pair<int, mint>> support;
+    for (int i = 1; i < static_cast<int>(divisor.size()); ++i) {
+        if (divisor[i] != mint(0)) support.emplace_back(i, divisor[i] * constant_inv);
+    }
+    dividend *= constant_inv;
+    dividend.resize(precision);
+    for (int i = 0; i < precision; ++i) {
+        for (const auto &[index, coefficient] : support) {
+            if (i + index >= precision) break;
+            dividend[i + index] -= dividend[i] * coefficient;
+        }
+    }
+    return dividend;
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS sparse_div(const FPS &dividend, const FPS &divisor, int precision = -1) {
+    using mint = typename FPS::value_type;
+    assert(!divisor.empty() && divisor[0] != mint(0));
+    if (precision == -1) precision = static_cast<int>(dividend.size());
+    if (std::addressof(dividend) == std::addressof(divisor))
+        return division_identity<FPS>(precision);
+    FPS result = dividend;
+    return inplace_sparse_div(result, divisor, precision);
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS div(const FPS &dividend, const FPS &divisor, int precision = -1) {
+    using mint = typename FPS::value_type;
+    assert(!divisor.empty() && divisor[0] != mint(0));
+    if (precision == -1) precision = static_cast<int>(dividend.size());
+    if (std::addressof(dividend) == std::addressof(divisor))
+        return division_identity<FPS>(precision);
+    if (is_sparse_operation(FPSOperation::DIVISION,
+                            NTTFriendlyFormalPowerSeries<FPS>,
+                            dividend,
+                            divisor,
+                            precision))
+        return sparse_div(dividend, divisor, precision);
+    return dense_div(dividend, divisor, precision);
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS &inplace_div(FPS &dividend, const FPS &divisor, int precision = -1) {
+    using mint = typename FPS::value_type;
+    assert(!divisor.empty() && divisor[0] != mint(0));
+    if (precision == -1) precision = static_cast<int>(dividend.size());
+    if (std::addressof(dividend) == std::addressof(divisor))
+        return dividend = division_identity<FPS>(precision);
+    const bool use_sparse = is_sparse_operation(
+        FPSOperation::DIVISION, NTTFriendlyFormalPowerSeries<FPS>, dividend, divisor, precision);
+    if (use_sparse) return inplace_sparse_div(dividend, divisor, precision);
+    return inplace_dense_div(dividend, divisor, precision);
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS &inplace_dense_quo(FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (dividend.size() < divisor.size()) {
+        dividend.clear();
+        return dividend;
+    }
+    if (std::addressof(dividend) == std::addressof(divisor)) {
+        dividend = FPS{1};
+        return dividend;
+    }
+
+    const int quotient_size = dividend.size() - divisor.size() + 1;
+    FPS reversed_inverse = divisor.rev().dense_inv(quotient_size);
+    return dividend.inplace_rev()
+        .inplace_pre(quotient_size)
+        .inplace_dense_mul(reversed_inverse)
+        .inplace_pre(quotient_size)
+        .inplace_rev();
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS dense_quo(const FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (std::addressof(dividend) == std::addressof(divisor)) return FPS{1};
+    FPS result = dividend;
+    return inplace_dense_quo(result, divisor);
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS &inplace_sparse_quo(FPS &dividend, const FPS &divisor) {
+    using mint = typename FPS::value_type;
+    assert(!divisor.empty());
+    if (dividend.size() < divisor.size()) {
+        dividend.clear();
+        return dividend;
+    }
+    if (std::addressof(dividend) == std::addressof(divisor)) {
+        dividend = FPS{1};
+        return dividend;
+    }
+
+    const int quotient_size = dividend.size() - divisor.size() + 1;
+    const mint leading_inv = divisor.back().inv();
+    std::vector<std::pair<int, mint>> support;
+    for (int i = static_cast<int>(divisor.size()) - 2; i >= 0; --i) {
+        if (divisor[i] != mint(0))
+            support.emplace_back(divisor.size() - 1 - i, divisor[i] * leading_inv);
+    }
+    FPS reversed_quotient(quotient_size);
+    for (int k = 0; k < quotient_size; ++k) {
+        reversed_quotient[k] = dividend[dividend.size() - 1 - k] * leading_inv;
+        for (const auto &[offset, coefficient] : support) {
+            if (offset > k) break;
+            reversed_quotient[k] -= reversed_quotient[k - offset] * coefficient;
+        }
+    }
+    reversed_quotient.inplace_rev();
+    return dividend = std::move(reversed_quotient);
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS sparse_quo(const FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (std::addressof(dividend) == std::addressof(divisor)) return FPS{1};
+    FPS result = dividend;
+    return inplace_sparse_quo(result, divisor);
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS quo(const FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (dividend.size() < divisor.size()) return {};
+    if (std::addressof(dividend) == std::addressof(divisor)) return FPS{1};
+    const int quotient_size = dividend.size() - divisor.size() + 1;
+    if (is_sparse_operation(FPSOperation::POLYNOMIAL_DIVISION,
+                            NTTFriendlyFormalPowerSeries<FPS>,
+                            dividend,
+                            divisor,
+                            quotient_size))
+        return sparse_quo(dividend, divisor);
+    return dense_quo(dividend, divisor);
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS &inplace_quo(FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (dividend.size() < divisor.size()) {
+        dividend.clear();
+        return dividend;
+    }
+    if (std::addressof(dividend) == std::addressof(divisor)) {
+        dividend = FPS{1};
+        return dividend;
+    }
+    const int quotient_size = dividend.size() - divisor.size() + 1;
+    const bool use_sparse = is_sparse_operation(FPSOperation::POLYNOMIAL_DIVISION,
+                                                NTTFriendlyFormalPowerSeries<FPS>,
+                                                dividend,
+                                                divisor,
+                                                quotient_size);
+    if (use_sparse) return inplace_sparse_quo(dividend, divisor);
+    return inplace_dense_quo(dividend, divisor);
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS &inplace_dense_mod(FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (std::addressof(dividend) == std::addressof(divisor)) {
+        dividend.clear();
+        return dividend;
+    }
+    FPS quotient = dense_quo(dividend, divisor);
+    return (dividend -= quotient.inplace_dense_mul(divisor)).shrink();
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS dense_mod(const FPS &dividend, const FPS &divisor) {
+    FPS result = dividend;
+    return inplace_dense_mod(result, divisor);
+}
+
+template <UnivariateFormalPowerSeries FPS>
+FPS &inplace_sparse_mod(FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (std::addressof(dividend) == std::addressof(divisor)) {
+        dividend.clear();
+        return dividend;
+    }
+    FPS quotient = sparse_quo(dividend, divisor);
+    return (dividend -= quotient.inplace_sparse_mul(divisor)).shrink();
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS sparse_mod(const FPS &dividend, const FPS &divisor) {
+    FPS result = dividend;
+    return inplace_sparse_mod(result, divisor);
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS &inplace_mod(FPS &dividend, const FPS &divisor) {
+    assert(!divisor.empty());
+    if (std::addressof(dividend) == std::addressof(divisor)) {
+        dividend.clear();
+        return dividend;
+    }
+    if (dividend.size() < divisor.size()) return dividend.shrink();
+    const int quotient_size = dividend.size() - divisor.size() + 1;
+    const bool use_sparse = is_sparse_operation(FPSOperation::POLYNOMIAL_DIVISION,
+                                                NTTFriendlyFormalPowerSeries<FPS>,
+                                                dividend,
+                                                divisor,
+                                                quotient_size);
+    if (use_sparse) return inplace_sparse_mod(dividend, divisor);
+    return inplace_dense_mod(dividend, divisor);
+}
+
+template <UnivariateFormalPowerSeries FPS> FPS mod(const FPS &dividend, const FPS &divisor) {
+    FPS result = dividend;
+    return inplace_mod(result, divisor);
+}
+
+} // namespace kk2::fps::operations
+
+#endif // KK2_FPS_OPERATIONS_DIVISION_HPP

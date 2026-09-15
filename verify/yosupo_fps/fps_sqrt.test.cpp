@@ -1,7 +1,5 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
 
-#include "../../fps/fps_sqrt.hpp"
-
 #include "../../fps/fps_ntt_friendly.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
@@ -13,7 +11,7 @@ int main() {
     int n;
     kin >> n;
     FPS f(n);
-    FPS res = kk2::sqrt(f.input(kin));
+    FPS res = f.input(kin).sqrt();
     if (res.empty()) {
         kout << -1 << '\n';
     } else {

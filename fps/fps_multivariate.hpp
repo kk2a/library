@@ -104,7 +104,7 @@ template <fps::Modular mint> struct MultivariateFormalPowerSeries {
 
     mfps &operator*=(const mfps &rhs) {
         assert(base == rhs.base && f.size() == rhs.f.size());
-        multi_convolution_truncated(f, rhs.f, base);
+        inplace_multi_convolution_truncated(f, rhs.f, base);
         return *this;
     }
 
@@ -233,7 +233,7 @@ template <fps::Modular mint> struct MultivariateFormalPowerSeries {
             for (auto &x : c) x.ibut();
             // compute g_d f
 
-            for (auto &x : a) std::fill(std::begin(x), std::end(x), mint(0));
+            for (auto &x : a) std::ranges::fill(x, mint(0));
 
             for (int i = d; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];
             for (auto &x : a) x.but();

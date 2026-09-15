@@ -321,18 +321,18 @@ void test_chain_operations() {
             RationalInt operand(a, b);
 
             switch (op) {
-            case 0:
-                result += operand;
-                break;
-            case 1:
-                result -= operand;
-                break;
-            case 2:
-                result *= operand;
-                break;
-            case 3:
-                if (operand.a != 0) { result /= operand; }
-                break;
+                case 0:
+                    result += operand;
+                    break;
+                case 1:
+                    result -= operand;
+                    break;
+                case 2:
+                    result *= operand;
+                    break;
+                case 3:
+                    if (operand.a != 0) { result /= operand; }
+                    break;
             }
 
             // 結果が正規化されていることを確認
