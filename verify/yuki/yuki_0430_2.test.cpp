@@ -16,7 +16,7 @@ int main() {
     for (auto &x : c) ac.add(x);
     ac.build();
     auto each = ac.each_match(s);
-    i64 res = accumulate(all(each), 0LL);
+    i64 res = ranges::fold_left(each, 0LL, plus{});
     kout << res << kendl;
 
     return 0;

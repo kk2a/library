@@ -12,6 +12,5 @@
 
 #define fi first
 #define se second
-#define all(p) begin(p), end(p)
 
 #endif // KK2_TEMPLATE_MACROS_HPP

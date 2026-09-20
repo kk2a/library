@@ -10,7 +10,7 @@ int main() {
         kin >> n;
         if (n == 0) break;
         auto b = kk2::convert_base<int>(n, -10);
-        reverse(all(b));
+        ranges::reverse(b);
         for (auto a : b) kout << a;
         kout << "\n";
     }

@@ -2,6 +2,9 @@
 #define KK2_TEMPLATE_FUNCTION_UTIL_HPP 1
 
 #include <algorithm>
+#include <functional>
+#include <numeric>
+#include <ranges>
 #include <vector>
 
 #include "../math/monoid/max.hpp"
@@ -22,7 +25,7 @@ template <class T, class U> void fill_all(std::vector<T> &v, const U &x) {
     if constexpr (Vector<T>) {
         for (auto &u : v) fill_all(u, x);
     } else {
-        std::fill(v.begin(), v.end(), T(x));
+        std::ranges::fill(v, T(x));
     }
 }
 
@@ -30,24 +33,23 @@ template <class T, class U> int iota_all(std::vector<T> &v, U x, int offset = 0)
     if constexpr (Vector<T>) {
         for (auto &u : v) offset += iota_all(u, x + offset);
     } else {
-        for (auto &u : v) u = x++, ++offset;
+        std::ranges::iota(v, x);
+        offset += static_cast<int>(std::ranges::ssize(v));
     }
     return offset;
 }
-
-template <class C> int mysize(const C &c) { return size(c); }
 
 
 // T: commutative monoid, F: (U, T) -> U
 template <class U, class T, class F>
 U all_monoid_prod(const std::vector<T> &v, U unit, const F &f) {
-    U res = unit;
     if constexpr (Vector<T>) {
-        for (const auto &x : v) res = f(res, all_monoid_prod(x, unit, f));
+        auto subproducts =
+            v | std::views::transform([&](const auto &x) { return all_monoid_prod(x, unit, f); });
+        return std::ranges::fold_left(subproducts, unit, std::cref(f));
     } else {
-        for (const auto &x : v) res = f(res, x);
+        return std::ranges::fold_left(v, unit, std::cref(f));
     }
-    return res;
 }
 
 template <class U, class T> U all_sum(const std::vector<T> &v, U unit = U()) {
@@ -78,7 +80,13 @@ template <class U, class T> U all_lcm(const std::vector<T> &v, U unit = U(1)) {
     return all_monoid_prod<U, T>(v, unit, [](U a, U b) { return std::lcm(a, b); });
 }
 template <class U, class T> int all_count(const std::vector<T> &v, U x) {
-    return all_monoid_prod<int, T>(v, 0, [x](int a, U y) { return a + int(x == y); });
+    if constexpr (Vector<T>) {
+        auto counts =
+            v | std::views::transform([&](const auto &values) { return all_count(values, x); });
+        return std::ranges::fold_left(counts, 0, std::plus{});
+    } else {
+        return static_cast<int>(std::ranges::count(v, x));
+    }
 }
 
 } // namespace kk2
