@@ -3,8 +3,9 @@
 
 #include <algorithm>
 #include <cassert>
-#include <numeric>
 #include <vector>
+
+#include "multiplicative_function/prime_counting.hpp"
 
 namespace kk2 {
 
@@ -15,17 +16,21 @@ struct LPFTable {
   public:
     LPFTable() = delete;
 
-    static void set_upper(int m, int reserve_size = 26355867) {
-        if ((int)_lpf.size() == 0) _primes.reserve(reserve_size);
+    static void set_upper(int m) {
         if ((int)_lpf.size() > m) return;
         m = std::max<int>(2 * _lpf.size(), m);
+        std::size_t reserve_target = prime_counting(m);
+        if (_primes.capacity() < reserve_target) _primes.reserve(reserve_target);
         _lpf_pow.resize(m + 1);
         _v_lpf.resize(m + 1);
         _lpf.resize(m + 1);
-        iota(_lpf.begin(), _lpf.end(), 0);
         for (int i = 2; i <= m; i++) {
-            if (_lpf[i] == i and i > (int)_primes.back())
-                _primes.emplace_back(i), _lpf_pow[i] = i, _v_lpf[i] = 1;
+            if (_lpf[i] == 0) {
+                _lpf[i] = i;
+                _primes.emplace_back(i);
+                _lpf_pow[i] = i;
+                _v_lpf[i] = 1;
+            }
             for (const long long p : _primes) {
                 if (p * i > m) break;
                 if (_lpf[i] < p) break;
