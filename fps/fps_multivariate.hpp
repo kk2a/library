@@ -8,15 +8,18 @@
 
 #include "../convolution/multi_convolution_truncated.hpp"
 #include "../type_traits/io.hpp"
+#include "fps_arb.hpp"
 #include "fps_ntt_friendly.hpp"
 
 namespace kk2 {
 
-template <fps::Modular mint> struct MultivariateFormalPowerSeries {
+template <fps::Modular mint,
+          template <fps::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>
+struct MultivariateFormalPowerSeries {
     using mfps = MultivariateFormalPowerSeries;
-    using fps = FormalPowerSeriesNTTFriendly<mint>;
+    using fps = UnivariateFPS<mint>;
     using value_type = mint;
-    using modulus_category = kk2::fps::category::ntt_friendly_modulus;
+    using modulus_category = typename fps::modulus_category;
     using series_category = kk2::fps::category::ordinary;
     using variable_category = kk2::fps::category::multivariate;
 
@@ -191,6 +194,26 @@ template <fps::Modular mint> struct MultivariateFormalPowerSeries {
         assert(!f.empty() && f[0] != mint(0));
         if (base.empty()) return mfps(base, fps{f[0].inv()});
 
+        if constexpr (kk2::fps::ArbitraryModulusFormalPowerSeries<fps>) {
+            const int n = f.size();
+            mfps result(base, fps(n));
+            result.f[0] = f[0].inv();
+            for (int d = 1; d < n; d <<= 1) {
+                const int precision = std::min(2 * d, n);
+                mfps lhs(base, fps(precision));
+                mfps rhs(base, fps(precision));
+                std::copy_n(f.begin(), precision, lhs.f.begin());
+                std::copy_n(result.f.begin(), std::min(d, precision), rhs.f.begin());
+
+                mfps correction(base, fps(precision));
+                correction += mint(2);
+                correction -= lhs * rhs;
+                rhs *= correction;
+                std::copy(rhs.f.begin() + d, rhs.f.end(), result.f.begin() + d);
+            }
+            return result;
+        }
+
         int n = f.size(), k = base.size();
         int z = 1;
         while (z < 2 * n - 1) z <<= 1;
@@ -286,7 +309,12 @@ template <fps::Modular mint> struct MultivariateFormalPowerSeries {
     }
 };
 
-template <fps::Modular mint> std::vector<mint> MultivariateFormalPowerSeries<mint>::_inv = {0, 1};
+template <fps::Modular mint, template <fps::Modular> class UnivariateFPS>
+std::vector<mint> MultivariateFormalPowerSeries<mint, UnivariateFPS>::_inv = {0, 1};
+
+template <fps::Modular mint>
+using MultivariateFormalPowerSeriesArbitrary =
+    MultivariateFormalPowerSeries<mint, FormalPowerSeriesArbitrary>;
 
 } // namespace kk2
 

@@ -12,6 +12,7 @@
 using NTTFPS = kk2::FPSNTT<kk2::mont998>;
 using ArbFPS = kk2::FPSArb<kk2::mont998>;
 using MFPS = kk2::MultivariateFormalPowerSeries<kk2::mont998>;
+using MFPSArb = kk2::MultivariateFormalPowerSeriesArbitrary<kk2::mont107>;
 
 struct FutureSPS : std::vector<int> {
     using std::vector<int>::vector;
@@ -38,6 +39,9 @@ static_assert(!kk2::fps::ArbitraryModulusFormalPowerSeries<NTTFPS>);
 static_assert(kk2::fps::ArbitraryModulusFormalPowerSeries<ArbFPS>);
 static_assert(kk2::fps::FormalPowerSeries<MFPS>);
 static_assert(kk2::fps::MultivariateFormalPowerSeries<MFPS>);
+static_assert(kk2::fps::FormalPowerSeries<MFPSArb>);
+static_assert(kk2::fps::ArbitraryModulusFormalPowerSeries<MFPSArb>);
+static_assert(kk2::fps::MultivariateFormalPowerSeries<MFPSArb>);
 
 static_assert(kk2::fps::SetPowerSeries<FutureSPS>);
 static_assert(kk2::fps::SPS<FutureSPS>);
