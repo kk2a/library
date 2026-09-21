@@ -11,7 +11,8 @@
 
 namespace kk2::fps::operations {
 
-template <NTTFriendlyFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int precision = -1) {
+template <UnivariateNTTFriendlyFormalPowerSeries FPS>
+FPS dense_exp(const FPS &f, int precision = -1) {
     using mint = typename FPS::value_type;
     assert(f.empty() || f[0] == mint(0));
     if (precision == -1) precision = static_cast<int>(f.size());
@@ -61,7 +62,8 @@ template <NTTFriendlyFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int prec
     return FPS(result.begin(), result.begin() + precision);
 }
 
-template <ArbitraryModulusFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int precision = -1);
+template <UnivariateArbitraryModulusFormalPowerSeries FPS>
+FPS dense_exp(const FPS &f, int precision = -1);
 
 template <UnivariateFormalPowerSeries FPS> FPS &inplace_dense_exp(FPS &f, int precision = -1) {
     if (precision == -1) precision = static_cast<int>(f.size());
