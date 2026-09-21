@@ -13,11 +13,12 @@ template <class mint> struct BinomTable {
     static void set_upper(int m) {
         int n = (int)_binom.size() - 1;
         if (n >= m) return;
-        _binom.resize(m + 1);
+        _binom.reserve(m + 1);
         for (int i = n + 1; i <= m; i++) {
-            _binom[i].resize(i + 1);
-            _binom[i][0] = _binom[i][i] = 1;
-            for (int j = 1; j < i; j++) _binom[i][j] = _binom[i - 1][j - 1] + _binom[i - 1][j];
+            _binom.emplace_back(i + 1);
+            auto &row = _binom.back();
+            row[0] = row[i] = 1;
+            for (int j = 1; j < i; j++) { row[j] = _binom[i - 1][j - 1] + _binom[i - 1][j]; }
         }
     }
 
