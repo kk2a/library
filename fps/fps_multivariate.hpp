@@ -107,6 +107,7 @@ struct MultivariateFormalPowerSeries {
         return *this;
     }
 
+    mfps dense_mul(const mfps &rhs) const { return mfps(*this).inplace_dense_mul(rhs); }
     mfps &inplace_dense_mul(const mfps &rhs) {
         assert(base == rhs.base && f.size() == rhs.f.size());
         if constexpr (kk2::fps::ArbitraryModulusFormalPowerSeries<fps>) {
@@ -116,29 +117,14 @@ struct MultivariateFormalPowerSeries {
         }
         return *this;
     }
-
-    mfps dense_mul(const mfps &rhs) const { return mfps(*this).inplace_dense_mul(rhs); }
-
+    mfps sparse_mul(const mfps &rhs) const { return mfps(*this).inplace_sparse_mul(rhs); }
     mfps &inplace_sparse_mul(const mfps &rhs) {
         assert(base == rhs.base && f.size() == rhs.f.size());
         inplace_multi_convolution_truncated_sparse(f, rhs.f, base);
         return *this;
     }
-
-    mfps sparse_mul(const mfps &rhs) const { return mfps(*this).inplace_sparse_mul(rhs); }
-
-    mfps &inplace_mul(const mfps &rhs) {
-        assert(base == rhs.base && f.size() == rhs.f.size());
-        if (is_sparse_operation(FPSOperation::CONVOLUTION,
-                                kk2::fps::NTTFriendlyFormalPowerSeries<fps>,
-                                f,
-                                rhs.f,
-                                f.size()))
-            return inplace_sparse_mul(rhs);
-        return inplace_dense_mul(rhs);
-    }
-
-    mfps mul(const mfps &rhs) const { return mfps(*this).inplace_mul(rhs); }
+    mfps mul(const mfps &rhs) const { return dense_mul(rhs); }
+    mfps &inplace_mul(const mfps &rhs) { return inplace_dense_mul(rhs); }
 
     mfps &operator*=(const mfps &rhs) { return inplace_mul(rhs); }
 
@@ -302,9 +288,7 @@ struct MultivariateFormalPowerSeries {
         res.f = fps(std::begin(g), std::begin(g) + n);
         return res;
     }
-
     mfps &inplace_dense_inv() { return *this = dense_inv(); }
-
     mfps sparse_inv() const {
         assert(!f.empty() && f[0] != mint(0));
         const int n = f.size();
@@ -339,28 +323,9 @@ struct MultivariateFormalPowerSeries {
         }
         return result;
     }
-
     mfps &inplace_sparse_inv() { return *this = sparse_inv(); }
-
-    mfps inv() const {
-        if (is_sparse_operation(FPSOperation::INVERSE,
-                                kk2::fps::NTTFriendlyFormalPowerSeries<fps>,
-                                f,
-                                fps(),
-                                f.size()))
-            return sparse_inv();
-        return dense_inv();
-    }
-
-    mfps &inplace_inv() {
-        if (is_sparse_operation(FPSOperation::INVERSE,
-                                kk2::fps::NTTFriendlyFormalPowerSeries<fps>,
-                                f,
-                                fps(),
-                                f.size()))
-            return inplace_sparse_inv();
-        return inplace_dense_inv();
-    }
+    mfps inv() const { return dense_inv(); }
+    mfps &inplace_inv() { return inplace_dense_inv(); }
 
     mfps dense_log() const {
         assert(!f.empty() && f[0] == mint(1));
@@ -368,31 +333,16 @@ struct MultivariateFormalPowerSeries {
         result.f.resize(f.size());
         return result;
     }
-
     mfps &inplace_dense_log() { return *this = dense_log(); }
-
     mfps sparse_log() const {
         assert(!f.empty() && f[0] == mint(1));
         mfps result = diff().sparse_mul(sparse_inv()).integral();
         result.f.resize(f.size());
         return result;
     }
-
     mfps &inplace_sparse_log() { return *this = sparse_log(); }
-
-    mfps log() const {
-        if (is_sparse_operation(
-                FPSOperation::LOG, kk2::fps::NTTFriendlyFormalPowerSeries<fps>, f, fps(), f.size()))
-            return sparse_log();
-        return dense_log();
-    }
-
-    mfps &inplace_log() {
-        if (is_sparse_operation(
-                FPSOperation::LOG, kk2::fps::NTTFriendlyFormalPowerSeries<fps>, f, fps(), f.size()))
-            return inplace_sparse_log();
-        return inplace_dense_log();
-    }
+    mfps log() const { return dense_log(); }
+    mfps &inplace_log() { return inplace_dense_log(); }
 
     mfps dense_exp() const {
         assert(!f.empty() && f[0] == mint(0));
@@ -408,9 +358,7 @@ struct MultivariateFormalPowerSeries {
         }
         return res;
     }
-
     mfps &inplace_dense_exp() { return *this = dense_exp(); }
-
     mfps sparse_exp() const {
         assert(!f.empty() && f[0] == mint(0));
         int n = f.size();
@@ -425,22 +373,9 @@ struct MultivariateFormalPowerSeries {
         }
         return res;
     }
-
     mfps &inplace_sparse_exp() { return *this = sparse_exp(); }
-
-    mfps exp() const {
-        if (is_sparse_operation(
-                FPSOperation::EXP, kk2::fps::NTTFriendlyFormalPowerSeries<fps>, f, fps(), f.size()))
-            return sparse_exp();
-        return dense_exp();
-    }
-
-    mfps &inplace_exp() {
-        if (is_sparse_operation(
-                FPSOperation::EXP, kk2::fps::NTTFriendlyFormalPowerSeries<fps>, f, fps(), f.size()))
-            return inplace_sparse_exp();
-        return inplace_dense_exp();
-    }
+    mfps exp() const { return dense_exp(); }
+    mfps &inplace_exp() { return inplace_dense_exp(); }
 
     mfps dense_pow(long long e) const {
         assert(!f.empty());
@@ -460,9 +395,7 @@ struct MultivariateFormalPowerSeries {
         }
         return res;
     }
-
     mfps &inplace_dense_pow(long long e) { return *this = dense_pow(e); }
-
     mfps sparse_pow(long long e) const {
         assert(!f.empty());
         if (f[0] != mint(0)) {
@@ -481,28 +414,9 @@ struct MultivariateFormalPowerSeries {
         }
         return res;
     }
-
     mfps &inplace_sparse_pow(long long e) { return *this = sparse_pow(e); }
-
-    mfps pow(long long e) const {
-        if (is_sparse_operation(FPSOperation::POWER,
-                                kk2::fps::NTTFriendlyFormalPowerSeries<fps>,
-                                f,
-                                fps(),
-                                f.size()))
-            return sparse_pow(e);
-        return dense_pow(e);
-    }
-
-    mfps &inplace_pow(long long e) {
-        if (is_sparse_operation(FPSOperation::POWER,
-                                kk2::fps::NTTFriendlyFormalPowerSeries<fps>,
-                                f,
-                                fps(),
-                                f.size()))
-            return inplace_sparse_pow(e);
-        return inplace_dense_pow(e);
-    }
+    mfps pow(long long e) const { return dense_pow(e); }
+    mfps &inplace_pow(long long e) { return inplace_dense_pow(e); }
 };
 
 template <fps::Modular mint, template <fps::Modular> class UnivariateFPS>

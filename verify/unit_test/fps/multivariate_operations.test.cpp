@@ -40,7 +40,7 @@ template <class MFPS> void test_multiplication_apis() {
     MFPS inplace_automatic = lhs;
     inplace_automatic.inplace_mul(rhs);
     assert(inplace_automatic == automatic);
-    assert(automatic == dense || automatic == sparse);
+    assert(automatic == dense);
 }
 
 template <class MFPS> void test_inverse_apis() {
@@ -61,6 +61,7 @@ template <class MFPS> void test_inverse_apis() {
     MFPS inplace_automatic = f;
     inplace_automatic.inplace_inv();
     assert(inplace_automatic == automatic);
+    assert(automatic == dense);
     assert_product_is_one(f, dense);
     assert_product_is_one(f, sparse);
     assert_product_is_one(f, automatic);
@@ -75,7 +76,7 @@ template <class MFPS> void test_log_exp_pow_apis() {
     MFPS inplace_log = log_input;
     inplace_log.inplace_log();
     assert(dense_log == sparse_log);
-    assert(automatic_log == dense_log || automatic_log == sparse_log);
+    assert(automatic_log == dense_log);
     assert(inplace_log == automatic_log);
 
     MFPS exp_input(std::vector<int>{3, 4});
@@ -87,7 +88,7 @@ template <class MFPS> void test_log_exp_pow_apis() {
     MFPS inplace_exp = exp_input;
     inplace_exp.inplace_exp();
     assert(dense_exp == sparse_exp);
-    assert(automatic_exp == dense_exp || automatic_exp == sparse_exp);
+    assert(automatic_exp == dense_exp);
     assert(inplace_exp == automatic_exp);
 
     const MFPS dense_pow = log_input.dense_pow(3);
@@ -96,7 +97,7 @@ template <class MFPS> void test_log_exp_pow_apis() {
     MFPS inplace_pow = log_input;
     inplace_pow.inplace_pow(3);
     assert(dense_pow == sparse_pow);
-    assert(automatic_pow == dense_pow || automatic_pow == sparse_pow);
+    assert(automatic_pow == dense_pow);
     assert(inplace_pow == automatic_pow);
 }
 
