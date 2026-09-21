@@ -81,9 +81,20 @@ void test_sparse_inplace_alias() {
     assert(f == expected);
 }
 
+void test_sparse_inplace_strongly_sparse_lhs() {
+    using MFPS = kk2::MultivariateFormalPowerSeries<kk2::mont998>;
+    MFPS lhs(std::vector<int>{32, 32}), rhs(std::vector<int>{32, 32});
+    lhs[7] = 11;
+    fill_test_data(rhs);
+    const MFPS expected = naive_product(lhs, rhs);
+    kk2::inplace_multi_convolution_truncated_sparse(lhs.f, rhs.f, lhs.base);
+    assert(lhs == expected);
+}
+
 int main() {
     test_ntt_friendly_product();
     test_arbitrary_modulus_product();
     test_arbitrary_modulus_inverse();
     test_sparse_inplace_alias();
+    test_sparse_inplace_strongly_sparse_lhs();
 }
