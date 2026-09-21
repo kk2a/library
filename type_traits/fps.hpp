@@ -66,6 +66,14 @@ concept UnivariateFormalPowerSeries = FormalPowerSeries<F> && requires {
 } && std::same_as<typename F::variable_category, category::univariate>;
 
 template <class F>
+concept UnivariateNTTFriendlyFormalPowerSeries =
+    NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;
+
+template <class F>
+concept UnivariateArbitraryModulusFormalPowerSeries =
+    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;
+
+template <class F>
 concept BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {
     typename F::variable_category;
 } && std::same_as<typename F::variable_category, category::bivariate>;

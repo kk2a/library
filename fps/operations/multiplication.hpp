@@ -7,12 +7,12 @@
 
 namespace kk2::fps::operations {
 
-template <NTTFriendlyFormalPowerSeries FPS>
+template <UnivariateNTTFriendlyFormalPowerSeries FPS>
 FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1) {
     return inplace_dense_convolution(lhs, rhs, precision);
 }
 
-template <ArbitraryModulusFormalPowerSeries FPS>
+template <UnivariateArbitraryModulusFormalPowerSeries FPS>
 FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1);
 
 template <UnivariateFormalPowerSeries FPS>

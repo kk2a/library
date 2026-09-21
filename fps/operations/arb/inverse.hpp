@@ -8,7 +8,8 @@
 
 namespace kk2::fps::operations {
 
-template <ArbitraryModulusFormalPowerSeries FPS> FPS dense_inv(const FPS &f, int precision) {
+template <UnivariateArbitraryModulusFormalPowerSeries FPS>
+FPS dense_inv(const FPS &f, int precision) {
     using mint = typename FPS::value_type;
     assert(!f.empty() && f[0] != mint(0));
     if (precision == -1) precision = static_cast<int>(f.size());
