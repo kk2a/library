@@ -307,16 +307,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    kk2::BinaryIndexedTree<i64> bit(n);\n    rep(i, n) {\n        i64 a;\n\
       \        kin >> a;\n        bit.add(i, a);\n    }\n\n    rep(q) {\n        int\
@@ -331,112 +331,112 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024388519999831715
+  - elapsed: 0.0025391180000156055
     environment: g++
-    memory: 3.828
+    memory: 3.764
     name: example_00
     status: AC
-  - elapsed: 0.23503617899999085
+  - elapsed: 0.23742578099995626
     environment: g++
-    memory: 7.636
+    memory: 7.568
     name: max_random_00
     status: AC
-  - elapsed: 0.24480969399999708
+  - elapsed: 0.23930636799997274
     environment: g++
-    memory: 7.668
+    memory: 7.564
     name: max_random_01
     status: AC
-  - elapsed: 0.244974534000022
+  - elapsed: 0.2389615620000427
     environment: g++
-    memory: 7.64
+    memory: 7.528
     name: max_random_02
     status: AC
-  - elapsed: 0.241296119999987
+  - elapsed: 0.23987583900003528
     environment: g++
-    memory: 7.636
+    memory: 7.568
     name: max_random_03
     status: AC
-  - elapsed: 0.24289290199999414
+  - elapsed: 0.23695426799997676
     environment: g++
-    memory: 7.636
+    memory: 7.528
     name: max_random_04
     status: AC
-  - elapsed: 0.21403486799999882
+  - elapsed: 0.19182905400003847
     environment: g++
-    memory: 6.78
+    memory: 6.672
     name: random_00
     status: AC
-  - elapsed: 0.20941145800000527
+  - elapsed: 0.20410573499998463
     environment: g++
-    memory: 7.348
+    memory: 7.248
     name: random_01
     status: AC
-  - elapsed: 0.12700534399999697
+  - elapsed: 0.12415934899996728
     environment: g++
-    memory: 4.208
+    memory: 4.068
     name: random_02
     status: AC
-  - elapsed: 0.06663192599998524
+  - elapsed: 0.07197446899999704
     environment: g++
-    memory: 7.084
+    memory: 7.02
     name: random_03
     status: AC
-  - elapsed: 0.07290600999999697
+  - elapsed: 0.0737450980000176
     environment: g++
-    memory: 5.9
+    memory: 5.836
     name: random_04
     status: AC
-  - elapsed: 0.002651513000017758
+  - elapsed: 0.0023177859999918837
     environment: g++
-    memory: 3.84
+    memory: 3.784
     name: small_00
     status: AC
-  - elapsed: 0.002210468000015453
+  - elapsed: 0.002310709000028055
     environment: g++
-    memory: 3.856
+    memory: 3.616
     name: small_01
     status: AC
-  - elapsed: 0.0022112480000089363
+  - elapsed: 0.0023091209999961393
     environment: g++
-    memory: 3.868
+    memory: 3.564
     name: small_02
     status: AC
-  - elapsed: 0.0022424160000014126
+  - elapsed: 0.0022721790000446163
     environment: g++
-    memory: 3.828
+    memory: 3.56
     name: small_03
     status: AC
-  - elapsed: 0.0022142629999848396
+  - elapsed: 0.0022646159999908377
     environment: g++
-    memory: 3.856
+    memory: 3.756
     name: small_04
     status: AC
-  - elapsed: 0.002257167999999865
+  - elapsed: 0.0023251270000059776
     environment: g++
-    memory: 3.824
+    memory: 3.756
     name: small_05
     status: AC
-  - elapsed: 0.002196146000017052
+  - elapsed: 0.0022944930000221575
     environment: g++
-    memory: 3.82
+    memory: 3.616
     name: small_06
     status: AC
-  - elapsed: 0.002171758999992335
+  - elapsed: 0.0023331269999857795
     environment: g++
-    memory: 3.856
+    memory: 3.616
     name: small_07
     status: AC
-  - elapsed: 0.00216861399999857
+  - elapsed: 0.0022960950000197045
     environment: g++
-    memory: 3.828
+    memory: 3.74
     name: small_08
     status: AC
-  - elapsed: 0.002121893999998292
+  - elapsed: 0.002314567999974315
     environment: g++
-    memory: 3.856
+    memory: 3.616
     name: small_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_add_range_sum_2.test.cpp

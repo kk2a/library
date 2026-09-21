@@ -366,16 +366,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_convolution/convolution_subset.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_convolution/convolution_subset.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    vc<kk2::mont998>\
       \ a(1 << n), b(1 << n);\n    kin >> a >> b;\n    kout << kk2::convolution_subset(a,\
       \ b) << kendl;\n\n    return 0;\n}\n"
@@ -386,62 +386,62 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002063741999990043
+  - elapsed: 0.0022909970000029034
     environment: g++
-    memory: 3.836
+    memory: 3.796
     name: example_00
     status: AC
-  - elapsed: 8.062497692999983
+  - elapsed: 15.513714379000007
     environment: g++
-    memory: 265.676
+    memory: 265.58
     name: hack01_00
     status: AC
-  - elapsed: 7.926303007000001
+  - elapsed: 15.594169233999992
     environment: g++
-    memory: 265.524
+    memory: 265.572
     name: max_random_00
     status: AC
-  - elapsed: 8.010310969999978
+  - elapsed: 15.566906519
     environment: g++
-    memory: 265.552
+    memory: 265.56
     name: max_random_01
     status: AC
-  - elapsed: 8.008146855000007
+  - elapsed: 15.581222678999993
     environment: g++
-    memory: 265.664
+    memory: 265.52
     name: max_random_02
     status: AC
-  - elapsed: 7.921427312999981
+  - elapsed: 15.557424035999986
     environment: g++
-    memory: 265.556
+    memory: 265.576
     name: random_00
     status: AC
-  - elapsed: 0.002178893000007065
+  - elapsed: 0.002347933999999441
     environment: g++
-    memory: 3.832
+    memory: 3.764
     name: random_01
     status: AC
-  - elapsed: 0.004037061000019548
+  - elapsed: 0.007227604000007659
     environment: g++
-    memory: 4.084
+    memory: 3.952
     name: random_02
     status: AC
-  - elapsed: 0.001541951999996627
+  - elapsed: 0.0021675729999799387
     environment: g++
-    memory: 3.86
+    memory: 3.764
     name: small_00
     status: AC
-  - elapsed: 0.0015498090000107823
+  - elapsed: 0.002116013999994948
     environment: g++
-    memory: 3.748
+    memory: 3.78
     name: small_01
     status: AC
-  - elapsed: 0.0015066109999963828
+  - elapsed: 0.0020581210000045758
     environment: g++
-    memory: 3.828
+    memory: 3.772
     name: small_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_subset.test.cpp

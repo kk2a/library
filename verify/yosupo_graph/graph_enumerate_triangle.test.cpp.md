@@ -564,16 +564,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_graph/graph_enumerate_triangle.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_graph/graph_enumerate_triangle.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using mint = kk2::mont998;\n\n \
       \   int n, m;\n    kin >> n >> m;\n    vc<mint> x(n);\n    kin >> x;\n    kk2::SAdjList\
       \ g(n, m, kin);\n    mint res = 0;\n    kk2::enumerate_triangle<kk2::SAdjList,\
@@ -586,92 +586,92 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0025752690000047096
+  - elapsed: 0.002909027000001174
     environment: g++
-    memory: 3.764
+    memory: 3.796
     name: example_00
     status: AC
-  - elapsed: 0.06796557699999539
+  - elapsed: 0.08501187399999566
     environment: g++
     memory: 9.14
     name: large_random_00
     status: AC
-  - elapsed: 0.037301881000004755
+  - elapsed: 0.046943018000000336
     environment: g++
-    memory: 5.984
+    memory: 5.964
     name: large_random_01
     status: AC
-  - elapsed: 0.06743498099999101
+  - elapsed: 0.08213679800000051
     environment: g++
-    memory: 8.756
+    memory: 8.708
     name: large_random_02
     status: AC
-  - elapsed: 0.6746911129999944
+  - elapsed: 0.9326282179999978
     environment: g++
-    memory: 10.496
+    memory: 10.368
     name: max_complete_00
     status: AC
-  - elapsed: 0.10931589299998734
+  - elapsed: 0.1381772849999976
     environment: g++
-    memory: 12.1
+    memory: 12.156
     name: max_random_00
     status: AC
-  - elapsed: 0.10929656700000123
+  - elapsed: 0.13612742800000177
     environment: g++
-    memory: 12.108
+    memory: 12.144
     name: max_random_01
     status: AC
-  - elapsed: 0.10962721699999634
+  - elapsed: 0.13934235400000006
     environment: g++
-    memory: 12.12
+    memory: 12.152
     name: max_random_02
     status: AC
-  - elapsed: 0.002197222999996029
+  - elapsed: 0.002676968999999474
     environment: g++
-    memory: 3.792
+    memory: 3.776
     name: minimum_00
     status: AC
-  - elapsed: 0.003180837000002157
+  - elapsed: 0.003717380999994191
     environment: g++
-    memory: 3.868
+    memory: 3.912
     name: small_dense_00
     status: AC
-  - elapsed: 0.05621138099999712
+  - elapsed: 0.07329999100000606
     environment: g++
-    memory: 4.788
+    memory: 4.748
     name: small_dense_01
     status: AC
-  - elapsed: 0.0036030569999923046
+  - elapsed: 0.004191974000001153
     environment: g++
-    memory: 3.904
+    memory: 3.924
     name: small_dense_02
     status: AC
-  - elapsed: 0.002388033000002565
+  - elapsed: 0.002694043999994733
     environment: g++
-    memory: 3.784
+    memory: 3.76
     name: small_sparse_00
     status: AC
-  - elapsed: 0.002346419999994964
+  - elapsed: 0.002568185999997752
     environment: g++
-    memory: 3.732
+    memory: 3.796
     name: small_sparse_01
     status: AC
-  - elapsed: 0.0022363409999996975
+  - elapsed: 0.002482827999997994
     environment: g++
-    memory: 3.764
+    memory: 3.708
     name: small_sparse_02
     status: AC
-  - elapsed: 0.1035883330000047
+  - elapsed: 0.13019920699999687
     environment: g++
-    memory: 12.12
+    memory: 12.096
     name: star_00
     status: AC
-  - elapsed: 0.10462813200000198
+  - elapsed: 0.13221642499999575
     environment: g++
-    memory: 12.116
+    memory: 12.156
     name: star_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_enumerate_triangle.test.cpp

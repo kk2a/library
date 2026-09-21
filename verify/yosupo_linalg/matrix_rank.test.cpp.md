@@ -473,16 +473,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_linalg/matrix_rank.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_linalg/matrix_rank.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n\
       \    bool is_swap = false;\n    if (n > m) {\n        is_swap = true;\n    \
       \    swap(n, m);\n    }\n    kk2::MatrixField<kk2::mont998> a(n, m);\n    if\
@@ -496,187 +496,187 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002573216000001821
+  - elapsed: 0.002462465999997221
     environment: g++
-    memory: 3.576
+    memory: 3.776
     name: example_00
     status: AC
-  - elapsed: 0.0021102299999995466
+  - elapsed: 0.002065329999993537
     environment: g++
-    memory: 3.772
+    memory: 3.792
     name: example_01
     status: AC
-  - elapsed: 0.0021833650000075977
+  - elapsed: 0.0020833540000069206
     environment: g++
-    memory: 3.76
+    memory: 3.768
     name: example_02
     status: AC
-  - elapsed: 0.0021327839999969456
+  - elapsed: 0.002098638999996183
     environment: g++
     memory: 3.764
     name: example_03
     status: AC
-  - elapsed: 0.02391571399999748
+  - elapsed: 0.02384670899999719
     environment: g++
-    memory: 3.956
+    memory: 4.008
     name: hack_of_system_of_linear_00
     status: AC
-  - elapsed: 0.023086549999987938
+  - elapsed: 0.022882417000005262
     environment: g++
-    memory: 4.156
+    memory: 4.012
     name: hack_of_system_of_linear_01
     status: AC
-  - elapsed: 0.03231456399998933
+  - elapsed: 0.032106599000002234
     environment: g++
-    memory: 4.148
+    memory: 4.156
     name: hack_of_system_of_linear_02
     status: AC
-  - elapsed: 0.002521972000010919
+  - elapsed: 0.002381675000009409
     environment: g++
-    memory: 3.628
+    memory: 3.776
     name: hack_of_system_of_linear_03
     status: AC
-  - elapsed: 0.004151871999994228
+  - elapsed: 0.003984922000000779
     environment: g++
-    memory: 3.912
+    memory: 3.816
     name: hack_of_system_of_linear_04
     status: AC
-  - elapsed: 0.02415917999999806
+  - elapsed: 0.023899678000020685
     environment: g++
-    memory: 4.164
+    memory: 4.16
     name: hack_of_system_of_linear_05
     status: AC
-  - elapsed: 0.2530997780000064
-    environment: g++
-    memory: 5.36
-    name: lowrank_00
-    status: AC
-  - elapsed: 0.12909232699999507
-    environment: g++
-    memory: 5.384
-    name: lowrank_01
-    status: AC
-  - elapsed: 0.0380270370000062
-    environment: g++
-    memory: 4.516
-    name: lowrank_02
-    status: AC
-  - elapsed: 0.35553191500000025
+  - elapsed: 0.25335374300001945
     environment: g++
     memory: 5.42
-    name: lowrank_03
+    name: lowrank_00
     status: AC
-  - elapsed: 0.008164811999989752
-    environment: g++
-    memory: 4.0
-    name: lowrank_04
-    status: AC
-  - elapsed: 0.17358515600000146
-    environment: g++
-    memory: 4.416
-    name: lowrank_05
-    status: AC
-  - elapsed: 0.03949033600000007
-    environment: g++
-    memory: 5.428
-    name: max_00
-    status: AC
-  - elapsed: 0.041605363999991596
-    environment: g++
-    memory: 5.432
-    name: max_01
-    status: AC
-  - elapsed: 0.04399892500001101
-    environment: g++
-    memory: 5.276
-    name: max_02
-    status: AC
-  - elapsed: 1.0170628820000047
+  - elapsed: 0.12871565700001497
     environment: g++
     memory: 5.376
+    name: lowrank_01
+    status: AC
+  - elapsed: 0.03783843400000819
+    environment: g++
+    memory: 4.488
+    name: lowrank_02
+    status: AC
+  - elapsed: 0.3545405140000071
+    environment: g++
+    memory: 5.416
+    name: lowrank_03
+    status: AC
+  - elapsed: 0.008264709000002313
+    environment: g++
+    memory: 4.032
+    name: lowrank_04
+    status: AC
+  - elapsed: 0.17388506199998233
+    environment: g++
+    memory: 4.356
+    name: lowrank_05
+    status: AC
+  - elapsed: 0.03996018600000184
+    environment: g++
+    memory: 5.392
+    name: max_00
+    status: AC
+  - elapsed: 0.04218437800000174
+    environment: g++
+    memory: 5.436
+    name: max_01
+    status: AC
+  - elapsed: 0.04426714900000661
+    environment: g++
+    memory: 5.424
+    name: max_02
+    status: AC
+  - elapsed: 1.0081774100000018
+    environment: g++
+    memory: 5.42
     name: max_03
     status: AC
-  - elapsed: 1.0109702380000272
+  - elapsed: 1.0341294589999848
     environment: g++
-    memory: 5.54
+    memory: 5.42
     name: max_04
     status: AC
-  - elapsed: 1.010511097999995
+  - elapsed: 1.010564273
     environment: g++
-    memory: 5.372
+    memory: 5.252
     name: max_05
     status: AC
-  - elapsed: 0.0460405959999548
+  - elapsed: 0.046452770999991344
     environment: g++
-    memory: 5.4
+    memory: 5.436
     name: max_06
     status: AC
-  - elapsed: 0.042515948999948705
+  - elapsed: 0.04292950699999665
     environment: g++
     memory: 5.432
     name: max_07
     status: AC
-  - elapsed: 0.04120923299996093
-    environment: g++
-    memory: 5.388
-    name: max_08
-    status: AC
-  - elapsed: 0.515325358000041
-    environment: g++
-    memory: 5.412
-    name: random_00
-    status: AC
-  - elapsed: 0.5821204100000159
+  - elapsed: 0.04128002900000638
     environment: g++
     memory: 5.42
-    name: random_01
+    name: max_08
     status: AC
-  - elapsed: 0.14384633399998847
+  - elapsed: 0.5146257030000072
     environment: g++
-    memory: 4.488
-    name: random_02
+    memory: 5.38
+    name: random_00
     status: AC
-  - elapsed: 0.5558551120000175
+  - elapsed: 0.5825916999999947
     environment: g++
     memory: 5.412
+    name: random_01
+    status: AC
+  - elapsed: 0.14443510399999582
+    environment: g++
+    memory: 4.524
+    name: random_02
+    status: AC
+  - elapsed: 0.5560227349999991
+    environment: g++
+    memory: 5.42
     name: random_03
     status: AC
-  - elapsed: 0.00829546299996764
+  - elapsed: 0.008253553000002967
     environment: g++
-    memory: 4.028
+    memory: 4.032
     name: random_04
     status: AC
-  - elapsed: 0.17778005499997107
+  - elapsed: 0.1780042050000077
     environment: g++
-    memory: 4.412
+    memory: 4.26
     name: random_05
     status: AC
-  - elapsed: 0.0022381100000075094
+  - elapsed: 0.002145690000020295
     environment: g++
-    memory: 3.736
+    memory: 3.628
     name: zero_00
     status: AC
-  - elapsed: 0.002163650999989386
+  - elapsed: 0.002059298000006038
     environment: g++
-    memory: 3.776
+    memory: 3.796
     name: zero_01
     status: AC
-  - elapsed: 0.0020842520000314835
+  - elapsed: 0.0020457470000110334
     environment: g++
-    memory: 3.74
+    memory: 3.584
     name: zero_02
     status: AC
-  - elapsed: 0.0021320820000028107
+  - elapsed: 0.0021186289999945984
     environment: g++
-    memory: 3.764
+    memory: 3.628
     name: zero_03
     status: AC
-  - elapsed: 0.0023662709999712206
+  - elapsed: 0.002430165000021134
     environment: g++
-    memory: 3.704
+    memory: 3.904
     name: zero_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_rank.test.cpp

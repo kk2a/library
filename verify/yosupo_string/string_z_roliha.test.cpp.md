@@ -684,16 +684,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_string/string_z_roliha.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_string/string_z_roliha.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    string s;\n    kin >> s;\n    kk2::SRoliha\
       \ rs(s);\n\n    int n = s.size();\n    vc<int> z(n);\n    rep(i, n) z[i] = kk2::SRoliha::lcp(rs,\
       \ 0, n, rs, i, n);\n    kout << z << kendl;\n\n    return 0;\n}\n"
@@ -704,152 +704,152 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 1.1918276609999907
+  - elapsed: 1.1482368070000035
     environment: g++
-    memory: 29.192
+    memory: 29.236
     name: all_same_00
     status: AC
-  - elapsed: 1.204863451999998
+  - elapsed: 1.1570968699999895
     environment: g++
-    memory: 29.408
+    memory: 29.464
     name: all_same_01
     status: AC
-  - elapsed: 1.2055246669999917
+  - elapsed: 1.1539596969999906
     environment: g++
-    memory: 29.408
+    memory: 29.42
     name: all_same_02
     status: AC
-  - elapsed: 1.2046143179999973
+  - elapsed: 1.1523272350000013
     environment: g++
-    memory: 29.328
+    memory: 29.332
     name: all_same_03
     status: AC
-  - elapsed: 1.1967736040000005
+  - elapsed: 1.144307475000005
     environment: g++
-    memory: 29.3
+    memory: 29.332
     name: all_same_04
     status: AC
-  - elapsed: 1.1108798619999902
+  - elapsed: 1.0875505249999975
     environment: g++
-    memory: 29.248
+    memory: 29.244
     name: binary_carry_00
     status: AC
-  - elapsed: 1.117865186000003
+  - elapsed: 1.0765507819999982
     environment: g++
-    memory: 29.388
+    memory: 29.456
     name: binary_carry_01
     status: AC
-  - elapsed: 0.0024874180000011847
+  - elapsed: 0.002828934000007166
     environment: g++
-    memory: 3.744
+    memory: 3.712
     name: example_00
     status: AC
-  - elapsed: 0.0022069120000054454
+  - elapsed: 0.0024902800000035086
     environment: g++
-    memory: 3.716
+    memory: 3.696
     name: example_01
     status: AC
-  - elapsed: 0.002217380999994134
+  - elapsed: 0.002302486000004933
     environment: g++
-    memory: 3.752
+    memory: 3.712
     name: example_02
     status: AC
-  - elapsed: 0.002297020000000316
+  - elapsed: 0.0022983340000024555
     environment: g++
-    memory: 3.748
+    memory: 3.752
     name: example_03
     status: AC
-  - elapsed: 1.1192112089999995
+  - elapsed: 1.0875753050000014
     environment: g++
     memory: 29.488
     name: fib_str_00
     status: AC
-  - elapsed: 0.802487247000002
+  - elapsed: 0.7830049840000015
     environment: g++
-    memory: 22.764
+    memory: 22.716
     name: fib_str_01
     status: AC
-  - elapsed: 0.7626108659999886
+  - elapsed: 0.7416772819999977
     environment: g++
-    memory: 21.624
+    memory: 21.752
     name: fib_str_02
     status: AC
-  - elapsed: 0.7018370769999933
+  - elapsed: 0.6753177110000053
     environment: g++
-    memory: 20.32
+    memory: 20.336
     name: fib_str_03
     status: AC
-  - elapsed: 1.091338864000008
+  - elapsed: 1.0585759230000065
     environment: g++
     memory: 29.004
     name: fib_str_04
     status: AC
-  - elapsed: 0.0024559829999901694
+  - elapsed: 0.0026730299999968565
     environment: g++
     memory: 3.752
     name: hack606_00
     status: AC
-  - elapsed: 1.1082144380000045
+  - elapsed: 1.0792730329999927
     environment: g++
     memory: 29.704
     name: max_random_00
     status: AC
-  - elapsed: 1.1087100629999895
+  - elapsed: 1.080994290999996
     environment: g++
-    memory: 29.688
+    memory: 29.68
     name: max_random_01
     status: AC
-  - elapsed: 0.8531844219999982
+  - elapsed: 0.8300612970000003
     environment: g++
-    memory: 23.896
+    memory: 24.024
     name: random_00
     status: AC
-  - elapsed: 1.0225964979999986
+  - elapsed: 0.9952912849999933
     environment: g++
     memory: 27.896
     name: random_01
     status: AC
-  - elapsed: 0.10251962200000264
+  - elapsed: 0.1000538659999961
     environment: g++
-    memory: 6.38
+    memory: 6.4
     name: random_02
     status: AC
-  - elapsed: 0.9440821439999922
+  - elapsed: 0.9192971949999986
     environment: g++
-    memory: 26.116
+    memory: 26.12
     name: random_03
     status: AC
-  - elapsed: 0.5900251369999978
+  - elapsed: 0.5746225350000032
     environment: g++
-    memory: 18.14
+    memory: 18.184
     name: random_04
     status: AC
-  - elapsed: 0.6790398470000127
+  - elapsed: 0.6619571039999954
     environment: g++
-    memory: 20.176
+    memory: 20.028
     name: random_05
     status: AC
-  - elapsed: 1.0067319620000035
+  - elapsed: 0.9794670109999828
     environment: g++
-    memory: 27.272
+    memory: 27.432
     name: random_06
     status: AC
-  - elapsed: 0.19143530600000247
+  - elapsed: 0.18685108700000796
     environment: g++
     memory: 8.74
     name: random_07
     status: AC
-  - elapsed: 0.5694627109999999
+  - elapsed: 0.5575768889999893
     environment: g++
-    memory: 17.712
+    memory: 17.588
     name: random_08
     status: AC
-  - elapsed: 0.21392829200000563
+  - elapsed: 0.2089484870000149
     environment: g++
-    memory: 9.344
+    memory: 9.38
     name: random_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_z_roliha.test.cpp

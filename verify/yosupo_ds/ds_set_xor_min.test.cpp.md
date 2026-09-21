@@ -399,16 +399,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_set_xor_min.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_set_xor_min.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    kk2::BinaryTrie<int,\
       \ 30> bt(30 * q);\n    rep(q) {\n        int type, x;\n        kin >> type >>\
       \ x;\n        if (type == 0) {\n            if (!bt.count(x)) bt.insert(x);\n\
@@ -422,67 +422,67 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.5396000859999504
+  - elapsed: 0.5769355559999951
     environment: g++
     memory: 76.928
     name: almost_all_insert_00
     status: AC
-  - elapsed: 0.3843917899999951
-    environment: g++
-    memory: 4.044
-    name: almost_all_query_00
-    status: AC
-  - elapsed: 0.2950528050000685
+  - elapsed: 0.39401685900000416
     environment: g++
     memory: 4.028
+    name: almost_all_query_00
+    status: AC
+  - elapsed: 0.2605852319999826
+    environment: g++
+    memory: 4.024
     name: almost_all_query_close_00
     status: AC
-  - elapsed: 0.0025019219999649067
+  - elapsed: 0.0028745220000132576
     environment: g++
-    memory: 3.772
+    memory: 3.696
     name: ans_big_00
     status: AC
-  - elapsed: 0.0021410779999087026
+  - elapsed: 0.0023380579999923157
     environment: g++
-    memory: 3.752
+    memory: 3.572
     name: example_00
     status: AC
-  - elapsed: 0.4904801120000002
+  - elapsed: 0.4844285510000077
     environment: g++
-    memory: 44.212
+    memory: 44.284
     name: max_ans_small_00
     status: AC
-  - elapsed: 0.42066189100000884
+  - elapsed: 0.4533725549999872
     environment: g++
-    memory: 29.952
+    memory: 29.9
     name: max_random_00
     status: AC
-  - elapsed: 0.41940205600008085
+  - elapsed: 0.4504098390000024
     environment: g++
     memory: 29.948
     name: max_random_01
     status: AC
-  - elapsed: 0.4291225780000332
+  - elapsed: 0.4540250819999869
     environment: g++
-    memory: 29.952
+    memory: 29.9
     name: max_random_02
     status: AC
-  - elapsed: 0.3300158790000296
+  - elapsed: 0.3442252119999978
     environment: g++
-    memory: 23.98
+    memory: 23.968
     name: random_00
     status: AC
-  - elapsed: 0.3976371779999681
+  - elapsed: 0.40078515600001197
     environment: g++
-    memory: 27.2
+    memory: 27.144
     name: random_01
     status: AC
-  - elapsed: 0.04440028900000925
+  - elapsed: 0.043482996999983925
     environment: g++
     memory: 8.044
     name: random_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_set_xor_min.test.cpp

@@ -423,6 +423,9 @@ data:
     - filename: static_rolling_hash.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/string/static_rolling_hash.test.cpp
+    - filename: function_util.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/template/function_util.test.cpp
     - filename: algebra.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/algebra/algebra.test.cpp
@@ -952,7 +955,7 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -988,6 +991,7 @@ data:
   - verify/unit_test/modint/F2.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
+  - verify/unit_test/template/function_util.test.cpp
   - verify/unit_test/type_traits/algebra/algebra.test.cpp
   - verify/unit_test/type_traits/concepts.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp

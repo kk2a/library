@@ -522,16 +522,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_shortest_path.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_shortest_path.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m, s, t;\n    kin >> n >>\
       \ m >> s >> t;\n    kk2::DWAdjList<i64> g(n, m, kin);\n    auto [dist, prev]\
       \ = kk2::dijkstra(g, s);\n\n    if (prev[t].to == -1) {\n        kout << -1\
@@ -547,152 +547,152 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.4445951259999674
+  - elapsed: 0.6027809949999892
     environment: g++
-    memory: 43.488
+    memory: 43.504
     name: almost_line_00
     status: AC
-  - elapsed: 0.4444847409999966
+  - elapsed: 0.6098485390000405
     environment: g++
     memory: 43.548
     name: almost_line_01
     status: AC
-  - elapsed: 0.45000941000000694
+  - elapsed: 0.6178567960000123
     environment: g++
-    memory: 43.604
+    memory: 43.608
     name: almost_line_02
     status: AC
-  - elapsed: 0.0026028600000245206
+  - elapsed: 0.0029018779999887556
     environment: g++
-    memory: 3.672
+    memory: 3.788
     name: example_00
     status: AC
-  - elapsed: 0.002132515000027979
+  - elapsed: 0.002445242000021608
     environment: g++
-    memory: 3.672
+    memory: 3.82
     name: example_01
     status: AC
-  - elapsed: 0.3708946720000199
+  - elapsed: 0.4777485540000157
     environment: g++
-    memory: 35.408
+    memory: 35.364
     name: grid_random_00
     status: AC
-  - elapsed: 0.5569945539999708
+  - elapsed: 0.6971444879999922
     environment: g++
-    memory: 37.364
+    memory: 37.356
     name: grid_swirl_00
     status: AC
-  - elapsed: 0.6550388759999919
+  - elapsed: 0.8508668420000163
     environment: g++
-    memory: 58.24
+    memory: 58.236
     name: line_00
     status: AC
-  - elapsed: 0.16221901500000513
+  - elapsed: 0.2150565379999989
     environment: g++
     memory: 27.192
     name: max_dense_long_00
     status: AC
-  - elapsed: 0.16611286999994945
+  - elapsed: 0.2135053169999992
     environment: g++
-    memory: 27.06
+    memory: 27.016
     name: max_dense_random_00
     status: AC
-  - elapsed: 0.16167058100000986
+  - elapsed: 0.21552986799997598
     environment: g++
     memory: 27.056
     name: max_dense_random_01
     status: AC
-  - elapsed: 0.13004953900002647
+  - elapsed: 0.17113982799997984
     environment: g++
-    memory: 26.936
+    memory: 26.932
     name: max_dense_zero_00
     status: AC
-  - elapsed: 0.28357061400004113
+  - elapsed: 0.3655936170000018
     environment: g++
-    memory: 43.1
+    memory: 42.816
     name: max_sparse_random_00
     status: AC
-  - elapsed: 0.5815042020000192
+  - elapsed: 0.7341248579999728
     environment: g++
-    memory: 44.76
+    memory: 44.632
     name: max_sparse_random_01
     status: AC
-  - elapsed: 0.5628711150000072
+  - elapsed: 0.7186156900000356
     environment: g++
-    memory: 44.752
+    memory: 44.704
     name: max_sparse_random_02
     status: AC
-  - elapsed: 0.9428534740000032
+  - elapsed: 1.168046758999992
     environment: g++
-    memory: 62.448
+    memory: 62.44
     name: max_star_00
     status: AC
-  - elapsed: 1.038073408999992
+  - elapsed: 1.3117919250000227
     environment: g++
-    memory: 62.228
+    memory: 62.232
     name: max_star_01
     status: AC
-  - elapsed: 0.002814112999999452
+  - elapsed: 0.002940954999985479
     environment: g++
-    memory: 3.8
+    memory: 3.812
     name: small_00
     status: AC
-  - elapsed: 0.002248303000044416
+  - elapsed: 0.002404566999985036
     environment: g++
-    memory: 3.596
+    memory: 3.672
     name: small_01
     status: AC
-  - elapsed: 0.002269289000025765
+  - elapsed: 0.0024300860000039393
     environment: g++
-    memory: 3.836
+    memory: 3.82
     name: small_02
     status: AC
-  - elapsed: 0.0021594450000179677
+  - elapsed: 0.0023643969999511683
     environment: g++
-    memory: 3.796
+    memory: 3.82
     name: small_03
     status: AC
-  - elapsed: 0.0021928040000034343
+  - elapsed: 0.0023727290000010726
     environment: g++
-    memory: 3.776
+    memory: 3.812
     name: small_04
     status: AC
-  - elapsed: 0.2787906899999939
+  - elapsed: 0.3317428790000463
     environment: g++
-    memory: 46.684
+    memory: 46.688
     name: sparse_random_00
     status: AC
-  - elapsed: 0.2955395369999678
+  - elapsed: 0.35166084200000114
     environment: g++
-    memory: 50.96
+    memory: 50.952
     name: sparse_random_01
     status: AC
-  - elapsed: 0.26148228799996787
+  - elapsed: 0.33013730499999383
     environment: g++
     memory: 25.776
     name: sparse_random_02
     status: AC
-  - elapsed: 0.8467598929999554
+  - elapsed: 1.0894338589999961
     environment: g++
-    memory: 53.532
+    memory: 53.54
     name: spfa_killer_00
     status: AC
-  - elapsed: 0.002594256999998379
+  - elapsed: 0.0027885289999858287
     environment: g++
     memory: 3.672
     name: wrong_dijkstra_handmade_00
     status: AC
-  - elapsed: 0.6721127840000349
+  - elapsed: 0.8186332010000115
     environment: g++
-    memory: 46.452
+    memory: 46.476
     name: wrong_dijkstra_killer_00
     status: AC
-  - elapsed: 1.064861909000001
+  - elapsed: 1.2818716129999643
     environment: g++
-    memory: 51.2
+    memory: 51.16
     name: wrong_dijkstra_killer_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_shortest_path.test.cpp

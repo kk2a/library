@@ -383,16 +383,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_predecessor_problem.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_predecessor_problem.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    string t;\n    kin >> t;\n    kk2::w_ary_tree wt(t);\n    rep(q) {\n  \
       \      int type, x;\n        kin >> type >> x;\n        if (type == 0) {\n \
@@ -411,117 +411,117 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002427721999993082
+  - elapsed: 0.0024037460000272404
     environment: g++
-    memory: 3.868
+    memory: 3.848
     name: example_00
     status: AC
-  - elapsed: 0.004485179000027983
+  - elapsed: 0.00455705100000614
     environment: g++
-    memory: 3.868
+    memory: 4.032
     name: hack_00
     status: AC
-  - elapsed: 0.581973411999968
+  - elapsed: 0.5795228109999471
     environment: g++
     memory: 20.66
     name: max_all0_00
     status: AC
-  - elapsed: 0.5843909280000048
+  - elapsed: 0.5853556839999783
     environment: g++
-    memory: 20.656
+    memory: 19.796
     name: max_all0_01
     status: AC
-  - elapsed: 0.5902513539999745
+  - elapsed: 0.5811493600000404
     environment: g++
-    memory: 20.664
+    memory: 20.648
     name: max_all1_00
     status: AC
-  - elapsed: 0.5941321269999662
+  - elapsed: 0.5802876689999721
     environment: g++
     memory: 20.664
     name: max_all1_01
     status: AC
-  - elapsed: 0.5353086289999851
+  - elapsed: 0.5334991259999242
     environment: g++
-    memory: 19.764
+    memory: 19.792
     name: max_query0_1_2_00
     status: AC
-  - elapsed: 0.5401775139999927
+  - elapsed: 0.5495404470000267
     environment: g++
     memory: 20.66
     name: max_query0_1_2_01
     status: AC
-  - elapsed: 0.5807246759999884
+  - elapsed: 0.5658591019999903
     environment: g++
-    memory: 19.78
+    memory: 20.656
     name: max_random_00
     status: AC
-  - elapsed: 0.5881408770000007
-    environment: g++
-    memory: 20.66
-    name: max_random_01
-    status: AC
-  - elapsed: 0.6967805610000255
+  - elapsed: 0.5734283759999244
     environment: g++
     memory: 19.788
+    name: max_random_01
+    status: AC
+  - elapsed: 0.7019461390000288
+    environment: g++
+    memory: 20.66
     name: max_sparse_00
     status: AC
-  - elapsed: 0.6907789360000152
+  - elapsed: 0.6868340229999603
     environment: g++
-    memory: 19.768
+    memory: 19.764
     name: max_sparse_01
     status: AC
-  - elapsed: 0.01863905199996907
-    environment: g++
-    memory: 3.992
-    name: medium_00
-    status: AC
-  - elapsed: 0.017999206000013146
-    environment: g++
-    memory: 4.112
-    name: medium_01
-    status: AC
-  - elapsed: 0.018014923999999155
-    environment: g++
-    memory: 4.144
-    name: medium_02
-    status: AC
-  - elapsed: 0.01830439700000852
+  - elapsed: 0.018190190999916922
     environment: g++
     memory: 4.156
+    name: medium_00
+    status: AC
+  - elapsed: 0.017992709000054674
+    environment: g++
+    memory: 4.144
+    name: medium_01
+    status: AC
+  - elapsed: 0.018040769999970507
+    environment: g++
+    memory: 4.136
+    name: medium_02
+    status: AC
+  - elapsed: 0.018008592000001045
+    environment: g++
+    memory: 4.16
     name: medium_03
     status: AC
-  - elapsed: 0.0182872710000197
-    environment: g++
-    memory: 4.176
-    name: medium_04
-    status: AC
-  - elapsed: 0.016234451000002537
-    environment: g++
-    memory: 4.164
-    name: small_00
-    status: AC
-  - elapsed: 0.016123834000040915
+  - elapsed: 0.017898249999916516
     environment: g++
     memory: 4.116
-    name: small_01
+    name: medium_04
     status: AC
-  - elapsed: 0.016752803000031236
+  - elapsed: 0.016056062999950882
     environment: g++
-    memory: 4.108
-    name: small_02
+    memory: 4.116
+    name: small_00
     status: AC
-  - elapsed: 0.016772682999999233
-    environment: g++
-    memory: 4.152
-    name: small_03
-    status: AC
-  - elapsed: 0.016190964999964308
+  - elapsed: 0.015983323999989807
     environment: g++
     memory: 4.112
+    name: small_01
+    status: AC
+  - elapsed: 0.016130523000015273
+    environment: g++
+    memory: 4.124
+    name: small_02
+    status: AC
+  - elapsed: 0.015978697999912583
+    environment: g++
+    memory: 4.124
+    name: small_03
+    status: AC
+  - elapsed: 0.015870229000029212
+    environment: g++
+    memory: 4.16
     name: small_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_predecessor_problem.test.cpp

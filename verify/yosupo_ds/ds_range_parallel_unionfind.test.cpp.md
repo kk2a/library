@@ -393,17 +393,17 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 1 \"unionfind/parallel.hpp\"\
-      \n\n\n\n#line 5 \"unionfind/parallel.hpp\"\n\n#line 1 \"string/dynamic_rolling_hash.hpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 1 \"unionfind/parallel.hpp\"\n\n\n\n#line\
+      \ 5 \"unionfind/parallel.hpp\"\n\n#line 1 \"string/dynamic_rolling_hash.hpp\"\
       \n\n\n\n#line 6 \"string/dynamic_rolling_hash.hpp\"\n\n#line 1 \"bit/bitcount.hpp\"\
       \n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 7 \"bit/bitcount.hpp\"\n\nnamespace\
       \ kk2 {\n\ntemplate <Integral T> constexpr int ctz(T x) {\n    assert(x != T(0));\n\
@@ -835,152 +835,152 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 14.452795712000011
+  - elapsed: 11.76511210700005
     environment: g++
-    memory: 25.732
+    memory: 25.856
     name: decr_period_00
     status: AC
-  - elapsed: 15.646217413000045
+  - elapsed: 12.361449343999993
     environment: g++
-    memory: 25.764
+    memory: 25.868
     name: decr_period_01
     status: AC
-  - elapsed: 15.874275885999964
+  - elapsed: 12.94259458700003
     environment: g++
-    memory: 25.732
+    memory: 25.868
     name: decr_period_02
     status: AC
-  - elapsed: 15.367315771999984
+  - elapsed: 12.529441749000057
     environment: g++
-    memory: 25.804
+    memory: 25.776
     name: decr_period_03
     status: AC
-  - elapsed: 0.002765517000057116
+  - elapsed: 0.002365255999961846
     environment: g++
-    memory: 3.792
+    memory: 3.98
     name: example_00
     status: AC
-  - elapsed: 0.002244243999939499
+  - elapsed: 0.0019001900000148453
     environment: g++
-    memory: 3.736
+    memory: 3.856
     name: example_01
     status: AC
-  - elapsed: 17.22202537599992
+  - elapsed: 14.448862259999942
     environment: g++
-    memory: 25.736
+    memory: 25.868
     name: large_k_00
     status: AC
-  - elapsed: 15.96262010299995
+  - elapsed: 13.375497524000025
     environment: g++
-    memory: 25.772
+    memory: 25.872
     name: large_k_01
     status: AC
-  - elapsed: 16.719079598000008
+  - elapsed: 13.950234057999978
     environment: g++
-    memory: 25.728
+    memory: 25.86
     name: large_k_02
     status: AC
-  - elapsed: 14.488554636000003
+  - elapsed: 11.880383553999991
     environment: g++
-    memory: 25.8
+    memory: 25.872
     name: periodic_00
     status: AC
-  - elapsed: 14.281170187000043
+  - elapsed: 11.765216010000017
     environment: g++
-    memory: 25.808
+    memory: 25.824
     name: periodic_01
     status: AC
-  - elapsed: 14.399903465999955
+  - elapsed: 12.042577750000078
     environment: g++
-    memory: 25.804
+    memory: 25.872
     name: periodic_02
     status: AC
-  - elapsed: 13.978990976999967
+  - elapsed: 11.278201090999914
     environment: g++
-    memory: 25.804
+    memory: 25.924
     name: periodic_03
     status: AC
-  - elapsed: 13.08034609799995
+  - elapsed: 10.734074176000036
     environment: g++
-    memory: 23.624
+    memory: 23.772
     name: random_00
     status: AC
-  - elapsed: 12.407374591999996
+  - elapsed: 10.344338102000052
     environment: g++
-    memory: 25.124
+    memory: 25.204
     name: random_01
     status: AC
-  - elapsed: 1.888515163999955
+  - elapsed: 1.5946659720000298
     environment: g++
-    memory: 6.312
+    memory: 6.376
     name: random_02
     status: AC
-  - elapsed: 0.184175765999953
+  - elapsed: 0.18077202599999964
     environment: g++
-    memory: 4.048
+    memory: 4.26
     name: small_00
     status: AC
-  - elapsed: 0.22125830400000268
+  - elapsed: 0.22303338300002906
     environment: g++
-    memory: 4.044
+    memory: 4.26
     name: small_01
     status: AC
-  - elapsed: 0.2392056840000123
+  - elapsed: 0.23005888200009394
     environment: g++
-    memory: 4.048
+    memory: 4.184
     name: small_02
     status: AC
-  - elapsed: 0.24102769699993587
+  - elapsed: 0.23423385700004928
     environment: g++
-    memory: 3.996
+    memory: 4.272
     name: small_03
     status: AC
-  - elapsed: 0.2529170720000593
+  - elapsed: 0.24399976400002288
     environment: g++
-    memory: 4.048
+    memory: 4.26
     name: small_04
     status: AC
-  - elapsed: 0.25894153499996264
+  - elapsed: 0.24634147999995548
     environment: g++
-    memory: 3.984
+    memory: 4.112
     name: small_05
     status: AC
-  - elapsed: 0.26941796400001294
+  - elapsed: 0.2543863240000519
     environment: g++
-    memory: 4.0
+    memory: 4.136
     name: small_06
     status: AC
-  - elapsed: 0.2651002489999428
+  - elapsed: 0.25330875300005573
     environment: g++
-    memory: 3.992
+    memory: 4.136
     name: small_07
     status: AC
-  - elapsed: 0.27371729699996195
+  - elapsed: 0.2589577390000386
     environment: g++
-    memory: 4.048
+    memory: 4.26
     name: small_08
     status: AC
-  - elapsed: 0.2774139489999925
+  - elapsed: 0.2634708699999919
     environment: g++
-    memory: 4.048
+    memory: 4.26
     name: small_09
     status: AC
-  - elapsed: 3.388465340000039
+  - elapsed: 2.909926915000028
     environment: g++
-    memory: 25.768
+    memory: 25.848
     name: small_k_00
     status: AC
-  - elapsed: 3.3544770890000564
+  - elapsed: 2.913387446999991
     environment: g++
-    memory: 25.604
+    memory: 25.868
     name: small_k_01
     status: AC
-  - elapsed: 3.353774693000105
+  - elapsed: 2.9107849889999216
     environment: g++
-    memory: 25.808
+    memory: 25.736
     name: small_k_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp

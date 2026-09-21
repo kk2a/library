@@ -30,6 +30,9 @@ data:
     - filename: monoid.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/monoid/monoid.test.cpp
+    - filename: function_util.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/template/function_util.test.cpp
     - filename: many_a_plus_b_128bit_2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
@@ -110,11 +113,12 @@ data:
   - math/action/update_max.hpp
   - template/function_util.hpp
   - template/procon.hpp
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/action/action.test.cpp
   - verify/unit_test/math/monoid/monoid.test.cpp
+  - verify/unit_test/template/function_util.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
 documentation_of: math/monoid/max.hpp
 layout: document

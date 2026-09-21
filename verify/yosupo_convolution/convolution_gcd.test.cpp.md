@@ -441,16 +441,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_convolution/convolution_gcd.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_convolution/convolution_gcd.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    vc<kk2::mont998>\
       \ a(n + 1), b(n + 1);\n    rep(i, n) kin >> a[i + 1];\n    rep(i, n) kin >>\
       \ b[i + 1];\n    kk2::convolution_gcd(a, b);\n    rep(i, n) kout << a[i + 1]\
@@ -462,152 +462,152 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024996020000003227
+  - elapsed: 0.0027060680000090542
     environment: g++
-    memory: 3.884
+    memory: 3.7
     name: all_zero_00
     status: AC
-  - elapsed: 0.002113362999978108
+  - elapsed: 0.00225393700000609
     environment: g++
-    memory: 3.792
+    memory: 3.708
     name: example_00
     status: AC
-  - elapsed: 0.4184952619999933
+  - elapsed: 0.4717084050000153
     environment: g++
-    memory: 19.5
+    memory: 19.412
     name: max_random_00
     status: AC
-  - elapsed: 0.4201247299999977
+  - elapsed: 0.4727225249999947
     environment: g++
-    memory: 19.452
+    memory: 19.408
     name: max_random_01
     status: AC
-  - elapsed: 0.4196964390000062
+  - elapsed: 0.47010850600000254
     environment: g++
-    memory: 19.536
+    memory: 19.412
     name: near_prime_00
     status: AC
-  - elapsed: 0.42102750700001934
+  - elapsed: 0.4713355049999848
     environment: g++
-    memory: 19.512
+    memory: 19.412
     name: near_prime_01
     status: AC
-  - elapsed: 0.42136068799999293
+  - elapsed: 0.47253537899999287
     environment: g++
-    memory: 19.452
+    memory: 19.352
     name: near_prime_02
     status: AC
-  - elapsed: 0.4190121210000086
+  - elapsed: 0.46830661600000667
     environment: g++
-    memory: 19.372
+    memory: 19.228
     name: near_prime_squared_00
     status: AC
-  - elapsed: 0.41958184099999585
+  - elapsed: 0.4723632470000041
     environment: g++
-    memory: 19.34
+    memory: 19.04
     name: near_prime_squared_01
     status: AC
-  - elapsed: 0.4216341499999885
+  - elapsed: 0.4702971070000217
     environment: g++
-    memory: 19.34
+    memory: 19.24
     name: near_prime_squared_02
     status: AC
-  - elapsed: 0.16107422900000756
+  - elapsed: 0.1877474599999971
     environment: g++
-    memory: 9.732
+    memory: 9.62
     name: random_00
     status: AC
-  - elapsed: 0.192260277999992
+  - elapsed: 0.22292758399999002
     environment: g++
-    memory: 11.748
+    memory: 10.752
     name: random_01
     status: AC
-  - elapsed: 0.2423758489999841
+  - elapsed: 0.2735760890000165
     environment: g++
-    memory: 12.796
+    memory: 12.612
     name: random_02
     status: AC
-  - elapsed: 0.0025476900000001024
+  - elapsed: 0.0025508959999740455
     environment: g++
-    memory: 3.904
+    memory: 3.744
     name: small_00
     status: AC
-  - elapsed: 0.002094656999986455
+  - elapsed: 0.0020945280000148614
     environment: g++
-    memory: 3.88
+    memory: 3.76
     name: small_01
     status: AC
-  - elapsed: 0.0020211800000140556
+  - elapsed: 0.0021134730000085256
     environment: g++
-    memory: 3.844
+    memory: 3.732
     name: small_02
     status: AC
-  - elapsed: 0.0019752780000033
+  - elapsed: 0.002063372000009167
     environment: g++
-    memory: 3.92
+    memory: 3.708
     name: small_03
     status: AC
-  - elapsed: 0.0019144100000119124
+  - elapsed: 0.002145584000004419
     environment: g++
-    memory: 3.92
+    memory: 3.744
     name: small_04
     status: AC
-  - elapsed: 0.001965646999991577
+  - elapsed: 0.002088974999992388
     environment: g++
-    memory: 3.872
+    memory: 3.756
     name: small_05
     status: AC
-  - elapsed: 0.0019988530000034643
+  - elapsed: 0.0021177840000063952
     environment: g++
-    memory: 3.896
+    memory: 3.752
     name: small_06
     status: AC
-  - elapsed: 0.0020146139999894785
+  - elapsed: 0.0020921539999960714
     environment: g++
-    memory: 3.88
+    memory: 3.756
     name: small_07
     status: AC
-  - elapsed: 0.0019197690000112289
+  - elapsed: 0.002063155999991295
     environment: g++
-    memory: 3.888
+    memory: 3.744
     name: small_08
     status: AC
-  - elapsed: 0.0019371740000053705
+  - elapsed: 0.0021138740000026246
     environment: g++
-    memory: 3.884
+    memory: 3.724
     name: small_09
     status: AC
-  - elapsed: 0.0019248639999887018
+  - elapsed: 0.002123573000005763
     environment: g++
-    memory: 3.884
+    memory: 3.736
     name: small_10
     status: AC
-  - elapsed: 0.0021400109999945016
+  - elapsed: 0.002118562999982032
     environment: g++
-    memory: 3.884
+    memory: 3.736
     name: small_11
     status: AC
-  - elapsed: 0.0019517150000183392
+  - elapsed: 0.002078146999991759
     environment: g++
-    memory: 3.828
+    memory: 3.74
     name: small_12
     status: AC
-  - elapsed: 0.0019302720000098361
+  - elapsed: 0.002118152000008422
     environment: g++
-    memory: 3.828
+    memory: 3.732
     name: small_13
     status: AC
-  - elapsed: 0.0019181840000044303
+  - elapsed: 0.0020865230000026713
     environment: g++
-    memory: 3.868
+    memory: 3.788
     name: small_14
     status: AC
-  - elapsed: 0.0019921370000020033
+  - elapsed: 0.0021016649999978654
     environment: g++
-    memory: 3.828
+    memory: 3.684
     name: small_15
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_gcd.test.cpp

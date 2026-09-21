@@ -388,16 +388,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_static_rmq.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_static_rmq.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    kk2::StaticRMQ<int> rmq(n);\n    rep(i, n) {\n        int a;\n        kin\
       \ >> a;\n        rmq.init_set(i, a);\n    }\n    rmq.build();\n\n    rep(q)\
@@ -410,142 +410,142 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0030079699999987497
+  - elapsed: 0.002684391999991931
     environment: g++
-    memory: 3.804
+    memory: 3.772
     name: example_00
     status: AC
-  - elapsed: 0.6599467159999932
+  - elapsed: 0.5185242679999931
     environment: g++
-    memory: 85.536
+    memory: 85.496
     name: max_random_00
     status: AC
-  - elapsed: 0.6531580329999969
+  - elapsed: 0.524990785
     environment: g++
     memory: 85.572
     name: max_random_01
     status: AC
-  - elapsed: 0.6519255139999984
+  - elapsed: 0.527321709000006
     environment: g++
     memory: 85.532
     name: max_random_02
     status: AC
-  - elapsed: 0.6530758640000016
+  - elapsed: 0.5330661659999976
     environment: g++
-    memory: 85.516
+    memory: 85.568
     name: max_random_03
     status: AC
-  - elapsed: 0.6485741320000074
+  - elapsed: 0.5380137850000324
     environment: g++
     memory: 85.572
     name: max_random_04
     status: AC
-  - elapsed: 0.5165143509999979
+  - elapsed: 0.42036732899998697
     environment: g++
-    memory: 67.464
+    memory: 67.444
     name: random_00
     status: AC
-  - elapsed: 0.5709861200000006
+  - elapsed: 0.47972561199998154
     environment: g++
-    memory: 79.468
+    memory: 79.4
     name: random_01
     status: AC
-  - elapsed: 0.17218584200000464
+  - elapsed: 0.127866374000007
     environment: g++
-    memory: 11.048
+    memory: 11.04
     name: random_02
     status: AC
-  - elapsed: 0.3799388509999915
+  - elapsed: 0.3297917969999844
     environment: g++
-    memory: 73.912
+    memory: 73.944
     name: random_03
     status: AC
-  - elapsed: 0.28398507299999665
+  - elapsed: 0.24105826600003866
     environment: g++
-    memory: 48.96
+    memory: 48.964
     name: random_04
     status: AC
-  - elapsed: 0.0031149929999969572
+  - elapsed: 0.0028396079999879476
     environment: g++
-    memory: 3.772
+    memory: 3.588
     name: small_00
     status: AC
-  - elapsed: 0.0027546409999956722
+  - elapsed: 0.0023426250000397886
     environment: g++
     memory: 3.784
     name: small_01
     status: AC
-  - elapsed: 0.0027441839999937656
-    environment: g++
-    memory: 3.636
-    name: small_02
-    status: AC
-  - elapsed: 0.0026927379999932555
-    environment: g++
-    memory: 3.776
-    name: small_03
-    status: AC
-  - elapsed: 0.002697353999991492
-    environment: g++
-    memory: 3.78
-    name: small_04
-    status: AC
-  - elapsed: 0.002671935999998709
-    environment: g++
-    memory: 3.58
-    name: small_05
-    status: AC
-  - elapsed: 0.002647609000007378
-    environment: g++
-    memory: 3.74
-    name: small_06
-    status: AC
-  - elapsed: 0.002676501999999914
-    environment: g++
-    memory: 3.804
-    name: small_07
-    status: AC
-  - elapsed: 0.0028160679999871263
+  - elapsed: 0.0023630929999853834
     environment: g++
     memory: 3.784
-    name: small_08
+    name: small_02
     status: AC
-  - elapsed: 0.0026877549999966277
+  - elapsed: 0.0024001920000387145
     environment: g++
     memory: 3.78
+    name: small_03
+    status: AC
+  - elapsed: 0.002340600999957587
+    environment: g++
+    memory: 3.792
+    name: small_04
+    status: AC
+  - elapsed: 0.0024225639999713167
+    environment: g++
+    memory: 3.788
+    name: small_05
+    status: AC
+  - elapsed: 0.0024546149999764566
+    environment: g++
+    memory: 3.78
+    name: small_06
+    status: AC
+  - elapsed: 0.0033146549999969466
+    environment: g++
+    memory: 3.74
+    name: small_07
+    status: AC
+  - elapsed: 0.0024170039999944493
+    environment: g++
+    memory: 3.772
+    name: small_08
+    status: AC
+  - elapsed: 0.0025137439999980415
+    environment: g++
+    memory: 3.792
     name: small_09
     status: AC
-  - elapsed: 0.5973816039999917
+  - elapsed: 0.4951984349999634
     environment: g++
     memory: 85.568
     name: small_values_00
     status: AC
-  - elapsed: 0.6621076129999892
-    environment: g++
-    memory: 85.568
-    name: small_width_query_00
-    status: AC
-  - elapsed: 0.6600329359999932
+  - elapsed: 0.5434068960000218
     environment: g++
     memory: 85.536
-    name: small_width_query_01
+    name: small_width_query_00
     status: AC
-  - elapsed: 0.6664975099999992
-    environment: g++
-    memory: 85.528
-    name: small_width_query_02
-    status: AC
-  - elapsed: 0.653478910000004
+  - elapsed: 0.5443665469999814
     environment: g++
     memory: 85.532
-    name: small_width_query_03
+    name: small_width_query_01
     status: AC
-  - elapsed: 0.6597359559999916
+  - elapsed: 0.5442138590000241
     environment: g++
     memory: 85.572
+    name: small_width_query_02
+    status: AC
+  - elapsed: 0.5465992680000227
+    environment: g++
+    memory: 85.536
+    name: small_width_query_03
+    status: AC
+  - elapsed: 0.5466707169999836
+    environment: g++
+    memory: 85.512
     name: small_width_query_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_rmq.test.cpp

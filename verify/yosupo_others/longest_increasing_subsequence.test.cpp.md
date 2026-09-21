@@ -306,16 +306,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_others/longest_increasing_subsequence.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_others/longest_increasing_subsequence.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    vc<int>\
       \ a(n);\n    kin >> a;\n    auto res = kk2::longest_increasing_subsequence(a);\n\
       \    kout << res.size() << \"\\n\";\n    kout << res << \"\\n\";\n\n    return\
@@ -327,102 +327,102 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0018757569999934276
+  - elapsed: 0.0025997019999977056
     environment: g++
-    memory: 3.84
+    memory: 3.78
     name: example_00
     status: AC
-  - elapsed: 0.0016692869999701543
+  - elapsed: 0.002145570000010366
     environment: g++
-    memory: 3.844
+    memory: 3.58
     name: example_01
     status: AC
-  - elapsed: 0.20518651499997986
+  - elapsed: 0.3290436389999911
     environment: g++
-    memory: 15.42
+    memory: 15.356
     name: hand_max_00
     status: AC
-  - elapsed: 0.0742030600000021
+  - elapsed: 0.09494606699999508
     environment: g++
-    memory: 7.396
+    memory: 7.464
     name: hand_min_00
     status: AC
-  - elapsed: 0.14703419899996106
+  - elapsed: 0.2331395220000161
     environment: g++
-    memory: 7.472
+    memory: 7.464
     name: max_random_00
     status: AC
-  - elapsed: 0.14828858799995714
+  - elapsed: 0.23355846100000122
     environment: g++
-    memory: 7.528
+    memory: 7.428
     name: max_random_01
     status: AC
-  - elapsed: 0.14645924500001684
+  - elapsed: 0.2336948890000201
     environment: g++
-    memory: 7.52
+    memory: 7.464
     name: max_random_02
     status: AC
-  - elapsed: 0.14646770399997422
+  - elapsed: 0.23328753500001653
     environment: g++
-    memory: 7.528
+    memory: 7.312
     name: max_random_03
     status: AC
-  - elapsed: 0.1467436329999714
+  - elapsed: 0.23308684500000254
     environment: g++
-    memory: 7.52
+    memory: 7.464
     name: max_random_04
     status: AC
-  - elapsed: 0.11365138399997932
+  - elapsed: 0.1810171409999839
     environment: g++
-    memory: 6.648
+    memory: 6.524
     name: random_00
     status: AC
-  - elapsed: 0.13768979600001785
+  - elapsed: 0.21582858200000032
     environment: g++
-    memory: 7.144
+    memory: 7.044
     name: random_01
     status: AC
-  - elapsed: 0.0159654670000009
+  - elapsed: 0.02475974399999359
     environment: g++
-    memory: 4.028
+    memory: 3.996
     name: random_02
     status: AC
-  - elapsed: 0.12565538500001594
+  - elapsed: 0.20060509400002502
     environment: g++
-    memory: 6.872
+    memory: 6.824
     name: random_03
     status: AC
-  - elapsed: 0.08061834599999429
+  - elapsed: 0.12751754500001766
     environment: g++
-    memory: 5.736
+    memory: 5.672
     name: random_04
     status: AC
-  - elapsed: 0.0018003550000003088
+  - elapsed: 0.0025861860000020442
     environment: g++
-    memory: 3.768
+    memory: 3.776
     name: small_00
     status: AC
-  - elapsed: 0.0016628199999786375
+  - elapsed: 0.0021693239999933667
     environment: g++
-    memory: 3.884
+    memory: 3.58
     name: small_01
     status: AC
-  - elapsed: 0.0016050520000021606
+  - elapsed: 0.0022008050000010826
     environment: g++
-    memory: 3.836
+    memory: 3.588
     name: small_02
     status: AC
-  - elapsed: 0.0016156479999835938
+  - elapsed: 0.002212098000001106
     environment: g++
-    memory: 3.844
+    memory: 3.632
     name: small_03
     status: AC
-  - elapsed: 0.0016020020000269142
+  - elapsed: 0.0021763569999961874
     environment: g++
-    memory: 3.84
+    memory: 3.632
     name: small_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/longest_increasing_subsequence.test.cpp

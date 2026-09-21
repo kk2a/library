@@ -541,16 +541,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_cycle_detection_directed.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_cycle_detection_directed.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n\
       \    kk2::SDAdjList g(n, m, kin);\n    if (const auto res = kk2::cycle_detection(g);\
       \ res) {\n        kout << res->size() << '\\n';\n        for (auto &&v : res->edges)\
@@ -563,182 +563,182 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024946039999917957
+  - elapsed: 0.002678190999972685
     environment: g++
-    memory: 3.772
+    memory: 3.768
     name: example_00
     status: AC
-  - elapsed: 0.002123910999998202
+  - elapsed: 0.0021758910000073683
     environment: g++
-    memory: 3.58
+    memory: 3.776
     name: example_01
     status: AC
-  - elapsed: 0.0021154960000018264
+  - elapsed: 0.002089909999995143
     environment: g++
-    memory: 3.64
+    memory: 3.7
     name: example_02
     status: AC
-  - elapsed: 0.24318114999999807
+  - elapsed: 0.2375802770000064
     environment: g++
-    memory: 82.22
+    memory: 82.16
     name: long_cycle_00
     status: AC
-  - elapsed: 0.248641235000008
+  - elapsed: 0.2440002730000117
     environment: g++
-    memory: 83.32
+    memory: 83.344
     name: long_cycle_01
     status: AC
-  - elapsed: 0.11439679599999408
+  - elapsed: 0.11106843199999616
     environment: g++
-    memory: 16.148
+    memory: 16.164
     name: random_00
     status: AC
-  - elapsed: 0.15894720900000436
+  - elapsed: 0.1538945119999937
     environment: g++
-    memory: 16.816
+    memory: 16.828
     name: random_01
     status: AC
-  - elapsed: 0.09179526900000212
+  - elapsed: 0.08848176300000432
     environment: g++
     memory: 12.956
     name: random_02
     status: AC
-  - elapsed: 0.05360456200000385
+  - elapsed: 0.05263504199999147
     environment: g++
-    memory: 7.468
+    memory: 7.432
     name: random_03
     status: AC
-  - elapsed: 0.06181773000000135
+  - elapsed: 0.059404282000002695
     environment: g++
-    memory: 7.932
+    memory: 7.94
     name: random_04
     status: AC
-  - elapsed: 0.11022392200000297
-    environment: g++
-    memory: 15.432
-    name: random_05
-    status: AC
-  - elapsed: 0.12188874500000679
-    environment: g++
-    memory: 12.548
-    name: random_06
-    status: AC
-  - elapsed: 0.015214475999997035
-    environment: g++
-    memory: 4.516
-    name: random_07
-    status: AC
-  - elapsed: 0.08610245399999883
-    environment: g++
-    memory: 12.832
-    name: random_08
-    status: AC
-  - elapsed: 0.050853152000001955
-    environment: g++
-    memory: 8.916
-    name: random_09
-    status: AC
-  - elapsed: 0.16701375999998902
-    environment: g++
-    memory: 16.184
-    name: random_dag_00
-    status: AC
-  - elapsed: 0.17479906200000528
-    environment: g++
-    memory: 16.776
-    name: random_dag_01
-    status: AC
-  - elapsed: 0.10264189699999804
-    environment: g++
-    memory: 12.86
-    name: random_dag_02
-    status: AC
-  - elapsed: 0.053697632999998746
-    environment: g++
-    memory: 7.468
-    name: random_dag_03
-    status: AC
-  - elapsed: 0.06163723999999604
-    environment: g++
-    memory: 7.944
-    name: random_dag_04
-    status: AC
-  - elapsed: 0.1531907359999991
+  - elapsed: 0.10886067100000218
     environment: g++
     memory: 15.44
+    name: random_05
+    status: AC
+  - elapsed: 0.12015415999999846
+    environment: g++
+    memory: 12.544
+    name: random_06
+    status: AC
+  - elapsed: 0.014880529999999226
+    environment: g++
+    memory: 4.524
+    name: random_07
+    status: AC
+  - elapsed: 0.08414731400000619
+    environment: g++
+    memory: 12.884
+    name: random_08
+    status: AC
+  - elapsed: 0.04999204800000712
+    environment: g++
+    memory: 8.952
+    name: random_09
+    status: AC
+  - elapsed: 0.16234014800002683
+    environment: g++
+    memory: 16.176
+    name: random_dag_00
+    status: AC
+  - elapsed: 0.17229015799998137
+    environment: g++
+    memory: 16.832
+    name: random_dag_01
+    status: AC
+  - elapsed: 0.10054480800002352
+    environment: g++
+    memory: 12.864
+    name: random_dag_02
+    status: AC
+  - elapsed: 0.057214856000001646
+    environment: g++
+    memory: 7.424
+    name: random_dag_03
+    status: AC
+  - elapsed: 0.06221103299998276
+    environment: g++
+    memory: 7.98
+    name: random_dag_04
+    status: AC
+  - elapsed: 0.15096603200001368
+    environment: g++
+    memory: 15.432
     name: random_dag_05
     status: AC
-  - elapsed: 0.12152350199998807
+  - elapsed: 0.11911623899999313
     environment: g++
-    memory: 12.54
+    memory: 12.568
     name: random_dag_06
     status: AC
-  - elapsed: 0.015171279000000482
+  - elapsed: 0.015163975999996637
     environment: g++
     memory: 4.484
     name: random_dag_07
     status: AC
-  - elapsed: 0.12473432000000173
+  - elapsed: 0.11964388999999187
     environment: g++
     memory: 12.892
     name: random_dag_08
     status: AC
-  - elapsed: 0.06699410199999534
+  - elapsed: 0.06558812099999045
     environment: g++
-    memory: 8.944
+    memory: 8.916
     name: random_dag_09
     status: AC
-  - elapsed: 0.0868609919999983
+  - elapsed: 0.09056861300001628
     environment: g++
-    memory: 13.252
+    memory: 13.244
     name: random_dag_dense_00
     status: AC
-  - elapsed: 0.08915022100001124
-    environment: g++
-    memory: 13.324
-    name: random_dag_dense_01
-    status: AC
-  - elapsed: 0.08797555800001078
-    environment: g++
-    memory: 14.284
-    name: random_dag_dense_02
-    status: AC
-  - elapsed: 0.0900566939999976
-    environment: g++
-    memory: 13.532
-    name: random_dag_dense_03
-    status: AC
-  - elapsed: 0.1017345129999967
-    environment: g++
-    memory: 15.184
-    name: random_dag_dense_04
-    status: AC
-  - elapsed: 0.08298771499998736
-    environment: g++
-    memory: 13.248
-    name: random_dense_00
-    status: AC
-  - elapsed: 0.08492822799999544
+  - elapsed: 0.08571639999999547
     environment: g++
     memory: 13.28
+    name: random_dag_dense_01
+    status: AC
+  - elapsed: 0.08533733000001575
+    environment: g++
+    memory: 14.296
+    name: random_dag_dense_02
+    status: AC
+  - elapsed: 0.08689469899999835
+    environment: g++
+    memory: 13.5
+    name: random_dag_dense_03
+    status: AC
+  - elapsed: 0.09738456999997425
+    environment: g++
+    memory: 15.188
+    name: random_dag_dense_04
+    status: AC
+  - elapsed: 0.0786063119999767
+    environment: g++
+    memory: 13.252
+    name: random_dense_00
+    status: AC
+  - elapsed: 0.08196924899999658
+    environment: g++
+    memory: 13.324
     name: random_dense_01
     status: AC
-  - elapsed: 0.08284386500000096
+  - elapsed: 0.08272460199998477
     environment: g++
-    memory: 14.3
+    memory: 14.296
     name: random_dense_02
     status: AC
-  - elapsed: 0.0863605539999952
+  - elapsed: 0.08298767399998042
     environment: g++
-    memory: 13.536
+    memory: 13.488
     name: random_dense_03
     status: AC
-  - elapsed: 0.09776978099999667
+  - elapsed: 0.09296836799998687
     environment: g++
     memory: 15.22
     name: random_dense_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_cycle_detection_directed.test.cpp

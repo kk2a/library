@@ -1347,16 +1347,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_math/enumerate_bell_number.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_math/enumerate_bell_number.test.cpp\"\
       \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
       \ {\n    int n;\n    kin >> n;\n    kout << kk2::enumerate_bell_number<FPS>(n)\
       \ << kendl;\n\n    return 0;\n}\n"
@@ -1367,62 +1367,62 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002605532000018229
+  - elapsed: 0.0024420739999939656
     environment: g++
-    memory: 3.788
+    memory: 3.82
     name: '0_00'
     status: AC
-  - elapsed: 0.7896424950000096
+  - elapsed: 0.7854931130000011
     environment: g++
-    memory: 9.548
+    memory: 9.444
     name: '100000_00'
     status: AC
-  - elapsed: 0.08415973199998916
+  - elapsed: 0.0850209240000055
     environment: g++
-    memory: 4.288
+    memory: 4.192
     name: '10000_00'
     status: AC
-  - elapsed: 0.006250212000054489
+  - elapsed: 0.006213232000000346
     environment: g++
-    memory: 3.936
+    memory: 3.952
     name: '1000_00'
     status: AC
-  - elapsed: 0.002347573999998076
+  - elapsed: 0.002300312999999221
     environment: g++
     memory: 3.824
     name: '100_00'
     status: AC
-  - elapsed: 0.002129811999964204
+  - elapsed: 0.0020903939999996624
     environment: g++
-    memory: 3.628
+    memory: 3.828
     name: '1_00'
     status: AC
-  - elapsed: 1.6553713150000249
+  - elapsed: 1.671070259000004
     environment: g++
-    memory: 15.696
+    memory: 15.7
     name: '200000_00'
     status: AC
-  - elapsed: 3.4530883909999943
+  - elapsed: 3.450749322
     environment: g++
-    memory: 26.5
+    memory: 26.444
     name: '300000_00'
     status: AC
-  - elapsed: 3.477280348000022
+  - elapsed: 3.494230732999995
     environment: g++
-    memory: 28.012
+    memory: 28.088
     name: '400000_00'
     status: AC
-  - elapsed: 3.515783500999987
+  - elapsed: 3.4960208990000012
     environment: g++
-    memory: 29.588
+    memory: 29.64
     name: '500000_00'
     status: AC
-  - elapsed: 0.002460950999989109
+  - elapsed: 0.0025946310000080075
     environment: g++
-    memory: 3.82
+    memory: 3.824
     name: example_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_bell_number.test.cpp

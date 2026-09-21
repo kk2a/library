@@ -551,16 +551,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_two_edge_connected_components.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_two_edge_connected_components.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n\
       \    kk2::AdjList g(n, m, kin);\n    kk2::TwoEdgeConnectedComponents<kk2::AdjList>\
       \ tecc(g);\n    kout << tecc.size() << \"\\n\";\n    for (auto &v : tecc.group)\
@@ -572,112 +572,112 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024518590000042195
+  - elapsed: 0.0029293889999735256
     environment: g++
-    memory: 3.62
+    memory: 3.824
     name: example_00
     status: AC
-  - elapsed: 0.0021358380000009447
+  - elapsed: 0.002450651000003745
     environment: g++
-    memory: 3.828
+    memory: 3.78
     name: example_01
     status: AC
-  - elapsed: 0.0021340980000061904
+  - elapsed: 0.0024626399999760906
     environment: g++
-    memory: 3.676
+    memory: 3.824
     name: example_02
     status: AC
-  - elapsed: 0.12216687200000109
+  - elapsed: 0.17736323399998355
     environment: g++
-    memory: 30.34
+    memory: 30.296
     name: large_cycle_00
     status: AC
-  - elapsed: 0.2706648519999959
+  - elapsed: 0.4084367199999974
     environment: g++
     memory: 41.592
     name: max_random_00
     status: AC
-  - elapsed: 0.28529260399999856
+  - elapsed: 0.3412961689999747
     environment: g++
-    memory: 41.456
+    memory: 41.576
     name: max_random_01
     status: AC
-  - elapsed: 0.2921418889999998
+  - elapsed: 0.361863814000003
     environment: g++
-    memory: 41.552
+    memory: 41.592
     name: max_random_02
     status: AC
-  - elapsed: 0.1893903899999998
+  - elapsed: 0.21854168400000162
     environment: g++
-    memory: 28.284
+    memory: 28.332
     name: random_1_00
     status: AC
-  - elapsed: 0.20690319599999896
+  - elapsed: 0.25187695600004645
     environment: g++
-    memory: 32.28
+    memory: 32.248
     name: random_1_01
     status: AC
-  - elapsed: 0.08748812099999981
+  - elapsed: 0.10820448999999144
     environment: g++
     memory: 15.916
     name: random_1_02
     status: AC
-  - elapsed: 0.040374006000000406
+  - elapsed: 0.04455656700002919
     environment: g++
     memory: 8.004
     name: random_2_00
     status: AC
-  - elapsed: 0.011077821999997184
+  - elapsed: 0.012286275000008118
     environment: g++
     memory: 4.976
     name: random_2_01
     status: AC
-  - elapsed: 0.05965798900000152
+  - elapsed: 0.06470140499999388
     environment: g++
     memory: 9.54
     name: random_2_02
     status: AC
-  - elapsed: 0.08204535699999838
+  - elapsed: 0.09070489600003384
     environment: g++
-    memory: 11.328
+    memory: 11.332
     name: random_2_03
     status: AC
-  - elapsed: 0.03306631899999957
+  - elapsed: 0.03645792100002154
     environment: g++
     memory: 7.108
     name: random_2_04
     status: AC
-  - elapsed: 0.002249427000002413
+  - elapsed: 0.0025668459999792503
     environment: g++
     memory: 3.824
     name: small_random_1_00
     status: AC
-  - elapsed: 0.002222646999996414
+  - elapsed: 0.0023662239999566737
     environment: g++
-    memory: 3.748
+    memory: 3.816
     name: small_random_1_01
     status: AC
-  - elapsed: 0.002211275999997042
+  - elapsed: 0.0024157789999890156
     environment: g++
     memory: 3.824
     name: small_random_1_02
     status: AC
-  - elapsed: 0.0022616099999979156
+  - elapsed: 0.0023635699999999815
     environment: g++
-    memory: 3.62
+    memory: 3.84
     name: small_random_2_00
     status: AC
-  - elapsed: 0.0022559499999985633
+  - elapsed: 0.002380776999984846
     environment: g++
-    memory: 3.824
+    memory: 3.84
     name: small_random_2_01
     status: AC
-  - elapsed: 0.00228518499999808
+  - elapsed: 0.002460415000030025
     environment: g++
-    memory: 3.848
+    memory: 3.84
     name: small_random_2_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_two_edge_connected_components.test.cpp

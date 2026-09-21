@@ -75,112 +75,112 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.29327229499995155
+  - elapsed: 0.14752803599998288
     environment: g++
-    memory: 6.796
+    memory: 6.896
     name: all_same_00
     status: AC
-  - elapsed: 0.3167493939999986
+  - elapsed: 0.1610830409999835
     environment: g++
-    memory: 6.76
+    memory: 6.864
     name: all_same_01
     status: AC
-  - elapsed: 0.33151742799987005
+  - elapsed: 0.17493480699999964
     environment: g++
-    memory: 6.76
+    memory: 6.856
     name: all_same_02
     status: AC
-  - elapsed: 0.0025958050000554067
+  - elapsed: 0.0019482459999835555
     environment: g++
-    memory: 3.76
+    memory: 3.824
     name: example_00
     status: AC
-  - elapsed: 0.30812839200007147
+  - elapsed: 0.1629224380000096
     environment: g++
-    memory: 6.8
+    memory: 6.856
     name: half_same_00
     status: AC
-  - elapsed: 0.3193666919999032
+  - elapsed: 0.16699048499998526
     environment: g++
-    memory: 6.8
+    memory: 6.868
     name: half_same_01
     status: AC
-  - elapsed: 0.3250922550000723
+  - elapsed: 0.1919102079999675
     environment: g++
-    memory: 6.8
+    memory: 6.864
     name: half_same_02
     status: AC
-  - elapsed: 0.31857983600002626
+  - elapsed: 0.1727755370000068
     environment: g++
-    memory: 6.804
+    memory: 6.856
     name: max_random_00
     status: AC
-  - elapsed: 0.32400049700004274
+  - elapsed: 0.17650682200002166
     environment: g++
-    memory: 6.768
+    memory: 6.892
     name: max_random_01
     status: AC
-  - elapsed: 0.3233874139998534
+  - elapsed: 0.17389258499997595
     environment: g++
-    memory: 6.8
+    memory: 6.888
     name: max_random_02
     status: AC
-  - elapsed: 0.3235717059999388
+  - elapsed: 0.17430168300001014
     environment: g++
-    memory: 6.764
+    memory: 6.864
     name: near_arg_00
     status: AC
-  - elapsed: 0.327413905999947
+  - elapsed: 0.20340105100001438
     environment: g++
-    memory: 6.804
+    memory: 6.812
     name: near_arg_01
     status: AC
-  - elapsed: 0.32012313700010964
+  - elapsed: 0.20028000900003917
     environment: g++
-    memory: 6.8
+    memory: 6.896
     name: near_arg_02
     status: AC
-  - elapsed: 0.32026824100012163
+  - elapsed: 0.18647294400000192
     environment: g++
-    memory: 6.756
+    memory: 6.864
     name: near_arg_shuffle_00
     status: AC
-  - elapsed: 0.32331290599995555
+  - elapsed: 0.2034184770000138
     environment: g++
-    memory: 6.804
+    memory: 6.864
     name: near_arg_shuffle_01
     status: AC
-  - elapsed: 0.3214698379999845
+  - elapsed: 0.20173374000000877
     environment: g++
-    memory: 6.74
+    memory: 6.868
     name: near_arg_shuffle_02
     status: AC
-  - elapsed: 0.002674917999911486
+  - elapsed: 0.0021674800000255345
     environment: g++
-    memory: 3.628
+    memory: 3.872
     name: only_x_axis_00
     status: AC
-  - elapsed: 0.20039228899986483
+  - elapsed: 0.12289477299998453
     environment: g++
-    memory: 5.668
+    memory: 5.752
     name: random_00
     status: AC
-  - elapsed: 0.23896016300000156
+  - elapsed: 0.14267786099998148
     environment: g++
-    memory: 6.024
+    memory: 6.124
     name: random_01
     status: AC
-  - elapsed: 0.0803360329998668
+  - elapsed: 0.05077441700001373
     environment: g++
-    memory: 4.388
+    memory: 4.452
     name: random_02
     status: AC
-  - elapsed: 0.0026267279999956372
+  - elapsed: 0.002113845999986097
     environment: g++
-    memory: 3.764
+    memory: 3.84
     name: small_all_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/arg_sort.test.cpp

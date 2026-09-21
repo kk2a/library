@@ -1304,16 +1304,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_fps/fps_sparse_pow.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_fps/fps_sparse_pow.test.cpp\"\
       \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
       \ {\n    int n, k;\n    i64 m;\n    kin >> n >> k >> m;\n    FPS f(n);\n   \
       \ rep(k) {\n        int i;\n        kk2::mont998 a;\n        kin >> i >> a;\n\
@@ -1325,182 +1325,182 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0026441330000466223
+  - elapsed: 0.0023130090000336168
     environment: g++
-    memory: 3.636
+    memory: 3.9
     name: example_00
     status: AC
-  - elapsed: 0.0021649509999974725
+  - elapsed: 0.0018065709999746105
     environment: g++
-    memory: 3.824
+    memory: 3.772
     name: example_01
     status: AC
-  - elapsed: 0.002177348000031998
+  - elapsed: 0.0018275630000061938
     environment: g++
-    memory: 3.688
+    memory: 3.868
     name: example_02
     status: AC
-  - elapsed: 0.0021214590000226963
+  - elapsed: 0.0017723659999546726
     environment: g++
-    memory: 3.852
+    memory: 3.9
     name: example_03
     status: AC
-  - elapsed: 0.6250677059999816
+  - elapsed: 0.5908241159999648
     environment: g++
-    memory: 16.156
+    memory: 17.272
     name: low_deg_zero2_00
     status: AC
-  - elapsed: 0.6445643590000145
+  - elapsed: 0.6143236689999867
     environment: g++
-    memory: 16.152
+    memory: 16.212
     name: low_deg_zero2_01
     status: AC
-  - elapsed: 0.5429625419999979
+  - elapsed: 0.5039406889999896
     environment: g++
-    memory: 17.136
+    memory: 16.216
     name: low_deg_zero2_02
     status: AC
-  - elapsed: 0.5452289350000115
+  - elapsed: 0.5109459730000481
     environment: g++
-    memory: 16.66
+    memory: 17.256
     name: low_deg_zero2_03
     status: AC
-  - elapsed: 0.5297941819999892
+  - elapsed: 0.49803142299998626
     environment: g++
-    memory: 17.176
+    memory: 16.22
     name: low_deg_zero2_04
     status: AC
-  - elapsed: 0.0596356579999906
+  - elapsed: 0.0518497420000017
     environment: g++
-    memory: 11.348
+    memory: 11.416
     name: low_deg_zero_00
     status: AC
-  - elapsed: 0.06044555699998
+  - elapsed: 0.0521782259999668
     environment: g++
-    memory: 11.348
+    memory: 11.404
     name: low_deg_zero_01
     status: AC
-  - elapsed: 0.5585893159999955
+  - elapsed: 0.5405129960000181
     environment: g++
-    memory: 16.156
+    memory: 16.22
     name: max_random_00
     status: AC
-  - elapsed: 0.6341215840000132
+  - elapsed: 0.6327962309999862
     environment: g++
-    memory: 17.12
+    memory: 16.22
     name: max_random_01
     status: AC
-  - elapsed: 0.5122761609999884
-    environment: g++
-    memory: 17.124
-    name: max_random_02
-    status: AC
-  - elapsed: 0.5081006730000013
-    environment: g++
-    memory: 16.152
-    name: max_random_03
-    status: AC
-  - elapsed: 0.582037180000043
-    environment: g++
-    memory: 16.156
-    name: max_random_04
-    status: AC
-  - elapsed: 0.029317134999985228
-    environment: g++
-    memory: 6.556
-    name: min_K_00
-    status: AC
-  - elapsed: 0.03409113499998284
-    environment: g++
-    memory: 7.072
-    name: min_K_01
-    status: AC
-  - elapsed: 0.0025651529999777267
-    environment: g++
-    memory: 3.824
-    name: overflow_killer_00
-    status: AC
-  - elapsed: 0.0021825339999850257
-    environment: g++
-    memory: 3.832
-    name: overflow_killer_01
-    status: AC
-  - elapsed: 0.20506946999995534
-    environment: g++
-    memory: 8.692
-    name: random_00
-    status: AC
-  - elapsed: 0.3023405020000496
-    environment: g++
-    memory: 9.228
-    name: random_01
-    status: AC
-  - elapsed: 0.3720489429999816
-    environment: g++
-    memory: 12.556
-    name: random_02
-    status: AC
-  - elapsed: 0.0946803530000011
-    environment: g++
-    memory: 8.956
-    name: random_03
-    status: AC
-  - elapsed: 0.20054376600000978
-    environment: g++
-    memory: 13.908
-    name: random_04
-    status: AC
-  - elapsed: 0.002554937000013524
-    environment: g++
-    memory: 3.824
-    name: small_N_00
-    status: AC
-  - elapsed: 0.0021929650000060974
-    environment: g++
-    memory: 3.816
-    name: small_N_01
-    status: AC
-  - elapsed: 0.0021551540000359637
-    environment: g++
-    memory: 3.728
-    name: small_N_02
-    status: AC
-  - elapsed: 0.002109195999992153
-    environment: g++
-    memory: 3.784
-    name: small_N_03
-    status: AC
-  - elapsed: 0.002182586000003539
-    environment: g++
-    memory: 3.8
-    name: small_N_04
-    status: AC
-  - elapsed: 0.478402219999964
-    environment: g++
-    memory: 16.152
-    name: small_dense_00
-    status: AC
-  - elapsed: 0.5504887430000167
-    environment: g++
-    memory: 16.156
-    name: small_dense_01
-    status: AC
-  - elapsed: 0.7179959640000106
+  - elapsed: 0.4902489130000163
     environment: g++
     memory: 17.176
+    name: max_random_02
+    status: AC
+  - elapsed: 0.47440946900002245
+    environment: g++
+    memory: 17.22
+    name: max_random_03
+    status: AC
+  - elapsed: 0.5643150849999756
+    environment: g++
+    memory: 16.22
+    name: max_random_04
+    status: AC
+  - elapsed: 0.024938986999984536
+    environment: g++
+    memory: 6.672
+    name: min_K_00
+    status: AC
+  - elapsed: 0.02903251499998305
+    environment: g++
+    memory: 7.116
+    name: min_K_01
+    status: AC
+  - elapsed: 0.002017726000019593
+    environment: g++
+    memory: 3.856
+    name: overflow_killer_00
+    status: AC
+  - elapsed: 0.0017987839999591415
+    environment: g++
+    memory: 3.9
+    name: overflow_killer_01
+    status: AC
+  - elapsed: 0.20408792500001027
+    environment: g++
+    memory: 8.744
+    name: random_00
+    status: AC
+  - elapsed: 0.30263532899999745
+    environment: g++
+    memory: 9.336
+    name: random_01
+    status: AC
+  - elapsed: 0.35125790099999676
+    environment: g++
+    memory: 12.64
+    name: random_02
+    status: AC
+  - elapsed: 0.07982266400000526
+    environment: g++
+    memory: 9.072
+    name: random_03
+    status: AC
+  - elapsed: 0.17410282399998778
+    environment: g++
+    memory: 15.176
+    name: random_04
+    status: AC
+  - elapsed: 0.002229389000035553
+    environment: g++
+    memory: 3.848
+    name: small_N_00
+    status: AC
+  - elapsed: 0.0018394630000102552
+    environment: g++
+    memory: 3.9
+    name: small_N_01
+    status: AC
+  - elapsed: 0.0018547359999843138
+    environment: g++
+    memory: 3.864
+    name: small_N_02
+    status: AC
+  - elapsed: 0.0017809569999940322
+    environment: g++
+    memory: 3.9
+    name: small_N_03
+    status: AC
+  - elapsed: 0.0017941959999916435
+    environment: g++
+    memory: 3.896
+    name: small_N_04
+    status: AC
+  - elapsed: 0.44383372699996926
+    environment: g++
+    memory: 17.24
+    name: small_dense_00
+    status: AC
+  - elapsed: 0.5331876609999995
+    environment: g++
+    memory: 16.212
+    name: small_dense_01
+    status: AC
+  - elapsed: 0.7085548120000453
+    environment: g++
+    memory: 17.216
     name: small_dense_02
     status: AC
-  - elapsed: 0.0684993689999942
+  - elapsed: 0.0598220930000366
     environment: g++
-    memory: 11.344
+    memory: 11.416
     name: small_dense_03
     status: AC
-  - elapsed: 0.40462503500003777
+  - elapsed: 0.37534952600003635
     environment: g++
-    memory: 16.156
+    memory: 16.216
     name: small_dense_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_sparse_pow.test.cpp

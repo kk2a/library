@@ -395,16 +395,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_range_kth_smallest.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_range_kth_smallest.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    vc<int> a(n);\n    kin >> a;\n    kk2::WaveletMatrix wm(a);\n    rep(q)\
       \ {\n        int l, r, k;\n        kin >> l >> r >> k;\n        kout << wm.kth_smallest(l,\
@@ -416,127 +416,127 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0038319200000387355
+  - elapsed: 0.003146947999994154
     environment: g++
-    memory: 3.896
+    memory: 3.984
     name: all_zero_00
     status: AC
-  - elapsed: 0.24259136099999523
+  - elapsed: 0.22197651900000892
     environment: g++
-    memory: 4.048
+    memory: 4.184
     name: dense_large_a_00
     status: AC
-  - elapsed: 0.0635520000000156
+  - elapsed: 0.05756785599999148
     environment: g++
-    memory: 3.864
+    memory: 4.2
     name: dense_small_a_00
     status: AC
-  - elapsed: 0.002615405000028659
+  - elapsed: 0.0019739119999258037
     environment: g++
-    memory: 3.808
+    memory: 3.872
     name: example_00
     status: AC
-  - elapsed: 0.52224202900004
+  - elapsed: 0.4719560549999642
     environment: g++
-    memory: 7.7
+    memory: 7.832
     name: max_random_00
     status: AC
-  - elapsed: 0.5218135659999916
+  - elapsed: 0.4718687270000146
     environment: g++
-    memory: 7.732
+    memory: 7.728
     name: max_random_01
     status: AC
-  - elapsed: 0.5217180679999842
+  - elapsed: 0.47142095599997447
     environment: g++
-    memory: 7.688
+    memory: 7.804
     name: max_random_02
     status: AC
-  - elapsed: 0.5283098790000054
+  - elapsed: 0.474808449999955
     environment: g++
-    memory: 7.74
+    memory: 7.832
     name: max_random_03
     status: AC
-  - elapsed: 0.5245829360000016
+  - elapsed: 0.47414055499996266
     environment: g++
-    memory: 7.676
+    memory: 7.8
     name: max_random_04
     status: AC
-  - elapsed: 0.35769238699998596
+  - elapsed: 0.3255424630000334
     environment: g++
-    memory: 6.2
+    memory: 6.268
     name: random_00
     status: AC
-  - elapsed: 0.3950473379999835
+  - elapsed: 0.34570104800002355
     environment: g++
-    memory: 6.68
+    memory: 6.808
     name: random_01
     status: AC
-  - elapsed: 0.23011301000002504
+  - elapsed: 0.21373305500003426
     environment: g++
-    memory: 4.668
+    memory: 4.748
     name: random_02
     status: AC
-  - elapsed: 0.19922543600000608
+  - elapsed: 0.1725324639999144
     environment: g++
-    memory: 7.06
+    memory: 7.164
     name: random_03
     status: AC
-  - elapsed: 0.1543597759999784
+  - elapsed: 0.1497652929999731
     environment: g++
-    memory: 4.16
+    memory: 4.4
     name: random_04
     status: AC
-  - elapsed: 0.003120553000030668
+  - elapsed: 0.00264108099997884
     environment: g++
-    memory: 3.812
+    memory: 3.888
     name: small_00
     status: AC
-  - elapsed: 0.0024527290000264657
+  - elapsed: 0.002036218000057488
     environment: g++
-    memory: 3.664
+    memory: 3.876
     name: small_01
     status: AC
-  - elapsed: 0.002481273999990208
+  - elapsed: 0.0020329440000068644
     environment: g++
-    memory: 3.612
+    memory: 3.868
     name: small_02
     status: AC
-  - elapsed: 0.0024552379999818186
+  - elapsed: 0.001994816999967952
     environment: g++
-    memory: 3.812
+    memory: 3.868
     name: small_03
     status: AC
-  - elapsed: 0.002878165000026911
+  - elapsed: 0.002416739999944184
     environment: g++
-    memory: 3.812
+    memory: 3.876
     name: small_04
     status: AC
-  - elapsed: 0.002670019999982287
+  - elapsed: 0.0021861490000674166
     environment: g++
-    memory: 3.812
+    memory: 3.876
     name: small_05
     status: AC
-  - elapsed: 0.0026685820000125204
+  - elapsed: 0.0021827049999956216
     environment: g++
-    memory: 3.812
+    memory: 3.788
     name: small_06
     status: AC
-  - elapsed: 0.002570654999999533
+  - elapsed: 0.0020703479999610863
     environment: g++
-    memory: 3.78
+    memory: 3.864
     name: small_07
     status: AC
-  - elapsed: 0.0026215350000029503
+  - elapsed: 0.002183891999948173
     environment: g++
-    memory: 3.612
+    memory: 3.916
     name: small_08
     status: AC
-  - elapsed: 0.0027219680000030166
+  - elapsed: 0.0022619119999944814
     environment: g++
-    memory: 3.792
+    memory: 3.912
     name: small_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_kth_smallest.test.cpp

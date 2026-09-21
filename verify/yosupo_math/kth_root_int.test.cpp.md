@@ -311,16 +311,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/kth_root_int.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/kth_root_int.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep(t)\
       \ {\n        u64 a, k;\n        kin >> a >> k;\n        kout << kk2::kth_root_floor(a,\
       \ k) << \"\\n\";\n    }\n\n    return 0;\n}\n"
@@ -331,82 +331,82 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.2016952860000174
+  - elapsed: 0.161977668999981
     environment: g++
-    memory: 4.104
+    memory: 4.096
     name: all_k2_00
     status: AC
-  - elapsed: 0.20089948100002175
-    environment: g++
-    memory: 4.104
-    name: all_k2_01
-    status: AC
-  - elapsed: 0.14863056900003357
+  - elapsed: 0.1621876340000199
     environment: g++
     memory: 4.26
+    name: all_k2_01
+    status: AC
+  - elapsed: 0.11809800200001064
+    environment: g++
+    memory: 4.104
     name: all_k3_00
     status: AC
-  - elapsed: 0.1505450079999946
+  - elapsed: 0.11921815200000196
     environment: g++
     memory: 4.104
     name: all_k3_01
     status: AC
-  - elapsed: 0.20218149499999072
+  - elapsed: 0.16992263000000207
     environment: g++
-    memory: 4.112
+    memory: 4.148
     name: all_k3_2_00
     status: AC
-  - elapsed: 0.19712178200001063
+  - elapsed: 0.1568214320000152
     environment: g++
-    memory: 4.112
+    memory: 4.172
     name: all_k3_2_01
     status: AC
-  - elapsed: 0.002810419000013553
+  - elapsed: 0.002536810000009382
     environment: g++
-    memory: 3.848
+    memory: 3.996
     name: example_00
     status: AC
-  - elapsed: 0.11130337100001952
+  - elapsed: 0.09226270900001055
     environment: g++
-    memory: 4.24
+    memory: 4.268
     name: near_border_00
     status: AC
-  - elapsed: 0.11449347600000692
+  - elapsed: 0.09365445600002431
     environment: g++
-    memory: 4.112
+    memory: 4.272
     name: near_border_01
     status: AC
-  - elapsed: 0.11299445100002004
+  - elapsed: 0.09323408399998812
     environment: g++
-    memory: 4.276
+    memory: 4.244
     name: near_border_02
     status: AC
-  - elapsed: 0.1522760769999536
+  - elapsed: 0.1260748059999912
     environment: g++
-    memory: 4.092
+    memory: 4.232
     name: near_border_2_00
     status: AC
-  - elapsed: 0.153691259000027
-    environment: g++
-    memory: 4.26
-    name: near_border_2_01
-    status: AC
-  - elapsed: 0.15222654399997282
+  - elapsed: 0.12589732000000708
     environment: g++
     memory: 4.104
+    name: near_border_2_01
+    status: AC
+  - elapsed: 0.1261829609999836
+    environment: g++
+    memory: 4.252
     name: near_border_2_02
     status: AC
-  - elapsed: 0.15149549300002718
+  - elapsed: 0.12117875900000286
     environment: g++
-    memory: 4.1
+    memory: 4.092
     name: random_00
     status: AC
-  - elapsed: 0.17967448100000638
+  - elapsed: 0.1431919419999872
     environment: g++
-    memory: 4.26
+    memory: 4.104
     name: random_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/kth_root_int.test.cpp

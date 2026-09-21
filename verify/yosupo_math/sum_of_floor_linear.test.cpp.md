@@ -302,16 +302,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/sum_of_floor_linear.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/sum_of_floor_linear.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep(t)\
       \ {\n        i64 n, m, a, b;\n        kin >> n >> m >> a >> b;\n        kout\
       \ << kk2::sum_of_floor(n, m, a, b) << \"\\n\";\n    }\n\n    return 0;\n}\n"
@@ -322,62 +322,62 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0019803339999953096
+  - elapsed: 0.0026613649999944755
     environment: g++
-    memory: 3.828
+    memory: 3.728
     name: example_00
     status: AC
-  - elapsed: 0.01448106700001972
+  - elapsed: 0.017154449999992494
     environment: g++
-    memory: 4.108
+    memory: 3.892
     name: random_00
     status: AC
-  - elapsed: 0.05138864899998907
+  - elapsed: 0.05939076399999976
     environment: g++
-    memory: 4.116
+    memory: 3.984
     name: random_01
     status: AC
-  - elapsed: 0.038894320999986576
+  - elapsed: 0.046170287999999005
     environment: g++
-    memory: 4.1
+    memory: 3.944
     name: random_02
     status: AC
-  - elapsed: 0.02725173999999697
+  - elapsed: 0.03231197499999894
     environment: g++
-    memory: 4.084
+    memory: 3.988
     name: random_03
     status: AC
-  - elapsed: 0.012231056000018725
+  - elapsed: 0.014892637000002651
     environment: g++
-    memory: 4.08
+    memory: 3.984
     name: random_04
     status: AC
-  - elapsed: 0.0069047079999791094
+  - elapsed: 0.008836494000007633
     environment: g++
-    memory: 4.112
+    memory: 3.984
     name: small_00
     status: AC
-  - elapsed: 0.021957480999958534
+  - elapsed: 0.027442245999992565
     environment: g++
-    memory: 4.112
+    memory: 3.936
     name: small_01
     status: AC
-  - elapsed: 0.01719960500003026
+  - elapsed: 0.02141060999998956
     environment: g++
-    memory: 4.088
+    memory: 3.984
     name: small_02
     status: AC
-  - elapsed: 0.012160171000004993
+  - elapsed: 0.01532046500000206
     environment: g++
-    memory: 4.112
+    memory: 3.956
     name: small_03
     status: AC
-  - elapsed: 0.006122628000014174
+  - elapsed: 0.007559104999998567
     environment: g++
-    memory: 4.148
+    memory: 4.02
     name: small_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/sum_of_floor_linear.test.cpp

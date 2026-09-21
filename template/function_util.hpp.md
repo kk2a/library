@@ -24,6 +24,9 @@ data:
       path: template/procon.hpp
     type: Required by
   - files:
+    - filename: function_util.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/template/function_util.test.cpp
     - filename: many_a_plus_b_128bit_2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
@@ -35,26 +38,28 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "#ifndef KK2_TEMPLATE_FUNCTION_UTIL_HPP\n#define KK2_TEMPLATE_FUNCTION_UTIL_HPP\
-      \ 1\n\n#include <algorithm>\n#include <vector>\n\n#include \"../math/monoid/max.hpp\"\
-      \n#include \"../math/monoid/min.hpp\"\n#include \"../type_traits/container_traits.hpp\"\
+      \ 1\n\n#include <algorithm>\n#include <functional>\n#include <numeric>\n#include\
+      \ <ranges>\n#include <vector>\n\n#include \"../math/monoid/max.hpp\"\n#include\
+      \ \"../math/monoid/min.hpp\"\n#include \"../type_traits/container_traits.hpp\"\
       \n\nnamespace kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int\
       \ first, Sizes... sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n   \
       \     return std::vector<T>(first);\n    } else {\n        return std::vector<decltype(make_vector<T>(sizes...))>(first,\
       \ make_vector<T>(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
       \ &v, const U &x) {\n    if constexpr (Vector<T>) {\n        for (auto &u :\
-      \ v) fill_all(u, x);\n    } else {\n        std::fill(v.begin(), v.end(), T(x));\n\
-      \    }\n}\n\ntemplate <class T, class U> int iota_all(std::vector<T> &v, U x,\
+      \ v) fill_all(u, x);\n    } else {\n        std::ranges::fill(v, T(x));\n  \
+      \  }\n}\n\ntemplate <class T, class U> int iota_all(std::vector<T> &v, U x,\
       \ int offset = 0) {\n    if constexpr (Vector<T>) {\n        for (auto &u :\
-      \ v) offset += iota_all(u, x + offset);\n    } else {\n        for (auto &u\
-      \ : v) u = x++, ++offset;\n    }\n    return offset;\n}\n\ntemplate <class C>\
-      \ int mysize(const C &c) { return size(c); }\n\n\n// T: commutative monoid,\
-      \ F: (U, T) -> U\ntemplate <class U, class T, class F>\nU all_monoid_prod(const\
-      \ std::vector<T> &v, U unit, const F &f) {\n    U res = unit;\n    if constexpr\
-      \ (Vector<T>) {\n        for (const auto &x : v) res = f(res, all_monoid_prod(x,\
-      \ unit, f));\n    } else {\n        for (const auto &x : v) res = f(res, x);\n\
-      \    }\n    return res;\n}\n\ntemplate <class U, class T> U all_sum(const std::vector<T>\
-      \ &v, U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b)\
-      \ { return a + b; });\n}\ntemplate <class U, class T> U all_prod(const std::vector<T>\
+      \ v) offset += iota_all(u, x + offset);\n    } else {\n        std::ranges::iota(v,\
+      \ x);\n        offset += static_cast<int>(std::ranges::ssize(v));\n    }\n \
+      \   return offset;\n}\n\n\n// T: commutative monoid, F: (U, T) -> U\ntemplate\
+      \ <class U, class T, class F>\nU all_monoid_prod(const std::vector<T> &v, U\
+      \ unit, const F &f) {\n    if constexpr (Vector<T>) {\n        auto subproducts\
+      \ =\n            v | std::views::transform([&](const auto &x) { return all_monoid_prod(x,\
+      \ unit, f); });\n        return std::ranges::fold_left(subproducts, unit, std::cref(f));\n\
+      \    } else {\n        return std::ranges::fold_left(v, unit, std::cref(f));\n\
+      \    }\n}\n\ntemplate <class U, class T> U all_sum(const std::vector<T> &v,\
+      \ U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b) {\
+      \ return a + b; });\n}\ntemplate <class U, class T> U all_prod(const std::vector<T>\
       \ &v, U unit = U(1)) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U\
       \ b) { return a * b; });\n}\ntemplate <class U, class T> U all_xor(const std::vector<T>\
       \ &v, U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b)\
@@ -71,13 +76,16 @@ data:
       \ { return std::gcd(a, b); });\n}\ntemplate <class U, class T> U all_lcm(const\
       \ std::vector<T> &v, U unit = U(1)) {\n    return all_monoid_prod<U, T>(v, unit,\
       \ [](U a, U b) { return std::lcm(a, b); });\n}\ntemplate <class U, class T>\
-      \ int all_count(const std::vector<T> &v, U x) {\n    return all_monoid_prod<int,\
-      \ T>(v, 0, [x](int a, U y) { return a + int(x == y); });\n}\n\n} // namespace\
-      \ kk2\n\n#endif // KK2_TEMPLATE_FUNCTION_UTIL_HPP\n"
+      \ int all_count(const std::vector<T> &v, U x) {\n    if constexpr (Vector<T>)\
+      \ {\n        auto counts =\n            v | std::views::transform([&](const\
+      \ auto &values) { return all_count(values, x); });\n        return std::ranges::fold_left(counts,\
+      \ 0, std::plus{});\n    } else {\n        return static_cast<int>(std::ranges::count(v,\
+      \ x));\n    }\n}\n\n} // namespace kk2\n\n#endif // KK2_TEMPLATE_FUNCTION_UTIL_HPP\n"
     name: default
   - code: "#line 1 \"template/function_util.hpp\"\n\n\n\n#include <algorithm>\n#include\
-      \ <vector>\n\n#line 1 \"math/monoid/max.hpp\"\n\n\n\n#include <functional>\n\
-      \n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
+      \ <functional>\n#include <numeric>\n#include <ranges>\n#include <vector>\n\n\
+      #line 1 \"math/monoid/max.hpp\"\n\n\n\n#line 5 \"math/monoid/max.hpp\"\n\n#line\
+      \ 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
       #include <istream>\n#include <ostream>\n#include <type_traits>\n\nnamespace\
       \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
       \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
@@ -152,25 +160,26 @@ data:
       \ T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;\n\
       \ntemplate <class T>\nconcept Vector = is_vector<std::remove_cvref_t<T>>::value;\n\
       \ntemplate <class T>\nconcept Container = is_container<std::remove_cvref_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 10 \"template/function_util.hpp\"\n\nnamespace\
+      \n} // namespace kk2\n\n\n#line 13 \"template/function_util.hpp\"\n\nnamespace\
       \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int first, Sizes...\
       \ sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n\
       \    } else {\n        return std::vector<decltype(make_vector<T>(sizes...))>(first,\
       \ make_vector<T>(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
       \ &v, const U &x) {\n    if constexpr (Vector<T>) {\n        for (auto &u :\
-      \ v) fill_all(u, x);\n    } else {\n        std::fill(v.begin(), v.end(), T(x));\n\
-      \    }\n}\n\ntemplate <class T, class U> int iota_all(std::vector<T> &v, U x,\
+      \ v) fill_all(u, x);\n    } else {\n        std::ranges::fill(v, T(x));\n  \
+      \  }\n}\n\ntemplate <class T, class U> int iota_all(std::vector<T> &v, U x,\
       \ int offset = 0) {\n    if constexpr (Vector<T>) {\n        for (auto &u :\
-      \ v) offset += iota_all(u, x + offset);\n    } else {\n        for (auto &u\
-      \ : v) u = x++, ++offset;\n    }\n    return offset;\n}\n\ntemplate <class C>\
-      \ int mysize(const C &c) { return size(c); }\n\n\n// T: commutative monoid,\
-      \ F: (U, T) -> U\ntemplate <class U, class T, class F>\nU all_monoid_prod(const\
-      \ std::vector<T> &v, U unit, const F &f) {\n    U res = unit;\n    if constexpr\
-      \ (Vector<T>) {\n        for (const auto &x : v) res = f(res, all_monoid_prod(x,\
-      \ unit, f));\n    } else {\n        for (const auto &x : v) res = f(res, x);\n\
-      \    }\n    return res;\n}\n\ntemplate <class U, class T> U all_sum(const std::vector<T>\
-      \ &v, U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b)\
-      \ { return a + b; });\n}\ntemplate <class U, class T> U all_prod(const std::vector<T>\
+      \ v) offset += iota_all(u, x + offset);\n    } else {\n        std::ranges::iota(v,\
+      \ x);\n        offset += static_cast<int>(std::ranges::ssize(v));\n    }\n \
+      \   return offset;\n}\n\n\n// T: commutative monoid, F: (U, T) -> U\ntemplate\
+      \ <class U, class T, class F>\nU all_monoid_prod(const std::vector<T> &v, U\
+      \ unit, const F &f) {\n    if constexpr (Vector<T>) {\n        auto subproducts\
+      \ =\n            v | std::views::transform([&](const auto &x) { return all_monoid_prod(x,\
+      \ unit, f); });\n        return std::ranges::fold_left(subproducts, unit, std::cref(f));\n\
+      \    } else {\n        return std::ranges::fold_left(v, unit, std::cref(f));\n\
+      \    }\n}\n\ntemplate <class U, class T> U all_sum(const std::vector<T> &v,\
+      \ U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b) {\
+      \ return a + b; });\n}\ntemplate <class U, class T> U all_prod(const std::vector<T>\
       \ &v, U unit = U(1)) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U\
       \ b) { return a * b; });\n}\ntemplate <class U, class T> U all_xor(const std::vector<T>\
       \ &v, U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b)\
@@ -187,9 +196,11 @@ data:
       \ { return std::gcd(a, b); });\n}\ntemplate <class U, class T> U all_lcm(const\
       \ std::vector<T> &v, U unit = U(1)) {\n    return all_monoid_prod<U, T>(v, unit,\
       \ [](U a, U b) { return std::lcm(a, b); });\n}\ntemplate <class U, class T>\
-      \ int all_count(const std::vector<T> &v, U x) {\n    return all_monoid_prod<int,\
-      \ T>(v, 0, [x](int a, U y) { return a + int(x == y); });\n}\n\n} // namespace\
-      \ kk2\n\n\n"
+      \ int all_count(const std::vector<T> &v, U x) {\n    if constexpr (Vector<T>)\
+      \ {\n        auto counts =\n            v | std::views::transform([&](const\
+      \ auto &values) { return all_count(values, x); });\n        return std::ranges::fold_left(counts,\
+      \ 0, std::plus{});\n    } else {\n        return static_cast<int>(std::ranges::count(v,\
+      \ x));\n    }\n}\n\n} // namespace kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
@@ -197,9 +208,10 @@ data:
   pathExtension: hpp
   requiredBy:
   - template/procon.hpp
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/template/function_util.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
 documentation_of: template/function_util.hpp
 layout: document

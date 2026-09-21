@@ -677,16 +677,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_arbitrary.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_arbitrary.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n\
       \    vc<kk2::mont107> a(n), b(m);\n    kin >> a >> b;\n    kout << kk2::convolution_arb(a,\
       \ b) << kendl;\n\n    return 0;\n}\n"
@@ -697,247 +697,247 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 3.714120651999991
+  - elapsed: 4.203690467999991
     environment: g++
-    memory: 42.444
+    memory: 42.316
     name: all_same_00
     status: AC
-  - elapsed: 3.8310849949999977
+  - elapsed: 4.293976186999998
     environment: g++
-    memory: 42.572
+    memory: 42.34
     name: all_same_01
     status: AC
-  - elapsed: 3.8186505870000076
+  - elapsed: 4.291274132000012
     environment: g++
-    memory: 42.44
+    memory: 42.348
     name: all_same_02
     status: AC
-  - elapsed: 3.7974469760000034
+  - elapsed: 4.287259883000004
     environment: g++
     memory: 42.312
     name: all_same_03
     status: AC
-  - elapsed: 0.002329247999995232
+  - elapsed: 0.002637204000009774
     environment: g++
-    memory: 3.828
+    memory: 3.784
     name: example_00
     status: AC
-  - elapsed: 0.0018680440000053977
+  - elapsed: 0.0022173600000030547
     environment: g++
-    memory: 3.844
+    memory: 3.784
     name: example_01
     status: AC
-  - elapsed: 4.395581673999999
+  - elapsed: 5.000226659000006
     environment: g++
-    memory: 42.436
+    memory: 42.308
     name: fft_killer_00
     status: AC
-  - elapsed: 4.394694262000002
+  - elapsed: 4.994306899999998
     environment: g++
-    memory: 42.576
+    memory: 42.288
     name: fft_killer_01
     status: AC
-  - elapsed: 4.388074313999994
+  - elapsed: 5.0053759640000095
     environment: g++
-    memory: 42.568
+    memory: 42.308
     name: fft_killer_02
     status: AC
-  - elapsed: 4.412566967999993
+  - elapsed: 4.996360412999991
     environment: g++
-    memory: 42.576
+    memory: 42.34
     name: fft_killer_03
     status: AC
-  - elapsed: 4.435571018999994
+  - elapsed: 4.999412806999999
     environment: g++
-    memory: 42.576
+    memory: 42.348
     name: fft_killer_04
     status: AC
-  - elapsed: 4.374285525000005
+  - elapsed: 4.993082989000001
     environment: g++
-    memory: 42.404
+    memory: 42.352
     name: fft_killer_05
     status: AC
-  - elapsed: 4.3724675199999865
+  - elapsed: 4.992204079000004
     environment: g++
-    memory: 42.572
+    memory: 42.352
     name: fft_killer_06
     status: AC
-  - elapsed: 4.37103246800001
+  - elapsed: 4.982981398000021
     environment: g++
-    memory: 42.432
+    memory: 42.344
     name: fft_killer_07
     status: AC
-  - elapsed: 4.366924001000001
+  - elapsed: 4.988512159999999
     environment: g++
-    memory: 42.572
+    memory: 42.348
     name: fft_killer_08
     status: AC
-  - elapsed: 4.375917398000013
+  - elapsed: 4.989603144
     environment: g++
-    memory: 42.312
+    memory: 42.348
     name: fft_killer_09
     status: AC
-  - elapsed: 4.3695293449999895
+  - elapsed: 5.011968025000016
     environment: g++
-    memory: 42.516
+    memory: 42.344
     name: max_ans_zero_00
     status: AC
-  - elapsed: 4.398719743000015
+  - elapsed: 4.9911640309999825
     environment: g++
-    memory: 42.424
+    memory: 42.352
     name: max_random_00
     status: AC
-  - elapsed: 4.39260128799998
+  - elapsed: 4.987760689999988
     environment: g++
-    memory: 42.44
+    memory: 42.252
     name: max_random_01
     status: AC
-  - elapsed: 0.05123896300000297
+  - elapsed: 0.05863888499999348
     environment: g++
-    memory: 4.368
+    memory: 4.324
     name: medium_00
     status: AC
-  - elapsed: 0.02749815100000319
+  - elapsed: 0.031529462000008834
     environment: g++
-    memory: 4.348
+    memory: 4.168
     name: medium_01
     status: AC
-  - elapsed: 0.04937955200000488
+  - elapsed: 0.056849882000022944
     environment: g++
-    memory: 4.5
+    memory: 4.276
     name: medium_02
     status: AC
-  - elapsed: 0.0035074229999736417
+  - elapsed: 0.004050760000012588
     environment: g++
-    memory: 4.0
+    memory: 3.952
     name: medium_all_zero_00
     status: AC
-  - elapsed: 4.120447379000012
+  - elapsed: 4.708716875999983
     environment: g++
-    memory: 38.808
+    memory: 38.66
     name: random_00
     status: AC
-  - elapsed: 4.220188554999993
+  - elapsed: 4.790006812999991
     environment: g++
-    memory: 38.624
+    memory: 38.536
     name: random_01
     status: AC
-  - elapsed: 2.012787206000013
+  - elapsed: 2.2941674330000126
     environment: g++
-    memory: 24.24
+    memory: 23.756
     name: random_02
     status: AC
-  - elapsed: 0.002397811999998112
+  - elapsed: 0.0027452649999872847
     environment: g++
-    memory: 3.972
+    memory: 3.776
     name: signed_overflow_00
     status: AC
-  - elapsed: 0.0018939429999988988
+  - elapsed: 0.0021524119999867253
     environment: g++
-    memory: 3.844
+    memory: 3.732
     name: small_00
     status: AC
-  - elapsed: 0.001826261000019258
+  - elapsed: 0.002112446000012369
     environment: g++
-    memory: 3.828
+    memory: 3.732
     name: small_01
     status: AC
-  - elapsed: 0.001882466000012073
+  - elapsed: 0.002168747000013127
     environment: g++
-    memory: 3.964
+    memory: 3.724
     name: small_02
     status: AC
-  - elapsed: 0.0018567059999838875
+  - elapsed: 0.002244875999991791
     environment: g++
-    memory: 3.96
+    memory: 3.768
     name: small_03
     status: AC
-  - elapsed: 0.001880072000005839
+  - elapsed: 0.0021365759999980583
     environment: g++
-    memory: 3.86
+    memory: 3.768
     name: small_04
     status: AC
-  - elapsed: 0.0018475729999920532
+  - elapsed: 0.00223578199998542
     environment: g++
-    memory: 3.86
+    memory: 3.74
     name: small_05
     status: AC
-  - elapsed: 0.001859421000006023
+  - elapsed: 0.002099847000010868
     environment: g++
-    memory: 3.976
+    memory: 3.78
     name: small_06
     status: AC
-  - elapsed: 0.0019283550000182004
+  - elapsed: 0.0021120739999958005
     environment: g++
-    memory: 3.884
+    memory: 3.784
     name: small_07
     status: AC
-  - elapsed: 0.001901545000009719
+  - elapsed: 0.002141440999992028
     environment: g++
-    memory: 4.0
+    memory: 3.768
     name: small_08
     status: AC
-  - elapsed: 0.0019148540000060166
+  - elapsed: 0.002144662000006292
     environment: g++
-    memory: 3.992
+    memory: 3.776
     name: small_09
     status: AC
-  - elapsed: 0.0018073020000031192
+  - elapsed: 0.002117790999989211
     environment: g++
-    memory: 4.0
+    memory: 3.764
     name: small_10
     status: AC
-  - elapsed: 0.0018691649999880156
+  - elapsed: 0.0020715340000094784
     environment: g++
-    memory: 3.884
+    memory: 3.756
     name: small_11
     status: AC
-  - elapsed: 0.0018638479999992796
+  - elapsed: 0.0021978059999980815
     environment: g++
-    memory: 3.972
+    memory: 3.784
     name: small_12
     status: AC
-  - elapsed: 0.0019755859999861514
+  - elapsed: 0.0022074050000071566
     environment: g++
-    memory: 3.828
+    memory: 3.872
     name: small_13
     status: AC
-  - elapsed: 0.0019025660000124844
+  - elapsed: 0.002139923000015642
     environment: g++
-    memory: 3.956
+    memory: 3.78
     name: small_14
     status: AC
-  - elapsed: 0.0018357399999899826
+  - elapsed: 0.0021391110000195113
     environment: g++
-    memory: 3.828
+    memory: 3.708
     name: small_15
     status: AC
-  - elapsed: 1.471531160000012
+  - elapsed: 1.6448094389999994
     environment: g++
-    memory: 11.68
+    memory: 11.612
     name: small_and_large_00
     status: AC
-  - elapsed: 3.7618761380000194
+  - elapsed: 4.264972212999993
     environment: g++
-    memory: 34.388
+    memory: 34.164
     name: small_and_large_01
     status: AC
-  - elapsed: 1.4905490769999972
+  - elapsed: 1.653212671999995
     environment: g++
-    memory: 9.776
+    memory: 9.624
     name: small_and_large_02
     status: AC
-  - elapsed: 3.7083616879999965
+  - elapsed: 4.249710716999999
     environment: g++
-    memory: 30.228
+    memory: 30.176
     name: small_and_large_03
     status: AC
-  - elapsed: 0.0024049769999976434
+  - elapsed: 0.002492969999991601
     environment: g++
-    memory: 3.828
+    memory: 3.768
     name: unsigned_overflow_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_arbitrary.test.cpp

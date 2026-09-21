@@ -330,16 +330,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/enumerate_quotients.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/enumerate_quotients.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    i64 n;\n    kin >> n;\n    kk2::EnumerateQuotients<i64>\
       \ res(n);\n    kout << res.size() << \"\\n\";\n    kout << res.get() << \"\\\
       n\";\n\n    return 0;\n}\n"
@@ -350,137 +350,137 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002795277000018359
+  - elapsed: 0.0026007579999998143
     environment: g++
-    memory: 3.668
+    memory: 3.68
     name: example_00
     status: AC
-  - elapsed: 0.14250931000003675
+  - elapsed: 0.14631144899999526
     environment: g++
-    memory: 19.14
+    memory: 19.04
     name: max_00
     status: AC
-  - elapsed: 0.0027357529999676444
-    environment: g++
-    memory: 3.74
-    name: min_00
-    status: AC
-  - elapsed: 0.002276404999975057
-    environment: g++
-    memory: 3.708
-    name: min_01
-    status: AC
-  - elapsed: 0.0022449679999567707
-    environment: g++
-    memory: 3.664
-    name: min_02
-    status: AC
-  - elapsed: 0.002278358000012304
-    environment: g++
-    memory: 3.704
-    name: min_03
-    status: AC
-  - elapsed: 0.0022234070000308748
-    environment: g++
-    memory: 3.72
-    name: min_04
-    status: AC
-  - elapsed: 0.002227151999989019
-    environment: g++
-    memory: 3.728
-    name: min_05
-    status: AC
-  - elapsed: 0.0022233760000176517
+  - elapsed: 0.0025154479999969226
     environment: g++
     memory: 3.748
+    name: min_00
+    status: AC
+  - elapsed: 0.0021666210000148567
+    environment: g++
+    memory: 3.716
+    name: min_01
+    status: AC
+  - elapsed: 0.00208675599998287
+    environment: g++
+    memory: 3.748
+    name: min_02
+    status: AC
+  - elapsed: 0.002135745000003908
+    environment: g++
+    memory: 3.748
+    name: min_03
+    status: AC
+  - elapsed: 0.0021925990000113416
+    environment: g++
+    memory: 3.732
+    name: min_04
+    status: AC
+  - elapsed: 0.0021512140000083946
+    environment: g++
+    memory: 3.668
+    name: min_05
+    status: AC
+  - elapsed: 0.0021237429999985125
+    environment: g++
+    memory: 3.704
     name: min_06
     status: AC
-  - elapsed: 0.0022441980000280637
+  - elapsed: 0.002125555999981543
     environment: g++
-    memory: 3.712
+    memory: 3.724
     name: min_07
     status: AC
-  - elapsed: 0.002264377000017248
+  - elapsed: 0.0020921639999755826
     environment: g++
-    memory: 3.736
+    memory: 3.72
     name: min_08
     status: AC
-  - elapsed: 0.13901464499997473
-    environment: g++
-    memory: 19.14
-    name: polynom_p1p1m1_00
-    status: AC
-  - elapsed: 0.06416132600003266
-    environment: g++
-    memory: 10.74
-    name: polynom_p1p1m1_01
-    status: AC
-  - elapsed: 0.14396865700001626
+  - elapsed: 0.14038038000001052
     environment: g++
     memory: 19.1
+    name: polynom_p1p1m1_00
+    status: AC
+  - elapsed: 0.06496342600001981
+    environment: g++
+    memory: 10.704
+    name: polynom_p1p1m1_01
+    status: AC
+  - elapsed: 0.14520074300000374
+    environment: g++
+    memory: 19.096
     name: polynom_p1p1z_00
     status: AC
-  - elapsed: 0.06510133000000451
+  - elapsed: 0.06561021899997854
     environment: g++
-    memory: 10.708
+    memory: 10.704
     name: polynom_p1p1z_01
     status: AC
-  - elapsed: 0.14139320600003202
+  - elapsed: 0.14612943200000927
     environment: g++
-    memory: 19.044
+    memory: 19.14
     name: polynom_p1zm1_00
     status: AC
-  - elapsed: 0.06580604099997345
+  - elapsed: 0.06644776999999635
     environment: g++
-    memory: 10.744
+    memory: 10.704
     name: polynom_p1zm1_01
     status: AC
-  - elapsed: 0.06883817300001738
+  - elapsed: 0.06828322600000547
     environment: g++
     memory: 11.056
     name: random_00
     status: AC
-  - elapsed: 0.09890465700004825
+  - elapsed: 0.09709529400001315
     environment: g++
-    memory: 14.204
+    memory: 14.108
     name: random_01
     status: AC
-  - elapsed: 0.002791547000015271
+  - elapsed: 0.002592218999978968
     environment: g++
-    memory: 3.72
+    memory: 3.724
     name: random_small_00
     status: AC
-  - elapsed: 0.0023397740000064005
+  - elapsed: 0.002281046999996761
     environment: g++
     memory: 3.724
     name: random_small_01
     status: AC
-  - elapsed: 0.0023453520000202843
-    environment: g++
-    memory: 3.716
-    name: random_small_02
-    status: AC
-  - elapsed: 0.0023534279999921637
-    environment: g++
-    memory: 3.692
-    name: random_small_03
-    status: AC
-  - elapsed: 0.002392235999991499
+  - elapsed: 0.0024256579999928363
     environment: g++
     memory: 3.74
+    name: random_small_02
+    status: AC
+  - elapsed: 0.002273772999984658
+    environment: g++
+    memory: 3.708
+    name: random_small_03
+    status: AC
+  - elapsed: 0.0023927359999902365
+    environment: g++
+    memory: 3.708
     name: random_small_04
     status: AC
-  - elapsed: 0.05460152900002413
+  - elapsed: 0.05513490999999249
     environment: g++
-    memory: 9.564
+    memory: 9.56
     name: square_00
     status: AC
-  - elapsed: 0.06483642799997824
+  - elapsed: 0.06658514199997967
     environment: g++
-    memory: 10.704
+    memory: 10.616
     name: square_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_quotients.test.cpp

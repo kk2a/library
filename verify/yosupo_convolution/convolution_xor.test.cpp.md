@@ -365,16 +365,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_convolution/convolution_xor.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_convolution/convolution_xor.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    vc<kk2::mont998>\
       \ a(1 << n), b(1 << n);\n    kin >> a >> b;\n    kout << kk2::convolution_xor(a,\
       \ b) << kendl;\n\n    return 0;\n}\n"
@@ -385,72 +385,72 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.00212953199999788
+  - elapsed: 0.0023475430000132746
     environment: g++
-    memory: 3.86
+    memory: 3.764
     name: example_00
     status: AC
-  - elapsed: 0.10677269199999273
+  - elapsed: 0.17685063700000114
     environment: g++
-    memory: 4.14
+    memory: 4.004
     name: large_00
     status: AC
-  - elapsed: 0.22509535599999708
+  - elapsed: 0.37272706000001676
     environment: g++
-    memory: 4.58
+    memory: 4.464
     name: large_01
     status: AC
-  - elapsed: 1.0012697520000131
+  - elapsed: 1.6561569000000134
     environment: g++
-    memory: 7.652
+    memory: 7.584
     name: large_02
     status: AC
-  - elapsed: 4.437666430000007
+  - elapsed: 7.313066079999999
     environment: g++
-    memory: 19.772
+    memory: 19.784
     name: max_random_00
     status: AC
-  - elapsed: 4.469087482999981
+  - elapsed: 7.3196406999999795
     environment: g++
-    memory: 19.828
+    memory: 19.792
     name: max_random_01
     status: AC
-  - elapsed: 4.449478873999993
+  - elapsed: 7.314264460000004
     environment: g++
-    memory: 19.896
+    memory: 19.712
     name: max_random_02
     status: AC
-  - elapsed: 0.002256181000007018
+  - elapsed: 0.002272166000011566
     environment: g++
-    memory: 3.824
+    memory: 3.692
     name: small_00
     status: AC
-  - elapsed: 0.0016331919999856837
+  - elapsed: 0.0022368440000093415
     environment: g++
-    memory: 3.7
+    memory: 3.756
     name: small_01
     status: AC
-  - elapsed: 0.002020985000001474
+  - elapsed: 0.0028743670000039856
     environment: g++
-    memory: 3.824
+    memory: 3.62
     name: small_02
     status: AC
-  - elapsed: 0.0015569610000056855
+  - elapsed: 0.0020510219999891888
     environment: g++
-    memory: 3.748
+    memory: 3.768
     name: tiny_00
     status: AC
-  - elapsed: 0.0015275929999916116
+  - elapsed: 0.002082085000012057
     environment: g++
-    memory: 3.628
+    memory: 3.748
     name: tiny_01
     status: AC
-  - elapsed: 0.0015133690000084243
+  - elapsed: 0.0021630640000012136
     environment: g++
-    memory: 3.744
+    memory: 3.768
     name: tiny_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_xor.test.cpp

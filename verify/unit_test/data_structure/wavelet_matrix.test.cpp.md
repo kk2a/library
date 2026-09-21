@@ -78,20 +78,20 @@ data:
       aaaa\");\n            int l = 0;\n            while (l < n) {\n            \
       \    int t = kk2::random::rng(1, n - l + 1);\n                fill(a.begin()\
       \ + l, a.begin() + l + t, kk2::random::rng(0, MAX));\n                l += t;\n\
-      \            }\n        }\n        MAX = *max_element(all(a));\n        chmax(MAX,\
+      \            }\n        }\n        MAX = ranges::max(a);\n        chmax(MAX,\
       \ 1);\n\n        kk2::WaveletMatrix<i64> wm(a);\n        unordered_map<i64,\
       \ vc<int>> mp;\n        rep(i, n) mp[a[i]].push_back(i);\n\n        vc<pli>\
       \ rank_query(q);\n        rep(i, q) rank_query[i] = {kk2::random::rng(0, MAX),\
       \ kk2::random::rng(0, n + 1)};\n\n        rep(i, q) {\n            auto [b,\
       \ pos] = rank_query[i];\n            int simple_rank = 0;\n            if (mp.count(b))\
-      \ simple_rank = lower_bound(all(mp[b]), pos) - mp[b].begin();\n            if\
-      \ (simple_rank != wm.rank(b, pos)) {\n                cerr << \"rank\" << endl;\n\
-      \                exit(1);\n            }\n        }\n\n        vc<pli> select_query(q);\n\
-      \        rep(i, q) select_query[i] = {kk2::random::rng(0, MAX), -1};\n     \
-      \   rep(i, q) {\n            select_query[i].second =\n                kk2::random::rng(0,\
-      \ min<int>(n, 2 * (mp[select_query[i].first].size() + 10)));\n        }\n\n\
-      \        rep(i, q) {\n            auto [b, k] = select_query[i];\n         \
-      \   int simple_select = -1;\n            if (mp.count(b) and k < int(mp[b].size()))\
+      \ simple_rank = ranges::lower_bound(mp[b], pos) - mp[b].begin();\n         \
+      \   if (simple_rank != wm.rank(b, pos)) {\n                cerr << \"rank\"\
+      \ << endl;\n                exit(1);\n            }\n        }\n\n        vc<pli>\
+      \ select_query(q);\n        rep(i, q) select_query[i] = {kk2::random::rng(0,\
+      \ MAX), -1};\n        rep(i, q) {\n            select_query[i].second =\n  \
+      \              kk2::random::rng(0, min<int>(n, 2 * (mp[select_query[i].first].size()\
+      \ + 10)));\n        }\n\n        rep(i, q) {\n            auto [b, k] = select_query[i];\n\
+      \            int simple_select = -1;\n            if (mp.count(b) and k < int(mp[b].size()))\
       \ simple_select = mp[b][k];\n            if (simple_select != wm.select(b, k))\
       \ {\n                cerr << \"select\" << endl;\n                exit(1);\n\
       \            }\n        }\n    }\n\n    return 0;\n}\n"
@@ -465,16 +465,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/unit_test/data_structure/wavelet_matrix.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/unit_test/data_structure/wavelet_matrix.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    rep(200) {\n        int n = kk2::random::rng(1,\
       \ 1e4);\n        int q = 1000;\n        i64 MAX = kk2::pow<i64>(10, kk2::random::rng(1,\
       \ 19));\n        vc<i64> a = kk2::random::random_vector<i64>(n, 0, MAX);\n \
@@ -482,20 +482,20 @@ data:
       \ \"aaaa\");\n            int l = 0;\n            while (l < n) {\n        \
       \        int t = kk2::random::rng(1, n - l + 1);\n                fill(a.begin()\
       \ + l, a.begin() + l + t, kk2::random::rng(0, MAX));\n                l += t;\n\
-      \            }\n        }\n        MAX = *max_element(all(a));\n        chmax(MAX,\
+      \            }\n        }\n        MAX = ranges::max(a);\n        chmax(MAX,\
       \ 1);\n\n        kk2::WaveletMatrix<i64> wm(a);\n        unordered_map<i64,\
       \ vc<int>> mp;\n        rep(i, n) mp[a[i]].push_back(i);\n\n        vc<pli>\
       \ rank_query(q);\n        rep(i, q) rank_query[i] = {kk2::random::rng(0, MAX),\
       \ kk2::random::rng(0, n + 1)};\n\n        rep(i, q) {\n            auto [b,\
       \ pos] = rank_query[i];\n            int simple_rank = 0;\n            if (mp.count(b))\
-      \ simple_rank = lower_bound(all(mp[b]), pos) - mp[b].begin();\n            if\
-      \ (simple_rank != wm.rank(b, pos)) {\n                cerr << \"rank\" << endl;\n\
-      \                exit(1);\n            }\n        }\n\n        vc<pli> select_query(q);\n\
-      \        rep(i, q) select_query[i] = {kk2::random::rng(0, MAX), -1};\n     \
-      \   rep(i, q) {\n            select_query[i].second =\n                kk2::random::rng(0,\
-      \ min<int>(n, 2 * (mp[select_query[i].first].size() + 10)));\n        }\n\n\
-      \        rep(i, q) {\n            auto [b, k] = select_query[i];\n         \
-      \   int simple_select = -1;\n            if (mp.count(b) and k < int(mp[b].size()))\
+      \ simple_rank = ranges::lower_bound(mp[b], pos) - mp[b].begin();\n         \
+      \   if (simple_rank != wm.rank(b, pos)) {\n                cerr << \"rank\"\
+      \ << endl;\n                exit(1);\n            }\n        }\n\n        vc<pli>\
+      \ select_query(q);\n        rep(i, q) select_query[i] = {kk2::random::rng(0,\
+      \ MAX), -1};\n        rep(i, q) {\n            select_query[i].second =\n  \
+      \              kk2::random::rng(0, min<int>(n, 2 * (mp[select_query[i].first].size()\
+      \ + 10)));\n        }\n\n        rep(i, q) {\n            auto [b, k] = select_query[i];\n\
+      \            int simple_select = -1;\n            if (mp.count(b) and k < int(mp[b].size()))\
       \ simple_select = mp[b][k];\n            if (simple_select != wm.select(b, k))\
       \ {\n                cerr << \"select\" << endl;\n                exit(1);\n\
       \            }\n        }\n    }\n\n    return 0;\n}\n"
@@ -506,7 +506,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/data_structure/wavelet_matrix.test.cpp

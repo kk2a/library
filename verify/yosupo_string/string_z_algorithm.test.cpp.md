@@ -302,16 +302,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_string/string_z_algorithm.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_string/string_z_algorithm.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    string s;\n    kin >> s;\n    kout\
       \ << kk2::z_algorithm(s) << kendl;\n\n    return 0;\n}\n"
     name: bundled
@@ -321,152 +321,152 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.05936122800000021
+  - elapsed: 0.06014912999999922
     environment: g++
-    memory: 7.836
+    memory: 7.888
     name: all_same_00
     status: AC
-  - elapsed: 0.05989036100000078
+  - elapsed: 0.06116676199999915
     environment: g++
-    memory: 7.964
+    memory: 7.84
     name: all_same_01
     status: AC
-  - elapsed: 0.05986404200000095
+  - elapsed: 0.06066806799999824
     environment: g++
-    memory: 8.0
+    memory: 7.936
     name: all_same_02
     status: AC
-  - elapsed: 0.059966212999995605
-    environment: g++
-    memory: 7.948
-    name: all_same_03
-    status: AC
-  - elapsed: 0.059123370999998315
-    environment: g++
-    memory: 7.88
-    name: all_same_04
-    status: AC
-  - elapsed: 0.0429900430000032
-    environment: g++
-    memory: 7.892
-    name: binary_carry_00
-    status: AC
-  - elapsed: 0.04403672700000527
-    environment: g++
-    memory: 8.004
-    name: binary_carry_01
-    status: AC
-  - elapsed: 0.0022522609999953147
-    environment: g++
-    memory: 3.768
-    name: example_00
-    status: AC
-  - elapsed: 0.0021013739999915515
-    environment: g++
-    memory: 3.772
-    name: example_01
-    status: AC
-  - elapsed: 0.0022315279999958193
-    environment: g++
-    memory: 3.624
-    name: example_02
-    status: AC
-  - elapsed: 0.0021602950000101373
-    environment: g++
-    memory: 3.78
-    name: example_03
-    status: AC
-  - elapsed: 0.043606769999996686
+  - elapsed: 0.05990623699999276
     environment: g++
     memory: 8.0
+    name: all_same_03
+    status: AC
+  - elapsed: 0.05956558699999448
+    environment: g++
+    memory: 7.852
+    name: all_same_04
+    status: AC
+  - elapsed: 0.043564115999998876
+    environment: g++
+    memory: 7.84
+    name: binary_carry_00
+    status: AC
+  - elapsed: 0.04306389899998919
+    environment: g++
+    memory: 8.0
+    name: binary_carry_01
+    status: AC
+  - elapsed: 0.0024811039999974582
+    environment: g++
+    memory: 3.624
+    name: example_00
+    status: AC
+  - elapsed: 0.0021270080000022062
+    environment: g++
+    memory: 3.776
+    name: example_01
+    status: AC
+  - elapsed: 0.0021666939999960277
+    environment: g++
+    memory: 3.78
+    name: example_02
+    status: AC
+  - elapsed: 0.00216347599999267
+    environment: g++
+    memory: 3.736
+    name: example_03
+    status: AC
+  - elapsed: 0.043727985000003855
+    environment: g++
+    memory: 8.004
     name: fib_str_00
     status: AC
-  - elapsed: 0.03229591199999504
+  - elapsed: 0.03248995799999932
     environment: g++
-    memory: 6.824
+    memory: 6.82
     name: fib_str_01
     status: AC
-  - elapsed: 0.03137545500000272
+  - elapsed: 0.03109610900000348
     environment: g++
-    memory: 6.608
+    memory: 6.556
     name: fib_str_02
     status: AC
-  - elapsed: 0.028738505000006853
+  - elapsed: 0.028843622000010782
     environment: g++
-    memory: 6.352
+    memory: 6.356
     name: fib_str_03
     status: AC
-  - elapsed: 0.04238898100000199
+  - elapsed: 0.04291935000000535
     environment: g++
-    memory: 7.828
+    memory: 7.888
     name: fib_str_04
     status: AC
-  - elapsed: 0.002253249000006008
+  - elapsed: 0.0024626499999982343
     environment: g++
-    memory: 3.748
+    memory: 3.624
     name: hack606_00
     status: AC
-  - elapsed: 0.04184332199999119
+  - elapsed: 0.04185862699999632
     environment: g++
-    memory: 7.968
+    memory: 8.0
     name: max_random_00
     status: AC
-  - elapsed: 0.04147841500000027
+  - elapsed: 0.04225392700000441
     environment: g++
-    memory: 7.968
+    memory: 8.004
     name: max_random_01
     status: AC
-  - elapsed: 0.03362455299999567
+  - elapsed: 0.03353931499999874
     environment: g++
-    memory: 6.996
+    memory: 6.992
     name: random_00
     status: AC
-  - elapsed: 0.03885150499999668
+  - elapsed: 0.039292385999999624
     environment: g++
     memory: 7.636
     name: random_01
     status: AC
-  - elapsed: 0.00663029300000062
+  - elapsed: 0.006933363999991116
     environment: g++
-    memory: 4.192
+    memory: 4.136
     name: random_02
     status: AC
-  - elapsed: 0.03650739600000463
+  - elapsed: 0.03650775699999542
     environment: g++
-    memory: 7.38
+    memory: 7.208
     name: random_03
     status: AC
-  - elapsed: 0.0242332510000125
+  - elapsed: 0.02465163199998699
     environment: g++
-    memory: 6.052
+    memory: 6.044
     name: random_04
     status: AC
-  - elapsed: 0.02716948200000502
+  - elapsed: 0.027726056999995308
     environment: g++
-    memory: 6.348
+    memory: 6.352
     name: random_05
     status: AC
-  - elapsed: 0.037801345000005426
+  - elapsed: 0.03918703199998674
     environment: g++
-    memory: 7.636
+    memory: 7.632
     name: random_06
     status: AC
-  - elapsed: 0.009895454000002246
+  - elapsed: 0.01024524299999996
     environment: g++
-    memory: 4.332
+    memory: 4.352
     name: random_07
     status: AC
-  - elapsed: 0.023595053000008193
+  - elapsed: 0.02389331499999514
     environment: g++
-    memory: 5.912
+    memory: 5.932
     name: random_08
     status: AC
-  - elapsed: 0.010639928999992776
+  - elapsed: 0.011243000000007441
     environment: g++
-    memory: 4.512
+    memory: 4.52
     name: random_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_z_algorithm.test.cpp

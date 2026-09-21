@@ -371,16 +371,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_convolution/convolution_and.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_convolution/convolution_and.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    vc<kk2::mont998>\
       \ a(1 << n), b(1 << n);\n    kin >> a >> b;\n    kout << kk2::convolution_and(a,\
       \ b) << kendl;\n\n    return 0;\n}\n"
@@ -391,72 +391,72 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024252129999950967
+  - elapsed: 0.0026612799999981007
     environment: g++
-    memory: 3.86
+    memory: 3.744
     name: example_00
     status: AC
-  - elapsed: 0.701430221999999
+  - elapsed: 0.8202720970000001
     environment: g++
-    memory: 19.772
+    memory: 19.784
     name: max_random_00
     status: AC
-  - elapsed: 0.6911202160000016
+  - elapsed: 0.8183881109999973
     environment: g++
-    memory: 19.884
+    memory: 19.788
     name: max_random_01
     status: AC
-  - elapsed: 0.6926689329999931
+  - elapsed: 0.8191950349999999
     environment: g++
-    memory: 19.884
+    memory: 19.828
     name: max_random_02
     status: AC
-  - elapsed: 0.021618924999998512
+  - elapsed: 0.02463153600000112
     environment: g++
-    memory: 4.18
+    memory: 4.068
     name: random_00
     status: AC
-  - elapsed: 0.04143809599999315
+  - elapsed: 0.04738483700000273
     environment: g++
-    memory: 4.576
+    memory: 4.468
     name: random_01
     status: AC
-  - elapsed: 0.16655172000000107
+  - elapsed: 0.19421015900000071
     environment: g++
-    memory: 7.524
+    memory: 7.584
     name: random_02
     status: AC
-  - elapsed: 0.0024031529999888335
+  - elapsed: 0.002385463000003085
     environment: g++
-    memory: 3.812
+    memory: 3.616
     name: small_00
     status: AC
-  - elapsed: 0.0021174199999904886
+  - elapsed: 0.0021733499999996297
     environment: g++
-    memory: 3.852
+    memory: 3.616
     name: small_01
     status: AC
-  - elapsed: 0.002161686999997414
+  - elapsed: 0.0022638949999986835
     environment: g++
-    memory: 3.824
+    memory: 3.572
     name: small_02
     status: AC
-  - elapsed: 0.001930022999999892
+  - elapsed: 0.0021037429999992696
     environment: g++
-    memory: 3.68
+    memory: 3.764
     name: tiny_00
     status: AC
-  - elapsed: 0.0018954690000043684
+  - elapsed: 0.0020613650000029793
     environment: g++
-    memory: 3.752
+    memory: 3.616
     name: tiny_01
     status: AC
-  - elapsed: 0.001963596999999595
+  - elapsed: 0.0020811759999972423
     environment: g++
-    memory: 3.896
+    memory: 3.752
     name: tiny_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_and.test.cpp

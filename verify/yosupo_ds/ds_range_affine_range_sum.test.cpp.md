@@ -503,16 +503,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_ds/ds_range_affine_range_sum.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_ds/ds_range_affine_range_sum.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using A = kk2::action::AffineSumWithSize<kk2::mont998,\
       \ kk2::mont998>;\n    int n, q;\n    kin >> n >> q;\n    vc<A::S> a(n);\n  \
       \  kin >> a;\n    kk2::LazySegmentTree<A> seg(a);\n\n    rep(q) {\n        int\
@@ -528,102 +528,102 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024364910000258533
+  - elapsed: 0.002515450999908353
     environment: g++
-    memory: 3.836
+    memory: 3.712
     name: example_00
     status: AC
-  - elapsed: 4.258449221000035
+  - elapsed: 4.057931981000024
     environment: g++
     memory: 19.884
     name: max_random_00
     status: AC
-  - elapsed: 4.181963998000015
+  - elapsed: 4.007711013000062
     environment: g++
     memory: 19.884
     name: max_random_01
     status: AC
-  - elapsed: 4.156651951000015
+  - elapsed: 3.9858671659999345
     environment: g++
-    memory: 19.88
+    memory: 19.888
     name: max_random_02
     status: AC
-  - elapsed: 3.290774789000011
+  - elapsed: 3.280970314000001
     environment: g++
-    memory: 19.06
+    memory: 19.052
     name: random_00
     status: AC
-  - elapsed: 3.4699000599999863
+  - elapsed: 3.3762417109999205
     environment: g++
     memory: 19.56
     name: random_01
     status: AC
-  - elapsed: 2.278210950000016
+  - elapsed: 2.2774270979999756
     environment: g++
-    memory: 5.604
+    memory: 5.596
     name: random_02
     status: AC
-  - elapsed: 0.0026332059999845114
+  - elapsed: 0.002528539999957502
     environment: g++
-    memory: 3.876
+    memory: 3.904
     name: small_00
     status: AC
-  - elapsed: 0.002207013999964147
+  - elapsed: 0.0022344259999727
     environment: g++
     memory: 3.836
     name: small_01
     status: AC
-  - elapsed: 0.002478343000007044
+  - elapsed: 0.002503792999959842
     environment: g++
-    memory: 3.76
+    memory: 3.828
     name: small_02
     status: AC
-  - elapsed: 0.0024486479999836774
+  - elapsed: 0.002453137999964383
     environment: g++
     memory: 3.872
     name: small_03
     status: AC
-  - elapsed: 0.002748481000026004
+  - elapsed: 0.002728714999989279
     environment: g++
-    memory: 3.896
+    memory: 3.712
     name: small_04
     status: AC
-  - elapsed: 0.002750533000039468
+  - elapsed: 0.0027665600000545965
     environment: g++
-    memory: 3.88
+    memory: 3.84
     name: small_05
     status: AC
-  - elapsed: 0.002739286999997148
+  - elapsed: 0.002835031000017807
     environment: g++
-    memory: 3.884
+    memory: 3.72
     name: small_06
     status: AC
-  - elapsed: 0.0026959319999946274
+  - elapsed: 0.0027187800000092466
     environment: g++
-    memory: 3.884
+    memory: 3.836
     name: small_07
     status: AC
-  - elapsed: 0.0030738629999973455
+  - elapsed: 0.003072722999945654
     environment: g++
-    memory: 3.828
+    memory: 3.844
     name: small_08
     status: AC
-  - elapsed: 0.0030295860000251196
+  - elapsed: 0.003081535999967855
     environment: g++
-    memory: 3.876
+    memory: 3.832
     name: small_09
     status: AC
-  - elapsed: 0.006431634000023223
+  - elapsed: 0.006596559000058733
     environment: g++
-    memory: 3.88
+    memory: 3.904
     name: small_random_00
     status: AC
-  - elapsed: 0.0053138849999641025
+  - elapsed: 0.005439523000063673
     environment: g++
-    memory: 3.756
+    memory: 3.828
     name: small_random_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_affine_range_sum.test.cpp

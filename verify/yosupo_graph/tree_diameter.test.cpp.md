@@ -527,16 +527,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/tree_diameter.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/tree_diameter.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    kk2::WAdjList<i64>\
       \ g(n, n - 1, kin);\n    auto [d, path] = kk2::tree_diameter(g);\n    kout <<\
       \ d << \" \" << path.size() << kendl;\n    kout << path << kendl;\n\n    return\
@@ -548,87 +548,87 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002558503000003043
+  - elapsed: 0.0017696950000001266
     environment: g++
-    memory: 3.824
+    memory: 3.888
     name: example_00
     status: AC
-  - elapsed: 0.0021289729999978135
+  - elapsed: 0.001691610999998261
     environment: g++
-    memory: 3.8
+    memory: 3.856
     name: hack_00
     status: AC
-  - elapsed: 0.5404668420000007
+  - elapsed: 0.3921547860000061
     environment: g++
-    memory: 138.276
+    memory: 138.4
     name: line_00
     status: AC
-  - elapsed: 0.6201132550000068
+  - elapsed: 0.39116733199999487
     environment: g++
-    memory: 61.488
+    memory: 61.56
     name: max_random_00
     status: AC
-  - elapsed: 0.6335028419999986
+  - elapsed: 0.42431907800000346
     environment: g++
-    memory: 61.496
+    memory: 61.56
     name: max_random_01
     status: AC
-  - elapsed: 0.4739815949999979
+  - elapsed: 0.3033424759999974
     environment: g++
-    memory: 48.7
+    memory: 48.8
     name: random_00
     status: AC
-  - elapsed: 0.6221067849999997
+  - elapsed: 0.3592787739999963
     environment: g++
-    memory: 57.172
+    memory: 57.232
     name: random_01
     status: AC
-  - elapsed: 0.04576931600000478
+  - elapsed: 0.03950834300000139
     environment: g++
-    memory: 9.6
+    memory: 9.7
     name: random_02
     status: AC
-  - elapsed: 0.5188945599999926
+  - elapsed: 0.33501618900000096
     environment: g++
-    memory: 53.204
+    memory: 53.296
     name: random_03
     status: AC
-  - elapsed: 0.25713639099998886
+  - elapsed: 0.21377666200000078
     environment: g++
-    memory: 35.624
+    memory: 35.684
     name: random_04
     status: AC
-  - elapsed: 0.0025942240000063066
+  - elapsed: 0.0020207929999997987
     environment: g++
-    memory: 3.804
+    memory: 3.736
     name: small_random_00
     status: AC
-  - elapsed: 0.0021935879999972485
+  - elapsed: 0.0018384139999980675
     environment: g++
-    memory: 3.812
+    memory: 3.88
     name: small_random_01
     status: AC
-  - elapsed: 0.002156518000006713
+  - elapsed: 0.0019463169999980323
     environment: g++
-    memory: 3.656
+    memory: 3.86
     name: small_random_02
     status: AC
-  - elapsed: 0.002183469000001992
+  - elapsed: 0.0018418049999979758
     environment: g++
-    memory: 3.752
+    memory: 3.864
     name: small_random_03
     status: AC
-  - elapsed: 0.0020957540000097197
+  - elapsed: 0.0018371430000030387
     environment: g++
-    memory: 3.6
+    memory: 3.864
     name: small_random_04
     status: AC
-  - elapsed: 0.5587367739999962
+  - elapsed: 0.34277043699999865
     environment: g++
-    memory: 60.092
+    memory: 60.068
     name: uni_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_diameter.test.cpp

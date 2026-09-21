@@ -84,24 +84,25 @@ data:
       \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
-      \ 1 \"template/function_util.hpp\"\n\n\n\n#line 6 \"template/function_util.hpp\"\
-      \n\n#line 1 \"math/monoid/max.hpp\"\n\n\n\n#line 5 \"math/monoid/max.hpp\"\n\
-      \n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#line 6 \"type_traits/io.hpp\"\
-      \n#include <istream>\n#include <ostream>\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
-      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
-      \ = typename std::conditional<std::is_same<T, std::istream>::value\n       \
-      \                                                   || std::is_same<T, std::ifstream>::value,\n\
-      \                                                      std::true_type,\n   \
-      \                                                   std::false_type>::type;\n\
-      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                                   \
-      \       || std::is_same<T, std::ofstream>::value,\n                        \
+      \ 1 \"template/function_util.hpp\"\n\n\n\n#line 7 \"template/function_util.hpp\"\
+      \n#include <ranges>\n#line 9 \"template/function_util.hpp\"\n\n#line 1 \"math/monoid/max.hpp\"\
+      \n\n\n\n#line 5 \"math/monoid/max.hpp\"\n\n#line 1 \"type_traits/io.hpp\"\n\n\
+      \n\n#include <concepts>\n#line 6 \"type_traits/io.hpp\"\n#include <istream>\n\
+      #include <ostream>\n#include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits\
+      \ {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
+      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value\n                                                   \
+      \       || std::is_same<T, std::ifstream>::value,\n                        \
       \                              std::true_type,\n                           \
-      \                           std::false_type>::type;\ntemplate <typename T> using\
-      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
-      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \                           std::false_type>::type;\ntemplate <typename T>\n\
+      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ofstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
+      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
@@ -160,25 +161,26 @@ data:
       \ T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;\n\
       \ntemplate <class T>\nconcept Vector = is_vector<std::remove_cvref_t<T>>::value;\n\
       \ntemplate <class T>\nconcept Container = is_container<std::remove_cvref_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 10 \"template/function_util.hpp\"\n\nnamespace\
+      \n} // namespace kk2\n\n\n#line 13 \"template/function_util.hpp\"\n\nnamespace\
       \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int first, Sizes...\
       \ sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n\
       \    } else {\n        return std::vector<decltype(make_vector<T>(sizes...))>(first,\
       \ make_vector<T>(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
       \ &v, const U &x) {\n    if constexpr (Vector<T>) {\n        for (auto &u :\
-      \ v) fill_all(u, x);\n    } else {\n        std::fill(v.begin(), v.end(), T(x));\n\
-      \    }\n}\n\ntemplate <class T, class U> int iota_all(std::vector<T> &v, U x,\
+      \ v) fill_all(u, x);\n    } else {\n        std::ranges::fill(v, T(x));\n  \
+      \  }\n}\n\ntemplate <class T, class U> int iota_all(std::vector<T> &v, U x,\
       \ int offset = 0) {\n    if constexpr (Vector<T>) {\n        for (auto &u :\
-      \ v) offset += iota_all(u, x + offset);\n    } else {\n        for (auto &u\
-      \ : v) u = x++, ++offset;\n    }\n    return offset;\n}\n\ntemplate <class C>\
-      \ int mysize(const C &c) { return size(c); }\n\n\n// T: commutative monoid,\
-      \ F: (U, T) -> U\ntemplate <class U, class T, class F>\nU all_monoid_prod(const\
-      \ std::vector<T> &v, U unit, const F &f) {\n    U res = unit;\n    if constexpr\
-      \ (Vector<T>) {\n        for (const auto &x : v) res = f(res, all_monoid_prod(x,\
-      \ unit, f));\n    } else {\n        for (const auto &x : v) res = f(res, x);\n\
-      \    }\n    return res;\n}\n\ntemplate <class U, class T> U all_sum(const std::vector<T>\
-      \ &v, U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b)\
-      \ { return a + b; });\n}\ntemplate <class U, class T> U all_prod(const std::vector<T>\
+      \ v) offset += iota_all(u, x + offset);\n    } else {\n        std::ranges::iota(v,\
+      \ x);\n        offset += static_cast<int>(std::ranges::ssize(v));\n    }\n \
+      \   return offset;\n}\n\n\n// T: commutative monoid, F: (U, T) -> U\ntemplate\
+      \ <class U, class T, class F>\nU all_monoid_prod(const std::vector<T> &v, U\
+      \ unit, const F &f) {\n    if constexpr (Vector<T>) {\n        auto subproducts\
+      \ =\n            v | std::views::transform([&](const auto &x) { return all_monoid_prod(x,\
+      \ unit, f); });\n        return std::ranges::fold_left(subproducts, unit, std::cref(f));\n\
+      \    } else {\n        return std::ranges::fold_left(v, unit, std::cref(f));\n\
+      \    }\n}\n\ntemplate <class U, class T> U all_sum(const std::vector<T> &v,\
+      \ U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b) {\
+      \ return a + b; });\n}\ntemplate <class U, class T> U all_prod(const std::vector<T>\
       \ &v, U unit = U(1)) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U\
       \ b) { return a * b; });\n}\ntemplate <class U, class T> U all_xor(const std::vector<T>\
       \ &v, U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b)\
@@ -195,43 +197,46 @@ data:
       \ { return std::gcd(a, b); });\n}\ntemplate <class U, class T> U all_lcm(const\
       \ std::vector<T> &v, U unit = U(1)) {\n    return all_monoid_prod<U, T>(v, unit,\
       \ [](U a, U b) { return std::lcm(a, b); });\n}\ntemplate <class U, class T>\
-      \ int all_count(const std::vector<T> &v, U x) {\n    return all_monoid_prod<int,\
-      \ T>(v, 0, [x](int a, U y) { return a + int(x == y); });\n}\n\n} // namespace\
-      \ kk2\n\n\n#line 1 \"template/io_util.hpp\"\n\n\n\n#line 7 \"template/io_util.hpp\"\
-      \n\n#line 9 \"template/io_util.hpp\"\n\n// \u306A\u3093\u304Boj verify\u306F\
-      \u30D7\u30ED\u30C8\u30BF\u30A4\u30D7\u5BA3\u8A00\u304C\u843D\u3061\u308B\n\n\
-      namespace impl {\n\nstruct read {\n    template <class IStream, class T> inline\
-      \ static void all_read(IStream &is, T &x) { is >> x; }\n\n    template <class\
-      \ IStream, class T, class U>\n    inline static void all_read(IStream &is, std::pair<T,\
-      \ U> &p) {\n        all_read(is, p.first);\n        all_read(is, p.second);\n\
-      \    }\n\n    template <class IStream, class T> inline static void all_read(IStream\
-      \ &is, std::vector<T> &v) {\n        for (T &x : v) all_read(is, x);\n    }\n\
-      \n    template <class IStream, class T, size_t F>\n    inline static void all_read(IStream\
-      \ &is, std::array<T, F> &a) {\n        for (T &x : a) all_read(is, x);\n   \
-      \ }\n};\n\nstruct write {\n    template <class OStream, class T> inline static\
-      \ void all_write(OStream &os, const T &x) {\n        os << x;\n    }\n\n   \
-      \ template <class OStream, class T, class U>\n    inline static void all_write(OStream\
-      \ &os, const std::pair<T, U> &p) {\n        all_write(os, p.first);\n      \
-      \  all_write(os, ' ');\n        all_write(os, p.second);\n    }\n\n    template\
-      \ <class OStream, class T>\n    inline static void all_write(OStream &os, const\
-      \ std::vector<T> &v) {\n        for (int i = 0; i < (int)v.size(); ++i) {\n\
-      \            if (i) all_write(os, ' ');\n            all_write(os, v[i]);\n\
-      \        }\n    }\n\n    template <class OStream, class T, size_t F>\n    inline\
-      \ static void all_write(OStream &os, const std::array<T, F> &a) {\n        for\
-      \ (int i = 0; i < (int)F; ++i) {\n            if (i) all_write(os, ' ');\n \
-      \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
-      \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
-      \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
-      \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
-      }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
-      \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
-      \ is;\n}\n\ntemplate <kk2::OutputStream OStream, class T, class U>\nOStream\
-      \ &operator<<(OStream &os, const std::pair<T, U> &p) {\n    impl::write::all_write(os,\
-      \ p);\n    return os;\n}\n\ntemplate <kk2::OutputStream OStream, class T>\n\
-      OStream &operator<<(OStream &os, const std::vector<T> &v) {\n    impl::write::all_write(os,\
-      \ v);\n    return os;\n}\n\ntemplate <kk2::OutputStream OStream, class T, size_t\
-      \ F>\nOStream &operator<<(OStream &os, const std::array<T, F> &a) {\n    impl::write::all_write(os,\
+      \ int all_count(const std::vector<T> &v, U x) {\n    if constexpr (Vector<T>)\
+      \ {\n        auto counts =\n            v | std::views::transform([&](const\
+      \ auto &values) { return all_count(values, x); });\n        return std::ranges::fold_left(counts,\
+      \ 0, std::plus{});\n    } else {\n        return static_cast<int>(std::ranges::count(v,\
+      \ x));\n    }\n}\n\n} // namespace kk2\n\n\n#line 1 \"template/io_util.hpp\"\
+      \n\n\n\n#line 7 \"template/io_util.hpp\"\n\n#line 9 \"template/io_util.hpp\"\
+      \n\n// \u306A\u3093\u304Boj verify\u306F\u30D7\u30ED\u30C8\u30BF\u30A4\u30D7\
+      \u5BA3\u8A00\u304C\u843D\u3061\u308B\n\nnamespace impl {\n\nstruct read {\n\
+      \    template <class IStream, class T> inline static void all_read(IStream &is,\
+      \ T &x) { is >> x; }\n\n    template <class IStream, class T, class U>\n   \
+      \ inline static void all_read(IStream &is, std::pair<T, U> &p) {\n        all_read(is,\
+      \ p.first);\n        all_read(is, p.second);\n    }\n\n    template <class IStream,\
+      \ class T> inline static void all_read(IStream &is, std::vector<T> &v) {\n \
+      \       for (T &x : v) all_read(is, x);\n    }\n\n    template <class IStream,\
+      \ class T, size_t F>\n    inline static void all_read(IStream &is, std::array<T,\
+      \ F> &a) {\n        for (T &x : a) all_read(is, x);\n    }\n};\n\nstruct write\
+      \ {\n    template <class OStream, class T> inline static void all_write(OStream\
+      \ &os, const T &x) {\n        os << x;\n    }\n\n    template <class OStream,\
+      \ class T, class U>\n    inline static void all_write(OStream &os, const std::pair<T,\
+      \ U> &p) {\n        all_write(os, p.first);\n        all_write(os, ' ');\n \
+      \       all_write(os, p.second);\n    }\n\n    template <class OStream, class\
+      \ T>\n    inline static void all_write(OStream &os, const std::vector<T> &v)\
+      \ {\n        for (int i = 0; i < (int)v.size(); ++i) {\n            if (i) all_write(os,\
+      \ ' ');\n            all_write(os, v[i]);\n        }\n    }\n\n    template\
+      \ <class OStream, class T, size_t F>\n    inline static void all_write(OStream\
+      \ &os, const std::array<T, F> &a) {\n        for (int i = 0; i < (int)F; ++i)\
+      \ {\n            if (i) all_write(os, ' ');\n            all_write(os, a[i]);\n\
+      \        }\n    }\n};\n\n} // namespace impl\n\ntemplate <kk2::InputStream IStream,\
+      \ class T, class U>\nIStream &operator>>(IStream &is, std::pair<T, U> &p) {\n\
+      \    impl::read::all_read(is, p);\n    return is;\n}\n\ntemplate <kk2::InputStream\
+      \ IStream, class T> IStream &operator>>(IStream &is, std::vector<T> &v) {\n\
+      \    impl::read::all_read(is, v);\n    return is;\n}\n\ntemplate <kk2::InputStream\
+      \ IStream, class T, size_t F>\nIStream &operator>>(IStream &is, std::array<T,\
+      \ F> &a) {\n    impl::read::all_read(is, a);\n    return is;\n}\n\ntemplate\
+      \ <kk2::OutputStream OStream, class T, class U>\nOStream &operator<<(OStream\
+      \ &os, const std::pair<T, U> &p) {\n    impl::write::all_write(os, p);\n   \
+      \ return os;\n}\n\ntemplate <kk2::OutputStream OStream, class T>\nOStream &operator<<(OStream\
+      \ &os, const std::vector<T> &v) {\n    impl::write::all_write(os, v);\n    return\
+      \ os;\n}\n\ntemplate <kk2::OutputStream OStream, class T, size_t F>\nOStream\
+      \ &operator<<(OStream &os, const std::array<T, F> &a) {\n    impl::write::all_write(os,\
       \ a);\n    return os;\n}\n\n\n#line 1 \"template/macros.hpp\"\n\n\n\n#define\
       \ rep1(a) for (long long _ = 0; _ < (long long)(a); ++_)\n#define rep2(i, a)\
       \ for (long long i = 0; i < (long long)(a); ++i)\n#define rep3(i, a, b) for\
@@ -240,12 +245,11 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 31\
-      \ \"template/procon.hpp\"\n\nstruct FastIOSetUp {\n    FastIOSetUp() {\n   \
-      \     std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);\n  \
-      \  }\n} fast_io_set_up;\n\nauto &kin = std::cin;\nauto &kout = std::cout;\n\
-      auto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n\n\
-      void Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
+      \ fi first\n#define se second\n\n\n#line 31 \"template/procon.hpp\"\n\nstruct\
+      \ FastIOSetUp {\n    FastIOSetUp() {\n        std::ios::sync_with_stdio(false);\n\
+      \        std::cin.tie(nullptr);\n    }\n} fast_io_set_up;\n\nauto &kin = std::cin;\n\
+      auto &kout = std::cout;\nauto (*kendl)(std::ostream &) = std::endl<char, std::char_traits<char>>;\n\
+      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
       \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
       \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
       NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
@@ -278,57 +282,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 1.0231403349999937
+  - elapsed: 1.4345817880000027
     environment: g++
-    memory: 3.74
+    memory: 3.624
     name: all_max_abs_00
     status: AC
-  - elapsed: 0.07486786200001916
+  - elapsed: 0.1149736300000086
     environment: g++
-    memory: 3.748
+    memory: 3.62
     name: all_zero_00
     status: AC
-  - elapsed: 1.3655634120000286
+  - elapsed: 1.894766519000001
     environment: g++
-    memory: 3.744
+    memory: 3.64
     name: carry_up_00
     status: AC
-  - elapsed: 0.921593205000022
+  - elapsed: 1.2584485540000117
     environment: g++
-    memory: 3.756
+    memory: 3.628
     name: digit_random_00
     status: AC
-  - elapsed: 0.9157851420000043
+  - elapsed: 1.2584380290000183
     environment: g++
-    memory: 3.812
+    memory: 3.632
     name: digit_random_01
     status: AC
-  - elapsed: 0.0019635769999695185
+  - elapsed: 0.002400493999999753
     environment: g++
-    memory: 3.832
+    memory: 3.668
     name: example_00
     status: AC
-  - elapsed: 1.404319369999996
+  - elapsed: 1.9678801919999955
     environment: g++
-    memory: 3.728
+    memory: 3.596
     name: max_random_00
     status: AC
-  - elapsed: 1.3977320709999503
+  - elapsed: 1.9328225400000179
     environment: g++
-    memory: 3.844
+    memory: 3.668
     name: max_random_01
     status: AC
-  - elapsed: 1.0859679289999917
+  - elapsed: 1.5027013269999827
     environment: g++
-    memory: 3.732
+    memory: 3.624
     name: random_00
     status: AC
-  - elapsed: 1.324861425999984
+  - elapsed: 1.7893332239999893
     environment: g++
-    memory: 3.692
+    memory: 3.676
     name: random_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

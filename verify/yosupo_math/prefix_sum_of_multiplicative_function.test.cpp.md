@@ -472,16 +472,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp\"\
       \nusing namespace std;\n\nusing mint = kk2::Mont<469762049>;\n\nint main() {\n\
       \    int t;\n    kin >> t;\n    rep(t) {\n        i64 n;\n        mint a, b;\n\
       \        kin >> n >> a >> b;\n        auto f = [&](i64 p, i64 e) -> mint {\n\
@@ -502,157 +502,157 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 11.60714442199992
+  - elapsed: 11.667517638999982
     environment: g++
-    memory: 20.668
+    memory: 20.608
     name: boundaryA_00
     status: AC
-  - elapsed: 7.885644480999872
+  - elapsed: 7.929704227000002
     environment: g++
-    memory: 16.204
+    memory: 16.376
     name: boundaryA_01
     status: AC
-  - elapsed: 8.091909803999897
-    environment: g++
-    memory: 16.668
-    name: boundaryA_02
-    status: AC
-  - elapsed: 6.745419557999867
-    environment: g++
-    memory: 14.932
-    name: boundaryA_03
-    status: AC
-  - elapsed: 3.990488056999993
-    environment: g++
-    memory: 11.28
-    name: boundaryA_04
-    status: AC
-  - elapsed: 11.614871615000084
-    environment: g++
-    memory: 20.616
-    name: boundaryB_00
-    status: AC
-  - elapsed: 7.905545805999964
-    environment: g++
-    memory: 16.324
-    name: boundaryB_01
-    status: AC
-  - elapsed: 8.103784890999805
+  - elapsed: 8.122419126000011
     environment: g++
     memory: 16.672
+    name: boundaryA_02
+    status: AC
+  - elapsed: 6.716760534000002
+    environment: g++
+    memory: 14.928
+    name: boundaryA_03
+    status: AC
+  - elapsed: 3.9946747050000226
+    environment: g++
+    memory: 11.224
+    name: boundaryA_04
+    status: AC
+  - elapsed: 11.65717583
+    environment: g++
+    memory: 20.588
+    name: boundaryB_00
+    status: AC
+  - elapsed: 7.929184574000004
+    environment: g++
+    memory: 16.328
+    name: boundaryB_01
+    status: AC
+  - elapsed: 8.132336007999982
+    environment: g++
+    memory: 16.616
     name: boundaryB_02
     status: AC
-  - elapsed: 6.7086105260000295
+  - elapsed: 6.730031684000011
     environment: g++
-    memory: 14.936
+    memory: 14.996
     name: boundaryB_03
     status: AC
-  - elapsed: 3.9868649729999106
+  - elapsed: 4.007912654000023
     environment: g++
-    memory: 11.296
+    memory: 11.232
     name: boundaryB_04
     status: AC
-  - elapsed: 0.002193638000107967
+  - elapsed: 0.002286255000001347
     environment: g++
     memory: 3.74
     name: example_00
     status: AC
-  - elapsed: 0.0021280250000472734
+  - elapsed: 0.0022078370000144787
     environment: g++
-    memory: 3.752
+    memory: 3.772
     name: example_01
     status: AC
-  - elapsed: 11.522314378000146
+  - elapsed: 11.587580532000004
     environment: g++
-    memory: 20.76
+    memory: 20.752
     name: example_02
     status: AC
-  - elapsed: 0.16766807899989544
+  - elapsed: 0.16834883100000297
     environment: g++
-    memory: 3.768
+    memory: 3.764
     name: hack_wrong_zky_method_00
     status: AC
-  - elapsed: 0.18965111200009233
+  - elapsed: 0.19040132000000654
     environment: g++
-    memory: 3.7
+    memory: 3.764
     name: hack_wrong_zky_method_01
     status: AC
-  - elapsed: 0.16228458699993098
+  - elapsed: 0.16266655100000094
     environment: g++
-    memory: 3.78
+    memory: 3.872
     name: hack_wrong_zky_method_02
     status: AC
-  - elapsed: 11.579487377000078
+  - elapsed: 11.614224691999993
     environment: g++
-    memory: 20.688
+    memory: 20.74
     name: hack_wrong_zky_method_03
     status: AC
-  - elapsed: 11.781666257000097
+  - elapsed: 11.832207788000005
     environment: g++
-    memory: 20.736
+    memory: 20.672
     name: hack_wrong_zky_method_04
     status: AC
-  - elapsed: 10.15228054399995
+  - elapsed: 10.178805471999993
     environment: g++
-    memory: 18.956
+    memory: 19.08
     name: hack_wrong_zky_method_05
     status: AC
-  - elapsed: 11.784289369000135
+  - elapsed: 11.797258706999969
     environment: g++
-    memory: 20.696
+    memory: 20.756
     name: max_00
     status: AC
-  - elapsed: 11.676969020999877
-    environment: g++
-    memory: 20.696
-    name: max_01
-    status: AC
-  - elapsed: 11.634501074000127
-    environment: g++
-    memory: 20.82
-    name: max_02
-    status: AC
-  - elapsed: 11.699649014999977
+  - elapsed: 11.696603557000003
     environment: g++
     memory: 20.692
+    name: max_01
+    status: AC
+  - elapsed: 11.68997747100002
+    environment: g++
+    memory: 20.696
+    name: max_02
+    status: AC
+  - elapsed: 11.729038701999968
+    environment: g++
+    memory: 20.756
     name: max_03
     status: AC
-  - elapsed: 11.661295227999972
+  - elapsed: 11.703910211999982
     environment: g++
-    memory: 20.688
+    memory: 20.736
     name: max_04
     status: AC
-  - elapsed: 11.602510918999997
+  - elapsed: 11.804624097999977
     environment: g++
-    memory: 20.544
+    memory: 20.6
     name: random_00
     status: AC
-  - elapsed: 7.878916206999975
+  - elapsed: 7.905850896999993
     environment: g++
-    memory: 16.316
+    memory: 16.268
     name: random_01
     status: AC
-  - elapsed: 8.090450031000046
+  - elapsed: 8.118491049999989
     environment: g++
-    memory: 16.664
+    memory: 16.676
     name: random_02
     status: AC
-  - elapsed: 6.696862042000021
+  - elapsed: 6.714172815999973
     environment: g++
-    memory: 14.996
+    memory: 14.932
     name: random_03
     status: AC
-  - elapsed: 3.989048743000012
+  - elapsed: 3.9971596699999736
     environment: g++
-    memory: 11.288
+    memory: 11.296
     name: random_04
     status: AC
-  - elapsed: 0.002948319000097399
+  - elapsed: 0.0029709780000075625
     environment: g++
-    memory: 3.768
+    memory: 3.74
     name: small_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp

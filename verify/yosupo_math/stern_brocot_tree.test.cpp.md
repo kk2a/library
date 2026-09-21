@@ -370,16 +370,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/stern_brocot_tree.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/stern_brocot_tree.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using sbt = kk2::SternBrocotTree<i64>;\n\
       \    using sbt_node = sbt::Node;\n\n    int t;\n    kin >> t;\n    rep(t) {\n\
       \        string type;\n        kin >> type;\n        if (type == \"ENCODE_PATH\"\
@@ -409,97 +409,97 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.10691446800001358
+  - elapsed: 0.16854895400000203
     environment: g++
-    memory: 4.164
+    memory: 4.044
     name: edge_decode_00
     status: AC
-  - elapsed: 0.13497154000003775
+  - elapsed: 0.20289556099999118
     environment: g++
-    memory: 4.184
+    memory: 4.036
     name: edge_encode_00
     status: AC
-  - elapsed: 0.0714622539999823
+  - elapsed: 0.11172453700000062
     environment: g++
-    memory: 4.108
+    memory: 4.056
     name: edge_lca_00
     status: AC
-  - elapsed: 0.07106861799996977
+  - elapsed: 0.1068620530000004
     environment: g++
-    memory: 4.116
+    memory: 4.016
     name: edge_range_00
     status: AC
-  - elapsed: 0.0017287469999587302
+  - elapsed: 0.002570275999985938
     environment: g++
-    memory: 3.856
+    memory: 3.796
     name: example_00
     status: AC
-  - elapsed: 0.0016421259999788163
+  - elapsed: 0.002230569000005289
     environment: g++
-    memory: 3.844
+    memory: 3.752
     name: hand_00
     status: AC
-  - elapsed: 0.0016469639999741048
+  - elapsed: 0.002137218999990864
     environment: g++
-    memory: 3.868
+    memory: 3.796
     name: hand_01
     status: AC
-  - elapsed: 0.14303973900001665
+  - elapsed: 0.22720863199999997
     environment: g++
-    memory: 3.992
+    memory: 4.056
     name: random_ancestor_no_00
     status: AC
-  - elapsed: 0.17776548399996273
+  - elapsed: 0.27365615200000093
     environment: g++
-    memory: 4.136
+    memory: 4.06
     name: random_ancestor_yes_00
     status: AC
-  - elapsed: 0.2874981049999974
+  - elapsed: 0.4418132469999989
     environment: g++
-    memory: 4.156
+    memory: 4.068
     name: random_decode_00
     status: AC
-  - elapsed: 0.36862719499998775
+  - elapsed: 0.5299246449999941
     environment: g++
-    memory: 4.124
+    memory: 4.048
     name: random_encode_00
     status: AC
-  - elapsed: 0.23878170199998294
+  - elapsed: 0.37426100599999756
     environment: g++
-    memory: 3.996
+    memory: 4.036
     name: random_lca_00
     status: AC
-  - elapsed: 0.15956673499999852
+  - elapsed: 0.24388736800000288
     environment: g++
-    memory: 4.124
+    memory: 3.856
     name: random_range_00
     status: AC
-  - elapsed: 0.0856985560000112
+  - elapsed: 0.1395592860000079
     environment: g++
-    memory: 4.124
+    memory: 4.08
     name: small_ancestor_00
     status: AC
-  - elapsed: 0.14809997200001135
+  - elapsed: 0.23541000500000564
     environment: g++
-    memory: 4.192
+    memory: 4.048
     name: small_decode_00
     status: AC
-  - elapsed: 0.1857000919999905
+  - elapsed: 0.28920168099999444
     environment: g++
-    memory: 4.184
+    memory: 4.056
     name: small_encode_00
     status: AC
-  - elapsed: 0.10061276800001906
+  - elapsed: 0.15882611499999655
     environment: g++
-    memory: 4.112
+    memory: 4.04
     name: small_lca_00
     status: AC
-  - elapsed: 0.09753733799999509
+  - elapsed: 0.14986249200001112
     environment: g++
-    memory: 4.152
+    memory: 3.912
     name: small_range_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/stern_brocot_tree.test.cpp

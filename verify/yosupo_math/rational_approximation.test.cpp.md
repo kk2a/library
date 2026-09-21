@@ -355,16 +355,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/rational_approximation.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/rational_approximation.test.cpp\"\
       \nusing namespace std;\n\nvoid solve() {\n    using sbt = kk2::SternBrocotTree<i64>;\n\
       \    // using sbt_node = sbt::Node;\n\n    int n, x, y;\n    kin >> n >> x >>\
       \ y;\n\n    auto [lnum, lden, rnum, rden] =\n        sbt::binary_search(n, [&](i64\
@@ -379,147 +379,147 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002502801999980875
+  - elapsed: 0.0026774680000016815
     environment: g++
-    memory: 3.696
+    memory: 3.724
     name: boundary_00
     status: AC
-  - elapsed: 0.0021139449997917836
+  - elapsed: 0.002199361999998928
     environment: g++
-    memory: 3.704
+    memory: 3.688
     name: example_00
     status: AC
-  - elapsed: 0.1996913499999664
+  - elapsed: 0.19868826800001216
     environment: g++
-    memory: 3.94
+    memory: 3.916
     name: fibonacci_00
     status: AC
-  - elapsed: 0.18238822499984053
+  - elapsed: 0.18168100700000878
     environment: g++
-    memory: 4.008
+    memory: 3.96
     name: input_reducible_00
     status: AC
-  - elapsed: 0.10800697900003797
+  - elapsed: 0.10756435799999053
     environment: g++
-    memory: 3.96
+    memory: 3.972
     name: large_run_length_00
     status: AC
-  - elapsed: 0.03479220600002009
+  - elapsed: 0.03488051599998698
     environment: g++
-    memory: 3.912
+    memory: 3.992
     name: random_00
     status: AC
-  - elapsed: 0.13127865599994948
-    environment: g++
-    memory: 3.912
-    name: random_01
-    status: AC
-  - elapsed: 0.10080397899992022
-    environment: g++
-    memory: 3.952
-    name: random_02
-    status: AC
-  - elapsed: 0.1894322729999658
-    environment: g++
-    memory: 3.96
-    name: random_large_00
-    status: AC
-  - elapsed: 0.19040846699999747
-    environment: g++
-    memory: 3.932
-    name: random_large_01
-    status: AC
-  - elapsed: 0.18969949699999233
-    environment: g++
-    memory: 3.952
-    name: random_large_02
-    status: AC
-  - elapsed: 0.043034185000124126
-    environment: g++
-    memory: 3.992
-    name: small_all_00
-    status: AC
-  - elapsed: 0.04986711900005503
-    environment: g++
-    memory: 3.932
-    name: small_all_01
-    status: AC
-  - elapsed: 0.053515033999929074
-    environment: g++
-    memory: 3.992
-    name: small_all_02
-    status: AC
-  - elapsed: 0.05633220999993682
-    environment: g++
-    memory: 3.96
-    name: small_all_03
-    status: AC
-  - elapsed: 0.0583826689999114
-    environment: g++
-    memory: 3.976
-    name: small_all_04
-    status: AC
-  - elapsed: 0.06030014199996003
-    environment: g++
-    memory: 3.952
-    name: small_all_05
-    status: AC
-  - elapsed: 0.060875565000060305
-    environment: g++
-    memory: 3.968
-    name: small_all_06
-    status: AC
-  - elapsed: 0.06204693600011524
+  - elapsed: 0.13130160600002228
     environment: g++
     memory: 4.0
+    name: random_01
+    status: AC
+  - elapsed: 0.10034465400002546
+    environment: g++
+    memory: 3.94
+    name: random_02
+    status: AC
+  - elapsed: 0.1896304089999603
+    environment: g++
+    memory: 3.98
+    name: random_large_00
+    status: AC
+  - elapsed: 0.1899782599999753
+    environment: g++
+    memory: 3.94
+    name: random_large_01
+    status: AC
+  - elapsed: 0.18846351999997069
+    environment: g++
+    memory: 3.98
+    name: random_large_02
+    status: AC
+  - elapsed: 0.04253960400001233
+    environment: g++
+    memory: 3.968
+    name: small_all_00
+    status: AC
+  - elapsed: 0.05043937199997117
+    environment: g++
+    memory: 4.0
+    name: small_all_01
+    status: AC
+  - elapsed: 0.053417365999962385
+    environment: g++
+    memory: 3.968
+    name: small_all_02
+    status: AC
+  - elapsed: 0.0562588810000193
+    environment: g++
+    memory: 4.004
+    name: small_all_03
+    status: AC
+  - elapsed: 0.058083162999992055
+    environment: g++
+    memory: 3.968
+    name: small_all_04
+    status: AC
+  - elapsed: 0.059290806999968027
+    environment: g++
+    memory: 3.984
+    name: small_all_05
+    status: AC
+  - elapsed: 0.06093948600005206
+    environment: g++
+    memory: 3.96
+    name: small_all_06
+    status: AC
+  - elapsed: 0.06173757199996999
+    environment: g++
+    memory: 3.888
     name: small_all_07
     status: AC
-  - elapsed: 0.06251303900012317
+  - elapsed: 0.062327267000000575
     environment: g++
-    memory: 3.992
+    memory: 3.964
     name: small_all_08
     status: AC
-  - elapsed: 0.06326717900014955
+  - elapsed: 0.06356807399998843
     environment: g++
-    memory: 3.98
+    memory: 3.888
     name: small_all_09
     status: AC
-  - elapsed: 0.1932155459999194
+  - elapsed: 0.1935644939999861
     environment: g++
-    memory: 3.956
+    memory: 3.924
     name: small_run_length_00
     status: AC
-  - elapsed: 0.19732371400004922
+  - elapsed: 0.19632897299999286
     environment: g++
-    memory: 3.936
+    memory: 3.944
     name: small_run_length_01
     status: AC
-  - elapsed: 0.18516695199991773
+  - elapsed: 0.18451665200001344
     environment: g++
-    memory: 3.992
+    memory: 3.984
     name: small_run_length_02
     status: AC
-  - elapsed: 0.17611057999988589
+  - elapsed: 0.17614001999999118
     environment: g++
-    memory: 3.98
+    memory: 3.972
     name: small_run_length_03
     status: AC
-  - elapsed: 0.17164390900006765
+  - elapsed: 0.17111608800001932
     environment: g++
-    memory: 3.912
+    memory: 4.012
     name: small_run_length_04
     status: AC
-  - elapsed: 0.19098036299988053
+  - elapsed: 0.1889212429999816
     environment: g++
-    memory: 4.008
+    memory: 4.0
     name: trivial_00
     status: AC
-  - elapsed: 0.04918395999993663
+  - elapsed: 0.048832723000032274
     environment: g++
-    memory: 3.98
+    memory: 3.96
     name: zero_or_inf_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/rational_approximation.test.cpp

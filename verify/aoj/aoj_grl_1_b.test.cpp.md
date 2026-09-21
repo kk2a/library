@@ -529,18 +529,18 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/aoj/aoj_grl_1_b.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    int n, m, s;\n    kin >> n >> m\
-      \ >> s;\n    kk2::DWAdjList<int> g(n, m, kin);\n    auto [dist, prev] = kk2::bellman_ford(n,\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/aoj/aoj_grl_1_b.test.cpp\"\n\
+      using namespace std;\n\nint main() {\n    int n, m, s;\n    kin >> n >> m >>\
+      \ s;\n    kk2::DWAdjList<int> g(n, m, kin);\n    auto [dist, prev] = kk2::bellman_ford(n,\
       \ g.edges, s);\n\n    rep(i, n) {\n        if (dist[i].minf) {\n           \
       \ kout << \"NEGATIVE CYCLE\" << kendl;\n            return 0;\n        }\n \
       \   }\n\n    rep(i, n) {\n        if (dist[i].inf) {\n            kout << \"\
@@ -553,207 +553,207 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0025062810000093805
+  - elapsed: 0.0025100279999890063
     environment: g++
-    memory: 3.796
+    memory: 3.804
     name: 00_sample_00
     status: AC
-  - elapsed: 0.0020820530000094095
+  - elapsed: 0.002109110999981567
     environment: g++
-    memory: 3.796
+    memory: 3.8
     name: 00_sample_01
     status: AC
-  - elapsed: 0.002099878999999305
+  - elapsed: 0.002112173000000439
     environment: g++
     memory: 3.656
     name: 00_sample_02
     status: AC
-  - elapsed: 0.0020999709999927063
+  - elapsed: 0.0020977099999868187
     environment: g++
-    memory: 3.592
+    memory: 3.784
     name: 01_small_00
     status: AC
-  - elapsed: 0.0020759540000057086
+  - elapsed: 0.0020852220000051602
     environment: g++
-    memory: 3.796
+    memory: 3.804
     name: 01_small_01
     status: AC
-  - elapsed: 0.002069649999995704
+  - elapsed: 0.002066310999992993
     environment: g++
-    memory: 3.796
+    memory: 3.756
     name: 02_corner_00
     status: AC
-  - elapsed: 0.002065377000008084
+  - elapsed: 0.0020713669999850026
     environment: g++
-    memory: 3.796
+    memory: 3.656
     name: 02_corner_01
     status: AC
-  - elapsed: 0.0020602029999992055
+  - elapsed: 0.002061481999987791
     environment: g++
-    memory: 3.792
+    memory: 3.8
     name: 02_corner_02
     status: AC
-  - elapsed: 0.002037862000008772
+  - elapsed: 0.0020566489999964688
     environment: g++
-    memory: 3.764
+    memory: 3.712
     name: 02_corner_03
     status: AC
-  - elapsed: 0.002067030000006298
+  - elapsed: 0.0020638270000006287
     environment: g++
-    memory: 3.772
+    memory: 3.8
     name: 02_corner_04
     status: AC
-  - elapsed: 0.0020771350000075017
+  - elapsed: 0.0020467100000018945
     environment: g++
     memory: 3.804
     name: 02_corner_05
     status: AC
-  - elapsed: 0.0021005910000013728
+  - elapsed: 0.002066381000020101
     environment: g++
-    memory: 3.656
+    memory: 3.716
     name: 02_corner_06
     status: AC
-  - elapsed: 0.0021088250000076414
-    environment: g++
-    memory: 3.796
-    name: 03_medium_00
-    status: AC
-  - elapsed: 0.002099470000004544
-    environment: g++
-    memory: 3.64
-    name: 03_medium_01
-    status: AC
-  - elapsed: 0.0020491630000094574
-    environment: g++
-    memory: 3.8
-    name: 03_medium_02
-    status: AC
-  - elapsed: 0.0020723499999917294
-    environment: g++
-    memory: 3.804
-    name: 03_medium_03
-    status: AC
-  - elapsed: 0.0020818329999912066
-    environment: g++
-    memory: 3.78
-    name: 04_rand_00
-    status: AC
-  - elapsed: 0.002117674999993824
-    environment: g++
-    memory: 3.608
-    name: 04_rand_01
-    status: AC
-  - elapsed: 0.0021531090000053155
-    environment: g++
-    memory: 3.768
-    name: 04_rand_02
-    status: AC
-  - elapsed: 0.0033916640000057896
-    environment: g++
-    memory: 3.792
-    name: 04_rand_03
-    status: AC
-  - elapsed: 0.003485272999995459
-    environment: g++
-    memory: 3.804
-    name: 04_rand_04
-    status: AC
-  - elapsed: 0.0023816759999988335
-    environment: g++
-    memory: 3.656
-    name: 04_rand_05
-    status: AC
-  - elapsed: 0.002599661999994396
-    environment: g++
-    memory: 3.788
-    name: 04_rand_06
-    status: AC
-  - elapsed: 0.007224898000004032
-    environment: g++
-    memory: 3.608
-    name: 04_rand_07
-    status: AC
-  - elapsed: 0.0020928379999958224
-    environment: g++
-    memory: 3.584
-    name: 05_dag_00
-    status: AC
-  - elapsed: 0.002129050999997162
-    environment: g++
-    memory: 3.772
-    name: 05_dag_01
-    status: AC
-  - elapsed: 0.002201440999996862
-    environment: g++
-    memory: 3.804
-    name: 05_dag_02
-    status: AC
-  - elapsed: 0.002235882000007905
-    environment: g++
-    memory: 3.752
-    name: 05_dag_03
-    status: AC
-  - elapsed: 0.0021212409999975534
-    environment: g++
-    memory: 3.64
-    name: 06_ring_00
-    status: AC
-  - elapsed: 0.002136454999998705
+  - elapsed: 0.002086735999995426
     environment: g++
     memory: 3.784
+    name: 03_medium_00
+    status: AC
+  - elapsed: 0.0020400120000090283
+    environment: g++
+    memory: 3.752
+    name: 03_medium_01
+    status: AC
+  - elapsed: 0.0020586230000105843
+    environment: g++
+    memory: 3.808
+    name: 03_medium_02
+    status: AC
+  - elapsed: 0.0020775620000108574
+    environment: g++
+    memory: 3.788
+    name: 03_medium_03
+    status: AC
+  - elapsed: 0.0021504340000149114
+    environment: g++
+    memory: 3.828
+    name: 04_rand_00
+    status: AC
+  - elapsed: 0.002124309999999241
+    environment: g++
+    memory: 3.804
+    name: 04_rand_01
+    status: AC
+  - elapsed: 0.0021528990000092563
+    environment: g++
+    memory: 3.8
+    name: 04_rand_02
+    status: AC
+  - elapsed: 0.0033229730000243762
+    environment: g++
+    memory: 3.808
+    name: 04_rand_03
+    status: AC
+  - elapsed: 0.0034131289999947967
+    environment: g++
+    memory: 3.796
+    name: 04_rand_04
+    status: AC
+  - elapsed: 0.002475274999994781
+    environment: g++
+    memory: 3.8
+    name: 04_rand_05
+    status: AC
+  - elapsed: 0.002584098999989237
+    environment: g++
+    memory: 3.808
+    name: 04_rand_06
+    status: AC
+  - elapsed: 0.007219889999987572
+    environment: g++
+    memory: 3.772
+    name: 04_rand_07
+    status: AC
+  - elapsed: 0.0020936790000121164
+    environment: g++
+    memory: 3.796
+    name: 05_dag_00
+    status: AC
+  - elapsed: 0.002122265999986439
+    environment: g++
+    memory: 3.64
+    name: 05_dag_01
+    status: AC
+  - elapsed: 0.002211087999995698
+    environment: g++
+    memory: 3.736
+    name: 05_dag_02
+    status: AC
+  - elapsed: 0.002233133999993697
+    environment: g++
+    memory: 3.592
+    name: 05_dag_03
+    status: AC
+  - elapsed: 0.002146987999992689
+    environment: g++
+    memory: 3.584
+    name: 06_ring_00
+    status: AC
+  - elapsed: 0.0021750650000171845
+    environment: g++
+    memory: 3.788
     name: 06_ring_01
     status: AC
-  - elapsed: 0.0022280190000003586
+  - elapsed: 0.00225975899999753
     environment: g++
     memory: 3.788
     name: 06_ring_02
     status: AC
-  - elapsed: 0.002215947999999912
+  - elapsed: 0.0022120040000004337
     environment: g++
-    memory: 3.588
+    memory: 3.788
     name: 06_ring_03
     status: AC
-  - elapsed: 0.0023943300000013323
+  - elapsed: 0.0023699559999954545
     environment: g++
-    memory: 3.64
+    memory: 3.784
     name: 07_large_00
     status: AC
-  - elapsed: 0.0026223950000030527
+  - elapsed: 0.0026749779999875045
     environment: g++
-    memory: 3.796
+    memory: 3.776
     name: 07_large_01
     status: AC
-  - elapsed: 0.002376768999994283
+  - elapsed: 0.0024058159999924555
     environment: g++
-    memory: 3.772
+    memory: 3.8
     name: 07_large_02
     status: AC
-  - elapsed: 0.0024774259999986725
+  - elapsed: 0.0024346689999958926
     environment: g++
-    memory: 3.584
+    memory: 3.8
     name: 07_large_03
     status: AC
-  - elapsed: 0.0029691449999944552
+  - elapsed: 0.002755700999983901
     environment: g++
     memory: 3.712
     name: 08_maximum_00
     status: AC
-  - elapsed: 0.04658532199999854
+  - elapsed: 0.04647906799999646
     environment: g++
-    memory: 3.908
+    memory: 3.924
     name: 08_maximum_01
     status: AC
-  - elapsed: 0.0037548269999945205
+  - elapsed: 0.003338131999981897
     environment: g++
-    memory: 3.864
+    memory: 3.924
     name: 08_maximum_02
     status: AC
-  - elapsed: 0.004082737000004499
+  - elapsed: 0.004184234999996761
     environment: g++
-    memory: 3.932
+    memory: 3.912
     name: 08_maximum_03
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_grl_1_b.test.cpp

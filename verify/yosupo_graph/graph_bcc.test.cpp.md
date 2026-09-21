@@ -565,16 +565,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_bcc.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_bcc.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n\
       \    kk2::AdjList g(n, m, kin);\n    kk2::BCC<kk2::AdjList> bcc(g);\n    auto\
       \ res = bcc.get_bcc_vertices();\n\n    kout << res.size() << \"\\n\";\n    for\
@@ -587,117 +587,117 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0025259430001369765
+  - elapsed: 0.0025432639999962703
     environment: g++
-    memory: 3.668
+    memory: 3.816
     name: example_00
     status: AC
-  - elapsed: 0.002205719999892608
-    environment: g++
-    memory: 3.812
-    name: example_01
-    status: AC
-  - elapsed: 0.00213093200000003
+  - elapsed: 0.002193059999996194
     environment: g++
     memory: 3.668
+    name: example_01
+    status: AC
+  - elapsed: 0.002184257000010348
+    environment: g++
+    memory: 3.832
     name: example_02
     status: AC
-  - elapsed: 1.0477778499998749
+  - elapsed: 1.0309134199999903
     environment: g++
-    memory: 124.9
+    memory: 124.944
     name: large_cycle_00
     status: AC
-  - elapsed: 0.8857024579999688
+  - elapsed: 0.8303205040000137
     environment: g++
-    memory: 91.936
+    memory: 91.796
     name: max_line_clique_00
     status: AC
-  - elapsed: 1.2004041379998398
+  - elapsed: 1.1266007760000036
     environment: g++
-    memory: 94.048
+    memory: 94.084
     name: max_random_00
     status: AC
-  - elapsed: 1.1272653399998944
+  - elapsed: 1.0987687079999944
     environment: g++
-    memory: 75.932
+    memory: 75.928
     name: max_random_2_00
     status: AC
-  - elapsed: 1.1500772929998675
+  - elapsed: 1.0783829050000122
     environment: g++
-    memory: 75.288
+    memory: 75.372
     name: max_random_2_01
     status: AC
-  - elapsed: 1.1265169160001278
+  - elapsed: 1.080402697000011
     environment: g++
-    memory: 75.48
+    memory: 75.496
     name: max_random_2_02
     status: AC
-  - elapsed: 1.3243487279999044
+  - elapsed: 1.2923785310000255
     environment: g++
-    memory: 105.944
+    memory: 105.624
     name: max_star_00
     status: AC
-  - elapsed: 1.4278340000000753
+  - elapsed: 1.3649892469999827
     environment: g++
-    memory: 104.304
+    memory: 104.26
     name: max_tree_00
     status: AC
-  - elapsed: 0.0026359050000337447
+  - elapsed: 0.0027435750000108783
     environment: g++
     memory: 3.816
     name: min_00
     status: AC
-  - elapsed: 0.0021367280000959
+  - elapsed: 0.002185381000003872
     environment: g++
-    memory: 3.74
+    memory: 3.784
     name: min_01
     status: AC
-  - elapsed: 0.0021242550001261407
-    environment: g++
-    memory: 3.78
-    name: min_02
-    status: AC
-  - elapsed: 0.9483871929999168
-    environment: g++
-    memory: 76.568
-    name: random_1_00
-    status: AC
-  - elapsed: 0.8888394339999195
-    environment: g++
-    memory: 61.968
-    name: random_2_00
-    status: AC
-  - elapsed: 0.6472162130000925
-    environment: g++
-    memory: 62.396
-    name: random_2_01
-    status: AC
-  - elapsed: 0.44743926099999953
-    environment: g++
-    memory: 32.76
-    name: random_2_02
-    status: AC
-  - elapsed: 0.002329976999817518
+  - elapsed: 0.002184968999983994
     environment: g++
     memory: 3.804
-    name: small_random_1_00
+    name: min_02
     status: AC
-  - elapsed: 0.0023247770000125456
+  - elapsed: 0.8269919800000025
     environment: g++
-    memory: 3.612
-    name: small_random_2_00
+    memory: 76.488
+    name: random_1_00
     status: AC
-  - elapsed: 0.0023427129999618046
+  - elapsed: 0.9147560099999907
     environment: g++
-    memory: 3.816
-    name: small_random_2_01
+    memory: 62.028
+    name: random_2_00
     status: AC
-  - elapsed: 0.0022366540001712565
+  - elapsed: 0.6358789290000004
+    environment: g++
+    memory: 62.432
+    name: random_2_01
+    status: AC
+  - elapsed: 0.44360591299999896
+    environment: g++
+    memory: 32.828
+    name: random_2_02
+    status: AC
+  - elapsed: 0.0024654389999909654
     environment: g++
     memory: 3.8
+    name: small_random_1_00
+    status: AC
+  - elapsed: 0.0023207189999823186
+    environment: g++
+    memory: 3.816
+    name: small_random_2_00
+    status: AC
+  - elapsed: 0.0023390529999858245
+    environment: g++
+    memory: 3.804
+    name: small_random_2_01
+    status: AC
+  - elapsed: 0.0023091810000153146
+    environment: g++
+    memory: 3.668
     name: small_random_2_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_bcc.test.cpp

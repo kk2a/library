@@ -115,7 +115,7 @@ data:
   - math/multiplicative_function/counting_square_free.hpp
   - math/multiplicative_function/famous_function_table.hpp
   - math/prime_factorize_table.hpp
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/lpf_table_extend.test.cpp

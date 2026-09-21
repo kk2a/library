@@ -540,16 +540,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_graph/graph_scc.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_graph/graph_scc.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n\
       \    kk2::DAdjList g(n, m, kin);\n    kk2::SCC<kk2::DAdjList> scc(g);\n    auto\
       \ perm = kk2::topological_sort(scc.dag);\n    kout << scc.size() << \"\\n\"\
@@ -562,67 +562,67 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0026239700000019184
+  - elapsed: 0.0029807269999651
     environment: g++
-    memory: 3.684
+    memory: 3.84
     name: example_00
     status: AC
-  - elapsed: 0.6138851150000164
+  - elapsed: 0.8589259589999756
     environment: g++
-    memory: 97.144
+    memory: 97.14
     name: large_cycle_00
     status: AC
-  - elapsed: 1.222589298999992
+  - elapsed: 1.5542819839999993
     environment: g++
-    memory: 113.164
+    memory: 113.104
     name: max_random_00
     status: AC
-  - elapsed: 1.2247652880000146
+  - elapsed: 1.4422062440000332
     environment: g++
-    memory: 113.184
+    memory: 113.18
     name: max_random_01
     status: AC
-  - elapsed: 1.1403467470000237
+  - elapsed: 1.3984619889999976
     environment: g++
-    memory: 113.168
+    memory: 113.204
     name: max_random_02
     status: AC
-  - elapsed: 1.192070288000025
+  - elapsed: 1.4169400620000374
     environment: g++
-    memory: 113.148
+    memory: 113.2
     name: max_random_03
     status: AC
-  - elapsed: 1.2638703510000369
+  - elapsed: 1.6202788600000417
     environment: g++
-    memory: 113.196
+    memory: 113.204
     name: max_random_04
     status: AC
-  - elapsed: 0.8935107010000252
+  - elapsed: 1.090409410999996
     environment: g++
     memory: 90.268
     name: random_00
     status: AC
-  - elapsed: 1.0521699669999975
+  - elapsed: 1.2267986260000043
     environment: g++
-    memory: 102.732
+    memory: 102.72
     name: random_01
     status: AC
-  - elapsed: 0.25657891400004473
+  - elapsed: 0.28123863600001187
     environment: g++
-    memory: 24.476
+    memory: 24.516
     name: random_02
     status: AC
-  - elapsed: 0.3944252160000019
+  - elapsed: 0.45346589000001813
     environment: g++
-    memory: 70.444
+    memory: 70.464
     name: random_03
     status: AC
-  - elapsed: 0.37545579099997894
+  - elapsed: 0.43207705799994756
     environment: g++
     memory: 54.288
     name: random_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_scc.test.cpp

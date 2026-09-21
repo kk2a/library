@@ -556,16 +556,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/tree_lca.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/tree_lca.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    kk2::AdjList g(n);\n    rep(i, n - 1) {\n        int p;\n        kin >>\
       \ p;\n        g.add_edge(i + 1, p);\n    }\n    kk2::HeavyLightDecomposition<kk2::AdjList>\
@@ -578,132 +578,132 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.5788244820000017
+  - elapsed: 0.4115088340000028
     environment: g++
-    memory: 82.576
+    memory: 82.844
     name: almost_line_00
     status: AC
-  - elapsed: 0.5838445030000088
+  - elapsed: 0.42080134399999736
     environment: g++
-    memory: 82.72
+    memory: 82.828
     name: almost_line_01
     status: AC
-  - elapsed: 0.9348980520000083
+  - elapsed: 0.6365900629999999
     environment: g++
-    memory: 58.552
+    memory: 58.416
     name: binary_00
     status: AC
-  - elapsed: 0.9374517030000078
+  - elapsed: 0.6481774100000024
     environment: g++
-    memory: 58.268
+    memory: 58.56
     name: binary_01
     status: AC
-  - elapsed: 0.9410484320000023
+  - elapsed: 0.6256481630000081
     environment: g++
-    memory: 58.252
+    memory: 58.576
     name: binary_02
     status: AC
-  - elapsed: 0.002265209000000823
+  - elapsed: 0.001937456000007387
     environment: g++
-    memory: 3.748
+    memory: 3.756
     name: example_00
     status: AC
-  - elapsed: 0.4463149649999991
+  - elapsed: 0.30491508500000464
     environment: g++
-    memory: 82.772
+    memory: 83.928
     name: line_00
     status: AC
-  - elapsed: 0.5050078329999934
+  - elapsed: 0.35447440000000086
     environment: g++
-    memory: 97.604
+    memory: 98.368
     name: line_01
     status: AC
-  - elapsed: 0.1275395830000008
+  - elapsed: 0.0874383090000066
     environment: g++
-    memory: 14.408
+    memory: 14.508
     name: line_02
     status: AC
-  - elapsed: 0.3896473260000022
+  - elapsed: 0.26263926599999365
     environment: g++
-    memory: 90.728
+    memory: 90.824
     name: line_03
     status: AC
-  - elapsed: 0.27520385700000816
+  - elapsed: 0.1856237329999999
     environment: g++
-    memory: 60.336
+    memory: 61.708
     name: line_04
     status: AC
-  - elapsed: 0.5594920670000079
+  - elapsed: 0.3832863169999996
     environment: g++
-    memory: 105.352
+    memory: 105.452
     name: max_line_00
     status: AC
-  - elapsed: 0.5598074110000084
+  - elapsed: 0.3917532440000002
     environment: g++
-    memory: 105.312
+    memory: 105.488
     name: max_line_01
     status: AC
-  - elapsed: 0.5593360320000045
+  - elapsed: 0.39393986299999995
     environment: g++
-    memory: 105.212
+    memory: 105.276
     name: max_line_02
     status: AC
-  - elapsed: 0.8463916590000053
-    environment: g++
-    memory: 56.08
-    name: max_random_00
-    status: AC
-  - elapsed: 0.8372579480000013
+  - elapsed: 0.5327456449999914
     environment: g++
     memory: 56.096
+    name: max_random_00
+    status: AC
+  - elapsed: 0.5534635350000059
+    environment: g++
+    memory: 56.092
     name: max_random_01
     status: AC
-  - elapsed: 0.8737200829999949
+  - elapsed: 0.5461116399999923
     environment: g++
-    memory: 56.032
+    memory: 56.088
     name: max_random_02
     status: AC
-  - elapsed: 0.5356209009999873
+  - elapsed: 0.3809588059999953
     environment: g++
-    memory: 78.116
+    memory: 77.884
     name: path_graph_root_centroid_00
     status: AC
-  - elapsed: 0.5339429720000055
+  - elapsed: 0.40055566799999553
     environment: g++
-    memory: 77.8
+    memory: 78.184
     name: path_graph_root_centroid_01
     status: AC
-  - elapsed: 0.534350489000019
+  - elapsed: 0.38552913200000205
     environment: g++
-    memory: 77.968
+    memory: 78.224
     name: path_graph_root_centroid_02
     status: AC
-  - elapsed: 0.6248928530000057
+  - elapsed: 0.4218707240000015
     environment: g++
-    memory: 45.448
+    memory: 45.532
     name: random_00
     status: AC
-  - elapsed: 0.7507157699999993
+  - elapsed: 0.47561374400000034
     environment: g++
-    memory: 52.032
+    memory: 52.256
     name: random_01
     status: AC
-  - elapsed: 0.17862306700001795
+  - elapsed: 0.12629568600000596
     environment: g++
-    memory: 9.268
+    memory: 9.328
     name: random_02
     status: AC
-  - elapsed: 0.5285322529999803
+  - elapsed: 0.3312891329999985
     environment: g++
-    memory: 48.58
+    memory: 48.556
     name: random_03
     status: AC
-  - elapsed: 0.3161508390000165
+  - elapsed: 0.22810991600000818
     environment: g++
-    memory: 33.172
+    memory: 34.512
     name: random_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_lca.test.cpp

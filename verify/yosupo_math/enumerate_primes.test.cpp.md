@@ -360,16 +360,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/enumerate_primes.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/enumerate_primes.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, a, b;\n    kin >> n >> a\
       \ >> b;\n\n    auto primes = kk2::PrimeTable::primes(n);\n    int pi_n = (int)primes.size();\n\
       \    int m = kk2::fracceil(pi_n - b, a);\n    kout << pi_n << \" \" << m <<\
@@ -383,57 +383,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0030735429999992903
+  - elapsed: 0.0025735440000005383
     environment: g++
-    memory: 3.704
+    memory: 3.788
     name: '1_00'
     status: AC
-  - elapsed: 0.002746074000015142
+  - elapsed: 0.0020749419999930296
     environment: g++
     memory: 3.752
     name: '2_00'
     status: AC
-  - elapsed: 10.207844827999992
+  - elapsed: 8.946249574999996
     environment: g++
     memory: 614.552
     name: '499477801_00'
     status: AC
-  - elapsed: 10.050062365999992
-    environment: g++
-    memory: 616.568
-    name: '499999993_00'
-    status: AC
-  - elapsed: 0.002723648999960915
-    environment: g++
-    memory: 3.78
-    name: example_00
-    status: AC
-  - elapsed: 10.086404509000033
-    environment: g++
-    memory: 616.62
-    name: max_00
-    status: AC
-  - elapsed: 10.062246856999991
+  - elapsed: 9.041799033999993
     environment: g++
     memory: 616.564
+    name: '499999993_00'
+    status: AC
+  - elapsed: 0.0025688850000022967
+    environment: g++
+    memory: 3.752
+    name: example_00
+    status: AC
+  - elapsed: 8.913008926000003
+    environment: g++
+    memory: 616.512
+    name: max_00
+    status: AC
+  - elapsed: 9.0069156
+    environment: g++
+    memory: 616.568
     name: max_01
     status: AC
-  - elapsed: 2.0118974559999856
+  - elapsed: 1.745765720999998
     environment: g++
-    memory: 130.056
+    memory: 130.104
     name: ten_00
     status: AC
-  - elapsed: 0.19459788699998626
+  - elapsed: 0.16995019600000205
     environment: g++
-    memory: 16.68
+    memory: 16.692
     name: ten_01
     status: AC
-  - elapsed: 0.02451930600000196
+  - elapsed: 0.021861483999998654
     environment: g++
-    memory: 4.856
+    memory: 4.812
     name: ten_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_primes.test.cpp

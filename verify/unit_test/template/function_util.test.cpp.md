@@ -1,0 +1,227 @@
+---
+data:
+  attributes:
+    STANDALONE: ''
+    links: []
+  dependencies:
+  - files:
+    - filename: max.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/monoid/max.hpp
+    - filename: min.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/monoid/min.hpp
+    - filename: function_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/function_util.hpp
+    - filename: container_traits.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/container_traits.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
+    type: Depends on
+  - files: []
+    type: Required by
+  - files: []
+    type: Verified with
+  dependsOn:
+  - math/monoid/max.hpp
+  - math/monoid/min.hpp
+  - template/function_util.hpp
+  - type_traits/container_traits.hpp
+  - type_traits/io.hpp
+  embedded:
+  - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../template/function_util.hpp\"\
+      \n\n#include <array>\n#include <cassert>\n#include <functional>\n#include <vector>\n\
+      \nint main() {\n    using std::vector;\n\n    auto cube = kk2::make_vector<int>(2,\
+      \ 2, 3);\n    assert(cube.size() == 2);\n    assert(cube[0].size() == 2);\n\
+      \    assert(cube[0][0].size() == 3);\n\n    kk2::fill_all(cube, 4);\n    assert(cube\
+      \ == vector(2, vector(2, vector<int>(3, 4))));\n\n    assert(kk2::iota_all(cube,\
+      \ 1) == 12);\n    const vector expected_cube{\n        vector{vector{1, 2, 3},\
+      \ vector{4, 5, 6}   },\n        vector{vector{7, 8, 9}, vector{10, 11, 12}}\n\
+      \    };\n    assert(cube == expected_cube);\n\n    const vector<int> one_dimensional{1,\
+      \ 2, 3, 4};\n    const vector<vector<int>> two_dimensional{\n        {1, 2},\n\
+      \        {},\n        {3, 4}\n    };\n    const vector<vector<vector<int>>>\
+      \ three_dimensional{\n        {{1}, {2}},\n        {},\n        {{3, 4}}\n \
+      \   };\n    const vector<vector<int>> empty;\n    const vector<vector<int>>\
+      \ nested_empty{{}, {}};\n\n    assert(kk2::all_sum<long long>(one_dimensional)\
+      \ == 10);\n    assert(kk2::all_sum<long long>(two_dimensional) == 10);\n   \
+      \ assert(kk2::all_sum<long long>(three_dimensional) == 10);\n    assert(kk2::all_sum<long\
+      \ long>(empty) == 0);\n    assert(kk2::all_sum<long long>(nested_empty) == 0);\n\
+      \n    assert(kk2::all_prod<long long>(one_dimensional) == 24);\n    assert(kk2::all_prod<long\
+      \ long>(two_dimensional) == 24);\n    assert(kk2::all_prod<long long>(empty)\
+      \ == 1);\n    assert(kk2::all_min<int>(two_dimensional) == 1);\n    assert(kk2::all_max<int>(two_dimensional)\
+      \ == 4);\n    assert(kk2::all_min<int>(empty) == 0);\n    assert(kk2::all_max<int>(nested_empty)\
+      \ == 0);\n\n    assert(kk2::all_xor<int>(one_dimensional) == 4);\n    assert(kk2::all_and<int>(one_dimensional)\
+      \ == 0);\n    assert(kk2::all_or<int>(one_dimensional) == 7);\n    assert(kk2::all_gcd<int>(two_dimensional)\
+      \ == 1);\n    assert(kk2::all_lcm<int>(two_dimensional) == 12);\n    assert(kk2::all_count(two_dimensional,\
+      \ 2) == 1);\n    assert(kk2::all_count(nested_empty, 2) == 0);\n\n    vector<int>\
+      \ empty_one_dimensional;\n    kk2::fill_all(empty_one_dimensional, 9);\n   \
+      \ assert(kk2::iota_all(empty_one_dimensional, 3) == 0);\n\n    const auto sum\
+      \ = [](long long lhs, long long rhs) {\n        return lhs + rhs;\n    };\n\
+      \    assert(kk2::all_monoid_prod(two_dimensional, 0LL, sum) == 10);\n\n    return\
+      \ 0;\n}\n"
+    name: default
+  - code: "#line 1 \"verify/unit_test/template/function_util.test.cpp\"\n// competitive-verifier:\
+      \ STANDALONE\n\n#line 1 \"template/function_util.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <functional>\n#include <numeric>\n#include <ranges>\n#include <vector>\n\
+      \n#line 1 \"math/monoid/max.hpp\"\n\n\n\n#line 5 \"math/monoid/max.hpp\"\n\n\
+      #line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
+      #include <istream>\n#include <ostream>\n#include <type_traits>\n\nnamespace\
+      \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
+      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
+      \ = typename std::conditional<std::is_same<T, std::istream>::value\n       \
+      \                                                   || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
+      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 7 \"math/monoid/max.hpp\"\n\nnamespace kk2 {\n\
+      \nnamespace monoid {\n\ntemplate <class S, class Compare = std::less<S>> struct\
+      \ Max {\n    static constexpr bool commutative = true;\n    using M = Max;\n\
+      \    S a;\n    bool is_unit;\n\n    Max() : a(S()), is_unit(true) {}\n    Max(S\
+      \ a_) : a(a_), is_unit(false) {}\n    operator S() const { return a; }\n\n \
+      \   inline static M op(M l, M r) {\n        if (l.is_unit or r.is_unit) return\
+      \ l.is_unit ? r : l;\n        return Compare{}(l.a, r.a) ? r : l;\n    }\n\n\
+      \    inline static M unit() { return M(); }\n\n    bool operator==(const M &rhs)\
+      \ const {\n        return is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n\
+      \    }\n\n    bool operator!=(const M &rhs) const {\n        return is_unit\
+      \ != rhs.is_unit or (!is_unit and a != rhs.a);\n    }\n\n    template <OutputStream\
+      \ OStream> friend OStream &operator<<(OStream &os, const M &x) {\n        if\
+      \ (x.is_unit) os << \"-inf\";\n        else os << x.a;\n        return os;\n\
+      \    }\n\n    template <InputStream IStream> friend IStream &operator>>(IStream\
+      \ &is, M &x) {\n        is >> x.a;\n        x.is_unit = false;\n        return\
+      \ is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\n\n#line 1\
+      \ \"math/monoid/min.hpp\"\n\n\n\n#line 5 \"math/monoid/min.hpp\"\n\n#line 7\
+      \ \"math/monoid/min.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate\
+      \ <class S, class Compare = std::less<S>> struct Min {\n    static constexpr\
+      \ bool commutative = true;\n    using M = Min;\n    S a;\n    bool is_unit;\n\
+      \n    Min() : a(S()), is_unit(true) {}\n    Min(S a_) : a(a_), is_unit(false)\
+      \ {}\n    operator S() const { return a; }\n\n    inline static M op(M l, M\
+      \ r) {\n        if (l.is_unit or r.is_unit) return l.is_unit ? r : l;\n    \
+      \    return Compare{}(l.a, r.a) ? l : r;\n    }\n\n    inline static M unit()\
+      \ { return M(); }\n\n    bool operator==(const M &rhs) const {\n        return\
+      \ is_unit == rhs.is_unit and (is_unit or a == rhs.a);\n    }\n\n    bool operator!=(const\
+      \ M &rhs) const {\n        return is_unit != rhs.is_unit or (!is_unit and a\
+      \ != rhs.a);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const M &x) {\n        if (x.is_unit) os << \"inf\";\n        else os\
+      \ << x.a;\n        return os;\n    }\n\n    template <InputStream IStream> friend\
+      \ IStream &operator>>(IStream &is, M &x) {\n        is >> x.a;\n        x.is_unit\
+      \ = false;\n        return is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"type_traits/container_traits.hpp\"\n\n\n\n#include <array>\n\
+      #line 6 \"type_traits/container_traits.hpp\"\n#include <deque>\n#include <list>\n\
+      #include <string>\n#line 11 \"type_traits/container_traits.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <typename T> struct is_vector : std::false_type {};\ntemplate\
+      \ <typename T, typename Alloc> struct is_vector<std::vector<T, Alloc>> : std::true_type\
+      \ {};\n\ntemplate <typename T> struct is_container : std::false_type {};\ntemplate\
+      \ <typename T, typename Alloc>\nstruct is_container<std::vector<T, Alloc>> :\
+      \ std::true_type {};\ntemplate <typename CharT, typename Traits, typename Alloc>\n\
+      struct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type\
+      \ {};\ntemplate <typename T, std::size_t N> struct is_container<std::array<T,\
+      \ N>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::deque<T,\
+      \ Alloc>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct\
+      \ is_container<std::list<T, Alloc>> : std::true_type {};\ntemplate <typename\
+      \ T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;\n\
+      \ntemplate <class T>\nconcept Vector = is_vector<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept Container = is_container<std::remove_cvref_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 13 \"template/function_util.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int first, Sizes...\
+      \ sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n\
+      \    } else {\n        return std::vector<decltype(make_vector<T>(sizes...))>(first,\
+      \ make_vector<T>(sizes...));\n    }\n}\n\ntemplate <class T, class U> void fill_all(std::vector<T>\
+      \ &v, const U &x) {\n    if constexpr (Vector<T>) {\n        for (auto &u :\
+      \ v) fill_all(u, x);\n    } else {\n        std::ranges::fill(v, T(x));\n  \
+      \  }\n}\n\ntemplate <class T, class U> int iota_all(std::vector<T> &v, U x,\
+      \ int offset = 0) {\n    if constexpr (Vector<T>) {\n        for (auto &u :\
+      \ v) offset += iota_all(u, x + offset);\n    } else {\n        std::ranges::iota(v,\
+      \ x);\n        offset += static_cast<int>(std::ranges::ssize(v));\n    }\n \
+      \   return offset;\n}\n\n\n// T: commutative monoid, F: (U, T) -> U\ntemplate\
+      \ <class U, class T, class F>\nU all_monoid_prod(const std::vector<T> &v, U\
+      \ unit, const F &f) {\n    if constexpr (Vector<T>) {\n        auto subproducts\
+      \ =\n            v | std::views::transform([&](const auto &x) { return all_monoid_prod(x,\
+      \ unit, f); });\n        return std::ranges::fold_left(subproducts, unit, std::cref(f));\n\
+      \    } else {\n        return std::ranges::fold_left(v, unit, std::cref(f));\n\
+      \    }\n}\n\ntemplate <class U, class T> U all_sum(const std::vector<T> &v,\
+      \ U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b) {\
+      \ return a + b; });\n}\ntemplate <class U, class T> U all_prod(const std::vector<T>\
+      \ &v, U unit = U(1)) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U\
+      \ b) { return a * b; });\n}\ntemplate <class U, class T> U all_xor(const std::vector<T>\
+      \ &v, U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b)\
+      \ { return a ^ b; });\n}\ntemplate <class U, class T> U all_and(const std::vector<T>\
+      \ &v, U unit = U(-1)) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U\
+      \ b) { return a & b; });\n}\ntemplate <class U, class T> U all_or(const std::vector<T>\
+      \ &v, U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b)\
+      \ { return a | b; });\n}\ntemplate <class U, class T> U all_min(const std::vector<T>\
+      \ &v) {\n    return all_monoid_prod<monoid::Min<U>, T>(v, monoid::Min<U>::unit(),\
+      \ monoid::Min<U>::op);\n}\ntemplate <class U, class T> U all_max(const std::vector<T>\
+      \ &v) {\n    return all_monoid_prod<monoid::Max<U>, T>(v, monoid::Max<U>::unit(),\
+      \ monoid::Max<U>::op);\n}\ntemplate <class U, class T> U all_gcd(const std::vector<T>\
+      \ &v, U unit = U()) {\n    return all_monoid_prod<U, T>(v, unit, [](U a, U b)\
+      \ { return std::gcd(a, b); });\n}\ntemplate <class U, class T> U all_lcm(const\
+      \ std::vector<T> &v, U unit = U(1)) {\n    return all_monoid_prod<U, T>(v, unit,\
+      \ [](U a, U b) { return std::lcm(a, b); });\n}\ntemplate <class U, class T>\
+      \ int all_count(const std::vector<T> &v, U x) {\n    if constexpr (Vector<T>)\
+      \ {\n        auto counts =\n            v | std::views::transform([&](const\
+      \ auto &values) { return all_count(values, x); });\n        return std::ranges::fold_left(counts,\
+      \ 0, std::plus{});\n    } else {\n        return static_cast<int>(std::ranges::count(v,\
+      \ x));\n    }\n}\n\n} // namespace kk2\n\n\n#line 4 \"verify/unit_test/template/function_util.test.cpp\"\
+      \n\n#line 6 \"verify/unit_test/template/function_util.test.cpp\"\n#include <cassert>\n\
+      #line 9 \"verify/unit_test/template/function_util.test.cpp\"\n\nint main() {\n\
+      \    using std::vector;\n\n    auto cube = kk2::make_vector<int>(2, 2, 3);\n\
+      \    assert(cube.size() == 2);\n    assert(cube[0].size() == 2);\n    assert(cube[0][0].size()\
+      \ == 3);\n\n    kk2::fill_all(cube, 4);\n    assert(cube == vector(2, vector(2,\
+      \ vector<int>(3, 4))));\n\n    assert(kk2::iota_all(cube, 1) == 12);\n    const\
+      \ vector expected_cube{\n        vector{vector{1, 2, 3}, vector{4, 5, 6}   },\n\
+      \        vector{vector{7, 8, 9}, vector{10, 11, 12}}\n    };\n    assert(cube\
+      \ == expected_cube);\n\n    const vector<int> one_dimensional{1, 2, 3, 4};\n\
+      \    const vector<vector<int>> two_dimensional{\n        {1, 2},\n        {},\n\
+      \        {3, 4}\n    };\n    const vector<vector<vector<int>>> three_dimensional{\n\
+      \        {{1}, {2}},\n        {},\n        {{3, 4}}\n    };\n    const vector<vector<int>>\
+      \ empty;\n    const vector<vector<int>> nested_empty{{}, {}};\n\n    assert(kk2::all_sum<long\
+      \ long>(one_dimensional) == 10);\n    assert(kk2::all_sum<long long>(two_dimensional)\
+      \ == 10);\n    assert(kk2::all_sum<long long>(three_dimensional) == 10);\n \
+      \   assert(kk2::all_sum<long long>(empty) == 0);\n    assert(kk2::all_sum<long\
+      \ long>(nested_empty) == 0);\n\n    assert(kk2::all_prod<long long>(one_dimensional)\
+      \ == 24);\n    assert(kk2::all_prod<long long>(two_dimensional) == 24);\n  \
+      \  assert(kk2::all_prod<long long>(empty) == 1);\n    assert(kk2::all_min<int>(two_dimensional)\
+      \ == 1);\n    assert(kk2::all_max<int>(two_dimensional) == 4);\n    assert(kk2::all_min<int>(empty)\
+      \ == 0);\n    assert(kk2::all_max<int>(nested_empty) == 0);\n\n    assert(kk2::all_xor<int>(one_dimensional)\
+      \ == 4);\n    assert(kk2::all_and<int>(one_dimensional) == 0);\n    assert(kk2::all_or<int>(one_dimensional)\
+      \ == 7);\n    assert(kk2::all_gcd<int>(two_dimensional) == 1);\n    assert(kk2::all_lcm<int>(two_dimensional)\
+      \ == 12);\n    assert(kk2::all_count(two_dimensional, 2) == 1);\n    assert(kk2::all_count(nested_empty,\
+      \ 2) == 0);\n\n    vector<int> empty_one_dimensional;\n    kk2::fill_all(empty_one_dimensional,\
+      \ 9);\n    assert(kk2::iota_all(empty_one_dimensional, 3) == 0);\n\n    const\
+      \ auto sum = [](long long lhs, long long rhs) {\n        return lhs + rhs;\n\
+      \    };\n    assert(kk2::all_monoid_prod(two_dimensional, 0LL, sum) == 10);\n\
+      \n    return 0;\n}\n"
+    name: bundled
+  isFailed: false
+  isVerificationFile: true
+  path: verify/unit_test/template/function_util.test.cpp
+  pathExtension: cpp
+  requiredBy: []
+  testcases: []
+  timestamp: '2026-09-21 18:50:04+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/unit_test/template/function_util.test.cpp
+layout: document
+---

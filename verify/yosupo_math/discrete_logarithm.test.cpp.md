@@ -358,16 +358,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/discrete_logarithm.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/discrete_logarithm.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using mint = kk2::ModInt<0>;\n \
       \   int t;\n    kin >> t;\n    rep(t) {\n        int xx, yy, m;\n        kin\
       \ >> xx >> yy >> m;\n        mint::setmod(m);\n        mint x = xx, y = yy;\n\
@@ -380,107 +380,107 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 1.3642203060000213
+  - elapsed: 1.3671389489999797
     environment: g++
-    memory: 4.936
+    memory: 5.032
     name: even_mod_00
     status: AC
-  - elapsed: 2.058110768000006
+  - elapsed: 2.000279908999971
     environment: g++
     memory: 4.996
     name: even_mod_01
     status: AC
-  - elapsed: 1.4986278869999978
-    environment: g++
-    memory: 5.112
-    name: even_mod_impossible_00
-    status: AC
-  - elapsed: 2.232915907000006
-    environment: g++
-    memory: 5.164
-    name: even_mod_impossible_01
-    status: AC
-  - elapsed: 0.0023865880000073503
-    environment: g++
-    memory: 3.744
-    name: example_00
-    status: AC
-  - elapsed: 1.3514514969999993
-    environment: g++
-    memory: 4.948
-    name: max_random_00
-    status: AC
-  - elapsed: 1.4358987139999897
-    environment: g++
-    memory: 4.964
-    name: max_random_01
-    status: AC
-  - elapsed: 1.4661761849999948
-    environment: g++
-    memory: 4.996
-    name: max_random_02
-    status: AC
-  - elapsed: 1.0420992980000108
-    environment: g++
-    memory: 5.08
-    name: max_random_yes_00
-    status: AC
-  - elapsed: 1.052352739999975
-    environment: g++
-    memory: 4.996
-    name: max_random_yes_01
-    status: AC
-  - elapsed: 1.133843829
-    environment: g++
-    memory: 5.12
-    name: max_random_yes_prime_00
-    status: AC
-  - elapsed: 1.1662525559999892
+  - elapsed: 1.4909488449999913
     environment: g++
     memory: 5.104
+    name: even_mod_impossible_00
+    status: AC
+  - elapsed: 2.1655354459999785
+    environment: g++
+    memory: 5.144
+    name: even_mod_impossible_01
+    status: AC
+  - elapsed: 0.002340105000030235
+    environment: g++
+    memory: 3.74
+    name: example_00
+    status: AC
+  - elapsed: 1.3425869789999751
+    environment: g++
+    memory: 4.988
+    name: max_random_00
+    status: AC
+  - elapsed: 1.4244675820000339
+    environment: g++
+    memory: 4.924
+    name: max_random_01
+    status: AC
+  - elapsed: 1.4406428849999884
+    environment: g++
+    memory: 5.036
+    name: max_random_02
+    status: AC
+  - elapsed: 1.0363935920000245
+    environment: g++
+    memory: 5.104
+    name: max_random_yes_00
+    status: AC
+  - elapsed: 1.0316573049999533
+    environment: g++
+    memory: 4.98
+    name: max_random_yes_01
+    status: AC
+  - elapsed: 1.13784731100003
+    environment: g++
+    memory: 4.828
+    name: max_random_yes_prime_00
+    status: AC
+  - elapsed: 1.153547661999994
+    environment: g++
+    memory: 5.1
     name: max_random_yes_prime_01
     status: AC
-  - elapsed: 0.5354594730000031
+  - elapsed: 0.5293770140000333
     environment: g++
-    memory: 4.632
+    memory: 4.568
     name: random_00
     status: AC
-  - elapsed: 0.7117968059999953
+  - elapsed: 0.6835134840000023
     environment: g++
-    memory: 4.904
+    memory: 4.92
     name: random_01
     status: AC
-  - elapsed: 0.8264544150000006
+  - elapsed: 0.816877240999986
     environment: g++
     memory: 4.972
     name: random_02
     status: AC
-  - elapsed: 1.248434316000015
+  - elapsed: 1.241797775000009
     environment: g++
-    memory: 4.976
+    memory: 4.988
     name: random_prime_00
     status: AC
-  - elapsed: 1.228798678000004
+  - elapsed: 1.2251674120000189
     environment: g++
-    memory: 5.144
+    memory: 5.14
     name: random_prime_01
     status: AC
-  - elapsed: 0.0024227170000017395
+  - elapsed: 0.002333292999992409
     environment: g++
     memory: 3.708
     name: small_00
     status: AC
-  - elapsed: 0.002409298000003446
+  - elapsed: 0.0022267230000352356
     environment: g++
-    memory: 3.74
+    memory: 3.724
     name: small_01
     status: AC
-  - elapsed: 0.0023364799999967545
+  - elapsed: 0.00220617399997991
     environment: g++
-    memory: 3.748
+    memory: 3.744
     name: small_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/discrete_logarithm.test.cpp

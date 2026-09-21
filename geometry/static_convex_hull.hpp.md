@@ -83,7 +83,7 @@ data:
   path: geometry/static_convex_hull.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull.test.cpp

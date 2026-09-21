@@ -380,16 +380,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_ds/ds_static_range_inversions.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_ds/ds_static_range_inversions.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    vc<int> a(n);\n    kin >> a;\n    vc<pair<int, int>> queries(q);\n    kin\
       \ >> queries;\n\n    kk2::CC cc(a);\n    vc<int> b = cc(a);\n    kk2::BinaryIndexedTree<int>\
@@ -410,72 +410,72 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002710755000066456
+  - elapsed: 0.002785059000018464
     environment: g++
-    memory: 3.752
+    memory: 3.696
     name: example_00
     status: AC
-  - elapsed: 2.957195124000009
+  - elapsed: 2.972705031000004
     environment: g++
-    memory: 8.012
+    memory: 8.212
     name: max_00
     status: AC
-  - elapsed: 2.868829007000045
+  - elapsed: 2.853363497999993
     environment: g++
-    memory: 8.148
+    memory: 8.212
     name: max_01
     status: AC
-  - elapsed: 2.951210892000063
+  - elapsed: 2.9704294830000038
     environment: g++
-    memory: 8.208
+    memory: 8.148
     name: max_02
     status: AC
-  - elapsed: 0.4756211469999698
+  - elapsed: 0.4770785910000086
     environment: g++
-    memory: 5.972
+    memory: 5.844
     name: random_00
     status: AC
-  - elapsed: 0.9003750350000246
+  - elapsed: 0.8926026100000115
     environment: g++
-    memory: 5.332
+    memory: 5.392
     name: random_01
     status: AC
-  - elapsed: 1.167917449000015
+  - elapsed: 1.1580777440000247
     environment: g++
-    memory: 6.292
+    memory: 6.168
     name: random_02
     status: AC
-  - elapsed: 2.001170845000047
+  - elapsed: 2.0154187409999906
     environment: g++
-    memory: 7.764
+    memory: 7.82
     name: small_a_00
     status: AC
-  - elapsed: 0.012626272999909816
+  - elapsed: 0.012599214999994501
     environment: g++
-    memory: 3.98
+    memory: 3.976
     name: small_n_00
     status: AC
-  - elapsed: 0.04809612000008201
+  - elapsed: 0.04657643799998823
     environment: g++
     memory: 5.456
     name: small_n_01
     status: AC
-  - elapsed: 0.036014872000009746
+  - elapsed: 0.038481452000013405
     environment: g++
-    memory: 4.996
+    memory: 4.948
     name: small_n_02
     status: AC
-  - elapsed: 0.02453661100003046
+  - elapsed: 0.02489662199999998
     environment: g++
-    memory: 4.436
+    memory: 4.5
     name: small_n_03
     status: AC
-  - elapsed: 0.011959194000041862
+  - elapsed: 0.01174884499999962
     environment: g++
-    memory: 4.252
+    memory: 4.232
     name: small_n_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_static_range_inversions.test.cpp

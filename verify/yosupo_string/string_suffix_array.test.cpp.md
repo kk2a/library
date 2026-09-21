@@ -401,16 +401,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_string/string_suffix_array.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_string/string_suffix_array.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    string s;\n    kin >> s;\n    kk2::SuffixArray\
       \ sa(s);\n    kout << sa.get_sa() << \"\\n\";\n\n    return 0;\n}\n"
     name: bundled
@@ -420,257 +420,257 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.2355260570000013
+  - elapsed: 0.2384861670000049
     environment: g++
-    memory: 9.8
+    memory: 9.832
     name: all_same_00
     status: AC
-  - elapsed: 0.23682827300000042
+  - elapsed: 0.24135846800000138
     environment: g++
     memory: 9.94
     name: all_same_01
     status: AC
-  - elapsed: 0.23808497299999942
+  - elapsed: 0.2381499319999989
     environment: g++
-    memory: 9.892
+    memory: 9.952
     name: all_same_02
     status: AC
-  - elapsed: 0.23699381800000197
+  - elapsed: 0.2556104890000057
     environment: g++
     memory: 9.948
     name: all_same_03
     status: AC
-  - elapsed: 0.2354087279999959
+  - elapsed: 0.23516108200000474
     environment: g++
     memory: 9.84
     name: all_same_04
     status: AC
-  - elapsed: 0.2823446169999926
+  - elapsed: 0.2801919949999956
     environment: g++
-    memory: 9.908
+    memory: 9.948
     name: almost_single_00
     status: AC
-  - elapsed: 0.2922246259999923
+  - elapsed: 0.2903810840000034
     environment: g++
-    memory: 9.948
+    memory: 9.912
     name: almost_single_01
     status: AC
-  - elapsed: 0.2920339530000007
-    environment: g++
-    memory: 9.896
-    name: almost_single_02
-    status: AC
-  - elapsed: 0.2255679980000025
-    environment: g++
-    memory: 9.952
-    name: almost_single_03
-    status: AC
-  - elapsed: 0.2919360269999913
+  - elapsed: 0.29007847100000106
     environment: g++
     memory: 9.948
+    name: almost_single_02
+    status: AC
+  - elapsed: 0.22286003600000015
+    environment: g++
+    memory: 9.948
+    name: almost_single_03
+    status: AC
+  - elapsed: 0.2906398460000048
+    environment: g++
+    memory: 9.912
     name: almost_single_04
     status: AC
-  - elapsed: 0.2806997779999989
+  - elapsed: 0.276547187999995
     environment: g++
-    memory: 9.952
+    memory: 9.948
     name: almost_single_05
     status: AC
-  - elapsed: 0.528614864000005
+  - elapsed: 0.5159182870000052
     environment: g++
     memory: 19.384
     name: binary_carry_00
     status: AC
-  - elapsed: 0.5217298489999962
+  - elapsed: 0.5114524030000069
     environment: g++
-    memory: 19.548
+    memory: 19.5
     name: binary_carry_01
     status: AC
-  - elapsed: 0.0026121099999869557
+  - elapsed: 0.002580059999999662
     environment: g++
-    memory: 3.816
+    memory: 3.612
     name: example_00
     status: AC
-  - elapsed: 0.0021256120000003875
+  - elapsed: 0.0022557670000082908
     environment: g++
-    memory: 3.824
+    memory: 3.74
     name: example_01
     status: AC
-  - elapsed: 0.0021731960000010986
+  - elapsed: 0.0021193329999960042
     environment: g++
-    memory: 3.624
+    memory: 3.668
     name: example_02
     status: AC
-  - elapsed: 0.002106947000001469
+  - elapsed: 0.002111098000000311
     environment: g++
-    memory: 3.764
+    memory: 3.808
     name: example_03
     status: AC
-  - elapsed: 0.40570264399998734
+  - elapsed: 0.4002582579999938
     environment: g++
-    memory: 15.16
+    memory: 15.164
     name: fib_str_00
     status: AC
-  - elapsed: 0.28765705600000047
+  - elapsed: 0.28638249300000496
     environment: g++
-    memory: 12.012
+    memory: 12.016
     name: fib_str_01
     status: AC
-  - elapsed: 0.33162778000000515
+  - elapsed: 0.32708726799999965
     environment: g++
-    memory: 13.284
+    memory: 13.296
     name: fib_str_02
     status: AC
-  - elapsed: 0.21723404799999457
+  - elapsed: 0.21732556699998895
     environment: g++
     memory: 9.928
     name: fib_str_03
     status: AC
-  - elapsed: 0.41996287800000687
+  - elapsed: 0.41608755500000427
     environment: g++
-    memory: 15.984
+    memory: 15.92
     name: fib_str_04
     status: AC
-  - elapsed: 0.002797018999999068
+  - elapsed: 0.00261526799999956
     environment: g++
     memory: 3.772
     name: hack_00
     status: AC
-  - elapsed: 0.002323230000001786
+  - elapsed: 0.002251869000005513
     environment: g++
-    memory: 3.816
+    memory: 3.828
     name: hack_01
     status: AC
-  - elapsed: 0.0022235929999965265
+  - elapsed: 0.0021959950000081108
     environment: g++
     memory: 3.8
     name: hack_02
     status: AC
-  - elapsed: 0.43048296800000685
+  - elapsed: 0.43217424699999185
     environment: g++
-    memory: 15.872
+    memory: 15.88
     name: max_random_00
     status: AC
-  - elapsed: 0.42985456899999974
+  - elapsed: 0.4361781320000091
     environment: g++
-    memory: 15.924
+    memory: 15.928
     name: max_random_01
     status: AC
-  - elapsed: 0.43404532399999596
+  - elapsed: 0.4350457919999968
     environment: g++
-    memory: 15.836
+    memory: 15.964
     name: max_random_02
     status: AC
-  - elapsed: 0.4307988079999916
+  - elapsed: 0.43633348100000546
     environment: g++
-    memory: 15.836
+    memory: 15.956
     name: max_random_03
     status: AC
-  - elapsed: 0.4297779049999946
+  - elapsed: 0.43250189699999453
     environment: g++
-    memory: 15.784
+    memory: 15.872
     name: max_random_04
     status: AC
-  - elapsed: 0.2263861380000094
+  - elapsed: 0.22948712100000535
     environment: g++
-    memory: 10.176
+    memory: 10.224
     name: near_power_of_2_max_random_00
     status: AC
-  - elapsed: 0.22532707100000948
+  - elapsed: 0.2292906710000011
     environment: g++
-    memory: 10.22
+    memory: 10.092
     name: near_power_of_2_max_random_01
     status: AC
-  - elapsed: 0.12569793199999424
+  - elapsed: 0.12691256599998724
     environment: g++
-    memory: 7.02
+    memory: 6.984
     name: near_power_of_2_max_same_00
     status: AC
-  - elapsed: 0.12638984999999536
+  - elapsed: 0.12825420400000098
     environment: g++
-    memory: 6.968
+    memory: 7.024
     name: near_power_of_2_max_same_01
     status: AC
-  - elapsed: 0.002317865999998503
+  - elapsed: 0.0025669850000014094
     environment: g++
-    memory: 3.836
+    memory: 3.808
     name: one_00
     status: AC
-  - elapsed: 0.3386214710000104
+  - elapsed: 0.3515830130000097
     environment: g++
-    memory: 13.396
+    memory: 13.344
     name: random_00
     status: AC
-  - elapsed: 0.40258924699999454
+  - elapsed: 0.4090055470000067
     environment: g++
-    memory: 15.132
+    memory: 15.176
     name: random_01
     status: AC
-  - elapsed: 0.045449950999994826
+  - elapsed: 0.04610754499999814
     environment: g++
-    memory: 4.804
+    memory: 4.788
     name: random_02
     status: AC
-  - elapsed: 0.3756591949999972
+  - elapsed: 0.37804226599999424
     environment: g++
-    memory: 14.32
+    memory: 14.356
     name: random_03
     status: AC
-  - elapsed: 0.2389874859999992
+  - elapsed: 0.24045341899999073
     environment: g++
-    memory: 10.48
+    memory: 10.476
     name: random_04
     status: AC
-  - elapsed: 0.002362403999995877
+  - elapsed: 0.0025004809999984445
     environment: g++
-    memory: 3.832
+    memory: 3.668
     name: small_random_00
     status: AC
-  - elapsed: 0.0021736700000047904
+  - elapsed: 0.002168416999992928
     environment: g++
-    memory: 3.812
+    memory: 3.668
     name: small_random_01
     status: AC
-  - elapsed: 0.0021362390000092546
+  - elapsed: 0.0021413630000068906
     environment: g++
-    memory: 3.816
+    memory: 3.668
     name: small_random_02
     status: AC
-  - elapsed: 0.0021696520000062947
+  - elapsed: 0.0021475879999997005
     environment: g++
-    memory: 3.612
+    memory: 3.792
     name: small_random_03
     status: AC
-  - elapsed: 0.002167008000000692
-    environment: g++
-    memory: 3.668
-    name: small_random_04
-    status: AC
-  - elapsed: 0.0022246560000098725
-    environment: g++
-    memory: 3.616
-    name: small_random_05
-    status: AC
-  - elapsed: 0.0022442619999907265
+  - elapsed: 0.002174154000002204
     environment: g++
     memory: 3.812
+    name: small_random_04
+    status: AC
+  - elapsed: 0.0021433310000134043
+    environment: g++
+    memory: 3.824
+    name: small_random_05
+    status: AC
+  - elapsed: 0.0021705269999898746
+    environment: g++
+    memory: 3.816
     name: small_random_06
     status: AC
-  - elapsed: 0.0021881259999929625
-    environment: g++
-    memory: 3.784
-    name: small_random_07
-    status: AC
-  - elapsed: 0.0020763769999945225
+  - elapsed: 0.002174980000006599
     environment: g++
     memory: 3.764
-    name: small_random_08
+    name: small_random_07
     status: AC
-  - elapsed: 0.0021538520000063954
+  - elapsed: 0.0020939839999982723
     environment: g++
     memory: 3.668
+    name: small_random_08
+    status: AC
+  - elapsed: 0.0021651610000077426
+    environment: g++
+    memory: 3.612
     name: small_random_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_suffix_array.test.cpp

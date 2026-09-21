@@ -464,16 +464,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/factrize.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/factrize.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep(q)\
       \ {\n        i64 a;\n        kin >> a;\n        int cnt = 0;\n        auto f\
       \ = kk2::factorize(a);\n        for (auto [p, e] : f) cnt += e;\n        kout\
@@ -486,162 +486,162 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0055664650000153415
-    environment: g++
-    memory: 3.808
-    name: '4295098369_00'
-    status: AC
-  - elapsed: 0.15171380499998577
-    environment: g++
-    memory: 3.796
-    name: '999381247093216751_00'
-    status: AC
-  - elapsed: 0.13932383700000628
-    environment: g++
-    memory: 3.784
-    name: big2_00
-    status: AC
-  - elapsed: 0.12290680900002826
-    environment: g++
-    memory: 3.668
-    name: big2_01
-    status: AC
-  - elapsed: 0.1285707580000235
-    environment: g++
-    memory: 3.668
-    name: big2_02
-    status: AC
-  - elapsed: 0.1529814180000244
-    environment: g++
-    memory: 3.816
-    name: big2_worse_00
-    status: AC
-  - elapsed: 0.12465445199995884
-    environment: g++
-    memory: 3.808
-    name: big_semiprime_gen_00
-    status: AC
-  - elapsed: 0.1282814809999877
-    environment: g++
-    memory: 3.796
-    name: big_semiprime_gen_01
-    status: AC
-  - elapsed: 0.11031048699999246
-    environment: g++
-    memory: 3.796
-    name: big_semiprime_random_00
-    status: AC
-  - elapsed: 0.11577989799997113
-    environment: g++
-    memory: 3.616
-    name: big_semiprime_random_01
-    status: AC
-  - elapsed: 0.012786122000022715
-    environment: g++
-    memory: 3.62
-    name: carmichael_00
-    status: AC
-  - elapsed: 0.002482839000037984
+  - elapsed: 0.005096787000013592
     environment: g++
     memory: 3.812
-    name: example_00
+    name: '4295098369_00'
     status: AC
-  - elapsed: 0.0023820800000180498
-    environment: g++
-    memory: 3.764
-    name: fixed_RNG_buster_00
-    status: AC
-  - elapsed: 0.002391943999953128
-    environment: g++
-    memory: 3.792
-    name: hack00_00
-    status: AC
-  - elapsed: 0.011245116999987204
-    environment: g++
-    memory: 3.776
-    name: max_00
-    status: AC
-  - elapsed: 0.016697302000011405
-    environment: g++
-    memory: 3.668
-    name: pow2_00
-    status: AC
-  - elapsed: 0.016391319000035764
-    environment: g++
-    memory: 3.776
-    name: pow2_01
-    status: AC
-  - elapsed: 0.021250259999987975
+  - elapsed: 0.1502345190000085
     environment: g++
     memory: 3.804
-    name: pow2_02
+    name: '999381247093216751_00'
     status: AC
-  - elapsed: 0.0060329940000087845
+  - elapsed: 0.138901814999997
     environment: g++
-    memory: 3.668
-    name: prime_test_special_00
+    memory: 3.816
+    name: big2_00
     status: AC
-  - elapsed: 0.006906575000016346
-    environment: g++
-    memory: 3.808
-    name: prime_test_special_01
-    status: AC
-  - elapsed: 0.011135163999995257
-    environment: g++
-    memory: 3.74
-    name: prime_test_special_02
-    status: AC
-  - elapsed: 0.003908925999951407
-    environment: g++
-    memory: 3.604
-    name: prime_test_special_03
-    status: AC
-  - elapsed: 0.003484037999953671
-    environment: g++
-    memory: 3.808
-    name: prime_test_special_bug_00
-    status: AC
-  - elapsed: 0.004026238999983889
-    environment: g++
-    memory: 3.792
-    name: prime_test_special_bug_01
-    status: AC
-  - elapsed: 0.003002195999954438
-    environment: g++
-    memory: 3.832
-    name: prime_test_special_bug_02
-    status: AC
-  - elapsed: 0.004752171999996335
-    environment: g++
-    memory: 3.768
-    name: random_00
-    status: AC
-  - elapsed: 0.005120615999999245
+  - elapsed: 0.14159515399998668
     environment: g++
     memory: 3.756
+    name: big2_01
+    status: AC
+  - elapsed: 0.14261355799999365
+    environment: g++
+    memory: 3.772
+    name: big2_02
+    status: AC
+  - elapsed: 0.1329883810000183
+    environment: g++
+    memory: 3.784
+    name: big2_worse_00
+    status: AC
+  - elapsed: 0.13312224199998468
+    environment: g++
+    memory: 3.668
+    name: big_semiprime_gen_00
+    status: AC
+  - elapsed: 0.12194902100000604
+    environment: g++
+    memory: 3.66
+    name: big_semiprime_gen_01
+    status: AC
+  - elapsed: 0.09835927500000707
+    environment: g++
+    memory: 3.624
+    name: big_semiprime_random_00
+    status: AC
+  - elapsed: 0.11008327499999382
+    environment: g++
+    memory: 3.804
+    name: big_semiprime_random_01
+    status: AC
+  - elapsed: 0.011784266000006482
+    environment: g++
+    memory: 3.756
+    name: carmichael_00
+    status: AC
+  - elapsed: 0.0022490059999995538
+    environment: g++
+    memory: 3.776
+    name: example_00
+    status: AC
+  - elapsed: 0.002242209000002049
+    environment: g++
+    memory: 3.62
+    name: fixed_RNG_buster_00
+    status: AC
+  - elapsed: 0.0021289629999898807
+    environment: g++
+    memory: 3.808
+    name: hack00_00
+    status: AC
+  - elapsed: 0.009186755999991192
+    environment: g++
+    memory: 3.816
+    name: max_00
+    status: AC
+  - elapsed: 0.014316084000000728
+    environment: g++
+    memory: 3.784
+    name: pow2_00
+    status: AC
+  - elapsed: 0.013995958000009523
+    environment: g++
+    memory: 3.812
+    name: pow2_01
+    status: AC
+  - elapsed: 0.01998126199998751
+    environment: g++
+    memory: 3.816
+    name: pow2_02
+    status: AC
+  - elapsed: 0.004580234000002292
+    environment: g++
+    memory: 3.816
+    name: prime_test_special_00
+    status: AC
+  - elapsed: 0.006254213999994818
+    environment: g++
+    memory: 3.62
+    name: prime_test_special_01
+    status: AC
+  - elapsed: 0.009877025000008643
+    environment: g++
+    memory: 3.624
+    name: prime_test_special_02
+    status: AC
+  - elapsed: 0.0040818520000129865
+    environment: g++
+    memory: 3.816
+    name: prime_test_special_03
+    status: AC
+  - elapsed: 0.002928487999980689
+    environment: g++
+    memory: 3.668
+    name: prime_test_special_bug_00
+    status: AC
+  - elapsed: 0.0035196329999962472
+    environment: g++
+    memory: 3.816
+    name: prime_test_special_bug_01
+    status: AC
+  - elapsed: 0.0026374180000061642
+    environment: g++
+    memory: 3.748
+    name: prime_test_special_bug_02
+    status: AC
+  - elapsed: 0.004616033999980118
+    environment: g++
+    memory: 3.816
+    name: random_00
+    status: AC
+  - elapsed: 0.005021845999976904
+    environment: g++
+    memory: 3.816
     name: random_01
     status: AC
-  - elapsed: 0.007446723999976257
+  - elapsed: 0.005429040999985091
     environment: g++
-    memory: 3.74
+    memory: 3.8
     name: random_02
     status: AC
-  - elapsed: 0.002810633000024154
+  - elapsed: 0.0024085219999960827
     environment: g++
-    memory: 3.796
+    memory: 3.784
     name: small_00
     status: AC
-  - elapsed: 0.0029125039999939872
+  - elapsed: 0.0024872950000087712
     environment: g++
-    memory: 3.656
+    memory: 3.816
     name: small_01
     status: AC
-  - elapsed: 0.0029586620000259245
+  - elapsed: 0.002534016999987898
     environment: g++
-    memory: 3.796
+    memory: 3.768
     name: small_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/factrize.test.cpp

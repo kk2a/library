@@ -300,16 +300,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_graph/tree_cartesian.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_graph/tree_cartesian.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n;\n    kin >> n;\n    vc<int>\
       \ a(n);\n    kin >> a;\n    auto [root, par] = kk2::cartesian_tree(a);\n   \
       \ par[root] = root;\n    kout << par << kendl;\n\n    return 0;\n}\n"
@@ -320,132 +320,132 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.23883149299999218
+  - elapsed: 0.3010773550000181
     environment: g++
-    memory: 15.188
+    memory: 15.156
     name: almost-decreasing_00
     status: AC
-  - elapsed: 0.1111110989999986
+  - elapsed: 0.14219894400002886
     environment: g++
     memory: 8.868
     name: almost-decreasing_01
     status: AC
-  - elapsed: 0.2270897270000063
+  - elapsed: 0.290436370000009
     environment: g++
-    memory: 19.22
+    memory: 19.2
     name: almost-increasing_00
     status: AC
-  - elapsed: 0.10729456100000334
+  - elapsed: 0.13586277699999982
     environment: g++
-    memory: 10.824
+    memory: 10.88
     name: almost-increasing_01
     status: AC
-  - elapsed: 0.23715407900000685
+  - elapsed: 0.3026549139999588
     environment: g++
-    memory: 15.128
+    memory: 15.196
     name: decreasing_00
     status: AC
-  - elapsed: 0.11204949800000463
+  - elapsed: 0.14210410200001888
     environment: g++
     memory: 8.868
     name: decreasing_01
     status: AC
-  - elapsed: 0.002490928000000281
+  - elapsed: 0.002788899999984551
     environment: g++
-    memory: 3.756
+    memory: 3.744
     name: example_00
     status: AC
-  - elapsed: 0.0022158799999942858
+  - elapsed: 0.0023181119999549082
     environment: g++
-    memory: 3.62
+    memory: 3.564
     name: example_01
     status: AC
-  - elapsed: 0.22669906100000503
+  - elapsed: 0.29003761000001305
     environment: g++
-    memory: 19.22
+    memory: 19.192
     name: increasing_00
     status: AC
-  - elapsed: 0.10888847700000781
+  - elapsed: 0.13687174200003938
     environment: g++
-    memory: 10.876
+    memory: 10.884
     name: increasing_01
     status: AC
-  - elapsed: 0.2901679349999995
+  - elapsed: 0.3608582040000101
     environment: g++
-    memory: 15.2
+    memory: 15.144
     name: random_00
     status: AC
-  - elapsed: 0.13760127999999838
+  - elapsed: 0.17026463299998795
     environment: g++
     memory: 8.86
     name: random_01
     status: AC
-  - elapsed: 0.17177533299999936
+  - elapsed: 0.2114922299999762
     environment: g++
-    memory: 10.28
+    memory: 10.244
     name: random_02
     status: AC
-  - elapsed: 0.12803016799999511
+  - elapsed: 0.1576436949999902
     environment: g++
-    memory: 8.48
+    memory: 8.448
     name: random_03
     status: AC
-  - elapsed: 0.23545026600000085
+  - elapsed: 0.29107907599995997
     environment: g++
-    memory: 12.944
+    memory: 12.896
     name: random_04
     status: AC
-  - elapsed: 0.0025640439999961018
+  - elapsed: 0.002766636000046674
     environment: g++
-    memory: 3.768
+    memory: 3.692
     name: small_00
     status: AC
-  - elapsed: 0.002124054000006481
+  - elapsed: 0.0022842710000077204
     environment: g++
-    memory: 3.792
+    memory: 3.78
     name: small_01
     status: AC
-  - elapsed: 0.0020652839999968364
+  - elapsed: 0.0023438609999857363
     environment: g++
-    memory: 3.788
+    memory: 3.572
     name: small_02
     status: AC
-  - elapsed: 0.0020759540000057086
-    environment: g++
-    memory: 3.784
-    name: small_03
-    status: AC
-  - elapsed: 0.0020373310000110223
+  - elapsed: 0.0022529940000026727
     environment: g++
     memory: 3.756
+    name: small_03
+    status: AC
+  - elapsed: 0.0022820979999664814
+    environment: g++
+    memory: 3.564
     name: small_04
     status: AC
-  - elapsed: 0.002040967999988652
+  - elapsed: 0.0022911220000310095
     environment: g++
-    memory: 3.764
+    memory: 3.776
     name: small_05
     status: AC
-  - elapsed: 0.0020989970000044877
+  - elapsed: 0.0022914820000323743
     environment: g++
-    memory: 3.752
+    memory: 3.62
     name: small_06
     status: AC
-  - elapsed: 0.002067728000000102
+  - elapsed: 0.00226829700000053
     environment: g++
-    memory: 3.792
+    memory: 3.724
     name: small_07
     status: AC
-  - elapsed: 0.0020288949999951456
+  - elapsed: 0.0022495389999903637
     environment: g++
-    memory: 3.564
+    memory: 3.756
     name: small_08
     status: AC
-  - elapsed: 0.0020940879999926665
+  - elapsed: 0.002268257000025642
     environment: g++
-    memory: 3.564
+    memory: 3.768
     name: small_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_cartesian.test.cpp

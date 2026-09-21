@@ -488,16 +488,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/yosupo_math/sum_of_totient_function.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/yosupo_math/sum_of_totient_function.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using mint = kk2::mont998;\n   \
       \ i64 n;\n    kin >> n;\n    kk2::PrefixSumOfMultiplicativeFunction<mint> ps(n);\n\
       \    auto g1 = [](i64) -> mint {\n        return 1;\n    };\n    auto g2 = [](i64\
@@ -514,247 +514,247 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.3739527379999572
+  - elapsed: 0.6086052140000078
     environment: g++
-    memory: 5.396
+    memory: 5.252
     name: boundaryA_00
     status: AC
-  - elapsed: 0.9019815670000071
+  - elapsed: 1.4688234730000005
     environment: g++
-    memory: 7.316
+    memory: 7.124
     name: boundaryA_01
     status: AC
-  - elapsed: 1.213717033000023
+  - elapsed: 1.993880691000001
     environment: g++
-    memory: 8.204
+    memory: 8.02
     name: boundaryA_02
     status: AC
-  - elapsed: 1.3263535430000388
+  - elapsed: 2.1957551360000025
     environment: g++
-    memory: 8.44
+    memory: 8.268
     name: boundaryA_03
     status: AC
-  - elapsed: 0.8088901800000485
-    environment: g++
-    memory: 6.904
-    name: boundaryA_04
-    status: AC
-  - elapsed: 0.7372056830000133
-    environment: g++
-    memory: 6.66
-    name: boundaryA_05
-    status: AC
-  - elapsed: 1.228436055999964
-    environment: g++
-    memory: 8.184
-    name: boundaryA_06
-    status: AC
-  - elapsed: 1.5166996030000064
-    environment: g++
-    memory: 9.08
-    name: boundaryA_07
-    status: AC
-  - elapsed: 0.5574494109999932
-    environment: g++
-    memory: 6.136
-    name: boundaryA_08
-    status: AC
-  - elapsed: 0.8371002019999878
-    environment: g++
-    memory: 8.648
-    name: boundaryA_09
-    status: AC
-  - elapsed: 0.3700707590000434
-    environment: g++
-    memory: 5.368
-    name: boundaryB_00
-    status: AC
-  - elapsed: 0.8947707190000074
-    environment: g++
-    memory: 7.288
-    name: boundaryB_01
-    status: AC
-  - elapsed: 1.2079850819999933
-    environment: g++
-    memory: 8.184
-    name: boundaryB_02
-    status: AC
-  - elapsed: 1.3177051029999802
-    environment: g++
-    memory: 8.468
-    name: boundaryB_03
-    status: AC
-  - elapsed: 0.8109919629999922
+  - elapsed: 1.336840029000001
     environment: g++
     memory: 6.916
+    name: boundaryA_04
+    status: AC
+  - elapsed: 1.2062009050000029
+    environment: g++
+    memory: 6.548
+    name: boundaryA_05
+    status: AC
+  - elapsed: 2.031444338
+    environment: g++
+    memory: 8.084
+    name: boundaryA_06
+    status: AC
+  - elapsed: 2.499381643999996
+    environment: g++
+    memory: 8.916
+    name: boundaryA_07
+    status: AC
+  - elapsed: 0.9186824820000083
+    environment: g++
+    memory: 6.036
+    name: boundaryA_08
+    status: AC
+  - elapsed: 1.3795464410000022
+    environment: g++
+    memory: 6.932
+    name: boundaryA_09
+    status: AC
+  - elapsed: 0.6086098399999997
+    environment: g++
+    memory: 5.268
+    name: boundaryB_00
+    status: AC
+  - elapsed: 1.468070434000012
+    environment: g++
+    memory: 7.124
+    name: boundaryB_01
+    status: AC
+  - elapsed: 1.991698740000004
+    environment: g++
+    memory: 8.076
+    name: boundaryB_02
+    status: AC
+  - elapsed: 2.182883572999998
+    environment: g++
+    memory: 8.324
+    name: boundaryB_03
+    status: AC
+  - elapsed: 1.3342529660000082
+    environment: g++
+    memory: 6.736
     name: boundaryB_04
     status: AC
-  - elapsed: 0.7304990609999891
+  - elapsed: 1.2060876829999927
     environment: g++
-    memory: 6.64
+    memory: 6.548
     name: boundaryB_05
     status: AC
-  - elapsed: 1.2289173880000135
+  - elapsed: 2.020769586
     environment: g++
-    memory: 8.196
+    memory: 8.084
     name: boundaryB_06
     status: AC
-  - elapsed: 1.5370028680000019
+  - elapsed: 2.4937320949999986
     environment: g++
-    memory: 9.08
+    memory: 8.972
     name: boundaryB_07
     status: AC
-  - elapsed: 0.556037329999981
+  - elapsed: 0.9183954169999993
     environment: g++
-    memory: 6.076
+    memory: 6.036
     name: boundaryB_08
     status: AC
-  - elapsed: 0.8347942020000119
+  - elapsed: 1.3741904569999974
     environment: g++
-    memory: 8.596
+    memory: 8.484
     name: boundaryB_09
     status: AC
-  - elapsed: 0.0018769950000319113
+  - elapsed: 0.0021959440000074437
     environment: g++
-    memory: 3.884
+    memory: 3.728
     name: example_00
     status: AC
-  - elapsed: 0.0017100410000239208
+  - elapsed: 0.0021459940000028155
     environment: g++
-    memory: 3.896
+    memory: 3.768
     name: example_01
     status: AC
-  - elapsed: 0.0016647049999960473
+  - elapsed: 0.0021132589999979245
     environment: g++
-    memory: 3.88
+    memory: 3.732
     name: example_02
     status: AC
-  - elapsed: 0.001623379000022851
+  - elapsed: 0.002107302999988292
     environment: g++
-    memory: 3.868
+    memory: 3.764
     name: handmade_00
     status: AC
-  - elapsed: 0.0016809589999979835
+  - elapsed: 0.002129951000000574
     environment: g++
-    memory: 3.884
+    memory: 3.728
     name: handmade_01
     status: AC
-  - elapsed: 0.001617425999995703
+  - elapsed: 0.0021223399999996673
     environment: g++
-    memory: 3.88
+    memory: 3.728
     name: handmade_02
     status: AC
-  - elapsed: 0.0017927679999729662
+  - elapsed: 0.00230084099999317
     environment: g++
-    memory: 3.92
+    memory: 3.768
     name: handmade_03
     status: AC
-  - elapsed: 1.5354850540000484
+  - elapsed: 2.5054712670000043
     environment: g++
-    memory: 9.108
+    memory: 8.908
     name: max_00
     status: AC
-  - elapsed: 1.5293366719999995
+  - elapsed: 2.506167425000001
     environment: g++
-    memory: 9.08
+    memory: 8.912
     name: max_01
     status: AC
-  - elapsed: 1.5274118860000385
+  - elapsed: 2.504559790000002
     environment: g++
-    memory: 9.104
+    memory: 8.916
     name: max_02
     status: AC
-  - elapsed: 1.536404220999998
+  - elapsed: 2.5114697270000192
     environment: g++
-    memory: 9.024
+    memory: 8.972
     name: max_03
     status: AC
-  - elapsed: 1.5264254289999712
+  - elapsed: 2.5034751770000128
     environment: g++
-    memory: 9.08
+    memory: 8.916
     name: max_04
     status: AC
-  - elapsed: 1.5248317499999757
+  - elapsed: 2.5032973909999896
     environment: g++
-    memory: 9.024
+    memory: 8.908
     name: max_05
     status: AC
-  - elapsed: 1.5322031180000408
+  - elapsed: 2.5152345700000183
     environment: g++
-    memory: 9.08
+    memory: 8.98
     name: max_06
     status: AC
-  - elapsed: 1.5211701059999996
+  - elapsed: 2.5094930349999913
     environment: g++
-    memory: 9.08
+    memory: 8.916
     name: max_07
     status: AC
-  - elapsed: 1.5253981949999798
+  - elapsed: 2.506249480000008
     environment: g++
-    memory: 9.08
+    memory: 8.916
     name: max_08
     status: AC
-  - elapsed: 1.5240948820000426
+  - elapsed: 2.5116585289999875
     environment: g++
-    memory: 9.024
+    memory: 8.916
     name: max_09
     status: AC
-  - elapsed: 0.37076536200004284
+  - elapsed: 0.6114971080000089
     environment: g++
-    memory: 5.368
+    memory: 5.148
     name: random_00
     status: AC
-  - elapsed: 0.8949677530000031
+  - elapsed: 1.4717505160000144
     environment: g++
-    memory: 7.304
+    memory: 7.176
     name: random_01
     status: AC
-  - elapsed: 1.2091009540000073
+  - elapsed: 1.9901579069999968
     environment: g++
-    memory: 8.128
+    memory: 8.08
     name: random_02
     status: AC
-  - elapsed: 1.3183148649999907
+  - elapsed: 2.1737311079999984
     environment: g++
-    memory: 8.468
+    memory: 8.276
     name: random_03
     status: AC
-  - elapsed: 0.81167509200003
+  - elapsed: 1.3355784569999969
     environment: g++
-    memory: 6.904
+    memory: 6.74
     name: random_04
     status: AC
-  - elapsed: 0.72955215799999
+  - elapsed: 1.205794936000018
     environment: g++
-    memory: 6.648
+    memory: 6.484
     name: random_05
     status: AC
-  - elapsed: 1.229451317999974
+  - elapsed: 2.0226416250000057
     environment: g++
-    memory: 8.128
+    memory: 8.02
     name: random_06
     status: AC
-  - elapsed: 1.516657159000033
+  - elapsed: 2.4893089220000206
     environment: g++
-    memory: 9.08
+    memory: 8.908
     name: random_07
     status: AC
-  - elapsed: 0.5565592879999599
+  - elapsed: 0.9177505700000097
     environment: g++
-    memory: 6.136
+    memory: 5.972
     name: random_08
     status: AC
-  - elapsed: 0.8381950849999953
+  - elapsed: 1.384957567999976
     environment: g++
-    memory: 8.668
+    memory: 6.932
     name: random_09
     status: AC
-  - elapsed: 0.0019142560000204867
+  - elapsed: 0.002206588999996484
     environment: g++
-    memory: 3.896
+    memory: 3.788
     name: small_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/sum_of_totient_function.test.cpp

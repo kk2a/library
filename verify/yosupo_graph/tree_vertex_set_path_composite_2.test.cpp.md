@@ -739,16 +739,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 10 \"verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 10 \"verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using mint = kk2::mont998;\n   \
       \ using M1 = kk2::monoid::ReverseOp<kk2::monoid::Affine<mint>>;\n    using M2\
       \ = kk2::monoid::Affine<mint>;\n\n    int n, q;\n    kin >> n >> q;\n\n    vc<M1>\
@@ -773,107 +773,107 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.4695188700000017
+  - elapsed: 0.7698681520000008
     environment: g++
-    memory: 39.44
+    memory: 39.424
     name: almost_line_00
     status: AC
-  - elapsed: 0.47113142599999946
+  - elapsed: 0.7521312589999951
     environment: g++
-    memory: 41.268
+    memory: 41.232
     name: almost_line_01
     status: AC
-  - elapsed: 0.001667567999959374
+  - elapsed: 0.0022086729999983845
     environment: g++
-    memory: 3.692
+    memory: 3.788
     name: example_00
     status: AC
-  - elapsed: 0.0014996460000133993
+  - elapsed: 0.0021367730000037
     environment: g++
-    memory: 3.884
+    memory: 3.788
     name: example_01
     status: AC
-  - elapsed: 0.44133452200003376
+  - elapsed: 0.7236916789999981
     environment: g++
-    memory: 43.768
+    memory: 43.672
     name: line_00
     status: AC
-  - elapsed: 0.4918623869999692
+  - elapsed: 0.7243381149999948
     environment: g++
     memory: 45.484
     name: line_01
     status: AC
-  - elapsed: 0.306329489999996
+  - elapsed: 0.6080983450000019
     environment: g++
-    memory: 32.26
+    memory: 32.196
     name: long-path-decomposition_killer_00
     status: AC
-  - elapsed: 0.5614604040000017
+  - elapsed: 0.9532495450000056
     environment: g++
-    memory: 33.636
+    memory: 33.576
     name: max_random_00
     status: AC
-  - elapsed: 0.5636765610000225
+  - elapsed: 0.9697968950000018
     environment: g++
-    memory: 33.632
+    memory: 33.568
     name: max_random_01
     status: AC
-  - elapsed: 0.5663304169999606
+  - elapsed: 0.9636129000000011
     environment: g++
-    memory: 33.732
+    memory: 33.572
     name: max_random_02
     status: AC
-  - elapsed: 0.3817349400000012
+  - elapsed: 0.6691739600000091
     environment: g++
-    memory: 21.736
+    memory: 21.676
     name: random_00
     status: AC
-  - elapsed: 0.414216185999976
+  - elapsed: 0.7072461189999899
     environment: g++
-    memory: 28.344
+    memory: 28.284
     name: random_01
     status: AC
-  - elapsed: 0.23727129000002378
+  - elapsed: 0.4516673869999863
     environment: g++
-    memory: 11.572
+    memory: 11.516
     name: random_02
     status: AC
-  - elapsed: 0.003500497999993968
+  - elapsed: 0.0058069979999970656
     environment: g++
-    memory: 4.008
+    memory: 3.804
     name: small_00
     status: AC
-  - elapsed: 0.002840117999994618
+  - elapsed: 0.004743646000008539
     environment: g++
-    memory: 3.888
+    memory: 3.848
     name: small_01
     status: AC
-  - elapsed: 0.002667657000017698
+  - elapsed: 0.004496423000006189
     environment: g++
-    memory: 3.84
+    memory: 3.804
     name: small_02
     status: AC
-  - elapsed: 0.0035753930000055334
+  - elapsed: 0.006382341000005454
     environment: g++
-    memory: 4.056
+    memory: 4.08
     name: small_03
     status: AC
-  - elapsed: 0.0026363540000033936
+  - elapsed: 0.0045981019999885575
     environment: g++
     memory: 3.976
     name: small_04
     status: AC
-  - elapsed: 1.3007730119999792
-    environment: g++
-    memory: 33.78
-    name: worst_for_path_decomposition_00
-    status: AC
-  - elapsed: 1.3256220729999768
+  - elapsed: 2.413660209999989
     environment: g++
     memory: 33.684
+    name: worst_for_path_decomposition_00
+    status: AC
+  - elapsed: 2.4457900949999782
+    environment: g++
+    memory: 33.688
     name: worst_for_path_decomposition_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp

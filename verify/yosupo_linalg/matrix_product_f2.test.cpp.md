@@ -624,16 +624,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_linalg/matrix_product_f2.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_linalg/matrix_product_f2.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m, k;\n    kin >> n >> m\
       \ >> k;\n    kk2::MatrixF2 a(n, m), b(m, k);\n    a.input(kin), b.input(kin);\n\
       \    (a * b).output(kout);\n\n    return 0;\n}\n"
@@ -644,137 +644,137 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0027512690000150997
-    environment: g++
-    memory: 3.82
-    name: example_00
-    status: AC
-  - elapsed: 0.0021708950000061122
-    environment: g++
-    memory: 3.796
-    name: example_01
-    status: AC
-  - elapsed: 0.0021798509999939597
-    environment: g++
-    memory: 3.796
-    name: example_02
-    status: AC
-  - elapsed: 4.768426117000018
-    environment: g++
-    memory: 12.436
-    name: many_1_00
-    status: AC
-  - elapsed: 4.827612192000004
-    environment: g++
-    memory: 12.476
-    name: many_1_01
-    status: AC
-  - elapsed: 3.760627940000006
-    environment: g++
-    memory: 12.472
-    name: max_random_00
-    status: AC
-  - elapsed: 3.7574582850000127
-    environment: g++
-    memory: 12.436
-    name: max_random_01
-    status: AC
-  - elapsed: 3.7638003120000008
-    environment: g++
-    memory: 12.484
-    name: max_random_02
-    status: AC
-  - elapsed: 0.04999403100001132
-    environment: g++
-    memory: 4.352
-    name: middle_00
-    status: AC
-  - elapsed: 0.011743252000002258
-    environment: g++
-    memory: 4.068
-    name: middle_01
-    status: AC
-  - elapsed: 0.016325647999991588
-    environment: g++
-    memory: 4.024
-    name: middle_02
-    status: AC
-  - elapsed: 0.012620844999986502
-    environment: g++
-    memory: 4.024
-    name: middle_03
-    status: AC
-  - elapsed: 0.0739607590000162
-    environment: g++
-    memory: 4.456
-    name: middle_04
-    status: AC
-  - elapsed: 2.2326074730000016
-    environment: g++
-    memory: 9.54
-    name: random_00
-    status: AC
-  - elapsed: 1.6326474919999896
-    environment: g++
-    memory: 8.004
-    name: random_01
-    status: AC
-  - elapsed: 1.4733543869999721
-    environment: g++
-    memory: 7.62
-    name: random_02
-    status: AC
-  - elapsed: 0.0033498129999998127
-    environment: g++
-    memory: 3.788
-    name: small_00
-    status: AC
-  - elapsed: 0.0032485720000181573
-    environment: g++
-    memory: 3.836
-    name: small_01
-    status: AC
-  - elapsed: 0.0025924260000067534
-    environment: g++
-    memory: 3.82
-    name: small_02
-    status: AC
-  - elapsed: 0.0037882040000170036
-    environment: g++
-    memory: 3.832
-    name: small_03
-    status: AC
-  - elapsed: 0.0027437260000056085
-    environment: g++
-    memory: 3.8
-    name: small_04
-    status: AC
-  - elapsed: 0.0037576059999935296
-    environment: g++
-    memory: 3.788
-    name: small_05
-    status: AC
-  - elapsed: 0.002704864000008911
-    environment: g++
-    memory: 3.796
-    name: small_06
-    status: AC
-  - elapsed: 0.0033424589999810905
-    environment: g++
-    memory: 3.672
-    name: small_07
-    status: AC
-  - elapsed: 0.0026651519999916218
-    environment: g++
-    memory: 3.628
-    name: small_08
-    status: AC
-  - elapsed: 0.0037308560000042235
+  - elapsed: 0.0023275799999851188
     environment: g++
     memory: 3.816
+    name: example_00
+    status: AC
+  - elapsed: 0.002086000999980797
+    environment: g++
+    memory: 3.628
+    name: example_01
+    status: AC
+  - elapsed: 0.0021237670000004982
+    environment: g++
+    memory: 3.832
+    name: example_02
+    status: AC
+  - elapsed: 4.801653123000023
+    environment: g++
+    memory: 12.432
+    name: many_1_00
+    status: AC
+  - elapsed: 4.8073889670000085
+    environment: g++
+    memory: 12.348
+    name: many_1_01
+    status: AC
+  - elapsed: 3.797936055000008
+    environment: g++
+    memory: 12.484
+    name: max_random_00
+    status: AC
+  - elapsed: 3.7863495320000027
+    environment: g++
+    memory: 12.444
+    name: max_random_01
+    status: AC
+  - elapsed: 3.7902511559999823
+    environment: g++
+    memory: 12.476
+    name: max_random_02
+    status: AC
+  - elapsed: 0.0505894249999983
+    environment: g++
+    memory: 4.296
+    name: middle_00
+    status: AC
+  - elapsed: 0.011804807000004303
+    environment: g++
+    memory: 4.064
+    name: middle_01
+    status: AC
+  - elapsed: 0.016372400999983938
+    environment: g++
+    memory: 4.032
+    name: middle_02
+    status: AC
+  - elapsed: 0.012692175000012185
+    environment: g++
+    memory: 4.096
+    name: middle_03
+    status: AC
+  - elapsed: 0.07504842900002018
+    environment: g++
+    memory: 4.256
+    name: middle_04
+    status: AC
+  - elapsed: 2.245139328000022
+    environment: g++
+    memory: 9.492
+    name: random_00
+    status: AC
+  - elapsed: 1.637462123000006
+    environment: g++
+    memory: 7.84
+    name: random_01
+    status: AC
+  - elapsed: 1.4849342159999992
+    environment: g++
+    memory: 7.612
+    name: random_02
+    status: AC
+  - elapsed: 0.003347815000012133
+    environment: g++
+    memory: 3.828
+    name: small_00
+    status: AC
+  - elapsed: 0.0032187359999795717
+    environment: g++
+    memory: 3.672
+    name: small_01
+    status: AC
+  - elapsed: 0.0025345109999932447
+    environment: g++
+    memory: 3.84
+    name: small_02
+    status: AC
+  - elapsed: 0.0036298779999981434
+    environment: g++
+    memory: 3.82
+    name: small_03
+    status: AC
+  - elapsed: 0.0026505079999878944
+    environment: g++
+    memory: 3.82
+    name: small_04
+    status: AC
+  - elapsed: 0.003703456000010874
+    environment: g++
+    memory: 3.832
+    name: small_05
+    status: AC
+  - elapsed: 0.002670485999999528
+    environment: g++
+    memory: 3.82
+    name: small_06
+    status: AC
+  - elapsed: 0.00323454700000525
+    environment: g++
+    memory: 3.82
+    name: small_07
+    status: AC
+  - elapsed: 0.002606816000024992
+    environment: g++
+    memory: 3.82
+    name: small_08
+    status: AC
+  - elapsed: 0.0036974250000127995
+    environment: g++
+    memory: 3.776
     name: small_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_product_f2.test.cpp

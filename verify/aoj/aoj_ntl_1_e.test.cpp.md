@@ -305,18 +305,18 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/aoj/aoj_ntl_1_e.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n\
-      \    auto [g, x1] = kk2::inv_gcd(a, b);\n    a /= g, b /= g;\n    i64 y1 = (1ll\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/aoj/aoj_ntl_1_e.test.cpp\"\n\
+      using namespace std;\n\nint main() {\n    int a, b;\n    kin >> a >> b;\n  \
+      \  auto [g, x1] = kk2::inv_gcd(a, b);\n    a /= g, b /= g;\n    i64 y1 = (1ll\
       \ - x1 * a) / b;\n    i64 sum1 = x1 + abs(y1);\n    i64 y2 = y1 % a;\n    if\
       \ (y2 < 0) y2 += a;\n    i64 x2 = (1ll - y2 * b) / a;\n    i64 sum2 = abs(x2)\
       \ + y2;\n    if (sum2 > sum1) kout << x1 << \" \" << y1 << kendl;\n    else\
@@ -330,167 +330,167 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024853749999920183
+  - elapsed: 0.002493077999986326
     environment: g++
-    memory: 3.7
+    memory: 3.696
     name: 00_sample_00
     status: AC
-  - elapsed: 0.0020938169999737966
+  - elapsed: 0.002130448000002616
     environment: g++
-    memory: 3.72
+    memory: 3.724
     name: 00_sample_01
     status: AC
-  - elapsed: 0.0020820530000094095
-    environment: g++
-    memory: 3.656
-    name: 01_small_00
-    status: AC
-  - elapsed: 0.002072134999991704
-    environment: g++
-    memory: 3.7
-    name: 01_small_01
-    status: AC
-  - elapsed: 0.002057406999995237
-    environment: g++
-    memory: 3.724
-    name: 01_small_02
-    status: AC
-  - elapsed: 0.002076800999986972
-    environment: g++
-    memory: 3.704
-    name: 01_small_03
-    status: AC
-  - elapsed: 0.002106434000012314
-    environment: g++
-    memory: 3.724
-    name: 01_small_04
-    status: AC
-  - elapsed: 0.0021348459999899205
-    environment: g++
-    memory: 3.708
-    name: 01_small_05
-    status: AC
-  - elapsed: 0.002089656999999079
+  - elapsed: 0.0020735609999746885
     environment: g++
     memory: 3.728
+    name: 01_small_00
+    status: AC
+  - elapsed: 0.002069263000009869
+    environment: g++
+    memory: 3.736
+    name: 01_small_01
+    status: AC
+  - elapsed: 0.0020610690000353316
+    environment: g++
+    memory: 3.684
+    name: 01_small_02
+    status: AC
+  - elapsed: 0.00206948499999271
+    environment: g++
+    memory: 3.728
+    name: 01_small_03
+    status: AC
+  - elapsed: 0.002087578000043777
+    environment: g++
+    memory: 3.728
+    name: 01_small_04
+    status: AC
+  - elapsed: 0.002062330999990536
+    environment: g++
+    memory: 3.7
+    name: 01_small_05
+    status: AC
+  - elapsed: 0.002065626999979031
+    environment: g++
+    memory: 3.708
     name: 02_critical_00
     status: AC
-  - elapsed: 0.0020655530000226463
+  - elapsed: 0.0020542060000252604
     environment: g++
     memory: 3.728
     name: 02_critical_01
     status: AC
-  - elapsed: 0.0021301939999887054
-    environment: g++
-    memory: 3.736
-    name: 02_critical_02
-    status: AC
-  - elapsed: 0.002052318000011155
-    environment: g++
-    memory: 3.728
-    name: 02_critical_03
-    status: AC
-  - elapsed: 0.0020386580000035792
-    environment: g++
-    memory: 3.736
-    name: 03_large_00
-    status: AC
-  - elapsed: 0.0020489979999922525
-    environment: g++
-    memory: 3.732
-    name: 03_large_01
-    status: AC
-  - elapsed: 0.002060722999999598
-    environment: g++
-    memory: 3.704
-    name: 03_large_02
-    status: AC
-  - elapsed: 0.0020689890000085143
-    environment: g++
-    memory: 3.728
-    name: 03_large_03
-    status: AC
-  - elapsed: 0.002052886999990733
-    environment: g++
-    memory: 3.708
-    name: 03_large_04
-    status: AC
-  - elapsed: 0.0020409569999912947
-    environment: g++
-    memory: 3.712
-    name: 03_large_05
-    status: AC
-  - elapsed: 0.002031160000001364
-    environment: g++
-    memory: 3.688
-    name: 03_large_06
-    status: AC
-  - elapsed: 0.0020737880000183395
-    environment: g++
-    memory: 3.656
-    name: 03_large_07
-    status: AC
-  - elapsed: 0.0020347979999826293
-    environment: g++
-    memory: 3.716
-    name: 03_large_08
-    status: AC
-  - elapsed: 0.0020654019999994944
-    environment: g++
-    memory: 3.736
-    name: 03_large_09
-    status: AC
-  - elapsed: 0.0020612540000115587
+  - elapsed: 0.00205797099999927
     environment: g++
     memory: 3.74
+    name: 02_critical_02
+    status: AC
+  - elapsed: 0.0020610400000009577
+    environment: g++
+    memory: 3.696
+    name: 02_critical_03
+    status: AC
+  - elapsed: 0.002098227000033148
+    environment: g++
+    memory: 3.66
+    name: 03_large_00
+    status: AC
+  - elapsed: 0.0020896030000017163
+    environment: g++
+    memory: 3.708
+    name: 03_large_01
+    status: AC
+  - elapsed: 0.002123574999984612
+    environment: g++
+    memory: 3.716
+    name: 03_large_02
+    status: AC
+  - elapsed: 0.0020855550000078438
+    environment: g++
+    memory: 3.696
+    name: 03_large_03
+    status: AC
+  - elapsed: 0.002065636999986964
+    environment: g++
+    memory: 3.716
+    name: 03_large_04
+    status: AC
+  - elapsed: 0.0020451800000387266
+    environment: g++
+    memory: 3.716
+    name: 03_large_05
+    status: AC
+  - elapsed: 0.0020960530000024846
+    environment: g++
+    memory: 3.732
+    name: 03_large_06
+    status: AC
+  - elapsed: 0.0021102819999896383
+    environment: g++
+    memory: 3.66
+    name: 03_large_07
+    status: AC
+  - elapsed: 0.0020493659999942793
+    environment: g++
+    memory: 3.7
+    name: 03_large_08
+    status: AC
+  - elapsed: 0.00205942699994921
+    environment: g++
+    memory: 3.68
+    name: 03_large_09
+    status: AC
+  - elapsed: 0.002051890000018375
+    environment: g++
+    memory: 3.728
     name: 04_corner_00
     status: AC
-  - elapsed: 0.0020432580000147027
+  - elapsed: 0.0020801250000204163
     environment: g++
     memory: 3.708
     name: 04_corner_01
     status: AC
-  - elapsed: 0.00205070300000898
+  - elapsed: 0.002047662999984823
     environment: g++
-    memory: 3.756
+    memory: 3.732
     name: 04_corner_02
     status: AC
-  - elapsed: 0.0020186510000144153
-    environment: g++
-    memory: 3.704
-    name: 04_corner_03
-    status: AC
-  - elapsed: 0.0020563820000063515
-    environment: g++
-    memory: 3.74
-    name: 05_rand_00
-    status: AC
-  - elapsed: 0.0020583730000112155
-    environment: g++
-    memory: 3.68
-    name: 05_rand_01
-    status: AC
-  - elapsed: 0.002053849999981594
-    environment: g++
-    memory: 3.708
-    name: 05_rand_02
-    status: AC
-  - elapsed: 0.002063679000002594
-    environment: g++
-    memory: 3.76
-    name: 05_rand_03
-    status: AC
-  - elapsed: 0.002045976000005112
-    environment: g++
-    memory: 3.636
-    name: 05_rand_04
-    status: AC
-  - elapsed: 0.0020604329999969195
+  - elapsed: 0.0021104609999724744
     environment: g++
     memory: 3.728
+    name: 04_corner_03
+    status: AC
+  - elapsed: 0.0020680920000017977
+    environment: g++
+    memory: 3.736
+    name: 05_rand_00
+    status: AC
+  - elapsed: 0.0020153529999902275
+    environment: g++
+    memory: 3.7
+    name: 05_rand_01
+    status: AC
+  - elapsed: 0.002032695999957923
+    environment: g++
+    memory: 3.696
+    name: 05_rand_02
+    status: AC
+  - elapsed: 0.0020535740000013902
+    environment: g++
+    memory: 3.684
+    name: 05_rand_03
+    status: AC
+  - elapsed: 0.002043967000020075
+    environment: g++
+    memory: 3.7
+    name: 05_rand_04
+    status: AC
+  - elapsed: 0.002029900000025009
+    environment: g++
+    memory: 3.68
     name: 05_rand_05
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_ntl_1_e.test.cpp

@@ -473,16 +473,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_ds/ds_range_set_range_composite.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_ds/ds_range_set_range_composite.test.cpp\"\
       \nusing namespace std;\n\nstruct S {\n    kk2::mont998 a, b;\n    int size;\n\
       \n    static S op(S l, S r) { return S{r.a * l.a, r.a * l.b + r.b, l.size +\
       \ r.size}; }\n\n    static S unit() { return S{1, 0, 0}; }\n};\n\ntemplate <class\
@@ -515,122 +515,122 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002627339000014217
+  - elapsed: 0.0028465169999947193
     environment: g++
-    memory: 3.78
+    memory: 3.58
     name: example_00
     status: AC
-  - elapsed: 2.9540033969999513
+  - elapsed: 3.181163265000002
     environment: g++
     memory: 30.004
     name: fragment_00
     status: AC
-  - elapsed: 2.9727159690000917
+  - elapsed: 3.0621103309999995
     environment: g++
-    memory: 29.964
+    memory: 30.0
     name: fragment_01
     status: AC
-  - elapsed: 14.148712477000004
+  - elapsed: 14.639869551000004
     environment: g++
-    memory: 30.0
+    memory: 29.996
     name: max_random_00
     status: AC
-  - elapsed: 14.231657673000086
+  - elapsed: 14.580508551999998
     environment: g++
-    memory: 30.0
+    memory: 29.94
     name: max_random_01
     status: AC
-  - elapsed: 14.263347242999998
+  - elapsed: 14.468660301
     environment: g++
-    memory: 30.0
+    memory: 29.948
     name: max_random_02
     status: AC
-  - elapsed: 11.283790473000067
+  - elapsed: 11.549154149000003
     environment: g++
     memory: 28.708
     name: random_00
     status: AC
-  - elapsed: 11.608089336000035
+  - elapsed: 11.833719273
     environment: g++
-    memory: 29.508
+    memory: 29.52
     name: random_01
     status: AC
-  - elapsed: 7.789313387999982
+  - elapsed: 7.9328485650000005
     environment: g++
-    memory: 6.696
+    memory: 6.824
     name: random_02
     status: AC
-  - elapsed: 7.086865602999978
+  - elapsed: 7.243062952999992
     environment: g++
-    memory: 29.864
+    memory: 29.996
     name: slide_window_00
     status: AC
-  - elapsed: 7.074578015000043
+  - elapsed: 7.322523292
     environment: g++
-    memory: 29.876
+    memory: 29.996
     name: slide_window_01
     status: AC
-  - elapsed: 0.0030702490000749094
+  - elapsed: 0.0032742540000185727
     environment: g++
-    memory: 3.636
+    memory: 3.78
     name: small_00
     status: AC
-  - elapsed: 0.002923132000091755
+  - elapsed: 0.0029890980000004674
     environment: g++
-    memory: 3.764
+    memory: 3.768
     name: small_01
     status: AC
-  - elapsed: 0.00307435800004896
+  - elapsed: 0.0031567649999999503
     environment: g++
-    memory: 3.776
+    memory: 3.696
     name: small_02
     status: AC
-  - elapsed: 0.0031508680000342792
+  - elapsed: 0.003148364999987052
     environment: g++
-    memory: 3.752
+    memory: 3.776
     name: small_03
     status: AC
-  - elapsed: 0.0033524670000133483
+  - elapsed: 0.003478775000019141
     environment: g++
-    memory: 3.636
+    memory: 3.784
     name: small_04
     status: AC
-  - elapsed: 0.0034552299999859315
+  - elapsed: 0.003515329000009615
     environment: g++
-    memory: 3.636
+    memory: 3.784
     name: small_05
     status: AC
-  - elapsed: 0.0035265999999865016
+  - elapsed: 0.0037604190000024573
     environment: g++
-    memory: 3.764
+    memory: 3.776
     name: small_06
     status: AC
-  - elapsed: 0.0035516419999339632
+  - elapsed: 0.003870451000011599
     environment: g++
     memory: 3.792
     name: small_07
     status: AC
-  - elapsed: 0.003717959000027804
+  - elapsed: 0.003771940999996559
     environment: g++
-    memory: 3.732
+    memory: 3.784
     name: small_08
     status: AC
-  - elapsed: 0.0038388400000712863
-    environment: g++
-    memory: 3.76
-    name: small_09
-    status: AC
-  - elapsed: 0.014184565000050497
-    environment: g++
-    memory: 3.912
-    name: small_random_00
-    status: AC
-  - elapsed: 0.009831918000031692
+  - elapsed: 0.00391468300000497
     environment: g++
     memory: 3.58
+    name: small_09
+    status: AC
+  - elapsed: 0.014484208999988368
+    environment: g++
+    memory: 3.92
+    name: small_random_00
+    status: AC
+  - elapsed: 0.010114689000005228
+    environment: g++
+    memory: 3.772
     name: small_random_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_set_range_composite.test.cpp

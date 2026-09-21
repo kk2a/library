@@ -77,7 +77,7 @@ data:
   - fps/operations/arb/multiplication.hpp
   - math_mod/garner.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/convolution/inplace_convolution.test.cpp

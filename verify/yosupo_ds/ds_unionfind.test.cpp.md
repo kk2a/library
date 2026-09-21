@@ -295,28 +295,28 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 1 \"unionfind/unionfind.hpp\"\
-      \n\n\n\n#line 6 \"unionfind/unionfind.hpp\"\n\nnamespace kk2 {\n\nstruct UnionFind\
-      \ {\n    std::vector<int> d;\n\n    UnionFind(int n = 0) : d(n, -1) {}\n\n \
-      \   bool same(int x, int y) { return find(x) == find(y); }\n\n    bool unite(int\
-      \ x, int y) {\n        x = find(x), y = find(y);\n        if (x == y) return\
-      \ false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n        d[x] += d[y];\n\
-      \        d[y] = x;\n        return true;\n    }\n\n    template <class F> bool\
-      \ unite(int x, int y, const F &f) {\n        x = find(x), y = find(y);\n   \
-      \     if (x == y) return false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n\
-      \        f(x, y);\n        d[x] += d[y];\n        d[y] = x;\n        return\
-      \ true;\n    }\n\n    int find(int x) {\n        if (d[x] < 0) return x;\n \
-      \       return d[x] = find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)];\
-      \ }\n};\n\n} // namespace kk2\n\n\n#line 5 \"verify/yosupo_ds/ds_unionfind.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 1 \"unionfind/unionfind.hpp\"\n\n\n\n#line\
+      \ 6 \"unionfind/unionfind.hpp\"\n\nnamespace kk2 {\n\nstruct UnionFind {\n \
+      \   std::vector<int> d;\n\n    UnionFind(int n = 0) : d(n, -1) {}\n\n    bool\
+      \ same(int x, int y) { return find(x) == find(y); }\n\n    bool unite(int x,\
+      \ int y) {\n        x = find(x), y = find(y);\n        if (x == y) return false;\n\
+      \        if (-d[x] < -d[y]) std::swap(x, y);\n        d[x] += d[y];\n      \
+      \  d[y] = x;\n        return true;\n    }\n\n    template <class F> bool unite(int\
+      \ x, int y, const F &f) {\n        x = find(x), y = find(y);\n        if (x\
+      \ == y) return false;\n        if (-d[x] < -d[y]) std::swap(x, y);\n       \
+      \ f(x, y);\n        d[x] += d[y];\n        d[y] = x;\n        return true;\n\
+      \    }\n\n    int find(int x) {\n        if (d[x] < 0) return x;\n        return\
+      \ d[x] = find(d[x]);\n    }\n\n    int size(int x) { return -d[find(x)]; }\n\
+      };\n\n} // namespace kk2\n\n\n#line 5 \"verify/yosupo_ds/ds_unionfind.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    kk2::UnionFind uf(n);\n\n    rep(q) {\n        int t;\n        kin >> t;\n\
       \        if (t == 0) {\n            int u, v;\n            kin >> u >> v;\n\
@@ -330,97 +330,97 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.003052292999996098
+  - elapsed: 0.0025230549999832874
     environment: g++
-    memory: 3.616
+    memory: 3.564
     name: example_00
     status: AC
-  - elapsed: 0.05429396700000666
+  - elapsed: 0.04859368800001107
     environment: g++
-    memory: 4.076
+    memory: 4.124
     name: max_random_00
     status: AC
-  - elapsed: 0.05424326600000029
-    environment: g++
-    memory: 4.244
-    name: max_random_01
-    status: AC
-  - elapsed: 0.05030231799999285
-    environment: g++
-    memory: 4.064
-    name: max_random_02
-    status: AC
-  - elapsed: 0.050100544000002856
-    environment: g++
-    memory: 4.34
-    name: path_00
-    status: AC
-  - elapsed: 0.04715884100001233
-    environment: g++
-    memory: 4.336
-    name: path_01
-    status: AC
-  - elapsed: 0.05041119199999855
+  - elapsed: 0.04913164500001699
     environment: g++
     memory: 4.252
+    name: max_random_01
+    status: AC
+  - elapsed: 0.045998023999999305
+    environment: g++
+    memory: 4.1
+    name: max_random_02
+    status: AC
+  - elapsed: 0.04418638499998906
+    environment: g++
+    memory: 4.344
+    name: path_00
+    status: AC
+  - elapsed: 0.042706823999992594
+    environment: g++
+    memory: 4.212
+    name: path_01
+    status: AC
+  - elapsed: 0.046132228000004716
+    environment: g++
+    memory: 4.208
     name: path_02
     status: AC
-  - elapsed: 0.047764683999986346
+  - elapsed: 0.04394477200000324
     environment: g++
-    memory: 4.216
+    memory: 4.252
     name: path_03
     status: AC
-  - elapsed: 0.03941500400000564
+  - elapsed: 0.03740376499999343
     environment: g++
-    memory: 4.068
+    memory: 4.124
     name: random_00
     status: AC
-  - elapsed: 0.0399344970000044
+  - elapsed: 0.03760003100001086
     environment: g++
-    memory: 4.216
+    memory: 4.252
     name: random_01
     status: AC
-  - elapsed: 0.031966651999994156
+  - elapsed: 0.029751222000015787
     environment: g++
-    memory: 4.144
+    memory: 4.168
     name: random_02
     status: AC
-  - elapsed: 0.009688315999994757
+  - elapsed: 0.009087187999995194
     environment: g++
     memory: 4.124
     name: random_03
     status: AC
-  - elapsed: 0.025650976999997965
+  - elapsed: 0.023282719999997425
     environment: g++
     memory: 4.02
     name: random_04
     status: AC
-  - elapsed: 0.0365419759999952
+  - elapsed: 0.03326081500000555
     environment: g++
-    memory: 3.924
+    memory: 4.028
     name: random_05
     status: AC
-  - elapsed: 0.029758955999994896
+  - elapsed: 0.02725783299999307
     environment: g++
     memory: 4.38
     name: random_06
     status: AC
-  - elapsed: 0.005690925000010338
+  - elapsed: 0.005030741000012995
     environment: g++
-    memory: 3.94
+    memory: 3.952
     name: random_07
     status: AC
-  - elapsed: 0.013567351000006056
+  - elapsed: 0.011893531999987772
     environment: g++
     memory: 3.696
     name: random_08
     status: AC
-  - elapsed: 0.05107139599999755
+  - elapsed: 0.0467916029999742
     environment: g++
-    memory: 3.996
+    memory: 4.056
     name: random_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_unionfind.test.cpp

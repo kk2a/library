@@ -1352,16 +1352,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/yosupo_fps/poly_taylor_shift.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/yosupo_fps/poly_taylor_shift.test.cpp\"\
       \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
       \ {\n    int n;\n    kk2::mont998 c;\n    kin >> n >> c;\n    FPS f(n);\n  \
       \  kin >> f;\n    kout << kk2::taylor_shift(f, c) << kendl;\n\n    return 0;\n\
@@ -1373,197 +1373,197 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002525563000006059
+  - elapsed: 0.0025125819999516352
     environment: g++
-    memory: 3.604
+    memory: 3.88
     name: example_00
     status: AC
-  - elapsed: 0.002221144000031927
+  - elapsed: 0.0018996219999962705
     environment: g++
-    memory: 3.784
+    memory: 3.868
     name: example_01
     status: AC
-  - elapsed: 1.5688756289999901
-    environment: g++
-    memory: 28.068
-    name: fft_killer_00
-    status: AC
-  - elapsed: 1.5776509940000096
-    environment: g++
-    memory: 28.104
-    name: fft_killer_01
-    status: AC
-  - elapsed: 1.56314986000001
+  - elapsed: 0.8756927929999847
     environment: g++
     memory: 28.14
+    name: fft_killer_00
+    status: AC
+  - elapsed: 0.8917129339999974
+    environment: g++
+    memory: 27.984
+    name: fft_killer_01
+    status: AC
+  - elapsed: 0.8897510510000188
+    environment: g++
+    memory: 28.196
     name: fft_killer_02
     status: AC
-  - elapsed: 1.5662941690000025
+  - elapsed: 0.8340483719999838
     environment: g++
     memory: 28.112
     name: fft_killer_03
     status: AC
-  - elapsed: 1.5644919860000073
+  - elapsed: 0.7653031049999868
     environment: g++
-    memory: 28.02
+    memory: 28.196
     name: fft_killer_04
     status: AC
-  - elapsed: 1.5654769930000043
+  - elapsed: 0.8721089379999967
     environment: g++
-    memory: 28.12
+    memory: 28.128
     name: fft_killer_05
     status: AC
-  - elapsed: 1.5717207659999985
+  - elapsed: 0.8845156900000006
     environment: g++
-    memory: 28.128
+    memory: 28.096
     name: fft_killer_06
     status: AC
-  - elapsed: 1.5639092060000053
+  - elapsed: 0.8715910029999918
     environment: g++
-    memory: 28.068
+    memory: 28.328
     name: fft_killer_07
     status: AC
-  - elapsed: 1.588011066999968
+  - elapsed: 0.8839619139999968
     environment: g++
-    memory: 28.128
+    memory: 28.064
     name: fft_killer_08
     status: AC
-  - elapsed: 1.563345116999983
+  - elapsed: 0.7923357060000171
     environment: g++
-    memory: 28.092
+    memory: 27.98
     name: fft_killer_09
     status: AC
-  - elapsed: 1.5656172999999853
+  - elapsed: 0.826677621999977
     environment: g++
-    memory: 28.076
+    memory: 28.1
     name: max_random_00
     status: AC
-  - elapsed: 1.565927304000013
+  - elapsed: 0.7597114999999803
     environment: g++
-    memory: 28.068
+    memory: 28.332
     name: max_random_01
     status: AC
-  - elapsed: 0.006363666000027024
+  - elapsed: 0.0038502600000356324
     environment: g++
-    memory: 3.912
+    memory: 3.984
     name: medium_00
     status: AC
-  - elapsed: 0.01862980699996797
+  - elapsed: 0.009795752000002267
     environment: g++
-    memory: 4.056
+    memory: 4.184
     name: medium_01
     status: AC
-  - elapsed: 0.018537765000019135
+  - elapsed: 0.009437273000003188
     environment: g++
-    memory: 4.06
+    memory: 4.124
     name: medium_02
     status: AC
-  - elapsed: 0.0029971330000080343
+  - elapsed: 0.0019300390000012158
     environment: g++
-    memory: 3.912
+    memory: 3.88
     name: medium_all_zero_00
     status: AC
-  - elapsed: 0.0030350640000165185
+  - elapsed: 0.002004936999981055
     environment: g++
-    memory: 3.728
+    memory: 4.036
     name: medium_c_zero_00
     status: AC
-  - elapsed: 1.4807790490000343
+  - elapsed: 0.7231892720000133
     environment: g++
-    memory: 22.428
+    memory: 22.488
     name: random_00
     status: AC
-  - elapsed: 1.526195174999998
+  - elapsed: 0.7791639359999749
     environment: g++
-    memory: 24.412
+    memory: 24.504
     name: random_01
     status: AC
-  - elapsed: 0.16786357399996632
+  - elapsed: 0.08196261500000901
     environment: g++
-    memory: 6.02
+    memory: 6.028
     name: random_02
     status: AC
-  - elapsed: 0.0022414160000039374
+  - elapsed: 0.0017996939999989081
     environment: g++
-    memory: 3.768
+    memory: 3.868
     name: small_00
     status: AC
-  - elapsed: 0.0021418019999828175
+  - elapsed: 0.0016188720000513968
     environment: g++
-    memory: 3.8
+    memory: 3.86
     name: small_01
     status: AC
-  - elapsed: 0.00213215699994862
+  - elapsed: 0.001543950999973731
     environment: g++
-    memory: 3.796
+    memory: 3.904
     name: small_02
     status: AC
-  - elapsed: 0.0021145110000020395
+  - elapsed: 0.0015024660000335643
     environment: g++
-    memory: 3.804
+    memory: 3.864
     name: small_03
     status: AC
-  - elapsed: 0.0020873380000239194
+  - elapsed: 0.0014812370000072406
     environment: g++
-    memory: 3.656
+    memory: 3.9
     name: small_04
     status: AC
-  - elapsed: 0.0020997260000399365
+  - elapsed: 0.0014600550000523072
     environment: g++
-    memory: 3.812
+    memory: 3.904
     name: small_05
     status: AC
-  - elapsed: 0.002104620000011437
+  - elapsed: 0.0015250750000177504
     environment: g++
-    memory: 3.768
+    memory: 3.848
     name: small_06
     status: AC
-  - elapsed: 0.0021942449999983182
+  - elapsed: 0.001463466000018343
     environment: g++
-    memory: 3.816
+    memory: 3.896
     name: small_07
     status: AC
-  - elapsed: 0.002147546000003331
+  - elapsed: 0.0014418490000025486
     environment: g++
-    memory: 3.656
+    memory: 3.904
     name: small_08
     status: AC
-  - elapsed: 0.0020886610000161454
+  - elapsed: 0.0014514349999785736
     environment: g++
-    memory: 3.808
+    memory: 3.868
     name: small_09
     status: AC
-  - elapsed: 0.002097211000034349
+  - elapsed: 0.0014795099999673766
     environment: g++
-    memory: 3.804
+    memory: 3.848
     name: small_10
     status: AC
-  - elapsed: 0.0021058029999494465
+  - elapsed: 0.001414604999979474
     environment: g++
-    memory: 3.804
+    memory: 3.888
     name: small_11
     status: AC
-  - elapsed: 0.0021084820000396576
+  - elapsed: 0.0015216170000371676
     environment: g++
-    memory: 3.8
+    memory: 3.74
     name: small_12
     status: AC
-  - elapsed: 0.0021105920000081824
+  - elapsed: 0.0014532669999880454
     environment: g++
-    memory: 3.76
+    memory: 3.852
     name: small_13
     status: AC
-  - elapsed: 0.0021414009999602968
+  - elapsed: 0.0015247960000124294
     environment: g++
-    memory: 3.656
+    memory: 3.868
     name: small_14
     status: AC
-  - elapsed: 0.0021462499999529427
+  - elapsed: 0.001523016000021471
     environment: g++
-    memory: 3.792
+    memory: 3.9
     name: small_15
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_taylor_shift.test.cpp

@@ -376,16 +376,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp\"\
       \nusing namespace std;\n\nusing mint = kk2::ModInt<0>;\n\nint main() {\n   \
       \ int t, m;\n    kin >> t >> m;\n    mint::setmod(m);\n    kk2::Comb<mint>::set_upper(1e7);\n\
       \    rep(t) {\n        int n, k;\n        kin >> n >> k;\n        kout << kk2::Comb<mint>::binom(n,\
@@ -397,107 +397,107 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0033413019999670723
+  - elapsed: 0.003346045000000686
     environment: g++
-    memory: 3.864
+    memory: 3.888
     name: example_00
     status: AC
-  - elapsed: 0.0021611359999837987
+  - elapsed: 0.002082030999986273
     environment: g++
-    memory: 3.764
+    memory: 3.78
     name: example_01
     status: AC
-  - elapsed: 0.8852425160000053
+  - elapsed: 0.8750761090000196
     environment: g++
     memory: 120.78
     name: large_random_00
     status: AC
-  - elapsed: 0.8822743690000152
+  - elapsed: 0.8763817210000298
     environment: g++
-    memory: 120.78
+    memory: 120.74
     name: large_random_01
     status: AC
-  - elapsed: 0.8854150559999994
+  - elapsed: 0.868369561999998
     environment: g++
-    memory: 120.78
+    memory: 120.784
     name: large_random_02
     status: AC
-  - elapsed: 0.2788443489999963
+  - elapsed: 0.2563748080000323
     environment: g++
-    memory: 7.96
+    memory: 7.968
     name: med_random_00
     status: AC
-  - elapsed: 0.26659434200001897
+  - elapsed: 0.25019445200001655
     environment: g++
-    memory: 7.2
+    memory: 7.164
     name: med_random_01
     status: AC
-  - elapsed: 0.29763276800002814
+  - elapsed: 0.2667621140000165
     environment: g++
-    memory: 10.4
+    memory: 10.432
     name: med_random_02
     status: AC
-  - elapsed: 0.8833476540000333
+  - elapsed: 0.8758574049999766
     environment: g++
     memory: 120.744
     name: mod1000000007_00
     status: AC
-  - elapsed: 0.888659916999984
+  - elapsed: 0.8761327629999869
     environment: g++
     memory: 120.784
     name: mod1000000007_01
     status: AC
-  - elapsed: 0.13702068300000292
-    environment: g++
-    memory: 3.88
-    name: mod2_00
-    status: AC
-  - elapsed: 0.13675594699998328
-    environment: g++
-    memory: 4.028
-    name: mod2_01
-    status: AC
-  - elapsed: 0.1353873950000093
+  - elapsed: 0.145825321000018
     environment: g++
     memory: 3.828
+    name: mod2_00
+    status: AC
+  - elapsed: 0.1462254080000207
+    environment: g++
+    memory: 4.048
+    name: mod2_01
+    status: AC
+  - elapsed: 0.14540500199996131
+    environment: g++
+    memory: 4.028
     name: mod3_00
     status: AC
-  - elapsed: 0.13561906800003953
+  - elapsed: 0.1449178220000249
     environment: g++
     memory: 4.044
     name: mod3_01
     status: AC
-  - elapsed: 0.8843747170000142
+  - elapsed: 0.8866791629999966
     environment: g++
-    memory: 120.78
+    memory: 120.772
     name: mod998244353_00
     status: AC
-  - elapsed: 0.8963411240000028
+  - elapsed: 0.8745986619999826
     environment: g++
-    memory: 120.78
+    memory: 120.784
     name: mod998244353_01
     status: AC
-  - elapsed: 0.9763865400000213
+  - elapsed: 0.9714011730000038
     environment: g++
-    memory: 120.732
+    memory: 120.724
     name: mod998244353_maxi_00
     status: AC
-  - elapsed: 0.15303861899997173
+  - elapsed: 0.16158005899995942
     environment: g++
-    memory: 4.008
+    memory: 3.88
     name: small_random_00
     status: AC
-  - elapsed: 0.15298473199999307
+  - elapsed: 0.16321133899998586
     environment: g++
-    memory: 4.028
+    memory: 3.952
     name: small_random_01
     status: AC
-  - elapsed: 0.15282096100003173
+  - elapsed: 0.15919106699999475
     environment: g++
-    memory: 4.016
+    memory: 4.048
     name: small_random_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp

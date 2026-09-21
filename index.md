@@ -981,6 +981,11 @@ data:
       - filename: static_rolling_hash.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/string/static_rolling_hash.test.cpp
+    - name: verify/unit_test/template/
+      pages:
+      - filename: function_util.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/template/function_util.test.cpp
     - name: verify/unit_test/type_traits/
       pages:
       - filename: concepts.test.cpp

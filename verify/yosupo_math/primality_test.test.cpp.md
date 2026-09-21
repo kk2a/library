@@ -377,16 +377,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/primality_test.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/primality_test.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep(q)\
       \ {\n        u64 n;\n        kin >> n;\n        Yes(kk2::is_prime(n));\n   \
       \ }\n\n    return 0;\n}\n"
@@ -397,67 +397,72 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.4847308809999049
+  - elapsed: 0.4865087940000308
     environment: g++
-    memory: 3.984
+    memory: 4.012
     name: all_prime_00
     status: AC
-  - elapsed: 0.003083414000002449
+  - elapsed: 0.002969350000000759
     environment: g++
-    memory: 3.788
+    memory: 3.74
     name: carmichael_00
     status: AC
-  - elapsed: 0.002125750999994125
+  - elapsed: 0.002191197000001921
     environment: g++
-    memory: 3.772
+    memory: 3.756
     name: example_00
     status: AC
-  - elapsed: 0.0021031999999649997
-    environment: g++
-    memory: 3.752
-    name: hack_issue1325_00
-    status: AC
-  - elapsed: 0.002075880999882429
+  - elapsed: 0.0021453599999858852
     environment: g++
     memory: 3.76
+    name: hack_issue1325_00
+    status: AC
+  - elapsed: 0.002144369000006918
+    environment: g++
+    memory: 3.772
     name: hack_issue996_00
     status: AC
-  - elapsed: 0.04403667800011135
-    environment: g++
-    memory: 3.88
-    name: less_1000000000_00
-    status: AC
-  - elapsed: 0.11978434999991805
-    environment: g++
-    memory: 4.024
-    name: prod_two_prime_00
-    status: AC
-  - elapsed: 0.0025298449997990247
-    environment: g++
-    memory: 3.576
-    name: pseudoprimes_00
-    status: AC
-  - elapsed: 0.07998471599989898
+  - elapsed: 0.04428708799997594
     environment: g++
     memory: 4.04
+    name: less_1000000000_00
+    status: AC
+  - elapsed: 0.1312850510000203
+    environment: g++
+    memory: 3.836
+    name: many_liars_00
+    status: AC
+  - elapsed: 0.11826409799999738
+    environment: g++
+    memory: 4.048
+    name: prod_two_prime_00
+    status: AC
+  - elapsed: 0.0025325870000187933
+    environment: g++
+    memory: 3.784
+    name: pseudoprimes_00
+    status: AC
+  - elapsed: 0.0796300599999995
+    environment: g++
+    memory: 3.824
     name: random_00
     status: AC
-  - elapsed: 0.07961432299998705
+  - elapsed: 0.07983291100003953
     environment: g++
-    memory: 4.044
+    memory: 4.012
     name: random_01
     status: AC
-  - elapsed: 0.07973358200001712
+  - elapsed: 0.07977749700000913
     environment: g++
-    memory: 4.008
+    memory: 3.82
     name: random_02
     status: AC
-  - elapsed: 0.03336951300002511
+  - elapsed: 0.034211647999995876
     environment: g++
-    memory: 3.88
+    memory: 4.028
     name: small_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/primality_test.test.cpp

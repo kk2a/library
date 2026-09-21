@@ -480,16 +480,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/primitive_root.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/primitive_root.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int q;\n    kin >> q;\n    rep(q)\
       \ {\n        i64 p;\n        kin >> p;\n        kout << kk2::primitive_root_64bit(p)\
       \ << \"\\n\";\n    }\n\n    return 0;\n}\n"
@@ -500,77 +500,77 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.00718869000002087
+  - elapsed: 0.007460882000032143
     environment: g++
-    memory: 3.828
+    memory: 3.832
     name: 223092870x_plus_1_00
     status: AC
-  - elapsed: 0.0021572630000719073
+  - elapsed: 0.002203887999996823
     environment: g++
     memory: 3.82
     name: example_00
     status: AC
-  - elapsed: 0.0022060729997974704
+  - elapsed: 0.0022337760000255003
     environment: g++
-    memory: 3.696
+    memory: 3.652
     name: example_01
     status: AC
-  - elapsed: 0.005852805000131411
+  - elapsed: 0.0059521879999806515
     environment: g++
-    memory: 3.644
+    memory: 3.84
     name: large_least_primitive_root_00
     status: AC
-  - elapsed: 0.0032597189999705733
+  - elapsed: 0.0034285079999563095
     environment: g++
-    memory: 3.808
+    memory: 3.824
     name: less_1000000000_00
     status: AC
-  - elapsed: 0.0033384510002179013
+  - elapsed: 0.0033697179999876425
     environment: g++
-    memory: 3.804
+    memory: 3.84
     name: less_1000000000_01
     status: AC
-  - elapsed: 0.0032637040001191053
+  - elapsed: 0.003395696999973552
     environment: g++
-    memory: 3.648
+    memory: 3.796
     name: less_1000000000_02
     status: AC
-  - elapsed: 0.007484400999828722
+  - elapsed: 0.0071426029999770435
     environment: g++
-    memory: 3.828
+    memory: 3.84
     name: random_00
     status: AC
-  - elapsed: 0.008069889999887891
+  - elapsed: 0.006940154000005805
     environment: g++
-    memory: 3.64
+    memory: 3.84
     name: random_01
     status: AC
-  - elapsed: 0.006251542999962112
+  - elapsed: 0.006442428000013933
     environment: g++
-    memory: 3.836
+    memory: 3.648
     name: random_02
     status: AC
-  - elapsed: 0.002872504999913872
+  - elapsed: 0.0029609609999852182
     environment: g++
-    memory: 3.696
+    memory: 3.84
     name: safe_prime_00
     status: AC
-  - elapsed: 0.00264886399986608
+  - elapsed: 0.002725888999975723
     environment: g++
     memory: 3.652
     name: small_00
     status: AC
-  - elapsed: 0.0026433549999183015
+  - elapsed: 0.0027182739999602745
     environment: g++
-    memory: 3.652
+    memory: 3.824
     name: small_01
     status: AC
-  - elapsed: 0.0026514480000514595
+  - elapsed: 0.0027390129999957935
     environment: g++
-    memory: 3.84
+    memory: 3.844
     name: small_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/primitive_root.test.cpp

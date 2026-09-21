@@ -471,16 +471,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_linalg/matrix_product.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_linalg/matrix_product.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m, k;\n    kin >> n >> m\
       \ >> k;\n    kk2::MatrixField<kk2::mont998> a(n, m), b(m, k);\n    a.input(kin),\
       \ b.input(kin);\n    (a * b).output(kout);\n\n    return 0;\n}\n"
@@ -491,117 +491,117 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024575980000065556
+  - elapsed: 0.0023928360000127213
     environment: g++
-    memory: 3.792
+    memory: 3.58
     name: example_00
     status: AC
-  - elapsed: 0.0020929380000040965
+  - elapsed: 0.0021494940000366114
     environment: g++
-    memory: 3.644
+    memory: 3.792
     name: example_01
     status: AC
-  - elapsed: 0.002114378000001693
+  - elapsed: 0.0020608879999599594
     environment: g++
-    memory: 3.776
+    memory: 3.788
     name: example_02
     status: AC
-  - elapsed: 30.05313527199999
+  - elapsed: 29.945062872999983
     environment: g++
-    memory: 20.016
+    memory: 19.944
     name: max_random_00
     status: AC
-  - elapsed: 30.077452358000002
+  - elapsed: 29.954004448999967
     environment: g++
     memory: 20.016
     name: max_random_01
     status: AC
-  - elapsed: 30.001342280999992
+  - elapsed: 29.948534599000027
     environment: g++
     memory: 20.016
     name: max_random_02
     status: AC
-  - elapsed: 12.227861259000008
+  - elapsed: 12.224738817999992
     environment: g++
-    memory: 12.932
+    memory: 12.936
     name: random_00
     status: AC
-  - elapsed: 11.702355460000007
+  - elapsed: 11.679128291999973
     environment: g++
-    memory: 12.452
+    memory: 12.464
     name: random_01
     status: AC
-  - elapsed: 8.733480235000002
+  - elapsed: 8.738782132999972
     environment: g++
-    memory: 11.184
+    memory: 11.176
     name: random_02
     status: AC
-  - elapsed: 0.00436834699999622
+  - elapsed: 0.003935882000064339
     environment: g++
-    memory: 3.596
+    memory: 3.792
     name: signed_overflow_00
     status: AC
-  - elapsed: 0.010194369999993569
+  - elapsed: 0.009651871000073697
     environment: g++
-    memory: 3.844
+    memory: 3.92
     name: small_00
     status: AC
-  - elapsed: 0.00857889299999215
+  - elapsed: 0.008187435000081678
     environment: g++
-    memory: 3.916
+    memory: 3.9
     name: small_01
     status: AC
-  - elapsed: 0.0028124860000104945
+  - elapsed: 0.002520362000041132
     environment: g++
-    memory: 3.796
+    memory: 3.772
     name: small_02
     status: AC
-  - elapsed: 0.02207337900000539
+  - elapsed: 0.02136315799998556
     environment: g++
     memory: 4.048
     name: small_03
     status: AC
-  - elapsed: 0.006815070000016021
+  - elapsed: 0.006442633999995451
     environment: g++
-    memory: 3.72
+    memory: 3.92
     name: small_04
     status: AC
-  - elapsed: 0.017604261999991877
-    environment: g++
-    memory: 3.96
-    name: small_05
-    status: AC
-  - elapsed: 0.005005450000027167
-    environment: g++
-    memory: 3.928
-    name: small_06
-    status: AC
-  - elapsed: 0.008709826000000476
-    environment: g++
-    memory: 4.04
-    name: small_07
-    status: AC
-  - elapsed: 0.0035058250000190583
-    environment: g++
-    memory: 3.928
-    name: small_08
-    status: AC
-  - elapsed: 0.012770220000021482
+  - elapsed: 0.017618289999973058
     environment: g++
     memory: 4.048
+    name: small_05
+    status: AC
+  - elapsed: 0.004929296999989674
+    environment: g++
+    memory: 3.912
+    name: small_06
+    status: AC
+  - elapsed: 0.008597592999990411
+    environment: g++
+    memory: 4.064
+    name: small_07
+    status: AC
+  - elapsed: 0.0032806650000338777
+    environment: g++
+    memory: 3.936
+    name: small_08
+    status: AC
+  - elapsed: 0.012766005999992558
+    environment: g++
+    memory: 4.036
     name: small_09
     status: AC
-  - elapsed: 0.0025260010000067723
+  - elapsed: 0.0023286910000024363
     environment: g++
-    memory: 3.792
+    memory: 3.704
     name: unsigned_overflow_00
     status: AC
-  - elapsed: 0.0024548340000194457
+  - elapsed: 0.002337192000027244
     environment: g++
-    memory: 3.792
+    memory: 3.808
     name: unsigned_overflow_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_product.test.cpp

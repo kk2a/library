@@ -1302,16 +1302,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_fps/fps_log.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_fps/fps_log.test.cpp\"\
       \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
       \ {\n    int n;\n    kin >> n;\n    FPS f(n);\n    f.input(kin).log().output(kout);\n\
       \n    return 0;\n}\n"
@@ -1322,132 +1322,132 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0028230170000256294
+  - elapsed: 0.0025843679999866254
     environment: g++
     memory: 3.812
     name: example_00
     status: AC
-  - elapsed: 0.13129926599998498
+  - elapsed: 0.11486903799999482
     environment: g++
     memory: 11.324
     name: max_all_zero_00
     status: AC
-  - elapsed: 3.74966353100001
+  - elapsed: 3.343417188999979
     environment: g++
     memory: 17.636
     name: max_random_00
     status: AC
-  - elapsed: 3.758385541999985
+  - elapsed: 3.3476321310000117
     environment: g++
     memory: 17.64
     name: max_random_01
     status: AC
-  - elapsed: 3.7671027879999883
+  - elapsed: 3.345269612999971
     environment: g++
-    memory: 17.624
+    memory: 17.64
     name: max_random_02
     status: AC
-  - elapsed: 3.7587387880000165
+  - elapsed: 3.3466093080000405
     environment: g++
-    memory: 17.448
+    memory: 17.492
     name: max_random_03
     status: AC
-  - elapsed: 3.755437729999983
+  - elapsed: 3.345680678000008
     environment: g++
     memory: 17.64
     name: max_random_04
     status: AC
-  - elapsed: 1.7928757319999704
+  - elapsed: 1.5983541699999932
     environment: g++
-    memory: 10.744
+    memory: 10.752
     name: near_262144_00
     status: AC
-  - elapsed: 1.7983161589999668
+  - elapsed: 1.5992944660000035
     environment: g++
-    memory: 10.708
+    memory: 10.552
     name: near_262144_01
     status: AC
-  - elapsed: 2.91140212800002
+  - elapsed: 2.599278498999979
     environment: g++
-    memory: 10.88
+    memory: 10.872
     name: near_262144_02
     status: AC
-  - elapsed: 3.697684004999985
+  - elapsed: 3.304407265000009
     environment: g++
-    memory: 16.34
+    memory: 16.332
     name: random_00
     status: AC
-  - elapsed: 3.732978572000036
+  - elapsed: 3.3374805500000093
     environment: g++
-    memory: 17.168
+    memory: 17.152
     name: random_01
     status: AC
-  - elapsed: 0.40026003600002014
+  - elapsed: 0.3570574190000002
     environment: g++
-    memory: 5.144
+    memory: 5.152
     name: random_02
     status: AC
-  - elapsed: 3.7173627569999894
+  - elapsed: 3.3170736829999896
     environment: g++
-    memory: 16.812
+    memory: 16.808
     name: random_03
     status: AC
-  - elapsed: 3.647089216999973
+  - elapsed: 3.252761851999992
     environment: g++
-    memory: 14.972
+    memory: 14.896
     name: random_04
     status: AC
-  - elapsed: 0.002646005000030982
+  - elapsed: 0.0025738850000038838
     environment: g++
-    memory: 3.812
+    memory: 3.832
     name: small_degree_00
     status: AC
-  - elapsed: 0.00228912800002945
+  - elapsed: 0.0022018820000084816
     environment: g++
-    memory: 3.82
+    memory: 3.616
     name: small_degree_01
     status: AC
-  - elapsed: 0.002266142999985732
-    environment: g++
-    memory: 3.808
-    name: small_degree_02
-    status: AC
-  - elapsed: 0.002297479999981533
+  - elapsed: 0.0021603020000497963
     environment: g++
     memory: 3.812
-    name: small_degree_03
+    name: small_degree_02
     status: AC
-  - elapsed: 0.002258382000036363
-    environment: g++
-    memory: 3.62
-    name: small_degree_04
-    status: AC
-  - elapsed: 0.0022591329999954723
-    environment: g++
-    memory: 3.792
-    name: small_degree_05
-    status: AC
-  - elapsed: 0.0022286470000381087
-    environment: g++
-    memory: 3.62
-    name: small_degree_06
-    status: AC
-  - elapsed: 0.00228357900004994
-    environment: g++
-    memory: 3.82
-    name: small_degree_07
-    status: AC
-  - elapsed: 0.0023314099999538485
+  - elapsed: 0.0021292649999509194
     environment: g++
     memory: 3.664
+    name: small_degree_03
+    status: AC
+  - elapsed: 0.0021061630000076548
+    environment: g++
+    memory: 3.812
+    name: small_degree_04
+    status: AC
+  - elapsed: 0.002125726000031136
+    environment: g++
+    memory: 3.776
+    name: small_degree_05
+    status: AC
+  - elapsed: 0.0021114010000360395
+    environment: g++
+    memory: 3.608
+    name: small_degree_06
+    status: AC
+  - elapsed: 0.0021135779999781334
+    environment: g++
+    memory: 3.612
+    name: small_degree_07
+    status: AC
+  - elapsed: 0.00214931099998239
+    environment: g++
+    memory: 3.808
     name: small_degree_08
     status: AC
-  - elapsed: 0.00228463999997075
+  - elapsed: 0.002240042000039466
     environment: g++
-    memory: 3.8
+    memory: 3.812
     name: small_degree_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_log.test.cpp

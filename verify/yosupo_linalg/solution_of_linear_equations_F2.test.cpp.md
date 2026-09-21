@@ -626,16 +626,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n\
       \    kk2::MatrixF2 a(n, m), b(1, n);\n    a.input(kin), b.input(kin);\n    if\
       \ (const auto res = a.solve(b.inplace_transpose())) {\n        kout << res->get_h()\
@@ -648,187 +648,187 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002671592000012879
+  - elapsed: 0.0025450210000030893
     environment: g++
-    memory: 3.816
+    memory: 3.832
     name: example_00
     status: AC
-  - elapsed: 0.002255907999995088
+  - elapsed: 0.0021671009999977286
     environment: g++
-    memory: 3.836
+    memory: 3.632
     name: example_01
     status: AC
-  - elapsed: 0.00218691099996704
+  - elapsed: 0.0021451060000003963
     environment: g++
-    memory: 3.804
+    memory: 3.816
     name: example_02
     status: AC
-  - elapsed: 1.463273256999969
+  - elapsed: 1.4586451319999583
     environment: g++
     memory: 12.616
     name: max_lowrank_00
     status: AC
-  - elapsed: 0.9750149899999769
+  - elapsed: 0.9764383440000302
     environment: g++
-    memory: 12.62
+    memory: 12.624
     name: max_lowrank_01
     status: AC
-  - elapsed: 1.5138440979999928
+  - elapsed: 1.511344221999991
     environment: g++
-    memory: 12.616
+    memory: 12.44
     name: max_lowrank_02
     status: AC
-  - elapsed: 1.3082335899999862
+  - elapsed: 1.3092270150000331
     environment: g++
     memory: 12.624
     name: max_lowrank_03
     status: AC
-  - elapsed: 2.6034450120000088
+  - elapsed: 2.6134195319999662
     environment: g++
-    memory: 12.44
+    memory: 12.58
     name: max_lowrank_04
     status: AC
-  - elapsed: 0.9791292689999977
+  - elapsed: 0.9749925909999888
     environment: g++
-    memory: 12.624
+    memory: 12.576
     name: max_lowrank_05
     status: AC
-  - elapsed: 1.465210132999971
+  - elapsed: 1.4782566189999784
     environment: g++
     memory: 12.624
     name: max_lowrank_06
     status: AC
-  - elapsed: 1.0188275670000166
+  - elapsed: 1.0075367449999817
     environment: g++
-    memory: 12.58
+    memory: 12.624
     name: max_lowrank_07
     status: AC
-  - elapsed: 1.9026552100000345
+  - elapsed: 1.902890742000011
     environment: g++
-    memory: 12.616
+    memory: 12.568
     name: max_lowrank_08
     status: AC
-  - elapsed: 2.5345350960000133
+  - elapsed: 2.53477187499999
     environment: g++
     memory: 12.624
     name: max_lowrank_09
     status: AC
-  - elapsed: 2.5740032269999915
+  - elapsed: 2.5838939870000104
     environment: g++
     memory: 12.624
     name: max_random_00
     status: AC
-  - elapsed: 2.6072528759999614
+  - elapsed: 2.61989820499997
     environment: g++
     memory: 12.58
     name: max_random_01
     status: AC
-  - elapsed: 2.6121365980000064
+  - elapsed: 2.6137405780000336
     environment: g++
     memory: 12.616
     name: max_random_02
     status: AC
-  - elapsed: 2.567283386999975
+  - elapsed: 2.5770257949999973
     environment: g++
-    memory: 12.58
+    memory: 12.616
     name: max_random_03
     status: AC
-  - elapsed: 2.6124956540000426
+  - elapsed: 2.6227821570000174
     environment: g++
-    memory: 12.588
+    memory: 12.624
     name: max_random_04
     status: AC
-  - elapsed: 0.008528174000048239
+  - elapsed: 0.008377568000014435
     environment: g++
-    memory: 4.376
+    memory: 4.384
     name: max_small_00
     status: AC
-  - elapsed: 0.008504178999999112
+  - elapsed: 0.008281908000014937
     environment: g++
-    memory: 4.44
+    memory: 4.444
     name: max_small_01
     status: AC
-  - elapsed: 0.12809186300000874
+  - elapsed: 0.129941658000007
     environment: g++
-    memory: 4.568
+    memory: 4.58
     name: random_00
     status: AC
-  - elapsed: 0.38905261999997265
+  - elapsed: 0.38947519200002034
     environment: g++
-    memory: 5.76
+    memory: 5.704
     name: random_01
     status: AC
-  - elapsed: 0.07751867700000048
+  - elapsed: 0.07696369100000311
     environment: g++
     memory: 4.464
     name: random_02
     status: AC
-  - elapsed: 0.4010239200000001
+  - elapsed: 0.4027788589999659
     environment: g++
-    memory: 5.656
+    memory: 5.712
     name: random_03
     status: AC
-  - elapsed: 0.19168673799998714
+  - elapsed: 0.1921762489999992
     environment: g++
-    memory: 4.944
+    memory: 4.9
     name: random_04
     status: AC
-  - elapsed: 0.4945598029999587
+  - elapsed: 0.49569253900000376
     environment: g++
     memory: 6.12
     name: small_max_00
     status: AC
-  - elapsed: 0.004188774999988709
-    environment: g++
-    memory: 3.828
-    name: small_max_01
-    status: AC
-  - elapsed: 0.0023460120000322604
+  - elapsed: 0.004192813000031492
     environment: g++
     memory: 3.636
+    name: small_max_01
+    status: AC
+  - elapsed: 0.0021453179999753047
+    environment: g++
+    memory: 3.836
     name: small_random_00
     status: AC
-  - elapsed: 0.002195790000030229
+  - elapsed: 0.0021131479999780822
     environment: g++
-    memory: 3.824
+    memory: 3.844
     name: small_random_01
     status: AC
-  - elapsed: 0.0021621470000354748
+  - elapsed: 0.0020776210000121864
     environment: g++
-    memory: 3.824
+    memory: 3.836
     name: small_random_02
     status: AC
-  - elapsed: 0.00216912000001912
+  - elapsed: 0.002116735000015524
     environment: g++
-    memory: 3.86
+    memory: 3.688
     name: small_random_03
     status: AC
-  - elapsed: 0.0021750870000118994
+  - elapsed: 0.002191334999963601
     environment: g++
-    memory: 3.648
+    memory: 3.836
     name: small_random_04
     status: AC
-  - elapsed: 0.0022653199999922435
+  - elapsed: 0.0020836529999996856
     environment: g++
-    memory: 3.816
+    memory: 3.828
     name: smallest_00
     status: AC
-  - elapsed: 0.0022609019999890734
+  - elapsed: 0.002096586999982719
     environment: g++
-    memory: 3.856
+    memory: 3.64
     name: smallest_01
     status: AC
-  - elapsed: 0.0022374430000127177
+  - elapsed: 0.002104712000004838
     environment: g++
     memory: 3.848
     name: smallest_02
     status: AC
-  - elapsed: 0.0021462169999608705
+  - elapsed: 0.0020880010000041693
     environment: g++
-    memory: 3.844
+    memory: 3.792
     name: smallest_03
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp

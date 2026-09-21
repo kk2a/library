@@ -349,19 +349,19 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 1 \"unionfind/potentialized.hpp\"\
-      \n\n\n\n#line 5 \"unionfind/potentialized.hpp\"\n\nnamespace kk2 {\n\n// \u5B9F\
-      \u88C5\u306E\u65B9\u91DD\u3092\u307B\u304B\u306E\u3082\u306E\u306B\u5408\u308F\
-      \u305B\u308B\n\ntemplate <class A, bool right = true> struct PotentializedUnionFind\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 1 \"unionfind/potentialized.hpp\"\n\n\n\n\
+      #line 5 \"unionfind/potentialized.hpp\"\n\nnamespace kk2 {\n\n// \u5B9F\u88C5\
+      \u306E\u65B9\u91DD\u3092\u307B\u304B\u306E\u3082\u306E\u306B\u5408\u308F\u305B\
+      \u308B\n\ntemplate <class A, bool right = true> struct PotentializedUnionFind\
       \ {\n  private:\n    std::vector<int> d;\n    std::vector<A> par_diff;\n\n \
       \ public:\n    PotentializedUnionFind(int n, A e_ = A()) : d(n, -1), par_diff(n,\
       \ e_) {}\n\n    // x -> y : w\n    // right: a[y]a[x]^-1 = w\n    // !right:\
@@ -397,97 +397,97 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002437159999999494
+  - elapsed: 0.002421312000024045
     environment: g++
     memory: 3.836
     name: example_00
     status: AC
-  - elapsed: 0.07525588099997549
+  - elapsed: 0.07469545399999333
     environment: g++
     memory: 4.704
     name: max_random_00
     status: AC
-  - elapsed: 0.07457139799998913
+  - elapsed: 0.07392112299999098
     environment: g++
-    memory: 4.824
+    memory: 4.832
     name: max_random_01
     status: AC
-  - elapsed: 0.0789047769999911
+  - elapsed: 0.07890281000004506
     environment: g++
-    memory: 4.148
+    memory: 4.136
     name: max_random_02
     status: AC
-  - elapsed: 0.07752842299998974
+  - elapsed: 0.07775849299991933
     environment: g++
     memory: 5.216
     name: path_00
     status: AC
-  - elapsed: 0.08705642000001035
+  - elapsed: 0.08655958399992869
     environment: g++
-    memory: 5.208
+    memory: 5.216
     name: path_01
     status: AC
-  - elapsed: 0.09292305399998213
+  - elapsed: 0.09274266399995668
     environment: g++
-    memory: 5.248
+    memory: 5.216
     name: path_02
     status: AC
-  - elapsed: 0.09512159499996642
+  - elapsed: 0.09372486199993091
     environment: g++
-    memory: 5.252
+    memory: 5.216
     name: path_03
     status: AC
-  - elapsed: 0.054424328999971294
+  - elapsed: 0.053711513000052946
     environment: g++
-    memory: 4.704
+    memory: 4.7
     name: random_00
     status: AC
-  - elapsed: 0.05446622300001991
+  - elapsed: 0.05400044999998954
     environment: g++
-    memory: 4.776
+    memory: 4.824
     name: random_01
     status: AC
-  - elapsed: 0.046167890999981864
+  - elapsed: 0.04628963699997257
     environment: g++
-    memory: 4.172
+    memory: 4.132
     name: random_02
     status: AC
-  - elapsed: 0.011855147000005672
+  - elapsed: 0.012409874000013588
     environment: g++
-    memory: 4.96
+    memory: 4.844
     name: random_03
     status: AC
-  - elapsed: 0.04116359500000044
+  - elapsed: 0.040814120000050025
     environment: g++
-    memory: 4.196
+    memory: 4.256
     name: random_04
     status: AC
-  - elapsed: 0.05469793299999992
+  - elapsed: 0.054140357000051154
     environment: g++
-    memory: 4.148
+    memory: 4.18
     name: random_05
     status: AC
-  - elapsed: 0.04033034499997257
+  - elapsed: 0.039919761000078324
     environment: g++
-    memory: 5.208
+    memory: 5.156
     name: random_06
     status: AC
-  - elapsed: 0.006629637000003186
+  - elapsed: 0.0068420519999108365
     environment: g++
-    memory: 4.312
+    memory: 4.32
     name: random_07
     status: AC
-  - elapsed: 0.021134669999980815
+  - elapsed: 0.020930763000023944
     environment: g++
-    memory: 4.084
+    memory: 3.964
     name: random_08
     status: AC
-  - elapsed: 0.07325734300002296
+  - elapsed: 0.07375542800002677
     environment: g++
-    memory: 4.44
+    memory: 4.484
     name: random_09
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_potentialized_unionfind.test.cpp

@@ -1401,16 +1401,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/yosupo_fps/poly_interpolation.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/yosupo_fps/poly_interpolation.test.cpp\"\
       \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
       \ {\n    int n;\n    kin >> n;\n    vc<kk2::mont998> x(n), y(n);\n    kin >>\
       \ x >> y;\n    kout << kk2::poly_interpolation<FPS>(x, y) << kendl;\n\n    return\
@@ -1422,52 +1422,52 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002964138999999477
+  - elapsed: 0.0021167010000056052
     environment: g++
-    memory: 3.78
+    memory: 3.868
     name: '1169_00'
     status: AC
-  - elapsed: 0.0023628860000002305
+  - elapsed: 0.0018038009999941096
     environment: g++
-    memory: 3.78
+    memory: 3.964
     name: example_00
     status: AC
-  - elapsed: 0.0023059389999957602
+  - elapsed: 0.0016549050000094212
     environment: g++
-    memory: 3.844
+    memory: 3.708
     name: example_01
     status: AC
-  - elapsed: 14.873134098999998
+  - elapsed: 7.37253222199999
     environment: g++
-    memory: 33.504
+    memory: 33.464
     name: max_random_00
     status: AC
-  - elapsed: 14.87324384499999
+  - elapsed: 7.279093575000019
     environment: g++
-    memory: 33.452
+    memory: 33.724
     name: max_random_01
     status: AC
-  - elapsed: 14.382732410000003
+  - elapsed: 7.162318520000014
     environment: g++
-    memory: 32.84
+    memory: 33.144
     name: random_00
     status: AC
-  - elapsed: 8.06327267399999
+  - elapsed: 3.8848274900000206
     environment: g++
-    memory: 23.88
+    memory: 24.008
     name: random_01
     status: AC
-  - elapsed: 5.496822503000004
+  - elapsed: 2.7293308890000105
     environment: g++
-    memory: 16.4
+    memory: 16.516
     name: random_02
     status: AC
-  - elapsed: 14.893541513999992
+  - elapsed: 7.196432339000012
     environment: g++
-    memory: 33.5
+    memory: 33.592
     name: x_zero_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_interpolation.test.cpp

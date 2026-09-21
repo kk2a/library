@@ -110,7 +110,7 @@ data:
   path: math_mod/bernoulli_number.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math_mod/bernoulli_number.hpp

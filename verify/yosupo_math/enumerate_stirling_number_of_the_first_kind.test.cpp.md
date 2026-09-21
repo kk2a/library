@@ -1324,16 +1324,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp\"\
       \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
       \ {\n    int n;\n    kin >> n;\n    kout << kk2::enumerate_stirling_number_of_the_first_kind<FPS>(n)\
       \ << kendl;\n\n    return 0;\n}\n"
@@ -1344,57 +1344,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002545038000000943
+  - elapsed: 0.0027477280000027804
     environment: g++
-    memory: 3.804
+    memory: 3.784
     name: '0_00'
     status: AC
-  - elapsed: 0.0023434599999987427
+  - elapsed: 0.0021442939999758437
     environment: g++
-    memory: 3.584
+    memory: 3.748
     name: '1_00'
     status: AC
-  - elapsed: 5.717703419999999
+  - elapsed: 5.751176256000008
     environment: g++
-    memory: 22.252
+    memory: 22.272
     name: '262143_00'
     status: AC
-  - elapsed: 6.291549998000001
+  - elapsed: 6.379728433999986
     environment: g++
     memory: 24.104
     name: '262144_00'
     status: AC
-  - elapsed: 0.0024639779999944267
+  - elapsed: 0.002379772000011826
     environment: g++
-    memory: 3.78
+    memory: 3.792
     name: '2_00'
     status: AC
-  - elapsed: 7.676474130999999
+  - elapsed: 7.72205022
     environment: g++
-    memory: 39.456
+    memory: 39.452
     name: '491519_00'
     status: AC
-  - elapsed: 7.731803882999998
+  - elapsed: 7.819295939999989
     environment: g++
-    memory: 39.38
+    memory: 39.304
     name: '499999_00'
     status: AC
-  - elapsed: 7.727824056000003
+  - elapsed: 7.783734563999985
     environment: g++
-    memory: 39.368
+    memory: 39.42
     name: '500000_00'
     status: AC
-  - elapsed: 0.060159613999999806
+  - elapsed: 0.0604087080000113
     environment: g++
-    memory: 4.184
+    memory: 4.204
     name: '5000_00'
     status: AC
-  - elapsed: 0.002275064000002658
+  - elapsed: 0.0021907879999787383
     environment: g++
-    memory: 3.824
+    memory: 3.784
     name: example_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp

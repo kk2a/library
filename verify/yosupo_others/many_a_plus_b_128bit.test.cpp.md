@@ -287,16 +287,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_others/many_a_plus_b_128bit.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_others/many_a_plus_b_128bit.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep(t)\
       \ {\n        i128 a, b;\n        kin >> a >> b;\n        kout << a + b << \"\
       \\n\";\n    }\n\n    return 0;\n}\n"
@@ -307,57 +307,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.31871726299999636
+  - elapsed: 0.37453650300000163
     environment: g++
-    memory: 4.104
+    memory: 4.016
     name: all_max_abs_00
     status: AC
-  - elapsed: 0.03947310999996034
-    environment: g++
-    memory: 3.952
-    name: all_zero_00
-    status: AC
-  - elapsed: 0.32798963100003675
-    environment: g++
-    memory: 4.064
-    name: carry_up_00
-    status: AC
-  - elapsed: 0.23252271299998029
-    environment: g++
-    memory: 4.084
-    name: digit_random_00
-    status: AC
-  - elapsed: 0.2321021030000452
-    environment: g++
-    memory: 4.112
-    name: digit_random_01
-    status: AC
-  - elapsed: 0.0019882600000187267
-    environment: g++
-    memory: 3.84
-    name: example_00
-    status: AC
-  - elapsed: 0.3625891050000405
-    environment: g++
-    memory: 4.084
-    name: max_random_00
-    status: AC
-  - elapsed: 0.3652987449999614
-    environment: g++
-    memory: 4.068
-    name: max_random_01
-    status: AC
-  - elapsed: 0.28089667200003987
-    environment: g++
-    memory: 4.084
-    name: random_00
-    status: AC
-  - elapsed: 0.3344803449999745
+  - elapsed: 0.050304070000009915
     environment: g++
     memory: 4.008
+    name: all_zero_00
+    status: AC
+  - elapsed: 0.3972560359999875
+    environment: g++
+    memory: 4.016
+    name: carry_up_00
+    status: AC
+  - elapsed: 0.28085917200002086
+    environment: g++
+    memory: 3.828
+    name: digit_random_00
+    status: AC
+  - elapsed: 0.2826429070000245
+    environment: g++
+    memory: 3.944
+    name: digit_random_01
+    status: AC
+  - elapsed: 0.0026462129999913486
+    environment: g++
+    memory: 3.776
+    name: example_00
+    status: AC
+  - elapsed: 0.4263119420000123
+    environment: g++
+    memory: 3.824
+    name: max_random_00
+    status: AC
+  - elapsed: 0.42597696000001406
+    environment: g++
+    memory: 4.02
+    name: max_random_01
+    status: AC
+  - elapsed: 0.3328950559999839
+    environment: g++
+    memory: 4.016
+    name: random_00
+    status: AC
+  - elapsed: 0.39360576199999286
+    environment: g++
+    memory: 4.012
     name: random_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b_128bit.test.cpp

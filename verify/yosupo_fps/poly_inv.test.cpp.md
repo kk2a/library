@@ -1355,16 +1355,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_fps/poly_inv.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_fps/poly_inv.test.cpp\"\
       \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
       \ {\n    int n, m;\n    kin >> n >> m;\n    FPS f(n), g(m);\n    kin >> f >>\
       \ g;\n    if (const auto [ok, h] = kk2::poly_inv(f, g); ok) {\n        kout\
@@ -1377,97 +1377,97 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.12111107499998752
+  - elapsed: 0.05512100900000405
     environment: g++
-    memory: 3.892
+    memory: 4.188
     name: abnormal_random_00
     status: AC
-  - elapsed: 0.12365362799999957
+  - elapsed: 0.056182054999993625
     environment: g++
-    memory: 4.084
+    memory: 4.148
     name: abnormal_random_01
     status: AC
-  - elapsed: 0.12516071999999667
+  - elapsed: 0.0560007070000097
     environment: g++
-    memory: 3.888
+    memory: 4.024
     name: abnormal_random_02
     status: AC
-  - elapsed: 0.12358199300000194
+  - elapsed: 0.05636731799998529
     environment: g++
-    memory: 4.088
+    memory: 4.132
     name: abnormal_random_03
     status: AC
-  - elapsed: 0.1242613499999976
+  - elapsed: 0.05656896799999345
     environment: g++
-    memory: 3.892
+    memory: 4.192
     name: abnormal_random_04
     status: AC
-  - elapsed: 0.002700313999994819
+  - elapsed: 0.001844180999995615
     environment: g++
-    memory: 3.828
+    memory: 3.872
     name: example_00
     status: AC
-  - elapsed: 0.002414975999997182
+  - elapsed: 0.0015966970000249603
     environment: g++
-    memory: 3.808
+    memory: 3.928
     name: example_01
     status: AC
-  - elapsed: 0.0023573510000005626
+  - elapsed: 0.001609862999998768
     environment: g++
-    memory: 3.684
+    memory: 3.896
     name: example_02
     status: AC
-  - elapsed: 21.766797229000005
+  - elapsed: 9.542667314999989
     environment: g++
-    memory: 8.604
+    memory: 8.872
     name: max_random_00
     status: AC
-  - elapsed: 21.682077782999997
+  - elapsed: 9.54295090399998
     environment: g++
-    memory: 8.788
+    memory: 8.872
     name: max_random_01
     status: AC
-  - elapsed: 21.350388191999983
+  - elapsed: 10.041973548000016
     environment: g++
-    memory: 8.808
+    memory: 8.9
     name: max_random_02
     status: AC
-  - elapsed: 21.404278852000004
+  - elapsed: 10.064679446000014
     environment: g++
-    memory: 8.804
+    memory: 8.872
     name: max_random_03
     status: AC
-  - elapsed: 21.431810646999992
+  - elapsed: 9.77047498799999
     environment: g++
-    memory: 8.708
+    memory: 8.888
     name: max_random_04
     status: AC
-  - elapsed: 5.061607503999994
+  - elapsed: 2.25517441300002
     environment: g++
-    memory: 5.388
+    memory: 5.492
     name: random_00
     status: AC
-  - elapsed: 2.6484557649999942
+  - elapsed: 1.1737307269999917
     environment: g++
-    memory: 4.992
+    memory: 5.112
     name: random_01
     status: AC
-  - elapsed: 4.46430078100002
+  - elapsed: 1.9757197309999697
     environment: g++
-    memory: 5.484
+    memory: 5.564
     name: random_02
     status: AC
-  - elapsed: 12.37803877799999
+  - elapsed: 6.048391921000018
     environment: g++
-    memory: 7.436
+    memory: 7.516
     name: random_03
     status: AC
-  - elapsed: 7.425144439999997
+  - elapsed: 3.6208830439999815
     environment: g++
-    memory: 6.28
+    memory: 6.34
     name: random_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_inv.test.cpp

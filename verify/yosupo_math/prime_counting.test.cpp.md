@@ -385,16 +385,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/prime_counting.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/prime_counting.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    i64 n;\n    kin >> n;\n    kout\
       \ << kk2::prime_counting(n) << kendl;\n\n    return 0;\n}\n"
     name: bundled
@@ -404,162 +404,162 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0025679629998194287
+  - elapsed: 0.0026166950000288125
     environment: g++
-    memory: 3.704
+    memory: 3.744
     name: Grothendieck_prime_00
     status: AC
-  - elapsed: 1.0922339510000256
+  - elapsed: 1.0917431019999526
     environment: g++
-    memory: 13.184
+    memory: 13.068
     name: boundaryA_00
     status: AC
-  - elapsed: 0.7342030899999372
+  - elapsed: 0.7425548699999922
     environment: g++
     memory: 10.82
     name: boundaryA_01
     status: AC
-  - elapsed: 0.7607011119998788
+  - elapsed: 0.7671690290000015
     environment: g++
-    memory: 11.008
+    memory: 10.94
     name: boundaryA_02
     status: AC
-  - elapsed: 1.0900996279999617
+  - elapsed: 1.0987790460000042
     environment: g++
     memory: 13.128
     name: boundaryB_00
     status: AC
-  - elapsed: 0.733910288000061
+  - elapsed: 0.7403279359999715
     environment: g++
-    memory: 10.82
+    memory: 10.872
     name: boundaryB_01
     status: AC
-  - elapsed: 0.7593654849999893
+  - elapsed: 0.7620440950000216
     environment: g++
-    memory: 10.952
+    memory: 10.948
     name: boundaryB_02
     status: AC
-  - elapsed: 0.002141337000011845
+  - elapsed: 0.0021801149999873815
     environment: g++
-    memory: 3.744
+    memory: 3.672
     name: example_00
     status: AC
-  - elapsed: 0.0020744119999562827
+  - elapsed: 0.002089513999976589
     environment: g++
-    memory: 3.732
+    memory: 3.772
     name: example_01
     status: AC
-  - elapsed: 1.100742830999934
+  - elapsed: 1.1139504270000202
     environment: g++
     memory: 13.288
     name: max_00
     status: AC
-  - elapsed: 1.1027895409999928
+  - elapsed: 1.1120275849999643
     environment: g++
-    memory: 13.344
+    memory: 13.288
     name: max_01
     status: AC
-  - elapsed: 1.1045586709999498
+  - elapsed: 1.117079643000011
     environment: g++
-    memory: 13.332
+    memory: 13.344
     name: max_02
     status: AC
-  - elapsed: 1.0997004610001113
+  - elapsed: 1.1148919940000042
     environment: g++
-    memory: 13.288
+    memory: 13.292
     name: max_03
     status: AC
-  - elapsed: 1.1000700189999861
+  - elapsed: 1.1146290300000032
     environment: g++
-    memory: 13.288
+    memory: 13.228
     name: max_04
     status: AC
-  - elapsed: 1.088066151000021
+  - elapsed: 1.095966954000005
     environment: g++
-    memory: 13.18
+    memory: 13.128
     name: random_00
     status: AC
-  - elapsed: 0.7345991130000584
+  - elapsed: 0.7407661180000105
     environment: g++
-    memory: 10.876
+    memory: 10.824
     name: random_01
     status: AC
-  - elapsed: 0.7572991949998595
+  - elapsed: 0.764258601999984
     environment: g++
-    memory: 10.952
+    memory: 11.0
     name: random_02
     status: AC
-  - elapsed: 0.6217069340000307
+  - elapsed: 0.6283806650000088
     environment: g++
     memory: 9.984
     name: random_03
     status: AC
-  - elapsed: 0.3707316919999357
+  - elapsed: 0.3715125490000446
     environment: g++
-    memory: 7.92
+    memory: 7.916
     name: random_04
     status: AC
-  - elapsed: 0.0038697110001066903
+  - elapsed: 0.0038185620000490417
     environment: g++
-    memory: 3.88
+    memory: 3.816
     name: small_00
     status: AC
-  - elapsed: 0.0031525409999630938
+  - elapsed: 0.0031582230000140044
     environment: g++
-    memory: 3.744
+    memory: 3.696
     name: small_01
     status: AC
-  - elapsed: 0.0027694109999174543
+  - elapsed: 0.0027998819999766056
     environment: g++
-    memory: 3.652
+    memory: 3.728
     name: small_02
     status: AC
-  - elapsed: 0.0035667530000864645
+  - elapsed: 0.0035526219999724162
     environment: g++
-    memory: 3.824
+    memory: 3.888
     name: small_03
     status: AC
-  - elapsed: 0.0037539620000188734
+  - elapsed: 0.0037135750000061307
     environment: g++
-    memory: 3.868
+    memory: 3.872
     name: small_04
     status: AC
-  - elapsed: 0.0020911129997784883
+  - elapsed: 0.002200906999973995
     environment: g++
-    memory: 3.744
+    memory: 3.72
     name: small_prime_00
     status: AC
-  - elapsed: 0.0020638600001348095
+  - elapsed: 0.0020848209999826395
     environment: g++
-    memory: 3.764
+    memory: 3.7
     name: small_prime_01
     status: AC
-  - elapsed: 0.002106941000192819
+  - elapsed: 0.0021019419999674938
     environment: g++
-    memory: 3.744
+    memory: 3.676
     name: very_small_00
     status: AC
-  - elapsed: 0.0020611169998119294
+  - elapsed: 0.0021104680000121334
     environment: g++
     memory: 3.748
     name: very_small_01
     status: AC
-  - elapsed: 0.0021395450000909477
+  - elapsed: 0.0021075530000302933
     environment: g++
-    memory: 3.712
+    memory: 3.732
     name: very_small_02
     status: AC
-  - elapsed: 0.0021051579999493697
+  - elapsed: 0.0021321790000001783
     environment: g++
-    memory: 3.744
+    memory: 3.756
     name: very_small_03
     status: AC
-  - elapsed: 0.002068622000024334
+  - elapsed: 0.002138871999989078
     environment: g++
-    memory: 3.744
+    memory: 3.732
     name: very_small_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/prime_counting.test.cpp

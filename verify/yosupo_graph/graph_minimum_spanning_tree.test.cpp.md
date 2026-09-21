@@ -527,16 +527,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_minimum_spanning_tree.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_minimum_spanning_tree.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, m;\n    kin >> n >> m;\n\
       \    kk2::WAdjList<i64> g(n, m, kin);\n    auto [cost, idxs] = kk2::minimum_spanning_tree(n,\
       \ g.edges);\n    kout << cost << \"\\n\" << idxs << \"\\n\";\n\n    return 0;\n\
@@ -548,162 +548,162 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.40000473699998906
+  - elapsed: 0.48862468300001183
     environment: g++
-    memory: 50.356
+    memory: 50.34
     name: complete_max_00
     status: AC
-  - elapsed: 0.3959404750000033
+  - elapsed: 0.48948303299999907
     environment: g++
-    memory: 50.316
+    memory: 50.304
     name: complete_max_01
     status: AC
-  - elapsed: 0.0028526749999855383
+  - elapsed: 0.003215248000003612
     environment: g++
-    memory: 3.784
+    memory: 3.8
     name: complete_random_00
     status: AC
-  - elapsed: 0.0034563789999992878
+  - elapsed: 0.004041779999994333
     environment: g++
-    memory: 4.072
+    memory: 4.06
     name: complete_random_01
     status: AC
-  - elapsed: 0.007899054000006345
+  - elapsed: 0.00965128400000026
     environment: g++
     memory: 4.392
     name: complete_random_02
     status: AC
-  - elapsed: 0.026433319000005895
+  - elapsed: 0.03260826100000713
     environment: g++
     memory: 6.584
     name: complete_random_03
     status: AC
-  - elapsed: 0.10212950600001136
+  - elapsed: 0.12582036899999594
     environment: g++
-    memory: 15.732
+    memory: 15.696
     name: complete_random_04
     status: AC
-  - elapsed: 0.002534029000003102
-    environment: g++
-    memory: 3.592
-    name: example_00
-    status: AC
-  - elapsed: 0.0021551969999791254
+  - elapsed: 0.0028596639999989293
     environment: g++
     memory: 3.804
+    name: example_00
+    status: AC
+  - elapsed: 0.0024117930000215893
+    environment: g++
+    memory: 3.768
     name: example_01
     status: AC
-  - elapsed: 0.002097851000002038
+  - elapsed: 0.0023120219999839264
     environment: g++
     memory: 3.752
     name: example_02
     status: AC
-  - elapsed: 0.6353368270000033
+  - elapsed: 0.8105917679999948
     environment: g++
-    memory: 73.108
+    memory: 73.144
     name: max_random_00
     status: AC
-  - elapsed: 0.6406702740000014
+  - elapsed: 0.8046495719999882
     environment: g++
     memory: 73.144
     name: max_random_01
     status: AC
-  - elapsed: 0.6458115000000078
+  - elapsed: 0.8111387700000137
     environment: g++
-    memory: 73.144
+    memory: 73.104
     name: max_random_02
     status: AC
-  - elapsed: 0.6458544440000082
+  - elapsed: 0.8151025139999888
     environment: g++
     memory: 73.14
     name: max_random_03
     status: AC
-  - elapsed: 0.6462396400000046
+  - elapsed: 0.851417653000027
     environment: g++
-    memory: 73.136
+    memory: 73.092
     name: max_random_04
     status: AC
-  - elapsed: 0.5209616980000078
+  - elapsed: 0.6666334970000207
     environment: g++
     memory: 59.536
     name: random_00
     status: AC
-  - elapsed: 0.60665032
+  - elapsed: 0.7869526799999562
     environment: g++
-    memory: 69.96
+    memory: 69.952
     name: random_01
     status: AC
-  - elapsed: 0.3906695549999881
+  - elapsed: 0.5572398649999855
     environment: g++
-    memory: 46.848
+    memory: 46.876
     name: random_02
     status: AC
-  - elapsed: 0.5616591629999732
+  - elapsed: 0.7593807789999687
     environment: g++
-    memory: 65.816
+    memory: 65.864
     name: random_03
     status: AC
-  - elapsed: 0.45122815900001
+  - elapsed: 0.5850849980000135
     environment: g++
     memory: 51.628
     name: random_04
     status: AC
-  - elapsed: 0.3305724610000027
+  - elapsed: 0.399192008
     environment: g++
-    memory: 42.036
+    memory: 42.08
     name: small_00
     status: AC
-  - elapsed: 0.3309940729999994
+  - elapsed: 0.40426785599998993
     environment: g++
-    memory: 42.16
+    memory: 42.164
     name: small_01
     status: AC
-  - elapsed: 0.29792639299998314
+  - elapsed: 0.36455753900003174
     environment: g++
-    memory: 39.356
+    memory: 39.324
     name: small_02
     status: AC
-  - elapsed: 0.02197546100001091
+  - elapsed: 0.027130930999987868
     environment: g++
-    memory: 5.908
+    memory: 5.944
     name: small_03
     status: AC
-  - elapsed: 0.07726525699999343
+  - elapsed: 0.09621244499999193
     environment: g++
-    memory: 12.776
+    memory: 12.828
     name: small_04
     status: AC
-  - elapsed: 0.0030330000000162727
+  - elapsed: 0.0037639980000108153
     environment: g++
-    memory: 3.784
+    memory: 3.732
     name: small_c01_00
     status: AC
-  - elapsed: 0.0022548729999982697
+  - elapsed: 0.0028152510000154507
     environment: g++
-    memory: 3.6
+    memory: 3.804
     name: small_c01_01
     status: AC
-  - elapsed: 0.002167233999983864
+  - elapsed: 0.0026241429999913635
     environment: g++
-    memory: 3.808
+    memory: 3.824
     name: small_c01_02
     status: AC
-  - elapsed: 0.002271624000002248
+  - elapsed: 0.002665105999994921
     environment: g++
-    memory: 3.604
+    memory: 3.784
     name: small_c01_03
     status: AC
-  - elapsed: 0.0026448939999852428
+  - elapsed: 0.003086289000009401
     environment: g++
-    memory: 3.94
+    memory: 3.88
     name: small_c01_04
     status: AC
-  - elapsed: 0.5945044800000119
+  - elapsed: 0.7610005540000202
     environment: g++
-    memory: 71.828
+    memory: 71.82
     name: star_00
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_minimum_spanning_tree.test.cpp

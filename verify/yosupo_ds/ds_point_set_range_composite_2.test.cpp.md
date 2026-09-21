@@ -655,16 +655,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 9 \"verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 9 \"verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    using S = kk2::monoid::ReverseOp<kk2::monoid::Affine<kk2::mont998>>;\n\
       \    int n, q;\n    kin >> n >> q;\n    vc<S> a(n);\n    kin >> a;\n    kk2::RedBlackTree<S>\
       \ rbt(2 * (n + q));\n    auto root = rbt.build(a);\n\n    rep(q) {\n       \
@@ -681,87 +681,87 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002571266999979116
+  - elapsed: 0.0025088849999974627
     environment: g++
-    memory: 3.884
+    memory: 3.84
     name: example_00
     status: AC
-  - elapsed: 4.108435982999993
-    environment: g++
-    memory: 101.508
-    name: max_random_00
-    status: AC
-  - elapsed: 4.1175744779999945
+  - elapsed: 3.801571569000032
     environment: g++
     memory: 101.46
+    name: max_random_00
+    status: AC
+  - elapsed: 3.903973979
+    environment: g++
+    memory: 101.492
     name: max_random_01
     status: AC
-  - elapsed: 4.09829885100001
+  - elapsed: 3.779881816999989
     environment: g++
     memory: 101.464
     name: max_random_02
     status: AC
-  - elapsed: 4.13818120800002
+  - elapsed: 3.8019250499999657
     environment: g++
-    memory: 101.504
+    memory: 101.456
     name: max_random_03
     status: AC
-  - elapsed: 4.157352648999989
+  - elapsed: 3.8277860149999583
     environment: g++
-    memory: 101.464
+    memory: 101.456
     name: max_random_04
     status: AC
-  - elapsed: 3.2484728459999985
+  - elapsed: 2.93098207700001
     environment: g++
-    memory: 81.856
+    memory: 81.86
     name: random_00
     status: AC
-  - elapsed: 3.5110855039999933
+  - elapsed: 3.1064991019999866
     environment: g++
-    memory: 89.46
+    memory: 89.484
     name: random_01
     status: AC
-  - elapsed: 1.893955511999991
+  - elapsed: 1.8348682939999321
     environment: g++
-    memory: 45.068
+    memory: 45.072
     name: random_02
     status: AC
-  - elapsed: 0.3719601469999816
+  - elapsed: 0.36231306599995605
     environment: g++
-    memory: 49.788
+    memory: 49.796
     name: random_03
     status: AC
-  - elapsed: 0.7790630570000303
+  - elapsed: 0.7233381340000733
     environment: g++
-    memory: 41.236
+    memory: 41.28
     name: random_04
     status: AC
-  - elapsed: 0.002950259999977334
+  - elapsed: 0.0024895219999052642
     environment: g++
-    memory: 4.02
+    memory: 4.056
     name: small_00
     status: AC
-  - elapsed: 0.002815427000030013
+  - elapsed: 0.0023906569999780913
     environment: g++
-    memory: 3.988
+    memory: 3.964
     name: small_01
     status: AC
-  - elapsed: 0.0025893649999488844
+  - elapsed: 0.002454230000012103
     environment: g++
-    memory: 4.02
+    memory: 4.008
     name: small_02
     status: AC
-  - elapsed: 0.002647407999972984
+  - elapsed: 0.002485907000050247
     environment: g++
-    memory: 3.988
+    memory: 4.056
     name: small_03
     status: AC
-  - elapsed: 0.0025978669999631165
+  - elapsed: 0.0025567809999529345
     environment: g++
-    memory: 3.972
+    memory: 3.98
     name: small_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp

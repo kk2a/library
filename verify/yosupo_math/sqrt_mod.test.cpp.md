@@ -395,16 +395,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/sqrt_mod.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_math/sqrt_mod.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep(t)\
       \ {\n        int y, p;\n        kin >> y >> p;\n        kout << kk2::mod_sqrt(y,\
       \ p) << \"\\n\";\n    }\n\n    return 0;\n}\n"
@@ -415,72 +415,72 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0023127839999972366
+  - elapsed: 0.0026251390000311403
     environment: g++
-    memory: 3.688
+    memory: 3.724
     name: example_00
     status: AC
-  - elapsed: 0.10119320800000509
+  - elapsed: 0.10143681099998503
     environment: g++
-    memory: 3.964
+    memory: 3.972
     name: max_random_00
     status: AC
-  - elapsed: 0.10203100600000425
+  - elapsed: 0.10280491899999333
     environment: g++
     memory: 3.984
     name: max_random_01
     status: AC
-  - elapsed: 0.10209915699999783
+  - elapsed: 0.10284447399999408
     environment: g++
-    memory: 3.988
+    memory: 3.984
     name: max_random_02
     status: AC
-  - elapsed: 0.10365434799999917
+  - elapsed: 0.10355410499994377
     environment: g++
-    memory: 3.964
+    memory: 3.928
     name: max_random_03
     status: AC
-  - elapsed: 0.11331366299999956
-    environment: g++
-    memory: 3.796
-    name: max_random_04
-    status: AC
-  - elapsed: 0.2159692669999984
-    environment: g++
-    memory: 3.984
-    name: mod_998244353_00
-    status: AC
-  - elapsed: 0.23061159499999917
-    environment: g++
-    memory: 3.792
-    name: mod_998244353_01
-    status: AC
-  - elapsed: 0.020719077999999058
-    environment: g++
-    memory: 3.984
-    name: random_00
-    status: AC
-  - elapsed: 0.021851539000003584
+  - elapsed: 0.10429589000000306
     environment: g++
     memory: 3.98
-    name: random_01
+    name: max_random_04
     status: AC
-  - elapsed: 0.06413780499999433
+  - elapsed: 0.20612163100003045
+    environment: g++
+    memory: 3.964
+    name: mod_998244353_00
+    status: AC
+  - elapsed: 0.20649402899999814
+    environment: g++
+    memory: 3.972
+    name: mod_998244353_01
+    status: AC
+  - elapsed: 0.02022897799997736
+    environment: g++
+    memory: 3.98
+    name: random_00
+    status: AC
+  - elapsed: 0.022150818000000072
     environment: g++
     memory: 3.956
+    name: random_01
+    status: AC
+  - elapsed: 0.0646356409999953
+    environment: g++
+    memory: 3.988
     name: random_02
     status: AC
-  - elapsed: 0.02827454999999901
+  - elapsed: 0.028770629000007375
     environment: g++
-    memory: 3.984
+    memory: 3.996
     name: random_03
     status: AC
-  - elapsed: 0.10292688299999497
+  - elapsed: 0.10289350499999728
     environment: g++
-    memory: 4.004
+    memory: 3.904
     name: random_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/sqrt_mod.test.cpp

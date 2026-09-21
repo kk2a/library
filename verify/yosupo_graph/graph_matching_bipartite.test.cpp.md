@@ -571,16 +571,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_matching_bipartite.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_graph/graph_matching_bipartite.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int l, r, m;\n    kin >> l >> r\
       \ >> m;\n    kk2::DWAdjList<int> g(l + r + 2);\n    rep(m) {\n        int a,\
       \ b;\n        kin >> a >> b;\n        g.add_edge(a, l + b, 1);\n    }\n    rep(i,\
@@ -597,227 +597,227 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 6.677677873000022
+  - elapsed: 9.318420574000001
     environment: g++
-    memory: 56.988
+    memory: 58.012
     name: augmented_cycle_00
     status: AC
-  - elapsed: 5.093339786999991
+  - elapsed: 6.550727975000001
     environment: g++
-    memory: 58.96
+    memory: 58.996
     name: augmented_cycle_01
     status: AC
-  - elapsed: 7.5376382480000075
+  - elapsed: 11.455370571999993
     environment: g++
-    memory: 58.236
+    memory: 58.288
     name: augmented_cycle_02
     status: AC
-  - elapsed: 3.894768405999997
+  - elapsed: 6.004477444000003
     environment: g++
     memory: 60.728
     name: cycle_00
     status: AC
-  - elapsed: 4.034515971000019
+  - elapsed: 6.7238711390000105
     environment: g++
-    memory: 58.824
+    memory: 57.852
     name: cycle_01
     status: AC
-  - elapsed: 0.00261722599998393
+  - elapsed: 0.0028587930000014694
     environment: g++
-    memory: 3.768
+    memory: 3.612
     name: example_00
     status: AC
-  - elapsed: 0.002579328999985364
+  - elapsed: 0.0028298390000145446
     environment: g++
-    memory: 3.792
+    memory: 3.888
     name: issue1068_00
     status: AC
-  - elapsed: 0.2704356490000066
+  - elapsed: 0.30956769200000167
     environment: g++
-    memory: 53.516
+    memory: 52.508
     name: issue1068_large_00
     status: AC
-  - elapsed: 0.22818184900000915
+  - elapsed: 0.26244753800000353
     environment: g++
-    memory: 47.292
+    memory: 46.224
     name: issue1068_large_01
     status: AC
-  - elapsed: 0.3129026350000004
+  - elapsed: 0.39315601300000935
     environment: g++
-    memory: 52.552
+    memory: 53.732
     name: issue1068_large_02
     status: AC
-  - elapsed: 0.23050967500000752
+  - elapsed: 0.262839606
     environment: g++
-    memory: 46.256
+    memory: 46.204
     name: issue1068_large_03
     status: AC
-  - elapsed: 0.24270111300000963
+  - elapsed: 0.2761636440000075
     environment: g++
-    memory: 47.8
+    memory: 46.22
     name: issue1068_large_04
     status: AC
-  - elapsed: 0.2661573070000145
+  - elapsed: 0.3476012600000047
     environment: g++
-    memory: 47.416
+    memory: 47.484
     name: issue1068_large_05
     status: AC
-  - elapsed: 0.432112888000006
+  - elapsed: 0.5845871260000024
     environment: g++
-    memory: 37.588
+    memory: 37.504
     name: issue1124_00
     status: AC
-  - elapsed: 0.20657631299999935
+  - elapsed: 0.2345108500000208
     environment: g++
-    memory: 37.316
+    memory: 37.312
     name: issue1124_01
     status: AC
-  - elapsed: 0.1843318730000192
+  - elapsed: 0.2107050230000027
     environment: g++
-    memory: 38.376
+    memory: 38.884
     name: issue1124_02
     status: AC
-  - elapsed: 0.2869637050000051
+  - elapsed: 0.3285089139999968
     environment: g++
-    memory: 54.22
+    memory: 55.284
     name: kuhn_killer_00
     status: AC
-  - elapsed: 0.2993041889999972
+  - elapsed: 0.41234481899999764
     environment: g++
-    memory: 53.94
+    memory: 54.008
     name: line_00
     status: AC
-  - elapsed: 0.3050340179999864
+  - elapsed: 0.3656024329999923
     environment: g++
-    memory: 53.996
+    memory: 55.04
     name: line_01
     status: AC
-  - elapsed: 4.21124072500001
+  - elapsed: 5.459455095999999
     environment: g++
-    memory: 56.92
+    memory: 58.452
     name: line_random_00
     status: AC
-  - elapsed: 4.396174790999993
+  - elapsed: 6.733613358000014
     environment: g++
-    memory: 66.716
+    memory: 66.636
     name: line_random_01
     status: AC
-  - elapsed: 3.1518461160000015
+  - elapsed: 4.871515221999999
     environment: g++
-    memory: 53.96
+    memory: 55.468
     name: many_paths_00
     status: AC
-  - elapsed: 2.1526495360000126
+  - elapsed: 3.4693227260000015
     environment: g++
-    memory: 54.392
+    memory: 55.5
     name: many_paths_01
     status: AC
-  - elapsed: 2.873732194000013
+  - elapsed: 5.041028565999994
     environment: g++
-    memory: 55.504
+    memory: 54.432
     name: many_paths_02
     status: AC
-  - elapsed: 0.35643290499999125
+  - elapsed: 0.44073639200001935
     environment: g++
     memory: 42.284
     name: many_smalls_00
     status: AC
-  - elapsed: 0.33945951299998
+  - elapsed: 0.437075673999999
     environment: g++
-    memory: 42.152
+    memory: 43.124
     name: many_smalls_01
     status: AC
-  - elapsed: 0.6478120449999949
-    environment: g++
-    memory: 53.824
-    name: max_random_00
-    status: AC
-  - elapsed: 0.6964869219999912
-    environment: g++
-    memory: 53.864
-    name: max_random_01
-    status: AC
-  - elapsed: 0.6613612029999842
+  - elapsed: 0.9224133669999901
     environment: g++
     memory: 54.328
+    name: max_random_00
+    status: AC
+  - elapsed: 1.0757198069999845
+    environment: g++
+    memory: 54.308
+    name: max_random_01
+    status: AC
+  - elapsed: 0.8970068319999882
+    environment: g++
+    memory: 54.804
     name: max_random_02
     status: AC
-  - elapsed: 0.07578153800000109
+  - elapsed: 0.08742637000000286
     environment: g++
-    memory: 20.58
+    memory: 20.588
     name: random_00
     status: AC
-  - elapsed: 0.20925955399999907
+  - elapsed: 0.23414779199998748
     environment: g++
-    memory: 31.252
+    memory: 31.26
     name: random_01
     status: AC
-  - elapsed: 0.24417243700000313
+  - elapsed: 0.27510072699999455
     environment: g++
-    memory: 31.116
+    memory: 31.112
     name: random_02
     status: AC
-  - elapsed: 0.2327202760000091
+  - elapsed: 0.2541857759999857
     environment: g++
-    memory: 25.36
+    memory: 25.348
     name: random_03
     status: AC
-  - elapsed: 0.09582516899999405
+  - elapsed: 0.11236678699998492
     environment: g++
-    memory: 25.056
+    memory: 26.592
     name: random_04
     status: AC
-  - elapsed: 0.10609736600000019
+  - elapsed: 0.11952632999998514
     environment: g++
-    memory: 18.684
+    memory: 18.536
     name: random_05
     status: AC
-  - elapsed: 0.5771770549999928
+  - elapsed: 0.7513023639999972
     environment: g++
-    memory: 38.268
+    memory: 39.328
     name: random_06
     status: AC
-  - elapsed: 0.14033123900000533
+  - elapsed: 0.1587622950000025
     environment: g++
     memory: 24.936
     name: random_07
     status: AC
-  - elapsed: 0.14508513399999856
+  - elapsed: 0.16695248600001378
     environment: g++
-    memory: 30.092
+    memory: 30.16
     name: random_08
     status: AC
-  - elapsed: 0.23558129599999234
+  - elapsed: 0.26750679200000604
     environment: g++
     memory: 31.116
     name: random_09
     status: AC
-  - elapsed: 7.038574906999997
+  - elapsed: 9.256281522999984
     environment: g++
-    memory: 63.196
+    memory: 64.26
     name: unique_matching_00
     status: AC
-  - elapsed: 6.018563575000002
+  - elapsed: 8.082177365999996
     environment: g++
-    memory: 55.62
+    memory: 56.644
     name: unique_matching_01
     status: AC
-  - elapsed: 4.8991906210000025
+  - elapsed: 7.3920789609999815
     environment: g++
-    memory: 57.716
+    memory: 57.78
     name: unique_matching_02
     status: AC
-  - elapsed: 2.8205252959999996
+  - elapsed: 4.078503143000006
     environment: g++
-    memory: 56.192
+    memory: 56.176
     name: unique_matching_03
     status: AC
-  - elapsed: 2.2053797809999764
+  - elapsed: 2.627678204999995
     environment: g++
-    memory: 55.848
+    memory: 55.724
     name: unique_matching_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_matching_bipartite.test.cpp

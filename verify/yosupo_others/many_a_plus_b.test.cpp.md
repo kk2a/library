@@ -287,16 +287,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_others/many_a_plus_b.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_others/many_a_plus_b.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep(t)\
       \ {\n        u64 a, b;\n        kin >> a >> b;\n        kout << a + b << \"\\\
       n\";\n    }\n\n    return 0;\n}\n"
@@ -307,52 +307,52 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.31899529900005064
+  - elapsed: 0.41042850599998815
     environment: g++
-    memory: 3.932
+    memory: 3.976
     name: all_max_00
     status: AC
-  - elapsed: 0.05189106300002777
+  - elapsed: 0.06814903499997627
     environment: g++
-    memory: 4.096
+    memory: 3.972
     name: all_zero_00
     status: AC
-  - elapsed: 0.19684080400003268
+  - elapsed: 0.2555606139999895
     environment: g++
-    memory: 4.1
+    memory: 3.996
     name: digit_random_00
     status: AC
-  - elapsed: 0.20085202899997512
+  - elapsed: 0.2562420210000198
     environment: g++
-    memory: 4.072
+    memory: 4.02
     name: digit_random_01
     status: AC
-  - elapsed: 0.0019925800000351046
+  - elapsed: 0.002499505000002955
     environment: g++
-    memory: 3.892
+    memory: 3.732
     name: example_00
     status: AC
-  - elapsed: 0.32198973999999225
+  - elapsed: 0.3904987800000015
     environment: g++
-    memory: 4.088
+    memory: 3.94
     name: max_random_00
     status: AC
-  - elapsed: 0.3230162449999625
+  - elapsed: 0.3947238430000084
     environment: g++
-    memory: 4.112
+    memory: 3.984
     name: max_random_01
     status: AC
-  - elapsed: 0.12538233100002572
+  - elapsed: 0.15374352399999225
     environment: g++
-    memory: 4.108
+    memory: 3.984
     name: random_00
     status: AC
-  - elapsed: 0.1481716389999974
+  - elapsed: 0.1824123960000179
     environment: g++
-    memory: 4.108
+    memory: 4.02
     name: random_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b.test.cpp

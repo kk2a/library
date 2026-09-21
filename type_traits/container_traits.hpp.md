@@ -39,6 +39,9 @@ data:
     - filename: static_rolling_hash.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/string/static_rolling_hash.test.cpp
+    - filename: function_util.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/template/function_util.test.cpp
     - filename: concepts.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/concepts.test.cpp
@@ -203,12 +206,13 @@ data:
   - template/procon.hpp
   - unionfind/parallel.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
+  - verify/unit_test/template/function_util.test.cpp
   - verify/unit_test/type_traits/concepts.test.cpp
   - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

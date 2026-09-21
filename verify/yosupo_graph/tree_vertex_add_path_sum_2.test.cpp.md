@@ -577,16 +577,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_graph/tree_vertex_add_path_sum_2.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_graph/tree_vertex_add_path_sum_2.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    vc<i64> a(n);\n    kin >> a;\n    kk2::AdjList g(n, n - 1, kin);\n\n  \
       \  kk2::HeavyLightDecomposition hld(g);\n    kk2::BinaryIndexedTree<i64> bit(hld.id);\n\
@@ -605,102 +605,102 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 1.1825182569999981
+  - elapsed: 0.7461287060000075
     environment: g++
-    memory: 98.368
+    memory: 98.36
     name: almost_line_00
     status: AC
-  - elapsed: 1.2379093659999967
+  - elapsed: 0.7541199710000086
     environment: g++
-    memory: 93.624
+    memory: 93.628
     name: almost_line_01
     status: AC
-  - elapsed: 0.0024696400000152607
+  - elapsed: 0.0018956010000010792
     environment: g++
-    memory: 3.78
+    memory: 3.748
     name: example_00
     status: AC
-  - elapsed: 1.1595785540000065
+  - elapsed: 0.7296357840000098
     environment: g++
-    memory: 90.84
+    memory: 91.092
     name: line_00
     status: AC
-  - elapsed: 1.1700927420000085
+  - elapsed: 0.7233146389999945
     environment: g++
-    memory: 107.544
+    memory: 107.652
     name: line_01
     status: AC
-  - elapsed: 0.8980823509999993
+  - elapsed: 0.6121480670000068
     environment: g++
-    memory: 58.516
+    memory: 58.58
     name: long-path-decomposition_killer_00
     status: AC
-  - elapsed: 1.8120370040000182
+  - elapsed: 1.1761791789999734
     environment: g++
-    memory: 62.024
+    memory: 62.088
     name: max_random_00
     status: AC
-  - elapsed: 1.8363040749999868
+  - elapsed: 1.1441678000000195
     environment: g++
-    memory: 61.896
+    memory: 62.084
     name: max_random_01
     status: AC
-  - elapsed: 1.806355854000003
+  - elapsed: 1.1741141210000023
     environment: g++
-    memory: 61.972
+    memory: 62.12
     name: max_random_02
     status: AC
-  - elapsed: 1.3588942780000082
+  - elapsed: 0.8861301130000072
     environment: g++
     memory: 49.12
     name: random_00
     status: AC
-  - elapsed: 1.626235213000001
+  - elapsed: 1.007560247000015
     environment: g++
-    memory: 57.664
+    memory: 57.728
     name: random_01
     status: AC
-  - elapsed: 0.6767220169999746
+  - elapsed: 0.46106144199998766
     environment: g++
-    memory: 9.84
+    memory: 9.852
     name: random_02
     status: AC
-  - elapsed: 0.6764055959999951
+  - elapsed: 0.4203812729999754
     environment: g++
-    memory: 53.66
+    memory: 53.732
     name: random_03
     status: AC
-  - elapsed: 0.566823329999977
+  - elapsed: 0.37294481399999313
     environment: g++
-    memory: 35.976
+    memory: 36.08
     name: random_04
     status: AC
-  - elapsed: 0.0033571639999934177
+  - elapsed: 0.002399820000022146
     environment: g++
-    memory: 3.888
+    memory: 3.872
     name: small_00
     status: AC
-  - elapsed: 0.00250122100001704
+  - elapsed: 0.0018927960000212352
     environment: g++
-    memory: 3.812
+    memory: 3.876
     name: small_01
     status: AC
-  - elapsed: 0.0024961569999959465
+  - elapsed: 0.001877750999994987
     environment: g++
-    memory: 3.768
+    memory: 3.752
     name: small_02
     status: AC
-  - elapsed: 0.002476485000016737
+  - elapsed: 0.0019412680000243654
     environment: g++
-    memory: 3.612
+    memory: 3.916
     name: small_03
     status: AC
-  - elapsed: 0.00340511499999252
+  - elapsed: 0.00252188800001818
     environment: g++
-    memory: 3.94
+    memory: 4.0
     name: small_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_vertex_add_path_sum_2.test.cpp

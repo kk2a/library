@@ -362,16 +362,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_segment_add_get_min.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_ds/ds_segment_add_get_min.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    vc<array<i64, 4>> segs(n);\n    kin >> segs;\n    vc<array<i64, 5>> queries(q);\n\
       \    vc<int> xs;\n    rep(i, q) {\n        kin >> queries[i][0];\n        if\
@@ -392,72 +392,72 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.18104196000001593
+  - elapsed: 0.181381636999987
     environment: g++
-    memory: 17.612
+    memory: 17.6
     name: all_intersect_00
     status: AC
-  - elapsed: 0.8177300150000519
+  - elapsed: 0.8766109340000128
     environment: g++
-    memory: 31.896
+    memory: 31.836
     name: all_twice_00
     status: AC
-  - elapsed: 0.0026059819999773026
+  - elapsed: 0.002594211999991103
     environment: g++
-    memory: 3.832
+    memory: 3.82
     name: example_00
     status: AC
-  - elapsed: 0.002206739000030211
+  - elapsed: 0.002183519000027445
     environment: g++
-    memory: 3.776
+    memory: 3.76
     name: example_01
     status: AC
-  - elapsed: 0.8995322920000035
+  - elapsed: 0.8998764890000075
     environment: g++
     memory: 24.888
     name: max_random_00
     status: AC
-  - elapsed: 0.8771526130000211
+  - elapsed: 0.8728953650000051
     environment: g++
-    memory: 24.824
+    memory: 24.82
     name: max_random_01
     status: AC
-  - elapsed: 0.8789613449999933
+  - elapsed: 0.8735976549999975
     environment: g++
-    memory: 24.896
+    memory: 24.696
     name: max_random_02
     status: AC
-  - elapsed: 0.22735593300001256
+  - elapsed: 0.2238313119999873
     environment: g++
-    memory: 17.608
+    memory: 17.62
     name: no_output_00
     status: AC
-  - elapsed: 0.5898324359999378
+  - elapsed: 0.5967108160000123
     environment: g++
-    memory: 20.532
+    memory: 20.48
     name: random_00
     status: AC
-  - elapsed: 0.6578400260000308
+  - elapsed: 0.6346829999999954
     environment: g++
-    memory: 21.028
+    memory: 21.172
     name: random_01
     status: AC
-  - elapsed: 0.3550065370000084
+  - elapsed: 0.3417946559999905
     environment: g++
     memory: 13.756
     name: random_02
     status: AC
-  - elapsed: 0.0025445339999805583
+  - elapsed: 0.00262694600002078
     environment: g++
-    memory: 3.596
+    memory: 3.76
     name: small_00
     status: AC
-  - elapsed: 0.002231131000030473
+  - elapsed: 0.002585415999988072
     environment: g++
-    memory: 3.664
+    memory: 3.612
     name: small_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_segment_add_get_min.test.cpp

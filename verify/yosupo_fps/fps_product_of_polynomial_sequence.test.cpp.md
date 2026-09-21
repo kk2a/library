@@ -1315,16 +1315,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 7 \"verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp\"\
       \nusing namespace std;\n\nusing FPS = kk2::FPSNTT<kk2::mont998>;\n\nint main()\
       \ {\n    int n;\n    kin >> n;\n    vc<FPS> a(n);\n    rep(i, n) {\n       \
       \ int d;\n        kin >> d;\n        a[i].resize(d + 1);\n        kin >> a[i];\n\
@@ -1336,142 +1336,142 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 8.18858899499999
+  - elapsed: 7.151216276000014
     environment: g++
-    memory: 39.552
+    memory: 39.612
     name: all_degree_one_00
     status: AC
-  - elapsed: 8.207110426
+  - elapsed: 7.145575452000003
     environment: g++
-    memory: 39.512
+    memory: 39.62
     name: all_degree_one_01
     status: AC
-  - elapsed: 8.176890186999998
+  - elapsed: 7.139786429000026
     environment: g++
-    memory: 39.552
+    memory: 39.476
     name: all_degree_one_02
     status: AC
-  - elapsed: 8.203028343
+  - elapsed: 7.1485295919999885
     environment: g++
-    memory: 39.472
+    memory: 39.468
     name: all_degree_one_03
     status: AC
-  - elapsed: 8.191144311000002
+  - elapsed: 7.134976414999983
     environment: g++
-    memory: 39.552
+    memory: 39.488
     name: all_degree_one_04
     status: AC
-  - elapsed: 0.002552016999999296
+  - elapsed: 0.00221044099998835
     environment: g++
-    memory: 3.6
+    memory: 3.856
     name: example_00
     status: AC
-  - elapsed: 0.0021994669999969574
-    environment: g++
-    memory: 3.816
-    name: example_01
-    status: AC
-  - elapsed: 0.0021110109999966653
+  - elapsed: 0.0017827350000061415
     environment: g++
     memory: 3.768
+    name: example_01
+    status: AC
+  - elapsed: 0.0017813480000086201
+    environment: g++
+    memory: 3.764
     name: example_02
     status: AC
-  - elapsed: 2.324073654000003
+  - elapsed: 1.9589300530000173
     environment: g++
-    memory: 44.836
+    memory: 44.908
     name: max_and_zero_00
     status: AC
-  - elapsed: 8.217167772999986
+  - elapsed: 7.182924577999984
     environment: g++
-    memory: 34.5
+    memory: 34.436
     name: max_random_00
     status: AC
-  - elapsed: 8.371880108999989
+  - elapsed: 7.295587828000009
     environment: g++
-    memory: 36.836
+    memory: 36.908
     name: max_random_01
     status: AC
-  - elapsed: 7.200288626999992
+  - elapsed: 6.2723341310000365
     environment: g++
-    memory: 16.372
+    memory: 16.432
     name: max_random_02
     status: AC
-  - elapsed: 8.310852884999974
+  - elapsed: 7.279625615000043
     environment: g++
-    memory: 36.784
+    memory: 36.852
     name: max_random_03
     status: AC
-  - elapsed: 7.937122082999991
+  - elapsed: 6.919141588999992
     environment: g++
-    memory: 27.968
+    memory: 27.948
     name: max_random_04
     status: AC
-  - elapsed: 7.636347739999991
+  - elapsed: 6.652655290999974
     environment: g++
-    memory: 33.544
+    memory: 33.728
     name: random_00
     status: AC
-  - elapsed: 7.783143178999978
+  - elapsed: 6.794383555000024
     environment: g++
-    memory: 36.252
+    memory: 36.296
     name: random_01
     status: AC
-  - elapsed: 6.5214282100000105
+  - elapsed: 5.745939518
     environment: g++
-    memory: 14.672
+    memory: 14.812
     name: random_02
     status: AC
-  - elapsed: 1.0650830079999878
+  - elapsed: 0.8744241119999856
     environment: g++
-    memory: 27.536
+    memory: 27.496
     name: random_03
     status: AC
-  - elapsed: 1.9355711469999903
+  - elapsed: 1.6851280719999977
     environment: g++
-    memory: 20.884
+    memory: 20.988
     name: random_04
     status: AC
-  - elapsed: 0.002666016000006266
+  - elapsed: 0.0020495329999903333
     environment: g++
-    memory: 3.604
+    memory: 3.856
     name: small_00
     status: AC
-  - elapsed: 0.00213360400002216
+  - elapsed: 0.0017876880000358142
     environment: g++
-    memory: 3.776
+    memory: 3.716
     name: small_01
     status: AC
-  - elapsed: 0.0021706080000001293
+  - elapsed: 0.0018005360000188375
     environment: g++
-    memory: 3.78
+    memory: 3.728
     name: small_02
     status: AC
-  - elapsed: 0.002109427999982927
+  - elapsed: 0.0017764010000291819
     environment: g++
-    memory: 3.784
+    memory: 3.864
     name: small_03
     status: AC
-  - elapsed: 0.0021158319999869946
+  - elapsed: 0.0017890200000465484
     environment: g++
-    memory: 3.8
+    memory: 3.864
     name: small_04
     status: AC
-  - elapsed: 9.259670794000016
+  - elapsed: 8.061247573000003
     environment: g++
-    memory: 43.8
+    memory: 43.864
     name: unbalanced_00
     status: AC
-  - elapsed: 9.315878469000012
+  - elapsed: 8.113436885999988
     environment: g++
-    memory: 43.772
+    memory: 43.836
     name: unbalanced_01
     status: AC
-  - elapsed: 9.128602435000005
+  - elapsed: 7.926069065000036
     environment: g++
-    memory: 44.256
+    memory: 44.34
     name: unbalanced_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp

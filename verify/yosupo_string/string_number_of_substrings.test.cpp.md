@@ -53,7 +53,8 @@ data:
       \n#include \"../../string/suffix_array.hpp\"\n#include \"../../template/template.hpp\"\
       \nusing namespace std;\n\nint main() {\n    string s;\n    kin >> s;\n    kk2::SuffixArray\
       \ sa(s);\n    kk2::LCPArray lcp(sa);\n    kout << s.size() * (s.size() + 1)\
-      \ / 2 - accumulate(all(lcp.lcp), 0ll) << kendl;\n\n    return 0;\n}\n"
+      \ / 2 - ranges::fold_left(lcp.lcp, 0ll, plus{}) << kendl;\n\n    return 0;\n\
+      }\n"
     name: default
   - code: "#line 1 \"verify/yosupo_string/string_number_of_substrings.test.cpp\"\n\
       // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/number_of_substrings\n\
@@ -402,19 +403,20 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_string/string_number_of_substrings.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 5 \"verify/yosupo_string/string_number_of_substrings.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    string s;\n    kin >> s;\n    kk2::SuffixArray\
       \ sa(s);\n    kk2::LCPArray lcp(sa);\n    kout << s.size() * (s.size() + 1)\
-      \ / 2 - accumulate(all(lcp.lcp), 0ll) << kendl;\n\n    return 0;\n}\n"
+      \ / 2 - ranges::fold_left(lcp.lcp, 0ll, plus{}) << kendl;\n\n    return 0;\n\
+      }\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -422,127 +424,127 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.25172329999999477
-    environment: g++
-    memory: 11.568
-    name: all_same_00
-    status: AC
-  - elapsed: 0.24158857799999822
+  - elapsed: 0.22948030999999958
     environment: g++
     memory: 11.732
+    name: all_same_00
+    status: AC
+  - elapsed: 0.2310373699999957
+    environment: g++
+    memory: 11.764
     name: all_same_01
     status: AC
-  - elapsed: 0.22998395100000124
+  - elapsed: 0.23063437799999775
     environment: g++
-    memory: 11.692
+    memory: 11.764
     name: all_same_02
     status: AC
-  - elapsed: 0.23560024500000054
+  - elapsed: 0.23037891199999905
     environment: g++
-    memory: 11.756
+    memory: 11.708
     name: all_same_03
     status: AC
-  - elapsed: 0.22816578700000179
+  - elapsed: 0.22918439200000051
     environment: g++
-    memory: 11.68
+    memory: 11.736
     name: all_same_04
     status: AC
-  - elapsed: 0.0022535739999938187
+  - elapsed: 0.002308642000002692
     environment: g++
-    memory: 3.816
+    memory: 3.824
     name: example_00
     status: AC
-  - elapsed: 0.002098484999997652
+  - elapsed: 0.002150847999999428
     environment: g++
-    memory: 3.812
+    memory: 3.652
     name: example_01
     status: AC
-  - elapsed: 0.0021517850000023486
+  - elapsed: 0.0021842800000015927
     environment: g++
-    memory: 3.8
+    memory: 3.736
     name: example_02
     status: AC
-  - elapsed: 0.0021435089999997103
+  - elapsed: 0.002303163999997082
     environment: g++
-    memory: 3.596
+    memory: 3.652
     name: example_03
     status: AC
-  - elapsed: 0.40652302099999815
+  - elapsed: 0.39656575799999416
     environment: g++
-    memory: 15.2
+    memory: 15.196
     name: fib_str_00
     status: AC
-  - elapsed: 0.2890009090000021
+  - elapsed: 0.2845611589999919
     environment: g++
     memory: 12.016
     name: fib_str_01
     status: AC
-  - elapsed: 0.3330959139999976
+  - elapsed: 0.3257851460000012
     environment: g++
-    memory: 13.292
+    memory: 13.256
     name: fib_str_02
     status: AC
-  - elapsed: 0.2176691140000031
+  - elapsed: 0.21714089099999967
     environment: g++
-    memory: 9.964
+    memory: 9.928
     name: fib_str_03
     status: AC
-  - elapsed: 0.41947254200000117
+  - elapsed: 0.4760577679999898
     environment: g++
     memory: 15.98
     name: fib_str_04
     status: AC
-  - elapsed: 0.4452300229999935
+  - elapsed: 0.4437776179999986
     environment: g++
-    memory: 15.876
+    memory: 15.836
     name: max_random_00
     status: AC
-  - elapsed: 0.44116752799999404
+  - elapsed: 0.45646255200000496
     environment: g++
-    memory: 15.832
+    memory: 15.956
     name: max_random_01
     status: AC
-  - elapsed: 0.4466266430000019
+  - elapsed: 0.45634290499999963
     environment: g++
-    memory: 15.908
+    memory: 15.956
     name: max_random_02
     status: AC
-  - elapsed: 0.44164243499999856
+  - elapsed: 0.44228321500000334
     environment: g++
     memory: 15.968
     name: max_random_03
     status: AC
-  - elapsed: 0.4393317769999996
+  - elapsed: 0.45574091099999237
     environment: g++
-    memory: 15.88
+    memory: 15.828
     name: max_random_04
     status: AC
-  - elapsed: 0.3441157629999978
+  - elapsed: 0.35318041100001096
     environment: g++
-    memory: 13.356
+    memory: 13.292
     name: random_00
     status: AC
-  - elapsed: 0.410398708999999
+  - elapsed: 0.4241963630000072
     environment: g++
-    memory: 15.072
+    memory: 15.14
     name: random_01
     status: AC
-  - elapsed: 0.046175509000001114
+  - elapsed: 0.045868476999999075
     environment: g++
-    memory: 4.752
+    memory: 4.804
     name: random_02
     status: AC
-  - elapsed: 0.3960270889999933
+  - elapsed: 0.38610677100000146
     environment: g++
-    memory: 14.352
+    memory: 14.32
     name: random_03
     status: AC
-  - elapsed: 0.2435577560000013
+  - elapsed: 0.24240434600000071
     environment: g++
-    memory: 10.472
+    memory: 10.476
     name: random_04
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_string/string_number_of_substrings.test.cpp

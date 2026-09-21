@@ -219,7 +219,7 @@ data:
   requiredBy:
   - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math_mod/binom_table.test.cpp

@@ -578,16 +578,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_ds/ds_ordered_set_min_left.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_ds/ds_ordered_set_min_left.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int n, q;\n    kin >> n >> q;\n\
       \    vc<kk2::monoid::Update<int>> a(n);\n    kin >> a;\n    kk2::RedBlackTree<kk2::monoid::Update<int>>\
       \ rb(2 * (n + q));\n    auto root = rb.build(a);\n    rep(q) {\n        int\
@@ -616,192 +616,192 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002423830999987331
+  - elapsed: 0.0026003299999786122
     environment: g++
-    memory: 4.008
+    memory: 3.892
     name: example_00
     status: AC
-  - elapsed: 0.0019403620000275623
+  - elapsed: 0.00214456800000562
     environment: g++
-    memory: 3.84
+    memory: 3.776
     name: example_01
     status: AC
-  - elapsed: 0.3358963499999845
+  - elapsed: 0.3725360749999993
     environment: g++
-    memory: 50.644
+    memory: 50.584
     name: max_random_00
     status: AC
-  - elapsed: 0.20920968400000106
+  - elapsed: 0.23038045400002716
     environment: g++
-    memory: 50.592
+    memory: 50.536
     name: max_random_01
     status: AC
-  - elapsed: 0.21629017000000772
+  - elapsed: 0.2434263959999896
     environment: g++
-    memory: 50.516
+    memory: 50.54
     name: max_random_02
     status: AC
-  - elapsed: 0.14953458299999056
+  - elapsed: 0.16361843899997552
     environment: g++
-    memory: 50.504
+    memory: 50.584
     name: max_random_03
     status: AC
-  - elapsed: 0.17922348400000487
+  - elapsed: 0.19380932699999676
     environment: g++
-    memory: 50.692
+    memory: 50.52
     name: max_random_04
     status: AC
-  - elapsed: 0.20023215200001232
+  - elapsed: 0.21493536200000563
     environment: g++
-    memory: 50.648
+    memory: 50.584
     name: max_random_05
     status: AC
-  - elapsed: 0.19803378000000293
+  - elapsed: 0.2138411880000035
     environment: g++
-    memory: 50.644
+    memory: 50.584
     name: max_random_06
     status: AC
-  - elapsed: 0.21394453700000327
+  - elapsed: 0.2296531989999835
     environment: g++
-    memory: 50.644
+    memory: 50.54
     name: max_random_07
     status: AC
-  - elapsed: 0.3526083370000208
+  - elapsed: 0.3872451360000184
     environment: g++
-    memory: 50.688
+    memory: 50.58
     name: max_random_08
     status: AC
-  - elapsed: 0.22311349900002142
+  - elapsed: 0.2507451049999929
     environment: g++
-    memory: 50.676
+    memory: 50.532
     name: max_random_09
     status: AC
-  - elapsed: 0.2165524019999907
+  - elapsed: 0.24308407600000237
     environment: g++
-    memory: 50.644
+    memory: 50.58
     name: max_random_10
     status: AC
-  - elapsed: 0.14911993400002643
+  - elapsed: 0.16421103300001505
     environment: g++
-    memory: 50.504
+    memory: 50.452
     name: max_random_11
     status: AC
-  - elapsed: 0.17733805499997857
+  - elapsed: 0.1934289830000182
     environment: g++
-    memory: 50.68
+    memory: 50.576
     name: max_random_12
     status: AC
-  - elapsed: 0.21768676400000686
+  - elapsed: 0.238388743999991
     environment: g++
-    memory: 50.588
+    memory: 50.532
     name: max_random_13
     status: AC
-  - elapsed: 0.23832639699998026
+  - elapsed: 0.2627472690000161
     environment: g++
-    memory: 50.64
+    memory: 50.576
     name: max_random_14
     status: AC
-  - elapsed: 0.23898863200000164
+  - elapsed: 0.25961361800000304
     environment: g++
-    memory: 50.64
+    memory: 50.576
     name: max_random_15
     status: AC
-  - elapsed: 1.0056699730000105
+  - elapsed: 0.8948463680000032
     environment: g++
-    memory: 101.336
+    memory: 101.356
     name: max_random_16
     status: AC
-  - elapsed: 0.7480866209999988
+  - elapsed: 0.6908865180000134
     environment: g++
-    memory: 101.456
+    memory: 101.4
     name: max_random_17
     status: AC
-  - elapsed: 1.4636114710000072
+  - elapsed: 1.373210585999999
     environment: g++
-    memory: 101.332
+    memory: 101.388
     name: max_random_18
     status: AC
-  - elapsed: 1.5879667529999892
+  - elapsed: 1.5333382409999956
     environment: g++
-    memory: 101.432
+    memory: 101.344
     name: max_random_19
     status: AC
-  - elapsed: 0.5742021970000053
+  - elapsed: 0.5268961609999963
     environment: g++
-    memory: 101.46
+    memory: 101.392
     name: max_random_20
     status: AC
-  - elapsed: 0.49841868699999736
+  - elapsed: 0.47705578400001514
     environment: g++
-    memory: 101.332
+    memory: 101.396
     name: max_random_21
     status: AC
-  - elapsed: 0.5347021020000113
+  - elapsed: 0.5088711479999972
     environment: g++
-    memory: 101.496
+    memory: 101.388
     name: max_random_22
     status: AC
-  - elapsed: 0.5088780509999822
+  - elapsed: 0.5024882749999904
     environment: g++
-    memory: 101.46
+    memory: 101.396
     name: max_random_23
     status: AC
-  - elapsed: 1.0905281089999903
+  - elapsed: 0.9804108109999845
     environment: g++
-    memory: 101.464
+    memory: 101.396
     name: max_random_24
     status: AC
-  - elapsed: 0.9164568180000003
+  - elapsed: 0.8019726470000137
     environment: g++
-    memory: 101.492
+    memory: 101.356
     name: max_random_25
     status: AC
-  - elapsed: 1.5865969049999933
+  - elapsed: 1.3582971440000051
     environment: g++
-    memory: 101.464
+    memory: 101.272
     name: max_random_26
     status: AC
-  - elapsed: 1.849627546999983
+  - elapsed: 1.5325072019999766
     environment: g++
-    memory: 101.296
+    memory: 101.232
     name: max_random_27
     status: AC
-  - elapsed: 0.754708528000009
+  - elapsed: 0.5480030770000042
     environment: g++
-    memory: 101.508
+    memory: 101.396
     name: max_random_28
     status: AC
-  - elapsed: 0.7872624689999839
+  - elapsed: 0.6152937100000031
     environment: g++
-    memory: 101.488
+    memory: 101.384
     name: max_random_29
     status: AC
-  - elapsed: 0.778001923000005
+  - elapsed: 0.6222289250000017
     environment: g++
-    memory: 101.464
+    memory: 101.396
     name: max_random_30
     status: AC
-  - elapsed: 0.8285861760000159
+  - elapsed: 0.6165251639999951
     environment: g++
-    memory: 101.492
+    memory: 101.376
     name: max_random_31
     status: AC
-  - elapsed: 0.10891985599999998
+  - elapsed: 0.11473803699999507
     environment: g++
-    memory: 50.676
+    memory: 50.52
     name: small_00
     status: AC
-  - elapsed: 0.11406844699999397
+  - elapsed: 0.1209354620000056
     environment: g++
-    memory: 50.632
+    memory: 50.536
     name: small_01
     status: AC
-  - elapsed: 0.11759905899998557
+  - elapsed: 0.1272562110000024
     environment: g++
-    memory: 50.68
+    memory: 50.524
     name: small_02
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_ordered_set_min_left.test.cpp

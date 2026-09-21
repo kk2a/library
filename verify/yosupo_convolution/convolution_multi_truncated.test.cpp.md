@@ -639,16 +639,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_multi_truncated.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_convolution/convolution_multi_truncated.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int k;\n    kin >> k;\n    vc<int>\
       \ base(k);\n    kin >> base;\n    int n = 1;\n    rep(i, k) n *= base[i];\n\
       \    vc<kk2::mont998> a(n), b(n);\n    kin >> a >> b;\n    kout << kk2::multi_convolution_truncated(a,\
@@ -660,92 +660,92 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.7593166150000172
-    environment: g++
-    memory: 13.812
-    name: dim1_00
-    status: AC
-  - elapsed: 0.7494018430000153
+  - elapsed: 0.7400491809999892
     environment: g++
     memory: 13.772
+    name: dim1_00
+    status: AC
+  - elapsed: 0.7336540330000219
+    environment: g++
+    memory: 13.808
     name: dim1_01
     status: AC
-  - elapsed: 1.4014356609999936
+  - elapsed: 1.399741318999986
     environment: g++
     memory: 17.816
     name: dim2_00
     status: AC
-  - elapsed: 1.4309232610000038
+  - elapsed: 1.394750254999991
     environment: g++
-    memory: 17.868
+    memory: 17.872
     name: dim2_01
     status: AC
-  - elapsed: 0.002517321999988553
+  - elapsed: 0.002616661999979897
     environment: g++
-    memory: 3.792
+    memory: 3.592
     name: example_00
     status: AC
-  - elapsed: 0.002195534999998472
+  - elapsed: 0.0021926420000113467
     environment: g++
-    memory: 3.788
+    memory: 3.596
     name: example_01
     status: AC
-  - elapsed: 0.0021604719999857025
+  - elapsed: 0.002072677000001022
     environment: g++
-    memory: 3.772
+    memory: 3.796
     name: example_02
     status: AC
-  - elapsed: 0.0021490599999935966
+  - elapsed: 0.002187191999979632
     environment: g++
-    memory: 3.732
+    memory: 3.756
     name: k0_00
     status: AC
-  - elapsed: 0.0025745050000125502
+  - elapsed: 0.0020622309999964727
     environment: g++
-    memory: 3.828
+    memory: 3.808
     name: k0_01
     status: AC
-  - elapsed: 4.873747708999986
+  - elapsed: 4.805960648000024
     environment: g++
-    memory: 36.768
+    memory: 36.684
     name: max_random_00
     status: AC
-  - elapsed: 4.9297494959999995
+  - elapsed: 4.838966184999975
     environment: g++
     memory: 37.164
     name: max_random_01
     status: AC
-  - elapsed: 0.00601657200002137
+  - elapsed: 0.005586528999970142
     environment: g++
-    memory: 3.748
+    memory: 3.788
     name: small_00
     status: AC
-  - elapsed: 0.007442525999977079
+  - elapsed: 0.007131520999962504
     environment: g++
-    memory: 3.932
+    memory: 3.928
     name: small_01
     status: AC
-  - elapsed: 11.039750994999991
+  - elapsed: 10.88472149100005
     environment: g++
-    memory: 65.908
+    memory: 65.944
     name: threes_00
     status: AC
-  - elapsed: 10.040719201999991
+  - elapsed: 9.879249619999996
     environment: g++
-    memory: 61.104
+    memory: 61.072
     name: threes_01
     status: AC
-  - elapsed: 15.130668316999987
+  - elapsed: 14.914338506999968
     environment: g++
-    memory: 83.488
+    memory: 83.436
     name: twos_00
     status: AC
-  - elapsed: 6.752792225999997
+  - elapsed: 6.666597292000006
     environment: g++
-    memory: 41.54
+    memory: 41.464
     name: twos_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_multi_truncated.test.cpp

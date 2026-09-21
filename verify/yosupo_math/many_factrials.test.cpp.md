@@ -1414,16 +1414,16 @@ data:
       \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
       #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
       \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
-      \ fi first\n#define se second\n#define all(p) begin(p), end(p)\n\n\n#line 32\
-      \ \"template/template.hpp\"\n\nusing kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\
-      \nvoid Yes(bool b = 1) { kout << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool\
-      \ b = 1) { kout << (b ? \"No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout\
-      \ << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"\
-      NO\\n\" : \"YES\\n\"); }\nvoid yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"\
-      no\\n\"); }\nvoid no(bool b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\n\
-      template <class T, class S> inline bool chmax(T &a, const S &b) { return (a\
-      \ < b ? a = b, 1 : 0); }\ntemplate <class T, class S> inline bool chmin(T &a,\
-      \ const S &b) { return (a > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/many_factrials.test.cpp\"\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_math/many_factrials.test.cpp\"\
       \nusing namespace std;\n\nint main() {\n    int t;\n    kin >> t;\n    rep(t)\
       \ {\n        int n;\n        kin >> n;\n        kout << kk2::CombLarge<kk2::mont998>::fact(n)\
       \ << \"\\n\";\n    }\n\n    return 0;\n}\n"
@@ -1434,67 +1434,67 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 3.6242737299999987
+  - elapsed: 3.6455724280000084
     environment: g++
-    memory: 51.468
+    memory: 51.528
     name: example_00
     status: AC
-  - elapsed: 3.766009346000004
+  - elapsed: 3.7554363479999893
     environment: g++
-    memory: 47.252
+    memory: 46.208
     name: many_bits_00
     status: AC
-  - elapsed: 3.8159811200000036
+  - elapsed: 3.828998530000007
     environment: g++
-    memory: 54.072
+    memory: 54.016
     name: many_bits_01
     status: AC
-  - elapsed: 3.815320006999997
+  - elapsed: 3.8047645599999953
     environment: g++
-    memory: 53.544
+    memory: 56.864
     name: many_bits_02
     status: AC
-  - elapsed: 3.8334207350000042
+  - elapsed: 3.8230027790000065
     environment: g++
-    memory: 54.456
+    memory: 55.708
     name: many_bits_03
     status: AC
-  - elapsed: 3.8252677389999974
+  - elapsed: 3.8167104449999982
     environment: g++
     memory: 53.016
     name: many_bits_04
     status: AC
-  - elapsed: 3.681075702000001
+  - elapsed: 3.680670691000003
     environment: g++
-    memory: 37.004
+    memory: 37.008
     name: near_half_00
     status: AC
-  - elapsed: 3.6816835429999912
+  - elapsed: 3.6743086949999935
     environment: g++
-    memory: 37.044
+    memory: 36.996
     name: near_half_01
     status: AC
-  - elapsed: 3.6844381999999882
+  - elapsed: 3.6802821290000054
     environment: g++
-    memory: 37.032
+    memory: 37.04
     name: near_max_00
     status: AC
-  - elapsed: 3.693501115999993
+  - elapsed: 3.6796611710000064
     environment: g++
     memory: 37.044
     name: near_max_01
     status: AC
-  - elapsed: 3.878968800999985
+  - elapsed: 3.8744030029999976
     environment: g++
-    memory: 46.244
+    memory: 47.264
     name: random_00
     status: AC
-  - elapsed: 3.928031414000003
+  - elapsed: 3.932368815999993
     environment: g++
-    memory: 54.88
+    memory: 54.144
     name: random_01
     status: AC
-  timestamp: '2026-09-15 18:49:50+09:00'
+  timestamp: '2026-09-21 18:50:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/many_factrials.test.cpp
