@@ -54,11 +54,9 @@ template <class T> struct PrefixSumOfMultiplicativeFunction {
     template <class F> void Min_25Sieve(const F &f) {
         PrimeTable::set_upper(eq.sqrt_n);
         std::copy(prefix_sum_only_prime.begin(), prefix_sum_only_prime.end(), prefix_sum.begin());
-        const auto &primes = PrimeTable::primes();
+        auto primes = PrimeTable::primes(eq.sqrt_n);
         std::vector<T> tmp(eq.size());
-        for (int i = std::upper_bound(primes.begin(), primes.end(), eq.sqrt_n) - primes.begin() - 1;
-             i >= 0;
-             --i) {
+        for (int i = primes.size() - 1; i >= 0; --i) {
             const long long p = primes[i];
             T pk = f(p, 1);
             T pk1;

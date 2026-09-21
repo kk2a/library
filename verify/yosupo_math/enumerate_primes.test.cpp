@@ -1,6 +1,5 @@
 // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_primes
 
-#include "../../math/frac_floor.hpp"
 #include "../../math/prime_table.hpp"
 #include "../../template/template.hpp"
 using namespace std;
@@ -11,11 +10,13 @@ int main() {
 
     auto primes = kk2::PrimeTable::primes(n);
     int pi_n = (int)primes.size();
-    int m = kk2::fracceil(pi_n - b, a);
-    kout << pi_n << " " << m << kendl;
-    for (int i = 0; i < m; i++) {
-        if (i) kout << " ";
-        kout << primes[i * a + b];
+    auto selected_primes = primes.stride(b, a);
+    kout << pi_n << " " << selected_primes.size() << kendl;
+    bool first = true;
+    for (int p : selected_primes) {
+        if (!first) kout << " ";
+        first = false;
+        kout << p;
     }
     kout << kendl;
 

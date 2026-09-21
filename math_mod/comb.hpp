@@ -6,11 +6,12 @@
 #include <vector>
 
 #include "../type_traits/integral.hpp"
+#include "inv_table.hpp"
 
 namespace kk2 {
 
 template <class mint> struct Comb {
-    static inline std::vector<mint> _fact{1}, _ifact{1}, _inv{1};
+    static inline std::vector<mint> _fact{1}, _ifact{1};
 
     Comb() = delete;
 
@@ -19,15 +20,16 @@ template <class mint> struct Comb {
         if (m == -1) m = n << 1;
         if (n > m) return;
         m = std::min<long long>(m, mint::getmod() - 1);
-        _fact.resize(m + 1);
+        _fact.reserve(m + 1);
         _ifact.resize(m + 1);
-        _inv.resize(m + 1);
-        for (int i = n; i <= m; i++) _fact[i] = _fact[i - 1] * i;
+        auto &_invs = InvTable<mint>::_invs;
+        if ((int)_invs.size() <= m) _invs.resize(m + 1);
+        for (int i = n; i <= m; i++) _fact.emplace_back(_fact.back() * i);
         _ifact[m] = _fact[m].inv();
-        _inv[m] = _ifact[m] * _fact[m - 1];
+        _invs[m] = _ifact[m] * _fact[m - 1];
         for (int i = m; i > n; i--) {
             _ifact[i - 1] = _ifact[i] * i;
-            _inv[i - 1] = _ifact[i - 1] * _fact[i - 2];
+            _invs[i - 1] = _ifact[i - 1] * _fact[i - 2];
         }
     }
 
@@ -45,8 +47,8 @@ template <class mint> struct Comb {
 
     static mint inv(int n) {
         if (n < 0) return -inv(-n);
-        if ((int)_inv.size() <= n) set_upper(n);
-        return _inv[n];
+        if (n == 0) return 1;
+        return InvTable<mint>::inv(n);
     }
 
     static mint binom(int n, int k) {

@@ -2,11 +2,14 @@
 #define KK2_DATA_STRUCTURE_MY_BITSET_HPP 1
 
 #include <algorithm>
+#include <bit>
 #include <bitset>
 #include <cassert>
+#include <cstdint>
 #include <iostream>
 #include <iterator>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "../bit/bitcount.hpp"
@@ -14,9 +17,89 @@
 
 namespace kk2 {
 
+template <class Accessor> struct MonotoneRankRange {
+    Accessor _accessor;
+
+    struct StrideRange {
+        Accessor _accessor;
+        int _start, _end, _step;
+
+        struct Iterator {
+            using value_type = int;
+            using difference_type = std::ptrdiff_t;
+            using iterator_category = std::forward_iterator_tag;
+            using reference = int;
+            using pointer = void;
+
+            int rank, end, step;
+            mutable typename Accessor::MonotoneCursor cursor;
+
+            Iterator(int rank_, int end_, int step_, const Accessor &accessor)
+                : rank(rank_),
+                  end(end_),
+                  step(step_),
+                  cursor(accessor.monotone_cursor()) {}
+
+            int operator*() const { return cursor[rank]; }
+
+            Iterator &operator++() {
+                rank = step < end - rank ? rank + step : end;
+                return *this;
+            }
+
+            Iterator operator++(int) {
+                Iterator result = *this;
+                ++*this;
+                return result;
+            }
+
+            bool operator==(const Iterator &other) const { return rank == other.rank; }
+        };
+
+        Iterator begin() const { return Iterator(_start, _end, _step, _accessor); }
+        Iterator end() const { return Iterator(_end, _end, _step, _accessor); }
+
+        int size() const {
+            if (_start == _end) return 0;
+            return (_end - _start - 1) / _step + 1;
+        }
+
+        std::vector<int> to_vec() const {
+            std::vector<int> result;
+            result.reserve(size());
+            for (int value : *this) result.push_back(value);
+            return result;
+        }
+    };
+
+    auto begin() const { return stride(0, 1).begin(); }
+    auto end() const { return stride(0, 1).end(); }
+    int size() const { return _accessor.size(); }
+
+    int operator[](int rank) const { return _accessor[rank]; }
+
+    auto monotone_cursor() const { return _accessor.monotone_cursor(); }
+
+    StrideRange stride(int start, int step) const { return stride(start, step, size()); }
+
+    StrideRange stride(int start, int step, int end) const {
+        assert(0 <= start && start <= end && end <= size() && step > 0);
+        return StrideRange{_accessor, start, end, step};
+    }
+
+    std::vector<int> to_vec() const {
+        std::vector<int> result;
+        result.reserve(size());
+        for (int value : *this) result.push_back(value);
+        return result;
+    }
+};
+
 struct DynamicBitSet {
+    struct RankSelect;
+
     using T = DynamicBitSet;
-    using UInt = __uint128_t;
+    using UInt = std::uint64_t;
     constexpr static int BLOCK_SIZE = sizeof(UInt) * 8;
     constexpr static int BLOCK_SIZE_LOG = __builtin_ctz(BLOCK_SIZE);
     constexpr static int BLOCK_MASK = BLOCK_SIZE - 1;
@@ -38,63 +121,76 @@ struct DynamicBitSet {
 
     inline int size() const { return n; }
 
+    int word_count() const { return block.size(); }
+
+    UInt &word(int i) {
+        assert(0 <= i && i < word_count());
+        return block[i];
+    }
+
+    const UInt &word(int i) const {
+        assert(0 <= i && i < word_count());
+        return block[i];
+    }
+
+    UInt *data() { return block.data(); }
+
+    const UInt *data() const { return block.data(); }
+
+    T &clear_unused_bits() {
+        if ((n & BLOCK_MASK) && !block.empty()) block.back() &= (ONE << (n & BLOCK_MASK)) - 1;
+        return *this;
+    }
+
     T &inplace_combine_top(const T &rhs) {
-        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
-        if (!(n & BLOCK_MASK)) {
-            std::copy(std::begin(rhs.block),
-                      std::end(rhs.block),
-                      std::begin(block) + (n >> BLOCK_SIZE_LOG));
-            n += rhs.n;
-            return *this;
+        if (this == &rhs) {
+            T copy = rhs;
+            return inplace_combine_top(copy);
         }
-        int start = BLOCK_SIZE - (n & BLOCK_MASK);
-        UInt start_mask = (ONE << start) - 1;
-        UInt end_mask = ~start_mask;
-        for (int i = 0; i < (rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {
-            UInt x = rhs.block[i];
-            block[i + (n >> BLOCK_SIZE_LOG)] |= (x & start_mask) << (BLOCK_SIZE - start);
-            if (i + (n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG)
-                block[i + (n >> BLOCK_SIZE_LOG) + 1] |= (x & end_mask) >> start;
-        }
+        int old_n = n;
         n += rhs.n;
+        block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
+        int offset = old_n & BLOCK_MASK;
+        int word_offset = old_n >> BLOCK_SIZE_LOG;
+        if (offset == 0) {
+            std::copy(rhs.block.begin(), rhs.block.end(), block.begin() + word_offset);
+        } else {
+            for (int i = 0; i < rhs.word_count(); ++i) {
+                block[word_offset + i] |= rhs.block[i] << offset;
+                if (word_offset + i + 1 < word_count()) {
+                    block[word_offset + i + 1] = rhs.block[i] >> (BLOCK_SIZE - offset);
+                }
+            }
+        }
         return *this;
     }
 
     T combine_top(const T &rhs) const { return T(*this).inplace_combine_top(rhs); }
 
     T &inplace_combine_bottom(const T &rhs) {
-        block.resize((n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
-        if (!(rhs.n & BLOCK_MASK)) {
-            std::vector<UInt> tmp(block.begin(), block.begin() + n);
-            std::copy(
-                std::begin(tmp), std::begin(tmp), std::begin(block) + (rhs.n >> BLOCK_SIZE_LOG));
-            std::copy(std::begin(rhs.block), std::end(rhs.block), std::begin(block));
-            n += rhs.n;
-            return *this;
-        }
-        int start = BLOCK_SIZE - (rhs.n & BLOCK_MASK);
-        UInt start_mask = (ONE << start) - 1;
-        UInt end_mask = ~start_mask;
-        for (int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) - 1; i >= 0; --i) {
-            UInt x = block[i];
-            block[i + (rhs.n >> BLOCK_SIZE_LOG)] |= (x & start_mask) << (BLOCK_SIZE - start);
-            if (i + (rhs.n >> BLOCK_SIZE_LOG) + 1 < (n + rhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG)
-                block[i + (rhs.n >> BLOCK_SIZE_LOG) + 1] |= (x & end_mask) >> start;
-        }
-        block[(rhs.n >> BLOCK_SIZE_LOG)] =
-            ((block[0] & start_mask) << (BLOCK_SIZE - start)) | rhs.block.back();
-        std::copy(std::begin(rhs.block), std::prev(std::end(rhs.block)), std::begin(block));
-        n += rhs.n;
+        T result = rhs;
+        result.inplace_combine_top(*this);
+        *this = std::move(result);
         return *this;
     }
 
     T combine_bottom(const T &rhs) const { return T(*this).inplace_combine_bottom(rhs); }
 
-    void set(int i, int x) {
+    void set(int i, bool x = true) {
         assert(0 <= i && i < n);
         if (x) block[i >> BLOCK_SIZE_LOG] |= ONE << (i & BLOCK_MASK);
         else block[i >> BLOCK_SIZE_LOG] &= ~(ONE << (i & BLOCK_MASK));
     }
+
+    void reset(int i) { set(i, false); }
+
+    T &set_all(bool x = true) {
+        std::fill(block.begin(), block.end(), x ? ~UInt(0) : UInt(0));
+        if (x && (n & BLOCK_MASK)) block.back() &= (ONE << (n & BLOCK_MASK)) - 1;
+        return *this;
+    }
+
+    T &reset_all() { return set_all(false); }
 
     void set(const std::string &s) {
         assert((int)s.size() == n);
@@ -190,6 +286,11 @@ struct DynamicBitSet {
         return BitReference(block, i);
     }
 
+    bool operator[](int i) const {
+        assert(0 <= i && i < n);
+        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;
+    }
+
     bool is_pinned(int i) const {
         assert(0 <= i && i < n);
         return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;
@@ -201,9 +302,8 @@ struct DynamicBitSet {
     }
 
     T &flip() {
-        UInt mask = (ONE << (n & BLOCK_MASK)) - 1;
         for (UInt &x : block) x = ~x;
-        block.back() &= mask;
+        if (n & BLOCK_MASK) block.back() &= (ONE << (n & BLOCK_MASK)) - 1;
         return *this;
     }
 
@@ -213,36 +313,48 @@ struct DynamicBitSet {
         return *this;
     }
 
-    int ctz() const {
-        int res = 0;
-        int i = 0;
-        for (; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; ++i) {
-            if (block[i]) break;
-            res += BLOCK_SIZE;
-        }
-        assert(i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
-        res += kk2::ctz(block[i]);
-        return res;
-    }
+    int ctz() const { return find_next(0); }
 
     int clz() const {
-        int res = 0;
-        int i = ((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
-        for (; i--;) {
-            if (block[i]) break;
-            if (i + 1 == (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) {
-                res += n & BLOCK_MASK;
-            } else {
-                res += BLOCK_SIZE;
-            }
+        int last = find_prev(n - 1);
+        return last == -1 ? n : n - 1 - last;
+    }
+
+    int find_next(int i) const {
+        if (i < 0) i = 0;
+        if (i >= n) return n;
+        int j = i >> BLOCK_SIZE_LOG;
+        UInt bits = block[j] & (~UInt(0) << (i & BLOCK_MASK));
+        while (true) {
+            if (bits) return std::min(n, j * BLOCK_SIZE + (int)std::countr_zero(bits));
+            if (++j == word_count()) return n;
+            bits = block[j];
         }
-        assert(i >= 0);
-        if (i + 1 == (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG) {
-            res += kk2::clz(block[i]) - (BLOCK_SIZE - (n & BLOCK_MASK));
-        } else {
-            res += kk2::clz(block[i]);
+    }
+
+    int find_next_zero(int i) const {
+        if (i < 0) i = 0;
+        if (i >= n) return n;
+        int j = i >> BLOCK_SIZE_LOG;
+        UInt bits = ~block[j] & (~UInt(0) << (i & BLOCK_MASK));
+        while (true) {
+            if (bits) return std::min(n, j * BLOCK_SIZE + (int)std::countr_zero(bits));
+            if (++j == word_count()) return n;
+            bits = ~block[j];
         }
-        return res;
+    }
+
+    int find_prev(int i) const {
+        if (i >= n) i = n - 1;
+        if (i < 0) return -1;
+        int j = i >> BLOCK_SIZE_LOG;
+        int offset = i & BLOCK_MASK;
+        UInt bits = block[j] & (~UInt(0) >> (BLOCK_MASK - offset));
+        while (true) {
+            if (bits) return j * BLOCK_SIZE + (BLOCK_MASK - std::countl_zero(bits));
+            if (j-- == 0) return -1;
+            bits = block[j];
+        }
     }
 
     int popcount() const {
@@ -279,6 +391,16 @@ struct DynamicBitSet {
         return *this;
     }
 
+    T &inplace_or_repeated(const T &pattern) {
+        assert(pattern.n > 0 && (pattern.n & BLOCK_MASK) == 0);
+        int pattern_words = pattern.word_count();
+        for (int begin = 0; begin < word_count(); begin += pattern_words) {
+            int size = std::min(pattern_words, word_count() - begin);
+            for (int i = 0; i < size; ++i) block[begin + i] |= pattern.block[i];
+        }
+        return clear_unused_bits();
+    }
+
     friend T operator&(const T &lhs, const T &rhs) { return T(lhs) &= rhs; }
 
     friend T operator|(const T &lhs, const T &rhs) { return T(lhs) |= rhs; }
@@ -302,11 +424,7 @@ struct DynamicBitSet {
         return false;
     }
 
-    std::string to_string(UInt x) const {
-        return std::bitset<64>((unsigned long long)(x >> (BLOCK_SIZE / 2))).to_string()
-               + std::bitset<64>((unsigned long long)(x & ((ONE << (BLOCK_SIZE / 2)) - 1)))
-                     .to_string();
-    }
+    std::string to_string(UInt x) const { return std::bitset<BLOCK_SIZE>(x).to_string(); }
 
     std::string to_string() const {
         std::vector<std::string> tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);
@@ -351,6 +469,110 @@ struct DynamicBitSet {
         bs.set_reversed(s);
         return is;
     }
+};
+
+struct DynamicBitSet::RankSelect {
+  private:
+    DynamicBitSet _bits;
+    std::vector<int> _prefix;
+
+    UInt selected_word(int word) const { return _bits.word(word); }
+
+  public:
+    RankSelect() : _prefix(1) {}
+
+    explicit RankSelect(DynamicBitSet bits, bool value = true)
+        : _bits(std::move(bits)),
+          _prefix(_bits.word_count() + 1) {
+        for (int word = 0; word < _bits.word_count(); ++word) {
+            UInt selected = value ? _bits.word(word) : ~_bits.word(word);
+            if (word + 1 == _bits.word_count() && (_bits.size() & BLOCK_MASK)) {
+                selected &= (ONE << (_bits.size() & BLOCK_MASK)) - 1;
+            }
+            _bits.word(word) = selected;
+            _prefix[word + 1] = _prefix[word] + std::popcount(selected);
+        }
+    }
+
+    int bit_size() const { return _bits.size(); }
+
+    bool contains(int index) const {
+        assert(0 <= index && index < bit_size());
+        return _bits[index];
+    }
+
+    int rank(int end) const {
+        assert(0 <= end && end <= bit_size());
+        int word = end >> BLOCK_SIZE_LOG;
+        int result = _prefix[word];
+        if (end & BLOCK_MASK) {
+            UInt mask = (ONE << (end & BLOCK_MASK)) - 1;
+            result += std::popcount(selected_word(word) & mask);
+        }
+        return result;
+    }
+
+    int select(int rank) const {
+        assert(0 <= rank && rank < size());
+        int word =
+            (int)(std::upper_bound(_prefix.begin(), _prefix.end(), rank) - _prefix.begin()) - 1;
+        UInt selected = selected_word(word);
+        int local_rank = rank - _prefix[word];
+        while (local_rank--) selected &= selected - 1;
+        return word * BLOCK_SIZE + std::countr_zero(selected);
+    }
+
+    int find_next(int index) const { return _bits.find_next(index); }
+
+    struct MonotoneCursor {
+      private:
+        const RankSelect *_index;
+        int _last_rank = -1;
+        int _word = 0;
+
+      public:
+        explicit MonotoneCursor(const RankSelect &index) : _index(&index) {}
+
+        int operator[](int rank) {
+            assert(0 <= rank && _last_rank <= rank && rank < _index->size());
+            _last_rank = rank;
+            while (_index->_prefix[_word + 1] <= rank) ++_word;
+            UInt selected = _index->selected_word(_word);
+            int local_rank = rank - _index->_prefix[_word];
+            while (local_rank--) selected &= selected - 1;
+            return _word * BLOCK_SIZE + std::countr_zero(selected);
+        }
+    };
+
+    int size() const { return _prefix.back(); }
+
+    int operator[](int rank) const { return select(rank); }
+
+    MonotoneCursor monotone_cursor() const & { return MonotoneCursor(*this); }
+    MonotoneCursor monotone_cursor() const && = delete;
+
+    struct RangeAccessor {
+        const RankSelect *index;
+
+        using MonotoneCursor = RankSelect::MonotoneCursor;
+
+        int size() const { return index->size(); }
+        int operator[](int rank) const { return (*index)[rank]; }
+        MonotoneCursor monotone_cursor() const { return index->monotone_cursor(); }
+    };
+
+    using Range = MonotoneRankRange<RangeAccessor>;
+
+    Range range() const & { return Range{RangeAccessor{this}}; }
+    Range range() const && = delete;
+
+    auto begin() const { return range().begin(); }
+    auto end() const { return range().end(); }
+    auto stride(int start, int step) const & { return range().stride(start, step); }
+    auto stride(int start, int step, int end) const & { return range().stride(start, step, end); }
+    auto stride(int, int) const && = delete;
+    auto stride(int, int, int) const && = delete;
+    std::vector<int> to_vec() const { return range().to_vec(); }
 };
 
 } // namespace kk2

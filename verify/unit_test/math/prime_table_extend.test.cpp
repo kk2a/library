@@ -122,6 +122,28 @@ void test_edge_cases() {
     }
 }
 
+void test_stride() {
+    auto small_primes = kk2::PrimeTable::primes(30);
+    assert(small_primes.stride(small_primes.size(), 3).size() == 0);
+    assert(small_primes.stride(0, 1).to_vec() == small_primes.to_vec());
+    assert((small_primes.stride(2, 3, 8).to_vec() == vector<int>{5, 13}));
+
+    auto primes = kk2::PrimeTable::primes(1000000);
+    for (auto [start, step] : vector<pair<int, int>>{
+             {0,  27 },
+             {17, 997}
+    }) {
+        auto strided = primes.stride(start, step);
+        assert(strided.size() == (primes.size() - start - 1) / step + 1);
+        int rank = start;
+        for (int p : strided) {
+            assert(p == primes[rank]);
+            rank += step;
+        }
+        assert(rank >= primes.size());
+    }
+}
+
 void test_random_large_numbers() {
     // Test with larger random numbers
     int iter = 100;
@@ -139,6 +161,7 @@ int main() {
     test_monotonicity();
     test_prime_properties();
     test_edge_cases();
+    test_stride();
     test_random_large_numbers();
 
     return 0;

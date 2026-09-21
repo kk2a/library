@@ -12,16 +12,16 @@ namespace kk2 {
  */
 template <class mint> struct InvTable {
     static inline std::vector<mint> _invs{0, 1};
-    static inline auto _mod = mint::getmod();
     InvTable() = delete;
 
     static void set_upper(int m) {
         if ((int)_invs.size() > m) return;
         int start = _invs.size();
+        auto mod = mint::getmod();
         _invs.resize(m + 1);
         // p = q * i + r
         // - q / r = 1 / i (mod p)
-        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[_mod % i]) * (_mod / i);
+        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod / i);
     }
 
     static inline mint inv(int n) {
