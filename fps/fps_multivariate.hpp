@@ -7,6 +7,7 @@
 #include <utility>
 #include <vector>
 
+#include "../math_mod/inv_table.hpp"
 #include "../type_traits/io.hpp"
 #include "fps_arb.hpp"
 #include "fps_ntt_friendly.hpp"
@@ -24,6 +25,7 @@ struct MultivariateFormalPowerSeries {
     using mfps = MultivariateFormalPowerSeries;
     using fps = UnivariateFPS<mint>;
     using value_type = mint;
+    using ivta = InvTable<mint>;
     using modulus_category = typename fps::modulus_category;
     using series_category = kk2::fps::category::ordinary;
     using variable_category = kk2::fps::category::multivariate;
@@ -180,25 +182,16 @@ struct MultivariateFormalPowerSeries {
         return *this;
     }
 
-    static std::vector<mint> _inv;
-
-    static void ensure_inv(int n) {
-        while ((int)_inv.size() <= n) {
-            int i = _inv.size();
-            _inv.push_back((-_inv[mint::getmod() % i]) * (mint::getmod() / i));
-        }
-    }
-
     mfps integral() const {
-        ensure_inv(f.size());
+        ivta::set_upper(f.size());
         mfps ret(*this);
-        for (int i = 1; i < (int)ret.f.size(); i++) ret.f[i] *= _inv[i];
+        for (int i = 1; i < (int)ret.f.size(); i++) ret.f[i] *= ivta::inv(i);
         return ret;
     }
 
     mfps &inplace_int() {
-        ensure_inv(f.size());
-        for (int i = 1; i < (int)f.size(); i++) f[i] *= _inv[i];
+        ivta::set_upper(f.size());
+        for (int i = 1; i < (int)f.size(); i++) f[i] *= ivta::inv(i);
         return *this;
     }
 
