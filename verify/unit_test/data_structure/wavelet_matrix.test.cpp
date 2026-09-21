@@ -22,7 +22,7 @@ int main() {
                 l += t;
             }
         }
-        MAX = *max_element(all(a));
+        MAX = ranges::max(a);
         chmax(MAX, 1);
 
         kk2::WaveletMatrix<i64> wm(a);
@@ -35,7 +35,7 @@ int main() {
         rep(i, q) {
             auto [b, pos] = rank_query[i];
             int simple_rank = 0;
-            if (mp.count(b)) simple_rank = lower_bound(all(mp[b]), pos) - mp[b].begin();
+            if (mp.count(b)) simple_rank = ranges::lower_bound(mp[b], pos) - mp[b].begin();
             if (simple_rank != wm.rank(b, pos)) {
                 cerr << "rank" << endl;
                 exit(1);

@@ -9,7 +9,7 @@ int main() {
     kin >> s;
     kk2::SuffixArray sa(s);
     kk2::LCPArray lcp(sa);
-    kout << s.size() * (s.size() + 1) / 2 - accumulate(all(lcp.lcp), 0ll) << kendl;
+    kout << s.size() * (s.size() + 1) / 2 - ranges::fold_left(lcp.lcp, 0ll, plus{}) << kendl;
 
     return 0;
 }
