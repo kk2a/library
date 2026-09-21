@@ -78,6 +78,17 @@ struct SetPowerSeries {
     sps &inplace_sparse_pow(long long exponent);
     sps pow(long long exponent) const;
     sps &inplace_pow(long long exponent);
+
+    // Compute sum_i polynomial[i] * (*this)^i in the subset-convolution
+    // algebra. The constant term is separated and the remaining terms can be
+    // evaluated through the EGF composition recurrence with ranked zeta.
+    sps composition(const fps &polynomial) const;
+    sps &inplace_composition(const fps &polynomial);
+
+    // Return the coefficients of the power projection of this series against
+    // weight. A transposed subset convolution evaluates the projection, while
+    // factorial scaling handles a nonzero constant term.
+    fps power_projection(const sps &weight, int count = -1) const;
 };
 
 template <fps::Modular mint> using SPS = SetPowerSeries<mint>;

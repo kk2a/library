@@ -76,6 +76,11 @@ struct ExponentialGeneratingFunction {
     egf &inplace_sparse_sqrt();
     egf sqrt() const;
     egf &inplace_sqrt();
+
+    // Composition can reuse kk2::composition after factorial scaling, or be
+    // implemented directly with Bell-polynomial recurrences.
+    egf composition(const egf &inner, int precision = -1) const;
+    egf &inplace_composition(const egf &inner, int precision = -1);
 };
 
 template <fps::Modular mint> using EGF = ExponentialGeneratingFunction<mint>;
