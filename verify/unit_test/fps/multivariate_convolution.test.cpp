@@ -72,8 +72,18 @@ void test_arbitrary_modulus_inverse() {
     for (int i = 1; i < product.size(); ++i) assert(product[i] == 0);
 }
 
+void test_sparse_inplace_alias() {
+    using MFPS = kk2::MultivariateFormalPowerSeries<kk2::mont998>;
+    MFPS f(std::vector<int>{4, 5});
+    fill_test_data(f);
+    const MFPS expected = naive_product(f, f);
+    kk2::inplace_multi_convolution_truncated_sparse(f.f, f.f, f.base);
+    assert(f == expected);
+}
+
 int main() {
     test_ntt_friendly_product();
     test_arbitrary_modulus_product();
     test_arbitrary_modulus_inverse();
+    test_sparse_inplace_alias();
 }

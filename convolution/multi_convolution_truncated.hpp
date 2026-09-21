@@ -65,30 +65,41 @@ FPS &inplace_multi_convolution_truncated_sparse(FPS &a,
         return a;
     }
 
-    FPS result(n);
-    for (int i = 0; i < n; ++i) {
+    std::vector<std::pair<int, mint>> support_b;
+    for (int j = 0; j < n; ++j) {
+        if (b[j] != mint(0)) support_b.emplace_back(j, b[j]);
+    }
+
+    // The mixed-radix index is an order extension of the coordinate-wise
+    // order. Therefore every input coefficient contributing to index i has an
+    // index at most i. Processing indices in descending order preserves all
+    // input coefficients needed by later outputs and avoids a result buffer.
+    std::vector<int> target(base.size());
+    for (int i = n - 1; i >= 0; --i) {
         int x = i;
-        std::vector<int> lhs_index(base.size());
         for (int d = 0; d < (int)base.size(); ++d) {
-            lhs_index[d] = x % base[d];
+            target[d] = x % base[d];
             x /= base[d];
         }
-        if (a[i] == mint(0)) continue;
-        for (int j = 0; j < n; ++j) {
-            if (b[j] == mint(0)) continue;
-            int y = j, index = 0, stride = 1;
+
+        mint coefficient = 0;
+        for (const auto &[j, b_j] : support_b) {
+            int y = j, complement = 0, stride = 1;
             bool in_range = true;
             for (int d = 0; d < (int)base.size(); ++d) {
-                const int coordinate = lhs_index[d] + y % base[d];
+                const int coordinate = y % base[d];
                 y /= base[d];
-                if (coordinate >= base[d]) in_range = false;
-                index += coordinate * stride;
+                if (coordinate > target[d]) {
+                    in_range = false;
+                    break;
+                }
+                complement += (target[d] - coordinate) * stride;
                 stride *= base[d];
             }
-            if (in_range && index < n) result[index] += a[i] * b[j];
+            if (in_range) coefficient += a[complement] * b_j;
         }
+        a[i] = coefficient;
     }
-    a = std::move(result);
     return a;
 }
 
