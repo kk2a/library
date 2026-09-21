@@ -98,7 +98,7 @@ data:
   - fps/bbb.hpp
   - fps/poly_interpolation.hpp
   - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_fps/fps_multipoint_evaluation.test.cpp

@@ -242,13 +242,13 @@ data:
       \n\n\n\n#line 5 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief\
       \ `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\
       \u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n\
-      \    static inline std::vector<mint> _invs{0, 1};\n    static inline auto _mod\
-      \ = mint::getmod();\n    InvTable() = delete;\n\n    static void set_upper(int\
-      \ m) {\n        if ((int)_invs.size() > m) return;\n        int start = _invs.size();\n\
-      \        _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r\
-      \ = 1 / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[_mod\
-      \ % i]) * (_mod / i);\n    }\n\n    static inline mint inv(int n) {\n      \
-      \  bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
+      \    static inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\
+      \n    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
+      \        int start = _invs.size();\n        auto mod = mint::getmod();\n   \
+      \     _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r = 1\
+      \ / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod\
+      \ % i]) * (mod / i);\n    }\n\n    static inline mint inv(int n) {\n       \
+      \ bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
       \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
       \ // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n\
       #include <ranges>\n#include <type_traits>\n\nnamespace kk2::fps {\n\nnamespace\
@@ -1344,57 +1344,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0027477280000027804
+  - elapsed: 0.00266008799999895
     environment: g++
-    memory: 3.784
+    memory: 3.772
     name: '0_00'
     status: AC
-  - elapsed: 0.0021442939999758437
+  - elapsed: 0.0022041900000004944
     environment: g++
-    memory: 3.748
+    memory: 3.76
     name: '1_00'
     status: AC
-  - elapsed: 5.751176256000008
+  - elapsed: 5.712440977
     environment: g++
-    memory: 22.272
+    memory: 22.292
     name: '262143_00'
     status: AC
-  - elapsed: 6.379728433999986
+  - elapsed: 6.298204795000004
     environment: g++
     memory: 24.104
     name: '262144_00'
     status: AC
-  - elapsed: 0.002379772000011826
+  - elapsed: 0.0024261960000018234
     environment: g++
-    memory: 3.792
+    memory: 3.652
     name: '2_00'
     status: AC
-  - elapsed: 7.72205022
+  - elapsed: 7.699503370000002
     environment: g++
-    memory: 39.452
+    memory: 39.456
     name: '491519_00'
     status: AC
-  - elapsed: 7.819295939999989
+  - elapsed: 7.754540650999999
     environment: g++
-    memory: 39.304
+    memory: 39.36
     name: '499999_00'
     status: AC
-  - elapsed: 7.783734563999985
+  - elapsed: 7.742826375000007
     environment: g++
-    memory: 39.42
+    memory: 39.32
     name: '500000_00'
     status: AC
-  - elapsed: 0.0604087080000113
+  - elapsed: 0.059871926999989
     environment: g++
-    memory: 4.204
+    memory: 4.18
     name: '5000_00'
     status: AC
-  - elapsed: 0.0021907879999787383
+  - elapsed: 0.0022608260000254177
     environment: g++
-    memory: 3.784
+    memory: 3.652
     name: example_00
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp

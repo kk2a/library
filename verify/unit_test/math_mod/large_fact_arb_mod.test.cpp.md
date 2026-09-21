@@ -185,38 +185,51 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 9 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\
-      \ntemplate <class mint> struct Comb {\n    static inline std::vector<mint> _fact{1},\
-      \ _ifact{1}, _inv{1};\n\n    Comb() = delete;\n\n    static void set_upper(int\
-      \ m = -1) {\n        int n = (int)_fact.size();\n        if (m == -1) m = n\
-      \ << 1;\n        if (n > m) return;\n        m = std::min<long long>(m, mint::getmod()\
-      \ - 1);\n        _fact.resize(m + 1);\n        _ifact.resize(m + 1);\n     \
-      \   _inv.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact[i] = _fact[i\
-      \ - 1] * i;\n        _ifact[m] = _fact[m].inv();\n        _inv[m] = _ifact[m]\
-      \ * _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
-      \ - 1] = _ifact[i] * i;\n            _inv[i - 1] = _ifact[i - 1] * _fact[i -\
-      \ 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n < 0)\
-      \ return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
+      \n} // namespace kk2\n\n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 5\
+      \ \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief `[1, n]`\u306E\
+      mod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n\
+      \ * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n    static inline\
+      \ std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\n    static void\
+      \ set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n        int\
+      \ start = _invs.size();\n        auto mod = mint::getmod();\n        _invs.resize(m\
+      \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
+      \    for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod /\
+      \ i);\n    }\n\n    static inline mint inv(int n) {\n        bool neg = n <\
+      \ 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n\
+      \        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\
+      \n\n#line 10 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\
+      \ struct Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1};\n\n\
+      \    Comb() = delete;\n\n    static void set_upper(int m = -1) {\n        int\
+      \ n = (int)_fact.size();\n        if (m == -1) m = n << 1;\n        if (n >\
+      \ m) return;\n        m = std::min<long long>(m, mint::getmod() - 1);\n    \
+      \    _fact.reserve(m + 1);\n        _ifact.resize(m + 1);\n        auto &_invs\
+      \ = InvTable<mint>::_invs;\n        if ((int)_invs.size() <= m) _invs.resize(m\
+      \ + 1);\n        for (int i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
+      \ * i);\n        _ifact[m] = _fact[m].inv();\n        _invs[m] = _ifact[m] *\
+      \ _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
+      \ - 1] = _ifact[i] * i;\n            _invs[i - 1] = _ifact[i - 1] * _fact[i\
+      \ - 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n <\
+      \ 0) return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
       \ _fact[n];\n    }\n\n    static mint ifact(int n) {\n        if (n < 0) return\
       \ 0;\n        if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
       \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
-      \        if ((int)_inv.size() <= n) set_upper(n);\n        return _inv[n];\n\
-      \    }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n  \
-      \  template <Integral T> static mint multinomial(const std::vector<T> &r) {\n\
-      \        int n = 0;\n        for (auto &x : r) {\n            if (x < 0) return\
-      \ 0;\n            n += x;\n        }\n        mint res = fact(n);\n        for\
-      \ (auto &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint\
-      \ binom_naive(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n\
-      \        mint res = 1;\n        k = std::min(k, n - k);\n        for (int i\
-      \ = 1; i <= k; i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n \
-      \   static mint permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(n - k);\n    }\n\n    static mint\
-      \ homo(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        return\
-      \ k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line\
-      \ 1 \"math_mod/comb_large.hpp\"\n\n\n\n#line 6 \"math_mod/comb_large.hpp\"\n\
-      #include <functional>\n#line 8 \"math_mod/comb_large.hpp\"\n\n#line 1 \"fps/fps_ntt_friendly.hpp\"\
-      \n\n\n\n#line 1 \"math_mod/butterfly.hpp\"\n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\
+      \        if (n == 0) return 1;\n        return InvTable<mint>::inv(n);\n   \
+      \ }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return\
+      \ 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template\
+      \ <Integral T> static mint multinomial(const std::vector<T> &r) {\n        int\
+      \ n = 0;\n        for (auto &x : r) {\n            if (x < 0) return 0;\n  \
+      \          n += x;\n        }\n        mint res = fact(n);\n        for (auto\
+      \ &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint binom_naive(int\
+      \ n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n        mint\
+      \ res = 1;\n        k = std::min(k, n - k);\n        for (int i = 1; i <= k;\
+      \ i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n    static mint\
+      \ permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n  \
+      \      return fact(n) * ifact(n - k);\n    }\n\n    static mint homo(int n,\
+      \ int k) {\n        if (n < 0 || k < 0) return 0;\n        return k == 0 ? 1\
+      \ : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math_mod/comb_large.hpp\"\
+      \n\n\n\n#line 6 \"math_mod/comb_large.hpp\"\n#include <functional>\n#line 8\
+      \ \"math_mod/comb_large.hpp\"\n\n#line 1 \"fps/fps_ntt_friendly.hpp\"\n\n\n\n\
+      #line 1 \"math_mod/butterfly.hpp\"\n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\
       \n\n#line 1 \"math_mod/primitive_root.hpp\"\n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\
       \n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
       \ S, class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(n >=\
@@ -321,35 +334,23 @@ data:
       \    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
       }\n\n} // namespace kk2\n\n\n#line 1 \"fps/fps_base.hpp\"\n\n\n\n#line 5 \"\
       fps/fps_base.hpp\"\n#include <iostream>\n#line 7 \"fps/fps_base.hpp\"\n\n#line\
-      \ 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 5 \"math_mod/inv_table.hpp\"\n\n\
-      namespace kk2 {\n\n/**\n * @brief `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\
-      \u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n * @tparam mint\n */\ntemplate <class\
-      \ mint> struct InvTable {\n    static inline std::vector<mint> _invs{0, 1};\n\
-      \    static inline auto _mod = mint::getmod();\n    InvTable() = delete;\n\n\
-      \    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
-      \        int start = _invs.size();\n        _invs.resize(m + 1);\n        //\
-      \ p = q * i + r\n        // - q / r = 1 / i (mod p)\n        for (int i = start;\
-      \ i <= m; ++i) _invs[i] = (-_invs[_mod % i]) * (_mod / i);\n    }\n\n    static\
-      \ inline mint inv(int n) {\n        bool neg = n < 0;\n        if (neg) n =\
-      \ -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n        return neg\
-      \ ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\
-      \n\n\n\n#include <concepts>\n#include <ranges>\n#line 7 \"type_traits/fps.hpp\"\
-      \n\nnamespace kk2::fps {\n\nnamespace category {\n\nstruct arbitrary_modulus\
-      \ {};\nstruct ntt_friendly_modulus {};\n\nstruct ordinary {};\nstruct exponential_generating\
-      \ {};\nstruct set_power_series {};\n\nstruct univariate {};\nstruct bivariate\
-      \ {};\nstruct multivariate {};\n\n} // namespace category\n\ntemplate <class\
-      \ M>\nconcept Modular = requires(M x) {\n    { M::getmod() } -> std::integral;\n\
-      \    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n\ntemplate <class F>\n\
-      concept FormalPowerSeries = requires(const F &f, int i) {\n    typename F::value_type;\n\
-      \    typename F::modulus_category;\n    typename F::series_category;\n    {\
-      \ f.size() } -> std::integral;\n    f[i];\n} && std::ranges::range<const F>;\n\
-      \ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries =\n    FormalPowerSeries<F>\n\
-      \    && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;\n\
-      \ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;\n\
-      \ntemplate <class F>\nconcept OrdinaryFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && std::same_as<typename F::series_category, category::ordinary>;\n\ntemplate\
-      \ <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
+      \ 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n#include <ranges>\n\
+      #line 7 \"type_traits/fps.hpp\"\n\nnamespace kk2::fps {\n\nnamespace category\
+      \ {\n\nstruct arbitrary_modulus {};\nstruct ntt_friendly_modulus {};\n\nstruct\
+      \ ordinary {};\nstruct exponential_generating {};\nstruct set_power_series {};\n\
+      \nstruct univariate {};\nstruct bivariate {};\nstruct multivariate {};\n\n}\
+      \ // namespace category\n\ntemplate <class M>\nconcept Modular = requires(M\
+      \ x) {\n    { M::getmod() } -> std::integral;\n    x.val();\n    { x.inv() }\
+      \ -> std::same_as<M>;\n};\n\ntemplate <class F>\nconcept FormalPowerSeries =\
+      \ requires(const F &f, int i) {\n    typename F::value_type;\n    typename F::modulus_category;\n\
+      \    typename F::series_category;\n    { f.size() } -> std::integral;\n    f[i];\n\
+      } && std::ranges::range<const F>;\n\ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries\
+      \ =\n    FormalPowerSeries<F>\n    && std::same_as<typename F::modulus_category,\
+      \ category::ntt_friendly_modulus>;\n\ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries\
+      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::modulus_category,\
+      \ category::arbitrary_modulus>;\n\ntemplate <class F>\nconcept OrdinaryFormalPowerSeries\
+      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::series_category, category::ordinary>;\n\
+      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
       \    && std::same_as<typename F::series_category, category::exponential_generating>;\n\
       \ntemplate <class F>\nconcept SetPowerSeries =\n    FormalPowerSeries<F> &&\
       \ std::same_as<typename F::series_category, category::set_power_series>;\n\n\
@@ -1482,7 +1483,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp

@@ -303,7 +303,7 @@ data:
   path: template/procon.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

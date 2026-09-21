@@ -448,6 +448,9 @@ data:
       - filename: stern_brocot_tree.hpp
         icon: LIBRARY_ALL_AC
         path: math/stern_brocot_tree.hpp
+      - filename: wheel_sieve.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/wheel_sieve.hpp
     - name: math/action/
       pages:
       - filename: add_max.hpp
@@ -810,6 +813,11 @@ data:
       - filename: aoj_alds1_14_b.test.cpp
         icon: LIBRARY_ALL_AC
         path: verify/aoj/aoj_alds1_14_b.test.cpp
+    - name: verify/unit_test/data_structure/
+      pages:
+      - filename: my_bitset.test.cpp
+        icon: LIBRARY_NO_TESTS
+        path: verify/unit_test/data_structure/my_bitset.test.cpp
     - name: verify/yosupo_ds/
       pages:
       - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
@@ -931,6 +939,9 @@ data:
       - filename: rational.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/math/rational.test.cpp
+      - filename: wheel_sieve.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/math/wheel_sieve.test.cpp
     - name: verify/unit_test/math/action/
       pages:
       - filename: action.test.cpp

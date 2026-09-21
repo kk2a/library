@@ -614,7 +614,7 @@ data:
     memory: 3.792
     name: unsigned_overflow_00
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_det.test.cpp

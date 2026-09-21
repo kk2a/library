@@ -332,11 +332,11 @@ data:
       namespace kk2 {\n\n/**\n * @brief `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\
       \u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n * @tparam mint\n */\ntemplate <class\
       \ mint> struct InvTable {\n    static inline std::vector<mint> _invs{0, 1};\n\
-      \    static inline auto _mod = mint::getmod();\n    InvTable() = delete;\n\n\
-      \    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
-      \        int start = _invs.size();\n        _invs.resize(m + 1);\n        //\
-      \ p = q * i + r\n        // - q / r = 1 / i (mod p)\n        for (int i = start;\
-      \ i <= m; ++i) _invs[i] = (-_invs[_mod % i]) * (_mod / i);\n    }\n\n    static\
+      \    InvTable() = delete;\n\n    static void set_upper(int m) {\n        if\
+      \ ((int)_invs.size() > m) return;\n        int start = _invs.size();\n     \
+      \   auto mod = mint::getmod();\n        _invs.resize(m + 1);\n        // p =\
+      \ q * i + r\n        // - q / r = 1 / i (mod p)\n        for (int i = start;\
+      \ i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod / i);\n    }\n\n    static\
       \ inline mint inv(int n) {\n        bool neg = n < 0;\n        if (neg) n =\
       \ -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n        return neg\
       \ ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\
@@ -1422,52 +1422,52 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0021167010000056052
+  - elapsed: 0.0026812850000084154
     environment: g++
-    memory: 3.868
+    memory: 3.744
     name: '1169_00'
     status: AC
-  - elapsed: 0.0018038009999941096
+  - elapsed: 0.0023511619999965205
     environment: g++
-    memory: 3.964
+    memory: 3.76
     name: example_00
     status: AC
-  - elapsed: 0.0016549050000094212
+  - elapsed: 0.0023268350000051896
     environment: g++
-    memory: 3.708
+    memory: 3.78
     name: example_01
     status: AC
-  - elapsed: 7.37253222199999
+  - elapsed: 16.478105465999988
     environment: g++
-    memory: 33.464
+    memory: 33.472
     name: max_random_00
     status: AC
-  - elapsed: 7.279093575000019
+  - elapsed: 16.438420008999998
     environment: g++
-    memory: 33.724
+    memory: 33.496
     name: max_random_01
     status: AC
-  - elapsed: 7.162318520000014
+  - elapsed: 15.904032369000006
     environment: g++
-    memory: 33.144
+    memory: 32.884
     name: random_00
     status: AC
-  - elapsed: 3.8848274900000206
+  - elapsed: 8.920065424
     environment: g++
-    memory: 24.008
+    memory: 23.904
     name: random_01
     status: AC
-  - elapsed: 2.7293308890000105
+  - elapsed: 6.079610760000008
     environment: g++
-    memory: 16.516
+    memory: 16.432
     name: random_02
     status: AC
-  - elapsed: 7.196432339000012
+  - elapsed: 16.448695600000008
     environment: g++
-    memory: 33.592
+    memory: 33.464
     name: x_zero_00
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_interpolation.test.cpp

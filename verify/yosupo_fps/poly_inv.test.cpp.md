@@ -239,13 +239,13 @@ data:
       \n\n\n\n#line 5 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief\
       \ `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\
       \u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n\
-      \    static inline std::vector<mint> _invs{0, 1};\n    static inline auto _mod\
-      \ = mint::getmod();\n    InvTable() = delete;\n\n    static void set_upper(int\
-      \ m) {\n        if ((int)_invs.size() > m) return;\n        int start = _invs.size();\n\
-      \        _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r\
-      \ = 1 / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[_mod\
-      \ % i]) * (_mod / i);\n    }\n\n    static inline mint inv(int n) {\n      \
-      \  bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
+      \    static inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\
+      \n    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
+      \        int start = _invs.size();\n        auto mod = mint::getmod();\n   \
+      \     _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r = 1\
+      \ / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod\
+      \ % i]) * (mod / i);\n    }\n\n    static inline mint inv(int n) {\n       \
+      \ bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
       \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
       \ // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n\
       #include <ranges>\n#include <type_traits>\n\nnamespace kk2::fps {\n\nnamespace\
@@ -1377,97 +1377,97 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.05512100900000405
-    environment: g++
-    memory: 4.188
-    name: abnormal_random_00
-    status: AC
-  - elapsed: 0.056182054999993625
-    environment: g++
-    memory: 4.148
-    name: abnormal_random_01
-    status: AC
-  - elapsed: 0.0560007070000097
-    environment: g++
-    memory: 4.024
-    name: abnormal_random_02
-    status: AC
-  - elapsed: 0.05636731799998529
-    environment: g++
-    memory: 4.132
-    name: abnormal_random_03
-    status: AC
-  - elapsed: 0.05656896799999345
-    environment: g++
-    memory: 4.192
-    name: abnormal_random_04
-    status: AC
-  - elapsed: 0.001844180999995615
-    environment: g++
-    memory: 3.872
-    name: example_00
-    status: AC
-  - elapsed: 0.0015966970000249603
-    environment: g++
-    memory: 3.928
-    name: example_01
-    status: AC
-  - elapsed: 0.001609862999998768
+  - elapsed: 0.1220078590000071
     environment: g++
     memory: 3.896
+    name: abnormal_random_00
+    status: AC
+  - elapsed: 0.12482749800000192
+    environment: g++
+    memory: 4.064
+    name: abnormal_random_01
+    status: AC
+  - elapsed: 0.1235502320000137
+    environment: g++
+    memory: 4.08
+    name: abnormal_random_02
+    status: AC
+  - elapsed: 0.12536043899999072
+    environment: g++
+    memory: 4.088
+    name: abnormal_random_03
+    status: AC
+  - elapsed: 0.12510175300002402
+    environment: g++
+    memory: 4.1
+    name: abnormal_random_04
+    status: AC
+  - elapsed: 0.002491759000008642
+    environment: g++
+    memory: 3.64
+    name: example_00
+    status: AC
+  - elapsed: 0.002382498999992322
+    environment: g++
+    memory: 3.832
+    name: example_01
+    status: AC
+  - elapsed: 0.0024266499999896496
+    environment: g++
+    memory: 3.832
     name: example_02
     status: AC
-  - elapsed: 9.542667314999989
+  - elapsed: 21.529292636000008
     environment: g++
-    memory: 8.872
+    memory: 8.808
     name: max_random_00
     status: AC
-  - elapsed: 9.54295090399998
+  - elapsed: 21.585377031000007
     environment: g++
-    memory: 8.872
+    memory: 8.736
     name: max_random_01
     status: AC
-  - elapsed: 10.041973548000016
+  - elapsed: 21.521830265999995
     environment: g++
-    memory: 8.9
+    memory: 8.788
     name: max_random_02
     status: AC
-  - elapsed: 10.064679446000014
+  - elapsed: 21.53182464599999
     environment: g++
-    memory: 8.872
+    memory: 8.812
     name: max_random_03
     status: AC
-  - elapsed: 9.77047498799999
+  - elapsed: 21.49953862700002
     environment: g++
-    memory: 8.888
+    memory: 8.796
     name: max_random_04
     status: AC
-  - elapsed: 2.25517441300002
+  - elapsed: 5.112447486000008
     environment: g++
-    memory: 5.492
+    memory: 5.38
     name: random_00
     status: AC
-  - elapsed: 1.1737307269999917
+  - elapsed: 2.6576427319999993
     environment: g++
-    memory: 5.112
+    memory: 5.044
     name: random_01
     status: AC
-  - elapsed: 1.9757197309999697
+  - elapsed: 4.486937398000009
     environment: g++
-    memory: 5.564
+    memory: 5.504
     name: random_02
     status: AC
-  - elapsed: 6.048391921000018
+  - elapsed: 12.481844627999976
     environment: g++
-    memory: 7.516
+    memory: 7.512
     name: random_03
     status: AC
-  - elapsed: 3.6208830439999815
+  - elapsed: 7.469959205999999
     environment: g++
-    memory: 6.34
+    memory: 6.28
     name: random_04
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_inv.test.cpp

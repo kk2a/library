@@ -5,6 +5,9 @@ data:
     links: []
   dependencies:
   - files:
+    - filename: comb.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/comb.hpp
     - filename: inv_table.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/inv_table.hpp
@@ -47,6 +50,7 @@ data:
   - files: []
     type: Verified with
   dependsOn:
+  - math_mod/comb.hpp
   - math_mod/inv_table.hpp
   - modint/modint.hpp
   - random/gen.hpp
@@ -61,33 +65,41 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../math_mod/inv_table.hpp\"\
-      \n\n#include \"../../../modint/modint.hpp\"\n#include \"../../../random/gen.hpp\"\
-      \n#include \"../../../template/template.hpp\"\nusing namespace std;\n\nvoid\
-      \ test_inv_table() {\n    using mint = kk2::mint998;\n    using InvTab = kk2::InvTable<mint>;\n\
-      \n    // \u57FA\u672C\u7684\u306A\u9006\u5143\u306E\u30C6\u30B9\u30C8\n    {\n\
-      \        rep(100) {\n            int i = kk2::random::rng(1, 1001);\n      \
-      \      mint inv_i = InvTab::inv(i);\n            assert(mint(i) * inv_i == mint(1));\n\
-      \        }\n        cerr << \"Basic inverse: 100 random tests passed!\" << endl;\n\
-      \    }\n\n    // \u5927\u304D\u306A\u5024\u3067\u306E\u81EA\u52D5\u62E1\u5F35\
-      \u30C6\u30B9\u30C8\n    {\n        rep(1000) {\n            int i = kk2::random::rng(1,\
-      \ 50001);\n            mint inv_i = InvTab::inv(i);\n            assert(mint(i)\
-      \ * inv_i == mint(1));\n        }\n        cerr << \"Auto expansion: 1000 random\
-      \ tests passed!\" << endl;\n    }\n\n    // \u8CA0\u306E\u6570\u306E\u30C6\u30B9\
-      \u30C8\n    {\n        rep(1000) {\n            int i = kk2::random::rng(1,\
-      \ 10001);\n            mint inv_pos = InvTab::inv(i);\n            mint inv_neg\
-      \ = InvTab::inv(-i);\n            assert(inv_pos == -inv_neg);\n           \
-      \ assert(mint(-i) * inv_neg == mint(1));\n        }\n        cerr << \"Negative\
-      \ numbers: 1000 random tests passed!\" << endl;\n    }\n\n    // set_upper\u306E\
-      \u52D5\u4F5C\u30C6\u30B9\u30C8\n    {\n        InvTab::set_upper(20000);\n \
-      \       rep(1000) {\n            int i = kk2::random::rng(1, 20001);\n     \
-      \       mint inv_i = InvTab::inv(i);\n            assert(mint(i) * inv_i ==\
-      \ mint(1));\n        }\n        cerr << \"set_upper: 1000 random tests passed!\"\
-      \ << endl;\n    }\n\n    // \u4E00\u81F4\u6027\u30C6\u30B9\u30C8\uFF08\u8907\
-      \u6570\u56DE\u547C\u3073\u51FA\u3057\u3067\u540C\u3058\u7D50\u679C\uFF09\n \
-      \   {\n        rep(100) {\n            int i = kk2::random::rng(1, 10001);\n\
-      \            mint inv1 = InvTab::inv(i);\n            mint inv2 = InvTab::inv(i);\n\
-      \            assert(inv1 == inv2);\n        }\n        cerr << \"Consistency:\
-      \ 100 random tests passed!\" << endl;\n    }\n}\n\nvoid test() {\n    test_inv_table();\n\
+      \n\n#include \"../../../math_mod/comb.hpp\"\n#include \"../../../modint/modint.hpp\"\
+      \n#include \"../../../random/gen.hpp\"\n#include \"../../../template/template.hpp\"\
+      \nusing namespace std;\n\nvoid test_inv_table() {\n    using mint = kk2::mint998;\n\
+      \    using InvTab = kk2::InvTable<mint>;\n\n    // \u57FA\u672C\u7684\u306A\u9006\
+      \u5143\u306E\u30C6\u30B9\u30C8\n    {\n        rep(100) {\n            int i\
+      \ = kk2::random::rng(1, 1001);\n            mint inv_i = InvTab::inv(i);\n \
+      \           assert(mint(i) * inv_i == mint(1));\n        }\n        cerr <<\
+      \ \"Basic inverse: 100 random tests passed!\" << endl;\n    }\n\n    // \u5927\
+      \u304D\u306A\u5024\u3067\u306E\u81EA\u52D5\u62E1\u5F35\u30C6\u30B9\u30C8\n \
+      \   {\n        rep(1000) {\n            int i = kk2::random::rng(1, 50001);\n\
+      \            mint inv_i = InvTab::inv(i);\n            assert(mint(i) * inv_i\
+      \ == mint(1));\n        }\n        cerr << \"Auto expansion: 1000 random tests\
+      \ passed!\" << endl;\n    }\n\n    // \u8CA0\u306E\u6570\u306E\u30C6\u30B9\u30C8\
+      \n    {\n        rep(1000) {\n            int i = kk2::random::rng(1, 10001);\n\
+      \            mint inv_pos = InvTab::inv(i);\n            mint inv_neg = InvTab::inv(-i);\n\
+      \            assert(inv_pos == -inv_neg);\n            assert(mint(-i) * inv_neg\
+      \ == mint(1));\n        }\n        cerr << \"Negative numbers: 1000 random tests\
+      \ passed!\" << endl;\n    }\n\n    // set_upper\u306E\u52D5\u4F5C\u30C6\u30B9\
+      \u30C8\n    {\n        InvTab::set_upper(20000);\n        rep(1000) {\n    \
+      \        int i = kk2::random::rng(1, 20001);\n            mint inv_i = InvTab::inv(i);\n\
+      \            assert(mint(i) * inv_i == mint(1));\n        }\n        cerr <<\
+      \ \"set_upper: 1000 random tests passed!\" << endl;\n    }\n\n    // \u4E00\u81F4\
+      \u6027\u30C6\u30B9\u30C8\uFF08\u8907\u6570\u56DE\u547C\u3073\u51FA\u3057\u3067\
+      \u540C\u3058\u7D50\u679C\uFF09\n    {\n        rep(100) {\n            int i\
+      \ = kk2::random::rng(1, 10001);\n            mint inv1 = InvTab::inv(i);\n \
+      \           mint inv2 = InvTab::inv(i);\n            assert(inv1 == inv2);\n\
+      \        }\n        cerr << \"Consistency: 100 random tests passed!\" << endl;\n\
+      \    }\n}\n\nvoid test_comb_shared_table() {\n    using mint = kk2::mint998;\n\
+      \    using Comb = kk2::Comb<mint>;\n    using InvTab = kk2::InvTable<mint>;\n\
+      \n    Comb::set_upper(60000);\n    for (int i = 1; i <= 60000; i += 137) {\n\
+      \        assert(Comb::inv(i) == InvTab::inv(i));\n        assert(Comb::fact(i)\
+      \ * Comb::ifact(i) == 1);\n    }\n\n    InvTab::set_upper(70000);\n    assert(Comb::inv(70000)\
+      \ == InvTab::inv(70000));\n\n    Comb::set_upper(80000);\n    assert(Comb::inv(80000)\
+      \ == InvTab::inv(80000));\n    assert(Comb::fact(80000) * Comb::ifact(80000)\
+      \ == 1);\n}\n\nvoid test() {\n    test_inv_table();\n    test_comb_shared_table();\n\
       \n    // \u5168\u30C6\u30B9\u30C8\u901A\u904E\n    cerr << \"All InvTable tests\
       \ passed!\" << endl;\n}\n\nint main() {\n    test();\n\n    return 0;\n}\n"
     name: default
@@ -96,33 +108,33 @@ data:
       \nnamespace kk2 {\n\n/**\n * @brief `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\
       \u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n * @tparam mint\n */\ntemplate\
       \ <class mint> struct InvTable {\n    static inline std::vector<mint> _invs{0,\
-      \ 1};\n    static inline auto _mod = mint::getmod();\n    InvTable() = delete;\n\
-      \n    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
-      \        int start = _invs.size();\n        _invs.resize(m + 1);\n        //\
+      \ 1};\n    InvTable() = delete;\n\n    static void set_upper(int m) {\n    \
+      \    if ((int)_invs.size() > m) return;\n        int start = _invs.size();\n\
+      \        auto mod = mint::getmod();\n        _invs.resize(m + 1);\n        //\
       \ p = q * i + r\n        // - q / r = 1 / i (mod p)\n        for (int i = start;\
-      \ i <= m; ++i) _invs[i] = (-_invs[_mod % i]) * (_mod / i);\n    }\n\n    static\
+      \ i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod / i);\n    }\n\n    static\
       \ inline mint inv(int n) {\n        bool neg = n < 0;\n        if (neg) n =\
       \ -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n        return neg\
       \ ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 4 \"verify/unit_test/math_mod/inv_table.test.cpp\"\
-      \n\n#line 1 \"modint/modint.hpp\"\n\n\n\n#include <cassert>\n#include <iostream>\n\
-      #include <type_traits>\n#include <utility>\n\n#line 1 \"type_traits/integral.hpp\"\
-      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                                     \
-      \  or std::is_same<T, __int128>::value,\n                                  \
-      \                 std::true_type,\n                                        \
-      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
-      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \n\n#line 1 \"math_mod/comb.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
+      #line 7 \"math_mod/comb.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n\
+      #include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename\
+      \ T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
+      \                                                       or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __uint128_t>::value\n                                  or std::is_same<T,\
+      \ unsigned __int128>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
-      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-      \                                  or is_unsigned_int128<T>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                                         \
-      \   std::true_type,\n                                            std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -142,7 +154,38 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
+      \n} // namespace kk2\n\n\n#line 10 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\
+      \ntemplate <class mint> struct Comb {\n    static inline std::vector<mint> _fact{1},\
+      \ _ifact{1};\n\n    Comb() = delete;\n\n    static void set_upper(int m = -1)\
+      \ {\n        int n = (int)_fact.size();\n        if (m == -1) m = n << 1;\n\
+      \        if (n > m) return;\n        m = std::min<long long>(m, mint::getmod()\
+      \ - 1);\n        _fact.reserve(m + 1);\n        _ifact.resize(m + 1);\n    \
+      \    auto &_invs = InvTable<mint>::_invs;\n        if ((int)_invs.size() <=\
+      \ m) _invs.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
+      \ * i);\n        _ifact[m] = _fact[m].inv();\n        _invs[m] = _ifact[m] *\
+      \ _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
+      \ - 1] = _ifact[i] * i;\n            _invs[i - 1] = _ifact[i - 1] * _fact[i\
+      \ - 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n <\
+      \ 0) return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
+      \ _fact[n];\n    }\n\n    static mint ifact(int n) {\n        if (n < 0) return\
+      \ 0;\n        if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
+      \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
+      \        if (n == 0) return 1;\n        return InvTable<mint>::inv(n);\n   \
+      \ }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return\
+      \ 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template\
+      \ <Integral T> static mint multinomial(const std::vector<T> &r) {\n        int\
+      \ n = 0;\n        for (auto &x : r) {\n            if (x < 0) return 0;\n  \
+      \          n += x;\n        }\n        mint res = fact(n);\n        for (auto\
+      \ &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint binom_naive(int\
+      \ n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n        mint\
+      \ res = 1;\n        k = std::min(k, n - k);\n        for (int i = 1; i <= k;\
+      \ i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n    static mint\
+      \ permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n  \
+      \      return fact(n) * ifact(n - k);\n    }\n\n    static mint homo(int n,\
+      \ int k) {\n        if (n < 0 || k < 0) return 0;\n        return k == 0 ? 1\
+      \ : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"modint/modint.hpp\"\
+      \n\n\n\n#line 5 \"modint/modint.hpp\"\n#include <iostream>\n#line 7 \"modint/modint.hpp\"\
+      \n#include <utility>\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
       \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
@@ -216,16 +259,15 @@ data:
       \ x;\n        is >> x;\n        mint_ = mint(x);\n        return is;\n    }\n\
       \n  private:\n    unsigned int _v;\n};\n\ntemplate <int p> int ModInt<p>::Mod\
       \ = 998244353;\n\nusing mint998 = ModInt<998244353>;\nusing mint107 = ModInt<1000000007>;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\n#include <algorithm>\n\
-      #line 6 \"random/gen.hpp\"\n#include <numeric>\n#include <random>\n#include\
-      \ <unordered_set>\n#line 10 \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\
-      \n\n\n\n#include <chrono>\n\nnamespace kk2 {\n\nnamespace random {\n\nusing\
-      \ u64 = unsigned long long;\n\ninline u64 non_deterministic_seed() {\n    u64\
-      \ seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n           \
-      \        std::chrono::high_resolution_clock::now().time_since_epoch())\n   \
-      \                .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n    seed\
-      \ ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return\
-      \ seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
+      \n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\n#line 6 \"random/gen.hpp\"\
+      \n#include <numeric>\n#include <random>\n#include <unordered_set>\n#line 10\
+      \ \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\
+      \nnamespace kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\
+      \ninline u64 non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
+      \                   std::chrono::high_resolution_clock::now().time_since_epoch())\n\
+      \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n \
+      \   seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n \
+      \   return seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
       \ }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return\
       \ deterministic_seed();\n#else\n    return non_deterministic_seed();\n#endif\n\
       }\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\
@@ -428,7 +470,7 @@ data:
       \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
       \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
       template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
-      \ > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/unit_test/math_mod/inv_table.test.cpp\"\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 9 \"verify/unit_test/math_mod/inv_table.test.cpp\"\
       \nusing namespace std;\n\nvoid test_inv_table() {\n    using mint = kk2::mint998;\n\
       \    using InvTab = kk2::InvTable<mint>;\n\n    // \u57FA\u672C\u7684\u306A\u9006\
       \u5143\u306E\u30C6\u30B9\u30C8\n    {\n        rep(100) {\n            int i\
@@ -454,9 +496,16 @@ data:
       \ = kk2::random::rng(1, 10001);\n            mint inv1 = InvTab::inv(i);\n \
       \           mint inv2 = InvTab::inv(i);\n            assert(inv1 == inv2);\n\
       \        }\n        cerr << \"Consistency: 100 random tests passed!\" << endl;\n\
-      \    }\n}\n\nvoid test() {\n    test_inv_table();\n\n    // \u5168\u30C6\u30B9\
-      \u30C8\u901A\u904E\n    cerr << \"All InvTable tests passed!\" << endl;\n}\n\
-      \nint main() {\n    test();\n\n    return 0;\n}\n"
+      \    }\n}\n\nvoid test_comb_shared_table() {\n    using mint = kk2::mint998;\n\
+      \    using Comb = kk2::Comb<mint>;\n    using InvTab = kk2::InvTable<mint>;\n\
+      \n    Comb::set_upper(60000);\n    for (int i = 1; i <= 60000; i += 137) {\n\
+      \        assert(Comb::inv(i) == InvTab::inv(i));\n        assert(Comb::fact(i)\
+      \ * Comb::ifact(i) == 1);\n    }\n\n    InvTab::set_upper(70000);\n    assert(Comb::inv(70000)\
+      \ == InvTab::inv(70000));\n\n    Comb::set_upper(80000);\n    assert(Comb::inv(80000)\
+      \ == InvTab::inv(80000));\n    assert(Comb::fact(80000) * Comb::ifact(80000)\
+      \ == 1);\n}\n\nvoid test() {\n    test_inv_table();\n    test_comb_shared_table();\n\
+      \n    // \u5168\u30C6\u30B9\u30C8\u901A\u904E\n    cerr << \"All InvTable tests\
+      \ passed!\" << endl;\n}\n\nint main() {\n    test();\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -464,7 +513,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math_mod/inv_table.test.cpp

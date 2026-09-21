@@ -692,7 +692,7 @@ data:
     memory: 51.16
     name: wrong_dijkstra_killer_01
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_shortest_path.test.cpp

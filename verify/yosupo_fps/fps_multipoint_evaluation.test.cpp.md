@@ -239,13 +239,13 @@ data:
       \n\n\n\n#line 5 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief\
       \ `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\
       \u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n\
-      \    static inline std::vector<mint> _invs{0, 1};\n    static inline auto _mod\
-      \ = mint::getmod();\n    InvTable() = delete;\n\n    static void set_upper(int\
-      \ m) {\n        if ((int)_invs.size() > m) return;\n        int start = _invs.size();\n\
-      \        _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r\
-      \ = 1 / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[_mod\
-      \ % i]) * (_mod / i);\n    }\n\n    static inline mint inv(int n) {\n      \
-      \  bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
+      \    static inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\
+      \n    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
+      \        int start = _invs.size();\n        auto mod = mint::getmod();\n   \
+      \     _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r = 1\
+      \ / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod\
+      \ % i]) * (mod / i);\n    }\n\n    static inline mint inv(int n) {\n       \
+      \ bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
       \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
       \ // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n\
       #include <ranges>\n#include <type_traits>\n\nnamespace kk2::fps {\n\nnamespace\
@@ -1357,62 +1357,62 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002257780999997294
+  - elapsed: 0.002740707999990377
     environment: g++
-    memory: 3.892
+    memory: 3.836
     name: example_00
     status: AC
-  - elapsed: 0.0018193889999977841
+  - elapsed: 0.0022897249999971336
     environment: g++
-    memory: 3.768
+    memory: 3.836
     name: example_01
     status: AC
-  - elapsed: 0.0018432439999997996
+  - elapsed: 0.002289649999994481
     environment: g++
-    memory: 3.924
+    memory: 3.84
     name: issue_1287_00
     status: AC
-  - elapsed: 9.838312040000005
+  - elapsed: 12.838603148999994
     environment: g++
-    memory: 32.536
+    memory: 32.444
     name: issue_1287_cpp_00
     status: AC
-  - elapsed: 9.847423193000012
+  - elapsed: 12.864810629000004
     environment: g++
-    memory: 32.588
+    memory: 32.536
     name: issue_1287_cpp_01
     status: AC
-  - elapsed: 9.847241967000002
+  - elapsed: 12.842456327000008
     environment: g++
-    memory: 32.608
+    memory: 32.472
     name: max_random_00
     status: AC
-  - elapsed: 9.837563250000002
+  - elapsed: 14.427099972999997
     environment: g++
-    memory: 32.608
+    memory: 32.492
     name: max_random_01
     status: AC
-  - elapsed: 1.7993021220000003
+  - elapsed: 2.3517210360000007
     environment: g++
-    memory: 12.316
+    memory: 12.224
     name: random_00
     status: AC
-  - elapsed: 1.5612603870000044
+  - elapsed: 2.018078286000005
     environment: g++
-    memory: 10.628
+    memory: 10.5
     name: random_01
     status: AC
-  - elapsed: 8.12285371099999
+  - elapsed: 10.571663830999995
     environment: g++
-    memory: 29.492
+    memory: 29.488
     name: random_02
     status: AC
-  - elapsed: 0.0021692650000062486
+  - elapsed: 0.002637211999996225
     environment: g++
-    memory: 3.9
+    memory: 3.808
     name: zero_00
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_multipoint_evaluation.test.cpp

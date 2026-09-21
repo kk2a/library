@@ -700,7 +700,7 @@ data:
     memory: 4.0
     name: small_04
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_vertex_add_path_sum_2.test.cpp

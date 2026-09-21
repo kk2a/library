@@ -16,9 +16,18 @@ data:
     - filename: convolution_arb.hpp
       icon: LIBRARY_ALL_AC
       path: convolution/convolution_arb.hpp
+    - filename: convolution_gcd.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/convolution_gcd.hpp
     - filename: convolution_int.hpp
       icon: LIBRARY_ALL_AC
       path: convolution/convolution_int.hpp
+    - filename: convolution_lcm.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/convolution_lcm.hpp
+    - filename: divisor_multiple_transform.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/divisor_multiple_transform.hpp
     - filename: bit_vector.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/bit_vector.hpp
@@ -73,18 +82,48 @@ data:
     - filename: is_prime.hpp
       icon: LIBRARY_ALL_AC
       path: math/is_prime.hpp
+    - filename: isprime_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/isprime_table.hpp
+    - filename: lpf_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_table.hpp
+    - filename: arbitrary_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/arbitrary_table.hpp
+    - filename: counting_square_free.hpp
+      icon: LIBRARY_NO_TESTS
+      path: math/multiplicative_function/counting_square_free.hpp
     - filename: euler_phi.hpp
       icon: LIBRARY_ALL_AC
       path: math/multiplicative_function/euler_phi.hpp
+    - filename: famous_function_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/famous_function_table.hpp
     - filename: mobius.hpp
       icon: LIBRARY_ALL_AC
       path: math/multiplicative_function/mobius.hpp
+    - filename: prefix_sum.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/prefix_sum.hpp
+    - filename: prime_counting.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/prime_counting.hpp
     - filename: sigma.hpp
       icon: LIBRARY_ALL_AC
       path: math/multiplicative_function/sigma.hpp
     - filename: prime_factorize.hpp
       icon: LIBRARY_ALL_AC
       path: math/prime_factorize.hpp
+    - filename: prime_factorize_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/prime_factorize_table.hpp
+    - filename: prime_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/prime_table.hpp
+    - filename: wheel_sieve.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/wheel_sieve.hpp
     - filename: bell_number.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/bell_number.hpp
@@ -145,6 +184,9 @@ data:
     - filename: aoj_alds1_14_b.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/aoj/aoj_alds1_14_b.test.cpp
+    - filename: my_bitset.test.cpp
+      icon: LIBRARY_NO_TESTS
+      path: verify/unit_test/data_structure/my_bitset.test.cpp
     - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
@@ -255,6 +297,9 @@ data:
     - filename: rational.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/rational.test.cpp
+    - filename: wheel_sieve.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/wheel_sieve.test.cpp
     - filename: binom_table.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/binom_table.test.cpp
@@ -716,7 +761,10 @@ data:
   - bigint/int256.hpp
   - bit/bitcount.hpp
   - convolution/convolution_arb.hpp
+  - convolution/convolution_gcd.hpp
   - convolution/convolution_int.hpp
+  - convolution/convolution_lcm.hpp
+  - convolution/divisor_multiple_transform.hpp
   - data_structure/bit_vector.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
   - data_structure/my_bitset.hpp
@@ -735,10 +783,20 @@ data:
   - fps/poly_taylor_shift.hpp
   - math/group/rolling_hash.hpp
   - math/is_prime.hpp
+  - math/isprime_table.hpp
+  - math/lpf_table.hpp
+  - math/multiplicative_function/arbitrary_table.hpp
+  - math/multiplicative_function/counting_square_free.hpp
   - math/multiplicative_function/euler_phi.hpp
+  - math/multiplicative_function/famous_function_table.hpp
   - math/multiplicative_function/mobius.hpp
+  - math/multiplicative_function/prefix_sum.hpp
+  - math/multiplicative_function/prime_counting.hpp
   - math/multiplicative_function/sigma.hpp
   - math/prime_factorize.hpp
+  - math/prime_factorize_table.hpp
+  - math/prime_table.hpp
+  - math/wheel_sieve.hpp
   - math_mod/bell_number.hpp
   - math_mod/bernoulli_number.hpp
   - math_mod/comb.hpp
@@ -759,6 +817,7 @@ data:
   - template/template.hpp
   - unionfind/parallel.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/unit_test/data_structure/my_bitset.test.cpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
@@ -770,7 +829,7 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -798,6 +857,7 @@ data:
   - verify/unit_test/math/prime_factorize_table.test.cpp
   - verify/unit_test/math/prime_table_extend.test.cpp
   - verify/unit_test/math/rational.test.cpp
+  - verify/unit_test/math/wheel_sieve.test.cpp
   - verify/unit_test/math_mod/binom_table.test.cpp
   - verify/unit_test/math_mod/inv_table.test.cpp
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp

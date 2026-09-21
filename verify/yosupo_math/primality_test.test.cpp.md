@@ -462,7 +462,7 @@ data:
     memory: 4.028
     name: small_00
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/primality_test.test.cpp

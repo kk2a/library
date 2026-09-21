@@ -10,6 +10,15 @@ data:
       path: type_traits/integral.hpp
     type: Depends on
   - files:
+    - filename: convolution_gcd.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/convolution_gcd.hpp
+    - filename: convolution_lcm.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/convolution_lcm.hpp
+    - filename: divisor_multiple_transform.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/divisor_multiple_transform.hpp
     - filename: bit_vector.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/bit_vector.hpp
@@ -22,6 +31,36 @@ data:
     - filename: wavelet_matrix.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/wavelet_matrix.hpp
+    - filename: isprime_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/isprime_table.hpp
+    - filename: lpf_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_table.hpp
+    - filename: arbitrary_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/arbitrary_table.hpp
+    - filename: counting_square_free.hpp
+      icon: LIBRARY_NO_TESTS
+      path: math/multiplicative_function/counting_square_free.hpp
+    - filename: famous_function_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/famous_function_table.hpp
+    - filename: prefix_sum.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/prefix_sum.hpp
+    - filename: prime_counting.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/prime_counting.hpp
+    - filename: prime_factorize_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/prime_factorize_table.hpp
+    - filename: prime_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/prime_table.hpp
+    - filename: wheel_sieve.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/wheel_sieve.hpp
     - filename: matrix_F2.hpp
       icon: LIBRARY_ALL_AC
       path: matrix/matrix_F2.hpp
@@ -31,6 +70,9 @@ data:
     - filename: parallel.hpp
       icon: LIBRARY_ALL_AC
       path: unionfind/parallel.hpp
+    - filename: my_bitset.test.cpp
+      icon: LIBRARY_NO_TESTS
+      path: verify/unit_test/data_structure/my_bitset.test.cpp
     type: Required by
   - files:
     - filename: bit_vector.test.cpp
@@ -39,9 +81,36 @@ data:
     - filename: wavelet_matrix.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/data_structure/wavelet_matrix.test.cpp
+    - filename: isprime_table_extend.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/isprime_table_extend.test.cpp
+    - filename: lpf_table_extend.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/lpf_table_extend.test.cpp
+    - filename: famous_function_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
+    - filename: multiplicative_function_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+    - filename: prime_factorize_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/prime_factorize_table.test.cpp
+    - filename: prime_table_extend.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/prime_table_extend.test.cpp
+    - filename: wheel_sieve.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/wheel_sieve.test.cpp
     - filename: dynamic_rolling_hash.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/string/dynamic_rolling_hash.test.cpp
+    - filename: convolution_gcd.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_convolution/convolution_gcd.test.cpp
+    - filename: convolution_lcm.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_convolution/convolution_lcm.test.cpp
     - filename: ds_predecessor_problem.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_ds/ds_predecessor_problem.test.cpp
@@ -66,6 +135,18 @@ data:
     - filename: solution_of_linear_equations_F2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+    - filename: enumerate_primes.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_math/enumerate_primes.test.cpp
+    - filename: prefix_sum_of_multiplicative_function.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+    - filename: prime_counting.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_math/prime_counting.test.cpp
+    - filename: sum_of_totient_function.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_math/sum_of_totient_function.test.cpp
     type: Verified with
   dependsOn:
   - type_traits/integral.hpp
@@ -156,19 +237,42 @@ data:
   path: bit/bitcount.hpp
   pathExtension: hpp
   requiredBy:
+  - convolution/convolution_gcd.hpp
+  - convolution/convolution_lcm.hpp
+  - convolution/divisor_multiple_transform.hpp
   - data_structure/bit_vector.hpp
   - data_structure/my_bitset.hpp
   - data_structure/w_ary_tree.hpp
   - data_structure/wavelet_matrix.hpp
+  - math/isprime_table.hpp
+  - math/lpf_table.hpp
+  - math/multiplicative_function/arbitrary_table.hpp
+  - math/multiplicative_function/counting_square_free.hpp
+  - math/multiplicative_function/famous_function_table.hpp
+  - math/multiplicative_function/prefix_sum.hpp
+  - math/multiplicative_function/prime_counting.hpp
+  - math/prime_factorize_table.hpp
+  - math/prime_table.hpp
+  - math/wheel_sieve.hpp
   - matrix/matrix_F2.hpp
   - string/dynamic_rolling_hash.hpp
   - unionfind/parallel.hpp
-  timestamp: '2026-09-21 18:50:04+09:00'
+  - verify/unit_test/data_structure/my_bitset.test.cpp
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/data_structure/bit_vector.test.cpp
   - verify/unit_test/data_structure/wavelet_matrix.test.cpp
+  - verify/unit_test/math/isprime_table_extend.test.cpp
+  - verify/unit_test/math/lpf_table_extend.test.cpp
+  - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
+  - verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+  - verify/unit_test/math/prime_factorize_table.test.cpp
+  - verify/unit_test/math/prime_table_extend.test.cpp
+  - verify/unit_test/math/wheel_sieve.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
+  - verify/yosupo_convolution/convolution_gcd.test.cpp
+  - verify/yosupo_convolution/convolution_lcm.test.cpp
   - verify/yosupo_ds/ds_predecessor_problem.test.cpp
   - verify/yosupo_ds/ds_range_kth_smallest.test.cpp
   - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp
@@ -177,6 +281,10 @@ data:
   - verify/yosupo_linalg/matrix_product_f2.test.cpp
   - verify/yosupo_linalg/matrix_rank_F2.test.cpp
   - verify/yosupo_linalg/solution_of_linear_equations_F2.test.cpp
+  - verify/yosupo_math/enumerate_primes.test.cpp
+  - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
+  - verify/yosupo_math/prime_counting.test.cpp
+  - verify/yosupo_math/sum_of_totient_function.test.cpp
 documentation_of: bit/bitcount.hpp
 layout: document
 ---

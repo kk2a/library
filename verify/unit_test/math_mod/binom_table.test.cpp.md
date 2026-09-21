@@ -11,6 +11,9 @@ data:
     - filename: comb.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb.hpp
+    - filename: inv_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/inv_table.hpp
     - filename: modint.hpp
       icon: LIBRARY_ALL_AC
       path: modint/modint.hpp
@@ -52,6 +55,7 @@ data:
   dependsOn:
   - math_mod/binom_table.hpp
   - math_mod/comb.hpp
+  - math_mod/inv_table.hpp
   - modint/modint.hpp
   - random/gen.hpp
   - random/seed.hpp
@@ -94,18 +98,19 @@ data:
       \nnamespace kk2 {\n\ntemplate <class mint> struct BinomTable {\n    static inline\
       \ std::vector<std::vector<mint>> _binom{{1}};\n\n    BinomTable() = delete;\n\
       \n    static void set_upper(int m) {\n        int n = (int)_binom.size() - 1;\n\
-      \        if (n >= m) return;\n        _binom.resize(m + 1);\n        for (int\
-      \ i = n + 1; i <= m; i++) {\n            _binom[i].resize(i + 1);\n        \
-      \    _binom[i][0] = _binom[i][i] = 1;\n            for (int j = 1; j < i; j++)\
-      \ _binom[i][j] = _binom[i - 1][j - 1] + _binom[i - 1][j];\n        }\n    }\n\
-      \n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return\
-      \ 0;\n        if ((int)_binom.size() <= n) set_upper(n);\n        return _binom[n][k];\n\
-      \    }\n};\n\n} // namespace kk2\n\n\n#line 4 \"verify/unit_test/math_mod/binom_table.test.cpp\"\
-      \n\n#line 1 \"math_mod/comb.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
-      #line 7 \"math_mod/comb.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n\
-      #include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename\
-      \ T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\n\
-      \                                                       or std::is_same<T, __int128>::value,\n\
+      \        if (n >= m) return;\n        _binom.reserve(m + 1);\n        for (int\
+      \ i = n + 1; i <= m; i++) {\n            _binom.emplace_back(i + 1);\n     \
+      \       auto &row = _binom.back();\n            row[0] = row[i] = 1;\n     \
+      \       for (int j = 1; j < i; j++) { row[j] = _binom[i - 1][j - 1] + _binom[i\
+      \ - 1][j]; }\n        }\n    }\n\n    static mint binom(int n, int k) {\n  \
+      \      if (k < 0 || k > n) return 0;\n        if ((int)_binom.size() <= n) set_upper(n);\n\
+      \        return _binom[n][k];\n    }\n};\n\n} // namespace kk2\n\n\n#line 4\
+      \ \"verify/unit_test/math_mod/binom_table.test.cpp\"\n\n#line 1 \"math_mod/comb.hpp\"\
+      \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"math_mod/comb.hpp\"\
+      \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
       \                                                   std::true_type,\n      \
       \                                             std::false_type>::type;\n\ntemplate\
       \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -139,52 +144,64 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 9 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\
-      \ntemplate <class mint> struct Comb {\n    static inline std::vector<mint> _fact{1},\
-      \ _ifact{1}, _inv{1};\n\n    Comb() = delete;\n\n    static void set_upper(int\
-      \ m = -1) {\n        int n = (int)_fact.size();\n        if (m == -1) m = n\
-      \ << 1;\n        if (n > m) return;\n        m = std::min<long long>(m, mint::getmod()\
-      \ - 1);\n        _fact.resize(m + 1);\n        _ifact.resize(m + 1);\n     \
-      \   _inv.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact[i] = _fact[i\
-      \ - 1] * i;\n        _ifact[m] = _fact[m].inv();\n        _inv[m] = _ifact[m]\
-      \ * _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
-      \ - 1] = _ifact[i] * i;\n            _inv[i - 1] = _ifact[i - 1] * _fact[i -\
-      \ 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n < 0)\
-      \ return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
+      \n} // namespace kk2\n\n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 5\
+      \ \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief `[1, n]`\u306E\
+      mod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n\
+      \ * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n    static inline\
+      \ std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\n    static void\
+      \ set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n        int\
+      \ start = _invs.size();\n        auto mod = mint::getmod();\n        _invs.resize(m\
+      \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
+      \    for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod /\
+      \ i);\n    }\n\n    static inline mint inv(int n) {\n        bool neg = n <\
+      \ 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n\
+      \        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\
+      \n\n#line 10 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\
+      \ struct Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1};\n\n\
+      \    Comb() = delete;\n\n    static void set_upper(int m = -1) {\n        int\
+      \ n = (int)_fact.size();\n        if (m == -1) m = n << 1;\n        if (n >\
+      \ m) return;\n        m = std::min<long long>(m, mint::getmod() - 1);\n    \
+      \    _fact.reserve(m + 1);\n        _ifact.resize(m + 1);\n        auto &_invs\
+      \ = InvTable<mint>::_invs;\n        if ((int)_invs.size() <= m) _invs.resize(m\
+      \ + 1);\n        for (int i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
+      \ * i);\n        _ifact[m] = _fact[m].inv();\n        _invs[m] = _ifact[m] *\
+      \ _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
+      \ - 1] = _ifact[i] * i;\n            _invs[i - 1] = _ifact[i - 1] * _fact[i\
+      \ - 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n <\
+      \ 0) return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
       \ _fact[n];\n    }\n\n    static mint ifact(int n) {\n        if (n < 0) return\
       \ 0;\n        if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
       \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
-      \        if ((int)_inv.size() <= n) set_upper(n);\n        return _inv[n];\n\
-      \    }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n  \
-      \  template <Integral T> static mint multinomial(const std::vector<T> &r) {\n\
-      \        int n = 0;\n        for (auto &x : r) {\n            if (x < 0) return\
-      \ 0;\n            n += x;\n        }\n        mint res = fact(n);\n        for\
-      \ (auto &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint\
-      \ binom_naive(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n\
-      \        mint res = 1;\n        k = std::min(k, n - k);\n        for (int i\
-      \ = 1; i <= k; i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n \
-      \   static mint permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(n - k);\n    }\n\n    static mint\
-      \ homo(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        return\
-      \ k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line\
-      \ 1 \"modint/modint.hpp\"\n\n\n\n#line 5 \"modint/modint.hpp\"\n#include <iostream>\n\
-      #line 7 \"modint/modint.hpp\"\n#include <utility>\n\n#line 1 \"type_traits/io.hpp\"\
-      \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
-      \ <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace\
-      \ type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace\
-      \ type_traits\n\ntemplate <typename T>\nusing is_standard_istream = typename\
-      \ std::conditional<std::is_same<T, std::istream>::value\n                  \
-      \                                        || std::is_same<T, std::ifstream>::value,\n\
+      \        if (n == 0) return 1;\n        return InvTable<mint>::inv(n);\n   \
+      \ }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return\
+      \ 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template\
+      \ <Integral T> static mint multinomial(const std::vector<T> &r) {\n        int\
+      \ n = 0;\n        for (auto &x : r) {\n            if (x < 0) return 0;\n  \
+      \          n += x;\n        }\n        mint res = fact(n);\n        for (auto\
+      \ &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint binom_naive(int\
+      \ n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n        mint\
+      \ res = 1;\n        k = std::min(k, n - k);\n        for (int i = 1; i <= k;\
+      \ i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n    static mint\
+      \ permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n  \
+      \      return fact(n) * ifact(n - k);\n    }\n\n    static mint homo(int n,\
+      \ int k) {\n        if (n < 0 || k < 0) return 0;\n        return k == 0 ? 1\
+      \ : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"modint/modint.hpp\"\
+      \n\n\n\n#line 5 \"modint/modint.hpp\"\n#include <iostream>\n#line 7 \"modint/modint.hpp\"\
+      \n#include <utility>\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
+      #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
+      \                                                          || std::is_same<T,\
+      \ std::ifstream>::value,\n                                                 \
+      \     std::true_type,\n                                                    \
+      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
+      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
+      \                                                   || std::is_same<T, std::ofstream>::value,\n\
       \                                                      std::true_type,\n   \
       \                                                   std::false_type>::type;\n\
-      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                                   \
-      \       || std::is_same<T, std::ofstream>::value,\n                        \
-      \                              std::true_type,\n                           \
-      \                           std::false_type>::type;\ntemplate <typename T> using\
-      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
-      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
       \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
@@ -484,7 +501,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math_mod/binom_table.test.cpp

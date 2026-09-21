@@ -174,45 +174,57 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 9 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\
-      \ntemplate <class mint> struct Comb {\n    static inline std::vector<mint> _fact{1},\
-      \ _ifact{1}, _inv{1};\n\n    Comb() = delete;\n\n    static void set_upper(int\
-      \ m = -1) {\n        int n = (int)_fact.size();\n        if (m == -1) m = n\
-      \ << 1;\n        if (n > m) return;\n        m = std::min<long long>(m, mint::getmod()\
-      \ - 1);\n        _fact.resize(m + 1);\n        _ifact.resize(m + 1);\n     \
-      \   _inv.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact[i] = _fact[i\
-      \ - 1] * i;\n        _ifact[m] = _fact[m].inv();\n        _inv[m] = _ifact[m]\
-      \ * _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
-      \ - 1] = _ifact[i] * i;\n            _inv[i - 1] = _ifact[i - 1] * _fact[i -\
-      \ 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n < 0)\
-      \ return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
+      \n} // namespace kk2\n\n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 5\
+      \ \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief `[1, n]`\u306E\
+      mod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n\
+      \ * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n    static inline\
+      \ std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\n    static void\
+      \ set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n        int\
+      \ start = _invs.size();\n        auto mod = mint::getmod();\n        _invs.resize(m\
+      \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
+      \    for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod /\
+      \ i);\n    }\n\n    static inline mint inv(int n) {\n        bool neg = n <\
+      \ 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n\
+      \        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\
+      \n\n#line 10 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\
+      \ struct Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1};\n\n\
+      \    Comb() = delete;\n\n    static void set_upper(int m = -1) {\n        int\
+      \ n = (int)_fact.size();\n        if (m == -1) m = n << 1;\n        if (n >\
+      \ m) return;\n        m = std::min<long long>(m, mint::getmod() - 1);\n    \
+      \    _fact.reserve(m + 1);\n        _ifact.resize(m + 1);\n        auto &_invs\
+      \ = InvTable<mint>::_invs;\n        if ((int)_invs.size() <= m) _invs.resize(m\
+      \ + 1);\n        for (int i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
+      \ * i);\n        _ifact[m] = _fact[m].inv();\n        _invs[m] = _ifact[m] *\
+      \ _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
+      \ - 1] = _ifact[i] * i;\n            _invs[i - 1] = _ifact[i - 1] * _fact[i\
+      \ - 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n <\
+      \ 0) return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
       \ _fact[n];\n    }\n\n    static mint ifact(int n) {\n        if (n < 0) return\
       \ 0;\n        if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
       \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
-      \        if ((int)_inv.size() <= n) set_upper(n);\n        return _inv[n];\n\
-      \    }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n  \
-      \  template <Integral T> static mint multinomial(const std::vector<T> &r) {\n\
-      \        int n = 0;\n        for (auto &x : r) {\n            if (x < 0) return\
-      \ 0;\n            n += x;\n        }\n        mint res = fact(n);\n        for\
-      \ (auto &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint\
-      \ binom_naive(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n\
-      \        mint res = 1;\n        k = std::min(k, n - k);\n        for (int i\
-      \ = 1; i <= k; i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n \
-      \   static mint permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(n - k);\n    }\n\n    static mint\
-      \ homo(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        return\
-      \ k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line\
-      \ 7 \"fps/poly_taylor_shift.hpp\"\n\nnamespace kk2 {\n\ntemplate <class FPS,\
-      \ class mint = typename FPS::value_type>\nFPS taylor_shift(const FPS &f_, mint\
-      \ a) {\n    FPS f(f_);\n    int n = f.size();\n    Comb<mint>::set_upper(n);\n\
-      \    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::fact(i);\n    f.inplace_rev();\n\
-      \    FPS g(n, mint(1));\n    for (int i = 1; i < n; i++) g[i] = g[i - 1] * a\
-      \ * Comb<mint>::inv(i);\n    f = (f * g).pre(n).rev();\n    for (int i = 0;\
-      \ i < n; i++) f[i] *= Comb<mint>::ifact(i);\n    return f;\n}\n\n} // namespace\
-      \ kk2\n\n\n#line 4 \"verify/yosupo_fps/poly_taylor_shift.test.cpp\"\n\n#line\
-      \ 1 \"fps/fps_ntt_friendly.hpp\"\n\n\n\n#line 1 \"math_mod/butterfly.hpp\"\n\
-      \n\n\n#line 5 \"math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
+      \        if (n == 0) return 1;\n        return InvTable<mint>::inv(n);\n   \
+      \ }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return\
+      \ 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template\
+      \ <Integral T> static mint multinomial(const std::vector<T> &r) {\n        int\
+      \ n = 0;\n        for (auto &x : r) {\n            if (x < 0) return 0;\n  \
+      \          n += x;\n        }\n        mint res = fact(n);\n        for (auto\
+      \ &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint binom_naive(int\
+      \ n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n        mint\
+      \ res = 1;\n        k = std::min(k, n - k);\n        for (int i = 1; i <= k;\
+      \ i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n    static mint\
+      \ permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n  \
+      \      return fact(n) * ifact(n - k);\n    }\n\n    static mint homo(int n,\
+      \ int k) {\n        if (n < 0 || k < 0) return 0;\n        return k == 0 ? 1\
+      \ : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line 7 \"fps/poly_taylor_shift.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      FPS taylor_shift(const FPS &f_, mint a) {\n    FPS f(f_);\n    int n = f.size();\n\
+      \    Comb<mint>::set_upper(n);\n    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::fact(i);\n\
+      \    f.inplace_rev();\n    FPS g(n, mint(1));\n    for (int i = 1; i < n; i++)\
+      \ g[i] = g[i - 1] * a * Comb<mint>::inv(i);\n    f = (f * g).pre(n).rev();\n\
+      \    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::ifact(i);\n    return f;\n\
+      }\n\n} // namespace kk2\n\n\n#line 4 \"verify/yosupo_fps/poly_taylor_shift.test.cpp\"\
+      \n\n#line 1 \"fps/fps_ntt_friendly.hpp\"\n\n\n\n#line 1 \"math_mod/butterfly.hpp\"\
+      \n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
       \n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\
       \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T\
       \ x, U n, T m) {\n    assert(n >= 0);\n    if (m == 1) return S(0);\n    S _m\
@@ -316,35 +328,23 @@ data:
       \    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
       }\n\n} // namespace kk2\n\n\n#line 1 \"fps/fps_base.hpp\"\n\n\n\n#line 5 \"\
       fps/fps_base.hpp\"\n#include <iostream>\n#line 7 \"fps/fps_base.hpp\"\n\n#line\
-      \ 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 5 \"math_mod/inv_table.hpp\"\n\n\
-      namespace kk2 {\n\n/**\n * @brief `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\
-      \u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n * @tparam mint\n */\ntemplate <class\
-      \ mint> struct InvTable {\n    static inline std::vector<mint> _invs{0, 1};\n\
-      \    static inline auto _mod = mint::getmod();\n    InvTable() = delete;\n\n\
-      \    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
-      \        int start = _invs.size();\n        _invs.resize(m + 1);\n        //\
-      \ p = q * i + r\n        // - q / r = 1 / i (mod p)\n        for (int i = start;\
-      \ i <= m; ++i) _invs[i] = (-_invs[_mod % i]) * (_mod / i);\n    }\n\n    static\
-      \ inline mint inv(int n) {\n        bool neg = n < 0;\n        if (neg) n =\
-      \ -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n        return neg\
-      \ ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\
-      \n\n\n\n#include <concepts>\n#include <ranges>\n#line 7 \"type_traits/fps.hpp\"\
-      \n\nnamespace kk2::fps {\n\nnamespace category {\n\nstruct arbitrary_modulus\
-      \ {};\nstruct ntt_friendly_modulus {};\n\nstruct ordinary {};\nstruct exponential_generating\
-      \ {};\nstruct set_power_series {};\n\nstruct univariate {};\nstruct bivariate\
-      \ {};\nstruct multivariate {};\n\n} // namespace category\n\ntemplate <class\
-      \ M>\nconcept Modular = requires(M x) {\n    { M::getmod() } -> std::integral;\n\
-      \    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n\ntemplate <class F>\n\
-      concept FormalPowerSeries = requires(const F &f, int i) {\n    typename F::value_type;\n\
-      \    typename F::modulus_category;\n    typename F::series_category;\n    {\
-      \ f.size() } -> std::integral;\n    f[i];\n} && std::ranges::range<const F>;\n\
-      \ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries =\n    FormalPowerSeries<F>\n\
-      \    && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;\n\
-      \ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;\n\
-      \ntemplate <class F>\nconcept OrdinaryFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && std::same_as<typename F::series_category, category::ordinary>;\n\ntemplate\
-      \ <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
+      \ 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n#include <ranges>\n\
+      #line 7 \"type_traits/fps.hpp\"\n\nnamespace kk2::fps {\n\nnamespace category\
+      \ {\n\nstruct arbitrary_modulus {};\nstruct ntt_friendly_modulus {};\n\nstruct\
+      \ ordinary {};\nstruct exponential_generating {};\nstruct set_power_series {};\n\
+      \nstruct univariate {};\nstruct bivariate {};\nstruct multivariate {};\n\n}\
+      \ // namespace category\n\ntemplate <class M>\nconcept Modular = requires(M\
+      \ x) {\n    { M::getmod() } -> std::integral;\n    x.val();\n    { x.inv() }\
+      \ -> std::same_as<M>;\n};\n\ntemplate <class F>\nconcept FormalPowerSeries =\
+      \ requires(const F &f, int i) {\n    typename F::value_type;\n    typename F::modulus_category;\n\
+      \    typename F::series_category;\n    { f.size() } -> std::integral;\n    f[i];\n\
+      } && std::ranges::range<const F>;\n\ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries\
+      \ =\n    FormalPowerSeries<F>\n    && std::same_as<typename F::modulus_category,\
+      \ category::ntt_friendly_modulus>;\n\ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries\
+      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::modulus_category,\
+      \ category::arbitrary_modulus>;\n\ntemplate <class F>\nconcept OrdinaryFormalPowerSeries\
+      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::series_category, category::ordinary>;\n\
+      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
       \    && std::same_as<typename F::series_category, category::exponential_generating>;\n\
       \ntemplate <class F>\nconcept SetPowerSeries =\n    FormalPowerSeries<F> &&\
       \ std::same_as<typename F::series_category, category::set_power_series>;\n\n\
@@ -1373,197 +1373,197 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0025125819999516352
+  - elapsed: 0.0022340160000027254
     environment: g++
-    memory: 3.88
+    memory: 3.764
     name: example_00
     status: AC
-  - elapsed: 0.0018996219999962705
+  - elapsed: 0.0019948770000013383
     environment: g++
-    memory: 3.868
+    memory: 3.772
     name: example_01
     status: AC
-  - elapsed: 0.8756927929999847
-    environment: g++
-    memory: 28.14
-    name: fft_killer_00
-    status: AC
-  - elapsed: 0.8917129339999974
-    environment: g++
-    memory: 27.984
-    name: fft_killer_01
-    status: AC
-  - elapsed: 0.8897510510000188
-    environment: g++
-    memory: 28.196
-    name: fft_killer_02
-    status: AC
-  - elapsed: 0.8340483719999838
-    environment: g++
-    memory: 28.112
-    name: fft_killer_03
-    status: AC
-  - elapsed: 0.7653031049999868
-    environment: g++
-    memory: 28.196
-    name: fft_killer_04
-    status: AC
-  - elapsed: 0.8721089379999967
+  - elapsed: 1.4966294399999995
     environment: g++
     memory: 28.128
+    name: fft_killer_00
+    status: AC
+  - elapsed: 1.4786772779999993
+    environment: g++
+    memory: 28.272
+    name: fft_killer_01
+    status: AC
+  - elapsed: 1.4803407429999993
+    environment: g++
+    memory: 28.14
+    name: fft_killer_02
+    status: AC
+  - elapsed: 1.4789196429999976
+    environment: g++
+    memory: 28.152
+    name: fft_killer_03
+    status: AC
+  - elapsed: 1.4812502260000002
+    environment: g++
+    memory: 28.112
+    name: fft_killer_04
+    status: AC
+  - elapsed: 1.4827955530000025
+    environment: g++
+    memory: 27.968
     name: fft_killer_05
     status: AC
-  - elapsed: 0.8845156900000006
+  - elapsed: 1.479594206999991
     environment: g++
-    memory: 28.096
+    memory: 28.136
     name: fft_killer_06
     status: AC
-  - elapsed: 0.8715910029999918
+  - elapsed: 1.4804965020000083
     environment: g++
-    memory: 28.328
+    memory: 28.104
     name: fft_killer_07
     status: AC
-  - elapsed: 0.8839619139999968
+  - elapsed: 1.4816403199999968
     environment: g++
-    memory: 28.064
+    memory: 28.2
     name: fft_killer_08
     status: AC
-  - elapsed: 0.7923357060000171
+  - elapsed: 1.4793830560000032
     environment: g++
-    memory: 27.98
+    memory: 28.164
     name: fft_killer_09
     status: AC
-  - elapsed: 0.826677621999977
+  - elapsed: 1.4819653780000124
     environment: g++
-    memory: 28.1
+    memory: 28.184
     name: max_random_00
     status: AC
-  - elapsed: 0.7597114999999803
+  - elapsed: 1.480243771000005
     environment: g++
-    memory: 28.332
+    memory: 27.984
     name: max_random_01
     status: AC
-  - elapsed: 0.0038502600000356324
+  - elapsed: 0.0058221459999998615
     environment: g++
-    memory: 3.984
+    memory: 3.996
     name: medium_00
     status: AC
-  - elapsed: 0.009795752000002267
+  - elapsed: 0.01756987699999968
     environment: g++
-    memory: 4.184
+    memory: 4.02
     name: medium_01
     status: AC
-  - elapsed: 0.009437273000003188
+  - elapsed: 0.01758381499999473
     environment: g++
-    memory: 4.124
+    memory: 3.976
     name: medium_02
     status: AC
-  - elapsed: 0.0019300390000012158
+  - elapsed: 0.002738903999997433
     environment: g++
-    memory: 3.88
+    memory: 3.76
     name: medium_all_zero_00
     status: AC
-  - elapsed: 0.002004936999981055
+  - elapsed: 0.0027472509999881822
     environment: g++
-    memory: 4.036
+    memory: 3.992
     name: medium_c_zero_00
     status: AC
-  - elapsed: 0.7231892720000133
+  - elapsed: 1.4042510179999965
     environment: g++
-    memory: 22.488
+    memory: 22.348
     name: random_00
     status: AC
-  - elapsed: 0.7791639359999749
+  - elapsed: 1.4448441859999974
     environment: g++
-    memory: 24.504
+    memory: 24.508
     name: random_01
     status: AC
-  - elapsed: 0.08196261500000901
+  - elapsed: 0.1596509309999874
     environment: g++
-    memory: 6.028
+    memory: 6.088
     name: random_02
     status: AC
-  - elapsed: 0.0017996939999989081
+  - elapsed: 0.0022124919999981785
     environment: g++
-    memory: 3.868
+    memory: 3.864
     name: small_00
     status: AC
-  - elapsed: 0.0016188720000513968
+  - elapsed: 0.0018695100000059028
     environment: g++
     memory: 3.86
     name: small_01
     status: AC
-  - elapsed: 0.001543950999973731
-    environment: g++
-    memory: 3.904
-    name: small_02
-    status: AC
-  - elapsed: 0.0015024660000335643
+  - elapsed: 0.0018325230000044712
     environment: g++
     memory: 3.864
+    name: small_02
+    status: AC
+  - elapsed: 0.0018087069999950245
+    environment: g++
+    memory: 3.768
     name: small_03
     status: AC
-  - elapsed: 0.0014812370000072406
+  - elapsed: 0.0018284869999973807
     environment: g++
-    memory: 3.9
+    memory: 3.868
     name: small_04
     status: AC
-  - elapsed: 0.0014600550000523072
+  - elapsed: 0.0018304849999992712
     environment: g++
-    memory: 3.904
+    memory: 3.776
     name: small_05
     status: AC
-  - elapsed: 0.0015250750000177504
+  - elapsed: 0.0021650900000054207
     environment: g++
-    memory: 3.848
+    memory: 3.784
     name: small_06
     status: AC
-  - elapsed: 0.001463466000018343
+  - elapsed: 0.0022365749999977425
     environment: g++
-    memory: 3.896
+    memory: 3.664
     name: small_07
     status: AC
-  - elapsed: 0.0014418490000025486
+  - elapsed: 0.0021369979999974476
     environment: g++
-    memory: 3.904
+    memory: 3.776
     name: small_08
     status: AC
-  - elapsed: 0.0014514349999785736
+  - elapsed: 0.002234545000007415
     environment: g++
-    memory: 3.868
+    memory: 3.768
     name: small_09
     status: AC
-  - elapsed: 0.0014795099999673766
+  - elapsed: 0.001967219000007958
     environment: g++
-    memory: 3.848
+    memory: 3.752
     name: small_10
     status: AC
-  - elapsed: 0.001414604999979474
+  - elapsed: 0.0018471409999989419
     environment: g++
-    memory: 3.888
+    memory: 3.848
     name: small_11
     status: AC
-  - elapsed: 0.0015216170000371676
+  - elapsed: 0.0018263680000103477
     environment: g++
-    memory: 3.74
+    memory: 3.72
     name: small_12
     status: AC
-  - elapsed: 0.0014532669999880454
+  - elapsed: 0.001811314000008224
     environment: g++
-    memory: 3.852
+    memory: 3.772
     name: small_13
     status: AC
-  - elapsed: 0.0015247960000124294
+  - elapsed: 0.0018795659999994996
     environment: g++
-    memory: 3.868
+    memory: 3.664
     name: small_14
     status: AC
-  - elapsed: 0.001523016000021471
+  - elapsed: 0.0018623390000129803
     environment: g++
-    memory: 3.9
+    memory: 3.876
     name: small_15
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_taylor_shift.test.cpp

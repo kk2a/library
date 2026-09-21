@@ -22,6 +22,18 @@ data:
     - filename: logarithm.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/logarithm.hpp
+    - filename: poly_taylor_shift.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/poly_taylor_shift.hpp
+    - filename: bell_number.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/bell_number.hpp
+    - filename: bernoulli_number.hpp
+      icon: LIBRARY_NO_TESTS
+      path: math_mod/bernoulli_number.hpp
+    - filename: comb.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/comb.hpp
     - filename: comb_large.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb_large.hpp
@@ -63,6 +75,9 @@ data:
     - filename: sparsity_small_performance.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_small_performance.test.cpp
+    - filename: binom_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math_mod/binom_table.test.cpp
     - filename: inv_table.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/inv_table.test.cpp
@@ -129,6 +144,9 @@ data:
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    - filename: binomial_coefficient_prime_mod.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
     - filename: enumerate_bell_number.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/enumerate_bell_number.test.cpp
@@ -148,28 +166,28 @@ data:
       \ 1\n\n#include <vector>\n\nnamespace kk2 {\n\n/**\n * @brief `[1, n]`\u306E\
       mod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n\
       \ * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n    static inline\
-      \ std::vector<mint> _invs{0, 1};\n    static inline auto _mod = mint::getmod();\n\
-      \    InvTable() = delete;\n\n    static void set_upper(int m) {\n        if\
-      \ ((int)_invs.size() > m) return;\n        int start = _invs.size();\n     \
-      \   _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r = 1 /\
-      \ i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[_mod\
-      \ % i]) * (_mod / i);\n    }\n\n    static inline mint inv(int n) {\n      \
-      \  bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
-      \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
-      \ // namespace kk2\n\n#endif // KK2_MATH_MOD_INV_TABLE_HPP\n"
+      \ std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\n    static void\
+      \ set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n        int\
+      \ start = _invs.size();\n        auto mod = mint::getmod();\n        _invs.resize(m\
+      \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
+      \    for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod /\
+      \ i);\n    }\n\n    static inline mint inv(int n) {\n        bool neg = n <\
+      \ 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n\
+      \        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\
+      \n#endif // KK2_MATH_MOD_INV_TABLE_HPP\n"
     name: default
   - code: "#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
       \ kk2 {\n\n/**\n * @brief `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\
       \u308B\u30C6\u30FC\u30D6\u30EB\n *\n * @tparam mint\n */\ntemplate <class mint>\
-      \ struct InvTable {\n    static inline std::vector<mint> _invs{0, 1};\n    static\
-      \ inline auto _mod = mint::getmod();\n    InvTable() = delete;\n\n    static\
-      \ void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n    \
-      \    int start = _invs.size();\n        _invs.resize(m + 1);\n        // p =\
-      \ q * i + r\n        // - q / r = 1 / i (mod p)\n        for (int i = start;\
-      \ i <= m; ++i) _invs[i] = (-_invs[_mod % i]) * (_mod / i);\n    }\n\n    static\
-      \ inline mint inv(int n) {\n        bool neg = n < 0;\n        if (neg) n =\
-      \ -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n        return neg\
-      \ ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\n\n"
+      \ struct InvTable {\n    static inline std::vector<mint> _invs{0, 1};\n    InvTable()\
+      \ = delete;\n\n    static void set_upper(int m) {\n        if ((int)_invs.size()\
+      \ > m) return;\n        int start = _invs.size();\n        auto mod = mint::getmod();\n\
+      \        _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r\
+      \ = 1 / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod\
+      \ % i]) * (mod / i);\n    }\n\n    static inline mint inv(int n) {\n       \
+      \ bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
+      \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
+      \ // namespace kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
@@ -181,6 +199,10 @@ data:
   - fps/fps_multivariate.hpp
   - fps/fps_ntt_friendly.hpp
   - fps/operations/logarithm.hpp
+  - fps/poly_taylor_shift.hpp
+  - math_mod/bell_number.hpp
+  - math_mod/bernoulli_number.hpp
+  - math_mod/comb.hpp
   - math_mod/comb_large.hpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
@@ -190,13 +212,14 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp
+  - verify/unit_test/math_mod/binom_table.test.cpp
   - verify/unit_test/math_mod/inv_table.test.cpp
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
@@ -219,6 +242,7 @@ data:
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp

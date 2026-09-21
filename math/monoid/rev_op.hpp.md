@@ -93,7 +93,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp

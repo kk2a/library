@@ -262,11 +262,11 @@ data:
       namespace kk2 {\n\n/**\n * @brief `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\
       \u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n * @tparam mint\n */\ntemplate <class\
       \ mint> struct InvTable {\n    static inline std::vector<mint> _invs{0, 1};\n\
-      \    static inline auto _mod = mint::getmod();\n    InvTable() = delete;\n\n\
-      \    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
-      \        int start = _invs.size();\n        _invs.resize(m + 1);\n        //\
-      \ p = q * i + r\n        // - q / r = 1 / i (mod p)\n        for (int i = start;\
-      \ i <= m; ++i) _invs[i] = (-_invs[_mod % i]) * (_mod / i);\n    }\n\n    static\
+      \    InvTable() = delete;\n\n    static void set_upper(int m) {\n        if\
+      \ ((int)_invs.size() > m) return;\n        int start = _invs.size();\n     \
+      \   auto mod = mint::getmod();\n        _invs.resize(m + 1);\n        // p =\
+      \ q * i + r\n        // - q / r = 1 / i (mod p)\n        for (int i = start;\
+      \ i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod / i);\n    }\n\n    static\
       \ inline mint inv(int n) {\n        bool neg = n < 0;\n        if (neg) n =\
       \ -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n        return neg\
       \ ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\
@@ -1139,72 +1139,71 @@ data:
       \ < m; i++) {\n        ret[i] = cur * dh[k + i];\n        cur *= t + i + 1;\n\
       \        cur *= h[i];\n    }\n    return ret;\n}\n\n} // namespace kk2\n\n\n\
       #line 1 \"math_mod/comb.hpp\"\n\n\n\n#line 7 \"math_mod/comb.hpp\"\n\n#line\
-      \ 9 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> struct\
-      \ Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1}, _inv{1};\n\
-      \n    Comb() = delete;\n\n    static void set_upper(int m = -1) {\n        int\
-      \ n = (int)_fact.size();\n        if (m == -1) m = n << 1;\n        if (n >\
-      \ m) return;\n        m = std::min<long long>(m, mint::getmod() - 1);\n    \
-      \    _fact.resize(m + 1);\n        _ifact.resize(m + 1);\n        _inv.resize(m\
-      \ + 1);\n        for (int i = n; i <= m; i++) _fact[i] = _fact[i - 1] * i;\n\
-      \        _ifact[m] = _fact[m].inv();\n        _inv[m] = _ifact[m] * _fact[m\
-      \ - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i - 1] =\
-      \ _ifact[i] * i;\n            _inv[i - 1] = _ifact[i - 1] * _fact[i - 2];\n\
-      \        }\n    }\n\n    static mint fact(int n) {\n        if (n < 0) return\
-      \ 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return _fact[n];\n\
-      \    }\n\n    static mint ifact(int n) {\n        if (n < 0) return 0;\n   \
-      \     if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
+      \ 10 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint> struct\
+      \ Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1};\n\n    Comb()\
+      \ = delete;\n\n    static void set_upper(int m = -1) {\n        int n = (int)_fact.size();\n\
+      \        if (m == -1) m = n << 1;\n        if (n > m) return;\n        m = std::min<long\
+      \ long>(m, mint::getmod() - 1);\n        _fact.reserve(m + 1);\n        _ifact.resize(m\
+      \ + 1);\n        auto &_invs = InvTable<mint>::_invs;\n        if ((int)_invs.size()\
+      \ <= m) _invs.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
+      \ * i);\n        _ifact[m] = _fact[m].inv();\n        _invs[m] = _ifact[m] *\
+      \ _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
+      \ - 1] = _ifact[i] * i;\n            _invs[i - 1] = _ifact[i - 1] * _fact[i\
+      \ - 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n <\
+      \ 0) return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
+      \ _fact[n];\n    }\n\n    static mint ifact(int n) {\n        if (n < 0) return\
+      \ 0;\n        if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
       \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
-      \        if ((int)_inv.size() <= n) set_upper(n);\n        return _inv[n];\n\
-      \    }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n  \
-      \  template <Integral T> static mint multinomial(const std::vector<T> &r) {\n\
-      \        int n = 0;\n        for (auto &x : r) {\n            if (x < 0) return\
-      \ 0;\n            n += x;\n        }\n        mint res = fact(n);\n        for\
-      \ (auto &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint\
-      \ binom_naive(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n\
-      \        mint res = 1;\n        k = std::min(k, n - k);\n        for (int i\
-      \ = 1; i <= k; i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n \
-      \   static mint permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(n - k);\n    }\n\n    static mint\
-      \ homo(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        return\
-      \ k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line\
-      \ 13 \"math_mod/comb_large.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\
-      \ struct CombLarge {\n    using FPS = FormalPowerSeriesNTTFriendly<mint>;\n\
-      \    static constexpr int LOG_BLOCK_SIZE = 9;\n    static constexpr int BLOCK_SIZE\
-      \ = 1 << LOG_BLOCK_SIZE;\n    static constexpr int BLOCK_NUM = mint::getmod()\
-      \ >> LOG_BLOCK_SIZE;\n\n    static inline int threshold = 2000000;\n\n    CombLarge()\
-      \ = delete;\n\n    static mint fact(int n) { return n <= threshold ? Comb<mint>::fact(n)\
-      \ : _large_fact(n); }\n\n    static mint ifact(int n) {\n        return n <=\
-      \ threshold ? Comb<mint>::ifact(n) : _large_fact(n).inv();\n    }\n\n    static\
-      \ mint inv(int n) { return n <= threshold ? Comb<mint>::inv(n) : mint(n).inv();\
-      \ }\n\n    static mint binom(int n, int r) {\n        if (r < 0 || r > n) return\
-      \ mint(0);\n        return fact(n) * ifact(r) * ifact(n - r);\n    }\n\n   \
-      \ template <Integral T> static mint multinomial(std::vector<T> r) {\n      \
-      \  long long n = 0;\n        for (auto &x : r) {\n            assert(x >= 0);\n\
-      \            n += x;\n        }\n        if (n >= mint::getmod()) return 0;\n\
-      \        mint res = fact(n);\n        for (auto &x : r) res *= ifact(x);\n \
-      \       return res;\n    }\n\n    static mint permu(int n, int r) {\n      \
-      \  if (r < 0 || r > n) return mint(0);\n        return fact(n) * ifact(n - r);\n\
-      \    }\n\n    static mint homo(int n, int r) {\n        if (n < 0 || r < 0)\
-      \ return mint(0);\n        return r == 0 ? 1 : binom(n + r - 1, r);\n    }\n\
-      \n  private:\n    static inline std::vector<mint> _block_fact{};\n\n    static\
-      \ void _build() {\n        if (_block_fact.size()) return;\n        std::vector<mint>\
-      \ f{1};\n        f.reserve(BLOCK_SIZE);\n        for (int i = 0; i < LOG_BLOCK_SIZE;\
-      \ i++) {\n            std::vector<mint> g = sample_point_shift<FPS>(f, mint(1\
-      \ << i), 3 << i);\n            const auto get = [&](int j) {\n             \
-      \   return j < (1 << i) ? f[j] : g[j - (1 << i)];\n            };\n        \
-      \    f.resize(2 << i);\n            for (int j = 0; j < 2 << i; j++) {\n   \
-      \             f[j] = get(2 * j) * get(2 * j + 1) * ((2 * j + 1) << i);\n   \
-      \         }\n        }\n\n        if (BLOCK_NUM > BLOCK_SIZE) {\n          \
-      \  std::vector<mint> g =\n                sample_point_shift<FPS>(f, mint(BLOCK_SIZE),\
-      \ BLOCK_NUM - BLOCK_SIZE);\n            std::move(std::begin(g), std::end(g),\
-      \ std::back_inserter(f));\n        } else f.resize(BLOCK_NUM);\n        for\
-      \ (int i = 0; i < BLOCK_NUM; i++) { f[i] *= mint(i + 1) * BLOCK_SIZE; }\n  \
-      \      // f[i] = prod_{j = 1} ^ (BLOCK_SIZE) (i * BLOCK_SIZE + j)\n\n      \
-      \  f.insert(std::begin(f), 1);\n        for (int i = 1; i <= BLOCK_NUM; i++)\
-      \ { f[i] *= f[i - 1]; }\n        _block_fact = std::move(f);\n    }\n\n    static\
-      \ mint _large_fact(int n) {\n        _build();\n        mint res;\n        int\
-      \ q = n / BLOCK_SIZE, r = n % BLOCK_SIZE;\n        if (2 * r <= BLOCK_SIZE)\
+      \        if (n == 0) return 1;\n        return InvTable<mint>::inv(n);\n   \
+      \ }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return\
+      \ 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template\
+      \ <Integral T> static mint multinomial(const std::vector<T> &r) {\n        int\
+      \ n = 0;\n        for (auto &x : r) {\n            if (x < 0) return 0;\n  \
+      \          n += x;\n        }\n        mint res = fact(n);\n        for (auto\
+      \ &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint binom_naive(int\
+      \ n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n        mint\
+      \ res = 1;\n        k = std::min(k, n - k);\n        for (int i = 1; i <= k;\
+      \ i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n    static mint\
+      \ permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n  \
+      \      return fact(n) * ifact(n - k);\n    }\n\n    static mint homo(int n,\
+      \ int k) {\n        if (n < 0 || k < 0) return 0;\n        return k == 0 ? 1\
+      \ : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line 13 \"math_mod/comb_large.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <class mint> struct CombLarge {\n    using FPS\
+      \ = FormalPowerSeriesNTTFriendly<mint>;\n    static constexpr int LOG_BLOCK_SIZE\
+      \ = 9;\n    static constexpr int BLOCK_SIZE = 1 << LOG_BLOCK_SIZE;\n    static\
+      \ constexpr int BLOCK_NUM = mint::getmod() >> LOG_BLOCK_SIZE;\n\n    static\
+      \ inline int threshold = 2000000;\n\n    CombLarge() = delete;\n\n    static\
+      \ mint fact(int n) { return n <= threshold ? Comb<mint>::fact(n) : _large_fact(n);\
+      \ }\n\n    static mint ifact(int n) {\n        return n <= threshold ? Comb<mint>::ifact(n)\
+      \ : _large_fact(n).inv();\n    }\n\n    static mint inv(int n) { return n <=\
+      \ threshold ? Comb<mint>::inv(n) : mint(n).inv(); }\n\n    static mint binom(int\
+      \ n, int r) {\n        if (r < 0 || r > n) return mint(0);\n        return fact(n)\
+      \ * ifact(r) * ifact(n - r);\n    }\n\n    template <Integral T> static mint\
+      \ multinomial(std::vector<T> r) {\n        long long n = 0;\n        for (auto\
+      \ &x : r) {\n            assert(x >= 0);\n            n += x;\n        }\n \
+      \       if (n >= mint::getmod()) return 0;\n        mint res = fact(n);\n  \
+      \      for (auto &x : r) res *= ifact(x);\n        return res;\n    }\n\n  \
+      \  static mint permu(int n, int r) {\n        if (r < 0 || r > n) return mint(0);\n\
+      \        return fact(n) * ifact(n - r);\n    }\n\n    static mint homo(int n,\
+      \ int r) {\n        if (n < 0 || r < 0) return mint(0);\n        return r ==\
+      \ 0 ? 1 : binom(n + r - 1, r);\n    }\n\n  private:\n    static inline std::vector<mint>\
+      \ _block_fact{};\n\n    static void _build() {\n        if (_block_fact.size())\
+      \ return;\n        std::vector<mint> f{1};\n        f.reserve(BLOCK_SIZE);\n\
+      \        for (int i = 0; i < LOG_BLOCK_SIZE; i++) {\n            std::vector<mint>\
+      \ g = sample_point_shift<FPS>(f, mint(1 << i), 3 << i);\n            const auto\
+      \ get = [&](int j) {\n                return j < (1 << i) ? f[j] : g[j - (1\
+      \ << i)];\n            };\n            f.resize(2 << i);\n            for (int\
+      \ j = 0; j < 2 << i; j++) {\n                f[j] = get(2 * j) * get(2 * j +\
+      \ 1) * ((2 * j + 1) << i);\n            }\n        }\n\n        if (BLOCK_NUM\
+      \ > BLOCK_SIZE) {\n            std::vector<mint> g =\n                sample_point_shift<FPS>(f,\
+      \ mint(BLOCK_SIZE), BLOCK_NUM - BLOCK_SIZE);\n            std::move(std::begin(g),\
+      \ std::end(g), std::back_inserter(f));\n        } else f.resize(BLOCK_NUM);\n\
+      \        for (int i = 0; i < BLOCK_NUM; i++) { f[i] *= mint(i + 1) * BLOCK_SIZE;\
+      \ }\n        // f[i] = prod_{j = 1} ^ (BLOCK_SIZE) (i * BLOCK_SIZE + j)\n\n\
+      \        f.insert(std::begin(f), 1);\n        for (int i = 1; i <= BLOCK_NUM;\
+      \ i++) { f[i] *= f[i - 1]; }\n        _block_fact = std::move(f);\n    }\n\n\
+      \    static mint _large_fact(int n) {\n        _build();\n        mint res;\n\
+      \        int q = n / BLOCK_SIZE, r = n % BLOCK_SIZE;\n        if (2 * r <= BLOCK_SIZE)\
       \ {\n            res = _block_fact[q];\n            for (int i = 0; i < r; i++)\
       \ { res *= n - i; }\n        } else if (q != BLOCK_NUM) {\n            res =\
       \ _block_fact[q + 1];\n            mint den = 1;\n            for (int i = 1;\
@@ -1219,7 +1218,7 @@ data:
   path: math_mod/comb_large.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp

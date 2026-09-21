@@ -235,13 +235,13 @@ data:
       \n\n\n\n#line 5 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief\
       \ `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\
       \u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n\
-      \    static inline std::vector<mint> _invs{0, 1};\n    static inline auto _mod\
-      \ = mint::getmod();\n    InvTable() = delete;\n\n    static void set_upper(int\
-      \ m) {\n        if ((int)_invs.size() > m) return;\n        int start = _invs.size();\n\
-      \        _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r\
-      \ = 1 / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[_mod\
-      \ % i]) * (_mod / i);\n    }\n\n    static inline mint inv(int n) {\n      \
-      \  bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
+      \    static inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\
+      \n    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
+      \        int start = _invs.size();\n        auto mod = mint::getmod();\n   \
+      \     _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r = 1\
+      \ / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod\
+      \ % i]) * (mod / i);\n    }\n\n    static inline mint inv(int n) {\n       \
+      \ bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
       \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
       \ // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n\
       #include <ranges>\n#include <type_traits>\n\nnamespace kk2::fps {\n\nnamespace\
@@ -1325,127 +1325,127 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002287833999957911
-    environment: g++
-    memory: 3.848
-    name: example_00
-    status: AC
-  - elapsed: 0.0017890290000082132
+  - elapsed: 0.002280036000001928
     environment: g++
     memory: 3.852
+    name: example_00
+    status: AC
+  - elapsed: 0.0017822989999984884
+    environment: g++
+    memory: 3.864
     name: example_01
     status: AC
-  - elapsed: 0.2885281490000011
-    environment: g++
-    memory: 15.1
-    name: max_random_00
-    status: AC
-  - elapsed: 0.27887518
-    environment: g++
-    memory: 15.108
-    name: max_random_01
-    status: AC
-  - elapsed: 0.25688611499998615
+  - elapsed: 0.31408915699999795
     environment: g++
     memory: 15.104
+    name: max_random_00
+    status: AC
+  - elapsed: 0.29853273399999125
+    environment: g++
+    memory: 15.044
+    name: max_random_01
+    status: AC
+  - elapsed: 0.2744200759999984
+    environment: g++
+    memory: 14.972
     name: max_random_02
     status: AC
-  - elapsed: 0.2648790249999706
+  - elapsed: 0.281402528000001
     environment: g++
-    memory: 14.972
+    memory: 15.104
     name: max_random_03
     status: AC
-  - elapsed: 0.24320620699995743
+  - elapsed: 0.25005734399999824
     environment: g++
-    memory: 14.972
+    memory: 15.096
     name: max_random_04
     status: AC
-  - elapsed: 0.05376654900004496
-    environment: g++
-    memory: 7.912
-    name: min_K_00
-    status: AC
-  - elapsed: 0.06264154999996663
-    environment: g++
-    memory: 8.816
-    name: min_K_01
-    status: AC
-  - elapsed: 0.053148839000016324
+  - elapsed: 0.05256232099999636
     environment: g++
     memory: 8.044
+    name: min_K_00
+    status: AC
+  - elapsed: 0.06168314700001076
+    environment: g++
+    memory: 8.82
+    name: min_K_01
+    status: AC
+  - elapsed: 0.05247104599999375
+    environment: g++
+    memory: 8.052
     name: random_00
     status: AC
-  - elapsed: 0.08990928199995096
+  - elapsed: 0.08994855599999596
     environment: g++
-    memory: 8.688
+    memory: 8.82
     name: random_01
     status: AC
-  - elapsed: 0.11724716799994894
+  - elapsed: 0.11800088900000105
     environment: g++
     memory: 10.244
     name: random_02
     status: AC
-  - elapsed: 0.07078768699994953
+  - elapsed: 0.06810420700000464
     environment: g++
-    memory: 8.304
+    memory: 8.288
     name: random_03
     status: AC
-  - elapsed: 0.12459164099999498
+  - elapsed: 0.12445861199999797
     environment: g++
-    memory: 12.888
+    memory: 12.844
     name: random_04
     status: AC
-  - elapsed: 0.002145535000011023
+  - elapsed: 0.0021457680000054324
     environment: g++
-    memory: 3.86
+    memory: 3.864
     name: small_N_00
     status: AC
-  - elapsed: 0.0018115719999514113
+  - elapsed: 0.0018148780000046827
     environment: g++
-    memory: 3.852
+    memory: 3.892
     name: small_N_01
     status: AC
-  - elapsed: 0.0018059239999956844
+  - elapsed: 0.0017989929999941978
     environment: g++
-    memory: 3.86
+    memory: 3.864
     name: small_N_02
     status: AC
-  - elapsed: 0.0017485089999809134
+  - elapsed: 0.0017472779999962995
     environment: g++
-    memory: 3.756
+    memory: 3.864
     name: small_N_03
     status: AC
-  - elapsed: 0.0017617289999520835
+  - elapsed: 0.0017496309999955884
     environment: g++
-    memory: 3.852
+    memory: 3.86
     name: small_N_04
     status: AC
-  - elapsed: 0.3262525650000043
+  - elapsed: 0.3228107249999965
     environment: g++
-    memory: 14.976
+    memory: 14.956
     name: small_dense_00
     status: AC
-  - elapsed: 0.3418989150000016
+  - elapsed: 0.35344835600000124
     environment: g++
-    memory: 14.976
+    memory: 15.096
     name: small_dense_01
     status: AC
-  - elapsed: 0.3937799029999951
+  - elapsed: 0.4308574940000085
     environment: g++
-    memory: 15.036
+    memory: 15.096
     name: small_dense_02
     status: AC
-  - elapsed: 0.13075053599999364
+  - elapsed: 0.129117162
     environment: g++
-    memory: 14.972
+    memory: 15.104
     name: small_dense_03
     status: AC
-  - elapsed: 0.28714394799999354
+  - elapsed: 0.2909260269999976
     environment: g++
-    memory: 15.1
+    memory: 15.052
     name: small_dense_04
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_sparse_inv.test.cpp

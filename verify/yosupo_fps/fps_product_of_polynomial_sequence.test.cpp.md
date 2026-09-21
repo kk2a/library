@@ -239,13 +239,13 @@ data:
       \n\n\n\n#line 5 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief\
       \ `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\
       \u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n\
-      \    static inline std::vector<mint> _invs{0, 1};\n    static inline auto _mod\
-      \ = mint::getmod();\n    InvTable() = delete;\n\n    static void set_upper(int\
-      \ m) {\n        if ((int)_invs.size() > m) return;\n        int start = _invs.size();\n\
-      \        _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r\
-      \ = 1 / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[_mod\
-      \ % i]) * (_mod / i);\n    }\n\n    static inline mint inv(int n) {\n      \
-      \  bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
+      \    static inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\
+      \n    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
+      \        int start = _invs.size();\n        auto mod = mint::getmod();\n   \
+      \     _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r = 1\
+      \ / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod\
+      \ % i]) * (mod / i);\n    }\n\n    static inline mint inv(int n) {\n       \
+      \ bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
       \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
       \ // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n\
       #include <ranges>\n#include <type_traits>\n\nnamespace kk2::fps {\n\nnamespace\
@@ -1336,142 +1336,142 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 7.151216276000014
+  - elapsed: 9.131353466999997
     environment: g++
-    memory: 39.612
+    memory: 39.552
     name: all_degree_one_00
     status: AC
-  - elapsed: 7.145575452000003
+  - elapsed: 9.145833111999991
     environment: g++
-    memory: 39.62
+    memory: 39.552
     name: all_degree_one_01
     status: AC
-  - elapsed: 7.139786429000026
+  - elapsed: 9.142409193000049
     environment: g++
-    memory: 39.476
+    memory: 39.52
     name: all_degree_one_02
     status: AC
-  - elapsed: 7.1485295919999885
+  - elapsed: 9.183087359000012
     environment: g++
-    memory: 39.468
+    memory: 39.496
     name: all_degree_one_03
     status: AC
-  - elapsed: 7.134976414999983
+  - elapsed: 9.115884423000011
     environment: g++
-    memory: 39.488
+    memory: 39.552
     name: all_degree_one_04
     status: AC
-  - elapsed: 0.00221044099998835
+  - elapsed: 0.0027695840000205862
     environment: g++
-    memory: 3.856
+    memory: 3.8
     name: example_00
     status: AC
-  - elapsed: 0.0017827350000061415
+  - elapsed: 0.0023162769999771626
     environment: g++
-    memory: 3.768
+    memory: 3.796
     name: example_01
     status: AC
-  - elapsed: 0.0017813480000086201
+  - elapsed: 0.002318850999984079
     environment: g++
-    memory: 3.764
+    memory: 3.824
     name: example_02
     status: AC
-  - elapsed: 1.9589300530000173
+  - elapsed: 2.553054870999972
     environment: g++
-    memory: 44.908
+    memory: 44.684
     name: max_and_zero_00
     status: AC
-  - elapsed: 7.182924577999984
+  - elapsed: 9.190145183000027
     environment: g++
-    memory: 34.436
+    memory: 34.496
     name: max_random_00
     status: AC
-  - elapsed: 7.295587828000009
+  - elapsed: 9.327837066999962
     environment: g++
-    memory: 36.908
+    memory: 36.84
     name: max_random_01
     status: AC
-  - elapsed: 6.2723341310000365
+  - elapsed: 8.043251134999991
     environment: g++
     memory: 16.432
     name: max_random_02
     status: AC
-  - elapsed: 7.279625615000043
+  - elapsed: 9.278768778000028
     environment: g++
-    memory: 36.852
+    memory: 36.776
     name: max_random_03
     status: AC
-  - elapsed: 6.919141588999992
+  - elapsed: 8.846878810000021
     environment: g++
-    memory: 27.948
+    memory: 28.016
     name: max_random_04
     status: AC
-  - elapsed: 6.652655290999974
+  - elapsed: 8.521156270000006
     environment: g++
-    memory: 33.728
+    memory: 33.66
     name: random_00
     status: AC
-  - elapsed: 6.794383555000024
+  - elapsed: 8.680728355000042
     environment: g++
-    memory: 36.296
+    memory: 36.248
     name: random_01
     status: AC
-  - elapsed: 5.745939518
+  - elapsed: 7.323417817000006
     environment: g++
-    memory: 14.812
+    memory: 14.732
     name: random_02
     status: AC
-  - elapsed: 0.8744241119999856
+  - elapsed: 1.1204936219999695
     environment: g++
-    memory: 27.496
+    memory: 27.576
     name: random_03
     status: AC
-  - elapsed: 1.6851280719999977
+  - elapsed: 2.1414525900000285
     environment: g++
-    memory: 20.988
+    memory: 20.92
     name: random_04
     status: AC
-  - elapsed: 0.0020495329999903333
+  - elapsed: 0.002492754000002151
     environment: g++
-    memory: 3.856
+    memory: 3.6
     name: small_00
     status: AC
-  - elapsed: 0.0017876880000358142
+  - elapsed: 0.0023523309999973208
     environment: g++
-    memory: 3.716
+    memory: 3.652
     name: small_01
     status: AC
-  - elapsed: 0.0018005360000188375
+  - elapsed: 0.0022505769999838776
     environment: g++
-    memory: 3.728
+    memory: 3.724
     name: small_02
     status: AC
-  - elapsed: 0.0017764010000291819
+  - elapsed: 0.0022587099999782367
     environment: g++
-    memory: 3.864
+    memory: 3.816
     name: small_03
     status: AC
-  - elapsed: 0.0017890200000465484
+  - elapsed: 0.002277727999967283
     environment: g++
-    memory: 3.864
+    memory: 3.608
     name: small_04
     status: AC
-  - elapsed: 8.061247573000003
+  - elapsed: 10.281483729000001
     environment: g++
-    memory: 43.864
+    memory: 43.8
     name: unbalanced_00
     status: AC
-  - elapsed: 8.113436885999988
+  - elapsed: 10.43767881399998
     environment: g++
-    memory: 43.836
+    memory: 43.808
     name: unbalanced_01
     status: AC
-  - elapsed: 7.926069065000036
+  - elapsed: 10.183429499999988
     environment: g++
-    memory: 44.34
+    memory: 44.248
     name: unbalanced_02
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp

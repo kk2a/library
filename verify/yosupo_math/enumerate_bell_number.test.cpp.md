@@ -241,13 +241,13 @@ data:
       \n\n\n\n#line 5 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief\
       \ `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\
       \u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n\
-      \    static inline std::vector<mint> _invs{0, 1};\n    static inline auto _mod\
-      \ = mint::getmod();\n    InvTable() = delete;\n\n    static void set_upper(int\
-      \ m) {\n        if ((int)_invs.size() > m) return;\n        int start = _invs.size();\n\
-      \        _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r\
-      \ = 1 / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[_mod\
-      \ % i]) * (_mod / i);\n    }\n\n    static inline mint inv(int n) {\n      \
-      \  bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
+      \    static inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\
+      \n    static void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n\
+      \        int start = _invs.size();\n        auto mod = mint::getmod();\n   \
+      \     _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r = 1\
+      \ / i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod\
+      \ % i]) * (mod / i);\n    }\n\n    static inline mint inv(int n) {\n       \
+      \ bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
       \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
       \ // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n\
       #include <ranges>\n#include <type_traits>\n\nnamespace kk2::fps {\n\nnamespace\
@@ -1096,80 +1096,81 @@ data:
       \ }\n};\n\ntemplate <fps::Modular mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;\n\
       \n} // namespace kk2\n\n\n#line 1 \"math_mod/bell_number.hpp\"\n\n\n\n#line\
       \ 5 \"math_mod/bell_number.hpp\"\n\n#line 1 \"math_mod/comb.hpp\"\n\n\n\n#line\
-      \ 7 \"math_mod/comb.hpp\"\n\n#line 9 \"math_mod/comb.hpp\"\n\nnamespace kk2\
+      \ 7 \"math_mod/comb.hpp\"\n\n#line 10 \"math_mod/comb.hpp\"\n\nnamespace kk2\
       \ {\n\ntemplate <class mint> struct Comb {\n    static inline std::vector<mint>\
-      \ _fact{1}, _ifact{1}, _inv{1};\n\n    Comb() = delete;\n\n    static void set_upper(int\
+      \ _fact{1}, _ifact{1};\n\n    Comb() = delete;\n\n    static void set_upper(int\
       \ m = -1) {\n        int n = (int)_fact.size();\n        if (m == -1) m = n\
       \ << 1;\n        if (n > m) return;\n        m = std::min<long long>(m, mint::getmod()\
-      \ - 1);\n        _fact.resize(m + 1);\n        _ifact.resize(m + 1);\n     \
-      \   _inv.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact[i] = _fact[i\
-      \ - 1] * i;\n        _ifact[m] = _fact[m].inv();\n        _inv[m] = _ifact[m]\
-      \ * _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
-      \ - 1] = _ifact[i] * i;\n            _inv[i - 1] = _ifact[i - 1] * _fact[i -\
-      \ 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n < 0)\
-      \ return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
+      \ - 1);\n        _fact.reserve(m + 1);\n        _ifact.resize(m + 1);\n    \
+      \    auto &_invs = InvTable<mint>::_invs;\n        if ((int)_invs.size() <=\
+      \ m) _invs.resize(m + 1);\n        for (int i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
+      \ * i);\n        _ifact[m] = _fact[m].inv();\n        _invs[m] = _ifact[m] *\
+      \ _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
+      \ - 1] = _ifact[i] * i;\n            _invs[i - 1] = _ifact[i - 1] * _fact[i\
+      \ - 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n <\
+      \ 0) return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
       \ _fact[n];\n    }\n\n    static mint ifact(int n) {\n        if (n < 0) return\
       \ 0;\n        if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
       \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
-      \        if ((int)_inv.size() <= n) set_upper(n);\n        return _inv[n];\n\
-      \    }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n  \
-      \  template <Integral T> static mint multinomial(const std::vector<T> &r) {\n\
-      \        int n = 0;\n        for (auto &x : r) {\n            if (x < 0) return\
-      \ 0;\n            n += x;\n        }\n        mint res = fact(n);\n        for\
-      \ (auto &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint\
-      \ binom_naive(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n\
-      \        mint res = 1;\n        k = std::min(k, n - k);\n        for (int i\
-      \ = 1; i <= k; i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n \
-      \   static mint permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n)\
-      \ return 0;\n        return fact(n) * ifact(n - k);\n    }\n\n    static mint\
-      \ homo(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        return\
-      \ k == 0 ? 1 : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line\
-      \ 7 \"math_mod/bell_number.hpp\"\n\nnamespace kk2 {\n\ntemplate <class FPS,\
-      \ class mint = typename FPS::value_type>\nstd::vector<mint> enumerate_bell_number(int\
-      \ n) {\n    FPS f(n + 1);\n    f[0] = 0;\n    kk2::Comb<mint>::set_upper(n);\n\
-      \    for (int i = 1; i <= n; ++i) f[i] = kk2::Comb<mint>::ifact(i);\n    f =\
-      \ f.exp(n + 1);\n    std::vector<mint> res(n + 1);\n    for (int i = 0; i <=\
-      \ n; ++i) res[i] = f[i] * kk2::Comb<mint>::fact(i);\n    return res;\n}\n\n\
-      } // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 8 \"modint/mont.hpp\"\
-      \n\n#line 11 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\ntemplate <int p> struct\
-      \ LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n    using\
-      \ i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n    using\
-      \ u64 = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32 ret = p;\n\
-      \        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n        return ret;\n\
-      \    }\n\n    static constexpr u32 r = get_r();\n    static constexpr u32 n2\
-      \ = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\");\n\
-      \    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
-      \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
-      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
-      \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
-      \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
-      \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
-      \ *this;\n        *this += 1;\n        return ret;\n    }\n\n    constexpr mint\
-      \ operator--(int) {\n        mint ret = *this;\n        *this -= 1;\n      \
-      \  return ret;\n    }\n\n    constexpr mint &operator+=(const mint &b) {\n \
-      \       if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n\
-      \    }\n\n    constexpr mint &operator-=(const mint &b) {\n        if (i32(_v\
-      \ -= b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
-      \ mint &operator*=(const mint &b) {\n        _v = reduce(u64(_v) * b._v);\n\
-      \        return *this;\n    }\n\n    constexpr mint &operator/=(const mint &b)\
-      \ {\n        *this *= b.inv();\n        return *this;\n    }\n\n\n    constexpr\
-      \ bool operator==(const mint &b) const {\n        return (_v >= p ? _v - p :\
-      \ _v) == (b._v >= p ? b._v - p : b._v);\n    }\n\n    constexpr bool operator!=(const\
-      \ mint &b) const {\n        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v\
-      \ - p : b._v);\n    }\n\n    constexpr mint operator-() const { return mint()\
-      \ - mint(*this); }\n    constexpr mint operator+() const { return mint(*this);\
-      \ }\n    friend constexpr mint operator+(const mint &a, const mint &b) { return\
-      \ mint(a) += b; }\n    friend constexpr mint operator-(const mint &a, const\
-      \ mint &b) { return mint(a) -= b; }\n    friend constexpr mint operator*(const\
-      \ mint &a, const mint &b) { return mint(a) *= b; }\n    friend constexpr mint\
-      \ operator/(const mint &a, const mint &b) { return mint(a) /= b; }\n\n    template\
-      \ <class T> constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
-      \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
-      \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
-      \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
-      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \        if (n == 0) return 1;\n        return InvTable<mint>::inv(n);\n   \
+      \ }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return\
+      \ 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template\
+      \ <Integral T> static mint multinomial(const std::vector<T> &r) {\n        int\
+      \ n = 0;\n        for (auto &x : r) {\n            if (x < 0) return 0;\n  \
+      \          n += x;\n        }\n        mint res = fact(n);\n        for (auto\
+      \ &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint binom_naive(int\
+      \ n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n        mint\
+      \ res = 1;\n        k = std::min(k, n - k);\n        for (int i = 1; i <= k;\
+      \ i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n    static mint\
+      \ permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n  \
+      \      return fact(n) * ifact(n - k);\n    }\n\n    static mint homo(int n,\
+      \ int k) {\n        if (n < 0 || k < 0) return 0;\n        return k == 0 ? 1\
+      \ : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line 7 \"math_mod/bell_number.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      std::vector<mint> enumerate_bell_number(int n) {\n    FPS f(n + 1);\n    f[0]\
+      \ = 0;\n    kk2::Comb<mint>::set_upper(n);\n    for (int i = 1; i <= n; ++i)\
+      \ f[i] = kk2::Comb<mint>::ifact(i);\n    f = f.exp(n + 1);\n    std::vector<mint>\
+      \ res(n + 1);\n    for (int i = 0; i <= n; ++i) res[i] = f[i] * kk2::Comb<mint>::fact(i);\n\
+      \    return res;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\
+      \n\n\n#line 8 \"modint/mont.hpp\"\n\n#line 11 \"modint/mont.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt {\n    using mint =\
+      \ LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using i64 = int64_t;\n\
+      \    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n    static constexpr\
+      \ u32 get_r() {\n        u32 ret = p;\n        for (int i = 0; i < 4; ++i) ret\
+      \ *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr u32 r\
+      \ = get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r\
+      \ * p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
+      \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
+      \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n\n    template\
+      \ <Integral T> constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p)\
+      \ * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b)\
+      \ * u32(-r)) * p) >> 32; }\n    constexpr mint &operator++() { return *this\
+      \ += 1; }\n    constexpr mint &operator--() { return *this -= 1; }\n\n    constexpr\
+      \ mint operator++(int) {\n        mint ret = *this;\n        *this += 1;\n \
+      \       return ret;\n    }\n\n    constexpr mint operator--(int) {\n       \
+      \ mint ret = *this;\n        *this -= 1;\n        return ret;\n    }\n\n   \
+      \ constexpr mint &operator+=(const mint &b) {\n        if (i32(_v += b._v -\
+      \ 2 * p) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr mint\
+      \ &operator-=(const mint &b) {\n        if (i32(_v -= b._v) < 0) _v += 2 * p;\n\
+      \        return *this;\n    }\n\n    constexpr mint &operator*=(const mint &b)\
+      \ {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n    }\n\n\
+      \    constexpr mint &operator/=(const mint &b) {\n        *this *= b.inv();\n\
+      \        return *this;\n    }\n\n\n    constexpr bool operator==(const mint\
+      \ &b) const {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v -\
+      \ p : b._v);\n    }\n\n    constexpr bool operator!=(const mint &b) const {\n\
+      \        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n\
+      \    }\n\n    constexpr mint operator-() const { return mint() - mint(*this);\
+      \ }\n    constexpr mint operator+() const { return mint(*this); }\n    friend\
+      \ constexpr mint operator+(const mint &a, const mint &b) { return mint(a) +=\
+      \ b; }\n    friend constexpr mint operator-(const mint &a, const mint &b) {\
+      \ return mint(a) -= b; }\n    friend constexpr mint operator*(const mint &a,\
+      \ const mint &b) { return mint(a) *= b; }\n    friend constexpr mint operator/(const\
+      \ mint &a, const mint &b) { return mint(a) /= b; }\n\n    template <class T>\
+      \ constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n      \
+      \  while (n > 0) {\n            if (n & 1) ret *= mul;\n            if (n >>=\
+      \ 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr mint\
+      \ inv() const {\n        assert(*this != mint(0));\n        return pow(p - 2);\n\
+      \    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
       \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
       \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
@@ -1367,62 +1368,62 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024420739999939656
+  - elapsed: 0.0025561619999976415
     environment: g++
-    memory: 3.82
+    memory: 3.836
     name: '0_00'
     status: AC
-  - elapsed: 0.7854931130000011
+  - elapsed: 0.796611704
     environment: g++
-    memory: 9.444
+    memory: 8.796
     name: '100000_00'
     status: AC
-  - elapsed: 0.0850209240000055
+  - elapsed: 0.08528294799999969
     environment: g++
-    memory: 4.192
+    memory: 4.168
     name: '10000_00'
     status: AC
-  - elapsed: 0.006213232000000346
+  - elapsed: 0.006848634000000686
     environment: g++
-    memory: 3.952
+    memory: 3.96
     name: '1000_00'
     status: AC
-  - elapsed: 0.002300312999999221
+  - elapsed: 0.002467045999999584
     environment: g++
-    memory: 3.824
+    memory: 3.676
     name: '100_00'
     status: AC
-  - elapsed: 0.0020903939999996624
+  - elapsed: 0.0021506989999977577
     environment: g++
-    memory: 3.828
+    memory: 3.792
     name: '1_00'
     status: AC
-  - elapsed: 1.671070259000004
+  - elapsed: 1.6655106050000015
     environment: g++
-    memory: 15.7
+    memory: 14.06
     name: '200000_00'
     status: AC
-  - elapsed: 3.450749322
+  - elapsed: 3.4476302540000034
     environment: g++
-    memory: 26.444
+    memory: 23.476
     name: '300000_00'
     status: AC
-  - elapsed: 3.494230732999995
+  - elapsed: 3.4736944910000034
     environment: g++
-    memory: 28.088
+    memory: 24.648
     name: '400000_00'
     status: AC
-  - elapsed: 3.4960208990000012
+  - elapsed: 3.503322054999998
     environment: g++
-    memory: 29.64
+    memory: 27.316
     name: '500000_00'
     status: AC
-  - elapsed: 0.0025946310000080075
+  - elapsed: 0.002533037999995713
     environment: g++
-    memory: 3.824
+    memory: 3.836
     name: example_00
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_bell_number.test.cpp

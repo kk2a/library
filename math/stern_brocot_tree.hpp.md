@@ -144,7 +144,7 @@ data:
   path: math/stern_brocot_tree.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_math/rational_approximation.test.cpp

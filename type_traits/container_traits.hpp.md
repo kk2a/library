@@ -206,7 +206,7 @@ data:
   - template/procon.hpp
   - unionfind/parallel.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/group/group.test.cpp

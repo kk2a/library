@@ -6,12 +6,21 @@ data:
     - https://judge.yosupo.jp/problem/sum_of_totient_function
   dependencies:
   - files:
+    - filename: bitcount.hpp
+      icon: LIBRARY_ALL_AC
+      path: bit/bitcount.hpp
+    - filename: my_bitset.hpp
+      icon: LIBRARY_ALL_AC
+      path: data_structure/my_bitset.hpp
     - filename: enumerate_quotients.hpp
       icon: LIBRARY_ALL_AC
       path: math/enumerate_quotients.hpp
     - filename: frac_floor.hpp
       icon: LIBRARY_ALL_AC
       path: math/frac_floor.hpp
+    - filename: isprime_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/isprime_table.hpp
     - filename: famous_function.hpp
       icon: LIBRARY_ALL_AC
       path: math/multiplicative_function/famous_function.hpp
@@ -60,8 +69,11 @@ data:
   - files: []
     type: Verified with
   dependsOn:
+  - bit/bitcount.hpp
+  - data_structure/my_bitset.hpp
   - math/enumerate_quotients.hpp
   - math/frac_floor.hpp
+  - math/isprime_table.hpp
   - math/multiplicative_function/famous_function.hpp
   - math/multiplicative_function/prefix_sum.hpp
   - math/pow.hpp
@@ -135,83 +147,16 @@ data:
       \ T &operator[](int i) const { return res[i]; }\n\n    int idx(T x) const {\n\
       \        if (x <= sqrt_n) return x - 1;\n        return size() - n / x;\n  \
       \  }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math/prime_table.hpp\"\n\n\n\n\
-      #line 6 \"math/prime_table.hpp\"\n\n#line 8 \"math/prime_table.hpp\"\n\nnamespace\
-      \ kk2 {\n\nstruct PrimeTable {\n  private:\n    static inline int _n = 30;\n\
-      \    static inline std::vector<int> _primes{2, 3, 5, 7, 11, 13, 17, 19, 23,\
-      \ 29};\n\n  public:\n    PrimeTable() = delete;\n\n    // wheel sieve\n    //\
-      \ reference: https://37zigen.com/wheel-sieve/\n    static void set_upper(int\
-      \ m, int reserve_size = 26355867) {\n        if (m <= _n) return;\n        _n\
-      \ = std::max(m, 2 * _n);\n        int sqrt_n = sqrt_floor(_n);\n        int\
-      \ w = 1;\n        std::vector<bool> iscoprime(sqrt_n, true);\n        for (int\
-      \ i = 0; i < 9; i++) {\n            if (w * _primes[i] > sqrt_n) break;\n  \
-      \          w *= _primes[i];\n            for (int j = _primes[i]; j < sqrt_n;\
-      \ j += _primes[i]) iscoprime[j] = false;\n        }\n\n        std::vector<int>\
-      \ idx_(w, -1);\n        int s = 0;\n        for (int i = 1; i < w; i++) {\n\
-      \            if (iscoprime[i]) idx_[i] = s++;\n        }\n        std::vector<int>\
-      \ coprimes(s);\n        for (int i = 1; i < w; i++) {\n            if (idx_[i]\
-      \ != -1) coprimes[idx_[i]] = i;\n        }\n\n        auto idx = [&](long long\
-      \ x) -> long long {\n            if (idx_[x % w] == -1) return -1;\n       \
-      \     return x / w * s + idx_[x % w];\n        };\n\n        auto val = [&](int\
-      \ i) {\n            return i / s * w + coprimes[i % s];\n        };\n\n    \
-      \    int n = (_n + w - 1) / w * s;\n        std::vector<int> _primes2;\n   \
-      \     _primes2.reserve(reserve_size);\n        std::vector<int> lpf(n, 0);\n\
-      \        for (int i = 1; i < n; i++) {\n            int v = val(i);\n      \
-      \      if (lpf[i] == 0) {\n                lpf[i] = v;\n                _primes2.push_back(lpf[i]);\n\
-      \            }\n\n            for (const long long p : _primes2) {\n       \
-      \         long long j = idx(p * v);\n                if (j >= n) break;\n  \
-      \              if (lpf[i] < p) break;\n                lpf[j] = p;\n       \
-      \     }\n        }\n\n        std::vector<int> tmp;\n        tmp.reserve(_primes.size()\
-      \ + _primes2.size());\n        std::set_union(_primes.begin(),\n           \
-      \            _primes.end(),\n                       _primes2.begin(),\n    \
-      \                   _primes2.end(),\n                       std::back_inserter(tmp));\n\
-      \        _primes = std::move(tmp);\n    }\n\n    static const std::vector<int>\
-      \ &primes() { return _primes; }\n\n    template <typename It> struct PrimeIt\
-      \ {\n        It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_)\
-      \ {}\n        It begin() const { return bg; }\n        It end() const { return\
-      \ ed; }\n        int size() const { return ed - bg; }\n        int operator[](int\
-      \ i) const { return bg[i]; }\n        std::vector<int> to_vec() const { return\
-      \ std::vector<int>(bg, ed); }\n    };\n\n    static auto primes(int n) {\n \
-      \       if (n >= _n) set_upper(n);\n        return PrimeIt(_primes.begin(),\
-      \ std::upper_bound(_primes.begin(), _primes.end(), n));\n    }\n};\n\n} // namespace\
-      \ kk2\n\n\n#line 9 \"math/multiplicative_function/prefix_sum.hpp\"\n\nnamespace\
-      \ kk2 {\n\n\n// f: multiplicative function\n// f = a * g_1 + b * g_2 + ...\n\
-      // g_i: completely multiplicative function\n// there exists s.t. h_i(p) = g(p)\
-      \ and can compute sum_x h_i(x)\ntemplate <class T> struct PrefixSumOfMultiplicativeFunction\
-      \ {\n    long long n;\n    EnumerateQuotients<long long> eq;\n    std::vector<T>\
-      \ prefix_sum_only_prime;\n    std::vector<T> prefix_sum;\n\n    PrefixSumOfMultiplicativeFunction(long\
-      \ long n)\n        : n(n),\n          eq(n),\n          prefix_sum_only_prime(eq.size()),\n\
-      \          prefix_sum(eq.size()) {}\n\n    int size() const { return eq.size();\
-      \ }\n\n    template <T (*f)(long long)> void LucyDP(std::vector<T> &dp) {\n\
-      \        LucyDP([](long long x) { return f(x); }, dp);\n    }\n\n    // f is\
-      \ completely multiplicative function\n    template <class F> void LucyDP(const\
-      \ F &f, std::vector<T> &dp) {\n        assert((int)dp.size() == eq.size());\n\
-      \        PrimeTable::set_upper(eq.sqrt_n);\n        for (const long long p :\
-      \ PrimeTable::primes()) {\n            if (p > eq.sqrt_n) break;\n         \
-      \   T fp = f(p);\n            for (int i = eq.size() - 1;; --i) {\n        \
-      \        if (eq[i] < p * p) break;\n                dp[i] -= (dp[eq.idx(eq[i]\
-      \ / p)] - dp[p - 2]) * fp;\n            }\n        }\n    }\n\n    template\
-      \ <T (*f)(long long, long long)> void Min_25Sieve() {\n        Min_25Sieve([](long\
-      \ long x, long long y) { return f(x, y); });\n    }\n\n    // f is multiplicative\
-      \ function\n    template <class F> void Min_25Sieve(const F &f) {\n        PrimeTable::set_upper(eq.sqrt_n);\n\
-      \        std::copy(prefix_sum_only_prime.begin(), prefix_sum_only_prime.end(),\
-      \ prefix_sum.begin());\n        const auto &primes = PrimeTable::primes();\n\
-      \        std::vector<T> tmp(eq.size());\n        for (int i = std::upper_bound(primes.begin(),\
-      \ primes.end(), eq.sqrt_n) - primes.begin() - 1;\n             i >= 0;\n   \
-      \          --i) {\n            const long long p = primes[i];\n            T\
-      \ pk = f(p, 1);\n            T pk1;\n            for (long long p_pw = p, k\
-      \ = 1; n / p >= p_pw; ++k, p_pw *= p) {\n                T pk1 = f(p, k + 1);\n\
-      \                for (int j = eq.size() - 1;; --j) {\n                    if\
-      \ (eq[j] < p_pw * p) break;\n                    tmp[j] += pk * (prefix_sum[eq.idx(eq[j]\
-      \ / p_pw)] - prefix_sum_only_prime[p - 1])\n                              +\
-      \ pk1;\n                }\n                pk = pk1;\n            }\n      \
-      \      for (int j = eq.size() - 1;; --j) {\n                if (eq[j] < p *\
-      \ p) break;\n                prefix_sum[j] += tmp[j];\n                tmp[j]\
-      \ = T();\n            }\n        }\n        for (int i = 0; i < eq.size(); ++i)\
-      \ ++prefix_sum[i];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\
-      \n\n\n\n#line 5 \"modint/mont.hpp\"\n#include <cstdint>\n#include <iostream>\n\
-      #include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line\
-      \ 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\n\
-      template <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      #line 1 \"math/isprime_table.hpp\"\n\n\n\n#line 5 \"math/isprime_table.hpp\"\
+      \n#include <array>\n#include <bit>\n#line 8 \"math/isprime_table.hpp\"\n#include\
+      \ <cstdint>\n#include <iterator>\n#line 11 \"math/isprime_table.hpp\"\n\n#line\
+      \ 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 6 \"data_structure/my_bitset.hpp\"\
+      \n#include <bitset>\n#line 9 \"data_structure/my_bitset.hpp\"\n#include <iostream>\n\
+      #line 11 \"data_structure/my_bitset.hpp\"\n#include <string>\n#include <utility>\n\
+      #line 14 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"bit/bitcount.hpp\"\n\n\
+      \n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\
+      \n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
       \ __int128_t>::value\n                                                     \
       \  or std::is_same<T, __int128>::value,\n                                  \
       \                 std::true_type,\n                                        \
@@ -246,21 +191,41 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
-      #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
-      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                                          || std::is_same<T,\
-      \ std::ifstream>::value,\n                                                 \
-      \     std::true_type,\n                                                    \
-      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
-      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
-      \                                                   || std::is_same<T, std::ofstream>::value,\n\
+      \n} // namespace kk2\n\n\n#line 7 \"bit/bitcount.hpp\"\n\nnamespace kk2 {\n\n\
+      template <Integral T> constexpr int ctz(T x) {\n    assert(x != T(0));\n\n \
+      \   if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n    }\
+      \ else if constexpr (sizeof(T) <= 8) {\n        return __builtin_ctzll(x);\n\
+      \    } else {\n        if (x & 0xffffffffffffffff)\n            return __builtin_ctzll((unsigned\
+      \ long long)(x & 0xffffffffffffffff));\n        return 64 + __builtin_ctzll((unsigned\
+      \ long long)(x >> 64));\n    }\n}\n\ntemplate <Integral T> constexpr int lsb(T\
+      \ x) {\n    assert(x != T(0));\n\n    return ctz(x);\n}\n\ntemplate <Integral\
+      \ T> constexpr int clz(T x) {\n    assert(x != T(0));\n\n    if constexpr (sizeof(T)\
+      \ <= 4) {\n        return __builtin_clz(x);\n    } else if constexpr (sizeof(T)\
+      \ <= 8) {\n        return __builtin_clzll(x);\n    } else {\n        if (x >>\
+      \ 64) return __builtin_clzll((unsigned long long)(x >> 64));\n        return\
+      \ 64 + __builtin_clzll((unsigned long long)(x & 0xffffffffffffffff));\n    }\n\
+      }\n\ntemplate <Integral T> constexpr int msb(T x) {\n    assert(x != T(0));\n\
+      \n    return sizeof(T) * 8 - 1 - clz(x);\n}\n\ntemplate <Integral T> constexpr\
+      \ int popcount(T x) {\n\n    if constexpr (sizeof(T) <= 4) {\n        return\
+      \ __builtin_popcount(x);\n    } else if constexpr (sizeof(T) <= 8) {\n     \
+      \   return __builtin_popcountll(x);\n    } else {\n        return __builtin_popcountll((unsigned\
+      \ long long)(x >> 64))\n               + __builtin_popcountll((unsigned long\
+      \ long)(x & 0xffffffffffffffff));\n    }\n}\n\n}; // namespace kk2\n\n\n#line\
+      \ 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
+      #include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace\
+      \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
+      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
+      \ = typename std::conditional<std::is_same<T, std::istream>::value\n       \
+      \                                                   || std::is_same<T, std::ifstream>::value,\n\
       \                                                      std::true_type,\n   \
       \                                                   std::false_type>::type;\n\
-      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
       \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
       \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
@@ -273,44 +238,499 @@ data:
       \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
       \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
       \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 11 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\n\
-      template <int p> struct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
-      \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
-      \    using u64 = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32\
-      \ ret = p;\n        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n      \
-      \  return ret;\n    }\n\n    static constexpr u32 r = get_r();\n    static constexpr\
-      \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
-      );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
-      \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
-      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
-      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
-      \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
-      \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
-      \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
-      \ *this;\n        *this += 1;\n        return ret;\n    }\n\n    constexpr mint\
-      \ operator--(int) {\n        mint ret = *this;\n        *this -= 1;\n      \
-      \  return ret;\n    }\n\n    constexpr mint &operator+=(const mint &b) {\n \
-      \       if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n\
-      \    }\n\n    constexpr mint &operator-=(const mint &b) {\n        if (i32(_v\
-      \ -= b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
-      \ mint &operator*=(const mint &b) {\n        _v = reduce(u64(_v) * b._v);\n\
-      \        return *this;\n    }\n\n    constexpr mint &operator/=(const mint &b)\
-      \ {\n        *this *= b.inv();\n        return *this;\n    }\n\n\n    constexpr\
-      \ bool operator==(const mint &b) const {\n        return (_v >= p ? _v - p :\
-      \ _v) == (b._v >= p ? b._v - p : b._v);\n    }\n\n    constexpr bool operator!=(const\
-      \ mint &b) const {\n        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v\
-      \ - p : b._v);\n    }\n\n    constexpr mint operator-() const { return mint()\
-      \ - mint(*this); }\n    constexpr mint operator+() const { return mint(*this);\
-      \ }\n    friend constexpr mint operator+(const mint &a, const mint &b) { return\
-      \ mint(a) += b; }\n    friend constexpr mint operator-(const mint &a, const\
-      \ mint &b) { return mint(a) -= b; }\n    friend constexpr mint operator*(const\
-      \ mint &a, const mint &b) { return mint(a) *= b; }\n    friend constexpr mint\
-      \ operator/(const mint &a, const mint &b) { return mint(a) /= b; }\n\n    template\
-      \ <class T> constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
-      \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
-      \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
-      \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
-      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \n} // namespace kk2\n\n\n#line 17 \"data_structure/my_bitset.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <class Accessor> struct MonotoneRankRange {\n    Accessor\
+      \ _accessor;\n\n    struct StrideRange {\n        Accessor _accessor;\n    \
+      \    int _start, _end, _step;\n\n        struct Iterator {\n            using\
+      \ value_type = int;\n            using difference_type = std::ptrdiff_t;\n \
+      \           using iterator_category = std::forward_iterator_tag;\n         \
+      \   using reference = int;\n            using pointer = void;\n\n          \
+      \  int rank, end, step;\n            mutable typename Accessor::MonotoneCursor\
+      \ cursor;\n\n            Iterator(int rank_, int end_, int step_, const Accessor\
+      \ &accessor)\n                : rank(rank_),\n                  end(end_),\n\
+      \                  step(step_),\n                  cursor(accessor.monotone_cursor())\
+      \ {}\n\n            int operator*() const { return cursor[rank]; }\n\n     \
+      \       Iterator &operator++() {\n                rank = step < end - rank ?\
+      \ rank + step : end;\n                return *this;\n            }\n\n     \
+      \       Iterator operator++(int) {\n                Iterator result = *this;\n\
+      \                ++*this;\n                return result;\n            }\n\n\
+      \            bool operator==(const Iterator &other) const { return rank == other.rank;\
+      \ }\n        };\n\n        Iterator begin() const { return Iterator(_start,\
+      \ _end, _step, _accessor); }\n        Iterator end() const { return Iterator(_end,\
+      \ _end, _step, _accessor); }\n\n        int size() const {\n            if (_start\
+      \ == _end) return 0;\n            return (_end - _start - 1) / _step + 1;\n\
+      \        }\n\n        std::vector<int> to_vec() const {\n            std::vector<int>\
+      \ result;\n            result.reserve(size());\n            for (int value :\
+      \ *this) result.push_back(value);\n            return result;\n        }\n \
+      \   };\n\n    auto begin() const { return stride(0, 1).begin(); }\n    auto\
+      \ end() const { return stride(0, 1).end(); }\n    int size() const { return\
+      \ _accessor.size(); }\n\n    int operator[](int rank) const { return _accessor[rank];\
+      \ }\n\n    auto monotone_cursor() const { return _accessor.monotone_cursor();\
+      \ }\n\n    StrideRange stride(int start, int step) const { return stride(start,\
+      \ step, size()); }\n\n    StrideRange stride(int start, int step, int end) const\
+      \ {\n        assert(0 <= start && start <= end && end <= size() && step > 0);\n\
+      \        return StrideRange{_accessor, start, end, step};\n    }\n\n    std::vector<int>\
+      \ to_vec() const {\n        std::vector<int> result;\n        result.reserve(size());\n\
+      \        for (int value : *this) result.push_back(value);\n        return result;\n\
+      \    }\n};\n\nstruct DynamicBitSet {\n    struct RankSelect;\n\n    using T\
+      \ = DynamicBitSet;\n    using UInt = std::uint64_t;\n    constexpr static int\
+      \ BLOCK_SIZE = sizeof(UInt) * 8;\n    constexpr static int BLOCK_SIZE_LOG =\
+      \ __builtin_ctz(BLOCK_SIZE);\n    constexpr static int BLOCK_MASK = BLOCK_SIZE\
+      \ - 1;\n    constexpr static UInt ONE = 1;\n    int n;\n    std::vector<UInt>\
+      \ block;\n\n    DynamicBitSet(int n_ = 0, bool x = 0) : n(n_) {\n        UInt\
+      \ val = x ? -1 : 0;\n        block.assign((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG,\
+      \ val);\n        if (n & BLOCK_MASK) block.back() >>= BLOCK_SIZE - (n & BLOCK_MASK);\n\
+      \        // fit the last block\n    }\n\n    DynamicBitSet(const std::string\
+      \ &s) : n(s.size()) {\n        block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
+      \        set(s);\n    }\n\n    inline int size() const { return n; }\n\n   \
+      \ int word_count() const { return block.size(); }\n\n    UInt &word(int i) {\n\
+      \        assert(0 <= i && i < word_count());\n        return block[i];\n   \
+      \ }\n\n    const UInt &word(int i) const {\n        assert(0 <= i && i < word_count());\n\
+      \        return block[i];\n    }\n\n    UInt *data() { return block.data();\
+      \ }\n\n    const UInt *data() const { return block.data(); }\n\n    T &clear_unused_bits()\
+      \ {\n        if ((n & BLOCK_MASK) && !block.empty()) block.back() &= (ONE <<\
+      \ (n & BLOCK_MASK)) - 1;\n        return *this;\n    }\n\n    T &inplace_combine_top(const\
+      \ T &rhs) {\n        if (this == &rhs) {\n            T copy = rhs;\n      \
+      \      return inplace_combine_top(copy);\n        }\n        int old_n = n;\n\
+      \        n += rhs.n;\n        block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
+      \        int offset = old_n & BLOCK_MASK;\n        int word_offset = old_n >>\
+      \ BLOCK_SIZE_LOG;\n        if (offset == 0) {\n            std::copy(rhs.block.begin(),\
+      \ rhs.block.end(), block.begin() + word_offset);\n        } else {\n       \
+      \     for (int i = 0; i < rhs.word_count(); ++i) {\n                block[word_offset\
+      \ + i] |= rhs.block[i] << offset;\n                if (word_offset + i + 1 <\
+      \ word_count()) {\n                    block[word_offset + i + 1] = rhs.block[i]\
+      \ >> (BLOCK_SIZE - offset);\n                }\n            }\n        }\n \
+      \       return *this;\n    }\n\n    T combine_top(const T &rhs) const { return\
+      \ T(*this).inplace_combine_top(rhs); }\n\n    T &inplace_combine_bottom(const\
+      \ T &rhs) {\n        T result = rhs;\n        result.inplace_combine_top(*this);\n\
+      \        *this = std::move(result);\n        return *this;\n    }\n\n    T combine_bottom(const\
+      \ T &rhs) const { return T(*this).inplace_combine_bottom(rhs); }\n\n    void\
+      \ set(int i, bool x = true) {\n        assert(0 <= i && i < n);\n        if\
+      \ (x) block[i >> BLOCK_SIZE_LOG] |= ONE << (i & BLOCK_MASK);\n        else block[i\
+      \ >> BLOCK_SIZE_LOG] &= ~(ONE << (i & BLOCK_MASK));\n    }\n\n    void reset(int\
+      \ i) { set(i, false); }\n\n    T &set_all(bool x = true) {\n        std::fill(block.begin(),\
+      \ block.end(), x ? ~UInt(0) : UInt(0));\n        if (x && (n & BLOCK_MASK))\
+      \ block.back() &= (ONE << (n & BLOCK_MASK)) - 1;\n        return *this;\n  \
+      \  }\n\n    T &reset_all() { return set_all(false); }\n\n    void set(const\
+      \ std::string &s) {\n        assert((int)s.size() == n);\n        for (int i\
+      \ = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            int r\
+      \ = n - (i << BLOCK_SIZE_LOG), l = std::max(0, r - BLOCK_SIZE);\n          \
+      \  block[i] = 0;\n            for (int j = l; j < r; j++) block[i] = (block[i]\
+      \ << 1) | (s[j] - '0');\n        }\n    }\n\n    void set_reversed(const std::string\
+      \ &s) {\n        assert((int)s.size() == n);\n        for (int i = 0; i < (n\
+      \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            int l = i << BLOCK_SIZE_LOG,\
+      \ r = std::min(n, l + BLOCK_SIZE);\n            block[i] = 0;\n            for\
+      \ (int j = r - 1; j >= l; --j) block[i] = (block[i] << 1) | (s[j] - '0');\n\
+      \        }\n    }\n\n    struct BitReference {\n        std::vector<UInt> &block;\n\
+      \        int idx;\n\n      public:\n        BitReference(std::vector<UInt> &block_,\
+      \ int idx_) : block(block_), idx(idx_) {}\n\n        operator bool() const {\
+      \ return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n\n   \
+      \     template <InputStream IStream> friend IStream &operator>>(IStream &is,\
+      \ BitReference a) {\n            bool c;\n            is >> c;\n           \
+      \ a = c;\n            return is;\n        }\n\n        BitReference &operator=(bool\
+      \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+      \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
+      \            return *this;\n        }\n\n        BitReference &operator=(const\
+      \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
+      \ |= ONE << (idx & BLOCK_MASK);\n            else block[idx >> BLOCK_SIZE_LOG]\
+      \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n\
+      \        BitReference &operator&=(bool x) {\n            if (!x) block[idx >>\
+      \ BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n\
+      \        }\n\n        BitReference &operator&=(const BitReference &other) {\n\
+      \            if (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
+      \            return *this;\n        }\n\n        BitReference &operator|=(bool\
+      \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+      \            return *this;\n        }\n\n        BitReference &operator|=(const\
+      \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
+      \ |= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n  \
+      \      BitReference &operator^=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
+      \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n  \
+      \      BitReference &operator^=(const BitReference &other) {\n            if\
+      \ (other) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n     \
+      \       return *this;\n        }\n\n        BitReference &flip() {\n       \
+      \     block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n         \
+      \   return *this;\n        }\n\n        BitReference &operator~() {\n      \
+      \      block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n        \
+      \    return *this;\n        }\n\n        bool val() const { return (block[idx\
+      \ >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n    };\n\n    BitReference\
+      \ operator[](int i) {\n        assert(0 <= i && i < n);\n        return BitReference(block,\
+      \ i);\n    }\n\n    bool operator[](int i) const {\n        assert(0 <= i &&\
+      \ i < n);\n        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) &\
+      \ 1;\n    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i && i\
+      \ < n);\n        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;\n\
+      \    }\n\n    T &operator=(const std::string &s) {\n        set(s);\n      \
+      \  return *this;\n    }\n\n    T &flip() {\n        for (UInt &x : block) x\
+      \ = ~x;\n        if (n & BLOCK_MASK) block.back() &= (ONE << (n & BLOCK_MASK))\
+      \ - 1;\n        return *this;\n    }\n\n    T &flip(int i) {\n        assert(0\
+      \ <= i && i < n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n\
+      \        return *this;\n    }\n\n    int ctz() const { return find_next(0);\
+      \ }\n\n    int clz() const {\n        int last = find_prev(n - 1);\n       \
+      \ return last == -1 ? n : n - 1 - last;\n    }\n\n    int find_next(int i) const\
+      \ {\n        if (i < 0) i = 0;\n        if (i >= n) return n;\n        int j\
+      \ = i >> BLOCK_SIZE_LOG;\n        UInt bits = block[j] & (~UInt(0) << (i & BLOCK_MASK));\n\
+      \        while (true) {\n            if (bits) return std::min(n, j * BLOCK_SIZE\
+      \ + (int)std::countr_zero(bits));\n            if (++j == word_count()) return\
+      \ n;\n            bits = block[j];\n        }\n    }\n\n    int find_next_zero(int\
+      \ i) const {\n        if (i < 0) i = 0;\n        if (i >= n) return n;\n   \
+      \     int j = i >> BLOCK_SIZE_LOG;\n        UInt bits = ~block[j] & (~UInt(0)\
+      \ << (i & BLOCK_MASK));\n        while (true) {\n            if (bits) return\
+      \ std::min(n, j * BLOCK_SIZE + (int)std::countr_zero(bits));\n            if\
+      \ (++j == word_count()) return n;\n            bits = ~block[j];\n        }\n\
+      \    }\n\n    int find_prev(int i) const {\n        if (i >= n) i = n - 1;\n\
+      \        if (i < 0) return -1;\n        int j = i >> BLOCK_SIZE_LOG;\n     \
+      \   int offset = i & BLOCK_MASK;\n        UInt bits = block[j] & (~UInt(0) >>\
+      \ (BLOCK_MASK - offset));\n        while (true) {\n            if (bits) return\
+      \ j * BLOCK_SIZE + (BLOCK_MASK - std::countl_zero(bits));\n            if (j--\
+      \ == 0) return -1;\n            bits = block[j];\n        }\n    }\n\n    int\
+      \ popcount() const {\n        int res = 0;\n        for (int i = 0; i < (n +\
+      \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            res += kk2::popcount(block[i]);\n\
+      \        }\n        return res;\n    }\n\n    T &operator~() { return flip();\
+      \ }\n\n    T &operator&=(const T &other) {\n        assert(n == other.n);\n\
+      \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            block[i] &= other.block[i];\n        }\n        return *this;\n\
+      \    }\n\n    T &operator|=(const T &other) {\n        assert(n == other.n);\n\
+      \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            block[i] |= other.block[i];\n        }\n        return *this;\n\
+      \    }\n\n    T &operator^=(const T &other) {\n        assert(n == other.n);\n\
+      \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            block[i] ^= other.block[i];\n        }\n        return *this;\n\
+      \    }\n\n    T &inplace_or_repeated(const T &pattern) {\n        assert(pattern.n\
+      \ > 0 && (pattern.n & BLOCK_MASK) == 0);\n        int pattern_words = pattern.word_count();\n\
+      \        for (int begin = 0; begin < word_count(); begin += pattern_words) {\n\
+      \            int size = std::min(pattern_words, word_count() - begin);\n   \
+      \         for (int i = 0; i < size; ++i) block[begin + i] |= pattern.block[i];\n\
+      \        }\n        return clear_unused_bits();\n    }\n\n    friend T operator&(const\
+      \ T &lhs, const T &rhs) { return T(lhs) &= rhs; }\n\n    friend T operator|(const\
+      \ T &lhs, const T &rhs) { return T(lhs) |= rhs; }\n\n    friend T operator^(const\
+      \ T &lhs, const T &rhs) { return T(lhs) ^= rhs; }\n\n    friend bool operator==(const\
+      \ T &lhs, const T &rhs) {\n        if (lhs.n != rhs.n) return false;\n     \
+      \   for (int i = 0; i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            if (lhs.block[i] != rhs.block[i]) return false;\n        }\n  \
+      \      return true;\n    }\n\n    friend bool operator!=(const T &lhs, const\
+      \ T &rhs) { return !(lhs == rhs); }\n\n    operator bool() const {\n       \
+      \ for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n     \
+      \       if (block[i]) return true;\n        }\n        return false;\n    }\n\
+      \n    std::string to_string(UInt x) const { return std::bitset<BLOCK_SIZE>(x).to_string();\
+      \ }\n\n    std::string to_string() const {\n        std::vector<std::string>\
+      \ tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        for (int i = 0; i <\
+      \ (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            tmp[i] = to_string(block[i]);\n\
+      \        }\n        if (n & BLOCK_MASK) {\n            std::reverse(std::begin(tmp.back()),\
+      \ std::end(tmp.back()));\n            tmp.back().resize(n & BLOCK_MASK);\n \
+      \           std::reverse(std::begin(tmp.back()), std::end(tmp.back()));\n  \
+      \      }\n        std::string res;\n        for (int i = (n + BLOCK_SIZE - 1)\
+      \ >> BLOCK_SIZE_LOG; i--;) { res += tmp[i]; }\n        return res;\n    }\n\n\
+      \    std::string to_reversed_string() const {\n        std::vector<std::string>\
+      \ tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        for (int i = 0; i <\
+      \ (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            tmp[i] = to_string(block[i]);\n\
+      \        }\n        if (n & BLOCK_MASK) {\n            std::reverse(std::begin(tmp.back()),\
+      \ std::end(tmp.back()));\n            tmp.back().resize(n & BLOCK_MASK);\n \
+      \           std::reverse(std::begin(tmp.back()), std::end(tmp.back()));\n  \
+      \      }\n        std::string res;\n        for (int i = 0; i < (n + BLOCK_SIZE\
+      \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            std::reverse(std::begin(tmp[i]),\
+      \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return\
+      \ res;\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const T &bs) {\n        return os << bs.to_string();\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, T &bs) {\n \
+      \       std::string s;\n        is >> s;\n        bs.set_reversed(s);\n    \
+      \    return is;\n    }\n};\n\nstruct DynamicBitSet::RankSelect {\n  private:\n\
+      \    DynamicBitSet _bits;\n    std::vector<int> _prefix;\n\n    UInt selected_word(int\
+      \ word) const { return _bits.word(word); }\n\n  public:\n    RankSelect() :\
+      \ _prefix(1) {}\n\n    explicit RankSelect(DynamicBitSet bits, bool value =\
+      \ true)\n        : _bits(std::move(bits)),\n          _prefix(_bits.word_count()\
+      \ + 1) {\n        for (int word = 0; word < _bits.word_count(); ++word) {\n\
+      \            UInt selected = value ? _bits.word(word) : ~_bits.word(word);\n\
+      \            if (word + 1 == _bits.word_count() && (_bits.size() & BLOCK_MASK))\
+      \ {\n                selected &= (ONE << (_bits.size() & BLOCK_MASK)) - 1;\n\
+      \            }\n            _bits.word(word) = selected;\n            _prefix[word\
+      \ + 1] = _prefix[word] + std::popcount(selected);\n        }\n    }\n\n    int\
+      \ bit_size() const { return _bits.size(); }\n\n    bool contains(int index)\
+      \ const {\n        assert(0 <= index && index < bit_size());\n        return\
+      \ _bits[index];\n    }\n\n    int rank(int end) const {\n        assert(0 <=\
+      \ end && end <= bit_size());\n        int word = end >> BLOCK_SIZE_LOG;\n  \
+      \      int result = _prefix[word];\n        if (end & BLOCK_MASK) {\n      \
+      \      UInt mask = (ONE << (end & BLOCK_MASK)) - 1;\n            result += std::popcount(selected_word(word)\
+      \ & mask);\n        }\n        return result;\n    }\n\n    int select(int rank)\
+      \ const {\n        assert(0 <= rank && rank < size());\n        int word =\n\
+      \            (int)(std::upper_bound(_prefix.begin(), _prefix.end(), rank) -\
+      \ _prefix.begin()) - 1;\n        UInt selected = selected_word(word);\n    \
+      \    int local_rank = rank - _prefix[word];\n        while (local_rank--) selected\
+      \ &= selected - 1;\n        return word * BLOCK_SIZE + std::countr_zero(selected);\n\
+      \    }\n\n    int find_next(int index) const { return _bits.find_next(index);\
+      \ }\n\n    struct MonotoneCursor {\n      private:\n        const RankSelect\
+      \ *_index;\n        int _last_rank = -1;\n        int _word = 0;\n\n      public:\n\
+      \        explicit MonotoneCursor(const RankSelect &index) : _index(&index) {}\n\
+      \n        int operator[](int rank) {\n            assert(0 <= rank && _last_rank\
+      \ <= rank && rank < _index->size());\n            _last_rank = rank;\n     \
+      \       while (_index->_prefix[_word + 1] <= rank) ++_word;\n            UInt\
+      \ selected = _index->selected_word(_word);\n            int local_rank = rank\
+      \ - _index->_prefix[_word];\n            while (local_rank--) selected &= selected\
+      \ - 1;\n            return _word * BLOCK_SIZE + std::countr_zero(selected);\n\
+      \        }\n    };\n\n    int size() const { return _prefix.back(); }\n\n  \
+      \  int operator[](int rank) const { return select(rank); }\n\n    MonotoneCursor\
+      \ monotone_cursor() const & { return MonotoneCursor(*this); }\n    MonotoneCursor\
+      \ monotone_cursor() const && = delete;\n\n    struct RangeAccessor {\n     \
+      \   const RankSelect *index;\n\n        using MonotoneCursor = RankSelect::MonotoneCursor;\n\
+      \n        int size() const { return index->size(); }\n        int operator[](int\
+      \ rank) const { return (*index)[rank]; }\n        MonotoneCursor monotone_cursor()\
+      \ const { return index->monotone_cursor(); }\n    };\n\n    using Range = MonotoneRankRange<RangeAccessor>;\n\
+      \n    Range range() const & { return Range{RangeAccessor{this}}; }\n    Range\
+      \ range() const && = delete;\n\n    auto begin() const { return range().begin();\
+      \ }\n    auto end() const { return range().end(); }\n    auto stride(int start,\
+      \ int step) const & { return range().stride(start, step); }\n    auto stride(int\
+      \ start, int step, int end) const & { return range().stride(start, step, end);\
+      \ }\n    auto stride(int, int) const && = delete;\n    auto stride(int, int,\
+      \ int) const && = delete;\n    std::vector<int> to_vec() const { return range().to_vec();\
+      \ }\n};\n\n} // namespace kk2\n\n\n#line 14 \"math/isprime_table.hpp\"\n\nnamespace\
+      \ kk2 {\n\nstruct IsPrimeTable {\n  private:\n    static constexpr std::array<int,\
+      \ 9> _small_primes{2, 3, 5, 7, 11, 13, 17, 19, 23};\n    static inline int _n\
+      \ = 1;\n    static inline int _wheel = 1;\n    static inline int _residue_count\
+      \ = 0;\n    static inline int _wheel_prime_count = 0;\n    static inline std::vector<int>\
+      \ _coprimes{};\n    static inline std::vector<int> _residue_index{};\n    static\
+      \ inline DynamicBitSet::RankSelect _prime_candidates{};\n\n    template <int\
+      \ Wheel, int ResidueCount>\n    static void set_offsets(int p,\n           \
+      \                 const std::vector<int> &coprimes,\n                      \
+      \      const std::vector<int> &residue_index,\n                            int\
+      \ *offsets) {\n        for (int r = 0; r < ResidueCount; ++r) {\n          \
+      \  long long x = 1LL * p * coprimes[r];\n            offsets[r] = x / Wheel\
+      \ * ResidueCount + residue_index[x % Wheel];\n        }\n    }\n\n    static\
+      \ int candidate_value(int index) {\n        return index / _residue_count *\
+      \ _wheel + _coprimes[index % _residue_count];\n    }\n\n    static int candidate_end(int\
+      \ n) {\n        return n / _wheel * _residue_count\n               + (int)(std::upper_bound(_coprimes.begin(),\
+      \ _coprimes.end(), n % _wheel)\n                       - _coprimes.begin());\n\
+      \    }\n\n    static int candidate_rank(int end) { return _prime_candidates.rank(end);\
+      \ }\n\n  public:\n    IsPrimeTable() = delete;\n\n    static void set_upper(int\
+      \ m) {\n        if (m <= _n && _residue_count != 0) return;\n        int next_n\
+      \ = std::max({m, 2 * _n, 60});\n\n        int sqrt_n = sqrt_floor(next_n);\n\
+      \        int wheel = 1;\n        int wheel_prime_count = 0;\n        // A moderately\
+      \ larger wheel pays off by reducing the number of sieve candidates.\n      \
+      \  while (wheel_prime_count < (int)_small_primes.size()\n               && 4LL\
+      \ * wheel * _small_primes[wheel_prime_count] <= 7LL * sqrt_n) {\n          \
+      \  wheel *= _small_primes[wheel_prime_count];\n            ++wheel_prime_count;\n\
+      \        }\n\n        std::vector<bool> iscoprime(wheel, true);\n        for\
+      \ (int i = 0; i < wheel_prime_count; ++i) {\n            for (int j = _small_primes[i];\
+      \ j < wheel; j += _small_primes[i]) iscoprime[j] = false;\n        }\n     \
+      \   std::vector<int> residue_index(wheel, -1);\n        int residue_count =\
+      \ 0;\n        for (int i = 1; i < wheel; ++i) {\n            if (iscoprime[i])\
+      \ residue_index[i] = residue_count++;\n        }\n        std::vector<int> coprimes(residue_count);\n\
+      \        for (int i = 1; i < wheel; ++i) {\n            if (residue_index[i]\
+      \ != -1) coprimes[residue_index[i]] = i;\n        }\n\n        auto val = [&](int\
+      \ i) {\n            return i / residue_count * wheel + coprimes[i % residue_count];\n\
+      \        };\n\n        int candidate_count = (next_n + wheel - 1) / wheel *\
+      \ residue_count;\n        while (candidate_count > 1 && val(candidate_count\
+      \ - 1) > next_n) --candidate_count;\n        DynamicBitSet composite(candidate_count);\n\
+      \        std::uint64_t *composite_data = composite.data();\n        auto set_composite\
+      \ = [&](long long i) {\n            composite_data[i >> 6] |= std::uint64_t(1)\
+      \ << (i & 63);\n        };\n        {\n            std::vector<bool> base_isprime(sqrt_n\
+      \ + 1, true);\n            base_isprime[0] = base_isprime[1] = false;\n    \
+      \        std::vector<int> base_primes;\n            for (int p = 2; p <= sqrt_n;\
+      \ ++p) {\n                if (!base_isprime[p]) continue;\n                if\
+      \ (p > _small_primes[wheel_prime_count - 1]) base_primes.push_back(p);\n   \
+      \             if (1LL * p * p <= sqrt_n) {\n                    for (int q =\
+      \ p * p; q <= sqrt_n; q += p) base_isprime[q] = false;\n                }\n\
+      \            }\n            constexpr int dense_limit = 112;\n            constexpr\
+      \ int dense_mask_bytes = 1 << 20;\n            int dense_count = 0;\n      \
+      \      if (wheel == 30030) {\n                std::vector<int> offsets(residue_count);\n\
+      \                while (dense_count < (int)base_primes.size()\n            \
+      \           && base_primes[dense_count] <= dense_limit) {\n                \
+      \    ++dense_count;\n                }\n                for (int group_begin\
+      \ = 0; group_begin < dense_count;) {\n                    int product = 1;\n\
+      \                    int group_end = group_begin;\n                    while\
+      \ (group_end < dense_count\n                           && 1LL * product * base_primes[group_end]\
+      \ * residue_count\n                                  <= 8LL * dense_mask_bytes)\
+      \ {\n                        product *= base_primes[group_end++];\n        \
+      \            }\n                    if (group_end == group_begin) product =\
+      \ base_primes[group_end++];\n                    int mask_word_count = product\
+      \ * residue_count / 64;\n                    DynamicBitSet mask(mask_word_count\
+      \ * 64);\n                    for (int k = group_begin; k < group_end; ++k)\
+      \ {\n                        int p = base_primes[k];\n                     \
+      \   set_offsets<30030, 5760>(p, coprimes, residue_index, offsets.data());\n\
+      \                        int period = p * residue_count;\n                 \
+      \       for (int base = 0; base < product * residue_count; base += period) {\n\
+      \                            for (int offset : offsets) {\n                \
+      \                int index = base + offset;\n                              \
+      \  mask.word(index >> 6) |= std::uint64_t(1) << (index & 63);\n            \
+      \                }\n                        }\n                    }\n     \
+      \               composite.inplace_or_repeated(mask);\n                    for\
+      \ (int k = group_begin; k < group_end; ++k) {\n                        int p\
+      \ = base_primes[k];\n                        int index = p / wheel * residue_count\
+      \ + residue_index[p % wheel];\n                        composite.word(index\
+      \ >> 6) &= ~(std::uint64_t(1) << (index & 63));\n                    }\n   \
+      \                 group_begin = group_end;\n                }\n            }\n\
+      \            int sparse_end = base_primes.size();\n            while (sparse_end\
+      \ > dense_count && 1LL * base_primes[sparse_end - 1] * wheel > next_n) {\n \
+      \               int p = base_primes[--sparse_end];\n                int begin\
+      \ = residue_index[p % wheel];\n                int end = std::upper_bound(coprimes.begin(),\
+      \ coprimes.end(), next_n / p)\n                          - coprimes.begin();\n\
+      \                for (int r = begin; r < end; ++r) {\n                    long\
+      \ long x = 1LL * p * coprimes[r];\n                    set_composite(x / wheel\
+      \ * residue_count + residue_index[x % wheel]);\n                }\n        \
+      \    }\n            struct SieveState {\n                int residue;\n    \
+      \            long long base, step;\n            };\n            int batch_size\
+      \ = wheel == 30030 ? 384 : 128;\n            constexpr int segment_size = 1\
+      \ << 21;\n            // Keep one candidate segment hot while marking it with\
+      \ a batch of primes.\n            std::vector<int> all_offsets((std::size_t)batch_size\
+      \ * residue_count);\n            std::vector<SieveState> states(batch_size);\n\
+      \            for (int batch_begin = dense_count; batch_begin < sparse_end;\n\
+      \                 batch_begin += batch_size) {\n                int size = std::min(batch_size,\
+      \ sparse_end - batch_begin);\n                for (int k = 0; k < size; ++k)\
+      \ {\n                    int p = base_primes[batch_begin + k];\n           \
+      \         int *offsets = all_offsets.data() + (std::size_t)k * residue_count;\n\
+      \                    switch (wheel) {\n                        case 6:\n   \
+      \                         set_offsets<6, 2>(p, coprimes, residue_index, offsets);\n\
+      \                            break;\n                        case 30:\n    \
+      \                        set_offsets<30, 8>(p, coprimes, residue_index, offsets);\n\
+      \                            break;\n                        case 210:\n   \
+      \                         set_offsets<210, 48>(p, coprimes, residue_index, offsets);\n\
+      \                            break;\n                        case 2310:\n  \
+      \                          set_offsets<2310, 480>(p, coprimes, residue_index,\
+      \ offsets);\n                            break;\n                        case\
+      \ 30030:\n                            set_offsets<30030, 5760>(p, coprimes,\
+      \ residue_index, offsets);\n                            break;\n           \
+      \             default:\n                            for (int r = 0; r < residue_count;\
+      \ ++r) {\n                                long long x = 1LL * p * coprimes[r];\n\
+      \                                offsets[r] = x / wheel * residue_count + residue_index[x\
+      \ % wheel];\n                            }\n                    }\n        \
+      \            int i = p / wheel * residue_count + residue_index[p % wheel];\n\
+      \                    int block = i / residue_count;\n                    states[k]\
+      \ = {i % residue_count,\n                                 1LL * p * block *\
+      \ residue_count,\n                                 1LL * p * residue_count};\n\
+      \                }\n                for (int segment_begin = 0; segment_begin\
+      \ < candidate_count;\n                     segment_begin += segment_size) {\n\
+      \                    int segment_end = std::min(candidate_count, segment_begin\
+      \ + segment_size);\n                    for (int k = 0; k < size; ++k) {\n \
+      \                       SieveState &state = states[k];\n                   \
+      \     int *offsets = all_offsets.data() + (std::size_t)k * residue_count;\n\
+      \                        while (state.base + offsets[residue_count - 1] < segment_end)\
+      \ {\n                            int r = state.residue;\n                  \
+      \          for (; r + 4 <= residue_count; r += 4) {\n                      \
+      \          set_composite(state.base + offsets[r]);\n                       \
+      \         set_composite(state.base + offsets[r + 1]);\n                    \
+      \            set_composite(state.base + offsets[r + 2]);\n                 \
+      \               set_composite(state.base + offsets[r + 3]);\n              \
+      \              }\n                            for (; r < residue_count; ++r)\
+      \ {\n                                set_composite(state.base + offsets[r]);\n\
+      \                            }\n                            state.residue =\
+      \ 0;\n                            state.base += state.step;\n              \
+      \          }\n                        while (state.residue < residue_count\n\
+      \                               && state.base + offsets[state.residue] < segment_end)\
+      \ {\n                            set_composite(state.base + offsets[state.residue]);\n\
+      \                            ++state.residue;\n                        }\n \
+      \                       if (state.residue == residue_count) {\n            \
+      \                state.residue = 0;\n                            state.base\
+      \ += state.step;\n                        }\n                    }\n       \
+      \         }\n            }\n        }\n\n        composite.set(0);\n       \
+      \ _n = next_n;\n        _wheel = wheel;\n        _residue_count = residue_count;\n\
+      \        _wheel_prime_count = wheel_prime_count;\n        _coprimes = std::move(coprimes);\n\
+      \        _residue_index = std::move(residue_index);\n        _prime_candidates\
+      \ = DynamicBitSet::RankSelect(std::move(composite), false);\n    }\n\n  private:\n\
+      \    struct PrimeAccessor {\n        struct MonotoneCursor {\n          private:\n\
+      \            int _size, _prefix_count;\n            int _last_rank = -1;\n \
+      \           DynamicBitSet::RankSelect::MonotoneCursor _cursor;\n\n         \
+      \ public:\n            MonotoneCursor(int size, int prefix_count)\n        \
+      \        : _size(size),\n                  _prefix_count(prefix_count),\n  \
+      \                _cursor(_prime_candidates.monotone_cursor()) {}\n\n       \
+      \     int operator[](int rank) {\n                assert(0 <= rank && _last_rank\
+      \ <= rank && rank < _size);\n                _last_rank = rank;\n          \
+      \      if (rank < _prefix_count) {\n                    assert(rank < (int)_small_primes.size());\n\
+      \                    return _small_primes[rank];\n                }\n\n    \
+      \            return candidate_value(_cursor[rank - _prefix_count]);\n      \
+      \      }\n        };\n\n        int _size, _prefix_count;\n\n        int size()\
+      \ const { return _size; }\n\n        int operator[](int rank) const {\n    \
+      \        assert(0 <= rank && rank < _size);\n            if (rank < _prefix_count)\
+      \ return _small_primes[rank];\n            return candidate_value(_prime_candidates[rank\
+      \ - _prefix_count]);\n        }\n\n        MonotoneCursor monotone_cursor()\
+      \ const { return MonotoneCursor(_size, _prefix_count); }\n    };\n\n  public:\n\
+      \    static auto primes(int n) {\n        using Range = MonotoneRankRange<PrimeAccessor>;\n\
+      \        if (n >= _n) set_upper(n);\n        if (_residue_count == 0)\n    \
+      \        return Range{\n                PrimeAccessor{0, 0}\n            };\n\
+      \        int prefix_count =\n            (int)(std::upper_bound(\n         \
+      \             _small_primes.begin(), _small_primes.begin() + _wheel_prime_count,\
+      \ n)\n                  - _small_primes.begin());\n        int end = candidate_end(n);\n\
+      \        return Range{\n            PrimeAccessor{prefix_count + candidate_rank(end),\
+      \ prefix_count}\n        };\n    }\n\n    static auto primes() { return primes(_n);\
+      \ }\n\n    static bool isprime(int n) {\n        assert(n > 0);\n        if\
+      \ (n >= _n) set_upper(n);\n        for (int i = 0; i < _wheel_prime_count; ++i)\
+      \ {\n            if (n == _small_primes[i]) return true;\n        }\n      \
+      \  int residue = _residue_index[n % _wheel];\n        if (residue == -1) return\
+      \ false;\n        int index = n / _wheel * _residue_count + residue;\n     \
+      \   return _prime_candidates.contains(index);\n    }\n};\n\n} // namespace kk2\n\
+      \n\n#line 5 \"math/prime_table.hpp\"\n\nnamespace kk2 {\n\nstruct PrimeTable\
+      \ {\n    PrimeTable() = delete;\n\n    static void set_upper(int m) { IsPrimeTable::set_upper(m);\
+      \ }\n\n    static auto primes() { return IsPrimeTable::primes(); }\n\n    static\
+      \ auto primes(int n) { return IsPrimeTable::primes(n); }\n};\n\n} // namespace\
+      \ kk2\n\n\n#line 9 \"math/multiplicative_function/prefix_sum.hpp\"\n\nnamespace\
+      \ kk2 {\n\n\n// f: multiplicative function\n// f = a * g_1 + b * g_2 + ...\n\
+      // g_i: completely multiplicative function\n// there exists s.t. h_i(p) = g(p)\
+      \ and can compute sum_x h_i(x)\ntemplate <class T> struct PrefixSumOfMultiplicativeFunction\
+      \ {\n    long long n;\n    EnumerateQuotients<long long> eq;\n    std::vector<T>\
+      \ prefix_sum_only_prime;\n    std::vector<T> prefix_sum;\n\n    PrefixSumOfMultiplicativeFunction(long\
+      \ long n)\n        : n(n),\n          eq(n),\n          prefix_sum_only_prime(eq.size()),\n\
+      \          prefix_sum(eq.size()) {}\n\n    int size() const { return eq.size();\
+      \ }\n\n    template <T (*f)(long long)> void LucyDP(std::vector<T> &dp) {\n\
+      \        LucyDP([](long long x) { return f(x); }, dp);\n    }\n\n    // f is\
+      \ completely multiplicative function\n    template <class F> void LucyDP(const\
+      \ F &f, std::vector<T> &dp) {\n        assert((int)dp.size() == eq.size());\n\
+      \        PrimeTable::set_upper(eq.sqrt_n);\n        for (const long long p :\
+      \ PrimeTable::primes()) {\n            if (p > eq.sqrt_n) break;\n         \
+      \   T fp = f(p);\n            for (int i = eq.size() - 1;; --i) {\n        \
+      \        if (eq[i] < p * p) break;\n                dp[i] -= (dp[eq.idx(eq[i]\
+      \ / p)] - dp[p - 2]) * fp;\n            }\n        }\n    }\n\n    template\
+      \ <T (*f)(long long, long long)> void Min_25Sieve() {\n        Min_25Sieve([](long\
+      \ long x, long long y) { return f(x, y); });\n    }\n\n    // f is multiplicative\
+      \ function\n    template <class F> void Min_25Sieve(const F &f) {\n        PrimeTable::set_upper(eq.sqrt_n);\n\
+      \        std::copy(prefix_sum_only_prime.begin(), prefix_sum_only_prime.end(),\
+      \ prefix_sum.begin());\n        auto primes = PrimeTable::primes(eq.sqrt_n);\n\
+      \        std::vector<T> tmp(eq.size());\n        for (int i = primes.size()\
+      \ - 1; i >= 0; --i) {\n            const long long p = primes[i];\n        \
+      \    T pk = f(p, 1);\n            T pk1;\n            for (long long p_pw =\
+      \ p, k = 1; n / p >= p_pw; ++k, p_pw *= p) {\n                T pk1 = f(p, k\
+      \ + 1);\n                for (int j = eq.size() - 1;; --j) {\n             \
+      \       if (eq[j] < p_pw * p) break;\n                    tmp[j] += pk * (prefix_sum[eq.idx(eq[j]\
+      \ / p_pw)] - prefix_sum_only_prime[p - 1])\n                              +\
+      \ pk1;\n                }\n                pk = pk1;\n            }\n      \
+      \      for (int j = eq.size() - 1;; --j) {\n                if (eq[j] < p *\
+      \ p) break;\n                prefix_sum[j] += tmp[j];\n                tmp[j]\
+      \ = T();\n            }\n        }\n        for (int i = 0; i < eq.size(); ++i)\
+      \ ++prefix_sum[i];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\
+      \n\n\n\n#line 8 \"modint/mont.hpp\"\n\n#line 11 \"modint/mont.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt {\n    using mint =\
+      \ LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using i64 = int64_t;\n\
+      \    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n    static constexpr\
+      \ u32 get_r() {\n        u32 ret = p;\n        for (int i = 0; i < 4; ++i) ret\
+      \ *= 2 - p * ret;\n        return ret;\n    }\n\n    static constexpr u32 r\
+      \ = get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n    static_assert(r\
+      \ * p == 1, \"invalid, r * p != 1\");\n    static_assert(p < (1 << 30), \"invalid,\
+      \ p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"invalid, p % 2 == 0\");\n\
+      \n    u32 _v;\n\n    constexpr LazyMontgomeryModInt() : _v(0) {}\n\n    template\
+      \ <Integral T> constexpr LazyMontgomeryModInt(T b) : _v(reduce(u64(b % p + p)\
+      \ * n2)) {}\n\n    static constexpr u32 reduce(const u64 &b) { return (b + u64(u32(b)\
+      \ * u32(-r)) * p) >> 32; }\n    constexpr mint &operator++() { return *this\
+      \ += 1; }\n    constexpr mint &operator--() { return *this -= 1; }\n\n    constexpr\
+      \ mint operator++(int) {\n        mint ret = *this;\n        *this += 1;\n \
+      \       return ret;\n    }\n\n    constexpr mint operator--(int) {\n       \
+      \ mint ret = *this;\n        *this -= 1;\n        return ret;\n    }\n\n   \
+      \ constexpr mint &operator+=(const mint &b) {\n        if (i32(_v += b._v -\
+      \ 2 * p) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr mint\
+      \ &operator-=(const mint &b) {\n        if (i32(_v -= b._v) < 0) _v += 2 * p;\n\
+      \        return *this;\n    }\n\n    constexpr mint &operator*=(const mint &b)\
+      \ {\n        _v = reduce(u64(_v) * b._v);\n        return *this;\n    }\n\n\
+      \    constexpr mint &operator/=(const mint &b) {\n        *this *= b.inv();\n\
+      \        return *this;\n    }\n\n\n    constexpr bool operator==(const mint\
+      \ &b) const {\n        return (_v >= p ? _v - p : _v) == (b._v >= p ? b._v -\
+      \ p : b._v);\n    }\n\n    constexpr bool operator!=(const mint &b) const {\n\
+      \        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v - p : b._v);\n\
+      \    }\n\n    constexpr mint operator-() const { return mint() - mint(*this);\
+      \ }\n    constexpr mint operator+() const { return mint(*this); }\n    friend\
+      \ constexpr mint operator+(const mint &a, const mint &b) { return mint(a) +=\
+      \ b; }\n    friend constexpr mint operator-(const mint &a, const mint &b) {\
+      \ return mint(a) -= b; }\n    friend constexpr mint operator*(const mint &a,\
+      \ const mint &b) { return mint(a) *= b; }\n    friend constexpr mint operator/(const\
+      \ mint &a, const mint &b) { return mint(a) /= b; }\n\n    template <class T>\
+      \ constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n      \
+      \  while (n > 0) {\n            if (n & 1) ret *= mul;\n            if (n >>=\
+      \ 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr mint\
+      \ inv() const {\n        assert(*this != mint(0));\n        return pow(p - 2);\n\
+      \    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
       \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
       \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
       \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
@@ -318,14 +738,14 @@ data:
       \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
       \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
       \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
-      \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\
-      \n#include <array>\n#include <bitset>\n#line 8 \"template/template.hpp\"\n#include\
-      \ <chrono>\n#line 10 \"template/template.hpp\"\n#include <deque>\n#include <functional>\n\
-      #include <iterator>\n#include <limits>\n#include <map>\n#line 16 \"template/template.hpp\"\
-      \n#include <optional>\n#include <queue>\n#include <random>\n#include <set>\n\
-      #include <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
-      #include <utility>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
-      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
+      \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 8 \"template/template.hpp\"\
+      \n#include <chrono>\n#line 10 \"template/template.hpp\"\n#include <deque>\n\
+      #include <functional>\n#line 13 \"template/template.hpp\"\n#include <limits>\n\
+      #include <map>\n#line 16 \"template/template.hpp\"\n#include <optional>\n#include\
+      \ <queue>\n#include <random>\n#include <set>\n#include <stack>\n#line 22 \"\
+      template/template.hpp\"\n#include <unordered_map>\n#include <unordered_set>\n\
+      #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
+      \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
       \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
       \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
       \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
@@ -514,247 +934,247 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.6086052140000078
+  - elapsed: 0.6143999170000001
     environment: g++
-    memory: 5.252
+    memory: 5.344
     name: boundaryA_00
     status: AC
-  - elapsed: 1.4688234730000005
+  - elapsed: 1.496368645000004
     environment: g++
-    memory: 7.124
+    memory: 7.136
     name: boundaryA_01
     status: AC
-  - elapsed: 1.993880691000001
+  - elapsed: 2.0127182410000017
     environment: g++
-    memory: 8.02
+    memory: 8.032
     name: boundaryA_02
     status: AC
-  - elapsed: 2.1957551360000025
+  - elapsed: 2.201600364000001
     environment: g++
-    memory: 8.268
+    memory: 8.348
     name: boundaryA_03
     status: AC
-  - elapsed: 1.336840029000001
+  - elapsed: 1.356251677000003
     environment: g++
-    memory: 6.916
+    memory: 6.82
     name: boundaryA_04
     status: AC
-  - elapsed: 1.2062009050000029
+  - elapsed: 1.217837811999999
     environment: g++
-    memory: 6.548
+    memory: 6.556
     name: boundaryA_05
     status: AC
-  - elapsed: 2.031444338
+  - elapsed: 2.042886928999991
     environment: g++
-    memory: 8.084
+    memory: 8.16
     name: boundaryA_06
     status: AC
-  - elapsed: 2.499381643999996
+  - elapsed: 2.547461394999999
     environment: g++
-    memory: 8.916
+    memory: 8.872
     name: boundaryA_07
     status: AC
-  - elapsed: 0.9186824820000083
+  - elapsed: 0.9374435969999979
     environment: g++
     memory: 6.036
     name: boundaryA_08
     status: AC
-  - elapsed: 1.3795464410000022
+  - elapsed: 1.3967219170000078
     environment: g++
-    memory: 6.932
+    memory: 7.0
     name: boundaryA_09
     status: AC
-  - elapsed: 0.6086098399999997
+  - elapsed: 0.6179451819999997
     environment: g++
-    memory: 5.268
+    memory: 5.284
     name: boundaryB_00
     status: AC
-  - elapsed: 1.468070434000012
+  - elapsed: 1.4921426540000056
     environment: g++
-    memory: 7.124
+    memory: 7.064
     name: boundaryB_01
     status: AC
-  - elapsed: 1.991698740000004
+  - elapsed: 2.0065889659999954
     environment: g++
-    memory: 8.076
+    memory: 7.972
     name: boundaryB_02
     status: AC
-  - elapsed: 2.182883572999998
+  - elapsed: 2.2019025240000047
     environment: g++
-    memory: 8.324
+    memory: 8.416
     name: boundaryB_03
     status: AC
-  - elapsed: 1.3342529660000082
+  - elapsed: 1.3579345410000059
     environment: g++
-    memory: 6.736
+    memory: 6.752
     name: boundaryB_04
     status: AC
-  - elapsed: 1.2060876829999927
+  - elapsed: 1.215507546000012
     environment: g++
-    memory: 6.548
+    memory: 6.624
     name: boundaryB_05
     status: AC
-  - elapsed: 2.020769586
+  - elapsed: 2.056951306000002
     environment: g++
-    memory: 8.084
+    memory: 8.16
     name: boundaryB_06
     status: AC
-  - elapsed: 2.4937320949999986
+  - elapsed: 2.535241561999996
     environment: g++
-    memory: 8.972
+    memory: 8.852
     name: boundaryB_07
     status: AC
-  - elapsed: 0.9183954169999993
+  - elapsed: 0.9325943589999923
     environment: g++
-    memory: 6.036
+    memory: 6.052
     name: boundaryB_08
     status: AC
-  - elapsed: 1.3741904569999974
+  - elapsed: 1.4090859420000044
     environment: g++
-    memory: 8.484
+    memory: 6.88
     name: boundaryB_09
     status: AC
-  - elapsed: 0.0021959440000074437
+  - elapsed: 0.002486938000004102
     environment: g++
-    memory: 3.728
+    memory: 3.824
     name: example_00
     status: AC
-  - elapsed: 0.0021459940000028155
+  - elapsed: 0.0021574010000051658
     environment: g++
-    memory: 3.768
+    memory: 3.804
     name: example_01
     status: AC
-  - elapsed: 0.0021132589999979245
+  - elapsed: 0.0021922159999974156
     environment: g++
-    memory: 3.732
+    memory: 3.828
     name: example_02
     status: AC
-  - elapsed: 0.002107302999988292
+  - elapsed: 0.0021223650000052885
     environment: g++
-    memory: 3.764
+    memory: 3.84
     name: handmade_00
     status: AC
-  - elapsed: 0.002129951000000574
+  - elapsed: 0.002210390000001894
     environment: g++
-    memory: 3.728
+    memory: 3.764
     name: handmade_01
     status: AC
-  - elapsed: 0.0021223399999996673
+  - elapsed: 0.002193771999998262
     environment: g++
-    memory: 3.728
+    memory: 3.812
     name: handmade_02
     status: AC
-  - elapsed: 0.00230084099999317
+  - elapsed: 0.0022970019999917213
     environment: g++
-    memory: 3.768
+    memory: 3.68
     name: handmade_03
     status: AC
-  - elapsed: 2.5054712670000043
+  - elapsed: 2.5362609200000037
     environment: g++
-    memory: 8.908
+    memory: 8.928
     name: max_00
     status: AC
-  - elapsed: 2.506167425000001
+  - elapsed: 2.536396234999998
     environment: g++
-    memory: 8.912
+    memory: 8.856
     name: max_01
     status: AC
-  - elapsed: 2.504559790000002
+  - elapsed: 2.5253824750000007
     environment: g++
-    memory: 8.916
+    memory: 8.864
     name: max_02
     status: AC
-  - elapsed: 2.5114697270000192
+  - elapsed: 2.5565001220000028
     environment: g++
-    memory: 8.972
+    memory: 8.928
     name: max_03
     status: AC
-  - elapsed: 2.5034751770000128
+  - elapsed: 2.5498368079999807
     environment: g++
-    memory: 8.916
+    memory: 8.852
     name: max_04
     status: AC
-  - elapsed: 2.5032973909999896
+  - elapsed: 2.5452784249999922
     environment: g++
-    memory: 8.908
+    memory: 8.928
     name: max_05
     status: AC
-  - elapsed: 2.5152345700000183
+  - elapsed: 2.5558958739999866
     environment: g++
-    memory: 8.98
+    memory: 8.928
     name: max_06
     status: AC
-  - elapsed: 2.5094930349999913
+  - elapsed: 2.5365624210000135
     environment: g++
-    memory: 8.916
+    memory: 8.924
     name: max_07
     status: AC
-  - elapsed: 2.506249480000008
+  - elapsed: 2.5402640519999977
     environment: g++
-    memory: 8.916
+    memory: 8.868
     name: max_08
     status: AC
-  - elapsed: 2.5116585289999875
+  - elapsed: 2.550313364999994
     environment: g++
-    memory: 8.916
+    memory: 8.856
     name: max_09
     status: AC
-  - elapsed: 0.6114971080000089
+  - elapsed: 0.6196328230000177
     environment: g++
-    memory: 5.148
+    memory: 5.268
     name: random_00
     status: AC
-  - elapsed: 1.4717505160000144
+  - elapsed: 1.488055581999987
     environment: g++
-    memory: 7.176
+    memory: 7.136
     name: random_01
     status: AC
-  - elapsed: 1.9901579069999968
+  - elapsed: 2.0137106219999907
     environment: g++
-    memory: 8.08
+    memory: 8.032
     name: random_02
     status: AC
-  - elapsed: 2.1737311079999984
+  - elapsed: 2.2027635790000204
     environment: g++
-    memory: 8.276
+    memory: 8.228
     name: random_03
     status: AC
-  - elapsed: 1.3355784569999969
+  - elapsed: 1.3880461950000154
     environment: g++
-    memory: 6.74
+    memory: 6.82
     name: random_04
     status: AC
-  - elapsed: 1.205794936000018
+  - elapsed: 1.2170174620000012
     environment: g++
-    memory: 6.484
+    memory: 6.564
     name: random_05
     status: AC
-  - elapsed: 2.0226416250000057
+  - elapsed: 2.0371971989999906
     environment: g++
-    memory: 8.02
+    memory: 8.1
     name: random_06
     status: AC
-  - elapsed: 2.4893089220000206
+  - elapsed: 2.5273247249999997
     environment: g++
-    memory: 8.908
+    memory: 8.928
     name: random_07
     status: AC
-  - elapsed: 0.9177505700000097
+  - elapsed: 0.9312136399999815
     environment: g++
-    memory: 5.972
+    memory: 6.052
     name: random_08
     status: AC
-  - elapsed: 1.384957567999976
+  - elapsed: 1.3973691929999745
     environment: g++
-    memory: 6.932
+    memory: 6.948
     name: random_09
     status: AC
-  - elapsed: 0.002206588999996484
+  - elapsed: 0.002197739999985515
     environment: g++
-    memory: 3.788
+    memory: 3.828
     name: small_00
     status: AC
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/sum_of_totient_function.test.cpp

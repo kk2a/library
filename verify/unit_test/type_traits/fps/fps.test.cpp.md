@@ -188,32 +188,32 @@ data:
       \ 5 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief `[1, n]`\u306E\
       mod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n\
       \ * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n    static inline\
-      \ std::vector<mint> _invs{0, 1};\n    static inline auto _mod = mint::getmod();\n\
-      \    InvTable() = delete;\n\n    static void set_upper(int m) {\n        if\
-      \ ((int)_invs.size() > m) return;\n        int start = _invs.size();\n     \
-      \   _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r = 1 /\
-      \ i (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[_mod\
-      \ % i]) * (_mod / i);\n    }\n\n    static inline mint inv(int n) {\n      \
-      \  bool neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
-      \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
-      \ // namespace kk2\n\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5\
-      \ \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                                     \
-      \  or std::is_same<T, __int128>::value,\n                                  \
-      \                 std::true_type,\n                                        \
-      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
-      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \ std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\n    static void\
+      \ set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n        int\
+      \ start = _invs.size();\n        auto mod = mint::getmod();\n        _invs.resize(m\
+      \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
+      \    for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod /\
+      \ i);\n    }\n\n    static inline mint inv(int n) {\n        bool neg = n <\
+      \ 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n\
+      \        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\
+      \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
+      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __uint128_t>::value\n                                  or std::is_same<T,\
+      \ unsigned __int128>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
-      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-      \                                  or is_unsigned_int128<T>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                                         \
-      \   std::true_type,\n                                            std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -1411,7 +1411,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-09-21 18:50:04+09:00'
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/type_traits/fps/fps.test.cpp

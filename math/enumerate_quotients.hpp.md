@@ -13,15 +13,30 @@ data:
       path: math/sqrt_floor.hpp
     type: Depends on
   - files:
+    - filename: lpf_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_table.hpp
+    - filename: arbitrary_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/arbitrary_table.hpp
     - filename: counting_square_free.hpp
       icon: LIBRARY_NO_TESTS
       path: math/multiplicative_function/counting_square_free.hpp
+    - filename: famous_function_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/famous_function_table.hpp
     - filename: prefix_sum.hpp
       icon: LIBRARY_ALL_AC
       path: math/multiplicative_function/prefix_sum.hpp
     - filename: prime_counting.hpp
       icon: LIBRARY_ALL_AC
       path: math/multiplicative_function/prime_counting.hpp
+    - filename: prime_factorize_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/prime_factorize_table.hpp
+    - filename: wheel_sieve.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/wheel_sieve.hpp
     type: Required by
   - files:
     - filename: isprime_table_extend.test.cpp
@@ -30,9 +45,21 @@ data:
     - filename: lpf_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/lpf_table_extend.test.cpp
+    - filename: famous_function_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
+    - filename: multiplicative_function_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+    - filename: prime_factorize_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/prime_factorize_table.test.cpp
     - filename: prime_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/prime_table_extend.test.cpp
+    - filename: wheel_sieve.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/wheel_sieve.test.cpp
     - filename: enumerate_quotients.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/enumerate_quotients.test.cpp
@@ -98,15 +125,24 @@ data:
   path: math/enumerate_quotients.hpp
   pathExtension: hpp
   requiredBy:
+  - math/lpf_table.hpp
+  - math/multiplicative_function/arbitrary_table.hpp
   - math/multiplicative_function/counting_square_free.hpp
+  - math/multiplicative_function/famous_function_table.hpp
   - math/multiplicative_function/prefix_sum.hpp
   - math/multiplicative_function/prime_counting.hpp
-  timestamp: '2026-09-21 18:50:04+09:00'
+  - math/prime_factorize_table.hpp
+  - math/wheel_sieve.hpp
+  timestamp: '2026-09-21 19:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/isprime_table_extend.test.cpp
   - verify/unit_test/math/lpf_table_extend.test.cpp
+  - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
+  - verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+  - verify/unit_test/math/prime_factorize_table.test.cpp
   - verify/unit_test/math/prime_table_extend.test.cpp
+  - verify/unit_test/math/wheel_sieve.test.cpp
   - verify/yosupo_math/enumerate_quotients.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   - verify/yosupo_math/prime_counting.test.cpp
