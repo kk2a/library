@@ -148,21 +148,13 @@ struct MultivariateFormalPowerSeries {
     }
 
     mfps operator+(const mfps &rhs) const { return mfps(*this) += rhs; }
-
     mfps operator-(const mfps &rhs) const { return mfps(*this) -= rhs; }
-
     mfps operator*(const mfps &rhs) const { return mul(rhs); }
-
     mfps operator+(const mint &rhs) const { return mfps(*this) += rhs; }
-
     mfps operator-(const mint &rhs) const { return mfps(*this) -= rhs; }
-
     mfps operator*(const mint &rhs) const { return mfps(*this) *= rhs; }
-
     mfps operator/(const mint &rhs) const { return mfps(*this) /= rhs; }
-
     mfps operator+() const { return mfps(*this); }
-
     mfps operator-() const { return mfps(base, -f); }
 
     friend bool operator==(const mfps &lhs, const mfps &rhs) {
@@ -227,9 +219,6 @@ struct MultivariateFormalPowerSeries {
     mfps pow(long long e) const { return kk2::fps::operations::pow(*this, e); }
     mfps &inplace_pow(long long e) { return kk2::fps::operations::inplace_pow(*this, e); }
 };
-
-template <fps::Modular mint, template <fps::Modular> class UnivariateFPS>
-std::vector<mint> MultivariateFormalPowerSeries<mint, UnivariateFPS>::_inv = {0, 1};
 
 template <fps::Modular mint>
 using MultivariateFormalPowerSeriesArbitrary =
