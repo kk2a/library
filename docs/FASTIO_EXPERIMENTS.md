@@ -1,3 +1,8 @@
+---
+title: fastio 実験記録
+documentation_of: ../template/fastio.hpp
+---
+
 # fastio 実験記録
 
 測定環境: `g++ -std=c++20 -O2 -pipe`、入力は library-checker の
