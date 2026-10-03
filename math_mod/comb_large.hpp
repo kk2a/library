@@ -6,7 +6,7 @@
 #include <functional>
 #include <vector>
 
-#include "../convolution/convolution_arb.hpp"
+#include "../fps/fps_ntt_friendly.hpp"
 #include "../fps/poly_sample_point_shift.hpp"
 #include "../type_traits/integral.hpp"
 #include "comb.hpp"
@@ -14,6 +14,7 @@
 namespace kk2 {
 
 template <class mint> struct CombLarge {
+    using FPS = FormalPowerSeriesNTTFriendly<mint>;
     static constexpr int LOG_BLOCK_SIZE = 9;
     static constexpr int BLOCK_SIZE = 1 << LOG_BLOCK_SIZE;
     static constexpr int BLOCK_NUM = mint::getmod() >> LOG_BLOCK_SIZE;
@@ -65,8 +66,7 @@ template <class mint> struct CombLarge {
         std::vector<mint> f{1};
         f.reserve(BLOCK_SIZE);
         for (int i = 0; i < LOG_BLOCK_SIZE; i++) {
-            std::vector<mint> g =
-                sample_point_shift(f, mint(1 << i), 3 << i, &convolution_arb<std::vector<mint>>);
+            std::vector<mint> g = sample_point_shift<FPS>(f, mint(1 << i), 3 << i);
             const auto get = [&](int j) {
                 return j < (1 << i) ? f[j] : g[j - (1 << i)];
             };
@@ -77,8 +77,8 @@ template <class mint> struct CombLarge {
         }
 
         if (BLOCK_NUM > BLOCK_SIZE) {
-            std::vector<mint> g = sample_point_shift(
-                f, mint(BLOCK_SIZE), BLOCK_NUM - BLOCK_SIZE, &convolution_arb<std::vector<mint>>);
+            std::vector<mint> g =
+                sample_point_shift<FPS>(f, mint(BLOCK_SIZE), BLOCK_NUM - BLOCK_SIZE);
             std::move(std::begin(g), std::end(g), std::back_inserter(f));
         } else f.resize(BLOCK_NUM);
         for (int i = 0; i < BLOCK_NUM; i++) { f[i] *= mint(i + 1) * BLOCK_SIZE; }
