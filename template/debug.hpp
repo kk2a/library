@@ -257,18 +257,9 @@ void show_vars(const std::vector<std::string> &name, int pos, const T &t, const 
     show_vars(name, pos, args...);
 }
 
-#define kdebug(...)                                                                                \
-    {                                                                                              \
-        std::cerr << "line:" << __LINE__ << ' ';                                                   \
-        kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__), 0, __VA_ARGS__);                      \
-        std::cerr << std::endl;                                                                    \
-    }
+#define kdebug(...) { std::cerr << "line:" << __LINE__ << ' '; kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__), 0, __VA_ARGS__); std::cerr << std::endl; }
 
-#define kput(s)                                                                                    \
-    {                                                                                              \
-        std::cerr << "line:" << __LINE__ << ' ';                                                   \
-        kk2::debug::outputln(std::cerr, s);                                                        \
-    }
+#define kput(s) { std::cerr << "line:" << __LINE__ << ' '; kk2::debug::outputln(std::cerr, s); }
 
 #else
 
