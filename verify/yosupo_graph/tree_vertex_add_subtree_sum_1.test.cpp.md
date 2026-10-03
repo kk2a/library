@@ -453,21 +453,21 @@ data:
       \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
       #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
       \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
@@ -681,87 +681,87 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.001895813999993834
+  - elapsed: 0.0025943969999957517
     environment: g++
-    memory: 3.904
+    memory: 3.816
     name: example_00
     status: AC
-  - elapsed: 1.1470077350000167
+  - elapsed: 1.6195029290000065
     environment: g++
-    memory: 386.424
+    memory: 386.36
     name: line_00
     status: AC
-  - elapsed: 1.1557650679999938
+  - elapsed: 1.6773832429999942
     environment: g++
-    memory: 386.48
+    memory: 386.296
     name: line_01
     status: AC
-  - elapsed: 1.2264498410000044
+  - elapsed: 1.9302422819999947
     environment: g++
-    memory: 321.504
+    memory: 321.552
     name: max_random_00
     status: AC
-  - elapsed: 1.2207172619999938
+  - elapsed: 1.8474018459999968
     environment: g++
-    memory: 321.728
+    memory: 321.584
     name: max_random_01
     status: AC
-  - elapsed: 1.2094602080000243
+  - elapsed: 1.8399029030000094
     environment: g++
-    memory: 321.504
+    memory: 321.492
     name: max_random_02
     status: AC
-  - elapsed: 0.9230748690000041
+  - elapsed: 1.4318855319999955
     environment: g++
-    memory: 251.472
+    memory: 252.132
     name: random_00
     status: AC
-  - elapsed: 1.10669556000002
+  - elapsed: 1.6803096180000097
     environment: g++
-    memory: 298.256
+    memory: 298.08
     name: random_01
     status: AC
-  - elapsed: 0.18530414500000347
+  - elapsed: 0.2629707619999948
     environment: g++
-    memory: 33.832
+    memory: 33.772
     name: random_02
     status: AC
-  - elapsed: 0.9430754560000025
+  - elapsed: 1.3877246309999975
     environment: g++
-    memory: 277.468
+    memory: 276.868
     name: random_03
     status: AC
-  - elapsed: 0.6084794300000169
+  - elapsed: 0.9377868610000064
     environment: g++
-    memory: 181.312
+    memory: 180.348
     name: random_04
     status: AC
-  - elapsed: 0.003102154999993445
+  - elapsed: 0.004613080000012815
     environment: g++
-    memory: 4.112
+    memory: 4.028
     name: small_00
     status: AC
-  - elapsed: 0.002150905000007697
+  - elapsed: 0.003125956999980417
     environment: g++
-    memory: 3.864
+    memory: 3.872
     name: small_01
     status: AC
-  - elapsed: 0.001980415999980778
+  - elapsed: 0.0028008639999939078
     environment: g++
-    memory: 3.744
+    memory: 3.804
     name: small_02
     status: AC
-  - elapsed: 0.0037273890000051324
+  - elapsed: 0.005308393999996497
     environment: g++
-    memory: 4.288
+    memory: 4.104
     name: small_03
     status: AC
-  - elapsed: 0.0025314290000153505
+  - elapsed: 0.003585737999998173
     environment: g++
-    memory: 4.16
+    memory: 4.02
     name: small_04
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_vertex_add_subtree_sum_1.test.cpp

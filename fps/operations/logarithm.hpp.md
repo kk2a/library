@@ -5,6 +5,9 @@ data:
     links: []
   dependencies:
   - files:
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: common/type_alias.hpp
     - filename: fps_sparsity_detector.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_sparsity_detector.hpp
@@ -14,6 +17,12 @@ data:
     - filename: fps.hpp
       icon: LIBRARY_ALL_AC
       path: type_traits/fps.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: modint.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/modint.hpp
     type: Depends on
   - files:
     - filename: fps_arb.hpp
@@ -40,6 +49,9 @@ data:
     - filename: comb_large.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb_large.hpp
+    - filename: large_fact_arb_mod.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: fps_composition.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_composition.test.cpp
@@ -55,9 +67,6 @@ data:
     - filename: poly_interpolation_geometric.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    - filename: poly_sample_point_shift.test.cpp
-      icon: LIBRARY_ALL_AC
-      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     - filename: poly_to_newton_basis.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
@@ -84,9 +93,9 @@ data:
     - filename: sparsity_small_performance.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_small_performance.test.cpp
-    - filename: large_fact_arb_mod.test.cpp
+    - filename: sum_of_polynomial.test.cpp
       icon: TEST_ACCEPTED
-      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+      path: verify/unit_test/fps/sum_of_polynomial.test.cpp
     - filename: fps.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/fps/fps.test.cpp
@@ -147,6 +156,9 @@ data:
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    - filename: prefix_sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
     - filename: enumerate_bell_number.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/enumerate_bell_number.test.cpp
@@ -161,9 +173,12 @@ data:
       path: verify/yuki/yuki_1510.test.cpp
     type: Verified with
   dependsOn:
+  - common/type_alias.hpp
   - fps/fps_sparsity_detector.hpp
   - math_mod/inv_table.hpp
   - type_traits/fps.hpp
+  - type_traits/integral.hpp
+  - type_traits/modint.hpp
   embedded:
   - code: "#ifndef KK2_FPS_OPERATIONS_LOGARITHM_HPP\n#define KK2_FPS_OPERATIONS_LOGARITHM_HPP\
       \ 1\n\n#include <cassert>\n#include <utility>\n#include <vector>\n\n#include\
@@ -187,8 +202,8 @@ data:
       \ next_support = 0;\n    for (int k = 0; k < precision - 1; ++k) {\n       \
       \ for (const auto &[index, coefficient] : support) {\n            if (k < index)\
       \ break;\n            const int i = k - index;\n            f[k + 1] -= f[i\
-      \ + 1] * coefficient * (i + 1);\n        }\n        f[k + 1] *= ivta::inv(k\
-      \ + 1);\n        while (next_support < support.size() && support[next_support].first\
+      \ + 1] * coefficient * (i + 1);\n        }\n        f[k + 1] *= ivta::inv_unchecked(static_cast<usize>(k\
+      \ + 1));\n        while (next_support < support.size() && support[next_support].first\
       \ < k + 1) ++next_support;\n        if (next_support < support.size() && support[next_support].first\
       \ == k + 1)\n            f[k + 1] += support[next_support].second;\n    }\n\
       \    return f;\n}\n\ntemplate <UnivariateFormalPowerSeries FPS> FPS sparse_log(const\
@@ -207,43 +222,103 @@ data:
     name: default
   - code: "#line 1 \"fps/operations/logarithm.hpp\"\n\n\n\n#include <cassert>\n#include\
       \ <utility>\n#include <vector>\n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n\
-      #line 5 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief `[1,\
-      \ n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\
-      \n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n    static\
-      \ inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\n    static\
-      \ void set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n    \
-      \    int start = _invs.size();\n        auto mod = mint::getmod();\n       \
-      \ _invs.resize(m + 1);\n        // p = q * i + r\n        // - q / r = 1 / i\
-      \ (mod p)\n        for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod %\
-      \ i]) * (mod / i);\n    }\n\n    static inline mint inv(int n) {\n        bool\
-      \ neg = n < 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size())\
-      \ set_upper(n);\n        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n}\
-      \ // namespace kk2\n\n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n\
-      #include <ranges>\n#include <type_traits>\n\nnamespace kk2::fps {\n\nnamespace\
-      \ category {\n\nstruct arbitrary_modulus {};\nstruct ntt_friendly_modulus {};\n\
-      \nstruct ordinary {};\nstruct exponential_generating {};\nstruct set_power_series\
-      \ {};\n\nstruct univariate {};\nstruct bivariate {};\nstruct multivariate {};\n\
-      \n} // namespace category\n\ntemplate <class M>\nconcept Modular = requires(M\
-      \ x) {\n    { M::getmod() } -> std::integral;\n    x.val();\n    { x.inv() }\
-      \ -> std::same_as<M>;\n};\n\ntemplate <class F>\nconcept FormalPowerSeries =\
-      \ requires(const F &f, int i) {\n    typename F::value_type;\n    typename F::modulus_category;\n\
-      \    typename F::series_category;\n    { f.size() } -> std::integral;\n    f[i];\n\
-      } && std::ranges::range<const F>;\n\ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F>\n    && std::same_as<typename F::modulus_category,\
-      \ category::ntt_friendly_modulus>;\n\ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::modulus_category,\
-      \ category::arbitrary_modulus>;\n\ntemplate <class F>\nconcept OrdinaryFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::series_category, category::ordinary>;\n\
-      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
+      #include <type_traits>\n#line 6 \"math_mod/inv_table.hpp\"\n\n#line 1 \"common/type_alias.hpp\"\
+      \n\n\n\n#include <cstddef>\n#include <cstdint>\n\nnamespace kk2 {\n\nusing usize\
+      \ = std::size_t;\nusing i8 = std::int8_t;\nusing u8 = std::uint8_t;\nusing i16\
+      \ = std::int16_t;\nusing u16 = std::uint16_t;\nusing i32 = std::int32_t;\nusing\
+      \ u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
+      \n#ifndef _MSC_VER\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n#endif\n\
+      \n} // namespace kk2\n\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line\
+      \ 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\n\
+      template <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
+      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
+      template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
+      \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
+      template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 9 \"math_mod/inv_table.hpp\"\n\nnamespace kk2\
+      \ {\n\n/**\n * @brief `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\
+      \u30C6\u30FC\u30D6\u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct\
+      \ InvTable {\n    static inline std::vector<mint> _invs{0, 1};\n    InvTable()\
+      \ = delete;\n\n    static void set_upper(usize m) {\n        if (_invs.size()\
+      \ > m) return;\n        using index_type = std::make_unsigned_t<std::remove_cv_t<decltype(mint::getmod())>>;\n\
+      \        const index_type start = static_cast<index_type>(_invs.size());\n \
+      \       const index_type upper = static_cast<index_type>(m);\n        const\
+      \ index_type mod = static_cast<index_type>(mint::getmod());\n        _invs.resize(m\
+      \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
+      \    for (index_type i = start; i <= upper; ++i) _invs[i] = (-_invs[mod % i])\
+      \ * (mod / i);\n    }\n\n    template <UnsignedIntegral T> static inline mint\
+      \ inv(T n) {\n        const usize index = static_cast<usize>(n);\n        if\
+      \ (index >= _invs.size()) set_upper(index);\n        return _invs[index];\n\
+      \    }\n\n    template <SignedIntegral T> static inline mint inv(T n) {\n  \
+      \      using U = std::make_unsigned_t<T>;\n        if (n < 0) {\n          \
+      \  // n + 1 is representable even when n is the minimum value.\n           \
+      \ const U magnitude = static_cast<U>(-(n + 1)) + U(1);\n            return -inv(magnitude);\n\
+      \        }\n        return inv(static_cast<U>(n));\n    }\n\n    static inline\
+      \ mint inv_unchecked(usize n) { return _invs[n]; }\n};\n\n} // namespace kk2\n\
+      \n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n#include <ranges>\n\
+      #line 7 \"type_traits/fps.hpp\"\n\n#line 1 \"type_traits/modint.hpp\"\n\n\n\n\
+      #line 5 \"type_traits/modint.hpp\"\n\n#line 7 \"type_traits/modint.hpp\"\n\n\
+      namespace kk2::modint {\n\ntemplate <class M>\nconcept Modular = requires(M\
+      \ x) {\n    requires Integral<decltype(M::getmod())>;\n    x.val();\n    { x.inv()\
+      \ } -> std::same_as<M>;\n};\n\n} // namespace kk2::modint\n\n\n#line 9 \"type_traits/fps.hpp\"\
+      \n\nnamespace kk2::fps {\n\nnamespace category {\n\nstruct arbitrary_modulus\
+      \ {};\nstruct ntt_friendly_modulus {};\n\nstruct ordinary {};\nstruct exponential_generating\
+      \ {};\nstruct set_power_series {};\n\nstruct univariate {};\nstruct bivariate\
+      \ {};\nstruct multivariate {};\n\n} // namespace category\n\n// Compatibility\
+      \ forwarding alias. The canonical modint constraint lives in\n// type_traits/modint.hpp;\
+      \ keeping this name avoids breaking existing FPS code.\ntemplate <class M>\n\
+      concept Modular = modint::Modular<M>;\n\ntemplate <class F>\nconcept FormalPowerSeries\
+      \ = requires(const F &f, int i) {\n    typename F::value_type;\n    typename\
+      \ F::modulus_category;\n    typename F::series_category;\n    { f.size() } ->\
+      \ std::integral;\n    f[i];\n} && std::ranges::range<const F>;\n\ntemplate <class\
+      \ F>\nconcept NTTFriendlyFormalPowerSeries =\n    FormalPowerSeries<F>\n   \
+      \ && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;\n\
+      \ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries =\n    FormalPowerSeries<F>\
+      \ && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;\n\
+      \ntemplate <class F>\nconcept OrdinaryFormalPowerSeries =\n    FormalPowerSeries<F>\
+      \ && std::same_as<typename F::series_category, category::ordinary>;\n\ntemplate\
+      \ <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
       \    && std::same_as<typename F::series_category, category::exponential_generating>;\n\
       \ntemplate <class F>\nconcept SetPowerSeries =\n    FormalPowerSeries<F> &&\
       \ std::same_as<typename F::series_category, category::set_power_series>;\n\n\
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
-      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
-      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ ModularUnivariateFormalPowerSeries =\n    UnivariateFormalPowerSeries<F> &&\
+      \ modint::Modular<typename F::value_type>;\n\ntemplate <class F>\nconcept UnivariateNTTFriendlyFormalPowerSeries\
+      \ =\n    NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries =\n\
+      \    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
       \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
@@ -255,26 +330,27 @@ data:
       \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
       \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
       \n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#include <algorithm>\n\
-      #include <bit>\n#include <cstdint>\n#include <memory>\n#line 9 \"fps/fps_sparsity_detector.hpp\"\
-      \n\nnamespace kk2 {\n\nenum class FPSOperation {\n    CONVOLUTION,\n    LOG,\n\
-      \    POWER,\n    DIVISION,\n    POLYNOMIAL_DIVISION,\n    INVERSE,\n    EXP,\n\
-      \    SQRT\n};\n\nnamespace fps::sparsity_detail {\n\n// E(n): the leading FFT\
-      \ evaluation cost, up to the common field-operation\n// constant that cancels\
-      \ when dense and sparse leading terms are compared.\ninline std::int64_t evaluation_work(int\
-      \ n) {\n    if (n <= 1) return 1;\n    const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n\
-      \    return static_cast<std::int64_t>(z) * std::countr_zero(z);\n}\n\ninline\
-      \ int transform_size(int n, int m) {\n    if (n <= 0 || m <= 0) return 0;\n\
-      \    return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n + m - 1)));\n\
-      }\n\ninline std::int64_t\nconvolution_dense_work(int n, int m, int precision,\
-      \ bool same, bool ntt_friendly) {\n    n = std::min(n, precision);\n    m =\
-      \ std::min(m, precision);\n    const int z = transform_size(n, m);\n    if (z\
-      \ == 0) return 0;\n\n    // A different pair needs two forward and one inverse\
-      \ transform. Squaring\n    // reuses the forward transform and needs only one\
-      \ forward transform.\n    const int transforms = same ? 2 : 3;\n    // Arbitrary-modulus\
-      \ convolution uses three NTT-friendly moduli.\n    const int moduli = ntt_friendly\
-      \ ? 1 : 3;\n    return static_cast<std::int64_t>(transforms) * moduli * evaluation_work(z);\n\
-      }\n\ninline std::int64_t inverse_dense_work(int precision, bool ntt_friendly)\
-      \ {\n    if (precision <= 1) return 0;\n    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(precision)));\n\
+      #include <bit>\n#line 7 \"fps/fps_sparsity_detector.hpp\"\n#include <memory>\n\
+      #line 9 \"fps/fps_sparsity_detector.hpp\"\n\nnamespace kk2 {\n\nenum class FPSOperation\
+      \ {\n    CONVOLUTION,\n    LOG,\n    POWER,\n    DIVISION,\n    POLYNOMIAL_DIVISION,\n\
+      \    INVERSE,\n    EXP,\n    SQRT\n};\n\nnamespace fps::sparsity_detail {\n\n\
+      // E(n): the leading FFT evaluation cost, up to the common field-operation\n\
+      // constant that cancels when dense and sparse leading terms are compared.\n\
+      inline std::int64_t evaluation_work(int n) {\n    if (n <= 1) return 1;\n  \
+      \  const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n    return static_cast<std::int64_t>(z)\
+      \ * std::countr_zero(z);\n}\n\ninline int transform_size(int n, int m) {\n \
+      \   if (n <= 0 || m <= 0) return 0;\n    return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n\
+      \ + m - 1)));\n}\n\ninline std::int64_t\nconvolution_dense_work(int n, int m,\
+      \ int precision, bool same, bool ntt_friendly) {\n    n = std::min(n, precision);\n\
+      \    m = std::min(m, precision);\n    const int z = transform_size(n, m);\n\
+      \    if (z == 0) return 0;\n\n    // A different pair needs two forward and\
+      \ one inverse transform. Squaring\n    // reuses the forward transform and needs\
+      \ only one forward transform.\n    const int transforms = same ? 2 : 3;\n  \
+      \  // Arbitrary-modulus convolution uses three NTT-friendly moduli.\n    const\
+      \ int moduli = ntt_friendly ? 1 : 3;\n    return static_cast<std::int64_t>(transforms)\
+      \ * moduli * evaluation_work(z);\n}\n\ninline std::int64_t inverse_dense_work(int\
+      \ precision, bool ntt_friendly) {\n    if (precision <= 1) return 0;\n    const\
+      \ int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(precision)));\n\
       \    // NTT-friendly uses five transforms per Newton level, whose geometric\n\
       \    // sum has leading term 10 E(z). The arbitrary-modulus implementation\n\
       \    // performs two fresh convolutions per level, giving 60 E(z).\n    return\
@@ -380,8 +456,8 @@ data:
       \ next_support = 0;\n    for (int k = 0; k < precision - 1; ++k) {\n       \
       \ for (const auto &[index, coefficient] : support) {\n            if (k < index)\
       \ break;\n            const int i = k - index;\n            f[k + 1] -= f[i\
-      \ + 1] * coefficient * (i + 1);\n        }\n        f[k + 1] *= ivta::inv(k\
-      \ + 1);\n        while (next_support < support.size() && support[next_support].first\
+      \ + 1] * coefficient * (i + 1);\n        }\n        f[k + 1] *= ivta::inv_unchecked(static_cast<usize>(k\
+      \ + 1));\n        while (next_support < support.size() && support[next_support].first\
       \ < k + 1) ++next_support;\n        if (next_support < support.size() && support[next_support].first\
       \ == k + 1)\n            f[k + 1] += support[next_support].second;\n    }\n\
       \    return f;\n}\n\ntemplate <UnivariateFormalPowerSeries FPS> FPS sparse_log(const\
@@ -411,15 +487,15 @@ data:
   - fps/fps_ntt_friendly.hpp
   - fps/fps_sps.hpp
   - math_mod/comb_large.hpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
   - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp
@@ -428,7 +504,7 @@ data:
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp
-  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/unit_test/fps/sum_of_polynomial.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
@@ -449,6 +525,7 @@ data:
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp

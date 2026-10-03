@@ -36,6 +36,9 @@ data:
     - filename: group.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/group/group.test.cpp
+    - filename: inv_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math_mod/inv_table.test.cpp
     - filename: dynamic_rolling_hash.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/string/dynamic_rolling_hash.test.cpp
@@ -260,10 +263,11 @@ data:
   - string/static_rolling_hash.hpp
   - unionfind/parallel.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/group/group.test.cpp
+  - verify/unit_test/math_mod/inv_table.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
   - verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp

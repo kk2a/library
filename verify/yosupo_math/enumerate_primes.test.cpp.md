@@ -617,24 +617,25 @@ data:
       #include <random>\n#include <set>\n#include <stack>\n#line 22 \"template/template.hpp\"\
       \n#include <unordered_map>\n#include <unordered_set>\n#line 26 \"template/template.hpp\"\
       \n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing i32 = int;\nusing u32 =\
+      \ unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+      \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+      \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\n\
+      using pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
+      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
+      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
+      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
+      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
+      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
       \n#include <cstdio>\n#line 10 \"template/fastio.hpp\"\n\n#line 13 \"template/fastio.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace fastio {\n\nstruct Scanner : type_traits::istream_tag\
       \ {\n  private:\n    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t\
@@ -803,57 +804,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002657745000007594
+  - elapsed: 0.002905037000004995
     environment: g++
     memory: 3.752
     name: '1_00'
     status: AC
-  - elapsed: 0.00218008599999564
+  - elapsed: 0.002424703000002637
     environment: g++
-    memory: 3.768
+    memory: 3.764
     name: '2_00'
     status: AC
-  - elapsed: 0.8184892109999993
+  - elapsed: 0.5534910840000009
     environment: g++
-    memory: 23.928
+    memory: 24.04
     name: '499477801_00'
     status: AC
-  - elapsed: 0.8101516259999926
+  - elapsed: 0.5607157450000102
     environment: g++
-    memory: 23.904
+    memory: 24.064
     name: '499999993_00'
     status: AC
-  - elapsed: 0.002568668000009211
-    environment: g++
-    memory: 3.796
-    name: example_00
-    status: AC
-  - elapsed: 0.9621628990000062
-    environment: g++
-    memory: 23.964
-    name: max_00
-    status: AC
-  - elapsed: 0.959621533999993
-    environment: g++
-    memory: 23.892
-    name: max_01
-    status: AC
-  - elapsed: 0.28289188499999796
-    environment: g++
-    memory: 7.188
-    name: ten_00
-    status: AC
-  - elapsed: 0.11266816799999901
-    environment: g++
-    memory: 4.02
-    name: ten_01
-    status: AC
-  - elapsed: 0.015199709000000894
+  - elapsed: 0.0025916689999974096
     environment: g++
     memory: 3.884
+    name: example_00
+    status: AC
+  - elapsed: 0.6351119980000135
+    environment: g++
+    memory: 23.928
+    name: max_00
+    status: AC
+  - elapsed: 0.6334588260000089
+    environment: g++
+    memory: 23.928
+    name: max_01
+    status: AC
+  - elapsed: 0.1944777459999898
+    environment: g++
+    memory: 7.22
+    name: ten_00
+    status: AC
+  - elapsed: 0.07977597699999706
+    environment: g++
+    memory: 4.216
+    name: ten_01
+    status: AC
+  - elapsed: 0.011611328999975967
+    environment: g++
+    memory: 3.988
     name: ten_02
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_primes.test.cpp

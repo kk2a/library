@@ -113,7 +113,7 @@ data:
   - math/action/affine_sumwithsize.hpp
   - math/action/update_sumwithsize.hpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/action/action.test.cpp

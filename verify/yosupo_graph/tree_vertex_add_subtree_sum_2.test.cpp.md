@@ -378,28 +378,29 @@ data:
       #include <random>\n#include <set>\n#include <stack>\n#include <string>\n#include\
       \ <unordered_map>\n#include <unordered_set>\n#line 26 \"template/template.hpp\"\
       \n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n\
-      #include <cstdio>\n#line 8 \"template/fastio.hpp\"\n#include <iostream>\n#line\
-      \ 10 \"template/fastio.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n\
-      #line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing i32 = int;\nusing u32 =\
+      \ unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+      \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+      \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\n\
+      using pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
+      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
+      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
+      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
+      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
+      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
+      \ <cstdio>\n#line 8 \"template/fastio.hpp\"\n#include <iostream>\n#line 10 \"\
+      template/fastio.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5\
+      \ \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
       \ __int128_t>::value\n                                                     \
       \  or std::is_same<T, __int128>::value,\n                                  \
       \                 std::true_type,\n                                        \
@@ -607,87 +608,87 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.00186306300000183
+  - elapsed: 0.002624394999998003
     environment: g++
-    memory: 3.908
+    memory: 3.64
     name: example_00
     status: AC
-  - elapsed: 0.5127756099999772
+  - elapsed: 0.7106892749999929
     environment: g++
-    memory: 112.868
+    memory: 112.984
     name: line_00
     status: AC
-  - elapsed: 0.5033463909999796
+  - elapsed: 0.7436547229999917
     environment: g++
-    memory: 113.012
+    memory: 112.944
     name: line_01
     status: AC
-  - elapsed: 0.5627065779999896
+  - elapsed: 1.0417076720000011
     environment: g++
-    memory: 63.884
+    memory: 63.864
     name: max_random_00
     status: AC
-  - elapsed: 0.5504916069999979
+  - elapsed: 1.0706046429999958
     environment: g++
-    memory: 63.712
+    memory: 63.824
     name: max_random_01
     status: AC
-  - elapsed: 0.5724521080000216
+  - elapsed: 0.9995222910000052
     environment: g++
-    memory: 63.944
+    memory: 63.88
     name: max_random_02
     status: AC
-  - elapsed: 0.456007704000001
+  - elapsed: 0.7404593969999951
     environment: g++
-    memory: 51.38
+    memory: 51.252
     name: random_00
     status: AC
-  - elapsed: 0.5161660660000109
+  - elapsed: 0.9194370010000057
     environment: g++
-    memory: 59.536
+    memory: 59.764
     name: random_01
     status: AC
-  - elapsed: 0.12652417900000046
+  - elapsed: 0.17860112500000014
     environment: g++
-    memory: 10.14
+    memory: 10.076
     name: random_02
     status: AC
-  - elapsed: 0.39024030800001697
+  - elapsed: 0.6845581050000078
     environment: g++
-    memory: 55.6
+    memory: 56.128
     name: random_03
     status: AC
-  - elapsed: 0.2643540919999907
+  - elapsed: 0.43223231199999645
     environment: g++
-    memory: 38.588
+    memory: 37.796
     name: random_04
     status: AC
-  - elapsed: 0.0025296109999999317
+  - elapsed: 0.00351930499999753
     environment: g++
-    memory: 4.032
+    memory: 3.712
     name: small_00
     status: AC
-  - elapsed: 0.0020413700000005974
+  - elapsed: 0.002696369000005916
     environment: g++
-    memory: 3.852
+    memory: 3.78
     name: small_01
     status: AC
-  - elapsed: 0.0019392189999791754
+  - elapsed: 0.0025398729999892566
     environment: g++
-    memory: 3.864
+    memory: 3.792
     name: small_02
     status: AC
-  - elapsed: 0.002721771000011586
+  - elapsed: 0.00367366399999014
     environment: g++
-    memory: 3.904
+    memory: 3.908
     name: small_03
     status: AC
-  - elapsed: 0.0021262999999862586
+  - elapsed: 0.0028768420000062633
     environment: g++
-    memory: 3.976
+    memory: 3.932
     name: small_04
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/tree_vertex_add_subtree_sum_2.test.cpp

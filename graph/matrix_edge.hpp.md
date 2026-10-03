@@ -155,7 +155,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - graph/matrix.hpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_grl_1_c.test.cpp

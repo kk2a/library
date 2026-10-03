@@ -1,0 +1,265 @@
+---
+data:
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    links: []
+  dependencies:
+  - files:
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: common/type_alias.hpp
+    - filename: poly_sample_point_evaluate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/poly_sample_point_evaluate.hpp
+    - filename: comb.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/comb.hpp
+    - filename: inv_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/inv_table.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: modint.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/modint.hpp
+    type: Depends on
+  - files:
+    - filename: poly_sample_point_shift.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/poly_sample_point_shift.hpp
+    - filename: comb_large.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/comb_large.hpp
+    - filename: large_fact_arb_mod.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+    - filename: poly_sample_point_shift.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
+    type: Required by
+  - files:
+    - filename: poly_sample_point_evaluate.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
+    - filename: many_factrials.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_math/many_factrials.test.cpp
+    type: Verified with
+  dependsOn:
+  - common/type_alias.hpp
+  - fps/poly_sample_point_evaluate.hpp
+  - math_mod/comb.hpp
+  - math_mod/inv_table.hpp
+  - type_traits/integral.hpp
+  - type_traits/modint.hpp
+  embedded:
+  - code: "#ifndef KK2_FPS_DETAIL_POLY_SAMPLE_POINT_SHIFT_HPP\n#define KK2_FPS_DETAIL_POLY_SAMPLE_POINT_SHIFT_HPP\
+      \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\n#include\
+      \ \"../../common/type_alias.hpp\"\n#include \"../../math_mod/comb.hpp\"\n#include\
+      \ \"../../type_traits/modint.hpp\"\n#include \"../poly_sample_point_evaluate.hpp\"\
+      \n\nnamespace kk2::detail {\n\ntemplate <modint::Modular mint>\nusing SamplePointShiftConvolution\
+      \ = std::vector<mint> (*)(const std::vector<mint> &,\n                     \
+      \                                     const std::vector<mint> &,\n         \
+      \                                                 int);\n\ntemplate <modint::Modular\
+      \ mint>\nstd::vector<mint> sample_point_shift_impl(const std::vector<mint> &y,\n\
+      \                                          mint t,\n                       \
+      \                   i32 m,\n                                          SamplePointShiftConvolution<mint>\
+      \ convolve) {\n    if (m == 0) return {};\n    if (m == 1) return {sample_point_evaluate(y,\
+      \ t)};\n    if (y.empty()) return std::vector<mint>(m);\n    i64 tval = static_cast<i64>(t.val());\n\
+      \    i32 k = static_cast<i32>(y.size()) - 1;\n    if (tval <= k) {\n       \
+      \ std::vector<mint> ret(m);\n        i32 ptr = 0;\n        for (i64 i = tval;\
+      \ i <= k and ptr < m; i++) { ret[ptr++] = y[i]; }\n        if (k + 1 < tval\
+      \ + m) {\n            auto suf = sample_point_shift_impl(y, mint(k + 1), m -\
+      \ ptr, convolve);\n            for (i64 i = k + 1; i < tval + m; i++) { ret[ptr++]\
+      \ = suf[i - (k + 1)]; }\n        }\n        return ret;\n    }\n    const i64\
+      \ modulus = static_cast<i64>(mint::getmod());\n    if (tval + m > modulus) {\n\
+      \        auto pref = sample_point_shift_impl(y, t, static_cast<i32>(modulus\
+      \ - tval), convolve);\n        auto suf =\n            sample_point_shift_impl(y,\
+      \ mint(0), static_cast<i32>(m + tval - modulus), convolve);\n        std::ranges::copy(suf,\
+      \ std::back_inserter(pref));\n        return pref;\n    }\n\n    std::vector<mint>\
+      \ d(k + 1);\n    Comb<mint>::set_upper(k);\n    for (i32 i = 0; i <= k; i++)\
+      \ {\n        d[i] = Comb<mint>::ifact(i) * Comb<mint>::ifact(k - i) * y[i];\n\
+      \        if ((k - i) & 1) d[i] = -d[i];\n    }\n\n    std::vector<mint> h(m\
+      \ + k);\n    mint product = 1;\n    for (i32 i = 0; i < m + k; i++) {\n    \
+      \    h[i] = product;\n        product *= t - k + i;\n    }\n    product = product.inv();\n\
+      \    for (i32 i = m + k - 1; i >= 0; i--) {\n        h[i] *= product;\n    \
+      \    product *= t - k + i;\n    }\n\n    std::vector<mint> dh = convolve(d,\
+      \ h, -1);\n\n    std::vector<mint> ret(m);\n    mint cur = t;\n    for (i32\
+      \ i = 1; i <= k; i++) cur *= t - i;\n    for (i32 i = 0; i < m; i++) {\n   \
+      \     ret[i] = cur * dh[k + i];\n        cur *= t + i + 1;\n        cur *= h[i];\n\
+      \    }\n    return ret;\n}\n\ntemplate <modint::Modular mint>\nstd::vector<mint>\
+      \ sample_point_shift(const std::vector<mint> &y,\n                         \
+      \            mint t,\n                                     i32 m,\n        \
+      \                             SamplePointShiftConvolution<mint> convolve) {\n\
+      \    if (m == -1) m = y.size();\n    assert(m >= 0);\n    return sample_point_shift_impl(y,\
+      \ t, m, convolve);\n}\n\n} // namespace kk2::detail\n\n#endif // KK2_FPS_DETAIL_POLY_SAMPLE_POINT_SHIFT_HPP\n"
+    name: default
+  - code: "#line 1 \"fps/detail/poly_sample_point_shift.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <cassert>\n#include <vector>\n\n#line 1 \"common/type_alias.hpp\"\n\
+      \n\n\n#include <cstddef>\n#include <cstdint>\n\nnamespace kk2 {\n\nusing usize\
+      \ = std::size_t;\nusing i8 = std::int8_t;\nusing u8 = std::uint8_t;\nusing i16\
+      \ = std::int16_t;\nusing u16 = std::uint16_t;\nusing i32 = std::int32_t;\nusing\
+      \ u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
+      \n#ifndef _MSC_VER\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n#endif\n\
+      \n} // namespace kk2\n\n\n#line 1 \"math_mod/comb.hpp\"\n\n\n\n#line 7 \"math_mod/comb.hpp\"\
+      \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __uint128_t>::value\n                                  or std::is_same<T,\
+      \ unsigned __int128>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
+      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
+      template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
+      \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
+      template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 1 \"type_traits/modint.hpp\"\n\n\n\n#include\
+      \ <concepts>\n\n#line 7 \"type_traits/modint.hpp\"\n\nnamespace kk2::modint\
+      \ {\n\ntemplate <class M>\nconcept Modular = requires(M x) {\n    requires Integral<decltype(M::getmod())>;\n\
+      \    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n\n} // namespace kk2::modint\n\
+      \n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 6 \"math_mod/inv_table.hpp\"\
+      \n\n#line 9 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief\
+      \ `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\
+      \u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n\
+      \    static inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\
+      \n    static void set_upper(usize m) {\n        if (_invs.size() > m) return;\n\
+      \        using index_type = std::make_unsigned_t<std::remove_cv_t<decltype(mint::getmod())>>;\n\
+      \        const index_type start = static_cast<index_type>(_invs.size());\n \
+      \       const index_type upper = static_cast<index_type>(m);\n        const\
+      \ index_type mod = static_cast<index_type>(mint::getmod());\n        _invs.resize(m\
+      \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
+      \    for (index_type i = start; i <= upper; ++i) _invs[i] = (-_invs[mod % i])\
+      \ * (mod / i);\n    }\n\n    template <UnsignedIntegral T> static inline mint\
+      \ inv(T n) {\n        const usize index = static_cast<usize>(n);\n        if\
+      \ (index >= _invs.size()) set_upper(index);\n        return _invs[index];\n\
+      \    }\n\n    template <SignedIntegral T> static inline mint inv(T n) {\n  \
+      \      using U = std::make_unsigned_t<T>;\n        if (n < 0) {\n          \
+      \  // n + 1 is representable even when n is the minimum value.\n           \
+      \ const U magnitude = static_cast<U>(-(n + 1)) + U(1);\n            return -inv(magnitude);\n\
+      \        }\n        return inv(static_cast<U>(n));\n    }\n\n    static inline\
+      \ mint inv_unchecked(usize n) { return _invs[n]; }\n};\n\n} // namespace kk2\n\
+      \n\n#line 12 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <modint::Modular\
+      \ mint> struct Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1};\n\
+      \n    Comb() = delete;\n\n  private:\n    static void extend(usize m) {\n  \
+      \      const usize n = _fact.size();\n        m = std::min<usize>(m, mint::getmod()\
+      \ - 1);\n        _fact.reserve(m + 1);\n        _ifact.resize(m + 1);\n    \
+      \    auto &_invs = InvTable<mint>::_invs;\n        if (_invs.size() <= m) _invs.resize(m\
+      \ + 1);\n        for (usize i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
+      \ * i);\n        _ifact[m] = _fact[m].inv();\n        _invs[m] = _ifact[m] *\
+      \ _fact[m - 1];\n        for (usize i = m; i > n; i--) {\n            _ifact[i\
+      \ - 1] = _ifact[i] * i;\n            _invs[i - 1] = _ifact[i - 1] * _fact[i\
+      \ - 2];\n        }\n    }\n\n    static void ensure(usize n) {\n        assert(n\
+      \ < mint::getmod());\n        if (_fact.size() > n) return;\n        extend(std::max<usize>(n,\
+      \ _fact.size() * 2));\n    }\n\n  public:\n    static void set_upper(usize n)\
+      \ {\n        ensure(std::min<usize>(n, static_cast<usize>(mint::getmod() - 1)));\n\
+      \    }\n\n    static mint fact(u32 n) {\n        ensure(static_cast<usize>(n));\n\
+      \        return _fact[n];\n    }\n\n    static mint ifact(u32 n) {\n       \
+      \ ensure(static_cast<usize>(n));\n        return _ifact[n];\n    }\n\n    static\
+      \ mint inv(i32 n) {\n        assert(n != 0);\n        return InvTable<mint>::inv(n);\n\
+      \    }\n\n    static mint binom(u32 n, u32 k) {\n        if (k > n) return 0;\n\
+      \        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template <UnsignedIntegral\
+      \ T> static mint multinomial(const std::vector<T> &r) {\n        u64 n = 0;\n\
+      \        for (const T x : r) n += x;\n        assert(n < mint::getmod());\n\
+      \        mint res = fact(static_cast<u32>(n));\n        for (const T x : r)\
+      \ res *= ifact(static_cast<u32>(x));\n        return res;\n    }\n\n    static\
+      \ mint binom_naive(u32 n, u32 k) {\n        if (k > n) return 0;\n        mint\
+      \ res = 1;\n        k = std::min(k, n - k);\n        for (u32 i = 1; i <= k;\
+      \ i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n    static mint\
+      \ permu(u32 n, u32 k) {\n        if (k > n) return 0;\n        return fact(n)\
+      \ * ifact(n - k);\n    }\n\n    static mint homo(u32 n, u32 k) { return k ==\
+      \ 0 ? 1 : binom(n + k - 1, k); }\n};\n\n} // namespace kk2\n\n\n#line 1 \"fps/poly_sample_point_evaluate.hpp\"\
+      \n\n\n\n#line 6 \"fps/poly_sample_point_evaluate.hpp\"\n\n#line 10 \"fps/poly_sample_point_evaluate.hpp\"\
+      \n\nnamespace kk2 {\n\n/**\n * @brief Return `f(t)`, where `f(i) = y[i]` for\
+      \ `i = 0, ..., y.size() - 1`.\n */\ntemplate <modint::Modular mint> mint sample_point_evaluate(const\
+      \ std::vector<mint> &y, mint t) {\n    if (y.empty()) return 0;\n    assert(y.size()\
+      \ <= static_cast<usize>(mint::getmod()));\n\n    const usize tval = static_cast<usize>(t.val());\n\
+      \    if (tval < y.size()) return y[tval];\n\n    const i32 degree = static_cast<i32>(y.size())\
+      \ - 1;\n    Comb<mint>::set_upper(degree);\n\n    std::vector<mint> prefix(y.size()\
+      \ + 1, mint(1));\n    for (usize i = 0; i < y.size(); i++) prefix[i + 1] = prefix[i]\
+      \ * (t - mint(i));\n\n    mint result = 0;\n    mint suffix = 1;\n    for (usize\
+      \ i = y.size(); i-- > 0;) {\n        mint term = y[i] * Comb<mint>::ifact(static_cast<i32>(i))\n\
+      \                    * Comb<mint>::ifact(degree - static_cast<i32>(i));\n  \
+      \      if ((degree - static_cast<i32>(i)) & 1) term = -term;\n        result\
+      \ += term * prefix[i] * suffix;\n        suffix *= t - mint(i);\n    }\n   \
+      \ return result;\n}\n\n} // namespace kk2\n\n\n#line 12 \"fps/detail/poly_sample_point_shift.hpp\"\
+      \n\nnamespace kk2::detail {\n\ntemplate <modint::Modular mint>\nusing SamplePointShiftConvolution\
+      \ = std::vector<mint> (*)(const std::vector<mint> &,\n                     \
+      \                                     const std::vector<mint> &,\n         \
+      \                                                 int);\n\ntemplate <modint::Modular\
+      \ mint>\nstd::vector<mint> sample_point_shift_impl(const std::vector<mint> &y,\n\
+      \                                          mint t,\n                       \
+      \                   i32 m,\n                                          SamplePointShiftConvolution<mint>\
+      \ convolve) {\n    if (m == 0) return {};\n    if (m == 1) return {sample_point_evaluate(y,\
+      \ t)};\n    if (y.empty()) return std::vector<mint>(m);\n    i64 tval = static_cast<i64>(t.val());\n\
+      \    i32 k = static_cast<i32>(y.size()) - 1;\n    if (tval <= k) {\n       \
+      \ std::vector<mint> ret(m);\n        i32 ptr = 0;\n        for (i64 i = tval;\
+      \ i <= k and ptr < m; i++) { ret[ptr++] = y[i]; }\n        if (k + 1 < tval\
+      \ + m) {\n            auto suf = sample_point_shift_impl(y, mint(k + 1), m -\
+      \ ptr, convolve);\n            for (i64 i = k + 1; i < tval + m; i++) { ret[ptr++]\
+      \ = suf[i - (k + 1)]; }\n        }\n        return ret;\n    }\n    const i64\
+      \ modulus = static_cast<i64>(mint::getmod());\n    if (tval + m > modulus) {\n\
+      \        auto pref = sample_point_shift_impl(y, t, static_cast<i32>(modulus\
+      \ - tval), convolve);\n        auto suf =\n            sample_point_shift_impl(y,\
+      \ mint(0), static_cast<i32>(m + tval - modulus), convolve);\n        std::ranges::copy(suf,\
+      \ std::back_inserter(pref));\n        return pref;\n    }\n\n    std::vector<mint>\
+      \ d(k + 1);\n    Comb<mint>::set_upper(k);\n    for (i32 i = 0; i <= k; i++)\
+      \ {\n        d[i] = Comb<mint>::ifact(i) * Comb<mint>::ifact(k - i) * y[i];\n\
+      \        if ((k - i) & 1) d[i] = -d[i];\n    }\n\n    std::vector<mint> h(m\
+      \ + k);\n    mint product = 1;\n    for (i32 i = 0; i < m + k; i++) {\n    \
+      \    h[i] = product;\n        product *= t - k + i;\n    }\n    product = product.inv();\n\
+      \    for (i32 i = m + k - 1; i >= 0; i--) {\n        h[i] *= product;\n    \
+      \    product *= t - k + i;\n    }\n\n    std::vector<mint> dh = convolve(d,\
+      \ h, -1);\n\n    std::vector<mint> ret(m);\n    mint cur = t;\n    for (i32\
+      \ i = 1; i <= k; i++) cur *= t - i;\n    for (i32 i = 0; i < m; i++) {\n   \
+      \     ret[i] = cur * dh[k + i];\n        cur *= t + i + 1;\n        cur *= h[i];\n\
+      \    }\n    return ret;\n}\n\ntemplate <modint::Modular mint>\nstd::vector<mint>\
+      \ sample_point_shift(const std::vector<mint> &y,\n                         \
+      \            mint t,\n                                     i32 m,\n        \
+      \                             SamplePointShiftConvolution<mint> convolve) {\n\
+      \    if (m == -1) m = y.size();\n    assert(m >= 0);\n    return sample_point_shift_impl(y,\
+      \ t, m, convolve);\n}\n\n} // namespace kk2::detail\n\n\n"
+    name: bundled
+  isFailed: false
+  isVerificationFile: false
+  path: fps/detail/poly_sample_point_shift.hpp
+  pathExtension: hpp
+  requiredBy:
+  - fps/poly_sample_point_shift.hpp
+  - math_mod/comb_large.hpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
+  timestamp: '2026-10-03 23:37:51+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
+  - verify/yosupo_math/many_factrials.test.cpp
+documentation_of: fps/detail/poly_sample_point_shift.hpp
+layout: document
+---

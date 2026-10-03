@@ -5,6 +5,9 @@ data:
     links: []
   dependencies:
   - files:
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: common/type_alias.hpp
     - filename: is_prime.hpp
       icon: LIBRARY_ALL_AC
       path: math/is_prime.hpp
@@ -38,6 +41,7 @@ data:
       path: verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
     type: Verified with
   dependsOn:
+  - common/type_alias.hpp
   - math/is_prime.hpp
   - math/prime_factorize.hpp
   - math_mod/pow_mod.hpp
@@ -48,32 +52,37 @@ data:
   - type_traits/io.hpp
   embedded:
   - code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_MOBIUS_HPP\n#define KK2_MATH_MULTIPLICATIVE_FUNCTION_MOBIUS_HPP\
-      \ 1\n\n#include <cassert>\n\n#include \"../../type_traits/integral.hpp\"\n#include\
-      \ \"../prime_factorize.hpp\"\n\nnamespace kk2 {\n\ntemplate <Integral T> int\
-      \ mobius(T n) {\n    assert(n >= 0);\n    if (n == 0) return 0;\n    int res\
-      \ = 1;\n    for (auto [p, k] : factorize(static_cast<long long>(n))) {\n   \
-      \     if (k > 1) return 0;\n        res = -res;\n    }\n    return res;\n}\n\
-      \n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_MOBIUS_HPP\n"
+      \ 1\n\n#include <cassert>\n\n#include \"../../common/type_alias.hpp\"\n#include\
+      \ \"../../type_traits/integral.hpp\"\n#include \"../prime_factorize.hpp\"\n\n\
+      namespace kk2 {\n\ntemplate <Integral T> i32 mobius(T n) {\n    assert(n >=\
+      \ 0);\n    if (n == 0) return 0;\n    i32 res = 1;\n    for (auto [p, k] : factorize(static_cast<long\
+      \ long>(n))) {\n        if (k > 1) return 0;\n        res = -res;\n    }\n \
+      \   return res;\n}\n\n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_MOBIUS_HPP\n"
     name: default
   - code: "#line 1 \"math/multiplicative_function/mobius.hpp\"\n\n\n\n#include <cassert>\n\
-      \n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
-      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
-      \                                              or std::is_same<T, __int128>::value,\n\
-      \                                                   std::true_type,\n      \
-      \                                             std::false_type>::type;\n\ntemplate\
-      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
+      \n#line 1 \"common/type_alias.hpp\"\n\n\n\n#include <cstddef>\n#include <cstdint>\n\
+      \nnamespace kk2 {\n\nusing usize = std::size_t;\nusing i8 = std::int8_t;\nusing\
+      \ u8 = std::uint8_t;\nusing i16 = std::int16_t;\nusing u16 = std::uint16_t;\n\
+      using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
+      using u64 = std::uint64_t;\n\n#ifndef _MSC_VER\nusing i128 = __int128_t;\nusing\
+      \ u128 = __uint128_t;\n#endif\n\n} // namespace kk2\n\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
-      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                                            std::true_type,\n             \
-      \                               std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -272,10 +281,10 @@ data:
       \            for (int j = 0; j < sz; j++) { res.emplace_back(res[j] * x); }\n\
       \        }\n    }\n    std::sort(res.begin(), res.end());\n    return res;\n\
       }\n\n} // namespace number_theory\n\nusing number_theory::divisors;\nusing number_theory::factorize;\n\
-      using number_theory::factorize_map;\n\n} // namespace kk2\n\n\n\n#line 8 \"\
+      using number_theory::factorize_map;\n\n} // namespace kk2\n\n\n\n#line 9 \"\
       math/multiplicative_function/mobius.hpp\"\n\nnamespace kk2 {\n\ntemplate <Integral\
-      \ T> int mobius(T n) {\n    assert(n >= 0);\n    if (n == 0) return 0;\n   \
-      \ int res = 1;\n    for (auto [p, k] : factorize(static_cast<long long>(n)))\
+      \ T> i32 mobius(T n) {\n    assert(n >= 0);\n    if (n == 0) return 0;\n   \
+      \ i32 res = 1;\n    for (auto [p, k] : factorize(static_cast<long long>(n)))\
       \ {\n        if (k > 1) return 0;\n        res = -res;\n    }\n    return res;\n\
       }\n\n} // namespace kk2\n\n\n"
     name: bundled
@@ -284,7 +293,7 @@ data:
   path: math/multiplicative_function/mobius.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp

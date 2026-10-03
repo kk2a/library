@@ -298,7 +298,7 @@ data:
   path: random/graph.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/graph.hpp

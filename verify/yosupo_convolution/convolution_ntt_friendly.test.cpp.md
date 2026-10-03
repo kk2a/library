@@ -188,13 +188,14 @@ data:
       \ =\n        fps::sparsity_detail::sparse_work(op, target, nonzero_a, nonzero_b);\n\
       \    return dense_work\n           > fps::sparsity_detail::sparse_work_constant(op,\
       \ is_ntt_friendly) * sparse_work;\n}\n\n} // namespace kk2\n\n\n#line 1 \"math_mod/butterfly.hpp\"\
-      \n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
-      \n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#include <cassert>\n\nnamespace\
-      \ kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T x, U n,\
-      \ T m) {\n    assert(n >= 0);\n    if (m == 1) return S(0);\n    S _m = m, r\
-      \ = 1;\n    S y = x % _m;\n    if (y < 0) y += _m;\n    while (n) {\n      \
-      \  if (n & 1) r = (r * y) % _m;\n        if (n >>= 1) y = (y * y) % _m;\n  \
-      \  }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\
+      \n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\n#include <cassert>\n#include <cstddef>\n\
+      #line 8 \"math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
+      \n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T\
+      \ x, U n, T m) {\n    assert(n >= 0);\n    if (m == 1) return S(0);\n    S _m\
+      \ = m, r = 1;\n    S y = x % _m;\n    if (y < 0) y += _m;\n    while (n) {\n\
+      \        if (n & 1) r = (r * y) % _m;\n        if (n >>= 1) y = (y * y) % _m;\n\
+      \    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 5 \"math_mod/primitive_root.hpp\"\
       \n\nnamespace kk2 {\n\nconstexpr int primitive_root_constexpr(int m) {\n   \
       \ if (m == 2) return 1;\n    if (m == 167772161) return 3;\n    if (m == 469762049)\
       \ return 3;\n    if (m == 754974721) return 11;\n    if (m == 998244353) return\
@@ -208,51 +209,56 @@ data:
       \ 1) {\n                ok = false;\n                break;\n            }\n\
       \        }\n        if (ok) return g;\n    }\n}\n\ntemplate <int m> static constexpr\
       \ int primitive_root = primitive_root_constexpr(m);\n\n} // namespace kk2\n\n\
-      \n#line 7 \"math_mod/butterfly.hpp\"\n\nnamespace kk2 {\n\ntemplate <class FPS,\
-      \ class mint = typename FPS::value_type> void butterfly(FPS &a) {\n    static\
-      \ int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n    int\
-      \ h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool first\
-      \ = true;\n    static mint sum_e2[30]; // sum_e[i] = ies[0] * ... * ies[i -\
-      \ 1] * es[i]\n    static mint sum_e3[30];\n    static mint es[30], ies[30];\
-      \ // es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n      \
-      \  int cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
-      \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n\
-      \            // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i\
-      \ - 2] = ie;\n            e *= e;\n            ie *= ie;\n        }\n      \
-      \  mint now = 1;\n        for (int i = 0; i <= cnt2 - 2; i++) {\n          \
-      \  sum_e2[i] = es[i] * now;\n            now *= ies[i];\n        }\n       \
-      \ now = 1;\n        for (int i = 0; i <= cnt2 - 3; i++) {\n            sum_e3[i]\
-      \ = es[i + 1] * now;\n            now *= ies[i + 1];\n        }\n    }\n\n \
-      \   int len = 0;\n    while (len < h) {\n        if (h - len == 1) {\n     \
-      \       int p = 1 << (h - len - 1);\n            mint rot = 1;\n           \
-      \ for (int s = 0; s < (1 << len); s++) {\n                int offset = s <<\
-      \ (h - len);\n                for (int i = 0; i < p; i++) {\n              \
-      \      auto l = a[i + offset];\n                    auto r = a[i + offset +\
-      \ p] * rot;\n                    a[i + offset] = l + r;\n                  \
-      \  a[i + offset + p] = l - r;\n                }\n                if (s + 1\
-      \ != (1 << len)) rot *= sum_e2[__builtin_ctz(~(unsigned int)(s))];\n       \
-      \     }\n            len++;\n        } else {\n            int p = 1 << (h -\
-      \ len - 2);\n            mint rot = 1, imag = es[0];\n            for (int s\
-      \ = 0; s < (1 << len); s++) {\n                mint rot2 = rot * rot;\n    \
-      \            mint rot3 = rot2 * rot;\n                int offset = s << (h -\
-      \ len);\n                for (int i = 0; i < p; i++) {\n                   \
-      \ auto a0 = a[i + offset];\n                    auto a1 = a[i + offset + p]\
-      \ * rot;\n                    auto a2 = a[i + offset + p * 2] * rot2;\n    \
-      \                auto a3 = a[i + offset + p * 3] * rot3;\n                 \
-      \   auto a1na3imag = (a1 - a3) * imag;\n                    a[i + offset] =\
-      \ a0 + a2 + a1 + a3;\n                    a[i + offset + p] = a0 + a2 - a1 -\
-      \ a3;\n                    a[i + offset + p * 2] = a0 - a2 + a1na3imag;\n  \
-      \                  a[i + offset + p * 3] = a0 - a2 - a1na3imag;\n          \
-      \      }\n                if (s + 1 != (1 << len)) rot *= sum_e3[__builtin_ctz(~(unsigned\
+      \n#line 10 \"math_mod/butterfly.hpp\"\n\nnamespace kk2 {\n\nnamespace detail\
+      \ {\n\ntemplate <class mint> int butterfly_log_size(std::size_t n) {\n    assert((n\
+      \ > 0 && (n & (n - 1)) == 0) && \"butterfly size must be a power of two\");\n\
+      \    assert(n < (std::size_t{1} << 30) && \"butterfly size is too large\");\n\
+      \    assert((static_cast<std::uintmax_t>(mint::getmod()) - 1) % n == 0\n   \
+      \        && \"butterfly size is not supported by the modulus\");\n    return\
+      \ __builtin_ctz(static_cast<unsigned int>(n));\n}\n\n} // namespace detail\n\
+      \ntemplate <class FPS, class mint = typename FPS::value_type> void butterfly(FPS\
+      \ &a) {\n    int h = detail::butterfly_log_size<mint>(a.size());\n    static\
+      \ int g = primitive_root<mint::getmod()>;\n    static bool first = true;\n \
+      \   static mint sum_e2[30]; // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]\n\
+      \    static mint sum_e3[30];\n    static mint es[30], ies[30]; // es[i]^(2^(2+i))\
+      \ == 1\n    if (first) {\n        first = false;\n        int cnt2 = __builtin_ctz(mint::getmod()\
+      \ - 1);\n        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n\
+      \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n  \
+      \          es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n\
+      \            ie *= ie;\n        }\n        mint now = 1;\n        for (int i\
+      \ = 0; i <= cnt2 - 2; i++) {\n            sum_e2[i] = es[i] * now;\n       \
+      \     now *= ies[i];\n        }\n        now = 1;\n        for (int i = 0; i\
+      \ <= cnt2 - 3; i++) {\n            sum_e3[i] = es[i + 1] * now;\n          \
+      \  now *= ies[i + 1];\n        }\n    }\n\n    int len = 0;\n    while (len\
+      \ < h) {\n        if (h - len == 1) {\n            int p = 1 << (h - len - 1);\n\
+      \            mint rot = 1;\n            for (int s = 0; s < (1 << len); s++)\
+      \ {\n                int offset = s << (h - len);\n                for (int\
+      \ i = 0; i < p; i++) {\n                    auto l = a[i + offset];\n      \
+      \              auto r = a[i + offset + p] * rot;\n                    a[i +\
+      \ offset] = l + r;\n                    a[i + offset + p] = l - r;\n       \
+      \         }\n                if (s + 1 != (1 << len)) rot *= sum_e2[__builtin_ctz(~(unsigned\
+      \ int)(s))];\n            }\n            len++;\n        } else {\n        \
+      \    int p = 1 << (h - len - 2);\n            mint rot = 1, imag = es[0];\n\
+      \            for (int s = 0; s < (1 << len); s++) {\n                mint rot2\
+      \ = rot * rot;\n                mint rot3 = rot2 * rot;\n                int\
+      \ offset = s << (h - len);\n                for (int i = 0; i < p; i++) {\n\
+      \                    auto a0 = a[i + offset];\n                    auto a1 =\
+      \ a[i + offset + p] * rot;\n                    auto a2 = a[i + offset + p *\
+      \ 2] * rot2;\n                    auto a3 = a[i + offset + p * 3] * rot3;\n\
+      \                    auto a1na3imag = (a1 - a3) * imag;\n                  \
+      \  a[i + offset] = a0 + a2 + a1 + a3;\n                    a[i + offset + p]\
+      \ = a0 + a2 - a1 - a3;\n                    a[i + offset + p * 2] = a0 - a2\
+      \ + a1na3imag;\n                    a[i + offset + p * 3] = a0 - a2 - a1na3imag;\n\
+      \                }\n                if (s + 1 != (1 << len)) rot *= sum_e3[__builtin_ctz(~(unsigned\
       \ int)(s))];\n            }\n            len += 2;\n        }\n    }\n}\n\n\
       template <class FPS, class mint = typename FPS::value_type> void butterfly_inv(FPS\
-      \ &a) {\n    static constexpr int g = primitive_root<mint::getmod()>;\n    int\
-      \ n = int(a.size());\n    int h = 0;\n    while ((1U << h) < (unsigned int)(n))\
-      \ h++;\n    static bool first = true;\n    static mint sum_ie2[30]; // sum_ie[i]\
-      \ = es[0] * ... * es[i - 1] * ies[i]\n    static mint sum_ie3[30];\n    static\
-      \ mint es[30], ies[30]; // es[i]^(2^(2+i)) == 1\n    static mint invn[30];\n\
-      \    if (first) {\n        first = false;\n        int cnt2 = __builtin_ctz(mint::getmod()\
-      \ - 1);\n        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n\
+      \ &a) {\n    int n = int(a.size());\n    int h = detail::butterfly_log_size<mint>(a.size());\n\
+      \    static constexpr int g = primitive_root<mint::getmod()>;\n    static bool\
+      \ first = true;\n    static mint sum_ie2[30]; // sum_ie[i] = es[0] * ... * es[i\
+      \ - 1] * ies[i]\n    static mint sum_ie3[30];\n    static mint es[30], ies[30];\
+      \ // es[i]^(2^(2+i)) == 1\n    static mint invn[30];\n    if (first) {\n   \
+      \     first = false;\n        int cnt2 = __builtin_ctz(mint::getmod() - 1);\n\
+      \        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n\
       \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n  \
       \          es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n\
       \            ie *= ie;\n        }\n        mint now = 1;\n        for (int i\
@@ -286,13 +292,13 @@ data:
       \ int)(s))];\n            }\n            len -= 2;\n        }\n    }\n\n   \
       \ for (int i = 0; i < n; i++) a[i] *= invn[h];\n}\n\ntemplate <class FPS, class\
       \ mint = typename FPS::value_type> void doubling(FPS &a) {\n    int n = a.size();\n\
-      \    auto b = a;\n    int z = 1;\n    butterfly_inv(b);\n    mint r = 1, zeta\
-      \ = mint(primitive_root<mint::getmod()>).pow((mint::getmod() - 1) / (n << 1));\n\
-      \    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n\
-      \    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
-      }\n\n} // namespace kk2\n\n\n#line 11 \"convolution/convolution.hpp\"\n\nnamespace\
-      \ kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS\
-      \ &inplace_sparse_convolution(FPS &a, const FPS &b, int deg = -1) {\n    const\
+      \    detail::butterfly_log_size<mint>(a.size() * 2);\n    auto b = a;\n    int\
+      \ z = 1;\n    butterfly_inv(b);\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).pow((mint::getmod()\
+      \ - 1) / (n << 1));\n    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n\
+      \        r *= zeta;\n    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(),\
+      \ std::back_inserter(a));\n}\n\n} // namespace kk2\n\n\n#line 11 \"convolution/convolution.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      FPS &inplace_sparse_convolution(FPS &a, const FPS &b, int deg = -1) {\n    const\
       \ int original_a_size = a.size(), original_b_size = b.size();\n    if (!original_a_size\
       \ || !original_b_size) {\n        a.clear();\n        return a;\n    }\n   \
       \ if (deg == -1) deg = original_a_size + original_b_size - 1;\n    const int\
@@ -449,21 +455,21 @@ data:
       \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
       #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
       \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
@@ -631,272 +637,272 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 1.2388041510000107
+  - elapsed: 0.7470056240000531
     environment: g++
-    memory: 17.864
+    memory: 17.976
     name: all_same_00
     status: AC
-  - elapsed: 1.3247536520000267
+  - elapsed: 0.792172335000032
     environment: g++
-    memory: 17.904
+    memory: 17.976
     name: all_same_01
     status: AC
-  - elapsed: 1.3029304099999877
+  - elapsed: 0.7948613270000351
     environment: g++
-    memory: 17.868
+    memory: 17.968
     name: all_same_02
     status: AC
-  - elapsed: 1.3029692139999725
+  - elapsed: 0.7957320219999247
     environment: g++
-    memory: 17.848
+    memory: 17.976
     name: all_same_03
     status: AC
-  - elapsed: 0.0026604849999785074
+  - elapsed: 0.0021370079999769587
     environment: g++
-    memory: 3.788
+    memory: 3.908
     name: example_00
     status: AC
-  - elapsed: 0.002156205999995109
+  - elapsed: 0.0016490820000854
     environment: g++
-    memory: 3.78
+    memory: 3.708
     name: example_01
     status: AC
-  - elapsed: 1.5445655350000038
+  - elapsed: 1.0411420560000124
     environment: g++
-    memory: 17.868
+    memory: 17.844
     name: fft_killer_00
     status: AC
-  - elapsed: 1.5458379489999743
+  - elapsed: 1.0280715089999148
     environment: g++
-    memory: 17.868
+    memory: 17.972
     name: fft_killer_01
     status: AC
-  - elapsed: 1.5377922320000152
+  - elapsed: 1.0702318369999375
     environment: g++
-    memory: 17.872
+    memory: 17.972
     name: fft_killer_02
     status: AC
-  - elapsed: 1.5370577139999568
+  - elapsed: 1.0701022419999617
     environment: g++
-    memory: 17.912
+    memory: 17.916
     name: fft_killer_03
     status: AC
-  - elapsed: 1.5418859310000244
+  - elapsed: 1.0425767940000696
     environment: g++
-    memory: 17.952
+    memory: 17.976
     name: fft_killer_04
     status: AC
-  - elapsed: 1.5400050860000079
+  - elapsed: 1.0398450389999425
     environment: g++
-    memory: 17.872
+    memory: 17.972
     name: fft_killer_05
     status: AC
-  - elapsed: 1.5379451729999687
+  - elapsed: 1.0288003379999964
     environment: g++
-    memory: 17.912
+    memory: 17.952
     name: fft_killer_06
     status: AC
-  - elapsed: 1.536092344999986
+  - elapsed: 1.038544254000044
     environment: g++
-    memory: 17.908
+    memory: 17.832
     name: fft_killer_07
     status: AC
-  - elapsed: 1.5389079569999922
+  - elapsed: 1.0465055330000723
     environment: g++
-    memory: 17.908
+    memory: 17.972
     name: fft_killer_08
     status: AC
-  - elapsed: 1.5555131499999675
+  - elapsed: 1.025649412000007
     environment: g++
-    memory: 17.876
+    memory: 17.972
     name: fft_killer_09
     status: AC
-  - elapsed: 1.5375979959999881
+  - elapsed: 1.0347584439999764
     environment: g++
-    memory: 17.912
+    memory: 17.972
     name: max_ans_zero_00
     status: AC
-  - elapsed: 1.5372334200000068
+  - elapsed: 1.0345564240000158
     environment: g++
-    memory: 17.876
+    memory: 18.052
     name: max_random_00
     status: AC
-  - elapsed: 1.5387200310000253
+  - elapsed: 1.0822469849999834
     environment: g++
-    memory: 17.912
+    memory: 17.976
     name: max_random_01
     status: AC
-  - elapsed: 0.01974394899997378
+  - elapsed: 0.01312439399998766
     environment: g++
-    memory: 3.976
+    memory: 4.28
     name: medium_00
     status: AC
-  - elapsed: 0.010815300999979627
+  - elapsed: 0.007354636999934883
     environment: g++
-    memory: 3.848
+    memory: 4.112
     name: medium_01
     status: AC
-  - elapsed: 0.018890296000051876
+  - elapsed: 0.012784721000002719
     environment: g++
-    memory: 4.176
+    memory: 4.224
     name: medium_02
     status: AC
-  - elapsed: 0.0037715509999998176
+  - elapsed: 0.0026054720000274756
     environment: g++
-    memory: 3.724
+    memory: 4.012
     name: medium_all_zero_00
     status: AC
-  - elapsed: 0.004126518000020951
+  - elapsed: 0.0029413579999300055
     environment: g++
-    memory: 3.74
+    memory: 3.852
     name: medium_pre_suf_zero_00
     status: AC
-  - elapsed: 0.0041177909999987605
+  - elapsed: 0.0028921949999585195
     environment: g++
-    memory: 3.796
+    memory: 3.78
     name: medium_pre_suf_zero_01
     status: AC
-  - elapsed: 0.002411363000021538
+  - elapsed: 0.0018196029999444363
     environment: g++
-    memory: 3.784
+    memory: 3.844
     name: medium_pre_suf_zero_02
     status: AC
-  - elapsed: 0.0023860250000211636
+  - elapsed: 0.001800195999976495
     environment: g++
-    memory: 3.816
+    memory: 3.84
     name: medium_pre_suf_zero_03
     status: AC
-  - elapsed: 0.004076914999984638
+  - elapsed: 0.0029254449999598364
     environment: g++
-    memory: 3.8
+    memory: 3.78
     name: medium_pre_suf_zero_04
     status: AC
-  - elapsed: 1.472265063000009
+  - elapsed: 0.9893561809999483
     environment: g++
-    memory: 16.376
+    memory: 16.432
     name: random_00
     status: AC
-  - elapsed: 1.4909476870000162
+  - elapsed: 1.0050635170000533
     environment: g++
-    memory: 16.796
+    memory: 16.836
     name: random_01
     status: AC
-  - elapsed: 0.7126398160000349
+  - elapsed: 0.4920128199998999
     environment: g++
-    memory: 10.776
+    memory: 11.18
     name: random_02
     status: AC
-  - elapsed: 0.0025395239999852492
+  - elapsed: 0.002121334999969804
     environment: g++
-    memory: 3.792
+    memory: 3.876
     name: signed_overflow_00
     status: AC
-  - elapsed: 0.0021184930000117674
+  - elapsed: 0.0016836739999916972
     environment: g++
-    memory: 3.776
+    memory: 3.856
     name: small_00
     status: AC
-  - elapsed: 0.0021115399999871443
+  - elapsed: 0.0016583910000917967
     environment: g++
-    memory: 3.792
+    memory: 3.708
     name: small_01
     status: AC
-  - elapsed: 0.002121697999996286
+  - elapsed: 0.0016545050000331685
     environment: g++
-    memory: 3.784
+    memory: 3.888
     name: small_02
     status: AC
-  - elapsed: 0.00206867899998997
+  - elapsed: 0.0016335580000941263
     environment: g++
-    memory: 3.788
+    memory: 3.924
     name: small_03
     status: AC
-  - elapsed: 0.0020942369999943367
+  - elapsed: 0.0016196669999999358
     environment: g++
-    memory: 3.788
+    memory: 3.856
     name: small_04
     status: AC
-  - elapsed: 0.002109395999980279
+  - elapsed: 0.0016253759999926842
     environment: g++
-    memory: 3.8
+    memory: 3.72
     name: small_05
     status: AC
-  - elapsed: 0.0020587200000363737
+  - elapsed: 0.001619045999973423
     environment: g++
-    memory: 3.784
+    memory: 3.84
     name: small_06
     status: AC
-  - elapsed: 0.002083938000055241
+  - elapsed: 0.0016239580000956266
     environment: g++
-    memory: 3.788
+    memory: 3.892
     name: small_07
     status: AC
-  - elapsed: 0.002078518000018903
+  - elapsed: 0.0016161070000180189
     environment: g++
-    memory: 3.784
+    memory: 3.852
     name: small_08
     status: AC
-  - elapsed: 0.002084399000011672
+  - elapsed: 0.001584449000006316
     environment: g++
-    memory: 3.644
+    memory: 3.84
     name: small_09
     status: AC
-  - elapsed: 0.0020776079999791364
+  - elapsed: 0.0015881549999221534
     environment: g++
-    memory: 3.716
+    memory: 3.856
     name: small_10
     status: AC
-  - elapsed: 0.0020927719999690453
+  - elapsed: 0.001601584000013645
     environment: g++
-    memory: 3.812
+    memory: 3.728
     name: small_11
     status: AC
-  - elapsed: 0.002034366999964732
+  - elapsed: 0.0016156759999148562
     environment: g++
-    memory: 3.804
+    memory: 3.884
     name: small_12
     status: AC
-  - elapsed: 0.002049279999994269
+  - elapsed: 0.0015971880000051897
     environment: g++
-    memory: 3.8
+    memory: 3.844
     name: small_13
     status: AC
-  - elapsed: 0.0020526719999907073
+  - elapsed: 0.001600857999960681
     environment: g++
-    memory: 3.644
+    memory: 3.896
     name: small_14
     status: AC
-  - elapsed: 0.00205302000000529
+  - elapsed: 0.001579316000061226
     environment: g++
-    memory: 3.792
+    memory: 3.856
     name: small_15
     status: AC
-  - elapsed: 1.9608873550000112
+  - elapsed: 1.0921864119999327
     environment: g++
-    memory: 11.58
+    memory: 11.704
     name: small_and_large_00
     status: AC
-  - elapsed: 1.3626460849999944
+  - elapsed: 0.8890652400000363
     environment: g++
-    memory: 15.82
+    memory: 15.924
     name: small_and_large_01
     status: AC
-  - elapsed: 1.950200432000031
+  - elapsed: 1.1130009799999243
     environment: g++
-    memory: 9.712
+    memory: 9.768
     name: small_and_large_02
     status: AC
-  - elapsed: 1.3630263950000199
+  - elapsed: 0.8892745360000163
     environment: g++
-    memory: 13.584
+    memory: 13.704
     name: small_and_large_03
     status: AC
-  - elapsed: 0.002562339000007796
+  - elapsed: 0.00227310499997202
     environment: g++
-    memory: 3.792
+    memory: 3.852
     name: unsigned_overflow_00
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_ntt_friendly.test.cpp

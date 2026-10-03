@@ -233,21 +233,21 @@ data:
       \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
       #line 25 \"template/template.hpp\"\n#include <vector>\n\n#line 1 \"template/constant.hpp\"\
       \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
@@ -415,72 +415,72 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0026251390000311403
+  - elapsed: 0.0019556799999804753
     environment: g++
-    memory: 3.724
+    memory: 3.68
     name: example_00
     status: AC
-  - elapsed: 0.10143681099998503
+  - elapsed: 0.059866707999958635
     environment: g++
-    memory: 3.972
+    memory: 4.128
     name: max_random_00
     status: AC
-  - elapsed: 0.10280491899999333
+  - elapsed: 0.05909926699996504
     environment: g++
-    memory: 3.984
+    memory: 4.116
     name: max_random_01
     status: AC
-  - elapsed: 0.10284447399999408
+  - elapsed: 0.06014301699997304
     environment: g++
-    memory: 3.984
+    memory: 4.056
     name: max_random_02
     status: AC
-  - elapsed: 0.10355410499994377
+  - elapsed: 0.06071035499996924
     environment: g++
-    memory: 3.928
+    memory: 4.084
     name: max_random_03
     status: AC
-  - elapsed: 0.10429589000000306
+  - elapsed: 0.061665640000001076
     environment: g++
-    memory: 3.98
+    memory: 4.04
     name: max_random_04
     status: AC
-  - elapsed: 0.20612163100003045
+  - elapsed: 0.12107525800001895
     environment: g++
-    memory: 3.964
+    memory: 4.112
     name: mod_998244353_00
     status: AC
-  - elapsed: 0.20649402899999814
+  - elapsed: 0.12005813799999032
     environment: g++
-    memory: 3.972
+    memory: 3.964
     name: mod_998244353_01
     status: AC
-  - elapsed: 0.02022897799997736
+  - elapsed: 0.011842802000046504
     environment: g++
-    memory: 3.98
+    memory: 4.096
     name: random_00
     status: AC
-  - elapsed: 0.022150818000000072
+  - elapsed: 0.013050479000014548
     environment: g++
-    memory: 3.956
+    memory: 4.112
     name: random_01
     status: AC
-  - elapsed: 0.0646356409999953
+  - elapsed: 0.03798114399995711
     environment: g++
-    memory: 3.988
+    memory: 4.14
     name: random_02
     status: AC
-  - elapsed: 0.028770629000007375
+  - elapsed: 0.01660972000001948
     environment: g++
-    memory: 3.996
+    memory: 4.072
     name: random_03
     status: AC
-  - elapsed: 0.10289350499999728
+  - elapsed: 0.06026944799998546
     environment: g++
-    memory: 3.904
+    memory: 4.132
     name: random_04
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/sqrt_mod.test.cpp

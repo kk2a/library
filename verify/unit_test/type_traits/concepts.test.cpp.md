@@ -74,19 +74,9 @@ data:
       \ntemplate <class T>\nconcept Vector = is_vector<std::remove_cvref_t<T>>::value;\n\
       \ntemplate <class T>\nconcept Container = is_container<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/functional.hpp\"\n\n\n\n#line\
-      \ 5 \"type_traits/functional.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename\
-      \ T>\nusing is_function_pointer =\n    typename std::conditional<std::is_pointer_v<T>\
-      \ && std::is_function_v<std::remove_pointer_t<T>>,\n                       \
-      \       std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T> struct is_two_args_function_pointer : std::false_type\
-      \ {};\n\ntemplate <typename R, typename T1, typename T2>\nstruct is_two_args_function_pointer<R\
-      \ (*)(T1, T2)> : std::true_type {};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t\
-      \ = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate <class\
-      \ T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate <class\
-      \ T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line\
-      \ 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\n\
-      template <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ 6 \"type_traits/functional.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\
+      \n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
       \ __int128_t>::value\n                                                     \
       \  or std::is_same<T, __int128>::value,\n                                  \
       \                 std::true_type,\n                                        \
@@ -121,7 +111,24 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\
+      \n} // namespace kk2\n\n\n#line 8 \"type_traits/functional.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <typename T>\nusing is_function_pointer =\n    typename\
+      \ std::conditional<std::is_pointer_v<T> && std::is_function_v<std::remove_pointer_t<T>>,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T> struct is_two_args_function_pointer\
+      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2>\n\
+      struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {\n    using\
+      \ return_type = R;\n    using first_argument_type = T1;\n    using second_argument_type\
+      \ = T2;\n};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t =\
+      \ std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate <class\
+      \ T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate <class\
+      \ T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedTwoArgsFunctionPointer = TwoArgsFunctionPointer<T>\
+      \ && requires {\n    typename is_two_args_function_pointer<T>::first_argument_type;\n\
+      \    typename is_two_args_function_pointer<T>::second_argument_type;\n} && UnsignedIntegral<typename\
+      \ is_two_args_function_pointer<T>::first_argument_type> && UnsignedIntegral<typename\
+      \ is_two_args_function_pointer<T>::second_argument_type>;\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\
       \n#include <fstream>\n#include <istream>\n#line 9 \"type_traits/io.hpp\"\n\n\
       namespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
       \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
@@ -264,7 +271,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/type_traits/concepts.test.cpp

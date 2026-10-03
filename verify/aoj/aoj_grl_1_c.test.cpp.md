@@ -314,21 +314,21 @@ data:
       \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
       #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
       \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
@@ -538,257 +538,257 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002494760000018914
+  - elapsed: 0.002598344999995561
     environment: g++
-    memory: 3.816
+    memory: 3.78
     name: 00_sample_00
     status: AC
-  - elapsed: 0.00211393800000792
+  - elapsed: 0.0021041960000047766
     environment: g++
-    memory: 3.588
+    memory: 3.784
     name: 00_sample_01
     status: AC
-  - elapsed: 0.0021191570000098636
-    environment: g++
-    memory: 3.76
-    name: 00_sample_02
-    status: AC
-  - elapsed: 0.0021172940000155904
-    environment: g++
-    memory: 3.788
-    name: 01_small_00
-    status: AC
-  - elapsed: 0.0021037580000040634
-    environment: g++
-    memory: 3.8
-    name: 01_small_01
-    status: AC
-  - elapsed: 0.002101293999999143
-    environment: g++
-    memory: 3.716
-    name: 02_corner_00
-    status: AC
-  - elapsed: 0.0020679019999931825
-    environment: g++
-    memory: 3.704
-    name: 02_corner_01
-    status: AC
-  - elapsed: 0.0020507299999792394
+  - elapsed: 0.002067226999997729
     environment: g++
     memory: 3.644
+    name: 00_sample_02
+    status: AC
+  - elapsed: 0.0020919529999900988
+    environment: g++
+    memory: 3.716
+    name: 01_small_00
+    status: AC
+  - elapsed: 0.0020728469999937715
+    environment: g++
+    memory: 3.808
+    name: 01_small_01
+    status: AC
+  - elapsed: 0.0021176209999964613
+    environment: g++
+    memory: 3.644
+    name: 02_corner_00
+    status: AC
+  - elapsed: 0.0020722060000082365
+    environment: g++
+    memory: 3.784
+    name: 02_corner_01
+    status: AC
+  - elapsed: 0.002052619000011191
+    environment: g++
+    memory: 3.796
     name: 02_corner_02
     status: AC
-  - elapsed: 0.002079182000016999
-    environment: g++
-    memory: 3.752
-    name: 02_corner_03
-    status: AC
-  - elapsed: 0.0021035179999842057
-    environment: g++
-    memory: 3.756
-    name: 02_corner_04
-    status: AC
-  - elapsed: 0.0020272950000048695
+  - elapsed: 0.0021069109999984903
     environment: g++
     memory: 3.788
+    name: 02_corner_03
+    status: AC
+  - elapsed: 0.002076033999998117
+    environment: g++
+    memory: 3.816
+    name: 02_corner_04
+    status: AC
+  - elapsed: 0.0021494909999830725
+    environment: g++
+    memory: 3.796
     name: 02_corner_05
     status: AC
-  - elapsed: 0.0020389070000135234
+  - elapsed: 0.002168407000027628
     environment: g++
-    memory: 3.704
+    memory: 3.596
     name: 02_corner_06
     status: AC
-  - elapsed: 0.0020729409999944437
+  - elapsed: 0.0021289430000024367
     environment: g++
     memory: 3.78
     name: 03_medium_00
     status: AC
-  - elapsed: 0.002055518999981132
+  - elapsed: 0.0021502630000043155
     environment: g++
-    memory: 3.6
+    memory: 3.644
     name: 03_medium_01
     status: AC
-  - elapsed: 0.0020502479999890966
+  - elapsed: 0.002130295000000615
     environment: g++
-    memory: 3.784
+    memory: 3.812
     name: 04_dag_00
     status: AC
-  - elapsed: 0.0021584609999933946
+  - elapsed: 0.0023003539999990608
     environment: g++
-    memory: 3.76
+    memory: 3.768
     name: 04_dag_01
     status: AC
-  - elapsed: 0.0033858189999875776
+  - elapsed: 0.0030841979999820524
     environment: g++
-    memory: 3.8
+    memory: 3.776
     name: 04_dag_02
     status: AC
-  - elapsed: 0.005790249999989783
+  - elapsed: 0.005476986999980227
     environment: g++
     memory: 3.772
     name: 04_dag_03
     status: AC
-  - elapsed: 0.007258810000024596
+  - elapsed: 0.007181110999994189
     environment: g++
-    memory: 3.924
+    memory: 3.936
     name: 04_dag_04
     status: AC
-  - elapsed: 0.0022492309999790905
+  - elapsed: 0.0022187209999913193
     environment: g++
     memory: 3.644
     name: 05_ring_00
     status: AC
-  - elapsed: 0.0033762509999917256
+  - elapsed: 0.0034965939999835882
     environment: g++
-    memory: 3.716
+    memory: 3.788
     name: 05_ring_01
     status: AC
-  - elapsed: 0.006871884999981148
+  - elapsed: 0.006671261999997569
     environment: g++
-    memory: 3.912
+    memory: 3.896
     name: 05_ring_02
     status: AC
-  - elapsed: 0.005573755000000347
+  - elapsed: 0.00526564899999471
     environment: g++
-    memory: 3.908
+    memory: 3.888
     name: 05_ring_03
     status: AC
-  - elapsed: 0.004986024000004363
-    environment: g++
-    memory: 3.6
-    name: 05_ring_04
-    status: AC
-  - elapsed: 0.002108957999979566
+  - elapsed: 0.004305355000013833
     environment: g++
     memory: 3.592
+    name: 05_ring_04
+    status: AC
+  - elapsed: 0.0021703199999763
+    environment: g++
+    memory: 3.644
     name: 06_grid_00
     status: AC
-  - elapsed: 0.002143622999994932
+  - elapsed: 0.0021600210000087827
     environment: g++
-    memory: 3.792
+    memory: 3.596
     name: 06_grid_01
     status: AC
-  - elapsed: 0.0030998329999931684
+  - elapsed: 0.0029814660000226922
     environment: g++
     memory: 3.644
     name: 06_grid_02
     status: AC
-  - elapsed: 0.003880684999984396
+  - elapsed: 0.0038354210000193234
     environment: g++
-    memory: 3.724
+    memory: 3.924
     name: 06_grid_03
     status: AC
-  - elapsed: 0.005528470000001562
+  - elapsed: 0.0056067610000241075
     environment: g++
-    memory: 3.916
+    memory: 3.92
     name: 06_grid_04
     status: AC
-  - elapsed: 0.0021139979999986735
+  - elapsed: 0.002194776000010279
     environment: g++
-    memory: 3.592
+    memory: 3.728
     name: 07_complete_00
     status: AC
-  - elapsed: 0.002729760000022452
+  - elapsed: 0.002844887999998491
     environment: g++
-    memory: 3.792
+    memory: 3.808
     name: 07_complete_01
     status: AC
-  - elapsed: 0.009321481000000631
+  - elapsed: 0.009373213000003489
     environment: g++
-    memory: 3.94
+    memory: 3.92
     name: 07_complete_02
     status: AC
-  - elapsed: 0.015746278999984042
+  - elapsed: 0.015808491000001368
     environment: g++
-    memory: 4.028
+    memory: 4.064
     name: 07_complete_03
     status: AC
-  - elapsed: 0.029491102000008595
+  - elapsed: 0.0278837630000055
     environment: g++
-    memory: 3.98
+    memory: 4.124
     name: 07_complete_04
     status: AC
-  - elapsed: 0.0026245729999914147
+  - elapsed: 0.0026423480000232757
     environment: g++
-    memory: 3.644
+    memory: 3.78
     name: 08_random_00
     status: AC
-  - elapsed: 0.002974859000005381
+  - elapsed: 0.003074050000009265
     environment: g++
-    memory: 3.644
+    memory: 3.792
     name: 08_random_01
     status: AC
-  - elapsed: 0.0026059479999958057
+  - elapsed: 0.00260762199999931
     environment: g++
     memory: 3.788
     name: 08_random_02
     status: AC
-  - elapsed: 0.003404533000008314
+  - elapsed: 0.003419970000010153
     environment: g++
-    memory: 3.644
+    memory: 3.792
     name: 08_random_03
     status: AC
-  - elapsed: 0.0038359319999869967
+  - elapsed: 0.005140655000019478
     environment: g++
     memory: 3.644
     name: 08_random_04
     status: AC
-  - elapsed: 0.0033589980000101605
+  - elapsed: 0.0031662929999924927
     environment: g++
-    memory: 3.748
+    memory: 3.8
     name: 08_random_05
     status: AC
-  - elapsed: 0.004178222999996706
+  - elapsed: 0.004383040000021765
     environment: g++
-    memory: 3.784
+    memory: 3.768
     name: 08_random_06
     status: AC
-  - elapsed: 0.00843503199999418
+  - elapsed: 0.008668527999986964
     environment: g++
-    memory: 3.92
+    memory: 3.716
     name: 08_random_07
     status: AC
-  - elapsed: 0.01834118700000431
+  - elapsed: 0.01862572699999987
     environment: g++
-    memory: 3.92
+    memory: 3.772
     name: 08_random_08
     status: AC
-  - elapsed: 0.008991022000003568
+  - elapsed: 0.009335311000000956
     environment: g++
-    memory: 4.004
+    memory: 3.772
     name: 09_maximum_00
     status: AC
-  - elapsed: 0.009206416000012041
+  - elapsed: 0.009237457000011773
     environment: g++
-    memory: 3.856
+    memory: 3.996
     name: 09_maximum_01
     status: AC
-  - elapsed: 0.028538077999996858
+  - elapsed: 0.0302442610000071
     environment: g++
-    memory: 4.164
+    memory: 4.168
     name: 09_maximum_02
     status: AC
-  - elapsed: 0.013091779999996334
+  - elapsed: 0.013125556000005645
     environment: g++
-    memory: 4.068
+    memory: 4.036
     name: 09_maximum_03
     status: AC
-  - elapsed: 0.02762138100001721
+  - elapsed: 0.028224303000001782
     environment: g++
-    memory: 3.916
+    memory: 3.92
     name: 09_maximum_04
     status: AC
-  - elapsed: 0.02401083199998766
+  - elapsed: 0.02318537000002152
     environment: g++
-    memory: 3.984
+    memory: 4.048
     name: 09_maximum_05
     status: AC
-  - elapsed: 0.008268149000002722
+  - elapsed: 0.00913927299998818
     environment: g++
-    memory: 3.904
+    memory: 3.884
     name: 09_maximum_06
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/aoj_grl_1_c.test.cpp

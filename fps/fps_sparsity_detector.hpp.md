@@ -91,9 +91,15 @@ data:
     - filename: sqrt.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/sqrt.hpp
+    - filename: poly_sample_point_shift.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/poly_sample_point_shift.hpp
     - filename: comb_large.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb_large.hpp
+    - filename: large_fact_arb_mod.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: fps_composition.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_composition.test.cpp
@@ -132,6 +138,9 @@ data:
     - filename: multivariate_operations.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/multivariate_operations.test.cpp
+    - filename: poly_sample_point_evaluate.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -141,9 +150,9 @@ data:
     - filename: sparsity_small_performance.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_small_performance.test.cpp
-    - filename: large_fact_arb_mod.test.cpp
+    - filename: sum_of_polynomial.test.cpp
       icon: TEST_ACCEPTED
-      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+      path: verify/unit_test/fps/sum_of_polynomial.test.cpp
     - filename: fps.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/fps/fps.test.cpp
@@ -213,6 +222,9 @@ data:
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    - filename: prefix_sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
     - filename: enumerate_bell_number.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/enumerate_bell_number.test.cpp
@@ -480,7 +492,9 @@ data:
   - fps/operations/multivariate/power.hpp
   - fps/operations/power.hpp
   - fps/operations/sqrt.hpp
+  - fps/poly_sample_point_shift.hpp
   - math_mod/comb_large.hpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
@@ -489,17 +503,18 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/convolution/inplace_convolution.test.cpp
   - verify/unit_test/fps/inplace_operations.test.cpp
   - verify/unit_test/fps/multivariate_convolution.test.cpp
   - verify/unit_test/fps/multivariate_operations.test.cpp
+  - verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp
-  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/unit_test/fps/sum_of_polynomial.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - verify/yosupo_convolution/convolution_multi_truncated.test.cpp
@@ -523,6 +538,7 @@ data:
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp

@@ -6,6 +6,9 @@ data:
     - https://judge.yosupo.jp/problem/polynomial_taylor_shift
   dependencies:
   - files:
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: common/type_alias.hpp
     - filename: convolution.hpp
       icon: LIBRARY_ALL_AC
       path: convolution/convolution.hpp
@@ -90,12 +93,16 @@ data:
     - filename: io.hpp
       icon: LIBRARY_ALL_AC
       path: type_traits/io.hpp
+    - filename: modint.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/modint.hpp
     type: Depends on
   - files: []
     type: Required by
   - files: []
     type: Verified with
   dependsOn:
+  - common/type_alias.hpp
   - convolution/convolution.hpp
   - fps/fps_base.hpp
   - fps/fps_ntt_friendly.hpp
@@ -124,6 +131,7 @@ data:
   - type_traits/fps.hpp
   - type_traits/integral.hpp
   - type_traits/io.hpp
+  - type_traits/modint.hpp
   embedded:
   - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/polynomial_taylor_shift\n\
       \n#include \"../../fps/poly_taylor_shift.hpp\"\n\n#include \"../../fps/fps_ntt_friendly.hpp\"\
@@ -137,24 +145,29 @@ data:
       \ PROBLEM https://judge.yosupo.jp/problem/polynomial_taylor_shift\n\n#line 1\
       \ \"fps/poly_taylor_shift.hpp\"\n\n\n\n#include <algorithm>\n\n#line 1 \"math_mod/comb.hpp\"\
       \n\n\n\n#line 5 \"math_mod/comb.hpp\"\n#include <cassert>\n#include <vector>\n\
-      \n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
-      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
-      \                                              or std::is_same<T, __int128>::value,\n\
-      \                                                   std::true_type,\n      \
-      \                                             std::false_type>::type;\n\ntemplate\
-      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
+      \n#line 1 \"common/type_alias.hpp\"\n\n\n\n#include <cstddef>\n#include <cstdint>\n\
+      \nnamespace kk2 {\n\nusing usize = std::size_t;\nusing i8 = std::int8_t;\nusing\
+      \ u8 = std::uint8_t;\nusing i16 = std::int16_t;\nusing u16 = std::uint16_t;\n\
+      using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
+      using u64 = std::uint64_t;\n\n#ifndef _MSC_VER\nusing i128 = __int128_t;\nusing\
+      \ u128 = __uint128_t;\n#endif\n\n} // namespace kk2\n\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
-      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                                            std::true_type,\n             \
-      \                               std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -174,48 +187,61 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 5\
-      \ \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief `[1, n]`\u306E\
-      mod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n\
-      \ * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n    static inline\
-      \ std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\n    static void\
-      \ set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n        int\
-      \ start = _invs.size();\n        auto mod = mint::getmod();\n        _invs.resize(m\
+      \n} // namespace kk2\n\n\n#line 1 \"type_traits/modint.hpp\"\n\n\n\n#include\
+      \ <concepts>\n\n#line 7 \"type_traits/modint.hpp\"\n\nnamespace kk2::modint\
+      \ {\n\ntemplate <class M>\nconcept Modular = requires(M x) {\n    requires Integral<decltype(M::getmod())>;\n\
+      \    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n\n} // namespace kk2::modint\n\
+      \n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 6 \"math_mod/inv_table.hpp\"\
+      \n\n#line 9 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief\
+      \ `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\
+      \u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n\
+      \    static inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\
+      \n    static void set_upper(usize m) {\n        if (_invs.size() > m) return;\n\
+      \        using index_type = std::make_unsigned_t<std::remove_cv_t<decltype(mint::getmod())>>;\n\
+      \        const index_type start = static_cast<index_type>(_invs.size());\n \
+      \       const index_type upper = static_cast<index_type>(m);\n        const\
+      \ index_type mod = static_cast<index_type>(mint::getmod());\n        _invs.resize(m\
       \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
-      \    for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod /\
-      \ i);\n    }\n\n    static inline mint inv(int n) {\n        bool neg = n <\
-      \ 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n\
-      \        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\
-      \n\n#line 10 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <class mint>\
-      \ struct Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1};\n\n\
-      \    Comb() = delete;\n\n    static void set_upper(int m = -1) {\n        int\
-      \ n = (int)_fact.size();\n        if (m == -1) m = n << 1;\n        if (n >\
-      \ m) return;\n        m = std::min<long long>(m, mint::getmod() - 1);\n    \
-      \    _fact.reserve(m + 1);\n        _ifact.resize(m + 1);\n        auto &_invs\
-      \ = InvTable<mint>::_invs;\n        if ((int)_invs.size() <= m) _invs.resize(m\
-      \ + 1);\n        for (int i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
+      \    for (index_type i = start; i <= upper; ++i) _invs[i] = (-_invs[mod % i])\
+      \ * (mod / i);\n    }\n\n    template <UnsignedIntegral T> static inline mint\
+      \ inv(T n) {\n        const usize index = static_cast<usize>(n);\n        if\
+      \ (index >= _invs.size()) set_upper(index);\n        return _invs[index];\n\
+      \    }\n\n    template <SignedIntegral T> static inline mint inv(T n) {\n  \
+      \      using U = std::make_unsigned_t<T>;\n        if (n < 0) {\n          \
+      \  // n + 1 is representable even when n is the minimum value.\n           \
+      \ const U magnitude = static_cast<U>(-(n + 1)) + U(1);\n            return -inv(magnitude);\n\
+      \        }\n        return inv(static_cast<U>(n));\n    }\n\n    static inline\
+      \ mint inv_unchecked(usize n) { return _invs[n]; }\n};\n\n} // namespace kk2\n\
+      \n\n#line 12 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <modint::Modular\
+      \ mint> struct Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1};\n\
+      \n    Comb() = delete;\n\n  private:\n    static void extend(usize m) {\n  \
+      \      const usize n = _fact.size();\n        m = std::min<usize>(m, mint::getmod()\
+      \ - 1);\n        _fact.reserve(m + 1);\n        _ifact.resize(m + 1);\n    \
+      \    auto &_invs = InvTable<mint>::_invs;\n        if (_invs.size() <= m) _invs.resize(m\
+      \ + 1);\n        for (usize i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
       \ * i);\n        _ifact[m] = _fact[m].inv();\n        _invs[m] = _ifact[m] *\
-      \ _fact[m - 1];\n        for (int i = m; i > n; i--) {\n            _ifact[i\
+      \ _fact[m - 1];\n        for (usize i = m; i > n; i--) {\n            _ifact[i\
       \ - 1] = _ifact[i] * i;\n            _invs[i - 1] = _ifact[i - 1] * _fact[i\
-      \ - 2];\n        }\n    }\n\n    static mint fact(int n) {\n        if (n <\
-      \ 0) return 0;\n        if ((int)_fact.size() <= n) set_upper(n);\n        return\
-      \ _fact[n];\n    }\n\n    static mint ifact(int n) {\n        if (n < 0) return\
-      \ 0;\n        if ((int)_ifact.size() <= n) set_upper(n);\n        return _ifact[n];\n\
-      \    }\n\n    static mint inv(int n) {\n        if (n < 0) return -inv(-n);\n\
-      \        if (n == 0) return 1;\n        return InvTable<mint>::inv(n);\n   \
-      \ }\n\n    static mint binom(int n, int k) {\n        if (k < 0 || k > n) return\
-      \ 0;\n        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template\
-      \ <Integral T> static mint multinomial(const std::vector<T> &r) {\n        int\
-      \ n = 0;\n        for (auto &x : r) {\n            if (x < 0) return 0;\n  \
-      \          n += x;\n        }\n        mint res = fact(n);\n        for (auto\
-      \ &x : r) res *= ifact(x);\n        return res;\n    }\n\n    static mint binom_naive(int\
-      \ n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n        mint\
-      \ res = 1;\n        k = std::min(k, n - k);\n        for (int i = 1; i <= k;\
+      \ - 2];\n        }\n    }\n\n    static void ensure(usize n) {\n        assert(n\
+      \ < mint::getmod());\n        if (_fact.size() > n) return;\n        extend(std::max<usize>(n,\
+      \ _fact.size() * 2));\n    }\n\n  public:\n    static void set_upper(usize n)\
+      \ {\n        ensure(std::min<usize>(n, static_cast<usize>(mint::getmod() - 1)));\n\
+      \    }\n\n    static mint fact(u32 n) {\n        ensure(static_cast<usize>(n));\n\
+      \        return _fact[n];\n    }\n\n    static mint ifact(u32 n) {\n       \
+      \ ensure(static_cast<usize>(n));\n        return _ifact[n];\n    }\n\n    static\
+      \ mint inv(i32 n) {\n        assert(n != 0);\n        return InvTable<mint>::inv(n);\n\
+      \    }\n\n    static mint binom(u32 n, u32 k) {\n        if (k > n) return 0;\n\
+      \        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template <UnsignedIntegral\
+      \ T> static mint multinomial(const std::vector<T> &r) {\n        u64 n = 0;\n\
+      \        for (const T x : r) n += x;\n        assert(n < mint::getmod());\n\
+      \        mint res = fact(static_cast<u32>(n));\n        for (const T x : r)\
+      \ res *= ifact(static_cast<u32>(x));\n        return res;\n    }\n\n    static\
+      \ mint binom_naive(u32 n, u32 k) {\n        if (k > n) return 0;\n        mint\
+      \ res = 1;\n        k = std::min(k, n - k);\n        for (u32 i = 1; i <= k;\
       \ i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n    static mint\
-      \ permu(int n, int k) {\n        if (n < 0 || k < 0 || k > n) return 0;\n  \
-      \      return fact(n) * ifact(n - k);\n    }\n\n    static mint homo(int n,\
-      \ int k) {\n        if (n < 0 || k < 0) return 0;\n        return k == 0 ? 1\
-      \ : binom(n + k - 1, k);\n    }\n};\n\n} // namespace kk2\n\n\n#line 7 \"fps/poly_taylor_shift.hpp\"\
+      \ permu(u32 n, u32 k) {\n        if (k > n) return 0;\n        return fact(n)\
+      \ * ifact(n - k);\n    }\n\n    static mint homo(u32 n, u32 k) { return k ==\
+      \ 0 ? 1 : binom(n + k - 1, k); }\n};\n\n} // namespace kk2\n\n\n#line 7 \"fps/poly_taylor_shift.hpp\"\
       \n\nnamespace kk2 {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
       FPS taylor_shift(const FPS &f_, mint a) {\n    FPS f(f_);\n    int n = f.size();\n\
       \    Comb<mint>::set_upper(n);\n    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::fact(i);\n\
@@ -224,7 +250,7 @@ data:
       \    for (int i = 0; i < n; i++) f[i] *= Comb<mint>::ifact(i);\n    return f;\n\
       }\n\n} // namespace kk2\n\n\n#line 4 \"verify/yosupo_fps/poly_taylor_shift.test.cpp\"\
       \n\n#line 1 \"fps/fps_ntt_friendly.hpp\"\n\n\n\n#line 1 \"math_mod/butterfly.hpp\"\
-      \n\n\n\n#line 5 \"math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
+      \n\n\n\n#line 8 \"math_mod/butterfly.hpp\"\n\n#line 1 \"math_mod/primitive_root.hpp\"\
       \n\n\n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\
       \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T\
       \ x, U n, T m) {\n    assert(n >= 0);\n    if (m == 1) return S(0);\n    S _m\
@@ -244,51 +270,56 @@ data:
       \ 1) {\n                ok = false;\n                break;\n            }\n\
       \        }\n        if (ok) return g;\n    }\n}\n\ntemplate <int m> static constexpr\
       \ int primitive_root = primitive_root_constexpr(m);\n\n} // namespace kk2\n\n\
-      \n#line 7 \"math_mod/butterfly.hpp\"\n\nnamespace kk2 {\n\ntemplate <class FPS,\
-      \ class mint = typename FPS::value_type> void butterfly(FPS &a) {\n    static\
-      \ int g = primitive_root<mint::getmod()>;\n    int n = int(a.size());\n    int\
-      \ h = 0;\n    while ((1U << h) < (unsigned int)(n)) h++;\n    static bool first\
-      \ = true;\n    static mint sum_e2[30]; // sum_e[i] = ies[0] * ... * ies[i -\
-      \ 1] * es[i]\n    static mint sum_e3[30];\n    static mint es[30], ies[30];\
-      \ // es[i]^(2^(2+i)) == 1\n    if (first) {\n        first = false;\n      \
-      \  int cnt2 = __builtin_ctz(mint::getmod() - 1);\n        mint e = mint(g).pow((mint::getmod()\
-      \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n\
-      \            // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i\
-      \ - 2] = ie;\n            e *= e;\n            ie *= ie;\n        }\n      \
-      \  mint now = 1;\n        for (int i = 0; i <= cnt2 - 2; i++) {\n          \
-      \  sum_e2[i] = es[i] * now;\n            now *= ies[i];\n        }\n       \
-      \ now = 1;\n        for (int i = 0; i <= cnt2 - 3; i++) {\n            sum_e3[i]\
-      \ = es[i + 1] * now;\n            now *= ies[i + 1];\n        }\n    }\n\n \
-      \   int len = 0;\n    while (len < h) {\n        if (h - len == 1) {\n     \
-      \       int p = 1 << (h - len - 1);\n            mint rot = 1;\n           \
-      \ for (int s = 0; s < (1 << len); s++) {\n                int offset = s <<\
-      \ (h - len);\n                for (int i = 0; i < p; i++) {\n              \
-      \      auto l = a[i + offset];\n                    auto r = a[i + offset +\
-      \ p] * rot;\n                    a[i + offset] = l + r;\n                  \
-      \  a[i + offset + p] = l - r;\n                }\n                if (s + 1\
-      \ != (1 << len)) rot *= sum_e2[__builtin_ctz(~(unsigned int)(s))];\n       \
-      \     }\n            len++;\n        } else {\n            int p = 1 << (h -\
-      \ len - 2);\n            mint rot = 1, imag = es[0];\n            for (int s\
-      \ = 0; s < (1 << len); s++) {\n                mint rot2 = rot * rot;\n    \
-      \            mint rot3 = rot2 * rot;\n                int offset = s << (h -\
-      \ len);\n                for (int i = 0; i < p; i++) {\n                   \
-      \ auto a0 = a[i + offset];\n                    auto a1 = a[i + offset + p]\
-      \ * rot;\n                    auto a2 = a[i + offset + p * 2] * rot2;\n    \
-      \                auto a3 = a[i + offset + p * 3] * rot3;\n                 \
-      \   auto a1na3imag = (a1 - a3) * imag;\n                    a[i + offset] =\
-      \ a0 + a2 + a1 + a3;\n                    a[i + offset + p] = a0 + a2 - a1 -\
-      \ a3;\n                    a[i + offset + p * 2] = a0 - a2 + a1na3imag;\n  \
-      \                  a[i + offset + p * 3] = a0 - a2 - a1na3imag;\n          \
-      \      }\n                if (s + 1 != (1 << len)) rot *= sum_e3[__builtin_ctz(~(unsigned\
+      \n#line 10 \"math_mod/butterfly.hpp\"\n\nnamespace kk2 {\n\nnamespace detail\
+      \ {\n\ntemplate <class mint> int butterfly_log_size(std::size_t n) {\n    assert((n\
+      \ > 0 && (n & (n - 1)) == 0) && \"butterfly size must be a power of two\");\n\
+      \    assert(n < (std::size_t{1} << 30) && \"butterfly size is too large\");\n\
+      \    assert((static_cast<std::uintmax_t>(mint::getmod()) - 1) % n == 0\n   \
+      \        && \"butterfly size is not supported by the modulus\");\n    return\
+      \ __builtin_ctz(static_cast<unsigned int>(n));\n}\n\n} // namespace detail\n\
+      \ntemplate <class FPS, class mint = typename FPS::value_type> void butterfly(FPS\
+      \ &a) {\n    int h = detail::butterfly_log_size<mint>(a.size());\n    static\
+      \ int g = primitive_root<mint::getmod()>;\n    static bool first = true;\n \
+      \   static mint sum_e2[30]; // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]\n\
+      \    static mint sum_e3[30];\n    static mint es[30], ies[30]; // es[i]^(2^(2+i))\
+      \ == 1\n    if (first) {\n        first = false;\n        int cnt2 = __builtin_ctz(mint::getmod()\
+      \ - 1);\n        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n\
+      \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n  \
+      \          es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n\
+      \            ie *= ie;\n        }\n        mint now = 1;\n        for (int i\
+      \ = 0; i <= cnt2 - 2; i++) {\n            sum_e2[i] = es[i] * now;\n       \
+      \     now *= ies[i];\n        }\n        now = 1;\n        for (int i = 0; i\
+      \ <= cnt2 - 3; i++) {\n            sum_e3[i] = es[i + 1] * now;\n          \
+      \  now *= ies[i + 1];\n        }\n    }\n\n    int len = 0;\n    while (len\
+      \ < h) {\n        if (h - len == 1) {\n            int p = 1 << (h - len - 1);\n\
+      \            mint rot = 1;\n            for (int s = 0; s < (1 << len); s++)\
+      \ {\n                int offset = s << (h - len);\n                for (int\
+      \ i = 0; i < p; i++) {\n                    auto l = a[i + offset];\n      \
+      \              auto r = a[i + offset + p] * rot;\n                    a[i +\
+      \ offset] = l + r;\n                    a[i + offset + p] = l - r;\n       \
+      \         }\n                if (s + 1 != (1 << len)) rot *= sum_e2[__builtin_ctz(~(unsigned\
+      \ int)(s))];\n            }\n            len++;\n        } else {\n        \
+      \    int p = 1 << (h - len - 2);\n            mint rot = 1, imag = es[0];\n\
+      \            for (int s = 0; s < (1 << len); s++) {\n                mint rot2\
+      \ = rot * rot;\n                mint rot3 = rot2 * rot;\n                int\
+      \ offset = s << (h - len);\n                for (int i = 0; i < p; i++) {\n\
+      \                    auto a0 = a[i + offset];\n                    auto a1 =\
+      \ a[i + offset + p] * rot;\n                    auto a2 = a[i + offset + p *\
+      \ 2] * rot2;\n                    auto a3 = a[i + offset + p * 3] * rot3;\n\
+      \                    auto a1na3imag = (a1 - a3) * imag;\n                  \
+      \  a[i + offset] = a0 + a2 + a1 + a3;\n                    a[i + offset + p]\
+      \ = a0 + a2 - a1 - a3;\n                    a[i + offset + p * 2] = a0 - a2\
+      \ + a1na3imag;\n                    a[i + offset + p * 3] = a0 - a2 - a1na3imag;\n\
+      \                }\n                if (s + 1 != (1 << len)) rot *= sum_e3[__builtin_ctz(~(unsigned\
       \ int)(s))];\n            }\n            len += 2;\n        }\n    }\n}\n\n\
       template <class FPS, class mint = typename FPS::value_type> void butterfly_inv(FPS\
-      \ &a) {\n    static constexpr int g = primitive_root<mint::getmod()>;\n    int\
-      \ n = int(a.size());\n    int h = 0;\n    while ((1U << h) < (unsigned int)(n))\
-      \ h++;\n    static bool first = true;\n    static mint sum_ie2[30]; // sum_ie[i]\
-      \ = es[0] * ... * es[i - 1] * ies[i]\n    static mint sum_ie3[30];\n    static\
-      \ mint es[30], ies[30]; // es[i]^(2^(2+i)) == 1\n    static mint invn[30];\n\
-      \    if (first) {\n        first = false;\n        int cnt2 = __builtin_ctz(mint::getmod()\
-      \ - 1);\n        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n\
+      \ &a) {\n    int n = int(a.size());\n    int h = detail::butterfly_log_size<mint>(a.size());\n\
+      \    static constexpr int g = primitive_root<mint::getmod()>;\n    static bool\
+      \ first = true;\n    static mint sum_ie2[30]; // sum_ie[i] = es[0] * ... * es[i\
+      \ - 1] * ies[i]\n    static mint sum_ie3[30];\n    static mint es[30], ies[30];\
+      \ // es[i]^(2^(2+i)) == 1\n    static mint invn[30];\n    if (first) {\n   \
+      \     first = false;\n        int cnt2 = __builtin_ctz(mint::getmod() - 1);\n\
+      \        mint e = mint(g).pow((mint::getmod() - 1) >> cnt2), ie = e.inv();\n\
       \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n  \
       \          es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n\
       \            ie *= ie;\n        }\n        mint now = 1;\n        for (int i\
@@ -322,38 +353,42 @@ data:
       \ int)(s))];\n            }\n            len -= 2;\n        }\n    }\n\n   \
       \ for (int i = 0; i < n; i++) a[i] *= invn[h];\n}\n\ntemplate <class FPS, class\
       \ mint = typename FPS::value_type> void doubling(FPS &a) {\n    int n = a.size();\n\
-      \    auto b = a;\n    int z = 1;\n    butterfly_inv(b);\n    mint r = 1, zeta\
-      \ = mint(primitive_root<mint::getmod()>).pow((mint::getmod() - 1) / (n << 1));\n\
-      \    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n        r *= zeta;\n\
-      \    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(), std::back_inserter(a));\n\
-      }\n\n} // namespace kk2\n\n\n#line 1 \"fps/fps_base.hpp\"\n\n\n\n#line 5 \"\
-      fps/fps_base.hpp\"\n#include <iostream>\n#line 7 \"fps/fps_base.hpp\"\n\n#line\
-      \ 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n#include <ranges>\n\
-      #line 7 \"type_traits/fps.hpp\"\n\nnamespace kk2::fps {\n\nnamespace category\
-      \ {\n\nstruct arbitrary_modulus {};\nstruct ntt_friendly_modulus {};\n\nstruct\
-      \ ordinary {};\nstruct exponential_generating {};\nstruct set_power_series {};\n\
-      \nstruct univariate {};\nstruct bivariate {};\nstruct multivariate {};\n\n}\
-      \ // namespace category\n\ntemplate <class M>\nconcept Modular = requires(M\
-      \ x) {\n    { M::getmod() } -> std::integral;\n    x.val();\n    { x.inv() }\
-      \ -> std::same_as<M>;\n};\n\ntemplate <class F>\nconcept FormalPowerSeries =\
-      \ requires(const F &f, int i) {\n    typename F::value_type;\n    typename F::modulus_category;\n\
-      \    typename F::series_category;\n    { f.size() } -> std::integral;\n    f[i];\n\
-      } && std::ranges::range<const F>;\n\ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F>\n    && std::same_as<typename F::modulus_category,\
-      \ category::ntt_friendly_modulus>;\n\ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::modulus_category,\
-      \ category::arbitrary_modulus>;\n\ntemplate <class F>\nconcept OrdinaryFormalPowerSeries\
-      \ =\n    FormalPowerSeries<F> && std::same_as<typename F::series_category, category::ordinary>;\n\
-      \ntemplate <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
+      \    detail::butterfly_log_size<mint>(a.size() * 2);\n    auto b = a;\n    int\
+      \ z = 1;\n    butterfly_inv(b);\n    mint r = 1, zeta = mint(primitive_root<mint::getmod()>).pow((mint::getmod()\
+      \ - 1) / (n << 1));\n    for (int i = 0; i < n; i++) {\n        b[i] *= r;\n\
+      \        r *= zeta;\n    }\n    butterfly(b);\n    std::copy(b.begin(), b.end(),\
+      \ std::back_inserter(a));\n}\n\n} // namespace kk2\n\n\n#line 1 \"fps/fps_base.hpp\"\
+      \n\n\n\n#line 5 \"fps/fps_base.hpp\"\n#include <iostream>\n#line 7 \"fps/fps_base.hpp\"\
+      \n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#line 5 \"type_traits/fps.hpp\"\n\
+      #include <ranges>\n#line 7 \"type_traits/fps.hpp\"\n\n#line 9 \"type_traits/fps.hpp\"\
+      \n\nnamespace kk2::fps {\n\nnamespace category {\n\nstruct arbitrary_modulus\
+      \ {};\nstruct ntt_friendly_modulus {};\n\nstruct ordinary {};\nstruct exponential_generating\
+      \ {};\nstruct set_power_series {};\n\nstruct univariate {};\nstruct bivariate\
+      \ {};\nstruct multivariate {};\n\n} // namespace category\n\n// Compatibility\
+      \ forwarding alias. The canonical modint constraint lives in\n// type_traits/modint.hpp;\
+      \ keeping this name avoids breaking existing FPS code.\ntemplate <class M>\n\
+      concept Modular = modint::Modular<M>;\n\ntemplate <class F>\nconcept FormalPowerSeries\
+      \ = requires(const F &f, int i) {\n    typename F::value_type;\n    typename\
+      \ F::modulus_category;\n    typename F::series_category;\n    { f.size() } ->\
+      \ std::integral;\n    f[i];\n} && std::ranges::range<const F>;\n\ntemplate <class\
+      \ F>\nconcept NTTFriendlyFormalPowerSeries =\n    FormalPowerSeries<F>\n   \
+      \ && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;\n\
+      \ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries =\n    FormalPowerSeries<F>\
+      \ && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;\n\
+      \ntemplate <class F>\nconcept OrdinaryFormalPowerSeries =\n    FormalPowerSeries<F>\
+      \ && std::same_as<typename F::series_category, category::ordinary>;\n\ntemplate\
+      \ <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
       \    && std::same_as<typename F::series_category, category::exponential_generating>;\n\
       \ntemplate <class F>\nconcept SetPowerSeries =\n    FormalPowerSeries<F> &&\
       \ std::same_as<typename F::series_category, category::set_power_series>;\n\n\
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
-      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
-      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ ModularUnivariateFormalPowerSeries =\n    UnivariateFormalPowerSeries<F> &&\
+      \ modint::Modular<typename F::value_type>;\n\ntemplate <class F>\nconcept UnivariateNTTFriendlyFormalPowerSeries\
+      \ =\n    NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries =\n\
+      \    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
       \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
@@ -394,27 +429,27 @@ data:
       \n} // namespace kk2\n\n\n#line 1 \"fps/operations/division.hpp\"\n\n\n\n#line\
       \ 5 \"fps/operations/division.hpp\"\n#include <memory>\n#include <utility>\n\
       #line 8 \"fps/operations/division.hpp\"\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\
-      \n\n\n\n#line 5 \"fps/fps_sparsity_detector.hpp\"\n#include <bit>\n#include\
-      \ <cstdint>\n#line 9 \"fps/fps_sparsity_detector.hpp\"\n\nnamespace kk2 {\n\n\
-      enum class FPSOperation {\n    CONVOLUTION,\n    LOG,\n    POWER,\n    DIVISION,\n\
-      \    POLYNOMIAL_DIVISION,\n    INVERSE,\n    EXP,\n    SQRT\n};\n\nnamespace\
-      \ fps::sparsity_detail {\n\n// E(n): the leading FFT evaluation cost, up to\
-      \ the common field-operation\n// constant that cancels when dense and sparse\
-      \ leading terms are compared.\ninline std::int64_t evaluation_work(int n) {\n\
-      \    if (n <= 1) return 1;\n    const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n\
-      \    return static_cast<std::int64_t>(z) * std::countr_zero(z);\n}\n\ninline\
-      \ int transform_size(int n, int m) {\n    if (n <= 0 || m <= 0) return 0;\n\
-      \    return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n + m - 1)));\n\
-      }\n\ninline std::int64_t\nconvolution_dense_work(int n, int m, int precision,\
-      \ bool same, bool ntt_friendly) {\n    n = std::min(n, precision);\n    m =\
-      \ std::min(m, precision);\n    const int z = transform_size(n, m);\n    if (z\
-      \ == 0) return 0;\n\n    // A different pair needs two forward and one inverse\
-      \ transform. Squaring\n    // reuses the forward transform and needs only one\
-      \ forward transform.\n    const int transforms = same ? 2 : 3;\n    // Arbitrary-modulus\
-      \ convolution uses three NTT-friendly moduli.\n    const int moduli = ntt_friendly\
-      \ ? 1 : 3;\n    return static_cast<std::int64_t>(transforms) * moduli * evaluation_work(z);\n\
-      }\n\ninline std::int64_t inverse_dense_work(int precision, bool ntt_friendly)\
-      \ {\n    if (precision <= 1) return 0;\n    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(precision)));\n\
+      \n\n\n\n#line 5 \"fps/fps_sparsity_detector.hpp\"\n#include <bit>\n#line 9 \"\
+      fps/fps_sparsity_detector.hpp\"\n\nnamespace kk2 {\n\nenum class FPSOperation\
+      \ {\n    CONVOLUTION,\n    LOG,\n    POWER,\n    DIVISION,\n    POLYNOMIAL_DIVISION,\n\
+      \    INVERSE,\n    EXP,\n    SQRT\n};\n\nnamespace fps::sparsity_detail {\n\n\
+      // E(n): the leading FFT evaluation cost, up to the common field-operation\n\
+      // constant that cancels when dense and sparse leading terms are compared.\n\
+      inline std::int64_t evaluation_work(int n) {\n    if (n <= 1) return 1;\n  \
+      \  const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n    return static_cast<std::int64_t>(z)\
+      \ * std::countr_zero(z);\n}\n\ninline int transform_size(int n, int m) {\n \
+      \   if (n <= 0 || m <= 0) return 0;\n    return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n\
+      \ + m - 1)));\n}\n\ninline std::int64_t\nconvolution_dense_work(int n, int m,\
+      \ int precision, bool same, bool ntt_friendly) {\n    n = std::min(n, precision);\n\
+      \    m = std::min(m, precision);\n    const int z = transform_size(n, m);\n\
+      \    if (z == 0) return 0;\n\n    // A different pair needs two forward and\
+      \ one inverse transform. Squaring\n    // reuses the forward transform and needs\
+      \ only one forward transform.\n    const int transforms = same ? 2 : 3;\n  \
+      \  // Arbitrary-modulus convolution uses three NTT-friendly moduli.\n    const\
+      \ int moduli = ntt_friendly ? 1 : 3;\n    return static_cast<std::int64_t>(transforms)\
+      \ * moduli * evaluation_work(z);\n}\n\ninline std::int64_t inverse_dense_work(int\
+      \ precision, bool ntt_friendly) {\n    if (precision <= 1) return 0;\n    const\
+      \ int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(precision)));\n\
       \    // NTT-friendly uses five transforms per Newton level, whose geometric\n\
       \    // sum has leading term 10 E(z). The arbitrary-modulus implementation\n\
       \    // performs two fresh convolutions per level, giving 60 E(z).\n    return\
@@ -755,8 +790,8 @@ data:
       \ next_support = 0;\n    for (int k = 0; k < precision - 1; ++k) {\n       \
       \ for (const auto &[index, coefficient] : support) {\n            if (k < index)\
       \ break;\n            const int i = k - index;\n            f[k + 1] -= f[i\
-      \ + 1] * coefficient * (i + 1);\n        }\n        f[k + 1] *= ivta::inv(k\
-      \ + 1);\n        while (next_support < support.size() && support[next_support].first\
+      \ + 1] * coefficient * (i + 1);\n        }\n        f[k + 1] *= ivta::inv_unchecked(static_cast<usize>(k\
+      \ + 1));\n        while (next_support < support.size() && support[next_support].first\
       \ < k + 1) ++next_support;\n        if (next_support < support.size() && support[next_support].first\
       \ == k + 1)\n            f[k + 1] += support[next_support].second;\n    }\n\
       \    return f;\n}\n\ntemplate <UnivariateFormalPowerSeries FPS> FPS sparse_log(const\
@@ -968,9 +1003,9 @@ data:
       \ is_sparse_operation(\n            FPSOperation::SQRT, NTTFriendlyFormalPowerSeries<FPS>,\
       \ f, FPS(), precision);\n    if (use_sparse) return inplace_sparse_sqrt(f, precision);\n\
       \    return inplace_dense_sqrt(f, precision);\n}\n\n} // namespace kk2::fps::operations\n\
-      \n\n#line 19 \"fps/fps_base.hpp\"\n\nnamespace kk2 {\n\ntemplate <class Derived,\
-      \ fps::Modular mint> struct FormalPowerSeriesBase : std::vector<mint> {\n  \
-      \  using std::vector<mint>::vector;\n    using FPS = Derived;\n    using ivta\
+      \n\n#line 20 \"fps/fps_base.hpp\"\n\nnamespace kk2 {\n\ntemplate <class Derived,\
+      \ modint::Modular mint> struct FormalPowerSeriesBase : std::vector<mint> {\n\
+      \    using std::vector<mint>::vector;\n    using FPS = Derived;\n    using ivta\
       \ = InvTable<mint>;\n\n    // CRTP\u3092\u4F7F\u3063\u3066\u6D3E\u751F\u30AF\
       \u30E9\u30B9\u306E\u53C2\u7167\u3092\u53D6\u5F97\n    Derived &derived() { return\
       \ static_cast<Derived &>(*this); }\n    const Derived &derived() const { return\
@@ -1044,9 +1079,9 @@ data:
       \ i = 1; i <= this->size(); i++) (*this)[i - 1] *= mint(i);\n        return\
       \ derived();\n    }\n\n    FPS &inplace_int() {\n        ivta::set_upper(this->size());\n\
       \        this->insert(this->begin(), mint(0));\n        for (size_t i = 1; i\
-      \ < this->size(); i++) (*this)[i] *= ivta::inv(i);\n        return derived();\n\
-      \    }\n\n    // CRTP\u3092\u4F7F\u3063\u305F\u4FBF\u5229\u95A2\u6570\u306E\u81EA\
-      \u52D5\u5B9F\u88C5\n    FPS rev() const { return FPS(derived()).inplace_rev();\
+      \ < this->size(); i++) (*this)[i] *= ivta::inv_unchecked(i);\n        return\
+      \ derived();\n    }\n\n    // CRTP\u3092\u4F7F\u3063\u305F\u4FBF\u5229\u95A2\
+      \u6570\u306E\u81EA\u52D5\u5B9F\u88C5\n    FPS rev() const { return FPS(derived()).inplace_rev();\
       \ }\n    FPS dot(const FPS &r) const { return FPS(derived()).inplace_dot(r);\
       \ }\n    FPS pre(int n) const { return FPS(derived()).inplace_pre(n); }\n  \
       \  FPS diff() const { return FPS(derived()).inplace_diff(); }\n    FPS integral()\
@@ -1129,7 +1164,7 @@ data:
       \     return derived();\n    }\n    FPS imos(int n) const { return FPS(derived()).inplace_imos(n);\
       \ }\n    FPS iimos(int n) const { return FPS(derived()).inplace_iimos(n); }\n\
       };\n\n} // namespace kk2\n\n\n#line 6 \"fps/fps_ntt_friendly.hpp\"\n\nnamespace\
-      \ kk2 {\n\ntemplate <fps::Modular mint>\nstruct FormalPowerSeriesNTTFriendly\n\
+      \ kk2 {\n\ntemplate <modint::Modular mint>\nstruct FormalPowerSeriesNTTFriendly\n\
       \    : FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint> {\n \
       \   using base = FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint>;\n\
       \    using FPS = FormalPowerSeriesNTTFriendly<mint>;\n    using base::FormalPowerSeriesBase;\n\
@@ -1139,7 +1174,7 @@ data:
       \ = kk2::fps::category::univariate;\n    static constexpr bool is_ntt_friendly\
       \ = true;\n\n    void but() { butterfly(*this); }\n    void ibut() { butterfly_inv(*this);\
       \ }\n    void db() { doubling(*this); }\n    static int but_pr() { return primitive_root<mint::getmod()>;\
-      \ }\n};\n\ntemplate <fps::Modular mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;\n\
+      \ }\n};\n\ntemplate <modint::Modular mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;\n\
       \n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 8 \"modint/mont.hpp\"\
       \n\n#line 11 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\ntemplate <int p> struct\
       \ LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n    using\
@@ -1194,21 +1229,21 @@ data:
       \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
       #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
       \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
@@ -1377,197 +1412,197 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0023632609999992837
+  - elapsed: 0.002932956999984526
     environment: g++
     memory: 3.656
     name: example_00
     status: AC
-  - elapsed: 0.0020991140000035102
+  - elapsed: 0.00229839799999354
     environment: g++
-    memory: 3.656
+    memory: 3.608
     name: example_01
     status: AC
-  - elapsed: 1.574459633999993
+  - elapsed: 1.865420336999989
     environment: g++
-    memory: 28.14
+    memory: 28.112
     name: fft_killer_00
     status: AC
-  - elapsed: 1.577910332999977
+  - elapsed: 1.8670684389999792
     environment: g++
-    memory: 28.052
+    memory: 28.012
     name: fft_killer_01
     status: AC
-  - elapsed: 1.5746254959999817
-    environment: g++
-    memory: 28.14
-    name: fft_killer_02
-    status: AC
-  - elapsed: 1.5771086849999847
-    environment: g++
-    memory: 28.088
-    name: fft_killer_03
-    status: AC
-  - elapsed: 1.5737654910000174
-    environment: g++
-    memory: 28.04
-    name: fft_killer_04
-    status: AC
-  - elapsed: 1.5824717320000161
-    environment: g++
-    memory: 28.048
-    name: fft_killer_05
-    status: AC
-  - elapsed: 1.5821062289999759
-    environment: g++
-    memory: 28.064
-    name: fft_killer_06
-    status: AC
-  - elapsed: 1.5813131360000057
-    environment: g++
-    memory: 28.164
-    name: fft_killer_07
-    status: AC
-  - elapsed: 1.5817276600000127
-    environment: g++
-    memory: 28.004
-    name: fft_killer_08
-    status: AC
-  - elapsed: 1.5758889249999868
-    environment: g++
-    memory: 28.088
-    name: fft_killer_09
-    status: AC
-  - elapsed: 1.5718758849999972
-    environment: g++
-    memory: 28.24
-    name: max_random_00
-    status: AC
-  - elapsed: 1.5772663789999797
+  - elapsed: 1.8606381459999852
     environment: g++
     memory: 28.136
+    name: fft_killer_02
+    status: AC
+  - elapsed: 1.8617842249999512
+    environment: g++
+    memory: 28.112
+    name: fft_killer_03
+    status: AC
+  - elapsed: 1.8650447649999933
+    environment: g++
+    memory: 28.028
+    name: fft_killer_04
+    status: AC
+  - elapsed: 1.85964076099998
+    environment: g++
+    memory: 28.256
+    name: fft_killer_05
+    status: AC
+  - elapsed: 1.8587330269999711
+    environment: g++
+    memory: 28.172
+    name: fft_killer_06
+    status: AC
+  - elapsed: 1.8638650719999532
+    environment: g++
+    memory: 28.056
+    name: fft_killer_07
+    status: AC
+  - elapsed: 1.861101093000002
+    environment: g++
+    memory: 28.032
+    name: fft_killer_08
+    status: AC
+  - elapsed: 1.8654973679999785
+    environment: g++
+    memory: 28.128
+    name: fft_killer_09
+    status: AC
+  - elapsed: 1.862864051000031
+    environment: g++
+    memory: 28.06
+    name: max_random_00
+    status: AC
+  - elapsed: 1.865268398000012
+    environment: g++
+    memory: 28.088
     name: max_random_01
     status: AC
-  - elapsed: 0.006397696999982827
+  - elapsed: 0.007369266000011976
     environment: g++
-    memory: 3.936
+    memory: 3.736
     name: medium_00
     status: AC
-  - elapsed: 0.018862266000013506
+  - elapsed: 0.022188335999999254
     environment: g++
-    memory: 4.188
+    memory: 4.044
     name: medium_01
     status: AC
-  - elapsed: 0.01910915199999863
+  - elapsed: 0.021906126999965636
     environment: g++
-    memory: 4.056
+    memory: 3.912
     name: medium_02
     status: AC
-  - elapsed: 0.0029058069999905456
+  - elapsed: 0.003213383000002068
     environment: g++
-    memory: 3.928
+    memory: 3.788
     name: medium_all_zero_00
     status: AC
-  - elapsed: 0.003093155000016168
+  - elapsed: 0.0034374090000142132
     environment: g++
-    memory: 3.928
+    memory: 3.932
     name: medium_c_zero_00
     status: AC
-  - elapsed: 1.4898514930000033
+  - elapsed: 1.7656351560000303
     environment: g++
-    memory: 22.432
+    memory: 22.388
     name: random_00
     status: AC
-  - elapsed: 1.5369106699999975
+  - elapsed: 1.817050858000016
     environment: g++
-    memory: 24.408
+    memory: 24.444
     name: random_01
     status: AC
-  - elapsed: 0.171750497000005
+  - elapsed: 0.20054404199998999
     environment: g++
-    memory: 5.984
+    memory: 6.024
     name: random_02
     status: AC
-  - elapsed: 0.0021752619999801937
+  - elapsed: 0.002512390000049436
     environment: g++
-    memory: 3.796
+    memory: 3.816
     name: small_00
     status: AC
-  - elapsed: 0.0021421619999841823
-    environment: g++
-    memory: 3.812
-    name: small_01
-    status: AC
-  - elapsed: 0.0020977380000033463
-    environment: g++
-    memory: 3.772
-    name: small_02
-    status: AC
-  - elapsed: 0.0020833620000075825
+  - elapsed: 0.0023372560000325393
     environment: g++
     memory: 3.76
+    name: small_01
+    status: AC
+  - elapsed: 0.0022538910000093892
+    environment: g++
+    memory: 3.728
+    name: small_02
+    status: AC
+  - elapsed: 0.0022351519999688207
+    environment: g++
+    memory: 3.772
     name: small_03
     status: AC
-  - elapsed: 0.0020807459999900857
+  - elapsed: 0.002294061000043257
     environment: g++
     memory: 3.804
     name: small_04
     status: AC
-  - elapsed: 0.0020556399999804853
+  - elapsed: 0.0022338399999739522
     environment: g++
-    memory: 3.82
+    memory: 3.6
     name: small_05
     status: AC
-  - elapsed: 0.002124007000020356
+  - elapsed: 0.002399685000000318
     environment: g++
-    memory: 3.608
+    memory: 3.788
     name: small_06
     status: AC
-  - elapsed: 0.002084055000011631
+  - elapsed: 0.0023020739999992657
     environment: g++
-    memory: 3.656
+    memory: 3.824
     name: small_07
     status: AC
-  - elapsed: 0.0020758969999974397
+  - elapsed: 0.0023249529999702645
     environment: g++
     memory: 3.604
     name: small_08
     status: AC
-  - elapsed: 0.002231155000004037
+  - elapsed: 0.0023034349999875303
     environment: g++
-    memory: 3.804
+    memory: 3.8
     name: small_09
     status: AC
-  - elapsed: 0.0021953210000162926
+  - elapsed: 0.002272107999999662
     environment: g++
-    memory: 3.656
+    memory: 3.8
     name: small_10
     status: AC
-  - elapsed: 0.002142560999999432
+  - elapsed: 0.002300585999989835
     environment: g++
-    memory: 3.608
+    memory: 3.804
     name: small_11
     status: AC
-  - elapsed: 0.002108431000010569
+  - elapsed: 0.002278918000001795
     environment: g++
-    memory: 3.6
+    memory: 3.78
     name: small_12
     status: AC
-  - elapsed: 0.0021472599999867725
+  - elapsed: 0.002304347000006146
     environment: g++
-    memory: 3.716
+    memory: 3.76
     name: small_13
     status: AC
-  - elapsed: 0.0020898700000202552
+  - elapsed: 0.0023091379999868877
     environment: g++
-    memory: 3.6
+    memory: 3.788
     name: small_14
     status: AC
-  - elapsed: 0.002132352000018045
+  - elapsed: 0.0022849119999932554
     environment: g++
-    memory: 3.716
+    memory: 3.616
     name: small_15
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/poly_taylor_shift.test.cpp

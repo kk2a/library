@@ -730,21 +730,21 @@ data:
       template/template.hpp\"\n#include <unordered_map>\n#include <unordered_set>\n\
       #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
       \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
@@ -922,157 +922,157 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 10.546369620999997
+  - elapsed: 7.637042101000006
     environment: g++
-    memory: 20.528
+    memory: 20.576
     name: boundaryA_00
     status: AC
-  - elapsed: 7.140397014000001
+  - elapsed: 5.186920700999991
     environment: g++
-    memory: 16.38
+    memory: 16.428
     name: boundaryA_01
     status: AC
-  - elapsed: 7.376083405000003
+  - elapsed: 5.406863625
     environment: g++
-    memory: 16.772
+    memory: 16.776
     name: boundaryA_02
     status: AC
-  - elapsed: 6.082150012
+  - elapsed: 4.397379072000007
     environment: g++
-    memory: 14.988
+    memory: 15.004
     name: boundaryA_03
     status: AC
-  - elapsed: 3.6419840769999894
+  - elapsed: 2.657145043
     environment: g++
     memory: 11.428
     name: boundaryA_04
     status: AC
-  - elapsed: 10.58473661399998
+  - elapsed: 7.463686234999997
     environment: g++
-    memory: 20.576
+    memory: 20.568
     name: boundaryB_00
     status: AC
-  - elapsed: 7.156277266000018
+  - elapsed: 5.056411209000004
     environment: g++
-    memory: 16.444
+    memory: 16.428
     name: boundaryB_01
     status: AC
-  - elapsed: 7.343726228999998
+  - elapsed: 5.321848431999996
     environment: g++
-    memory: 16.64
+    memory: 16.772
     name: boundaryB_02
     status: AC
-  - elapsed: 6.129969924999983
+  - elapsed: 4.363689155000003
     environment: g++
-    memory: 14.956
+    memory: 15.016
     name: boundaryB_03
     status: AC
-  - elapsed: 3.637474198999996
+  - elapsed: 2.706310897999998
     environment: g++
-    memory: 11.284
+    memory: 11.296
     name: boundaryB_04
     status: AC
-  - elapsed: 0.0019179030000202602
+  - elapsed: 0.0018803380000065317
     environment: g++
-    memory: 3.84
+    memory: 3.884
     name: example_00
     status: AC
-  - elapsed: 0.0018534710000039922
-    environment: g++
-    memory: 3.892
-    name: example_01
-    status: AC
-  - elapsed: 10.56486939399997
-    environment: g++
-    memory: 20.752
-    name: example_02
-    status: AC
-  - elapsed: 0.15420933200005038
-    environment: g++
-    memory: 3.88
-    name: hack_wrong_zky_method_00
-    status: AC
-  - elapsed: 0.17447681400000192
+  - elapsed: 0.0016484460000185663
     environment: g++
     memory: 3.844
+    name: example_01
+    status: AC
+  - elapsed: 7.843348046000017
+    environment: g++
+    memory: 20.776
+    name: example_02
+    status: AC
+  - elapsed: 0.11355369200001064
+    environment: g++
+    memory: 3.892
+    name: hack_wrong_zky_method_00
+    status: AC
+  - elapsed: 0.12981662400000005
+    environment: g++
+    memory: 3.908
     name: hack_wrong_zky_method_01
     status: AC
-  - elapsed: 0.14846787799996264
+  - elapsed: 0.11001923200001329
     environment: g++
     memory: 4.06
     name: hack_wrong_zky_method_02
     status: AC
-  - elapsed: 10.568990378000024
+  - elapsed: 7.770354895999986
     environment: g++
-    memory: 20.716
+    memory: 20.756
     name: hack_wrong_zky_method_03
     status: AC
-  - elapsed: 10.724593288999984
+  - elapsed: 7.691076807000002
     environment: g++
-    memory: 20.736
+    memory: 20.724
     name: hack_wrong_zky_method_04
     status: AC
-  - elapsed: 9.269355872999995
+  - elapsed: 6.542721367999974
     environment: g++
-    memory: 19.116
+    memory: 18.956
     name: hack_wrong_zky_method_05
     status: AC
-  - elapsed: 10.734062633999997
+  - elapsed: 7.767708706000008
     environment: g++
-    memory: 20.78
+    memory: 20.764
     name: max_00
     status: AC
-  - elapsed: 10.596095110000022
+  - elapsed: 7.780830680999998
     environment: g++
     memory: 20.768
     name: max_01
     status: AC
-  - elapsed: 10.74627915900004
+  - elapsed: 7.772734471999996
     environment: g++
-    memory: 20.78
+    memory: 20.716
     name: max_02
     status: AC
-  - elapsed: 10.671131149000018
+  - elapsed: 7.775503011000012
     environment: g++
-    memory: 20.72
+    memory: 20.724
     name: max_03
     status: AC
-  - elapsed: 10.637465757999962
+  - elapsed: 7.793253934000006
     environment: g++
-    memory: 20.768
+    memory: 20.776
     name: max_04
     status: AC
-  - elapsed: 10.589922905000037
+  - elapsed: 7.713291740000017
     environment: g++
     memory: 20.572
     name: random_00
     status: AC
-  - elapsed: 7.180043969999986
+  - elapsed: 5.2850468190000015
     environment: g++
-    memory: 16.428
+    memory: 16.388
     name: random_01
     status: AC
-  - elapsed: 7.381572973000004
+  - elapsed: 5.299251438000027
     environment: g++
-    memory: 16.78
+    memory: 16.772
     name: random_02
     status: AC
-  - elapsed: 6.078793313000006
+  - elapsed: 4.378880154000001
     environment: g++
-    memory: 15.012
+    memory: 15.004
     name: random_03
     status: AC
-  - elapsed: 3.6357641410000383
+  - elapsed: 2.693653304999998
     environment: g++
-    memory: 11.416
+    memory: 11.428
     name: random_04
     status: AC
-  - elapsed: 0.0026943789999904766
+  - elapsed: 0.0023576799999887044
     environment: g++
-    memory: 3.852
+    memory: 3.92
     name: small_00
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp

@@ -142,25 +142,26 @@ data:
       \ <random>\n#include <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n\
       #include <unordered_set>\n#include <utility>\n#line 26 \"template/template.hpp\"\
       \n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n\
-      #include <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing i32 = int;\nusing u32 =\
+      \ unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+      \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+      \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\n\
+      using pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
+      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
+      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
+      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
+      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
+      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
+      \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
       \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
       \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
@@ -409,97 +410,97 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.16854895400000203
+  - elapsed: 0.1656637979999971
     environment: g++
-    memory: 4.044
+    memory: 4.064
     name: edge_decode_00
     status: AC
-  - elapsed: 0.20289556099999118
-    environment: g++
-    memory: 4.036
-    name: edge_encode_00
-    status: AC
-  - elapsed: 0.11172453700000062
-    environment: g++
-    memory: 4.056
-    name: edge_lca_00
-    status: AC
-  - elapsed: 0.1068620530000004
-    environment: g++
-    memory: 4.016
-    name: edge_range_00
-    status: AC
-  - elapsed: 0.002570275999985938
-    environment: g++
-    memory: 3.796
-    name: example_00
-    status: AC
-  - elapsed: 0.002230569000005289
-    environment: g++
-    memory: 3.752
-    name: hand_00
-    status: AC
-  - elapsed: 0.002137218999990864
-    environment: g++
-    memory: 3.796
-    name: hand_01
-    status: AC
-  - elapsed: 0.22720863199999997
-    environment: g++
-    memory: 4.056
-    name: random_ancestor_no_00
-    status: AC
-  - elapsed: 0.27365615200000093
+  - elapsed: 0.20474766999998906
     environment: g++
     memory: 4.06
-    name: random_ancestor_yes_00
+    name: edge_encode_00
     status: AC
-  - elapsed: 0.4418132469999989
-    environment: g++
-    memory: 4.068
-    name: random_decode_00
-    status: AC
-  - elapsed: 0.5299246449999941
-    environment: g++
-    memory: 4.048
-    name: random_encode_00
-    status: AC
-  - elapsed: 0.37426100599999756
-    environment: g++
-    memory: 4.036
-    name: random_lca_00
-    status: AC
-  - elapsed: 0.24388736800000288
-    environment: g++
-    memory: 3.856
-    name: random_range_00
-    status: AC
-  - elapsed: 0.1395592860000079
-    environment: g++
-    memory: 4.08
-    name: small_ancestor_00
-    status: AC
-  - elapsed: 0.23541000500000564
-    environment: g++
-    memory: 4.048
-    name: small_decode_00
-    status: AC
-  - elapsed: 0.28920168099999444
-    environment: g++
-    memory: 4.056
-    name: small_encode_00
-    status: AC
-  - elapsed: 0.15882611499999655
-    environment: g++
-    memory: 4.04
-    name: small_lca_00
-    status: AC
-  - elapsed: 0.14986249200001112
+  - elapsed: 0.1073337219999928
     environment: g++
     memory: 3.912
+    name: edge_lca_00
+    status: AC
+  - elapsed: 0.10471470899997826
+    environment: g++
+    memory: 4.048
+    name: edge_range_00
+    status: AC
+  - elapsed: 0.002650778000003129
+    environment: g++
+    memory: 3.76
+    name: example_00
+    status: AC
+  - elapsed: 0.0022829939999837734
+    environment: g++
+    memory: 3.804
+    name: hand_00
+    status: AC
+  - elapsed: 0.0022478419999742982
+    environment: g++
+    memory: 3.804
+    name: hand_01
+    status: AC
+  - elapsed: 0.22235488800001235
+    environment: g++
+    memory: 4.052
+    name: random_ancestor_no_00
+    status: AC
+  - elapsed: 0.2667158259999951
+    environment: g++
+    memory: 4.08
+    name: random_ancestor_yes_00
+    status: AC
+  - elapsed: 0.4486737789999893
+    environment: g++
+    memory: 3.968
+    name: random_decode_00
+    status: AC
+  - elapsed: 0.535086836000005
+    environment: g++
+    memory: 4.036
+    name: random_encode_00
+    status: AC
+  - elapsed: 0.3741333920000045
+    environment: g++
+    memory: 3.86
+    name: random_lca_00
+    status: AC
+  - elapsed: 0.2374883479999994
+    environment: g++
+    memory: 3.896
+    name: random_range_00
+    status: AC
+  - elapsed: 0.13141443899999672
+    environment: g++
+    memory: 3.856
+    name: small_ancestor_00
+    status: AC
+  - elapsed: 0.2304894190000084
+    environment: g++
+    memory: 3.912
+    name: small_decode_00
+    status: AC
+  - elapsed: 0.2933152450000023
+    environment: g++
+    memory: 3.864
+    name: small_encode_00
+    status: AC
+  - elapsed: 0.15537402500001463
+    environment: g++
+    memory: 4.06
+    name: small_lca_00
+    status: AC
+  - elapsed: 0.14454088899998396
+    environment: g++
+    memory: 4.06
     name: small_range_00
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/stern_brocot_tree.test.cpp

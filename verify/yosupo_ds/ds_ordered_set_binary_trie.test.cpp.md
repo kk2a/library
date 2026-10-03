@@ -178,25 +178,26 @@ data:
       \ <random>\n#include <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n\
       #include <unordered_set>\n#include <utility>\n#line 26 \"template/template.hpp\"\
       \n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n\
-      #include <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing i32 = int;\nusing u32 =\
+      \ unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+      \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+      \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\n\
+      using pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
+      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
+      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
+      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
+      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
+      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
+      \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
       \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
       \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
@@ -436,192 +437,192 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024340180000024247
+  - elapsed: 0.0024422140000126547
     environment: g++
-    memory: 3.76
+    memory: 3.836
     name: example_00
     status: AC
-  - elapsed: 0.0021133529999985967
+  - elapsed: 0.0018131379999886121
     environment: g++
-    memory: 3.632
+    memory: 3.836
     name: example_01
     status: AC
-  - elapsed: 0.27174847800000634
+  - elapsed: 0.22237823499997944
     environment: g++
-    memory: 4.392
+    memory: 4.476
     name: max_random_00
     status: AC
-  - elapsed: 0.23676846500001147
+  - elapsed: 0.20274667600000384
     environment: g++
-    memory: 4.012
+    memory: 4.132
     name: max_random_01
     status: AC
-  - elapsed: 0.2350307540000074
+  - elapsed: 0.14968209700001012
     environment: g++
-    memory: 4.16
+    memory: 4.228
     name: max_random_02
     status: AC
-  - elapsed: 0.1664963860000057
+  - elapsed: 0.15122859400000266
     environment: g++
-    memory: 3.936
+    memory: 4.188
     name: max_random_03
     status: AC
-  - elapsed: 0.3236333879999904
+  - elapsed: 0.28024048399998946
     environment: g++
-    memory: 4.016
+    memory: 4.088
     name: max_random_04
     status: AC
-  - elapsed: 0.18493444399999248
+  - elapsed: 0.15068360399999392
     environment: g++
-    memory: 3.888
+    memory: 3.964
     name: max_random_05
     status: AC
-  - elapsed: 0.23539841900000624
+  - elapsed: 0.1904359179999915
     environment: g++
-    memory: 4.032
+    memory: 4.1
     name: max_random_06
     status: AC
-  - elapsed: 0.21739926999998715
+  - elapsed: 0.19275968899998475
     environment: g++
-    memory: 4.0
+    memory: 4.08
     name: max_random_07
     status: AC
-  - elapsed: 0.3271285219999811
+  - elapsed: 0.29112122600000134
     environment: g++
-    memory: 15.736
+    memory: 15.804
     name: max_random_08
     status: AC
-  - elapsed: 0.3395795629999725
+  - elapsed: 0.2643024319999938
     environment: g++
-    memory: 4.0
+    memory: 4.2
     name: max_random_09
     status: AC
-  - elapsed: 0.2297641209999881
+  - elapsed: 0.16144052000001352
     environment: g++
-    memory: 4.852
+    memory: 4.968
     name: max_random_10
     status: AC
-  - elapsed: 0.11007734399998981
+  - elapsed: 0.11034085000000005
     environment: g++
-    memory: 5.112
+    memory: 5.096
     name: max_random_11
     status: AC
-  - elapsed: 0.342964932000001
+  - elapsed: 0.2837004290000209
     environment: g++
-    memory: 4.392
+    memory: 4.456
     name: max_random_12
     status: AC
-  - elapsed: 0.20002480500002662
+  - elapsed: 0.16980829799999242
     environment: g++
-    memory: 4.212
+    memory: 4.364
     name: max_random_13
     status: AC
-  - elapsed: 0.33310162300000457
+  - elapsed: 0.273401640000003
     environment: g++
-    memory: 4.264
+    memory: 4.328
     name: max_random_14
     status: AC
-  - elapsed: 0.3179137580000031
+  - elapsed: 0.2702803930000073
     environment: g++
-    memory: 4.256
+    memory: 4.344
     name: max_random_15
     status: AC
-  - elapsed: 0.524813604000002
+  - elapsed: 0.559537731000006
     environment: g++
-    memory: 24.08
+    memory: 24.064
     name: max_random_16
     status: AC
-  - elapsed: 0.5476692139999955
+  - elapsed: 0.5532885130000125
     environment: g++
-    memory: 24.08
+    memory: 24.276
     name: max_random_17
     status: AC
-  - elapsed: 0.5294652890000009
+  - elapsed: 0.5738241969999933
     environment: g++
-    memory: 26.1
+    memory: 26.256
     name: max_random_18
     status: AC
-  - elapsed: 0.4776971640000056
-    environment: g++
-    memory: 21.984
-    name: max_random_19
-    status: AC
-  - elapsed: 0.6444330770000022
+  - elapsed: 0.563925863999998
     environment: g++
     memory: 22.048
+    name: max_random_19
+    status: AC
+  - elapsed: 0.6689490580000097
+    environment: g++
+    memory: 22.076
     name: max_random_20
     status: AC
-  - elapsed: 0.43817015400000514
+  - elapsed: 0.4648091669999985
     environment: g++
-    memory: 22.06
+    memory: 22.172
     name: max_random_21
     status: AC
-  - elapsed: 0.4867220999999802
+  - elapsed: 0.5251614169999925
     environment: g++
-    memory: 22.032
+    memory: 22.128
     name: max_random_22
     status: AC
-  - elapsed: 0.481430276999987
+  - elapsed: 0.5128927559999852
     environment: g++
-    memory: 22.116
+    memory: 22.1
     name: max_random_23
     status: AC
-  - elapsed: 0.8244054430000176
+  - elapsed: 0.8822527660000219
     environment: g++
-    memory: 83.504
+    memory: 83.664
     name: max_random_24
     status: AC
-  - elapsed: 0.8073994150000203
+  - elapsed: 0.9174125540000091
     environment: g++
-    memory: 83.472
+    memory: 83.572
     name: max_random_25
     status: AC
-  - elapsed: 0.7587992640000039
+  - elapsed: 0.8887220390000152
     environment: g++
-    memory: 99.856
+    memory: 99.924
     name: max_random_26
     status: AC
-  - elapsed: 0.6660988360000033
+  - elapsed: 0.7338779150000505
     environment: g++
-    memory: 77.236
+    memory: 77.22
     name: max_random_27
     status: AC
-  - elapsed: 0.883943893999998
+  - elapsed: 0.965388116999975
     environment: g++
-    memory: 77.412
+    memory: 77.516
     name: max_random_28
     status: AC
-  - elapsed: 0.6970509970000194
+  - elapsed: 0.7463731299999949
     environment: g++
-    memory: 77.324
+    memory: 77.336
     name: max_random_29
     status: AC
-  - elapsed: 0.8090648000000158
+  - elapsed: 0.8970390370000132
     environment: g++
     memory: 77.384
     name: max_random_30
     status: AC
-  - elapsed: 0.7822923360000118
+  - elapsed: 0.8769209499999988
     environment: g++
-    memory: 77.248
+    memory: 77.38
     name: max_random_31
     status: AC
-  - elapsed: 0.1924585200000024
+  - elapsed: 0.16963382599999477
     environment: g++
-    memory: 19.684
+    memory: 19.8
     name: small_00
     status: AC
-  - elapsed: 0.20205262900000776
+  - elapsed: 0.1738016570000127
     environment: g++
-    memory: 11.528
+    memory: 11.624
     name: small_01
     status: AC
-  - elapsed: 0.20785729000002107
+  - elapsed: 0.17717954899995902
     environment: g++
-    memory: 9.476
+    memory: 9.54
     name: small_02
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp

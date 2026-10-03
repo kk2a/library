@@ -31,6 +31,9 @@ data:
     - filename: aoj_alds1_14_b.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/aoj/aoj_alds1_14_b.test.cpp
+    - filename: large_fact_arb_mod.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
@@ -64,6 +67,9 @@ data:
     - filename: kth_term_of_linearly_recurrent_sequence.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    - filename: sum_of_exponential_times_polynomial_limit.test.cpp
+      icon: LIBRARY_NO_TESTS
+      path: verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
     type: Required by
   - files:
     - filename: aoj_0233.test.cpp
@@ -105,6 +111,9 @@ data:
     - filename: isprime_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/isprime_table_extend.test.cpp
+    - filename: lpf_power_table_extend.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/lpf_power_table_extend.test.cpp
     - filename: lpf_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/lpf_table_extend.test.cpp
@@ -132,9 +141,6 @@ data:
     - filename: inv_table.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/inv_table.test.cpp
-    - filename: large_fact_arb_mod.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: F2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/modint/F2.test.cpp
@@ -294,6 +300,9 @@ data:
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    - filename: prefix_sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
     - filename: arg_sort.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_geometry/arg_sort.test.cpp
@@ -462,6 +471,9 @@ data:
     - filename: many_a_plus_b_128bit.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+    - filename: sum_of_exponential_times_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
     - filename: string_number_of_substrings.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_string/string_number_of_substrings.test.cpp
@@ -594,25 +606,26 @@ data:
       \ <queue>\n#include <random>\n#include <set>\n#include <stack>\n#include <string>\n\
       #include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include\
       \ <vector>\n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n\
-      #include <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing i32 = int;\nusing u32 =\
+      \ unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+      \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+      \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\n\
+      using pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
+      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
+      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
+      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
+      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
+      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
+      \ <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
       \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
       \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
@@ -839,6 +852,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
@@ -850,7 +864,8 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  - verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -866,6 +881,7 @@ data:
   - verify/unit_test/math/action/action.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/math/isprime_table_extend.test.cpp
+  - verify/unit_test/math/lpf_power_table_extend.test.cpp
   - verify/unit_test/math/lpf_table_extend.test.cpp
   - verify/unit_test/math/monoid/monoid.test.cpp
   - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
@@ -875,7 +891,6 @@ data:
   - verify/unit_test/math/rational.test.cpp
   - verify/unit_test/math_mod/binom_table.test.cpp
   - verify/unit_test/math_mod/inv_table.test.cpp
-  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/unit_test/modint/F2.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
@@ -929,6 +944,7 @@ data:
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
   - verify/yosupo_geometry/arg_sort.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp
@@ -985,6 +1001,7 @@ data:
   - verify/yosupo_others/longest_increasing_subsequence.test.cpp
   - verify/yosupo_others/many_a_plus_b.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+  - verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
   - verify/yosupo_string/string_number_of_substrings.test.cpp
   - verify/yosupo_string/string_suffix_array.test.cpp
   - verify/yosupo_string/string_z_algorithm.test.cpp

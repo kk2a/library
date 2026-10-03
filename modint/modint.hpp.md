@@ -13,6 +13,9 @@ data:
       path: type_traits/io.hpp
     type: Depends on
   - files:
+    - filename: large_fact_arb_mod.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: ds_point_set_range_composite_large_2.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
@@ -27,9 +30,6 @@ data:
     - filename: inv_table.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/inv_table.test.cpp
-    - filename: large_fact_arb_mod.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: mod_sqrt.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/mod_sqrt.test.cpp
@@ -217,14 +217,14 @@ data:
   path: modint/modint.hpp
   pathExtension: hpp
   requiredBy:
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math_mod/binom_table.test.cpp
   - verify/unit_test/math_mod/inv_table.test.cpp
-  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/unit_test/math_mod/mod_sqrt.test.cpp
   - verify/yosupo_ds/ds_range_affine_range_sum_large_2.test.cpp
   - verify/yosupo_math/binomial_coefficient_prime_mod.test.cpp

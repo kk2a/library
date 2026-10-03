@@ -102,21 +102,21 @@ data:
       #include <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
       #include <utility>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
       \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
@@ -350,137 +350,137 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0026007579999998143
+  - elapsed: 0.002449835999982497
     environment: g++
-    memory: 3.68
+    memory: 3.836
     name: example_00
     status: AC
-  - elapsed: 0.14631144899999526
+  - elapsed: 0.13695676399999002
     environment: g++
-    memory: 19.04
+    memory: 19.124
     name: max_00
     status: AC
-  - elapsed: 0.0025154479999969226
+  - elapsed: 0.002409170000021277
     environment: g++
-    memory: 3.748
+    memory: 3.728
     name: min_00
     status: AC
-  - elapsed: 0.0021666210000148567
+  - elapsed: 0.0020368430000132776
     environment: g++
-    memory: 3.716
+    memory: 3.832
     name: min_01
     status: AC
-  - elapsed: 0.00208675599998287
+  - elapsed: 0.0019833259999870734
     environment: g++
-    memory: 3.748
+    memory: 3.688
     name: min_02
     status: AC
-  - elapsed: 0.002135745000003908
-    environment: g++
-    memory: 3.748
-    name: min_03
-    status: AC
-  - elapsed: 0.0021925990000113416
-    environment: g++
-    memory: 3.732
-    name: min_04
-    status: AC
-  - elapsed: 0.0021512140000083946
-    environment: g++
-    memory: 3.668
-    name: min_05
-    status: AC
-  - elapsed: 0.0021237429999985125
-    environment: g++
-    memory: 3.704
-    name: min_06
-    status: AC
-  - elapsed: 0.002125555999981543
-    environment: g++
-    memory: 3.724
-    name: min_07
-    status: AC
-  - elapsed: 0.0020921639999755826
+  - elapsed: 0.0019633089999899767
     environment: g++
     memory: 3.72
-    name: min_08
+    name: min_03
     status: AC
-  - elapsed: 0.14038038000001052
-    environment: g++
-    memory: 19.1
-    name: polynom_p1p1m1_00
-    status: AC
-  - elapsed: 0.06496342600001981
-    environment: g++
-    memory: 10.704
-    name: polynom_p1p1m1_01
-    status: AC
-  - elapsed: 0.14520074300000374
-    environment: g++
-    memory: 19.096
-    name: polynom_p1p1z_00
-    status: AC
-  - elapsed: 0.06561021899997854
-    environment: g++
-    memory: 10.704
-    name: polynom_p1p1z_01
-    status: AC
-  - elapsed: 0.14612943200000927
-    environment: g++
-    memory: 19.14
-    name: polynom_p1zm1_00
-    status: AC
-  - elapsed: 0.06644776999999635
-    environment: g++
-    memory: 10.704
-    name: polynom_p1zm1_01
-    status: AC
-  - elapsed: 0.06828322600000547
-    environment: g++
-    memory: 11.056
-    name: random_00
-    status: AC
-  - elapsed: 0.09709529400001315
-    environment: g++
-    memory: 14.108
-    name: random_01
-    status: AC
-  - elapsed: 0.002592218999978968
+  - elapsed: 0.001964375999989443
     environment: g++
     memory: 3.724
+    name: min_04
+    status: AC
+  - elapsed: 0.001964452000009942
+    environment: g++
+    memory: 3.808
+    name: min_05
+    status: AC
+  - elapsed: 0.0019268060000001697
+    environment: g++
+    memory: 3.836
+    name: min_06
+    status: AC
+  - elapsed: 0.001940141000005724
+    environment: g++
+    memory: 3.792
+    name: min_07
+    status: AC
+  - elapsed: 0.0019006560000036643
+    environment: g++
+    memory: 3.728
+    name: min_08
+    status: AC
+  - elapsed: 0.13586189000000104
+    environment: g++
+    memory: 19.18
+    name: polynom_p1p1m1_00
+    status: AC
+  - elapsed: 0.06133127199998967
+    environment: g++
+    memory: 10.736
+    name: polynom_p1p1m1_01
+    status: AC
+  - elapsed: 0.13754540700000462
+    environment: g++
+    memory: 19.124
+    name: polynom_p1p1z_00
+    status: AC
+  - elapsed: 0.06156394000001342
+    environment: g++
+    memory: 10.732
+    name: polynom_p1p1z_01
+    status: AC
+  - elapsed: 0.1424958839999988
+    environment: g++
+    memory: 19.124
+    name: polynom_p1zm1_00
+    status: AC
+  - elapsed: 0.06033063000000993
+    environment: g++
+    memory: 10.844
+    name: polynom_p1zm1_01
+    status: AC
+  - elapsed: 0.0662660389999985
+    environment: g++
+    memory: 11.192
+    name: random_00
+    status: AC
+  - elapsed: 0.0949504989999923
+    environment: g++
+    memory: 14.304
+    name: random_01
+    status: AC
+  - elapsed: 0.0024581760000046415
+    environment: g++
+    memory: 3.856
     name: random_small_00
     status: AC
-  - elapsed: 0.002281046999996761
+  - elapsed: 0.002214851999980283
     environment: g++
     memory: 3.724
     name: random_small_01
     status: AC
-  - elapsed: 0.0024256579999928363
+  - elapsed: 0.0022346469999945384
     environment: g++
-    memory: 3.74
+    memory: 3.684
     name: random_small_02
     status: AC
-  - elapsed: 0.002273772999984658
+  - elapsed: 0.002153741000000764
     environment: g++
-    memory: 3.708
+    memory: 3.688
     name: random_small_03
     status: AC
-  - elapsed: 0.0023927359999902365
+  - elapsed: 0.00210153200001173
     environment: g++
-    memory: 3.708
+    memory: 3.716
     name: random_small_04
     status: AC
-  - elapsed: 0.05513490999999249
+  - elapsed: 0.05327717899999129
     environment: g++
-    memory: 9.56
+    memory: 9.692
     name: square_00
     status: AC
-  - elapsed: 0.06658514199997967
+  - elapsed: 0.06251143599999409
     environment: g++
-    memory: 10.616
+    memory: 10.848
     name: square_01
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/enumerate_quotients.test.cpp

@@ -231,21 +231,21 @@ data:
       \ <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n\
       #include <utility>\n#include <vector>\n\n#line 1 \"template/constant.hpp\"\n\
       \n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
@@ -835,152 +835,152 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 11.76511210700005
+  - elapsed: 14.46955308500003
     environment: g++
-    memory: 25.856
+    memory: 25.8
     name: decr_period_00
     status: AC
-  - elapsed: 12.361449343999993
+  - elapsed: 15.14672757599999
     environment: g++
-    memory: 25.868
+    memory: 25.732
     name: decr_period_01
     status: AC
-  - elapsed: 12.94259458700003
+  - elapsed: 15.861656893000031
     environment: g++
-    memory: 25.868
+    memory: 25.764
     name: decr_period_02
     status: AC
-  - elapsed: 12.529441749000057
+  - elapsed: 15.155831817000035
     environment: g++
-    memory: 25.776
+    memory: 25.808
     name: decr_period_03
     status: AC
-  - elapsed: 0.002365255999961846
+  - elapsed: 0.002493195000056403
     environment: g++
-    memory: 3.98
+    memory: 3.744
     name: example_00
     status: AC
-  - elapsed: 0.0019001900000148453
+  - elapsed: 0.0022395439999627342
     environment: g++
-    memory: 3.856
+    memory: 3.896
     name: example_01
     status: AC
-  - elapsed: 14.448862259999942
+  - elapsed: 17.54205610400004
     environment: g++
-    memory: 25.868
+    memory: 25.716
     name: large_k_00
     status: AC
-  - elapsed: 13.375497524000025
+  - elapsed: 16.14734010199993
     environment: g++
-    memory: 25.872
+    memory: 25.804
     name: large_k_01
     status: AC
-  - elapsed: 13.950234057999978
+  - elapsed: 17.015851862999966
     environment: g++
-    memory: 25.86
+    memory: 25.768
     name: large_k_02
     status: AC
-  - elapsed: 11.880383553999991
+  - elapsed: 14.294088504000001
     environment: g++
-    memory: 25.872
+    memory: 25.808
     name: periodic_00
     status: AC
-  - elapsed: 11.765216010000017
+  - elapsed: 14.147683824000069
     environment: g++
-    memory: 25.824
+    memory: 25.708
     name: periodic_01
     status: AC
-  - elapsed: 12.042577750000078
+  - elapsed: 14.565451635000045
     environment: g++
-    memory: 25.872
+    memory: 25.804
     name: periodic_02
     status: AC
-  - elapsed: 11.278201090999914
+  - elapsed: 13.663676286000054
     environment: g++
-    memory: 25.924
+    memory: 25.796
     name: periodic_03
     status: AC
-  - elapsed: 10.734074176000036
+  - elapsed: 12.723191142000019
     environment: g++
-    memory: 23.772
+    memory: 23.668
     name: random_00
     status: AC
-  - elapsed: 10.344338102000052
+  - elapsed: 12.191840451999951
     environment: g++
-    memory: 25.204
+    memory: 25.112
     name: random_01
     status: AC
-  - elapsed: 1.5946659720000298
+  - elapsed: 1.912160780000022
     environment: g++
-    memory: 6.376
+    memory: 6.276
     name: random_02
     status: AC
-  - elapsed: 0.18077202599999964
+  - elapsed: 0.18550135099997078
     environment: g++
-    memory: 4.26
+    memory: 4.012
     name: small_00
     status: AC
-  - elapsed: 0.22303338300002906
+  - elapsed: 0.2292391979999593
     environment: g++
-    memory: 4.26
+    memory: 4.048
     name: small_01
     status: AC
-  - elapsed: 0.23005888200009394
+  - elapsed: 0.25345728500008136
     environment: g++
-    memory: 4.184
+    memory: 4.164
     name: small_02
     status: AC
-  - elapsed: 0.23423385700004928
+  - elapsed: 0.24831285699997352
     environment: g++
-    memory: 4.272
+    memory: 4.048
     name: small_03
     status: AC
-  - elapsed: 0.24399976400002288
+  - elapsed: 0.26116583999998966
     environment: g++
-    memory: 4.26
+    memory: 4.04
     name: small_04
     status: AC
-  - elapsed: 0.24634147999995548
+  - elapsed: 0.26467061799996827
     environment: g++
-    memory: 4.112
+    memory: 4.048
     name: small_05
     status: AC
-  - elapsed: 0.2543863240000519
+  - elapsed: 0.27727582500006065
     environment: g++
-    memory: 4.136
+    memory: 4.048
     name: small_06
     status: AC
-  - elapsed: 0.25330875300005573
+  - elapsed: 0.2727593380000144
     environment: g++
-    memory: 4.136
+    memory: 4.048
     name: small_07
     status: AC
-  - elapsed: 0.2589577390000386
+  - elapsed: 0.2800563449999345
     environment: g++
-    memory: 4.26
+    memory: 4.04
     name: small_08
     status: AC
-  - elapsed: 0.2634708699999919
+  - elapsed: 0.28513379099990743
     environment: g++
-    memory: 4.26
+    memory: 3.992
     name: small_09
     status: AC
-  - elapsed: 2.909926915000028
+  - elapsed: 3.2610432760000094
     environment: g++
-    memory: 25.848
+    memory: 25.804
     name: small_k_00
     status: AC
-  - elapsed: 2.913387446999991
+  - elapsed: 3.212304495000012
     environment: g++
-    memory: 25.868
+    memory: 25.808
     name: small_k_01
     status: AC
-  - elapsed: 2.9107849889999216
+  - elapsed: 3.23988006400009
     environment: g++
-    memory: 25.736
+    memory: 25.728
     name: small_k_02
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_range_parallel_unionfind.test.cpp

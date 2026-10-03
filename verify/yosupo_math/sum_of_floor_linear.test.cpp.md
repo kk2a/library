@@ -74,9 +74,9 @@ data:
       #include <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n\
       #include <unordered_set>\n#include <utility>\n#include <vector>\n\n#line 1 \"\
       template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line\
-      \ 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing i64 = long\
-      \ long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
-      \ = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
+      \ 8 \"template/type_alias.hpp\"\n\nusing i32 = int;\nusing u32 = unsigned int;\n\
+      using i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
+      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
       \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
       \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
       \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
@@ -322,62 +322,62 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0026613649999944755
+  - elapsed: 0.0027510940000183837
     environment: g++
-    memory: 3.728
+    memory: 3.66
     name: example_00
     status: AC
-  - elapsed: 0.017154449999992494
+  - elapsed: 0.016925283000006175
     environment: g++
-    memory: 3.892
+    memory: 3.912
     name: random_00
     status: AC
-  - elapsed: 0.05939076399999976
+  - elapsed: 0.05887874699999429
     environment: g++
-    memory: 3.984
+    memory: 3.952
     name: random_01
     status: AC
-  - elapsed: 0.046170287999999005
+  - elapsed: 0.046005159999992884
     environment: g++
-    memory: 3.944
+    memory: 3.916
     name: random_02
     status: AC
-  - elapsed: 0.03231197499999894
+  - elapsed: 0.03202300399999558
     environment: g++
-    memory: 3.988
+    memory: 3.964
     name: random_03
     status: AC
-  - elapsed: 0.014892637000002651
+  - elapsed: 0.014640272999997705
     environment: g++
-    memory: 3.984
+    memory: 3.912
     name: random_04
     status: AC
-  - elapsed: 0.008836494000007633
+  - elapsed: 0.008992129999995768
     environment: g++
-    memory: 3.984
+    memory: 3.992
     name: small_00
     status: AC
-  - elapsed: 0.027442245999992565
-    environment: g++
-    memory: 3.936
-    name: small_01
-    status: AC
-  - elapsed: 0.02141060999998956
-    environment: g++
-    memory: 3.984
-    name: small_02
-    status: AC
-  - elapsed: 0.01532046500000206
-    environment: g++
-    memory: 3.956
-    name: small_03
-    status: AC
-  - elapsed: 0.007559104999998567
+  - elapsed: 0.027583469000006744
     environment: g++
     memory: 4.02
+    name: small_01
+    status: AC
+  - elapsed: 0.021825129999996307
+    environment: g++
+    memory: 3.892
+    name: small_02
+    status: AC
+  - elapsed: 0.015547193999992714
+    environment: g++
+    memory: 3.94
+    name: small_03
+    status: AC
+  - elapsed: 0.007806524000017134
+    environment: g++
+    memory: 3.916
     name: small_04
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/sum_of_floor_linear.test.cpp

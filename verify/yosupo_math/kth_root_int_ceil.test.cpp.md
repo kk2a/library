@@ -84,24 +84,25 @@ data:
       #include <queue>\n#include <random>\n#include <set>\n#include <stack>\n#include\
       \ <string>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
       #include <vector>\n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing i32 = int;\nusing u32 =\
+      \ unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+      \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+      \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\n\
+      using pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
+      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
+      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
+      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
+      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
+      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
       \n#include <cstdio>\n#include <fstream>\n#include <iostream>\n#line 10 \"template/fastio.hpp\"\
       \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
       \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
@@ -333,82 +334,82 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.19996183900002507
+  - elapsed: 0.1101470189999958
     environment: g++
-    memory: 4.112
+    memory: 4.364
     name: all_k2_00
     status: AC
-  - elapsed: 0.196856978999989
+  - elapsed: 0.11149635200000318
     environment: g++
-    memory: 4.096
+    memory: 4.384
     name: all_k2_01
     status: AC
-  - elapsed: 0.14737917599998696
+  - elapsed: 0.08510791300000164
     environment: g++
-    memory: 4.236
+    memory: 4.232
     name: all_k3_00
     status: AC
-  - elapsed: 0.14937645599999883
+  - elapsed: 0.08159224100000273
     environment: g++
-    memory: 4.104
+    memory: 4.364
     name: all_k3_01
     status: AC
-  - elapsed: 0.19129361299999914
+  - elapsed: 0.11504404200000096
     environment: g++
-    memory: 4.104
+    memory: 4.24
     name: all_k3_2_00
     status: AC
-  - elapsed: 0.19185157100000083
+  - elapsed: 0.11222216400000207
     environment: g++
-    memory: 4.244
+    memory: 4.24
     name: all_k3_2_01
     status: AC
-  - elapsed: 0.002529319000018404
+  - elapsed: 0.0024114420000032055
     environment: g++
-    memory: 3.828
+    memory: 4.132
     name: example_00
     status: AC
-  - elapsed: 0.13226000599999566
+  - elapsed: 0.07579602099999505
     environment: g++
-    memory: 4.092
+    memory: 4.36
     name: near_border_00
     status: AC
-  - elapsed: 0.13362941600001932
+  - elapsed: 0.0798219429999989
     environment: g++
-    memory: 4.1
+    memory: 4.404
     name: near_border_01
     status: AC
-  - elapsed: 0.13372662099999388
+  - elapsed: 0.07453306400000059
     environment: g++
-    memory: 4.104
+    memory: 4.388
     name: near_border_02
     status: AC
-  - elapsed: 0.1760211120000008
+  - elapsed: 0.10080975900000055
     environment: g++
-    memory: 4.216
+    memory: 4.22
     name: near_border_2_00
     status: AC
-  - elapsed: 0.17553704000002313
+  - elapsed: 0.10323644599999682
     environment: g++
-    memory: 4.264
+    memory: 4.212
     name: near_border_2_01
     status: AC
-  - elapsed: 0.17525556700002198
+  - elapsed: 0.10148945699999956
     environment: g++
-    memory: 4.168
+    memory: 4.236
     name: near_border_2_02
     status: AC
-  - elapsed: 0.1630016889999979
+  - elapsed: 0.09830078000000242
     environment: g++
-    memory: 4.264
+    memory: 4.22
     name: random_00
     status: AC
-  - elapsed: 0.19349553800000763
+  - elapsed: 0.12014222199999836
     environment: g++
-    memory: 4.244
+    memory: 4.38
     name: random_01
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/kth_root_int_ceil.test.cpp

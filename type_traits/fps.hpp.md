@@ -4,7 +4,13 @@ data:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   dependencies:
-  - files: []
+  - files:
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: modint.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/modint.hpp
     type: Depends on
   - files:
     - filename: multi_convolution_truncated_arb.hpp
@@ -79,9 +85,16 @@ data:
     - filename: sqrt.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/sqrt.hpp
+    - filename: power_sum.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/power_sum.hpp
+      title: Power Sum
     - filename: comb_large.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/comb_large.hpp
+    - filename: large_fact_arb_mod.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: fps_composition.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_composition.test.cpp
@@ -97,9 +110,6 @@ data:
     - filename: poly_interpolation_geometric.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-    - filename: poly_sample_point_shift.test.cpp
-      icon: LIBRARY_ALL_AC
-      path: verify/yosupo_fps/poly_sample_point_shift.test.cpp
     - filename: poly_to_newton_basis.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/poly_to_newton_basis.test.cpp
@@ -126,9 +136,9 @@ data:
     - filename: sparsity_small_performance.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_small_performance.test.cpp
-    - filename: large_fact_arb_mod.test.cpp
+    - filename: sum_of_polynomial.test.cpp
       icon: TEST_ACCEPTED
-      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+      path: verify/unit_test/fps/sum_of_polynomial.test.cpp
     - filename: fps.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/fps/fps.test.cpp
@@ -189,6 +199,9 @@ data:
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    - filename: prefix_sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
     - filename: enumerate_bell_number.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/enumerate_bell_number.test.cpp
@@ -202,21 +215,24 @@ data:
       icon: TEST_ACCEPTED
       path: verify/yuki/yuki_1510.test.cpp
     type: Verified with
-  dependsOn: []
+  dependsOn:
+  - type_traits/integral.hpp
+  - type_traits/modint.hpp
   embedded:
   - code: "#ifndef KK2_TYPE_TRAITS_FPS_HPP\n#define KK2_TYPE_TRAITS_FPS_HPP 1\n\n\
-      #include <concepts>\n#include <ranges>\n#include <type_traits>\n\nnamespace\
-      \ kk2::fps {\n\nnamespace category {\n\nstruct arbitrary_modulus {};\nstruct\
-      \ ntt_friendly_modulus {};\n\nstruct ordinary {};\nstruct exponential_generating\
+      #include <concepts>\n#include <ranges>\n#include <type_traits>\n\n#include \"\
+      modint.hpp\"\n\nnamespace kk2::fps {\n\nnamespace category {\n\nstruct arbitrary_modulus\
+      \ {};\nstruct ntt_friendly_modulus {};\n\nstruct ordinary {};\nstruct exponential_generating\
       \ {};\nstruct set_power_series {};\n\nstruct univariate {};\nstruct bivariate\
-      \ {};\nstruct multivariate {};\n\n} // namespace category\n\ntemplate <class\
-      \ M>\nconcept Modular = requires(M x) {\n    { M::getmod() } -> std::integral;\n\
-      \    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n\ntemplate <class F>\n\
-      concept FormalPowerSeries = requires(const F &f, int i) {\n    typename F::value_type;\n\
-      \    typename F::modulus_category;\n    typename F::series_category;\n    {\
-      \ f.size() } -> std::integral;\n    f[i];\n} && std::ranges::range<const F>;\n\
-      \ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries =\n    FormalPowerSeries<F>\n\
-      \    && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;\n\
+      \ {};\nstruct multivariate {};\n\n} // namespace category\n\n// Compatibility\
+      \ forwarding alias. The canonical modint constraint lives in\n// type_traits/modint.hpp;\
+      \ keeping this name avoids breaking existing FPS code.\ntemplate <class M>\n\
+      concept Modular = modint::Modular<M>;\n\ntemplate <class F>\nconcept FormalPowerSeries\
+      \ = requires(const F &f, int i) {\n    typename F::value_type;\n    typename\
+      \ F::modulus_category;\n    typename F::series_category;\n    { f.size() } ->\
+      \ std::integral;\n    f[i];\n} && std::ranges::range<const F>;\n\ntemplate <class\
+      \ F>\nconcept NTTFriendlyFormalPowerSeries =\n    FormalPowerSeries<F>\n   \
+      \ && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;\n\
       \ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries =\n    FormalPowerSeries<F>\
       \ && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;\n\
       \ntemplate <class F>\nconcept OrdinaryFormalPowerSeries =\n    FormalPowerSeries<F>\
@@ -228,9 +244,11 @@ data:
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
-      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
-      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ ModularUnivariateFormalPowerSeries =\n    UnivariateFormalPowerSeries<F> &&\
+      \ modint::Modular<typename F::value_type>;\n\ntemplate <class F>\nconcept UnivariateNTTFriendlyFormalPowerSeries\
+      \ =\n    NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries =\n\
+      \    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
       \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
@@ -244,12 +262,54 @@ data:
       \n#endif // KK2_TYPE_TRAITS_FPS_HPP\n"
     name: default
   - code: "#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n#include <ranges>\n\
-      #include <type_traits>\n\nnamespace kk2::fps {\n\nnamespace category {\n\nstruct\
-      \ arbitrary_modulus {};\nstruct ntt_friendly_modulus {};\n\nstruct ordinary\
-      \ {};\nstruct exponential_generating {};\nstruct set_power_series {};\n\nstruct\
-      \ univariate {};\nstruct bivariate {};\nstruct multivariate {};\n\n} // namespace\
-      \ category\n\ntemplate <class M>\nconcept Modular = requires(M x) {\n    { M::getmod()\
-      \ } -> std::integral;\n    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n\
+      #include <type_traits>\n\n#line 1 \"type_traits/modint.hpp\"\n\n\n\n#line 5\
+      \ \"type_traits/modint.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n\
+      #line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
+      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
+      template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
+      \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
+      template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 7 \"type_traits/modint.hpp\"\n\nnamespace kk2::modint\
+      \ {\n\ntemplate <class M>\nconcept Modular = requires(M x) {\n    requires Integral<decltype(M::getmod())>;\n\
+      \    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n\n} // namespace kk2::modint\n\
+      \n\n#line 9 \"type_traits/fps.hpp\"\n\nnamespace kk2::fps {\n\nnamespace category\
+      \ {\n\nstruct arbitrary_modulus {};\nstruct ntt_friendly_modulus {};\n\nstruct\
+      \ ordinary {};\nstruct exponential_generating {};\nstruct set_power_series {};\n\
+      \nstruct univariate {};\nstruct bivariate {};\nstruct multivariate {};\n\n}\
+      \ // namespace category\n\n// Compatibility forwarding alias. The canonical\
+      \ modint constraint lives in\n// type_traits/modint.hpp; keeping this name avoids\
+      \ breaking existing FPS code.\ntemplate <class M>\nconcept Modular = modint::Modular<M>;\n\
       \ntemplate <class F>\nconcept FormalPowerSeries = requires(const F &f, int i)\
       \ {\n    typename F::value_type;\n    typename F::modulus_category;\n    typename\
       \ F::series_category;\n    { f.size() } -> std::integral;\n    f[i];\n} && std::ranges::range<const\
@@ -266,9 +326,11 @@ data:
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
-      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
-      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ ModularUnivariateFormalPowerSeries =\n    UnivariateFormalPowerSeries<F> &&\
+      \ modint::Modular<typename F::value_type>;\n\ntemplate <class F>\nconcept UnivariateNTTFriendlyFormalPowerSeries\
+      \ =\n    NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries =\n\
+      \    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
       \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
@@ -310,16 +372,17 @@ data:
   - fps/operations/multivariate/power.hpp
   - fps/operations/power.hpp
   - fps/operations/sqrt.hpp
+  - fps/power_sum.hpp
   - math_mod/comb_large.hpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
   - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
-  - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp
@@ -328,7 +391,7 @@ data:
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp
-  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
+  - verify/unit_test/fps/sum_of_polynomial.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
@@ -349,6 +412,7 @@ data:
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_math/many_factrials.test.cpp

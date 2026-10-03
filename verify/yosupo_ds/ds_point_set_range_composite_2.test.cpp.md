@@ -360,51 +360,9 @@ data:
       \ (t->right) t->right->is_rev ^= 1;\n            t->is_rev = false;\n      \
       \  }\n        return t;\n    }\n};\n\n} // namespace rbtree\n\nusing rbtree::RedBlackTree;\n\
       \n} // namespace kk2\n\n\n\n#line 1 \"functional/reverse_args.hpp\"\n\n\n\n\
-      #line 1 \"type_traits/functional.hpp\"\n\n\n\n#line 5 \"type_traits/functional.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <typename T>\nusing is_function_pointer =\n\
-      \    typename std::conditional<std::is_pointer_v<T> && std::is_function_v<std::remove_pointer_t<T>>,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> struct is_two_args_function_pointer\
-      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2>\n\
-      struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {};\n\n\
-      template <typename T>\nusing is_two_args_function_pointer_t = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\
-      \ntemplate <class T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\
-      \ntemplate <class T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
-      \n} // namespace kk2\n\n\n#line 5 \"functional/reverse_args.hpp\"\n\nnamespace\
-      \ kk2 {\n\n// reverse_args<f>(y, x) = f(x, y)\ntemplate <auto f>\n    requires\
-      \ TwoArgsFunctionPointer<decltype(f)>\ninline auto reverse_args(auto x, auto\
-      \ y) {\n    return f(y, x);\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\
-      \n\n\n\n#line 5 \"math/monoid/affine.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid\
-      \ {\n\ntemplate <class S> struct Affine {\n    static constexpr bool commutative\
-      \ = false;\n    using M = Affine;\n    S a, b; // x \\mapsto ax + b\n\n    Affine()\
-      \ : a(S(1)), b(S(0)){};\n    Affine(S a, S b) : a(a), b(b) {}\n    inline S\
-      \ eval(S x) const { return a * x + b; }\n    // l \\circ r\n    inline static\
-      \ M op(M l, M r) { return M(l.a * r.a, l.a * r.b + l.b); }\n    inline static\
-      \ M unit() { return M(); }\n    inline static M inv(M f) { return M(S(1) / f.a,\
-      \ -f.b / f.a); }\n    bool operator==(const M &rhs) const { return a == rhs.a\
-      \ and b == rhs.b; }\n    bool operator!=(const M &rhs) const { return a != rhs.a\
-      \ or b != rhs.b; }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
-      \ &os, const M &x) {\n        return os << x.a << \" \" << x.b;\n    }\n\n \
-      \   template <InputStream IStream> friend IStream &operator>>(IStream &is, M\
-      \ &x) {\n        return is >> x.a >> x.b;\n    }\n};\n\n} // namespace monoid\n\
-      \n} // namespace kk2\n\n\n#line 1 \"math/monoid/rev_op.hpp\"\n\n\n\n#line 5\
-      \ \"math/monoid/rev_op.hpp\"\n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate\
-      \ <class T> struct ReverseOp : public T {\n    static constexpr bool commutative\
-      \ = T::commutative;\n    using M = ReverseOp;\n    using base = T;\n    using\
-      \ T::T;\n    ReverseOp(const T &t) : T(t) {}\n    inline static M op(M l, M\
-      \ r) {\n        return static_cast<M>(T::op(static_cast<T>(r), static_cast<T>(l)));\n\
-      \    }\n    inline static M unit() { return static_cast<M>(T::unit()); }\n\n\
-      \    bool operator==(const M &rhs) const { return static_cast<T>(*this) == static_cast<T>(rhs);\
-      \ }\n    bool operator!=(const M &rhs) const { return static_cast<T>(*this)\
-      \ != static_cast<T>(rhs); }\n    template <OutputStream OStream> friend OStream\
-      \ &operator<<(OStream &os, const M &x) {\n        os << static_cast<T>(x);\n\
-      \        return os;\n    }\n    template <InputStream IStream> friend IStream\
-      \ &operator>>(IStream &is, M &x) {\n        is >> static_cast<T &>(x);\n   \
-      \     return is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace kk2\n\
-      \n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include\
-      \ <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line 1 \"\
-      type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace\
-      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      #line 1 \"type_traits/functional.hpp\"\n\n\n\n#line 6 \"type_traits/functional.hpp\"\
+      \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
+      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
       \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
       \                                              or std::is_same<T, __int128>::value,\n\
       \                                                   std::true_type,\n      \
@@ -440,15 +398,64 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 11 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\n\
-      template <int p> struct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
-      \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
-      \    using u64 = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32\
-      \ ret = p;\n        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n      \
-      \  return ret;\n    }\n\n    static constexpr u32 r = get_r();\n    static constexpr\
-      \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
-      );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
-      \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
+      \n} // namespace kk2\n\n\n#line 8 \"type_traits/functional.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <typename T>\nusing is_function_pointer =\n    typename\
+      \ std::conditional<std::is_pointer_v<T> && std::is_function_v<std::remove_pointer_t<T>>,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T> struct is_two_args_function_pointer\
+      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2>\n\
+      struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {\n    using\
+      \ return_type = R;\n    using first_argument_type = T1;\n    using second_argument_type\
+      \ = T2;\n};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t =\
+      \ std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate <class\
+      \ T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate <class\
+      \ T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedTwoArgsFunctionPointer = TwoArgsFunctionPointer<T>\
+      \ && requires {\n    typename is_two_args_function_pointer<T>::first_argument_type;\n\
+      \    typename is_two_args_function_pointer<T>::second_argument_type;\n} && UnsignedIntegral<typename\
+      \ is_two_args_function_pointer<T>::first_argument_type> && UnsignedIntegral<typename\
+      \ is_two_args_function_pointer<T>::second_argument_type>;\n\n} // namespace\
+      \ kk2\n\n\n#line 5 \"functional/reverse_args.hpp\"\n\nnamespace kk2 {\n\n//\
+      \ reverse_args<f>(y, x) = f(x, y)\ntemplate <auto f>\n    requires TwoArgsFunctionPointer<decltype(f)>\n\
+      inline auto reverse_args(auto x, auto y) {\n    return f(y, x);\n}\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"math/monoid/affine.hpp\"\n\n\n\n#line 5 \"math/monoid/affine.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class S> struct Affine\
+      \ {\n    static constexpr bool commutative = false;\n    using M = Affine;\n\
+      \    S a, b; // x \\mapsto ax + b\n\n    Affine() : a(S(1)), b(S(0)){};\n  \
+      \  Affine(S a, S b) : a(a), b(b) {}\n    inline S eval(S x) const { return a\
+      \ * x + b; }\n    // l \\circ r\n    inline static M op(M l, M r) { return M(l.a\
+      \ * r.a, l.a * r.b + l.b); }\n    inline static M unit() { return M(); }\n \
+      \   inline static M inv(M f) { return M(S(1) / f.a, -f.b / f.a); }\n    bool\
+      \ operator==(const M &rhs) const { return a == rhs.a and b == rhs.b; }\n   \
+      \ bool operator!=(const M &rhs) const { return a != rhs.a or b != rhs.b; }\n\
+      \n    template <OutputStream OStream> friend OStream &operator<<(OStream &os,\
+      \ const M &x) {\n        return os << x.a << \" \" << x.b;\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, M &x) {\n  \
+      \      return is >> x.a >> x.b;\n    }\n};\n\n} // namespace monoid\n\n} //\
+      \ namespace kk2\n\n\n#line 1 \"math/monoid/rev_op.hpp\"\n\n\n\n#line 5 \"math/monoid/rev_op.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace monoid {\n\ntemplate <class T> struct ReverseOp\
+      \ : public T {\n    static constexpr bool commutative = T::commutative;\n  \
+      \  using M = ReverseOp;\n    using base = T;\n    using T::T;\n    ReverseOp(const\
+      \ T &t) : T(t) {}\n    inline static M op(M l, M r) {\n        return static_cast<M>(T::op(static_cast<T>(r),\
+      \ static_cast<T>(l)));\n    }\n    inline static M unit() { return static_cast<M>(T::unit());\
+      \ }\n\n    bool operator==(const M &rhs) const { return static_cast<T>(*this)\
+      \ == static_cast<T>(rhs); }\n    bool operator!=(const M &rhs) const { return\
+      \ static_cast<T>(*this) != static_cast<T>(rhs); }\n    template <OutputStream\
+      \ OStream> friend OStream &operator<<(OStream &os, const M &x) {\n        os\
+      \ << static_cast<T>(x);\n        return os;\n    }\n    template <InputStream\
+      \ IStream> friend IStream &operator>>(IStream &is, M &x) {\n        is >> static_cast<T\
+      \ &>(x);\n        return is;\n    }\n};\n\n} // namespace monoid\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n\
+      #include <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line\
+      \ 11 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\ntemplate <int p> struct LazyMontgomeryModInt\
+      \ {\n    using mint = LazyMontgomeryModInt;\n    using i32 = int32_t;\n    using\
+      \ i64 = int64_t;\n    using u32 = uint32_t;\n    using u64 = uint64_t;\n\n \
+      \   static constexpr u32 get_r() {\n        u32 ret = p;\n        for (int i\
+      \ = 0; i < 4; ++i) ret *= 2 - p * ret;\n        return ret;\n    }\n\n    static\
+      \ constexpr u32 r = get_r();\n    static constexpr u32 n2 = -u64(p) % p;\n \
+      \   static_assert(r * p == 1, \"invalid, r * p != 1\");\n    static_assert(p\
+      \ < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p & 1) == 1, \"\
+      invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
       \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
       \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
       \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
@@ -493,21 +500,21 @@ data:
       \ <stack>\n#line 22 \"template/template.hpp\"\n#include <unordered_map>\n#include\
       \ <unordered_set>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
       \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
@@ -681,87 +688,87 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0025088849999974627
+  - elapsed: 0.002940626999986762
     environment: g++
-    memory: 3.84
+    memory: 3.936
     name: example_00
     status: AC
-  - elapsed: 3.801571569000032
+  - elapsed: 3.9341031550000025
     environment: g++
-    memory: 101.46
+    memory: 101.352
     name: max_random_00
     status: AC
-  - elapsed: 3.903973979
+  - elapsed: 3.8999851880000165
     environment: g++
-    memory: 101.492
+    memory: 101.352
     name: max_random_01
     status: AC
-  - elapsed: 3.779881816999989
+  - elapsed: 3.8272422089999623
     environment: g++
-    memory: 101.464
+    memory: 101.224
     name: max_random_02
     status: AC
-  - elapsed: 3.8019250499999657
+  - elapsed: 4.134980295000048
     environment: g++
-    memory: 101.456
+    memory: 101.396
     name: max_random_03
     status: AC
-  - elapsed: 3.8277860149999583
+  - elapsed: 3.9922501409999995
     environment: g++
-    memory: 101.456
+    memory: 101.396
     name: max_random_04
     status: AC
-  - elapsed: 2.93098207700001
+  - elapsed: 3.0744030600000087
     environment: g++
-    memory: 81.86
+    memory: 81.792
     name: random_00
     status: AC
-  - elapsed: 3.1064991019999866
+  - elapsed: 3.2281959439999923
     environment: g++
-    memory: 89.484
+    memory: 89.392
     name: random_01
     status: AC
-  - elapsed: 1.8348682939999321
+  - elapsed: 1.9587090449999778
     environment: g++
-    memory: 45.072
+    memory: 45.004
     name: random_02
     status: AC
-  - elapsed: 0.36231306599995605
+  - elapsed: 0.3735945699999661
     environment: g++
-    memory: 49.796
+    memory: 49.732
     name: random_03
     status: AC
-  - elapsed: 0.7233381340000733
+  - elapsed: 0.7742196550000244
     environment: g++
-    memory: 41.28
+    memory: 41.132
     name: random_04
     status: AC
-  - elapsed: 0.0024895219999052642
+  - elapsed: 0.002699659000029442
     environment: g++
-    memory: 4.056
+    memory: 3.928
     name: small_00
     status: AC
-  - elapsed: 0.0023906569999780913
+  - elapsed: 0.002683438999952159
     environment: g++
-    memory: 3.964
+    memory: 3.728
     name: small_01
     status: AC
-  - elapsed: 0.002454230000012103
+  - elapsed: 0.0028269259999547103
     environment: g++
-    memory: 4.008
+    memory: 3.92
     name: small_02
     status: AC
-  - elapsed: 0.002485907000050247
+  - elapsed: 0.002859797000041908
     environment: g++
-    memory: 4.056
+    memory: 3.924
     name: small_03
     status: AC
-  - elapsed: 0.0025567809999529345
+  - elapsed: 0.002925209000011364
     environment: g++
-    memory: 3.98
+    memory: 3.924
     name: small_04
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_point_set_range_composite_2.test.cpp

@@ -8,6 +8,9 @@ data:
     - filename: bitcount.hpp
       icon: LIBRARY_ALL_AC
       path: bit/bitcount.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: common/type_alias.hpp
     - filename: my_bitset.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/my_bitset.hpp
@@ -17,6 +20,9 @@ data:
     - filename: frac_floor.hpp
       icon: LIBRARY_ALL_AC
       path: math/frac_floor.hpp
+    - filename: lpf_power_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_power_table.hpp
     - filename: lpf_table.hpp
       icon: LIBRARY_ALL_AC
       path: math/lpf_table.hpp
@@ -62,6 +68,9 @@ data:
     - filename: type_alias.hpp
       icon: LIBRARY_ALL_AC
       path: template/type_alias.hpp
+    - filename: functional.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/functional.hpp
     - filename: integral.hpp
       icon: LIBRARY_ALL_AC
       path: type_traits/integral.hpp
@@ -75,9 +84,11 @@ data:
     type: Verified with
   dependsOn:
   - bit/bitcount.hpp
+  - common/type_alias.hpp
   - data_structure/my_bitset.hpp
   - math/enumerate_quotients.hpp
   - math/frac_floor.hpp
+  - math/lpf_power_table.hpp
   - math/lpf_table.hpp
   - math/multiplicative_function/arbitrary_table.hpp
   - math/multiplicative_function/famous_function.hpp
@@ -93,35 +104,41 @@ data:
   - template/macros.hpp
   - template/template.hpp
   - template/type_alias.hpp
+  - type_traits/functional.hpp
   - type_traits/integral.hpp
   - type_traits/io.hpp
   embedded:
-  - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../../math/multiplicative_function/arbitrary_table.hpp\"\
-      \n#include \"../../../../math/multiplicative_function/famous_function.hpp\"\n\
-      #include \"../../../../math/multiplicative_function/famous_function_table.hpp\"\
-      \n#include \"../../../../random/gen.hpp\"\n#include \"../../../../template/template.hpp\"\
-      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep(iter)\
-      \ {\n        int n = kk2::random::rng(2, 1000000);\n\n        assert((kk2::MultiplicativeFunctionTable<long\
-      \ long, kk2::mf::mobius>::val(n)\n                == kk2::FamousFunctionTable::mobius(n)));\n\
-      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::euler_phi>::val(n)\n\
-      \                == kk2::FamousFunctionTable::euler_phi(n)));\n        assert((kk2::MultiplicativeFunctionTable<long\
-      \ long, kk2::mf::sigma0>::val(n)\n                == kk2::FamousFunctionTable::sigma0(n)));\n\
-      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::sigma1>::val(n)\n\
-      \                == kk2::FamousFunctionTable::sigma1(n)));\n    }\n\n    return\
-      \ 0;\n}\n"
+  - code: "// competitive-verifier: STANDALONE\n\n#include <cstdint>\n\n#include \"\
+      ../../../../math/multiplicative_function/arbitrary_table.hpp\"\n#include \"\
+      ../../../../math/multiplicative_function/famous_function.hpp\"\n#include \"\
+      ../../../../math/multiplicative_function/famous_function_table.hpp\"\n#include\
+      \ \"../../../../random/gen.hpp\"\n#include \"../../../../template/template.hpp\"\
+      \n\nusing namespace std;\n\nunsigned external_unsigned_function(unsigned p,\
+      \ unsigned e) { return p + e; }\nlong long external_signed_function(long long\
+      \ p, long long e) { return p + e; }\n\nstatic_assert(kk2::UnsignedTwoArgsFunctionPointer<decltype(&external_unsigned_function)>);\n\
+      static_assert(!kk2::UnsignedTwoArgsFunctionPointer<decltype(&external_signed_function)>);\n\
+      \nint main() {\n    assert((kk2::MultiplicativeFunctionTable<unsigned, external_unsigned_function>::val(2)\
+      \ == 3));\n\n    int iter = 1000;\n    rep(iter) {\n        int n = kk2::random::rng(2,\
+      \ 1000000);\n\n        assert((kk2::MultiplicativeFunctionTable<int, kk2::mf::mobius>::val(n)\n\
+      \                == kk2::FamousFunctionTable::mobius(n)));\n        assert((kk2::MultiplicativeFunctionTable<unsigned,\
+      \ kk2::mf::euler_phi>::val(n)\n                == kk2::FamousFunctionTable::euler_phi(n)));\n\
+      \        assert((kk2::MultiplicativeFunctionTable<unsigned, kk2::mf::sigma0>::val(n)\n\
+      \                == kk2::FamousFunctionTable::sigma0(n)));\n        assert((kk2::MultiplicativeFunctionTable<std::uint64_t,\
+      \ kk2::mf::sigma1>::val(n)\n                == kk2::FamousFunctionTable::sigma1(n)));\n\
+      \    }\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp\"\
-      \n// competitive-verifier: STANDALONE\n\n#line 1 \"math/multiplicative_function/arbitrary_table.hpp\"\
-      \n\n\n\n#include <cassert>\n#include <vector>\n\n#line 1 \"math/lpf_table.hpp\"\
-      \n\n\n\n#include <algorithm>\n#line 7 \"math/lpf_table.hpp\"\n\n#line 1 \"math/multiplicative_function/prime_counting.hpp\"\
-      \n\n\n\n#line 5 \"math/multiplicative_function/prime_counting.hpp\"\n\n#line\
-      \ 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 5 \"data_structure/my_bitset.hpp\"\
-      \n#include <bit>\n#include <bitset>\n#line 8 \"data_structure/my_bitset.hpp\"\
-      \n#include <cstdint>\n#include <iostream>\n#include <iterator>\n#include <string>\n\
-      #include <utility>\n#line 14 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"\
-      bit/bitcount.hpp\"\n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
-      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \n// competitive-verifier: STANDALONE\n\n#include <cstdint>\n\n#line 1 \"math/multiplicative_function/arbitrary_table.hpp\"\
+      \n\n\n\n#include <vector>\n\n#line 1 \"common/type_alias.hpp\"\n\n\n\n#include\
+      \ <cstddef>\n#line 6 \"common/type_alias.hpp\"\n\nnamespace kk2 {\n\nusing usize\
+      \ = std::size_t;\nusing i8 = std::int8_t;\nusing u8 = std::uint8_t;\nusing i16\
+      \ = std::int16_t;\nusing u16 = std::uint16_t;\nusing i32 = std::int32_t;\nusing\
+      \ u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
+      \n#ifndef _MSC_VER\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n#endif\n\
+      \n} // namespace kk2\n\n\n#line 1 \"type_traits/functional.hpp\"\n\n\n\n#include\
+      \ <concepts>\n#include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
       \ __int128_t>::value\n                                                     \
       \  or std::is_same<T, __int128>::value,\n                                  \
       \                 std::true_type,\n                                        \
@@ -156,10 +173,36 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 7 \"bit/bitcount.hpp\"\n\nnamespace kk2 {\n\n\
-      template <Integral T> constexpr int ctz(T x) {\n    assert(x != T(0));\n\n \
-      \   if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n    }\
-      \ else if constexpr (sizeof(T) <= 8) {\n        return __builtin_ctzll(x);\n\
+      \n} // namespace kk2\n\n\n#line 8 \"type_traits/functional.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <typename T>\nusing is_function_pointer =\n    typename\
+      \ std::conditional<std::is_pointer_v<T> && std::is_function_v<std::remove_pointer_t<T>>,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T> struct is_two_args_function_pointer\
+      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2>\n\
+      struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {\n    using\
+      \ return_type = R;\n    using first_argument_type = T1;\n    using second_argument_type\
+      \ = T2;\n};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t =\
+      \ std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate <class\
+      \ T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate <class\
+      \ T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedTwoArgsFunctionPointer = TwoArgsFunctionPointer<T>\
+      \ && requires {\n    typename is_two_args_function_pointer<T>::first_argument_type;\n\
+      \    typename is_two_args_function_pointer<T>::second_argument_type;\n} && UnsignedIntegral<typename\
+      \ is_two_args_function_pointer<T>::first_argument_type> && UnsignedIntegral<typename\
+      \ is_two_args_function_pointer<T>::second_argument_type>;\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"math/lpf_power_table.hpp\"\n\n\n\n#include <cassert>\n\
+      #line 6 \"math/lpf_power_table.hpp\"\n\n#line 1 \"math/lpf_table.hpp\"\n\n\n\
+      \n#include <algorithm>\n#line 6 \"math/lpf_table.hpp\"\n#include <limits>\n\
+      #line 8 \"math/lpf_table.hpp\"\n\n#line 1 \"math/multiplicative_function/prime_counting.hpp\"\
+      \n\n\n\n#line 5 \"math/multiplicative_function/prime_counting.hpp\"\n\n#line\
+      \ 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 5 \"data_structure/my_bitset.hpp\"\
+      \n#include <bit>\n#include <bitset>\n#line 9 \"data_structure/my_bitset.hpp\"\
+      \n#include <iostream>\n#include <iterator>\n#include <string>\n#include <utility>\n\
+      #line 14 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"bit/bitcount.hpp\"\n\n\
+      \n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 7 \"bit/bitcount.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <Integral T> constexpr int ctz(T x) {\n    assert(x != T(0));\n\
+      \n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n  \
+      \  } else if constexpr (sizeof(T) <= 8) {\n        return __builtin_ctzll(x);\n\
       \    } else {\n        if (x & 0xffffffffffffffff)\n            return __builtin_ctzll((unsigned\
       \ long long)(x & 0xffffffffffffffff));\n        return 64 + __builtin_ctzll((unsigned\
       \ long long)(x >> 64));\n    }\n}\n\ntemplate <Integral T> constexpr int lsb(T\
@@ -176,7 +219,7 @@ data:
       \   return __builtin_popcountll(x);\n    } else {\n        return __builtin_popcountll((unsigned\
       \ long long)(x >> 64))\n               + __builtin_popcountll((unsigned long\
       \ long)(x & 0xffffffffffffffff));\n    }\n}\n\n}; // namespace kk2\n\n\n#line\
-      \ 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
+      \ 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\n#include <fstream>\n\
       #include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace\
       \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
       \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
@@ -487,103 +530,124 @@ data:
       \ ++i) dp[i] = eq[i] - 1;\n    for (const long long p : primes) {\n        for\
       \ (int i = eq.size() - 1;; --i) {\n            if (eq[i] < p * p) break;\n \
       \           dp[i] -= dp[eq.idx(eq[i] / p)] - dp[p - 2];\n        }\n    }\n\
-      \    return dp.back();\n}\n\n} // namespace kk2\n\n\n#line 9 \"math/lpf_table.hpp\"\
-      \n\nnamespace kk2 {\n\nstruct LPFTable {\n  private:\n    static inline std::vector<int>\
-      \ _primes{2}, _lpf{0, 1, 2}, _lpf_pow{0, 1, 2}, _v_lpf{0, 1, 1};\n\n  public:\n\
-      \    LPFTable() = delete;\n\n    static void set_upper(int m) {\n        if\
-      \ ((int)_lpf.size() > m) return;\n        m = std::max<int>(2 * _lpf.size(),\
-      \ m);\n        std::size_t reserve_target = prime_counting(m);\n        if (_primes.capacity()\
-      \ < reserve_target) _primes.reserve(reserve_target);\n        _lpf_pow.resize(m\
-      \ + 1);\n        _v_lpf.resize(m + 1);\n        _lpf.resize(m + 1);\n      \
-      \  for (int i = 2; i <= m; i++) {\n            if (_lpf[i] == 0) {\n       \
-      \         _lpf[i] = i;\n                _primes.emplace_back(i);\n         \
-      \       _lpf_pow[i] = i;\n                _v_lpf[i] = 1;\n            }\n  \
-      \          for (const long long p : _primes) {\n                if (p * i >\
-      \ m) break;\n                if (_lpf[i] < p) break;\n                _lpf[p\
-      \ * i] = p;\n                if (_lpf[i] == p) {\n                    _v_lpf[p\
-      \ * i] = _v_lpf[i] + 1;\n                    _lpf_pow[p * i] = _lpf_pow[i] *\
-      \ p;\n                } else {\n                    _v_lpf[p * i] = 1;\n   \
-      \                 _lpf_pow[p * i] = p;\n                }\n            }\n \
-      \       }\n    }\n\n    static const std::vector<int> &primes() { return _primes;\
-      \ }\n\n    template <typename It> struct PrimeIt {\n        It bg, ed;\n   \
-      \     PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n        It begin() const\
-      \ { return bg; }\n        It end() const { return ed; }\n        int size()\
-      \ const { return ed - bg; }\n        int operator[](int i) const { return bg[i];\
-      \ }\n        std::vector<int> to_vec() const { return std::vector<int>(bg, ed);\
-      \ }\n    };\n\n    static auto primes(int n) {\n        if (n >= (int)_lpf.size())\
-      \ set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
-      \ _primes.end(), n));\n    }\n\n    static int lpf(int n) {\n        assert(n\
-      \ > 1);\n        if (n >= (int)_lpf.size()) set_upper(n);\n        return _lpf[n];\n\
-      \    }\n\n    static bool isprime(int n) {\n        assert(n > 0);\n       \
-      \ if (n >= (int)_lpf.size()) set_upper(n);\n        return n != 1 and _lpf[n]\
-      \ == n;\n    }\n\n    static int lpf_pow(int n) {\n        assert(n > 1);\n\
-      \        if (n >= (int)_lpf_pow.size()) set_upper(n);\n        return _lpf_pow[n];\n\
-      \    }\n\n    static int v_lpf(int n) {\n        assert(n > 1);\n        if\
-      \ (n >= (int)_v_lpf.size()) set_upper(n);\n        return _v_lpf[n];\n    }\n\
-      };\n\n} // namespace kk2\n\n\n\n#line 1 \"math/pow.hpp\"\n\n\n\n#line 5 \"math/pow.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow(T\
-      \ x, U n) {\n    assert(n >= 0);\n    S r = 1, y = x;\n    while (n) {\n   \
-      \     if (n & 1) r *= y;\n        if (n >>= 1) y *= y;\n    }\n    return r;\n\
-      }\n\n} // namespace kk2\n\n\n#line 9 \"math/multiplicative_function/arbitrary_table.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <class T, T (*f)(long long, long long)> struct\
-      \ MultiplicativeFunctionTable {\n  private:\n    static inline std::vector<T>\
-      \ _table{0, 1};\n\n  public:\n    MultiplicativeFunctionTable() = delete;\n\n\
-      \    static void set_upper(int m) {\n        if ((int)_table.size() > m) return;\n\
-      \        int start = _table.size();\n\n        LPFTable::set_upper(m);\n\n \
-      \       _table.resize(m + 1);\n\n        for (int n = start; n <= m; ++n) {\n\
-      \            int p = LPFTable::lpf(n);\n            if (p == n) {\n        \
-      \        _table[n] = f(p, 1);\n            } else {\n                int p_pw\
-      \ = LPFTable::lpf_pow(n);\n                int q = n / p_pw;\n             \
-      \   if (q == 1) {\n                    _table[n] = f(p, LPFTable::v_lpf(n));\n\
-      \                } else {\n                    _table[n] = _table[q] * _table[p_pw];\n\
-      \                }\n            }\n        }\n    }\n\n    static T val(int\
-      \ n) {\n        assert(n > 0);\n        if ((int)_table.size() <= n) set_upper(n);\n\
-      \        return _table[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"\
-      math/multiplicative_function/famous_function.hpp\"\n\n\n\n#line 5 \"math/multiplicative_function/famous_function.hpp\"\
-      \n\nnamespace kk2 {\n\nnamespace mf {\n\nusing i64 = long long;\n\ni64 mobius(i64,\
-      \ i64 e) { return e == 1 ? -1 : 0; }\n\ni64 sigma0(i64, i64 e) { return e +\
-      \ 1; }\n\ni64 sigma1(i64 p, i64 e) {\n    i64 p_e = pow<i64>(p, e);\n    return\
-      \ p_e + (p_e - 1) / (p - 1);\n}\n\ni64 euler_phi(i64 p, i64 e) {\n    i64 p_e\
-      \ = pow<i64>(p, e);\n    return p_e - p_e / p;\n}\n\n} // namespace mf\n\n}\
-      \ // namespace kk2\n\n\n#line 1 \"math/multiplicative_function/famous_function_table.hpp\"\
-      \n\n\n\n#line 7 \"math/multiplicative_function/famous_function_table.hpp\"\n\
-      \n#line 10 \"math/multiplicative_function/famous_function_table.hpp\"\n\nnamespace\
-      \ kk2 {\n\nstruct FamousFunctionTable {\n  private:\n    static inline std::vector<int>\
-      \ _mobius{0, 1}, _sigma0{0, 1}, _euler_phi{0, 1};\n    static inline std::vector<long\
-      \ long> _sigma1{0, 1};\n\n  public:\n    FamousFunctionTable() = delete;\n\n\
-      \    static void set_upper(int m) {\n        if ((int)_mobius.size() > m) return;\n\
-      \        int start = _mobius.size();\n\n        LPFTable::set_upper(m);\n\n\
-      \        _mobius.resize(m + 1, 1);\n        _sigma0.resize(m + 1, 1);\n    \
-      \    _sigma1.resize(m + 1, 1);\n        _euler_phi.resize(m + 1, 1);\n\n   \
-      \     for (int n = start; n <= m; ++n) {\n            int p = LPFTable::lpf(n);\n\
-      \            if (p == n) {\n                _mobius[n] = -1;\n             \
-      \   _sigma0[n] = 2;\n                _sigma1[n] = p + 1;\n                _euler_phi[n]\
-      \ = p - 1;\n            } else {\n                int p_pw = LPFTable::lpf_pow(n);\n\
-      \                int q = n / p_pw;\n                if (q == 1) {\n        \
-      \            _mobius[n] = 0;\n                    _sigma0[n] = _sigma0[n / p]\
-      \ + 1;\n                    _sigma1[n] = _sigma1[n / p] + p_pw;\n          \
-      \          _euler_phi[n] = p_pw - p_pw / p;\n                } else {\n    \
-      \                _mobius[n] = _mobius[q] * _mobius[p_pw];\n                \
-      \    _sigma0[n] = _sigma0[q] * _sigma0[p_pw];\n                    _sigma1[n]\
-      \ = _sigma1[q] * _sigma1[p_pw];\n                    _euler_phi[n] = _euler_phi[q]\
-      \ * _euler_phi[p_pw];\n                }\n            }\n        }\n    }\n\n\
-      \    static int mobius(int n) {\n        assert(n >= 0);\n        if ((int)_mobius.size()\
-      \ <= n) set_upper(n);\n        return _mobius[n];\n    }\n\n    static int sigma0(int\
-      \ n) {\n        assert(n > 0);\n        if ((int)_sigma0.size() <= n) set_upper(n);\n\
-      \        return _sigma0[n];\n    }\n\n    static long long sigma1(int n) {\n\
-      \        assert(n > 0);\n        if ((int)_sigma1.size() <= n) set_upper(n);\n\
-      \        return _sigma1[n];\n    }\n\n    static int euler_phi(int n) {\n  \
-      \      assert(n > 0);\n        if ((int)_euler_phi.size() <= n) set_upper(n);\n\
-      \        return _euler_phi[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1\
-      \ \"random/gen.hpp\"\n\n\n\n#line 7 \"random/gen.hpp\"\n#include <random>\n\
-      #include <unordered_set>\n#line 10 \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\
-      \n\n\n\n#include <chrono>\n\nnamespace kk2 {\n\nnamespace random {\n\nusing\
-      \ u64 = unsigned long long;\n\ninline u64 non_deterministic_seed() {\n    u64\
-      \ seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n           \
-      \        std::chrono::high_resolution_clock::now().time_since_epoch())\n   \
-      \                .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n    seed\
-      \ ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n    return\
-      \ seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
+      \    return dp.back();\n}\n\n} // namespace kk2\n\n\n#line 11 \"math/lpf_table.hpp\"\
+      \n\nnamespace kk2 {\n\nstruct LPFTable {\n  private:\n    static inline std::vector<u32>\
+      \ _primes{2}, _lpf{0, 1, 2};\n\n  public:\n    LPFTable() = delete;\n\n    static\
+      \ void set_upper(usize m) {\n        if (_lpf.size() > m) return;\n        m\
+      \ = std::max<usize>(2 * _lpf.size(), m);\n        assert(m <= static_cast<usize>(std::numeric_limits<u32>::max()));\n\
+      \        usize reserve_target = static_cast<usize>(prime_counting(static_cast<i64>(m)));\n\
+      \        if (_primes.capacity() < reserve_target) _primes.reserve(reserve_target);\n\
+      \        _lpf.resize(m + 1);\n        const u32 upper = static_cast<u32>(m);\n\
+      \        for (usize index = 2; index <= m; ++index) {\n            const u32\
+      \ i = static_cast<u32>(index);\n            if (_lpf[index] == 0) {\n      \
+      \          _lpf[index] = i;\n                _primes.emplace_back(i);\n    \
+      \        }\n            for (const u32 p : _primes) {\n                const\
+      \ u64 pi = static_cast<u64>(p) * i;\n                if (pi > upper) break;\n\
+      \                const usize product = static_cast<usize>(pi);\n           \
+      \     if (_lpf[index] < p) break;\n                _lpf[product] = p;\n    \
+      \        }\n        }\n    }\n\n    static const std::vector<u32> &primes()\
+      \ { return _primes; }\n\n    template <typename It> struct PrimeIt {\n     \
+      \   It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n    \
+      \    It begin() const { return bg; }\n        It end() const { return ed; }\n\
+      \        usize size() const { return static_cast<usize>(ed - bg); }\n      \
+      \  u32 operator[](usize i) const { return bg[i]; }\n        std::vector<u32>\
+      \ to_vec() const { return std::vector<u32>(bg, ed); }\n    };\n\n    static\
+      \ auto primes(usize n) {\n        if (n >= _lpf.size()) set_upper(n);\n    \
+      \    const u32 upper = static_cast<u32>(n);\n        return PrimeIt(_primes.begin(),\
+      \ std::upper_bound(_primes.begin(), _primes.end(), upper));\n    }\n\n    static\
+      \ u32 lpf(u32 n) {\n        assert(n > 1);\n        if (static_cast<usize>(n)\
+      \ >= _lpf.size()) set_upper(static_cast<usize>(n));\n        return _lpf[n];\n\
+      \    }\n\n    static bool isprime(u32 n) {\n        assert(n > 0);\n       \
+      \ if (static_cast<usize>(n) >= _lpf.size()) set_upper(static_cast<usize>(n));\n\
+      \        return n != 1 and _lpf[n] == n;\n    }\n};\n\n} // namespace kk2\n\n\
+      \n\n#line 9 \"math/lpf_power_table.hpp\"\n\nnamespace kk2 {\n\nstruct LPFPowerTable\
+      \ {\n  private:\n    static inline std::vector<u32> _lpf_pow{0, 1, 2}, _v_lpf{0,\
+      \ 1, 1};\n\n  public:\n    LPFPowerTable() = delete;\n\n    static void set_upper(usize\
+      \ m) {\n        if (_lpf_pow.size() > m) return;\n        const usize start\
+      \ = _lpf_pow.size();\n\n        LPFTable::set_upper(m);\n        _lpf_pow.resize(m\
+      \ + 1);\n        _v_lpf.resize(m + 1);\n\n        for (usize n = start; n <=\
+      \ m; ++n) {\n            const u32 value = static_cast<u32>(n);\n          \
+      \  const u32 p = LPFTable::lpf(value);\n            const usize quotient = n\
+      \ / p;\n            if (quotient > 1 && LPFTable::lpf(static_cast<u32>(quotient))\
+      \ == p) {\n                _lpf_pow[n] = _lpf_pow[quotient] * p;\n         \
+      \       _v_lpf[n] = _v_lpf[quotient] + 1;\n            } else {\n          \
+      \      _lpf_pow[n] = p;\n                _v_lpf[n] = 1;\n            }\n   \
+      \     }\n    }\n\n    static u32 lpf_pow(u32 n) {\n        assert(n > 1);\n\
+      \        const usize index = static_cast<usize>(n);\n        if (_lpf_pow.size()\
+      \ <= index) set_upper(index);\n        return _lpf_pow[index];\n    }\n\n  \
+      \  static u32 v_lpf(u32 n) {\n        assert(n > 1);\n        const usize index\
+      \ = static_cast<usize>(n);\n        if (_v_lpf.size() <= index) set_upper(index);\n\
+      \        return _v_lpf[index];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1\
+      \ \"math/pow.hpp\"\n\n\n\n#line 5 \"math/pow.hpp\"\n\nnamespace kk2 {\n\ntemplate\
+      \ <class S, class T, class U> constexpr S pow(T x, U n) {\n    assert(n >= 0);\n\
+      \    S r = 1, y = x;\n    while (n) {\n        if (n & 1) r *= y;\n        if\
+      \ (n >>= 1) y *= y;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line\
+      \ 11 \"math/multiplicative_function/arbitrary_table.hpp\"\n\nnamespace kk2 {\n\
+      \ntemplate <class T, auto f>\n    requires UnsignedTwoArgsFunctionPointer<decltype(f)>\
+      \ && requires(u32 p, u32 e) {\n        { f(p, e) } -> std::convertible_to<T>;\n\
+      \    }\nstruct MultiplicativeFunctionTable {\n  private:\n    static inline\
+      \ std::vector<T> _table{0, 1};\n\n  public:\n    MultiplicativeFunctionTable()\
+      \ = delete;\n\n    static void set_upper(usize m) {\n        if (_table.size()\
+      \ > m) return;\n        usize start = _table.size();\n\n        LPFTable::set_upper(m);\n\
+      \        LPFPowerTable::set_upper(m);\n\n        _table.resize(m + 1);\n\n \
+      \       for (usize n = start; n <= m; ++n) {\n            const u32 value =\
+      \ static_cast<u32>(n);\n            u32 p = LPFTable::lpf(value);\n        \
+      \    if (p == value) {\n                _table[n] = f(p, 1);\n            }\
+      \ else {\n                u32 p_pw = LPFPowerTable::lpf_pow(value);\n      \
+      \          usize q = n / p_pw;\n                if (q == 1) {\n            \
+      \        _table[n] = f(p, LPFPowerTable::v_lpf(value));\n                } else\
+      \ {\n                    _table[n] = _table[q] * _table[p_pw];\n           \
+      \     }\n            }\n        }\n    }\n\n    static T val(u32 n) {\n    \
+      \    const usize index = static_cast<usize>(n);\n        if (_table.size() <=\
+      \ index) set_upper(index);\n        return _table[n];\n    }\n};\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"math/multiplicative_function/famous_function.hpp\"\n\n\n\
+      \n#line 6 \"math/multiplicative_function/famous_function.hpp\"\n\nnamespace\
+      \ kk2 {\n\nnamespace mf {\n\ni32 mobius(u32, u32 e) { return e == 1 ? -1 : 0;\
+      \ }\n\nu32 sigma0(u32, u32 e) { return e + 1; }\n\nu64 sigma1(u32 p, u32 e)\
+      \ {\n    u64 p_e = pow<u64>(p, e);\n    return p_e + (p_e - 1) / (p - 1);\n\
+      }\n\nu64 euler_phi(u32 p, u32 e) {\n    u64 p_e = pow<u64>(p, e);\n    return\
+      \ p_e - p_e / p;\n}\n\n} // namespace mf\n\n} // namespace kk2\n\n\n#line 1\
+      \ \"math/multiplicative_function/famous_function_table.hpp\"\n\n\n\n#line 6\
+      \ \"math/multiplicative_function/famous_function_table.hpp\"\n\n#line 11 \"\
+      math/multiplicative_function/famous_function_table.hpp\"\n\nnamespace kk2 {\n\
+      \nstruct FamousFunctionTable {\n  private:\n    static inline std::vector<i32>\
+      \ _mobius{0, 1};\n    static inline std::vector<u32> _sigma0{0, 1}, _euler_phi{0,\
+      \ 1};\n    static inline std::vector<u64> _sigma1{0, 1};\n\n  public:\n    FamousFunctionTable()\
+      \ = delete;\n\n    static void set_upper(usize m) {\n        if (_mobius.size()\
+      \ > m) return;\n        usize start = _mobius.size();\n\n        LPFTable::set_upper(m);\n\
+      \        LPFPowerTable::set_upper(m);\n\n        _mobius.resize(m + 1, 1);\n\
+      \        _sigma0.resize(m + 1, 1);\n        _sigma1.resize(m + 1, 1);\n    \
+      \    _euler_phi.resize(m + 1, 1);\n\n        for (usize n = start; n <= m; ++n)\
+      \ {\n            const u32 value = static_cast<u32>(n);\n            u32 p =\
+      \ LPFTable::lpf(value);\n            if (p == value) {\n                _mobius[n]\
+      \ = -1;\n                _sigma0[n] = 2;\n                _sigma1[n] = p + 1;\n\
+      \                _euler_phi[n] = p - 1;\n            } else {\n            \
+      \    u32 p_pw = LPFPowerTable::lpf_pow(value);\n                usize q = n\
+      \ / p_pw;\n                if (q == 1) {\n                    _mobius[n] = 0;\n\
+      \                    _sigma0[n] = _sigma0[n / p] + 1;\n                    _sigma1[n]\
+      \ = _sigma1[n / p] + p_pw;\n                    _euler_phi[n] = p_pw - p_pw\
+      \ / p;\n                } else {\n                    _mobius[n] = _mobius[q]\
+      \ * _mobius[p_pw];\n                    _sigma0[n] = _sigma0[q] * _sigma0[p_pw];\n\
+      \                    _sigma1[n] = _sigma1[q] * _sigma1[p_pw];\n            \
+      \        _euler_phi[n] = _euler_phi[q] * _euler_phi[p_pw];\n               \
+      \ }\n            }\n        }\n    }\n\n    static i32 mobius(u32 n) {\n   \
+      \     const usize index = static_cast<usize>(n);\n        if (_mobius.size()\
+      \ <= index) set_upper(index);\n        return _mobius[n];\n    }\n\n    static\
+      \ u32 sigma0(u32 n) {\n        const usize index = static_cast<usize>(n);\n\
+      \        if (_sigma0.size() <= index) set_upper(index);\n        return _sigma0[n];\n\
+      \    }\n\n    static u64 sigma1(u32 n) {\n        const usize index = static_cast<usize>(n);\n\
+      \        if (_sigma1.size() <= index) set_upper(index);\n        return _sigma1[n];\n\
+      \    }\n\n    static u32 euler_phi(u32 n) {\n        const usize index = static_cast<usize>(n);\n\
+      \        if (_euler_phi.size() <= index) set_upper(index);\n        return _euler_phi[n];\n\
+      \    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"random/gen.hpp\"\n\n\n\n#line\
+      \ 7 \"random/gen.hpp\"\n#include <random>\n#include <unordered_set>\n#line 10\
+      \ \"random/gen.hpp\"\n\n#line 1 \"random/seed.hpp\"\n\n\n\n#include <chrono>\n\
+      \nnamespace kk2 {\n\nnamespace random {\n\nusing u64 = unsigned long long;\n\
+      \ninline u64 non_deterministic_seed() {\n    u64 seed = std::chrono::duration_cast<std::chrono::nanoseconds>(\n\
+      \                   std::chrono::high_resolution_clock::now().time_since_epoch())\n\
+      \                   .count();\n    seed ^= reinterpret_cast<u64>(&seed);\n \
+      \   seed ^= seed << 5;\n    seed ^= seed >> 41;\n    seed ^= seed << 20;\n \
+      \   return seed;\n}\n\ninline u64 deterministic_seed() { return 5801799128519729247ull;\
       \ }\n\ninline u64 seed() {\n#if defined(KK2_RANDOM_DETERMINISTIC)\n    return\
       \ deterministic_seed();\n#else\n    return non_deterministic_seed();\n#endif\n\
       }\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line 12 \"random/gen.hpp\"\
@@ -610,29 +674,29 @@ data:
       \    return res;\n}\n\n} // namespace random\n\n} // namespace kk2\n\n\n#line\
       \ 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\n#include\
       \ <array>\n#line 10 \"template/template.hpp\"\n#include <deque>\n#include <functional>\n\
-      #line 13 \"template/template.hpp\"\n#include <limits>\n#include <map>\n#line\
-      \ 16 \"template/template.hpp\"\n#include <optional>\n#include <queue>\n#line\
-      \ 19 \"template/template.hpp\"\n#include <set>\n#include <stack>\n#line 22 \"\
-      template/template.hpp\"\n#include <unordered_map>\n#line 26 \"template/template.hpp\"\
-      \n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
+      #line 14 \"template/template.hpp\"\n#include <map>\n#line 16 \"template/template.hpp\"\
+      \n#include <optional>\n#include <queue>\n#line 19 \"template/template.hpp\"\n\
+      #include <set>\n#include <stack>\n#line 22 \"template/template.hpp\"\n#include\
+      \ <unordered_map>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
+      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
       \n#include <cstdio>\n#line 10 \"template/fastio.hpp\"\n\n#line 13 \"template/fastio.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace fastio {\n\nstruct Scanner : type_traits::istream_tag\
       \ {\n  private:\n    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t\
@@ -786,16 +850,20 @@ data:
       \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
       \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
       template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
-      \ > b ? a = b, 1 : 0); }\n\n\n#line 8 \"verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp\"\
-      \nusing namespace std;\n\nint main() {\n    int iter = 1000;\n    rep(iter)\
-      \ {\n        int n = kk2::random::rng(2, 1000000);\n\n        assert((kk2::MultiplicativeFunctionTable<long\
-      \ long, kk2::mf::mobius>::val(n)\n                == kk2::FamousFunctionTable::mobius(n)));\n\
-      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::euler_phi>::val(n)\n\
-      \                == kk2::FamousFunctionTable::euler_phi(n)));\n        assert((kk2::MultiplicativeFunctionTable<long\
-      \ long, kk2::mf::sigma0>::val(n)\n                == kk2::FamousFunctionTable::sigma0(n)));\n\
-      \        assert((kk2::MultiplicativeFunctionTable<long long, kk2::mf::sigma1>::val(n)\n\
-      \                == kk2::FamousFunctionTable::sigma1(n)));\n    }\n\n    return\
-      \ 0;\n}\n"
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 10 \"verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp\"\
+      \n\nusing namespace std;\n\nunsigned external_unsigned_function(unsigned p,\
+      \ unsigned e) { return p + e; }\nlong long external_signed_function(long long\
+      \ p, long long e) { return p + e; }\n\nstatic_assert(kk2::UnsignedTwoArgsFunctionPointer<decltype(&external_unsigned_function)>);\n\
+      static_assert(!kk2::UnsignedTwoArgsFunctionPointer<decltype(&external_signed_function)>);\n\
+      \nint main() {\n    assert((kk2::MultiplicativeFunctionTable<unsigned, external_unsigned_function>::val(2)\
+      \ == 3));\n\n    int iter = 1000;\n    rep(iter) {\n        int n = kk2::random::rng(2,\
+      \ 1000000);\n\n        assert((kk2::MultiplicativeFunctionTable<int, kk2::mf::mobius>::val(n)\n\
+      \                == kk2::FamousFunctionTable::mobius(n)));\n        assert((kk2::MultiplicativeFunctionTable<unsigned,\
+      \ kk2::mf::euler_phi>::val(n)\n                == kk2::FamousFunctionTable::euler_phi(n)));\n\
+      \        assert((kk2::MultiplicativeFunctionTable<unsigned, kk2::mf::sigma0>::val(n)\n\
+      \                == kk2::FamousFunctionTable::sigma0(n)));\n        assert((kk2::MultiplicativeFunctionTable<std::uint64_t,\
+      \ kk2::mf::sigma1>::val(n)\n                == kk2::FamousFunctionTable::sigma1(n)));\n\
+      \    }\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -803,7 +871,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp

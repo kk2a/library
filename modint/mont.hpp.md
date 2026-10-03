@@ -73,6 +73,9 @@ data:
     - filename: kth_term_of_linearly_recurrent_sequence.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    - filename: sum_of_exponential_times_polynomial_limit.test.cpp
+      icon: LIBRARY_NO_TESTS
+      path: verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
     type: Required by
   - files:
     - filename: inplace_convolution.test.cpp
@@ -87,6 +90,9 @@ data:
     - filename: multivariate_operations.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/multivariate_operations.test.cpp
+    - filename: poly_sample_point_evaluate.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -96,6 +102,15 @@ data:
     - filename: sparsity_small_performance.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_small_performance.test.cpp
+    - filename: sum_of_geometric_polynomial_samples.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sum_of_geometric_polynomial_samples.test.cpp
+    - filename: sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sum_of_polynomial.test.cpp
+    - filename: pow_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/multiplicative_function/pow_table.test.cpp
     - filename: mod_sqrt.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/mod_sqrt.test.cpp
@@ -207,6 +222,9 @@ data:
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    - filename: prefix_sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
     - filename: graph_enumerate_triangle.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_graph/graph_enumerate_triangle.test.cpp
@@ -246,6 +264,9 @@ data:
     - filename: sum_of_totient_function.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/sum_of_totient_function.test.cpp
+    - filename: sum_of_exponential_times_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
     - filename: yuki_1510.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yuki/yuki_1510.test.cpp
@@ -441,16 +462,21 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  - verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/convolution/inplace_convolution.test.cpp
   - verify/unit_test/fps/inplace_operations.test.cpp
   - verify/unit_test/fps/multivariate_convolution.test.cpp
   - verify/unit_test/fps/multivariate_operations.test.cpp
+  - verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp
+  - verify/unit_test/fps/sum_of_geometric_polynomial_samples.test.cpp
+  - verify/unit_test/fps/sum_of_polynomial.test.cpp
+  - verify/unit_test/math/multiplicative_function/pow_table.test.cpp
   - verify/unit_test/math_mod/mod_sqrt.test.cpp
   - verify/unit_test/type_traits/algebra/algebra.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
@@ -488,6 +514,7 @@ data:
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
   - verify/yosupo_graph/graph_enumerate_triangle.test.cpp
   - verify/yosupo_graph/tree_vertex_set_path_composite_2.test.cpp
   - verify/yosupo_linalg/matrix_det.test.cpp
@@ -501,6 +528,7 @@ data:
   - verify/yosupo_math/many_factrials.test.cpp
   - verify/yosupo_math/prefix_sum_of_multiplicative_function.test.cpp
   - verify/yosupo_math/sum_of_totient_function.test.cpp
+  - verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
   - verify/yuki/yuki_1510.test.cpp
 documentation_of: modint/mont.hpp
 layout: document

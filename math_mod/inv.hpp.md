@@ -60,9 +60,15 @@ data:
     - filename: multivariate_operations.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/multivariate_operations.test.cpp
+    - filename: poly_sample_point_evaluate.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
+    - filename: sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sum_of_polynomial.test.cpp
     - filename: fps.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/type_traits/fps/fps.test.cpp
@@ -111,14 +117,16 @@ data:
   - fps/operations/multivariate/power.hpp
   - math_mod/garner.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/convolution/inplace_convolution.test.cpp
   - verify/unit_test/fps/inplace_operations.test.cpp
   - verify/unit_test/fps/multivariate_convolution.test.cpp
   - verify/unit_test/fps/multivariate_operations.test.cpp
+  - verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
+  - verify/unit_test/fps/sum_of_polynomial.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp

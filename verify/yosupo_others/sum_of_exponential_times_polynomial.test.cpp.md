@@ -1,0 +1,1017 @@
+---
+data:
+  attributes:
+    PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
+    links:
+    - https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
+  dependencies:
+  - files:
+    - filename: bitcount.hpp
+      icon: LIBRARY_ALL_AC
+      path: bit/bitcount.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: common/type_alias.hpp
+    - filename: my_bitset.hpp
+      icon: LIBRARY_ALL_AC
+      path: data_structure/my_bitset.hpp
+    - filename: poly_sample_point_evaluate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/poly_sample_point_evaluate.hpp
+    - filename: enumerate_quotients.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/enumerate_quotients.hpp
+    - filename: frac_floor.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/frac_floor.hpp
+    - filename: lpf_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_table.hpp
+    - filename: pow_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/pow_table.hpp
+    - filename: prime_counting.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/prime_counting.hpp
+    - filename: pow.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/pow.hpp
+    - filename: sqrt_floor.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/sqrt_floor.hpp
+    - filename: comb.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/comb.hpp
+    - filename: inv_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/inv_table.hpp
+    - filename: power_sum.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/power_sum.hpp
+      title: Power Sum
+    - filename: mont.hpp
+      icon: LIBRARY_ALL_AC
+      path: modint/mont.hpp
+    - filename: constant.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/constant.hpp
+    - filename: fastio.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/fastio.hpp
+    - filename: io_util.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/io_util.hpp
+    - filename: macros.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/macros.hpp
+    - filename: template.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/template.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: template/type_alias.hpp
+    - filename: integral.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/integral.hpp
+    - filename: io.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/io.hpp
+    - filename: modint.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/modint.hpp
+    type: Depends on
+  - files: []
+    type: Required by
+  - files: []
+    type: Verified with
+  dependsOn:
+  - bit/bitcount.hpp
+  - common/type_alias.hpp
+  - data_structure/my_bitset.hpp
+  - fps/poly_sample_point_evaluate.hpp
+  - math/enumerate_quotients.hpp
+  - math/frac_floor.hpp
+  - math/lpf_table.hpp
+  - math/multiplicative_function/pow_table.hpp
+  - math/multiplicative_function/prime_counting.hpp
+  - math/pow.hpp
+  - math/sqrt_floor.hpp
+  - math_mod/comb.hpp
+  - math_mod/inv_table.hpp
+  - math_mod/power_sum.hpp
+  - modint/mont.hpp
+  - template/constant.hpp
+  - template/fastio.hpp
+  - template/io_util.hpp
+  - template/macros.hpp
+  - template/template.hpp
+  - template/type_alias.hpp
+  - type_traits/integral.hpp
+  - type_traits/io.hpp
+  - type_traits/modint.hpp
+  embedded:
+  - code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial\n\
+      \n#include \"../../math_mod/power_sum.hpp\"\n#include \"../../modint/mont.hpp\"\
+      \n#include \"../../template/template.hpp\"\n\nint main() {\n    using mint =\
+      \ kk2::mont998;\n\n    mint r;\n    u64 d, n;\n    kin >> r >> d >> n;\n   \
+      \ kout << kk2::sum_of_geometric_monomial(r, n, d) << kendl;\n    return 0;\n\
+      }\n"
+    name: default
+  - code: "#line 1 \"verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp\"\
+      \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial\n\
+      \n#line 1 \"math_mod/power_sum.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
+      #include <functional>\n#include <ranges>\n#include <utility>\n#include <vector>\n\
+      \n#line 1 \"common/type_alias.hpp\"\n\n\n\n#include <cstddef>\n#include <cstdint>\n\
+      \nnamespace kk2 {\n\nusing usize = std::size_t;\nusing i8 = std::int8_t;\nusing\
+      \ u8 = std::uint8_t;\nusing i16 = std::int16_t;\nusing u16 = std::uint16_t;\n\
+      using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
+      using u64 = std::uint64_t;\n\n#ifndef _MSC_VER\nusing i128 = __int128_t;\nusing\
+      \ u128 = __uint128_t;\n#endif\n\n} // namespace kk2\n\n\n#line 1 \"fps/poly_sample_point_evaluate.hpp\"\
+      \n\n\n\n#line 6 \"fps/poly_sample_point_evaluate.hpp\"\n\n#line 1 \"math_mod/comb.hpp\"\
+      \n\n\n\n#line 7 \"math_mod/comb.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
+      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
+      \                              make_unsigned_int128<T>,\n                  \
+      \            typename std::conditional<std::is_signed<T>::value,\n         \
+      \                                               std::make_unsigned<T>,\n   \
+      \                                                     std::common_type<T>>::type>::type;\n\
+      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
+      template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
+      \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
+      template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
+      template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
+      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 1 \"type_traits/modint.hpp\"\n\n\n\n#include\
+      \ <concepts>\n\n#line 7 \"type_traits/modint.hpp\"\n\nnamespace kk2::modint\
+      \ {\n\ntemplate <class M>\nconcept Modular = requires(M x) {\n    requires Integral<decltype(M::getmod())>;\n\
+      \    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n\n} // namespace kk2::modint\n\
+      \n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 6 \"math_mod/inv_table.hpp\"\
+      \n\n#line 9 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief\
+      \ `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\
+      \u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n\
+      \    static inline std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\
+      \n    static void set_upper(usize m) {\n        if (_invs.size() > m) return;\n\
+      \        using index_type = std::make_unsigned_t<std::remove_cv_t<decltype(mint::getmod())>>;\n\
+      \        const index_type start = static_cast<index_type>(_invs.size());\n \
+      \       const index_type upper = static_cast<index_type>(m);\n        const\
+      \ index_type mod = static_cast<index_type>(mint::getmod());\n        _invs.resize(m\
+      \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
+      \    for (index_type i = start; i <= upper; ++i) _invs[i] = (-_invs[mod % i])\
+      \ * (mod / i);\n    }\n\n    template <UnsignedIntegral T> static inline mint\
+      \ inv(T n) {\n        const usize index = static_cast<usize>(n);\n        if\
+      \ (index >= _invs.size()) set_upper(index);\n        return _invs[index];\n\
+      \    }\n\n    template <SignedIntegral T> static inline mint inv(T n) {\n  \
+      \      using U = std::make_unsigned_t<T>;\n        if (n < 0) {\n          \
+      \  // n + 1 is representable even when n is the minimum value.\n           \
+      \ const U magnitude = static_cast<U>(-(n + 1)) + U(1);\n            return -inv(magnitude);\n\
+      \        }\n        return inv(static_cast<U>(n));\n    }\n\n    static inline\
+      \ mint inv_unchecked(usize n) { return _invs[n]; }\n};\n\n} // namespace kk2\n\
+      \n\n#line 12 \"math_mod/comb.hpp\"\n\nnamespace kk2 {\n\ntemplate <modint::Modular\
+      \ mint> struct Comb {\n    static inline std::vector<mint> _fact{1}, _ifact{1};\n\
+      \n    Comb() = delete;\n\n  private:\n    static void extend(usize m) {\n  \
+      \      const usize n = _fact.size();\n        m = std::min<usize>(m, mint::getmod()\
+      \ - 1);\n        _fact.reserve(m + 1);\n        _ifact.resize(m + 1);\n    \
+      \    auto &_invs = InvTable<mint>::_invs;\n        if (_invs.size() <= m) _invs.resize(m\
+      \ + 1);\n        for (usize i = n; i <= m; i++) _fact.emplace_back(_fact.back()\
+      \ * i);\n        _ifact[m] = _fact[m].inv();\n        _invs[m] = _ifact[m] *\
+      \ _fact[m - 1];\n        for (usize i = m; i > n; i--) {\n            _ifact[i\
+      \ - 1] = _ifact[i] * i;\n            _invs[i - 1] = _ifact[i - 1] * _fact[i\
+      \ - 2];\n        }\n    }\n\n    static void ensure(usize n) {\n        assert(n\
+      \ < mint::getmod());\n        if (_fact.size() > n) return;\n        extend(std::max<usize>(n,\
+      \ _fact.size() * 2));\n    }\n\n  public:\n    static void set_upper(usize n)\
+      \ {\n        ensure(std::min<usize>(n, static_cast<usize>(mint::getmod() - 1)));\n\
+      \    }\n\n    static mint fact(u32 n) {\n        ensure(static_cast<usize>(n));\n\
+      \        return _fact[n];\n    }\n\n    static mint ifact(u32 n) {\n       \
+      \ ensure(static_cast<usize>(n));\n        return _ifact[n];\n    }\n\n    static\
+      \ mint inv(i32 n) {\n        assert(n != 0);\n        return InvTable<mint>::inv(n);\n\
+      \    }\n\n    static mint binom(u32 n, u32 k) {\n        if (k > n) return 0;\n\
+      \        return fact(n) * ifact(k) * ifact(n - k);\n    }\n\n    template <UnsignedIntegral\
+      \ T> static mint multinomial(const std::vector<T> &r) {\n        u64 n = 0;\n\
+      \        for (const T x : r) n += x;\n        assert(n < mint::getmod());\n\
+      \        mint res = fact(static_cast<u32>(n));\n        for (const T x : r)\
+      \ res *= ifact(static_cast<u32>(x));\n        return res;\n    }\n\n    static\
+      \ mint binom_naive(u32 n, u32 k) {\n        if (k > n) return 0;\n        mint\
+      \ res = 1;\n        k = std::min(k, n - k);\n        for (u32 i = 1; i <= k;\
+      \ i++) res *= inv(i) * (n--);\n        return res;\n    }\n\n    static mint\
+      \ permu(u32 n, u32 k) {\n        if (k > n) return 0;\n        return fact(n)\
+      \ * ifact(n - k);\n    }\n\n    static mint homo(u32 n, u32 k) { return k ==\
+      \ 0 ? 1 : binom(n + k - 1, k); }\n};\n\n} // namespace kk2\n\n\n#line 10 \"\
+      fps/poly_sample_point_evaluate.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief Return\
+      \ `f(t)`, where `f(i) = y[i]` for `i = 0, ..., y.size() - 1`.\n */\ntemplate\
+      \ <modint::Modular mint> mint sample_point_evaluate(const std::vector<mint>\
+      \ &y, mint t) {\n    if (y.empty()) return 0;\n    assert(y.size() <= static_cast<usize>(mint::getmod()));\n\
+      \n    const usize tval = static_cast<usize>(t.val());\n    if (tval < y.size())\
+      \ return y[tval];\n\n    const i32 degree = static_cast<i32>(y.size()) - 1;\n\
+      \    Comb<mint>::set_upper(degree);\n\n    std::vector<mint> prefix(y.size()\
+      \ + 1, mint(1));\n    for (usize i = 0; i < y.size(); i++) prefix[i + 1] = prefix[i]\
+      \ * (t - mint(i));\n\n    mint result = 0;\n    mint suffix = 1;\n    for (usize\
+      \ i = y.size(); i-- > 0;) {\n        mint term = y[i] * Comb<mint>::ifact(static_cast<i32>(i))\n\
+      \                    * Comb<mint>::ifact(degree - static_cast<i32>(i));\n  \
+      \      if ((degree - static_cast<i32>(i)) & 1) term = -term;\n        result\
+      \ += term * prefix[i] * suffix;\n        suffix *= t - mint(i);\n    }\n   \
+      \ return result;\n}\n\n} // namespace kk2\n\n\n#line 1 \"math/multiplicative_function/pow_table.hpp\"\
+      \n\n\n\n#line 5 \"math/multiplicative_function/pow_table.hpp\"\n#include <limits>\n\
+      #line 7 \"math/multiplicative_function/pow_table.hpp\"\n\n#line 1 \"math/lpf_table.hpp\"\
+      \n\n\n\n#line 8 \"math/lpf_table.hpp\"\n\n#line 1 \"math/multiplicative_function/prime_counting.hpp\"\
+      \n\n\n\n#line 5 \"math/multiplicative_function/prime_counting.hpp\"\n\n#line\
+      \ 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 5 \"data_structure/my_bitset.hpp\"\
+      \n#include <bit>\n#include <bitset>\n#line 9 \"data_structure/my_bitset.hpp\"\
+      \n#include <iostream>\n#include <iterator>\n#include <string>\n#line 14 \"data_structure/my_bitset.hpp\"\
+      \n\n#line 1 \"bit/bitcount.hpp\"\n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n#line\
+      \ 7 \"bit/bitcount.hpp\"\n\nnamespace kk2 {\n\ntemplate <Integral T> constexpr\
+      \ int ctz(T x) {\n    assert(x != T(0));\n\n    if constexpr (sizeof(T) <= 4)\
+      \ {\n        return __builtin_ctz(x);\n    } else if constexpr (sizeof(T) <=\
+      \ 8) {\n        return __builtin_ctzll(x);\n    } else {\n        if (x & 0xffffffffffffffff)\n\
+      \            return __builtin_ctzll((unsigned long long)(x & 0xffffffffffffffff));\n\
+      \        return 64 + __builtin_ctzll((unsigned long long)(x >> 64));\n    }\n\
+      }\n\ntemplate <Integral T> constexpr int lsb(T x) {\n    assert(x != T(0));\n\
+      \n    return ctz(x);\n}\n\ntemplate <Integral T> constexpr int clz(T x) {\n\
+      \    assert(x != T(0));\n\n    if constexpr (sizeof(T) <= 4) {\n        return\
+      \ __builtin_clz(x);\n    } else if constexpr (sizeof(T) <= 8) {\n        return\
+      \ __builtin_clzll(x);\n    } else {\n        if (x >> 64) return __builtin_clzll((unsigned\
+      \ long long)(x >> 64));\n        return 64 + __builtin_clzll((unsigned long\
+      \ long)(x & 0xffffffffffffffff));\n    }\n}\n\ntemplate <Integral T> constexpr\
+      \ int msb(T x) {\n    assert(x != T(0));\n\n    return sizeof(T) * 8 - 1 - clz(x);\n\
+      }\n\ntemplate <Integral T> constexpr int popcount(T x) {\n\n    if constexpr\
+      \ (sizeof(T) <= 4) {\n        return __builtin_popcount(x);\n    } else if constexpr\
+      \ (sizeof(T) <= 8) {\n        return __builtin_popcountll(x);\n    } else {\n\
+      \        return __builtin_popcountll((unsigned long long)(x >> 64))\n      \
+      \         + __builtin_popcountll((unsigned long long)(x & 0xffffffffffffffff));\n\
+      \    }\n}\n\n}; // namespace kk2\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n\
+      #line 5 \"type_traits/io.hpp\"\n#include <fstream>\n#include <istream>\n#include\
+      \ <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace kk2 {\n\nnamespace\
+      \ type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace\
+      \ type_traits\n\ntemplate <typename T>\nusing is_standard_istream = typename\
+      \ std::conditional<std::is_same<T, std::istream>::value\n                  \
+      \                                        || std::is_same<T, std::ifstream>::value,\n\
+      \                                                      std::true_type,\n   \
+      \                                                   std::false_type>::type;\n\
+      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value\n                                                   \
+      \       || std::is_same<T, std::ofstream>::value,\n                        \
+      \                              std::true_type,\n                           \
+      \                           std::false_type>::type;\ntemplate <typename T> using\
+      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
+      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
+      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \n} // namespace kk2\n\n\n#line 17 \"data_structure/my_bitset.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <class Accessor> struct MonotoneRankRange {\n    Accessor\
+      \ _accessor;\n\n    struct StrideRange {\n        Accessor _accessor;\n    \
+      \    int _start, _end, _step;\n\n        struct Iterator {\n            using\
+      \ value_type = int;\n            using difference_type = std::ptrdiff_t;\n \
+      \           using iterator_category = std::forward_iterator_tag;\n         \
+      \   using reference = int;\n            using pointer = void;\n\n          \
+      \  int rank, end, step;\n            mutable typename Accessor::MonotoneCursor\
+      \ cursor;\n\n            Iterator(int rank_, int end_, int step_, const Accessor\
+      \ &accessor)\n                : rank(rank_),\n                  end(end_),\n\
+      \                  step(step_),\n                  cursor(accessor.monotone_cursor())\
+      \ {}\n\n            int operator*() const { return cursor[rank]; }\n\n     \
+      \       Iterator &operator++() {\n                rank = step < end - rank ?\
+      \ rank + step : end;\n                return *this;\n            }\n\n     \
+      \       Iterator operator++(int) {\n                Iterator result = *this;\n\
+      \                ++*this;\n                return result;\n            }\n\n\
+      \            bool operator==(const Iterator &other) const { return rank == other.rank;\
+      \ }\n        };\n\n        Iterator begin() const { return Iterator(_start,\
+      \ _end, _step, _accessor); }\n        Iterator end() const { return Iterator(_end,\
+      \ _end, _step, _accessor); }\n\n        int size() const {\n            if (_start\
+      \ == _end) return 0;\n            return (_end - _start - 1) / _step + 1;\n\
+      \        }\n\n        std::vector<int> to_vec() const {\n            std::vector<int>\
+      \ result;\n            result.reserve(size());\n            for (int value :\
+      \ *this) result.push_back(value);\n            return result;\n        }\n \
+      \   };\n\n    auto begin() const { return stride(0, 1).begin(); }\n    auto\
+      \ end() const { return stride(0, 1).end(); }\n    int size() const { return\
+      \ _accessor.size(); }\n\n    int operator[](int rank) const { return _accessor[rank];\
+      \ }\n\n    auto monotone_cursor() const { return _accessor.monotone_cursor();\
+      \ }\n\n    StrideRange stride(int start, int step) const { return stride(start,\
+      \ step, size()); }\n\n    StrideRange stride(int start, int step, int end) const\
+      \ {\n        assert(0 <= start && start <= end && end <= size() && step > 0);\n\
+      \        return StrideRange{_accessor, start, end, step};\n    }\n\n    std::vector<int>\
+      \ to_vec() const {\n        std::vector<int> result;\n        result.reserve(size());\n\
+      \        for (int value : *this) result.push_back(value);\n        return result;\n\
+      \    }\n};\n\nstruct DynamicBitSet {\n    struct RankSelect;\n\n    using T\
+      \ = DynamicBitSet;\n    using UInt = std::uint64_t;\n    constexpr static int\
+      \ BLOCK_SIZE = sizeof(UInt) * 8;\n    constexpr static int BLOCK_SIZE_LOG =\
+      \ __builtin_ctz(BLOCK_SIZE);\n    constexpr static int BLOCK_MASK = BLOCK_SIZE\
+      \ - 1;\n    constexpr static UInt ONE = 1;\n    int n;\n    std::vector<UInt>\
+      \ block;\n\n    DynamicBitSet(int n_ = 0, bool x = 0) : n(n_) {\n        UInt\
+      \ val = x ? -1 : 0;\n        block.assign((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG,\
+      \ val);\n        if (n & BLOCK_MASK) block.back() >>= BLOCK_SIZE - (n & BLOCK_MASK);\n\
+      \        // fit the last block\n    }\n\n    DynamicBitSet(const std::string\
+      \ &s) : n(s.size()) {\n        block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
+      \        set(s);\n    }\n\n    inline int size() const { return n; }\n\n   \
+      \ int word_count() const { return block.size(); }\n\n    UInt &word(int i) {\n\
+      \        assert(0 <= i && i < word_count());\n        return block[i];\n   \
+      \ }\n\n    const UInt &word(int i) const {\n        assert(0 <= i && i < word_count());\n\
+      \        return block[i];\n    }\n\n    UInt *data() { return block.data();\
+      \ }\n\n    const UInt *data() const { return block.data(); }\n\n    T &clear_unused_bits()\
+      \ {\n        if ((n & BLOCK_MASK) && !block.empty()) block.back() &= (ONE <<\
+      \ (n & BLOCK_MASK)) - 1;\n        return *this;\n    }\n\n    T &inplace_combine_top(const\
+      \ T &rhs) {\n        if (this == &rhs) {\n            T copy = rhs;\n      \
+      \      return inplace_combine_top(copy);\n        }\n        int old_n = n;\n\
+      \        n += rhs.n;\n        block.resize((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n\
+      \        int offset = old_n & BLOCK_MASK;\n        int word_offset = old_n >>\
+      \ BLOCK_SIZE_LOG;\n        if (offset == 0) {\n            std::copy(rhs.block.begin(),\
+      \ rhs.block.end(), block.begin() + word_offset);\n        } else {\n       \
+      \     for (int i = 0; i < rhs.word_count(); ++i) {\n                block[word_offset\
+      \ + i] |= rhs.block[i] << offset;\n                if (word_offset + i + 1 <\
+      \ word_count()) {\n                    block[word_offset + i + 1] = rhs.block[i]\
+      \ >> (BLOCK_SIZE - offset);\n                }\n            }\n        }\n \
+      \       return *this;\n    }\n\n    T combine_top(const T &rhs) const { return\
+      \ T(*this).inplace_combine_top(rhs); }\n\n    T &inplace_combine_bottom(const\
+      \ T &rhs) {\n        T result = rhs;\n        result.inplace_combine_top(*this);\n\
+      \        *this = std::move(result);\n        return *this;\n    }\n\n    T combine_bottom(const\
+      \ T &rhs) const { return T(*this).inplace_combine_bottom(rhs); }\n\n    void\
+      \ set(int i, bool x = true) {\n        assert(0 <= i && i < n);\n        if\
+      \ (x) block[i >> BLOCK_SIZE_LOG] |= ONE << (i & BLOCK_MASK);\n        else block[i\
+      \ >> BLOCK_SIZE_LOG] &= ~(ONE << (i & BLOCK_MASK));\n    }\n\n    void reset(int\
+      \ i) { set(i, false); }\n\n    T &set_all(bool x = true) {\n        std::fill(block.begin(),\
+      \ block.end(), x ? ~UInt(0) : UInt(0));\n        if (x && (n & BLOCK_MASK))\
+      \ block.back() &= (ONE << (n & BLOCK_MASK)) - 1;\n        return *this;\n  \
+      \  }\n\n    T &reset_all() { return set_all(false); }\n\n    void set(const\
+      \ std::string &s) {\n        assert((int)s.size() == n);\n        for (int i\
+      \ = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            int r\
+      \ = n - (i << BLOCK_SIZE_LOG), l = std::max(0, r - BLOCK_SIZE);\n          \
+      \  block[i] = 0;\n            for (int j = l; j < r; j++) block[i] = (block[i]\
+      \ << 1) | (s[j] - '0');\n        }\n    }\n\n    void set_reversed(const std::string\
+      \ &s) {\n        assert((int)s.size() == n);\n        for (int i = 0; i < (n\
+      \ + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            int l = i << BLOCK_SIZE_LOG,\
+      \ r = std::min(n, l + BLOCK_SIZE);\n            block[i] = 0;\n            for\
+      \ (int j = r - 1; j >= l; --j) block[i] = (block[i] << 1) | (s[j] - '0');\n\
+      \        }\n    }\n\n    struct BitReference {\n        std::vector<UInt> &block;\n\
+      \        int idx;\n\n      public:\n        BitReference(std::vector<UInt> &block_,\
+      \ int idx_) : block(block_), idx(idx_) {}\n\n        operator bool() const {\
+      \ return (block[idx >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n\n   \
+      \     template <InputStream IStream> friend IStream &operator>>(IStream &is,\
+      \ BitReference a) {\n            bool c;\n            is >> c;\n           \
+      \ a = c;\n            return is;\n        }\n\n        BitReference &operator=(bool\
+      \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+      \            else block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
+      \            return *this;\n        }\n\n        BitReference &operator=(const\
+      \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
+      \ |= ONE << (idx & BLOCK_MASK);\n            else block[idx >> BLOCK_SIZE_LOG]\
+      \ &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n        }\n\n\
+      \        BitReference &operator&=(bool x) {\n            if (!x) block[idx >>\
+      \ BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n            return *this;\n\
+      \        }\n\n        BitReference &operator&=(const BitReference &other) {\n\
+      \            if (!other) block[idx >> BLOCK_SIZE_LOG] &= ~(ONE << (idx & BLOCK_MASK));\n\
+      \            return *this;\n        }\n\n        BitReference &operator|=(bool\
+      \ x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG] |= ONE << (idx & BLOCK_MASK);\n\
+      \            return *this;\n        }\n\n        BitReference &operator|=(const\
+      \ BitReference &other) {\n            if (other) block[idx >> BLOCK_SIZE_LOG]\
+      \ |= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n  \
+      \      BitReference &operator^=(bool x) {\n            if (x) block[idx >> BLOCK_SIZE_LOG]\
+      \ ^= ONE << (idx & BLOCK_MASK);\n            return *this;\n        }\n\n  \
+      \      BitReference &operator^=(const BitReference &other) {\n            if\
+      \ (other) block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n     \
+      \       return *this;\n        }\n\n        BitReference &flip() {\n       \
+      \     block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n         \
+      \   return *this;\n        }\n\n        BitReference &operator~() {\n      \
+      \      block[idx >> BLOCK_SIZE_LOG] ^= ONE << (idx & BLOCK_MASK);\n        \
+      \    return *this;\n        }\n\n        bool val() const { return (block[idx\
+      \ >> BLOCK_SIZE_LOG] >> (idx & BLOCK_MASK)) & 1; }\n    };\n\n    BitReference\
+      \ operator[](int i) {\n        assert(0 <= i && i < n);\n        return BitReference(block,\
+      \ i);\n    }\n\n    bool operator[](int i) const {\n        assert(0 <= i &&\
+      \ i < n);\n        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) &\
+      \ 1;\n    }\n\n    bool is_pinned(int i) const {\n        assert(0 <= i && i\
+      \ < n);\n        return (block[i >> BLOCK_SIZE_LOG] >> (i & BLOCK_MASK)) & 1;\n\
+      \    }\n\n    T &operator=(const std::string &s) {\n        set(s);\n      \
+      \  return *this;\n    }\n\n    T &flip() {\n        for (UInt &x : block) x\
+      \ = ~x;\n        if (n & BLOCK_MASK) block.back() &= (ONE << (n & BLOCK_MASK))\
+      \ - 1;\n        return *this;\n    }\n\n    T &flip(int i) {\n        assert(0\
+      \ <= i && i < n);\n        block[i >> BLOCK_SIZE_LOG] ^= ONE << (i & BLOCK_MASK);\n\
+      \        return *this;\n    }\n\n    int ctz() const { return find_next(0);\
+      \ }\n\n    int clz() const {\n        int last = find_prev(n - 1);\n       \
+      \ return last == -1 ? n : n - 1 - last;\n    }\n\n    int find_next(int i) const\
+      \ {\n        if (i < 0) i = 0;\n        if (i >= n) return n;\n        int j\
+      \ = i >> BLOCK_SIZE_LOG;\n        UInt bits = block[j] & (~UInt(0) << (i & BLOCK_MASK));\n\
+      \        while (true) {\n            if (bits) return std::min(n, j * BLOCK_SIZE\
+      \ + (int)std::countr_zero(bits));\n            if (++j == word_count()) return\
+      \ n;\n            bits = block[j];\n        }\n    }\n\n    int find_next_zero(int\
+      \ i) const {\n        if (i < 0) i = 0;\n        if (i >= n) return n;\n   \
+      \     int j = i >> BLOCK_SIZE_LOG;\n        UInt bits = ~block[j] & (~UInt(0)\
+      \ << (i & BLOCK_MASK));\n        while (true) {\n            if (bits) return\
+      \ std::min(n, j * BLOCK_SIZE + (int)std::countr_zero(bits));\n            if\
+      \ (++j == word_count()) return n;\n            bits = ~block[j];\n        }\n\
+      \    }\n\n    int find_prev(int i) const {\n        if (i >= n) i = n - 1;\n\
+      \        if (i < 0) return -1;\n        int j = i >> BLOCK_SIZE_LOG;\n     \
+      \   int offset = i & BLOCK_MASK;\n        UInt bits = block[j] & (~UInt(0) >>\
+      \ (BLOCK_MASK - offset));\n        while (true) {\n            if (bits) return\
+      \ j * BLOCK_SIZE + (BLOCK_MASK - std::countl_zero(bits));\n            if (j--\
+      \ == 0) return -1;\n            bits = block[j];\n        }\n    }\n\n    int\
+      \ popcount() const {\n        int res = 0;\n        for (int i = 0; i < (n +\
+      \ BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            res += kk2::popcount(block[i]);\n\
+      \        }\n        return res;\n    }\n\n    T &operator~() { return flip();\
+      \ }\n\n    T &operator&=(const T &other) {\n        assert(n == other.n);\n\
+      \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            block[i] &= other.block[i];\n        }\n        return *this;\n\
+      \    }\n\n    T &operator|=(const T &other) {\n        assert(n == other.n);\n\
+      \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            block[i] |= other.block[i];\n        }\n        return *this;\n\
+      \    }\n\n    T &operator^=(const T &other) {\n        assert(n == other.n);\n\
+      \        for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            block[i] ^= other.block[i];\n        }\n        return *this;\n\
+      \    }\n\n    T &inplace_or_repeated(const T &pattern) {\n        assert(pattern.n\
+      \ > 0 && (pattern.n & BLOCK_MASK) == 0);\n        int pattern_words = pattern.word_count();\n\
+      \        for (int begin = 0; begin < word_count(); begin += pattern_words) {\n\
+      \            int size = std::min(pattern_words, word_count() - begin);\n   \
+      \         for (int i = 0; i < size; ++i) block[begin + i] |= pattern.block[i];\n\
+      \        }\n        return clear_unused_bits();\n    }\n\n    friend T operator&(const\
+      \ T &lhs, const T &rhs) { return T(lhs) &= rhs; }\n\n    friend T operator|(const\
+      \ T &lhs, const T &rhs) { return T(lhs) |= rhs; }\n\n    friend T operator^(const\
+      \ T &lhs, const T &rhs) { return T(lhs) ^= rhs; }\n\n    friend bool operator==(const\
+      \ T &lhs, const T &rhs) {\n        if (lhs.n != rhs.n) return false;\n     \
+      \   for (int i = 0; i < (lhs.n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n\
+      \            if (lhs.block[i] != rhs.block[i]) return false;\n        }\n  \
+      \      return true;\n    }\n\n    friend bool operator!=(const T &lhs, const\
+      \ T &rhs) { return !(lhs == rhs); }\n\n    operator bool() const {\n       \
+      \ for (int i = 0; i < (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n     \
+      \       if (block[i]) return true;\n        }\n        return false;\n    }\n\
+      \n    std::string to_string(UInt x) const { return std::bitset<BLOCK_SIZE>(x).to_string();\
+      \ }\n\n    std::string to_string() const {\n        std::vector<std::string>\
+      \ tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        for (int i = 0; i <\
+      \ (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            tmp[i] = to_string(block[i]);\n\
+      \        }\n        if (n & BLOCK_MASK) {\n            std::reverse(std::begin(tmp.back()),\
+      \ std::end(tmp.back()));\n            tmp.back().resize(n & BLOCK_MASK);\n \
+      \           std::reverse(std::begin(tmp.back()), std::end(tmp.back()));\n  \
+      \      }\n        std::string res;\n        for (int i = (n + BLOCK_SIZE - 1)\
+      \ >> BLOCK_SIZE_LOG; i--;) { res += tmp[i]; }\n        return res;\n    }\n\n\
+      \    std::string to_reversed_string() const {\n        std::vector<std::string>\
+      \ tmp((n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG);\n        for (int i = 0; i <\
+      \ (n + BLOCK_SIZE - 1) >> BLOCK_SIZE_LOG; i++) {\n            tmp[i] = to_string(block[i]);\n\
+      \        }\n        if (n & BLOCK_MASK) {\n            std::reverse(std::begin(tmp.back()),\
+      \ std::end(tmp.back()));\n            tmp.back().resize(n & BLOCK_MASK);\n \
+      \           std::reverse(std::begin(tmp.back()), std::end(tmp.back()));\n  \
+      \      }\n        std::string res;\n        for (int i = 0; i < (n + BLOCK_SIZE\
+      \ - 1) >> BLOCK_SIZE_LOG; i++) {\n            std::reverse(std::begin(tmp[i]),\
+      \ std::end(tmp[i]));\n            res += tmp[i];\n        }\n        return\
+      \ res;\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const T &bs) {\n        return os << bs.to_string();\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, T &bs) {\n \
+      \       std::string s;\n        is >> s;\n        bs.set_reversed(s);\n    \
+      \    return is;\n    }\n};\n\nstruct DynamicBitSet::RankSelect {\n  private:\n\
+      \    DynamicBitSet _bits;\n    std::vector<int> _prefix;\n\n    UInt selected_word(int\
+      \ word) const { return _bits.word(word); }\n\n  public:\n    RankSelect() :\
+      \ _prefix(1) {}\n\n    explicit RankSelect(DynamicBitSet bits, bool value =\
+      \ true)\n        : _bits(std::move(bits)),\n          _prefix(_bits.word_count()\
+      \ + 1) {\n        for (int word = 0; word < _bits.word_count(); ++word) {\n\
+      \            UInt selected = value ? _bits.word(word) : ~_bits.word(word);\n\
+      \            if (word + 1 == _bits.word_count() && (_bits.size() & BLOCK_MASK))\
+      \ {\n                selected &= (ONE << (_bits.size() & BLOCK_MASK)) - 1;\n\
+      \            }\n            _bits.word(word) = selected;\n            _prefix[word\
+      \ + 1] = _prefix[word] + std::popcount(selected);\n        }\n    }\n\n    int\
+      \ bit_size() const { return _bits.size(); }\n\n    bool contains(int index)\
+      \ const {\n        assert(0 <= index && index < bit_size());\n        return\
+      \ _bits[index];\n    }\n\n    int rank(int end) const {\n        assert(0 <=\
+      \ end && end <= bit_size());\n        int word = end >> BLOCK_SIZE_LOG;\n  \
+      \      int result = _prefix[word];\n        if (end & BLOCK_MASK) {\n      \
+      \      UInt mask = (ONE << (end & BLOCK_MASK)) - 1;\n            result += std::popcount(selected_word(word)\
+      \ & mask);\n        }\n        return result;\n    }\n\n    int select(int rank)\
+      \ const {\n        assert(0 <= rank && rank < size());\n        int word =\n\
+      \            (int)(std::upper_bound(_prefix.begin(), _prefix.end(), rank) -\
+      \ _prefix.begin()) - 1;\n        UInt selected = selected_word(word);\n    \
+      \    int local_rank = rank - _prefix[word];\n        while (local_rank--) selected\
+      \ &= selected - 1;\n        return word * BLOCK_SIZE + std::countr_zero(selected);\n\
+      \    }\n\n    int find_next(int index) const { return _bits.find_next(index);\
+      \ }\n\n    struct MonotoneCursor {\n      private:\n        const RankSelect\
+      \ *_index;\n        int _last_rank = -1;\n        int _word = 0;\n\n      public:\n\
+      \        explicit MonotoneCursor(const RankSelect &index) : _index(&index) {}\n\
+      \n        int operator[](int rank) {\n            assert(0 <= rank && _last_rank\
+      \ <= rank && rank < _index->size());\n            _last_rank = rank;\n     \
+      \       while (_index->_prefix[_word + 1] <= rank) ++_word;\n            UInt\
+      \ selected = _index->selected_word(_word);\n            int local_rank = rank\
+      \ - _index->_prefix[_word];\n            while (local_rank--) selected &= selected\
+      \ - 1;\n            return _word * BLOCK_SIZE + std::countr_zero(selected);\n\
+      \        }\n    };\n\n    int size() const { return _prefix.back(); }\n\n  \
+      \  int operator[](int rank) const { return select(rank); }\n\n    MonotoneCursor\
+      \ monotone_cursor() const & { return MonotoneCursor(*this); }\n    MonotoneCursor\
+      \ monotone_cursor() const && = delete;\n\n    struct RangeAccessor {\n     \
+      \   const RankSelect *index;\n\n        using MonotoneCursor = RankSelect::MonotoneCursor;\n\
+      \n        int size() const { return index->size(); }\n        int operator[](int\
+      \ rank) const { return (*index)[rank]; }\n        MonotoneCursor monotone_cursor()\
+      \ const { return index->monotone_cursor(); }\n    };\n\n    using Range = MonotoneRankRange<RangeAccessor>;\n\
+      \n    Range range() const & { return Range{RangeAccessor{this}}; }\n    Range\
+      \ range() const && = delete;\n\n    auto begin() const { return range().begin();\
+      \ }\n    auto end() const { return range().end(); }\n    auto stride(int start,\
+      \ int step) const & { return range().stride(start, step); }\n    auto stride(int\
+      \ start, int step, int end) const & { return range().stride(start, step, end);\
+      \ }\n    auto stride(int, int) const && = delete;\n    auto stride(int, int,\
+      \ int) const && = delete;\n    std::vector<int> to_vec() const { return range().to_vec();\
+      \ }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math/enumerate_quotients.hpp\"\n\
+      \n\n\n#include <numeric>\n#line 6 \"math/enumerate_quotients.hpp\"\n\n#line\
+      \ 1 \"math/sqrt_floor.hpp\"\n\n\n\n#include <cmath>\n\n#line 1 \"math/frac_floor.hpp\"\
+      \n\n\n\n#line 5 \"math/frac_floor.hpp\"\n\nnamespace kk2 {\n\n// floor(x) =\
+      \ ceil(x) - 1 (for all x not in Z) ...(1)\n// floor(x) = -ceil(-x)   (for all\
+      \ x)          ...(2)\n\n// return floor(a / b)\ntemplate <typename T, typename\
+      \ U> constexpr T fracfloor(T a, U b) {\n    assert(b != 0);\n    if (a % b ==\
+      \ 0) return a / b;\n    if (a >= 0) return a / b;\n\n    // floor(x) = -ceil(-x)\
+      \      by (2)\n    //          = -floor(-x) - 1 by (1)\n    return -((-a) /\
+      \ b) - 1;\n}\n\n// return ceil(a / b)\ntemplate <typename T, typename U> constexpr\
+      \ T fracceil(T a, U b) {\n    assert(b != 0);\n    if (a % b == 0) return a\
+      \ / b;\n    if (a >= 0) return a / b + 1;\n\n    // ceil(x) = -floor(-x)   \
+      \   by (2)\n    return -((-a) / b);\n}\n\n} // namespace kk2\n\n\n#line 7 \"\
+      math/sqrt_floor.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename T> T sqrt_floor(T\
+      \ n) {\n    assert(n >= 0);\n    if (n == T(0)) return 0;\n    T x = std::sqrt(n);\n\
+      \    if (x == T(0)) ++x;\n    while (x > kk2::fracfloor(n, x)) --x;\n    while\
+      \ (x + 1 <= kk2::fracfloor(n, x + 1)) ++x;\n    return x;\n}\n\ntemplate <typename\
+      \ T> T sqrt_ceil(T n) {\n    assert(n >= 0);\n    if (n <= T(1)) return n;\n\
+      \    T x = std::sqrt(n);\n    if (x == T(0)) ++x;\n    while (x < kk2::fracceil(n,\
+      \ x)) ++x;\n    while (x - 1 >= kk2::fracceil(n, x - 1)) --x;\n    return x;\n\
+      }\n\n} // namespace kk2\n\n\n#line 8 \"math/enumerate_quotients.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <class T> struct EnumerateQuotients {\n    T n;\n    int\
+      \ sqrt_n;\n    std::vector<T> res;\n\n    EnumerateQuotients(T n) : n(n), sqrt_n(sqrt_floor(n))\
+      \ {\n        res.resize(sqrt_n + n / (sqrt_n + 1));\n        std::iota(res.begin(),\
+      \ res.begin() + sqrt_n, 1);\n        for (T i = n / (sqrt_n + 1), j = sqrt_n;\
+      \ i; --i, ++j) res[j] = n / i;\n    }\n\n    const std::vector<T> &get() const\
+      \ { return res; }\n\n    int size() const { return res.size(); }\n\n    const\
+      \ T &operator[](int i) const { return res[i]; }\n\n    int idx(T x) const {\n\
+      \        if (x <= sqrt_n) return x - 1;\n        return size() - n / x;\n  \
+      \  }\n};\n\n} // namespace kk2\n\n\n#line 8 \"math/multiplicative_function/prime_counting.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace internal {\n\ninline std::vector<int> prime_counting_base_primes(int\
+      \ n) {\n    DynamicBitSet composite(n + 1);\n    std::vector<int> primes;\n\
+      \    for (int p = 2; p <= n; ++p) {\n        if (composite[p]) continue;\n \
+      \       primes.push_back(p);\n        if (1LL * p * p <= n) {\n            for\
+      \ (long long q = 1LL * p * p; q <= n; q += p) composite.set((int)q);\n     \
+      \   }\n    }\n    return primes;\n}\n\n} // namespace internal\n\nlong long\
+      \ prime_counting(long long n) {\n    if (n < 2) return 0;\n    EnumerateQuotients<long\
+      \ long> eq(n);\n    std::vector<int> primes = internal::prime_counting_base_primes(eq.sqrt_n);\n\
+      \    std::vector<long long> dp(eq.size());\n    for (int i = 0; i < eq.size();\
+      \ ++i) dp[i] = eq[i] - 1;\n    for (const long long p : primes) {\n        for\
+      \ (int i = eq.size() - 1;; --i) {\n            if (eq[i] < p * p) break;\n \
+      \           dp[i] -= dp[eq.idx(eq[i] / p)] - dp[p - 2];\n        }\n    }\n\
+      \    return dp.back();\n}\n\n} // namespace kk2\n\n\n#line 11 \"math/lpf_table.hpp\"\
+      \n\nnamespace kk2 {\n\nstruct LPFTable {\n  private:\n    static inline std::vector<u32>\
+      \ _primes{2}, _lpf{0, 1, 2};\n\n  public:\n    LPFTable() = delete;\n\n    static\
+      \ void set_upper(usize m) {\n        if (_lpf.size() > m) return;\n        m\
+      \ = std::max<usize>(2 * _lpf.size(), m);\n        assert(m <= static_cast<usize>(std::numeric_limits<u32>::max()));\n\
+      \        usize reserve_target = static_cast<usize>(prime_counting(static_cast<i64>(m)));\n\
+      \        if (_primes.capacity() < reserve_target) _primes.reserve(reserve_target);\n\
+      \        _lpf.resize(m + 1);\n        const u32 upper = static_cast<u32>(m);\n\
+      \        for (usize index = 2; index <= m; ++index) {\n            const u32\
+      \ i = static_cast<u32>(index);\n            if (_lpf[index] == 0) {\n      \
+      \          _lpf[index] = i;\n                _primes.emplace_back(i);\n    \
+      \        }\n            for (const u32 p : _primes) {\n                const\
+      \ u64 pi = static_cast<u64>(p) * i;\n                if (pi > upper) break;\n\
+      \                const usize product = static_cast<usize>(pi);\n           \
+      \     if (_lpf[index] < p) break;\n                _lpf[product] = p;\n    \
+      \        }\n        }\n    }\n\n    static const std::vector<u32> &primes()\
+      \ { return _primes; }\n\n    template <typename It> struct PrimeIt {\n     \
+      \   It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n    \
+      \    It begin() const { return bg; }\n        It end() const { return ed; }\n\
+      \        usize size() const { return static_cast<usize>(ed - bg); }\n      \
+      \  u32 operator[](usize i) const { return bg[i]; }\n        std::vector<u32>\
+      \ to_vec() const { return std::vector<u32>(bg, ed); }\n    };\n\n    static\
+      \ auto primes(usize n) {\n        if (n >= _lpf.size()) set_upper(n);\n    \
+      \    const u32 upper = static_cast<u32>(n);\n        return PrimeIt(_primes.begin(),\
+      \ std::upper_bound(_primes.begin(), _primes.end(), upper));\n    }\n\n    static\
+      \ u32 lpf(u32 n) {\n        assert(n > 1);\n        if (static_cast<usize>(n)\
+      \ >= _lpf.size()) set_upper(static_cast<usize>(n));\n        return _lpf[n];\n\
+      \    }\n\n    static bool isprime(u32 n) {\n        assert(n > 0);\n       \
+      \ if (static_cast<usize>(n) >= _lpf.size()) set_upper(static_cast<usize>(n));\n\
+      \        return n != 1 and _lpf[n] == n;\n    }\n};\n\n} // namespace kk2\n\n\
+      \n\n#line 1 \"math/pow.hpp\"\n\n\n\n#line 5 \"math/pow.hpp\"\n\nnamespace kk2\
+      \ {\n\ntemplate <class S, class T, class U> constexpr S pow(T x, U n) {\n  \
+      \  assert(n >= 0);\n    S r = 1, y = x;\n    while (n) {\n        if (n & 1)\
+      \ r *= y;\n        if (n >>= 1) y *= y;\n    }\n    return r;\n}\n\n} // namespace\
+      \ kk2\n\n\n#line 11 \"math/multiplicative_function/pow_table.hpp\"\n\nnamespace\
+      \ kk2 {\n\n/**\n * @brief Compute the values `0^e, 1^e, ..., n^e.`\n *\n * As\
+      \ usual for formal power series and modular arithmetic, 0^0 is defined\n * to\
+      \ be 1.\n */\ntemplate <class T> std::vector<T> pow_table(u32 e, u32 n) {\n\
+      \    std::vector<T> result(static_cast<usize>(n) + 1);\n\n    result[0] = (e\
+      \ == 0 ? T(1) : T(0));\n    if (n == 0) return result;\n    result[1] = T(1);\n\
+      \    if (n == 1) return result;\n\n    LPFTable::set_upper(static_cast<usize>(n));\n\
+      \    for (usize index = 2; index <= n; ++index) {\n        const u32 i = static_cast<u32>(index);\n\
+      \        const u32 p = LPFTable::lpf(i);\n        if (p == i) {\n          \
+      \  result[index] = pow<T>(T(i), e);\n        } else {\n            result[index]\
+      \ = result[index / p] * result[p];\n        }\n    }\n    return result;\n}\n\
+      \n} // namespace kk2\n\n\n#line 18 \"math_mod/power_sum.hpp\"\n\nnamespace kk2\
+      \ {\n\n/**\n * @brief Return `sum_{i=0}^{n-1} i^k`.\n * @see https://kk2a.github.io/library/math_mod/power_sum.hpp.html#sum-of-monomial\n\
+      \ */\ntemplate <modint::Modular mint, UnsignedIntegral T1, UnsignedIntegral\
+      \ T2>\nmint sum_of_monomial(T1 n, T2 k) {\n    if (n == 0) return 0;\n    if\
+      \ (k == 0) return mint(n);\n    std::vector<mint> value = pow_table<mint>(k,\
+      \ k);\n    std::vector<mint> sum(static_cast<usize>(k) + 2);\n    for (usize\
+      \ i = 0; i <= k; ++i) sum[i + 1] = sum[i] + value[i];\n    return sample_point_evaluate(sum,\
+      \ mint(n));\n}\n\n/**\n * @brief Return `sum_{i=0}^{n-1} f(i)` from the samples\
+      \ `f(0), ..., f(k)`.\n * @see https://kk2a.github.io/library/math_mod/power_sum.hpp.html#sum-of-polynomial-samples\n\
+      \ */\ntemplate <modint::Modular mint, UnsignedIntegral T>\nmint sum_of_polynomial_samples(const\
+      \ std::vector<mint> &samples, T n) {\n    assert(!samples.empty());\n    assert(samples.size()\
+      \ < static_cast<usize>(mint::getmod()));\n\n    if (n <= samples.size()) {\n\
+      \        return std::ranges::fold_left(\n            samples | std::views::take(static_cast<usize>(n)),\
+      \ mint(0), std::plus{});\n    }\n\n    std::vector<mint> prefix_sum(samples.size()\
+      \ + 1);\n    for (usize i = 0; i < samples.size(); ++i) prefix_sum[i + 1] =\
+      \ prefix_sum[i] + samples[i];\n\n    return sample_point_evaluate(prefix_sum,\
+      \ mint(n));\n}\n\n/**\n * @brief Return the rational-function value of `sum_{i=0}^infty\
+      \ r^i f(i)` from its samples.\n * @see\n * https://kk2a.github.io/library/math_mod/power_sum.hpp.html#sum-of-geometric-polynomial-samples-infinite\n\
+      \ */\ntemplate <modint::Modular mint>\nmint sum_of_geometric_polynomial_samples(mint\
+      \ r, const std::vector<mint> &samples) {\n    assert(!samples.empty());\n  \
+      \  assert(samples.size() < static_cast<usize>(mint::getmod()));\n    assert(r\
+      \ != mint(1));\n    if (r == mint(0)) return samples[0];\n\n    const usize\
+      \ k = samples.size() - 1;\n    const usize m = k + 1;\n    InvTable<mint>::set_upper(m);\n\
+      \n    const mint minus_r = -r;\n    const mint inverse_minus_r = minus_r.inv();\n\
+      \    mint denominator_coefficient = mint(m) * minus_r.pow(k);\n    mint denominator_prefix\
+      \ = (mint(1) - r).pow(m) - minus_r.pow(m);\n    mint r_power = 1;\n    mint\
+      \ numerator = 0;\n    for (usize i = 0; i <= k; ++i, r_power *= r) {\n     \
+      \   numerator += samples[i] * r_power * denominator_prefix;\n        if (i !=\
+      \ k) {\n            const usize j = k - i;\n            denominator_prefix -=\
+      \ denominator_coefficient;\n            denominator_coefficient *=\n       \
+      \         mint(j) * InvTable<mint>::inv_unchecked(m - j + 1) * inverse_minus_r;\n\
+      \        }\n    }\n    return numerator / (mint(1) - r).pow(m);\n}\n\n/**\n\
+      \ * @brief Return `sum_{i=0}^{n-1} r^i f(i)` from the samples `f(0), ..., f(k)`.\n\
+      \ * @see\n * https://kk2a.github.io/library/math_mod/power_sum.hpp.html#sum-of-geometric-polynomial-samples-finite\n\
+      \ */\ntemplate <modint::Modular mint, UnsignedIntegral T>\nmint sum_of_geometric_polynomial_samples(mint\
+      \ r, T n, const std::vector<mint> &samples) {\n    assert(!samples.empty());\n\
+      \    assert(samples.size() < static_cast<usize>(mint::getmod()));\n    if (n\
+      \ == 0) return mint(0);\n    if (r == mint(0)) return samples[0];\n    if (r\
+      \ == mint(1)) return sum_of_polynomial_samples<mint>(samples, n);\n\n    if\
+      \ (n <= samples.size()) {\n        mint res = 0;\n        mint rp = 1;\n   \
+      \     for (usize i = 0; i < static_cast<usize>(n); ++i, rp *= r) res += rp *\
+      \ samples[i];\n        return res;\n    }\n\n    Comb<mint>::set_upper(samples.size());\n\
+      \    const mint infinite_sum = sum_of_geometric_polynomial_samples(r, samples);\n\
+      \    const mint ir = r.inv();\n    std::vector<mint> tail_samples(samples.size());\n\
+      \    tail_samples[0] = -infinite_sum;\n    for (usize i = 0; i + 1 < samples.size();\
+      \ ++i) {\n        tail_samples[i + 1] = ir * (tail_samples[i] + samples[i]);\n\
+      \    }\n\n    return infinite_sum + r.pow(n) * sample_point_evaluate(tail_samples,\
+      \ mint(n));\n}\n\n/**\n * @brief Return `sum_{i=0}^{n-1} r^i i^k`.\n * @see\
+      \ https://kk2a.github.io/library/math_mod/power_sum.hpp.html#sum-of-geometric-monomial-finite\n\
+      \ */\ntemplate <modint::Modular mint, UnsignedIntegral T1, UnsignedIntegral\
+      \ T2>\nmint sum_of_geometric_monomial(mint r, T1 n, T2 k) {\n    return sum_of_geometric_polynomial_samples(r,\
+      \ n, pow_table<mint>(k, k));\n}\n\n/**\n * @brief Return the rational-function\
+      \ value of `sum_{i=0}^infty r^i i^k`.\n * @see\n * https://kk2a.github.io/library/math_mod/power_sum.hpp.html#sum-of-geometric-monomial-infinite\n\
+      \ */\ntemplate <modint::Modular mint, UnsignedIntegral T> mint sum_of_geometric_monomial(mint\
+      \ r, T k) {\n    return sum_of_geometric_polynomial_samples(r, pow_table<mint>(k,\
+      \ k));\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line\
+      \ 8 \"modint/mont.hpp\"\n\n#line 11 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\
+      \ntemplate <int p> struct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
+      \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
+      \    using u64 = uint64_t;\n\n    static constexpr u32 get_r() {\n        u32\
+      \ ret = p;\n        for (int i = 0; i < 4; ++i) ret *= 2 - p * ret;\n      \
+      \  return ret;\n    }\n\n    static constexpr u32 r = get_r();\n    static constexpr\
+      \ u32 n2 = -u64(p) % p;\n    static_assert(r * p == 1, \"invalid, r * p != 1\"\
+      );\n    static_assert(p < (1 << 30), \"invalid, p >= 2 ^ 30\");\n    static_assert((p\
+      \ & 1) == 1, \"invalid, p % 2 == 0\");\n\n    u32 _v;\n\n    constexpr LazyMontgomeryModInt()\
+      \ : _v(0) {}\n\n    template <Integral T> constexpr LazyMontgomeryModInt(T b)\
+      \ : _v(reduce(u64(b % p + p) * n2)) {}\n\n    static constexpr u32 reduce(const\
+      \ u64 &b) { return (b + u64(u32(b) * u32(-r)) * p) >> 32; }\n    constexpr mint\
+      \ &operator++() { return *this += 1; }\n    constexpr mint &operator--() { return\
+      \ *this -= 1; }\n\n    constexpr mint operator++(int) {\n        mint ret =\
+      \ *this;\n        *this += 1;\n        return ret;\n    }\n\n    constexpr mint\
+      \ operator--(int) {\n        mint ret = *this;\n        *this -= 1;\n      \
+      \  return ret;\n    }\n\n    constexpr mint &operator+=(const mint &b) {\n \
+      \       if (i32(_v += b._v - 2 * p) < 0) _v += 2 * p;\n        return *this;\n\
+      \    }\n\n    constexpr mint &operator-=(const mint &b) {\n        if (i32(_v\
+      \ -= b._v) < 0) _v += 2 * p;\n        return *this;\n    }\n\n    constexpr\
+      \ mint &operator*=(const mint &b) {\n        _v = reduce(u64(_v) * b._v);\n\
+      \        return *this;\n    }\n\n    constexpr mint &operator/=(const mint &b)\
+      \ {\n        *this *= b.inv();\n        return *this;\n    }\n\n\n    constexpr\
+      \ bool operator==(const mint &b) const {\n        return (_v >= p ? _v - p :\
+      \ _v) == (b._v >= p ? b._v - p : b._v);\n    }\n\n    constexpr bool operator!=(const\
+      \ mint &b) const {\n        return (_v >= p ? _v - p : _v) != (b._v >= p ? b._v\
+      \ - p : b._v);\n    }\n\n    constexpr mint operator-() const { return mint()\
+      \ - mint(*this); }\n    constexpr mint operator+() const { return mint(*this);\
+      \ }\n    friend constexpr mint operator+(const mint &a, const mint &b) { return\
+      \ mint(a) += b; }\n    friend constexpr mint operator-(const mint &a, const\
+      \ mint &b) { return mint(a) -= b; }\n    friend constexpr mint operator*(const\
+      \ mint &a, const mint &b) { return mint(a) *= b; }\n    friend constexpr mint\
+      \ operator/(const mint &a, const mint &b) { return mint(a) /= b; }\n\n    template\
+      \ <class T> constexpr mint pow(T n) const {\n        mint ret(1), mul(*this);\n\
+      \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            if\
+      \ (n >>= 1) mul *= mul;\n        }\n        return ret;\n    }\n\n    constexpr\
+      \ mint inv() const {\n        assert(*this != mint(0));\n        return pow(p\
+      \ - 2);\n    }\n\n    template <OutputStream OStream> friend OStream &operator<<(OStream\
+      \ &os, const mint &x) {\n        return os << x.val();\n    }\n\n    template\
+      \ <InputStream IStream> friend IStream &operator>>(IStream &is, mint &x) {\n\
+      \        i64 t;\n        is >> t;\n        x = mint(t);\n        return (is);\n\
+      \    }\n\n    constexpr u32 val() const {\n        u32 ret = reduce(_v);\n \
+      \       return ret >= p ? ret - p : ret;\n    }\n\n    static constexpr u32\
+      \ getmod() { return p; }\n};\n\ntemplate <int p> using Mont = LazyMontgomeryModInt<p>;\n\
+      \nusing mont998 = Mont<998244353>;\nusing mont107 = Mont<1000000007>;\n\n} //\
+      \ namespace kk2\n\n\n#line 1 \"template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\
+      \n#include <array>\n#line 8 \"template/template.hpp\"\n#include <chrono>\n#line\
+      \ 10 \"template/template.hpp\"\n#include <deque>\n#line 14 \"template/template.hpp\"\
+      \n#include <map>\n#line 16 \"template/template.hpp\"\n#include <optional>\n\
+      #include <queue>\n#include <random>\n#include <set>\n#include <stack>\n#line\
+      \ 22 \"template/template.hpp\"\n#include <unordered_map>\n#include <unordered_set>\n\
+      #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
+      \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
+      \n#include <cstdio>\n#line 10 \"template/fastio.hpp\"\n\n#line 13 \"template/fastio.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace fastio {\n\nstruct Scanner : type_traits::istream_tag\
+      \ {\n  private:\n    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t\
+      \ pos = 0, end = 0;\n    bool is_eof = false;\n    static char buf[INPUT_BUF];\n\
+      \    FILE *fp;\n\n  public:\n    Scanner() : fp(stdin) {}\n\n    Scanner(const\
+      \ char *file) : fp(fopen(file, \"r\")) {}\n\n    ~Scanner() {\n        if (fp\
+      \ != stdin) fclose(fp);\n    }\n\n    char now() {\n        if (is_eof) return\
+      \ '\\0';\n        if (pos == end) {\n            end = fread(buf, 1, INPUT_BUF,\
+      \ fp);\n            if (end != INPUT_BUF) buf[end] = '\\0';\n            if\
+      \ (end == 0) is_eof = true;\n            pos = 0;\n        }\n        return\
+      \ buf[pos];\n    }\n\n    void skip_space() {\n        while (isspace(now()))\
+      \ ++pos;\n    }\n\n    template <UnsignedIntegral T> T next_unsigned_integral()\
+      \ {\n        skip_space();\n        T res{};\n        while (isdigit(now()))\
+      \ {\n            res = res * 10 + (now() - '0');\n            ++pos;\n     \
+      \   }\n        return res;\n    }\n\n    template <SignedIntegral T> T next_signed_integral()\
+      \ {\n        skip_space();\n        if (now() == '-') {\n            ++pos;\n\
+      \            return T(-next_unsigned_integral<typename to_unsigned<T>::type>());\n\
+      \        } else return (T)next_unsigned_integral<typename to_unsigned<T>::type>();\n\
+      \    }\n\n    char next_char() {\n        skip_space();\n        auto res =\
+      \ now();\n        ++pos;\n        return res;\n    }\n\n    std::string next_string()\
+      \ {\n        skip_space();\n        std::string res;\n        while (true) {\n\
+      \            char c = now();\n            if (isspace(c) or c == '\\0') break;\n\
+      \            res.push_back(now());\n            ++pos;\n        }\n        return\
+      \ res;\n    }\n\n    template <UnsignedIntegral T> Scanner &operator>>(T &x)\
+      \ {\n        x = next_unsigned_integral<T>();\n        return *this;\n    }\n\
+      \n    template <SignedIntegral T> Scanner &operator>>(T &x) {\n        x = next_signed_integral<T>();\n\
+      \        return *this;\n    }\n\n    Scanner &operator>>(char &x) {\n      \
+      \  x = next_char();\n        return *this;\n    }\n\n    Scanner &operator>>(std::string\
+      \ &x) {\n        x = next_string();\n        return *this;\n    }\n};\n\nstruct\
+      \ endl_struct_t {};\n\nstruct Printer : type_traits::ostream_tag {\n  private:\n\
+      \    static char helper[10000][5];\n    static char leading_zero[10000][5];\n\
+      \    constexpr static size_t OUTPUT_BUF = 1 << 17;\n    static char buf[OUTPUT_BUF];\n\
+      \    size_t pos = 0;\n    FILE *fp;\n\n    template <class T> static constexpr\
+      \ void div_mod(T &a, T &b, T mod) {\n        a = b / mod;\n        b -= a *\
+      \ mod;\n    }\n\n    static void init() {\n        buf[0] = '\\0';\n       \
+      \ for (size_t i = 0; i < 10000; ++i) {\n            leading_zero[i][0] = i /\
+      \ 1000 + '0';\n            leading_zero[i][1] = i / 100 % 10 + '0';\n      \
+      \      leading_zero[i][2] = i / 10 % 10 + '0';\n            leading_zero[i][3]\
+      \ = i % 10 + '0';\n            leading_zero[i][4] = '\\0';\n\n            size_t\
+      \ j = 0;\n            if (i >= 1000) helper[i][j++] = i / 1000 + '0';\n    \
+      \        if (i >= 100) helper[i][j++] = i / 100 % 10 + '0';\n            if\
+      \ (i >= 10) helper[i][j++] = i / 10 % 10 + '0';\n            helper[i][j++]\
+      \ = i % 10 + '0';\n            helper[i][j] = '\\0';\n        }\n    }\n\n \
+      \ public:\n    Printer() : fp(stdout) { init(); }\n\n    Printer(const char\
+      \ *file) : fp(fopen(file, \"w\")) { init(); }\n\n    ~Printer() {\n        write();\n\
+      \        if (fp != stdout) fclose(fp);\n    }\n\n    void write() {\n      \
+      \  fwrite(buf, 1, pos, fp);\n        pos = 0;\n    }\n\n    void flush() {\n\
+      \        write();\n        fflush(fp);\n    }\n\n    void put_char(char c) {\n\
+      \        if (pos == OUTPUT_BUF) write();\n        buf[pos++] = c;\n    }\n\n\
+      \    void put_cstr(const char *s) {\n        while (*s) put_char(*(s++));\n\
+      \    }\n\n    void put_u32(uint32_t x) {\n        uint32_t y;\n        if (x\
+      \ >= 100000000) { // 10^8\n            div_mod<uint32_t>(y, x, 100000000);\n\
+      \            put_cstr(helper[y]);\n            div_mod<uint32_t>(y, x, 10000);\n\
+      \            put_cstr(leading_zero[y]);\n            put_cstr(leading_zero[x]);\n\
+      \        } else if (x >= 10000) { // 10^4\n            div_mod<uint32_t>(y,\
+      \ x, 10000);\n            put_cstr(helper[y]);\n            put_cstr(leading_zero[x]);\n\
+      \        } else put_cstr(helper[x]);\n    }\n\n    void put_i32(int32_t x) {\n\
+      \        if (x < 0) {\n            put_char('-');\n            put_u32(-x);\n\
+      \        } else put_u32(x);\n    }\n\n    void put_u64(uint64_t x) {\n     \
+      \   uint64_t y;\n        if (x >= 1000000000000ull) { // 10^12\n           \
+      \ div_mod<uint64_t>(y, x, 1000000000000ull);\n            put_u32(y);\n    \
+      \        div_mod<uint64_t>(y, x, 100000000ull);\n            put_cstr(leading_zero[y]);\n\
+      \            div_mod<uint64_t>(y, x, 10000ull);\n            put_cstr(leading_zero[y]);\n\
+      \            put_cstr(leading_zero[x]);\n        } else if (x >= 10000ull) {\
+      \ // 10^4\n            div_mod<uint64_t>(y, x, 10000ull);\n            put_u32(y);\n\
+      \            put_cstr(leading_zero[x]);\n        } else put_cstr(helper[x]);\n\
+      \    }\n\n    void put_i64(int64_t x) {\n        if (x < 0) {\n            put_char('-');\n\
+      \            put_u64(-x);\n        } else put_u64(x);\n    }\n\n    void put_u128(__uint128_t\
+      \ x) {\n        constexpr static __uint128_t pow10_10 = 10000000000ull;\n  \
+      \      constexpr static __uint128_t pow10_20 = pow10_10 * pow10_10;\n\n    \
+      \    __uint128_t y;\n        if (x >= pow10_20) { // 10^20\n            div_mod<__uint128_t>(y,\
+      \ x, pow10_20);\n            put_u64(uint64_t(y));\n            div_mod<__uint128_t>(y,\
+      \ x, __uint128_t(10000000000000000ull));\n            put_cstr(leading_zero[y]);\n\
+      \            div_mod<__uint128_t>(y, x, __uint128_t(1000000000000ull));\n  \
+      \          put_cstr(leading_zero[y]);\n            div_mod<__uint128_t>(y, x,\
+      \ __uint128_t(100000000ull));\n            put_cstr(leading_zero[y]);\n    \
+      \        div_mod<__uint128_t>(y, x, __uint128_t(10000ull));\n            put_cstr(leading_zero[y]);\n\
+      \            put_cstr(leading_zero[x]);\n        } else if (x >= __uint128_t(10000))\
+      \ { // 10^4\n            div_mod<__uint128_t>(y, x, __uint128_t(10000));\n \
+      \           put_u64(uint64_t(y));\n            put_cstr(leading_zero[x]);\n\
+      \        } else put_cstr(helper[x]);\n    }\n\n    void put_i128(__int128_t\
+      \ x) {\n        if (x < 0) {\n            put_char('-');\n            put_u128(-x);\n\
+      \        } else put_u128(x);\n    }\n\n    template <UnsignedIntegral T> Printer\
+      \ &operator<<(T x) {\n        if constexpr (sizeof(T) <= 4) put_u32(x);\n  \
+      \      else if constexpr (sizeof(T) <= 8) put_u64(x);\n        else put_u128(x);\n\
+      \        return *this;\n    }\n\n    template <SignedIntegral T> Printer &operator<<(T\
+      \ x) {\n        if constexpr (sizeof(T) <= 4) put_i32(x);\n        else if constexpr\
+      \ (sizeof(T) <= 8) put_i64(x);\n        else put_i128(x);\n        return *this;\n\
+      \    }\n\n    Printer &operator<<(char x) {\n        put_char(x);\n        return\
+      \ *this;\n    }\n\n    Printer &operator<<(const std::string &x) {\n       \
+      \ for (char c : x) put_char(c);\n        return *this;\n    }\n\n    Printer\
+      \ &operator<<(const char *x) {\n        put_cstr(x);\n        return *this;\n\
+      \    }\n\n    // std::cout << std::endl; \u306F\u95A2\u6570\u30DD\u30A4\u30F3\
+      \u30BF\u3092\u6E21\u3057\u3066\u3044\u308B\u3089\u3057\u3044\n    Printer &operator<<(endl_struct_t)\
+      \ {\n        put_char('\\n');\n        flush();\n        return *this;\n   \
+      \ }\n};\n\nchar Scanner::buf[Scanner::INPUT_BUF];\nchar Printer::buf[Printer::OUTPUT_BUF];\n\
+      char Printer::helper[10000][5];\nchar Printer::leading_zero[10000][5];\n\n}\
+      \ // namespace fastio\n\n#if defined(INTERACTIVE) || defined(USE_STDIO)\nauto\
+      \ &kin = std::cin;\nauto &kout = std::cout;\nauto (*kendl)(std::ostream &) =\
+      \ std::endl<char, std::char_traits<char>>;\n#else\nfastio::Scanner kin;\nfastio::Printer\
+      \ kout;\nfastio::endl_struct_t kendl;\n#endif\n\n} // namespace kk2\n\n\n#line\
+      \ 1 \"template/io_util.hpp\"\n\n\n\n#line 7 \"template/io_util.hpp\"\n\n#line\
+      \ 9 \"template/io_util.hpp\"\n\n// \u306A\u3093\u304Boj verify\u306F\u30D7\u30ED\
+      \u30C8\u30BF\u30A4\u30D7\u5BA3\u8A00\u304C\u843D\u3061\u308B\n\nnamespace impl\
+      \ {\n\nstruct read {\n    template <class IStream, class T> inline static void\
+      \ all_read(IStream &is, T &x) { is >> x; }\n\n    template <class IStream, class\
+      \ T, class U>\n    inline static void all_read(IStream &is, std::pair<T, U>\
+      \ &p) {\n        all_read(is, p.first);\n        all_read(is, p.second);\n \
+      \   }\n\n    template <class IStream, class T> inline static void all_read(IStream\
+      \ &is, std::vector<T> &v) {\n        for (T &x : v) all_read(is, x);\n    }\n\
+      \n    template <class IStream, class T, size_t F>\n    inline static void all_read(IStream\
+      \ &is, std::array<T, F> &a) {\n        for (T &x : a) all_read(is, x);\n   \
+      \ }\n};\n\nstruct write {\n    template <class OStream, class T> inline static\
+      \ void all_write(OStream &os, const T &x) {\n        os << x;\n    }\n\n   \
+      \ template <class OStream, class T, class U>\n    inline static void all_write(OStream\
+      \ &os, const std::pair<T, U> &p) {\n        all_write(os, p.first);\n      \
+      \  all_write(os, ' ');\n        all_write(os, p.second);\n    }\n\n    template\
+      \ <class OStream, class T>\n    inline static void all_write(OStream &os, const\
+      \ std::vector<T> &v) {\n        for (int i = 0; i < (int)v.size(); ++i) {\n\
+      \            if (i) all_write(os, ' ');\n            all_write(os, v[i]);\n\
+      \        }\n    }\n\n    template <class OStream, class T, size_t F>\n    inline\
+      \ static void all_write(OStream &os, const std::array<T, F> &a) {\n        for\
+      \ (int i = 0; i < (int)F; ++i) {\n            if (i) all_write(os, ' ');\n \
+      \           all_write(os, a[i]);\n        }\n    }\n};\n\n} // namespace impl\n\
+      \ntemplate <kk2::InputStream IStream, class T, class U>\nIStream &operator>>(IStream\
+      \ &is, std::pair<T, U> &p) {\n    impl::read::all_read(is, p);\n    return is;\n\
+      }\n\ntemplate <kk2::InputStream IStream, class T> IStream &operator>>(IStream\
+      \ &is, std::vector<T> &v) {\n    impl::read::all_read(is, v);\n    return is;\n\
+      }\n\ntemplate <kk2::InputStream IStream, class T, size_t F>\nIStream &operator>>(IStream\
+      \ &is, std::array<T, F> &a) {\n    impl::read::all_read(is, a);\n    return\
+      \ is;\n}\n\ntemplate <kk2::OutputStream OStream, class T, class U>\nOStream\
+      \ &operator<<(OStream &os, const std::pair<T, U> &p) {\n    impl::write::all_write(os,\
+      \ p);\n    return os;\n}\n\ntemplate <kk2::OutputStream OStream, class T>\n\
+      OStream &operator<<(OStream &os, const std::vector<T> &v) {\n    impl::write::all_write(os,\
+      \ v);\n    return os;\n}\n\ntemplate <kk2::OutputStream OStream, class T, size_t\
+      \ F>\nOStream &operator<<(OStream &os, const std::array<T, F> &a) {\n    impl::write::all_write(os,\
+      \ a);\n    return os;\n}\n\n\n#line 1 \"template/macros.hpp\"\n\n\n\n#define\
+      \ rep1(a) for (long long _ = 0; _ < (long long)(a); ++_)\n#define rep2(i, a)\
+      \ for (long long i = 0; i < (long long)(a); ++i)\n#define rep3(i, a, b) for\
+      \ (long long i = (a); i < (long long)(b); ++i)\n#define repi2(i, a) for (long\
+      \ long i = (a) - 1; i >= 0; --i)\n#define repi3(i, a, b) for (long long i =\
+      \ (a) - 1; i >= (long long)(b); --i)\n#define overload3(a, b, c, d, ...) d\n\
+      #define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)\n#define\
+      \ repi(...) overload3(__VA_ARGS__, repi3, repi2, rep1)(__VA_ARGS__)\n\n#define\
+      \ fi first\n#define se second\n\n\n#line 32 \"template/template.hpp\"\n\nusing\
+      \ kk2::kendl;\nusing kk2::kin;\nusing kk2::kout;\n\nvoid Yes(bool b = 1) { kout\
+      \ << (b ? \"Yes\\n\" : \"No\\n\"); }\nvoid No(bool b = 1) { kout << (b ? \"\
+      No\\n\" : \"Yes\\n\"); }\nvoid YES(bool b = 1) { kout << (b ? \"YES\\n\" : \"\
+      NO\\n\"); }\nvoid NO(bool b = 1) { kout << (b ? \"NO\\n\" : \"YES\\n\"); }\n\
+      void yes(bool b = 1) { kout << (b ? \"yes\\n\" : \"no\\n\"); }\nvoid no(bool\
+      \ b = 1) { kout << (b ? \"no\\n\" : \"yes\\n\"); }\ntemplate <class T, class\
+      \ S> inline bool chmax(T &a, const S &b) { return (a < b ? a = b, 1 : 0); }\n\
+      template <class T, class S> inline bool chmin(T &a, const S &b) { return (a\
+      \ > b ? a = b, 1 : 0); }\n\n\n#line 6 \"verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp\"\
+      \n\nint main() {\n    using mint = kk2::mont998;\n\n    mint r;\n    u64 d,\
+      \ n;\n    kin >> r >> d >> n;\n    kout << kk2::sum_of_geometric_monomial(r,\
+      \ n, d) << kendl;\n    return 0;\n}\n"
+    name: bundled
+  isFailed: false
+  isVerificationFile: true
+  path: verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
+  pathExtension: cpp
+  requiredBy: []
+  testcases:
+  - elapsed: 0.0026929169999903024
+    environment: g++
+    memory: 3.764
+    name: '0_00'
+    status: AC
+  - elapsed: 0.0022057639999957246
+    environment: g++
+    memory: 3.732
+    name: '0_01'
+    status: AC
+  - elapsed: 0.8061991530000228
+    environment: g++
+    memory: 84.148
+    name: '0_02'
+    status: AC
+  - elapsed: 0.7985404890000041
+    environment: g++
+    memory: 84.076
+    name: '0_03'
+    status: AC
+  - elapsed: 0.7904579919999719
+    environment: g++
+    memory: 84.072
+    name: '0_04'
+    status: AC
+  - elapsed: 0.002177184999993642
+    environment: g++
+    memory: 3.8
+    name: '1_00'
+    status: AC
+  - elapsed: 0.00277845900001239
+    environment: g++
+    memory: 3.752
+    name: '1_01'
+    status: AC
+  - elapsed: 0.0038224040000045534
+    environment: g++
+    memory: 3.876
+    name: '1_02'
+    status: AC
+  - elapsed: 3.190985086000012
+    environment: g++
+    memory: 279.492
+    name: '1_03'
+    status: AC
+  - elapsed: 0.8127332600000159
+    environment: g++
+    memory: 84.072
+    name: '1_04'
+    status: AC
+  - elapsed: 1.1138281090000532
+    environment: g++
+    memory: 84.152
+    name: '1_05'
+    status: AC
+  - elapsed: 3.1871870730000182
+    environment: g++
+    memory: 279.496
+    name: '1_06'
+    status: AC
+  - elapsed: 0.002421479000020099
+    environment: g++
+    memory: 3.732
+    name: '2_00'
+    status: AC
+  - elapsed: 0.0027688480000165328
+    environment: g++
+    memory: 3.768
+    name: '2_01'
+    status: AC
+  - elapsed: 0.004271117999962826
+    environment: g++
+    memory: 3.892
+    name: '2_02'
+    status: AC
+  - elapsed: 2.6661640610000177
+    environment: g++
+    memory: 240.336
+    name: '2_03'
+    status: AC
+  - elapsed: 0.8107403559999966
+    environment: g++
+    memory: 84.152
+    name: '2_04'
+    status: AC
+  - elapsed: 0.9742202600000383
+    environment: g++
+    memory: 84.148
+    name: '2_05'
+    status: AC
+  - elapsed: 3.9170380389999764
+    environment: g++
+    memory: 279.5
+    name: '2_06'
+    status: AC
+  - elapsed: 0.0022848379999800272
+    environment: g++
+    memory: 3.724
+    name: example_00
+    status: AC
+  timestamp: '2026-10-03 23:37:51+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
+layout: document
+---

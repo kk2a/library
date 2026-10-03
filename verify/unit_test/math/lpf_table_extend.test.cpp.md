@@ -8,6 +8,9 @@ data:
     - filename: bitcount.hpp
       icon: LIBRARY_ALL_AC
       path: bit/bitcount.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: common/type_alias.hpp
     - filename: my_bitset.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/my_bitset.hpp
@@ -75,6 +78,7 @@ data:
     type: Verified with
   dependsOn:
   - bit/bitcount.hpp
+  - common/type_alias.hpp
   - data_structure/my_bitset.hpp
   - math/enumerate_quotients.hpp
   - math/frac_floor.hpp
@@ -110,26 +114,12 @@ data:
       \    assert(kk2::LPFTable::isprime(5));\n    assert(!kk2::LPFTable::isprime(6));\n\
       \    assert(kk2::LPFTable::isprime(7));\n    assert(!kk2::LPFTable::isprime(8));\n\
       \    assert(!kk2::LPFTable::isprime(9));\n    assert(!kk2::LPFTable::isprime(10));\n\
-      \    assert(!kk2::LPFTable::isprime(1));\n\n    // Test lpf_pow\n    assert(kk2::LPFTable::lpf_pow(2)\
-      \ == 2);\n    assert(kk2::LPFTable::lpf_pow(3) == 3);\n    assert(kk2::LPFTable::lpf_pow(4)\
-      \ == 4); // 2^2\n    assert(kk2::LPFTable::lpf_pow(5) == 5);\n    assert(kk2::LPFTable::lpf_pow(6)\
-      \ == 2); // 2*3\n    assert(kk2::LPFTable::lpf_pow(7) == 7);\n    assert(kk2::LPFTable::lpf_pow(8)\
-      \ == 8);   // 2^3\n    assert(kk2::LPFTable::lpf_pow(9) == 9);   // 3^2\n  \
-      \  assert(kk2::LPFTable::lpf_pow(12) == 4);  // 2^2*3\n    assert(kk2::LPFTable::lpf_pow(16)\
-      \ == 16); // 2^4\n    assert(kk2::LPFTable::lpf_pow(18) == 2);  // 2*3^2\n \
-      \   assert(kk2::LPFTable::lpf_pow(27) == 27); // 3^3\n\n    // Test v_lpf\n\
-      \    assert(kk2::LPFTable::v_lpf(2) == 1);\n    assert(kk2::LPFTable::v_lpf(3)\
-      \ == 1);\n    assert(kk2::LPFTable::v_lpf(4) == 2); // 2^2\n    assert(kk2::LPFTable::v_lpf(5)\
-      \ == 1);\n    assert(kk2::LPFTable::v_lpf(6) == 1); // 2*3\n    assert(kk2::LPFTable::v_lpf(7)\
-      \ == 1);\n    assert(kk2::LPFTable::v_lpf(8) == 3);  // 2^3\n    assert(kk2::LPFTable::v_lpf(9)\
-      \ == 2);  // 3^2\n    assert(kk2::LPFTable::v_lpf(12) == 2); // 2^2*3\n    assert(kk2::LPFTable::v_lpf(16)\
-      \ == 4); // 2^4\n    assert(kk2::LPFTable::v_lpf(18) == 1); // 2*3^2\n    assert(kk2::LPFTable::v_lpf(27)\
-      \ == 3); // 3^3\n}\n\nvoid test_prime_generation() {\n    // Test prime generation\
-      \ up to 100\n    auto primes_100 = kk2::LPFTable::primes(100);\n    vector<int>\
-      \ expected_primes = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29, 31, 37, 41,\n \
-      \                                  43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,\
-      \ 97};\n    assert(primes_100.size() == (int)expected_primes.size());\n    for\
-      \ (int i = 0; i < (int)expected_primes.size(); i++) {\n        assert(primes_100[i]\
+      \    assert(!kk2::LPFTable::isprime(1));\n}\n\nvoid test_prime_generation()\
+      \ {\n    // Test prime generation up to 100\n    auto primes_100 = kk2::LPFTable::primes(100);\n\
+      \    vector<int> expected_primes = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29,\
+      \ 31, 37, 41,\n                                   43, 47, 53, 59, 61, 67, 71,\
+      \ 73, 79, 83, 89, 97};\n    assert(primes_100.size() == expected_primes.size());\n\
+      \    for (std::size_t i = 0; i < expected_primes.size(); i++) {\n        assert(static_cast<int>(primes_100[i])\
       \ == expected_primes[i]);\n    }\n\n    // Test prime counting consistency\n\
       \    assert((int)kk2::LPFTable::primes(10).size() == 4);  // 2, 3, 5, 7\n  \
       \  assert((int)kk2::LPFTable::primes(20).size() == 8);  // 2, 3, 5, 7, 11, 13,\
@@ -137,50 +127,32 @@ data:
       \ 29\n}\n\nvoid test_factorization_consistency() {\n    // Test consistency\
       \ with prime factorization\n    for (int n = 2; n <= 1000; n++) {\n        auto\
       \ factors = kk2::factorize(n);\n        assert(kk2::LPFTable::lpf(n) == factors[0].first);\n\
-      \n        // Check if lpf_pow and v_lpf are consistent\n        int expected_lpf_pow\
-      \ = 1;\n        int expected_v_lpf = 0;\n        for (auto [p, e] : factors)\
-      \ {\n            if (p == kk2::LPFTable::lpf(n)) {\n                expected_v_lpf\
-      \ = e;\n                for (int i = 0; i < e; i++) { expected_lpf_pow *= p;\
-      \ }\n                break;\n            }\n        }\n        assert(kk2::LPFTable::lpf_pow(n)\
-      \ == expected_lpf_pow);\n        assert(kk2::LPFTable::v_lpf(n) == expected_v_lpf);\n\
       \    }\n}\n\nvoid test_large_numbers() {\n    // Test with larger numbers\n\
       \    int iter = 200;\n    rep(iter) {\n        int n = kk2::random::rng(2, 1000000);\n\
       \        assert((int)kk2::LPFTable::primes(n).size() == kk2::prime_counting(n));\n\
-      \        assert(kk2::LPFTable::lpf(n) == kk2::factorize(n)[0].first);\n\n  \
-      \      // Additional consistency checks\n        auto factors = kk2::factorize(n);\n\
-      \        int lpf = kk2::LPFTable::lpf(n);\n        int v_lpf = kk2::LPFTable::v_lpf(n);\n\
-      \        int lpf_pow = kk2::LPFTable::lpf_pow(n);\n\n        // Check v_lpf\n\
-      \        int expected_v = 0;\n        for (auto [p, e] : factors) {\n      \
-      \      if (p == lpf) {\n                expected_v = e;\n                break;\n\
-      \            }\n        }\n        assert(v_lpf == expected_v);\n\n        //\
-      \ Check lpf_pow\n        int expected_pow = 1;\n        for (int i = 0; i <\
-      \ v_lpf; i++) { expected_pow *= lpf; }\n        assert(lpf_pow == expected_pow);\n\
-      \n        // Check that n is divisible by lpf_pow\n        assert(n % lpf_pow\
-      \ == 0);\n\n        // Check that n/lpf_pow is not divisible by lpf\n      \
-      \  if (n / lpf_pow > 1) { assert((n / lpf_pow) % lpf != 0); }\n    }\n}\n\n\
-      void test_edge_cases() {\n    // Test perfect powers\n    assert(kk2::LPFTable::lpf_pow(32)\
-      \ == 32); // 2^5\n    assert(kk2::LPFTable::v_lpf(32) == 5);\n\n    assert(kk2::LPFTable::lpf_pow(243)\
-      \ == 243); // 3^5\n    assert(kk2::LPFTable::v_lpf(243) == 5);\n\n    // Test\
-      \ products of different primes\n    assert(kk2::LPFTable::lpf_pow(30) == 2);\
-      \ // 2*3*5\n    assert(kk2::LPFTable::v_lpf(30) == 1);\n\n    assert(kk2::LPFTable::lpf_pow(210)\
-      \ == 2); // 2*3*5*7\n    assert(kk2::LPFTable::v_lpf(210) == 1);\n\n    // Test\
-      \ large primes\n    int large_prime = 1000003;\n    assert(kk2::LPFTable::isprime(large_prime));\n\
-      \    assert(kk2::LPFTable::lpf(large_prime) == large_prime);\n    assert(kk2::LPFTable::lpf_pow(large_prime)\
-      \ == large_prime);\n    assert(kk2::LPFTable::v_lpf(large_prime) == 1);\n}\n\
-      \nint main() {\n    test_basic_functionality();\n    test_prime_generation();\n\
-      \    test_factorization_consistency();\n    test_large_numbers();\n    test_edge_cases();\n\
-      \n    return 0;\n}\n"
+      \        assert(kk2::LPFTable::lpf(n) == kk2::factorize(n)[0].first);\n    }\n\
+      }\n\nvoid test_edge_cases() {\n    // Test large primes\n    int large_prime\
+      \ = 1000003;\n    assert(kk2::LPFTable::isprime(large_prime));\n    assert(static_cast<int>(kk2::LPFTable::lpf(large_prime))\
+      \ == large_prime);\n}\n\nint main() {\n    test_basic_functionality();\n   \
+      \ test_prime_generation();\n    test_factorization_consistency();\n    test_large_numbers();\n\
+      \    test_edge_cases();\n\n    return 0;\n}\n"
     name: default
   - code: "#line 1 \"verify/unit_test/math/lpf_table_extend.test.cpp\"\n// competitive-verifier:\
       \ STANDALONE\n\n#line 1 \"math/lpf_table.hpp\"\n\n\n\n#include <algorithm>\n\
-      #include <cassert>\n#include <vector>\n\n#line 1 \"math/multiplicative_function/prime_counting.hpp\"\
+      #include <cassert>\n#include <limits>\n#include <vector>\n\n#line 1 \"common/type_alias.hpp\"\
+      \n\n\n\n#include <cstddef>\n#include <cstdint>\n\nnamespace kk2 {\n\nusing usize\
+      \ = std::size_t;\nusing i8 = std::int8_t;\nusing u8 = std::uint8_t;\nusing i16\
+      \ = std::int16_t;\nusing u16 = std::uint16_t;\nusing i32 = std::int32_t;\nusing\
+      \ u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
+      \n#ifndef _MSC_VER\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n#endif\n\
+      \n} // namespace kk2\n\n\n#line 1 \"math/multiplicative_function/prime_counting.hpp\"\
       \n\n\n\n#line 5 \"math/multiplicative_function/prime_counting.hpp\"\n\n#line\
       \ 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 5 \"data_structure/my_bitset.hpp\"\
-      \n#include <bit>\n#include <bitset>\n#line 8 \"data_structure/my_bitset.hpp\"\
-      \n#include <cstdint>\n#include <iostream>\n#include <iterator>\n#include <string>\n\
-      #include <utility>\n#line 14 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"\
-      bit/bitcount.hpp\"\n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
-      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
+      \n#include <bit>\n#include <bitset>\n#line 9 \"data_structure/my_bitset.hpp\"\
+      \n#include <iostream>\n#include <iterator>\n#include <string>\n#include <utility>\n\
+      #line 14 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"bit/bitcount.hpp\"\n\n\
+      \n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\
+      \n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
       \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
       \ __int128_t>::value\n                                                     \
       \  or std::is_same<T, __int128>::value,\n                                  \
@@ -547,62 +519,59 @@ data:
       \ ++i) dp[i] = eq[i] - 1;\n    for (const long long p : primes) {\n        for\
       \ (int i = eq.size() - 1;; --i) {\n            if (eq[i] < p * p) break;\n \
       \           dp[i] -= dp[eq.idx(eq[i] / p)] - dp[p - 2];\n        }\n    }\n\
-      \    return dp.back();\n}\n\n} // namespace kk2\n\n\n#line 9 \"math/lpf_table.hpp\"\
-      \n\nnamespace kk2 {\n\nstruct LPFTable {\n  private:\n    static inline std::vector<int>\
-      \ _primes{2}, _lpf{0, 1, 2}, _lpf_pow{0, 1, 2}, _v_lpf{0, 1, 1};\n\n  public:\n\
-      \    LPFTable() = delete;\n\n    static void set_upper(int m) {\n        if\
-      \ ((int)_lpf.size() > m) return;\n        m = std::max<int>(2 * _lpf.size(),\
-      \ m);\n        std::size_t reserve_target = prime_counting(m);\n        if (_primes.capacity()\
-      \ < reserve_target) _primes.reserve(reserve_target);\n        _lpf_pow.resize(m\
-      \ + 1);\n        _v_lpf.resize(m + 1);\n        _lpf.resize(m + 1);\n      \
-      \  for (int i = 2; i <= m; i++) {\n            if (_lpf[i] == 0) {\n       \
-      \         _lpf[i] = i;\n                _primes.emplace_back(i);\n         \
-      \       _lpf_pow[i] = i;\n                _v_lpf[i] = 1;\n            }\n  \
-      \          for (const long long p : _primes) {\n                if (p * i >\
-      \ m) break;\n                if (_lpf[i] < p) break;\n                _lpf[p\
-      \ * i] = p;\n                if (_lpf[i] == p) {\n                    _v_lpf[p\
-      \ * i] = _v_lpf[i] + 1;\n                    _lpf_pow[p * i] = _lpf_pow[i] *\
-      \ p;\n                } else {\n                    _v_lpf[p * i] = 1;\n   \
-      \                 _lpf_pow[p * i] = p;\n                }\n            }\n \
-      \       }\n    }\n\n    static const std::vector<int> &primes() { return _primes;\
-      \ }\n\n    template <typename It> struct PrimeIt {\n        It bg, ed;\n   \
-      \     PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n        It begin() const\
-      \ { return bg; }\n        It end() const { return ed; }\n        int size()\
-      \ const { return ed - bg; }\n        int operator[](int i) const { return bg[i];\
-      \ }\n        std::vector<int> to_vec() const { return std::vector<int>(bg, ed);\
-      \ }\n    };\n\n    static auto primes(int n) {\n        if (n >= (int)_lpf.size())\
-      \ set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
-      \ _primes.end(), n));\n    }\n\n    static int lpf(int n) {\n        assert(n\
-      \ > 1);\n        if (n >= (int)_lpf.size()) set_upper(n);\n        return _lpf[n];\n\
-      \    }\n\n    static bool isprime(int n) {\n        assert(n > 0);\n       \
-      \ if (n >= (int)_lpf.size()) set_upper(n);\n        return n != 1 and _lpf[n]\
-      \ == n;\n    }\n\n    static int lpf_pow(int n) {\n        assert(n > 1);\n\
-      \        if (n >= (int)_lpf_pow.size()) set_upper(n);\n        return _lpf_pow[n];\n\
-      \    }\n\n    static int v_lpf(int n) {\n        assert(n > 1);\n        if\
-      \ (n >= (int)_v_lpf.size()) set_upper(n);\n        return _v_lpf[n];\n    }\n\
-      };\n\n} // namespace kk2\n\n\n\n#line 1 \"math/prime_factorize.hpp\"\n\n\n\n\
-      #line 5 \"math/prime_factorize.hpp\"\n#include <map>\n#line 9 \"math/prime_factorize.hpp\"\
-      \n\n#line 1 \"math_mod/pow_mod.hpp\"\n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow_mod(T\
-      \ x, U n, T m) {\n    assert(n >= 0);\n    if (m == 1) return S(0);\n    S _m\
-      \ = m, r = 1;\n    S y = x % _m;\n    if (y < 0) y += _m;\n    while (n) {\n\
-      \        if (n & 1) r = (r * y) % _m;\n        if (n >>= 1) y = (y * y) % _m;\n\
-      \    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\
-      \n\n\n\n#line 7 \"modint/mont_arb.hpp\"\n\n#line 10 \"modint/mont_arb.hpp\"\n\
-      \nnamespace kk2 {\n\ntemplate <typename Int, typename UInt, typename Long, typename\
-      \ ULong, int id>\nstruct ArbitraryLazyMontgomeryModIntBase {\n    using mint\
-      \ = ArbitraryLazyMontgomeryModIntBase;\n\n    inline static UInt mod;\n    inline\
-      \ static UInt r;\n    inline static UInt n2;\n    static constexpr int bit_length\
-      \ = sizeof(UInt) * 8;\n\n    static UInt get_r() {\n        UInt ret = mod;\n\
-      \        while (mod * ret != 1) ret *= UInt(2) - mod * ret;\n        return\
-      \ ret;\n    }\n\n    static void setmod(UInt m) {\n        assert(m < (UInt(1u)\
-      \ << (bit_length - 2)));\n        assert(m & 1);\n        mod = m, n2 = -ULong(m)\
-      \ % m, r = get_r();\n    }\n\n    UInt _v;\n\n    ArbitraryLazyMontgomeryModIntBase()\
-      \ : _v(0) {}\n\n    template <Integral T>\n    ArbitraryLazyMontgomeryModIntBase(const\
-      \ T &b) : _v(reduce(ULong(b % (Int)mod + mod) * n2)) {}\n\n    static UInt reduce(const\
-      \ ULong &b) {\n        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n\
-      \    }\n\n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v\
-      \ - 2 * mod) < 0) _v += 2 * mod;\n        return *this;\n    }\n\n    mint &operator-=(const\
+      \    return dp.back();\n}\n\n} // namespace kk2\n\n\n#line 11 \"math/lpf_table.hpp\"\
+      \n\nnamespace kk2 {\n\nstruct LPFTable {\n  private:\n    static inline std::vector<u32>\
+      \ _primes{2}, _lpf{0, 1, 2};\n\n  public:\n    LPFTable() = delete;\n\n    static\
+      \ void set_upper(usize m) {\n        if (_lpf.size() > m) return;\n        m\
+      \ = std::max<usize>(2 * _lpf.size(), m);\n        assert(m <= static_cast<usize>(std::numeric_limits<u32>::max()));\n\
+      \        usize reserve_target = static_cast<usize>(prime_counting(static_cast<i64>(m)));\n\
+      \        if (_primes.capacity() < reserve_target) _primes.reserve(reserve_target);\n\
+      \        _lpf.resize(m + 1);\n        const u32 upper = static_cast<u32>(m);\n\
+      \        for (usize index = 2; index <= m; ++index) {\n            const u32\
+      \ i = static_cast<u32>(index);\n            if (_lpf[index] == 0) {\n      \
+      \          _lpf[index] = i;\n                _primes.emplace_back(i);\n    \
+      \        }\n            for (const u32 p : _primes) {\n                const\
+      \ u64 pi = static_cast<u64>(p) * i;\n                if (pi > upper) break;\n\
+      \                const usize product = static_cast<usize>(pi);\n           \
+      \     if (_lpf[index] < p) break;\n                _lpf[product] = p;\n    \
+      \        }\n        }\n    }\n\n    static const std::vector<u32> &primes()\
+      \ { return _primes; }\n\n    template <typename It> struct PrimeIt {\n     \
+      \   It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n    \
+      \    It begin() const { return bg; }\n        It end() const { return ed; }\n\
+      \        usize size() const { return static_cast<usize>(ed - bg); }\n      \
+      \  u32 operator[](usize i) const { return bg[i]; }\n        std::vector<u32>\
+      \ to_vec() const { return std::vector<u32>(bg, ed); }\n    };\n\n    static\
+      \ auto primes(usize n) {\n        if (n >= _lpf.size()) set_upper(n);\n    \
+      \    const u32 upper = static_cast<u32>(n);\n        return PrimeIt(_primes.begin(),\
+      \ std::upper_bound(_primes.begin(), _primes.end(), upper));\n    }\n\n    static\
+      \ u32 lpf(u32 n) {\n        assert(n > 1);\n        if (static_cast<usize>(n)\
+      \ >= _lpf.size()) set_upper(static_cast<usize>(n));\n        return _lpf[n];\n\
+      \    }\n\n    static bool isprime(u32 n) {\n        assert(n > 0);\n       \
+      \ if (static_cast<usize>(n) >= _lpf.size()) set_upper(static_cast<usize>(n));\n\
+      \        return n != 1 and _lpf[n] == n;\n    }\n};\n\n} // namespace kk2\n\n\
+      \n\n#line 1 \"math/prime_factorize.hpp\"\n\n\n\n#line 5 \"math/prime_factorize.hpp\"\
+      \n#include <map>\n#line 9 \"math/prime_factorize.hpp\"\n\n#line 1 \"math_mod/pow_mod.hpp\"\
+      \n\n\n\n#line 5 \"math_mod/pow_mod.hpp\"\n\nnamespace kk2 {\n\ntemplate <class\
+      \ S, class T, class U> constexpr S pow_mod(T x, U n, T m) {\n    assert(n >=\
+      \ 0);\n    if (m == 1) return S(0);\n    S _m = m, r = 1;\n    S y = x % _m;\n\
+      \    if (y < 0) y += _m;\n    while (n) {\n        if (n & 1) r = (r * y) %\
+      \ _m;\n        if (n >>= 1) y = (y * y) % _m;\n    }\n    return r;\n}\n\n}\
+      \ // namespace kk2\n\n\n#line 1 \"modint/mont_arb.hpp\"\n\n\n\n#line 7 \"modint/mont_arb.hpp\"\
+      \n\n#line 10 \"modint/mont_arb.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename\
+      \ Int, typename UInt, typename Long, typename ULong, int id>\nstruct ArbitraryLazyMontgomeryModIntBase\
+      \ {\n    using mint = ArbitraryLazyMontgomeryModIntBase;\n\n    inline static\
+      \ UInt mod;\n    inline static UInt r;\n    inline static UInt n2;\n    static\
+      \ constexpr int bit_length = sizeof(UInt) * 8;\n\n    static UInt get_r() {\n\
+      \        UInt ret = mod;\n        while (mod * ret != 1) ret *= UInt(2) - mod\
+      \ * ret;\n        return ret;\n    }\n\n    static void setmod(UInt m) {\n \
+      \       assert(m < (UInt(1u) << (bit_length - 2)));\n        assert(m & 1);\n\
+      \        mod = m, n2 = -ULong(m) % m, r = get_r();\n    }\n\n    UInt _v;\n\n\
+      \    ArbitraryLazyMontgomeryModIntBase() : _v(0) {}\n\n    template <Integral\
+      \ T>\n    ArbitraryLazyMontgomeryModIntBase(const T &b) : _v(reduce(ULong(b\
+      \ % (Int)mod + mod) * n2)) {}\n\n    static UInt reduce(const ULong &b) {\n\
+      \        return (b + ULong(UInt(b) * UInt(-r)) * mod) >> bit_length;\n    }\n\
+      \n    mint &operator+=(const mint &b) {\n        if (Int(_v += b._v - 2 * mod)\
+      \ < 0) _v += 2 * mod;\n        return *this;\n    }\n\n    mint &operator-=(const\
       \ mint &b) {\n        if (Int(_v -= b._v) < 0) _v += 2 * mod;\n        return\
       \ *this;\n    }\n\n    mint &operator*=(const mint &b) {\n        _v = reduce(ULong(_v)\
       \ * b._v);\n        return *this;\n    }\n\n    mint &operator/=(const mint\
@@ -734,15 +703,15 @@ data:
       using number_theory::factorize_map;\n\n} // namespace kk2\n\n\n\n#line 1 \"\
       template/template.hpp\"\n\n\n\n#line 5 \"template/template.hpp\"\n#include <array>\n\
       #line 10 \"template/template.hpp\"\n#include <deque>\n#include <functional>\n\
-      #line 13 \"template/template.hpp\"\n#include <limits>\n#line 16 \"template/template.hpp\"\
-      \n#include <optional>\n#include <queue>\n#line 19 \"template/template.hpp\"\n\
-      #include <set>\n#include <stack>\n#line 22 \"template/template.hpp\"\n#include\
-      \ <unordered_map>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
-      \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      #line 16 \"template/template.hpp\"\n#include <optional>\n#include <queue>\n\
+      #line 19 \"template/template.hpp\"\n#include <set>\n#include <stack>\n#line\
+      \ 22 \"template/template.hpp\"\n#include <unordered_map>\n#line 26 \"template/template.hpp\"\
+      \n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing i32 = int;\nusing u32 =\
+      \ unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+      \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+      \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\n\
+      using pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
       template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
       \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
       \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
@@ -922,65 +891,27 @@ data:
       \    assert(!kk2::LPFTable::isprime(6));\n    assert(kk2::LPFTable::isprime(7));\n\
       \    assert(!kk2::LPFTable::isprime(8));\n    assert(!kk2::LPFTable::isprime(9));\n\
       \    assert(!kk2::LPFTable::isprime(10));\n    assert(!kk2::LPFTable::isprime(1));\n\
-      \n    // Test lpf_pow\n    assert(kk2::LPFTable::lpf_pow(2) == 2);\n    assert(kk2::LPFTable::lpf_pow(3)\
-      \ == 3);\n    assert(kk2::LPFTable::lpf_pow(4) == 4); // 2^2\n    assert(kk2::LPFTable::lpf_pow(5)\
-      \ == 5);\n    assert(kk2::LPFTable::lpf_pow(6) == 2); // 2*3\n    assert(kk2::LPFTable::lpf_pow(7)\
-      \ == 7);\n    assert(kk2::LPFTable::lpf_pow(8) == 8);   // 2^3\n    assert(kk2::LPFTable::lpf_pow(9)\
-      \ == 9);   // 3^2\n    assert(kk2::LPFTable::lpf_pow(12) == 4);  // 2^2*3\n\
-      \    assert(kk2::LPFTable::lpf_pow(16) == 16); // 2^4\n    assert(kk2::LPFTable::lpf_pow(18)\
-      \ == 2);  // 2*3^2\n    assert(kk2::LPFTable::lpf_pow(27) == 27); // 3^3\n\n\
-      \    // Test v_lpf\n    assert(kk2::LPFTable::v_lpf(2) == 1);\n    assert(kk2::LPFTable::v_lpf(3)\
-      \ == 1);\n    assert(kk2::LPFTable::v_lpf(4) == 2); // 2^2\n    assert(kk2::LPFTable::v_lpf(5)\
-      \ == 1);\n    assert(kk2::LPFTable::v_lpf(6) == 1); // 2*3\n    assert(kk2::LPFTable::v_lpf(7)\
-      \ == 1);\n    assert(kk2::LPFTable::v_lpf(8) == 3);  // 2^3\n    assert(kk2::LPFTable::v_lpf(9)\
-      \ == 2);  // 3^2\n    assert(kk2::LPFTable::v_lpf(12) == 2); // 2^2*3\n    assert(kk2::LPFTable::v_lpf(16)\
-      \ == 4); // 2^4\n    assert(kk2::LPFTable::v_lpf(18) == 1); // 2*3^2\n    assert(kk2::LPFTable::v_lpf(27)\
-      \ == 3); // 3^3\n}\n\nvoid test_prime_generation() {\n    // Test prime generation\
-      \ up to 100\n    auto primes_100 = kk2::LPFTable::primes(100);\n    vector<int>\
-      \ expected_primes = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29, 31, 37, 41,\n \
-      \                                  43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,\
-      \ 97};\n    assert(primes_100.size() == (int)expected_primes.size());\n    for\
-      \ (int i = 0; i < (int)expected_primes.size(); i++) {\n        assert(primes_100[i]\
-      \ == expected_primes[i]);\n    }\n\n    // Test prime counting consistency\n\
-      \    assert((int)kk2::LPFTable::primes(10).size() == 4);  // 2, 3, 5, 7\n  \
-      \  assert((int)kk2::LPFTable::primes(20).size() == 8);  // 2, 3, 5, 7, 11, 13,\
-      \ 17, 19\n    assert((int)kk2::LPFTable::primes(30).size() == 10); // + 23,\
-      \ 29\n}\n\nvoid test_factorization_consistency() {\n    // Test consistency\
-      \ with prime factorization\n    for (int n = 2; n <= 1000; n++) {\n        auto\
-      \ factors = kk2::factorize(n);\n        assert(kk2::LPFTable::lpf(n) == factors[0].first);\n\
-      \n        // Check if lpf_pow and v_lpf are consistent\n        int expected_lpf_pow\
-      \ = 1;\n        int expected_v_lpf = 0;\n        for (auto [p, e] : factors)\
-      \ {\n            if (p == kk2::LPFTable::lpf(n)) {\n                expected_v_lpf\
-      \ = e;\n                for (int i = 0; i < e; i++) { expected_lpf_pow *= p;\
-      \ }\n                break;\n            }\n        }\n        assert(kk2::LPFTable::lpf_pow(n)\
-      \ == expected_lpf_pow);\n        assert(kk2::LPFTable::v_lpf(n) == expected_v_lpf);\n\
-      \    }\n}\n\nvoid test_large_numbers() {\n    // Test with larger numbers\n\
-      \    int iter = 200;\n    rep(iter) {\n        int n = kk2::random::rng(2, 1000000);\n\
-      \        assert((int)kk2::LPFTable::primes(n).size() == kk2::prime_counting(n));\n\
-      \        assert(kk2::LPFTable::lpf(n) == kk2::factorize(n)[0].first);\n\n  \
-      \      // Additional consistency checks\n        auto factors = kk2::factorize(n);\n\
-      \        int lpf = kk2::LPFTable::lpf(n);\n        int v_lpf = kk2::LPFTable::v_lpf(n);\n\
-      \        int lpf_pow = kk2::LPFTable::lpf_pow(n);\n\n        // Check v_lpf\n\
-      \        int expected_v = 0;\n        for (auto [p, e] : factors) {\n      \
-      \      if (p == lpf) {\n                expected_v = e;\n                break;\n\
-      \            }\n        }\n        assert(v_lpf == expected_v);\n\n        //\
-      \ Check lpf_pow\n        int expected_pow = 1;\n        for (int i = 0; i <\
-      \ v_lpf; i++) { expected_pow *= lpf; }\n        assert(lpf_pow == expected_pow);\n\
-      \n        // Check that n is divisible by lpf_pow\n        assert(n % lpf_pow\
-      \ == 0);\n\n        // Check that n/lpf_pow is not divisible by lpf\n      \
-      \  if (n / lpf_pow > 1) { assert((n / lpf_pow) % lpf != 0); }\n    }\n}\n\n\
-      void test_edge_cases() {\n    // Test perfect powers\n    assert(kk2::LPFTable::lpf_pow(32)\
-      \ == 32); // 2^5\n    assert(kk2::LPFTable::v_lpf(32) == 5);\n\n    assert(kk2::LPFTable::lpf_pow(243)\
-      \ == 243); // 3^5\n    assert(kk2::LPFTable::v_lpf(243) == 5);\n\n    // Test\
-      \ products of different primes\n    assert(kk2::LPFTable::lpf_pow(30) == 2);\
-      \ // 2*3*5\n    assert(kk2::LPFTable::v_lpf(30) == 1);\n\n    assert(kk2::LPFTable::lpf_pow(210)\
-      \ == 2); // 2*3*5*7\n    assert(kk2::LPFTable::v_lpf(210) == 1);\n\n    // Test\
-      \ large primes\n    int large_prime = 1000003;\n    assert(kk2::LPFTable::isprime(large_prime));\n\
-      \    assert(kk2::LPFTable::lpf(large_prime) == large_prime);\n    assert(kk2::LPFTable::lpf_pow(large_prime)\
-      \ == large_prime);\n    assert(kk2::LPFTable::v_lpf(large_prime) == 1);\n}\n\
-      \nint main() {\n    test_basic_functionality();\n    test_prime_generation();\n\
-      \    test_factorization_consistency();\n    test_large_numbers();\n    test_edge_cases();\n\
-      \n    return 0;\n}\n"
+      }\n\nvoid test_prime_generation() {\n    // Test prime generation up to 100\n\
+      \    auto primes_100 = kk2::LPFTable::primes(100);\n    vector<int> expected_primes\
+      \ = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29, 31, 37, 41,\n                 \
+      \                  43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};\n    assert(primes_100.size()\
+      \ == expected_primes.size());\n    for (std::size_t i = 0; i < expected_primes.size();\
+      \ i++) {\n        assert(static_cast<int>(primes_100[i]) == expected_primes[i]);\n\
+      \    }\n\n    // Test prime counting consistency\n    assert((int)kk2::LPFTable::primes(10).size()\
+      \ == 4);  // 2, 3, 5, 7\n    assert((int)kk2::LPFTable::primes(20).size() ==\
+      \ 8);  // 2, 3, 5, 7, 11, 13, 17, 19\n    assert((int)kk2::LPFTable::primes(30).size()\
+      \ == 10); // + 23, 29\n}\n\nvoid test_factorization_consistency() {\n    //\
+      \ Test consistency with prime factorization\n    for (int n = 2; n <= 1000;\
+      \ n++) {\n        auto factors = kk2::factorize(n);\n        assert(kk2::LPFTable::lpf(n)\
+      \ == factors[0].first);\n    }\n}\n\nvoid test_large_numbers() {\n    // Test\
+      \ with larger numbers\n    int iter = 200;\n    rep(iter) {\n        int n =\
+      \ kk2::random::rng(2, 1000000);\n        assert((int)kk2::LPFTable::primes(n).size()\
+      \ == kk2::prime_counting(n));\n        assert(kk2::LPFTable::lpf(n) == kk2::factorize(n)[0].first);\n\
+      \    }\n}\n\nvoid test_edge_cases() {\n    // Test large primes\n    int large_prime\
+      \ = 1000003;\n    assert(kk2::LPFTable::isprime(large_prime));\n    assert(static_cast<int>(kk2::LPFTable::lpf(large_prime))\
+      \ == large_prime);\n}\n\nint main() {\n    test_basic_functionality();\n   \
+      \ test_prime_generation();\n    test_factorization_consistency();\n    test_large_numbers();\n\
+      \    test_edge_cases();\n\n    return 0;\n}\n"
     name: bundled
   isFailed: false
   isVerificationFile: true
@@ -988,7 +919,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/math/lpf_table_extend.test.cpp

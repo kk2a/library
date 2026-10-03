@@ -91,7 +91,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - verify/yosupo_fps/fps_composition.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith: []
 documentation_of: fps/composition.hpp

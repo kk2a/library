@@ -169,7 +169,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - graph/tree/block_cut_tree.hpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/graph_bcc.test.cpp

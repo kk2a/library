@@ -19,6 +19,9 @@ data:
     - filename: aoj_alds1_14_b.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/aoj/aoj_alds1_14_b.test.cpp
+    - filename: large_fact_arb_mod.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
@@ -52,6 +55,9 @@ data:
     - filename: kth_term_of_linearly_recurrent_sequence.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    - filename: sum_of_exponential_times_polynomial_limit.test.cpp
+      icon: LIBRARY_NO_TESTS
+      path: verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
     type: Required by
   - files:
     - filename: aoj_0233.test.cpp
@@ -93,6 +99,9 @@ data:
     - filename: isprime_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/isprime_table_extend.test.cpp
+    - filename: lpf_power_table_extend.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/lpf_power_table_extend.test.cpp
     - filename: lpf_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/lpf_table_extend.test.cpp
@@ -120,9 +129,6 @@ data:
     - filename: inv_table.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/inv_table.test.cpp
-    - filename: large_fact_arb_mod.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: F2.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/modint/F2.test.cpp
@@ -282,6 +288,9 @@ data:
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    - filename: prefix_sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
     - filename: arg_sort.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_geometry/arg_sort.test.cpp
@@ -450,6 +459,9 @@ data:
     - filename: many_a_plus_b_128bit.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+    - filename: sum_of_exponential_times_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
     - filename: string_number_of_substrings.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_string/string_number_of_substrings.test.cpp
@@ -761,6 +773,7 @@ data:
   requiredBy:
   - template/template.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
@@ -772,7 +785,8 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  - verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -788,6 +802,7 @@ data:
   - verify/unit_test/math/action/action.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/math/isprime_table_extend.test.cpp
+  - verify/unit_test/math/lpf_power_table_extend.test.cpp
   - verify/unit_test/math/lpf_table_extend.test.cpp
   - verify/unit_test/math/monoid/monoid.test.cpp
   - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
@@ -797,7 +812,6 @@ data:
   - verify/unit_test/math/rational.test.cpp
   - verify/unit_test/math_mod/binom_table.test.cpp
   - verify/unit_test/math_mod/inv_table.test.cpp
-  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/unit_test/modint/F2.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
@@ -851,6 +865,7 @@ data:
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
   - verify/yosupo_geometry/arg_sort.test.cpp
   - verify/yosupo_geometry/static_convex_hull.test.cpp
   - verify/yosupo_geometry/static_convex_hull_1.test.cpp
@@ -907,6 +922,7 @@ data:
   - verify/yosupo_others/longest_increasing_subsequence.test.cpp
   - verify/yosupo_others/many_a_plus_b.test.cpp
   - verify/yosupo_others/many_a_plus_b_128bit.test.cpp
+  - verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
   - verify/yosupo_string/string_number_of_substrings.test.cpp
   - verify/yosupo_string/string_suffix_array.test.cpp
   - verify/yosupo_string/string_z_algorithm.test.cpp

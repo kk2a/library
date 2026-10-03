@@ -70,6 +70,9 @@ data:
     - filename: sqrt.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/sqrt.hpp
+    - filename: poly_sample_point_shift.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/poly_sample_point_shift.hpp
     - filename: rolling_hash.hpp
       icon: LIBRARY_ALL_AC
       path: math/group/rolling_hash.hpp
@@ -124,6 +127,9 @@ data:
     - filename: aoj_alds1_14_b.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/aoj/aoj_alds1_14_b.test.cpp
+    - filename: large_fact_arb_mod.test.cpp
+      icon: LIBRARY_ALL_AC
+      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: fps_composition.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_composition.test.cpp
@@ -165,6 +171,9 @@ data:
     - filename: multivariate_operations.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/multivariate_operations.test.cpp
+    - filename: poly_sample_point_evaluate.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -174,12 +183,18 @@ data:
     - filename: sparsity_small_performance.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_small_performance.test.cpp
+    - filename: sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sum_of_polynomial.test.cpp
     - filename: group.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/group/group.test.cpp
     - filename: isprime_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/isprime_table_extend.test.cpp
+    - filename: lpf_power_table_extend.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/lpf_power_table_extend.test.cpp
     - filename: lpf_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/lpf_table_extend.test.cpp
@@ -189,9 +204,6 @@ data:
     - filename: prime_factorize_table.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/prime_factorize_table.test.cpp
-    - filename: large_fact_arb_mod.test.cpp
-      icon: TEST_ACCEPTED
-      path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - filename: mod_sqrt.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math_mod/mod_sqrt.test.cpp
@@ -273,6 +285,9 @@ data:
     - filename: poly_taylor_shift.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+    - filename: prefix_sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
     - filename: enumerate_bell_number.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/enumerate_bell_number.test.cpp
@@ -344,6 +359,7 @@ data:
   - fps/operations/multivariate/multiplication.hpp
   - fps/operations/multivariate/power.hpp
   - fps/operations/sqrt.hpp
+  - fps/poly_sample_point_shift.hpp
   - math/group/rolling_hash.hpp
   - math/is_prime.hpp
   - math/multiplicative_function/euler_phi.hpp
@@ -362,6 +378,7 @@ data:
   - string/static_rolling_hash.hpp
   - unionfind/parallel.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
+  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
@@ -370,7 +387,7 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_ntl_1_d.test.cpp
@@ -378,15 +395,17 @@ data:
   - verify/unit_test/fps/inplace_operations.test.cpp
   - verify/unit_test/fps/multivariate_convolution.test.cpp
   - verify/unit_test/fps/multivariate_operations.test.cpp
+  - verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp
+  - verify/unit_test/fps/sum_of_polynomial.test.cpp
   - verify/unit_test/math/group/group.test.cpp
   - verify/unit_test/math/isprime_table_extend.test.cpp
+  - verify/unit_test/math/lpf_power_table_extend.test.cpp
   - verify/unit_test/math/lpf_table_extend.test.cpp
   - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
   - verify/unit_test/math/prime_factorize_table.test.cpp
-  - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/unit_test/math_mod/mod_sqrt.test.cpp
   - verify/unit_test/string/dynamic_rolling_hash.test.cpp
   - verify/unit_test/string/static_rolling_hash.test.cpp
@@ -414,6 +433,7 @@ data:
   - verify/yosupo_fps/poly_inv.test.cpp
   - verify/yosupo_fps/poly_root_finding.test.cpp
   - verify/yosupo_fps/poly_taylor_shift.test.cpp
+  - verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
   - verify/yosupo_math/enumerate_bell_number.test.cpp
   - verify/yosupo_math/enumerate_stirling_number_of_the_first_kind.test.cpp
   - verify/yosupo_math/factrize.test.cpp

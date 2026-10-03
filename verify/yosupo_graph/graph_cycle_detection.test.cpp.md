@@ -341,21 +341,21 @@ data:
       \ <set>\n#include <stack>\n#include <string>\n#include <unordered_map>\n#include\
       \ <unordered_set>\n#line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\
       \n\n\n\n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#include <cstdint>\n#include\
@@ -563,142 +563,142 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0025107310000009875
+  - elapsed: 0.001883126999985052
     environment: g++
-    memory: 3.704
+    memory: 3.836
     name: example_00
     status: AC
-  - elapsed: 0.002169800999979543
+  - elapsed: 0.001658582999993996
     environment: g++
-    memory: 3.768
+    memory: 3.84
     name: example_01
     status: AC
-  - elapsed: 0.0021293940000077782
+  - elapsed: 0.001656861000014942
     environment: g++
-    memory: 3.804
+    memory: 3.708
     name: example_02
     status: AC
-  - elapsed: 0.0021997769999870798
+  - elapsed: 0.001629196999999749
     environment: g++
-    memory: 3.632
+    memory: 3.756
     name: example_03
     status: AC
-  - elapsed: 0.0020984390000080566
+  - elapsed: 0.0015635830000064743
     environment: g++
-    memory: 3.792
+    memory: 3.696
     name: example_04
     status: AC
-  - elapsed: 0.24893895799999655
+  - elapsed: 0.17978407600003266
     environment: g++
-    memory: 74.948
+    memory: 75.128
     name: long_cycle_00
     status: AC
-  - elapsed: 0.24856438800000547
+  - elapsed: 0.1826752150000175
     environment: g++
-    memory: 79.068
+    memory: 79.132
     name: long_cycle_01
     status: AC
-  - elapsed: 0.030745125999999345
+  - elapsed: 0.021566761999963546
     environment: g++
-    memory: 12.812
+    memory: 12.912
     name: long_cycle_02
     status: AC
-  - elapsed: 0.12433636800000158
+  - elapsed: 0.08436454499997126
     environment: g++
-    memory: 21.104
+    memory: 21.084
     name: random_00
     status: AC
-  - elapsed: 0.12286133000000632
+  - elapsed: 0.0884031909999976
     environment: g++
-    memory: 21.864
+    memory: 21.892
     name: random_01
     status: AC
-  - elapsed: 0.09819648199999165
+  - elapsed: 0.06843293400004313
     environment: g++
-    memory: 17.468
+    memory: 17.536
     name: random_02
     status: AC
-  - elapsed: 0.05070588399999565
+  - elapsed: 0.03241290599999047
     environment: g++
-    memory: 7.728
+    memory: 7.792
     name: random_03
     status: AC
-  - elapsed: 0.06437670600001866
+  - elapsed: 0.042811249999999745
     environment: g++
-    memory: 9.136
+    memory: 9.072
     name: random_04
     status: AC
-  - elapsed: 0.11958591199999091
+  - elapsed: 0.08143004999999448
     environment: g++
-    memory: 20.292
+    memory: 20.356
     name: random_05
     status: AC
-  - elapsed: 0.07724405700000148
+  - elapsed: 0.05234107499995844
     environment: g++
-    memory: 15.404
+    memory: 15.5
     name: random_06
     status: AC
-  - elapsed: 0.014847477999978764
+  - elapsed: 0.00954933399998481
     environment: g++
-    memory: 4.656
+    memory: 4.592
     name: random_07
     status: AC
-  - elapsed: 0.09478004700000042
+  - elapsed: 0.0628090419999694
     environment: g++
-    memory: 16.468
+    memory: 16.612
     name: random_08
     status: AC
-  - elapsed: 0.0552035910000086
+  - elapsed: 0.035973618000014085
     environment: g++
-    memory: 11.356
+    memory: 11.416
     name: random_09
     status: AC
-  - elapsed: 0.09241201399999
+  - elapsed: 0.0609468029999789
     environment: g++
-    memory: 18.088
+    memory: 18.204
     name: random_dense_00
     status: AC
-  - elapsed: 0.09126461899998617
+  - elapsed: 0.06231913699997449
     environment: g++
-    memory: 18.06
+    memory: 18.18
     name: random_dense_01
     status: AC
-  - elapsed: 0.0943456119999837
+  - elapsed: 0.06330664500001149
     environment: g++
-    memory: 19.656
+    memory: 19.716
     name: random_dense_02
     status: AC
-  - elapsed: 0.1745431719999999
+  - elapsed: 0.11816438400001061
     environment: g++
-    memory: 20.292
+    memory: 20.336
     name: tree_00
     status: AC
-  - elapsed: 0.2063177949999897
+  - elapsed: 0.14474879499999815
     environment: g++
-    memory: 23.388
+    memory: 23.452
     name: tree_01
     status: AC
-  - elapsed: 0.024100641000018186
+  - elapsed: 0.015258788000039658
     environment: g++
-    memory: 5.808
+    memory: 5.732
     name: tree_02
     status: AC
-  - elapsed: 0.15089894199999776
+  - elapsed: 0.10409918400000606
     environment: g++
-    memory: 20.28
+    memory: 20.344
     name: unicyclic_00
     status: AC
-  - elapsed: 0.15065648500001316
+  - elapsed: 0.10321816200001876
     environment: g++
-    memory: 23.328
+    memory: 23.432
     name: unicyclic_01
     status: AC
-  - elapsed: 0.021030558999996174
+  - elapsed: 0.013203532999966683
     environment: g++
-    memory: 5.808
+    memory: 5.884
     name: unicyclic_02
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_cycle_detection.test.cpp

@@ -227,31 +227,32 @@ data:
       #include <random>\n#include <set>\n#include <stack>\n#line 22 \"template/template.hpp\"\
       \n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include\
       \ <vector>\n\n#line 1 \"template/constant.hpp\"\n\n\n\n#line 1 \"template/type_alias.hpp\"\
-      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing u32 = unsigned int;\nusing\
-      \ i64 = long long;\nusing u64 = unsigned long long;\nusing i128 = __int128_t;\n\
-      using u128 = __uint128_t;\n\nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64,\
-      \ i64>;\nusing pil = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\
-      \ntemplate <class T> using vc = std::vector<T>;\ntemplate <class T> using vvc\
-      \ = std::vector<vc<T>>;\ntemplate <class T> using vvvc = std::vector<vvc<T>>;\n\
-      template <class T> using vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T>\
-      \ using pq = std::priority_queue<T>;\ntemplate <class T> using pqi = std::priority_queue<T,\
-      \ std::vector<T>, std::greater<T>>;\n\n\n#line 5 \"template/constant.hpp\"\n\
-      \ntemplate <class T> constexpr T infty = 0;\ntemplate <> constexpr int infty<int>\
-      \ = (1 << 30) - 123;\ntemplate <> constexpr i64 infty<i64> = (1ll << 62) - (1ll\
-      \ << 31);\ntemplate <> constexpr i128 infty<i128> = (i128(1) << 126) - (i128(1)\
-      \ << 63);\ntemplate <> constexpr u32 infty<u32> = infty<int>;\ntemplate <> constexpr\
-      \ u64 infty<u64> = infty<i64>;\ntemplate <> constexpr u128 infty<u128> = infty<i128>;\n\
-      template <> constexpr double infty<double> = infty<i64>;\ntemplate <> constexpr\
-      \ long double infty<long double> = infty<i64>;\n\nconstexpr int mod = 998244353;\n\
-      constexpr int modu = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\
-      \n\n#line 1 \"template/io_util.hpp\"\n\n\n\n#line 7 \"template/io_util.hpp\"\
-      \n\n#line 9 \"template/io_util.hpp\"\n\n// \u306A\u3093\u304Boj verify\u306F\
-      \u30D7\u30ED\u30C8\u30BF\u30A4\u30D7\u5BA3\u8A00\u304C\u843D\u3061\u308B\n\n\
-      namespace impl {\n\nstruct read {\n    template <class IStream, class T> inline\
-      \ static void all_read(IStream &is, T &x) { is >> x; }\n\n    template <class\
-      \ IStream, class T, class U>\n    inline static void all_read(IStream &is, std::pair<T,\
-      \ U> &p) {\n        all_read(is, p.first);\n        all_read(is, p.second);\n\
-      \    }\n\n    template <class IStream, class T> inline static void all_read(IStream\
+      \n\n\n\n#line 8 \"template/type_alias.hpp\"\n\nusing i32 = int;\nusing u32 =\
+      \ unsigned int;\nusing i64 = long long;\nusing u64 = unsigned long long;\nusing\
+      \ i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi = std::pair<int,\
+      \ int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int, i64>;\n\
+      using pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
+      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
+      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
+      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
+      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
+      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
+      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
+      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
+      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
+      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
+      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
+      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
+      \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
+      \ 1 \"template/io_util.hpp\"\n\n\n\n#line 7 \"template/io_util.hpp\"\n\n#line\
+      \ 9 \"template/io_util.hpp\"\n\n// \u306A\u3093\u304Boj verify\u306F\u30D7\u30ED\
+      \u30C8\u30BF\u30A4\u30D7\u5BA3\u8A00\u304C\u843D\u3061\u308B\n\nnamespace impl\
+      \ {\n\nstruct read {\n    template <class IStream, class T> inline static void\
+      \ all_read(IStream &is, T &x) { is >> x; }\n\n    template <class IStream, class\
+      \ T, class U>\n    inline static void all_read(IStream &is, std::pair<T, U>\
+      \ &p) {\n        all_read(is, p.first);\n        all_read(is, p.second);\n \
+      \   }\n\n    template <class IStream, class T> inline static void all_read(IStream\
       \ &is, std::vector<T> &v) {\n        for (T &x : v) all_read(is, x);\n    }\n\
       \n    template <class IStream, class T, size_t F>\n    inline static void all_read(IStream\
       \ &is, std::array<T, F> &a) {\n        for (T &x : a) all_read(is, x);\n   \
@@ -307,52 +308,52 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.41042850599998815
+  - elapsed: 0.40888701900001934
     environment: g++
-    memory: 3.976
+    memory: 3.968
     name: all_max_00
     status: AC
-  - elapsed: 0.06814903499997627
+  - elapsed: 0.06871922099998073
     environment: g++
-    memory: 3.972
+    memory: 3.964
     name: all_zero_00
     status: AC
-  - elapsed: 0.2555606139999895
+  - elapsed: 0.26039143299999523
     environment: g++
-    memory: 3.996
+    memory: 3.964
     name: digit_random_00
     status: AC
-  - elapsed: 0.2562420210000198
+  - elapsed: 0.25923485100003063
     environment: g++
-    memory: 4.02
+    memory: 4.008
     name: digit_random_01
     status: AC
-  - elapsed: 0.002499505000002955
+  - elapsed: 0.0026248369999848364
     environment: g++
-    memory: 3.732
+    memory: 3.764
     name: example_00
     status: AC
-  - elapsed: 0.3904987800000015
+  - elapsed: 0.3951040789999638
     environment: g++
-    memory: 3.94
+    memory: 3.96
     name: max_random_00
     status: AC
-  - elapsed: 0.3947238430000084
+  - elapsed: 0.3934691250000242
     environment: g++
-    memory: 3.984
+    memory: 3.972
     name: max_random_01
     status: AC
-  - elapsed: 0.15374352399999225
+  - elapsed: 0.15635943899997073
     environment: g++
-    memory: 3.984
+    memory: 3.956
     name: random_00
     status: AC
-  - elapsed: 0.1824123960000179
+  - elapsed: 0.18635083700002042
     environment: g++
-    memory: 4.02
+    memory: 3.984
     name: random_01
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b.test.cpp

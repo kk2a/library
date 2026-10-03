@@ -9,6 +9,9 @@ data:
     - filename: bitcount.hpp
       icon: LIBRARY_ALL_AC
       path: bit/bitcount.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: common/type_alias.hpp
     - filename: my_bitset.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/my_bitset.hpp
@@ -70,6 +73,7 @@ data:
     type: Verified with
   dependsOn:
   - bit/bitcount.hpp
+  - common/type_alias.hpp
   - data_structure/my_bitset.hpp
   - math/enumerate_quotients.hpp
   - math/frac_floor.hpp
@@ -106,36 +110,41 @@ data:
   - code: "#line 1 \"verify/yosupo_math/sum_of_totient_function.test.cpp\"\n// competitive-verifier:\
       \ PROBLEM https://judge.yosupo.jp/problem/sum_of_totient_function\n\n// #include\
       \ \"../../math/multiplicative_function/euler_phi.hpp\"\n#line 1 \"math/multiplicative_function/famous_function.hpp\"\
-      \n\n\n\n#line 1 \"math/pow.hpp\"\n\n\n\n#include <cassert>\n\nnamespace kk2\
-      \ {\n\ntemplate <class S, class T, class U> constexpr S pow(T x, U n) {\n  \
-      \  assert(n >= 0);\n    S r = 1, y = x;\n    while (n) {\n        if (n & 1)\
-      \ r *= y;\n        if (n >>= 1) y *= y;\n    }\n    return r;\n}\n\n} // namespace\
-      \ kk2\n\n\n#line 5 \"math/multiplicative_function/famous_function.hpp\"\n\n\
-      namespace kk2 {\n\nnamespace mf {\n\nusing i64 = long long;\n\ni64 mobius(i64,\
-      \ i64 e) { return e == 1 ? -1 : 0; }\n\ni64 sigma0(i64, i64 e) { return e +\
-      \ 1; }\n\ni64 sigma1(i64 p, i64 e) {\n    i64 p_e = pow<i64>(p, e);\n    return\
-      \ p_e + (p_e - 1) / (p - 1);\n}\n\ni64 euler_phi(i64 p, i64 e) {\n    i64 p_e\
-      \ = pow<i64>(p, e);\n    return p_e - p_e / p;\n}\n\n} // namespace mf\n\n}\
-      \ // namespace kk2\n\n\n#line 1 \"math/multiplicative_function/prefix_sum.hpp\"\
-      \n\n\n\n#include <algorithm>\n#include <vector>\n\n#line 1 \"math/enumerate_quotients.hpp\"\
-      \n\n\n\n#include <numeric>\n#line 6 \"math/enumerate_quotients.hpp\"\n\n#line\
-      \ 1 \"math/sqrt_floor.hpp\"\n\n\n\n#include <cmath>\n\n#line 1 \"math/frac_floor.hpp\"\
-      \n\n\n\n#line 5 \"math/frac_floor.hpp\"\n\nnamespace kk2 {\n\n// floor(x) =\
-      \ ceil(x) - 1 (for all x not in Z) ...(1)\n// floor(x) = -ceil(-x)   (for all\
-      \ x)          ...(2)\n\n// return floor(a / b)\ntemplate <typename T, typename\
-      \ U> constexpr T fracfloor(T a, U b) {\n    assert(b != 0);\n    if (a % b ==\
-      \ 0) return a / b;\n    if (a >= 0) return a / b;\n\n    // floor(x) = -ceil(-x)\
-      \      by (2)\n    //          = -floor(-x) - 1 by (1)\n    return -((-a) /\
-      \ b) - 1;\n}\n\n// return ceil(a / b)\ntemplate <typename T, typename U> constexpr\
-      \ T fracceil(T a, U b) {\n    assert(b != 0);\n    if (a % b == 0) return a\
-      \ / b;\n    if (a >= 0) return a / b + 1;\n\n    // ceil(x) = -floor(-x)   \
-      \   by (2)\n    return -((-a) / b);\n}\n\n} // namespace kk2\n\n\n#line 7 \"\
-      math/sqrt_floor.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename T> T sqrt_floor(T\
-      \ n) {\n    assert(n >= 0);\n    if (n == T(0)) return 0;\n    T x = std::sqrt(n);\n\
-      \    if (x == T(0)) ++x;\n    while (x > kk2::fracfloor(n, x)) --x;\n    while\
-      \ (x + 1 <= kk2::fracfloor(n, x + 1)) ++x;\n    return x;\n}\n\ntemplate <typename\
-      \ T> T sqrt_ceil(T n) {\n    assert(n >= 0);\n    if (n <= T(1)) return n;\n\
-      \    T x = std::sqrt(n);\n    if (x == T(0)) ++x;\n    while (x < kk2::fracceil(n,\
+      \n\n\n\n#line 1 \"common/type_alias.hpp\"\n\n\n\n#include <cstddef>\n#include\
+      \ <cstdint>\n\nnamespace kk2 {\n\nusing usize = std::size_t;\nusing i8 = std::int8_t;\n\
+      using u8 = std::uint8_t;\nusing i16 = std::int16_t;\nusing u16 = std::uint16_t;\n\
+      using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
+      using u64 = std::uint64_t;\n\n#ifndef _MSC_VER\nusing i128 = __int128_t;\nusing\
+      \ u128 = __uint128_t;\n#endif\n\n} // namespace kk2\n\n\n#line 1 \"math/pow.hpp\"\
+      \n\n\n\n#include <cassert>\n\nnamespace kk2 {\n\ntemplate <class S, class T,\
+      \ class U> constexpr S pow(T x, U n) {\n    assert(n >= 0);\n    S r = 1, y\
+      \ = x;\n    while (n) {\n        if (n & 1) r *= y;\n        if (n >>= 1) y\
+      \ *= y;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line 6 \"math/multiplicative_function/famous_function.hpp\"\
+      \n\nnamespace kk2 {\n\nnamespace mf {\n\ni32 mobius(u32, u32 e) { return e ==\
+      \ 1 ? -1 : 0; }\n\nu32 sigma0(u32, u32 e) { return e + 1; }\n\nu64 sigma1(u32\
+      \ p, u32 e) {\n    u64 p_e = pow<u64>(p, e);\n    return p_e + (p_e - 1) / (p\
+      \ - 1);\n}\n\nu64 euler_phi(u32 p, u32 e) {\n    u64 p_e = pow<u64>(p, e);\n\
+      \    return p_e - p_e / p;\n}\n\n} // namespace mf\n\n} // namespace kk2\n\n\
+      \n#line 1 \"math/multiplicative_function/prefix_sum.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <vector>\n\n#line 1 \"math/enumerate_quotients.hpp\"\n\n\n\n#include\
+      \ <numeric>\n#line 6 \"math/enumerate_quotients.hpp\"\n\n#line 1 \"math/sqrt_floor.hpp\"\
+      \n\n\n\n#include <cmath>\n\n#line 1 \"math/frac_floor.hpp\"\n\n\n\n#line 5 \"\
+      math/frac_floor.hpp\"\n\nnamespace kk2 {\n\n// floor(x) = ceil(x) - 1 (for all\
+      \ x not in Z) ...(1)\n// floor(x) = -ceil(-x)   (for all x)          ...(2)\n\
+      \n// return floor(a / b)\ntemplate <typename T, typename U> constexpr T fracfloor(T\
+      \ a, U b) {\n    assert(b != 0);\n    if (a % b == 0) return a / b;\n    if\
+      \ (a >= 0) return a / b;\n\n    // floor(x) = -ceil(-x)      by (2)\n    //\
+      \          = -floor(-x) - 1 by (1)\n    return -((-a) / b) - 1;\n}\n\n// return\
+      \ ceil(a / b)\ntemplate <typename T, typename U> constexpr T fracceil(T a, U\
+      \ b) {\n    assert(b != 0);\n    if (a % b == 0) return a / b;\n    if (a >=\
+      \ 0) return a / b + 1;\n\n    // ceil(x) = -floor(-x)      by (2)\n    return\
+      \ -((-a) / b);\n}\n\n} // namespace kk2\n\n\n#line 7 \"math/sqrt_floor.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <typename T> T sqrt_floor(T n) {\n    assert(n\
+      \ >= 0);\n    if (n == T(0)) return 0;\n    T x = std::sqrt(n);\n    if (x ==\
+      \ T(0)) ++x;\n    while (x > kk2::fracfloor(n, x)) --x;\n    while (x + 1 <=\
+      \ kk2::fracfloor(n, x + 1)) ++x;\n    return x;\n}\n\ntemplate <typename T>\
+      \ T sqrt_ceil(T n) {\n    assert(n >= 0);\n    if (n <= T(1)) return n;\n  \
+      \  T x = std::sqrt(n);\n    if (x == T(0)) ++x;\n    while (x < kk2::fracceil(n,\
       \ x)) ++x;\n    while (x - 1 >= kk2::fracceil(n, x - 1)) --x;\n    return x;\n\
       }\n\n} // namespace kk2\n\n\n#line 8 \"math/enumerate_quotients.hpp\"\n\nnamespace\
       \ kk2 {\n\ntemplate <class T> struct EnumerateQuotients {\n    T n;\n    int\
@@ -148,30 +157,30 @@ data:
       \        if (x <= sqrt_n) return x - 1;\n        return size() - n / x;\n  \
       \  }\n};\n\n} // namespace kk2\n\n\n#line 1 \"math/prime_table.hpp\"\n\n\n\n\
       #line 1 \"math/isprime_table.hpp\"\n\n\n\n#line 5 \"math/isprime_table.hpp\"\
-      \n#include <array>\n#include <bit>\n#line 8 \"math/isprime_table.hpp\"\n#include\
-      \ <cstdint>\n#include <iterator>\n#line 11 \"math/isprime_table.hpp\"\n\n#line\
-      \ 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 6 \"data_structure/my_bitset.hpp\"\
-      \n#include <bitset>\n#line 9 \"data_structure/my_bitset.hpp\"\n#include <iostream>\n\
-      #line 11 \"data_structure/my_bitset.hpp\"\n#include <string>\n#include <utility>\n\
-      #line 14 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"bit/bitcount.hpp\"\n\n\
-      \n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\
-      \n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                                     \
-      \  or std::is_same<T, __int128>::value,\n                                  \
-      \                 std::true_type,\n                                        \
-      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
-      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \n#include <array>\n#include <bit>\n#line 9 \"math/isprime_table.hpp\"\n#include\
+      \ <iterator>\n#line 11 \"math/isprime_table.hpp\"\n\n#line 1 \"data_structure/my_bitset.hpp\"\
+      \n\n\n\n#line 6 \"data_structure/my_bitset.hpp\"\n#include <bitset>\n#line 9\
+      \ \"data_structure/my_bitset.hpp\"\n#include <iostream>\n#line 11 \"data_structure/my_bitset.hpp\"\
+      \n#include <string>\n#include <utility>\n#line 14 \"data_structure/my_bitset.hpp\"\
+      \n\n#line 1 \"bit/bitcount.hpp\"\n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n#line\
+      \ 1 \"type_traits/integral.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
+      \ kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __uint128_t>::value\n                                  or std::is_same<T,\
+      \ unsigned __int128>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
-      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-      \                                  or is_unsigned_int128<T>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                                         \
-      \   std::true_type,\n                                            std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -746,21 +755,21 @@ data:
       template/template.hpp\"\n#include <unordered_map>\n#include <unordered_set>\n\
       #line 26 \"template/template.hpp\"\n\n#line 1 \"template/constant.hpp\"\n\n\n\
       \n#line 1 \"template/type_alias.hpp\"\n\n\n\n#line 8 \"template/type_alias.hpp\"\
-      \n\nusing u32 = unsigned int;\nusing i64 = long long;\nusing u64 = unsigned\
-      \ long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\nusing pi\
-      \ = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil = std::pair<int,\
-      \ i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class T> using vc = std::vector<T>;\n\
-      template <class T> using vvc = std::vector<vc<T>>;\ntemplate <class T> using\
-      \ vvvc = std::vector<vvc<T>>;\ntemplate <class T> using vvvvc = std::vector<vvvc<T>>;\n\
-      \ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class T>\
-      \ using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\n\n\
-      #line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty =\
-      \ 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <> constexpr\
-      \ i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr i128 infty<i128>\
-      \ = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr u32 infty<u32>\
-      \ = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\ntemplate\
-      \ <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr double\
-      \ infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
+      \n\nusing i32 = int;\nusing u32 = unsigned int;\nusing i64 = long long;\nusing\
+      \ u64 = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+      \nusing pi = std::pair<int, int>;\nusing pl = std::pair<i64, i64>;\nusing pil\
+      \ = std::pair<int, i64>;\nusing pli = std::pair<i64, int>;\n\ntemplate <class\
+      \ T> using vc = std::vector<T>;\ntemplate <class T> using vvc = std::vector<vc<T>>;\n\
+      template <class T> using vvvc = std::vector<vvc<T>>;\ntemplate <class T> using\
+      \ vvvvc = std::vector<vvvc<T>>;\n\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+      template <class T> using pqi = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+      \n\n#line 5 \"template/constant.hpp\"\n\ntemplate <class T> constexpr T infty\
+      \ = 0;\ntemplate <> constexpr int infty<int> = (1 << 30) - 123;\ntemplate <>\
+      \ constexpr i64 infty<i64> = (1ll << 62) - (1ll << 31);\ntemplate <> constexpr\
+      \ i128 infty<i128> = (i128(1) << 126) - (i128(1) << 63);\ntemplate <> constexpr\
+      \ u32 infty<u32> = infty<int>;\ntemplate <> constexpr u64 infty<u64> = infty<i64>;\n\
+      template <> constexpr u128 infty<u128> = infty<i128>;\ntemplate <> constexpr\
+      \ double infty<double> = infty<i64>;\ntemplate <> constexpr long double infty<long\
       \ double> = infty<i64>;\n\nconstexpr int mod = 998244353;\nconstexpr int modu\
       \ = 1e9 + 7;\nconstexpr long double PI = 3.14159265358979323846;\n\n\n#line\
       \ 1 \"template/fastio.hpp\"\n\n\n\n#include <cctype>\n#line 6 \"template/fastio.hpp\"\
@@ -934,247 +943,247 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.6143999170000001
+  - elapsed: 0.6004866600000014
     environment: g++
-    memory: 5.344
+    memory: 5.288
     name: boundaryA_00
     status: AC
-  - elapsed: 1.496368645000004
+  - elapsed: 1.4485155910000174
     environment: g++
     memory: 7.136
     name: boundaryA_01
     status: AC
-  - elapsed: 2.0127182410000017
+  - elapsed: 1.9650830150000047
     environment: g++
     memory: 8.032
     name: boundaryA_02
     status: AC
-  - elapsed: 2.201600364000001
+  - elapsed: 2.171285181999991
     environment: g++
-    memory: 8.348
+    memory: 8.356
     name: boundaryA_03
     status: AC
-  - elapsed: 1.356251677000003
+  - elapsed: 1.317064175000013
     environment: g++
-    memory: 6.82
+    memory: 6.812
     name: boundaryA_04
     status: AC
-  - elapsed: 1.217837811999999
+  - elapsed: 1.1919293800000048
     environment: g++
-    memory: 6.556
+    memory: 6.564
     name: boundaryA_05
     status: AC
-  - elapsed: 2.042886928999991
+  - elapsed: 1.994099822999999
     environment: g++
-    memory: 8.16
+    memory: 8.152
     name: boundaryA_06
     status: AC
-  - elapsed: 2.547461394999999
+  - elapsed: 2.456346128000007
     environment: g++
-    memory: 8.872
+    memory: 8.868
     name: boundaryA_07
     status: AC
-  - elapsed: 0.9374435969999979
+  - elapsed: 0.9033010520000175
     environment: g++
-    memory: 6.036
+    memory: 6.052
     name: boundaryA_08
     status: AC
-  - elapsed: 1.3967219170000078
+  - elapsed: 1.354283062999997
     environment: g++
-    memory: 7.0
+    memory: 7.008
     name: boundaryA_09
     status: AC
-  - elapsed: 0.6179451819999997
+  - elapsed: 0.6014218589999984
     environment: g++
-    memory: 5.284
+    memory: 5.344
     name: boundaryB_00
     status: AC
-  - elapsed: 1.4921426540000056
+  - elapsed: 1.4485169079999878
     environment: g++
-    memory: 7.064
+    memory: 7.076
     name: boundaryB_01
     status: AC
-  - elapsed: 2.0065889659999954
+  - elapsed: 1.9627347619999966
     environment: g++
-    memory: 7.972
+    memory: 8.032
     name: boundaryB_02
     status: AC
-  - elapsed: 2.2019025240000047
+  - elapsed: 2.1795826210000087
     environment: g++
     memory: 8.416
     name: boundaryB_03
     status: AC
-  - elapsed: 1.3579345410000059
+  - elapsed: 1.3186358650000045
     environment: g++
-    memory: 6.752
+    memory: 6.88
     name: boundaryB_04
     status: AC
-  - elapsed: 1.215507546000012
+  - elapsed: 1.1907443019999846
     environment: g++
     memory: 6.624
     name: boundaryB_05
     status: AC
-  - elapsed: 2.056951306000002
+  - elapsed: 1.9930845060000024
     environment: g++
-    memory: 8.16
+    memory: 8.084
     name: boundaryB_06
     status: AC
-  - elapsed: 2.535241561999996
-    environment: g++
-    memory: 8.852
-    name: boundaryB_07
-    status: AC
-  - elapsed: 0.9325943589999923
-    environment: g++
-    memory: 6.052
-    name: boundaryB_08
-    status: AC
-  - elapsed: 1.4090859420000044
-    environment: g++
-    memory: 6.88
-    name: boundaryB_09
-    status: AC
-  - elapsed: 0.002486938000004102
-    environment: g++
-    memory: 3.824
-    name: example_00
-    status: AC
-  - elapsed: 0.0021574010000051658
-    environment: g++
-    memory: 3.804
-    name: example_01
-    status: AC
-  - elapsed: 0.0021922159999974156
-    environment: g++
-    memory: 3.828
-    name: example_02
-    status: AC
-  - elapsed: 0.0021223650000052885
-    environment: g++
-    memory: 3.84
-    name: handmade_00
-    status: AC
-  - elapsed: 0.002210390000001894
-    environment: g++
-    memory: 3.764
-    name: handmade_01
-    status: AC
-  - elapsed: 0.002193771999998262
-    environment: g++
-    memory: 3.812
-    name: handmade_02
-    status: AC
-  - elapsed: 0.0022970019999917213
-    environment: g++
-    memory: 3.68
-    name: handmade_03
-    status: AC
-  - elapsed: 2.5362609200000037
-    environment: g++
-    memory: 8.928
-    name: max_00
-    status: AC
-  - elapsed: 2.536396234999998
-    environment: g++
-    memory: 8.856
-    name: max_01
-    status: AC
-  - elapsed: 2.5253824750000007
+  - elapsed: 2.4642935979999834
     environment: g++
     memory: 8.864
+    name: boundaryB_07
+    status: AC
+  - elapsed: 0.9062057809999828
+    environment: g++
+    memory: 5.984
+    name: boundaryB_08
+    status: AC
+  - elapsed: 1.3590767110000002
+    environment: g++
+    memory: 7.008
+    name: boundaryB_09
+    status: AC
+  - elapsed: 0.002379245000014407
+    environment: g++
+    memory: 3.78
+    name: example_00
+    status: AC
+  - elapsed: 0.0022741480000263437
+    environment: g++
+    memory: 3.8
+    name: example_01
+    status: AC
+  - elapsed: 0.002289616999973987
+    environment: g++
+    memory: 3.852
+    name: example_02
+    status: AC
+  - elapsed: 0.0023321479999935946
+    environment: g++
+    memory: 3.68
+    name: handmade_00
+    status: AC
+  - elapsed: 0.0022484100000212948
+    environment: g++
+    memory: 3.68
+    name: handmade_01
+    status: AC
+  - elapsed: 0.0022980230000086976
+    environment: g++
+    memory: 3.772
+    name: handmade_02
+    status: AC
+  - elapsed: 0.002351514000025645
+    environment: g++
+    memory: 3.788
+    name: handmade_03
+    status: AC
+  - elapsed: 2.4768748759999824
+    environment: g++
+    memory: 8.92
+    name: max_00
+    status: AC
+  - elapsed: 2.477100139000015
+    environment: g++
+    memory: 8.928
+    name: max_01
+    status: AC
+  - elapsed: 2.4727681370000028
+    environment: g++
+    memory: 8.928
     name: max_02
     status: AC
-  - elapsed: 2.5565001220000028
+  - elapsed: 2.4824320970000144
     environment: g++
     memory: 8.928
     name: max_03
     status: AC
-  - elapsed: 2.5498368079999807
+  - elapsed: 2.4727379259999793
     environment: g++
-    memory: 8.852
+    memory: 8.928
     name: max_04
     status: AC
-  - elapsed: 2.5452784249999922
+  - elapsed: 2.4743210599999657
     environment: g++
-    memory: 8.928
+    memory: 8.864
     name: max_05
     status: AC
-  - elapsed: 2.5558958739999866
+  - elapsed: 2.470479497000042
     environment: g++
-    memory: 8.928
+    memory: 8.78
     name: max_06
     status: AC
-  - elapsed: 2.5365624210000135
+  - elapsed: 2.476360793999959
     environment: g++
-    memory: 8.924
+    memory: 8.928
     name: max_07
     status: AC
-  - elapsed: 2.5402640519999977
+  - elapsed: 2.470371517999979
     environment: g++
-    memory: 8.868
+    memory: 8.92
     name: max_08
     status: AC
-  - elapsed: 2.550313364999994
+  - elapsed: 2.4687861229999726
     environment: g++
-    memory: 8.856
+    memory: 8.928
     name: max_09
     status: AC
-  - elapsed: 0.6196328230000177
+  - elapsed: 0.6001881330000174
     environment: g++
-    memory: 5.268
+    memory: 5.344
     name: random_00
     status: AC
-  - elapsed: 1.488055581999987
+  - elapsed: 1.453908368000043
     environment: g++
     memory: 7.136
     name: random_01
     status: AC
-  - elapsed: 2.0137106219999907
+  - elapsed: 1.970314832999975
     environment: g++
     memory: 8.032
     name: random_02
     status: AC
-  - elapsed: 2.2027635790000204
+  - elapsed: 2.189082584999994
     environment: g++
-    memory: 8.228
+    memory: 8.408
     name: random_03
     status: AC
-  - elapsed: 1.3880461950000154
+  - elapsed: 1.3165443710000204
     environment: g++
     memory: 6.82
     name: random_04
     status: AC
-  - elapsed: 1.2170174620000012
+  - elapsed: 1.1917265469999734
     environment: g++
-    memory: 6.564
+    memory: 6.624
     name: random_05
     status: AC
-  - elapsed: 2.0371971989999906
+  - elapsed: 1.9946020040000008
     environment: g++
-    memory: 8.1
+    memory: 8.092
     name: random_06
     status: AC
-  - elapsed: 2.5273247249999997
+  - elapsed: 2.4602412790000017
     environment: g++
     memory: 8.928
     name: random_07
     status: AC
-  - elapsed: 0.9312136399999815
+  - elapsed: 0.9083256069999948
     environment: g++
     memory: 6.052
     name: random_08
     status: AC
-  - elapsed: 1.3973691929999745
+  - elapsed: 1.3574178160000088
     environment: g++
-    memory: 6.948
+    memory: 7.008
     name: random_09
     status: AC
-  - elapsed: 0.002197739999985515
+  - elapsed: 0.0022792890000005173
     environment: g++
-    memory: 3.828
+    memory: 3.816
     name: small_00
     status: AC
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_math/sum_of_totient_function.test.cpp

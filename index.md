@@ -37,6 +37,11 @@ data:
       - filename: bitcount.hpp
         icon: LIBRARY_ALL_AC
         path: bit/bitcount.hpp
+    - name: common/
+      pages:
+      - filename: type_alias.hpp
+        icon: LIBRARY_ALL_AC
+        path: common/type_alias.hpp
     - name: convolution/
       pages:
       - filename: convolution.hpp
@@ -205,6 +210,9 @@ data:
       - filename: poly_multi_eval.hpp
         icon: LIBRARY_ALL_AC
         path: fps/poly_multi_eval.hpp
+      - filename: poly_sample_point_evaluate.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/poly_sample_point_evaluate.hpp
       - filename: poly_sample_point_shift.hpp
         icon: LIBRARY_ALL_AC
         path: fps/poly_sample_point_shift.hpp
@@ -217,9 +225,18 @@ data:
       - filename: power_projection.hpp
         icon: LIBRARY_ALL_AC
         path: fps/power_projection.hpp
+      - filename: power_sum.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/power_sum.hpp
+        title: Power Sum
       - filename: product.hpp
         icon: LIBRARY_ALL_AC
         path: fps/product.hpp
+    - name: fps/detail/
+      pages:
+      - filename: poly_sample_point_shift.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/detail/poly_sample_point_shift.hpp
     - name: fps/operations/
       pages:
       - filename: division.hpp
@@ -447,6 +464,9 @@ data:
       - filename: kth_root_floor.hpp
         icon: LIBRARY_ALL_AC
         path: math/kth_root_floor.hpp
+      - filename: lpf_power_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/lpf_power_table.hpp
       - filename: lpf_table.hpp
         icon: LIBRARY_ALL_AC
         path: math/lpf_table.hpp
@@ -575,6 +595,9 @@ data:
       - filename: mobius.hpp
         icon: LIBRARY_ALL_AC
         path: math/multiplicative_function/mobius.hpp
+      - filename: pow_table.hpp
+        icon: LIBRARY_ALL_AC
+        path: math/multiplicative_function/pow_table.hpp
       - filename: prefix_sum.hpp
         icon: LIBRARY_ALL_AC
         path: math/multiplicative_function/prefix_sum.hpp
@@ -625,6 +648,10 @@ data:
       - filename: pow_mod.hpp
         icon: LIBRARY_ALL_AC
         path: math_mod/pow_mod.hpp
+      - filename: power_sum.hpp
+        icon: LIBRARY_ALL_AC
+        path: math_mod/power_sum.hpp
+        title: Power Sum
       - filename: primitive_root.hpp
         icon: LIBRARY_ALL_AC
         path: math_mod/primitive_root.hpp
@@ -817,6 +844,9 @@ data:
       - filename: member.hpp
         icon: LIBRARY_ALL_AC
         path: type_traits/member.hpp
+      - filename: modint.hpp
+        icon: LIBRARY_ALL_AC
+        path: type_traits/modint.hpp
       - filename: operator.hpp
         icon: LIBRARY_ALL_AC
         path: type_traits/operator.hpp
@@ -847,6 +877,11 @@ data:
       - filename: my_bitset.test.cpp
         icon: LIBRARY_NO_TESTS
         path: verify/unit_test/data_structure/my_bitset.test.cpp
+    - name: verify/unit_test/math_mod/
+      pages:
+      - filename: large_fact_arb_mod.test.cpp
+        icon: LIBRARY_ALL_AC
+        path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
     - name: verify/yosupo_ds/
       pages:
       - filename: ds_dynamic_sequence_range_affine_range_sum.test.cpp
@@ -891,6 +926,11 @@ data:
       - filename: kth_term_of_linearly_recurrent_sequence.test.cpp
         icon: LIBRARY_NO_TESTS
         path: verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    - name: verify/yosupo_others/
+      pages:
+      - filename: sum_of_exponential_times_polynomial_limit.test.cpp
+        icon: LIBRARY_NO_TESTS
+        path: verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
     type: Library Files
   - categories:
     - name: verify/aoj/
@@ -943,6 +983,9 @@ data:
       - filename: multivariate_operations.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/fps/multivariate_operations.test.cpp
+      - filename: poly_sample_point_evaluate.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/fps/poly_sample_point_evaluate.test.cpp
       - filename: sparsity_boundary.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -952,6 +995,12 @@ data:
       - filename: sparsity_small_performance.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/fps/sparsity_small_performance.test.cpp
+      - filename: sum_of_geometric_polynomial_samples.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/fps/sum_of_geometric_polynomial_samples.test.cpp
+      - filename: sum_of_polynomial.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/fps/sum_of_polynomial.test.cpp
     - name: verify/unit_test/graph/
       pages:
       - filename: maxflow.test.cpp
@@ -962,6 +1011,9 @@ data:
       - filename: isprime_table_extend.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/math/isprime_table_extend.test.cpp
+      - filename: lpf_power_table_extend.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/math/lpf_power_table_extend.test.cpp
       - filename: lpf_table_extend.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/math/lpf_table_extend.test.cpp
@@ -1000,17 +1052,20 @@ data:
       - filename: multiplicative_function_table.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+      - filename: pow_table.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/math/multiplicative_function/pow_table.test.cpp
     - name: verify/unit_test/math_mod/
       pages:
       - filename: binom_table.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/math_mod/binom_table.test.cpp
+      - filename: comb_auto_extend.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/math_mod/comb_auto_extend.test.cpp
       - filename: inv_table.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/math_mod/inv_table.test.cpp
-      - filename: large_fact_arb_mod.test.cpp
-        icon: TEST_ACCEPTED
-        path: verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
       - filename: mod_sqrt.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/math_mod/mod_sqrt.test.cpp
@@ -1210,6 +1265,9 @@ data:
       - filename: poly_taylor_shift.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/poly_taylor_shift.test.cpp
+      - filename: prefix_sum_of_polynomial.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
     - name: verify/yosupo_geometry/
       pages:
       - filename: arg_sort.test.cpp
@@ -1391,6 +1449,9 @@ data:
       - filename: many_a_plus_b_128bit_2.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp
+      - filename: sum_of_exponential_times_polynomial.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
     - name: verify/yosupo_string/
       pages:
       - filename: string_number_of_substrings.test.cpp

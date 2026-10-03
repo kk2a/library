@@ -8,6 +8,9 @@ data:
     - filename: bitcount.hpp
       icon: LIBRARY_ALL_AC
       path: bit/bitcount.hpp
+    - filename: type_alias.hpp
+      icon: LIBRARY_ALL_AC
+      path: common/type_alias.hpp
     - filename: my_bitset.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/my_bitset.hpp
@@ -17,6 +20,9 @@ data:
     - filename: frac_floor.hpp
       icon: LIBRARY_ALL_AC
       path: math/frac_floor.hpp
+    - filename: lpf_power_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_power_table.hpp
     - filename: lpf_table.hpp
       icon: LIBRARY_ALL_AC
       path: math/lpf_table.hpp
@@ -29,6 +35,9 @@ data:
     - filename: sqrt_floor.hpp
       icon: LIBRARY_ALL_AC
       path: math/sqrt_floor.hpp
+    - filename: functional.hpp
+      icon: LIBRARY_ALL_AC
+      path: type_traits/functional.hpp
     - filename: integral.hpp
       icon: LIBRARY_ALL_AC
       path: type_traits/integral.hpp
@@ -45,44 +54,53 @@ data:
     type: Verified with
   dependsOn:
   - bit/bitcount.hpp
+  - common/type_alias.hpp
   - data_structure/my_bitset.hpp
   - math/enumerate_quotients.hpp
   - math/frac_floor.hpp
+  - math/lpf_power_table.hpp
   - math/lpf_table.hpp
   - math/multiplicative_function/prime_counting.hpp
   - math/pow.hpp
   - math/sqrt_floor.hpp
+  - type_traits/functional.hpp
   - type_traits/integral.hpp
   - type_traits/io.hpp
   embedded:
   - code: "#ifndef KK2_MATH_MULTIPLICATIVE_FUNCTION_ARBITRARY_TABLE_HPP\n#define KK2_MATH_MULTIPLICATIVE_FUNCTION_ARBITRARY_TABLE_HPP\
-      \ 1\n\n#include <cassert>\n#include <vector>\n\n#include \"../lpf_table.hpp\"\
-      \n#include \"../pow.hpp\"\n\nnamespace kk2 {\n\ntemplate <class T, T (*f)(long\
-      \ long, long long)> struct MultiplicativeFunctionTable {\n  private:\n    static\
-      \ inline std::vector<T> _table{0, 1};\n\n  public:\n    MultiplicativeFunctionTable()\
-      \ = delete;\n\n    static void set_upper(int m) {\n        if ((int)_table.size()\
-      \ > m) return;\n        int start = _table.size();\n\n        LPFTable::set_upper(m);\n\
-      \n        _table.resize(m + 1);\n\n        for (int n = start; n <= m; ++n)\
-      \ {\n            int p = LPFTable::lpf(n);\n            if (p == n) {\n    \
-      \            _table[n] = f(p, 1);\n            } else {\n                int\
-      \ p_pw = LPFTable::lpf_pow(n);\n                int q = n / p_pw;\n        \
-      \        if (q == 1) {\n                    _table[n] = f(p, LPFTable::v_lpf(n));\n\
-      \                } else {\n                    _table[n] = _table[q] * _table[p_pw];\n\
-      \                }\n            }\n        }\n    }\n\n    static T val(int\
-      \ n) {\n        assert(n > 0);\n        if ((int)_table.size() <= n) set_upper(n);\n\
-      \        return _table[n];\n    }\n};\n\n} // namespace kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_ARBITRARY_TABLE_HPP\n"
+      \ 1\n\n#include <vector>\n\n#include \"../../common/type_alias.hpp\"\n#include\
+      \ \"../../type_traits/functional.hpp\"\n#include \"../lpf_power_table.hpp\"\n\
+      #include \"../lpf_table.hpp\"\n#include \"../pow.hpp\"\n\nnamespace kk2 {\n\n\
+      template <class T, auto f>\n    requires UnsignedTwoArgsFunctionPointer<decltype(f)>\
+      \ && requires(u32 p, u32 e) {\n        { f(p, e) } -> std::convertible_to<T>;\n\
+      \    }\nstruct MultiplicativeFunctionTable {\n  private:\n    static inline\
+      \ std::vector<T> _table{0, 1};\n\n  public:\n    MultiplicativeFunctionTable()\
+      \ = delete;\n\n    static void set_upper(usize m) {\n        if (_table.size()\
+      \ > m) return;\n        usize start = _table.size();\n\n        LPFTable::set_upper(m);\n\
+      \        LPFPowerTable::set_upper(m);\n\n        _table.resize(m + 1);\n\n \
+      \       for (usize n = start; n <= m; ++n) {\n            const u32 value =\
+      \ static_cast<u32>(n);\n            u32 p = LPFTable::lpf(value);\n        \
+      \    if (p == value) {\n                _table[n] = f(p, 1);\n            }\
+      \ else {\n                u32 p_pw = LPFPowerTable::lpf_pow(value);\n      \
+      \          usize q = n / p_pw;\n                if (q == 1) {\n            \
+      \        _table[n] = f(p, LPFPowerTable::v_lpf(value));\n                } else\
+      \ {\n                    _table[n] = _table[q] * _table[p_pw];\n           \
+      \     }\n            }\n        }\n    }\n\n    static T val(u32 n) {\n    \
+      \    const usize index = static_cast<usize>(n);\n        if (_table.size() <=\
+      \ index) set_upper(index);\n        return _table[n];\n    }\n};\n\n} // namespace\
+      \ kk2\n\n#endif // KK2_MATH_MULTIPLICATIVE_FUNCTION_ARBITRARY_TABLE_HPP\n"
     name: default
   - code: "#line 1 \"math/multiplicative_function/arbitrary_table.hpp\"\n\n\n\n#include\
-      \ <cassert>\n#include <vector>\n\n#line 1 \"math/lpf_table.hpp\"\n\n\n\n#include\
-      \ <algorithm>\n#line 7 \"math/lpf_table.hpp\"\n\n#line 1 \"math/multiplicative_function/prime_counting.hpp\"\
-      \n\n\n\n#line 5 \"math/multiplicative_function/prime_counting.hpp\"\n\n#line\
-      \ 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 5 \"data_structure/my_bitset.hpp\"\
-      \n#include <bit>\n#include <bitset>\n#line 8 \"data_structure/my_bitset.hpp\"\
-      \n#include <cstdint>\n#include <iostream>\n#include <iterator>\n#include <string>\n\
-      #include <utility>\n#line 14 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"\
-      bit/bitcount.hpp\"\n\n\n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
-      \n\n\n\n#include <type_traits>\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ <vector>\n\n#line 1 \"common/type_alias.hpp\"\n\n\n\n#include <cstddef>\n\
+      #include <cstdint>\n\nnamespace kk2 {\n\nusing usize = std::size_t;\nusing i8\
+      \ = std::int8_t;\nusing u8 = std::uint8_t;\nusing i16 = std::int16_t;\nusing\
+      \ u16 = std::uint16_t;\nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\n\
+      using i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\n#ifndef _MSC_VER\n\
+      using i128 = __int128_t;\nusing u128 = __uint128_t;\n#endif\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"type_traits/functional.hpp\"\n\n\n\n#include <concepts>\n\
+      #include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line\
+      \ 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\n\
+      template <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
       \ __int128_t>::value\n                                                     \
       \  or std::is_same<T, __int128>::value,\n                                  \
       \                 std::true_type,\n                                        \
@@ -117,10 +135,36 @@ data:
       \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
       \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
-      \n} // namespace kk2\n\n\n#line 7 \"bit/bitcount.hpp\"\n\nnamespace kk2 {\n\n\
-      template <Integral T> constexpr int ctz(T x) {\n    assert(x != T(0));\n\n \
-      \   if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n    }\
-      \ else if constexpr (sizeof(T) <= 8) {\n        return __builtin_ctzll(x);\n\
+      \n} // namespace kk2\n\n\n#line 8 \"type_traits/functional.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <typename T>\nusing is_function_pointer =\n    typename\
+      \ std::conditional<std::is_pointer_v<T> && std::is_function_v<std::remove_pointer_t<T>>,\n\
+      \                              std::true_type,\n                           \
+      \   std::false_type>::type;\n\ntemplate <typename T> struct is_two_args_function_pointer\
+      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2>\n\
+      struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {\n    using\
+      \ return_type = R;\n    using first_argument_type = T1;\n    using second_argument_type\
+      \ = T2;\n};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t =\
+      \ std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate <class\
+      \ T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate <class\
+      \ T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
+      \ntemplate <class T>\nconcept UnsignedTwoArgsFunctionPointer = TwoArgsFunctionPointer<T>\
+      \ && requires {\n    typename is_two_args_function_pointer<T>::first_argument_type;\n\
+      \    typename is_two_args_function_pointer<T>::second_argument_type;\n} && UnsignedIntegral<typename\
+      \ is_two_args_function_pointer<T>::first_argument_type> && UnsignedIntegral<typename\
+      \ is_two_args_function_pointer<T>::second_argument_type>;\n\n} // namespace\
+      \ kk2\n\n\n#line 1 \"math/lpf_power_table.hpp\"\n\n\n\n#include <cassert>\n\
+      #line 6 \"math/lpf_power_table.hpp\"\n\n#line 1 \"math/lpf_table.hpp\"\n\n\n\
+      \n#include <algorithm>\n#line 6 \"math/lpf_table.hpp\"\n#include <limits>\n\
+      #line 8 \"math/lpf_table.hpp\"\n\n#line 1 \"math/multiplicative_function/prime_counting.hpp\"\
+      \n\n\n\n#line 5 \"math/multiplicative_function/prime_counting.hpp\"\n\n#line\
+      \ 1 \"data_structure/my_bitset.hpp\"\n\n\n\n#line 5 \"data_structure/my_bitset.hpp\"\
+      \n#include <bit>\n#include <bitset>\n#line 9 \"data_structure/my_bitset.hpp\"\
+      \n#include <iostream>\n#include <iterator>\n#include <string>\n#include <utility>\n\
+      #line 14 \"data_structure/my_bitset.hpp\"\n\n#line 1 \"bit/bitcount.hpp\"\n\n\
+      \n\n#line 5 \"bit/bitcount.hpp\"\n\n#line 7 \"bit/bitcount.hpp\"\n\nnamespace\
+      \ kk2 {\n\ntemplate <Integral T> constexpr int ctz(T x) {\n    assert(x != T(0));\n\
+      \n    if constexpr (sizeof(T) <= 4) {\n        return __builtin_ctz(x);\n  \
+      \  } else if constexpr (sizeof(T) <= 8) {\n        return __builtin_ctzll(x);\n\
       \    } else {\n        if (x & 0xffffffffffffffff)\n            return __builtin_ctzll((unsigned\
       \ long long)(x & 0xffffffffffffffff));\n        return 64 + __builtin_ctzll((unsigned\
       \ long long)(x >> 64));\n    }\n}\n\ntemplate <Integral T> constexpr int lsb(T\
@@ -137,7 +181,7 @@ data:
       \   return __builtin_popcountll(x);\n    } else {\n        return __builtin_popcountll((unsigned\
       \ long long)(x >> 64))\n               + __builtin_popcountll((unsigned long\
       \ long)(x & 0xffffffffffffffff));\n    }\n}\n\n}; // namespace kk2\n\n\n#line\
-      \ 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
+      \ 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\n#include <fstream>\n\
       #include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\n\nnamespace\
       \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
       \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
@@ -448,65 +492,84 @@ data:
       \ ++i) dp[i] = eq[i] - 1;\n    for (const long long p : primes) {\n        for\
       \ (int i = eq.size() - 1;; --i) {\n            if (eq[i] < p * p) break;\n \
       \           dp[i] -= dp[eq.idx(eq[i] / p)] - dp[p - 2];\n        }\n    }\n\
-      \    return dp.back();\n}\n\n} // namespace kk2\n\n\n#line 9 \"math/lpf_table.hpp\"\
-      \n\nnamespace kk2 {\n\nstruct LPFTable {\n  private:\n    static inline std::vector<int>\
-      \ _primes{2}, _lpf{0, 1, 2}, _lpf_pow{0, 1, 2}, _v_lpf{0, 1, 1};\n\n  public:\n\
-      \    LPFTable() = delete;\n\n    static void set_upper(int m) {\n        if\
-      \ ((int)_lpf.size() > m) return;\n        m = std::max<int>(2 * _lpf.size(),\
-      \ m);\n        std::size_t reserve_target = prime_counting(m);\n        if (_primes.capacity()\
-      \ < reserve_target) _primes.reserve(reserve_target);\n        _lpf_pow.resize(m\
-      \ + 1);\n        _v_lpf.resize(m + 1);\n        _lpf.resize(m + 1);\n      \
-      \  for (int i = 2; i <= m; i++) {\n            if (_lpf[i] == 0) {\n       \
-      \         _lpf[i] = i;\n                _primes.emplace_back(i);\n         \
-      \       _lpf_pow[i] = i;\n                _v_lpf[i] = 1;\n            }\n  \
-      \          for (const long long p : _primes) {\n                if (p * i >\
-      \ m) break;\n                if (_lpf[i] < p) break;\n                _lpf[p\
-      \ * i] = p;\n                if (_lpf[i] == p) {\n                    _v_lpf[p\
-      \ * i] = _v_lpf[i] + 1;\n                    _lpf_pow[p * i] = _lpf_pow[i] *\
-      \ p;\n                } else {\n                    _v_lpf[p * i] = 1;\n   \
-      \                 _lpf_pow[p * i] = p;\n                }\n            }\n \
-      \       }\n    }\n\n    static const std::vector<int> &primes() { return _primes;\
-      \ }\n\n    template <typename It> struct PrimeIt {\n        It bg, ed;\n   \
-      \     PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n        It begin() const\
-      \ { return bg; }\n        It end() const { return ed; }\n        int size()\
-      \ const { return ed - bg; }\n        int operator[](int i) const { return bg[i];\
-      \ }\n        std::vector<int> to_vec() const { return std::vector<int>(bg, ed);\
-      \ }\n    };\n\n    static auto primes(int n) {\n        if (n >= (int)_lpf.size())\
-      \ set_upper(n);\n        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(),\
-      \ _primes.end(), n));\n    }\n\n    static int lpf(int n) {\n        assert(n\
-      \ > 1);\n        if (n >= (int)_lpf.size()) set_upper(n);\n        return _lpf[n];\n\
-      \    }\n\n    static bool isprime(int n) {\n        assert(n > 0);\n       \
-      \ if (n >= (int)_lpf.size()) set_upper(n);\n        return n != 1 and _lpf[n]\
-      \ == n;\n    }\n\n    static int lpf_pow(int n) {\n        assert(n > 1);\n\
-      \        if (n >= (int)_lpf_pow.size()) set_upper(n);\n        return _lpf_pow[n];\n\
-      \    }\n\n    static int v_lpf(int n) {\n        assert(n > 1);\n        if\
-      \ (n >= (int)_v_lpf.size()) set_upper(n);\n        return _v_lpf[n];\n    }\n\
-      };\n\n} // namespace kk2\n\n\n\n#line 1 \"math/pow.hpp\"\n\n\n\n#line 5 \"math/pow.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <class S, class T, class U> constexpr S pow(T\
-      \ x, U n) {\n    assert(n >= 0);\n    S r = 1, y = x;\n    while (n) {\n   \
-      \     if (n & 1) r *= y;\n        if (n >>= 1) y *= y;\n    }\n    return r;\n\
-      }\n\n} // namespace kk2\n\n\n#line 9 \"math/multiplicative_function/arbitrary_table.hpp\"\
-      \n\nnamespace kk2 {\n\ntemplate <class T, T (*f)(long long, long long)> struct\
-      \ MultiplicativeFunctionTable {\n  private:\n    static inline std::vector<T>\
-      \ _table{0, 1};\n\n  public:\n    MultiplicativeFunctionTable() = delete;\n\n\
-      \    static void set_upper(int m) {\n        if ((int)_table.size() > m) return;\n\
-      \        int start = _table.size();\n\n        LPFTable::set_upper(m);\n\n \
-      \       _table.resize(m + 1);\n\n        for (int n = start; n <= m; ++n) {\n\
-      \            int p = LPFTable::lpf(n);\n            if (p == n) {\n        \
-      \        _table[n] = f(p, 1);\n            } else {\n                int p_pw\
-      \ = LPFTable::lpf_pow(n);\n                int q = n / p_pw;\n             \
-      \   if (q == 1) {\n                    _table[n] = f(p, LPFTable::v_lpf(n));\n\
-      \                } else {\n                    _table[n] = _table[q] * _table[p_pw];\n\
-      \                }\n            }\n        }\n    }\n\n    static T val(int\
-      \ n) {\n        assert(n > 0);\n        if ((int)_table.size() <= n) set_upper(n);\n\
-      \        return _table[n];\n    }\n};\n\n} // namespace kk2\n\n\n"
+      \    return dp.back();\n}\n\n} // namespace kk2\n\n\n#line 11 \"math/lpf_table.hpp\"\
+      \n\nnamespace kk2 {\n\nstruct LPFTable {\n  private:\n    static inline std::vector<u32>\
+      \ _primes{2}, _lpf{0, 1, 2};\n\n  public:\n    LPFTable() = delete;\n\n    static\
+      \ void set_upper(usize m) {\n        if (_lpf.size() > m) return;\n        m\
+      \ = std::max<usize>(2 * _lpf.size(), m);\n        assert(m <= static_cast<usize>(std::numeric_limits<u32>::max()));\n\
+      \        usize reserve_target = static_cast<usize>(prime_counting(static_cast<i64>(m)));\n\
+      \        if (_primes.capacity() < reserve_target) _primes.reserve(reserve_target);\n\
+      \        _lpf.resize(m + 1);\n        const u32 upper = static_cast<u32>(m);\n\
+      \        for (usize index = 2; index <= m; ++index) {\n            const u32\
+      \ i = static_cast<u32>(index);\n            if (_lpf[index] == 0) {\n      \
+      \          _lpf[index] = i;\n                _primes.emplace_back(i);\n    \
+      \        }\n            for (const u32 p : _primes) {\n                const\
+      \ u64 pi = static_cast<u64>(p) * i;\n                if (pi > upper) break;\n\
+      \                const usize product = static_cast<usize>(pi);\n           \
+      \     if (_lpf[index] < p) break;\n                _lpf[product] = p;\n    \
+      \        }\n        }\n    }\n\n    static const std::vector<u32> &primes()\
+      \ { return _primes; }\n\n    template <typename It> struct PrimeIt {\n     \
+      \   It bg, ed;\n        PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}\n    \
+      \    It begin() const { return bg; }\n        It end() const { return ed; }\n\
+      \        usize size() const { return static_cast<usize>(ed - bg); }\n      \
+      \  u32 operator[](usize i) const { return bg[i]; }\n        std::vector<u32>\
+      \ to_vec() const { return std::vector<u32>(bg, ed); }\n    };\n\n    static\
+      \ auto primes(usize n) {\n        if (n >= _lpf.size()) set_upper(n);\n    \
+      \    const u32 upper = static_cast<u32>(n);\n        return PrimeIt(_primes.begin(),\
+      \ std::upper_bound(_primes.begin(), _primes.end(), upper));\n    }\n\n    static\
+      \ u32 lpf(u32 n) {\n        assert(n > 1);\n        if (static_cast<usize>(n)\
+      \ >= _lpf.size()) set_upper(static_cast<usize>(n));\n        return _lpf[n];\n\
+      \    }\n\n    static bool isprime(u32 n) {\n        assert(n > 0);\n       \
+      \ if (static_cast<usize>(n) >= _lpf.size()) set_upper(static_cast<usize>(n));\n\
+      \        return n != 1 and _lpf[n] == n;\n    }\n};\n\n} // namespace kk2\n\n\
+      \n\n#line 9 \"math/lpf_power_table.hpp\"\n\nnamespace kk2 {\n\nstruct LPFPowerTable\
+      \ {\n  private:\n    static inline std::vector<u32> _lpf_pow{0, 1, 2}, _v_lpf{0,\
+      \ 1, 1};\n\n  public:\n    LPFPowerTable() = delete;\n\n    static void set_upper(usize\
+      \ m) {\n        if (_lpf_pow.size() > m) return;\n        const usize start\
+      \ = _lpf_pow.size();\n\n        LPFTable::set_upper(m);\n        _lpf_pow.resize(m\
+      \ + 1);\n        _v_lpf.resize(m + 1);\n\n        for (usize n = start; n <=\
+      \ m; ++n) {\n            const u32 value = static_cast<u32>(n);\n          \
+      \  const u32 p = LPFTable::lpf(value);\n            const usize quotient = n\
+      \ / p;\n            if (quotient > 1 && LPFTable::lpf(static_cast<u32>(quotient))\
+      \ == p) {\n                _lpf_pow[n] = _lpf_pow[quotient] * p;\n         \
+      \       _v_lpf[n] = _v_lpf[quotient] + 1;\n            } else {\n          \
+      \      _lpf_pow[n] = p;\n                _v_lpf[n] = 1;\n            }\n   \
+      \     }\n    }\n\n    static u32 lpf_pow(u32 n) {\n        assert(n > 1);\n\
+      \        const usize index = static_cast<usize>(n);\n        if (_lpf_pow.size()\
+      \ <= index) set_upper(index);\n        return _lpf_pow[index];\n    }\n\n  \
+      \  static u32 v_lpf(u32 n) {\n        assert(n > 1);\n        const usize index\
+      \ = static_cast<usize>(n);\n        if (_v_lpf.size() <= index) set_upper(index);\n\
+      \        return _v_lpf[index];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1\
+      \ \"math/pow.hpp\"\n\n\n\n#line 5 \"math/pow.hpp\"\n\nnamespace kk2 {\n\ntemplate\
+      \ <class S, class T, class U> constexpr S pow(T x, U n) {\n    assert(n >= 0);\n\
+      \    S r = 1, y = x;\n    while (n) {\n        if (n & 1) r *= y;\n        if\
+      \ (n >>= 1) y *= y;\n    }\n    return r;\n}\n\n} // namespace kk2\n\n\n#line\
+      \ 11 \"math/multiplicative_function/arbitrary_table.hpp\"\n\nnamespace kk2 {\n\
+      \ntemplate <class T, auto f>\n    requires UnsignedTwoArgsFunctionPointer<decltype(f)>\
+      \ && requires(u32 p, u32 e) {\n        { f(p, e) } -> std::convertible_to<T>;\n\
+      \    }\nstruct MultiplicativeFunctionTable {\n  private:\n    static inline\
+      \ std::vector<T> _table{0, 1};\n\n  public:\n    MultiplicativeFunctionTable()\
+      \ = delete;\n\n    static void set_upper(usize m) {\n        if (_table.size()\
+      \ > m) return;\n        usize start = _table.size();\n\n        LPFTable::set_upper(m);\n\
+      \        LPFPowerTable::set_upper(m);\n\n        _table.resize(m + 1);\n\n \
+      \       for (usize n = start; n <= m; ++n) {\n            const u32 value =\
+      \ static_cast<u32>(n);\n            u32 p = LPFTable::lpf(value);\n        \
+      \    if (p == value) {\n                _table[n] = f(p, 1);\n            }\
+      \ else {\n                u32 p_pw = LPFPowerTable::lpf_pow(value);\n      \
+      \          usize q = n / p_pw;\n                if (q == 1) {\n            \
+      \        _table[n] = f(p, LPFPowerTable::v_lpf(value));\n                } else\
+      \ {\n                    _table[n] = _table[q] * _table[p_pw];\n           \
+      \     }\n            }\n        }\n    }\n\n    static T val(u32 n) {\n    \
+      \    const usize index = static_cast<usize>(n);\n        if (_table.size() <=\
+      \ index) set_upper(index);\n        return _table[n];\n    }\n};\n\n} // namespace\
+      \ kk2\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
   path: math/multiplicative_function/arbitrary_table.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 19:55:01+09:00'
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp

@@ -28,6 +28,13 @@ data:
       path: type_traits/io.hpp
     type: Depends on
   - files:
+    - filename: power_sum.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/power_sum.hpp
+      title: Power Sum
+    - filename: lpf_power_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/lpf_power_table.hpp
     - filename: lpf_table.hpp
       icon: LIBRARY_ALL_AC
       path: math/lpf_table.hpp
@@ -40,17 +47,36 @@ data:
     - filename: famous_function_table.hpp
       icon: LIBRARY_ALL_AC
       path: math/multiplicative_function/famous_function_table.hpp
+    - filename: pow_table.hpp
+      icon: LIBRARY_ALL_AC
+      path: math/multiplicative_function/pow_table.hpp
     - filename: prime_factorize_table.hpp
       icon: LIBRARY_ALL_AC
       path: math/prime_factorize_table.hpp
     - filename: wheel_sieve.hpp
       icon: LIBRARY_ALL_AC
       path: math/wheel_sieve.hpp
+    - filename: power_sum.hpp
+      icon: LIBRARY_ALL_AC
+      path: math_mod/power_sum.hpp
+      title: Power Sum
+    - filename: sum_of_exponential_times_polynomial_limit.test.cpp
+      icon: LIBRARY_NO_TESTS
+      path: verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
     type: Required by
   - files:
+    - filename: sum_of_geometric_polynomial_samples.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sum_of_geometric_polynomial_samples.test.cpp
+    - filename: sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/sum_of_polynomial.test.cpp
     - filename: isprime_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/isprime_table_extend.test.cpp
+    - filename: lpf_power_table_extend.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/lpf_power_table_extend.test.cpp
     - filename: lpf_table_extend.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/lpf_table_extend.test.cpp
@@ -60,6 +86,9 @@ data:
     - filename: multiplicative_function_table.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+    - filename: pow_table.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/math/multiplicative_function/pow_table.test.cpp
     - filename: prime_factorize_table.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/prime_factorize_table.test.cpp
@@ -69,9 +98,15 @@ data:
     - filename: wheel_sieve.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/math/wheel_sieve.test.cpp
+    - filename: prefix_sum_of_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
     - filename: prime_counting.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_math/prime_counting.test.cpp
+    - filename: sum_of_exponential_times_polynomial.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
     type: Verified with
   dependsOn:
   - bit/bitcount.hpp
@@ -479,23 +514,34 @@ data:
   path: math/multiplicative_function/prime_counting.hpp
   pathExtension: hpp
   requiredBy:
+  - fps/power_sum.hpp
+  - math/lpf_power_table.hpp
   - math/lpf_table.hpp
   - math/multiplicative_function/arbitrary_table.hpp
   - math/multiplicative_function/counting_square_free.hpp
   - math/multiplicative_function/famous_function_table.hpp
+  - math/multiplicative_function/pow_table.hpp
   - math/prime_factorize_table.hpp
   - math/wheel_sieve.hpp
-  timestamp: '2026-10-03 19:55:01+09:00'
+  - math_mod/power_sum.hpp
+  - verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
+  timestamp: '2026-10-03 23:37:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/unit_test/fps/sum_of_geometric_polynomial_samples.test.cpp
+  - verify/unit_test/fps/sum_of_polynomial.test.cpp
   - verify/unit_test/math/isprime_table_extend.test.cpp
+  - verify/unit_test/math/lpf_power_table_extend.test.cpp
   - verify/unit_test/math/lpf_table_extend.test.cpp
   - verify/unit_test/math/multiplicative_function/famous_function_table.test.cpp
   - verify/unit_test/math/multiplicative_function/multiplicative_function_table.test.cpp
+  - verify/unit_test/math/multiplicative_function/pow_table.test.cpp
   - verify/unit_test/math/prime_factorize_table.test.cpp
   - verify/unit_test/math/prime_table_extend.test.cpp
   - verify/unit_test/math/wheel_sieve.test.cpp
+  - verify/yosupo_fps/prefix_sum_of_polynomial.test.cpp
   - verify/yosupo_math/prime_counting.test.cpp
+  - verify/yosupo_others/sum_of_exponential_times_polynomial.test.cpp
 documentation_of: math/multiplicative_function/prime_counting.hpp
 layout: document
 ---
