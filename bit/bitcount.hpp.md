@@ -258,7 +258,7 @@ data:
   - string/dynamic_rolling_hash.hpp
   - unionfind/parallel.hpp
   - verify/unit_test/data_structure/my_bitset.test.cpp
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/data_structure/bit_vector.test.cpp

@@ -28,6 +28,9 @@ data:
     - filename: divisor_multiple_transform.hpp
       icon: LIBRARY_ALL_AC
       path: convolution/divisor_multiple_transform.hpp
+    - filename: multi_convolution_truncated_arb.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/multi_convolution_truncated_arb.hpp
     - filename: bit_vector.hpp
       icon: LIBRARY_ALL_AC
       path: data_structure/bit_vector.hpp
@@ -258,6 +261,12 @@ data:
     - filename: inplace_operations.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/inplace_operations.test.cpp
+    - filename: multivariate_convolution.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/multivariate_convolution.test.cpp
+    - filename: multivariate_operations.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/multivariate_operations.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -765,6 +774,7 @@ data:
   - convolution/convolution_int.hpp
   - convolution/convolution_lcm.hpp
   - convolution/divisor_multiple_transform.hpp
+  - convolution/multi_convolution_truncated_arb.hpp
   - data_structure/bit_vector.hpp
   - data_structure/convex_hull_trick_add_monotone.hpp
   - data_structure/my_bitset.hpp
@@ -829,7 +839,7 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -844,6 +854,8 @@ data:
   - verify/unit_test/data_structure/offline_dynamic_connectivity.test.cpp
   - verify/unit_test/data_structure/wavelet_matrix.test.cpp
   - verify/unit_test/fps/inplace_operations.test.cpp
+  - verify/unit_test/fps/multivariate_convolution.test.cpp
+  - verify/unit_test/fps/multivariate_operations.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp

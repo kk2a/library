@@ -52,17 +52,14 @@ data:
       \ if (!t) return;\n        t = alloc(*t);\n        t->val = sa_act(f, t->val);\n\
       \        if (t->left) t->lazy = a_op(f, t->lazy);\n    }\n\n    NodePtr push(NodePtr\
       \ t) {\n        t = alloc(*t);\n        if (t->is_rev) {\n            std::swap(t->left,\
-      \ t->right);\n            // \u0433\u0403\u201C\u0433\u0403\u201C\u0433\u0403\
-      \xA7\u0435\xAD\u0452\u0434\u0455\u203A\u0433\u201A\u2019\u0438\xA4\u2021\u0438\
-      \u0408\u0405\u0433\u0403\u2014\u0433\u0403\u0404\u0433\u0403\u201E\u0433\u0403\
-      \u0401\u0433\u0403\u201E\u0433\u0403\u2018\u0433\u0403\u0404\u0433\u0403\u201E\
-      \u043F\u0458\u040B\n            if (t->left) t->left->is_rev ^= 1;\n       \
-      \     if (t->right) t->right->is_rev ^= 1;\n            t->is_rev = false;\n\
-      \        }\n\n        if (t->lazy != a_unit()) {\n            all_apply(t->left,\
-      \ t->lazy);\n            all_apply(t->right, t->lazy);\n            t->lazy\
-      \ = a_unit();\n        }\n        return t;\n    }\n};\n\n} // namespace rbtree\n\
-      \nusing rbtree::PersistentLazyRedBlackTree;\n\n} // namespace kk2\n\n#endif\
-      \ // KK2_BBST_PERSISTENT_LAZY_RED_BLACK_TREE_HPP\n"
+      \ t->right);\n            // \u3053\u3053\u3067\u5B50\u4F9B\u3092\u8907\u88FD\
+      \u3057\u306A\u3044\u3068\u3044\u3051\u306A\u3044\uFF0E\n            if (t->left)\
+      \ t->left->is_rev ^= 1;\n            if (t->right) t->right->is_rev ^= 1;\n\
+      \            t->is_rev = false;\n        }\n\n        if (t->lazy != a_unit())\
+      \ {\n            all_apply(t->left, t->lazy);\n            all_apply(t->right,\
+      \ t->lazy);\n            t->lazy = a_unit();\n        }\n        return t;\n\
+      \    }\n};\n\n} // namespace rbtree\n\nusing rbtree::PersistentLazyRedBlackTree;\n\
+      \n} // namespace kk2\n\n#endif // KK2_BBST_PERSISTENT_LAZY_RED_BLACK_TREE_HPP\n"
     name: default
   - code: "#line 1 \"bbst/persistent_lazy_red_black_tree.hpp\"\n\n\n\n#line 1 \"bbst/base/lazy_red_black_tree_node.hpp\"\
       \n\n\n\n#line 1 \"type_traits/algebra.hpp\"\n\n\n\n#include <concepts>\n\nnamespace\
@@ -373,7 +370,7 @@ data:
   path: bbst/persistent_lazy_red_black_tree.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: bbst/persistent_lazy_red_black_tree.hpp

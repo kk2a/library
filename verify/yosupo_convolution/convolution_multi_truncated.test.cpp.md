@@ -83,9 +83,9 @@ data:
     name: default
   - code: "#line 1 \"verify/yosupo_convolution/convolution_multi_truncated.test.cpp\"\
       \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/multivariate_convolution\n\
-      \n#line 1 \"convolution/multi_convolution_truncated.hpp\"\n\n\n\n#include <vector>\n\
-      \n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#include <algorithm>\n#include\
-      \ <memory>\n#include <utility>\n#line 8 \"convolution/convolution.hpp\"\n\n\
+      \n#line 1 \"convolution/multi_convolution_truncated.hpp\"\n\n\n\n#include <utility>\n\
+      #include <vector>\n\n#line 1 \"convolution/convolution.hpp\"\n\n\n\n#include\
+      \ <algorithm>\n#include <memory>\n#line 8 \"convolution/convolution.hpp\"\n\n\
       #line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#line 5 \"fps/fps_sparsity_detector.hpp\"\
       \n#include <bit>\n#include <cstdint>\n#line 8 \"fps/fps_sparsity_detector.hpp\"\
       \n#include <ranges>\n\nnamespace kk2 {\n\nenum class FPSOperation {\n    CONVOLUTION,\n\
@@ -337,26 +337,47 @@ data:
       \ <class FPS> FPS convolution(const FPS &a, const FPS &b, int deg = -1) {\n\
       \    if (is_sparse_operation(FPSOperation::CONVOLUTION, true, a, b, deg))\n\
       \        return sparse_convolution(a, b, deg);\n    return dense_convolution(a,\
-      \ b, deg);\n}\n\n} // namespace kk2\n\n\n#line 7 \"convolution/multi_convolution_truncated.hpp\"\
+      \ b, deg);\n}\n\n} // namespace kk2\n\n\n#line 8 \"convolution/multi_convolution_truncated.hpp\"\
       \n\nnamespace kk2 {\n\n// reference: https://rushcheyo.blog.uoj.ac/blog/6547\n\
       // \u65E5\u672C\u8A9E:\n// https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
-      template <class FPS, class mint = typename FPS::value_type>\nFPS &inplace_multi_convolution_truncated(FPS\
-      \ &a, const FPS &b, const std::vector<int> &base) {\n    int n = int(a.size());\n\
-      \    if (!n) return a;\n    int k = base.size();\n    if (!k) return inplace_convolution(a,\
-      \ b);\n    // chi[i] = \\sum_{j} \\floor(i / (base[0]...base[j]))\n    std::vector<int>\
-      \ chi(n, 0);\n    for (int i = 0; i < n; i++) {\n        int x = i;\n      \
-      \  for (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);\n        chi[i]\
-      \ %= k;\n    }\n    int z = 1;\n    while (z < 2 * n - 1) z <<= 1;\n    std::vector<FPS>\
-      \ f(k, FPS(z));\n    std::vector<FPS> g(k, FPS(z));\n    for (int i = 0; i <\
-      \ n; i++) f[chi[i]][i] = a[i], g[chi[i]][i] = b[i];\n    for (auto &x : f) butterfly(x);\n\
-      \    for (auto &x : g) butterfly(x);\n    std::vector<mint> tmp(k);\n    for\
-      \ (int ii = 0; ii < z; ii++) {\n        for (int i = 0; i < k; i++) {\n    \
-      \        for (int j = 0; j < k; j++) {\n                tmp[i + j - (i + j >=\
-      \ k ? k : 0)] += f[i][ii] * g[j][ii];\n            }\n        }\n        for\
-      \ (int i = 0; i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};\n    }\n    for\
-      \ (auto &x : f) butterfly_inv(x);\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i];\n\
-      \    return a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
-      FPS multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
+      namespace detail {\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      FPS &inplace_multi_convolution_truncated_ntt(FPS &a, const FPS &b, const std::vector<int>\
+      \ &base) {\n    int n = int(a.size());\n    if (!n) return a;\n    int k = base.size();\n\
+      \    if (!k) return inplace_convolution(a, b);\n    // chi[i] = \\sum_{j} \\\
+      floor(i / (base[0]...base[j]))\n    std::vector<int> chi(n, 0);\n    for (int\
+      \ i = 0; i < n; i++) {\n        int x = i;\n        for (int j = 0; j < k -\
+      \ 1; j++) chi[i] += (x /= base[j]);\n        chi[i] %= k;\n    }\n    int z\
+      \ = 1;\n    while (z < 2 * n - 1) z <<= 1;\n    std::vector<FPS> f(k, FPS(z));\n\
+      \    std::vector<FPS> g(k, FPS(z));\n    for (int i = 0; i < n; i++) f[chi[i]][i]\
+      \ = a[i], g[chi[i]][i] = b[i];\n    for (auto &x : f) butterfly(x);\n    for\
+      \ (auto &x : g) butterfly(x);\n    std::vector<mint> tmp(k);\n    for (int ii\
+      \ = 0; ii < z; ii++) {\n        for (int i = 0; i < k; i++) {\n            for\
+      \ (int j = 0; j < k; j++) {\n                tmp[i + j - (i + j >= k ? k : 0)]\
+      \ += f[i][ii] * g[j][ii];\n            }\n        }\n        for (int i = 0;\
+      \ i < k; i++) f[i][ii] = tmp[i], tmp[i] = mint{0};\n    }\n    for (auto &x\
+      \ : f) butterfly_inv(x);\n    for (int i = 0; i < n; i++) a[i] = f[chi[i]][i];\n\
+      \    return a;\n}\n\n} // namespace detail\n\ntemplate <class FPS, class mint\
+      \ = typename FPS::value_type>\nFPS &inplace_multi_convolution_truncated(FPS\
+      \ &a, const FPS &b, const std::vector<int> &base) {\n    return detail::inplace_multi_convolution_truncated_ntt(a,\
+      \ b, base);\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      FPS &inplace_multi_convolution_truncated_sparse(FPS &a,\n                  \
+      \                              const FPS &b,\n                             \
+      \                   const std::vector<int> &base) {\n    const int n = int(a.size());\n\
+      \    if (!n) return a;\n    if (base.empty()) {\n        a[0] *= b[0];\n   \
+      \     return a;\n    }\n\n    FPS result(n);\n    for (int i = 0; i < n; ++i)\
+      \ {\n        int x = i;\n        std::vector<int> lhs_index(base.size());\n\
+      \        for (int d = 0; d < (int)base.size(); ++d) {\n            lhs_index[d]\
+      \ = x % base[d];\n            x /= base[d];\n        }\n        if (a[i] ==\
+      \ mint(0)) continue;\n        for (int j = 0; j < n; ++j) {\n            if\
+      \ (b[j] == mint(0)) continue;\n            int y = j, index = 0, stride = 1;\n\
+      \            bool in_range = true;\n            for (int d = 0; d < (int)base.size();\
+      \ ++d) {\n                const int coordinate = lhs_index[d] + y % base[d];\n\
+      \                y /= base[d];\n                if (coordinate >= base[d]) in_range\
+      \ = false;\n                index += coordinate * stride;\n                stride\
+      \ *= base[d];\n            }\n            if (in_range && index < n) result[index]\
+      \ += a[i] * b[j];\n        }\n    }\n    a = std::move(result);\n    return\
+      \ a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS\
+      \ multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
       \ &base) {\n    FPS result = a;\n    inplace_multi_convolution_truncated<FPS,\
       \ mint>(result, b, base);\n    return result;\n}\n\n} // namespace kk2\n\n\n\
       #line 1 \"modint/mont.hpp\"\n\n\n\n#line 6 \"modint/mont.hpp\"\n#include <iostream>\n\
@@ -660,92 +681,92 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.7400491809999892
+  - elapsed: 0.483689035999987
     environment: g++
-    memory: 13.772
+    memory: 13.876
     name: dim1_00
     status: AC
-  - elapsed: 0.7336540330000219
+  - elapsed: 0.4874872430000039
     environment: g++
-    memory: 13.808
+    memory: 13.732
     name: dim1_01
     status: AC
-  - elapsed: 1.399741318999986
+  - elapsed: 0.9176398889999859
     environment: g++
-    memory: 17.816
+    memory: 17.74
     name: dim2_00
     status: AC
-  - elapsed: 1.394750254999991
+  - elapsed: 0.931541416999977
     environment: g++
-    memory: 17.872
+    memory: 17.98
     name: dim2_01
     status: AC
-  - elapsed: 0.002616661999979897
+  - elapsed: 0.0021040530000107083
     environment: g++
-    memory: 3.592
+    memory: 3.856
     name: example_00
     status: AC
-  - elapsed: 0.0021926420000113467
+  - elapsed: 0.0016473629999893546
     environment: g++
-    memory: 3.596
+    memory: 3.856
     name: example_01
     status: AC
-  - elapsed: 0.002072677000001022
+  - elapsed: 0.0016346940000175891
     environment: g++
-    memory: 3.796
+    memory: 3.872
     name: example_02
     status: AC
-  - elapsed: 0.002187191999979632
+  - elapsed: 0.001599762000012106
     environment: g++
-    memory: 3.756
+    memory: 3.784
     name: k0_00
     status: AC
-  - elapsed: 0.0020622309999964727
+  - elapsed: 0.0016144829999973354
     environment: g++
-    memory: 3.808
+    memory: 3.86
     name: k0_01
     status: AC
-  - elapsed: 4.805960648000024
+  - elapsed: 3.175827093999999
     environment: g++
-    memory: 36.684
+    memory: 36.62
     name: max_random_00
     status: AC
-  - elapsed: 4.838966184999975
+  - elapsed: 3.223427412999996
     environment: g++
-    memory: 37.164
+    memory: 37.228
     name: max_random_01
     status: AC
-  - elapsed: 0.005586528999970142
+  - elapsed: 0.004354594999995243
     environment: g++
-    memory: 3.788
+    memory: 3.84
     name: small_00
     status: AC
-  - elapsed: 0.007131520999962504
+  - elapsed: 0.005463225999989163
     environment: g++
-    memory: 3.928
+    memory: 4.012
     name: small_01
     status: AC
-  - elapsed: 10.88472149100005
+  - elapsed: 7.256057277999986
     environment: g++
-    memory: 65.944
+    memory: 66.004
     name: threes_00
     status: AC
-  - elapsed: 9.879249619999996
+  - elapsed: 6.479636749999997
     environment: g++
-    memory: 61.072
+    memory: 61.016
     name: threes_01
     status: AC
-  - elapsed: 14.914338506999968
+  - elapsed: 9.566323952999994
     environment: g++
-    memory: 83.436
+    memory: 83.592
     name: twos_00
     status: AC
-  - elapsed: 6.666597292000006
+  - elapsed: 4.3304087999999865
     environment: g++
-    memory: 41.464
+    memory: 41.452
     name: twos_01
     status: AC
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_multi_truncated.test.cpp

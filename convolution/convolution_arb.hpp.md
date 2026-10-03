@@ -37,9 +37,15 @@ data:
       path: type_traits/io.hpp
     type: Depends on
   - files:
+    - filename: multi_convolution_truncated_arb.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/multi_convolution_truncated_arb.hpp
     - filename: fps_arb.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_arb.hpp
+    - filename: fps_multivariate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_multivariate.hpp
     - filename: multiplication.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/arb/multiplication.hpp
@@ -51,6 +57,12 @@ data:
     - filename: inplace_operations.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/inplace_operations.test.cpp
+    - filename: multivariate_convolution.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/multivariate_convolution.test.cpp
+    - filename: multivariate_operations.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/multivariate_operations.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -544,13 +556,17 @@ data:
   path: convolution/convolution_arb.hpp
   pathExtension: hpp
   requiredBy:
+  - convolution/multi_convolution_truncated_arb.hpp
   - fps/fps_arb.hpp
+  - fps/fps_multivariate.hpp
   - fps/operations/arb/multiplication.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp
+  - verify/unit_test/fps/multivariate_convolution.test.cpp
+  - verify/unit_test/fps/multivariate_operations.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp

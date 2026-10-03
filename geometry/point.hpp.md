@@ -121,7 +121,7 @@ data:
   requiredBy:
   - geometry/argument_sort.hpp
   - geometry/static_convex_hull.hpp
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_geometry/arg_sort.test.cpp

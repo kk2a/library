@@ -102,7 +102,7 @@ data:
   path: math/action/update_affine.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/action/action.test.cpp

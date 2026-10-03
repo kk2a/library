@@ -72,6 +72,9 @@ data:
       - filename: multi_convolution_truncated.hpp
         icon: LIBRARY_ALL_AC
         path: convolution/multi_convolution_truncated.hpp
+      - filename: multi_convolution_truncated_arb.hpp
+        icon: LIBRARY_ALL_AC
+        path: convolution/multi_convolution_truncated_arb.hpp
       - filename: walsh_hadamard_transform.hpp
         icon: LIBRARY_ALL_AC
         path: convolution/walsh_hadamard_transform.hpp
@@ -908,6 +911,12 @@ data:
       - filename: inplace_operations.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/fps/inplace_operations.test.cpp
+      - filename: multivariate_convolution.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/fps/multivariate_convolution.test.cpp
+      - filename: multivariate_operations.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/unit_test/fps/multivariate_operations.test.cpp
       - filename: sparsity_boundary.test.cpp
         icon: TEST_ACCEPTED
         path: verify/unit_test/fps/sparsity_boundary.test.cpp

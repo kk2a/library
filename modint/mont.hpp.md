@@ -19,9 +19,15 @@ data:
     - filename: convolution_int.hpp
       icon: LIBRARY_ALL_AC
       path: convolution/convolution_int.hpp
+    - filename: multi_convolution_truncated_arb.hpp
+      icon: LIBRARY_ALL_AC
+      path: convolution/multi_convolution_truncated_arb.hpp
     - filename: fps_arb.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_arb.hpp
+    - filename: fps_multivariate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_multivariate.hpp
     - filename: multiplication.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/arb/multiplication.hpp
@@ -60,6 +66,12 @@ data:
     - filename: inplace_operations.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/inplace_operations.test.cpp
+    - filename: multivariate_convolution.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/multivariate_convolution.test.cpp
+    - filename: multivariate_operations.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/multivariate_operations.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -396,7 +408,9 @@ data:
   requiredBy:
   - convolution/convolution_arb.hpp
   - convolution/convolution_int.hpp
+  - convolution/multi_convolution_truncated_arb.hpp
   - fps/fps_arb.hpp
+  - fps/fps_multivariate.hpp
   - fps/operations/arb/multiplication.hpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
@@ -407,11 +421,13 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/convolution/inplace_convolution.test.cpp
   - verify/unit_test/fps/inplace_operations.test.cpp
+  - verify/unit_test/fps/multivariate_convolution.test.cpp
+  - verify/unit_test/fps/multivariate_operations.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/fps/sparsity_performance.test.cpp
   - verify/unit_test/fps/sparsity_small_performance.test.cpp

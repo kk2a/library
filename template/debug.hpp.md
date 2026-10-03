@@ -373,7 +373,7 @@ data:
   path: template/debug.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp

@@ -33,9 +33,8 @@ data:
       \ {\n        int n = mat.get_h();\n        assert(n == mat.get_w());\n     \
       \   frobenius = P = Matrix(n, n);\n        build();\n    }\n\n    void build()\
       \ {\n        int n = mat.get_h();\n        Basis_base<Matrix, Field> basis;\n\
-      \        // \u2030\u03C0\xB1\xCA\xE4\xFB\u201E\xC5\xDF\xC8\u2020\xEB\xC2\xBA\
-      \xB5\u201E\xC7\xE3\n    }\n};\n\n} // namespace linear_algebra\n\n} // namespace\
-      \ kk2\n\n#endif // KK2_MATRIX_FROBENIUS_FORM_HPP\n"
+      \        // \u4E71\u629E\u3067\u9811\u5F35\u308B\n    }\n};\n\n} // namespace\
+      \ linear_algebra\n\n} // namespace kk2\n\n#endif // KK2_MATRIX_FROBENIUS_FORM_HPP\n"
     name: default
   - code: "#line 1 \"matrix/frobenius_form.hpp\"\n\n\n\n#include <vector>\n\n#line\
       \ 1 \"matrix/basis.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n#include\
@@ -269,7 +268,7 @@ data:
   path: matrix/frobenius_form.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/frobenius_form.hpp

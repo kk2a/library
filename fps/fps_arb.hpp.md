@@ -82,6 +82,9 @@ data:
       path: type_traits/io.hpp
     type: Depends on
   - files:
+    - filename: fps_multivariate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_multivariate.hpp
     - filename: fps_exp_arb.test.cpp
       icon: LIBRARY_NO_TESTS
       path: verify/yosupo_fps/fps_exp_arb.test.cpp
@@ -90,6 +93,12 @@ data:
     - filename: inplace_operations.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/inplace_operations.test.cpp
+    - filename: multivariate_convolution.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/multivariate_convolution.test.cpp
+    - filename: multivariate_operations.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/unit_test/fps/multivariate_operations.test.cpp
     - filename: sparsity_boundary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/unit_test/fps/sparsity_boundary.test.cpp
@@ -137,9 +146,8 @@ data:
       \ : FormalPowerSeriesBase<FormalPowerSeriesArbitrary<mint>, mint> {\n    using\
       \ base = FormalPowerSeriesBase<FormalPowerSeriesArbitrary<mint>, mint>;\n  \
       \  using FPS = FormalPowerSeriesArbitrary<mint>;\n    using base::FormalPowerSeriesBase;\n\
-      \    using base::operator*=; // \u015A\xFC\u013C\u015A\u013C\u0113\u201E\u0101\
-      \u012E\u201E\xC9\xA9\u201E\u0101\u013B\u201E\u0100\u0123operator*=\u201E\u0101\
-      \xED\xC1\u2202\xF4\u015B\u010C\u0145\n    using modulus_category = kk2::fps::category::arbitrary_modulus;\n\
+      \    using base::operator*=; // \u57FA\u5E95\u30AF\u30E9\u30B9\u306Eoperator*=\u3092\
+      \u7D99\u627F\n    using modulus_category = kk2::fps::category::arbitrary_modulus;\n\
       \    using series_category = kk2::fps::category::ordinary;\n    using variable_category\
       \ = kk2::fps::category::univariate;\n    static constexpr bool is_ntt_friendly\
       \ = false;\n\n    void but() { exit(1); }\n    void ibut() { exit(1); }\n  \
@@ -1236,11 +1244,14 @@ data:
   path: fps/fps_arb.hpp
   pathExtension: hpp
   requiredBy:
+  - fps/fps_multivariate.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-09-21 19:50:38+09:00'
+  timestamp: '2026-10-03 19:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp
+  - verify/unit_test/fps/multivariate_convolution.test.cpp
+  - verify/unit_test/fps/multivariate_operations.test.cpp
   - verify/unit_test/fps/sparsity_boundary.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
