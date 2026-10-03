@@ -25,6 +25,21 @@ data:
     - filename: multiplication.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/arb/multiplication.hpp
+    - filename: exponential.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/exponential.hpp
+    - filename: inverse.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/inverse.hpp
+    - filename: logarithm.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/logarithm.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/multiplication.hpp
+    - filename: power.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/power.hpp
     - filename: garner.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/garner.hpp
@@ -89,9 +104,14 @@ data:
   - fps/fps_arb.hpp
   - fps/fps_multivariate.hpp
   - fps/operations/arb/multiplication.hpp
+  - fps/operations/multivariate/exponential.hpp
+  - fps/operations/multivariate/inverse.hpp
+  - fps/operations/multivariate/logarithm.hpp
+  - fps/operations/multivariate/multiplication.hpp
+  - fps/operations/multivariate/power.hpp
   - math_mod/garner.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/convolution/inplace_convolution.test.cpp

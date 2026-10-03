@@ -523,7 +523,7 @@ data:
   - math/multiplicative_function/counting_square_free.hpp
   - math/multiplicative_function/famous_function_table.hpp
   - math/prime_factorize_table.hpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/lpf_table_extend.test.cpp

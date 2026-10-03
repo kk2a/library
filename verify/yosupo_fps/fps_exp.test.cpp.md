@@ -264,33 +264,37 @@ data:
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
-      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
-      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
+      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
+      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
-      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
-      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
-      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
-      \ namespace kk2::fps\n\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line\
-      \ 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\n\
-      template <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                                     \
-      \  or std::is_same<T, __int128>::value,\n                                  \
-      \                 std::true_type,\n                                        \
-      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
-      \                               or std::is_same<T, unsigned __int128>::value,\n\
+      \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
+      \ MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::multivariate>;\n\
+      \n// Short names for the categories that are commonly used in algorithms.\n\
+      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
+      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
+      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
+      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
+      \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
+      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
+      \                                              or std::is_same<T, __int128>::value,\n\
+      \                                                   std::true_type,\n      \
+      \                                             std::false_type>::type;\n\ntemplate\
+      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+      \ __uint128_t>::value\n                                  or std::is_same<T,\
+      \ unsigned __int128>::value,\n                              std::true_type,\n\
+      \                              std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
+      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
-      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-      \                                  or is_unsigned_int128<T>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                                         \
-      \   std::true_type,\n                                            std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
+      \                                            std::true_type,\n             \
+      \                               std::false_type>::type;\n\ntemplate <typename\
+      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -581,17 +585,17 @@ data:
       \ {\n    FPS result = dividend;\n    return inplace_mod(result, divisor);\n\
       }\n\n} // namespace kk2::fps::operations\n\n\n#line 1 \"fps/operations/exponential.hpp\"\
       \n\n\n\n#line 8 \"fps/operations/exponential.hpp\"\n\n#line 11 \"fps/operations/exponential.hpp\"\
-      \n\nnamespace kk2::fps::operations {\n\ntemplate <NTTFriendlyFormalPowerSeries\
-      \ FPS> FPS dense_exp(const FPS &f, int precision = -1) {\n    using mint = typename\
-      \ FPS::value_type;\n    assert(f.empty() || f[0] == mint(0));\n    if (precision\
-      \ == -1) precision = static_cast<int>(f.size());\n\n    FPS result{1, 1 < static_cast<int>(f.size())\
-      \ ? f[1] : mint(0)};\n    FPS inverse{1}, transformed_inverse, previous_transformed_inverse{1,\
-      \ 1};\n    for (int m = 2; m < precision; m <<= 1) {\n        FPS transformed_result\
-      \ = result;\n        transformed_result.resize(m << 1);\n        transformed_result.but();\n\
-      \        transformed_inverse = previous_transformed_inverse;\n        FPS correction(m);\n\
-      \        correction = transformed_result.dot(transformed_inverse);\n       \
-      \ correction.ibut();\n        std::fill_n(correction.begin(), m >> 1, mint(0));\n\
-      \        correction.but();\n        correction.inplace_dot(-transformed_inverse);\n\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateNTTFriendlyFormalPowerSeries\
+      \ FPS>\nFPS dense_exp(const FPS &f, int precision = -1) {\n    using mint =\
+      \ typename FPS::value_type;\n    assert(f.empty() || f[0] == mint(0));\n   \
+      \ if (precision == -1) precision = static_cast<int>(f.size());\n\n    FPS result{1,\
+      \ 1 < static_cast<int>(f.size()) ? f[1] : mint(0)};\n    FPS inverse{1}, transformed_inverse,\
+      \ previous_transformed_inverse{1, 1};\n    for (int m = 2; m < precision; m\
+      \ <<= 1) {\n        FPS transformed_result = result;\n        transformed_result.resize(m\
+      \ << 1);\n        transformed_result.but();\n        transformed_inverse = previous_transformed_inverse;\n\
+      \        FPS correction(m);\n        correction = transformed_result.dot(transformed_inverse);\n\
+      \        correction.ibut();\n        std::fill_n(correction.begin(), m >> 1,\
+      \ mint(0));\n        correction.but();\n        correction.inplace_dot(-transformed_inverse);\n\
       \        correction.ibut();\n        inverse.insert(inverse.end(), correction.begin()\
       \ + (m >> 1), correction.end());\n        previous_transformed_inverse = inverse;\n\
       \        previous_transformed_inverse.resize(m << 1);\n        previous_transformed_inverse.but();\n\
@@ -607,8 +611,8 @@ data:
       \        std::fill_n(delta.begin(), m, mint(0));\n        delta.but();\n   \
       \     delta.inplace_dot(transformed_result);\n        delta.ibut();\n      \
       \  result.insert(result.end(), delta.begin() + m, delta.end());\n    }\n   \
-      \ return FPS(result.begin(), result.begin() + precision);\n}\n\ntemplate <ArbitraryModulusFormalPowerSeries\
-      \ FPS> FPS dense_exp(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
+      \ return FPS(result.begin(), result.begin() + precision);\n}\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS dense_exp(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
       \ FPS> FPS &inplace_dense_exp(FPS &f, int precision = -1) {\n    if (precision\
       \ == -1) precision = static_cast<int>(f.size());\n    return f = dense_exp(std::as_const(f),\
       \ precision);\n}\n\ntemplate <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_exp(FPS\
@@ -640,10 +644,10 @@ data:
       \    if (use_sparse) return inplace_sparse_exp(f, precision);\n    return inplace_dense_exp(f,\
       \ precision);\n}\n\n} // namespace kk2::fps::operations\n\n\n#line 1 \"fps/operations/inverse.hpp\"\
       \n\n\n\n#line 8 \"fps/operations/inverse.hpp\"\n\n#line 11 \"fps/operations/inverse.hpp\"\
-      \n\nnamespace kk2::fps::operations {\n\ntemplate <NTTFriendlyFormalPowerSeries\
-      \ FPS> FPS dense_inv(const FPS &f, int precision = -1) {\n    using mint = typename\
-      \ FPS::value_type;\n    assert(!f.empty() && f[0] != mint(0));\n    if (precision\
-      \ == -1) precision = static_cast<int>(f.size());\n\n    FPS result(precision);\n\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateNTTFriendlyFormalPowerSeries\
+      \ FPS>\nFPS dense_inv(const FPS &f, int precision = -1) {\n    using mint =\
+      \ typename FPS::value_type;\n    assert(!f.empty() && f[0] != mint(0));\n  \
+      \  if (precision == -1) precision = static_cast<int>(f.size());\n\n    FPS result(precision);\n\
       \    if (precision == 0) return result;\n    result[0] = mint(1) / f[0];\n \
       \   for (int d = 1; d < precision; d <<= 1) {\n        FPS lhs(2 * d), rhs(2\
       \ * d);\n        std::copy_n(f.begin(), std::min(static_cast<int>(f.size()),\
@@ -654,8 +658,8 @@ data:
       \ = std::min(2 * d, precision);\n        std::transform(lhs.begin() + d,\n \
       \                      lhs.begin() + next_precision,\n                     \
       \  result.begin() + d,\n                       [](const mint &coefficient) {\
-      \ return -coefficient; });\n    }\n    return result;\n}\n\ntemplate <ArbitraryModulusFormalPowerSeries\
-      \ FPS> FPS dense_inv(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
+      \ return -coefficient; });\n    }\n    return result;\n}\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS dense_inv(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
       \ FPS> FPS &inplace_dense_inv(FPS &f, int precision = -1) {\n    if (precision\
       \ == -1) precision = static_cast<int>(f.size());\n    return f = dense_inv(std::as_const(f),\
       \ precision);\n}\n\ntemplate <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_inv(FPS\
@@ -760,11 +764,11 @@ data:
       \    if (is_sparse_operation(FPSOperation::CONVOLUTION, true, a, b, deg))\n\
       \        return sparse_convolution(a, b, deg);\n    return dense_convolution(a,\
       \ b, deg);\n}\n\n} // namespace kk2\n\n\n#line 7 \"fps/operations/multiplication.hpp\"\
-      \n\nnamespace kk2::fps::operations {\n\ntemplate <NTTFriendlyFormalPowerSeries\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateNTTFriendlyFormalPowerSeries\
       \ FPS>\nFPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1)\
       \ {\n    return inplace_dense_convolution(lhs, rhs, precision);\n}\n\ntemplate\
-      \ <ArbitraryModulusFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS &lhs,\
-      \ const FPS &rhs, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
+      \ <UnivariateArbitraryModulusFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
+      \ &lhs, const FPS &rhs, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
       \ FPS>\nFPS dense_mul(const FPS &lhs, const FPS &rhs, int precision = -1) {\n\
       \    FPS result = lhs;\n    inplace_dense_mul(result, rhs, precision);\n   \
       \ return result;\n}\n\ntemplate <UnivariateFormalPowerSeries FPS>\nFPS &inplace_sparse_mul(FPS\
@@ -1322,137 +1326,137 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.002400068000000033
+  - elapsed: 0.002463603999984798
     environment: g++
-    memory: 3.884
+    memory: 3.768
     name: example_00
     status: AC
-  - elapsed: 0.09887546100000577
+  - elapsed: 0.11084909100000573
     environment: g++
-    memory: 11.396
+    memory: 11.332
     name: max_all_zero_00
     status: AC
-  - elapsed: 2.5581974480000014
+  - elapsed: 3.442272978999995
     environment: g++
-    memory: 23.896
+    memory: 23.852
     name: max_ans_zero_00
     status: AC
-  - elapsed: 2.540656143999996
+  - elapsed: 3.4440419520000205
     environment: g++
-    memory: 23.944
+    memory: 23.852
     name: max_random_00
     status: AC
-  - elapsed: 2.5485044130000034
+  - elapsed: 3.4409523570000147
     environment: g++
-    memory: 23.952
+    memory: 23.808
     name: max_random_01
     status: AC
-  - elapsed: 2.5778785090000014
+  - elapsed: 3.441241658999985
     environment: g++
-    memory: 23.912
+    memory: 23.836
     name: max_random_02
     status: AC
-  - elapsed: 2.5481110390000055
+  - elapsed: 3.4306959379999853
     environment: g++
-    memory: 23.936
+    memory: 23.852
     name: max_random_03
     status: AC
-  - elapsed: 2.549172913999996
+  - elapsed: 3.438103272000035
     environment: g++
-    memory: 23.912
+    memory: 23.856
     name: max_random_04
     status: AC
-  - elapsed: 1.220732518999995
+  - elapsed: 1.6496904240000276
     environment: g++
-    memory: 13.808
+    memory: 13.708
     name: near_262144_00
     status: AC
-  - elapsed: 1.2246321080000087
+  - elapsed: 1.6509634889999916
     environment: g++
-    memory: 13.808
+    memory: 13.744
     name: near_262144_01
     status: AC
-  - elapsed: 2.4834977109999983
+  - elapsed: 3.376569114000006
     environment: g++
-    memory: 23.028
+    memory: 22.964
     name: near_262144_02
     status: AC
-  - elapsed: 2.528040458999996
+  - elapsed: 3.4101872850000063
     environment: g++
-    memory: 23.512
+    memory: 23.456
     name: random_00
     status: AC
-  - elapsed: 2.558766708999997
+  - elapsed: 3.4278192280000326
     environment: g++
-    memory: 23.752
+    memory: 23.704
     name: random_01
     status: AC
-  - elapsed: 0.27685788600000194
+  - elapsed: 0.37532167599999866
     environment: g++
-    memory: 5.944
+    memory: 5.824
     name: random_02
     status: AC
-  - elapsed: 2.5619141340000056
+  - elapsed: 3.4211544199999935
     environment: g++
-    memory: 23.664
+    memory: 23.616
     name: random_03
     status: AC
-  - elapsed: 2.5142478129999972
+  - elapsed: 3.389861838999991
     environment: g++
-    memory: 23.064
+    memory: 23.016
     name: random_04
     status: AC
-  - elapsed: 0.0023654869999916173
+  - elapsed: 0.00246551800000816
     environment: g++
-    memory: 3.832
+    memory: 3.744
     name: small_degree_00
     status: AC
-  - elapsed: 0.0020414549999827614
+  - elapsed: 0.0021227359999898
     environment: g++
-    memory: 3.896
+    memory: 3.788
     name: small_degree_01
     status: AC
-  - elapsed: 0.00202530100000331
+  - elapsed: 0.002169723999998041
     environment: g++
-    memory: 3.808
+    memory: 3.768
     name: small_degree_02
     status: AC
-  - elapsed: 0.0019499379999956545
+  - elapsed: 0.00208315199995468
     environment: g++
-    memory: 3.86
+    memory: 3.808
     name: small_degree_03
     status: AC
-  - elapsed: 0.00196519299998954
+  - elapsed: 0.0020661260000451875
     environment: g++
-    memory: 3.908
+    memory: 3.8
     name: small_degree_04
     status: AC
-  - elapsed: 0.0019407329999978629
+  - elapsed: 0.002114885000025879
     environment: g++
-    memory: 3.832
+    memory: 3.624
     name: small_degree_05
     status: AC
-  - elapsed: 0.0019161100000246734
+  - elapsed: 0.0020699519999993754
     environment: g++
-    memory: 3.884
+    memory: 3.82
     name: small_degree_06
     status: AC
-  - elapsed: 0.00195866999999339
+  - elapsed: 0.0020977240000092934
     environment: g++
-    memory: 3.888
+    memory: 3.78
     name: small_degree_07
     status: AC
-  - elapsed: 0.0019118200000036722
+  - elapsed: 0.0020823500000233253
     environment: g++
-    memory: 3.832
+    memory: 3.788
     name: small_degree_08
     status: AC
-  - elapsed: 0.0019457580000050712
+  - elapsed: 0.002064756999970996
     environment: g++
-    memory: 3.684
+    memory: 3.824
     name: small_degree_09
     status: AC
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_exp.test.cpp

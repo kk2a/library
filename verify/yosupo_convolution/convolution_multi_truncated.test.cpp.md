@@ -364,20 +364,27 @@ data:
       \                              const FPS &b,\n                             \
       \                   const std::vector<int> &base) {\n    const int n = int(a.size());\n\
       \    if (!n) return a;\n    if (base.empty()) {\n        a[0] *= b[0];\n   \
-      \     return a;\n    }\n\n    FPS result(n);\n    for (int i = 0; i < n; ++i)\
-      \ {\n        int x = i;\n        std::vector<int> lhs_index(base.size());\n\
-      \        for (int d = 0; d < (int)base.size(); ++d) {\n            lhs_index[d]\
-      \ = x % base[d];\n            x /= base[d];\n        }\n        if (a[i] ==\
-      \ mint(0)) continue;\n        for (int j = 0; j < n; ++j) {\n            if\
-      \ (b[j] == mint(0)) continue;\n            int y = j, index = 0, stride = 1;\n\
-      \            bool in_range = true;\n            for (int d = 0; d < (int)base.size();\
-      \ ++d) {\n                const int coordinate = lhs_index[d] + y % base[d];\n\
-      \                y /= base[d];\n                if (coordinate >= base[d]) in_range\
-      \ = false;\n                index += coordinate * stride;\n                stride\
-      \ *= base[d];\n            }\n            if (in_range && index < n) result[index]\
-      \ += a[i] * b[j];\n        }\n    }\n    a = std::move(result);\n    return\
-      \ a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS\
-      \ multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
+      \     return a;\n    }\n\n    std::vector<std::pair<int, mint>> support_b;\n\
+      \    for (int j = 0; j < n; ++j) {\n        if (b[j] != mint(0)) support_b.emplace_back(j,\
+      \ b[j]);\n    }\n\n    // The mixed-radix index is an order extension of the\
+      \ coordinate-wise\n    // order. Therefore contributions from an input index\
+      \ i only go to indices\n    // at least i. Processing source indices in descending\
+      \ order preserves the\n    // original value of a[i], while propagating it directly\
+      \ into the output.\n    std::vector<int> lhs_index(base.size());\n    for (int\
+      \ i = n - 1; i >= 0; --i) {\n        const mint coefficient = a[i];\n      \
+      \  a[i] = mint(0);\n        if (coefficient == mint(0)) continue;\n\n      \
+      \  int x = i;\n        for (int d = 0; d < (int)base.size(); ++d) {\n      \
+      \      lhs_index[d] = x % base[d];\n            x /= base[d];\n        }\n\n\
+      \        for (const auto &[j, b_j] : support_b) {\n            int y = j, index\
+      \ = 0, stride = 1;\n            bool in_range = true;\n            for (int\
+      \ d = 0; d < (int)base.size(); ++d) {\n                const int coordinate\
+      \ = lhs_index[d] + y % base[d];\n                y /= base[d];\n           \
+      \     if (coordinate >= base[d]) {\n                    in_range = false;\n\
+      \                    break;\n                }\n                index += coordinate\
+      \ * stride;\n                stride *= base[d];\n            }\n           \
+      \ if (in_range && index < n) a[index] += coefficient * b_j;\n        }\n   \
+      \ }\n    return a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      FPS multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
       \ &base) {\n    FPS result = a;\n    inplace_multi_convolution_truncated<FPS,\
       \ mint>(result, b, base);\n    return result;\n}\n\n} // namespace kk2\n\n\n\
       #line 1 \"modint/mont.hpp\"\n\n\n\n#line 6 \"modint/mont.hpp\"\n#include <iostream>\n\
@@ -681,92 +688,92 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.483689035999987
+  - elapsed: 0.4712473149999994
     environment: g++
-    memory: 13.876
+    memory: 13.868
     name: dim1_00
     status: AC
-  - elapsed: 0.4874872430000039
+  - elapsed: 0.47398398299999656
     environment: g++
-    memory: 13.732
+    memory: 13.932
     name: dim1_01
     status: AC
-  - elapsed: 0.9176398889999859
+  - elapsed: 0.9025693429999961
     environment: g++
-    memory: 17.74
+    memory: 17.732
     name: dim2_00
     status: AC
-  - elapsed: 0.931541416999977
+  - elapsed: 0.9346854940000071
     environment: g++
-    memory: 17.98
+    memory: 17.832
     name: dim2_01
     status: AC
-  - elapsed: 0.0021040530000107083
+  - elapsed: 0.0021117419999967524
     environment: g++
-    memory: 3.856
+    memory: 3.868
     name: example_00
     status: AC
-  - elapsed: 0.0016473629999893546
+  - elapsed: 0.0017152749999951311
     environment: g++
-    memory: 3.856
+    memory: 3.768
     name: example_01
     status: AC
-  - elapsed: 0.0016346940000175891
+  - elapsed: 0.0015656089999964706
     environment: g++
-    memory: 3.872
+    memory: 3.756
     name: example_02
     status: AC
-  - elapsed: 0.001599762000012106
+  - elapsed: 0.001518488000002094
     environment: g++
-    memory: 3.784
+    memory: 3.768
     name: k0_00
     status: AC
-  - elapsed: 0.0016144829999973354
+  - elapsed: 0.0015757949999937182
     environment: g++
-    memory: 3.86
+    memory: 3.872
     name: k0_01
     status: AC
-  - elapsed: 3.175827093999999
+  - elapsed: 3.161654664000011
     environment: g++
-    memory: 36.62
+    memory: 36.612
     name: max_random_00
     status: AC
-  - elapsed: 3.223427412999996
+  - elapsed: 3.167728537000002
     environment: g++
     memory: 37.228
     name: max_random_01
     status: AC
-  - elapsed: 0.004354594999995243
+  - elapsed: 0.004167274000010934
     environment: g++
-    memory: 3.84
+    memory: 3.892
     name: small_00
     status: AC
-  - elapsed: 0.005463225999989163
+  - elapsed: 0.004927885000000742
     environment: g++
-    memory: 4.012
+    memory: 4.052
     name: small_01
     status: AC
-  - elapsed: 7.256057277999986
+  - elapsed: 6.9058851970000035
     environment: g++
-    memory: 66.004
+    memory: 66.012
     name: threes_00
     status: AC
-  - elapsed: 6.479636749999997
+  - elapsed: 6.234863992000001
     environment: g++
-    memory: 61.016
+    memory: 61.24
     name: threes_01
     status: AC
-  - elapsed: 9.566323952999994
+  - elapsed: 9.277399194999987
     environment: g++
-    memory: 83.592
+    memory: 83.436
     name: twos_00
     status: AC
-  - elapsed: 4.3304087999999865
+  - elapsed: 4.162391379999974
     environment: g++
-    memory: 41.452
+    memory: 41.608
     name: twos_01
     status: AC
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_convolution/convolution_multi_truncated.test.cpp

@@ -46,6 +46,21 @@ data:
     - filename: fps_multivariate.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_multivariate.hpp
+    - filename: exponential.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/exponential.hpp
+    - filename: inverse.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/inverse.hpp
+    - filename: logarithm.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/logarithm.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/multiplication.hpp
+    - filename: power.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/power.hpp
     type: Required by
   - files:
     - filename: multivariate_convolution.test.cpp
@@ -124,52 +139,55 @@ data:
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
-      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
-      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
+      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
+      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
-      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
-      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
-      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
-      \ namespace kk2::fps\n\n\n#line 1 \"convolution/convolution_arb.hpp\"\n\n\n\n\
-      #include <algorithm>\n#line 6 \"convolution/convolution_arb.hpp\"\n\n#line 1\
-      \ \"math_mod/garner.hpp\"\n\n\n\n#include <cassert>\n#line 6 \"math_mod/garner.hpp\"\
-      \n\n#line 1 \"math_mod/inv.hpp\"\n\n\n\n#line 5 \"math_mod/inv.hpp\"\n\nnamespace\
-      \ kk2 {\n\n// require: modulo >= 1\ntemplate <class T> constexpr T mod_inversion(T\
-      \ a, T modulo) {\n    a %= modulo;\n    if (a < 0) a += modulo;\n    T s = modulo,\
-      \ t = a;\n    T m0 = 0, m1 = 1;\n    while (t) {\n        T u = s / t;\n   \
-      \     std::swap(s -= t * u, t);\n        std::swap(m0 -= m1 * u, m1);\n    }\n\
-      \    if (m0 < 0) m0 += modulo;\n    return m0;\n}\n\n} // namespace kk2\n\n\n\
-      #line 8 \"math_mod/garner.hpp\"\n\nnamespace kk2 {\n\ntemplate <class T> T garner(const\
-      \ std::vector<T> &d, const std::vector<T> &p) {\n    assert(d.size() + 1 ==\
-      \ p.size());\n    int nm = d.size();\n    std::vector<T> kp(nm + 1, 0), rmult(nm\
-      \ + 1, 1);\n    for (int ii = 0; ii < nm; ii++) {\n        T x = (d[ii] - kp[ii])\
-      \ * mod_inversion(rmult[ii], p[ii]) % p[ii];\n        if (x < 0) x += p[ii];\n\
-      \        for (int iii = ii + 1; iii < nm + 1; iii++) {\n            kp[iii]\
-      \ = (kp[iii] + rmult[iii] * x) % p[iii];\n            rmult[iii] = (rmult[iii]\
-      \ * p[ii]) % p[iii];\n        }\n    }\n    return kp[nm];\n}\n\n} // namespace\
-      \ kk2\n\n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n\
-      #include <cstdint>\n#include <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line\
-      \ 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
-      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
-      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
-      \                                              or std::is_same<T, __int128>::value,\n\
-      \                                                   std::true_type,\n      \
-      \                                             std::false_type>::type;\n\ntemplate\
-      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
+      \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
+      \ MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::multivariate>;\n\
+      \n// Short names for the categories that are commonly used in algorithms.\n\
+      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
+      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
+      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
+      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
+      \n\n#line 1 \"convolution/convolution_arb.hpp\"\n\n\n\n#include <algorithm>\n\
+      #line 6 \"convolution/convolution_arb.hpp\"\n\n#line 1 \"math_mod/garner.hpp\"\
+      \n\n\n\n#include <cassert>\n#line 6 \"math_mod/garner.hpp\"\n\n#line 1 \"math_mod/inv.hpp\"\
+      \n\n\n\n#line 5 \"math_mod/inv.hpp\"\n\nnamespace kk2 {\n\n// require: modulo\
+      \ >= 1\ntemplate <class T> constexpr T mod_inversion(T a, T modulo) {\n    a\
+      \ %= modulo;\n    if (a < 0) a += modulo;\n    T s = modulo, t = a;\n    T m0\
+      \ = 0, m1 = 1;\n    while (t) {\n        T u = s / t;\n        std::swap(s -=\
+      \ t * u, t);\n        std::swap(m0 -= m1 * u, m1);\n    }\n    if (m0 < 0) m0\
+      \ += modulo;\n    return m0;\n}\n\n} // namespace kk2\n\n\n#line 8 \"math_mod/garner.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <class T> T garner(const std::vector<T> &d,\
+      \ const std::vector<T> &p) {\n    assert(d.size() + 1 == p.size());\n    int\
+      \ nm = d.size();\n    std::vector<T> kp(nm + 1, 0), rmult(nm + 1, 1);\n    for\
+      \ (int ii = 0; ii < nm; ii++) {\n        T x = (d[ii] - kp[ii]) * mod_inversion(rmult[ii],\
+      \ p[ii]) % p[ii];\n        if (x < 0) x += p[ii];\n        for (int iii = ii\
+      \ + 1; iii < nm + 1; iii++) {\n            kp[iii] = (kp[iii] + rmult[iii] *\
+      \ x) % p[iii];\n            rmult[iii] = (rmult[iii] * p[ii]) % p[iii];\n  \
+      \      }\n    }\n    return kp[nm];\n}\n\n} // namespace kk2\n\n\n#line 1 \"\
+      modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include <cstdint>\n#include\
+      \ <iostream>\n#line 8 \"modint/mont.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
-      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                                            std::true_type,\n             \
-      \                               std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -584,7 +602,12 @@ data:
   pathExtension: hpp
   requiredBy:
   - fps/fps_multivariate.hpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  - fps/operations/multivariate/exponential.hpp
+  - fps/operations/multivariate/inverse.hpp
+  - fps/operations/multivariate/logarithm.hpp
+  - fps/operations/multivariate/multiplication.hpp
+  - fps/operations/multivariate/power.hpp
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/multivariate_convolution.test.cpp

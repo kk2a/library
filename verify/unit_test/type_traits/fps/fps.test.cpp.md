@@ -23,6 +23,12 @@ data:
     - filename: fps_base.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_base.hpp
+    - filename: fps_bivariate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_bivariate.hpp
+    - filename: fps_egf.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_egf.hpp
     - filename: fps_multivariate.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_multivariate.hpp
@@ -32,6 +38,9 @@ data:
     - filename: fps_sparsity_detector.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_sparsity_detector.hpp
+    - filename: fps_sps.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_sps.hpp
     - filename: exponential.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/arb/exponential.hpp
@@ -56,6 +65,21 @@ data:
     - filename: multiplication.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/multiplication.hpp
+    - filename: exponential.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/exponential.hpp
+    - filename: inverse.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/inverse.hpp
+    - filename: logarithm.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/logarithm.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/multiplication.hpp
+    - filename: power.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/power.hpp
     - filename: power.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/power.hpp
@@ -107,9 +131,12 @@ data:
   - convolution/multi_convolution_truncated_arb.hpp
   - fps/fps_arb.hpp
   - fps/fps_base.hpp
+  - fps/fps_bivariate.hpp
+  - fps/fps_egf.hpp
   - fps/fps_multivariate.hpp
   - fps/fps_ntt_friendly.hpp
   - fps/fps_sparsity_detector.hpp
+  - fps/fps_sps.hpp
   - fps/operations/arb/exponential.hpp
   - fps/operations/arb/inverse.hpp
   - fps/operations/arb/multiplication.hpp
@@ -118,6 +145,11 @@ data:
   - fps/operations/inverse.hpp
   - fps/operations/logarithm.hpp
   - fps/operations/multiplication.hpp
+  - fps/operations/multivariate/exponential.hpp
+  - fps/operations/multivariate/inverse.hpp
+  - fps/operations/multivariate/logarithm.hpp
+  - fps/operations/multivariate/multiplication.hpp
+  - fps/operations/multivariate/power.hpp
   - fps/operations/power.hpp
   - fps/operations/sqrt.hpp
   - math_mod/butterfly.hpp
@@ -134,12 +166,16 @@ data:
   embedded:
   - code: "// competitive-verifier: STANDALONE\n\n#include \"../../../../type_traits/fps.hpp\"\
       \n\n#include <vector>\n\n#include \"../../../../fps/fps_arb.hpp\"\n#include\
-      \ \"../../../../fps/fps_multivariate.hpp\"\n#include \"../../../../fps/fps_ntt_friendly.hpp\"\
-      \n#include \"../../../../modint/mont.hpp\"\n\nusing NTTFPS = kk2::FPSNTT<kk2::mont998>;\n\
-      using ArbFPS = kk2::FPSArb<kk2::mont998>;\nusing MFPS = kk2::MultivariateFormalPowerSeries<kk2::mont998>;\n\
-      using MFPSArb = kk2::MultivariateFormalPowerSeriesArbitrary<kk2::mont107>;\n\
-      \nstruct FutureSPS : std::vector<int> {\n    using std::vector<int>::vector;\n\
-      \    using value_type = int;\n    using modulus_category = kk2::fps::category::arbitrary_modulus;\n\
+      \ \"../../../../fps/fps_bivariate.hpp\"\n#include \"../../../../fps/fps_egf.hpp\"\
+      \n#include \"../../../../fps/fps_multivariate.hpp\"\n#include \"../../../../fps/fps_ntt_friendly.hpp\"\
+      \n#include \"../../../../fps/fps_sps.hpp\"\n#include \"../../../../modint/mont.hpp\"\
+      \n\nusing NTTFPS = kk2::FPSNTT<kk2::mont998>;\nusing ArbFPS = kk2::FPSArb<kk2::mont998>;\n\
+      using MFPS = kk2::MultivariateFormalPowerSeries<kk2::mont998>;\nusing MFPSArb\
+      \ = kk2::MultivariateFormalPowerSeriesArbitrary<kk2::mont107>;\nusing BFPS =\
+      \ kk2::BivariateFormalPowerSeries<kk2::mont998>;\nusing SPS = kk2::SetPowerSeries<kk2::mont998>;\n\
+      using EGF = kk2::ExponentialGeneratingFunction<kk2::mont998>;\n\nstruct FutureSPS\
+      \ : std::vector<int> {\n    using std::vector<int>::vector;\n    using value_type\
+      \ = int;\n    using modulus_category = kk2::fps::category::arbitrary_modulus;\n\
       \    using series_category = kk2::fps::category::set_power_series;\n};\n\nstruct\
       \ FutureEGFBivariate : std::vector<int> {\n    using std::vector<int>::vector;\n\
       \    using value_type = int;\n    using modulus_category = kk2::fps::category::arbitrary_modulus;\n\
@@ -150,7 +186,10 @@ data:
       static_assert(!kk2::fps::ArbitraryModulusFormalPowerSeries<NTTFPS>);\n\nstatic_assert(kk2::fps::ArbitraryModulusFormalPowerSeries<ArbFPS>);\n\
       static_assert(kk2::fps::FormalPowerSeries<MFPS>);\nstatic_assert(kk2::fps::MultivariateFormalPowerSeries<MFPS>);\n\
       static_assert(kk2::fps::FormalPowerSeries<MFPSArb>);\nstatic_assert(kk2::fps::ArbitraryModulusFormalPowerSeries<MFPSArb>);\n\
-      static_assert(kk2::fps::MultivariateFormalPowerSeries<MFPSArb>);\n\nstatic_assert(kk2::fps::SetPowerSeries<FutureSPS>);\n\
+      static_assert(kk2::fps::MultivariateFormalPowerSeries<MFPSArb>);\n\nstatic_assert(kk2::fps::BivariateFormalPowerSeries<BFPS>);\n\
+      static_assert(kk2::fps::SetPowerSeries<SPS>);\nstatic_assert(kk2::fps::ExponentialGeneratingFunction<EGF>);\n\
+      static_assert(kk2::fps::Bivariate<BFPS>);\nstatic_assert(kk2::fps::SPS<SPS>);\n\
+      static_assert(kk2::fps::EGF<EGF>);\n\nstatic_assert(kk2::fps::SetPowerSeries<FutureSPS>);\n\
       static_assert(kk2::fps::SPS<FutureSPS>);\nstatic_assert(kk2::fps::EGF<FutureEGFBivariate>);\n\
       static_assert(kk2::fps::Bivariate<FutureEGFBivariate>);\nstatic_assert(!kk2::fps::Multivariate<FutureEGFBivariate>);\n\
       \nint main() {}\n"
@@ -179,48 +218,51 @@ data:
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
-      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
-      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
+      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
+      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
-      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
-      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
-      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
-      \ namespace kk2::fps\n\n\n#line 4 \"verify/unit_test/type_traits/fps/fps.test.cpp\"\
-      \n\n#include <vector>\n\n#line 1 \"fps/fps_arb.hpp\"\n\n\n\n#include <cstdlib>\n\
-      \n#line 1 \"fps/fps_base.hpp\"\n\n\n\n#include <algorithm>\n#include <iostream>\n\
-      #line 7 \"fps/fps_base.hpp\"\n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line\
-      \ 5 \"math_mod/inv_table.hpp\"\n\nnamespace kk2 {\n\n/**\n * @brief `[1, n]`\u306E\
-      mod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n\
-      \ * @tparam mint\n */\ntemplate <class mint> struct InvTable {\n    static inline\
-      \ std::vector<mint> _invs{0, 1};\n    InvTable() = delete;\n\n    static void\
-      \ set_upper(int m) {\n        if ((int)_invs.size() > m) return;\n        int\
-      \ start = _invs.size();\n        auto mod = mint::getmod();\n        _invs.resize(m\
-      \ + 1);\n        // p = q * i + r\n        // - q / r = 1 / i (mod p)\n    \
-      \    for (int i = start; i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod /\
-      \ i);\n    }\n\n    static inline mint inv(int n) {\n        bool neg = n <\
-      \ 0;\n        if (neg) n = -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n\
-      \        return neg ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\
-      \n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
-      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
-      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
-      \                                              or std::is_same<T, __int128>::value,\n\
-      \                                                   std::true_type,\n      \
-      \                                             std::false_type>::type;\n\ntemplate\
-      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
+      \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
+      \ MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::multivariate>;\n\
+      \n// Short names for the categories that are commonly used in algorithms.\n\
+      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
+      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
+      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
+      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
+      \n\n#line 4 \"verify/unit_test/type_traits/fps/fps.test.cpp\"\n\n#include <vector>\n\
+      \n#line 1 \"fps/fps_arb.hpp\"\n\n\n\n#include <cstdlib>\n\n#line 1 \"fps/fps_base.hpp\"\
+      \n\n\n\n#include <algorithm>\n#include <iostream>\n#line 7 \"fps/fps_base.hpp\"\
+      \n\n#line 1 \"math_mod/inv_table.hpp\"\n\n\n\n#line 5 \"math_mod/inv_table.hpp\"\
+      \n\nnamespace kk2 {\n\n/**\n * @brief `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\
+      \u6319\u3059\u308B\u30C6\u30FC\u30D6\u30EB\n *\n * @tparam mint\n */\ntemplate\
+      \ <class mint> struct InvTable {\n    static inline std::vector<mint> _invs{0,\
+      \ 1};\n    InvTable() = delete;\n\n    static void set_upper(int m) {\n    \
+      \    if ((int)_invs.size() > m) return;\n        int start = _invs.size();\n\
+      \        auto mod = mint::getmod();\n        _invs.resize(m + 1);\n        //\
+      \ p = q * i + r\n        // - q / r = 1 / i (mod p)\n        for (int i = start;\
+      \ i <= m; ++i) _invs[i] = (-_invs[mod % i]) * (mod / i);\n    }\n\n    static\
+      \ inline mint inv(int n) {\n        bool neg = n < 0;\n        if (neg) n =\
+      \ -n;\n        if (n >= (int)_invs.size()) set_upper(n);\n        return neg\
+      \ ? -_invs[n] : _invs[n];\n    }\n};\n\n} // namespace kk2\n\n\n#line 1 \"type_traits/integral.hpp\"\
+      \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
+      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value\n                                                     \
+      \  or std::is_same<T, __int128>::value,\n                                  \
+      \                 std::true_type,\n                                        \
+      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
+      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
+      \                               or std::is_same<T, unsigned __int128>::value,\n\
       \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
-      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                                            std::true_type,\n             \
-      \                               std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
+      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
+      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
+      \                                  or is_unsigned_int128<T>::value,\n      \
+      \                        std::true_type,\n                              std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value,\n                                         \
+      \   std::true_type,\n                                            std::false_type>::type;\n\
+      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
       \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
       \                              std::false_type>::type;\n\ntemplate <typename\
       \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -510,17 +552,17 @@ data:
       \ {\n    FPS result = dividend;\n    return inplace_mod(result, divisor);\n\
       }\n\n} // namespace kk2::fps::operations\n\n\n#line 1 \"fps/operations/exponential.hpp\"\
       \n\n\n\n#line 8 \"fps/operations/exponential.hpp\"\n\n#line 11 \"fps/operations/exponential.hpp\"\
-      \n\nnamespace kk2::fps::operations {\n\ntemplate <NTTFriendlyFormalPowerSeries\
-      \ FPS> FPS dense_exp(const FPS &f, int precision = -1) {\n    using mint = typename\
-      \ FPS::value_type;\n    assert(f.empty() || f[0] == mint(0));\n    if (precision\
-      \ == -1) precision = static_cast<int>(f.size());\n\n    FPS result{1, 1 < static_cast<int>(f.size())\
-      \ ? f[1] : mint(0)};\n    FPS inverse{1}, transformed_inverse, previous_transformed_inverse{1,\
-      \ 1};\n    for (int m = 2; m < precision; m <<= 1) {\n        FPS transformed_result\
-      \ = result;\n        transformed_result.resize(m << 1);\n        transformed_result.but();\n\
-      \        transformed_inverse = previous_transformed_inverse;\n        FPS correction(m);\n\
-      \        correction = transformed_result.dot(transformed_inverse);\n       \
-      \ correction.ibut();\n        std::fill_n(correction.begin(), m >> 1, mint(0));\n\
-      \        correction.but();\n        correction.inplace_dot(-transformed_inverse);\n\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateNTTFriendlyFormalPowerSeries\
+      \ FPS>\nFPS dense_exp(const FPS &f, int precision = -1) {\n    using mint =\
+      \ typename FPS::value_type;\n    assert(f.empty() || f[0] == mint(0));\n   \
+      \ if (precision == -1) precision = static_cast<int>(f.size());\n\n    FPS result{1,\
+      \ 1 < static_cast<int>(f.size()) ? f[1] : mint(0)};\n    FPS inverse{1}, transformed_inverse,\
+      \ previous_transformed_inverse{1, 1};\n    for (int m = 2; m < precision; m\
+      \ <<= 1) {\n        FPS transformed_result = result;\n        transformed_result.resize(m\
+      \ << 1);\n        transformed_result.but();\n        transformed_inverse = previous_transformed_inverse;\n\
+      \        FPS correction(m);\n        correction = transformed_result.dot(transformed_inverse);\n\
+      \        correction.ibut();\n        std::fill_n(correction.begin(), m >> 1,\
+      \ mint(0));\n        correction.but();\n        correction.inplace_dot(-transformed_inverse);\n\
       \        correction.ibut();\n        inverse.insert(inverse.end(), correction.begin()\
       \ + (m >> 1), correction.end());\n        previous_transformed_inverse = inverse;\n\
       \        previous_transformed_inverse.resize(m << 1);\n        previous_transformed_inverse.but();\n\
@@ -536,8 +578,8 @@ data:
       \        std::fill_n(delta.begin(), m, mint(0));\n        delta.but();\n   \
       \     delta.inplace_dot(transformed_result);\n        delta.ibut();\n      \
       \  result.insert(result.end(), delta.begin() + m, delta.end());\n    }\n   \
-      \ return FPS(result.begin(), result.begin() + precision);\n}\n\ntemplate <ArbitraryModulusFormalPowerSeries\
-      \ FPS> FPS dense_exp(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
+      \ return FPS(result.begin(), result.begin() + precision);\n}\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS dense_exp(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
       \ FPS> FPS &inplace_dense_exp(FPS &f, int precision = -1) {\n    if (precision\
       \ == -1) precision = static_cast<int>(f.size());\n    return f = dense_exp(std::as_const(f),\
       \ precision);\n}\n\ntemplate <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_exp(FPS\
@@ -569,10 +611,10 @@ data:
       \    if (use_sparse) return inplace_sparse_exp(f, precision);\n    return inplace_dense_exp(f,\
       \ precision);\n}\n\n} // namespace kk2::fps::operations\n\n\n#line 1 \"fps/operations/inverse.hpp\"\
       \n\n\n\n#line 8 \"fps/operations/inverse.hpp\"\n\n#line 11 \"fps/operations/inverse.hpp\"\
-      \n\nnamespace kk2::fps::operations {\n\ntemplate <NTTFriendlyFormalPowerSeries\
-      \ FPS> FPS dense_inv(const FPS &f, int precision = -1) {\n    using mint = typename\
-      \ FPS::value_type;\n    assert(!f.empty() && f[0] != mint(0));\n    if (precision\
-      \ == -1) precision = static_cast<int>(f.size());\n\n    FPS result(precision);\n\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateNTTFriendlyFormalPowerSeries\
+      \ FPS>\nFPS dense_inv(const FPS &f, int precision = -1) {\n    using mint =\
+      \ typename FPS::value_type;\n    assert(!f.empty() && f[0] != mint(0));\n  \
+      \  if (precision == -1) precision = static_cast<int>(f.size());\n\n    FPS result(precision);\n\
       \    if (precision == 0) return result;\n    result[0] = mint(1) / f[0];\n \
       \   for (int d = 1; d < precision; d <<= 1) {\n        FPS lhs(2 * d), rhs(2\
       \ * d);\n        std::copy_n(f.begin(), std::min(static_cast<int>(f.size()),\
@@ -583,8 +625,8 @@ data:
       \ = std::min(2 * d, precision);\n        std::transform(lhs.begin() + d,\n \
       \                      lhs.begin() + next_precision,\n                     \
       \  result.begin() + d,\n                       [](const mint &coefficient) {\
-      \ return -coefficient; });\n    }\n    return result;\n}\n\ntemplate <ArbitraryModulusFormalPowerSeries\
-      \ FPS> FPS dense_inv(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
+      \ return -coefficient; });\n    }\n    return result;\n}\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS dense_inv(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
       \ FPS> FPS &inplace_dense_inv(FPS &f, int precision = -1) {\n    if (precision\
       \ == -1) precision = static_cast<int>(f.size());\n    return f = dense_inv(std::as_const(f),\
       \ precision);\n}\n\ntemplate <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_inv(FPS\
@@ -792,11 +834,11 @@ data:
       \    if (is_sparse_operation(FPSOperation::CONVOLUTION, true, a, b, deg))\n\
       \        return sparse_convolution(a, b, deg);\n    return dense_convolution(a,\
       \ b, deg);\n}\n\n} // namespace kk2\n\n\n#line 7 \"fps/operations/multiplication.hpp\"\
-      \n\nnamespace kk2::fps::operations {\n\ntemplate <NTTFriendlyFormalPowerSeries\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateNTTFriendlyFormalPowerSeries\
       \ FPS>\nFPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1)\
       \ {\n    return inplace_dense_convolution(lhs, rhs, precision);\n}\n\ntemplate\
-      \ <ArbitraryModulusFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS &lhs,\
-      \ const FPS &rhs, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
+      \ <UnivariateArbitraryModulusFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
+      \ &lhs, const FPS &rhs, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
       \ FPS>\nFPS dense_mul(const FPS &lhs, const FPS &rhs, int precision = -1) {\n\
       \    FPS result = lhs;\n    inplace_dense_mul(result, rhs, precision);\n   \
       \ return result;\n}\n\ntemplate <UnivariateFormalPowerSeries FPS>\nFPS &inplace_sparse_mul(FPS\
@@ -1108,8 +1150,8 @@ data:
       \ }\n    FPS iimos(int n) const { return FPS(derived()).inplace_iimos(n); }\n\
       };\n\n} // namespace kk2\n\n\n#line 1 \"fps/operations/arb/exponential.hpp\"\
       \n\n\n\n#line 5 \"fps/operations/arb/exponential.hpp\"\n\n#line 8 \"fps/operations/arb/exponential.hpp\"\
-      \n\nnamespace kk2::fps::operations {\n\ntemplate <ArbitraryModulusFormalPowerSeries\
-      \ FPS> FPS dense_exp(const FPS &f, int precision) {\n    using mint = typename\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS dense_exp(const FPS &f, int precision) {\n    using mint = typename\
       \ FPS::value_type;\n    assert(f.empty() || f[0] == mint(0));\n    if (precision\
       \ == -1) precision = static_cast<int>(f.size());\n\n    FPS result{mint(1)};\n\
       \    for (int d = 1; d < precision; d <<= 1) {\n        result = result.dense_mul(f.pre(d\
@@ -1117,7 +1159,7 @@ data:
       \ result.pre(precision);\n}\n\n} // namespace kk2::fps::operations\n\n\n#line\
       \ 1 \"fps/operations/arb/inverse.hpp\"\n\n\n\n#line 5 \"fps/operations/arb/inverse.hpp\"\
       \n\n#line 8 \"fps/operations/arb/inverse.hpp\"\n\nnamespace kk2::fps::operations\
-      \ {\n\ntemplate <ArbitraryModulusFormalPowerSeries FPS> FPS dense_inv(const\
+      \ {\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries FPS>\nFPS dense_inv(const\
       \ FPS &f, int precision) {\n    using mint = typename FPS::value_type;\n   \
       \ assert(!f.empty() && f[0] != mint(0));\n    if (precision == -1) precision\
       \ = static_cast<int>(f.size());\n    if (precision == 0) return {};\n\n    FPS\
@@ -1225,7 +1267,7 @@ data:
       \ {\n    if (is_sparse_operation(FPSOperation::CONVOLUTION, false, a, b, deg))\n\
       \        return sparse_convolution_arb(a, b, deg);\n    return dense_convolution_arb(a,\
       \ b, deg);\n}\n\n} // namespace kk2\n\n\n#line 7 \"fps/operations/arb/multiplication.hpp\"\
-      \n\nnamespace kk2::fps::operations {\n\ntemplate <ArbitraryModulusFormalPowerSeries\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
       \ FPS>\nFPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision) {\n\
       \    return inplace_dense_convolution_arb(lhs, rhs, precision);\n}\n\n} // namespace\
       \ kk2::fps::operations\n\n\n#line 10 \"fps/fps_arb.hpp\"\n\nnamespace kk2 {\n\
@@ -1239,8 +1281,109 @@ data:
       \ = false;\n\n    void but() { exit(1); }\n    void ibut() { exit(1); }\n  \
       \  void db() { exit(1); }\n    static int but_pr() {\n        exit(1);\n   \
       \     return 0;\n    }\n};\n\ntemplate <fps::Modular mint> using FPSArb = FormalPowerSeriesArbitrary<mint>;\n\
-      \n} // namespace kk2\n\n\n#line 1 \"fps/fps_multivariate.hpp\"\n\n\n\n#line\
-      \ 9 \"fps/fps_multivariate.hpp\"\n\n#line 1 \"convolution/multi_convolution_truncated.hpp\"\
+      \n} // namespace kk2\n\n\n#line 1 \"fps/fps_bivariate.hpp\"\n\n\n\n#line 5 \"\
+      fps/fps_bivariate.hpp\"\n\n#line 1 \"fps/fps_ntt_friendly.hpp\"\n\n\n\n#line\
+      \ 6 \"fps/fps_ntt_friendly.hpp\"\n\nnamespace kk2 {\n\ntemplate <fps::Modular\
+      \ mint>\nstruct FormalPowerSeriesNTTFriendly\n    : FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>,\
+      \ mint> {\n    using base = FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>,\
+      \ mint>;\n    using FPS = FormalPowerSeriesNTTFriendly<mint>;\n    using base::FormalPowerSeriesBase;\n\
+      \    using base::operator*=; // \u57FA\u5E95\u30AF\u30E9\u30B9\u306Eoperator*=\u3092\
+      \u7D99\u627F\n    using modulus_category = kk2::fps::category::ntt_friendly_modulus;\n\
+      \    using series_category = kk2::fps::category::ordinary;\n    using variable_category\
+      \ = kk2::fps::category::univariate;\n    static constexpr bool is_ntt_friendly\
+      \ = true;\n\n    void but() { butterfly(*this); }\n    void ibut() { butterfly_inv(*this);\
+      \ }\n    void db() { doubling(*this); }\n    static int but_pr() { return primitive_root<mint::getmod()>;\
+      \ }\n};\n\ntemplate <fps::Modular mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;\n\
+      \n} // namespace kk2\n\n\n#line 7 \"fps/fps_bivariate.hpp\"\n\nnamespace kk2\
+      \ {\n\n// A rectangular bivariate FPS. The implementation can use either the\n\
+      // Kronecker-substitution/2-D NTT product or a truncated 2-D convolution.\n\
+      // Inversion is naturally implemented by Newton iteration, while log/exp/pow\n\
+      // follow from the formal derivative and integral in the two coordinates.\n\
+      template <fps::Modular mint,\n          template <fps::Modular> class UnivariateFPS\
+      \ = FormalPowerSeriesNTTFriendly>\nstruct BivariateFormalPowerSeries {\n   \
+      \ using bfps = BivariateFormalPowerSeries;\n    using fps = UnivariateFPS<mint>;\n\
+      \    using value_type = mint;\n    using modulus_category = typename fps::modulus_category;\n\
+      \    using series_category = kk2::fps::category::ordinary;\n    using variable_category\
+      \ = kk2::fps::category::bivariate;\n    using iterator = typename std::vector<mint>::iterator;\n\
+      \    using const_iterator = typename std::vector<mint>::const_iterator;\n\n\
+      \    BivariateFormalPowerSeries() = default;\n    BivariateFormalPowerSeries(int\
+      \ x_size, int y_size);\n\n    int size() const;\n    iterator begin();\n   \
+      \ const_iterator begin() const;\n    iterator end();\n    const_iterator end()\
+      \ const;\n    mint &operator[](int index);\n    const mint &operator[](int index)\
+      \ const;\n    mint &operator()(int x, int y);\n    const mint &operator()(int\
+      \ x, int y) const;\n\n    bfps &operator+=(const bfps &rhs);\n    bfps &operator-=(const\
+      \ bfps &rhs);\n    bfps &operator*=(const bfps &rhs);\n    bfps &operator+=(const\
+      \ mint &rhs);\n    bfps &operator-=(const mint &rhs);\n    bfps &operator*=(const\
+      \ mint &rhs);\n    bfps &operator/=(const mint &rhs);\n    bfps operator+(const\
+      \ bfps &rhs) const;\n    bfps operator-(const bfps &rhs) const;\n    bfps operator*(const\
+      \ bfps &rhs) const;\n    bfps operator+(const mint &rhs) const;\n    bfps operator-(const\
+      \ mint &rhs) const;\n    bfps operator*(const mint &rhs) const;\n    bfps operator/(const\
+      \ mint &rhs) const;\n\n    bfps dense_mul(const bfps &rhs) const;\n    bfps\
+      \ &inplace_dense_mul(const bfps &rhs);\n    bfps sparse_mul(const bfps &rhs)\
+      \ const;\n    bfps &inplace_sparse_mul(const bfps &rhs);\n    bfps mul(const\
+      \ bfps &rhs) const;\n    bfps &inplace_mul(const bfps &rhs);\n    bfps dense_inv()\
+      \ const;\n    bfps &inplace_dense_inv();\n    bfps sparse_inv() const;\n   \
+      \ bfps &inplace_sparse_inv();\n    bfps inv() const;\n    bfps &inplace_inv();\n\
+      \    bfps dense_log() const;\n    bfps &inplace_dense_log();\n    bfps sparse_log()\
+      \ const;\n    bfps &inplace_sparse_log();\n    bfps log() const;\n    bfps &inplace_log();\n\
+      \    bfps dense_exp() const;\n    bfps &inplace_dense_exp();\n    bfps sparse_exp()\
+      \ const;\n    bfps &inplace_sparse_exp();\n    bfps exp() const;\n    bfps &inplace_exp();\n\
+      \    bfps dense_pow(long long exponent) const;\n    bfps &inplace_dense_pow(long\
+      \ long exponent);\n    bfps sparse_pow(long long exponent) const;\n    bfps\
+      \ &inplace_sparse_pow(long long exponent);\n    bfps pow(long long exponent)\
+      \ const;\n    bfps &inplace_pow(long long exponent);\n    bfps dense_sqrt()\
+      \ const;\n    bfps &inplace_dense_sqrt();\n    bfps sparse_sqrt() const;\n \
+      \   bfps &inplace_sparse_sqrt();\n    bfps sqrt() const;\n    bfps &inplace_sqrt();\n\
+      \n    bfps diff_x() const;\n    bfps &inplace_diff_x();\n    bfps diff_y() const;\n\
+      \    bfps &inplace_diff_y();\n    bfps integral_x() const;\n    bfps &inplace_integral_x();\n\
+      \    bfps integral_y() const;\n    bfps &inplace_integral_y();\n};\n\ntemplate\
+      \ <fps::Modular mint> using BivariateFPS = BivariateFormalPowerSeries<mint>;\n\
+      \n} // namespace kk2\n\n\n#line 1 \"fps/fps_egf.hpp\"\n\n\n\n#line 5 \"fps/fps_egf.hpp\"\
+      \n\n#line 7 \"fps/fps_egf.hpp\"\n\nnamespace kk2 {\n\n// Exponential generating\
+      \ functions store coefficients in the basis x^n/n!.\n// Multiplication is the\
+      \ binomial convolution; conversion to ordinary FPS by\n// factorial scaling\
+      \ gives a simple baseline for inverse/log/exp/pow. Faster\n// implementations\
+      \ can replace that conversion with a factorial-weighted NTT.\ntemplate <fps::Modular\
+      \ mint,\n          template <fps::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>\n\
+      struct ExponentialGeneratingFunction {\n    using egf = ExponentialGeneratingFunction;\n\
+      \    using fps = UnivariateFPS<mint>;\n    using value_type = mint;\n    using\
+      \ modulus_category = typename fps::modulus_category;\n    using series_category\
+      \ = kk2::fps::category::exponential_generating;\n    using iterator = typename\
+      \ std::vector<mint>::iterator;\n    using const_iterator = typename std::vector<mint>::const_iterator;\n\
+      \n    ExponentialGeneratingFunction() = default;\n    explicit ExponentialGeneratingFunction(int\
+      \ precision);\n\n    int size() const;\n    iterator begin();\n    const_iterator\
+      \ begin() const;\n    iterator end();\n    const_iterator end() const;\n   \
+      \ mint &operator[](int index);\n    const mint &operator[](int index) const;\n\
+      \n    egf &operator+=(const egf &rhs);\n    egf &operator-=(const egf &rhs);\n\
+      \    egf &operator*=(const egf &rhs);\n    egf operator+(const egf &rhs) const;\n\
+      \    egf operator-(const egf &rhs) const;\n    egf operator*(const egf &rhs)\
+      \ const;\n\n    egf dense_mul(const egf &rhs) const;\n    egf &inplace_dense_mul(const\
+      \ egf &rhs);\n    egf sparse_mul(const egf &rhs) const;\n    egf &inplace_sparse_mul(const\
+      \ egf &rhs);\n    egf mul(const egf &rhs) const;\n    egf &inplace_mul(const\
+      \ egf &rhs);\n    egf dense_inv() const;\n    egf &inplace_dense_inv();\n  \
+      \  egf sparse_inv() const;\n    egf &inplace_sparse_inv();\n    egf inv() const;\n\
+      \    egf &inplace_inv();\n    egf dense_log() const;\n    egf &inplace_dense_log();\n\
+      \    egf sparse_log() const;\n    egf &inplace_sparse_log();\n    egf log()\
+      \ const;\n    egf &inplace_log();\n    egf dense_exp() const;\n    egf &inplace_dense_exp();\n\
+      \    egf sparse_exp() const;\n    egf &inplace_sparse_exp();\n    egf exp()\
+      \ const;\n    egf &inplace_exp();\n    egf dense_pow(long long exponent) const;\n\
+      \    egf &inplace_dense_pow(long long exponent);\n    egf sparse_pow(long long\
+      \ exponent) const;\n    egf &inplace_sparse_pow(long long exponent);\n    egf\
+      \ pow(long long exponent) const;\n    egf &inplace_pow(long long exponent);\n\
+      \    egf dense_sqrt() const;\n    egf &inplace_dense_sqrt();\n    egf sparse_sqrt()\
+      \ const;\n    egf &inplace_sparse_sqrt();\n    egf sqrt() const;\n    egf &inplace_sqrt();\n\
+      \n    // Composition can reuse kk2::composition after factorial scaling, or\
+      \ be\n    // implemented directly with Bell-polynomial recurrences.\n    egf\
+      \ composition(const egf &inner, int precision = -1) const;\n    egf &inplace_composition(const\
+      \ egf &inner, int precision = -1);\n};\n\ntemplate <fps::Modular mint> using\
+      \ EGF = ExponentialGeneratingFunction<mint>;\n\n} // namespace kk2\n\n\n#line\
+      \ 1 \"fps/fps_multivariate.hpp\"\n\n\n\n#line 9 \"fps/fps_multivariate.hpp\"\
+      \n\n#line 1 \"fps/operations/multivariate/exponential.hpp\"\n\n\n\n#line 6 \"\
+      fps/operations/multivariate/exponential.hpp\"\n\n#line 1 \"fps/operations/multivariate/logarithm.hpp\"\
+      \n\n\n\n#line 5 \"fps/operations/multivariate/logarithm.hpp\"\n\n#line 1 \"\
+      fps/operations/multivariate/inverse.hpp\"\n\n\n\n#line 9 \"fps/operations/multivariate/inverse.hpp\"\
+      \n\n#line 1 \"fps/operations/multivariate/multiplication.hpp\"\n\n\n\n#line\
+      \ 5 \"fps/operations/multivariate/multiplication.hpp\"\n\n#line 1 \"convolution/multi_convolution_truncated.hpp\"\
       \n\n\n\n#line 6 \"convolution/multi_convolution_truncated.hpp\"\n\n#line 8 \"\
       convolution/multi_convolution_truncated.hpp\"\n\nnamespace kk2 {\n\n// reference:\
       \ https://rushcheyo.blog.uoj.ac/blog/6547\n// \u65E5\u672C\u8A9E:\n// https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
@@ -1268,20 +1411,27 @@ data:
       \                              const FPS &b,\n                             \
       \                   const std::vector<int> &base) {\n    const int n = int(a.size());\n\
       \    if (!n) return a;\n    if (base.empty()) {\n        a[0] *= b[0];\n   \
-      \     return a;\n    }\n\n    FPS result(n);\n    for (int i = 0; i < n; ++i)\
-      \ {\n        int x = i;\n        std::vector<int> lhs_index(base.size());\n\
-      \        for (int d = 0; d < (int)base.size(); ++d) {\n            lhs_index[d]\
-      \ = x % base[d];\n            x /= base[d];\n        }\n        if (a[i] ==\
-      \ mint(0)) continue;\n        for (int j = 0; j < n; ++j) {\n            if\
-      \ (b[j] == mint(0)) continue;\n            int y = j, index = 0, stride = 1;\n\
-      \            bool in_range = true;\n            for (int d = 0; d < (int)base.size();\
-      \ ++d) {\n                const int coordinate = lhs_index[d] + y % base[d];\n\
-      \                y /= base[d];\n                if (coordinate >= base[d]) in_range\
-      \ = false;\n                index += coordinate * stride;\n                stride\
-      \ *= base[d];\n            }\n            if (in_range && index < n) result[index]\
-      \ += a[i] * b[j];\n        }\n    }\n    a = std::move(result);\n    return\
-      \ a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS\
-      \ multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
+      \     return a;\n    }\n\n    std::vector<std::pair<int, mint>> support_b;\n\
+      \    for (int j = 0; j < n; ++j) {\n        if (b[j] != mint(0)) support_b.emplace_back(j,\
+      \ b[j]);\n    }\n\n    // The mixed-radix index is an order extension of the\
+      \ coordinate-wise\n    // order. Therefore contributions from an input index\
+      \ i only go to indices\n    // at least i. Processing source indices in descending\
+      \ order preserves the\n    // original value of a[i], while propagating it directly\
+      \ into the output.\n    std::vector<int> lhs_index(base.size());\n    for (int\
+      \ i = n - 1; i >= 0; --i) {\n        const mint coefficient = a[i];\n      \
+      \  a[i] = mint(0);\n        if (coefficient == mint(0)) continue;\n\n      \
+      \  int x = i;\n        for (int d = 0; d < (int)base.size(); ++d) {\n      \
+      \      lhs_index[d] = x % base[d];\n            x /= base[d];\n        }\n\n\
+      \        for (const auto &[j, b_j] : support_b) {\n            int y = j, index\
+      \ = 0, stride = 1;\n            bool in_range = true;\n            for (int\
+      \ d = 0; d < (int)base.size(); ++d) {\n                const int coordinate\
+      \ = lhs_index[d] + y % base[d];\n                y /= base[d];\n           \
+      \     if (coordinate >= base[d]) {\n                    in_range = false;\n\
+      \                    break;\n                }\n                index += coordinate\
+      \ * stride;\n                stride *= base[d];\n            }\n           \
+      \ if (in_range && index < n) a[index] += coefficient * b_j;\n        }\n   \
+      \ }\n    return a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      FPS multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
       \ &base) {\n    FPS result = a;\n    inplace_multi_convolution_truncated<FPS,\
       \ mint>(result, b, base);\n    return result;\n}\n\n} // namespace kk2\n\n\n\
       #line 1 \"convolution/multi_convolution_truncated_arb.hpp\"\n\n\n\n#line 5 \"\
@@ -1310,50 +1460,180 @@ data:
       \ b, base);\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
       FPS multi_convolution_truncated_arb(const FPS &a, const FPS &b, const std::vector<int>\
       \ &base) {\n    FPS result = a;\n    inplace_multi_convolution_truncated_arb(result,\
-      \ b, base);\n    return result;\n}\n\n} // namespace kk2\n\n\n#line 1 \"fps/fps_ntt_friendly.hpp\"\
-      \n\n\n\n#line 6 \"fps/fps_ntt_friendly.hpp\"\n\nnamespace kk2 {\n\ntemplate\
-      \ <fps::Modular mint>\nstruct FormalPowerSeriesNTTFriendly\n    : FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>,\
-      \ mint> {\n    using base = FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>,\
-      \ mint>;\n    using FPS = FormalPowerSeriesNTTFriendly<mint>;\n    using base::FormalPowerSeriesBase;\n\
-      \    using base::operator*=; // \u57FA\u5E95\u30AF\u30E9\u30B9\u306Eoperator*=\u3092\
-      \u7D99\u627F\n    using modulus_category = kk2::fps::category::ntt_friendly_modulus;\n\
-      \    using series_category = kk2::fps::category::ordinary;\n    using variable_category\
-      \ = kk2::fps::category::univariate;\n    static constexpr bool is_ntt_friendly\
-      \ = true;\n\n    void but() { butterfly(*this); }\n    void ibut() { butterfly_inv(*this);\
-      \ }\n    void db() { doubling(*this); }\n    static int but_pr() { return primitive_root<mint::getmod()>;\
-      \ }\n};\n\ntemplate <fps::Modular mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;\n\
-      \n} // namespace kk2\n\n\n#line 15 \"fps/fps_multivariate.hpp\"\n\nnamespace\
-      \ kk2 {\n\ntemplate <fps::Modular mint,\n          template <fps::Modular> class\
-      \ UnivariateFPS = FormalPowerSeriesNTTFriendly>\nstruct MultivariateFormalPowerSeries\
+      \ b, base);\n    return result;\n}\n\n} // namespace kk2\n\n\n#line 9 \"fps/operations/multivariate/multiplication.hpp\"\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <Multivariate FPS> FPS &inplace_dense_mul(FPS\
+      \ &lhs, const FPS &rhs) {\n    assert(lhs.base == rhs.base && lhs.f.size() ==\
+      \ rhs.f.size());\n    if constexpr (ArbitraryModulusFormalPowerSeries<typename\
+      \ FPS::fps>) {\n        inplace_multi_convolution_truncated_arb(lhs.f, rhs.f,\
+      \ lhs.base);\n    } else {\n        inplace_multi_convolution_truncated(lhs.f,\
+      \ rhs.f, lhs.base);\n    }\n    return lhs;\n}\n\ntemplate <Multivariate FPS>\
+      \ FPS dense_mul(const FPS &lhs, const FPS &rhs) {\n    FPS result = lhs;\n \
+      \   return inplace_dense_mul(result, rhs);\n}\n\ntemplate <Multivariate FPS>\
+      \ FPS &inplace_sparse_mul(FPS &lhs, const FPS &rhs) {\n    assert(lhs.base ==\
+      \ rhs.base && lhs.f.size() == rhs.f.size());\n    inplace_multi_convolution_truncated_sparse(lhs.f,\
+      \ rhs.f, lhs.base);\n    return lhs;\n}\n\ntemplate <Multivariate FPS> FPS sparse_mul(const\
+      \ FPS &lhs, const FPS &rhs) {\n    FPS result = lhs;\n    return inplace_sparse_mul(result,\
+      \ rhs);\n}\n\ntemplate <Multivariate FPS> FPS mul(const FPS &lhs, const FPS\
+      \ &rhs) { return dense_mul(lhs, rhs); }\n\ntemplate <Multivariate FPS> FPS &inplace_mul(FPS\
+      \ &lhs, const FPS &rhs) {\n    return inplace_dense_mul(lhs, rhs);\n}\n\n} //\
+      \ namespace kk2::fps::operations\n\n\n#line 12 \"fps/operations/multivariate/inverse.hpp\"\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <Multivariate FPS> FPS dense_inv(const\
+      \ FPS &f) {\n    using mint = typename FPS::value_type;\n    using fps_type\
+      \ = typename FPS::fps;\n    assert(!f.f.empty() && f.f[0] != mint(0));\n   \
+      \ if (f.base.empty()) return FPS(f.base, fps_type{f.f[0].inv()});\n\n    if\
+      \ constexpr (ArbitraryModulusFormalPowerSeries<fps_type>) {\n        const int\
+      \ n = f.f.size();\n        FPS result(f.base, fps_type(n));\n        result.f[0]\
+      \ = f.f[0].inv();\n        for (int d = 1; d < n; d <<= 1) {\n            const\
+      \ int precision = std::min(2 * d, n);\n            FPS lhs(f.base, fps_type(precision));\n\
+      \            FPS rhs(f.base, fps_type(precision));\n            std::copy_n(f.f.begin(),\
+      \ precision, lhs.f.begin());\n            std::copy_n(result.f.begin(), std::min(d,\
+      \ precision), rhs.f.begin());\n\n            FPS correction(f.base, fps_type(precision));\n\
+      \            correction += mint(2);\n            correction -= dense_mul(lhs,\
+      \ rhs);\n            inplace_dense_mul(rhs, correction);\n            std::copy(rhs.f.begin()\
+      \ + d, rhs.f.end(), result.f.begin() + d);\n        }\n        return result;\n\
+      \    }\n\n    const int n = f.f.size(), k = f.base.size();\n    int z = 1;\n\
+      \    while (z < 2 * n - 1) z <<= 1;\n    std::vector<int> chi(z);\n    for (int\
+      \ i = 0; i < n; i++) {\n        int x = i;\n        for (int j = 0; j < k -\
+      \ 1; j++) chi[i] += (x /= f.base[j]);\n        chi[i] %= k;\n    }\n    auto\
+      \ naive_and_dot = [&k](const std::vector<fps_type> &a,\n                   \
+      \           const std::vector<fps_type> &b,\n                              std::vector<fps_type>\
+      \ &c) -> void {\n        std::vector<mint> tmp(k);\n        for (int ii = 0;\
+      \ ii < static_cast<int>(a[0].size()); ii++) {\n            for (int i = 0; i\
+      \ < k; i++) {\n                for (int j = 0; j < k; j++) {\n             \
+      \       tmp[i + j - (i + j >= k ? k : 0)] += a[i][ii] * b[j][ii];\n        \
+      \        }\n            }\n            for (int i = 0; i < k; i++) c[i][ii]\
+      \ = tmp[i], tmp[i] = mint{0};\n        }\n    };\n\n    // Reference: https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
+      \    // Let g_k := f_k^{-1} mod x^k, deg g_k < k. Then\n    // g_1 = f_0^{-1},\
+      \ g_{2k} = 2g_k - g_k^2 f mod x^{2k}.\n    fps_type g(z);\n    g[0] = f.f[0].inv();\n\
+      \    for (int d = 1; d < n; d <<= 1) {\n        std::vector<fps_type> a(k, fps_type(2\
+      \ * d)), b(k, fps_type(2 * d)), c(k, fps_type(2 * d));\n        for (int i =\
+      \ 0; i < std::min(n, 2 * d); i++) a[chi[i]][i] = f.f[i];\n        for (int i\
+      \ = 0; i < d; i++) b[chi[i]][i] = g[i];\n        for (auto &x : a) x.but();\n\
+      \        for (auto &x : b) x.but();\n        naive_and_dot(a, b, c);\n     \
+      \   for (auto &x : c) x.ibut();\n\n        for (auto &x : a) std::ranges::fill(x,\
+      \ mint(0));\n        for (int i = d; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];\n\
+      \        for (auto &x : a) x.but();\n        naive_and_dot(a, b, c);\n     \
+      \   for (auto &x : c) x.ibut();\n        for (int i = d; i < 2 * d; i++) g[i]\
+      \ = -c[chi[i]][i];\n    }\n    FPS result = f;\n    result.f = fps_type(std::begin(g),\
+      \ std::begin(g) + n);\n    return result;\n}\n\ntemplate <Multivariate FPS>\
+      \ FPS &inplace_dense_inv(FPS &f) {\n    return f = dense_inv(std::as_const(f));\n\
+      }\n\ntemplate <Multivariate FPS> FPS sparse_inv(const FPS &f) {\n    using mint\
+      \ = typename FPS::value_type;\n    assert(!f.f.empty() && f.f[0] != mint(0));\n\
+      \    const int n = f.f.size();\n    FPS result(f.base, typename FPS::fps(n));\n\
+      \    result.f[0] = f.f[0].inv();\n    for (int i = 1; i < n; ++i) {\n      \
+      \  int x = i;\n        std::vector<int> target(f.base.size());\n        for\
+      \ (int d = 0; d < static_cast<int>(f.base.size()); ++d) {\n            target[d]\
+      \ = x % f.base[d];\n            x /= f.base[d];\n        }\n\n        mint coefficient\
+      \ = 0;\n        for (int j = 1; j < n; ++j) {\n            if (f.f[j] == mint(0))\
+      \ continue;\n            int y = j, complement = 0, stride = 1;\n          \
+      \  bool in_range = true;\n            for (int d = 0; d < static_cast<int>(f.base.size());\
+      \ ++d) {\n                const int coordinate = y % f.base[d];\n          \
+      \      y /= f.base[d];\n                if (coordinate > target[d]) {\n    \
+      \                in_range = false;\n                    break;\n           \
+      \     }\n                complement += (target[d] - coordinate) * stride;\n\
+      \                stride *= f.base[d];\n            }\n            if (in_range)\
+      \ coefficient += f.f[j] * result.f[complement];\n        }\n        result.f[i]\
+      \ = -coefficient * result.f[0];\n    }\n    return result;\n}\n\ntemplate <Multivariate\
+      \ FPS> FPS &inplace_sparse_inv(FPS &f) {\n    return f = sparse_inv(std::as_const(f));\n\
+      }\n\ntemplate <Multivariate FPS> FPS inv(const FPS &f) { return dense_inv(f);\
+      \ }\n\ntemplate <Multivariate FPS> FPS &inplace_inv(FPS &f) { return inplace_dense_inv(f);\
+      \ }\n\n} // namespace kk2::fps::operations\n\n\n#line 8 \"fps/operations/multivariate/logarithm.hpp\"\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <Multivariate FPS> FPS dense_log(const\
+      \ FPS &f) {\n    using mint = typename FPS::value_type;\n    assert(!f.f.empty()\
+      \ && f.f[0] == mint(1));\n    FPS result = dense_mul(f.diff(), dense_inv(f)).integral();\n\
+      \    result.f.resize(f.f.size());\n    return result;\n}\n\ntemplate <Multivariate\
+      \ FPS> FPS &inplace_dense_log(FPS &f) {\n    return f = dense_log(std::as_const(f));\n\
+      }\n\ntemplate <Multivariate FPS> FPS sparse_log(const FPS &f) {\n    using mint\
+      \ = typename FPS::value_type;\n    assert(!f.f.empty() && f.f[0] == mint(1));\n\
+      \    FPS result = sparse_mul(f.diff(), sparse_inv(f)).integral();\n    result.f.resize(f.f.size());\n\
+      \    return result;\n}\n\ntemplate <Multivariate FPS> FPS &inplace_sparse_log(FPS\
+      \ &f) {\n    return f = sparse_log(std::as_const(f));\n}\n\ntemplate <Multivariate\
+      \ FPS> FPS log(const FPS &f) { return dense_log(f); }\n\ntemplate <Multivariate\
+      \ FPS> FPS &inplace_log(FPS &f) { return inplace_dense_log(f); }\n\n} // namespace\
+      \ kk2::fps::operations\n\n\n#line 9 \"fps/operations/multivariate/exponential.hpp\"\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <Multivariate FPS> FPS dense_exp(const\
+      \ FPS &f) {\n    using mint = typename FPS::value_type;\n    assert(!f.f.empty()\
+      \ && f.f[0] == mint(0));\n    const int n = f.f.size();\n    FPS result(f.base,\
+      \ typename FPS::fps{1});\n    for (int d = 1; d < n; d <<= 1) {\n        const\
+      \ int precision = std::min(n, 2 * d);\n        result.f.resize(precision, mint(0));\n\
+      \        FPS target(f.base, typename FPS::fps(std::begin(f.f), std::begin(f.f)\
+      \ + precision));\n        FPS correction = target - dense_log(result);\n   \
+      \     correction += mint(1);\n        inplace_dense_mul(result, correction);\n\
+      \    }\n    return result;\n}\n\ntemplate <Multivariate FPS> FPS &inplace_dense_exp(FPS\
+      \ &f) {\n    return f = dense_exp(std::as_const(f));\n}\n\ntemplate <Multivariate\
+      \ FPS> FPS sparse_exp(const FPS &f) {\n    using mint = typename FPS::value_type;\n\
+      \    assert(!f.f.empty() && f.f[0] == mint(0));\n    const int n = f.f.size();\n\
+      \    FPS result(f.base, typename FPS::fps{1});\n    for (int d = 1; d < n; d\
+      \ <<= 1) {\n        const int precision = std::min(n, 2 * d);\n        result.f.resize(precision,\
+      \ mint(0));\n        FPS target(f.base, typename FPS::fps(std::begin(f.f), std::begin(f.f)\
+      \ + precision));\n        FPS correction = target - sparse_log(result);\n  \
+      \      correction += mint(1);\n        inplace_sparse_mul(result, correction);\n\
+      \    }\n    return result;\n}\n\ntemplate <Multivariate FPS> FPS &inplace_sparse_exp(FPS\
+      \ &f) {\n    return f = sparse_exp(std::as_const(f));\n}\n\ntemplate <Multivariate\
+      \ FPS> FPS exp(const FPS &f) { return dense_exp(f); }\n\ntemplate <Multivariate\
+      \ FPS> FPS &inplace_exp(FPS &f) { return inplace_dense_exp(f); }\n\n} // namespace\
+      \ kk2::fps::operations\n\n\n#line 1 \"fps/operations/multivariate/power.hpp\"\
+      \n\n\n\n#line 5 \"fps/operations/multivariate/power.hpp\"\n\n#line 8 \"fps/operations/multivariate/power.hpp\"\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <Multivariate FPS> FPS dense_pow(const\
+      \ FPS &f, long long exponent) {\n    using mint = typename FPS::value_type;\n\
+      \    assert(!f.f.empty());\n    if (f.f[0] != mint(0)) {\n        const mint\
+      \ constant_inverse = f.f[0].inv();\n        const mint coefficient = f.f[0].pow(exponent);\n\
+      \        return (dense_exp(dense_log(f * constant_inverse) * exponent)) * coefficient;\n\
+      \    }\n    const int n = f.f.size();\n    long long base_sum = 0;\n    for\
+      \ (auto bound : f.base) base_sum += bound - 1;\n    if (exponent > base_sum)\
+      \ return FPS(f.base, typename FPS::fps(n));\n    FPS result(f.base, typename\
+      \ FPS::fps(n)), factor = f;\n    result.f[0] = 1;\n    while (exponent) {\n\
+      \        if (exponent & 1) inplace_dense_mul(result, factor);\n        if (exponent\
+      \ >>= 1) inplace_dense_mul(factor, factor);\n    }\n    return result;\n}\n\n\
+      template <Multivariate FPS> FPS &inplace_dense_pow(FPS &f, long long exponent)\
+      \ {\n    return f = dense_pow(std::as_const(f), exponent);\n}\n\ntemplate <Multivariate\
+      \ FPS> FPS sparse_pow(const FPS &f, long long exponent) {\n    using mint =\
+      \ typename FPS::value_type;\n    assert(!f.f.empty());\n    if (f.f[0] != mint(0))\
+      \ {\n        const mint constant_inverse = f.f[0].inv();\n        const mint\
+      \ coefficient = f.f[0].pow(exponent);\n        return (sparse_exp(sparse_log(f\
+      \ * constant_inverse) * exponent)) * coefficient;\n    }\n    const int n =\
+      \ f.f.size();\n    long long base_sum = 0;\n    for (auto bound : f.base) base_sum\
+      \ += bound - 1;\n    if (exponent > base_sum) return FPS(f.base, typename FPS::fps(n));\n\
+      \    FPS result(f.base, typename FPS::fps(n)), factor = f;\n    result.f[0]\
+      \ = 1;\n    while (exponent) {\n        if (exponent & 1) inplace_sparse_mul(result,\
+      \ factor);\n        if (exponent >>= 1) inplace_sparse_mul(factor, factor);\n\
+      \    }\n    return result;\n}\n\ntemplate <Multivariate FPS> FPS &inplace_sparse_pow(FPS\
+      \ &f, long long exponent) {\n    return f = sparse_pow(std::as_const(f), exponent);\n\
+      }\n\ntemplate <Multivariate FPS> FPS pow(const FPS &f, long long exponent) {\n\
+      \    return dense_pow(f, exponent);\n}\n\ntemplate <Multivariate FPS> FPS &inplace_pow(FPS\
+      \ &f, long long exponent) {\n    return inplace_dense_pow(f, exponent);\n}\n\
+      \n} // namespace kk2::fps::operations\n\n\n#line 19 \"fps/fps_multivariate.hpp\"\
+      \n\nnamespace kk2 {\n\ntemplate <fps::Modular mint,\n          template <fps::Modular>\
+      \ class UnivariateFPS = FormalPowerSeriesNTTFriendly>\nstruct MultivariateFormalPowerSeries\
       \ {\n    using mfps = MultivariateFormalPowerSeries;\n    using fps = UnivariateFPS<mint>;\n\
-      \    using value_type = mint;\n    using modulus_category = typename fps::modulus_category;\n\
-      \    using series_category = kk2::fps::category::ordinary;\n    using variable_category\
-      \ = kk2::fps::category::multivariate;\n\n    std::vector<int> base;\n    fps\
-      \ f;\n\n    MultivariateFormalPowerSeries() = default;\n\n    MultivariateFormalPowerSeries(const\
-      \ std::vector<int> &base_) : base(base_) {\n        int n = 1;\n        for\
-      \ (int x : base) n *= x;\n        f.resize(n);\n    }\n\n    MultivariateFormalPowerSeries(const\
-      \ std::vector<int> &base_, const fps &f_)\n        : base(base_),\n        \
-      \  f(f_) {}\n\n    int size() const { return f.size(); }\n    auto begin() {\
-      \ return f.begin(); }\n    auto end() { return f.end(); }\n    auto begin()\
-      \ const { return f.begin(); }\n    auto end() const { return f.end(); }\n\n\
-      \    template <OutputStream OStream> friend OStream &operator<<(OStream &os,\
-      \ const mfps &mfps_) {\n        for (int i = 0; i < (int)mfps_.f.size(); i++)\n\
-      \            os << mfps_.f[i] << (i + 1 == (int)mfps_.f.size() ? \"\" : \" \"\
-      );\n        return os;\n    }\n\n    template <OutputStream OStream> void output(OStream\
-      \ &os) const {\n        for (int i = 0; i < (int)f.size(); i++) os << f[i] <<\
-      \ (i + 1 == (int)f.size() ? \"\\n\" : \" \");\n    }\n\n    template <InputStream\
-      \ IStream> mfps &input(IStream &is) {\n        for (auto &x : f) is >> x;\n\
-      \        return *this;\n    }\n\n    template <InputStream IStream> friend IStream\
-      \ &operator>>(IStream &is, mfps &mfps_) {\n        for (auto &x : mfps_.f) is\
-      \ >> x;\n        return is;\n    }\n\n    template <typename T, typename...\
-      \ Ts> int _id(int x, T y, Ts... ys) {\n        assert(x < (int)base.size() &&\
-      \ (int)y < base[x]);\n        if constexpr (sizeof...(Ts) == 0) return y;\n\
-      \        else return y + base[x] * _id(x + 1, ys...);\n    }\n\n    template\
-      \ <typename... Args>\n        requires(sizeof...(Args) > 0)\n    int id(Args...\
-      \ args) {\n        return _id(0, args...);\n    }\n\n    template <typename...\
-      \ Args> mint &operator()(Args... args) { return f[id(args...)]; }\n\n    mint\
-      \ &operator[](int i) { return f[i]; }\n    const mint &operator[](int i) const\
-      \ { return f[i]; }\n\n    template <OutputStream OStream> void display(OStream\
+      \    using value_type = mint;\n    using ivta = InvTable<mint>;\n    using modulus_category\
+      \ = typename fps::modulus_category;\n    using series_category = kk2::fps::category::ordinary;\n\
+      \    using variable_category = kk2::fps::category::multivariate;\n\n    std::vector<int>\
+      \ base;\n    fps f;\n\n    MultivariateFormalPowerSeries() = default;\n\n  \
+      \  MultivariateFormalPowerSeries(const std::vector<int> &base_) : base(base_)\
+      \ {\n        int n = 1;\n        for (int x : base) n *= x;\n        f.resize(n);\n\
+      \    }\n\n    MultivariateFormalPowerSeries(const std::vector<int> &base_, const\
+      \ fps &f_)\n        : base(base_),\n          f(f_) {}\n\n    int size() const\
+      \ { return f.size(); }\n    auto begin() { return f.begin(); }\n    auto end()\
+      \ { return f.end(); }\n    auto begin() const { return f.begin(); }\n    auto\
+      \ end() const { return f.end(); }\n\n    template <OutputStream OStream> friend\
+      \ OStream &operator<<(OStream &os, const mfps &mfps_) {\n        for (int i\
+      \ = 0; i < (int)mfps_.f.size(); i++)\n            os << mfps_.f[i] << (i + 1\
+      \ == (int)mfps_.f.size() ? \"\" : \" \");\n        return os;\n    }\n\n   \
+      \ template <OutputStream OStream> void output(OStream &os) const {\n       \
+      \ for (int i = 0; i < (int)f.size(); i++) os << f[i] << (i + 1 == (int)f.size()\
+      \ ? \"\\n\" : \" \");\n    }\n\n    template <InputStream IStream> mfps &input(IStream\
+      \ &is) {\n        for (auto &x : f) is >> x;\n        return *this;\n    }\n\
+      \n    template <InputStream IStream> friend IStream &operator>>(IStream &is,\
+      \ mfps &mfps_) {\n        for (auto &x : mfps_.f) is >> x;\n        return is;\n\
+      \    }\n\n    template <typename T, typename... Ts> int _id(int x, T y, Ts...\
+      \ ys) {\n        assert(x < (int)base.size() && (int)y < base[x]);\n       \
+      \ if constexpr (sizeof...(Ts) == 0) return y;\n        else return y + base[x]\
+      \ * _id(x + 1, ys...);\n    }\n\n    template <typename... Args>\n        requires(sizeof...(Args)\
+      \ > 0)\n    int id(Args... args) {\n        return _id(0, args...);\n    }\n\
+      \n    template <typename... Args> mint &operator()(Args... args) { return f[id(args...)];\
+      \ }\n\n    mint &operator[](int i) { return f[i]; }\n    const mint &operator[](int\
+      \ i) const { return f[i]; }\n\n    template <OutputStream OStream> void display(OStream\
       \ &os) const {\n        for (int i = 0; i < (int)f.size(); i++) {\n        \
       \    int x = i;\n            os << \"f(\";\n            for (int j = 0; j <\
       \ (int)base.size(); j++) {\n                os << x % base[j] << (j + 1 == (int)base.size()\
@@ -1364,160 +1644,113 @@ data:
       \ return *this;\n    }\n\n    mfps &operator-=(const mfps &rhs) {\n        assert(base\
       \ == rhs.base && f.size() == rhs.f.size());\n        for (int i = 0; i < (int)f.size();\
       \ i++) f[i] -= rhs.f[i];\n        return *this;\n    }\n\n    mfps dense_mul(const\
-      \ mfps &rhs) const { return mfps(*this).inplace_dense_mul(rhs); }\n    mfps\
-      \ &inplace_dense_mul(const mfps &rhs) {\n        assert(base == rhs.base &&\
-      \ f.size() == rhs.f.size());\n        if constexpr (kk2::fps::ArbitraryModulusFormalPowerSeries<fps>)\
-      \ {\n            inplace_multi_convolution_truncated_arb(f, rhs.f, base);\n\
-      \        } else {\n            inplace_multi_convolution_truncated(f, rhs.f,\
-      \ base);\n        }\n        return *this;\n    }\n    mfps sparse_mul(const\
-      \ mfps &rhs) const { return mfps(*this).inplace_sparse_mul(rhs); }\n    mfps\
-      \ &inplace_sparse_mul(const mfps &rhs) {\n        assert(base == rhs.base &&\
-      \ f.size() == rhs.f.size());\n        inplace_multi_convolution_truncated_sparse(f,\
-      \ rhs.f, base);\n        return *this;\n    }\n    mfps mul(const mfps &rhs)\
-      \ const { return dense_mul(rhs); }\n    mfps &inplace_mul(const mfps &rhs) {\
-      \ return inplace_dense_mul(rhs); }\n\n    mfps &operator*=(const mfps &rhs)\
-      \ { return inplace_mul(rhs); }\n\n    mfps &operator+=(const mint &rhs) {\n\
-      \        assert(!f.empty());\n        f[0] += rhs;\n        return *this;\n\
-      \    }\n\n    mfps &operator-=(const mint &rhs) {\n        assert(!f.empty());\n\
-      \        f[0] -= rhs;\n        return *this;\n    }\n\n    mfps &operator*=(const\
-      \ mint &rhs) {\n        for (auto &x : f) x *= rhs;\n        return *this;\n\
-      \    }\n\n    mfps &operator/=(const mint &rhs) {\n        for (auto &x : f)\
-      \ x /= rhs;\n        return *this;\n    }\n\n    mfps operator+(const mfps &rhs)\
-      \ const { return mfps(*this) += rhs; }\n\n    mfps operator-(const mfps &rhs)\
-      \ const { return mfps(*this) -= rhs; }\n\n    mfps operator*(const mfps &rhs)\
-      \ const { return mul(rhs); }\n\n    mfps operator+(const mint &rhs) const {\
-      \ return mfps(*this) += rhs; }\n\n    mfps operator-(const mint &rhs) const\
-      \ { return mfps(*this) -= rhs; }\n\n    mfps operator*(const mint &rhs) const\
-      \ { return mfps(*this) *= rhs; }\n\n    mfps operator/(const mint &rhs) const\
-      \ { return mfps(*this) /= rhs; }\n\n    mfps operator+() const { return mfps(*this);\
-      \ }\n\n    mfps operator-() const { return mfps(base, -f); }\n\n    friend bool\
-      \ operator==(const mfps &lhs, const mfps &rhs) {\n        return lhs.f == rhs.f\
-      \ && lhs.base == rhs.base;\n    }\n\n    friend bool operator!=(const mfps &lhs,\
-      \ const mfps &rhs) { return !(lhs == rhs); }\n\n    mfps diff() const {\n  \
-      \      mfps ret(*this);\n        for (int i = 0; i < (int)ret.f.size(); i++)\
-      \ ret.f[i] *= i;\n        return ret;\n    }\n\n    mfps &inplace_diff() {\n\
-      \        for (int i = 0; i < (int)f.size(); i++) f[i] *= i;\n        return\
-      \ *this;\n    }\n\n    static std::vector<mint> _inv;\n\n    static void ensure_inv(int\
-      \ n) {\n        while ((int)_inv.size() <= n) {\n            int i = _inv.size();\n\
-      \            _inv.push_back((-_inv[mint::getmod() % i]) * (mint::getmod() /\
-      \ i));\n        }\n    }\n\n    mfps integral() const {\n        ensure_inv(f.size());\n\
-      \        mfps ret(*this);\n        for (int i = 1; i < (int)ret.f.size(); i++)\
-      \ ret.f[i] *= _inv[i];\n        return ret;\n    }\n\n    mfps &inplace_int()\
-      \ {\n        ensure_inv(f.size());\n        for (int i = 1; i < (int)f.size();\
-      \ i++) f[i] *= _inv[i];\n        return *this;\n    }\n\n    mfps dense_inv()\
-      \ const {\n        assert(!f.empty() && f[0] != mint(0));\n        if (base.empty())\
-      \ return mfps(base, fps{f[0].inv()});\n\n        if constexpr (kk2::fps::ArbitraryModulusFormalPowerSeries<fps>)\
-      \ {\n            const int n = f.size();\n            mfps result(base, fps(n));\n\
-      \            result.f[0] = f[0].inv();\n            for (int d = 1; d < n; d\
-      \ <<= 1) {\n                const int precision = std::min(2 * d, n);\n    \
-      \            mfps lhs(base, fps(precision));\n                mfps rhs(base,\
-      \ fps(precision));\n                std::copy_n(f.begin(), precision, lhs.f.begin());\n\
-      \                std::copy_n(result.f.begin(), std::min(d, precision), rhs.f.begin());\n\
-      \n                mfps correction(base, fps(precision));\n                correction\
-      \ += mint(2);\n                correction -= lhs.dense_mul(rhs);\n         \
-      \       rhs.inplace_dense_mul(correction);\n                std::copy(rhs.f.begin()\
-      \ + d, rhs.f.end(), result.f.begin() + d);\n            }\n            return\
-      \ result;\n        }\n\n        int n = f.size(), k = base.size();\n       \
-      \ int z = 1;\n        while (z < 2 * n - 1) z <<= 1;\n        std::vector<int>\
-      \ chi(z);\n        for (int i = 0; i < n; i++) {\n            int x = i;\n \
-      \           for (int j = 0; j < k - 1; j++) chi[i] += (x /= base[j]);\n    \
-      \        chi[i] %= k;\n        }\n        auto naive_and_dot = [&k](const std::vector<fps>\
-      \ &a,\n                                  const std::vector<fps> &b,\n      \
-      \                            std::vector<fps> &c) -> void {\n            std::vector<mint>\
-      \ tmp(k);\n            for (int ii = 0; ii < (int)a[0].size(); ii++) {\n   \
-      \             for (int i = 0; i < k; i++) {\n                    for (int j\
-      \ = 0; j < k; j++) {\n                        tmp[i + j - (i + j >= k ? k :\
-      \ 0)] += a[i][ii] * b[j][ii];\n                    }\n                }\n  \
-      \              for (int i = 0; i < k; i++) c[i][ii] = tmp[i], tmp[i] = mint{0};\n\
-      \            }\n        };\n\n        // reference:\n        // https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp\n\
-      \        // Let g_k := f_k^{-1} mod x^k, \\deg g_k < k.\n        // Then we\
-      \ obtain g_1, g_2, g_4, ... by using the following recurrence:\n        // -\
-      \ g_1 = (f_0)^{-1} ...(1)\n        // - g_{2k} = 2g_k - g_k^2 f mod x^2k ...(2)\n\
-      \        // - [x^{k + i}]g_{2k} = [x^{k + i}](-g_k^2 f) ...(3)\n        fps\
-      \ g(z);\n        g[0] = f[0].inv(); // by (1)\n        for (int d = 1; d < n;\
-      \ d <<= 1) {\n            std::vector<fps> a(k, fps(2 * d)), b(k, fps(2 * d)),\
-      \ c(k, fps(2 * d));\n            for (int i = 0; i < std::min((int)f.size(),\
-      \ 2 * d); i++) a[chi[i]][i] = f[i];\n            for (int i = 0; i < d; i++)\
-      \ b[chi[i]][i] = g[i];\n            for (auto &x : a) x.but();\n           \
-      \ for (auto &x : b) x.but();\n            naive_and_dot(a, b, c);\n        \
-      \    for (auto &x : c) x.ibut();\n            // compute g_d f\n\n         \
-      \   for (auto &x : a) std::ranges::fill(x, mint(0));\n\n            for (int\
-      \ i = d; i < 2 * d; i++) a[chi[i]][i] = c[chi[i]][i];\n            for (auto\
-      \ &x : a) x.but();\n            naive_and_dot(a, b, c);\n            for (auto\
-      \ &x : c) x.ibut();\n            // compute g_d^2 f\n\n            // by (2),\
-      \ (3)\n            for (int i = d; i < 2 * d; i++) g[i] = -c[chi[i]][i];\n \
-      \       }\n        mfps res(*this);\n        res.f = fps(std::begin(g), std::begin(g)\
-      \ + n);\n        return res;\n    }\n    mfps &inplace_dense_inv() { return\
-      \ *this = dense_inv(); }\n    mfps sparse_inv() const {\n        assert(!f.empty()\
-      \ && f[0] != mint(0));\n        const int n = f.size();\n        mfps result(base,\
-      \ fps(n));\n        result.f[0] = f[0].inv();\n        for (int i = 1; i < n;\
-      \ ++i) {\n            int x = i;\n            std::vector<int> target(base.size());\n\
-      \            for (int d = 0; d < (int)base.size(); ++d) {\n                target[d]\
-      \ = x % base[d];\n                x /= base[d];\n            }\n\n         \
-      \   mint coefficient = 0;\n            for (int j = 1; j < n; ++j) {\n     \
-      \           if (f[j] == mint(0)) continue;\n                int y = j, complement\
-      \ = 0, stride = 1;\n                bool in_range = true;\n                for\
-      \ (int d = 0; d < (int)base.size(); ++d) {\n                    const int coordinate\
-      \ = y % base[d];\n                    y /= base[d];\n                    if\
-      \ (coordinate > target[d]) {\n                        in_range = false;\n  \
-      \                      break;\n                    }\n                    complement\
-      \ += (target[d] - coordinate) * stride;\n                    stride *= base[d];\n\
-      \                }\n                if (in_range) coefficient += f[j] * result.f[complement];\n\
-      \            }\n            result.f[i] = -coefficient * result.f[0];\n    \
-      \    }\n        return result;\n    }\n    mfps &inplace_sparse_inv() { return\
-      \ *this = sparse_inv(); }\n    mfps inv() const { return dense_inv(); }\n  \
-      \  mfps &inplace_inv() { return inplace_dense_inv(); }\n\n    mfps dense_log()\
-      \ const {\n        assert(!f.empty() && f[0] == mint(1));\n        mfps result\
-      \ = diff().dense_mul(dense_inv()).integral();\n        result.f.resize(f.size());\n\
-      \        return result;\n    }\n    mfps &inplace_dense_log() { return *this\
-      \ = dense_log(); }\n    mfps sparse_log() const {\n        assert(!f.empty()\
-      \ && f[0] == mint(1));\n        mfps result = diff().sparse_mul(sparse_inv()).integral();\n\
-      \        result.f.resize(f.size());\n        return result;\n    }\n    mfps\
-      \ &inplace_sparse_log() { return *this = sparse_log(); }\n    mfps log() const\
-      \ { return dense_log(); }\n    mfps &inplace_log() { return inplace_dense_log();\
-      \ }\n\n    mfps dense_exp() const {\n        assert(!f.empty() && f[0] == mint(0));\n\
-      \        int n = f.size();\n        mfps res(base, fps{1});\n        for (int\
-      \ d = 1; d < n; d <<= 1) {\n            int s = std::min(n, 2 * d);\n      \
-      \      res.f.resize(s, mint(0));\n            mfps target(base, fps(std::begin(f),\
-      \ std::begin(f) + s));\n            mfps correction = target - res.dense_log();\n\
-      \            correction += mint(1);\n            res.inplace_dense_mul(correction);\n\
-      \        }\n        return res;\n    }\n    mfps &inplace_dense_exp() { return\
-      \ *this = dense_exp(); }\n    mfps sparse_exp() const {\n        assert(!f.empty()\
-      \ && f[0] == mint(0));\n        int n = f.size();\n        mfps res(base, fps{1});\n\
-      \        for (int d = 1; d < n; d <<= 1) {\n            int s = std::min(n,\
-      \ 2 * d);\n            res.f.resize(s, mint(0));\n            mfps target(base,\
-      \ fps(std::begin(f), std::begin(f) + s));\n            mfps correction = target\
-      \ - res.sparse_log();\n            correction += mint(1);\n            res.inplace_sparse_mul(correction);\n\
-      \        }\n        return res;\n    }\n    mfps &inplace_sparse_exp() { return\
-      \ *this = sparse_exp(); }\n    mfps exp() const { return dense_exp(); }\n  \
-      \  mfps &inplace_exp() { return inplace_dense_exp(); }\n\n    mfps dense_pow(long\
-      \ long e) const {\n        assert(!f.empty());\n        if (f[0] != mint(0))\
-      \ {\n            mint f0inv = f[0].inv(), coef = f[0].pow(e);\n            return\
-      \ (((*this) * f0inv).dense_log() * e).dense_exp() * coef;\n        }\n     \
-      \   int n = f.size();\n        long long base_sum = 0;\n        for (auto &b\
-      \ : base) base_sum += b - 1;\n        if (e > base_sum) return mfps(base, fps(n));\n\
-      \        mfps res(base, fps(n)), a(*this);\n        res.f[0] = 1;\n        while\
-      \ (e) {\n            if (e & 1) res.inplace_dense_mul(a);\n            if (e\
-      \ >>= 1) a.inplace_dense_mul(a);\n        }\n        return res;\n    }\n  \
-      \  mfps &inplace_dense_pow(long long e) { return *this = dense_pow(e); }\n \
-      \   mfps sparse_pow(long long e) const {\n        assert(!f.empty());\n    \
-      \    if (f[0] != mint(0)) {\n            mint f0inv = f[0].inv(), coef = f[0].pow(e);\n\
-      \            return (((*this) * f0inv).sparse_log() * e).sparse_exp() * coef;\n\
-      \        }\n        int n = f.size();\n        long long base_sum = 0;\n   \
-      \     for (auto &b : base) base_sum += b - 1;\n        if (e > base_sum) return\
-      \ mfps(base, fps(n));\n        mfps res(base, fps(n)), a(*this);\n        res.f[0]\
-      \ = 1;\n        while (e) {\n            if (e & 1) res.inplace_sparse_mul(a);\n\
-      \            if (e >>= 1) a.inplace_sparse_mul(a);\n        }\n        return\
-      \ res;\n    }\n    mfps &inplace_sparse_pow(long long e) { return *this = sparse_pow(e);\
-      \ }\n    mfps pow(long long e) const { return dense_pow(e); }\n    mfps &inplace_pow(long\
-      \ long e) { return inplace_dense_pow(e); }\n};\n\ntemplate <fps::Modular mint,\
-      \ template <fps::Modular> class UnivariateFPS>\nstd::vector<mint> MultivariateFormalPowerSeries<mint,\
-      \ UnivariateFPS>::_inv = {0, 1};\n\ntemplate <fps::Modular mint>\nusing MultivariateFormalPowerSeriesArbitrary\
+      \ mfps &rhs) const { return kk2::fps::operations::dense_mul(*this, rhs); }\n\
+      \    mfps &inplace_dense_mul(const mfps &rhs) {\n        return kk2::fps::operations::inplace_dense_mul(*this,\
+      \ rhs);\n    }\n    mfps sparse_mul(const mfps &rhs) const { return kk2::fps::operations::sparse_mul(*this,\
+      \ rhs); }\n    mfps &inplace_sparse_mul(const mfps &rhs) {\n        return kk2::fps::operations::inplace_sparse_mul(*this,\
+      \ rhs);\n    }\n    mfps mul(const mfps &rhs) const { return kk2::fps::operations::mul(*this,\
+      \ rhs); }\n    mfps &inplace_mul(const mfps &rhs) { return kk2::fps::operations::inplace_mul(*this,\
+      \ rhs); }\n\n    mfps &operator*=(const mfps &rhs) { return inplace_mul(rhs);\
+      \ }\n\n    mfps &operator+=(const mint &rhs) {\n        assert(!f.empty());\n\
+      \        f[0] += rhs;\n        return *this;\n    }\n\n    mfps &operator-=(const\
+      \ mint &rhs) {\n        assert(!f.empty());\n        f[0] -= rhs;\n        return\
+      \ *this;\n    }\n\n    mfps &operator*=(const mint &rhs) {\n        for (auto\
+      \ &x : f) x *= rhs;\n        return *this;\n    }\n\n    mfps &operator/=(const\
+      \ mint &rhs) {\n        for (auto &x : f) x /= rhs;\n        return *this;\n\
+      \    }\n\n    mfps operator+(const mfps &rhs) const { return mfps(*this) +=\
+      \ rhs; }\n    mfps operator-(const mfps &rhs) const { return mfps(*this) -=\
+      \ rhs; }\n    mfps operator*(const mfps &rhs) const { return mul(rhs); }\n \
+      \   mfps operator+(const mint &rhs) const { return mfps(*this) += rhs; }\n \
+      \   mfps operator-(const mint &rhs) const { return mfps(*this) -= rhs; }\n \
+      \   mfps operator*(const mint &rhs) const { return mfps(*this) *= rhs; }\n \
+      \   mfps operator/(const mint &rhs) const { return mfps(*this) /= rhs; }\n \
+      \   mfps operator+() const { return mfps(*this); }\n    mfps operator-() const\
+      \ { return mfps(base, -f); }\n\n    friend bool operator==(const mfps &lhs,\
+      \ const mfps &rhs) {\n        return lhs.f == rhs.f && lhs.base == rhs.base;\n\
+      \    }\n\n    friend bool operator!=(const mfps &lhs, const mfps &rhs) { return\
+      \ !(lhs == rhs); }\n\n    mfps diff() const {\n        mfps ret(*this);\n  \
+      \      for (int i = 0; i < (int)ret.f.size(); i++) ret.f[i] *= i;\n        return\
+      \ ret;\n    }\n\n    mfps &inplace_diff() {\n        for (int i = 0; i < (int)f.size();\
+      \ i++) f[i] *= i;\n        return *this;\n    }\n\n    mfps integral() const\
+      \ {\n        ivta::set_upper(f.size());\n        mfps ret(*this);\n        for\
+      \ (int i = 1; i < (int)ret.f.size(); i++) ret.f[i] *= ivta::inv(i);\n      \
+      \  return ret;\n    }\n\n    mfps &inplace_int() {\n        ivta::set_upper(f.size());\n\
+      \        for (int i = 1; i < (int)f.size(); i++) f[i] *= ivta::inv(i);\n   \
+      \     return *this;\n    }\n\n    mfps dense_inv() const { return kk2::fps::operations::dense_inv(*this);\
+      \ }\n    mfps &inplace_dense_inv() { return kk2::fps::operations::inplace_dense_inv(*this);\
+      \ }\n    mfps sparse_inv() const { return kk2::fps::operations::sparse_inv(*this);\
+      \ }\n    mfps &inplace_sparse_inv() { return kk2::fps::operations::inplace_sparse_inv(*this);\
+      \ }\n    mfps inv() const { return kk2::fps::operations::inv(*this); }\n   \
+      \ mfps &inplace_inv() { return kk2::fps::operations::inplace_inv(*this); }\n\
+      \n    mfps dense_log() const { return kk2::fps::operations::dense_log(*this);\
+      \ }\n    mfps &inplace_dense_log() { return kk2::fps::operations::inplace_dense_log(*this);\
+      \ }\n    mfps sparse_log() const { return kk2::fps::operations::sparse_log(*this);\
+      \ }\n    mfps &inplace_sparse_log() { return kk2::fps::operations::inplace_sparse_log(*this);\
+      \ }\n    mfps log() const { return kk2::fps::operations::log(*this); }\n   \
+      \ mfps &inplace_log() { return kk2::fps::operations::inplace_log(*this); }\n\
+      \n    mfps dense_exp() const { return kk2::fps::operations::dense_exp(*this);\
+      \ }\n    mfps &inplace_dense_exp() { return kk2::fps::operations::inplace_dense_exp(*this);\
+      \ }\n    mfps sparse_exp() const { return kk2::fps::operations::sparse_exp(*this);\
+      \ }\n    mfps &inplace_sparse_exp() { return kk2::fps::operations::inplace_sparse_exp(*this);\
+      \ }\n    mfps exp() const { return kk2::fps::operations::exp(*this); }\n   \
+      \ mfps &inplace_exp() { return kk2::fps::operations::inplace_exp(*this); }\n\
+      \n    mfps dense_pow(long long e) const { return kk2::fps::operations::dense_pow(*this,\
+      \ e); }\n    mfps &inplace_dense_pow(long long e) {\n        return kk2::fps::operations::inplace_dense_pow(*this,\
+      \ e);\n    }\n    mfps sparse_pow(long long e) const { return kk2::fps::operations::sparse_pow(*this,\
+      \ e); }\n    mfps &inplace_sparse_pow(long long e) {\n        return kk2::fps::operations::inplace_sparse_pow(*this,\
+      \ e);\n    }\n    mfps pow(long long e) const { return kk2::fps::operations::pow(*this,\
+      \ e); }\n    mfps &inplace_pow(long long e) { return kk2::fps::operations::inplace_pow(*this,\
+      \ e); }\n};\n\ntemplate <fps::Modular mint>\nusing MultivariateFormalPowerSeriesArbitrary\
       \ =\n    MultivariateFormalPowerSeries<mint, FormalPowerSeriesArbitrary>;\n\n\
-      } // namespace kk2\n\n\n#line 11 \"verify/unit_test/type_traits/fps/fps.test.cpp\"\
+      } // namespace kk2\n\n\n#line 1 \"fps/fps_sps.hpp\"\n\n\n\n#line 5 \"fps/fps_sps.hpp\"\
+      \n\n#line 7 \"fps/fps_sps.hpp\"\n\nnamespace kk2 {\n\n// Set Power Series indexed\
+      \ by subsets of a fixed ground set. The intended\n// implementation uses the\
+      \ ranked zeta transform for subset convolution and\n// the usual zeta/M\xF6\
+      bius transforms for pointwise subset operations.\ntemplate <fps::Modular mint,\n\
+      \          template <fps::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>\n\
+      struct SetPowerSeries {\n    using sps = SetPowerSeries;\n    using fps = UnivariateFPS<mint>;\n\
+      \    using value_type = mint;\n    using modulus_category = typename fps::modulus_category;\n\
+      \    using series_category = kk2::fps::category::set_power_series;\n    using\
+      \ iterator = typename std::vector<mint>::iterator;\n    using const_iterator\
+      \ = typename std::vector<mint>::const_iterator;\n\n    SetPowerSeries() = default;\n\
+      \    explicit SetPowerSeries(int dimension);\n\n    int size() const;\n    iterator\
+      \ begin();\n    const_iterator begin() const;\n    iterator end();\n    const_iterator\
+      \ end() const;\n    mint &operator[](int subset);\n    const mint &operator[](int\
+      \ subset) const;\n\n    sps &operator+=(const sps &rhs);\n    sps &operator-=(const\
+      \ sps &rhs);\n    sps &operator*=(const sps &rhs);\n    sps operator+(const\
+      \ sps &rhs) const;\n    sps operator-(const sps &rhs) const;\n    sps operator*(const\
+      \ sps &rhs) const;\n\n    sps zeta() const;\n    sps &inplace_zeta();\n    sps\
+      \ mobius() const;\n    sps &inplace_mobius();\n    sps subset_convolution(const\
+      \ sps &rhs) const;\n    sps &inplace_subset_convolution(const sps &rhs);\n \
+      \   sps ranked_subset_convolution(const sps &rhs) const;\n    sps &inplace_ranked_subset_convolution(const\
+      \ sps &rhs);\n\n    sps dense_mul(const sps &rhs) const;\n    sps &inplace_dense_mul(const\
+      \ sps &rhs);\n    sps sparse_mul(const sps &rhs) const;\n    sps &inplace_sparse_mul(const\
+      \ sps &rhs);\n    sps mul(const sps &rhs) const;\n    sps &inplace_mul(const\
+      \ sps &rhs);\n    sps dense_inv() const;\n    sps &inplace_dense_inv();\n  \
+      \  sps sparse_inv() const;\n    sps &inplace_sparse_inv();\n    sps inv() const;\n\
+      \    sps &inplace_inv();\n    sps dense_log() const;\n    sps &inplace_dense_log();\n\
+      \    sps sparse_log() const;\n    sps &inplace_sparse_log();\n    sps log()\
+      \ const;\n    sps &inplace_log();\n    sps dense_exp() const;\n    sps &inplace_dense_exp();\n\
+      \    sps sparse_exp() const;\n    sps &inplace_sparse_exp();\n    sps exp()\
+      \ const;\n    sps &inplace_exp();\n    sps dense_pow(long long exponent) const;\n\
+      \    sps &inplace_dense_pow(long long exponent);\n    sps sparse_pow(long long\
+      \ exponent) const;\n    sps &inplace_sparse_pow(long long exponent);\n    sps\
+      \ pow(long long exponent) const;\n    sps &inplace_pow(long long exponent);\n\
+      \n    // Compute sum_i polynomial[i] * (*this)^i in the subset-convolution\n\
+      \    // algebra. The constant term is separated and the remaining terms can\
+      \ be\n    // evaluated through the EGF composition recurrence with ranked zeta.\n\
+      \    sps composition(const fps &polynomial) const;\n    sps &inplace_composition(const\
+      \ fps &polynomial);\n\n    // Return the coefficients of the power projection\
+      \ of this series against\n    // weight. A transposed subset convolution evaluates\
+      \ the projection, while\n    // factorial scaling handles a nonzero constant\
+      \ term.\n    fps power_projection(const sps &weight, int count = -1) const;\n\
+      };\n\ntemplate <fps::Modular mint> using SPS = SetPowerSeries<mint>;\n\n} //\
+      \ namespace kk2\n\n\n#line 14 \"verify/unit_test/type_traits/fps/fps.test.cpp\"\
       \n\nusing NTTFPS = kk2::FPSNTT<kk2::mont998>;\nusing ArbFPS = kk2::FPSArb<kk2::mont998>;\n\
       using MFPS = kk2::MultivariateFormalPowerSeries<kk2::mont998>;\nusing MFPSArb\
-      \ = kk2::MultivariateFormalPowerSeriesArbitrary<kk2::mont107>;\n\nstruct FutureSPS\
+      \ = kk2::MultivariateFormalPowerSeriesArbitrary<kk2::mont107>;\nusing BFPS =\
+      \ kk2::BivariateFormalPowerSeries<kk2::mont998>;\nusing SPS = kk2::SetPowerSeries<kk2::mont998>;\n\
+      using EGF = kk2::ExponentialGeneratingFunction<kk2::mont998>;\n\nstruct FutureSPS\
       \ : std::vector<int> {\n    using std::vector<int>::vector;\n    using value_type\
       \ = int;\n    using modulus_category = kk2::fps::category::arbitrary_modulus;\n\
       \    using series_category = kk2::fps::category::set_power_series;\n};\n\nstruct\
@@ -1530,7 +1763,10 @@ data:
       static_assert(!kk2::fps::ArbitraryModulusFormalPowerSeries<NTTFPS>);\n\nstatic_assert(kk2::fps::ArbitraryModulusFormalPowerSeries<ArbFPS>);\n\
       static_assert(kk2::fps::FormalPowerSeries<MFPS>);\nstatic_assert(kk2::fps::MultivariateFormalPowerSeries<MFPS>);\n\
       static_assert(kk2::fps::FormalPowerSeries<MFPSArb>);\nstatic_assert(kk2::fps::ArbitraryModulusFormalPowerSeries<MFPSArb>);\n\
-      static_assert(kk2::fps::MultivariateFormalPowerSeries<MFPSArb>);\n\nstatic_assert(kk2::fps::SetPowerSeries<FutureSPS>);\n\
+      static_assert(kk2::fps::MultivariateFormalPowerSeries<MFPSArb>);\n\nstatic_assert(kk2::fps::BivariateFormalPowerSeries<BFPS>);\n\
+      static_assert(kk2::fps::SetPowerSeries<SPS>);\nstatic_assert(kk2::fps::ExponentialGeneratingFunction<EGF>);\n\
+      static_assert(kk2::fps::Bivariate<BFPS>);\nstatic_assert(kk2::fps::SPS<SPS>);\n\
+      static_assert(kk2::fps::EGF<EGF>);\n\nstatic_assert(kk2::fps::SetPowerSeries<FutureSPS>);\n\
       static_assert(kk2::fps::SPS<FutureSPS>);\nstatic_assert(kk2::fps::EGF<FutureEGFBivariate>);\n\
       static_assert(kk2::fps::Bivariate<FutureEGFBivariate>);\nstatic_assert(!kk2::fps::Multivariate<FutureEGFBivariate>);\n\
       \nint main() {}\n"
@@ -1541,7 +1777,7 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases: []
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/unit_test/type_traits/fps/fps.test.cpp

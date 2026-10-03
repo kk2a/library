@@ -885,7 +885,7 @@ data:
     memory: 58.376
     name: wrong_splay_killer_03
     status: AC
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith: []
 documentation_of: verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp

@@ -27,6 +27,21 @@ data:
     - filename: fps_multivariate.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_multivariate.hpp
+    - filename: exponential.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/exponential.hpp
+    - filename: inverse.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/inverse.hpp
+    - filename: logarithm.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/logarithm.hpp
+    - filename: multiplication.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/multiplication.hpp
+    - filename: power.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/operations/multivariate/power.hpp
     type: Required by
   - files:
     - filename: multivariate_convolution.test.cpp
@@ -77,20 +92,27 @@ data:
       \                              const FPS &b,\n                             \
       \                   const std::vector<int> &base) {\n    const int n = int(a.size());\n\
       \    if (!n) return a;\n    if (base.empty()) {\n        a[0] *= b[0];\n   \
-      \     return a;\n    }\n\n    FPS result(n);\n    for (int i = 0; i < n; ++i)\
-      \ {\n        int x = i;\n        std::vector<int> lhs_index(base.size());\n\
-      \        for (int d = 0; d < (int)base.size(); ++d) {\n            lhs_index[d]\
-      \ = x % base[d];\n            x /= base[d];\n        }\n        if (a[i] ==\
-      \ mint(0)) continue;\n        for (int j = 0; j < n; ++j) {\n            if\
-      \ (b[j] == mint(0)) continue;\n            int y = j, index = 0, stride = 1;\n\
-      \            bool in_range = true;\n            for (int d = 0; d < (int)base.size();\
-      \ ++d) {\n                const int coordinate = lhs_index[d] + y % base[d];\n\
-      \                y /= base[d];\n                if (coordinate >= base[d]) in_range\
-      \ = false;\n                index += coordinate * stride;\n                stride\
-      \ *= base[d];\n            }\n            if (in_range && index < n) result[index]\
-      \ += a[i] * b[j];\n        }\n    }\n    a = std::move(result);\n    return\
-      \ a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS\
-      \ multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
+      \     return a;\n    }\n\n    std::vector<std::pair<int, mint>> support_b;\n\
+      \    for (int j = 0; j < n; ++j) {\n        if (b[j] != mint(0)) support_b.emplace_back(j,\
+      \ b[j]);\n    }\n\n    // The mixed-radix index is an order extension of the\
+      \ coordinate-wise\n    // order. Therefore contributions from an input index\
+      \ i only go to indices\n    // at least i. Processing source indices in descending\
+      \ order preserves the\n    // original value of a[i], while propagating it directly\
+      \ into the output.\n    std::vector<int> lhs_index(base.size());\n    for (int\
+      \ i = n - 1; i >= 0; --i) {\n        const mint coefficient = a[i];\n      \
+      \  a[i] = mint(0);\n        if (coefficient == mint(0)) continue;\n\n      \
+      \  int x = i;\n        for (int d = 0; d < (int)base.size(); ++d) {\n      \
+      \      lhs_index[d] = x % base[d];\n            x /= base[d];\n        }\n\n\
+      \        for (const auto &[j, b_j] : support_b) {\n            int y = j, index\
+      \ = 0, stride = 1;\n            bool in_range = true;\n            for (int\
+      \ d = 0; d < (int)base.size(); ++d) {\n                const int coordinate\
+      \ = lhs_index[d] + y % base[d];\n                y /= base[d];\n           \
+      \     if (coordinate >= base[d]) {\n                    in_range = false;\n\
+      \                    break;\n                }\n                index += coordinate\
+      \ * stride;\n                stride *= base[d];\n            }\n           \
+      \ if (in_range && index < n) a[index] += coefficient * b_j;\n        }\n   \
+      \ }\n    return a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      FPS multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
       \ &base) {\n    FPS result = a;\n    inplace_multi_convolution_truncated<FPS,\
       \ mint>(result, b, base);\n    return result;\n}\n\n} // namespace kk2\n\n#endif\
       \ // KK2_CONVOLUTION_MULTI_CONVOLUTION_TRUNCATED_HPP\n"
@@ -376,20 +398,27 @@ data:
       \                              const FPS &b,\n                             \
       \                   const std::vector<int> &base) {\n    const int n = int(a.size());\n\
       \    if (!n) return a;\n    if (base.empty()) {\n        a[0] *= b[0];\n   \
-      \     return a;\n    }\n\n    FPS result(n);\n    for (int i = 0; i < n; ++i)\
-      \ {\n        int x = i;\n        std::vector<int> lhs_index(base.size());\n\
-      \        for (int d = 0; d < (int)base.size(); ++d) {\n            lhs_index[d]\
-      \ = x % base[d];\n            x /= base[d];\n        }\n        if (a[i] ==\
-      \ mint(0)) continue;\n        for (int j = 0; j < n; ++j) {\n            if\
-      \ (b[j] == mint(0)) continue;\n            int y = j, index = 0, stride = 1;\n\
-      \            bool in_range = true;\n            for (int d = 0; d < (int)base.size();\
-      \ ++d) {\n                const int coordinate = lhs_index[d] + y % base[d];\n\
-      \                y /= base[d];\n                if (coordinate >= base[d]) in_range\
-      \ = false;\n                index += coordinate * stride;\n                stride\
-      \ *= base[d];\n            }\n            if (in_range && index < n) result[index]\
-      \ += a[i] * b[j];\n        }\n    }\n    a = std::move(result);\n    return\
-      \ a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\nFPS\
-      \ multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
+      \     return a;\n    }\n\n    std::vector<std::pair<int, mint>> support_b;\n\
+      \    for (int j = 0; j < n; ++j) {\n        if (b[j] != mint(0)) support_b.emplace_back(j,\
+      \ b[j]);\n    }\n\n    // The mixed-radix index is an order extension of the\
+      \ coordinate-wise\n    // order. Therefore contributions from an input index\
+      \ i only go to indices\n    // at least i. Processing source indices in descending\
+      \ order preserves the\n    // original value of a[i], while propagating it directly\
+      \ into the output.\n    std::vector<int> lhs_index(base.size());\n    for (int\
+      \ i = n - 1; i >= 0; --i) {\n        const mint coefficient = a[i];\n      \
+      \  a[i] = mint(0);\n        if (coefficient == mint(0)) continue;\n\n      \
+      \  int x = i;\n        for (int d = 0; d < (int)base.size(); ++d) {\n      \
+      \      lhs_index[d] = x % base[d];\n            x /= base[d];\n        }\n\n\
+      \        for (const auto &[j, b_j] : support_b) {\n            int y = j, index\
+      \ = 0, stride = 1;\n            bool in_range = true;\n            for (int\
+      \ d = 0; d < (int)base.size(); ++d) {\n                const int coordinate\
+      \ = lhs_index[d] + y % base[d];\n                y /= base[d];\n           \
+      \     if (coordinate >= base[d]) {\n                    in_range = false;\n\
+      \                    break;\n                }\n                index += coordinate\
+      \ * stride;\n                stride *= base[d];\n            }\n           \
+      \ if (in_range && index < n) a[index] += coefficient * b_j;\n        }\n   \
+      \ }\n    return a;\n}\n\ntemplate <class FPS, class mint = typename FPS::value_type>\n\
+      FPS multi_convolution_truncated(const FPS &a, const FPS &b, const std::vector<int>\
       \ &base) {\n    FPS result = a;\n    inplace_multi_convolution_truncated<FPS,\
       \ mint>(result, b, base);\n    return result;\n}\n\n} // namespace kk2\n\n\n"
     name: bundled
@@ -399,7 +428,12 @@ data:
   pathExtension: hpp
   requiredBy:
   - fps/fps_multivariate.hpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  - fps/operations/multivariate/exponential.hpp
+  - fps/operations/multivariate/inverse.hpp
+  - fps/operations/multivariate/logarithm.hpp
+  - fps/operations/multivariate/multiplication.hpp
+  - fps/operations/multivariate/power.hpp
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/multivariate_convolution.test.cpp

@@ -97,7 +97,7 @@ data:
   - code: "#ifndef KK2_FPS_OPERATIONS_ARB_MULTIPLICATION_HPP\n#define KK2_FPS_OPERATIONS_ARB_MULTIPLICATION_HPP\
       \ 1\n\n#include \"../../../convolution/convolution_arb.hpp\"\n#include \"../../../type_traits/fps.hpp\"\
       \n#include \"../multiplication.hpp\"\n\nnamespace kk2::fps::operations {\n\n\
-      template <ArbitraryModulusFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
+      template <UnivariateArbitraryModulusFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
       \ &lhs, const FPS &rhs, int precision) {\n    return inplace_dense_convolution_arb(lhs,\
       \ rhs, precision);\n}\n\n} // namespace kk2::fps::operations\n\n#endif // KK2_FPS_OPERATIONS_ARB_MULTIPLICATION_HPP\n"
     name: default
@@ -541,42 +541,46 @@ data:
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
-      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
-      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
+      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
+      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
-      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
-      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
-      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
-      \ namespace kk2::fps\n\n\n#line 1 \"fps/operations/multiplication.hpp\"\n\n\n\
-      \n#line 7 \"fps/operations/multiplication.hpp\"\n\nnamespace kk2::fps::operations\
-      \ {\n\ntemplate <NTTFriendlyFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
-      \ &lhs, const FPS &rhs, int precision = -1) {\n    return inplace_dense_convolution(lhs,\
-      \ rhs, precision);\n}\n\ntemplate <ArbitraryModulusFormalPowerSeries FPS>\n\
-      FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1);\n\ntemplate\
-      \ <UnivariateFormalPowerSeries FPS>\nFPS dense_mul(const FPS &lhs, const FPS\
-      \ &rhs, int precision = -1) {\n    FPS result = lhs;\n    inplace_dense_mul(result,\
-      \ rhs, precision);\n    return result;\n}\n\ntemplate <UnivariateFormalPowerSeries\
-      \ FPS>\nFPS &inplace_sparse_mul(FPS &lhs, const FPS &rhs, int precision = -1)\
-      \ {\n    return inplace_sparse_convolution(lhs, rhs, precision);\n}\n\ntemplate\
-      \ <UnivariateFormalPowerSeries FPS>\nFPS sparse_mul(const FPS &lhs, const FPS\
-      \ &rhs, int precision = -1) {\n    FPS result = lhs;\n    inplace_sparse_mul(result,\
-      \ rhs, precision);\n    return result;\n}\n\ntemplate <UnivariateFormalPowerSeries\
-      \ FPS>\nFPS mul(const FPS &lhs, const FPS &rhs, int precision = -1) {\n    if\
-      \ (is_sparse_operation(\n            FPSOperation::CONVOLUTION, NTTFriendlyFormalPowerSeries<FPS>,\
-      \ lhs, rhs, precision))\n        return sparse_mul(lhs, rhs, precision);\n \
-      \   return dense_mul(lhs, rhs, precision);\n}\n\ntemplate <UnivariateFormalPowerSeries\
-      \ FPS>\nFPS &inplace_mul(FPS &lhs, const FPS &rhs, int precision = -1) {\n \
-      \   const bool use_sparse = is_sparse_operation(\n        FPSOperation::CONVOLUTION,\
-      \ NTTFriendlyFormalPowerSeries<FPS>, lhs, rhs, precision);\n    if (use_sparse)\
-      \ return inplace_sparse_mul(lhs, rhs, precision);\n    return inplace_dense_mul(lhs,\
-      \ rhs, precision);\n}\n\n} // namespace kk2::fps::operations\n\n\n#line 7 \"\
-      fps/operations/arb/multiplication.hpp\"\n\nnamespace kk2::fps::operations {\n\
-      \ntemplate <ArbitraryModulusFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
-      \ &lhs, const FPS &rhs, int precision) {\n    return inplace_dense_convolution_arb(lhs,\
-      \ rhs, precision);\n}\n\n} // namespace kk2::fps::operations\n\n\n"
+      \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
+      \ MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::multivariate>;\n\
+      \n// Short names for the categories that are commonly used in algorithms.\n\
+      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
+      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
+      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
+      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
+      \n\n#line 1 \"fps/operations/multiplication.hpp\"\n\n\n\n#line 7 \"fps/operations/multiplication.hpp\"\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateNTTFriendlyFormalPowerSeries\
+      \ FPS>\nFPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1)\
+      \ {\n    return inplace_dense_convolution(lhs, rhs, precision);\n}\n\ntemplate\
+      \ <UnivariateArbitraryModulusFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
+      \ &lhs, const FPS &rhs, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
+      \ FPS>\nFPS dense_mul(const FPS &lhs, const FPS &rhs, int precision = -1) {\n\
+      \    FPS result = lhs;\n    inplace_dense_mul(result, rhs, precision);\n   \
+      \ return result;\n}\n\ntemplate <UnivariateFormalPowerSeries FPS>\nFPS &inplace_sparse_mul(FPS\
+      \ &lhs, const FPS &rhs, int precision = -1) {\n    return inplace_sparse_convolution(lhs,\
+      \ rhs, precision);\n}\n\ntemplate <UnivariateFormalPowerSeries FPS>\nFPS sparse_mul(const\
+      \ FPS &lhs, const FPS &rhs, int precision = -1) {\n    FPS result = lhs;\n \
+      \   inplace_sparse_mul(result, rhs, precision);\n    return result;\n}\n\ntemplate\
+      \ <UnivariateFormalPowerSeries FPS>\nFPS mul(const FPS &lhs, const FPS &rhs,\
+      \ int precision = -1) {\n    if (is_sparse_operation(\n            FPSOperation::CONVOLUTION,\
+      \ NTTFriendlyFormalPowerSeries<FPS>, lhs, rhs, precision))\n        return sparse_mul(lhs,\
+      \ rhs, precision);\n    return dense_mul(lhs, rhs, precision);\n}\n\ntemplate\
+      \ <UnivariateFormalPowerSeries FPS>\nFPS &inplace_mul(FPS &lhs, const FPS &rhs,\
+      \ int precision = -1) {\n    const bool use_sparse = is_sparse_operation(\n\
+      \        FPSOperation::CONVOLUTION, NTTFriendlyFormalPowerSeries<FPS>, lhs,\
+      \ rhs, precision);\n    if (use_sparse) return inplace_sparse_mul(lhs, rhs,\
+      \ precision);\n    return inplace_dense_mul(lhs, rhs, precision);\n}\n\n} //\
+      \ namespace kk2::fps::operations\n\n\n#line 7 \"fps/operations/arb/multiplication.hpp\"\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision) {\n\
+      \    return inplace_dense_convolution_arb(lhs, rhs, precision);\n}\n\n} // namespace\
+      \ kk2::fps::operations\n\n\n"
     name: bundled
   isFailed: false
   isVerificationFile: false
@@ -586,7 +590,7 @@ data:
   - fps/fps_arb.hpp
   - fps/fps_multivariate.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp

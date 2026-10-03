@@ -34,12 +34,21 @@ data:
     - filename: fps_base.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_base.hpp
+    - filename: fps_bivariate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_bivariate.hpp
+    - filename: fps_egf.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_egf.hpp
     - filename: fps_multivariate.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_multivariate.hpp
     - filename: fps_ntt_friendly.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_ntt_friendly.hpp
+    - filename: fps_sps.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_sps.hpp
     - filename: fps_sqrt.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_sqrt.hpp
@@ -287,37 +296,40 @@ data:
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
-      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
-      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
+      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
+      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
-      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
-      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
-      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
-      \ namespace kk2::fps\n\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n\
-      #include <algorithm>\n#include <bit>\n#include <cstdint>\n#include <memory>\n\
-      #line 9 \"fps/fps_sparsity_detector.hpp\"\n\nnamespace kk2 {\n\nenum class FPSOperation\
-      \ {\n    CONVOLUTION,\n    LOG,\n    POWER,\n    DIVISION,\n    POLYNOMIAL_DIVISION,\n\
-      \    INVERSE,\n    EXP,\n    SQRT\n};\n\nnamespace fps::sparsity_detail {\n\n\
-      // E(n): the leading FFT evaluation cost, up to the common field-operation\n\
-      // constant that cancels when dense and sparse leading terms are compared.\n\
-      inline std::int64_t evaluation_work(int n) {\n    if (n <= 1) return 1;\n  \
-      \  const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n    return static_cast<std::int64_t>(z)\
-      \ * std::countr_zero(z);\n}\n\ninline int transform_size(int n, int m) {\n \
-      \   if (n <= 0 || m <= 0) return 0;\n    return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n\
-      \ + m - 1)));\n}\n\ninline std::int64_t\nconvolution_dense_work(int n, int m,\
-      \ int precision, bool same, bool ntt_friendly) {\n    n = std::min(n, precision);\n\
-      \    m = std::min(m, precision);\n    const int z = transform_size(n, m);\n\
-      \    if (z == 0) return 0;\n\n    // A different pair needs two forward and\
-      \ one inverse transform. Squaring\n    // reuses the forward transform and needs\
-      \ only one forward transform.\n    const int transforms = same ? 2 : 3;\n  \
-      \  // Arbitrary-modulus convolution uses three NTT-friendly moduli.\n    const\
-      \ int moduli = ntt_friendly ? 1 : 3;\n    return static_cast<std::int64_t>(transforms)\
-      \ * moduli * evaluation_work(z);\n}\n\ninline std::int64_t inverse_dense_work(int\
-      \ precision, bool ntt_friendly) {\n    if (precision <= 1) return 0;\n    const\
-      \ int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(precision)));\n\
+      \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
+      \ MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::multivariate>;\n\
+      \n// Short names for the categories that are commonly used in algorithms.\n\
+      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
+      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
+      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
+      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
+      \n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#include <algorithm>\n\
+      #include <bit>\n#include <cstdint>\n#include <memory>\n#line 9 \"fps/fps_sparsity_detector.hpp\"\
+      \n\nnamespace kk2 {\n\nenum class FPSOperation {\n    CONVOLUTION,\n    LOG,\n\
+      \    POWER,\n    DIVISION,\n    POLYNOMIAL_DIVISION,\n    INVERSE,\n    EXP,\n\
+      \    SQRT\n};\n\nnamespace fps::sparsity_detail {\n\n// E(n): the leading FFT\
+      \ evaluation cost, up to the common field-operation\n// constant that cancels\
+      \ when dense and sparse leading terms are compared.\ninline std::int64_t evaluation_work(int\
+      \ n) {\n    if (n <= 1) return 1;\n    const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n\
+      \    return static_cast<std::int64_t>(z) * std::countr_zero(z);\n}\n\ninline\
+      \ int transform_size(int n, int m) {\n    if (n <= 0 || m <= 0) return 0;\n\
+      \    return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n + m - 1)));\n\
+      }\n\ninline std::int64_t\nconvolution_dense_work(int n, int m, int precision,\
+      \ bool same, bool ntt_friendly) {\n    n = std::min(n, precision);\n    m =\
+      \ std::min(m, precision);\n    const int z = transform_size(n, m);\n    if (z\
+      \ == 0) return 0;\n\n    // A different pair needs two forward and one inverse\
+      \ transform. Squaring\n    // reuses the forward transform and needs only one\
+      \ forward transform.\n    const int transforms = same ? 2 : 3;\n    // Arbitrary-modulus\
+      \ convolution uses three NTT-friendly moduli.\n    const int moduli = ntt_friendly\
+      \ ? 1 : 3;\n    return static_cast<std::int64_t>(transforms) * moduli * evaluation_work(z);\n\
+      }\n\ninline std::int64_t inverse_dense_work(int precision, bool ntt_friendly)\
+      \ {\n    if (precision <= 1) return 0;\n    const int z = static_cast<int>(std::bit_ceil(static_cast<unsigned>(precision)));\n\
       \    // NTT-friendly uses five transforms per Newton level, whose geometric\n\
       \    // sum has leading term 10 E(z). The arbitrary-modulus implementation\n\
       \    // performs two fresh convolutions per level, giving 60 E(z).\n    return\
@@ -565,8 +577,11 @@ data:
   requiredBy:
   - fps/fps_arb.hpp
   - fps/fps_base.hpp
+  - fps/fps_bivariate.hpp
+  - fps/fps_egf.hpp
   - fps/fps_multivariate.hpp
   - fps/fps_ntt_friendly.hpp
+  - fps/fps_sps.hpp
   - fps/fps_sqrt.hpp
   - math_mod/comb_large.hpp
   - verify/yosupo_fps/fps_composition.test.cpp
@@ -577,7 +592,7 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp

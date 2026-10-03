@@ -169,6 +169,12 @@ data:
       - filename: fps_base.hpp
         icon: LIBRARY_ALL_AC
         path: fps/fps_base.hpp
+      - filename: fps_bivariate.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/fps_bivariate.hpp
+      - filename: fps_egf.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/fps_egf.hpp
       - filename: fps_multivariate.hpp
         icon: LIBRARY_ALL_AC
         path: fps/fps_multivariate.hpp
@@ -178,6 +184,9 @@ data:
       - filename: fps_sparsity_detector.hpp
         icon: LIBRARY_ALL_AC
         path: fps/fps_sparsity_detector.hpp
+      - filename: fps_sps.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/fps_sps.hpp
       - filename: fps_sqrt.hpp
         icon: LIBRARY_ALL_AC
         path: fps/fps_sqrt.hpp
@@ -245,6 +254,23 @@ data:
       - filename: multiplication.hpp
         icon: LIBRARY_ALL_AC
         path: fps/operations/arb/multiplication.hpp
+    - name: fps/operations/multivariate/
+      pages:
+      - filename: exponential.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/multivariate/exponential.hpp
+      - filename: inverse.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/multivariate/inverse.hpp
+      - filename: logarithm.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/multivariate/logarithm.hpp
+      - filename: multiplication.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/multivariate/multiplication.hpp
+      - filename: power.hpp
+        icon: LIBRARY_ALL_AC
+        path: fps/operations/multivariate/power.hpp
     - name: functional/
       pages:
       - filename: reverse_args.hpp

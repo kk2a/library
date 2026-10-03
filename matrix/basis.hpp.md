@@ -307,7 +307,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - matrix/frobenius_form.hpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix/basis.hpp

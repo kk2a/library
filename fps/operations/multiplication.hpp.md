@@ -31,12 +31,21 @@ data:
     - filename: fps_base.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_base.hpp
+    - filename: fps_bivariate.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_bivariate.hpp
+    - filename: fps_egf.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_egf.hpp
     - filename: fps_multivariate.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_multivariate.hpp
     - filename: fps_ntt_friendly.hpp
       icon: LIBRARY_ALL_AC
       path: fps/fps_ntt_friendly.hpp
+    - filename: fps_sps.hpp
+      icon: LIBRARY_ALL_AC
+      path: fps/fps_sps.hpp
     - filename: multiplication.hpp
       icon: LIBRARY_ALL_AC
       path: fps/operations/arb/multiplication.hpp
@@ -174,12 +183,12 @@ data:
   - code: "#ifndef KK2_FPS_OPERATIONS_MULTIPLICATION_HPP\n#define KK2_FPS_OPERATIONS_MULTIPLICATION_HPP\
       \ 1\n\n#include \"../../convolution/convolution.hpp\"\n#include \"../../type_traits/fps.hpp\"\
       \n#include \"../fps_sparsity_detector.hpp\"\n\nnamespace kk2::fps::operations\
-      \ {\n\ntemplate <NTTFriendlyFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
+      \ {\n\ntemplate <UnivariateNTTFriendlyFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
       \ &lhs, const FPS &rhs, int precision = -1) {\n    return inplace_dense_convolution(lhs,\
-      \ rhs, precision);\n}\n\ntemplate <ArbitraryModulusFormalPowerSeries FPS>\n\
-      FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1);\n\ntemplate\
-      \ <UnivariateFormalPowerSeries FPS>\nFPS dense_mul(const FPS &lhs, const FPS\
-      \ &rhs, int precision = -1) {\n    FPS result = lhs;\n    inplace_dense_mul(result,\
+      \ rhs, precision);\n}\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1);\n\
+      \ntemplate <UnivariateFormalPowerSeries FPS>\nFPS dense_mul(const FPS &lhs,\
+      \ const FPS &rhs, int precision = -1) {\n    FPS result = lhs;\n    inplace_dense_mul(result,\
       \ rhs, precision);\n    return result;\n}\n\ntemplate <UnivariateFormalPowerSeries\
       \ FPS>\nFPS &inplace_sparse_mul(FPS &lhs, const FPS &rhs, int precision = -1)\
       \ {\n    return inplace_sparse_convolution(lhs, rhs, precision);\n}\n\ntemplate\
@@ -473,19 +482,23 @@ data:
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
-      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
-      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
+      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
+      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
-      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
-      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
-      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
-      \ namespace kk2::fps\n\n\n#line 7 \"fps/operations/multiplication.hpp\"\n\n\
-      namespace kk2::fps::operations {\n\ntemplate <NTTFriendlyFormalPowerSeries FPS>\n\
-      FPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1) {\n   \
-      \ return inplace_dense_convolution(lhs, rhs, precision);\n}\n\ntemplate <ArbitraryModulusFormalPowerSeries\
+      \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
+      \ MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::multivariate>;\n\
+      \n// Short names for the categories that are commonly used in algorithms.\n\
+      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
+      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
+      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
+      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
+      \n\n#line 7 \"fps/operations/multiplication.hpp\"\n\nnamespace kk2::fps::operations\
+      \ {\n\ntemplate <UnivariateNTTFriendlyFormalPowerSeries FPS>\nFPS &inplace_dense_mul(FPS\
+      \ &lhs, const FPS &rhs, int precision = -1) {\n    return inplace_dense_convolution(lhs,\
+      \ rhs, precision);\n}\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
       \ FPS>\nFPS &inplace_dense_mul(FPS &lhs, const FPS &rhs, int precision = -1);\n\
       \ntemplate <UnivariateFormalPowerSeries FPS>\nFPS dense_mul(const FPS &lhs,\
       \ const FPS &rhs, int precision = -1) {\n    FPS result = lhs;\n    inplace_dense_mul(result,\
@@ -512,8 +525,11 @@ data:
   requiredBy:
   - fps/fps_arb.hpp
   - fps/fps_base.hpp
+  - fps/fps_bivariate.hpp
+  - fps/fps_egf.hpp
   - fps/fps_multivariate.hpp
   - fps/fps_ntt_friendly.hpp
+  - fps/fps_sps.hpp
   - fps/operations/arb/multiplication.hpp
   - math_mod/comb_large.hpp
   - verify/yosupo_fps/fps_composition.test.cpp
@@ -524,7 +540,7 @@ data:
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp

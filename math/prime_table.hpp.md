@@ -620,7 +620,7 @@ data:
   - convolution/convolution_lcm.hpp
   - convolution/divisor_multiple_transform.hpp
   - math/multiplicative_function/prefix_sum.hpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/prime_table_extend.test.cpp

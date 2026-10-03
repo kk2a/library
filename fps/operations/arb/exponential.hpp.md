@@ -56,8 +56,8 @@ data:
   embedded:
   - code: "#ifndef KK2_FPS_OPERATIONS_ARB_EXPONENTIAL_HPP\n#define KK2_FPS_OPERATIONS_ARB_EXPONENTIAL_HPP\
       \ 1\n\n#include <cassert>\n\n#include \"../../../type_traits/fps.hpp\"\n#include\
-      \ \"../exponential.hpp\"\n\nnamespace kk2::fps::operations {\n\ntemplate <ArbitraryModulusFormalPowerSeries\
-      \ FPS> FPS dense_exp(const FPS &f, int precision) {\n    using mint = typename\
+      \ \"../exponential.hpp\"\n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS dense_exp(const FPS &f, int precision) {\n    using mint = typename\
       \ FPS::value_type;\n    assert(f.empty() || f[0] == mint(0));\n    if (precision\
       \ == -1) precision = static_cast<int>(f.size());\n\n    FPS result{mint(1)};\n\
       \    for (int d = 1; d < precision; d <<= 1) {\n        result = result.dense_mul(f.pre(d\
@@ -89,25 +89,28 @@ data:
       template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
       \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
-      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::bivariate>;\n\
-      \ntemplate <class F>\nconcept MultivariateFormalPowerSeries = FormalPowerSeries<F>\
+      \ UnivariateNTTFriendlyFormalPowerSeries =\n    NTTFriendlyFormalPowerSeries<F>\
+      \ && UnivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries\
+      \ =\n    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
+      \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
       \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
-      \ that are commonly used in algorithms.\ntemplate <class F>\nconcept SPS = SetPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate\
-      \ <class F>\nconcept Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate\
-      \ <class F>\nconcept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} //\
-      \ namespace kk2::fps\n\n\n#line 1 \"fps/operations/exponential.hpp\"\n\n\n\n\
-      #include <algorithm>\n#line 6 \"fps/operations/exponential.hpp\"\n#include <utility>\n\
-      #include <vector>\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#line\
-      \ 5 \"fps/fps_sparsity_detector.hpp\"\n#include <bit>\n#include <cstdint>\n\
-      #include <memory>\n#line 9 \"fps/fps_sparsity_detector.hpp\"\n\nnamespace kk2\
-      \ {\n\nenum class FPSOperation {\n    CONVOLUTION,\n    LOG,\n    POWER,\n \
-      \   DIVISION,\n    POLYNOMIAL_DIVISION,\n    INVERSE,\n    EXP,\n    SQRT\n\
-      };\n\nnamespace fps::sparsity_detail {\n\n// E(n): the leading FFT evaluation\
-      \ cost, up to the common field-operation\n// constant that cancels when dense\
-      \ and sparse leading terms are compared.\ninline std::int64_t evaluation_work(int\
+      \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
+      \ MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
+      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::multivariate>;\n\
+      \n// Short names for the categories that are commonly used in algorithms.\n\
+      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
+      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
+      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
+      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
+      \n\n#line 1 \"fps/operations/exponential.hpp\"\n\n\n\n#include <algorithm>\n\
+      #line 6 \"fps/operations/exponential.hpp\"\n#include <utility>\n#include <vector>\n\
+      \n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#line 5 \"fps/fps_sparsity_detector.hpp\"\
+      \n#include <bit>\n#include <cstdint>\n#include <memory>\n#line 9 \"fps/fps_sparsity_detector.hpp\"\
+      \n\nnamespace kk2 {\n\nenum class FPSOperation {\n    CONVOLUTION,\n    LOG,\n\
+      \    POWER,\n    DIVISION,\n    POLYNOMIAL_DIVISION,\n    INVERSE,\n    EXP,\n\
+      \    SQRT\n};\n\nnamespace fps::sparsity_detail {\n\n// E(n): the leading FFT\
+      \ evaluation cost, up to the common field-operation\n// constant that cancels\
+      \ when dense and sparse leading terms are compared.\ninline std::int64_t evaluation_work(int\
       \ n) {\n    if (n <= 1) return 1;\n    const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n\
       \    return static_cast<std::int64_t>(z) * std::countr_zero(z);\n}\n\ninline\
       \ int transform_size(int n, int m) {\n    if (n <= 0 || m <= 0) return 0;\n\
@@ -210,8 +213,8 @@ data:
       \    return dense_work\n           > fps::sparsity_detail::sparse_work_constant(op,\
       \ is_ntt_friendly) * sparse_work;\n}\n\n} // namespace kk2\n\n\n#line 11 \"\
       fps/operations/exponential.hpp\"\n\nnamespace kk2::fps::operations {\n\ntemplate\
-      \ <NTTFriendlyFormalPowerSeries FPS> FPS dense_exp(const FPS &f, int precision\
-      \ = -1) {\n    using mint = typename FPS::value_type;\n    assert(f.empty()\
+      \ <UnivariateNTTFriendlyFormalPowerSeries FPS>\nFPS dense_exp(const FPS &f,\
+      \ int precision = -1) {\n    using mint = typename FPS::value_type;\n    assert(f.empty()\
       \ || f[0] == mint(0));\n    if (precision == -1) precision = static_cast<int>(f.size());\n\
       \n    FPS result{1, 1 < static_cast<int>(f.size()) ? f[1] : mint(0)};\n    FPS\
       \ inverse{1}, transformed_inverse, previous_transformed_inverse{1, 1};\n   \
@@ -236,8 +239,8 @@ data:
       \        std::fill_n(delta.begin(), m, mint(0));\n        delta.but();\n   \
       \     delta.inplace_dot(transformed_result);\n        delta.ibut();\n      \
       \  result.insert(result.end(), delta.begin() + m, delta.end());\n    }\n   \
-      \ return FPS(result.begin(), result.begin() + precision);\n}\n\ntemplate <ArbitraryModulusFormalPowerSeries\
-      \ FPS> FPS dense_exp(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
+      \ return FPS(result.begin(), result.begin() + precision);\n}\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS dense_exp(const FPS &f, int precision = -1);\n\ntemplate <UnivariateFormalPowerSeries\
       \ FPS> FPS &inplace_dense_exp(FPS &f, int precision = -1) {\n    if (precision\
       \ == -1) precision = static_cast<int>(f.size());\n    return f = dense_exp(std::as_const(f),\
       \ precision);\n}\n\ntemplate <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_exp(FPS\
@@ -268,8 +271,8 @@ data:
       \        FPSOperation::EXP, NTTFriendlyFormalPowerSeries<FPS>, f, FPS(), precision);\n\
       \    if (use_sparse) return inplace_sparse_exp(f, precision);\n    return inplace_dense_exp(f,\
       \ precision);\n}\n\n} // namespace kk2::fps::operations\n\n\n#line 8 \"fps/operations/arb/exponential.hpp\"\
-      \n\nnamespace kk2::fps::operations {\n\ntemplate <ArbitraryModulusFormalPowerSeries\
-      \ FPS> FPS dense_exp(const FPS &f, int precision) {\n    using mint = typename\
+      \n\nnamespace kk2::fps::operations {\n\ntemplate <UnivariateArbitraryModulusFormalPowerSeries\
+      \ FPS>\nFPS dense_exp(const FPS &f, int precision) {\n    using mint = typename\
       \ FPS::value_type;\n    assert(f.empty() || f[0] == mint(0));\n    if (precision\
       \ == -1) precision = static_cast<int>(f.size());\n\n    FPS result{mint(1)};\n\
       \    for (int d = 1; d < precision; d <<= 1) {\n        result = result.dense_mul(f.pre(d\
@@ -284,7 +287,7 @@ data:
   - fps/fps_arb.hpp
   - fps/fps_multivariate.hpp
   - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-10-03 19:09:13+09:00'
+  timestamp: '2026-10-03 19:55:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp
