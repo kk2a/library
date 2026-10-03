@@ -49,7 +49,7 @@ template <UnivariateFormalPowerSeries FPS> FPS &inplace_sparse_log(FPS &f, int p
             const int i = k - index;
             f[k + 1] -= f[i + 1] * coefficient * (i + 1);
         }
-        f[k + 1] *= ivta::inv(k + 1);
+        f[k + 1] *= ivta::inv_unchecked(static_cast<usize>(k + 1));
         while (next_support < support.size() && support[next_support].first < k + 1) ++next_support;
         if (next_support < support.size() && support[next_support].first == k + 1)
             f[k + 1] += support[next_support].second;

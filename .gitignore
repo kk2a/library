@@ -1,3 +1,9 @@
+# Editor files
 .vscode
+
+# Local scripts
 all-format.ps1
+__pycache__
+
+# Verification helper state
 .verify-helper/timestamps.random.json

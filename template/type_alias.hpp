@@ -6,6 +6,7 @@
 #include <utility>
 #include <vector>
 
+using i32 = int;
 using u32 = unsigned int;
 using i64 = long long;
 using u64 = unsigned long long;

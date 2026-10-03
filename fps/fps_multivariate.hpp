@@ -19,8 +19,8 @@
 
 namespace kk2 {
 
-template <fps::Modular mint,
-          template <fps::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>
+template <modint::Modular mint,
+          template <modint::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>
 struct MultivariateFormalPowerSeries {
     using mfps = MultivariateFormalPowerSeries;
     using fps = UnivariateFPS<mint>;
@@ -177,13 +177,13 @@ struct MultivariateFormalPowerSeries {
     mfps integral() const {
         ivta::set_upper(f.size());
         mfps ret(*this);
-        for (int i = 1; i < (int)ret.f.size(); i++) ret.f[i] *= ivta::inv(i);
+        for (usize i = 1; i < ret.f.size(); ++i) ret.f[i] *= ivta::inv_unchecked(i);
         return ret;
     }
 
     mfps &inplace_int() {
         ivta::set_upper(f.size());
-        for (int i = 1; i < (int)f.size(); i++) f[i] *= ivta::inv(i);
+        for (usize i = 1; i < f.size(); ++i) f[i] *= ivta::inv_unchecked(i);
         return *this;
     }
 
@@ -220,7 +220,7 @@ struct MultivariateFormalPowerSeries {
     mfps &inplace_pow(long long e) { return kk2::fps::operations::inplace_pow(*this, e); }
 };
 
-template <fps::Modular mint>
+template <modint::Modular mint>
 using MultivariateFormalPowerSeriesArbitrary =
     MultivariateFormalPowerSeries<mint, FormalPowerSeriesArbitrary>;
 

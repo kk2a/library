@@ -55,7 +55,7 @@ void test_prime_numbers() {
                           43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
     for (int p : primes) {
         auto fp = kk2::FactorizeTable::factorize(p);
-        assert(fp.size() == 1 && fp[0].first == p && fp[0].second == 1);
+        assert(fp.size() == 1 && static_cast<int>(fp[0].first) == p && fp[0].second == 1);
     }
 }
 
@@ -65,15 +65,15 @@ void test_consistency_with_reference() {
         auto f = kk2::factorize(n);
         auto f1 = kk2::FactorizeTable::factorize(n);
         assert(f.size() == f1.size());
-        for (int i = 0; i < (int)f.size(); i++) {
-            assert(f[i].first == f1[i].first);
-            assert(f[i].second == f1[i].second);
+        for (std::size_t i = 0; i < f.size(); i++) {
+            assert(f[i].first == static_cast<int>(f1[i].first));
+            assert(f[i].second == static_cast<int>(f1[i].second));
         }
 
         // Verify that the factorization is correct
         long long product = 1;
         for (auto [p, e] : f1) {
-            for (int i = 0; i < e; i++) { product *= p; }
+            for (unsigned i = 0; i < e; i++) { product *= p; }
         }
         assert(product == n);
     }
@@ -87,15 +87,15 @@ void test_large_numbers() {
         auto f = kk2::factorize(n);
         auto f1 = kk2::FactorizeTable::factorize(n);
         assert(f.size() == f1.size());
-        for (int i = 0; i < (int)f.size(); i++) {
-            assert(f[i].first == f1[i].first);
-            assert(f[i].second == f1[i].second);
+        for (std::size_t i = 0; i < f.size(); i++) {
+            assert(f[i].first == static_cast<int>(f1[i].first));
+            assert(f[i].second == static_cast<int>(f1[i].second));
         }
 
         // Verify correctness
         long long product = 1;
         for (auto [p, e] : f1) {
-            for (int i = 0; i < e; i++) {
+            for (unsigned i = 0; i < e; i++) {
                 product *= p;
                 if (product > n) break; // Avoid overflow
             }

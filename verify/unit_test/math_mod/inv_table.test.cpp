@@ -4,6 +4,7 @@
 
 #include "../../../math_mod/comb.hpp"
 #include "../../../modint/modint.hpp"
+#include "../../../modint/modint_2_61m1.hpp"
 #include "../../../random/gen.hpp"
 #include "../../../template/template.hpp"
 using namespace std;
@@ -30,6 +31,18 @@ void test_inv_table() {
             assert(mint(i) * inv_i == mint(1));
         }
         cerr << "Auto expansion: 1000 random tests passed!" << endl;
+    }
+
+    // 符号なし引数と事前拡張済みテーブルのテスト
+    {
+        InvTab::set_upper(50001);
+        rep(1000) {
+            const kk2::u32 i = static_cast<kk2::u32>(kk2::random::rng(1, 50001));
+            const mint inv_i = InvTab::inv(i);
+            assert(inv_i == InvTab::inv_unchecked(i));
+            assert(mint(i) * inv_i == mint(1));
+        }
+        cerr << "Unsigned and unchecked access: 1000 random tests passed!" << endl;
     }
 
     // 負の数のテスト
@@ -86,9 +99,17 @@ void test_comb_shared_table() {
     assert(Comb::fact(80000) * Comb::ifact(80000) == 1);
 }
 
+void test_wide_modulus() {
+    using mint = kk2::ModInt2_61m1;
+    using InvTab = kk2::InvTable<mint>;
+    InvTab::set_upper(1000);
+    for (kk2::u32 i = 1; i <= 1000; ++i) { assert(mint(i) * InvTab::inv(i) == mint(1)); }
+}
+
 void test() {
     test_inv_table();
     test_comb_shared_table();
+    test_wide_modulus();
 
     // 全テスト通過
     cerr << "All InvTable tests passed!" << endl;

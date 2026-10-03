@@ -2,16 +2,29 @@
 #define KK2_MATH_MOD_BUTTERFLY_HPP 1
 
 #include <algorithm>
+#include <cassert>
+#include <cstddef>
+#include <cstdint>
 
 #include "primitive_root.hpp"
 
 namespace kk2 {
 
+namespace detail {
+
+template <class mint> int butterfly_log_size(std::size_t n) {
+    assert((n > 0 && (n & (n - 1)) == 0) && "butterfly size must be a power of two");
+    assert(n < (std::size_t{1} << 30) && "butterfly size is too large");
+    assert((static_cast<std::uintmax_t>(mint::getmod()) - 1) % n == 0
+           && "butterfly size is not supported by the modulus");
+    return __builtin_ctz(static_cast<unsigned int>(n));
+}
+
+} // namespace detail
+
 template <class FPS, class mint = typename FPS::value_type> void butterfly(FPS &a) {
+    int h = detail::butterfly_log_size<mint>(a.size());
     static int g = primitive_root<mint::getmod()>;
-    int n = int(a.size());
-    int h = 0;
-    while ((1U << h) < (unsigned int)(n)) h++;
     static bool first = true;
     static mint sum_e2[30]; // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]
     static mint sum_e3[30];
@@ -81,10 +94,9 @@ template <class FPS, class mint = typename FPS::value_type> void butterfly(FPS &
 }
 
 template <class FPS, class mint = typename FPS::value_type> void butterfly_inv(FPS &a) {
-    static constexpr int g = primitive_root<mint::getmod()>;
     int n = int(a.size());
-    int h = 0;
-    while ((1U << h) < (unsigned int)(n)) h++;
+    int h = detail::butterfly_log_size<mint>(a.size());
+    static constexpr int g = primitive_root<mint::getmod()>;
     static bool first = true;
     static mint sum_ie2[30]; // sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]
     static mint sum_ie3[30];
@@ -162,6 +174,7 @@ template <class FPS, class mint = typename FPS::value_type> void butterfly_inv(F
 
 template <class FPS, class mint = typename FPS::value_type> void doubling(FPS &a) {
     int n = a.size();
+    detail::butterfly_log_size<mint>(a.size() * 2);
     auto b = a;
     int z = 1;
     butterfly_inv(b);

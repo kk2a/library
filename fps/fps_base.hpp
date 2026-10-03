@@ -9,6 +9,7 @@
 #include "../type_traits/fps.hpp"
 #include "../type_traits/integral.hpp"
 #include "../type_traits/io.hpp"
+#include "../type_traits/modint.hpp"
 #include "operations/division.hpp"
 #include "operations/exponential.hpp"
 #include "operations/inverse.hpp"
@@ -19,7 +20,7 @@
 
 namespace kk2 {
 
-template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::vector<mint> {
+template <class Derived, modint::Modular mint> struct FormalPowerSeriesBase : std::vector<mint> {
     using std::vector<mint>::vector;
     using FPS = Derived;
     using ivta = InvTable<mint>;
@@ -174,7 +175,7 @@ template <class Derived, fps::Modular mint> struct FormalPowerSeriesBase : std::
     FPS &inplace_int() {
         ivta::set_upper(this->size());
         this->insert(this->begin(), mint(0));
-        for (size_t i = 1; i < this->size(); i++) (*this)[i] *= ivta::inv(i);
+        for (size_t i = 1; i < this->size(); i++) (*this)[i] *= ivta::inv_unchecked(i);
         return derived();
     }
 

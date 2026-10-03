@@ -3,12 +3,9 @@
 
 #include "../../fps/poly_sample_point_shift.hpp"
 
-#include "../../fps/fps_ntt_friendly.hpp"
 #include "../../modint/mont.hpp"
 #include "../../template/template.hpp"
 using namespace std;
-
-using FPS = kk2::FPSNTT<kk2::mont998>;
 
 int main() {
     int n, m;
@@ -16,7 +13,7 @@ int main() {
     kin >> n >> m >> c;
     vc<kk2::mont998> a(n);
     kin >> a;
-    kout << kk2::sample_point_shift<FPS>(a, c, m) << kendl;
+    kout << kk2::sample_point_shift(a, c, m) << kendl;
 
     return 0;
 }

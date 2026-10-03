@@ -81,13 +81,9 @@ def coverage_report(build_directory: Path, output_directory: Path) -> str:
         "branch",
         "--print-summary",
         "--include",
-        r"^(?!verify/|\.scripts/|\.competitive-verifier/).+\.(?:cpp|hpp|cc|h)$",
+        r".+\.(?:cpp|hpp|cc|h)$",
         "--exclude",
-        r"(^|.*/)verify/.*",
-        "--exclude",
-        r"(^|.*/)\.scripts/.*",
-        "--exclude",
-        r"(^|.*/)\.competitive-verifier/.*",
+        r"(^|.*/)(?:verify|\.scripts|\.competitive-verifier)/.*",
     ]
     result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=True)
     summary = result.stdout + result.stderr

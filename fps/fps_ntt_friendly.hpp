@@ -6,7 +6,7 @@
 
 namespace kk2 {
 
-template <fps::Modular mint>
+template <modint::Modular mint>
 struct FormalPowerSeriesNTTFriendly
     : FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint> {
     using base = FormalPowerSeriesBase<FormalPowerSeriesNTTFriendly<mint>, mint>;
@@ -24,7 +24,7 @@ struct FormalPowerSeriesNTTFriendly
     static int but_pr() { return primitive_root<mint::getmod()>; }
 };
 
-template <fps::Modular mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;
+template <modint::Modular mint> using FPSNTT = FormalPowerSeriesNTTFriendly<mint>;
 
 } // namespace kk2
 
