@@ -19,35 +19,25 @@ namespace algebra {
 //
 // The return types are intentionally exact, so a typo such as returning the
 // underlying scalar instead of MyMonoid is diagnosed at the concept boundary.
-template <class T>
-concept Semigroup = requires(const T &x, const T &y) {
+template <class T> concept Semigroup = requires(const T &x, const T &y) {
     { T::op(x, y) } -> std::same_as<T>;
 };
-
-template <class T>
-concept Monoid = Semigroup<T> && requires {
+template <class T> concept Monoid = Semigroup<T> && requires {
     { T::unit() } -> std::same_as<T>;
 };
-
-template <class T>
-concept Group = Monoid<T> && requires(const T &x) {
+template <class T> concept Group = Monoid<T> && requires(const T &x) {
     { T::inv(x) } -> std::same_as<T>;
 };
-
-template <class T>
-concept CommutativeMonoid = Monoid<T> && requires {
+template <class T> concept CommutativeMonoid = Monoid<T> && requires {
     { T::commutative } -> std::convertible_to<bool>;
 } && bool(T::commutative);
-
-template <class T>
-concept CommutativeGroup = Group<T> && requires {
+template <class T> concept CommutativeGroup = Group<T> && requires {
     { T::commutative } -> std::convertible_to<bool>;
 } && bool(T::commutative);
 
 // An action specification owns the pair of algebraic types and the mapping
 // between them. It is the interface required by lazy propagation structures.
-template <class T>
-concept Action =
+template <class T> concept Action =
     requires {
         typename T::A;
         typename T::S;

@@ -1,5 +1,5 @@
-#ifndef KK2_MATH_MONOID_MAX_MIN_SUMWITHSUM_HPP
-#define KK2_MATH_MONOID_MAX_MIN_SUMWITHSUM_HPP 1
+#ifndef KK2_MATH_MONOID_MAX_MIN_SUMWITHSIZE_HPP
+#define KK2_MATH_MONOID_MAX_MIN_SUMWITHSIZE_HPP 1
 
 #include <functional>
 
@@ -67,4 +67,4 @@ template <class S, class T, class Compare = std::less<S>> struct MaxMinSumWithSi
 
 } // namespace kk2
 
-#endif // KK2_MATH_MONOID_MAX_MIN_SUMWITHSUM_HPP
+#endif // KK2_MATH_MONOID_MAX_MIN_SUMWITHSIZE_HPP

@@ -7,13 +7,11 @@
 
 namespace kk2::modint {
 
-template <class M>
-concept Modular = requires(M x) {
+template <class M> concept Modular = requires(M x) {
     requires Integral<decltype(M::getmod())>;
     x.val();
     { x.inv() } -> std::same_as<M>;
 };
-
 } // namespace kk2::modint
 
 #endif // KK2_TYPE_TRAITS_MODINT_HPP

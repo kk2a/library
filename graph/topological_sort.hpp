@@ -8,8 +8,12 @@
 
 namespace kk2 {
 
-template <graph::VertexAdjacency G> std::vector<int> topological_sort(const G &graph) {
-    int siz = size(graph);
+template <class G>
+    requires(graph::AdjacencyGraph<G> || graph::VertexAdjacency<G>)
+std::vector<int> topological_sort(const G &graph) {
+    int siz;
+    if constexpr (graph::AdjacencyGraph<G>) siz = graph.num_vertices();
+    else siz = size(graph);
     std::vector<int> indegree(siz);
     for (int i = 0; i < siz; i++)
         for (int j : graph[i]) indegree[j]++;

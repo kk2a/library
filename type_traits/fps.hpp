@@ -26,79 +26,25 @@ struct multivariate {};
 
 // Compatibility forwarding alias. The canonical modint constraint lives in
 // type_traits/modint.hpp; keeping this name avoids breaking existing FPS code.
-template <class M>
-concept Modular = modint::Modular<M>;
-
-template <class F>
-concept FormalPowerSeries = requires(const F &f, int i) {
-    typename F::value_type;
-    typename F::modulus_category;
-    typename F::series_category;
-    { f.size() } -> std::integral;
-    f[i];
-} && std::ranges::range<const F>;
-
-template <class F>
-concept NTTFriendlyFormalPowerSeries =
-    FormalPowerSeries<F>
-    && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;
-
-template <class F>
-concept ArbitraryModulusFormalPowerSeries =
-    FormalPowerSeries<F> && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;
-
-template <class F>
-concept OrdinaryFormalPowerSeries =
-    FormalPowerSeries<F> && std::same_as<typename F::series_category, category::ordinary>;
-
-template <class F>
-concept ExponentialGeneratingFunction =
-    FormalPowerSeries<F>
-    && std::same_as<typename F::series_category, category::exponential_generating>;
-
-template <class F>
-concept SetPowerSeries =
-    FormalPowerSeries<F> && std::same_as<typename F::series_category, category::set_power_series>;
-
-template <class F>
-concept UnivariateFormalPowerSeries = FormalPowerSeries<F> && requires {
-    typename F::variable_category;
-} && std::same_as<typename F::variable_category, category::univariate>;
-
-template <class F>
-concept ModularUnivariateFormalPowerSeries =
-    UnivariateFormalPowerSeries<F> && modint::Modular<typename F::value_type>;
-
-template <class F>
-concept UnivariateNTTFriendlyFormalPowerSeries =
-    NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;
-
-template <class F>
-concept UnivariateArbitraryModulusFormalPowerSeries =
-    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;
-
-template <class F>
-concept BivariateFormalPowerSeries = FormalPowerSeries<F> && requires {
-    typename F::variable_category;
-} && std::same_as<typename F::variable_category, category::bivariate>;
-
-template <class F>
-concept MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {
-    typename F::variable_category;
-} && std::same_as<typename F::variable_category, category::multivariate>;
+template <class M> concept Modular = modint::Modular<M>;
+template <class F> concept FormalPowerSeries = requires(const F &f, int i) { typename F::value_type; typename F::modulus_category; typename F::series_category; { f.size() } -> std::integral; f[i]; } && std::ranges::range<const F>;
+template <class F> concept NTTFriendlyFormalPowerSeries = FormalPowerSeries<F> && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;
+template <class F> concept ArbitraryModulusFormalPowerSeries = FormalPowerSeries<F> && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;
+template <class F> concept OrdinaryFormalPowerSeries = FormalPowerSeries<F> && std::same_as<typename F::series_category, category::ordinary>;
+template <class F> concept ExponentialGeneratingFunction = FormalPowerSeries<F> && std::same_as<typename F::series_category, category::exponential_generating>;
+template <class F> concept SetPowerSeries = FormalPowerSeries<F> && std::same_as<typename F::series_category, category::set_power_series>;
+template <class F> concept UnivariateFormalPowerSeries = FormalPowerSeries<F> && requires { typename F::variable_category; } && std::same_as<typename F::variable_category, category::univariate>;
+template <class F> concept ModularUnivariateFormalPowerSeries = UnivariateFormalPowerSeries<F> && modint::Modular<typename F::value_type>;
+template <class F> concept UnivariateNTTFriendlyFormalPowerSeries = NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;
+template <class F> concept UnivariateArbitraryModulusFormalPowerSeries = ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;
+template <class F> concept BivariateFormalPowerSeries = FormalPowerSeries<F> && requires { typename F::variable_category; } && std::same_as<typename F::variable_category, category::bivariate>;
+template <class F> concept MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires { typename F::variable_category; } && std::same_as<typename F::variable_category, category::multivariate>;
 
 // Short names for the categories that are commonly used in algorithms.
-template <class F>
-concept SPS = SetPowerSeries<F>;
-
-template <class F>
-concept EGF = ExponentialGeneratingFunction<F>;
-
-template <class F>
-concept Bivariate = BivariateFormalPowerSeries<F>;
-
-template <class F>
-concept Multivariate = MultivariateFormalPowerSeries<F>;
+template <class F> concept SPS = SetPowerSeries<F>;
+template <class F> concept EGF = ExponentialGeneratingFunction<F>;
+template <class F> concept Bivariate = BivariateFormalPowerSeries<F>;
+template <class F> concept Multivariate = MultivariateFormalPowerSeries<F>;
 
 } // namespace kk2::fps
 
