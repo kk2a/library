@@ -1,5 +1,5 @@
-#ifndef KK2_OHTERS_VECTOR_POOL_HPP
-#define KK2_OHTERS_VECTOR_POOL_HPP 1
+#ifndef KK2_OTHERS_VECTOR_POOL_HPP
+#define KK2_OTHERS_VECTOR_POOL_HPP 1
 
 #include <memory>
 #include <vector>
@@ -78,4 +78,4 @@ template <typename T> struct VectorPool {
 
 } // namespace kk2
 
-#endif // KK2_OHTERS_VECTOR_POOL_HPP
+#endif // KK2_OTHERS_VECTOR_POOL_HPP

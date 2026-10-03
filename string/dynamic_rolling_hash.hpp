@@ -1,5 +1,5 @@
 #ifndef KK2_STRING_DYNAMIC_ROLLING_HASH_HPP
-#define KK2_STRING_DYNAMIC_ROLLING_HASH_HPP
+#define KK2_STRING_DYNAMIC_ROLLING_HASH_HPP 1
 
 #include <cassert>
 #include <vector>

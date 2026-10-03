@@ -1,5 +1,5 @@
-#ifndef KK2_TYPE_TRAITS_INTERGRAL_HPP
-#define KK2_TYPE_TRAITS_INTERGRAL_HPP 1
+#ifndef KK2_TYPE_TRAITS_INTEGRAL_HPP
+#define KK2_TYPE_TRAITS_INTEGRAL_HPP 1
 
 #include <type_traits>
 
@@ -74,4 +74,4 @@ concept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;
 
 } // namespace kk2
 
-#endif // KK2_TYPE_TRAITS_INTERGRAL_HPP
+#endif // KK2_TYPE_TRAITS_INTEGRAL_HPP

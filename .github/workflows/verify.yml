@@ -29,6 +29,9 @@ jobs:
     - name: Check formatting
       run: bash .scripts/check_format.sh
 
+    - name: Check include guards
+      run: bash .scripts/check_include_guards.sh
+
   resolve:
     needs: format
     runs-on: ubuntu-latest
