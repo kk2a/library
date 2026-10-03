@@ -5,14 +5,20 @@
 #include <vector>
 
 #include "../../../../fps/fps_arb.hpp"
+#include "../../../../fps/fps_bivariate.hpp"
+#include "../../../../fps/fps_egf.hpp"
 #include "../../../../fps/fps_multivariate.hpp"
 #include "../../../../fps/fps_ntt_friendly.hpp"
+#include "../../../../fps/fps_sps.hpp"
 #include "../../../../modint/mont.hpp"
 
 using NTTFPS = kk2::FPSNTT<kk2::mont998>;
 using ArbFPS = kk2::FPSArb<kk2::mont998>;
 using MFPS = kk2::MultivariateFormalPowerSeries<kk2::mont998>;
 using MFPSArb = kk2::MultivariateFormalPowerSeriesArbitrary<kk2::mont107>;
+using BFPS = kk2::BivariateFormalPowerSeries<kk2::mont998>;
+using SPS = kk2::SetPowerSeries<kk2::mont998>;
+using EGF = kk2::ExponentialGeneratingFunction<kk2::mont998>;
 
 struct FutureSPS : std::vector<int> {
     using std::vector<int>::vector;
@@ -42,6 +48,13 @@ static_assert(kk2::fps::MultivariateFormalPowerSeries<MFPS>);
 static_assert(kk2::fps::FormalPowerSeries<MFPSArb>);
 static_assert(kk2::fps::ArbitraryModulusFormalPowerSeries<MFPSArb>);
 static_assert(kk2::fps::MultivariateFormalPowerSeries<MFPSArb>);
+
+static_assert(kk2::fps::BivariateFormalPowerSeries<BFPS>);
+static_assert(kk2::fps::SetPowerSeries<SPS>);
+static_assert(kk2::fps::ExponentialGeneratingFunction<EGF>);
+static_assert(kk2::fps::Bivariate<BFPS>);
+static_assert(kk2::fps::SPS<SPS>);
+static_assert(kk2::fps::EGF<EGF>);
 
 static_assert(kk2::fps::SetPowerSeries<FutureSPS>);
 static_assert(kk2::fps::SPS<FutureSPS>);

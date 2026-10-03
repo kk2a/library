@@ -65,30 +65,43 @@ FPS &inplace_multi_convolution_truncated_sparse(FPS &a,
         return a;
     }
 
-    FPS result(n);
-    for (int i = 0; i < n; ++i) {
+    std::vector<std::pair<int, mint>> support_b;
+    for (int j = 0; j < n; ++j) {
+        if (b[j] != mint(0)) support_b.emplace_back(j, b[j]);
+    }
+
+    // The mixed-radix index is an order extension of the coordinate-wise
+    // order. Therefore contributions from an input index i only go to indices
+    // at least i. Processing source indices in descending order preserves the
+    // original value of a[i], while propagating it directly into the output.
+    std::vector<int> lhs_index(base.size());
+    for (int i = n - 1; i >= 0; --i) {
+        const mint coefficient = a[i];
+        a[i] = mint(0);
+        if (coefficient == mint(0)) continue;
+
         int x = i;
-        std::vector<int> lhs_index(base.size());
         for (int d = 0; d < (int)base.size(); ++d) {
             lhs_index[d] = x % base[d];
             x /= base[d];
         }
-        if (a[i] == mint(0)) continue;
-        for (int j = 0; j < n; ++j) {
-            if (b[j] == mint(0)) continue;
+
+        for (const auto &[j, b_j] : support_b) {
             int y = j, index = 0, stride = 1;
             bool in_range = true;
             for (int d = 0; d < (int)base.size(); ++d) {
                 const int coordinate = lhs_index[d] + y % base[d];
                 y /= base[d];
-                if (coordinate >= base[d]) in_range = false;
+                if (coordinate >= base[d]) {
+                    in_range = false;
+                    break;
+                }
                 index += coordinate * stride;
                 stride *= base[d];
             }
-            if (in_range && index < n) result[index] += a[i] * b[j];
+            if (in_range && index < n) a[index] += coefficient * b_j;
         }
     }
-    a = std::move(result);
     return a;
 }
 
