@@ -1,6 +1,7 @@
 #ifndef KK2_CONVOLUTION_MULTI_CONVOLUTION_TRUNCATED_HPP
 #define KK2_CONVOLUTION_MULTI_CONVOLUTION_TRUNCATED_HPP 1
 
+#include <utility>
 #include <vector>
 
 #include "convolution.hpp"
@@ -10,8 +11,10 @@ namespace kk2 {
 // reference: https://rushcheyo.blog.uoj.ac/blog/6547
 // 日本語:
 // https://nyaannyaan.github.io/library/ntt/multivariate-multiplication.hpp
+namespace detail {
+
 template <class FPS, class mint = typename FPS::value_type>
-FPS &inplace_multi_convolution_truncated(FPS &a, const FPS &b, const std::vector<int> &base) {
+FPS &inplace_multi_convolution_truncated_ntt(FPS &a, const FPS &b, const std::vector<int> &base) {
     int n = int(a.size());
     if (!n) return a;
     int k = base.size();
@@ -41,6 +44,51 @@ FPS &inplace_multi_convolution_truncated(FPS &a, const FPS &b, const std::vector
     }
     for (auto &x : f) butterfly_inv(x);
     for (int i = 0; i < n; i++) a[i] = f[chi[i]][i];
+    return a;
+}
+
+} // namespace detail
+
+template <class FPS, class mint = typename FPS::value_type>
+FPS &inplace_multi_convolution_truncated(FPS &a, const FPS &b, const std::vector<int> &base) {
+    return detail::inplace_multi_convolution_truncated_ntt(a, b, base);
+}
+
+template <class FPS, class mint = typename FPS::value_type>
+FPS &inplace_multi_convolution_truncated_sparse(FPS &a,
+                                                const FPS &b,
+                                                const std::vector<int> &base) {
+    const int n = int(a.size());
+    if (!n) return a;
+    if (base.empty()) {
+        a[0] *= b[0];
+        return a;
+    }
+
+    FPS result(n);
+    for (int i = 0; i < n; ++i) {
+        int x = i;
+        std::vector<int> lhs_index(base.size());
+        for (int d = 0; d < (int)base.size(); ++d) {
+            lhs_index[d] = x % base[d];
+            x /= base[d];
+        }
+        if (a[i] == mint(0)) continue;
+        for (int j = 0; j < n; ++j) {
+            if (b[j] == mint(0)) continue;
+            int y = j, index = 0, stride = 1;
+            bool in_range = true;
+            for (int d = 0; d < (int)base.size(); ++d) {
+                const int coordinate = lhs_index[d] + y % base[d];
+                y /= base[d];
+                if (coordinate >= base[d]) in_range = false;
+                index += coordinate * stride;
+                stride *= base[d];
+            }
+            if (in_range && index < n) result[index] += a[i] * b[j];
+        }
+    }
+    a = std::move(result);
     return a;
 }
 
