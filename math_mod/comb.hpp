@@ -41,7 +41,9 @@ template <modint::Modular mint> struct Comb {
     }
 
   public:
-    static void set_upper(usize n) { ensure(n); }
+    static void set_upper(usize n) {
+        ensure(std::min<usize>(n, static_cast<usize>(mint::getmod() - 1)));
+    }
 
     static mint fact(u32 n) {
         ensure(static_cast<usize>(n));

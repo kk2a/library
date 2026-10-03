@@ -1,1 +1,4 @@
-exclude: ["expand_user_file.py"]
+exclude:
+  - expand_user_file.py
+  - AGENTS.md
+  - README.md

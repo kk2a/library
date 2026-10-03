@@ -17,9 +17,9 @@ u64 sigma1(u32 p, u32 e) {
     return p_e + (p_e - 1) / (p - 1);
 }
 
-u32 euler_phi(u32 p, u32 e) {
+u64 euler_phi(u32 p, u32 e) {
     u64 p_e = pow<u64>(p, e);
-    return static_cast<u32>(p_e - p_e / p);
+    return p_e - p_e / p;
 }
 
 } // namespace mf
