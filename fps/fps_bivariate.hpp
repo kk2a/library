@@ -11,8 +11,8 @@ namespace kk2 {
 // Kronecker-substitution/2-D NTT product or a truncated 2-D convolution.
 // Inversion is naturally implemented by Newton iteration, while log/exp/pow
 // follow from the formal derivative and integral in the two coordinates.
-template <fps::Modular mint,
-          template <fps::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>
+template <modint::Modular mint,
+          template <modint::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>
 struct BivariateFormalPowerSeries {
     using bfps = BivariateFormalPowerSeries;
     using fps = UnivariateFPS<mint>;
@@ -98,7 +98,7 @@ struct BivariateFormalPowerSeries {
     bfps &inplace_integral_y();
 };
 
-template <fps::Modular mint> using BivariateFPS = BivariateFormalPowerSeries<mint>;
+template <modint::Modular mint> using BivariateFPS = BivariateFormalPowerSeries<mint>;
 
 } // namespace kk2
 

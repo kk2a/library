@@ -1,5 +1,3 @@
-// competitive-verifier: STANDALONE
-
 #include "../../../math_mod/comb.hpp"
 #include "../../../math_mod/comb_large.hpp"
 #include "../../../modint/modint.hpp"

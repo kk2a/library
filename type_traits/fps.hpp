@@ -5,6 +5,8 @@
 #include <ranges>
 #include <type_traits>
 
+#include "modint.hpp"
+
 namespace kk2::fps {
 
 namespace category {
@@ -22,12 +24,10 @@ struct multivariate {};
 
 } // namespace category
 
+// Compatibility forwarding alias. The canonical modint constraint lives in
+// type_traits/modint.hpp; keeping this name avoids breaking existing FPS code.
 template <class M>
-concept Modular = requires(M x) {
-    { M::getmod() } -> std::integral;
-    x.val();
-    { x.inv() } -> std::same_as<M>;
-};
+concept Modular = modint::Modular<M>;
 
 template <class F>
 concept FormalPowerSeries = requires(const F &f, int i) {
@@ -64,6 +64,10 @@ template <class F>
 concept UnivariateFormalPowerSeries = FormalPowerSeries<F> && requires {
     typename F::variable_category;
 } && std::same_as<typename F::variable_category, category::univariate>;
+
+template <class F>
+concept ModularUnivariateFormalPowerSeries =
+    UnivariateFormalPowerSeries<F> && modint::Modular<typename F::value_type>;
 
 template <class F>
 concept UnivariateNTTFriendlyFormalPowerSeries =

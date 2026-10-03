@@ -10,8 +10,8 @@ namespace kk2 {
 // Set Power Series indexed by subsets of a fixed ground set. The intended
 // implementation uses the ranked zeta transform for subset convolution and
 // the usual zeta/Möbius transforms for pointwise subset operations.
-template <fps::Modular mint,
-          template <fps::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>
+template <modint::Modular mint,
+          template <modint::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>
 struct SetPowerSeries {
     using sps = SetPowerSeries;
     using fps = UnivariateFPS<mint>;
@@ -91,7 +91,7 @@ struct SetPowerSeries {
     fps power_projection(const sps &weight, int count = -1) const;
 };
 
-template <fps::Modular mint> using SPS = SetPowerSeries<mint>;
+template <modint::Modular mint> using SPS = SetPowerSeries<mint>;
 
 } // namespace kk2
 

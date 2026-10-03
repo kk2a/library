@@ -11,6 +11,7 @@
 #include "../../../../fps/fps_ntt_friendly.hpp"
 #include "../../../../fps/fps_sps.hpp"
 #include "../../../../modint/mont.hpp"
+#include "../../../../type_traits/modint.hpp"
 
 using NTTFPS = kk2::FPSNTT<kk2::mont998>;
 using ArbFPS = kk2::FPSArb<kk2::mont998>;
@@ -35,11 +36,13 @@ struct FutureEGFBivariate : std::vector<int> {
     using variable_category = kk2::fps::category::bivariate;
 };
 
+static_assert(kk2::modint::Modular<kk2::mont998>);
 static_assert(kk2::fps::Modular<kk2::mont998>);
 static_assert(kk2::fps::FormalPowerSeries<NTTFPS>);
 static_assert(kk2::fps::NTTFriendlyFormalPowerSeries<NTTFPS>);
 static_assert(kk2::fps::OrdinaryFormalPowerSeries<NTTFPS>);
 static_assert(kk2::fps::UnivariateFormalPowerSeries<NTTFPS>);
+static_assert(kk2::fps::ModularUnivariateFormalPowerSeries<NTTFPS>);
 static_assert(!kk2::fps::ArbitraryModulusFormalPowerSeries<NTTFPS>);
 
 static_assert(kk2::fps::ArbitraryModulusFormalPowerSeries<ArbFPS>);

@@ -3,88 +3,73 @@
 
 #include <algorithm>
 #include <cassert>
+#include <limits>
 #include <vector>
 
+#include "../common/type_alias.hpp"
 #include "multiplicative_function/prime_counting.hpp"
 
 namespace kk2 {
 
 struct LPFTable {
   private:
-    static inline std::vector<int> _primes{2}, _lpf{0, 1, 2}, _lpf_pow{0, 1, 2}, _v_lpf{0, 1, 1};
+    static inline std::vector<u32> _primes{2}, _lpf{0, 1, 2};
 
   public:
     LPFTable() = delete;
 
-    static void set_upper(int m) {
-        if ((int)_lpf.size() > m) return;
-        m = std::max<int>(2 * _lpf.size(), m);
-        std::size_t reserve_target = prime_counting(m);
+    static void set_upper(usize m) {
+        if (_lpf.size() > m) return;
+        m = std::max<usize>(2 * _lpf.size(), m);
+        assert(m <= static_cast<usize>(std::numeric_limits<u32>::max()));
+        usize reserve_target = static_cast<usize>(prime_counting(static_cast<i64>(m)));
         if (_primes.capacity() < reserve_target) _primes.reserve(reserve_target);
-        _lpf_pow.resize(m + 1);
-        _v_lpf.resize(m + 1);
         _lpf.resize(m + 1);
-        for (int i = 2; i <= m; i++) {
-            if (_lpf[i] == 0) {
-                _lpf[i] = i;
+        const u32 upper = static_cast<u32>(m);
+        for (usize index = 2; index <= m; ++index) {
+            const u32 i = static_cast<u32>(index);
+            if (_lpf[index] == 0) {
+                _lpf[index] = i;
                 _primes.emplace_back(i);
-                _lpf_pow[i] = i;
-                _v_lpf[i] = 1;
             }
-            for (const long long p : _primes) {
-                if (p * i > m) break;
-                if (_lpf[i] < p) break;
-                _lpf[p * i] = p;
-                if (_lpf[i] == p) {
-                    _v_lpf[p * i] = _v_lpf[i] + 1;
-                    _lpf_pow[p * i] = _lpf_pow[i] * p;
-                } else {
-                    _v_lpf[p * i] = 1;
-                    _lpf_pow[p * i] = p;
-                }
+            for (const u32 p : _primes) {
+                const u64 pi = static_cast<u64>(p) * i;
+                if (pi > upper) break;
+                const usize product = static_cast<usize>(pi);
+                if (_lpf[index] < p) break;
+                _lpf[product] = p;
             }
         }
     }
 
-    static const std::vector<int> &primes() { return _primes; }
+    static const std::vector<u32> &primes() { return _primes; }
 
     template <typename It> struct PrimeIt {
         It bg, ed;
         PrimeIt(It bg_, It ed_) : bg(bg_), ed(ed_) {}
         It begin() const { return bg; }
         It end() const { return ed; }
-        int size() const { return ed - bg; }
-        int operator[](int i) const { return bg[i]; }
-        std::vector<int> to_vec() const { return std::vector<int>(bg, ed); }
+        usize size() const { return static_cast<usize>(ed - bg); }
+        u32 operator[](usize i) const { return bg[i]; }
+        std::vector<u32> to_vec() const { return std::vector<u32>(bg, ed); }
     };
 
-    static auto primes(int n) {
-        if (n >= (int)_lpf.size()) set_upper(n);
-        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(), n));
+    static auto primes(usize n) {
+        if (n >= _lpf.size()) set_upper(n);
+        const u32 upper = static_cast<u32>(n);
+        return PrimeIt(_primes.begin(), std::upper_bound(_primes.begin(), _primes.end(), upper));
     }
 
-    static int lpf(int n) {
+    static u32 lpf(u32 n) {
         assert(n > 1);
-        if (n >= (int)_lpf.size()) set_upper(n);
+        if (static_cast<usize>(n) >= _lpf.size()) set_upper(static_cast<usize>(n));
         return _lpf[n];
     }
 
-    static bool isprime(int n) {
+    static bool isprime(u32 n) {
         assert(n > 0);
-        if (n >= (int)_lpf.size()) set_upper(n);
+        if (static_cast<usize>(n) >= _lpf.size()) set_upper(static_cast<usize>(n));
         return n != 1 and _lpf[n] == n;
-    }
-
-    static int lpf_pow(int n) {
-        assert(n > 1);
-        if (n >= (int)_lpf_pow.size()) set_upper(n);
-        return _lpf_pow[n];
-    }
-
-    static int v_lpf(int n) {
-        assert(n > 1);
-        if (n >= (int)_v_lpf.size()) set_upper(n);
-        return _v_lpf[n];
     }
 };
 

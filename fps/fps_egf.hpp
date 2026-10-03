@@ -11,8 +11,8 @@ namespace kk2 {
 // Multiplication is the binomial convolution; conversion to ordinary FPS by
 // factorial scaling gives a simple baseline for inverse/log/exp/pow. Faster
 // implementations can replace that conversion with a factorial-weighted NTT.
-template <fps::Modular mint,
-          template <fps::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>
+template <modint::Modular mint,
+          template <modint::Modular> class UnivariateFPS = FormalPowerSeriesNTTFriendly>
 struct ExponentialGeneratingFunction {
     using egf = ExponentialGeneratingFunction;
     using fps = UnivariateFPS<mint>;
@@ -83,7 +83,7 @@ struct ExponentialGeneratingFunction {
     egf &inplace_composition(const egf &inner, int precision = -1);
 };
 
-template <fps::Modular mint> using EGF = ExponentialGeneratingFunction<mint>;
+template <modint::Modular mint> using EGF = ExponentialGeneratingFunction<mint>;
 
 } // namespace kk2
 
