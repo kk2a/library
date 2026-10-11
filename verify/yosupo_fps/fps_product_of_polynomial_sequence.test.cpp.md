@@ -258,42 +258,32 @@ data:
       using i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\n#ifndef _MSC_VER\n\
       using i128 = __int128_t;\nusing u128 = __uint128_t;\n#endif\n\n} // namespace\
       \ kk2\n\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
-      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
-      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
-      \                                              or std::is_same<T, __int128>::value,\n\
-      \                                                   std::true_type,\n      \
-      \                                             std::false_type>::type;\n\ntemplate\
-      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
-      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                                            std::true_type,\n             \
-      \                               std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
-      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
-      \                              make_unsigned_int128<T>,\n                  \
-      \            typename std::conditional<std::is_signed<T>::value,\n         \
-      \                                               std::make_unsigned<T>,\n   \
-      \                                                     std::common_type<T>>::type>::type;\n\
-      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value or std::is_same<T,\
+      \ __int128>::value, std::true_type, std::false_type>::type;\ntemplate <typename\
+      \ T> using is_unsigned_int128 = typename std::conditional<std::is_same<T, __uint128_t>::value\
+      \ or std::is_same<T, unsigned __int128>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_integral = typename std::conditional<std::is_integral<T>::value\
+      \ or is_signed_int128<T>::value or is_unsigned_int128<T>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_unsigned = typename\
+      \ std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\
+      \ std::true_type, std::false_type>::type;\ntemplate <typename T> using make_unsigned_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
+      \ unsigned __int128>;\ntemplate <typename T> using to_unsigned = typename std::conditional<is_signed_int128<T>::value,\
+      \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
+      \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\n\n#else\n\ntemplate\
+      \ <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
       template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
       \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
       template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
       template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
-      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 9 \"math_mod/inv_table.hpp\"\n\nnamespace kk2\
       \ {\n\n/**\n * @brief `[1, n]`\u306Emod\u9006\u5143\u3092\u5217\u6319\u3059\u308B\
       \u30C6\u30FC\u30D6\u30EB\n *\n * @tparam mint\n */\ntemplate <class mint> struct\
@@ -317,74 +307,64 @@ data:
       \n\n#line 1 \"type_traits/fps.hpp\"\n\n\n\n#include <concepts>\n#include <ranges>\n\
       #line 7 \"type_traits/fps.hpp\"\n\n#line 1 \"type_traits/modint.hpp\"\n\n\n\n\
       #line 5 \"type_traits/modint.hpp\"\n\n#line 7 \"type_traits/modint.hpp\"\n\n\
-      namespace kk2::modint {\n\ntemplate <class M>\nconcept Modular = requires(M\
-      \ x) {\n    requires Integral<decltype(M::getmod())>;\n    x.val();\n    { x.inv()\
-      \ } -> std::same_as<M>;\n};\n\n} // namespace kk2::modint\n\n\n#line 9 \"type_traits/fps.hpp\"\
+      namespace kk2::modint {\n\ntemplate <class M> concept Modular = requires(M x)\
+      \ {\n    requires Integral<decltype(M::getmod())>;\n    x.val();\n    { x.inv()\
+      \ } -> std::same_as<M>;\n};\n} // namespace kk2::modint\n\n\n#line 9 \"type_traits/fps.hpp\"\
       \n\nnamespace kk2::fps {\n\nnamespace category {\n\nstruct arbitrary_modulus\
       \ {};\nstruct ntt_friendly_modulus {};\n\nstruct ordinary {};\nstruct exponential_generating\
       \ {};\nstruct set_power_series {};\n\nstruct univariate {};\nstruct bivariate\
       \ {};\nstruct multivariate {};\n\n} // namespace category\n\n// Compatibility\
       \ forwarding alias. The canonical modint constraint lives in\n// type_traits/modint.hpp;\
-      \ keeping this name avoids breaking existing FPS code.\ntemplate <class M>\n\
-      concept Modular = modint::Modular<M>;\n\ntemplate <class F>\nconcept FormalPowerSeries\
-      \ = requires(const F &f, int i) {\n    typename F::value_type;\n    typename\
-      \ F::modulus_category;\n    typename F::series_category;\n    { f.size() } ->\
-      \ std::integral;\n    f[i];\n} && std::ranges::range<const F>;\n\ntemplate <class\
-      \ F>\nconcept NTTFriendlyFormalPowerSeries =\n    FormalPowerSeries<F>\n   \
+      \ keeping this name avoids breaking existing FPS code.\ntemplate <class M> concept\
+      \ Modular = modint::Modular<M>;\ntemplate <class F> concept FormalPowerSeries\
+      \ = requires(const F &f, int i) { typename F::value_type; typename F::modulus_category;\
+      \ typename F::series_category; { f.size() } -> std::integral; f[i]; } && std::ranges::range<const\
+      \ F>;\ntemplate <class F> concept NTTFriendlyFormalPowerSeries = FormalPowerSeries<F>\
       \ && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;\n\
-      \ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries =\n    FormalPowerSeries<F>\
+      template <class F> concept ArbitraryModulusFormalPowerSeries = FormalPowerSeries<F>\
       \ && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;\n\
-      \ntemplate <class F>\nconcept OrdinaryFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && std::same_as<typename F::series_category, category::ordinary>;\n\ntemplate\
-      \ <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
-      \    && std::same_as<typename F::series_category, category::exponential_generating>;\n\
-      \ntemplate <class F>\nconcept SetPowerSeries =\n    FormalPowerSeries<F> &&\
-      \ std::same_as<typename F::series_category, category::set_power_series>;\n\n\
-      template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
-      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ ModularUnivariateFormalPowerSeries =\n    UnivariateFormalPowerSeries<F> &&\
-      \ modint::Modular<typename F::value_type>;\n\ntemplate <class F>\nconcept UnivariateNTTFriendlyFormalPowerSeries\
-      \ =\n    NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries =\n\
-      \    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
-      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
-      \ MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
-      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::multivariate>;\n\
-      \n// Short names for the categories that are commonly used in algorithms.\n\
-      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
-      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
-      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
-      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
-      \n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\n#include\
-      \ <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
+      template <class F> concept OrdinaryFormalPowerSeries = FormalPowerSeries<F>\
+      \ && std::same_as<typename F::series_category, category::ordinary>;\ntemplate\
+      \ <class F> concept ExponentialGeneratingFunction = FormalPowerSeries<F> &&\
+      \ std::same_as<typename F::series_category, category::exponential_generating>;\n\
+      template <class F> concept SetPowerSeries = FormalPowerSeries<F> && std::same_as<typename\
+      \ F::series_category, category::set_power_series>;\ntemplate <class F> concept\
+      \ UnivariateFormalPowerSeries = FormalPowerSeries<F> && requires { typename\
+      \ F::variable_category; } && std::same_as<typename F::variable_category, category::univariate>;\n\
+      template <class F> concept ModularUnivariateFormalPowerSeries = UnivariateFormalPowerSeries<F>\
+      \ && modint::Modular<typename F::value_type>;\ntemplate <class F> concept UnivariateNTTFriendlyFormalPowerSeries\
+      \ = NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\ntemplate\
+      \ <class F> concept UnivariateArbitraryModulusFormalPowerSeries = ArbitraryModulusFormalPowerSeries<F>\
+      \ && UnivariateFormalPowerSeries<F>;\ntemplate <class F> concept BivariateFormalPowerSeries\
+      \ = FormalPowerSeries<F> && requires { typename F::variable_category; } && std::same_as<typename\
+      \ F::variable_category, category::bivariate>;\ntemplate <class F> concept MultivariateFormalPowerSeries\
+      \ = FormalPowerSeries<F> && requires { typename F::variable_category; } && std::same_as<typename\
+      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
+      \ that are commonly used in algorithms.\ntemplate <class F> concept SPS = SetPowerSeries<F>;\n\
+      template <class F> concept EGF = ExponentialGeneratingFunction<F>;\ntemplate\
+      \ <class F> concept Bivariate = BivariateFormalPowerSeries<F>;\ntemplate <class\
+      \ F> concept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace\
+      \ kk2::fps\n\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#line 5 \"type_traits/io.hpp\"\
+      \n#include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
-      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                                          || std::is_same<T,\
-      \ std::ifstream>::value,\n                                                 \
-      \     std::true_type,\n                                                    \
-      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
-      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
-      \                                                   || std::is_same<T, std::ofstream>::value,\n\
-      \                                                      std::true_type,\n   \
-      \                                                   std::false_type>::type;\n\
-      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\
+      \ || std::is_same<T, std::ifstream>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value || std::is_same<T, std::ofstream>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\
+      template <typename T> using is_istream = typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_ostream = typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
+      template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      template <class T> concept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 1 \"fps/operations/division.hpp\"\n\n\n\n#line\
       \ 5 \"fps/operations/division.hpp\"\n#include <memory>\n#include <utility>\n\
       #line 8 \"fps/operations/division.hpp\"\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\
@@ -1378,142 +1358,142 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 8.192443862999994
+  - elapsed: 7.206757744000015
     environment: g++
-    memory: 39.516
+    memory: 39.488
     name: all_degree_one_00
     status: AC
-  - elapsed: 8.186467459000028
+  - elapsed: 7.197050432000026
     environment: g++
-    memory: 39.52
+    memory: 39.62
     name: all_degree_one_01
     status: AC
-  - elapsed: 8.17179550100002
+  - elapsed: 7.200471816999993
     environment: g++
-    memory: 39.464
+    memory: 39.488
     name: all_degree_one_02
     status: AC
-  - elapsed: 8.192584155999981
+  - elapsed: 7.20607675499997
     environment: g++
-    memory: 39.556
+    memory: 39.62
     name: all_degree_one_03
     status: AC
-  - elapsed: 8.152163621
+  - elapsed: 7.180059251000046
     environment: g++
-    memory: 39.556
+    memory: 39.62
     name: all_degree_one_04
     status: AC
-  - elapsed: 0.002618527999999287
+  - elapsed: 0.0022094340000649026
     environment: g++
-    memory: 3.608
+    memory: 3.772
     name: example_00
     status: AC
-  - elapsed: 0.002157455999991953
+  - elapsed: 0.0017963609999469554
     environment: g++
-    memory: 3.824
+    memory: 3.788
     name: example_01
     status: AC
-  - elapsed: 0.002139031000012892
+  - elapsed: 0.0017912129999331228
     environment: g++
     memory: 3.768
     name: example_02
     status: AC
-  - elapsed: 2.3050215830000127
+  - elapsed: 1.9601200319999634
     environment: g++
-    memory: 44.768
+    memory: 44.864
     name: max_and_zero_00
     status: AC
-  - elapsed: 8.214802090999996
+  - elapsed: 7.220942523999952
     environment: g++
-    memory: 34.376
+    memory: 34.428
     name: max_random_00
     status: AC
-  - elapsed: 8.377580105000021
+  - elapsed: 7.379437489999987
     environment: g++
-    memory: 36.748
+    memory: 36.764
     name: max_random_01
     status: AC
-  - elapsed: 7.1231952130000025
+  - elapsed: 6.357656350999946
     environment: g++
-    memory: 16.428
+    memory: 16.496
     name: max_random_02
     status: AC
-  - elapsed: 8.306274833999993
+  - elapsed: 7.289711024999974
     environment: g++
-    memory: 36.788
+    memory: 36.856
     name: max_random_03
     status: AC
-  - elapsed: 7.923705115999979
+  - elapsed: 6.979524359999914
     environment: g++
-    memory: 27.988
+    memory: 28.088
     name: max_random_04
     status: AC
-  - elapsed: 7.601770678000008
+  - elapsed: 6.673586716000045
     environment: g++
-    memory: 33.604
+    memory: 33.728
     name: random_00
     status: AC
-  - elapsed: 7.771068632999999
+  - elapsed: 6.854860358999986
     environment: g++
-    memory: 36.252
+    memory: 36.188
     name: random_01
     status: AC
-  - elapsed: 6.510121107000003
+  - elapsed: 5.771756506000088
     environment: g++
-    memory: 14.764
+    memory: 14.836
     name: random_02
     status: AC
-  - elapsed: 1.0560977160000107
+  - elapsed: 0.8847928739999134
     environment: g++
-    memory: 27.536
+    memory: 27.512
     name: random_03
     status: AC
-  - elapsed: 1.9433179890000076
+  - elapsed: 1.6848849340000243
     environment: g++
-    memory: 20.88
+    memory: 20.992
     name: random_04
     status: AC
-  - elapsed: 0.002660691000016868
+  - elapsed: 0.001993995000020732
     environment: g++
-    memory: 3.796
+    memory: 3.864
     name: small_00
     status: AC
-  - elapsed: 0.0022169060000010177
+  - elapsed: 0.0018567710000070292
     environment: g++
-    memory: 3.776
+    memory: 3.876
     name: small_01
     status: AC
-  - elapsed: 0.0022778539999990244
+  - elapsed: 0.0017811499999424996
     environment: g++
-    memory: 3.652
+    memory: 3.864
     name: small_02
     status: AC
-  - elapsed: 0.002153346000000056
+  - elapsed: 0.0017750109999497
     environment: g++
-    memory: 3.652
+    memory: 3.716
     name: small_03
     status: AC
-  - elapsed: 0.0021781780000083018
+  - elapsed: 0.001788169999940692
     environment: g++
-    memory: 3.796
+    memory: 3.856
     name: small_04
     status: AC
-  - elapsed: 9.209032498
+  - elapsed: 8.10968329299999
     environment: g++
-    memory: 43.796
+    memory: 43.912
     name: unbalanced_00
     status: AC
-  - elapsed: 9.275947245999987
+  - elapsed: 8.139717841999982
     environment: g++
-    memory: 43.748
+    memory: 43.868
     name: unbalanced_01
     status: AC
-  - elapsed: 9.064390376999995
+  - elapsed: 7.97073230400008
     environment: g++
-    memory: 44.016
+    memory: 44.42
     name: unbalanced_02
     status: AC
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_fps/fps_product_of_polynomial_sequence.test.cpp

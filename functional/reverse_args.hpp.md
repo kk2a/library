@@ -35,54 +35,43 @@ data:
   - code: "#line 1 \"functional/reverse_args.hpp\"\n\n\n\n#line 1 \"type_traits/functional.hpp\"\
       \n\n\n\n#include <concepts>\n#include <type_traits>\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                                     \
-      \  or std::is_same<T, __int128>::value,\n                                  \
-      \                 std::true_type,\n                                        \
-      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
-      \                               or std::is_same<T, unsigned __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
-      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-      \                                  or is_unsigned_int128<T>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                                         \
-      \   std::true_type,\n                                            std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
-      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
-      \                              make_unsigned_int128<T>,\n                  \
-      \            typename std::conditional<std::is_signed<T>::value,\n         \
-      \                                               std::make_unsigned<T>,\n   \
-      \                                                     std::common_type<T>>::type>::type;\n\
-      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      \ntemplate <typename T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value or std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_unsigned_int128 = typename std::conditional<std::is_same<T,\
+      \ __uint128_t>::value or std::is_same<T, unsigned __int128>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_integral = typename\
+      \ std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\
+      \ or is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value, std::true_type, std::false_type>::type;\ntemplate\
+      \ <typename T> using is_unsigned = typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using make_unsigned_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\ntemplate <typename T>\
+      \ using to_unsigned = typename std::conditional<is_signed_int128<T>::value,\
+      \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
+      \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\n\n#else\n\ntemplate\
+      \ <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
       template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
       \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
       template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
       template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
-      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 8 \"type_traits/functional.hpp\"\n\nnamespace\
-      \ kk2 {\n\ntemplate <typename T>\nusing is_function_pointer =\n    typename\
-      \ std::conditional<std::is_pointer_v<T> && std::is_function_v<std::remove_pointer_t<T>>,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T> struct is_two_args_function_pointer\
-      \ : std::false_type {};\n\ntemplate <typename R, typename T1, typename T2>\n\
-      struct is_two_args_function_pointer<R (*)(T1, T2)> : std::true_type {\n    using\
-      \ return_type = R;\n    using first_argument_type = T1;\n    using second_argument_type\
-      \ = T2;\n};\n\ntemplate <typename T>\nusing is_two_args_function_pointer_t =\
-      \ std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\ntemplate <class\
-      \ T>\nconcept FunctionPointer = is_function_pointer<T>::value;\n\ntemplate <class\
-      \ T>\nconcept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
-      \ntemplate <class T>\nconcept UnsignedTwoArgsFunctionPointer = TwoArgsFunctionPointer<T>\
+      \ kk2 {\n\ntemplate <typename T> using is_function_pointer = typename std::conditional<std::is_pointer_v<T>\
+      \ && std::is_function_v<std::remove_pointer_t<T>>, std::true_type, std::false_type>::type;\n\
+      template <typename T> struct is_two_args_function_pointer : std::false_type\
+      \ {};\ntemplate <typename R, typename T1, typename T2> struct is_two_args_function_pointer<R\
+      \ (*)(T1, T2)> : std::true_type {\n    using return_type = R;\n    using first_argument_type\
+      \ = T1;\n    using second_argument_type = T2;\n};\ntemplate <typename T> using\
+      \ is_two_args_function_pointer_t = std::enable_if_t<is_two_args_function_pointer<T>::value>;\n\
+      template <class T> concept FunctionPointer = is_function_pointer<T>::value;\n\
+      template <class T> concept TwoArgsFunctionPointer = is_two_args_function_pointer<T>::value;\n\
+      template <class T> concept UnsignedTwoArgsFunctionPointer = TwoArgsFunctionPointer<T>\
       \ && requires {\n    typename is_two_args_function_pointer<T>::first_argument_type;\n\
       \    typename is_two_args_function_pointer<T>::second_argument_type;\n} && UnsignedIntegral<typename\
       \ is_two_args_function_pointer<T>::first_argument_type> && UnsignedIntegral<typename\
@@ -97,7 +86,7 @@ data:
   path: functional/reverse_args.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_point_set_range_composite.test.cpp

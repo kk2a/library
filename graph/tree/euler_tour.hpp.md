@@ -84,30 +84,23 @@ data:
       \n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include <ostream>\n\
       #include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct\
       \ istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\n\
-      template <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                                   \
-      \       || std::is_same<T, std::ifstream>::value,\n                        \
-      \                              std::true_type,\n                           \
-      \                           std::false_type>::type;\ntemplate <typename T>\n\
-      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
-      \                                                          || std::is_same<T,\
-      \ std::ofstream>::value,\n                                                 \
-      \     std::true_type,\n                                                    \
-      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      template <typename T> using is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value || std::is_same<T, std::ifstream>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_standard_ostream =\
+      \ typename std::conditional<std::is_same<T, std::ostream>::value || std::is_same<T,\
+      \ std::ofstream>::value, std::true_type, std::false_type>::type;\ntemplate <typename\
+      \ T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\ntemplate <typename T> using is_istream = typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_ostream = typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
+      template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      template <class T> concept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 7 \"math/monoid/min.hpp\"\n\nnamespace kk2 {\n\
       \nnamespace monoid {\n\ntemplate <class S, class Compare = std::less<S>> struct\
       \ Min {\n    static constexpr bool commutative = true;\n    using M = Min;\n\
@@ -133,17 +126,17 @@ data:
       \ MyMonoid &, const MyMonoid &);\n//       static MyMonoid unit();\n//   };\n\
       //\n// The return types are intentionally exact, so a typo such as returning\
       \ the\n// underlying scalar instead of MyMonoid is diagnosed at the concept\
-      \ boundary.\ntemplate <class T>\nconcept Semigroup = requires(const T &x, const\
-      \ T &y) {\n    { T::op(x, y) } -> std::same_as<T>;\n};\n\ntemplate <class T>\n\
-      concept Monoid = Semigroup<T> && requires {\n    { T::unit() } -> std::same_as<T>;\n\
-      };\n\ntemplate <class T>\nconcept Group = Monoid<T> && requires(const T &x)\
-      \ {\n    { T::inv(x) } -> std::same_as<T>;\n};\n\ntemplate <class T>\nconcept\
-      \ CommutativeMonoid = Monoid<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
-      } && bool(T::commutative);\n\ntemplate <class T>\nconcept CommutativeGroup =\
-      \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
-      } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
+      \ boundary.\ntemplate <class T> concept Semigroup = requires(const T &x, const\
+      \ T &y) {\n    { T::op(x, y) } -> std::same_as<T>;\n};\ntemplate <class T> concept\
+      \ Monoid = Semigroup<T> && requires {\n    { T::unit() } -> std::same_as<T>;\n\
+      };\ntemplate <class T> concept Group = Monoid<T> && requires(const T &x) {\n\
+      \    { T::inv(x) } -> std::same_as<T>;\n};\ntemplate <class T> concept CommutativeMonoid\
+      \ = Monoid<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
+      } && bool(T::commutative);\ntemplate <class T> concept CommutativeGroup = Group<T>\
+      \ && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n} &&\
+      \ bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
       \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action =\n    requires\
+      \ propagation structures.\ntemplate <class T> concept Action =\n    requires\
       \ {\n        typename T::A;\n        typename T::S;\n    } && Monoid<typename\
       \ T::A> && Monoid<typename T::S>\n    && requires(const typename T::A &f, const\
       \ typename T::S &x) {\n           { T::act(f, x) } -> std::same_as<typename\
@@ -191,41 +184,40 @@ data:
       \n\nnamespace kk2 {\n\ntemplate <class S> using StaticRMQ = SparseTable<monoid::Min<S>>;\n\
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#line 5 \"\
       type_traits/graph.hpp\"\n#include <ranges>\n#line 8 \"type_traits/graph.hpp\"\
-      \n\nnamespace kk2::graph {\n\ntemplate <class E>\nconcept Edge = requires(const\
+      \n\nnamespace kk2::graph {\n\ntemplate <class E> concept Edge = requires(const\
       \ E &e) {\n    { e.from } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
-      \    { e.id } -> std::convertible_to<int>;\n};\n\ntemplate <class E>\nconcept\
-      \ WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };\n\ntemplate <class\
-      \ R>\nconcept EdgeRange = std::ranges::input_range<R> && Edge<std::ranges::range_value_t<R>>;\n\
-      \ntemplate <class R>\nconcept WeightedEdgeRange = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\
-      \ntemplate <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
-      \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
+      \    { e.id } -> std::convertible_to<int>;\n};\ntemplate <class E> concept WeightedEdge\
+      \ = Edge<E> && requires(const E &e) { e.cost; };\ntemplate <class R> concept\
+      \ EdgeRange = std::ranges::input_range<R> && Edge<std::ranges::range_value_t<R>>;\n\
+      template <class R> concept WeightedEdgeRange = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\
+      template <class R> concept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
+      \ && WeightedEdgeRange<R>;\ntemplate <class G> concept Graph = requires(const\
       \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
       \    { G::weighted } -> std::convertible_to<bool>;\n    { G::adjacency_list\
       \ } -> std::convertible_to<bool>;\n    { G::adjacency_matrix } -> std::convertible_to<bool>;\n\
       \    { G::static_graph } -> std::convertible_to<bool>;\n    { g.num_vertices()\
       \ } -> std::integral;\n    { g.num_edges() } -> std::integral;\n    g[v];\n\
-      \    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph = Graph<G> &&\
-      \ requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
-      \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
-      \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
-      \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
-      };\n\ntemplate <class G>\nconcept WeightedGraph =\n    AdjacencyGraph<G> &&\
-      \ G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph =\n   \
-      \ EdgeListGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
-      \ && (!G::weighted);\n\ntemplate <class G>\nconcept DirectedGraph = AdjacencyGraph<G>\
-      \ && G::directed;\n\ntemplate <class G>\nconcept UndirectedGraph = AdjacencyGraph<G>\
-      \ && (!G::directed);\n\ntemplate <class G>\nconcept WeightedDirectedGraph =\
-      \ WeightedGraph<G> && DirectedGraph<G>;\n\ntemplate <class G>\nconcept WeightedUndirectedGraph\
-      \ = WeightedGraph<G> && UndirectedGraph<G>;\n\ntemplate <class G>\nconcept WeightedDirectedEdgeListGraph\
-      \ = WeightedEdgeListGraph<G> && G::directed;\n\ntemplate <class G>\nconcept\
-      \ WeightedUndirectedEdgeListGraph = WeightedEdgeListGraph<G> && (!G::directed);\n\
-      \ntemplate <class G>\nconcept StaticGraph = Graph<G> && G::static_graph;\n\n\
-      // Adjacency over vertices, also usable with vector<vector<int>>.\ntemplate\
-      \ <class G>\nconcept VertexAdjacency = requires(const G &g, int v) {\n    {\
-      \ g.size() } -> std::integral;\n    requires std::ranges::range<decltype(g[v])>;\n\
-      \    requires std::convertible_to<std::ranges::range_value_t<decltype(g[v])>,\
+      \    g.edges;\n};\ntemplate <class G> concept EdgeListGraph = Graph<G> && requires(const\
+      \ G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n    requires\
+      \ Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\ntemplate <class\
+      \ G> concept AdjacencyGraph = Graph<G> && requires(const G &g, int v) {\n  \
+      \  requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
+      };\ntemplate <class G> concept WeightedGraph =\n    AdjacencyGraph<G> && G::weighted\n\
+      \    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>()[0])>>;\ntemplate <class G> concept WeightedEdgeListGraph =\n    EdgeListGraph<G>\
+      \ && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>().edges)>>;\ntemplate <class G> concept UnweightedGraph = AdjacencyGraph<G>\
+      \ && (!G::weighted);\ntemplate <class G> concept DirectedGraph = AdjacencyGraph<G>\
+      \ && G::directed;\ntemplate <class G> concept UndirectedGraph = AdjacencyGraph<G>\
+      \ && (!G::directed);\ntemplate <class G> concept WeightedDirectedGraph = WeightedGraph<G>\
+      \ && DirectedGraph<G>;\ntemplate <class G> concept WeightedUndirectedGraph =\
+      \ WeightedGraph<G> && UndirectedGraph<G>;\ntemplate <class G> concept WeightedDirectedEdgeListGraph\
+      \ = WeightedEdgeListGraph<G> && G::directed;\ntemplate <class G> concept WeightedUndirectedEdgeListGraph\
+      \ = WeightedEdgeListGraph<G> && (!G::directed);\ntemplate <class G> concept\
+      \ StaticGraph = Graph<G> && G::static_graph;\n\n// Adjacency over vertices,\
+      \ also usable with vector<vector<int>>.\ntemplate <class G> concept VertexAdjacency\
+      \ = requires(const G &g, int v) {\n    { g.size() } -> std::integral;\n    requires\
+      \ std::ranges::range<decltype(g[v])>;\n    requires std::convertible_to<std::ranges::range_value_t<decltype(g[v])>,\
       \ int>;\n};\n\n} // namespace kk2::graph\n\n\n#line 12 \"graph/tree/euler_tour.hpp\"\
       \n\nnamespace kk2 {\n\ntemplate <graph::UndirectedGraph G> struct EulerTour\
       \ {\n\n    const G &g;\n    int id;\n    std::vector<int> in, out, par;\n\n\
@@ -264,7 +256,7 @@ data:
   path: graph/tree/euler_tour.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/tree_vertex_add_path_sum_1.test.cpp

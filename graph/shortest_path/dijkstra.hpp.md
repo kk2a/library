@@ -42,42 +42,40 @@ data:
   - code: "#line 1 \"graph/shortest_path/dijkstra.hpp\"\n\n\n\n#include <limits>\n\
       #include <queue>\n#include <utility>\n#include <vector>\n\n#line 1 \"type_traits/graph.hpp\"\
       \n\n\n\n#include <concepts>\n#include <ranges>\n#include <type_traits>\n#line\
-      \ 8 \"type_traits/graph.hpp\"\n\nnamespace kk2::graph {\n\ntemplate <class E>\n\
-      concept Edge = requires(const E &e) {\n    { e.from } -> std::convertible_to<int>;\n\
+      \ 8 \"type_traits/graph.hpp\"\n\nnamespace kk2::graph {\n\ntemplate <class E>\
+      \ concept Edge = requires(const E &e) {\n    { e.from } -> std::convertible_to<int>;\n\
       \    { e.to } -> std::convertible_to<int>;\n    { e.id } -> std::convertible_to<int>;\n\
-      };\n\ntemplate <class E>\nconcept WeightedEdge = Edge<E> && requires(const E\
-      \ &e) { e.cost; };\n\ntemplate <class R>\nconcept EdgeRange = std::ranges::input_range<R>\
-      \ && Edge<std::ranges::range_value_t<R>>;\n\ntemplate <class R>\nconcept WeightedEdgeRange\
-      \ = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\ntemplate\
-      \ <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
-      \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
-      \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
-      \    { G::weighted } -> std::convertible_to<bool>;\n    { G::adjacency_list\
-      \ } -> std::convertible_to<bool>;\n    { G::adjacency_matrix } -> std::convertible_to<bool>;\n\
-      \    { G::static_graph } -> std::convertible_to<bool>;\n    { g.num_vertices()\
-      \ } -> std::integral;\n    { g.num_edges() } -> std::integral;\n    g[v];\n\
-      \    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph = Graph<G> &&\
-      \ requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
-      \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
-      \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
-      \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
-      };\n\ntemplate <class G>\nconcept WeightedGraph =\n    AdjacencyGraph<G> &&\
-      \ G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph =\n   \
-      \ EdgeListGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
-      \ && (!G::weighted);\n\ntemplate <class G>\nconcept DirectedGraph = AdjacencyGraph<G>\
-      \ && G::directed;\n\ntemplate <class G>\nconcept UndirectedGraph = AdjacencyGraph<G>\
-      \ && (!G::directed);\n\ntemplate <class G>\nconcept WeightedDirectedGraph =\
-      \ WeightedGraph<G> && DirectedGraph<G>;\n\ntemplate <class G>\nconcept WeightedUndirectedGraph\
-      \ = WeightedGraph<G> && UndirectedGraph<G>;\n\ntemplate <class G>\nconcept WeightedDirectedEdgeListGraph\
-      \ = WeightedEdgeListGraph<G> && G::directed;\n\ntemplate <class G>\nconcept\
-      \ WeightedUndirectedEdgeListGraph = WeightedEdgeListGraph<G> && (!G::directed);\n\
-      \ntemplate <class G>\nconcept StaticGraph = Graph<G> && G::static_graph;\n\n\
-      // Adjacency over vertices, also usable with vector<vector<int>>.\ntemplate\
-      \ <class G>\nconcept VertexAdjacency = requires(const G &g, int v) {\n    {\
-      \ g.size() } -> std::integral;\n    requires std::ranges::range<decltype(g[v])>;\n\
-      \    requires std::convertible_to<std::ranges::range_value_t<decltype(g[v])>,\
+      };\ntemplate <class E> concept WeightedEdge = Edge<E> && requires(const E &e)\
+      \ { e.cost; };\ntemplate <class R> concept EdgeRange = std::ranges::input_range<R>\
+      \ && Edge<std::ranges::range_value_t<R>>;\ntemplate <class R> concept WeightedEdgeRange\
+      \ = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\ntemplate <class\
+      \ R> concept ForwardWeightedEdgeRange = std::ranges::forward_range<R> && WeightedEdgeRange<R>;\n\
+      template <class G> concept Graph = requires(const G &g, int v) {\n    typename\
+      \ G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n    { G::weighted\
+      \ } -> std::convertible_to<bool>;\n    { G::adjacency_list } -> std::convertible_to<bool>;\n\
+      \    { G::adjacency_matrix } -> std::convertible_to<bool>;\n    { G::static_graph\
+      \ } -> std::convertible_to<bool>;\n    { g.num_vertices() } -> std::integral;\n\
+      \    { g.num_edges() } -> std::integral;\n    g[v];\n    g.edges;\n};\ntemplate\
+      \ <class G> concept EdgeListGraph = Graph<G> && requires(const G &g) {\n   \
+      \ requires std::ranges::range<decltype(g.edges)>;\n    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n\
+      };\ntemplate <class G> concept AdjacencyGraph = Graph<G> && requires(const G\
+      \ &g, int v) {\n    requires std::ranges::range<decltype(g[v])>;\n    requires\
+      \ Edge<std::ranges::range_value_t<decltype(g[v])>>;\n};\ntemplate <class G>\
+      \ concept WeightedGraph =\n    AdjacencyGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>()[0])>>;\ntemplate <class G> concept WeightedEdgeListGraph =\n    EdgeListGraph<G>\
+      \ && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>().edges)>>;\ntemplate <class G> concept UnweightedGraph = AdjacencyGraph<G>\
+      \ && (!G::weighted);\ntemplate <class G> concept DirectedGraph = AdjacencyGraph<G>\
+      \ && G::directed;\ntemplate <class G> concept UndirectedGraph = AdjacencyGraph<G>\
+      \ && (!G::directed);\ntemplate <class G> concept WeightedDirectedGraph = WeightedGraph<G>\
+      \ && DirectedGraph<G>;\ntemplate <class G> concept WeightedUndirectedGraph =\
+      \ WeightedGraph<G> && UndirectedGraph<G>;\ntemplate <class G> concept WeightedDirectedEdgeListGraph\
+      \ = WeightedEdgeListGraph<G> && G::directed;\ntemplate <class G> concept WeightedUndirectedEdgeListGraph\
+      \ = WeightedEdgeListGraph<G> && (!G::directed);\ntemplate <class G> concept\
+      \ StaticGraph = Graph<G> && G::static_graph;\n\n// Adjacency over vertices,\
+      \ also usable with vector<vector<int>>.\ntemplate <class G> concept VertexAdjacency\
+      \ = requires(const G &g, int v) {\n    { g.size() } -> std::integral;\n    requires\
+      \ std::ranges::range<decltype(g[v])>;\n    requires std::convertible_to<std::ranges::range_value_t<decltype(g[v])>,\
       \ int>;\n};\n\n} // namespace kk2::graph\n\n\n#line 10 \"graph/shortest_path/dijkstra.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace shortest_path_impl {\n\nstruct dij_edge {\n\
       \    int to, id;\n};\n\ntemplate <class T> struct dij_result {\n    std::vector<T>\
@@ -102,7 +100,7 @@ data:
   path: graph/shortest_path/dijkstra.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_graph/graph_shortest_path.test.cpp

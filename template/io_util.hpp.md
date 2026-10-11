@@ -37,9 +37,6 @@ data:
     - filename: fps_composition_inv.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_composition_inv.test.cpp
-    - filename: fps_exp_arb.test.cpp
-      icon: LIBRARY_NO_TESTS
-      path: verify/yosupo_fps/fps_exp_arb.test.cpp
     - filename: fps_multipoint_evaluation_geometric.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
@@ -234,6 +231,9 @@ data:
     - filename: fps_exp.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_exp.test.cpp
+    - filename: fps_exp_arb.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/fps_exp_arb.test.cpp
     - filename: fps_inv.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_inv.test.cpp
@@ -535,30 +535,24 @@ data:
       #include <vector>\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#include <type_traits>\n\
       \nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
-      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                                          || std::is_same<T,\
-      \ std::ifstream>::value,\n                                                 \
-      \     std::true_type,\n                                                    \
-      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
-      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
-      \                                                   || std::is_same<T, std::ofstream>::value,\n\
-      \                                                      std::true_type,\n   \
-      \                                                   std::false_type>::type;\n\
-      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\
+      \ || std::is_same<T, std::ifstream>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value || std::is_same<T, std::ofstream>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\
+      template <typename T> using is_istream = typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_ostream = typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
+      template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      template <class T> concept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 9 \"template/io_util.hpp\"\n\n// \u306A\u3093\
       \u304Boj verify\u306F\u30D7\u30ED\u30C8\u30BF\u30A4\u30D7\u5BA3\u8A00\u304C\u843D\
       \u3061\u308B\n\nnamespace impl {\n\nstruct read {\n    template <class IStream,\
@@ -609,14 +603,13 @@ data:
   - verify/yosupo_ds/ds_potentiailized_uf_non_commutattive.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
   - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_0233.test.cpp
@@ -677,6 +670,7 @@ data:
   - verify/yosupo_ds/ds_static_rmq_2.test.cpp
   - verify/yosupo_ds/ds_unionfind.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp

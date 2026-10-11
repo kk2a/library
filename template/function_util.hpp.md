@@ -88,30 +88,23 @@ data:
       \ 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n#include <fstream>\n\
       #include <istream>\n#include <ostream>\n#include <type_traits>\n\nnamespace\
       \ kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct ostream_tag\
-      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing is_standard_istream\
-      \ = typename std::conditional<std::is_same<T, std::istream>::value\n       \
-      \                                                   || std::is_same<T, std::ifstream>::value,\n\
-      \                                                      std::true_type,\n   \
-      \                                                   std::false_type>::type;\n\
-      template <typename T>\nusing is_standard_ostream = typename std::conditional<std::is_same<T,\
-      \ std::ostream>::value\n                                                   \
-      \       || std::is_same<T, std::ofstream>::value,\n                        \
-      \                              std::true_type,\n                           \
-      \                           std::false_type>::type;\ntemplate <typename T> using\
-      \ is_user_defined_istream = std::is_base_of<type_traits::istream_tag, T>;\n\
-      template <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ {};\n\n} // namespace type_traits\n\ntemplate <typename T> using is_standard_istream\
+      \ = typename std::conditional<std::is_same<T, std::istream>::value || std::is_same<T,\
+      \ std::ifstream>::value, std::true_type, std::false_type>::type;\ntemplate <typename\
+      \ T> using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\
+      \ || std::is_same<T, std::ofstream>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\ntemplate <typename T> using is_istream = typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_ostream = typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
+      template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      template <class T> concept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 7 \"math/monoid/max.hpp\"\n\nnamespace kk2 {\n\
       \nnamespace monoid {\n\ntemplate <class S, class Compare = std::less<S>> struct\
       \ Max {\n    static constexpr bool commutative = true;\n    using M = Max;\n\
@@ -149,17 +142,17 @@ data:
       #include <string>\n#line 11 \"type_traits/container_traits.hpp\"\n\nnamespace\
       \ kk2 {\n\ntemplate <typename T> struct is_vector : std::false_type {};\ntemplate\
       \ <typename T, typename Alloc> struct is_vector<std::vector<T, Alloc>> : std::true_type\
-      \ {};\n\ntemplate <typename T> struct is_container : std::false_type {};\ntemplate\
-      \ <typename T, typename Alloc>\nstruct is_container<std::vector<T, Alloc>> :\
-      \ std::true_type {};\ntemplate <typename CharT, typename Traits, typename Alloc>\n\
-      struct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type\
+      \ {};\ntemplate <typename T> struct is_container : std::false_type {};\ntemplate\
+      \ <typename T, typename Alloc> struct is_container<std::vector<T, Alloc>> :\
+      \ std::true_type {};\ntemplate <typename CharT, typename Traits, typename Alloc>\
+      \ struct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type\
       \ {};\ntemplate <typename T, std::size_t N> struct is_container<std::array<T,\
       \ N>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::deque<T,\
       \ Alloc>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct\
       \ is_container<std::list<T, Alloc>> : std::true_type {};\ntemplate <typename\
       \ T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;\n\
-      \ntemplate <class T>\nconcept Vector = is_vector<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept Container = is_container<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept Vector = is_vector<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept Container = is_container<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 13 \"template/function_util.hpp\"\n\nnamespace\
       \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int first, Sizes...\
       \ sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n\
@@ -208,7 +201,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - template/procon.hpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/template/function_util.test.cpp

@@ -18,90 +18,52 @@ data:
     type: Verified with
   dependsOn: []
   embedded:
-  - code: "#ifndef KK2_TYPE_TRAITS_MEMBER_HPP\n#define KK2_TYPE_TRAITS_MEMBER_HPP\
-      \ 1\n\n#include <type_traits>\n\nnamespace kk2 {\n// BEGIN_PRESERVE_NEWLINES\n\
-      \n#define HAS_MEMBER_FUNC(member)                                          \
-      \                          \\\n    template <typename T, typename... Ts> struct\
-      \ has_member_func_##member##_impl {                 \\\n        template <typename\
-      \ U>                                                                      \\\
-      \n        static std::true_type check(decltype(std::declval<U>().member(std::declval<Ts>()...))\
-      \ *);  \\\n        template <typename U> static std::false_type check(...);\
-      \                                   \\\n        using type = decltype(check<T>(nullptr));\
-      \                                                  \\\n    };              \
-      \                                                                          \
-      \     \\\n    template <typename T, typename... Ts>                        \
-      \                                  \\\n    struct has_member_func_##member :\
-      \ has_member_func_##member##_impl<T, Ts...>::type {};          \\\n    template\
-      \ <typename T, typename... Ts>                                             \
-      \             \\\n    using has_member_func_##member##_t =                 \
-      \                                          \\\n        std::enable_if_t<has_member_func_##member<T,\
-      \ Ts...>::value>;                               \\\n    template <typename T,\
-      \ typename... Ts>                                                          \\\
-      \n    using not_has_member_func_##member##_t =                             \
-      \                          \\\n        std::enable_if_t<!has_member_func_##member<T,\
-      \ Ts...>::value>;\n\n#define HAS_MEMBER_VAR(member)                        \
-      \                                             \\\n    template <typename T>\
-      \ struct has_member_var_##member##_impl {                                  \\\
-      \n        template <typename U> static std::true_type check(decltype(std::declval<U>().member)\
-      \ *);   \\\n        template <typename U> static std::false_type check(...);\
-      \                                   \\\n        using type = decltype(check<T>(nullptr));\
-      \                                                  \\\n    };              \
-      \                                                                          \
-      \     \\\n    template <typename T>                                        \
-      \                                  \\\n    struct has_member_var_##member :\
-      \ has_member_var_##member##_impl<T>::type {};                   \\\n    template\
-      \ <typename T>                                                             \
-      \             \\\n    using has_member_var_##member##_t = std::enable_if_t<has_member_var_##member<T>::value>;\
-      \       \\\n    template <typename T>                                      \
-      \                                    \\\n    using not_has_member_var_##member##_t\
-      \ = std::enable_if_t<!has_member_var_##member<T>::value>;\n\nHAS_MEMBER_FUNC(debug_output)\n\
-      HAS_MEMBER_FUNC(val)\n\ntemplate <class T, class... Ts>\nconcept HasDebugOutput\
-      \ = has_member_func_debug_output<T, Ts...>::value;\n\ntemplate <class T, class...\
-      \ Ts>\nconcept HasVal = has_member_func_val<T, Ts...>::value;\n\n// END_PRESERVE_NEWLINES\n\
-      \n#undef HAS_MEMBER_FUNC\n#undef HAS_MEMBER_VAR\n} // namespace kk2\n\n#endif\
-      \ // KK2_TYPE_TRAITS_MEMBER_HPP\n"
+  - code: '#ifndef KK2_TYPE_TRAITS_MEMBER_HPP
+
+      #define KK2_TYPE_TRAITS_MEMBER_HPP 1
+
+
+      #include <utility>
+
+
+      namespace kk2 {
+
+
+      template <class T, class... Ts> concept HasDebugOutput = requires { std::declval<T>().debug_output(std::declval<Ts>()...);
+      };
+
+      template <class T, class... Ts> concept HasVal = requires { std::declval<T>().val(std::declval<Ts>()...);
+      };
+
+      } // namespace kk2
+
+
+      #endif // KK2_TYPE_TRAITS_MEMBER_HPP
+
+      '
     name: default
-  - code: "#line 1 \"type_traits/member.hpp\"\n\n\n\n#include <type_traits>\n\nnamespace\
-      \ kk2 {\n// BEGIN_PRESERVE_NEWLINES\n\n#define HAS_MEMBER_FUNC(member)     \
-      \                                                               \\\n    template\
-      \ <typename T, typename... Ts> struct has_member_func_##member##_impl {    \
-      \             \\\n        template <typename U>                            \
-      \                                          \\\n        static std::true_type\
-      \ check(decltype(std::declval<U>().member(std::declval<Ts>()...)) *);  \\\n\
-      \        template <typename U> static std::false_type check(...);          \
-      \                         \\\n        using type = decltype(check<T>(nullptr));\
-      \                                                  \\\n    };              \
-      \                                                                          \
-      \     \\\n    template <typename T, typename... Ts>                        \
-      \                                  \\\n    struct has_member_func_##member :\
-      \ has_member_func_##member##_impl<T, Ts...>::type {};          \\\n    template\
-      \ <typename T, typename... Ts>                                             \
-      \             \\\n    using has_member_func_##member##_t =                 \
-      \                                          \\\n        std::enable_if_t<has_member_func_##member<T,\
-      \ Ts...>::value>;                               \\\n    template <typename T,\
-      \ typename... Ts>                                                          \\\
-      \n    using not_has_member_func_##member##_t =                             \
-      \                          \\\n        std::enable_if_t<!has_member_func_##member<T,\
-      \ Ts...>::value>;\n\n#define HAS_MEMBER_VAR(member)                        \
-      \                                             \\\n    template <typename T>\
-      \ struct has_member_var_##member##_impl {                                  \\\
-      \n        template <typename U> static std::true_type check(decltype(std::declval<U>().member)\
-      \ *);   \\\n        template <typename U> static std::false_type check(...);\
-      \                                   \\\n        using type = decltype(check<T>(nullptr));\
-      \                                                  \\\n    };              \
-      \                                                                          \
-      \     \\\n    template <typename T>                                        \
-      \                                  \\\n    struct has_member_var_##member :\
-      \ has_member_var_##member##_impl<T>::type {};                   \\\n    template\
-      \ <typename T>                                                             \
-      \             \\\n    using has_member_var_##member##_t = std::enable_if_t<has_member_var_##member<T>::value>;\
-      \       \\\n    template <typename T>                                      \
-      \                                    \\\n    using not_has_member_var_##member##_t\
-      \ = std::enable_if_t<!has_member_var_##member<T>::value>;\n\nHAS_MEMBER_FUNC(debug_output)\n\
-      HAS_MEMBER_FUNC(val)\n\ntemplate <class T, class... Ts>\nconcept HasDebugOutput\
-      \ = has_member_func_debug_output<T, Ts...>::value;\n\ntemplate <class T, class...\
-      \ Ts>\nconcept HasVal = has_member_func_val<T, Ts...>::value;\n\n// END_PRESERVE_NEWLINES\n\
-      \n#undef HAS_MEMBER_FUNC\n#undef HAS_MEMBER_VAR\n} // namespace kk2\n\n\n"
+  - code: '#line 1 "type_traits/member.hpp"
+
+
+
+
+      #include <utility>
+
+
+      namespace kk2 {
+
+
+      template <class T, class... Ts> concept HasDebugOutput = requires { std::declval<T>().debug_output(std::declval<Ts>()...);
+      };
+
+      template <class T, class... Ts> concept HasVal = requires { std::declval<T>().val(std::declval<Ts>()...);
+      };
+
+      } // namespace kk2
+
+
+
+      '
     name: bundled
   isFailed: false
   isVerificationFile: false
@@ -109,7 +71,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - template/debug.hpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/type_traits/concepts.test.cpp

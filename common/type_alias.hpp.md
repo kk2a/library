@@ -102,9 +102,6 @@ data:
     - filename: fps_composition_inv.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_composition_inv.test.cpp
-    - filename: fps_exp_arb.test.cpp
-      icon: LIBRARY_NO_TESTS
-      path: verify/yosupo_fps/fps_exp_arb.test.cpp
     - filename: fps_multipoint_evaluation_geometric.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
@@ -185,6 +182,9 @@ data:
     - filename: fps_exp.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_exp.test.cpp
+    - filename: fps_exp_arb.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/fps_exp_arb.test.cpp
     - filename: fps_inv.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_inv.test.cpp
@@ -397,14 +397,13 @@ data:
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
   - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/poly_sample_point_shift.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp
@@ -427,6 +426,7 @@ data:
   - verify/unit_test/math_mod/inv_table.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp

@@ -218,7 +218,7 @@ data:
   - unionfind/parallel.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/aoj_ntl_1_d.test.cpp

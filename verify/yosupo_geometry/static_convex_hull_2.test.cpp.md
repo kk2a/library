@@ -78,132 +78,132 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.290055762999998
+  - elapsed: 0.36327516499999035
     environment: g++
-    memory: 4.352
+    memory: 4.288
     name: all_same_00
     status: AC
-  - elapsed: 0.26569740100001127
+  - elapsed: 0.3557771770000073
     environment: g++
-    memory: 4.724
+    memory: 4.668
     name: all_same_01
     status: AC
-  - elapsed: 0.0017099969999776476
+  - elapsed: 0.0022050269999880356
     environment: g++
-    memory: 3.912
+    memory: 3.764
     name: example_00
     status: AC
-  - elapsed: 0.001614458000005925
+  - elapsed: 0.0021040230000011206
     environment: g++
-    memory: 3.88
+    memory: 3.764
     name: example_01
     status: AC
-  - elapsed: 0.4963806990000421
+  - elapsed: 0.7000151860000017
     environment: g++
-    memory: 64.356
+    memory: 64.288
     name: max_ans_00
     status: AC
-  - elapsed: 0.39204859500000566
+  - elapsed: 0.5776183610000061
     environment: g++
-    memory: 36.852
+    memory: 36.788
     name: max_colinear_00
     status: AC
-  - elapsed: 0.389218226999958
+  - elapsed: 0.573139891000011
     environment: g++
-    memory: 36.852
+    memory: 36.792
     name: max_colinear_01
     status: AC
-  - elapsed: 0.4172886140000287
+  - elapsed: 0.6196547830000014
     environment: g++
-    memory: 36.836
+    memory: 36.788
     name: max_random_00
     status: AC
-  - elapsed: 0.3467553360000011
+  - elapsed: 0.5107688380000042
     environment: g++
-    memory: 36.832
+    memory: 36.72
     name: max_random_01
     status: AC
-  - elapsed: 0.3836161529999913
+  - elapsed: 0.5765297730000043
     environment: g++
-    memory: 36.844
+    memory: 36.716
     name: max_random_02
     status: AC
-  - elapsed: 0.39450781599998663
+  - elapsed: 0.5935030169999891
     environment: g++
-    memory: 36.836
+    memory: 36.788
     name: max_random_03
     status: AC
-  - elapsed: 0.4172055479999699
+  - elapsed: 0.6173011090000102
     environment: g++
-    memory: 36.76
+    memory: 36.788
     name: max_random_04
     status: AC
-  - elapsed: 0.3428059589999748
+  - elapsed: 0.5075212689999944
     environment: g++
-    memory: 36.852
+    memory: 36.716
     name: max_random_05
     status: AC
-  - elapsed: 0.37897725599998466
+  - elapsed: 0.5739277419999951
     environment: g++
-    memory: 36.852
+    memory: 36.788
     name: max_random_06
     status: AC
-  - elapsed: 0.3970742789999804
+  - elapsed: 0.5932182810000057
     environment: g++
-    memory: 36.856
+    memory: 36.716
     name: max_random_07
     status: AC
-  - elapsed: 0.4689773609999861
+  - elapsed: 0.676461486000008
     environment: g++
-    memory: 49.456
+    memory: 49.336
     name: near_circle_00
     status: AC
-  - elapsed: 0.47295646700001726
+  - elapsed: 0.6744159069999967
     environment: g++
-    memory: 49.5
+    memory: 49.44
     name: near_circle_01
     status: AC
-  - elapsed: 0.43331827499997644
-    environment: g++
-    memory: 4.168
-    name: small_random_00
-    status: AC
-  - elapsed: 0.3284890400000222
-    environment: g++
-    memory: 3.968
-    name: small_random_01
-    status: AC
-  - elapsed: 0.3424797580000245
-    environment: g++
-    memory: 4.176
-    name: small_random_02
-    status: AC
-  - elapsed: 0.35257012200003146
-    environment: g++
-    memory: 4.124
-    name: small_random_03
-    status: AC
-  - elapsed: 0.4341663420000259
-    environment: g++
-    memory: 4.132
-    name: small_random_04
-    status: AC
-  - elapsed: 0.32794431500002474
-    environment: g++
-    memory: 4.168
-    name: small_random_05
-    status: AC
-  - elapsed: 0.34124185899997883
+  - elapsed: 0.6129742570000047
     environment: g++
     memory: 3.996
+    name: small_random_00
+    status: AC
+  - elapsed: 0.4960570279999956
+    environment: g++
+    memory: 4.02
+    name: small_random_01
+    status: AC
+  - elapsed: 0.5161314439999956
+    environment: g++
+    memory: 4.06
+    name: small_random_02
+    status: AC
+  - elapsed: 0.5265707930000048
+    environment: g++
+    memory: 3.912
+    name: small_random_03
+    status: AC
+  - elapsed: 0.6203270249999946
+    environment: g++
+    memory: 3.88
+    name: small_random_04
+    status: AC
+  - elapsed: 0.4956188410000095
+    environment: g++
+    memory: 4.084
+    name: small_random_05
+    status: AC
+  - elapsed: 0.5206531560000087
+    environment: g++
+    memory: 4.02
     name: small_random_06
     status: AC
-  - elapsed: 0.3473006539999801
+  - elapsed: 0.5238941820000207
     environment: g++
-    memory: 4.176
+    memory: 4.068
     name: small_random_07
     status: AC
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_geometry/static_convex_hull_2.test.cpp

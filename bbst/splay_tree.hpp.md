@@ -12,9 +12,19 @@ data:
     type: Verified with
   dependsOn: []
   embedded:
-  - code: ''
+  - code: '#ifndef KK2_BBST_SPLAY_TREE_HPP
+
+      #define KK2_BBST_SPLAY_TREE_HPP 1
+
+
+      #endif // KK2_BBST_SPLAY_TREE_HPP
+
+      '
     name: default
   - code: '#line 1 "bbst/splay_tree.hpp"
+
+
+
 
 
       '
@@ -24,7 +34,7 @@ data:
   path: bbst/splay_tree.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: bbst/splay_tree.hpp

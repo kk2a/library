@@ -91,17 +91,17 @@ data:
       \ &, const MyMonoid &);\n//       static MyMonoid unit();\n//   };\n//\n// The\
       \ return types are intentionally exact, so a typo such as returning the\n//\
       \ underlying scalar instead of MyMonoid is diagnosed at the concept boundary.\n\
-      template <class T>\nconcept Semigroup = requires(const T &x, const T &y) {\n\
-      \    { T::op(x, y) } -> std::same_as<T>;\n};\n\ntemplate <class T>\nconcept\
-      \ Monoid = Semigroup<T> && requires {\n    { T::unit() } -> std::same_as<T>;\n\
-      };\n\ntemplate <class T>\nconcept Group = Monoid<T> && requires(const T &x)\
-      \ {\n    { T::inv(x) } -> std::same_as<T>;\n};\n\ntemplate <class T>\nconcept\
-      \ CommutativeMonoid = Monoid<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
-      } && bool(T::commutative);\n\ntemplate <class T>\nconcept CommutativeGroup =\
-      \ Group<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
-      } && bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
+      template <class T> concept Semigroup = requires(const T &x, const T &y) {\n\
+      \    { T::op(x, y) } -> std::same_as<T>;\n};\ntemplate <class T> concept Monoid\
+      \ = Semigroup<T> && requires {\n    { T::unit() } -> std::same_as<T>;\n};\n\
+      template <class T> concept Group = Monoid<T> && requires(const T &x) {\n   \
+      \ { T::inv(x) } -> std::same_as<T>;\n};\ntemplate <class T> concept CommutativeMonoid\
+      \ = Monoid<T> && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n\
+      } && bool(T::commutative);\ntemplate <class T> concept CommutativeGroup = Group<T>\
+      \ && requires {\n    { T::commutative } -> std::convertible_to<bool>;\n} &&\
+      \ bool(T::commutative);\n\n// An action specification owns the pair of algebraic\
       \ types and the mapping\n// between them. It is the interface required by lazy\
-      \ propagation structures.\ntemplate <class T>\nconcept Action =\n    requires\
+      \ propagation structures.\ntemplate <class T> concept Action =\n    requires\
       \ {\n        typename T::A;\n        typename T::S;\n    } && Monoid<typename\
       \ T::A> && Monoid<typename T::S>\n    && requires(const typename T::A &f, const\
       \ typename T::S &x) {\n           { T::act(f, x) } -> std::same_as<typename\
@@ -165,7 +165,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - verify/yosupo_ds/ds_point_set_range_composite_large_2.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/type_traits/algebra/algebra.test.cpp

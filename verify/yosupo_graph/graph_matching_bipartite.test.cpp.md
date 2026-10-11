@@ -96,30 +96,24 @@ data:
       #include <utility>\n\n#line 1 \"type_traits/io.hpp\"\n\n\n\n#include <concepts>\n\
       #include <fstream>\n#include <istream>\n#include <ostream>\n#line 9 \"type_traits/io.hpp\"\
       \n\nnamespace kk2 {\n\nnamespace type_traits {\n\nstruct istream_tag {};\nstruct\
-      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T>\nusing\
-      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\n\
-      \                                                          || std::is_same<T,\
-      \ std::ifstream>::value,\n                                                 \
-      \     std::true_type,\n                                                    \
-      \  std::false_type>::type;\ntemplate <typename T>\nusing is_standard_ostream\
-      \ = typename std::conditional<std::is_same<T, std::ostream>::value\n       \
-      \                                                   || std::is_same<T, std::ofstream>::value,\n\
-      \                                                      std::true_type,\n   \
-      \                                                   std::false_type>::type;\n\
-      template <typename T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
-      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
-      \ T>;\n\ntemplate <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ ostream_tag {};\n\n} // namespace type_traits\n\ntemplate <typename T> using\
+      \ is_standard_istream = typename std::conditional<std::is_same<T, std::istream>::value\
+      \ || std::is_same<T, std::ifstream>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_standard_ostream = typename std::conditional<std::is_same<T,\
+      \ std::ostream>::value || std::is_same<T, std::ofstream>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
+      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
+      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\
+      template <typename T> using is_istream = typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_ostream = typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
+      template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      template <class T> concept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 1 \"graph/edge.hpp\"\n\n\n\n#line 5 \"graph/edge.hpp\"\
       \n#include <vector>\n\n#line 8 \"graph/edge.hpp\"\n\nnamespace kk2 {\n\nnamespace\
       \ graph {\n\nstruct empty {};\n\ntemplate <class T> struct _Edge {\n    int\
@@ -264,41 +258,40 @@ data:
       \ <algorithm>\n#include <cassert>\n#include <functional>\n#include <limits>\n\
       #include <numeric>\n#include <queue>\n#include <ranges>\n#line 12 \"graph/maxflow.hpp\"\
       \n\n#line 1 \"type_traits/graph.hpp\"\n\n\n\n#line 8 \"type_traits/graph.hpp\"\
-      \n\nnamespace kk2::graph {\n\ntemplate <class E>\nconcept Edge = requires(const\
+      \n\nnamespace kk2::graph {\n\ntemplate <class E> concept Edge = requires(const\
       \ E &e) {\n    { e.from } -> std::convertible_to<int>;\n    { e.to } -> std::convertible_to<int>;\n\
-      \    { e.id } -> std::convertible_to<int>;\n};\n\ntemplate <class E>\nconcept\
-      \ WeightedEdge = Edge<E> && requires(const E &e) { e.cost; };\n\ntemplate <class\
-      \ R>\nconcept EdgeRange = std::ranges::input_range<R> && Edge<std::ranges::range_value_t<R>>;\n\
-      \ntemplate <class R>\nconcept WeightedEdgeRange = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\
-      \ntemplate <class R>\nconcept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
-      \ && WeightedEdgeRange<R>;\n\ntemplate <class G>\nconcept Graph = requires(const\
+      \    { e.id } -> std::convertible_to<int>;\n};\ntemplate <class E> concept WeightedEdge\
+      \ = Edge<E> && requires(const E &e) { e.cost; };\ntemplate <class R> concept\
+      \ EdgeRange = std::ranges::input_range<R> && Edge<std::ranges::range_value_t<R>>;\n\
+      template <class R> concept WeightedEdgeRange = EdgeRange<R> && WeightedEdge<std::ranges::range_value_t<R>>;\n\
+      template <class R> concept ForwardWeightedEdgeRange = std::ranges::forward_range<R>\
+      \ && WeightedEdgeRange<R>;\ntemplate <class G> concept Graph = requires(const\
       \ G &g, int v) {\n    typename G::value_type;\n    { G::directed } -> std::convertible_to<bool>;\n\
       \    { G::weighted } -> std::convertible_to<bool>;\n    { G::adjacency_list\
       \ } -> std::convertible_to<bool>;\n    { G::adjacency_matrix } -> std::convertible_to<bool>;\n\
       \    { G::static_graph } -> std::convertible_to<bool>;\n    { g.num_vertices()\
       \ } -> std::integral;\n    { g.num_edges() } -> std::integral;\n    g[v];\n\
-      \    g.edges;\n};\n\ntemplate <class G>\nconcept EdgeListGraph = Graph<G> &&\
-      \ requires(const G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n\
-      \    requires Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\n\ntemplate\
-      \ <class G>\nconcept AdjacencyGraph = Graph<G> && requires(const G &g, int v)\
-      \ {\n    requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
-      };\n\ntemplate <class G>\nconcept WeightedGraph =\n    AdjacencyGraph<G> &&\
-      \ G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>()[0])>>;\n\ntemplate <class G>\nconcept WeightedEdgeListGraph =\n   \
-      \ EdgeListGraph<G> && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
-      \ G &>().edges)>>;\n\ntemplate <class G>\nconcept UnweightedGraph = AdjacencyGraph<G>\
-      \ && (!G::weighted);\n\ntemplate <class G>\nconcept DirectedGraph = AdjacencyGraph<G>\
-      \ && G::directed;\n\ntemplate <class G>\nconcept UndirectedGraph = AdjacencyGraph<G>\
-      \ && (!G::directed);\n\ntemplate <class G>\nconcept WeightedDirectedGraph =\
-      \ WeightedGraph<G> && DirectedGraph<G>;\n\ntemplate <class G>\nconcept WeightedUndirectedGraph\
-      \ = WeightedGraph<G> && UndirectedGraph<G>;\n\ntemplate <class G>\nconcept WeightedDirectedEdgeListGraph\
-      \ = WeightedEdgeListGraph<G> && G::directed;\n\ntemplate <class G>\nconcept\
-      \ WeightedUndirectedEdgeListGraph = WeightedEdgeListGraph<G> && (!G::directed);\n\
-      \ntemplate <class G>\nconcept StaticGraph = Graph<G> && G::static_graph;\n\n\
-      // Adjacency over vertices, also usable with vector<vector<int>>.\ntemplate\
-      \ <class G>\nconcept VertexAdjacency = requires(const G &g, int v) {\n    {\
-      \ g.size() } -> std::integral;\n    requires std::ranges::range<decltype(g[v])>;\n\
-      \    requires std::convertible_to<std::ranges::range_value_t<decltype(g[v])>,\
+      \    g.edges;\n};\ntemplate <class G> concept EdgeListGraph = Graph<G> && requires(const\
+      \ G &g) {\n    requires std::ranges::range<decltype(g.edges)>;\n    requires\
+      \ Edge<std::ranges::range_value_t<decltype(g.edges)>>;\n};\ntemplate <class\
+      \ G> concept AdjacencyGraph = Graph<G> && requires(const G &g, int v) {\n  \
+      \  requires std::ranges::range<decltype(g[v])>;\n    requires Edge<std::ranges::range_value_t<decltype(g[v])>>;\n\
+      };\ntemplate <class G> concept WeightedGraph =\n    AdjacencyGraph<G> && G::weighted\n\
+      \    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>()[0])>>;\ntemplate <class G> concept WeightedEdgeListGraph =\n    EdgeListGraph<G>\
+      \ && G::weighted\n    && WeightedEdge<std::ranges::range_value_t<decltype(std::declval<const\
+      \ G &>().edges)>>;\ntemplate <class G> concept UnweightedGraph = AdjacencyGraph<G>\
+      \ && (!G::weighted);\ntemplate <class G> concept DirectedGraph = AdjacencyGraph<G>\
+      \ && G::directed;\ntemplate <class G> concept UndirectedGraph = AdjacencyGraph<G>\
+      \ && (!G::directed);\ntemplate <class G> concept WeightedDirectedGraph = WeightedGraph<G>\
+      \ && DirectedGraph<G>;\ntemplate <class G> concept WeightedUndirectedGraph =\
+      \ WeightedGraph<G> && UndirectedGraph<G>;\ntemplate <class G> concept WeightedDirectedEdgeListGraph\
+      \ = WeightedEdgeListGraph<G> && G::directed;\ntemplate <class G> concept WeightedUndirectedEdgeListGraph\
+      \ = WeightedEdgeListGraph<G> && (!G::directed);\ntemplate <class G> concept\
+      \ StaticGraph = Graph<G> && G::static_graph;\n\n// Adjacency over vertices,\
+      \ also usable with vector<vector<int>>.\ntemplate <class G> concept VertexAdjacency\
+      \ = requires(const G &g, int v) {\n    { g.size() } -> std::integral;\n    requires\
+      \ std::ranges::range<decltype(g[v])>;\n    requires std::convertible_to<std::ranges::range_value_t<decltype(g[v])>,\
       \ int>;\n};\n\n} // namespace kk2::graph\n\n\n#line 14 \"graph/maxflow.hpp\"\
       \n\nnamespace kk2 {\n\ntemplate <class Cap> struct MaxFlowGraph {\n    struct\
       \ arc {\n        int to, rev;\n        Cap cap;\n    };\n    struct edge {\n\
@@ -392,41 +385,32 @@ data:
       \ <cstdio>\n#line 8 \"template/fastio.hpp\"\n#include <iostream>\n#line 10 \"\
       template/fastio.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5\
       \ \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate\
-      \ <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                                     \
-      \  or std::is_same<T, __int128>::value,\n                                  \
-      \                 std::true_type,\n                                        \
-      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
-      \                               or std::is_same<T, unsigned __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
-      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-      \                                  or is_unsigned_int128<T>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                                         \
-      \   std::true_type,\n                                            std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
-      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
-      \                              make_unsigned_int128<T>,\n                  \
-      \            typename std::conditional<std::is_signed<T>::value,\n         \
-      \                                               std::make_unsigned<T>,\n   \
-      \                                                     std::common_type<T>>::type>::type;\n\
-      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      \ <typename T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value or std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_unsigned_int128 = typename std::conditional<std::is_same<T,\
+      \ __uint128_t>::value or std::is_same<T, unsigned __int128>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_integral = typename\
+      \ std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\
+      \ or is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value, std::true_type, std::false_type>::type;\ntemplate\
+      \ <typename T> using is_unsigned = typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using make_unsigned_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\ntemplate <typename T>\
+      \ using to_unsigned = typename std::conditional<is_signed_int128<T>::value,\
+      \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
+      \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\n\n#else\n\ntemplate\
+      \ <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
       template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
       \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
       template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
       template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
-      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 13 \"template/fastio.hpp\"\n\nnamespace kk2\
       \ {\n\nnamespace fastio {\n\nstruct Scanner : type_traits::istream_tag {\n \
       \ private:\n    static constexpr size_t INPUT_BUF = 1 << 17;\n    size_t pos\
@@ -597,227 +581,227 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 5.371840306999957
+  - elapsed: 3.765124825000001
     environment: g++
-    memory: 58.26
+    memory: 58.264
     name: augmented_cycle_00
     status: AC
-  - elapsed: 3.524922371999992
+  - elapsed: 2.3573262649999975
     environment: g++
-    memory: 59.064
+    memory: 58.528
     name: augmented_cycle_01
     status: AC
-  - elapsed: 6.10107179900001
+  - elapsed: 4.125692360000002
     environment: g++
-    memory: 57.32
+    memory: 58.288
     name: augmented_cycle_02
     status: AC
-  - elapsed: 3.334975283999995
+  - elapsed: 2.0315248429999997
     environment: g++
-    memory: 60.688
+    memory: 60.792
     name: cycle_00
     status: AC
-  - elapsed: 3.3930534940000143
+  - elapsed: 2.0036100800000014
     environment: g++
-    memory: 58.36
+    memory: 58.968
     name: cycle_01
     status: AC
-  - elapsed: 0.0018920949999596814
+  - elapsed: 0.0020607240000032334
     environment: g++
-    memory: 3.876
+    memory: 3.76
     name: example_00
     status: AC
-  - elapsed: 0.0019526930000210996
+  - elapsed: 0.0017980650000026799
     environment: g++
-    memory: 3.988
+    memory: 3.872
     name: issue1068_00
     status: AC
-  - elapsed: 0.179063057999997
+  - elapsed: 0.14832181299999547
     environment: g++
-    memory: 52.588
+    memory: 53.604
     name: issue1068_large_00
     status: AC
-  - elapsed: 0.15941810699996495
+  - elapsed: 0.12587010999999393
     environment: g++
-    memory: 47.352
+    memory: 47.356
     name: issue1068_large_01
     status: AC
-  - elapsed: 0.224207602999968
+  - elapsed: 0.17081100100000413
     environment: g++
-    memory: 52.776
+    memory: 52.792
     name: issue1068_large_02
     status: AC
-  - elapsed: 0.15603585700000622
+  - elapsed: 0.12707250399999737
     environment: g++
     memory: 47.356
     name: issue1068_large_03
     status: AC
-  - elapsed: 0.16074706099999503
+  - elapsed: 0.13308670000000689
     environment: g++
-    memory: 46.34
+    memory: 48.228
     name: issue1068_large_04
     status: AC
-  - elapsed: 0.17872249999999212
+  - elapsed: 0.14112408299999402
     environment: g++
-    memory: 47.552
+    memory: 47.42
     name: issue1068_large_05
     status: AC
-  - elapsed: 0.3329439080000043
+  - elapsed: 0.22760603999999773
     environment: g++
-    memory: 38.684
+    memory: 38.688
     name: issue1124_00
     status: AC
-  - elapsed: 0.13667286700001569
+  - elapsed: 0.10972380700000883
     environment: g++
-    memory: 37.444
+    memory: 37.436
     name: issue1124_01
     status: AC
-  - elapsed: 0.1237471400000345
+  - elapsed: 0.10145226000000207
     environment: g++
-    memory: 37.432
+    memory: 38.424
     name: issue1124_02
     status: AC
-  - elapsed: 0.194911210999976
+  - elapsed: 0.15710645900000486
     environment: g++
     memory: 55.356
     name: kuhn_killer_00
     status: AC
-  - elapsed: 0.19915446800001746
+  - elapsed: 0.16629399500000375
     environment: g++
-    memory: 55.112
+    memory: 55.108
     name: line_00
     status: AC
-  - elapsed: 0.2084774330000414
+  - elapsed: 0.16011588000000643
     environment: g++
-    memory: 54.016
+    memory: 53.576
     name: line_01
     status: AC
-  - elapsed: 3.38279289999997
+  - elapsed: 1.9480879879999975
     environment: g++
-    memory: 58.524
+    memory: 57.412
     name: line_random_00
     status: AC
-  - elapsed: 3.4380108049999762
+  - elapsed: 2.049159824
     environment: g++
-    memory: 66.852
+    memory: 67.34
     name: line_random_01
     status: AC
-  - elapsed: 2.258813416999999
+  - elapsed: 1.4896803070000004
     environment: g++
-    memory: 54.54
+    memory: 55.576
     name: many_paths_00
     status: AC
-  - elapsed: 1.574229545000037
+  - elapsed: 1.0441790510000004
     environment: g++
-    memory: 55.564
+    memory: 55.56
     name: many_paths_01
     status: AC
-  - elapsed: 2.1036960940000426
+  - elapsed: 1.384423764999994
     environment: g++
-    memory: 55.564
+    memory: 55.568
     name: many_paths_02
     status: AC
-  - elapsed: 0.24588416599999618
+  - elapsed: 0.18613739600000656
     environment: g++
-    memory: 42.852
+    memory: 42.352
     name: many_smalls_00
     status: AC
-  - elapsed: 0.22621124500000178
+  - elapsed: 0.17894633899999235
     environment: g++
-    memory: 43.264
+    memory: 42.216
     name: many_smalls_01
     status: AC
-  - elapsed: 0.47341633299998875
+  - elapsed: 0.32470784599999547
     environment: g++
-    memory: 55.46
+    memory: 53.932
     name: max_random_00
     status: AC
-  - elapsed: 0.5030653769999844
+  - elapsed: 0.35111011600000097
     environment: g++
-    memory: 54.224
+    memory: 55.456
     name: max_random_01
     status: AC
-  - elapsed: 0.4728759779999905
+  - elapsed: 0.32622976399999004
     environment: g++
-    memory: 55.46
+    memory: 55.464
     name: max_random_02
     status: AC
-  - elapsed: 0.05096127699999897
+  - elapsed: 0.04296471399999291
     environment: g++
-    memory: 20.66
+    memory: 20.648
     name: random_00
     status: AC
-  - elapsed: 0.13677673199998708
-    environment: g++
-    memory: 31.28
-    name: random_01
-    status: AC
-  - elapsed: 0.1705540930000211
-    environment: g++
-    memory: 30.636
-    name: random_02
-    status: AC
-  - elapsed: 0.15909344699997519
-    environment: g++
-    memory: 25.42
-    name: random_03
-    status: AC
-  - elapsed: 0.06556734599996616
-    environment: g++
-    memory: 26.656
-    name: random_04
-    status: AC
-  - elapsed: 0.06841091800004051
-    environment: g++
-    memory: 18.816
-    name: random_05
-    status: AC
-  - elapsed: 0.4475605829999836
-    environment: g++
-    memory: 38.4
-    name: random_06
-    status: AC
-  - elapsed: 0.0894101789999695
-    environment: g++
-    memory: 25.06
-    name: random_07
-    status: AC
-  - elapsed: 0.1009070799999563
-    environment: g++
-    memory: 30.268
-    name: random_08
-    status: AC
-  - elapsed: 0.15414467199997262
+  - elapsed: 0.10818368700000747
     environment: g++
     memory: 31.184
+    name: random_01
+    status: AC
+  - elapsed: 0.12751406200000304
+    environment: g++
+    memory: 30.552
+    name: random_02
+    status: AC
+  - elapsed: 0.12110362899998961
+    environment: g++
+    memory: 25.424
+    name: random_03
+    status: AC
+  - elapsed: 0.05340833600000394
+    environment: g++
+    memory: 25.656
+    name: random_04
+    status: AC
+  - elapsed: 0.05708484599999508
+    environment: g++
+    memory: 18.848
+    name: random_05
+    status: AC
+  - elapsed: 0.3041998300000017
+    environment: g++
+    memory: 39.392
+    name: random_06
+    status: AC
+  - elapsed: 0.074409959999997
+    environment: g++
+    memory: 25.072
+    name: random_07
+    status: AC
+  - elapsed: 0.0757630420000055
+    environment: g++
+    memory: 30.284
+    name: random_08
+    status: AC
+  - elapsed: 0.12143842300000074
+    environment: g++
+    memory: 31.18
     name: random_09
     status: AC
-  - elapsed: 5.234630492000008
+  - elapsed: 3.385642451999999
     environment: g++
-    memory: 63.292
+    memory: 64.324
     name: unique_matching_00
     status: AC
-  - elapsed: 4.480124154999999
+  - elapsed: 2.904364362999999
     environment: g++
-    memory: 56.748
+    memory: 55.748
     name: unique_matching_01
     status: AC
-  - elapsed: 3.680118288000017
+  - elapsed: 2.5642257690000037
     environment: g++
     memory: 57.844
     name: unique_matching_02
     status: AC
-  - elapsed: 2.012134324000044
+  - elapsed: 1.4363365250000015
     environment: g++
-    memory: 55.26
+    memory: 54.736
     name: unique_matching_03
     status: AC
-  - elapsed: 1.461439673999962
+  - elapsed: 1.1071496879999927
     environment: g++
-    memory: 55.996
+    memory: 55.976
     name: unique_matching_04
     status: AC
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_graph/graph_matching_bipartite.test.cpp

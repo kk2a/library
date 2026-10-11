@@ -43,9 +43,6 @@ data:
     - filename: garner.hpp
       icon: LIBRARY_ALL_AC
       path: math_mod/garner.hpp
-    - filename: fps_exp_arb.test.cpp
-      icon: LIBRARY_NO_TESTS
-      path: verify/yosupo_fps/fps_exp_arb.test.cpp
     type: Required by
   - files:
     - filename: inplace_convolution.test.cpp
@@ -75,6 +72,9 @@ data:
     - filename: convolution_arbitrary.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_convolution/convolution_arbitrary.test.cpp
+    - filename: fps_exp_arb.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/fps_exp_arb.test.cpp
     - filename: fps_inv_arb.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_inv_arb.test.cpp
@@ -116,8 +116,7 @@ data:
   - fps/operations/multivariate/multiplication.hpp
   - fps/operations/multivariate/power.hpp
   - math_mod/garner.hpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/convolution/inplace_convolution.test.cpp
@@ -129,6 +128,7 @@ data:
   - verify/unit_test/fps/sum_of_polynomial.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_convolution/convolution_arbitrary.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_log_arb.test.cpp
 documentation_of: math_mod/inv.hpp

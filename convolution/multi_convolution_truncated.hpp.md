@@ -439,7 +439,7 @@ data:
   - fps/operations/multivariate/logarithm.hpp
   - fps/operations/multivariate/multiplication.hpp
   - fps/operations/multivariate/power.hpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/multivariate_convolution.test.cpp

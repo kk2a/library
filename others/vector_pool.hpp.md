@@ -39,7 +39,7 @@ data:
     type: Verified with
   dependsOn: []
   embedded:
-  - code: "#ifndef KK2_OHTERS_VECTOR_POOL_HPP\n#define KK2_OHTERS_VECTOR_POOL_HPP\
+  - code: "#ifndef KK2_OTHERS_VECTOR_POOL_HPP\n#define KK2_OTHERS_VECTOR_POOL_HPP\
       \ 1\n\n#include <memory>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <typename\
       \ T> struct VectorPool {\n  private:\n    static constexpr size_t CHUNK_SIZE\
       \ = 1 << 11;\n    std::vector<std::unique_ptr<T[]>> chunks; // \u56FA\u5B9A\u30B5\
@@ -70,7 +70,7 @@ data:
       \ + CHUNK_SIZE);\n\n        for (size_t i = 0; i < CHUNK_SIZE; i++) { free_ptrs[old_size\
       \ + i] = &chunk_ptr[i]; }\n    }\n\n  public:\n    size_t size() const { return\
       \ chunks.size() * CHUNK_SIZE; }\n\n    size_t available() const { return free_ptrs.size()\
-      \ - pos; }\n};\n\n} // namespace kk2\n\n#endif // KK2_OHTERS_VECTOR_POOL_HPP\n"
+      \ - pos; }\n};\n\n} // namespace kk2\n\n#endif // KK2_OTHERS_VECTOR_POOL_HPP\n"
     name: default
   - code: "#line 1 \"others/vector_pool.hpp\"\n\n\n\n#include <memory>\n#include <vector>\n\
       \nnamespace kk2 {\n\ntemplate <typename T> struct VectorPool {\n  private:\n\
@@ -115,7 +115,7 @@ data:
   - bbst/red_black_tree.hpp
   - data_structure/ordered_set.hpp
   - verify/yosupo_ds/ds_dynamic_sequence_range_affine_range_sum.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_ordered_set_max_right.test.cpp

@@ -163,633 +163,381 @@
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">E</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">E</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">Edge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l12" href="#l12">12</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">Edge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">from</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l13" href="#l13">13</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">from</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l14" href="#l14">14</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l15" href="#l15">15</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="p">};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l16" href="#l16">16</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="p">};</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">E</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">cost</span><span class="p">;</span><span class="w"> </span><span class="p">};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l17" href="#l17">17</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">R</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">EdgeRange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">input_range</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l18" href="#l18">18</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">E</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">R</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedEdgeRange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EdgeRange</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">WeightedEdge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l19" href="#l19">19</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">cost</span><span class="p">;</span><span class="w"> </span><span class="p">};</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">R</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">ForwardWeightedEdgeRange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">forward_range</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">WeightedEdgeRange</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l20" href="#l20">20</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">Graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l21" href="#l21">21</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">R</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="w">    </span><span class="k">typename</span><span class="w"> </span><span class="nc">G</span><span class="o">::</span><span class="n">value_type</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l22" href="#l22">22</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">EdgeRange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">input_range</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l23" href="#l23">23</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">weighted</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l24" href="#l24">24</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">R</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">adjacency_list</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l25" href="#l25">25</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedEdgeRange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EdgeRange</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">WeightedEdge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">adjacency_matrix</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l26" href="#l26">26</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">static_graph</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l27" href="#l27">27</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">R</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">num_vertices</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">integral</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l28" href="#l28">28</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">ForwardWeightedEdgeRange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">forward_range</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">WeightedEdgeRange</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">num_edges</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">integral</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l29" href="#l29">29</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="w">    </span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">];</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l30" href="#l30">30</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="w">    </span><span class="n">g</span><span class="p">.</span><span class="n">edges</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l31" href="#l31">31</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">Graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="src "><span class="p">};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l32" href="#l32">32</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">typename</span><span class="w"> </span><span class="nc">G</span><span class="o">::</span><span class="n">value_type</span><span class="p">;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">EdgeListGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l33" href="#l33">33</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edges</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l34" href="#l34">34</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">weighted</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edges</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l35" href="#l35">35</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">adjacency_list</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="p">};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l36" href="#l36">36</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">adjacency_matrix</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">AdjacencyGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l37" href="#l37">37</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">static_graph</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l38" href="#l38">38</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">num_vertices</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">integral</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l39" href="#l39">39</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">num_edges</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">integral</span><span class="p">;</span></td>
+        <td class="src "><span class="p">};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l40" href="#l40">40</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">];</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedGraph</span><span class="w"> </span><span class="o">=</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l41" href="#l41">41</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="n">g</span><span class="p">.</span><span class="n">edges</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="n">AdjacencyGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">weighted</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l42" href="#l42">42</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="p">};</span></td>
+        <td class="src "><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">WeightedEdge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;&gt;</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l43" href="#l43">43</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedEdgeListGraph</span><span class="w"> </span><span class="o">=</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l44" href="#l44">44</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="w">    </span><span class="n">EdgeListGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">weighted</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l45" href="#l45">45</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">EdgeListGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="src "><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">WeightedEdge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;&gt;</span><span class="p">().</span><span class="n">edges</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l46" href="#l46">46</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edges</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">UnweightedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AdjacencyGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">G</span><span class="o">::</span><span class="n">weighted</span><span class="p">);</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l47" href="#l47">47</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edges</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">DirectedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AdjacencyGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l48" href="#l48">48</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="p">};</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">UndirectedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AdjacencyGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="p">);</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l49" href="#l49">49</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedDirectedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeightedGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">DirectedGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l50" href="#l50">50</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedUndirectedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeightedGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">UndirectedGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l51" href="#l51">51</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">AdjacencyGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedDirectedEdgeListGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeightedEdgeListGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l52" href="#l52">52</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="o">&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedUndirectedEdgeListGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeightedEdgeListGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="p">);</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l53" href="#l53">53</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">StaticGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">static_graph</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l54" href="#l54">54</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="p">};</span></td>
+        <td class="src "></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l55" href="#l55">55</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="c1">// Adjacency over vertices, also usable with vector&lt;vector&lt;int&gt;&gt;.</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l56" href="#l56">56</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
+        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span><span class="w"> </span><span class="k">concept</span><span class="w"> </span><span class="nc">VertexAdjacency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l57" href="#l57">57</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedGraph</span><span class="w"> </span><span class="o">=</span></td>
+        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">integral</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l58" href="#l58">58</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="n">AdjacencyGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">weighted</span></td>
+        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l59" href="#l59">59</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">WeightedEdge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;&gt;</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
+        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l60" href="#l60">60</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "></td>
+        <td class="src "><span class="p">};</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l61" href="#l61">61</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
+        <td class="src "></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l62" href="#l62">62</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedEdgeListGraph</span><span class="w"> </span><span class="o">=</span></td>
+        <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace kk2::graph</span></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l63" href="#l63">63</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="n">EdgeListGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">weighted</span></td>
+        <td class="src "></td>
       </tr>
       <tr class="source-line">
         <td class="lineno"><a id="l64" href="#l64">64</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">WeightedEdge</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;&gt;</span><span class="p">().</span><span class="n">edges</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="p">;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l65" href="#l65">65</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l66" href="#l66">66</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l67" href="#l67">67</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">UnweightedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AdjacencyGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">G</span><span class="o">::</span><span class="n">weighted</span><span class="p">);</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l68" href="#l68">68</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l69" href="#l69">69</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l70" href="#l70">70</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">DirectedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AdjacencyGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="p">;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l71" href="#l71">71</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l72" href="#l72">72</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l73" href="#l73">73</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">UndirectedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AdjacencyGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="p">);</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l74" href="#l74">74</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l75" href="#l75">75</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l76" href="#l76">76</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedDirectedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeightedGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">DirectedGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="p">;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l77" href="#l77">77</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l78" href="#l78">78</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l79" href="#l79">79</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedUndirectedGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeightedGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">UndirectedGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="p">;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l80" href="#l80">80</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l81" href="#l81">81</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l82" href="#l82">82</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedDirectedEdgeListGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeightedEdgeListGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="p">;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l83" href="#l83">83</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l84" href="#l84">84</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l85" href="#l85">85</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">WeightedUndirectedEdgeListGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeightedEdgeListGraph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">G</span><span class="o">::</span><span class="n">directed</span><span class="p">);</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l86" href="#l86">86</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l87" href="#l87">87</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l88" href="#l88">88</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">StaticGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">G</span><span class="o">::</span><span class="n">static_graph</span><span class="p">;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l89" href="#l89">89</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l90" href="#l90">90</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="c1">// Adjacency over vertices, also usable with vector&lt;vector&lt;int&gt;&gt;.</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l91" href="#l91">91</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">G</span><span class="o">&gt;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l92" href="#l92">92</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="k">concept</span><span class="w"> </span><span class="nc">VertexAdjacency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l93" href="#l93">93</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">integral</span><span class="p">;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l94" href="#l94">94</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="o">&gt;</span><span class="p">;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l95" href="#l95">95</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="w">    </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">range_value_t</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l96" href="#l96">96</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="p">};</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l97" href="#l97">97</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l98" href="#l98">98</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace kk2::graph</span></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l99" href="#l99">99</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
-        <td class="src "></td>
-      </tr>
-      <tr class="source-line">
-        <td class="lineno"><a id="l100" href="#l100">100</a></td>
-        <td class="linebranch">
-        </td>
-        <td class="linecount"></td>
         <td class="src "><span class="cp">#endif </span><span class="c1">// KK2_TYPE_TRAITS_GRAPH_HPP</span></td>
       </tr>
       <tr class="source-line">
-        <td class="lineno"><a id="l101" href="#l101">101</a></td>
+        <td class="lineno"><a id="l65" href="#l65">65</a></td>
         <td class="linebranch">
         </td>
         <td class="linecount"></td>
@@ -802,7 +550,7 @@
         <hr class="block-separator"/>
         <footer class="text-center">
           Created using <a href="http://gcovr.com/en/8.6">GCOVR (Version 8.6)</a>
-          at 2026-10-03 14:39:05
+          at 2026-10-11 09:26:45
         </footer>
       </div>
     </div>

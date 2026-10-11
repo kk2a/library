@@ -32,7 +32,7 @@ data:
   - geometry/point.hpp
   - type_traits/io.hpp
   embedded:
-  - code: "#ifndef KK2_GEOMETRY_CONVEX_HULL_HPP\n#define KK2_GEOMETRY_CONVEX_HULL_HPP\
+  - code: "#ifndef KK2_GEOMETRY_STATIC_CONVEX_HULL_HPP\n#define KK2_GEOMETRY_STATIC_CONVEX_HULL_HPP\
       \ 1\n\n#include <algorithm>\n#include <utility>\n#include <vector>\n\n#include\
       \ \"point.hpp\"\n\nnamespace kk2 {\n\ntemplate <typename T> struct StaticConvexHull\
       \ {\n    using point = Point<T>;\n    std::vector<point> ps, hull;\n    std::vector<point>\
@@ -68,7 +68,7 @@ data:
       \ i--) {\n            hull[size(up_) + size(dw_) - 2 - i] = up[i] = up_[i].first;\n\
       \            idx_hull[up_[i].second] = size(up_) + size(dw_) - 2 - i;\n    \
       \        idx_up[up_[i].second] = i;\n        }\n    }\n};\n\n} // namespace\
-      \ kk2\n\n#endif // KK2_GEOMETRY_CONVEX_HULL_HPP\n"
+      \ kk2\n\n#endif // KK2_GEOMETRY_STATIC_CONVEX_HULL_HPP\n"
     name: default
   - code: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.12/site-packages/competitive_verifier/oj/resolver.py\"\
       , line 290, in resolve\n    bundled_code = language.bundle(path, basedir=basedir)\n\
@@ -83,7 +83,7 @@ data:
   path: geometry/static_convex_hull.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_geometry/static_convex_hull.test.cpp

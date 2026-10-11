@@ -94,7 +94,7 @@ data:
   - math/multiplicative_function/sigma.hpp
   - math_mod/power_sum.hpp
   - verify/yosupo_others/sum_of_exponential_times_polynomial_limit.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/data_structure/wavelet_matrix.test.cpp

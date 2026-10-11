@@ -85,17 +85,13 @@ data:
       template <typename T, typename Alloc> struct is_vector<std::vector<T, Alloc>>
       : std::true_type {};
 
-
       template <typename T> struct is_container : std::false_type {};
 
-      template <typename T, typename Alloc>
+      template <typename T, typename Alloc> struct is_container<std::vector<T, Alloc>>
+      : std::true_type {};
 
-      struct is_container<std::vector<T, Alloc>> : std::true_type {};
-
-      template <typename CharT, typename Traits, typename Alloc>
-
-      struct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type
-      {};
+      template <typename CharT, typename Traits, typename Alloc> struct is_container<std::basic_string<CharT,
+      Traits, Alloc>> : std::true_type {};
 
       template <typename T, std::size_t N> struct is_container<std::array<T, N>> :
       std::true_type {};
@@ -108,15 +104,9 @@ data:
 
       template <typename T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;
 
+      template <class T> concept Vector = is_vector<std::remove_cvref_t<T>>::value;
 
-      template <class T>
-
-      concept Vector = is_vector<std::remove_cvref_t<T>>::value;
-
-
-      template <class T>
-
-      concept Container = is_container<std::remove_cvref_t<T>>::value;
+      template <class T> concept Container = is_container<std::remove_cvref_t<T>>::value;
 
 
       } // namespace kk2
@@ -154,17 +144,13 @@ data:
       template <typename T, typename Alloc> struct is_vector<std::vector<T, Alloc>>
       : std::true_type {};
 
-
       template <typename T> struct is_container : std::false_type {};
 
-      template <typename T, typename Alloc>
+      template <typename T, typename Alloc> struct is_container<std::vector<T, Alloc>>
+      : std::true_type {};
 
-      struct is_container<std::vector<T, Alloc>> : std::true_type {};
-
-      template <typename CharT, typename Traits, typename Alloc>
-
-      struct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type
-      {};
+      template <typename CharT, typename Traits, typename Alloc> struct is_container<std::basic_string<CharT,
+      Traits, Alloc>> : std::true_type {};
 
       template <typename T, std::size_t N> struct is_container<std::array<T, N>> :
       std::true_type {};
@@ -177,15 +163,9 @@ data:
 
       template <typename T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;
 
+      template <class T> concept Vector = is_vector<std::remove_cvref_t<T>>::value;
 
-      template <class T>
-
-      concept Vector = is_vector<std::remove_cvref_t<T>>::value;
-
-
-      template <class T>
-
-      concept Container = is_container<std::remove_cvref_t<T>>::value;
+      template <class T> concept Container = is_container<std::remove_cvref_t<T>>::value;
 
 
       } // namespace kk2
@@ -206,7 +186,7 @@ data:
   - template/procon.hpp
   - unionfind/parallel.hpp
   - verify/aoj/aoj_alds1_14_b.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/math/group/group.test.cpp

@@ -141,19 +141,10 @@ data:
       \ show_vars(const std::vector<std::string> &name, int pos, const T &t, const\
       \ Args &...args) {\n    output(std::cerr, name[pos++] + \":\");\n    output(std::cerr,\
       \ t);\n    if (sizeof...(args) > 0) output(std::cerr, \", \");\n    show_vars(name,\
-      \ pos, args...);\n}\n\n#define kdebug(...)                                 \
-      \                                               \\\n    {                  \
-      \                                                                          \
-      \  \\\n        std::cerr << \"line:\" << __LINE__ << ' ';                  \
-      \                                 \\\n        kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__),\
-      \ 0, __VA_ARGS__);                      \\\n        std::cerr << std::endl;\
-      \                                                                    \\\n  \
-      \  }\n\n#define kput(s)                                                    \
-      \                                \\\n    {                                 \
-      \                                                             \\\n        std::cerr\
-      \ << \"line:\" << __LINE__ << ' ';                                         \
-      \          \\\n        kk2::debug::outputln(std::cerr, s);                 \
-      \                                       \\\n    }\n\n#else\n\ntemplate <OutputStream\
+      \ pos, args...);\n}\n\n#define kdebug(...) { std::cerr << \"line:\" << __LINE__\
+      \ << ' '; kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__), 0, __VA_ARGS__);\
+      \ std::cerr << std::endl; }\n\n#define kput(s) { std::cerr << \"line:\" << __LINE__\
+      \ << ' '; kk2::debug::outputln(std::cerr, s); }\n\n#else\n\ntemplate <OutputStream\
       \ OStream, class... Args> void output(OStream &, const Args &...) {}\ntemplate\
       \ <OutputStream OStream, class... Args> void outputln(OStream &, const Args\
       \ &...) {}\ntemplate <class... Args> void fix_warn(const Args &...) {}\n#define\
@@ -167,81 +158,37 @@ data:
       \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
       \ <ostream>\n#include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits\
       \ {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                                   \
-      \       || std::is_same<T, std::ifstream>::value,\n                        \
-      \                              std::true_type,\n                           \
-      \                           std::false_type>::type;\ntemplate <typename T>\n\
-      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
-      \                                                          || std::is_same<T,\
-      \ std::ofstream>::value,\n                                                 \
-      \     std::true_type,\n                                                    \
-      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <typename T> using is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value || std::is_same<T, std::ifstream>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_standard_ostream =\
+      \ typename std::conditional<std::is_same<T, std::ostream>::value || std::is_same<T,\
+      \ std::ofstream>::value, std::true_type, std::false_type>::type;\ntemplate <typename\
+      \ T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\ntemplate <typename T> using is_istream = typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_ostream = typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
+      template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      template <class T> concept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 1 \"type_traits/member.hpp\"\n\n\n\n#line 5\
-      \ \"type_traits/member.hpp\"\n\nnamespace kk2 {\n// BEGIN_PRESERVE_NEWLINES\n\
-      \n#define HAS_MEMBER_FUNC(member)                                          \
-      \                          \\\n    template <typename T, typename... Ts> struct\
-      \ has_member_func_##member##_impl {                 \\\n        template <typename\
-      \ U>                                                                      \\\
-      \n        static std::true_type check(decltype(std::declval<U>().member(std::declval<Ts>()...))\
-      \ *);  \\\n        template <typename U> static std::false_type check(...);\
-      \                                   \\\n        using type = decltype(check<T>(nullptr));\
-      \                                                  \\\n    };              \
-      \                                                                          \
-      \     \\\n    template <typename T, typename... Ts>                        \
-      \                                  \\\n    struct has_member_func_##member :\
-      \ has_member_func_##member##_impl<T, Ts...>::type {};          \\\n    template\
-      \ <typename T, typename... Ts>                                             \
-      \             \\\n    using has_member_func_##member##_t =                 \
-      \                                          \\\n        std::enable_if_t<has_member_func_##member<T,\
-      \ Ts...>::value>;                               \\\n    template <typename T,\
-      \ typename... Ts>                                                          \\\
-      \n    using not_has_member_func_##member##_t =                             \
-      \                          \\\n        std::enable_if_t<!has_member_func_##member<T,\
-      \ Ts...>::value>;\n\n#define HAS_MEMBER_VAR(member)                        \
-      \                                             \\\n    template <typename T>\
-      \ struct has_member_var_##member##_impl {                                  \\\
-      \n        template <typename U> static std::true_type check(decltype(std::declval<U>().member)\
-      \ *);   \\\n        template <typename U> static std::false_type check(...);\
-      \                                   \\\n        using type = decltype(check<T>(nullptr));\
-      \                                                  \\\n    };              \
-      \                                                                          \
-      \     \\\n    template <typename T>                                        \
-      \                                  \\\n    struct has_member_var_##member :\
-      \ has_member_var_##member##_impl<T>::type {};                   \\\n    template\
-      \ <typename T>                                                             \
-      \             \\\n    using has_member_var_##member##_t = std::enable_if_t<has_member_var_##member<T>::value>;\
-      \       \\\n    template <typename T>                                      \
-      \                                    \\\n    using not_has_member_var_##member##_t\
-      \ = std::enable_if_t<!has_member_var_##member<T>::value>;\n\nHAS_MEMBER_FUNC(debug_output)\n\
-      HAS_MEMBER_FUNC(val)\n\ntemplate <class T, class... Ts>\nconcept HasDebugOutput\
-      \ = has_member_func_debug_output<T, Ts...>::value;\n\ntemplate <class T, class...\
-      \ Ts>\nconcept HasVal = has_member_func_val<T, Ts...>::value;\n\n// END_PRESERVE_NEWLINES\n\
-      \n#undef HAS_MEMBER_FUNC\n#undef HAS_MEMBER_VAR\n} // namespace kk2\n\n\n#line\
-      \ 20 \"template/debug.hpp\"\n\nnamespace kk2 {\n\nnamespace debug {\n\n#ifdef\
-      \ KK2\n\ntemplate <OutputStream OStream> void output(OStream &os);\ntemplate\
-      \ <OutputStream OStream, class T> void output(OStream &os, const T &t);\ntemplate\
-      \ <OutputStream OStream, class T, class... Args>\nvoid output(OStream &os, const\
-      \ T &t, const Args &...args);\ntemplate <OutputStream OStream, class T> void\
-      \ output(OStream &os, const std::vector<T> &v);\ntemplate <OutputStream OStream,\
-      \ class T>\nvoid output(OStream &os, const std::vector<std::vector<T>> &d);\n\
-      template <OutputStream OStream, class T, size_t F>\nvoid output(OStream &os,\
-      \ const std::array<T, F> &a);\ntemplate <OutputStream OStream, class T, class\
-      \ U>\nvoid output(OStream &os, const std::pair<T, U> &p);\ntemplate <OutputStream\
+      \ \"type_traits/member.hpp\"\n\nnamespace kk2 {\n\ntemplate <class T, class...\
+      \ Ts> concept HasDebugOutput = requires { std::declval<T>().debug_output(std::declval<Ts>()...);\
+      \ };\ntemplate <class T, class... Ts> concept HasVal = requires { std::declval<T>().val(std::declval<Ts>()...);\
+      \ };\n} // namespace kk2\n\n\n#line 20 \"template/debug.hpp\"\n\nnamespace kk2\
+      \ {\n\nnamespace debug {\n\n#ifdef KK2\n\ntemplate <OutputStream OStream> void\
+      \ output(OStream &os);\ntemplate <OutputStream OStream, class T> void output(OStream\
+      \ &os, const T &t);\ntemplate <OutputStream OStream, class T, class... Args>\n\
+      void output(OStream &os, const T &t, const Args &...args);\ntemplate <OutputStream\
+      \ OStream, class T> void output(OStream &os, const std::vector<T> &v);\ntemplate\
+      \ <OutputStream OStream, class T>\nvoid output(OStream &os, const std::vector<std::vector<T>>\
+      \ &d);\ntemplate <OutputStream OStream, class T, size_t F>\nvoid output(OStream\
+      \ &os, const std::array<T, F> &a);\ntemplate <OutputStream OStream, class T,\
+      \ class U>\nvoid output(OStream &os, const std::pair<T, U> &p);\ntemplate <OutputStream\
       \ OStream, class... Args>\nvoid output(OStream &os, const std::tuple<Args...>\
       \ &t);\ntemplate <OutputStream OStream, class T> void output(OStream &os, const\
       \ std::queue<T> &q);\ntemplate <OutputStream OStream, class T, class Container,\
@@ -349,19 +296,10 @@ data:
       \ show_vars(const std::vector<std::string> &name, int pos, const T &t, const\
       \ Args &...args) {\n    output(std::cerr, name[pos++] + \":\");\n    output(std::cerr,\
       \ t);\n    if (sizeof...(args) > 0) output(std::cerr, \", \");\n    show_vars(name,\
-      \ pos, args...);\n}\n\n#define kdebug(...)                                 \
-      \                                               \\\n    {                  \
-      \                                                                          \
-      \  \\\n        std::cerr << \"line:\" << __LINE__ << ' ';                  \
-      \                                 \\\n        kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__),\
-      \ 0, __VA_ARGS__);                      \\\n        std::cerr << std::endl;\
-      \                                                                    \\\n  \
-      \  }\n\n#define kput(s)                                                    \
-      \                                \\\n    {                                 \
-      \                                                             \\\n        std::cerr\
-      \ << \"line:\" << __LINE__ << ' ';                                         \
-      \          \\\n        kk2::debug::outputln(std::cerr, s);                 \
-      \                                       \\\n    }\n\n#else\n\ntemplate <OutputStream\
+      \ pos, args...);\n}\n\n#define kdebug(...) { std::cerr << \"line:\" << __LINE__\
+      \ << ' '; kk2::debug::show_vars(kk2::debug::sep(#__VA_ARGS__), 0, __VA_ARGS__);\
+      \ std::cerr << std::endl; }\n\n#define kput(s) { std::cerr << \"line:\" << __LINE__\
+      \ << ' '; kk2::debug::outputln(std::cerr, s); }\n\n#else\n\ntemplate <OutputStream\
       \ OStream, class... Args> void output(OStream &, const Args &...) {}\ntemplate\
       \ <OutputStream OStream, class... Args> void outputln(OStream &, const Args\
       \ &...) {}\ntemplate <class... Args> void fix_warn(const Args &...) {}\n#define\
@@ -373,7 +311,7 @@ data:
   path: template/debug.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/debug.hpp

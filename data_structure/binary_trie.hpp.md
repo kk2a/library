@@ -122,7 +122,7 @@ data:
       \ != -1) {\n                now = nodes[now].nxt[0];\n            } else {\n\
       \                res |= (T(1) << i);\n                now = nodes[now].nxt[1];\n\
       \            }\n        }\n        return res;\n    }\n\n    int size() const\
-      \ { return nodes[root].count; }\n};\n\n} // namespace kk2\n\n#endif\n"
+      \ { return nodes[root].count; }\n};\n\n} // namespace kk2\n\n#endif // KK2_DATA_STRUCTURE_BINARY_TRIE_HPP\n"
     name: default
   - code: "#line 1 \"data_structure/binary_trie.hpp\"\n\n\n\n#include <cassert>\n\
       #include <optional>\n#include <vector>\n\nnamespace kk2 {\n\ntemplate <typename\
@@ -234,7 +234,7 @@ data:
   path: data_structure/binary_trie.hpp
   pathExtension: hpp
   requiredBy: []
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_ds/ds_ordered_set_binary_trie.test.cpp

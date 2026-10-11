@@ -55,9 +55,6 @@ data:
     - filename: fps_composition_inv.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_composition_inv.test.cpp
-    - filename: fps_exp_arb.test.cpp
-      icon: LIBRARY_NO_TESTS
-      path: verify/yosupo_fps/fps_exp_arb.test.cpp
     - filename: fps_multipoint_evaluation_geometric.test.cpp
       icon: LIBRARY_ALL_AC
       path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
@@ -99,6 +96,9 @@ data:
     - filename: fps_exp.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_exp.test.cpp
+    - filename: fps_exp_arb.test.cpp
+      icon: TEST_ACCEPTED
+      path: verify/yosupo_fps/fps_exp_arb.test.cpp
     - filename: fps_inv.test.cpp
       icon: TEST_ACCEPTED
       path: verify/yosupo_fps/fps_inv.test.cpp
@@ -226,91 +226,78 @@ data:
       \n\n\n\n#include <concepts>\n#include <ranges>\n#include <type_traits>\n\n#line\
       \ 1 \"type_traits/modint.hpp\"\n\n\n\n#line 5 \"type_traits/modint.hpp\"\n\n\
       #line 1 \"type_traits/integral.hpp\"\n\n\n\n#line 5 \"type_traits/integral.hpp\"\
-      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T>\nusing is_signed_int128\
-      \ = typename std::conditional<std::is_same<T, __int128_t>::value\n         \
-      \                                              or std::is_same<T, __int128>::value,\n\
-      \                                                   std::true_type,\n      \
-      \                                             std::false_type>::type;\n\ntemplate\
-      \ <typename T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __uint128_t>::value\n                                  or std::is_same<T,\
-      \ unsigned __int128>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
-      \ or is_signed_int128<T>::value\n                                  or is_unsigned_int128<T>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_signed = typename\
-      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value,\n\
-      \                                            std::true_type,\n             \
-      \                               std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
-      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
-      \                              make_unsigned_int128<T>,\n                  \
-      \            typename std::conditional<std::is_signed<T>::value,\n         \
-      \                                               std::make_unsigned<T>,\n   \
-      \                                                     std::common_type<T>>::type>::type;\n\
-      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      \n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\ntemplate <typename T> using is_signed_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value or std::is_same<T,\
+      \ __int128>::value, std::true_type, std::false_type>::type;\ntemplate <typename\
+      \ T> using is_unsigned_int128 = typename std::conditional<std::is_same<T, __uint128_t>::value\
+      \ or std::is_same<T, unsigned __int128>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_integral = typename std::conditional<std::is_integral<T>::value\
+      \ or is_signed_int128<T>::value or is_unsigned_int128<T>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_signed = typename\
+      \ std::conditional<std::is_signed<T>::value or is_signed_int128<T>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_unsigned = typename\
+      \ std::conditional<std::is_unsigned<T>::value or is_unsigned_int128<T>::value,\
+      \ std::true_type, std::false_type>::type;\ntemplate <typename T> using make_unsigned_int128\
+      \ = typename std::conditional<std::is_same<T, __int128_t>::value, __uint128_t,\
+      \ unsigned __int128>;\ntemplate <typename T> using to_unsigned = typename std::conditional<is_signed_int128<T>::value,\
+      \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
+      \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\n\n#else\n\ntemplate\
+      \ <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
       template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
       \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
       template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
       template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
-      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 7 \"type_traits/modint.hpp\"\n\nnamespace kk2::modint\
-      \ {\n\ntemplate <class M>\nconcept Modular = requires(M x) {\n    requires Integral<decltype(M::getmod())>;\n\
-      \    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n\n} // namespace kk2::modint\n\
+      \ {\n\ntemplate <class M> concept Modular = requires(M x) {\n    requires Integral<decltype(M::getmod())>;\n\
+      \    x.val();\n    { x.inv() } -> std::same_as<M>;\n};\n} // namespace kk2::modint\n\
       \n\n#line 9 \"type_traits/fps.hpp\"\n\nnamespace kk2::fps {\n\nnamespace category\
       \ {\n\nstruct arbitrary_modulus {};\nstruct ntt_friendly_modulus {};\n\nstruct\
       \ ordinary {};\nstruct exponential_generating {};\nstruct set_power_series {};\n\
       \nstruct univariate {};\nstruct bivariate {};\nstruct multivariate {};\n\n}\
       \ // namespace category\n\n// Compatibility forwarding alias. The canonical\
       \ modint constraint lives in\n// type_traits/modint.hpp; keeping this name avoids\
-      \ breaking existing FPS code.\ntemplate <class M>\nconcept Modular = modint::Modular<M>;\n\
-      \ntemplate <class F>\nconcept FormalPowerSeries = requires(const F &f, int i)\
-      \ {\n    typename F::value_type;\n    typename F::modulus_category;\n    typename\
-      \ F::series_category;\n    { f.size() } -> std::integral;\n    f[i];\n} && std::ranges::range<const\
-      \ F>;\n\ntemplate <class F>\nconcept NTTFriendlyFormalPowerSeries =\n    FormalPowerSeries<F>\n\
-      \    && std::same_as<typename F::modulus_category, category::ntt_friendly_modulus>;\n\
-      \ntemplate <class F>\nconcept ArbitraryModulusFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && std::same_as<typename F::modulus_category, category::arbitrary_modulus>;\n\
-      \ntemplate <class F>\nconcept OrdinaryFormalPowerSeries =\n    FormalPowerSeries<F>\
-      \ && std::same_as<typename F::series_category, category::ordinary>;\n\ntemplate\
-      \ <class F>\nconcept ExponentialGeneratingFunction =\n    FormalPowerSeries<F>\n\
-      \    && std::same_as<typename F::series_category, category::exponential_generating>;\n\
-      \ntemplate <class F>\nconcept SetPowerSeries =\n    FormalPowerSeries<F> &&\
-      \ std::same_as<typename F::series_category, category::set_power_series>;\n\n\
-      template <class F>\nconcept UnivariateFormalPowerSeries = FormalPowerSeries<F>\
-      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::univariate>;\n\ntemplate <class F>\nconcept\
-      \ ModularUnivariateFormalPowerSeries =\n    UnivariateFormalPowerSeries<F> &&\
-      \ modint::Modular<typename F::value_type>;\n\ntemplate <class F>\nconcept UnivariateNTTFriendlyFormalPowerSeries\
-      \ =\n    NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept UnivariateArbitraryModulusFormalPowerSeries =\n\
-      \    ArbitraryModulusFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\n\
-      \ntemplate <class F>\nconcept BivariateFormalPowerSeries = FormalPowerSeries<F>\
-      \ && requires {\n    typename F::variable_category;\n} && std::same_as<typename\
-      \ F::variable_category, category::bivariate>;\n\ntemplate <class F>\nconcept\
-      \ MultivariateFormalPowerSeries = FormalPowerSeries<F> && requires {\n    typename\
-      \ F::variable_category;\n} && std::same_as<typename F::variable_category, category::multivariate>;\n\
-      \n// Short names for the categories that are commonly used in algorithms.\n\
-      template <class F>\nconcept SPS = SetPowerSeries<F>;\n\ntemplate <class F>\n\
-      concept EGF = ExponentialGeneratingFunction<F>;\n\ntemplate <class F>\nconcept\
-      \ Bivariate = BivariateFormalPowerSeries<F>;\n\ntemplate <class F>\nconcept\
-      \ Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace kk2::fps\n\
-      \n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#line 5 \"fps/fps_sparsity_detector.hpp\"\
-      \n#include <bit>\n#include <cstdint>\n#include <memory>\n#line 9 \"fps/fps_sparsity_detector.hpp\"\
-      \n\nnamespace kk2 {\n\nenum class FPSOperation {\n    CONVOLUTION,\n    LOG,\n\
-      \    POWER,\n    DIVISION,\n    POLYNOMIAL_DIVISION,\n    INVERSE,\n    EXP,\n\
-      \    SQRT\n};\n\nnamespace fps::sparsity_detail {\n\n// E(n): the leading FFT\
-      \ evaluation cost, up to the common field-operation\n// constant that cancels\
-      \ when dense and sparse leading terms are compared.\ninline std::int64_t evaluation_work(int\
-      \ n) {\n    if (n <= 1) return 1;\n    const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n\
+      \ breaking existing FPS code.\ntemplate <class M> concept Modular = modint::Modular<M>;\n\
+      template <class F> concept FormalPowerSeries = requires(const F &f, int i) {\
+      \ typename F::value_type; typename F::modulus_category; typename F::series_category;\
+      \ { f.size() } -> std::integral; f[i]; } && std::ranges::range<const F>;\ntemplate\
+      \ <class F> concept NTTFriendlyFormalPowerSeries = FormalPowerSeries<F> && std::same_as<typename\
+      \ F::modulus_category, category::ntt_friendly_modulus>;\ntemplate <class F>\
+      \ concept ArbitraryModulusFormalPowerSeries = FormalPowerSeries<F> && std::same_as<typename\
+      \ F::modulus_category, category::arbitrary_modulus>;\ntemplate <class F> concept\
+      \ OrdinaryFormalPowerSeries = FormalPowerSeries<F> && std::same_as<typename\
+      \ F::series_category, category::ordinary>;\ntemplate <class F> concept ExponentialGeneratingFunction\
+      \ = FormalPowerSeries<F> && std::same_as<typename F::series_category, category::exponential_generating>;\n\
+      template <class F> concept SetPowerSeries = FormalPowerSeries<F> && std::same_as<typename\
+      \ F::series_category, category::set_power_series>;\ntemplate <class F> concept\
+      \ UnivariateFormalPowerSeries = FormalPowerSeries<F> && requires { typename\
+      \ F::variable_category; } && std::same_as<typename F::variable_category, category::univariate>;\n\
+      template <class F> concept ModularUnivariateFormalPowerSeries = UnivariateFormalPowerSeries<F>\
+      \ && modint::Modular<typename F::value_type>;\ntemplate <class F> concept UnivariateNTTFriendlyFormalPowerSeries\
+      \ = NTTFriendlyFormalPowerSeries<F> && UnivariateFormalPowerSeries<F>;\ntemplate\
+      \ <class F> concept UnivariateArbitraryModulusFormalPowerSeries = ArbitraryModulusFormalPowerSeries<F>\
+      \ && UnivariateFormalPowerSeries<F>;\ntemplate <class F> concept BivariateFormalPowerSeries\
+      \ = FormalPowerSeries<F> && requires { typename F::variable_category; } && std::same_as<typename\
+      \ F::variable_category, category::bivariate>;\ntemplate <class F> concept MultivariateFormalPowerSeries\
+      \ = FormalPowerSeries<F> && requires { typename F::variable_category; } && std::same_as<typename\
+      \ F::variable_category, category::multivariate>;\n\n// Short names for the categories\
+      \ that are commonly used in algorithms.\ntemplate <class F> concept SPS = SetPowerSeries<F>;\n\
+      template <class F> concept EGF = ExponentialGeneratingFunction<F>;\ntemplate\
+      \ <class F> concept Bivariate = BivariateFormalPowerSeries<F>;\ntemplate <class\
+      \ F> concept Multivariate = MultivariateFormalPowerSeries<F>;\n\n} // namespace\
+      \ kk2::fps\n\n\n#line 1 \"fps/fps_sparsity_detector.hpp\"\n\n\n\n#line 5 \"\
+      fps/fps_sparsity_detector.hpp\"\n#include <bit>\n#include <cstdint>\n#include\
+      \ <memory>\n#line 9 \"fps/fps_sparsity_detector.hpp\"\n\nnamespace kk2 {\n\n\
+      enum class FPSOperation {\n    CONVOLUTION,\n    LOG,\n    POWER,\n    DIVISION,\n\
+      \    POLYNOMIAL_DIVISION,\n    INVERSE,\n    EXP,\n    SQRT\n};\n\nnamespace\
+      \ fps::sparsity_detail {\n\n// E(n): the leading FFT evaluation cost, up to\
+      \ the common field-operation\n// constant that cancels when dense and sparse\
+      \ leading terms are compared.\ninline std::int64_t evaluation_work(int n) {\n\
+      \    if (n <= 1) return 1;\n    const unsigned z = std::bit_ceil(static_cast<unsigned>(n));\n\
       \    return static_cast<std::int64_t>(z) * std::countr_zero(z);\n}\n\ninline\
       \ int transform_size(int n, int m) {\n    if (n <= 0 || m <= 0) return 0;\n\
       \    return static_cast<int>(std::bit_ceil(static_cast<unsigned>(n + m - 1)));\n\
@@ -471,12 +458,11 @@ data:
   - verify/unit_test/math_mod/large_fact_arb_mod.test.cpp
   - verify/yosupo_fps/fps_composition.test.cpp
   - verify/yosupo_fps/fps_composition_inv.test.cpp
-  - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
   - verify/yosupo_fps/poly_interpolation_geometric.test.cpp
   - verify/yosupo_fps/poly_to_newton_basis.test.cpp
   - verify/yosupo_math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/unit_test/fps/inplace_operations.test.cpp
@@ -488,6 +474,7 @@ data:
   - verify/unit_test/fps/sum_of_polynomial.test.cpp
   - verify/unit_test/type_traits/fps/fps.test.cpp
   - verify/yosupo_fps/fps_exp.test.cpp
+  - verify/yosupo_fps/fps_exp_arb.test.cpp
   - verify/yosupo_fps/fps_inv.test.cpp
   - verify/yosupo_fps/fps_inv_arb.test.cpp
   - verify/yosupo_fps/fps_log.test.cpp

@@ -66,30 +66,23 @@ data:
       \n\n\n\n#include <concepts>\n#include <fstream>\n#include <istream>\n#include\
       \ <ostream>\n#include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits\
       \ {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                                   \
-      \       || std::is_same<T, std::ifstream>::value,\n                        \
-      \                              std::true_type,\n                           \
-      \                           std::false_type>::type;\ntemplate <typename T>\n\
-      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
-      \                                                          || std::is_same<T,\
-      \ std::ofstream>::value,\n                                                 \
-      \     std::true_type,\n                                                    \
-      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <typename T> using is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value || std::is_same<T, std::ifstream>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_standard_ostream =\
+      \ typename std::conditional<std::is_same<T, std::ostream>::value || std::is_same<T,\
+      \ std::ofstream>::value, std::true_type, std::false_type>::type;\ntemplate <typename\
+      \ T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\ntemplate <typename T> using is_istream = typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_ostream = typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
+      template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      template <class T> concept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 12 \"matrix/matrix_field.hpp\"\n\nnamespace\
       \ kk2 {\n\n/**\n * @brief \u884C\u5217\n *\n * @tparam Field inv\u30E1\u30F3\
       \u30D0\u304C\u5FC5\u8981\n */\ntemplate <class Field> struct MatrixField {\n\
@@ -220,41 +213,32 @@ data:
       \n\n#line 1 \"modint/mont.hpp\"\n\n\n\n#line 5 \"modint/mont.hpp\"\n#include\
       \ <cstdint>\n#line 8 \"modint/mont.hpp\"\n\n#line 1 \"type_traits/integral.hpp\"\
       \n\n\n\n#line 5 \"type_traits/integral.hpp\"\n\nnamespace kk2 {\n\n#ifndef _MSC_VER\n\
-      \ntemplate <typename T>\nusing is_signed_int128 = typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value\n                                                     \
-      \  or std::is_same<T, __int128>::value,\n                                  \
-      \                 std::true_type,\n                                        \
-      \           std::false_type>::type;\n\ntemplate <typename T>\nusing is_unsigned_int128\
-      \ =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\n   \
-      \                               or std::is_same<T, unsigned __int128>::value,\n\
-      \                              std::true_type,\n                           \
-      \   std::false_type>::type;\n\ntemplate <typename T>\nusing is_integral =\n\
-      \    typename std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\n\
-      \                                  or is_unsigned_int128<T>::value,\n      \
-      \                        std::true_type,\n                              std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_signed = typename std::conditional<std::is_signed<T>::value\
-      \ or is_signed_int128<T>::value,\n                                         \
-      \   std::true_type,\n                                            std::false_type>::type;\n\
-      \ntemplate <typename T>\nusing is_unsigned =\n    typename std::conditional<std::is_unsigned<T>::value\
-      \ or is_unsigned_int128<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
-      \ __int128_t>::value, __uint128_t, unsigned __int128>;\n\ntemplate <typename\
-      \ T>\nusing to_unsigned =\n    typename std::conditional<is_signed_int128<T>::value,\n\
-      \                              make_unsigned_int128<T>,\n                  \
-      \            typename std::conditional<std::is_signed<T>::value,\n         \
-      \                                               std::make_unsigned<T>,\n   \
-      \                                                     std::common_type<T>>::type>::type;\n\
-      \n#else\n\ntemplate <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
+      \ntemplate <typename T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value or std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_unsigned_int128 = typename std::conditional<std::is_same<T,\
+      \ __uint128_t>::value or std::is_same<T, unsigned __int128>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_integral = typename\
+      \ std::conditional<std::is_integral<T>::value or is_signed_int128<T>::value\
+      \ or is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_signed = typename std::conditional<std::is_signed<T>::value\
+      \ or is_signed_int128<T>::value, std::true_type, std::false_type>::type;\ntemplate\
+      \ <typename T> using is_unsigned = typename std::conditional<std::is_unsigned<T>::value\
+      \ or is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using make_unsigned_int128 = typename std::conditional<std::is_same<T,\
+      \ __int128_t>::value, __uint128_t, unsigned __int128>;\ntemplate <typename T>\
+      \ using to_unsigned = typename std::conditional<is_signed_int128<T>::value,\
+      \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
+      \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\n\n#else\n\ntemplate\
+      \ <typename T> using is_integral = std::enable_if_t<std::is_integral<T>::value>;\n\
       template <typename T> using is_signed = std::enable_if_t<std::is_signed<T>::value>;\n\
       template <typename T> using is_unsigned = std::enable_if_t<std::is_unsigned<T>::value>;\n\
       template <typename T> using to_unsigned = std::make_unsigned<T>;\n\n#endif //\
       \ _MSC_VER\n\ntemplate <typename T> using is_integral_t = std::enable_if_t<is_integral<T>::value>;\n\
       template <typename T> using is_signed_t = std::enable_if_t<is_signed<T>::value>;\n\
       template <typename T> using is_unsigned_t = std::enable_if_t<is_unsigned<T>::value>;\n\
-      \ntemplate <class T>\nconcept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept Integral = is_integral<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept SignedIntegral = is_signed<std::remove_cv_t<T>>::value;\n\
+      template <class T> concept UnsignedIntegral = is_unsigned<std::remove_cv_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 11 \"modint/mont.hpp\"\n\nnamespace kk2 {\n\n\
       template <int p> struct LazyMontgomeryModInt {\n    using mint = LazyMontgomeryModInt;\n\
       \    using i32 = int32_t;\n    using i64 = int64_t;\n    using u32 = uint32_t;\n\
@@ -491,222 +475,222 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 0.0024822510000035436
+  - elapsed: 0.00218312100000162
     environment: g++
-    memory: 3.592
+    memory: 3.656
     name: example_00
     status: AC
-  - elapsed: 0.0021454500000004373
+  - elapsed: 0.0018360900000118363
     environment: g++
-    memory: 3.648
+    memory: 3.776
     name: example_01
     status: AC
-  - elapsed: 0.0022432619999790404
+  - elapsed: 0.0019564360000003944
     environment: g++
-    memory: 3.812
+    memory: 3.656
     name: example_02
     status: AC
-  - elapsed: 0.0021268449999922723
+  - elapsed: 0.0017737250000209315
     environment: g++
-    memory: 3.784
+    memory: 3.764
     name: frobenius_hack_00
     status: AC
-  - elapsed: 20.386797056000006
+  - elapsed: 17.971337777000002
     environment: g++
-    memory: 4.548
+    memory: 4.608
     name: lowrank_max_random_00
     status: AC
-  - elapsed: 18.500223196999997
+  - elapsed: 16.322085682999983
     environment: g++
-    memory: 4.572
+    memory: 4.604
     name: lowrank_max_random_01
     status: AC
-  - elapsed: 20.771958127999994
+  - elapsed: 18.002794370000004
     environment: g++
-    memory: 4.56
+    memory: 4.628
     name: max_random_00
     status: AC
-  - elapsed: 19.832319829
+  - elapsed: 17.824735307000026
     environment: g++
-    memory: 4.668
+    memory: 4.632
     name: max_random_01
     status: AC
-  - elapsed: 21.37129442099996
+  - elapsed: 19.101381821000018
     environment: g++
-    memory: 4.696
+    memory: 4.64
     name: max_random_02
     status: AC
-  - elapsed: 19.992983914999968
+  - elapsed: 17.836355663000006
     environment: g++
-    memory: 4.572
+    memory: 4.74
     name: max_random_03
     status: AC
-  - elapsed: 27.33049344599999
+  - elapsed: 23.97484038700003
     environment: g++
     memory: 4.648
     name: max_random_worst_00
     status: AC
-  - elapsed: 26.44863781700002
+  - elapsed: 23.96929559299997
     environment: g++
-    memory: 4.668
+    memory: 4.48
     name: max_random_worst_01
     status: AC
-  - elapsed: 26.455519979999963
+  - elapsed: 24.026388072999964
     environment: g++
-    memory: 4.364
+    memory: 4.636
     name: max_random_worst_02
     status: AC
-  - elapsed: 26.863196871000014
+  - elapsed: 24.05834854799997
     environment: g++
-    memory: 4.564
+    memory: 4.672
     name: max_random_worst_03
     status: AC
-  - elapsed: 13.448004835999996
+  - elapsed: 13.163581022000017
     environment: g++
-    memory: 4.548
+    memory: 4.5
     name: nontrivial_frobenius_form_00
     status: AC
-  - elapsed: 20.01999214099999
+  - elapsed: 18.144837414999984
     environment: g++
-    memory: 4.488
+    memory: 4.752
     name: nontrivial_frobenius_form_01
     status: AC
-  - elapsed: 21.82543535299999
+  - elapsed: 18.84099243999998
     environment: g++
-    memory: 4.52
+    memory: 4.66
     name: nontrivial_frobenius_form_02
     status: AC
-  - elapsed: 20.59844178000003
+  - elapsed: 17.852507538999987
     environment: g++
-    memory: 4.564
+    memory: 4.636
     name: nontrivial_frobenius_form_03
     status: AC
-  - elapsed: 18.057101219999993
+  - elapsed: 16.35375861700004
     environment: g++
-    memory: 4.416
+    memory: 4.5
     name: nontrivial_frobenius_form_04
     status: AC
-  - elapsed: 19.83769929999994
+  - elapsed: 17.446814144000086
     environment: g++
-    memory: 4.54
+    memory: 4.748
     name: nontrivial_frobenius_form_05
     status: AC
-  - elapsed: 20.348802793000004
+  - elapsed: 17.952289080000014
     environment: g++
-    memory: 4.564
+    memory: 4.756
     name: nontrivial_frobenius_form_06
     status: AC
-  - elapsed: 19.008132028999967
+  - elapsed: 16.803209195000022
     environment: g++
-    memory: 4.692
+    memory: 4.648
     name: nontrivial_frobenius_form_07
     status: AC
-  - elapsed: 21.146524483000007
+  - elapsed: 19.056146422999973
     environment: g++
-    memory: 4.416
+    memory: 4.544
     name: nontrivial_frobenius_form_08
     status: AC
-  - elapsed: 20.840016192000007
+  - elapsed: 18.56858480400001
     environment: g++
-    memory: 4.56
+    memory: 4.628
     name: nontrivial_frobenius_form_09
     status: AC
-  - elapsed: 13.431849162000049
+  - elapsed: 13.145723427999997
     environment: g++
-    memory: 4.372
+    memory: 4.652
     name: perm_max_random_00
     status: AC
-  - elapsed: 14.141242396999928
+  - elapsed: 11.281991277999964
     environment: g++
-    memory: 4.432
+    memory: 4.516
     name: perm_max_random_01
     status: AC
-  - elapsed: 16.53042351499994
+  - elapsed: 14.269006475999959
     environment: g++
-    memory: 4.368
+    memory: 4.528
     name: random_00
     status: AC
-  - elapsed: 19.147346245999984
+  - elapsed: 17.108820769999966
     environment: g++
-    memory: 4.54
+    memory: 4.34
     name: random_01
     status: AC
-  - elapsed: 1.89663675099996
+  - elapsed: 1.5843618279999419
     environment: g++
-    memory: 4.052
+    memory: 4.116
     name: random_02
     status: AC
-  - elapsed: 0.13127505299996756
+  - elapsed: 0.10921968100001322
     environment: g++
-    memory: 3.596
+    memory: 3.648
     name: signed_overflow_00
     status: AC
-  - elapsed: 0.0021797419999529666
+  - elapsed: 0.0019926800000575895
     environment: g++
-    memory: 3.82
+    memory: 3.872
     name: small_00
     status: AC
-  - elapsed: 0.002169071999901462
+  - elapsed: 0.0019790999999713677
     environment: g++
-    memory: 3.648
+    memory: 3.86
     name: small_01
     status: AC
-  - elapsed: 0.0021225360000016735
+  - elapsed: 0.001821618999997554
     environment: g++
-    memory: 3.796
+    memory: 3.88
     name: small_02
     status: AC
-  - elapsed: 0.0020906549999608615
+  - elapsed: 0.0017627160000301956
     environment: g++
-    memory: 3.764
+    memory: 3.748
     name: small_03
     status: AC
-  - elapsed: 0.002093039999977009
+  - elapsed: 0.0017861960000118415
     environment: g++
-    memory: 3.812
+    memory: 3.752
     name: small_04
     status: AC
-  - elapsed: 0.002108949999978904
+  - elapsed: 0.0017960390000553161
     environment: g++
-    memory: 3.648
+    memory: 3.712
     name: small_05
     status: AC
-  - elapsed: 0.0020914560000164784
+  - elapsed: 0.00176079799996387
     environment: g++
-    memory: 3.648
+    memory: 3.772
     name: small_06
     status: AC
-  - elapsed: 0.0020879009999816844
+  - elapsed: 0.0017076490000818012
     environment: g++
-    memory: 3.752
+    memory: 3.88
     name: small_07
     status: AC
-  - elapsed: 0.0020808870000337265
+  - elapsed: 0.0017523920000712678
     environment: g++
-    memory: 3.648
+    memory: 3.712
     name: small_08
     status: AC
-  - elapsed: 0.002116995000051247
+  - elapsed: 0.0017309590000422759
     environment: g++
-    memory: 3.792
+    memory: 3.76
     name: small_09
     status: AC
-  - elapsed: 0.0021127370000613155
+  - elapsed: 0.0017267869999386676
     environment: g++
-    memory: 3.796
+    memory: 3.712
     name: small_10
     status: AC
-  - elapsed: 0.00210489299990968
+  - elapsed: 0.0017067750000023807
     environment: g++
-    memory: 3.72
+    memory: 3.76
     name: small_11
     status: AC
-  - elapsed: 0.017200364000018453
+  - elapsed: 0.014038752000033128
     environment: g++
-    memory: 3.752
+    memory: 3.744
     name: unsigned_overflow_00
     status: AC
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_linalg/matrix_pow.test.cpp

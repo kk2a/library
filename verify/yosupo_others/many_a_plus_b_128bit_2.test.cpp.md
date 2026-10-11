@@ -90,30 +90,23 @@ data:
       \n\n#include <concepts>\n#line 6 \"type_traits/io.hpp\"\n#include <istream>\n\
       #include <ostream>\n#include <type_traits>\n\nnamespace kk2 {\n\nnamespace type_traits\
       \ {\n\nstruct istream_tag {};\nstruct ostream_tag {};\n\n} // namespace type_traits\n\
-      \ntemplate <typename T>\nusing is_standard_istream = typename std::conditional<std::is_same<T,\
-      \ std::istream>::value\n                                                   \
-      \       || std::is_same<T, std::ifstream>::value,\n                        \
-      \                              std::true_type,\n                           \
-      \                           std::false_type>::type;\ntemplate <typename T>\n\
-      using is_standard_ostream = typename std::conditional<std::is_same<T, std::ostream>::value\n\
-      \                                                          || std::is_same<T,\
-      \ std::ofstream>::value,\n                                                 \
-      \     std::true_type,\n                                                    \
-      \  std::false_type>::type;\ntemplate <typename T> using is_user_defined_istream\
-      \ = std::is_base_of<type_traits::istream_tag, T>;\ntemplate <typename T> using\
-      \ is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag, T>;\n\n\
-      template <typename T>\nusing is_istream =\n    typename std::conditional<is_standard_istream<T>::value\
-      \ || is_user_defined_istream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T>\nusing is_ostream =\n    typename std::conditional<is_standard_ostream<T>::value\
-      \ || is_user_defined_ostream<T>::value,\n                              std::true_type,\n\
-      \                              std::false_type>::type;\n\ntemplate <typename\
-      \ T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\ntemplate\
-      \ <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
-      \ntemplate <class T>\nconcept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
+      \ntemplate <typename T> using is_standard_istream = typename std::conditional<std::is_same<T,\
+      \ std::istream>::value || std::is_same<T, std::ifstream>::value, std::true_type,\
+      \ std::false_type>::type;\ntemplate <typename T> using is_standard_ostream =\
+      \ typename std::conditional<std::is_same<T, std::ostream>::value || std::is_same<T,\
+      \ std::ofstream>::value, std::true_type, std::false_type>::type;\ntemplate <typename\
+      \ T> using is_user_defined_istream = std::is_base_of<type_traits::istream_tag,\
+      \ T>;\ntemplate <typename T> using is_user_defined_ostream = std::is_base_of<type_traits::ostream_tag,\
+      \ T>;\ntemplate <typename T> using is_istream = typename std::conditional<is_standard_istream<T>::value\
+      \ || is_user_defined_istream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_ostream = typename std::conditional<is_standard_ostream<T>::value\
+      \ || is_user_defined_ostream<T>::value, std::true_type, std::false_type>::type;\n\
+      template <typename T> using is_istream_t = std::enable_if_t<is_istream<T>::value>;\n\
+      template <typename T> using is_ostream_t = std::enable_if_t<is_ostream<T>::value>;\n\
+      template <class T> concept StandardInputStream = is_standard_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept StandardOutputStream = is_standard_ostream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept InputStream = is_istream<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept OutputStream = is_ostream<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 7 \"math/monoid/max.hpp\"\n\nnamespace kk2 {\n\
       \nnamespace monoid {\n\ntemplate <class S, class Compare = std::less<S>> struct\
       \ Max {\n    static constexpr bool commutative = true;\n    using M = Max;\n\
@@ -150,17 +143,17 @@ data:
       \n#include <list>\n#line 11 \"type_traits/container_traits.hpp\"\n\nnamespace\
       \ kk2 {\n\ntemplate <typename T> struct is_vector : std::false_type {};\ntemplate\
       \ <typename T, typename Alloc> struct is_vector<std::vector<T, Alloc>> : std::true_type\
-      \ {};\n\ntemplate <typename T> struct is_container : std::false_type {};\ntemplate\
-      \ <typename T, typename Alloc>\nstruct is_container<std::vector<T, Alloc>> :\
-      \ std::true_type {};\ntemplate <typename CharT, typename Traits, typename Alloc>\n\
-      struct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type\
+      \ {};\ntemplate <typename T> struct is_container : std::false_type {};\ntemplate\
+      \ <typename T, typename Alloc> struct is_container<std::vector<T, Alloc>> :\
+      \ std::true_type {};\ntemplate <typename CharT, typename Traits, typename Alloc>\
+      \ struct is_container<std::basic_string<CharT, Traits, Alloc>> : std::true_type\
       \ {};\ntemplate <typename T, std::size_t N> struct is_container<std::array<T,\
       \ N>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct is_container<std::deque<T,\
       \ Alloc>> : std::true_type {};\ntemplate <typename T, typename Alloc> struct\
       \ is_container<std::list<T, Alloc>> : std::true_type {};\ntemplate <typename\
       \ T> using is_container_t = typename std::enable_if_t<is_container<T>::value>;\n\
-      \ntemplate <class T>\nconcept Vector = is_vector<std::remove_cvref_t<T>>::value;\n\
-      \ntemplate <class T>\nconcept Container = is_container<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept Vector = is_vector<std::remove_cvref_t<T>>::value;\n\
+      template <class T> concept Container = is_container<std::remove_cvref_t<T>>::value;\n\
       \n} // namespace kk2\n\n\n#line 13 \"template/function_util.hpp\"\n\nnamespace\
       \ kk2 {\n\ntemplate <class T, class... Sizes> auto make_vector(int first, Sizes...\
       \ sizes) {\n    if constexpr (sizeof...(sizes) == 0) {\n        return std::vector<T>(first);\n\
@@ -282,57 +275,57 @@ data:
   pathExtension: cpp
   requiredBy: []
   testcases:
-  - elapsed: 1.4232620050000264
+  - elapsed: 1.4312559159999978
     environment: g++
-    memory: 3.604
+    memory: 3.632
     name: all_max_abs_00
     status: AC
-  - elapsed: 0.11631684700000733
+  - elapsed: 0.11465584800001238
     environment: g++
-    memory: 3.624
+    memory: 3.596
     name: all_zero_00
     status: AC
-  - elapsed: 1.8835079959999916
+  - elapsed: 1.9092302230000087
     environment: g++
-    memory: 3.676
+    memory: 3.668
     name: carry_up_00
     status: AC
-  - elapsed: 1.2569427100000325
+  - elapsed: 1.2540027990000056
     environment: g++
-    memory: 3.58
+    memory: 3.624
     name: digit_random_00
     status: AC
-  - elapsed: 1.2390434590000154
+  - elapsed: 1.254669457999995
     environment: g++
-    memory: 3.672
+    memory: 3.58
     name: digit_random_01
     status: AC
-  - elapsed: 0.002528264999966723
+  - elapsed: 0.0024435509999989335
     environment: g++
-    memory: 3.64
+    memory: 3.616
     name: example_00
     status: AC
-  - elapsed: 1.9452355420000345
+  - elapsed: 1.940485883000008
     environment: g++
-    memory: 3.592
+    memory: 3.608
     name: max_random_00
     status: AC
-  - elapsed: 1.935391796000033
+  - elapsed: 1.9425229559999764
     environment: g++
-    memory: 3.6
+    memory: 3.596
     name: max_random_01
     status: AC
-  - elapsed: 1.4907049550000124
+  - elapsed: 1.5200277149999977
     environment: g++
-    memory: 3.68
+    memory: 3.64
     name: random_00
     status: AC
-  - elapsed: 1.7822814170000356
+  - elapsed: 1.7825506419999897
     environment: g++
     memory: 3.64
     name: random_01
     status: AC
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_others/many_a_plus_b_128bit_2.test.cpp

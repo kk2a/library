@@ -48,7 +48,7 @@ data:
       \n    int n = int(size(f)) - 1, k = 1;\n    int h = 1;\n    while (h < n + 1)\
       \ h <<= 1;\n    FPS q(h * k);\n    for (int i = 0; i <= n; i++) q[i] = -f[i];\n\
       \    FPS p = rec(rec, q, n, h, k);\n    return p.pre(n + 1).rev();\n}\n\n} //\
-      \ namespace kk2\n\n#endif /* KK2_FPS_COMPOSITION_HPP */\n"
+      \ namespace kk2\n\n#endif // KK2_FPS_COMPOSITION_HPP\n"
     name: default
   - code: "#line 1 \"fps/composition.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
       #include <functional>\n#include <utility>\n#include <vector>\n\nnamespace kk2\
@@ -91,7 +91,7 @@ data:
   pathExtension: hpp
   requiredBy:
   - verify/yosupo_fps/fps_composition.test.cpp
-  timestamp: '2026-10-03 23:37:51+09:00'
+  timestamp: '2026-10-11 18:25:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith: []
 documentation_of: fps/composition.hpp

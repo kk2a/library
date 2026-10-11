@@ -901,9 +901,6 @@ data:
       - filename: fps_composition_inv.test.cpp
         icon: LIBRARY_ALL_AC
         path: verify/yosupo_fps/fps_composition_inv.test.cpp
-      - filename: fps_exp_arb.test.cpp
-        icon: LIBRARY_NO_TESTS
-        path: verify/yosupo_fps/fps_exp_arb.test.cpp
       - filename: fps_multipoint_evaluation_geometric.test.cpp
         icon: LIBRARY_ALL_AC
         path: verify/yosupo_fps/fps_multipoint_evaluation_geometric.test.cpp
@@ -1211,6 +1208,9 @@ data:
       - filename: fps_exp.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/fps_exp.test.cpp
+      - filename: fps_exp_arb.test.cpp
+        icon: TEST_ACCEPTED
+        path: verify/yosupo_fps/fps_exp_arb.test.cpp
       - filename: fps_inv.test.cpp
         icon: TEST_ACCEPTED
         path: verify/yosupo_fps/fps_inv.test.cpp
