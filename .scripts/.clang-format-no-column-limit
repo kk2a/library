@@ -1,0 +1,4 @@
+BasedOnStyle: InheritParentConfig
+ColumnLimit: 0
+AlwaysBreakTemplateDeclarations: No
+BreakBeforeConceptDeclarations: Never

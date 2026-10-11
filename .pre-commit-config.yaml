@@ -7,3 +7,9 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+      - id: include-guards
+        name: check include guards
+        entry: bash .scripts/check_include_guards.sh
+        language: system
+        pass_filenames: false
+        files: \.hpp$

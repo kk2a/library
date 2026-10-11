@@ -1,5 +1,5 @@
-#ifndef KK2_GRAPH_WARSHALL_FLOYD_HPP
-#define KK2_GRAPH_WARSHALL_FLOYD_HPP 1
+#ifndef KK2_GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP
+#define KK2_GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -83,4 +83,4 @@ using shortest_path_impl::warshall_froyd;
 
 } // namespace kk2
 
-#endif // KK2_GRAPH_WARSHALL_FLOYD_HPP
+#endif // KK2_GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP

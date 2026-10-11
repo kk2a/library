@@ -38,4 +38,4 @@ template <typename T> struct BinaryIndexedTree {
 
 } // namespace kk2
 
-#endif // #ifndef KK2_DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP
+#endif // KK2_DATA_STRUCTURE_BINARY_INDEXED_TREE_HPP

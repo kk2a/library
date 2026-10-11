@@ -72,4 +72,4 @@ FPS composition(const FPS &f_, const FPS &g_, int precision = -1) {
 
 } // namespace kk2
 
-#endif /* KK2_FPS_COMPOSITION_HPP */
+#endif // KK2_FPS_COMPOSITION_HPP

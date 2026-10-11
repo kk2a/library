@@ -257,4 +257,4 @@ template <typename T, int MAX_LOG> struct BinaryTrie {
 
 } // namespace kk2
 
-#endif
+#endif // KK2_DATA_STRUCTURE_BINARY_TRIE_HPP

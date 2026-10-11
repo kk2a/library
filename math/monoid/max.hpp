@@ -51,4 +51,4 @@ template <class S, class Compare = std::less<S>> struct Max {
 
 } // namespace kk2
 
-#endif // MATH_MONOID_MAX_HPP
+#endif // KK2_MATH_MONOID_MAX_HPP

@@ -1,6 +1,4 @@
-#define IGNORE
-// #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series"
-// おちることがよくあるので，頑張って修正する
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/exp_of_formal_power_series
 
 #include "../../fps/fps_arb.hpp"
 #include "../../modint/mont.hpp"
